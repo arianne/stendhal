@@ -59,11 +59,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	private Entity2DView view;
 
-	/**
-	 * The client.
-	 */
-	private StendhalClient client;
-
 	/** The placeholder sprite. */
 	private Sprite placeholder;
 
@@ -74,10 +69,9 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * Create an entity slot.
 	 */
-	public EntitySlot(StendhalClient client, String name, Sprite placeholder,
+	public EntitySlot(String name, Sprite placeholder,
 			int x, int y) {
 		super(name, x, y, background.getWidth(), background.getHeight());
-		this.client = client;
 		this.placeholder = placeholder;
 
 		view = null;
@@ -127,7 +121,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		action.put("targetobject", parent.getID().getObjectID());
 		action.put("targetslot", getName());
 
-		client.send(action);
+		StendhalClient.get().send(action);
 
 		return true;
 	}
@@ -248,7 +242,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// target is player's bag
 		action.put("targetobject", User.get().getID().getObjectID());
 		action.put("targetslot", "bag");
-		client.send(action);
+		StendhalClient.get().send(action);
 
 		return true;
 	}

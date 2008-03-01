@@ -232,7 +232,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	public EntityContainer inspectMe(Entity suspect, RPSlot content,
 			EntityContainer container, int width , int height) {
 		if ((container == null) || !container.isVisible()) {
-			container = new EntityContainer(client, suspect.getType(), width, height);
+			container = new EntityContainer(suspect.getType(), width, height);
 			
 
 			addChild(container);

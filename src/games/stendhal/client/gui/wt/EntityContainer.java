@@ -13,7 +13,6 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
@@ -26,9 +25,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * This panel is a container showing all items in a slot.
@@ -55,7 +55,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	private RPSlot shownSlot;
 
 	/** Creates the panel. */
-	public EntityContainer(StendhalClient client, String name, int width,
+	public EntityContainer(String name, int width,
 			int height) {
 		super(name, 0, 300, 100, 100);
 
@@ -74,7 +74,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(client, name, null, x
+				EntitySlot entitySlot = new EntitySlot( name, null, x
 						* spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
 				addChild(entitySlot);

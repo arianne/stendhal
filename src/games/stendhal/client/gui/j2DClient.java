@@ -29,7 +29,6 @@ import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
 import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
-import games.stendhal.client.gui.wt.BuyWindow;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -163,7 +162,7 @@ public class j2DClient extends StendhalUI {
 
 	private ManagedWindow buddies;
 
-	public BuyWindow buywindow;
+	
 
 	/** the minimap panel. */
 	private Minimap minimap;
@@ -420,11 +419,12 @@ public class j2DClient extends StendhalUI {
 		addWindow(character);
 		settings.add(character, "Enable Character");
 
-		inventory = new EntityContainer(client, "bag", 3, 4);
+		inventory = new EntityContainer("bag", 3, 4);
 		addWindow(inventory);
 		settings.add(inventory, "Enable Bag");
 
-		keyring = new KeyRing(client);
+		keyring = new KeyRing();
+		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
 		settings.add(keyring, "Enable Key Ring");
 

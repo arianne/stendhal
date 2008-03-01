@@ -19,7 +19,6 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
@@ -76,8 +75,6 @@ public class Character extends WtPanel {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
 				PANEL_HEIGHT);
 
-		StendhalClient client = ui.getClient();
-
 		setTitleBar(true);
 		setFrame(true);
 		setMovable(true);
@@ -91,39 +88,39 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot(client, "head",
+		slotPanels.put("head", new EntitySlot("head",
 				st.getSprite("data/gui/helmet-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
 
-		slotPanels.put("armor", new EntitySlot(client, "armor",
+		slotPanels.put("armor", new EntitySlot( "armor",
 				st.getSprite("data/gui/armor-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1)));
 
-		slotPanels.put("rhand", new EntitySlot(client, "rhand",
+		slotPanels.put("rhand", new EntitySlot( "rhand",
 				st.getSprite("data/gui/weapon-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("lhand", new EntitySlot(client, "lhand",
+		slotPanels.put("lhand", new EntitySlot( "lhand",
 				st.getSprite("data/gui/shield-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("finger", new EntitySlot(client, "finger",
+		slotPanels.put("finger", new EntitySlot( "finger",
 				st.getSprite("data/gui/ring-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("cloak", new EntitySlot(client, "cloak",
+		slotPanels.put("cloak", new EntitySlot("cloak",
 				st.getSprite("data/gui/cloak-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("legs", new EntitySlot(client, "legs",
+		slotPanels.put("legs", new EntitySlot( "legs",
 				st.getSprite("data/gui/legs-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2)));
 
-		slotPanels.put("feet", new EntitySlot(client, "feet",
+		slotPanels.put("feet", new EntitySlot( "feet",
 				st.getSprite("data/gui/boots-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 3)));

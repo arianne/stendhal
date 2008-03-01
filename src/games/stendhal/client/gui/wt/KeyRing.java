@@ -22,18 +22,13 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * @param client
 	 *            The stendhal client.
 	 */
-	public KeyRing(StendhalClient client) {
+	public KeyRing() {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
-		super(client, "keyring", 2, 4);
+		super("keyring", 2, 4);
 
 		// Disable by default
 		disable();
-
-		/*
-		 * Register feature listener
-		 */
-		client.addFeatureChangeListener(this);
 	}
 
 	//
