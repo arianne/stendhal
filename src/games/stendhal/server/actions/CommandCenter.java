@@ -36,21 +36,22 @@ public class CommandCenter {
 	}
 
 	public static void register(String action, ActionListener actionClass) {
-		ActionListener command = getActionsMap().putIfAbsent(action,
-				actionClass);
-		if (command != null) {
+		ActionListener command = getActionsMap().putIfAbsent(action, actionClass);
+
+		//TODO mf - register slash commands as verbs in WordList
+		if (command == null) {
+//			WordList.getInstance().registerVerb(action);
+		} else {
 			logger.error("not registering " + command.getClass()
 					+ ". it has the same handler: " + action + " as  "
 					+ CommandCenter.getAction(action).getClass());
 		}
-
 	}
 
 	public static void register(String action, ActionListener actionClass,
 			int requiredAdminLevel) {
 		register(action, actionClass);
 		AdministrationAction.registerCommandLevel(action, requiredAdminLevel);
-
 	}
 
 	private static void registerActions() {
@@ -109,7 +110,6 @@ public class CommandCenter {
 		} else {
 			return action;
 		}
-
 	}
 
 	static class UnknownAction implements ActionListener {
@@ -126,7 +126,6 @@ public class CommandCenter {
 						"Unknown command " + type);
 			}
 		}
-
 	}
 
 }
