@@ -18,6 +18,10 @@ public class MockClientUI extends j2DClient {
 	}
 
 	public String getEventBuffer() {
-		return buffer.getErrorString();
+		if (buffer.hasError()) {
+			return buffer.getErrorString();
+		} else {
+			return "";
+		}
 	}
 }
