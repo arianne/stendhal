@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import marauroa.common.game.RPAction;
 
 /**
@@ -24,16 +25,28 @@ class SummonAtAction implements SlashAction {
 		summon.put("type", "summonat");
 		summon.put("target", params[0]);
 		summon.put("slot", params[1]);
-		try {
-			// TODO: this should be corrected in parser;
-			int amount = Integer.valueOf(params[2]);
-			summon.put("amount", params[2]);
-		} catch (NumberFormatException e) {
-		    remainder = params[2] + " " + remainder;
+
+		int amount;
+		String itemName;
+
+		// If there is a numeric expression, treat it as amount.
+		//TODO refactor with same code in DropAction.execute()
+		if (params[2].matches("[0-9].*")) {
+    		try {
+    			amount = Integer.parseInt(params[2]);
+    		} catch (NumberFormatException ex) {
+    			StendhalUI.get().addEventLine("Invalid amount");
+    			return true;
+    		}
+
+    		itemName = remainder;
+		} else {
+			amount = 1;
+			itemName = (params[2] + " " + remainder).trim();
 		}
-		
-		
-		summon.put("item", remainder);
+
+		summon.put("amount", amount);
+		summon.put("item", itemName);
 
 		StendhalClient.get().send(summon);
 
