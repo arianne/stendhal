@@ -2,8 +2,6 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
 
 import org.junit.Assert;
@@ -12,6 +10,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.ZoneAndPlayerTestImpl;
 
 
 /**
@@ -19,10 +18,13 @@ import utilities.PrivateTextMockingTestPlayer;
  *
  * @author hendrik
  */
-public class EquipmentActionTest {
+public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
+
 	private static final String ZONE_NAME = "0_semos_city";
 
-	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx";
+	public EquipmentActionTest() {
+	    super(ZONE_NAME);
+    }
 
 	/**
 	 * initialize the world.
@@ -31,11 +33,7 @@ public class EquipmentActionTest {
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
-		
-		MockStendlRPWorld.get();
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		world.addArea(ZONE_NAME, ZONE_CONTENT);
-	
+		setupZone(ZONE_NAME);
 	}
 
 	/**
@@ -84,5 +82,5 @@ public class EquipmentActionTest {
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		Assert.assertEquals("There is no such item in the bag of bob", player.getPrivateTextString());
-		}
+	}
 }
