@@ -16,10 +16,6 @@ public class UserTest {
 		assertFalse(User.isAdmin()); 
 		assertFalse(user.hasSheep());
 		assertFalse(user.hasPet());
-		/*
-		 * TODO remove unused code assertFalse(user.hasFeature("A"));
-		 * assertEquals("XXX", user.getFeature("B"));
-		 */
 		assertNull(user.getServerVersion());
 	}
 
