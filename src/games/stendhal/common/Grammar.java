@@ -792,20 +792,6 @@ public class Grammar {
 	}
 
 	/**
-	 * Decide if the given word is a subject.
-	 * 
-	 * TODO May be we should also handle the remaining subjective pronouns
-	 * "what", "who" and "they".
-	 * 
-	 * @param word
-	 * @return true if word is a subject
-	 */
-	public static boolean isSubject(String word) {
-		return word.equals("i") || word.equals("we") || word.equals("you")
-				|| word.equals("he") || word.equals("she") || word.equals("it");
-	}
-
-	/**
 	 * Normalize the given regular verb, or return null if not applicable.
 	 * Note: Some words like "close" are returned without the trailing "e"
 	 * character. This is handled in WordList.normalizeVerb().
