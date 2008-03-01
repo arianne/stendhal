@@ -78,28 +78,28 @@ public class ZonesXMLLoader {
 	//
 
 	/**
-		 * Load a group of zones into a world.
-		 * 
-		 * @throws SAXException
-		 *             If a SAX error occurred.
-		 * @throws IOException
-		 *             If an I/O error occurred.
-		 * @throws FileNotFoundException
-		 *             If the resource was not found.
-		 */
-		public void load() throws SAXException, IOException {
-			InputStream in = getClass().getResourceAsStream(uri.getPath());
-	
-			if (in == null) {
-				throw new FileNotFoundException("Cannot find resource: " + uri);
-			}
-	
-			try {
-				load(in);
-			} finally {
-				in.close();
-			}
+	 * Load a group of zones into a world.
+	 * 
+	 * @throws SAXException
+	 *             If a SAX error occurred.
+	 * @throws IOException
+	 *             If an I/O error occurred.
+	 * @throws FileNotFoundException
+	 *             If the resource was not found.
+	 */
+	public void load() throws SAXException, IOException {
+		InputStream in = getClass().getResourceAsStream(uri.getPath());
+
+		if (in == null) {
+			throw new FileNotFoundException("Cannot find resource: " + uri);
 		}
+
+		try {
+			load(in);
+		} finally {
+			in.close();
+		}
+	}
 
 	/**
 	 * Loads a group of zones into a world using a config file.
