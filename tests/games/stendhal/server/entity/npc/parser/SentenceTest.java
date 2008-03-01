@@ -210,4 +210,15 @@ public class SentenceTest {
 		assertEquals("-[catch] +[drive] -[bus] +[by] +[bike]", s2.diffNormalized(s3));
 	}
 
+	@Test
+	public final void testSpecialCases() {
+		Sentence sentence = ConversationParser.parse("where to");
+		assertFalse(sentence.hasError());
+		assertEquals("where/QUE?", sentence.toString());
+
+		sentence = ConversationParser.parse("they have very good pizza");
+		assertFalse(sentence.hasError());
+		assertEquals("they/SUB-PRO-PLU have/VER very/ good pizza/OBJ-FOO", sentence.toString());
+	}
+
 }

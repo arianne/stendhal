@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
+import games.stendhal.common.ErrorDrain;
+
 import org.apache.log4j.Logger;
 
 
@@ -65,7 +67,7 @@ public final class Expression {
 	 * @param str
 	 * @param parser
 	 */
-	public void parseAmount(final String str, ConversationParser parser) {
+	public void parseAmount(final String str, ErrorDrain errors) {
 		try {
 			// replace commas by dots to recognize numbers like "1,5"
 			String numberString = str.replace(',', '.');
@@ -76,7 +78,7 @@ public final class Expression {
 			setType(new ExpressionType(ExpressionType.NUMERAL));
 			normalized = amount.toString();
 		} catch (NumberFormatException e) {
-			parser.setError("illegal number format: '" + str + "'");
+			errors.setError("illegal number format: '" + str + "'");
 		}
 	}
 

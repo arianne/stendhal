@@ -24,6 +24,20 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy 30 cookies");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
+		assertEquals(30, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy 150 cookies");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
+		assertEquals(150, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
 	}
 
 	@Test
@@ -316,4 +330,19 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 	}
 
+	@Test
+	public final void testNumber() {
+		Sentence sentence = ConversationParser.parse(Integer.valueOf(30).toString());
+		assertNotNull(sentence);
+		assertEquals(30, sentence.getExpressions().get(0).getAmount());
+
+		assertEquals(0, sentence.getSubjectCount());
+		assertNull(sentence.getSubject(0));
+		assertEquals(0, sentence.getVerbCount());
+		assertNull(sentence.getVerb(0));
+		assertEquals(0, sentence.getObjectCount());
+		assertNull(sentence.getObject(0));
+		assertNull(sentence.getObjectName());
+		assertFalse(sentence.hasError());
+	}
 }
