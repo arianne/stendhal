@@ -54,9 +54,6 @@ import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
-import games.stendhal.tools.tiled.LayerDefinition;
-import games.stendhal.tools.tiled.ServerTMXLoader;
-import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
 
@@ -333,51 +330,6 @@ public class StendhalRPWorld extends RPWorld {
 
 	public IRPZone getRPZone(String zone) {
 		return getRPZone(new IRPZone.ID(zone));
-	}
-
-	/**
-	 * Add zone area.
-	 * 
-	 * Pathfinding code still uses this, but should use it's own XML file for
-	 * testing.
-	 * 
-	 * @throws Exception
-	 */
-	@Deprecated
-	public StendhalRPZone addArea(String name, String content) throws Exception {
-		logger.info("Loading area: " + name);
-		StendhalRPZone area = new StendhalRPZone(name);
-
-		StendhalMapStructure zonedata = null;
-
-		zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
-
-		area.addTilesets(name + ".tilesets", zonedata.getTilesets());
-		area.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
-		area.addLayer(name + ".1_terrain", zonedata.getLayer("1_terrain"));
-		area.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
-		area.addLayer(name + ".3_roof", zonedata.getLayer("3_roof"));
-
-		LayerDefinition layer = zonedata.getLayer("4_roof_add");
-
-		if (layer != null) {
-			area.addLayer(name + ".4_roof_add", layer);
-		}
-
-		area.addCollisionLayer(name + ".collision",
-				zonedata.getLayer("collision"));
-		area.addProtectionLayer(name + ".protection",
-				zonedata.getLayer("protection"));
-
-		/*
-		 * NOTE: This is only used for int_house_000 now, so assume int
-		 */
-		area.setPosition();
-
-		addRPZone(area);
-		area.populate(zonedata.getLayer("objects"));
-
-		return area;
 	}
 
 	/**
