@@ -23,6 +23,7 @@ public class DropActionTest {
 	private static final String ZONE_NAME = "Testzone";
 	private static final int USER_ID = 1001;
 	private static final int MONEY_ID = 1234;
+	private static final int SILVER_SWORD_ID = 1235;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -35,7 +36,7 @@ public class DropActionTest {
 		RPObject rpo = new RPObject();
 
 		rpo.put("type", "player");
-		rpo.put("outfit", 0);
+		rpo.put("name", "player");
 		rpo.setID(new ID(USER_ID, ZONE_NAME));
 
 		User pl = new User();
@@ -48,15 +49,12 @@ public class DropActionTest {
 		return rpo;
 	}
 
-	private static RPObject createMoney(int amount) {
+	private static RPObject createItem(String itemName, int id, int amount) {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "item");
-		rpo.put("name", "money");
+		rpo.put("name", itemName);
 		rpo.put("quantity", amount);
-		rpo.setID(new ID(MONEY_ID, ZONE_NAME));
-
-//		StackableItem money = new StackableItem();
-//		money.initialize(rpo);
+		rpo.setID(new ID(id, ZONE_NAME));
 
 		return rpo;
 	}
@@ -68,8 +66,21 @@ public class DropActionTest {
 
 		createPlayer();
 
+		// issue "/drop money"
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("You don't have any money", clientUI.getEventBuffer());
+	}
+
+	@Test
+	public void testInvalidAmount() {
+		MockClientUI clientUI = new MockClientUI();
+		DropAction action = new DropAction();
+
+		createPlayer();
+
+		// issue "/drop 85x money"
+		assertTrue(action.execute(new String[]{"85x"}, "money"));
+		assertEquals("Invalid quantity", clientUI.getEventBuffer());
 	}
 
 	@Test
@@ -94,8 +105,9 @@ public class DropActionTest {
 
 		// create a player and give him some money
 		RPObject player = createPlayer();
-		player.getSlot("bag").addPreservingId(createMoney(100));
+		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
+		// issue "/drop money"
 		DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("", clientUI.getEventBuffer());
@@ -123,10 +135,41 @@ public class DropActionTest {
 
 		// create a player and give him some money
 		RPObject player = createPlayer();
-		player.getSlot("bag").addPreservingId(createMoney(100));
+		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
+		// issue "/drop 50 money"
 		DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"50"}, "money"));
+		assertEquals("", clientUI.getEventBuffer());
+	}
+
+	@Test
+	public void testSpaceHandling() {
+		// create client UI
+		MockClientUI clientUI = new MockClientUI();
+
+		// create client
+		new MockStendhalClient("") {
+			@Override
+			public void send(RPAction action) {
+				client = null;
+				assertEquals("drop", action.get("type"));
+				assertEquals(USER_ID, action.getInt("baseobject"));
+				assertEquals(0, action.getInt("x"));
+				assertEquals(0, action.getInt("y"));
+				assertEquals("bag", action.get("baseslot"));
+				assertEquals(1, action.getInt("quantity"));
+				assertEquals(SILVER_SWORD_ID, action.getInt("baseitem"));
+			}
+		};
+
+		// create a player and give him some money
+		RPObject player = createPlayer();
+		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
+
+		// issue "/drop money"
+		DropAction action = new DropAction();
+		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
