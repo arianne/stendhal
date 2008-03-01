@@ -54,31 +54,6 @@ public abstract class ScriptingSandbox {
 		return (zone != null);
 	}
 
-	public StendhalRPZone addZone(String name, String content) {
-		try {
-			zone = SingletonRepository.getRPWorld().addArea(name, content);
-			logger.info(filename + " added area: " + name);
-		} catch (Exception e) {
-			logger.error("Exception while tyring to add area: " + e);
-			zone = null;
-		}
-		return (zone);
-	}
-
-	/**
-	 * @param player
-	 * @param zoneName
-	 * @param x
-	 * @param y
-	 * @return true in case of success, false otherwise
-	 * @deprecated use Player.teleport() directly instead
-	 */
-	@Deprecated
-	public boolean transferPlayer(Player player, String zoneName, int x, int y) {
-		StendhalRPZone zoneTemp = SingletonRepository.getRPWorld().getZone(zoneName);
-		return player.teleport(zoneTemp, x, y, null, null);
-	}
-
 	public boolean playerIsInZone(Player player, String zoneName) {
 		return player.getZone().getName().equals(zoneName);
 	}
