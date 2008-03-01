@@ -61,6 +61,7 @@ public class ConversationParserTest {
 		assertEquals("bread", sentence.getObjectName());
 //		assertEquals("bread", sentence.getItemName());
 		assertEquals("buy Bread", sentence.getOriginalText());
+		assertEquals("buy Bread", sentence.getTrimmedText());
 		assertEquals("buy bread", sentence.getNormalized());
 	}
 
@@ -73,7 +74,8 @@ public class ConversationParserTest {
 		assertEquals("drop", sentence.getTriggerExpression().getNormalized());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("meat", sentence.getObjectName());
-		assertEquals("drop three meat", sentence.getOriginalText());
+		assertEquals("drop  three 	meat", sentence.getOriginalText());
+		assertEquals("drop three meat", sentence.getTrimmedText());
 		assertEquals("drop meat", sentence.getNormalized());
 
 		sentence = ConversationParser.parse(" sell house   ");
