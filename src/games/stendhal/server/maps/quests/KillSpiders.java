@@ -95,7 +95,7 @@ public class KillSpiders extends AbstractQuest {
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
-				"no", 
+				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, i have to find someone else to do this 'little' job!",

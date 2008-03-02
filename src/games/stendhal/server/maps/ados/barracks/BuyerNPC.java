@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
@@ -50,8 +51,8 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings. Have you come to enlist as a soldier?");
-				addReply("yes", "Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
-				addReply("no", "Good! You wouldn't have fit in here anyway.");
+				addReply(ConversationPhrases.YES_MESSAGES, "Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
+				addReply(ConversationPhrases.NO_MESSAGES, "Good! You wouldn't have fit in here anyway.");
 				addJob("I'm looking after the weaponry here. We're running low. I see you have some armor you might #offer though.");
 				addHelp("I buy armor for the barracks here, make me an #offer.");
 				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay.");

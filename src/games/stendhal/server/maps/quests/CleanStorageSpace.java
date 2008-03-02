@@ -69,7 +69,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
 				new MultipleActions(start));
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"*sigh* Oh well, maybe someone else will be my hero...",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -2.0));

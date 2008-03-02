@@ -84,7 +84,7 @@ public class PlinksToy extends AbstractQuest {
 			ConversationStates.IDLE, "*sniff* Thanks a lot! *smile*",
 			new SetQuestAction(QUEST_SLOT, "start"));
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED,
 			"*sniff* But... but... PLEASE! *cries*", null);
 

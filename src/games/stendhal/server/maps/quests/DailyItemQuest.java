@@ -233,11 +233,10 @@ public class DailyItemQuest extends AbstractQuest {
 	}
 
 	private void step_3() {
-
 		SpeakerNPC npc = npcs.get("Mayor Chalmers");
 
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), null,
+				Arrays.asList("complete", "|EXACT|done/VER-PAS"), null,
 				ConversationStates.ATTENDING, null,
 				new DailyQuestCompleteAction());
 	}

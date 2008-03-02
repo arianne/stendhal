@@ -79,7 +79,7 @@ public class NewsFromHackim extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Yes, now that I think about it, it probably isn't wise to involve too many people in this... Just forget we spoke, okay? You never heard anything, if you know what I mean.",

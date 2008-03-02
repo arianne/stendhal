@@ -459,7 +459,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		leander.add(
 			ConversationStates.QUEST_OFFERED,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",

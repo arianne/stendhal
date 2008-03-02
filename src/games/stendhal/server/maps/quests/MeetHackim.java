@@ -97,16 +97,16 @@ public class MeetHackim extends AbstractQuest {
 				answer + "Where did you get those weapons? A toy shop?",
 				null);
 
-		npc.add(
-			new int[] { ConversationStates.ATTENDING,
+		npc.add(new int[] {
+					ConversationStates.ATTENDING,
 					ConversationStates.INFORMATION_1,
 					ConversationStates.INFORMATION_2,
 					ConversationStates.INFORMATION_3 },
-			"no",
-			null,
-			ConversationStates.ATTENDING,
-			"Remember, all the weapons are counted; best to leave them alone.",
-			null);
+				ConversationPhrases.NO_MESSAGES,
+    			null,
+    			ConversationStates.ATTENDING,
+    			"Remember, all the weapons are counted; best to leave them alone.",
+    			null);
 
 	}
 

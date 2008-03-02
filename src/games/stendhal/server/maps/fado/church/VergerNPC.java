@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.LinkedList;
@@ -43,8 +44,8 @@ public class VergerNPC implements ZoneConfigurator {
 				addHelp("My only advice is to love and be kind to one another");
 				addQuest("I have eveything I need. But it does bring me pleasure to see people #married.");
 				addReply("married", "If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.");
-				addReply("yes", "Congratulations!");
-				addReply("no", "A pity. I do hope you find a partner one day.");
+				addReply(ConversationPhrases.YES_MESSAGES, "Congratulations!");
+				addReply(ConversationPhrases.NO_MESSAGES, "A pity. I do hope you find a partner one day.");
 				addGoodbye("Goodbye, go safely.");
 			}
 		};

@@ -124,7 +124,7 @@ public class ElvishArmor extends AbstractQuest {
 				});
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -229,7 +229,7 @@ public class ElvishArmor extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {

@@ -65,7 +65,7 @@ public class ToysCollector extends AbstractQuest implements
 	private void specialStuff() {
 		getNPC().add(
 				ConversationStates.ATTENDING,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
 				"Then you should go away before I get in trouble for talking to you. Bye.",

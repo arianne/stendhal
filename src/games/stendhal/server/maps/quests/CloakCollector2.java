@@ -136,15 +136,14 @@ public class CloakCollector2 extends AbstractQuest {
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED, 
-				"no", 
+				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						engine
-								.say("Oh ... you're not very friendly. Please say yes?");
+						engine.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
 					}
 
@@ -285,7 +284,7 @@ public class CloakCollector2 extends AbstractQuest {
 		});
 
 		npc.add(ConversationStates.ATTENDING, 
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
@@ -298,7 +297,7 @@ public class CloakCollector2 extends AbstractQuest {
 
 		// player says he didn't bring any cloaks to different question
 		npc.add(ConversationStates.QUESTION_2, 
-				Arrays.asList("no", "nothing"),
+				ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {

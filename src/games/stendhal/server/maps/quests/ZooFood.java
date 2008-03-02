@@ -150,7 +150,7 @@ public class ZooFood extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, "no", null,
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Well, hurry up! These rare animals are starving!",
 				null);
 	}

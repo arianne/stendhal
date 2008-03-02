@@ -46,10 +46,9 @@ public class Cataclysm extends AbstractQuest {
 			"Greetings. I expect you are wondering what strange things are happening here?",
 			null);
 
-		npc.addReply("yes",
+		npc.addReply(ConversationPhrases.YES_MESSAGES,
 						"So am I, my friend. I expect young Carmen will tell you something.");
-		npc.addReply(
-						"no",
+		npc.addReply(ConversationPhrases.NO_MESSAGES,
 						"Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
 	}
 

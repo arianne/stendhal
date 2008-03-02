@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.LinkedList;
@@ -54,8 +55,8 @@ public class GardenerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Fine day, isn't it?");
-				addReply("yes", "Very warm...");
-				addReply("no", "It's better than rain!");
+				addReply(ConversationPhrases.YES_MESSAGES, "Very warm...");
+				addReply(ConversationPhrases.NO_MESSAGES, "It's better than rain!");
 				addJob("I am the gardener. I hope you like the flowerbeds.");
 				addHelp("I don't know what you want help with.");
 				addOffer("I haven't anything to trade yet. Wait till the autumn when I'll have some cuttings and seeds.");

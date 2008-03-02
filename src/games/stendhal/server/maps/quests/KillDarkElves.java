@@ -70,7 +70,7 @@ public class KillDarkElves extends AbstractQuest {
 			"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
 			new MultipleActions(actions));
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Then I fear for the safety of the Nalwor elves...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));

@@ -152,7 +152,7 @@ public class CloaksForBario extends AbstractQuest {
 				"Welcome! Thanks again for those cloaks.", null);
 
 		// player says he doesn't have any blue elf cloaks with him
-		npc.add(ConversationStates.QUESTION_1, "no", null,
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Too bad.", null);
 
 		// player says he has a blue elf cloak with him

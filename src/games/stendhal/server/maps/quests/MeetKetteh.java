@@ -68,7 +68,7 @@ public class MeetKetteh extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.ATTENDING, "no", null,
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.IDLE,
 				"If you don't put on some clothes and leave, I shall scream!",
 				null);

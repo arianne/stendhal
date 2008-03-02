@@ -67,7 +67,7 @@ public class MeetMonogenes extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.INFORMATION_1,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.IDLE,
 			"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",

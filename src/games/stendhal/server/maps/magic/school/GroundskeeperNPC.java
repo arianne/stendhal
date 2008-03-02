@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.LinkedList;
@@ -52,8 +53,8 @@ public class GroundskeeperNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello my friend. Nice day for walking isn't it?");
-				addReply("no", "Oh sorry. Hope tomorrow your day is a better one.");
-				addReply("yes", "Fine fine, I hope you enjoy your day.");
+				addReply(ConversationPhrases.NO_MESSAGES, "Oh sorry. Hope tomorrow your day is a better one.");
+				addReply(ConversationPhrases.YES_MESSAGES, "Fine fine, I hope you enjoy your day.");
 				addJob("My job is to clean up school, repair broken things! That's enough to do for a whole day!");
 				addHelp("I can not help you, I am busy all the day. But you could help me with a 'little' #task!");
 				addGoodbye("Bye.");

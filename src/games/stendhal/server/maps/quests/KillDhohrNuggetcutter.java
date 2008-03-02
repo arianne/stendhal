@@ -96,7 +96,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
-				"no", 
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, I will await someone with enough backbone to do the job.",

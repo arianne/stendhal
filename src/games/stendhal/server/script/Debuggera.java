@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -319,7 +320,7 @@ public class Debuggera extends ScriptImpl {
 //				"May I talk to strangers?", null);
 //		npc.add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES, new AdminCondition(),
 //				ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
-//		npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(),
+//		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, new AdminCondition(),
 //				ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
 
 		npc.behave(Arrays.asList("insane", "crazy", "mad"),

@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -174,7 +175,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("yes", null, new SpeakerNPC.ChatAction() {
+				addReply(ConversationPhrases.YES_MESSAGES, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
@@ -196,7 +197,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("no", null, new SpeakerNPC.ChatAction() {
+				addReply(ConversationPhrases.NO_MESSAGES, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)

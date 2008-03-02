@@ -801,9 +801,10 @@ public class Marriage extends AbstractQuest {
 		}
 
 		// player says something which isn't a room number
-//		npc.add(ConversationStates.QUESTION_1, "", new SpeakerNPC.ChatCondition() {
-//			@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-//				return !ROOMS.contains(text);
+//		npc.add(ConversationStates.QUESTION_1, "",
+//			new SpeakerNPC.ChatCondition() {
+//				@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+//					return !ROOMS.contains(text);
 //				}
 //			}, ConversationStates.QUESTION_1,
 //			"Sorry, that's not a room number we have available.", null

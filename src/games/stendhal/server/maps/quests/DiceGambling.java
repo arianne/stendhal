@@ -123,7 +123,7 @@ public class DiceGambling extends AbstractQuest {
 
 		ricardo.add(
 			ConversationStates.QUESTION_1,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Coward! How will you ever become a hero when you risk nothing?",

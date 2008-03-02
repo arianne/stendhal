@@ -125,7 +125,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			});
 
 		// player says he doesn't have required fish with him
-		npc.add(ConversationStates.QUESTION_2, "no", null,
+		npc.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {

@@ -207,7 +207,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		}
 
 		/* player says he didn't bring any items (says no) */
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("no", "nothing"),
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {

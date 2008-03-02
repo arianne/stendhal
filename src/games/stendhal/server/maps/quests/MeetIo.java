@@ -143,7 +143,7 @@ public class MeetIo extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.ANY,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.IDLE,
 			"If you ever decide to widen the frontiers of your mind a bit more, drop by and say hello. Farewell for now!",

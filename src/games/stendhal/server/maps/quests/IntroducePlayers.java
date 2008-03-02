@@ -114,7 +114,7 @@ public class IntroducePlayers extends AbstractQuest {
 				"Great! Please go as quickly as you can. *sneeze*",
 				new SetQuestAction(QUEST_SLOT, "start"));
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Oh, please won't you change your mind? *sneeze*", null);
 
