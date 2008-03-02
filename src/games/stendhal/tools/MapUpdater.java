@@ -21,9 +21,8 @@ package games.stendhal.tools;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -31,10 +30,10 @@ import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.FileSet;
 
 import tiled.core.Map;
-import tiled.core.TileSet;
-import tiled.core.Tile;
 import tiled.core.MapLayer;
+import tiled.core.Tile;
 import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.xml.XMLMapTransformer;
 
 /**
@@ -50,10 +49,10 @@ public class MapUpdater extends Task {
 	   many things refuse to compile with the usual tiled.jar,
 	   so rewrote it to work with more primitive interfaces. */
 	private boolean isUsedTileset(Map map, TileSet tileset) {
-		for (Iterator tiles = tileset.iterator(); tiles.hasNext();) {
+		for (Iterator<?> tiles = tileset.iterator(); tiles.hasNext();) {
 			Tile tile = (Tile) tiles.next();
-			
-			for (Iterator layers = map.getLayers(); layers.hasNext();) {
+
+			for (Iterator<?> layers = map.getLayers(); layers.hasNext();) {
 				MapLayer layer = (MapLayer) layers.next();
 
 				if ((layer instanceof TileLayer) && (((TileLayer) layer).isUsed(tile))) {
@@ -66,9 +65,7 @@ public class MapUpdater extends Task {
 	}
 
 	private void removeUnusedTilesets(Map map) {
-		Vector tilesets = map.getTilesets();
-
-		for (Iterator sets = tilesets.iterator(); sets.hasNext(); ) {
+		for (Iterator<?> sets = map.getTilesets().iterator(); sets.hasNext(); ) {
 			TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
