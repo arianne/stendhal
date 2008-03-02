@@ -143,8 +143,8 @@ public class SentenceTest {
 		assertTrue(s1.matchesFull(m1));
 		assertFalse(s1.matchesFull(m2));
 
-		s1 = ConversationParser.parse("it is raining cats and dogs");
-		m1 = ConversationParser.parse("it is raining cats");
+		s1 = ConversationParser.parseForMatching("it is raining cats and dogs");
+		m1 = ConversationParser.parseForMatching("it is raining cats");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertFalse(s1.matchesFull(m1));
@@ -175,15 +175,23 @@ public class SentenceTest {
 	}
 
 	@Test
-	public final void testTriggerMatching() {
-		Sentence s1 = ConversationParser.parse("spade");
-		Expression e1 = s1.getTriggerExpression();
-		Sentence s2 = ConversationParser.parse("a spade");
-		Expression e2 = s2.getTriggerExpression();
+	public final void testTypeMatching() {
+		Sentence s1 = ConversationParser.parse("no");
+		// "0/NUM" is the normalized form of "no" because of the 0/no ambiguity. 
+		Sentence m1 = ConversationParser.parseForMatching("|TYPE|0/NUM");
 		assertFalse(s1.hasError());
-		assertFalse(s2.hasError());
-		assertTrue(e1.matchesNormalized(e2));
-		assertTrue(e2.matchesNormalized(e1));
+		assertFalse(m1.hasError());
+		assertEquals("0/NUM", s1.toString());
+		assertEquals("0/NUM", m1.toString());
+		assertTrue(s1.matchesFull(m1));
+
+		s1 = ConversationParser.parse("No");
+		m1 = ConversationParser.parseForMatching("|TYPE|0/NUM");
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertEquals("0/NUM", s1.toString());
+		assertEquals("0/NUM", m1.toString());
+		assertTrue(s1.matchesFull(m1));
 	}
 
 	@Test

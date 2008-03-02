@@ -125,7 +125,7 @@ public class WordListTest {
 		assertEquals("house", wl.singular("houses"));
 		assertEquals("cookie", wl.singular("cookies"));
 	}
-	
+
 	@Test
 	public void testTrimWords() {
 		String word = "BLABLA";
@@ -136,19 +136,15 @@ public class WordListTest {
 		
 		word = "\'";
 		assertThat(WordList.trimWord(word), is(""));
-	
 		
 		word = "\'\'";
 		assertThat(WordList.trimWord(word), is(""));
 		
-		
 		word = "b\'\'";
 		assertThat(WordList.trimWord(word), is("b"));
-	
 		
 		word = "\'\'B\'L\'A\'B\'L\'A\'\'";
 		assertThat(WordList.trimWord(word), is("b\'l\'a\'b\'l\'a"));
 	}
-	
 
 }

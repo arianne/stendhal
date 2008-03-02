@@ -52,16 +52,16 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testCase() {
-		Sentence sentence = ConversationParser.parse("buy Bread");
+		Sentence sentence = ConversationParser.parse("buy No Bread");
 		assertFalse(sentence.hasError());
 
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
-		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals(0, sentence.getObject(0).getAmount());
 		assertEquals("bread", sentence.getObjectName());
 //		assertEquals("bread", sentence.getItemName());
-		assertEquals("buy Bread", sentence.getOriginalText());
-		assertEquals("buy Bread", sentence.getTrimmedText());
+		assertEquals("buy No Bread", sentence.getOriginalText());
+		assertEquals("buy No Bread", sentence.getTrimmedText());
 		assertEquals("buy bread", sentence.getNormalized());
 	}
 
@@ -94,12 +94,6 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fresh fish", sentence.getObjectName());
-
-// Underscores in item names are now no more required.
-//		sentence = ConversationParser.parse("buy fresh_fish");
-//		assertEquals("buy", sentence.getVerbString());
-//		assertEquals("fresh fish", sentence.getObjectName());
-//		assertEquals("fresh fish", sentence.getItemName());
 	}
 
 	@Test
