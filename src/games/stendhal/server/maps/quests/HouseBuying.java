@@ -134,11 +134,20 @@ public class HouseBuying extends AbstractQuest {
 						}
 					}
 				});
+
 				// for house number, from 1 to 25:
 				for (int house = 1; house < 26; house++) {
+					final String houseString = Integer.toString(house);
 					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), 
-						null,
+						houseString,
+						// check for correct house number, as the FSM also matches part of full numbers (the first digit)
+						new ChatCondition() {
+							@Override
+							public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+								String trigger = sentence.getTriggerExpression().getNormalized();
+								return trigger.equals(houseString);
+							}
+						},
 						ConversationStates.ATTENDING,
 						null,
 						new SpeakerNPC.ChatAction() {
@@ -337,9 +346,17 @@ public class HouseBuying extends AbstractQuest {
 				});
 				// for house number, from 50 to 68:
 				for (int house = 50; house < 69; house++) {
+					final String houseString = Integer.toString(house);
 					add(ConversationStates.QUEST_OFFERED,
-							Integer.toString(house), 
-							null,
+							houseString,
+							// check for correct house number, as the FSM also matches part of full numbers (the first digit)
+							new ChatCondition() {
+								@Override
+								public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+									String trigger = sentence.getTriggerExpression().getNormalized();
+									return trigger.equals(houseString);
+								}
+							},
 							ConversationStates.ATTENDING, 
 							null,
 							new SpeakerNPC.ChatAction() {
@@ -513,9 +530,17 @@ public class HouseBuying extends AbstractQuest {
 				});
 				// for house number, from 26 to 49:
 				for (int house = 26; house < 49; house++) {
+					final String houseString = Integer.toString(house);
 					add(ConversationStates.QUEST_OFFERED,
-							Integer.toString(house), 
-							null,
+							houseString,
+							// check for correct house number, as the FSM also matches part of full numbers (the first digit)
+							new ChatCondition() {
+								@Override
+								public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+									String trigger = sentence.getTriggerExpression().getNormalized();
+									return trigger.equals(houseString);
+								}
+							},
 							ConversationStates.ATTENDING, 
 							null,
 							new SpeakerNPC.ChatAction() {
