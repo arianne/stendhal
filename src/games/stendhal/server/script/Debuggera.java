@@ -8,7 +8,6 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
