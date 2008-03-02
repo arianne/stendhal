@@ -431,7 +431,11 @@ public final class Expression {
 		} else if (other == null) {
 			return false;
 		} else if (other.getClass() == Expression.class) {
-	        return original.equals(((Expression) other).original);
+			if (normalized.length() > 0) {
+				return normalized.equals(((Expression) other).normalized);
+			} else {
+				return original.equals(((Expression) other).original);
+			}
         } else {
         	return false;
         }
@@ -457,7 +461,7 @@ public final class Expression {
 			b.append(ExpressionMatcher.PM_SEPARATOR);
 		}
 
-		if (normalized != null && normalized.length() > 0) {
+		if (normalized.length() > 0) {
 			b.append(normalized);
 		} else {
 			b.append(original);
