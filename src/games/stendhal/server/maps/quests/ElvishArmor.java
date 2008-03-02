@@ -241,7 +241,7 @@ public class ElvishArmor extends AbstractQuest {
 				null);
 
 		// player says he didn't bring any items to different question
-		npc.add(ConversationStates.QUESTION_1, Arrays.asList("no", "nothing"),
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_EXPRESSION,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {

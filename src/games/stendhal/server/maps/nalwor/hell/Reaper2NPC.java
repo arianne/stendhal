@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
@@ -63,7 +64,7 @@ public class Reaper2NPC implements ZoneConfigurator {
 					}
 				});
 				add(ConversationStates.QUESTION_1, Arrays.asList("yes", "sey", "ok", "ko"), null, ConversationStates.IDLE, "!ahahahaH", new MultipleActions(processStep));
-				add(ConversationStates.QUESTION_1, Arrays.asList("no", "on"), null, ConversationStates.ATTENDING, ".eniF", null);
+				add(ConversationStates.QUESTION_1, Arrays.asList(ConversationPhrases.NO_EXPRESSION, "on"), null, ConversationStates.ATTENDING, ".eniF", null);
 				addReply("elddir", ".rorrim ym ksA");
 				addJob(".gnivil eht fo sluos eht tsevrah I");
 				addHelp("#evael ot hsiw uoy dluohs ,lleh fo setag eht ot syek eht dloh I");

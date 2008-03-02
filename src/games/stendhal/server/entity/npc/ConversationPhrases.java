@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class ConversationPhrases {
 
+	public static final String NO_EXPRESSION = "|EXACT|NOCASE|no";
+
 	// do not use a mutable list here
 	@SuppressWarnings("unchecked")
 	public static final List<String> EMPTY = Arrays.asList();
@@ -30,8 +32,7 @@ public class ConversationPhrases {
 
 	public static final List<String> YES_MESSAGES = Arrays.asList("yes", "ok");
 
-	public static final List<String> NO_MESSAGES = Arrays.asList("no",
-			"nothing");
+	public static final List<String> NO_MESSAGES = Arrays.asList(NO_EXPRESSION, "nothing");
 
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye",
 			"farewell", "cya", "adios");
