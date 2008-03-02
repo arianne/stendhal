@@ -14,11 +14,16 @@ import org.junit.Test;
 public class ExpressionMatcherTest {
 
 	@Test
-	public final void testMatcher() {
+	public final void testInit() {
 		ExpressionMatcher matcher = new ExpressionMatcher();
 
 		assertTrue(matcher.isEmpty());
 		assertFalse(matcher.isAnyFlagSet());
+	}
+
+	@Test
+	public final void testParsing() {
+		ExpressionMatcher matcher = new ExpressionMatcher();
 
 		Sentence sentence = matcher.parseSentence("", new ConversationContext());
 		assertFalse(sentence.hasError());
@@ -51,6 +56,49 @@ public class ExpressionMatcherTest {
 		sentence = matcher.parseSentence(str, new ConversationContext());
 		assertFalse(sentence.hasError());
 		assertEquals("Hello world!", sentence.toString());
+	}
+
+	@Test
+	public final void testTypeMatching() {
+		ExpressionMatcher matcher = new ExpressionMatcher();
+
+		Expression e1 = new Expression("abc", "VER");
+		Expression e2 = new Expression("abc", "VER");
+		Expression e3 = new Expression("ab", "VER");
+		Expression e4 = new Expression("abc", "SUB");
+		Expression e5 = new Expression("X", "SUB");
+
+		matcher.setTypeMatching(false);
+		matcher.setExactMatching(false);
+		assertTrue(matcher.match(e1, e2));
+		assertFalse(matcher.match(e1, e3));
+		assertTrue(matcher.match(e1, e4));
+		assertFalse(matcher.match(e1, e5));
+		assertFalse(matcher.match(e4, e5));
+
+		matcher.setTypeMatching(true);
+		matcher.setExactMatching(false);
+		assertTrue(matcher.match(e1, e2));
+		assertFalse(matcher.match(e1, e3));
+		assertFalse(matcher.match(e1, e4));
+		assertFalse(matcher.match(e1, e5));
+		assertFalse(matcher.match(e4, e5));
+
+		matcher.setTypeMatching(true);
+		matcher.setExactMatching(true);
+		assertTrue(matcher.match(e1, e2));
+		assertFalse(matcher.match(e1, e3));
+		assertFalse(matcher.match(e1, e4));
+		assertFalse(matcher.match(e1, e5));
+		assertFalse(matcher.match(e4, e5));
+
+		matcher.setTypeMatching(false);
+		matcher.setExactMatching(true);
+		assertTrue(matcher.match(e1, e2));
+		assertFalse(matcher.match(e1, e3));
+		assertTrue(matcher.match(e1, e4));
+		assertFalse(matcher.match(e1, e5));
+		assertFalse(matcher.match(e4, e5));
 	}
 
 }
