@@ -437,7 +437,7 @@ tileset/object/vulcanus.png * 6:8:10
 tileset/object/vulcanus.png * 7:9:11
 # single tile sparkle
 tileset/item/furniture/light/sparkle.png * 0:1
-tileset/itme/furniture/light/sparkle.png * 1:0
+tileset/item/furniture/light/sparkle.png * 1:0
 # span 2 tiles sparkle
 tileset/item/furniture/light/sparkle_middle.png * 0:2
 tileset/item/furniture/light/sparkle_middle.png * 1:3
