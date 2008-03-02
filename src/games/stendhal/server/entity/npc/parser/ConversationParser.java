@@ -56,20 +56,44 @@ public final class ConversationParser extends ErrorBuffer {
 		return parse(text).getNormalized();
 	}
 
+	/** A cache to hold pre-parsed trigger Expressions. */
+	private static Map<String, Expression> triggerExpressionsCache = new HashMap<String, Expression>();
+
 	/**
 	 * Create trigger expression to match the parsed user input in the FSM engine.
 	 * 
 	 * @param text
-	 * @return expression
+	 * @return Expression
 	 */
 	public static Expression createTriggerExpression(String text) {
+		Expression expr = triggerExpressionsCache.get(text);
+		if (expr != null) {
+			return expr;
+		}
+
 		ConversationContext ctx = new ConversationContext();
 
 		// don't ignore words with type "IGN" if specified in trigger expressions
 		ctx.setIgnoreIgnorable(false);
 
 		ctx.setForMatching(true);
-		return parse(text, ctx).getTriggerExpression();
+		expr = parse(text, ctx).getTriggerExpression();
+
+		if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
+			WordEntry norm = WordList.getInstance().find(expr.getNormalized());
+
+			// If the trigger type string is not the same as that of the normalized form,
+			// associate a ExpressionMatcher in typeMatching mode.
+			if (norm != null && !expr.getTypeString().equals(norm.getTypeString())) {
+				ExpressionMatcher matcher = new ExpressionMatcher();
+				matcher.setTypeMatching(true);
+				expr.setMatcher(matcher);
+			}
+		}
+
+		triggerExpressionsCache.put(text, expr);
+
+   		return expr;
 	}
 
 	/**
@@ -89,21 +113,22 @@ public final class ConversationParser extends ErrorBuffer {
 	 * Parse the given text sentence to be used for sentence matching.
 	 *
 	 * @param text
-	 * @return
+	 * @return Sentence
 	 */
 	public static Sentence parseForMatching(String text) {
-		Sentence ret = matchingSentenceCache.get(text);
-
-		if (ret == null) {
-			ConversationContext ctx = new ConversationContext();
-			ctx.setForMatching(true);
-
-			ret = parse(text, ctx);
-
-			matchingSentenceCache.put(text, ret);
+		Sentence s = matchingSentenceCache.get(text);
+		if (s != null) {
+			return s;
 		}
 
-		return ret;
+		ConversationContext ctx = new ConversationContext();
+		ctx.setForMatching(true);
+
+		s = parse(text, ctx);
+
+		matchingSentenceCache.put(text, s);
+
+		return s;
 	}
 
 	/**
