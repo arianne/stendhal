@@ -13,6 +13,7 @@ public class ExpressionMatcher {
 	// There are some patterns that can be used as leading flags in expression strings, e.g. "|EXACT|":
 	final static String PM_TYPE_MATCH = "TYPE";
 	final static String PM_EXACT_MATCH = "EXACT";
+	final static String PM_NOCASE_MATCH = "NOCASE";
 
 	final static String PM_MATCH_SEPARATOR = "|";
 
@@ -22,10 +23,14 @@ public class ExpressionMatcher {
 	/** Flag to enforce exact expression matching. */
 	private boolean exactMatching = false;
 
+	/** Flag to enable case insensitive matching. */
+	private boolean caseInsensitive = false;
+
 	/** Reset all matching flags. */
 	public void clear() {
 		typeMatching = false;
 		exactMatching = false;
+		caseInsensitive = false;
 	}
 
 	/**
@@ -57,12 +62,26 @@ public class ExpressionMatcher {
     }
 
 	/**
+     * @param caseInsensitive the caseInsensitive to set
+     */
+    public void setCaseInsensitive(boolean caseInsensitive) {
+	    this.caseInsensitive = caseInsensitive;
+    }
+
+	/**
+     * @return the caseInsensitive
+     */
+    public boolean isCaseInsensitive() {
+	    return caseInsensitive;
+    }
+
+	/**
 	 * Return true if any of the available matching flags is set.
 	 *
 	 * @return
 	 */
 	public boolean isAnyFlagSet() {
-	    return typeMatching || exactMatching;
+	    return typeMatching || exactMatching || caseInsensitive;
     }
 
 	/**
@@ -91,13 +110,15 @@ public class ExpressionMatcher {
 
     			if (flag.equals(PM_TYPE_MATCH)) {
     				typeMatching = true;
-    				text = text.substring(PM_TYPE_MATCH.length()+1);
 				} else if (flag.equals(PM_EXACT_MATCH)) {
 					exactMatching = true;
-					text = text.substring(PM_EXACT_MATCH.length()+1);
+				} else if (flag.equals(PM_NOCASE_MATCH)) {
+					caseInsensitive = true;
 				} else {
 					break;
 				}
+
+				text = text.substring(flag.length()+1);
     		}
 
     		if (isAnyFlagSet()) {
@@ -107,36 +128,6 @@ public class ExpressionMatcher {
 		}
 
 	    return text;
-    }
-
-	/**
-	 * Match two Expressions using the mode in matchingFlags.
-	 *
-	 * @param expr1
-	 * @param expr2
-	 * @return
-	 */
-	public boolean match(Expression expr1, Expression expr2) {
-		// In type matching mode, the word type has to match exactly.
-		if (typeMatching) {
-			if (!expr1.getTypeString().equals(expr2.getTypeString())) {
-				return false;
-			}
-		}
-
-		// If the original expression matches, return true.
-		if (expr1.getOriginal().equals(expr2.getOriginal())) {
-			return true;
-		}
-
-		// If no exact match is required, compare the normalized expressions.
-		if (!exactMatching) {
-			if (expr1.getNormalizedMatchString().equals(expr2.getNormalizedMatchString())) {
-				return true;
-			}
-		}
-
-		return false;
     }
 
 	/**
@@ -206,6 +197,48 @@ public class ExpressionMatcher {
 		}
 
 		return sentence;
+    }
+
+	/**
+	 * Match two Expressions using the mode in matchingFlags.
+	 *
+	 * @param expr1
+	 * @param expr2
+	 * @return
+	 */
+	public boolean match(Expression expr1, Expression expr2) {
+		// In type matching mode, the word type has to match exactly.
+		if (typeMatching) {
+			if (!expr1.getTypeString().equals(expr2.getTypeString())) {
+				return false;
+			}
+		}
+
+		// If the original expression matches, return true.
+		if (expr1.getOriginal().equals(expr2.getOriginal())) {
+			return true;
+		}
+
+		if (caseInsensitive) {
+    		if (expr1.getOriginal().equalsIgnoreCase(expr2.getOriginal())) {
+    			return true;
+    		}
+		}
+
+		// If no exact match is required, compare the normalized expressions.
+		if (!exactMatching) {
+			if (expr1.getNormalizedMatchString().equals(expr2.getNormalizedMatchString())) {
+				return true;
+			}
+
+			if (caseInsensitive) {
+				if (expr1.getNormalizedMatchString().equalsIgnoreCase(expr2.getNormalizedMatchString())) {
+	    			return true;
+	    		}
+			}
+		}
+
+		return false;
     }
 
 }
