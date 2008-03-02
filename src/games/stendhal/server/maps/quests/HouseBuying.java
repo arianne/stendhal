@@ -127,7 +127,7 @@ public class HouseBuying extends AbstractQuest {
 						} else if (!player.isQuestCompleted(PRINCESS_QUEST_SLOT)) {
 							engine.say("The cost of a new house is "
 									+ COST
-									+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find north of here in Kalavan Castle. try speaking to his daughter first, she is ... friendlier.");
+									+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.");
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("The cost of a new house is "
 									+ COST
@@ -144,7 +144,7 @@ public class HouseBuying extends AbstractQuest {
 				// for house number, from 1 to 25:
 				for (int house = 1; house < 26; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), 
+						"|EXACT|" + Integer.toString(house), 
 						null,
 						ConversationStates.ATTENDING,
 						null,
@@ -156,7 +156,7 @@ public class HouseBuying extends AbstractQuest {
 								// is postman online?
 								if (postman != null) {
 									// First, check if anyone has bought a
-									// house from this npc yet
+									// house from this NPC yet
 									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
 										postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
 									}
@@ -347,7 +347,7 @@ public class HouseBuying extends AbstractQuest {
 				// for house number, from 50 to 68:
 				for (int house = 50; house < 69; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), 
+						"|EXACT|" + Integer.toString(house),
 						null,
 						ConversationStates.ATTENDING, 
 						null,
@@ -359,7 +359,7 @@ public class HouseBuying extends AbstractQuest {
 								// is postman online?
 								if (postman != null) {
 									// First, check if anyone has bought a
-									// house yet
+									// house from this NPC yet
 									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
 										postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
 									}
@@ -523,7 +523,7 @@ public class HouseBuying extends AbstractQuest {
 				// for house number, from 26 to 49:
 				for (int house = 26; house < 49; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), 
+						"|EXACT|" + Integer.toString(house),
 						null,
 						ConversationStates.ATTENDING, 
 						null,
@@ -535,7 +535,7 @@ public class HouseBuying extends AbstractQuest {
 								// is postman online?
 								if (postman != null) {
 									// First, check if anyone has bought a
-									// house yet
+									// house from this NPC yet
 									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
 										postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
 									}
