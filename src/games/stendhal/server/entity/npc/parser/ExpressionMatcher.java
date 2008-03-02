@@ -15,7 +15,7 @@ public class ExpressionMatcher {
 	final static String PM_EXACT_MATCH = "EXACT";
 	final static String PM_NOCASE_MATCH = "NOCASE";
 
-	final static String PM_MATCH_SEPARATOR = "|";
+	public final static String PM_SEPARATOR = "|";
 
 	/** Flag to enable type string matching. */
 	private boolean typeMatching = false;
@@ -102,8 +102,8 @@ public class ExpressionMatcher {
 	public String readMatchingFlags(String text) {
 		clear();
 
-		if (text.startsWith(PM_MATCH_SEPARATOR)) {
-			StringTokenizer tok = new StringTokenizer(text, PM_MATCH_SEPARATOR);
+		if (text.startsWith(PM_SEPARATOR)) {
+			StringTokenizer tok = new StringTokenizer(text, PM_SEPARATOR);
 
     		while (tok.hasMoreTokens()) {
     			String flag = tok.nextToken();
@@ -240,5 +240,30 @@ public class ExpressionMatcher {
 
 		return false;
     }
+
+	/**
+	 * Return a simple string representation.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder b = new StringBuilder();
+
+		if (typeMatching) {
+			b.append(PM_SEPARATOR);
+			b.append(PM_TYPE_MATCH);
+		}
+
+		if (exactMatching) {
+			b.append(PM_SEPARATOR);
+			b.append(PM_EXACT_MATCH);
+		}
+
+		if (caseInsensitive) {
+			b.append(PM_SEPARATOR);
+			b.append(PM_NOCASE_MATCH);
+		}
+
+		return b.toString();
+	}
 
 }

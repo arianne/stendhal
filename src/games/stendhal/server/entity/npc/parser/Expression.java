@@ -450,11 +450,20 @@ public final class Expression {
 	 */
 	@Override
 	public String toString() {
-		if (normalized != null && normalized.length() > 0) {
-			return normalized;
-		} else {
-			return original;
+		StringBuilder b = new StringBuilder();
+
+		if (matcher != null) {
+			b.append(matcher.toString());
+			b.append(ExpressionMatcher.PM_SEPARATOR);
 		}
+
+		if (normalized != null && normalized.length() > 0) {
+			b.append(normalized);
+		} else {
+			b.append(original);
+		}
+
+		return b.toString();
 	}
 
 }

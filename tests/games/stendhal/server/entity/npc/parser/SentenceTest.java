@@ -182,7 +182,7 @@ public class SentenceTest {
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertEquals("0/NUM", s1.toString());
-		assertEquals("0/NUM", m1.toString());
+		assertEquals("|TYPE|0/NUM", m1.toString());
 		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("No");
@@ -190,7 +190,7 @@ public class SentenceTest {
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertEquals("0/NUM", s1.toString());
-		assertEquals("0/NUM", m1.toString());
+		assertEquals("|TYPE|0/NUM", m1.toString());
 		assertTrue(s1.matchesFull(m1));
 	}
 

@@ -32,6 +32,7 @@ public class ExpressionMatcherTest {
 		String str = matcher.readMatchingFlags("Lazy dog");
 		assertEquals("Lazy dog", str);
 		assertTrue(matcher.isEmpty());
+		assertEquals("", matcher.toString());
 
 		sentence = matcher.parseSentence(str, new ConversationContext());
 		assertFalse(sentence.hasError());
@@ -42,20 +43,22 @@ public class ExpressionMatcherTest {
 		assertTrue(matcher.isAnyFlagSet());
 		assertFalse(matcher.getExactMatching());
 		assertTrue(matcher.getTypeMatching());
+		assertEquals("|TYPE", matcher.toString());
 
 		sentence = matcher.parseSentence(str, new ConversationContext());
 		assertFalse(sentence.hasError());
-		assertEquals("abcdef/OBJ", sentence.toString());
+		assertEquals("|TYPE|abcdef/OBJ", sentence.toString());
 
 		str = matcher.readMatchingFlags("|EXACT|Hello world!");
 		assertEquals("Hello world!", str);
 		assertTrue(matcher.isAnyFlagSet());
 		assertTrue(matcher.getExactMatching());
 		assertFalse(matcher.getTypeMatching());
+		assertEquals("|EXACT", matcher.toString());
 
 		sentence = matcher.parseSentence(str, new ConversationContext());
 		assertFalse(sentence.hasError());
-		assertEquals("Hello world!", sentence.toString());
+		assertEquals("|EXACT|Hello world!", sentence.toString());
 	}
 
 	@Test

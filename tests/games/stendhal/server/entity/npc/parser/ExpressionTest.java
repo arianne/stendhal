@@ -19,6 +19,10 @@ public class ExpressionTest {
 		Expression expr2 = ConversationParser.createTriggerExpression("cloaks");
 		Expression expr3 = ConversationParser.createTriggerExpression("trousers");
 
+		assertEquals("cloak", expr1.toString());
+		assertEquals("|TYPE|cloak", expr2.toString());
+		assertEquals("|TYPE|trouser", expr3.toString());
+
 		assertTrue(expr1.matches(expr1));
 		assertFalse(expr1.matches(expr2));
 		assertFalse(expr1.matches(expr3));
@@ -90,7 +94,7 @@ public class ExpressionTest {
 		// Using the typeMatching flag, it doesn't match any more...
 		m1 = ConversationParser.parseForMatching("|TYPE|done/VER-PAS");
 		assertFalse(m1.hasError());
-		assertEquals("done/VER-PAS", m1.toString());
+		assertEquals("|TYPE|done/VER-PAS", m1.toString());
 		e1 = m1.getTriggerExpression();
 
 		assertFalse(e2.matches(e1));
@@ -122,7 +126,7 @@ public class ExpressionTest {
 		// Using the exactMatching flag, it doesn't match any more...
 		m1 = ConversationParser.parseForMatching("|EXACT|dONe");
 		assertFalse(m1.hasError());
-		assertEquals("dONe", m1.toString());
+		assertEquals("|EXACT|dONe", m1.toString());
 		e1 = m1.getTriggerExpression();
 
 		assertFalse(e2.matches(e1));

@@ -448,7 +448,18 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
 		appendPunctation(builder);
 
-		return builder.toString();
+		String ret = builder.toString();
+
+		// prepend the ExpressionMatcher string of the first expression
+		if (expressions.size() > 0) {
+			Expression first = expressions.get(0);
+
+			if (first.getMatcher() != null) {
+				ret = first.getMatcher().toString() + ExpressionMatcher.PM_SEPARATOR + ret;
+			}
+		}
+
+		return ret;
 	}
 
 	/**
