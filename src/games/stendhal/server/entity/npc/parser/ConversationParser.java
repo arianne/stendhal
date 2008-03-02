@@ -68,6 +68,7 @@ public final class ConversationParser extends ErrorBuffer {
 		// don't ignore words with type "IGN" if specified in trigger expressions
 		ctx.setIgnoreIgnorable(false);
 
+		ctx.setForMatching(true);
 		return parse(text, ctx).getTriggerExpression();
 	}
 
@@ -114,16 +115,16 @@ public final class ConversationParser extends ErrorBuffer {
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
 		if (text != null) {
-			ExpressionMatcher matcher = new ExpressionMatcher();
+			if (ctx != null && ctx.isForMatching()) {
+				ExpressionMatcher matcher = new ExpressionMatcher();
 
-			// If the text begins with matching flags, skip normal sentence parsing and read in the
-			// expressions from the given string in prepared form.
-			text = matcher.readMatchingFlags(text);
+    			// If the text begins with matching flags, skip normal sentence parsing and read in the
+    			// expressions from the given string in prepared form.
+    			text = matcher.readMatchingFlags(text);
 
-			if (matcher.isAnyFlagSet()) {
-				return matcher.parseSentence(text, ctx);
-			} else {
-				text = text.trim();
+    			if (matcher.isAnyFlagSet()) {
+    				return matcher.parseSentence(text, ctx);
+    			}
 			}
 		} else {
 			text = "";
@@ -133,7 +134,7 @@ public final class ConversationParser extends ErrorBuffer {
 
 		try {
 			// 1.) determine sentence type from trailing punctuation
-			text = getSentenceType(text, sentence);
+			text = getSentenceType(text.trim(), sentence);
 
     		// 2.) feed the separated words into the sentence object
     		ConversationParser parser = new ConversationParser(text);

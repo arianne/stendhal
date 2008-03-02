@@ -60,7 +60,7 @@ public class WeaponsCollector2Test {
 				"Recent adventurers to these parts describe strange new creatures with weapons"
 						+ " I have never seen. Would you fight these creatures and bring their weapons to me?",
 				npc.get("text"));
-		en.stepTest(pl, ConversationPhrases.NO_MESSAGES.get(0));
+		en.stepTest(pl, "no");
 		assertEquals("Well, maybe someone else will happen by and help me.",
 				npc.get("text"));
 	}

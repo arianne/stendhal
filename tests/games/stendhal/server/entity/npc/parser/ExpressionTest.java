@@ -73,31 +73,31 @@ public class ExpressionTest {
 	@Test
 	public final void testTypeTriggerMatching() {
 		// First show, that "do" without the exactMatching flag matches "done".
-		Sentence s1 = ConversationParser.parse("done");
-		assertFalse(s1.hasError());
-		assertEquals("do/VER-PAS", s1.toString());
-		Expression e1 = s1.getTriggerExpression();
+		Sentence m1 = ConversationParser.parseForMatching("done");
+		assertFalse(m1.hasError());
+		assertEquals("do/VER-PAS", m1.toString());
+		Expression e1 = m1.getTriggerExpression();
 
-		Sentence s2 = ConversationParser.parse("do");
-		assertFalse(s2.hasError());
-		Expression e2 = s2.getTriggerExpression();
+		Sentence s = ConversationParser.parse("do");
+		assertFalse(s.hasError());
+		Expression e2 = s.getTriggerExpression();
 		assertTrue(e2.matchesNormalized(e1));
-		assertEquals("do/VER", s2.toString());
+		assertEquals("do/VER", s.toString());
 
 		// Using the typeMatching flag, it doesn't match any more...
-		s1 = ConversationParser.parse("|TYPE|done/VER-PAS");
-		assertFalse(s1.hasError());
-		assertEquals("done/VER-PAS", s1.toString());
-		e1 = s1.getTriggerExpression();
+		m1 = ConversationParser.parseForMatching("|TYPE|done/VER-PAS");
+		assertFalse(m1.hasError());
+		assertEquals("done/VER-PAS", m1.toString());
+		e1 = m1.getTriggerExpression();
 
 		assertFalse(e2.matches(e1));
 		assertFalse(e2.matchesNormalized(e1));
 
 		// ...but "done" matches the given type string pattern.
-		s2 = ConversationParser.parse("done");
-		assertFalse(s2.hasError());
-		assertEquals("do/VER-PAS", s2.toString());
-		e2 = s2.getTriggerExpression();
+		s = ConversationParser.parse("done");
+		assertFalse(s.hasError());
+		assertEquals("do/VER-PAS", s.toString());
+		e2 = s.getTriggerExpression();
 		assertTrue(e2.matches(e1));
 		assertTrue(e2.matchesNormalized(e1));
 	}
@@ -105,31 +105,31 @@ public class ExpressionTest {
 	@Test
 	public final void testExactTriggerMatching() {
 		// First show, that "do" without the exactMatching flag matches "done".
-		Sentence s1 = ConversationParser.parse("done");
-		assertFalse(s1.hasError());
-		assertEquals("do/VER-PAS", s1.toString());
-		Expression e1 = s1.getTriggerExpression();
+		Sentence m1 = ConversationParser.parseForMatching("done");
+		assertFalse(m1.hasError());
+		assertEquals("do/VER-PAS", m1.toString());
+		Expression e1 = m1.getTriggerExpression();
 
-		Sentence s2 = ConversationParser.parse("do");
-		assertFalse(s2.hasError());
-		Expression e2 = s2.getTriggerExpression();
+		Sentence s = ConversationParser.parse("do");
+		assertFalse(s.hasError());
+		Expression e2 = s.getTriggerExpression();
 		assertTrue(e2.matchesNormalized(e1));
-		assertEquals("do/VER", s2.toString());
+		assertEquals("do/VER", s.toString());
 
 		// Using the exactMatching flag, it doesn't match any more...
-		s1 = ConversationParser.parse("|EXACT|dONe");
-		assertFalse(s1.hasError());
-		assertEquals("dONe", s1.toString());
-		e1 = s1.getTriggerExpression();
+		m1 = ConversationParser.parseForMatching("|EXACT|dONe");
+		assertFalse(m1.hasError());
+		assertEquals("dONe", m1.toString());
+		e1 = m1.getTriggerExpression();
 
 		assertFalse(e2.matches(e1));
 		assertFalse(e2.matchesNormalized(e1));
 
 		// ...but "done" matches the given exact matching pattern.
-		s2 = ConversationParser.parse("dONe");
-		assertFalse(s2.hasError());
-		assertEquals("do/VER-PAS", s2.toString());
-		e2 = s2.getTriggerExpression();
+		s = ConversationParser.parse("dONe");
+		assertFalse(s.hasError());
+		assertEquals("do/VER-PAS", s.toString());
+		e2 = s.getTriggerExpression();
 		assertTrue(e2.matches(e1));
 		assertTrue(e2.matchesNormalized(e1));
 	}

@@ -263,7 +263,7 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
-		en.step(player, ConversationPhrases.NO_MESSAGES.get(0));
+		en.step(player, "no");
 		assertEquals("answer to quests accepted", quest.respondToQuestRefusal(), npc.get("text"));
 	}
 

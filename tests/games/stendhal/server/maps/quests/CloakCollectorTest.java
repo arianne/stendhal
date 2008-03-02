@@ -51,7 +51,7 @@ public class CloakCollectorTest {
 		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
 		assertEquals(cc.askForMissingItems(cc.getNeededItems()), npc.get("text"));
 
-		en.stepTest(monica, ConversationPhrases.NO_MESSAGES.get(0));
+		en.stepTest(monica, "no");
 		assertEquals(cc.respondToQuestRefusal(), npc.get("text"));
 	}
 
