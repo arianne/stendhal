@@ -341,7 +341,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Mayor Sakhs");
 
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "|TYPE|done/VER-PAS"), null,
+				Arrays.asList("complete", "done"), null,
 				ConversationStates.ATTENDING, null,
 				new DailyQuestCompleteAction());
 	}

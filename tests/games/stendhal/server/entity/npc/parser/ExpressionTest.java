@@ -23,12 +23,15 @@ public class ExpressionTest {
 		assertFalse(expr1.matches(expr2));
 		assertFalse(expr1.matches(expr3));
 
-		assertTrue(expr1.matchesNormalized(expr2));
+		assertFalse(expr1.matchesNormalized(expr2));
+		assertTrue(expr2.matchesNormalized(expr1));
 		assertFalse(expr1.matchesNormalized(expr3));
+		assertFalse(expr3.matchesNormalized(expr1));
 
-		assertTrue(expr1.matchesNormalizedBeginning(expr2));
+		assertFalse(expr1.matchesNormalizedBeginning(expr2));
 		assertTrue(expr2.matchesNormalizedBeginning(expr1));
 		assertFalse(expr1.matchesNormalizedBeginning(expr3));
+		assertFalse(expr3.matchesNormalizedBeginning(expr1));
 	}
 	
 	@Test
