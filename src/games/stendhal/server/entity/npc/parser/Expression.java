@@ -2,8 +2,6 @@ package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.ErrorDrain;
 
-import org.apache.log4j.Logger;
-
 
 /**
  * An Expression is part of a Sentence. It encapsulates the original, white space
@@ -13,8 +11,6 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public final class Expression {
-
-	private static final Logger logger = Logger.getLogger(Expression.class);
 
 	/** Original, un-normalized string expression. */
 	private String original;
@@ -222,10 +218,6 @@ public final class Expression {
 	 * @return
 	 */
 	public String getNormalized() {
-		if (normalized.length() == 0) {
-			logger.error("Expression.getNormalized(): unexpected condition - normalized is empty string");
-		}
-
 		return normalized;
 	}
 
