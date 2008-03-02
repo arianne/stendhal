@@ -6,6 +6,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -40,13 +42,15 @@ import java.util.List;
  */
 public class ElvishArmor extends AbstractQuest {
 
+	private static final String QUEST_SLOT = "elvish_armor";
+
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
 			"elvish cloak", "elvish shield");
 
 	/**
 	 * Returns a list of the names of all items that the given player still has
-	 * to bring to fulfil the quest.
+	 * to bring to fulfill the quest.
 	 *
 	 * @param player
 	 *            The player doing the quest
@@ -57,7 +61,7 @@ public class ElvishArmor extends AbstractQuest {
 	private List<String> missingitems(Player player, boolean hash) {
 		List<String> result = new LinkedList<String>();
 
-		String doneText = player.getQuest("elvish_armor");
+		String doneText = player.getQuest(QUEST_SLOT);
 		if (doneText == null) {
 			doneText = "";
 		}
@@ -84,7 +88,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.hasQuest("elvish_armor");
+						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -97,7 +101,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.hasQuest("elvish_armor");
+						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
 				ConversationStates.QUEST_OFFERED,
@@ -118,7 +122,7 @@ public class ElvishArmor extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!");
-						player.setQuest("elvish_armor", "");
+						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
 					}
 				});
@@ -151,8 +155,8 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest("elvish_armor")
-								&& !player.isQuestCompleted("elvish_armor");
+						return player.hasQuest(QUEST_SLOT)
+								&& !player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
 				ConversationStates.QUESTION_1,
@@ -183,17 +187,18 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						String item = sentence.getTriggerExpression().getNormalized();
-						List<String> missing = missingitems(player, false);
+						Expression item = sentence.getTriggerExpression();
+						String itemName = item.getOriginal();
+
+						List<Expression> missing = ConversationParser.createTriggerList(missingitems(player, false));
 						if (missing.contains(item)) {
-							if (player.drop(item)) {
+							if (player.drop(itemName)) {
 								// register item as done
-								String doneText = player.getQuest("elvish_armor");
-								player.setQuest("elvish_armor", doneText
+								String doneText = player.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT, doneText
 										+ ";" + item);
-								// check if the player has brought all
-								// items
-								missing = missingitems(player, true);
+								// check if the player has brought all items
+								missing = ConversationParser.createTriggerList(missingitems(player, true));
 								if (missing.size() > 0) {
 									engine.say("Excellent work. Is there more that you plundered?");
 								} else {
@@ -207,13 +212,13 @@ public class ElvishArmor extends AbstractQuest {
 									player.addKarma(20.0);
 									player.addXP(20000);
 									engine.say("I will study these! The albino elves owe you a debt of thanks.");
-									player.setQuest("elvish_armor", "done");
+									player.setQuest(QUEST_SLOT, "done");
 									player.notifyWorldAboutChanges();
 									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
 								engine.say("Liar! You don't really have "
-										+ Grammar.a_noun(item)
+										+ Grammar.a_noun(itemName)
 										+ " with you.");
 							}
 						} else {
@@ -233,7 +238,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.isQuestCompleted("elvish_armor");
+						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -245,7 +250,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.isQuestCompleted("elvish_armor");
+						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING,
 				"I see. If there's anything else I can do for you, just say.",
@@ -256,7 +261,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted("elvish_armor");
+						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING,
 				"Greetings again, old friend.", null);
@@ -268,7 +273,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted("elvish_armor");
+						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -281,7 +286,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted("elvish_armor");
+						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -294,8 +299,8 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest("elvish_armor")
-								&& !player.isQuestCompleted("elvish_armor");
+						return player.hasQuest(QUEST_SLOT)
+								&& !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.QUESTION_1,
 				"As you already know, I seek elvish #equipment.", null);
@@ -306,8 +311,8 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest("elvish_armor")
-								&& !player.isQuestCompleted("elvish_armor");
+						return player.hasQuest(QUEST_SLOT)
+								&& !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING,
 				"I don't think I trust you well enough yet ... ", null);
