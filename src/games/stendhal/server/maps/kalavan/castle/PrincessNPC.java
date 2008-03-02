@@ -6,6 +6,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class PrincessNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("How do you do?");
-				addReply("good", "Good! Can I help you?");
+				addReply(Arrays.asList("good", "fine"), "Good! Can I help you?");
 				addReply("bad", "Oh dear ... Can I help you?");
 				addReply("well", "Wonderful! Can I help you?");
 				addJob("I am the princess of this kingdom. To become one of my citizens, speak to Barrett Holmes in the city. He may be able to sell you a house. But first, I have a #favour to ask of you...");
