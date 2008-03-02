@@ -131,7 +131,7 @@ public class ExpressionMatcher {
 
 		// If no exact match is required, compare the normalized expressions.
 		if (!exactMatching) {
-			if (expr1.getNormalized().equals(expr2.getNormalized())) {
+			if (expr1.getNormalizedMatchString().equals(expr2.getNormalizedMatchString())) {
 				return true;
 			}
 		}

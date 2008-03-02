@@ -16,25 +16,28 @@ public final class Expression {
 
 	private static final Logger logger = Logger.getLogger(Expression.class);
 
-	/** original, un-normalized string expression.*/
+	/** Original, un-normalized string expression. */
 	private String original;
 
 	/** Expression type. */
 	private ExpressionType type;
 
-	/** normalized string representation of this Expression. */
+	/** Normalized string representation of this Expression. */
 	private String normalized = "";
 
-	/** main word of the Expression. */
+	/** Main word of the Expression. */
 	private String mainWord;
 
-	/** number of items. */
+	/** Number of items. */
 	private Integer amount;
 
-	/** break flag to define sentence part borders. */
+	/** Break flag to define sentence part borders. */
 	private boolean breakFlag = false;
 
-	/** instance of an empty Expression. */
+	/** Expression matcher for comparing expressions in various modes. */
+	private ExpressionMatcher matcher = null;
+
+	/** Instance of an empty Expression. */
 	public static final Expression emptyExpression = new Expression("", "");
 
 	/**
@@ -175,6 +178,24 @@ public final class Expression {
 	public void setBreakFlag() {
 		breakFlag = true;
 	}
+
+	/**
+	 * Set Expression matcher.
+	 *
+	 * @param matcher
+	 */
+	public void setMatcher(ExpressionMatcher matcher) {
+		this.matcher = matcher;
+    }
+
+	/**
+	 * Return matcher used for matching this expression.
+	 *
+	 * @return matcher
+	 */
+	public ExpressionMatcher getMatcher() {
+		return matcher;
+    }
 
 	/**
 	 * Return the original, un-normalized string expression.
@@ -351,20 +372,6 @@ public final class Expression {
     }
 
 	/**
-	 * Check if two Expressions match exactly.
-	 * 
-	 * @param other Expression
-	 * @return
-	 */
-	public boolean matches(final Expression other) {
-		if (other != null) {
-			return original.equals(other.original);
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * Return the string expression to be used for matching.
 	 *
 	 * @return
@@ -379,17 +386,43 @@ public final class Expression {
     }
 
 	/**
-	 * Check if two Expressions match.
+	 * Check if two Expressions match exactly.
+	 * 
+	 * @param other Expression
+	 * @return
+	 */
+	public boolean matches(final Expression other) {
+		if (other != null) {
+			if (other.matcher == null) {
+				if (original.equals(other.original)) {
+					return true;
+				}
+			} else {
+				return other.matcher.match(this, other);
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if two Expressions match each other.
 	 * 
 	 * @param other Expression
 	 * @return
 	 */
 	public boolean matchesNormalized(final Expression other) {
 		if (other != null) {
-			return getNormalizedMatchString().equals(other.getNormalizedMatchString());
-		} else {
-			return false;
+			if (other.matcher == null) {
+				if (getNormalizedMatchString().equals(other.getNormalizedMatchString())) {
+					return true;
+				}
+			} else {
+				return other.matcher.match(this, other);
+			}
 		}
+
+		return false;
 	}
 
 	/**
@@ -400,10 +433,14 @@ public final class Expression {
 	 */
 	public boolean matchesNormalizedBeginning(final Expression other) {
 		if (other != null) {
-			return getNormalizedMatchString().startsWith(other.getNormalizedMatchString());
-		} else {
-			return false;
+			if (other.matcher == null) {
+				if (getNormalizedMatchString().startsWith(other.getNormalizedMatchString())) {
+					return true;
+				}
+			}
 		}
+
+		return false;
     }
 
 	/**

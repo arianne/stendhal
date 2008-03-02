@@ -113,14 +113,27 @@ public final class ConversationParser extends ErrorBuffer {
 	 * @return Sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
+		if (text != null) {
+			ExpressionMatcher matcher = new ExpressionMatcher();
 
-		// 1.) determine sentence type from trailing punctuation
+			// If the text begins with matching flags, skip normal sentence parsing and read in the
+			// expressions from the given string in prepared form.
+			text = matcher.readMatchingFlags(text);
+
+			if (matcher.isAnyFlagSet()) {
+				return matcher.parseSentence(text, ctx);
+			} else {
+				text = text.trim();
+			}
+		} else {
+			text = "";
+		}
+
 		SentenceImplementation sentence = new SentenceImplementation(ctx);
 
 		try {
-    		if (text != null) {
-    			text = getSentenceType(text.trim(), sentence);
-    		}
+			// 1.) determine sentence type from trailing punctuation
+			text = getSentenceType(text, sentence);
 
     		// 2.) feed the separated words into the sentence object
     		ConversationParser parser = new ConversationParser(text);
@@ -133,7 +146,7 @@ public final class ConversationParser extends ErrorBuffer {
     		// 4.) evaluate sentence type from word order
     		sentence.evaluateSentenceType();
 
-    		if (ctx.getMergeExpressions()) {
+    		if (ctx != null && ctx.getMergeExpressions()) {
         		// 5.) merge words to form a simpler sentence structure
         		sentence.mergeWords();
 
