@@ -11,6 +11,8 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -205,17 +207,19 @@ public class WeaponsCollector2 extends AbstractQuest {
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> missing = missingWeapons(player, false);
-						String item = sentence.getTriggerExpression().getNormalized();
+						Expression item = sentence.getTriggerExpression();
+						String itemName = item.getOriginal();
+
+						List<Expression> missing = ConversationParser.createTriggerList(missingWeapons(player, false));
 						if (missing.contains(item)) {
-							if (player.drop(item)) {
+							if (player.drop(itemName)) {
 								// register weapon as done
 								String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";"
 										+ item);
 								// check if the player has brought all
 								// weapons
-								missing = missingWeapons(player, true);
+								missing = ConversationParser.createTriggerList(missingWeapons(player, true));
 								if (missing.size() > 0) {
 									engine.say("Thank you very much! Do you have anything more for me?");
 								} else {
@@ -235,7 +239,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 								}
 							} else {
 								engine.say("I may be old, but I'm not senile, and you clearly don't have "
-										+ Grammar.a_noun(item)
+										+ Grammar.a_noun(itemName)
 										+ ". What do you really have for me?");
 							}
 						} else {

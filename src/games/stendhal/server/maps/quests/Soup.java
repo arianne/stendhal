@@ -14,6 +14,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -280,17 +282,18 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String food = sentence.getTriggerExpression().getNormalized();
-					List<String> missing = missingFood(player, false);
+					Expression food = sentence.getTriggerExpression();
+					String itemName = food.getOriginal();
+
+					List<Expression> missing = ConversationParser.createTriggerList(missingFood(player, false));
 					if (missing.contains(food)) {
-						if (player.drop(food)) {
+						if (player.drop(itemName)) {
 							// register ingredient as done
-							String doneText = player
-									.getQuest(QUEST_SLOT);
+							String doneText = player.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";"
 									+ food);
 							// check if the player has brought all Food
-							missing = missingFood(player, true);
+							missing = ConversationParser.createTriggerList(missingFood(player, true));
 							if (missing.size() > 0) {
 								npc.say("Thank you very much! What else did you bring?");
 							} else {
@@ -320,7 +323,7 @@ public class Soup extends AbstractQuest {
 							}
 						} else {
 							npc.say("Don't take me for a fool, traveller. You don't have "
-								+ Grammar.a_noun(food)
+								+ Grammar.a_noun(itemName)
 								+ " with you.");
 						}
 					} else {

@@ -9,6 +9,8 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -68,6 +70,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		if (doneText == null) {
 			doneText = "";
 		}
+
 		List<String> done = Arrays.asList(doneText.split(";"));
 		for (String fish : neededFish) {
 			if (!done.contains(fish)) {
@@ -146,16 +149,18 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					List<String> missing = missingFish(player, false);
-					String item = sentence.getTriggerExpression().getNormalized();
+					Expression item = sentence.getTriggerExpression();
+					String itemName = item.getOriginal();
+
+					List<Expression> missing = ConversationParser.createTriggerList(missingFish(player, false));
 					if (missing.contains(item)) {
-						if (player.drop(item)) {
+						if (player.drop(itemName)) {
 							// register fish as done
 							String doneText = player.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";"
 									+ item);
 							// check if the player has brought all fish
-							missing = missingFish(player, true);
+							missing = ConversationParser.createTriggerList(missingFish(player, true));
 							if (missing.size() > 0) {
 								engine.say("This fish is looking very good! Do you have another one for me?");
 							} else {
@@ -170,7 +175,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 							}
 						} else {
 							engine.say("Don't try to cheat! I know that you don't have "
-									+ Grammar.a_noun(item)
+									+ Grammar.a_noun(itemName)
 									+ ". What do you really have for me?");
 						}
 					} else {

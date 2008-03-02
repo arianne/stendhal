@@ -212,8 +212,7 @@ public class CloakCollector2 extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed2 = missingcloaks2(player, true);
 						engine.say("I want "
-								+ Grammar
-										.quantityplnoun(needed2.size(), "cloak")
+								+ Grammar.quantityplnoun(needed2.size(), "cloak")
 								+ ". That's "
 								+ Grammar.enumerateCollection(needed2)
 								+ ". Did you bring any?");

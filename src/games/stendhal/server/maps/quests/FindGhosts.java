@@ -12,6 +12,8 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -156,15 +158,15 @@ public class FindGhosts extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					List<String> missing = missingNames(player);
-					String item = sentence.getTriggerExpression().getNormalized();
+					Expression item = sentence.getTriggerExpression();
+					List<Expression> missing = ConversationParser.createTriggerList(missingNames(player));
 
 					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");
 	    			String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
 	    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
-					List<String> looking = Arrays.asList(lookingStr.split(";"));
-					List<String> said = Arrays.asList(saidStr.split(";"));
+					List<Expression> looking = ConversationParser.createTriggerList(Arrays.asList(lookingStr.split(";")));
+					List<Expression> said = ConversationParser.createTriggerList(Arrays.asList(saidStr.split(";")));
 					String reply = "";
 
 					if (missing.contains(item)
@@ -186,7 +188,7 @@ public class FindGhosts extends AbstractQuest {
 					}
 
 					// we may have changed the missing list
-					missing = missingNames(player);
+					missing = ConversationParser.createTriggerList(missingNames(player));
 
 					if (missing.size() > 0) {
 						reply += " If you met any other spirits, please tell me their name.";
