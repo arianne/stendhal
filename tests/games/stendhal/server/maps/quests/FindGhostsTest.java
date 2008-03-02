@@ -4,6 +4,7 @@ import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.StringContains.containsString;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -83,7 +84,11 @@ public class FindGhostsTest {
 		assertEquals(
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
 				npc.get("text"));
-		en.step(player, "no");
+
+		// test case insensitive recognition of "no" and see if "0" is correctly handled as distinct
+		assertFalse(en.step(player, "0"));
+		assertTrue(en.step(player, "NO"));
+
 		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
 				npc.get("text"));
@@ -123,7 +128,7 @@ public class FindGhostsTest {
 		assertEquals(
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
 				npc.get("text"));
-		en.step(player, "no");
+		assertTrue(en.step(player, "no"));
 		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
 				npc.get("text"));
