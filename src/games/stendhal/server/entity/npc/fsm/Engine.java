@@ -378,6 +378,7 @@ public class Engine {
 			case NORMALIZED_JUMP:
 				return (currentState != ConversationStates.IDLE)
 						&& transition.matchesWildNormalized(sentence);
+
 			case SIMILAR_JUMP:
 				return (currentState != ConversationStates.IDLE)
 						&& transition.matchesWildBeginning(sentence);
