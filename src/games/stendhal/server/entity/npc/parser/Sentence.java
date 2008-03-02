@@ -643,7 +643,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 					}
 				} else {
 					// Look for a normalized string match towards the string containing a joker character.
-					if (!matchesJokerString(e1.getNormalizedMatchString(), matchString)) {
+					if (!matchesJokerString(e1.getNormalized(), matchString)) {
 						return false;
 					}
 				}

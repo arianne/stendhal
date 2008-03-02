@@ -372,20 +372,6 @@ public final class Expression {
     }
 
 	/**
-	 * Return the string expression to be used for matching.
-	 *
-	 * @return
-	 */
-	String getNormalizedMatchString() {
-		// special case to disambiguate "no" from "0"
-		if (normalized != null && normalized.equals("no")) {
-			return original.toLowerCase();
-		} else {
-			return normalized;
-		}
-    }
-
-	/**
 	 * Check if two Expressions match exactly.
 	 * 
 	 * @param other Expression
@@ -414,7 +400,7 @@ public final class Expression {
 	public boolean matchesNormalized(final Expression other) {
 		if (other != null) {
 			if (other.matcher == null) {
-				if (getNormalizedMatchString().equals(other.getNormalizedMatchString())) {
+				if (getNormalized().equals(other.getNormalized())) {
 					return true;
 				}
 			} else {
@@ -434,7 +420,7 @@ public final class Expression {
 	public boolean matchesNormalizedBeginning(final Expression other) {
 		if (other != null) {
 			if (other.matcher == null) {
-				if (getNormalizedMatchString().startsWith(other.getNormalizedMatchString())) {
+				if (getNormalized().startsWith(other.getNormalized())) {
 					return true;
 				}
 			}

@@ -227,12 +227,12 @@ public class ExpressionMatcher {
 
 		// If no exact match is required, compare the normalized expressions.
 		if (!exactMatching) {
-			if (expr1.getNormalizedMatchString().equals(expr2.getNormalizedMatchString())) {
+			if (expr1.getNormalized().equals(expr2.getNormalized())) {
 				return true;
 			}
 
 			if (caseInsensitive) {
-				if (expr1.getNormalizedMatchString().equalsIgnoreCase(expr2.getNormalizedMatchString())) {
+				if (expr1.getNormalized().equalsIgnoreCase(expr2.getNormalized())) {
 	    			return true;
 	    		}
 			}
