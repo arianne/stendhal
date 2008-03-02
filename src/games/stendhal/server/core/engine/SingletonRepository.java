@@ -112,6 +112,7 @@ public class SingletonRepository {
 			return entityManager;
 	}
 
+	//TODO currently not yet used
 	static void setEntityManager(EntityManager entityManager) {
 		SingletonRepository.entityManager = entityManager;
 	}
