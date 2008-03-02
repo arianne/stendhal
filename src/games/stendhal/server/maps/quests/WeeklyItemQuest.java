@@ -221,7 +221,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Hazel");
 
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "|EXACT|done/VER-PAS"), null,
+				Arrays.asList("complete", "|TYPE|done/VER-PAS"), null,
 				ConversationStates.ATTENDING, null,
 				new WeeklyQuestCompleteAction());
 	}
