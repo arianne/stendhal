@@ -556,7 +556,6 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
-
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
@@ -596,14 +595,32 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-
-	public void addReply(String trigger, String text,
-			SpeakerNPC.ChatAction action) {
+	public void addReply(String trigger, String text, SpeakerNPC.ChatAction action) {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
+			@Override
+			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				npc.say("Please wait, " + player.getTitle()
+						+ "! I am still attending to "
+						+ npc.getAttending().getTitle() + ".");
+			}
+		});
+	}
 
+	/**
+	 * Makes NPC say a text and/or do an action when a trigger is said.
+	 * 
+	 * @param triggers
+	 * @param text
+	 * @param action
+	 */
+	public void addReply(List<String> triggers, String text, SpeakerNPC.ChatAction action) {
+		add(ConversationStates.ATTENDING, triggers, null,
+				ConversationStates.ATTENDING, text, action);
+
+		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
