@@ -74,7 +74,7 @@ public class Transition {
 	 */
 	public boolean matchesWild(Sentence sentence) {
 		return (state == ConversationStates.ANY)
-				&& trigger.matches(sentence.getTriggerExpression());
+				&& sentence.getTriggerExpression().matches(trigger);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class Transition {
 	 * @return true if the Transition matches, false otherwise
 	 */
 	public boolean matches(int state, Expression trigger) {
-		return (state == this.state) && this.trigger.matches(trigger);
+		return (state == this.state) && trigger.matches(this.trigger);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Transition {
 	 * @return true if the Transition matches, false otherwise
 	 */
 	public boolean matchesNormalized(int state, Expression trigger) {
-		return (state == this.state) && this.trigger.matchesNormalized(trigger);
+		return (state == this.state) && trigger.matchesNormalized(this.trigger);
 	}
 
 	/**
