@@ -49,6 +49,7 @@ public class BringListOfItemsQuestLogic {
 		if (doneText == null) {
 			doneText = "";
 		}
+
 		List<String> done = Arrays.asList(doneText.split(";"));
 		for (String item : concreteQuest.getNeededItems()) {
 			if (!done.contains(item)) {
@@ -58,6 +59,7 @@ public class BringListOfItemsQuestLogic {
 				result.add(item);
 			}
 		}
+
 		return result;
 	}
 
@@ -209,16 +211,16 @@ public class BringListOfItemsQuestLogic {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
-					Expression itemWord = sentence.getTriggerExpression();
-					String itemName = itemWord.getOriginal();
+					Expression item = sentence.getTriggerExpression();
+					String itemName = item.getOriginal();
 
-					if (!triggerWords.contains(itemWord)) {
+					if (!triggerWords.contains(item)) {
 						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
 						return;
 					}
 
 					List<Expression> missing = ConversationParser.createTriggerList(getListOfStillMissingItems(player, false));
-					if (!missing.contains(itemWord)) {
+					if (!missing.contains(item)) {
 						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
 						return;
 					}
