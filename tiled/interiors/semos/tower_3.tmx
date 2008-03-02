@@ -9,24 +9,15 @@
  <tileset name="int green blue 2" firstgid="33" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue_2.png"/>
  </tileset>
- <tileset name="blue green entrance" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/blue_green.png"/>
- </tileset>
- <tileset name="blue green 2 entrance" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/blue_green_2.png"/>
- </tileset>
- <tileset name="ground" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset name="ground" firstgid="41" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="carpets" firstgid="69" tilewidth="32" tileheight="32">
+ <tileset name="carpets" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets.png"/>
- </tileset>
- <tileset name="carpets 2" firstgid="77" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2X3QrCMAxGOxnq/ENBdCiCiLKn8FLw/Z/IFFoopW3ytR0ieHFgEJrDoPmyNUqpiUdLPIkmUEPg+uh6R0yJh2FGzM05v4bA9bF1XbsTb8PgnXNrCFyfAfS/ALg+f//v+WvdP9S/IG4ZLCv418SmgG2hvxao/6Tq5KvlDPgvSp6vK+f9uJy+Cv3I/Xb90h4pPzrfIT+aD6Gz335//bxT/Hy7fi4n9qBf1w9KNt9cThyJPsNfKwe6Qn/ud1hbyZ/zHebng8Qv2V+5+dBH+sfubmp/5eSD77D9U3c3tr9Qf8xh+6P7C/WnkNxtf39J/dweDf1/SPaXxM/t0dj/hyS/JX7JfOTuv1Ik8z823PyPjWT+x0bP/weqcmbjABAAAA==
+   H4sIAAAAAAAAAO2X2wrCMAyGOxnqPKEgOhRBRNmVLyL4/q9jCiuU0C5/2g4RvPhgEJqPQQ5tZYyZMGriSVSBmAYpj403xJR49MyIeX+OxzRIeVzcxu7Eu6dj5/yYBilPp/S/FEh5/v7f85eqP61/QdwSWBbwr4lNBttMfym0/pMpM18dZ4X/YvD5uvL+T5rTV9CvqW/fj+YY8mv7O+TXzofQ2W//v/3eGbm/fb80J/ZKv40fDNbf0pw4Em2Cv9QcaDL9qfewupA/5R7G5wPi5/Wdswd5f7SR/LHaHdpfKfOBO1z+odqN7S+tP+Zw+ZH6zfEPgdQ231+oX9qjofcHsr8Qv7RHY+8PZH4jfqQ/UvdfLkj/j43U/2OD9P/Y2P7/AP/GugUAEAAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">

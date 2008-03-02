@@ -57,10 +57,7 @@
  <tileset name="books" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/book.png"/>
  </tileset>
- <tileset name="imperials" firstgid="147" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/human_kalavan.png"/>
- </tileset>
- <tileset name="imperials2" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset name="imperials2" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="30">
@@ -90,7 +87,7 @@
  </layer>
  <layer name="objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VMQ0AMAwDwUzhz6BUi6FKLWW4A/CjXQUAMx3qnqUtgK1ets4u/pf6w6QLokMXThAOAAA=
+   H4sIAAAAAAAAAO3VMQ0AMAwDwUzhPxdtMVSppQx3AH60qwBgpkPds7QFsNXL1tnF/1J/mHQBY790mhAOAAA=
   </data>
  </layer>
  <layer name="collision" width="30" height="30" visible="0" opacity="0.44">

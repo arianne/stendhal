@@ -18,33 +18,12 @@
  <tileset name="ground" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="carpets" firstgid="69" tilewidth="32" tileheight="32">
+ <tileset name="carpets" firstgid="90" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets.png"/>
- </tileset>
- <tileset name="carpets 2" firstgid="77" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
- </tileset>
- <tileset name="pot plant 1" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
- </tileset>
- <tileset name="flower baskets" firstgid="101" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/indoor/flower_baskets.png"/>
- </tileset>
- <tileset name="wooden pale" firstgid="104" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
- </tileset>
- <tileset name="wooden pale table hopfully" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
- </tileset>
- <tileset name="pale book bottle shelf" firstgid="109" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png"/>
- </tileset>
- <tileset name="small pictures" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSQ6CQBBFC8UBHGNMjEZdGI1x2DhsvYD3P5C/E4nQNthANbKoxdtUOrwF9Cs8Imr+CR8EoA12FdMB/bd/C54Vsxd/LfwtEIJJjAM4ajOdKZN/AIYaJ3A2zCNmYMnkfxQgYPR7oKFxAVfD3HfgV+9f9Wcd4wbu2kz1ouvAb/v9z8Uv/hr5Q8ru469OlvGbmpm3k2X8HJ0s4l/QdxNN2HQyr39FyR6mYdtJV/vf9p6IX/ziF3+0yzZM9OjzX5317Oic2mUjRtTeG1NyT6adVedeomVp9QAQAAA=
+   H4sIAAAAAAAAAO2Wyw6CMBBFB8UHvmNMjEZdGI1R3PjY+i3+/194J7ERajEtFGQxi7OZNJwF9AwBETX/RAgi0Ab7iumAwdu/A8+KOYi/Fv4W6IFpgiM4aTOdmSf/EIw0YnA2zBVzsPLkf+Qg8ugPQEPjAq6GeViCn98/92eT4Abu2ox70S3Bb/v9L8Qv/hr59Wa6drKI39RM104W8fvoZB7/kr6baMKmk67+NaV7mIVtJ8va/7b3RPziF7/41S7beqJPn//qX89W53iXjT3Ce29C6T2ZdZbPvQApb/cUABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">

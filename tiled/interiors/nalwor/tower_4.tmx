@@ -36,10 +36,7 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="74" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png"/>
- </tileset>
- <tileset name="int_grey_green" firstgid="81" tilewidth="32" tileheight="32">
+ <tileset name="int_grey_green" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -49,7 +46,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKWUSQoCMRBFA6KIEyg4rRR0pbZKLzvDKTyDK8/g2f2BBMqi0p0mBQ/SGR4/Az1RSk3Bq5AZmIMFOIBRIUewBG8wBE0glgMGVKHtyJifp8m3BWPwIT6pdPDZxDitHJ+vJ7gGbj18bRn8Xv0ea9JXszncdyc5pCw2OIzgM4LPhTVGyCJlom0n+Gj5rI8evtz7zfWpHr74DnVPn2bjF/V/Px56Bl2+ho1Xoc8puWq2JsdnVLq6fDxHlfDEd0XfouSzgjNW11nm5ONZ+XnwzKn3otlaq9r/MfHfFX0rcAKDQs5gDTZgC76F7MAe/ABQg2t7QAYAAA==
+   H4sIAAAAAAAAAKWUSQoCMRBFA6KIEyg4rRR0pbZKLzvDDTyDK8/g9f2BBMqi0p0mBQ/SGR4/Az1RSk3Bq5AZmIMFOIBRIUewBG8wBE0glgMGVKHtyJifp8m3BWPwIT6pdPDZxDitHJ+vJ7gGbj18bRn8Xv0ea9JXszncdyc5pCw2OIzgM4LPhTVGyCJlom0n+Gj5rI8evtz7zfWpHr74DnVPn2bjF/V/Px56Bl2+ho1Xoc8puWq2JsdnVLq6fDxHlfDEd0XfouSzgjNW11nm5ONZ+XnwzKn3otlaq9r/MfHfFX0rcAKDQs5gDTZgC76F7MAe/ACnqyIYQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">

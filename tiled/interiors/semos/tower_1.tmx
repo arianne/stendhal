@@ -1,35 +1,26 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="grey dark wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey_dark.png"/>
- </tileset>
- <tileset name="grey green wall" firstgid="17" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey_green.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="66" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/oriental_floor_tile.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
  </tileset>
- <tileset name="bluecarpet" firstgid="79" tilewidth="32" tileheight="32">
+ <tileset name="bluecarpet" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
  </tileset>
- <tileset name="wall red" firstgid="88" tilewidth="32" tileheight="32">
+ <tileset name="wall red" firstgid="22" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="104" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="38" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="120" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="54" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
- <tileset name="windows" firstgid="128" tilewidth="32" tileheight="32">
+ <tileset name="windows" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2W204CMRCG+26KCCgqIFxhIlcQUQNKQI4KysHjK/M3gbhptjOdpgSMXHxJs/Sfj212Z6eqlKoRzMGC2XMDqh55nauDW3Bl4RN8Eb/fgXuiji0fzZXBGTgXcgEqHnXicjmQF1LwrOOb2/s3578ERQKpn6pVMnINcE3wZLkvm19f7zA1m6vcI2gRDIhzXfuHYGT49fU+U7ut7H1rzYjxd9VvT+kZ/iFT26X/RevGPQNmb4n7X7a++aDc+5b03XDpf1G/z/vnS2Hvd/JTPUSK1K/3HIBDkAiwznn4j0ASHAdY+/hTIA0yAdY2/zN4sfhPwCnIBlib/jGYgFfwtoXzn4LZDpw/5d/k+e/686+RzuOu36+/0n//k5+bf0NSMvzc/PsOPpg90kxz5efmX803+HHYJ83o+XcJSY6nFAAQAAA=
+   H4sIAAAAAAAAAO2W204CMRCGCyIgKCDKFSZ4hZFDBI0KclDBI4f3fx3/JjRumu2005QAgYsvaZb+80HZnZ26EOKG4At8W/bcgrpHXuYaoAmuDMzAnPi8BdpEHVM+mquCM1BgUgTXHnXiciVwzqTsWcc3d/Cvz38BLgm4fqpWRcvdgRrBs+F3mfzy+pOlZmeVuwcPBAPiXJV/CEaaX15/sdR+FOa+pYjWjfP3xH9P6Wv+oaW2S/+L1o27B/TeEve9TH2zK9z7FvfZcOl/Ub/P8+eL+n8OftpP9RAuXL/ckwBJcBRgXRJ8fwocg3SAtY8/A7LgJMDa5B+DV4M/B/LgNMBa97+BdzAB0w2c/wf43ILzp/zrPH8X/ybvfwl3Hnd9f+1K/90nv23+DYmaf5XfNv/+gF/LHm6ms/Lb5l/JAiwd9nEzcv79A7hTp8UAEAAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">

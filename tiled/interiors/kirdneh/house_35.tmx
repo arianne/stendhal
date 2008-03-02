@@ -181,18 +181,12 @@
   <image source="../../tileset/item/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="detail ew" firstgid="377" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/detail_ew.png"/>
- </tileset>
- <tileset name="detail ns" firstgid="383" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/detail_ns.png"/>
- </tileset>
- <tileset name="detail ew" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>
  </tileset>
- <tileset name="detail ns" firstgid="401" tilewidth="32" tileheight="32">
+ <tileset name="detail ns" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="413" tilewidth="32" tileheight="32">
+ <tileset name="sheep food" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="25">
@@ -212,7 +206,7 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDFdgy4ubHosmNAvKAOxB7DLQj8IBOYDx3DeK49gfiACLUbae1Q4BAgBGVHgWDD4QC8SRg/IRTWS21QAQQTwXaGUVltYRABRaxUihdDcTRo2l6FBAA/6D0HyD+iyY2CgYW+APzbzCFeZgFqp8JSDMzoopRClKAOGq0jBkFo4AsQKu2CgAYbP0JoA8AAA==
+   H4sIAAAAAAAAAGNgGAWDFdgy4ubHosmNAvKAOxB7DLQj8IBaYDzXDeK49gfiACLUbae1Q4BAgBGVHgWDD4QCcRswfsKprJZaIAKIO4F2RlFZLSFQgUWsFEpXA3H0aJoeBQTAPyj9B4j/oomNgoEF/sD8G0xhHmaB6mcC0syMqGKUghQgjhotY0bBKCAL0KqtAgAlhFIMoA8AAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
@@ -222,7 +216,7 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3FoQEAAAgDoPn/Df5qNhhtUEgAAH507QGA2wBNGgI0oA8AAA==
+   H4sIAAAAAAAAAO3FoQEAAAgDoPl/8mOzwWiDQgIA8KNrDwDcBvYwsxOgDwAA
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">

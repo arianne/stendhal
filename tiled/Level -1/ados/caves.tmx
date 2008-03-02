@@ -48,9 +48,6 @@
  <tileset name="Unbenannt" firstgid="199" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="205" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/earthen_face.png"/>
- </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WOW4DQRADQAUG/P8fO3Ui+NBqyZ6ugKnVw6IEfzwejw8RERGR4ny+Mem3yf3mttCdhL0NdCRpz3+3vR3wtwH2/PnbAH/+/NO9bEnamT9//vz58+fP3xb42wH/9A6ab2t5azqN701btvXRsIOmW1qTNjwlaUcb4G8P/Cfs4MSdpa0mJ23HvyNpQ/4dSfrx70ni+8p/d/jvDv/d4b87/HeH/+7w3x3+wnp3+O8O/93hvzun+vu/ln9T0n3w58+fP3/+/N/31mk9nurf1mf6Lv78+fPnz58/f/78+fPnz58//2l3t2Zaj/z58+c/7e7WTOuRP3/+/Kfd3ZppPfLnf6X/T3/viqQ745/1b+30zrf/t5d3f0bTW7f6J3tvuYP/Dv+mHaRNGvpuvIn/Dv/0FtJvbug3fVdyA+n3NnSbviu5gfRbG3pN39Wwg+YdXfWZ0/wnbWDyO9LGU3vjbwP8bYA//8n3p21P2MDJtzcl3dWJ/pN2lX4T//wGGvucdm9jR5M3MOnWdPjLFTtI38/fBvjnd5C+nX/Wv6Hf9vsmhL9M/R1ovWtaXvVPdd1409RcsYG7O2+6ZXqu8r+z95Y7TsiV/nf1n/78EzNpA/x3b4D/DP93efDfvQH+MzdwlQ3/2Rt41Yj/7h3wP2sDfzXjf+4OfmPIf8cGnnny37eB77b8O5LcAf+OpK3tIZ+07193YB+7d+A3wg5swA7swBZswBZswQ5swBZsoCNpZxvoStrcBnqStreDjqTt7aAnaX8byCftbwMdsQFJbiH9ZsnvIP1eye/g2Q1fVZOz1AAAAQA=

@@ -36,7 +36,7 @@
  <tileset name="Sin nombre" firstgid="195" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/boss.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="198" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="199" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
  <layer name="0_floor" width="256" height="128">
@@ -66,7 +66,7 @@
  </layer>
  <layer name="objects" width="256" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dQQqDMBAFUO9/j55A6KZrwWN1W2lpQabMT3zvAOGvVMzkZ1kAAABgHLfuAAAAAECctTsAAAAAAAAAAAAAEOnRHQAAAAAAAAAGUtn5eS9cCwAAAADgDGcK4N3eHQAAAIjhvh8AAAAAAOCXqjk8544BAOCosucHAAAAAAAAAAAA4BudxAAAAAAA0E8XFwAAAAD8j55PAADgCqruEwOAK/H+BM7YCtYwOwwAAAAAAAAAmcwUAQCJfKMAkEy3DwAAAADwau0OAAAQaO8OAIHMxQEAAOnseQAAAAAAwJE7OCHHyJ0/niUAAAAAAAAAAAAwv6QeTrOLzE6/JwAA9Ni6AwAAQ9J7DQDMxn4lAGTx7wEAPhu5yxcAAAAAAOBKnj8A7WgAAAIA
+   H4sIAAAAAAAAAO3dMQ6DMBAEQP7/j7wAKU1qCn6VNihRIqGLbm1mHmBtBQif18sCAAAA47h1BwAAAADirN0BAAAAAAAAAAAAgEiP7gAAAAAAAAAwkMrOz3vhWgAAAAAAZzhTAO/27gAAAEAM9/0AAAAAAAC/VM3hOXcMAABHlT0/AAAAAAAAAAAAAN/oJAYAAAAAgH66uAAAAADgf/R8AgAAV1B1nxgAXIn3J3DGVrCG2WEAAAAAAAAAyGSmCABI5BsFgGS6fQAAAACAV2t3AACAQHt3AAhkLg4AAEhnzwMAAAAAAI7cwQk5Ru788SwBAAAAAAAAAACA+SX1cJpdZHb6PQEAoMfWHQAAGJLeawBgNvYrASCLfw8A8NnIXb4AAAAAAABX8gQsSNwzAAACAA==
   </data>
  </layer>
  <layer name="collision" width="256" height="128" opacity="0.37">

@@ -93,9 +93,6 @@
  <tileset name="rocks 2" firstgid="495" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png"/>
  </tileset>
- <tileset name="portal" firstgid="499" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png"/>
- </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3a3UrDMBiA4SJ44i5DmL/z/i9PBYclbG2zZvnS5jl4DpRua/N+DWL3MAzDAwAAAAAAAAAAAAAAAADQlOdE9PkQ239K9LlSr//csdHnDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD14rCD6GlvyNGMPvWuK7lm6f2nRfXqfgbTHa+X+Pc1CdOsl9/nhx8uENfNxXPAe0Y16mIOpRocFbpmPY/IeZqCt7jn9l8xH2vdt4XG99K85Azl7dIn+l/aJqeN6nYHx9UY2v1f/HL3NwFyHms1b6N/LDOT2qNG8lf4fV84pullU+wj699V7C/1bnIXoTqWd/zcT2f/a3wAtzEF0n713z9kDbpmJ6HVuTWvdS/Rnu93H1j5n2IJzh3s8Z9lq9z3PQdp76fWvWYNj5ue1auszkD77uvVeyBXdrfReUHpvnNuDS4leuz2aWuvzjMz1jb4GAAAA1nlv4BzQHoD7ex/s/XtwGvn9+Wv4f17zmRz79fe704XXpa9Npe/Vk3Sdok11uqfxDNRej1Plzz1dWefz/bPn9jnfA7y0L6Trk7NeS/ejSy3GM5L+fk7uukbsh7Xbl/4u6Ny9E7WvrbmebyMuMdQAAAEA

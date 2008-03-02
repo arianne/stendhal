@@ -27,22 +27,16 @@
  <tileset name="collision" firstgid="82" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png"/>
- </tileset>
- <tileset name="pool_and_face" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset name="pool_and_face" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/pool_and_face.png"/>
  </tileset>
- <tileset name="green_stone" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="green_stone" firstgid="91" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
- <tileset name="fireplace" firstgid="110" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fireplace.png"/>
- </tileset>
- <tileset name="blue_circle" firstgid="119" tilewidth="32" tileheight="32">
+ <tileset name="blue_circle" firstgid="103" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/blue_circle.png"/>
  </tileset>
- <tileset name="green_stone_3" firstgid="123" tilewidth="32" tileheight="32">
+ <tileset name="green_stone_3" firstgid="107" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/green_stone_3.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -52,7 +46,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL3T1woCMRAF0Nh7eVLQn7H7D/befbYs/rv3IQtDmGwSszhwSEhmh0tgE0KIJKRiWNOQgSw0PeUgDwVoCP9qQ1nmC+ftYG/4bgJTzTw13wnOTO8AhnK/gCVzzuW7wZ2ZN4Kx4ZzL51NcPlob2Bpm0B4uX0B6D3Ak54Fyr/aY8l3gashHe/79fmHNYG45T5fvAU+5X8Ga3HWg65jvBW9Njh70HfP9Urbv5zIvKh/9N23nReXT/bO0PpKarwgtTyWZrwJVqMWw1uEL2E4hKUAGAAA=
+   H4sIAAAAAAAAAL3T1woDIRAFUNN7eUog+Zn0fEB673XJ/7/mPrgwyLhqXDJwUHR2uAibEEIkIRXDmoYMZKHpKQd5KEBD+FcbyjJfOG8He8N3E5hq5qn5TnBmegcwlPsFLJlzLt8N7sy8EYwN51w+n+Ly0drA1jCD9nD5AtJ7gCM5D5R7tceU7wJXQz7a8+/3C2sGc8t5unwPeMr9CtbkrgNdx3wveGty9KDvmO+Xsn0/l3lR+ei/aTsvKp/un6X1kdR8RWh5Ksl8FahCLYa1Dl9TMfKIQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -62,7 +56,7 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBrAhMrmWQJxChCnUtncwQpA4acHxMZksLEBUPjpA7EFlJ0ExMlYxLGpGYqA1uFHCnsoguEYfjVQPJIBAI/tkSVABgAA
+   H4sIAAAAAAAAAGNgGBrAhMrmWQJxLBDHUdncwQpA4acHxMZksLEBUPjpA7EFlB0NxDFYxLGpGYqA1uFHCnsoguEYfjlQPJIBAMid4SVABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

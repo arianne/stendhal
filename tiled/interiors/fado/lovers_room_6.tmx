@@ -78,16 +78,13 @@
  <tileset name="../../tileset/item/furniture/picture/small.png" firstgid="252" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/small.png"/>
  </tileset>
- <tileset name="../../tileset/item/armor/armor.png" firstgid="255" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/armor.png"/>
- </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="259" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="255" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="resources.png" firstgid="260" tilewidth="32" tileheight="32">
+ <tileset name="resources.png" firstgid="256" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="mushroom.png" firstgid="266" tilewidth="32" tileheight="32">
+ <tileset name="mushroom.png" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -117,12 +114,12 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA9gYRxa5uICXDSyj1bm4gPUDjt6xwWt7B0ofwwHMJzyxygYBaNgFAx2AADjFQQPxAkAAA==
+   H4sIAAAAAAAAAGNgoBNgHGLm4gBsNLKPVubiBdS2cyD8QAt7B8ofwwAMq/wxCkbBKBgFgxwAABp+WrvECQAA
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNmZGBgpgPGB6itl1R7SDGfloCWdo36Y3DZNeoPyu2ixG5qmoXPfFLlqAWGux3UCN+BSLujdgwuO2hlFz3aVDAMACvb2Y/ECQAA
+   H4sIAAAAAAAAAPvPwMDwnw4YH6C2XlLtIcV8WgJa2jXqj8Fl16g/KLeLErupaRY+80mVoxYY7nZQI3wHIu2O2jG47KCVXfRoU8EwAPfuEanECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25">

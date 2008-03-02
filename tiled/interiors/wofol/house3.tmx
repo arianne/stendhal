@@ -19,42 +19,39 @@
   <image source="../../tileset/building/entrance/detail_ew.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="132" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/shadow.png"/>
- </tileset>
- <tileset name="Unbenannt" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/tree_stump_table.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="139" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/wooden.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="144" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="141" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/front_on.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="148" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/narrow_bookshelf.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="150" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="151" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="148" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="153" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="163" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="175" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -69,12 +66,12 @@
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB6YhEduAhTjApPxyE2EYmqC2XTQ20dAfiqJ9s4hUT219CIDUt2MDUwH4hlQdj8QtwNxBxZ1hMIPpLcTiLuwyE3Don8uFMNAL0GX0gcAAObOHMKEAwAA
+   H4sIAAAAAAAAAGNgoB7oxyPXC8W4wAQ8cn1QTE0wgw56uwnITyLR3pkkqqeWXmRAqpuxgSlAPBXK7gHiFiBuxaKOUPiB9LYBcTsWuclY9M+CYhjoIuhS+gAAhan/5IQDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF6gAYgb6WjfFDraRS0wFN08nAEAHKm1hYQDAAA=
+   H4sIAAAAAAAAAGNgGF6gAYgb6WjfRDraRS0wFN08nAEAcKmoCoQDAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="15">
@@ -84,12 +81,12 @@
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAW4wOqBdgCVwaqBdsAQBctpbD4AY2d3DIQDAAA=
+   H4sIAAAAAAAAAGNgGAW4wIqBdgCVwfKBdsAQBUtobD4A1/TnMYQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvPwMCwfgAxOsAmT6xefICQflLkKNFLyFxSwoteeqllJ7oZhMwkBpCTtkgxg1AapAYGAHW5+0aEAwAA
+   H4sIAAAAAAAAAFvDwMCwZgAxOsAmT6xefICQflLkKNFLyFxSwoteeqllJ7oZhMwkBpCTtkgxg1AapAYGAP+Z7IGEAwAA
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

@@ -54,16 +54,13 @@
  <tileset name="lights candle" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/sheepfood.png"/>
- </tileset>
- <tileset name="stairs" firstgid="169" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="168" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="arch flowered" firstgid="173" tilewidth="32" tileheight="32">
+ <tileset name="arch flowered" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/flowered_arch.png"/>
  </tileset>
- <tileset name="chest 2" firstgid="197" tilewidth="32" tileheight="32">
+ <tileset name="chest 2" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -73,7 +70,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsSjoRidhxYHIgloHrZgHgVA/GAG00vMiiBYlUgViNTL0yeXL2yQCyHBSug6c1C06sOxMI4sAia3lw0vbgAMW7eD8QHgLgWiOuA+DAQHyFSLyn2FuPQ2wjETWS6GQbwufkkEJ/C41Zs9koBMRcJWJoBf9wTwgpADADJIdEwhAMAAA==
+   H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsSjoRidhxYHIgloHrZgHglA/GAG00vMiiBYlUgViNTL0yeXL2yQCyHBSug6c1C06sOxMI4sAia3lw0vbgAMW7eB8T7gbgWiOuA+BAQHyZSLyn2FuPQ2wjETWS6GQbwufkEEJ/E41Zs9koBMRcJWJoBf9wTwgpADACF1nvghAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -83,12 +80,12 @@
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUAuuAeD0QbwDijTjU9GAR2wzEW4B4KxBvA+LtQLwDi7o+LGI7gXgXEn8vEO8j0r3Egn4gLsAhVw/EDXj0UurmY0B8nID7hjoAAE0e+3mEAwAA
+   H4sIAAAAAAAAAGNgGAXUAmuBeB0QrwfiDTjU9GAR2wTEm4F4CxBvBeJtQLwdi7o+LGI7gHgnEn8PEO8l0r3Egn4gLsAhVw/EDXj0Uurmo0B8jID7hjoAAP8ZOuiEAwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjGawD4vVAvAGIN5KodwsQbwXibUC8ncruGkkAADNYCsOEAwAA
+   H4sIAAAAAAAAAGNgGAUjGawF4nVAvB6IN5CodzMQbwHirUC8jcruGkkAAFk4B8mEAwAA
   </data>
  </layer>
  <layer name="objects" width="15" height="15">

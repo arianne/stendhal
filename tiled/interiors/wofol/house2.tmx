@@ -28,26 +28,23 @@
   <image source="../../tileset/item/furniture/table/table_with_hob.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_dark.png"/>
- </tileset>
- <tileset name="Unbenannt" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="114" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/brown_rug.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="131" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="138" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="132" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNmYGBgHsV0x6VAXAbF5STqrQbiGiiuHQR+GcWUYQAPxd6ohAMAAA==
+   H4sIAAAAAAAAAGNmYGBgHsV0x/lAXADFhSTqLQXiMiguHwR+GcWUYQCYghrOhAMAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="15">
@@ -57,7 +54,7 @@
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFiQBcXoIBaI44A4AYgTgTgeh15agAAgDgLiCBL1xQBxMBCHkqEXBKLI0EMPEE6BXj8g9h8AvbjcHE2mebQEAOZX4SqEAwAA
+   H4sIAAAAAAAAAGNgGFiQAsXoIBaI44A4AYgTgTgeh15agAAgDgLiCBL1xQBxMBCHkqEXBKLI0EMPEE6BXj8g9h8AvbjcHE2mebQEAFYQS2yEAwAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
@@ -72,12 +69,12 @@
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgIGhngS1TTRzxeAF7TQ0GwAF4rpIhAMAAA==
+   H4sIAAAAAAAAAGNgGAWjgIGhkgS1NTRzxeAFjTQ0GwBSQFebhAMAAA==
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.51">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOtiYGDoGgQYHZCrDxcgRR+6GnrpxWXWQOulJJxJ0U9tvcQCYtMZrdI+AO3ezn2EAwAA
+   H4sIAAAAAAAAAGthYGBoGQQYHZCrDxcgRR+6GnrpxWXWQOulJJxJ0U9tvcQCYtMZrdI+ACjXXBKEAwAA
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

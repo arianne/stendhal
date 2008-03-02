@@ -42,9 +42,6 @@
  <tileset name="Unbenannt" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/shadow.png"/>
- </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UwRHCMAwEwNSRBui/QypgJtg6KYF97BP7To44j+M42fL6YDpXd99f73+19+pMKs5Pzr4yX5d/7185g9W7djJPz6DintU8099A1R2rOSb3oOKsdIZU/0Tvp/RP/r7yHRIz6OieOi/ZP/Fed9yBzpxT/wOJ7un+lTO4en4627f9d2fw7dl3evvd/t07lui+kndiv9K9r2Tu3q3u3k/pn+ze0T+dPzGDyllOd9O/rz8AAAAAAAAAAAA8yRtcQkCwAEAAAA==

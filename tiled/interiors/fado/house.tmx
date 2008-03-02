@@ -57,13 +57,10 @@
  <tileset name="../../tileset/item/candle/lamp.png" firstgid="431" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/curtain/red_gold_drawn.png" firstgid="432" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_gold_drawn.png"/>
- </tileset>
- <tileset name="../../tileset/item/furniture/curtain/red_gold_gathered.png" firstgid="438" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/curtain/red_gold_gathered.png" firstgid="432" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/curtain/red_gold_gathered.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="444" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="438" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="12">
@@ -78,7 +75,7 @@
  </layer>
  <layer name="2_object" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA9sZ0TF5II1UL07gfQORgRNCVgP1L8biHch0eSCdRS6hVywGGjvEiBeOkD20xssA/pzFQl+nQhUOwmKJ2PR10BiuM1jRKUpBfMZUWlaAQD3nKRhwAMAAA==
+   H4sIAAAAAAAAAGNgIA9sZETF5II1UL2bgfQmRgRNCVgP1L8ViLcg0eSCdRS6hVywGGjvEiBeOkD20xssA/pzFQl+nQhUOwmKJ2PR10BiuM1jRKUpBfMZUWlaAQCuJxt5wAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="12">
@@ -98,7 +95,7 @@
  </layer>
  <layer name="collision" width="20" height="12" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvDyMCwZ4hgYgAuteSYRYw9tDKPUrOHqn8p1U9r89DNHeg8AQDzbgw6wAMAAA==
+   H4sIAAAAAAAAANvGyMCwbYhgYgAuteSYRYw9tDKPUrOHqn8p1U9r89DNHeg8AQAzU3Z9wAMAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="12">

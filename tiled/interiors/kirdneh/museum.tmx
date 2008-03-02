@@ -39,84 +39,78 @@
  <tileset name="statue" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
- <tileset name="baskets" firstgid="114" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/indoor/flower_baskets.png"/>
- </tileset>
- <tileset name="jar" firstgid="117" tilewidth="32" tileheight="32">
+ <tileset name="jar" firstgid="114" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/oriental_jar.png"/>
  </tileset>
- <tileset name="pot green" firstgid="118" tilewidth="32" tileheight="32">
+ <tileset name="pot green" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_green.png"/>
  </tileset>
- <tileset name="pot purple" firstgid="119" tilewidth="32" tileheight="32">
+ <tileset name="pot purple" firstgid="116" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png"/>
  </tileset>
- <tileset name="clock" firstgid="120" tilewidth="32" tileheight="32">
+ <tileset name="clock" firstgid="117" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/clock/grandfather_clock.png"/>
  </tileset>
- <tileset name="nain rug" firstgid="122" tilewidth="32" tileheight="32">
+ <tileset name="nain rug" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/nain_rug.png"/>
  </tileset>
- <tileset name="broom" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/broom.png"/>
- </tileset>
- <tileset name="tiles" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="tiles" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
  </tileset>
- <tileset name="plants statues" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset name="plants statues" firstgid="141" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/plants_potted_stone.png"/>
  </tileset>
- <tileset name="crystal" firstgid="158" tilewidth="32" tileheight="32">
+ <tileset name="crystal" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/crystal_statues.png"/>
  </tileset>
- <tileset name="urn" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset name="urn" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/urn_house.png"/>
  </tileset>
- <tileset name="sarcothingy" firstgid="172" tilewidth="32" tileheight="32">
+ <tileset name="sarcothingy" firstgid="161" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/sarcophagus.png"/>
  </tileset>
- <tileset name="mannequins" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="mannequins" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/mannequins.png"/>
  </tileset>
- <tileset name="hanging" firstgid="212" tilewidth="32" tileheight="32">
+ <tileset name="hanging" firstgid="201" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/wall_hanging_dkgreen.png"/>
  </tileset>
- <tileset name="hanging2" firstgid="216" tilewidth="32" tileheight="32">
+ <tileset name="hanging2" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/wall_hanging_brown.png"/>
  </tileset>
- <tileset name="masks" firstgid="222" tilewidth="32" tileheight="32">
+ <tileset name="masks" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/native_masks.png"/>
  </tileset>
- <tileset name="rug" firstgid="224" tilewidth="32" tileheight="32">
+ <tileset name="rug" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpet_red_purple.png"/>
  </tileset>
- <tileset name="lions" firstgid="233" tilewidth="32" tileheight="32">
+ <tileset name="lions" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/lion_statues.png"/>
  </tileset>
- <tileset name="weapons for walls" firstgid="241" tilewidth="32" tileheight="32">
+ <tileset name="weapons for walls" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
- <tileset name="books" firstgid="257" tilewidth="32" tileheight="32">
+ <tileset name="books" firstgid="246" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/books2.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XMQ6AMAxD0VCEhMQhuDP0wHRgytQio7axhz+/IYuTzWyvLIM7SmdFaLe1pZTeVrlDuJcrmrvJlRvYRTai+2dy5fZ2bxe7mz42q8t232guMrn9XbZ9xe6y/QvRXZ/c2C4yNnfmHl7J5DRwFwAA
+   H4sIAAAAAAAAAO3XMQ6AMAxD0VCEhMQhOC701nRgytQio7axhz+/IYuTzWyvLIM7SmdFaLe1pZTeVrlDuJcrmrvJlRvYRTai+2dy5fZ2bxe7mz42q8t232guMrn9XbZ9xe6y/QvRXZ/c2C4yNnfmHkJLmSlwFwAA
   </data>
  </layer>
  <layer name="1_terrain" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSUrEQBSGs1HaAWwVt9peRFucR5yHxuEKbtw4z8Mh3IkiKCjoWhHc6sILOCso6BH8i65AUbxKVSqV6MIfPro6CflIk34vL4We56W8fFISYuR9USgCxaAE1HjBqXFEKSjn3lqNs0GzP8yxGcnbGOLcUSJ7Wer4ZzNoAa0JeeuF/f2gw4FnBIxyxjTeNtBu4fXvz1JhWw7c8PW4gdfmev3zZCQvy5Whd8ah95avVd6s4HV9vXcBXj+doAt0O/Je87XOOwiGwLAjL8ulwuuiblDeCTDJmSK8Yu7Bg8SjpVdOkPcJPEu8GHjLQDVIh/AegeOIXpPI3hNwGrO3ifCegfOYvR7hFWPrnQVzYB4sEPup6xXzCt4k3g28i2AJLIMVxTFBXtusgjWwDjYMvS7qxibYAttgh28z6b8suwbrMGF1cpqvdfXZZXLCWvQWcOL2HvyS99D7G7+zy/uKqhu6+8rF/4iqG0n0X5u6Ica2PlN1QwxVn//7b3gvNafIkb1ibL1Rn+ts+2+Qd0/hjev5mWVfWMteFn/eltMDei29Jv2XzWPULNYHBiy9fn1m7xJU9Tku74WXn3FVXjYHUjOgi+sN8rI5kJoBVdvlUHOKzhvXeyST31n33G3rZckGeKn++QE+Q3i+wLfw3aT/mvRPm+jqhq5/RomqTiYV0evf/0mQ5t4KUJkwVeAH5XGUfXAXAAA=
+   H4sIAAAAAAAAAO2YSUrEQBSGs1HaAWwVt9peRFucR5yHxuEK4sZ5Hg7gThRBQUHXiuBWF17AWUFB7+FfdAWK4lWqUqlEF/7w0dVJyEea9Ht5KfQ8L+Xlk5IQI++LQhEoBiWgxgtOjSNKQTn31mqcDZr9YY7NSN7GEOeOEtnLUsc/m0ELaE3IWy/s7wcdDjwjYJQzpvG2gXYLr39/lgrbcuCGr8cNvDbX658nI3lZrgy9Mw69t3yt8mYFr+vrvQvw+ukEXaDbkfear3XeQTAEhh15WS4VXhd1g/JOgEnOFOEVcw8eJB4tvXKCvE/gWeLFwFsGqkE6hPcIHEf0mkT2noDTmL1NhPcMnMfs9QivGFvvLJgD82CB2E9dr5hX8CbxbuBdBEtgGawojgny2mYVrIF1sGHodVE3NsEW2AY7fJtJ/2XZNViHCauT03ytq88ukxPWoreAE7f34Je8h97f+J1d3ldU3dDdVy7+R1TdSKL/2tQNMbb1maobYqj6/N9/w3upOUWO7BVj6436XGfbf4O8ewpvXM/PLPvCWvay+PO2nB7Qa+k16b9sHqNmsT4wYOn16zN7l6Cqz3F5L7z8jKvysjmQmgFdXG+Ql82B1Ayo2i6HmlN03rjeI5n8zrrnblsvSzbAS/XPD/AZwvMFvoXvJv3XpH/aRFc3dP0zSlR1MqmIXv/+T4I091aAyoSpAj+7wiVQcBcAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQID7QHwPyr4CxFeR5NgZUMENIL6JJoasBlk/srnYwD2oGhC4BsTX0eQrkNi3gPg2Djl0/cjmkgMqyZQbKDAHiGejifENgDt4cYh7AHECECdS0a7DRKgB2esJxF5UtBcELhJh70AAWvn3AgF5ZkYGhiAa2IsMsKVnbyBmBNrtS2W7DkJpXOk5BIhDgTiMyvaOAuqBb1jE5tDdFQiAXj6PglFACzCY6n16ABMgNh0Aey2A2HIE2WsDxLYDYO9AAFB6Hoh8NApGwSigDhgs9SALI6bYahq7gwmLnTBQRmO7sYFSOtiRjEO8nA52UwJ+E6lusKTnUTAKhgsQIVMNMfrQ1QEAl149K3AXAAA=
+   H4sIAAAAAAAAAGNgQIArQHwZyj4JxKeQ5NgZUMFZID6HJoasBlk/srnYwGWoGhA4DcRn0ORLkdjngfgCDjl0/cjmkgPKyJQbKDARiCegifENgDt4cYh7AHECECdS0a4dRKgB2esJxF5UtBcEjhFh70AAWvn3KAH5H0AcRAN7kQG29OwNxN+A2JfKdm2D0rjScwgQhwJxGJXtHQXUA6+xiE2kuysQAL18HgWjgBZgMNX79AAmQGw6APZaALHlCLLXBohtB8DegQCg9DwQ+WgUjIJRQB0wWOrBn1jEFtDYHd/xyBXT2G5soIgOdiTjEC+hg92UgA9Eqhss6XkUjILhAkTIVEOMPnR1ACpcfsZwFwAA
   </data>
  </layer>
  <layer name="3_roof" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFrgFhDfHgB77wDxXSLVzgTiGTR0y2AEewbAzuNQ+tQA2L2bSHVlVLTzBJQ+SUUziQVnBsDOfVB61wDYvXMA7BxpYOYA2j3SyudRMLLBLCLYpIJcCvQOVbBwgOxdPED2EgKj6WoUjIJRgA7mDYCdC8jUt4qajhgBYMdAO2CEgKEUzi+B+BUJ6t8C8TsauYVUsGAA7R6IcnIUDBwAAIim7ZdwFwAA
+   H4sIAAAAAAAAAGNgGFrgPBBfGAB7LwLxJSLV9gFxLw3dMhjBxgGwcw+U3j8Adm8gUl0xFe3cC6X3UdFMYsHBAbBzM5RePwB2rxsAO0ca6BtAu0da+TwKRjboJ4JNKsilQO9QBdMGyN4ZA2QvITCarkbBKBgF6GDyANg5lUx986nqiuEP1g60A0YIGErhfA+I75Og/hEQP6aRW0gF5JYb1AADUU6OgoEDANBFMSxwFwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="30" height="50">
