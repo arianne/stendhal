@@ -6,9 +6,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -65,16 +65,18 @@ public class ElvishArmor extends AbstractQuest {
 		if (doneText == null) {
 			doneText = "";
 		}
+
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String item : NEEDEDITEMS) {
-			if (!done.contains(item)) {
+		for (String itemName : NEEDEDITEMS) {
+			if (!done.contains(itemName)) {
 				if (hash) {
-					result.add("#" + item);
+					result.add("#" + itemName);
 				} else {
-					result.add(item);
+					result.add(itemName);
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -188,27 +190,27 @@ public class ElvishArmor extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						Expression item = sentence.getTriggerExpression();
-						String itemName = item.getOriginal();
 
-						List<Expression> missing = ConversationParser.createTriggerList(missingitems(player, false));
-						if (missing.contains(item)) {
+						TriggerList missing = new TriggerList(missingitems(player, false));
+
+						Expression found = missing.find(item);
+						if (found != null) {
+							String itemName = found.getOriginal();
+
 							if (player.drop(itemName)) {
 								// register item as done
 								String doneText = player.getQuest(QUEST_SLOT);
-								player.setQuest(QUEST_SLOT, doneText
-										+ ";" + item);
+								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
+
 								// check if the player has brought all items
-								missing = ConversationParser.createTriggerList(missingitems(player, true));
+								missing = new TriggerList(missingitems(player, true));
+
 								if (missing.size() > 0) {
 									engine.say("Excellent work. Is there more that you plundered?");
 								} else {
-									// Item blackitem =
-									// StendhalRPWorld.get()
-									// .getRuleManager()
-									// .getEntityManager().getItem(
-									// "black_item");
-									// blackitem.setBoundTo(player.getName());
-									// player.equip(blackitem, true);
+//									Item blackitem = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("black_item");
+//									blackitem.setBoundTo(player.getName());
+//									player.equip(blackitem, true);
 									player.addKarma(20.0);
 									player.addXP(20000);
 									engine.say("I will study these! The albino elves owe you a debt of thanks.");
