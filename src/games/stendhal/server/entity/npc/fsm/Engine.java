@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -98,8 +99,24 @@ public class Engine {
 	 */
 	public void add(int state, String triggerString, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
+		add(state, triggerString, null, condition, nextState, reply, action);
+	}
+
+	/**
+	 * Adds a new transition with explicit ExpressionMatcher to FSM.
+	 *
+	 * @param state
+	 * @param triggerString
+	 * @param matcher
+	 * @param condition
+	 * @param nextState
+	 * @param reply
+	 * @param action
+	 */
+	public void add(int state, String triggerString, ExpressionMatcher matcher, ChatCondition condition,
+			int nextState, String reply, ChatAction action) {
 		// normalize trigger expressions using the conversation parser
-		Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString);
+		Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
 
 		if (state > maxState) {
 			maxState = state;

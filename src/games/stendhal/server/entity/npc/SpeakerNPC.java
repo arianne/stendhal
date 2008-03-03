@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -375,14 +376,13 @@ public class SpeakerNPC extends NPC {
 		waitAction = action;
 	}
 
-	
 	public void addInitChatMessage(ChatCondition condition, ChatAction action) {
 		initChatCondition = condition;
 		initChatAction = action;
 	}
 
 	/**
-	 * Adds a new set of transitions to the FSM.
+	 * Adds a new transition to the FSM.
 	 * 
 	 * @param state
 	 *            the starting state of the FSM
@@ -401,6 +401,22 @@ public class SpeakerNPC extends NPC {
 	public void add(int state, String trigger, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
 		engine.add(state, trigger, condition, nextState, reply, action);
+	}
+
+	/**
+	 * Adds a new transition with explicit ExpressionMatcher to the FSM.
+	 *
+	 * @param state
+	 * @param trigger
+	 * @param matcher
+	 * @param condition
+	 * @param nextState
+	 * @param reply
+	 * @param action
+	 */
+	public void add(int state, String trigger, ExpressionMatcher matcher, ChatCondition condition,
+			int nextState, String reply, ChatAction action) {
+		engine.add(state, trigger, matcher, condition, nextState, reply, action);
 	}
 
 	/**
