@@ -18,13 +18,13 @@ public class ExpressionMatcher {
 	public final static String PM_SEPARATOR = "|";
 
 	/** Flag to enable type string matching. */
-	private boolean typeMatching = false;
+	protected boolean typeMatching = false;
 
 	/** Flag to enforce exact expression matching. */
-	private boolean exactMatching = false;
+	protected boolean exactMatching = false;
 
 	/** Flag to enable case insensitive matching. */
-	private boolean caseInsensitive = false;
+	protected boolean caseInsensitive = false;
 
 	/** Reset all matching flags. */
 	public void clear() {
