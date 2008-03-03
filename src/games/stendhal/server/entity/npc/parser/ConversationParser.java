@@ -69,21 +69,36 @@ public final class ConversationParser extends ErrorBuffer {
 			return expr;
 		}
 
+		return createTriggerExpression(text, null);
+	}
+
+	/**
+	 * Create trigger expression to match the parsed user input in the FSM engine.
+	 * 
+	 * @param text
+	 * @param Expression matcher
+	 * @return Expression
+	 */
+	public static Expression createTriggerExpression(String text, ExpressionMatcher matcher) {
 		ConversationContext ctx = new ConversationContext();
 
 		// don't ignore words with type "IGN" if specified in trigger expressions
 		ctx.setIgnoreIgnorable(false);
 
+		// prepare for matching
 		ctx.setForMatching(true);
-		expr = parse(text, ctx).getTriggerExpression();
 
-		if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
+		Expression expr = parse(text, ctx).getTriggerExpression();
+
+		if (matcher != null) {
+			expr.setMatcher(matcher);
+		} else if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
 			WordEntry norm = WordList.getInstance().find(expr.getNormalized());
 
 			// If the trigger type string is not the same as that of the normalized form,
-			// associate a ExpressionMatcher in typeMatching mode.
+			// associate an ExpressionMatcher in typeMatching mode.
 			if (norm != null && !expr.getTypeString().equals(norm.getTypeString())) {
-				ExpressionMatcher matcher = new ExpressionMatcher();
+				matcher = new ExpressionMatcher();
 				matcher.setTypeMatching(true);
 				expr.setMatcher(matcher);
 			}
