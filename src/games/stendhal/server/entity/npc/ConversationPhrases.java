@@ -36,7 +36,7 @@ public class ConversationPhrases {
 
 	public static final List<String> NO_MESSAGES = Arrays.asList(NO_EXPRESSION, "nothing");
 
-	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye",
+	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye", "goodbye",
 			"farewell", "cya", "adios");
 
 }
