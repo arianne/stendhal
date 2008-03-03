@@ -8,9 +8,9 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -203,7 +203,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player offers an item.
 	 */
 	protected void offerItem() {
-		final List<Expression> triggerWords = ConversationParser.createTriggerList(concreteQuest.getNeededItems());
+		final TriggerList triggerWords = new TriggerList(concreteQuest.getNeededItems());
 
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
 			ConversationStates.QUESTION_1, null,
@@ -212,37 +212,40 @@ public class BringListOfItemsQuestLogic {
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
 					Expression item = sentence.getTriggerExpression();
-					String itemName = item.getOriginal();
 
-					if (!triggerWords.contains(item)) {
-						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
-						return;
-					}
+					Expression found = triggerWords.find(item);
+					if (found != null) {
+						String itemName = found.getOriginal();
 
-					List<Expression> missing = ConversationParser.createTriggerList(getListOfStillMissingItems(player, false));
-					if (!missing.contains(item)) {
-						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
-						return;
-					}
+						TriggerList missing = new TriggerList(getListOfStillMissingItems(player, false));
 
-					if (!player.drop(itemName)) {
-						engine.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
-						return;
-					}
+						if (missing.contains(item)) {
+        					if (!player.drop(itemName)) {
+        						engine.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
+        						return;
+        					}
 
-					// register item as done
-					String doneText = player.getQuest(concreteQuest.getSlotName());
-					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
-					// check if the player has brought all items
-					missing = ConversationParser.createTriggerList(getListOfStillMissingItems(player, false));
-					if (missing.size() > 0) {
-						engine.say(concreteQuest.respondToItemBrought());
+        					// register item as done
+        					String doneText = player.getQuest(concreteQuest.getSlotName());
+        					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
+
+        					// check if the player has brought all items
+        					missing = new TriggerList(getListOfStillMissingItems(player, false));
+
+        					if (missing.size() > 0) {
+        						engine.say(concreteQuest.respondToItemBrought());
+        					} else {
+        						concreteQuest.rewardPlayer(player);
+        						player.notifyWorldAboutChanges();
+        						engine.say(concreteQuest.respondToLastItemBrought());
+        						player.setQuest(concreteQuest.getSlotName(), "done");
+        						engine.setCurrentState(ConversationStates.ATTENDING);
+        					}
+    					} else {
+    						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
+    					}
 					} else {
-						concreteQuest.rewardPlayer(player);
-						player.notifyWorldAboutChanges();
-						engine.say(concreteQuest.respondToLastItemBrought());
-						player.setQuest(concreteQuest.getSlotName(), "done");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
 					}
 				}
 

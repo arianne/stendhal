@@ -10,7 +10,9 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 
@@ -179,7 +181,7 @@ public class CloakCollector2 extends AbstractQuest {
 					public String toString() {
 						return "describe item";
 					}
-				});
+		});
 	}
 
 	private void step_2() {
@@ -239,27 +241,28 @@ public class CloakCollector2 extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> missing2 = missingcloaks2(player, false);
-						String item = sentence.getTriggerExpression().getNormalized();
+						TriggerList missing = new TriggerList(missingcloaks2(player, false));
+						Expression item = sentence.getTriggerExpression();
 
-						if (missing2.contains(item)) {
-							if (player.drop(item)) {
+						Expression found = missing.find(item);
+						if (found != null) {
+							String itemName = found.getOriginal();
+
+							if (player.drop(itemName)) {
 								// register cloak as done
-								String doneText = player
-										.getQuest(QUEST_SLOT);
-								player.setQuest(QUEST_SLOT,
-										doneText + ";" + item);
-								// check if the player has brought all
-								// cloaks
-								missing2 = missingcloaks2(player, true);
-								if (!missing2.isEmpty()) {
+								String doneText = player.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
+
+								// check if the player has brought all cloaks
+								missing = new TriggerList(missingcloaks2(player, true));
+
+								if (!missing.isEmpty()) {
 									engine.say("Wow, thank you! What else did you bring?");
 								} else {
 									rewardPlayer(player);
 									// TODO: Make speech mention scent reward if applicable.
 									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
-									player.setQuest(QUEST_SLOT,
-											"done;rewarded");
+									player.setQuest(QUEST_SLOT, "done;rewarded");
 									Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
 									boots.setBoundTo(player.getName());
 									player.equip(boots, true);
@@ -268,7 +271,7 @@ public class CloakCollector2 extends AbstractQuest {
 								}
 							} else {
 								engine.say("Oh, I'm disappointed. You don't really have "
-												+ Grammar.a_noun(item)
+												+ Grammar.a_noun(itemName)
 												+ " with you.");
 							}
 						} else {

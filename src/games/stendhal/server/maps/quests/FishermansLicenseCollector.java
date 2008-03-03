@@ -9,9 +9,9 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -150,17 +150,21 @@ public class FishermansLicenseCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					Expression item = sentence.getTriggerExpression();
-					String itemName = item.getOriginal();
 
-					List<Expression> missing = ConversationParser.createTriggerList(missingFish(player, false));
-					if (missing.contains(item)) {
+					TriggerList missing = new TriggerList(missingFish(player, false));
+
+					Expression found = missing.find(item);
+					if (found != null) {
+						String itemName = found.getOriginal();
+
 						if (player.drop(itemName)) {
 							// register fish as done
 							String doneText = player.getQuest(QUEST_SLOT);
-							player.setQuest(QUEST_SLOT, doneText + ";"
-									+ item);
+							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
+
 							// check if the player has brought all fish
-							missing = ConversationParser.createTriggerList(missingFish(player, true));
+							missing = new TriggerList(missingFish(player, true));
+
 							if (missing.size() > 0) {
 								engine.say("This fish is looking very good! Do you have another one for me?");
 							} else {
