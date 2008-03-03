@@ -17,6 +17,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -208,7 +209,8 @@ public class FindGhosts extends AbstractQuest {
 				}
 			});
 
-		List<String> triggers = Arrays.asList(ConversationPhrases.NO_EXPRESSION);
+		List<String> triggers = new ArrayList<String>();
+		triggers.add(ConversationPhrases.NO_EXPRESSION);
 		triggers.addAll(ConversationPhrases.GOODBYE_MESSAGES);
 		npc.add(ConversationStates.QUESTION_1, triggers, null,
 				ConversationStates.IDLE, "No problem, come back later.", null);
