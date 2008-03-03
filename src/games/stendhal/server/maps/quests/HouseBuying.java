@@ -163,23 +163,23 @@ public class HouseBuying extends AbstractQuest {
 									String postmanslot = postman.getQuest(QUEST_SLOT);
 									String[] boughthouses = postmanslot.split(";");
 									List<String> doneList = Arrays.asList(boughthouses);
-									String item = sentence.getTriggerExpression().getNormalized();
+									String itemName = sentence.getTriggerExpression().getNormalized();
 									// now check if the house they said is free
-									if (!doneList.contains(item)) {
+									if (!doneList.contains(itemName)) {
 										// it's available, so take money
 										if (player.isEquipped("money", COST)) {
 											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + item);
+													"private key " + itemName);
 											engine.say("Congratulations, here is your key to house "
-													+ item
+													+ itemName
 													+ "! Do you want to buy a spare key, at a price of "
 													+ COST_OF_SPARE_KEY + " money?");
 											key.setUndroppableOnDeath(true);
 											if (player.equip(key)) {
 												player.drop("money", COST);
 												// remember what house they own
-												player.setQuest(QUEST_SLOT, item);
-												postman.setQuest(QUEST_SLOT, postmanslot + ";" + item);
+												player.setQuest(QUEST_SLOT, itemName);
+												postman.setQuest(QUEST_SLOT, postmanslot + ";" + itemName);
 												engine.setCurrentState(ConversationStates.QUESTION_1);
 											} else {
 												engine.say("Sorry, you can't carry more keys!");
@@ -188,7 +188,7 @@ public class HouseBuying extends AbstractQuest {
 											engine.say("You do not have enough money to buy a house!");
 										}
 									} else {
-										engine.say("Sorry, house " + item
+										engine.say("Sorry, house " + itemName
 												+ " is sold, please give me the number of another.");
 										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 									}
@@ -366,23 +366,23 @@ public class HouseBuying extends AbstractQuest {
 									String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 									String[] boughthouses = postmanslot.split(";");
 									List<String> doneList = Arrays.asList(boughthouses);
-									String item = sentence.getTriggerExpression().getNormalized();
+									String itemName = sentence.getTriggerExpression().getNormalized();
 									// now check if the house they said is free
-									if (!doneList.contains(item)) {
+									if (!doneList.contains(itemName)) {
 										// it's available, so take money
 										if (player.isEquipped("money", COST_ADOS)) {
 											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + item);
+													"private key " + itemName);
 											engine.say("Congratulations, here is your key to house "
-													+ item
+													+ itemName
 													+ "! Do you want to buy a spare key, at a price of "
 													+ COST_OF_SPARE_KEY + " money?");
 											key.setUndroppableOnDeath(true);
 											if (player.equip(key)) {
 												player.drop("money", COST_ADOS);
 												// remember what house they own
-												player.setQuest(QUEST_SLOT, item);
-												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + item);
+												player.setQuest(QUEST_SLOT, itemName);
+												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + itemName);
 												engine.setCurrentState(ConversationStates.QUESTION_1);
 											} else {
 												engine.say("Sorry, you can't carry more keys!");
@@ -391,7 +391,7 @@ public class HouseBuying extends AbstractQuest {
 											engine.say("You do not have enough money to buy a house!");
 										}
 									} else {
-										engine.say("Sorry, house " + item
+										engine.say("Sorry, house " + itemName
 												+ " is sold, please give me the number of another.");
 										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 									}
@@ -542,23 +542,23 @@ public class HouseBuying extends AbstractQuest {
 									String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
 									String[] boughthouses = postmanslot.split(";");
 									List<String> doneList = Arrays.asList(boughthouses);
-									String item = sentence.getTriggerExpression().getNormalized();
+									String itemName = sentence.getTriggerExpression().getNormalized();
 									// now check if the house they said is free
-									if (!doneList.contains(item)) {
+									if (!doneList.contains(itemName)) {
 										// it's available, so take money
 										if (player.isEquipped("money", COST_KIRDNEH)) {
 											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + item);
+													"private key " + itemName);
 											engine.say("Congratulations, here is your key to house "
-													+ item
+													+ itemName
 													+ "! Do you want to buy a spare key, at a price of "
 													+ COST_OF_SPARE_KEY + " money?");
 											key.setUndroppableOnDeath(true);
 											if (player.equip(key)) {
 												player.drop("money", COST_KIRDNEH);
 												// remember what house they own
-												player.setQuest(QUEST_SLOT, item);
-												postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + item);
+												player.setQuest(QUEST_SLOT, itemName);
+												postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + itemName);
 												engine.setCurrentState(ConversationStates.QUESTION_1);
 											} else {
 												engine.say("Sorry, you can't carry more keys!");
@@ -567,7 +567,7 @@ public class HouseBuying extends AbstractQuest {
 											engine.say("You do not have enough money to buy a house!");
 										}
 									} else {
-										engine.say("Sorry, house " + item
+										engine.say("Sorry, house " + itemName
 												+ " is sold, please give me the number of another, from 26 to 49.");
 										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 									}
