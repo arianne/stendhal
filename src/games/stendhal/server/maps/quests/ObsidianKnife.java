@@ -220,7 +220,7 @@ public class ObsidianKnife extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-				"gem book", 
+				"gem book",
 				new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
 				ConversationStates.QUESTION_1,
 				"You're in luck! Ognir brought it back just last week. Now, who is it for?",
@@ -233,6 +233,12 @@ public class ObsidianKnife extends AbstractQuest {
 				"Ah, the mountain dwarf! Hope he enjoys the gem book.",
 				new MultipleActions(new EquipItemAction("blue book", 1, true), 
 				new SetQuestAction(QUEST_SLOT, "got_book")));
+
+		// allow to say goodbye while Ceryl is listening for the dwarf's name
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Bye.", null);
 
 		// player says something which isn't the dwarf's name.
 		npc.add(ConversationStates.QUESTION_1, 
