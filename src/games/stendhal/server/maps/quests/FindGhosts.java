@@ -208,7 +208,9 @@ public class FindGhosts extends AbstractQuest {
 				}
 			});
 
-		npc.add(ConversationStates.QUESTION_1, Arrays.asList(ConversationPhrases.NO_EXPRESSION, "bye", "goodbye"), null,
+		List<String> triggers = Arrays.asList(ConversationPhrases.NO_EXPRESSION);
+		triggers.addAll(ConversationPhrases.GOODBYE_MESSAGES);
+		npc.add(ConversationStates.QUESTION_1, triggers, null,
 				ConversationStates.IDLE, "No problem, come back later.", null);
 
 		// player says something which isn't in the needed spirits list.
@@ -228,8 +230,7 @@ public class FindGhosts extends AbstractQuest {
 			"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 			null);
 
-		// the player goes to Carena and says hi, and has no quest or is
-		// completed.
+		// the player goes to Carena and says hi, and has no quest or is completed.
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
