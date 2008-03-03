@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.PositionChangeListener;
+import games.stendhal.client.gui.FormatTextParser;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
@@ -47,7 +48,6 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
@@ -1100,46 +1100,52 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#formatLine(java.lang.String,
 	 *      java.awt.Font, java.awt.Color)
 	 */
-	public AttributedString formatLine(String line, Font fontNormal,
-			Color colorNormal) {
-		Font specialFont = fontNormal.deriveFont(Font.ITALIC);
+	public AttributedString formatLine(final String line,
+				final Font fontNormal, final Color colorNormal) {
+		final Font specialFont = fontNormal.deriveFont(Font.ITALIC);
 
-		// tokenize the string
-		List<String> list = Arrays.asList(line.split("\\s+"));
+		try {
+			// recreate the string without the # characters
+			final StringBuilder temp = new StringBuilder();
 
-		// recreate the string without the # characters
-		StringBuilder temp = new StringBuilder();
-		for (String tok : list) {
-			if (tok.startsWith("#")) {
-				tok = tok.substring(1);
-			}
-			temp.append(tok + " ");
+			new FormatTextParser() {
+				public void normalText(String tok) {
+					temp.append(tok + " ");
+				}
+
+				public void colorText(String tok) {
+					temp.append(tok + " ");
+				}
+			}.format(line);
+
+			// create the attribute string including formating
+			final AttributedString aStyledText = new AttributedString(temp.toString());
+
+			new FormatTextParser() {
+				private int s = 0;
+
+				public void normalText(String tok) {
+					aStyledText.addAttribute(TextAttribute.FONT, fontNormal, s, s
+							+ tok.length() + 1);
+					aStyledText.addAttribute(TextAttribute.FOREGROUND, colorNormal, s, s
+							+ tok.length() + 1);
+					s += tok.length() + 1;
+				}
+
+				public void colorText(String tok) {
+					aStyledText.addAttribute(TextAttribute.FONT, specialFont, s, s
+							+ tok.length() + 1);
+					aStyledText.addAttribute(TextAttribute.FOREGROUND, Color.blue, s, s
+							+ tok.length() + 1);
+					s += tok.length() + 1;
+				}
+			}.format(line);
+
+			return aStyledText;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-
-		// create the attribute string with the formatation
-		AttributedString aStyledText = new AttributedString(temp.toString());
-		int s = 0;
-		for (String tok : list) {
-			Font font = fontNormal;
-			Color color = colorNormal;
-			if (tok.startsWith("##")) {
-				tok = tok.substring(1);
-			} else if (tok.startsWith("#")) {
-				tok = tok.substring(1);
-				font = specialFont;
-				color = Color.blue;
-			}
-			if (tok.length() > 0) {
-				aStyledText.addAttribute(TextAttribute.FONT, font, s, s
-						+ tok.length() + 1);
-				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s
-						+ tok.length() + 1);
-			}
-			s += tok.length() + 1;
-		}
-
-		return (aStyledText);
-
 	}
 
 	/*
@@ -1255,8 +1261,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		i = 0;
 		for (String line : lines) {
-			AttributedString aStyledText = formatLine(line, g2d.getFont(),
-					textColor);
+			AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
 
 			if (fillColor == null) {
 				g2d.setColor(Color.black);
