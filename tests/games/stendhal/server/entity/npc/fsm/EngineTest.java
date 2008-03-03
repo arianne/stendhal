@@ -37,7 +37,6 @@ public class EngineTest {
 
 	@Test
 	public void testAddSingleStringEmptyCondition() {
-
 		Engine en = new Engine(new SpeakerNPC("bob"));
 		int state;
 		state = 0;
@@ -46,7 +45,6 @@ public class EngineTest {
 		int nextState = state + 1;
 		String reply = "huch";
 		ChatAction action = new ChatAction() {
-
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
@@ -56,7 +54,6 @@ public class EngineTest {
 		Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
-
 	}
 
 	@Test
@@ -69,7 +66,6 @@ public class EngineTest {
 		final String triggers = "boo";
 
 		ChatCondition cc = new ChatCondition() {
-
 			@Override
 			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
@@ -80,7 +76,6 @@ public class EngineTest {
 		int nextState = state + 1;
 		String reply = "huch";
 		ChatAction action = new ChatAction() {
-
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
