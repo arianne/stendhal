@@ -10,11 +10,9 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.RPEntity;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -111,7 +109,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Create a 2D view of an entity.
-	 * 
+	 *
 	 * @param rpentity
 	 *            The entity to render.
 	 */
@@ -130,7 +128,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Populate keyed state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 * @param tiles
@@ -158,7 +156,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Calculate sprite image offset. Sub-classes may override this to change
 	 * alignment.
-	 * 
+	 *
 	 * @param swidth
 	 *            The sprite width (in pixels).
 	 * @param sheight
@@ -180,7 +178,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Create the title sprite.
-	 * 
+	 *
 	 * @return The title sprite.
 	 */
 	protected Sprite createTitleSprite() {
@@ -214,7 +212,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Extract a walking animation for a specific row. The source sprite
 	 * contains 3 animation tiles, but this is converted to 4 frames.
-	 * 
+	 *
 	 * @param tiles
 	 *            The tile image.
 	 * @param y
@@ -223,7 +221,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The frame width.
 	 * @param height
 	 *            The frame height.
-	 * 
+	 *
 	 * @return A sprite.
 	 */
 	protected Sprite createWalkSprite(final Sprite tiles, final int y,
@@ -248,7 +246,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Draw the floating text indicators (floaters).
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -275,7 +273,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			int tx = x + ((width - stringwidth) / 2);
 			int ty = y - (int) (age * 5L / 300L);
 
-			Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(indicator.getType());
+			Color color = indicator.getType().getColor();
 
 			screen.drawOutlineString(g2d, color, text, tx, ty + 10);
 		}
@@ -283,7 +281,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Draw the entity HP bar.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -317,7 +315,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Draw the entity status bar. The status bar show the title and HP bar.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -335,7 +333,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Draw the entity title.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -356,14 +354,14 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	protected abstract Sprite getAnimationSprite();
 
 	/**
 	 * Get the number of tiles in the X axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	protected int getTilesX() {
@@ -372,7 +370,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	protected int getTilesY() {
@@ -381,7 +379,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 * 
+	 *
 	 * @return <code>true</code> if the client user can see this entity while
 	 *         in ghostmode.
 	 */
@@ -395,7 +393,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Populate keyed state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -417,7 +415,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -436,7 +434,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Draw the entity.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -484,7 +482,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 				/*
 				 * Align swipe image to be 16 px past the facing edge, centering
 				 * in other axis.
-				 * 
+				 *
 				 * Swipe image is 3x4 tiles, but really only uses partial areas.
 				 * Adjust positions to match (or fix images to be
 				 * uniform/centered).
@@ -566,7 +564,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Draw the top layer parts of an entity. This will be on down after all
 	 * other game layers are rendered.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -586,7 +584,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Get the height.
-	 * 
+	 *
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -596,7 +594,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Get the entity's visibility.
-	 * 
+	 *
 	 * @return The visibility value (0-100).
 	 */
 	@Override
@@ -617,7 +615,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Get the width.
-	 * 
+	 *
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -629,9 +627,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -658,7 +656,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -684,7 +682,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

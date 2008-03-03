@@ -608,4 +608,10 @@ public class Stendhal2D extends StendhalGUI {
 			setSideBar(mode);
 		}
 	}
+
+	@Override
+	public void shutdown() {
+		// TODO Auto-generated method stub
+		
+	}
 }

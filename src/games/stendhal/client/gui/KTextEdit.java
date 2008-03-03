@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.StendhalUI;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -129,15 +128,17 @@ public class KTextEdit extends JPanel {
 	}
 
 	protected void insertText(String text, NotificationType type) {
-		final Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(type);
+		final Color color = type.getColor();
 		final Document doc = textPane.getDocument();
 
 		try {
 			new FormatTextParser() {
+				@Override
 				public void normalText(String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, getColor(color));
 				}
 
+				@Override
 				public void colorText(String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
 				}
@@ -185,7 +186,7 @@ public class KTextEdit extends JPanel {
 
 	/**
 	 * The implemented method.
-	 * 
+	 *
 	 * @param header
 	 *            a string with the header name
 	 * @param line

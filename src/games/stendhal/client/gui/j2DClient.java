@@ -24,9 +24,6 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJButton;
 import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
 import games.stendhal.client.gui.wt.Character;
@@ -39,22 +36,18 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
@@ -63,49 +56,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.URL;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 
-import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
 
-	protected static final Color COLOR_CLIENT = Color.gray;
-
-	protected static final Color COLOR_ERROR = Color.red;
-
-	protected static final Color COLOR_INFORMATION = Color.orange;
-
-	protected static final Color COLOR_NEGATIVE = Color.red;
-
-	protected static final Color COLOR_NORMAL = Color.black;
-
-	protected static final Color COLOR_POSITIVE = Color.green;
-
-	protected static final Color COLOR_PRIVMSG = Color.darkGray;
-
-	protected static final Color COLOR_RESPONSE = new Color(0x006400);
-
-	protected static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
-
-	protected static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
-			105, 225);
-
-	protected static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -124,10 +91,8 @@ public class j2DClient extends StendhalUI {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
-	/**
-	 * The man window frame.
-	 */
-	private JFrame frame;
+	private MainFrame mainFrame;
+	private QuitDialog quitDialog;
 
 	private GameScreen screen;
 
@@ -162,7 +127,7 @@ public class j2DClient extends StendhalUI {
 
 	private ManagedWindow buddies;
 
-	
+
 
 	/** the minimap panel. */
 	private Minimap minimap;
@@ -172,7 +137,6 @@ public class j2DClient extends StendhalUI {
 
 	private User lastuser;
 
-	private Component quitDialog;
 
 	private PositionChangeMulticaster positionChangeListener;
 
@@ -195,27 +159,15 @@ public class j2DClient extends StendhalUI {
 		super(client);
 
 		setDefault(this);
+		mainFrame = new MainFrame();
 
-		frame = new JFrame();
 
-		frame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
-				+ stendhal.VERSION
-				+ " - a multiplayer online game using Arianne");
 
-		// create a frame to contain our game
-
-		URL url = SpriteStore.get().getResourceURL(
-				ClientGameConfiguration.get("GAME_ICON"));
-		frame.setIconImage(new ImageIcon(url).getImage());
-
-		// When the user tries to close the window, don't close immediately,
-		// but show a confirmation dialog.
-		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		positionChangeListener = new PositionChangeMulticaster();
 
-		Container content = frame.getContentPane();
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		Container content = mainFrame.getMainFrame().getContentPane();
+
 
 		/*
 		 * Get hold the content of the frame and set up the resolution of the
@@ -240,7 +192,7 @@ public class j2DClient extends StendhalUI {
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			canvas = new Canvas();
 			// A bit repetitive... oh well
-			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT); 
+			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);
 		} else {
 			canvas = new Canvas();
 			canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -280,7 +232,7 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Handle focus assertion and window closing
 		 */
-		frame.addWindowListener(new WindowAdapter() {
+		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent ev) {
 				playerChatText.requestFocus();
@@ -304,11 +256,12 @@ public class j2DClient extends StendhalUI {
 
 		/*
 		 * Quit dialog
+		 *
+		 *
 		 */
-		quitDialog = buildQuitDialog();
-		quitDialog.setVisible(false);
+		quitDialog = new QuitDialog();
 
-		pane.add(quitDialog, JLayeredPane.MODAL_LAYER);
+		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
 
 		/*
 		 * Game log
@@ -318,7 +271,7 @@ public class j2DClient extends StendhalUI {
 
 		if (System.getProperty("stendhal.onewindow") != null) {
 			content.add(gameLog);
-			frame.pack();
+			mainFrame.getMainFrame().pack();
 		} else if (System.getProperty("stendhal.onewindowtitle") != null
 				|| System.getProperty("stendhal.refactoringguiui") != null) {
 			JLabel header = new JLabel();
@@ -326,12 +279,12 @@ public class j2DClient extends StendhalUI {
 			header.setFont(new java.awt.Font("Dialog", 3, 14));
 			content.add(header);
 			content.add(gameLog);
-			frame.pack();
+			mainFrame.getMainFrame().pack();
 		} else {
 			/*
 			 * In own window
 			 */
-			final JDialog dialog = new JDialog(frame,
+			final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
 					"Game chat and events log");
 
 			content = dialog.getContentPane();
@@ -352,10 +305,10 @@ public class j2DClient extends StendhalUI {
 			/*
 			 * Move tracker
 			 */
-			frame.addComponentListener(new ComponentAdapter() {
+			mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
 				@Override
 				public void componentShown(ComponentEvent e) {
-					Rectangle bounds = frame.getBounds();
+					Rectangle bounds = mainFrame.getMainFrame().getBounds();
 
 					dialog.setLocation(bounds.x, bounds.y + bounds.height);
 
@@ -364,7 +317,7 @@ public class j2DClient extends StendhalUI {
 
 				@Override
 				public void componentMoved(ComponentEvent e) {
-					Rectangle bounds = frame.getBounds();
+					Rectangle bounds = mainFrame.getMainFrame().getBounds();
 
 					dialog.setLocation(bounds.x, bounds.y + bounds.height);
 				}
@@ -387,12 +340,12 @@ public class j2DClient extends StendhalUI {
 					NotificationType.NEGATIVE);
 		}
 
-		frame.setLocation(new Point(20, 20));
+		mainFrame.getMainFrame().setLocation(new Point(20, 20));
 
 		// finally make the window visible
-		frame.pack();
-		frame.setResizable(false);
-		frame.setVisible(true);
+		mainFrame.getMainFrame().pack();
+		mainFrame.getMainFrame().setResizable(false);
+		mainFrame.getMainFrame().setVisible(true);
 
 		screen = new GameScreen(client, canvas);
 
@@ -401,7 +354,7 @@ public class j2DClient extends StendhalUI {
 
 		positionChangeListener.add(screen);
 
-		frame.toFront();
+		mainFrame.getMainFrame().toFront();
 
 		/*
 		 * In-screen dialogs
@@ -439,16 +392,6 @@ public class j2DClient extends StendhalUI {
 		addWindow(buddies);
 		settings.add(buddies, "Enable Buddies");
 
-		// buywindow = new BuyWindow(this);
-		// buywindow.setVisible(false);
-		// addWindow(buywindow);
-		// settings.add(buywindow, "Enable Buy Window");
-
-		// gbh = new GameButtonHelper(this, this);
-		// gbh.setVisible(false);
-		// addWindow(gbh);
-		// settings.add(gbh, "Enable Game Tools");
-
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
@@ -468,7 +411,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add a native in-window dialog to the screen.
-	 * 
+	 *
 	 * @param comp
 	 *            The component to add.
 	 */
@@ -476,45 +419,6 @@ public class j2DClient extends StendhalUI {
 		pane.add(comp, JLayeredPane.PALETTE_LAYER);
 	}
 
-	/**
-	 * Build the in-window quit dialog [panel].
-	 * 
-	 * 
-	 */
-	protected Component buildQuitDialog() {
-		InternalManagedDialog imd;
-		Style style;
-		JPanel panel;
-		JButton b;
-
-		panel = new JPanel();
-		panel.setOpaque(false);
-		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(150, 75));
-
-		style = WoodStyle.getInstance();
-
-		b = new StyledJButton(style);
-		b.setText("Yes");
-		b.setBounds(30, 25, 40, 25);
-		b.addActionListener(new QuitConfirmCB());
-
-		panel.add(b);
-
-		b = new StyledJButton(style);
-		b.setText("No");
-		b.setBounds(80, 25, 40, 25);
-		b.addActionListener(new QuitCancelCB());
-
-		panel.add(b);
-
-		imd = new InternalManagedDialog("quit", "Quit");
-		imd.setContent(panel);
-		imd.setMinimizable(false);
-		imd.setMovable(false);
-
-		return imd.getDialog();
-	}
 
 	// MEMORY DEBUGGING:
 	// private long avgmemt = 0L;
@@ -622,7 +526,7 @@ public class j2DClient extends StendhalUI {
 
 			if (!client.isInBatchUpdate()) {
 				minimap.update_pathfind();
-				if (frame.getState() != Frame.ICONIFIED) {
+				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
 				}
@@ -720,60 +624,11 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
-	 * Get the color that is tied to a notification type.
-	 * 
-	 * @param type
-	 *            The notification type.
-	 * 
-	 * @return The appropriate color.
-	 */
-	public Color getNotificationColor(NotificationType type) {
-		switch (type) {
-		case CLIENT:
-			return COLOR_CLIENT;
-
-		case ERROR:
-			return COLOR_ERROR;
-
-		case INFORMATION:
-			return COLOR_INFORMATION;
-
-		case NEGATIVE:
-			return COLOR_NEGATIVE;
-
-		case NORMAL:
-			return COLOR_NORMAL;
-
-		case POSITIVE:
-			return COLOR_POSITIVE;
-
-		case PRIVMSG:
-			return COLOR_PRIVMSG;
-
-		case RESPONSE:
-			return COLOR_RESPONSE;
-
-		case SIGNIFICANT_NEGATIVE:
-			return COLOR_SIGNIFICANT_NEGATIVE;
-
-		case SIGNIFICANT_POSITIVE:
-			return COLOR_SIGNIFICANT_POSITIVE;
-
-		case TUTORIAL:
-			return COLOR_TUTORIAL;
-
-		default:
-			logger.warn("Unknown notification type: " + type);
-			return COLOR_NORMAL;
-		}
-	}
-
-	/**
 	 * Convert a keycode to the corresponding direction.
-	 * 
+	 *
 	 * @param keyCode
 	 *            The keycode.
-	 * 
+	 *
 	 * @return The direction, or <code>null</code>.
 	 */
 	protected Direction keyCodeToDirection(int keyCode) {
@@ -869,7 +724,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Handle direction press actions.
-	 * 
+	 *
 	 * @param direction
 	 *            The direction.
 	 * @param facing
@@ -900,7 +755,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Handle direction release actions.
-	 * 
+	 *
 	 * @param direction
 	 *            The direction.
 	 * @param facing
@@ -925,17 +780,13 @@ public class j2DClient extends StendhalUI {
 		directionRelease = new DelayedDirectionRelease(direction, facing);
 	}
 
-	protected void quitCancelCB() {
-		quitDialog.setVisible(false);
-	}
 
-	protected void quitConfirmCB() {
-		shutdown();
-	}
+
+
 
 	/**
 	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 * 
+	 *
 	 * @param ev
 	 *            The keyboard event.
 	 */
@@ -948,7 +799,8 @@ public class j2DClient extends StendhalUI {
 	/**
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
-	protected void shutdown() {
+	@Override
+	public void shutdown() {
 		gameRunning = false;
 
 		// try to save the window configuration
@@ -961,10 +813,10 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add a new window.
-	 * 
+	 *
 	 * @param mw
 	 *            A managed window.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If an unsupported ManagedWindow is given.
 	 */
@@ -982,7 +834,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the Alt key is held down.
-	 * 
+	 *
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -992,7 +844,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the [Ctrl] key is held down.
-	 * 
+	 *
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -1002,7 +854,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the [Shift] key is held down.
-	 * 
+	 *
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -1016,7 +868,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(String text) {
@@ -1025,7 +877,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(String header, String text) {
@@ -1034,7 +886,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(final String text, final NotificationType type) {
@@ -1043,7 +895,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(final String header, final String text,
@@ -1067,7 +919,7 @@ public class j2DClient extends StendhalUI {
 		}
 
 		// Should really keep only one instance of this around
-		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit);
+		OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
 
@@ -1079,7 +931,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the current game screen height.
-	 * 
+	 *
 	 * @return The height.
 	 */
 	@Override
@@ -1089,7 +941,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the game screen.
-	 * 
+	 *
 	 * @return The game screen.
 	 */
 	@Override
@@ -1099,7 +951,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the current game screen width.
-	 * 
+	 *
 	 * @return The width.
 	 */
 	@Override
@@ -1107,33 +959,11 @@ public class j2DClient extends StendhalUI {
 		return SCREEN_WIDTH;
 	}
 
-	/**
-	 * Request quit confirmation from the user. This stops all player actions
-	 * and shows a dialog in which the player can confirm that they really wants
-	 * to quit the program. If so it flags the client for termination.
-	 */
-	@Override
-	public void requestQuit() {
-		/*
-		 * Stop the player
-		 */
-		client.stop();
 
-		/*
-		 * Center dialog
-		 */
-		Dimension psize = quitDialog.getPreferredSize();
-
-		quitDialog.setBounds((getWidth() - psize.width) / 2,
-				(getHeight() - psize.height) / 2, psize.width, psize.height);
-
-		quitDialog.validate();
-		quitDialog.setVisible(true);
-	}
 
 	/**
 	 * Set the input chat line text.
-	 * 
+	 *
 	 * @param text
 	 *            The text.
 	 */
@@ -1144,7 +974,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Set the user's positiion.
-	 * 
+	 *
 	 * @param x
 	 *            The user's X coordinate.
 	 * @param y
@@ -1157,7 +987,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Sets the offline indication state.
-	 * 
+	 *
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
@@ -1189,21 +1019,11 @@ public class j2DClient extends StendhalUI {
 		}
 	}
 
-	
 
-	protected class QuitCancelCB implements ActionListener {
-		public void actionPerformed(ActionEvent ev) {
-			quitCancelCB();
-		}
-	}
 
-	protected class QuitConfirmCB implements ActionListener {
-		public void actionPerformed(ActionEvent ev) {
-			quitConfirmCB();
-		}
-	}
 
-	
+
+
 	public static void main(String[] args) {
 		if (args.length > 0) {
 			int i = 0;
@@ -1251,6 +1071,7 @@ public class j2DClient extends StendhalUI {
 		System.out.println("* -p\tPassword to log into Marauroa server");
 	}
 
+
 	protected static class DelayedDirectionRelease {
 		/**
 		 * The maximum delay between auto-repeat release-press.
@@ -1276,7 +1097,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Get the direction.
-		 * 
+		 *
 		 * @return The direction.
 		 */
 		public Direction getDirection() {
@@ -1285,7 +1106,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Determine if the delay point has been reached.
-		 * 
+		 *
 		 * @return <code>true</code> if the delay time has been reached.
 		 */
 		public boolean hasExpired() {
@@ -1294,7 +1115,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Determine if the facing only option was used.
-		 * 
+		 *
 		 * @return <code>true</code> if facing only.
 		 */
 		public boolean isFacing() {
@@ -1304,12 +1125,12 @@ public class j2DClient extends StendhalUI {
 		/**
 		 * Check if a new direction matches the existing one, and if so, reset
 		 * the expiration point.
-		 * 
+		 *
 		 * @param dir
 		 *            The direction.
 		 * @param facing
 		 *            The facing flag.
-		 * 
+		 *
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(Direction dir, boolean facing) {
@@ -1331,5 +1152,16 @@ public class j2DClient extends StendhalUI {
 
 			return true;
 		}
+	}
+
+
+
+
+
+
+	@Override
+	public void requestQuit() {
+		quitDialog.requestQuit();
+
 	}
 }
