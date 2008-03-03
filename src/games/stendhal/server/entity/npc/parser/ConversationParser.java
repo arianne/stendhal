@@ -3,8 +3,6 @@ package games.stendhal.server.entity.npc.parser;
 import games.stendhal.common.ErrorBuffer;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -233,21 +231,5 @@ public final class ConversationParser extends ErrorBuffer {
 
 		return text;
 	}
-
-	/**
-	 * Create a list of normalized trigger Words from a String list.
-	 *
-	 * @param strings list
-	 * @return word list
-	 */
-	public static List<Expression> createTriggerList(List<String> strings) {
-		List<Expression> words = new LinkedList<Expression>();
-
-		for (String item : strings) {
-			words.add(createTriggerExpression(item));
-		}
-
-		return words;
-    }
 
 }
