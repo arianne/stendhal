@@ -10,7 +10,9 @@ import java.util.List;
  */
 public class ConversationPhrases {
 
-	public static final String NO_EXPRESSION = "|EXACT|NOCASE|no";
+	// define "no" trigger to be exactly matched while ignoring case
+	// (for available matching option strings see ExpressionMatcher)
+	public static final String NO_EXPRESSION = "|EXACT|ICASE|no";
 
 	// do not use a mutable list here
 	@SuppressWarnings("unchecked")

@@ -13,7 +13,7 @@ public class ExpressionMatcher {
 	// There are some patterns that can be used as leading flags in expression strings, e.g. "|EXACT|":
 	final static String PM_TYPE_MATCH = "TYPE";
 	final static String PM_EXACT_MATCH = "EXACT";
-	final static String PM_NOCASE_MATCH = "NOCASE";
+	final static String PM_ICASE_MATCH = "ICASE";
 
 	public final static String PM_SEPARATOR = "|";
 
@@ -112,7 +112,7 @@ public class ExpressionMatcher {
     				typeMatching = true;
 				} else if (flag.equals(PM_EXACT_MATCH)) {
 					exactMatching = true;
-				} else if (flag.equals(PM_NOCASE_MATCH)) {
+				} else if (flag.equals(PM_ICASE_MATCH)) {
 					caseInsensitive = true;
 				} else {
 					break;
@@ -260,7 +260,7 @@ public class ExpressionMatcher {
 
 		if (caseInsensitive) {
 			b.append(PM_SEPARATOR);
-			b.append(PM_NOCASE_MATCH);
+			b.append(PM_ICASE_MATCH);
 		}
 
 		return b.toString();
