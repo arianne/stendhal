@@ -12,9 +12,9 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -159,36 +159,37 @@ public class FindGhosts extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					Expression item = sentence.getTriggerExpression();
-					List<Expression> missing = ConversationParser.createTriggerList(missingNames(player));
+					TriggerList missing = new TriggerList(missingNames(player));
 
 					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");
 	    			String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
 	    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
-					List<Expression> looking = ConversationParser.createTriggerList(Arrays.asList(lookingStr.split(";")));
-					List<Expression> said = ConversationParser.createTriggerList(Arrays.asList(saidStr.split(";")));
+					TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
+					TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
 					String reply = "";
+					String itemName = item.getOriginal();
 
-					if (missing.contains(item)
-							&& looking.contains(item)
-							&& !said.contains(item)) {
-						// we haven't said the name yet so we add it to
-						// the list
+					Expression found = missing.find(item);
+					if (found != null) {
+						itemName = found.getOriginal();
+					}
+
+					if (found != null && looking.contains(item) && !said.contains(item)) {
+						// we haven't said the name yet so we add it to the list
 						player.setQuest(QUEST_SLOT, lookingStr
-								+ ":" + saidStr + ";" + item);
+								+ ":" + saidStr + ";" + itemName);
 						reply = "Thank you.";
 					} else if (!looking.contains(item)) {
-						// we have said it was a valid name but haven't
-						// met them
+						// we have said it was a valid name but haven't met them
 						reply = "I don't believe you've spoken with any spirit of that name.";
-					} else if (!missing.contains(item)
-							&& said.contains(item)) {
+					} else if (found == null && said.contains(item)) {
 						// we have said the name so we are stupid!
 						reply = "You've told me that name already, thanks.";
 					}
 
 					// we may have changed the missing list
-					missing = ConversationParser.createTriggerList(missingNames(player));
+					missing = new TriggerList(missingNames(player));
 
 					if (missing.size() > 0) {
 						reply += " If you met any other spirits, please tell me their name.";
