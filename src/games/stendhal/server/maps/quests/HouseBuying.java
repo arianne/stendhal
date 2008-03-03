@@ -8,6 +8,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
+import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -142,9 +144,10 @@ public class HouseBuying extends AbstractQuest {
 				});
 
 				// for house number, from 1 to 25:
+				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
 				for (int house = 1; house < 26; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						"|EXACT|" + Integer.toString(house), 
+						Integer.toString(house), exactMatcher, 
 						null,
 						ConversationStates.ATTENDING,
 						null,
@@ -345,9 +348,10 @@ public class HouseBuying extends AbstractQuest {
 				});
 
 				// for house number, from 50 to 68:
+				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
 				for (int house = 50; house < 69; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						"|EXACT|" + Integer.toString(house),
+						Integer.toString(house), exactMatcher,
 						null,
 						ConversationStates.ATTENDING, 
 						null,
@@ -521,9 +525,10 @@ public class HouseBuying extends AbstractQuest {
 				});
 
 				// for house number, from 26 to 49:
+				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
 				for (int house = 26; house < 49; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-						"|EXACT|" + Integer.toString(house),
+						Integer.toString(house), exactMatcher,
 						null,
 						ConversationStates.ATTENDING, 
 						null,

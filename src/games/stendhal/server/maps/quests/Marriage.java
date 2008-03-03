@@ -14,6 +14,8 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
+import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
@@ -770,9 +772,10 @@ public class Marriage extends AbstractQuest {
 				null);
 
 		// player says room number
+		final ExpressionMatcher exactMatcher = new ExactExprMatcher();
 		for (int room = 0; room < 16; room++) {
 			linda.add(ConversationStates.QUESTION_1,
-					"|EXACT|" + Integer.toString(room),
+					Integer.toString(room), exactMatcher,
 					null, ConversationStates.QUESTION_1, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
