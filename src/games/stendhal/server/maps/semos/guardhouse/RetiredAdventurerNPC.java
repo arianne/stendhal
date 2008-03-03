@@ -8,8 +8,12 @@ import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.maps.quests.BeerForHayunn;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +47,7 @@ public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 
 	   	npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition("meet_hayunn"),
+				new AndCondition(new QuestCompletedCondition("meet_hayunn"), new NotCondition(new QuestActiveCondition(BeerForHayunn.QUEST_SLOT))),
 				ConversationStates.ATTENDING,
 				"Hi again, how can I #help you this time?",
 				null);
