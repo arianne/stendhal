@@ -771,7 +771,8 @@ public class Marriage extends AbstractQuest {
 
 		// player says room number
 		for (int room = 0; room < 16; room++) {
-			linda.add(ConversationStates.QUESTION_1, Integer.toString(room),
+			linda.add(ConversationStates.QUESTION_1,
+					"|EXACT|" + Integer.toString(room),
 					null, ConversationStates.QUESTION_1, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
