@@ -109,6 +109,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"Yes, those that dwell in the forest of Nalwor. They guard their #secrets closely, you know.",
 				null);
+
 		// player asks what items are needed
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
@@ -117,6 +118,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"They won't share knowledge of how to create the green armor, shields and the like. You would call them elvish items. I wonder if a traveller like you could bring me any?",
 				null);
+
 		// player says yes
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
@@ -143,8 +145,7 @@ public class ElvishArmor extends AbstractQuest {
 	}
 
 	private void step_2() {
-		// Just find the items by killing elves and/or dark elves and bring them
-		// to Lupos.
+		// Just find the items by killing elves and/or dark elves and bring them to Lupos.
 	}
 
 	private void step_3() {
@@ -164,6 +165,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"Hello! I hope your search for elvish #equipment is going well?",
 				null);
+
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUESTION_1, "equipment", null,
 				ConversationStates.QUESTION_1, null,
@@ -234,6 +236,12 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"I don't think that's a piece of elvish armor...", null);
 
+		// allow to say goodbye while Lupos is listening for item names
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Bye.", null);
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
@@ -281,6 +289,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one.",
 				null);
+
 		// player returns after finishing the quest and says quest
 		npc.add(
 				ConversationStates.ATTENDING,
