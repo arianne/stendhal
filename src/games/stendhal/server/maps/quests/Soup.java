@@ -355,6 +355,10 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUESTION_1,
 			"I won't put that in your soup.", null);
 
+		// allow to say goodbye while Helena is listening for food names
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES, null,
+				ConversationStates.IDLE, "Bye.", null);
+
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.ATTENDING,
