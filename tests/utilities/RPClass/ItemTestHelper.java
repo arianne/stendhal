@@ -14,7 +14,6 @@ public class ItemTestHelper {
 	public static Item createItem(String name) {
 		ItemTestHelper.generateRPClasses();
 		return new Item(name, "itemclass", "subclass", null);
-
 	}
 	
 	public static Item createItem(String name, int quantity) {
@@ -25,8 +24,8 @@ public class ItemTestHelper {
 	}
 
 	public static void generateRPClasses() {
-		
 		EntityTestHelper.generateRPClasses();
+
 		if (!RPClass.hasRPClass("item")) {
 			Item.generateRPClass();
 		}
