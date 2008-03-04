@@ -146,7 +146,7 @@ public class Engine {
 				return;
 			} else {
 				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
-						+ " existing_action='" + existingAction + "' new_action='" + action + "'");
+						+ " existingAction='" + existingAction + "' newAction='" + action + "'");
 			}
 		}
 
@@ -317,8 +317,7 @@ public class Engine {
 		// match with all the registered transitions
 		for (Transition transition : stateTransitionTable) {
 			if (matchesTransition(type, sentence, transition)) {
-				if (transition.isConditionFulfilled(player, sentence,
-						speakerNPC)) {
+				if (transition.isConditionFulfilled(player, sentence, speakerNPC)) {
 					if (transition.getCondition() == null) {
 						conditionlessTransitions.add(transition);
 					} else {
