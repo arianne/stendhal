@@ -69,7 +69,11 @@ public final class ConversationParser extends ErrorBuffer {
 			return expr;
 		}
 
-		return createTriggerExpression(text, null);
+		expr = createTriggerExpression(text, null);
+
+		triggerExpressionsCache.put(text, expr);
+
+   		return expr;
 	}
 
 	/**
@@ -88,25 +92,25 @@ public final class ConversationParser extends ErrorBuffer {
 		// prepare for matching
 		ctx.setForMatching(true);
 
-		Expression expr = parse(text, ctx).getTriggerExpression();
-
 		if (matcher != null) {
-			expr.setMatcher(matcher);
-		} else if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
-			WordEntry norm = WordList.getInstance().find(expr.getNormalized());
+			return matcher.parseSentence(text, ctx).getTriggerExpression();
+		} else {
+			Expression expr = parse(text, ctx).getTriggerExpression();
 
-			// If the trigger type string is not the same as that of the normalized form,
-			// associate an ExpressionMatcher in typeMatching mode.
-			if (norm != null && !expr.getTypeString().equals(norm.getTypeString())) {
-				matcher = new ExpressionMatcher();
-				matcher.setTypeMatching(true);
-				expr.setMatcher(matcher);
+			if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
+				WordEntry norm = WordList.getInstance().find(expr.getNormalized());
+
+    			// If the trigger type string is not the same as that of the normalized form,
+    			// associate an ExpressionMatcher in typeMatching mode.
+    			if (norm != null && !expr.getTypeString().equals(norm.getTypeString())) {
+    				matcher = new ExpressionMatcher();
+    				matcher.setTypeMatching(true);
+    				expr.setMatcher(matcher);
+    			}
 			}
+
+    	   	return expr;
 		}
-
-		triggerExpressionsCache.put(text, expr);
-
-   		return expr;
 	}
 
 	/**
@@ -142,6 +146,22 @@ public final class ConversationParser extends ErrorBuffer {
 		matchingSentenceCache.put(text, s);
 
 		return s;
+	}
+
+	/**
+	 * Parse the given text sentence using an explicit Expression matcher.
+	 * 
+	 * @param text
+	 * @param ctx
+	 * @param matcher
+	 * @return
+	 */
+	public static Sentence parse(String text, ConversationContext ctx, ExpressionMatcher matcher) {
+		if (matcher != null) {
+			return matcher.parseSentence(text, ctx);
+		} else {
+			return parse(text, ctx);
+		}
 	}
 
 	/**

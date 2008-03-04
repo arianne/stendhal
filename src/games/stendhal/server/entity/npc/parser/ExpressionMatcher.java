@@ -137,7 +137,7 @@ public class ExpressionMatcher {
 	 * @param ctx
 	 * @return
 	 */
-	public Sentence parseSentence(String text, ConversationContext ctx) {
+	Sentence parseSentence(String text, ConversationContext ctx) {
 		if (typeMatching) {
     		return readTypeMatchExpressions(text, ctx);
         } else if (exactMatching) {
