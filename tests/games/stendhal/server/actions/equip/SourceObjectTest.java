@@ -38,6 +38,7 @@ public class SourceObjectTest {
 
 	@Test
 	public void testIsValidNonContained() {
+		MockStendlRPWorld.get();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		StendhalRPZone zone = new StendhalRPZone("dropzone");
 		Item dropitem = ItemTestHelper.createItem();
@@ -51,8 +52,8 @@ public class SourceObjectTest {
 
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue(so.isValid());
-
 	}
+
 	@Test
 	public void testIsValidContainedNoSlot() {
 		MockStendlRPWorld.get();
@@ -65,17 +66,16 @@ public class SourceObjectTest {
 		assertNotNull(dropitem.getID().getObjectID());
 		RPAction action = new RPAction();
 		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());
-		
+
 		action.put(EquipActionConsts.BASE_OBJECT , bob.getID().getObjectID());
-		
+
 		MockStendlRPWorld.get().addRPZone(zone);
 		assertNotNull(bob.getZone());
 
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertFalse("no slot defined", so.isValid());
-
 	}
-	
+
 	@Test
 	public void testIsValidContained() {
 		MockStendlRPWorld.get();
@@ -88,7 +88,7 @@ public class SourceObjectTest {
 		assertNotNull(dropitem.getID().getObjectID());
 		RPAction action = new RPAction();
 		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());
-		
+
 		action.put(EquipActionConsts.BASE_OBJECT , bob.getID().getObjectID());
 		action.put(EquipActionConsts.BASE_SLOT, "bag");
 		MockStendlRPWorld.get().addRPZone(zone);
@@ -96,9 +96,8 @@ public class SourceObjectTest {
 
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue("Unreachable slot", so.isValid());
-
 	}
-	
+
 	@Test
 	public void testIsValidContainedNotInslot() {
 		MockStendlRPWorld.get();
@@ -112,7 +111,7 @@ public class SourceObjectTest {
 		assertNotNull(dropitem.getID().getObjectID());
 		RPAction action = new RPAction();
 		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());
-		
+
 		action.put(EquipActionConsts.BASE_OBJECT , bob.getID().getObjectID());
 		action.put(EquipActionConsts.BASE_SLOT, "bag");
 		MockStendlRPWorld.get().addRPZone(zone);
@@ -120,8 +119,8 @@ public class SourceObjectTest {
 
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertFalse("Itemnot in bag", so.isValid());
-
 	}
+
 	@Test
 	public void testIsValidStackable() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -156,7 +155,6 @@ public class SourceObjectTest {
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue(so.isValid());
 		assertEquals("return the amount to be dropped", amounttodrop, so.getQuantity());
-
 	}
 
 	@Test
@@ -174,7 +172,6 @@ public class SourceObjectTest {
 		SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue(so.isValid());
 		assertEquals("too many are reduced to all", dropitem.getQuantity(), so.getQuantity());
-
 	}
 
 	@Ignore
@@ -188,7 +185,6 @@ public class SourceObjectTest {
 	public void testGetLogInfo() {
 		fail("Not yet implemented");
 	}
-
 
 	@Ignore
 	@Test
