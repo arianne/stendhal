@@ -7,9 +7,6 @@
 
 package games.stendhal.client.gui.j2d;
 
-//
-//
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
@@ -290,11 +287,10 @@ public class Stendhal2D extends StendhalGUI {
 		gameLog.setPreferredSize(new Dimension(width, GAMELOG_HEIGHT));
 		root.add(gameLog);
 
-		// StendhalChatLineListener chatListener = new
-		// StendhalChatLineListener(client, chatText);
+//		StendhalChatLineListener chatListener = new StendhalChatLineListener(client, chatText);
 
-		// chatText.addActionListener(chatListener);
-		// chatText.addKeyListener(chatListener);
+//		chatText.addActionListener(chatListener);
+//		chatText.addKeyListener(chatListener);
 
 		frame.pack();
 
@@ -464,7 +460,6 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	@Override
 	public void setOffline(boolean offline) {
-
 	}
 
 	/**
@@ -477,7 +472,6 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	@Override
 	public void setPosition(double x, double y) {
-
 	}
 
 	/**
@@ -612,6 +606,5 @@ public class Stendhal2D extends StendhalGUI {
 	@Override
 	public void shutdown() {
 		// TODO Auto-generated method stub
-		
 	}
 }
