@@ -105,7 +105,7 @@
  </layer>
  <layer name="objects" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX4wIKBdsAooCtYBsW0tmM4guHqr1EwcGA0TY2CoQIAujXISEwJAAA=
+   H4sIAAAAAAAAAGNgGAX4wIKBdsAwAKsH2gEkgBVEqhtKfhoFo2CogmUD7YBRMAqIBACucAEfTAkAAA==
   </data>
  </layer>
  <layer name="collision" width="35" height="17" opacity="0.37">

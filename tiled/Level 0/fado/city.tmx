@@ -183,7 +183,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dWWrDMBQF0ID2v5/SVfSn9TJaOtDfUkqoCXJsPOlJOgeCAiEk4cnylSziywUAAAAAAAAAAAAAAKCMl/T/oB/DqN5qz69BP4AuyQDQPud4AAAAAAAAAAAAAAAAAAAAAPzPTH/UHAAAAAAAAAAAAIC9PdujOmt8v/Dcnl73F2zfuPa5eg93XlviqYI+9Jry7Zy3dL+N5iHzvezl59b4WL8+b72ffKZ8e9T7Ilkytrdef/r1nvIt5UTPjR9pWTvlMfjvq83aDH/Vwnk8mh4zQ/Rx6yzj2kfvB1vGjpJz/9x8PpIz6772PEy99lzjXzMHmMoMsgNzoo/dtdma/1sig9Ib1/v7NZXdrOPuxzkFAI5lbaAc12VhPfMESrD+A9Cnr5Rv15Bh6FHpfr/286eO/S1jALHJ+/U5cj/od8q3xBJ9Lzj1mTr2jQHsxbgVWy77y4jQPvN/znKbA+SCP6XXDgGW+AEnc+c4AAABAA==
+   H4sIAAAAAAAAAO3dXUoDMRQG0EL2vx9xFb6oy1D8wVcREUWSTkink5vkHCj3qbQlmeRLJm1PJwAAAAAAAAAAAAAAgD4e0u+DNWl7vjzqB7AkGQDmZ44HAAAAAAAAAAAAAAAAAAAAwO/MrEebAwAAAAAAAAAAALC3e2dUN/09x+tML+e0/tfk3QD96inl65bndL5Gc5N5X657aszeT95Svl7reZHUjO2ztz/rekn5Sj/Rc+Nrqqslt8E/32haM/yPGebxaFbMDNHHraOMtLd0ydgxytq/hyPbvXUeZlx77vG3rAFKmUF2YEtuL5Z2l+b/mcigwCpK2c0+7n7MKQDArNyXhXbWCQDAUd5TvgJ1emf31tcvXfvGgHn5fvd4rnke9CPlK7FEPwvOeErXvjGAvRi3YpP9YU3W/xzlfw6QC7713jsEqPEJDVfsnAAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.39">

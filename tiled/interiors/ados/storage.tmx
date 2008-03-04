@@ -42,9 +42,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="132" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="black " firstgid="133" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/black_hole.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEofv+pddjKLhqqqqq6usHHB1pSAAQAAA=
+   H4sIAAAAAAAAAO3MoQEAAAgDoHm9b1v8wGIgUKkkBQAAALzU6/oMM7PwtAAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
@@ -69,7 +72,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXDFdTSwMwUMvTA3FFBTYcMAUBL/5ITDwNpLi3S4igYXoDYtEerNDqcwUCF2WhcjYKBABlo/Ewc4rQEmYSVjIJRMGjAaFk98gAAWf5WkgAQAAA=
+   H4sIAAAAAAAAAGNgGAXDFdQOtAPQQMVAO4DOYCj6N4VG5g62tDgKBh+gVdobBaNhOwpGFshA42fiEKclyCSsZBSMgkEDRuuIkQcA2yj0XQAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.37">

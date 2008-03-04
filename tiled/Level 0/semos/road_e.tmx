@@ -165,7 +165,7 @@
  </layer>
  <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aOQ7CMBAFUDg9okGioaeipuB+iCISEmtEsDP5710g9iyyY3u1Wo79uvcI+kmeexVyBABUUHHPsi04Zn5TJedVxlnVHOM7xzH9W+KcP5kyJocC8VUDANmsA9BWhf0hAJmsUeOIF9BS0r/7KWiuYyXVAf3Z68yDvgcYp+K7SWC8jV6PpwYAAIAlck/6mnM/AACWYrjjcNeR6ZZ3uc+mBrK8e/+pDpbLu18SOMt+lN77u4bzvzz51jk8/tBKy16Hb1kDAGjNuV6m+7N9NZBpqAH57+so/gAAwMSuWipbNwCAAAA=
+   H4sIAAAAAAAAAO3aPQoCMRAGUD292Ag29lbWFt5PLBYEfzCwJE6+9y6wm8zMJjvJZjOP43b0G4yTPPYqxAgAqKDinmVf8J2BOfkesbZTgZyS9wDZrAPQV4X9IQCZrFFtzBfQU9K/+yVorK2S8oDx7HX+g7oHaFPx3iTQbqfW48kBAABgRs5JP9P3AwBgFssZh7OOTI+4i302OZDl2/1PeTAv935JoJf9Kr32Dx3Hf3vzrGv4/EMvPWsdfmUNAKA3fb1Mz719OZBpyQHxH+ts/gEAgJXdAe9JidUAgAAA
   </data>
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.39">
