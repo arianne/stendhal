@@ -104,4 +104,21 @@ public class ExpressionMatcherTest {
 		assertFalse(matcher.match(e4, e5));
 	}
 
+	@Test
+	public final void testEquals() {
+		ExpressionMatcher m1 = new ExpressionMatcher();
+		ExpressionMatcher m2 = new ExpressionMatcher();
+		assertEquals(m1, m2);
+
+		assertTrue(m1.equals(m1));
+		assertFalse(m1.equals(null));
+
+		m1.setCaseInsensitive(true);
+		assertFalse(m1.equals(m2));
+		assertEquals(m1, m1);
+
+		m2.setCaseInsensitive(true);
+		assertTrue(m1.equals(m2));
+	}
+
 }

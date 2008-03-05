@@ -241,6 +241,29 @@ public class ExpressionMatcher {
 		return false;
     }
 
+	@Override
+    public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		} else if (other == null) {
+			return false;
+		} else if (other.getClass() != ExpressionMatcher.class) {
+			return false;
+		}
+
+		ExpressionMatcher o = (ExpressionMatcher)other;
+
+		if (typeMatching != o.typeMatching) {
+			return false;
+		} else if (exactMatching != o.exactMatching) {
+			return false;
+		} else if (caseInsensitive != o.caseInsensitive) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	/**
 	 * Return a simple string representation.
 	 */
