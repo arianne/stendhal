@@ -241,27 +241,52 @@ public class ExpressionMatcher {
 		return false;
     }
 
+	/**
+	 * Check for equality of two ExpressionMatcher objects.
+	 */
 	@Override
     public boolean equals(Object other) {
 		if (this == other) {
 			return true;
 		} else if (other == null) {
 			return false;
-		} else if (other.getClass() != ExpressionMatcher.class) {
-			return false;
-		}
+		} else if (other.getClass() == ExpressionMatcher.class) {
+			ExpressionMatcher o = (ExpressionMatcher)other;
 
-		ExpressionMatcher o = (ExpressionMatcher)other;
-
-		if (typeMatching != o.typeMatching) {
-			return false;
-		} else if (exactMatching != o.exactMatching) {
-			return false;
-		} else if (caseInsensitive != o.caseInsensitive) {
-			return false;
+    		if (typeMatching != o.typeMatching) {
+    			return false;
+    		} else if (exactMatching != o.exactMatching) {
+    			return false;
+    		} else if (caseInsensitive != o.caseInsensitive) {
+    			return false;
+    		} else {
+    			return true;
+    		}
 		} else {
-			return true;
+			return false;
 		}
+	}
+
+    /**
+     * Returns a hash code for this ExpressionMatcher object.
+     */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+
+		if (typeMatching) {
+			hash |= 1;
+		}
+
+		if (exactMatching) {
+			hash |= 2;
+		}
+
+		if (caseInsensitive) {
+			hash |= 4;
+		}
+
+		return hash;
 	}
 
 	/**

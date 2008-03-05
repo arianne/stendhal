@@ -431,10 +431,22 @@ public final class Expression {
 		} else if (other == null) {
 			return false;
 		} else if (other.getClass() == Expression.class) {
-			if (normalized.length() > 0) {
-				return normalized.equals(((Expression) other).normalized);
+			Expression o = (Expression) other;
+
+			if (matcher != null) {
+				if (o.matcher == null || !matcher.equals(o.matcher)) {
+					return false;					
+				}
 			} else {
-				return original.equals(((Expression) other).original);
+				if (o.matcher != null) {
+					return false;
+				}
+			}
+
+			if (normalized.length() > 0) {
+				return normalized.equals(o.normalized);
+			} else {
+				return original.equals(o.original);
 			}
         } else {
         	return false;
@@ -446,7 +458,19 @@ public final class Expression {
      */
 	@Override
 	public int hashCode() {
-		return original.hashCode();
+		int hash;
+
+		if (normalized.length() > 0) {
+			hash = normalized.hashCode();
+		} else {
+			hash = original.hashCode();
+		}
+
+		if (matcher != null) {
+			hash ^= matcher.hashCode();
+		}
+
+		return hash;
 	}
 
 	/**
