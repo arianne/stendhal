@@ -93,7 +93,7 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Rebuild the buddy list from a list object.
-	 * 
+	 *
 	 * @param buddy
 	 *            The buddy list object.
 	 */
@@ -104,7 +104,6 @@ public class BuddyListPanel extends JPanel {
 			if (!key.startsWith("_")) {
 				continue;
 			}
-
 			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
 		}
 
@@ -115,7 +114,7 @@ public class BuddyListPanel extends JPanel {
 
 			/*
 			 * Tell the parent to re-pack() itself
-			 * 
+			 *
 			 * TODO Maybe there's a better way (without introducing
 			 * dependencies/code-coupling) XXX
 			 */
@@ -125,7 +124,7 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Handle a popup click.
-	 * 
+	 *
 	 * @param comp
 	 *            The component clicked on.
 	 * @param x
@@ -176,7 +175,7 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Handle a choosen popup item.
-	 * 
+	 *
 	 * @param command
 	 *            The command mnemonic selected.
 	 * @param buddieName
@@ -225,7 +224,7 @@ public class BuddyListPanel extends JPanel {
 	/**
 	 * Render the buddy list. Eventually this will be replaced by a JList that
 	 * can be scrolled (for popular players with many friends).
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context.
 	 */
@@ -270,7 +269,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Create a buddy entry.
-		 * 
+		 *
 		 * @param name
 		 *            The buddy name.
 		 * @param online
@@ -287,7 +286,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Get the buddy name.
-		 * 
+		 *
 		 * @return The buddy name.
 		 */
 		public String getName() {
@@ -296,7 +295,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Determine is the buddy is online.
-		 * 
+		 *
 		 * @return <code>true</code> if online.
 		 */
 		public boolean isOnline() {
@@ -316,7 +315,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Create a listener for action items.
-		 * 
+		 *
 		 * @param buddy
 		 *            The buddy to act on.
 		 */
