@@ -122,7 +122,7 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		update();
-		logger.debug("Created Sheep: " + this);
+		logger.warn("Created Sheep: " + this);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		update();
-		logger.debug("Created Sheep: " + this);
+		logger.warn("Created Sheep: " + this);
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class Sheep extends DomesticAnimal {
 
 		for (SheepFood food : list) {
 			if (food.nextTo(this)) {
-				logger.debug("Sheep eats");
+				logger.warn("Sheep eats");
 				setIdea("eat");
 				eat(food);
 				clearPath();
@@ -256,7 +256,7 @@ public class Sheep extends DomesticAnimal {
 				List<Node> path = Path.searchPath(this, food, 6 * 6);
 				if (path.size() != 0) {
 
-					logger.debug("Sheep moves to food");
+					logger.warn("Sheep moves to food");
 					setIdea("food");
 
 					setPath(new FixedPath(path, false));
@@ -281,10 +281,10 @@ public class Sheep extends DomesticAnimal {
 			 * Check if player near (creature's enemy)
 			 */
 			if (((turn % 15) == 0) && isEnemyNear(20)) {
-				logger.debug("Sheep (ownerless) moves randomly");
+				logger.warn("Sheep (ownerless) moves randomly");
 				moveRandomly();
 			} else {
-				logger.debug("Sheep sleeping");
+				logger.warn("Sheep sleeping");
 				setIdea(null);
 			}
 		} else if (((turn % 10) == 0) && (hunger >= HUNGER_EXTREMELY_HUNGRY)) {
@@ -298,11 +298,11 @@ public class Sheep extends DomesticAnimal {
 			moveToOwner();
 		} else {
 			if ((turn % 100) == 0) {
-				logger.debug("Sheep is bored");
+				logger.warn("Sheep is bored");
 				setRandomPathFrom(owner.getX(), owner.getY(), 10);
 				setSpeed(getBaseSpeed());
 			} else {
-				logger.debug("Sheep has nothing to do");
+				logger.warn("Sheep has nothing to do");
 				setIdea(null);
 			}
 		}
