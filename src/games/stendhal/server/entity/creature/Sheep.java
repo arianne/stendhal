@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
  */
 /**
  * @author Daniel Herding
- * 
+ *
  */
 public class Sheep extends DomesticAnimal {
 
@@ -100,7 +100,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
-	 * @param owner 
+	 * @param owner
 	 */
 	public Sheep(Player owner) {
 		super(owner);
@@ -122,13 +122,13 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		update();
-		logger.warn("Created Sheep: " + this);
+		logger.debug("Created Sheep: " + this);
 	}
 
 	/**
 	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to a
 	 * player.
-	 * 
+	 *
 	 * @param object
 	 * @param owner
 	 *            The player who should own the sheep
@@ -149,12 +149,12 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		update();
-		logger.warn("Created Sheep: " + this);
+		logger.debug("Created Sheep: " + this);
 	}
 
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-	 * 
+	 *
 	 * @param killername
 	 *            The entity who caused the death
 	 */
@@ -177,16 +177,16 @@ public class Sheep extends DomesticAnimal {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
 			} else {
-				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by " + owner);
+				logger.debug("INCOHERENCE: Sheep " + this + " isn't owned by " + owner);
 			}
 		}
 	}
 
 	/**
 	 * Returns a list of SheepFood in the given range ordered by distance.
-	 * 
+	 *
 	 * The first in list is the nearest.
-	 * 
+	 *
 	 * @param range
 	 *            The maximum distance to a SheepFood
 	 * @return a list of SheepFood or emptyList if none is found in the given
@@ -214,7 +214,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Called when the sheep is hungry.
-	 * 
+	 *
 	 * @return <code>true</code> if the sheep is hunting for food.
 	 */
 	protected boolean onHungry() {
@@ -245,7 +245,7 @@ public class Sheep extends DomesticAnimal {
 
 		for (SheepFood food : list) {
 			if (food.nextTo(this)) {
-				logger.warn("Sheep eats");
+				logger.debug("Sheep eats");
 				setIdea("eat");
 				eat(food);
 				clearPath();
@@ -256,7 +256,7 @@ public class Sheep extends DomesticAnimal {
 				List<Node> path = Path.searchPath(this, food, 6 * 6);
 				if (path.size() != 0) {
 
-					logger.warn("Sheep moves to food");
+					logger.debug("Sheep moves to food");
 					setIdea("food");
 
 					setPath(new FixedPath(path, false));
@@ -281,10 +281,10 @@ public class Sheep extends DomesticAnimal {
 			 * Check if player near (creature's enemy)
 			 */
 			if (((turn % 15) == 0) && isEnemyNear(20)) {
-				logger.warn("Sheep (ownerless) moves randomly");
+				logger.debug("Sheep (ownerless) moves randomly");
 				moveRandomly();
 			} else {
-				logger.warn("Sheep sleeping");
+				logger.debug("Sheep sleeping");
 				setIdea(null);
 			}
 		} else if (((turn % 10) == 0) && (hunger >= HUNGER_EXTREMELY_HUNGRY)) {
@@ -298,11 +298,11 @@ public class Sheep extends DomesticAnimal {
 			moveToOwner();
 		} else {
 			if ((turn % 100) == 0) {
-				logger.warn("Sheep is bored");
+				logger.debug("Sheep is bored");
 				setRandomPathFrom(owner.getX(), owner.getY(), 10);
 				setSpeed(getBaseSpeed());
 			} else {
-				logger.warn("Sheep has nothing to do");
+				logger.debug("Sheep has nothing to do");
 				setIdea(null);
 			}
 		}
@@ -317,13 +317,13 @@ public class Sheep extends DomesticAnimal {
 		} else {
 			damage(1, "starvation");
 		}
-
+		logger.warn("Sheep starve" + getZone().getName() + getX() + ":" + getY());
 		hunger /= 2;
 	}
 
 	/**
 	 * Let the sheep eat some food.
-	 * 
+	 *
 	 * @param food
 	 *            The food to eat.
 	 */
