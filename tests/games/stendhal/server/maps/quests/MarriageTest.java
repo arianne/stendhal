@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -366,9 +367,14 @@ public class MarriageTest {
 
 		// -----------------------------------------------
 
+		assertFalse(en.step(player, "x"));
+		assertFalse(en.step(player, "0"));
+		assertFalse(en.step(player, "999"));
+
 		// If you're looking for a honeymoon room, just say the room number you desire
 		// For example say:  11  if you want the room called Water of Love."
-		en.step(player, "2");
+
+		assertTrue(en.step(player, "2"));
 
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
