@@ -128,7 +128,6 @@ public class j2DClient extends StendhalUI {
 	private ManagedWindow buddies;
 
 
-
 	/** the minimap panel. */
 	private Minimap minimap;
 
@@ -139,7 +138,7 @@ public class j2DClient extends StendhalUI {
 
 
 	private PositionChangeMulticaster positionChangeListener;
-
+	private StendhalChatLineListener chatListener ;
 	/**
 	 * Delayed direction release holder.
 	 */
@@ -210,7 +209,7 @@ public class j2DClient extends StendhalUI {
 		 */
 		playerChatText = new JTextField("");
 
-		StendhalChatLineListener chatListener = new StendhalChatLineListener(
+		chatListener = new StendhalChatLineListener(
 				client, playerChatText);
 		playerChatText.addActionListener(chatListener);
 		playerChatText.addKeyListener(chatListener);
@@ -399,15 +398,17 @@ public class j2DClient extends StendhalUI {
 
 		directionRelease = null;
 
-		// Start the main game loop, note: this method will not
-		// return until the game has finished running. Hence we are
-		// using the actual main thread to run the game.
-		gameLoop();
+	} // constructor
 
+	public void initialize() {
+
+	}
+
+	public void cleanup() {
 		chatListener.save();
 		logger.debug("Exit");
 		System.exit(0);
-	} // constructor
+	}
 
 	/**
 	 * Add a native in-window dialog to the screen.
