@@ -1723,6 +1723,7 @@ Hell Dagger (atk 9 rate 2) 20000
  <!--  Level -5 -->
 
  <zone name="-5_ados_abandoned_keep" level="-5" x="500512" y="499744" file="Level -5/ados/abandoned_keep.tmx">
+ <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
  </zone>
 
  <!--  Level -6 -->
