@@ -8,8 +8,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
-import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
+import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -143,65 +142,75 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				// for house number, from 1 to 25:
-				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
-				for (int house = 1; house < 26; house++) {
-					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), exactMatcher, 
-						null,
-						ConversationStates.ATTENDING,
-						null,
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-										"postman");
-								// is postman online?
-								if (postman != null) {
-									// First, check if anyone has bought a
-									// house from this NPC yet
-									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
-										postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
-									}
-									String postmanslot = postman.getQuest(QUEST_SLOT);
-									String[] boughthouses = postmanslot.split(";");
-									List<String> doneList = Arrays.asList(boughthouses);
-									String itemName = sentence.getTriggerExpression().getNormalized();
-									// now check if the house they said is free
-									if (!doneList.contains(itemName)) {
-										// it's available, so take money
-										if (player.isEquipped("money", COST)) {
-											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + itemName);
-											engine.say("Congratulations, here is your key to house "
-													+ itemName
-													+ "! Do you want to buy a spare key, at a price of "
-													+ COST_OF_SPARE_KEY + " money?");
-											key.setUndroppableOnDeath(true);
-											if (player.equip(key)) {
-												player.drop("money", COST);
-												// remember what house they own
-												player.setQuest(QUEST_SLOT, itemName);
-												postman.setQuest(QUEST_SLOT, postmanslot + ";" + itemName);
-												engine.setCurrentState(ConversationStates.QUESTION_1);
-											} else {
-												engine.say("Sorry, you can't carry more keys!");
-											}
+				// handle house numbers 1 to 25
+				add(ConversationStates.QUEST_OFFERED,
+					// match for all numbers as trigger expression
+					"NUM", new JokerExprMatcher(),
+					new ChatCondition() {
+						@Override
+	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+							String house = sentence.getTriggerExpression().getNormalized();
+							int houseNr = Integer.parseInt(house);
+							// check for correct house numbers
+							if (houseNr >= 1 && houseNr <= 25) {
+								return true;
+							} else {
+								return false;
+							}
+	                    }
+					},
+					ConversationStates.ATTENDING,
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+									"postman");
+							// is postman online?
+							if (postman != null) {
+								// First, check if anyone has bought a
+								// house from this NPC yet
+								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
+									postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
+								}
+								String postmanslot = postman.getQuest(QUEST_SLOT);
+								String[] boughthouses = postmanslot.split(";");
+								List<String> doneList = Arrays.asList(boughthouses);
+								String itemName = sentence.getTriggerExpression().getNormalized();
+								// now check if the house they said is free
+								if (!doneList.contains(itemName)) {
+									// it's available, so take money
+									if (player.isEquipped("money", COST)) {
+										Item key = SingletonRepository.getEntityManager().getItem(
+												"private key " + itemName);
+										engine.say("Congratulations, here is your key to house "
+												+ itemName
+												+ "! Do you want to buy a spare key, at a price of "
+												+ COST_OF_SPARE_KEY + " money?");
+										key.setUndroppableOnDeath(true);
+										if (player.equip(key)) {
+											player.drop("money", COST);
+											// remember what house they own
+											player.setQuest(QUEST_SLOT, itemName);
+											postman.setQuest(QUEST_SLOT, postmanslot + ";" + itemName);
+											engine.setCurrentState(ConversationStates.QUESTION_1);
 										} else {
-											engine.say("You do not have enough money to buy a house!");
+											engine.say("Sorry, you can't carry more keys!");
 										}
 									} else {
-										engine.say("Sorry, house " + itemName
-												+ " is sold, please give me the number of another.");
-										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+										engine.say("You do not have enough money to buy a house!");
 									}
 								} else {
-									// postman is offline!
-									engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+									engine.say("Sorry, house " + itemName
+											+ " is sold, please give me the number of another.");
+									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 								}
+							} else {
+								// postman is offline!
+								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
 							}
-						});
-				}
+						}
+					});
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -347,65 +356,75 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				// for house number, from 50 to 68:
-				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
-				for (int house = 50; house < 69; house++) {
-					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), exactMatcher,
-						null,
-						ConversationStates.ATTENDING, 
-						null,
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-										"postman");
-								// is postman online?
-								if (postman != null) {
-									// First, check if anyone has bought a
-									// house from this NPC yet
-									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
-										postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
-									}
-									String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
-									String[] boughthouses = postmanslot.split(";");
-									List<String> doneList = Arrays.asList(boughthouses);
-									String itemName = sentence.getTriggerExpression().getNormalized();
-									// now check if the house they said is free
-									if (!doneList.contains(itemName)) {
-										// it's available, so take money
-										if (player.isEquipped("money", COST_ADOS)) {
-											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + itemName);
-											engine.say("Congratulations, here is your key to house "
-													+ itemName
-													+ "! Do you want to buy a spare key, at a price of "
-													+ COST_OF_SPARE_KEY + " money?");
-											key.setUndroppableOnDeath(true);
-											if (player.equip(key)) {
-												player.drop("money", COST_ADOS);
-												// remember what house they own
-												player.setQuest(QUEST_SLOT, itemName);
-												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + itemName);
-												engine.setCurrentState(ConversationStates.QUESTION_1);
-											} else {
-												engine.say("Sorry, you can't carry more keys!");
-											}
+				// handle house numbers 50 to 68
+				add(ConversationStates.QUEST_OFFERED,
+					// match for all numbers as trigger expression
+					"NUM", new JokerExprMatcher(),
+					new ChatCondition() {
+						@Override
+	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+							String house = sentence.getTriggerExpression().getNormalized();
+							int houseNr = Integer.parseInt(house);
+							// check for correct house numbers
+							if (houseNr >= 50 && houseNr <= 68) {
+								return true;
+							} else {
+								return false;
+							}
+	                    }
+					},
+					ConversationStates.ATTENDING, 
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+									"postman");
+							// is postman online?
+							if (postman != null) {
+								// First, check if anyone has bought a
+								// house from this NPC yet
+								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
+									postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
+								}
+								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
+								String[] boughthouses = postmanslot.split(";");
+								List<String> doneList = Arrays.asList(boughthouses);
+								String itemName = sentence.getTriggerExpression().getNormalized();
+								// now check if the house they said is free
+								if (!doneList.contains(itemName)) {
+									// it's available, so take money
+									if (player.isEquipped("money", COST_ADOS)) {
+										Item key = SingletonRepository.getEntityManager().getItem(
+												"private key " + itemName);
+										engine.say("Congratulations, here is your key to house "
+												+ itemName
+												+ "! Do you want to buy a spare key, at a price of "
+												+ COST_OF_SPARE_KEY + " money?");
+										key.setUndroppableOnDeath(true);
+										if (player.equip(key)) {
+											player.drop("money", COST_ADOS);
+											// remember what house they own
+											player.setQuest(QUEST_SLOT, itemName);
+											postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + itemName);
+											engine.setCurrentState(ConversationStates.QUESTION_1);
 										} else {
-											engine.say("You do not have enough money to buy a house!");
+											engine.say("Sorry, you can't carry more keys!");
 										}
 									} else {
-										engine.say("Sorry, house " + itemName
-												+ " is sold, please give me the number of another.");
-										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+										engine.say("You do not have enough money to buy a house!");
 									}
 								} else {
-									// postman is offline!
-									engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+									engine.say("Sorry, house " + itemName
+											+ " is sold, please give me the number of another.");
+									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 								}
+							} else {
+								// postman is offline!
+								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
 							}
-						});
-				}
+						}
+					});
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -524,65 +543,75 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				// for house number, from 26 to 49:
-				final ExpressionMatcher exactMatcher = new ExactExprMatcher();
-				for (int house = 26; house < 49; house++) {
-					add(ConversationStates.QUEST_OFFERED,
-						Integer.toString(house), exactMatcher,
-						null,
-						ConversationStates.ATTENDING, 
-						null,
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-										"postman");
-								// is postman online?
-								if (postman != null) {
-									// First, check if anyone has bought a
-									// house from this NPC yet
-									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
-										postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
-									}
-									String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
-									String[] boughthouses = postmanslot.split(";");
-									List<String> doneList = Arrays.asList(boughthouses);
-									String itemName = sentence.getTriggerExpression().getNormalized();
-									// now check if the house they said is free
-									if (!doneList.contains(itemName)) {
-										// it's available, so take money
-										if (player.isEquipped("money", COST_KIRDNEH)) {
-											Item key = SingletonRepository.getEntityManager().getItem(
-													"private key " + itemName);
-											engine.say("Congratulations, here is your key to house "
-													+ itemName
-													+ "! Do you want to buy a spare key, at a price of "
-													+ COST_OF_SPARE_KEY + " money?");
-											key.setUndroppableOnDeath(true);
-											if (player.equip(key)) {
-												player.drop("money", COST_KIRDNEH);
-												// remember what house they own
-												player.setQuest(QUEST_SLOT, itemName);
-												postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + itemName);
-												engine.setCurrentState(ConversationStates.QUESTION_1);
-											} else {
-												engine.say("Sorry, you can't carry more keys!");
-											}
+				// handle house numbers 26 to 49
+				add(ConversationStates.QUEST_OFFERED,
+					// match for all numbers as trigger expression
+					"NUM", new JokerExprMatcher(),
+					new ChatCondition() {
+						@Override
+	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+							String house = sentence.getTriggerExpression().getNormalized();
+							int houseNr = Integer.parseInt(house);
+							// check for correct house numbers
+							if (houseNr >= 26 && houseNr <= 49) {
+								return true;
+							} else {
+								return false;
+							}
+	                    }
+					},
+					ConversationStates.ATTENDING, 
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+									"postman");
+							// is postman online?
+							if (postman != null) {
+								// First, check if anyone has bought a
+								// house from this NPC yet
+								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
+									postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
+								}
+								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
+								String[] boughthouses = postmanslot.split(";");
+								List<String> doneList = Arrays.asList(boughthouses);
+								String itemName = sentence.getTriggerExpression().getNormalized();
+								// now check if the house they said is free
+								if (!doneList.contains(itemName)) {
+									// it's available, so take money
+									if (player.isEquipped("money", COST_KIRDNEH)) {
+										Item key = SingletonRepository.getEntityManager().getItem(
+												"private key " + itemName);
+										engine.say("Congratulations, here is your key to house "
+												+ itemName
+												+ "! Do you want to buy a spare key, at a price of "
+												+ COST_OF_SPARE_KEY + " money?");
+										key.setUndroppableOnDeath(true);
+										if (player.equip(key)) {
+											player.drop("money", COST_KIRDNEH);
+											// remember what house they own
+											player.setQuest(QUEST_SLOT, itemName);
+											postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + itemName);
+											engine.setCurrentState(ConversationStates.QUESTION_1);
 										} else {
-											engine.say("You do not have enough money to buy a house!");
+											engine.say("Sorry, you can't carry more keys!");
 										}
 									} else {
-										engine.say("Sorry, house " + itemName
-												+ " is sold, please give me the number of another, from 26 to 49.");
-										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+										engine.say("You do not have enough money to buy a house!");
 									}
 								} else {
-									// postman is offline!
-									engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+									engine.say("Sorry, house " + itemName
+											+ " is sold, please give me the number of another, from 26 to 49.");
+									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 								}
+							} else {
+								// postman is offline!
+								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
 							}
-						});
-				}
+						}
+					});
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key

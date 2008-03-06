@@ -10,12 +10,12 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
-import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
+import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
@@ -772,37 +772,47 @@ public class Marriage extends AbstractQuest {
 				null);
 
 		// player says room number
-		final ExpressionMatcher exactMatcher = new ExactExprMatcher();
-		for (int room = 0; room < 16; room++) {
-			linda.add(ConversationStates.QUESTION_1,
-					Integer.toString(room), exactMatcher,
-					null, ConversationStates.QUESTION_1, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							npc.say("Great choice! Use this scroll to return to the hotel,"
-									+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
-							player.setQuest(QUEST_SLOT, "done");
-							// yes i know it is stupid to do this here when i
-							// could use the giveInvite thing above but i don't
-							// know how to make it so that GiveInvite() has a
-							// parameter for quantity and a parameter for
-							// location so i gave up.
-							StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
-									"invitation scroll");
-							invite.setQuantity(1);
-							// interior of hotel
-							invite.setInfoString("int_fado_hotel_0 4 40");
-							player.equip(invite, true);
-							StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
-									"int_fado_lovers_room_"
-											+ sentence.getTriggerExpression().getNormalized());
-							player.teleport(zone, 5, 5, Direction.DOWN, player);
-							player.notifyWorldAboutChanges();
-							npc.setCurrentState(ConversationStates.IDLE);
+		linda.add(ConversationStates.QUESTION_1,
+				// match for all numbers as trigger expression
+				"NUM", new JokerExprMatcher(),
+				new ChatCondition() {
+					@Override
+                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String room = sentence.getTriggerExpression().getNormalized();
+						int roomNr = Integer.parseInt(room);
+						// check for correct room numbers
+						if (roomNr >= 1 && roomNr <= 15) {
+							return true;
+						} else {
+							return false;
 						}
-					});
-		}
+                    }
+				}, ConversationStates.QUESTION_1, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String room = sentence.getTriggerExpression().getNormalized();
+						npc.say("Great choice! Use this scroll to return to the hotel,"
+								+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
+						player.setQuest(QUEST_SLOT, "done");
+						// yes i know it is stupid to do this here when i
+						// could use the giveInvite thing above but i don't
+						// know how to make it so that GiveInvite() has a
+						// parameter for quantity and a parameter for
+						// location so i gave up.
+						StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
+								"invitation scroll");
+						invite.setQuantity(1);
+						// interior of hotel
+						invite.setInfoString("int_fado_hotel_0 4 40");
+						player.equip(invite, true);
+						StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+								"int_fado_lovers_room_" + room);
+						player.teleport(zone, 5, 5, Direction.DOWN, player);
+						player.notifyWorldAboutChanges();
+						npc.setCurrentState(ConversationStates.IDLE);
+					}
+				});
 
 		// player says something which isn't a room number
 //		npc.add(ConversationStates.QUESTION_1, "",
