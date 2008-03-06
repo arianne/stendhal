@@ -1,4 +1,4 @@
-# @Version 23
+# @Version 24
 #
 # Word list for the Stendhal conversation parser
 #
@@ -1151,9 +1151,9 @@ fifteen	NUM	15
 fifty	NUM	50
 first	NUM	1
 five	NUM	5
+forty	NUM	40
 four	NUM	4
 fourteen	NUM	14
-fourty	NUM	40
 hundred	NUM	100
 million	NUM	1000000
 nine	NUM	9
