@@ -1054,7 +1054,10 @@ public class j2DClient extends StendhalUI {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
 
-					new j2DClient(client);
+					j2DClient locclient= new j2DClient(client);
+					locclient.initialize();
+					locclient.gameLoop();
+					locclient.cleanup();
 				} catch (Exception ex) {
 					logger.error(ex, ex);
 				}
