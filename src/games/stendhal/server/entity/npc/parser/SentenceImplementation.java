@@ -22,8 +22,19 @@ final class SentenceImplementation extends Sentence {
 	 *
 	 * @param ctx
 	 */
-	protected SentenceImplementation(ConversationContext ctx) {
+	SentenceImplementation(ConversationContext ctx) {
 	    super(ctx);
+    }
+
+	/**
+	 * Create a SentenceImplementation object for testing purposes.
+	 *
+	 * @param ctx
+	 */
+	SentenceImplementation(Expression expr) {
+	    super(new ConversationContext());
+
+	    expressions.add(expr);
     }
 
 	/**

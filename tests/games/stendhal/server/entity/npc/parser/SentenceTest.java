@@ -229,4 +229,12 @@ public class SentenceTest {
 		assertEquals("they/SUB-PRO-PLU have/VER good pizza/OBJ-FOO", sentence.toString());
 	}
 
+	@Test
+	public final void testWithoutParser() {
+		Expression expr = new Expression("hello", "VER");
+		Sentence sentence = new SentenceImplementation(expr);
+
+		assertTrue(sentence.matchesFull(sentence));
+	}
+
 }
