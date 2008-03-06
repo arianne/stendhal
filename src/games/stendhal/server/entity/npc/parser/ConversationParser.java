@@ -176,8 +176,8 @@ public final class ConversationParser extends ErrorBuffer {
 			if (ctx != null && ctx.isForMatching()) {
 				ExpressionMatcher matcher = new ExpressionMatcher();
 
-    			// If the text begins with matching flags, skip normal sentence parsing and read in the
-    			// expressions from the given string in prepared form.
+    			// If the text begins with matching flags, skip normal sentence parsing and read in
+    			// the expressions from the given string in prepared form.
     			text = matcher.readMatchingFlags(text);
 
     			if (matcher.isAnyFlagSet()) {
