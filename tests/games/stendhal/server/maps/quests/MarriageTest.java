@@ -374,7 +374,7 @@ public class MarriageTest {
 		// If you're looking for a honeymoon room, just say the room number you desire
 		// For example say:  11  if you want the room called Water of Love."
 
-		assertTrue(en.step(player, "2"));
+		assertTrue(en.step(player, "two"));
 
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
