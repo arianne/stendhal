@@ -91,7 +91,7 @@ final class SentenceImplementation extends Sentence {
 			if (context.isForMatching()) {
 				if (ExpressionType.isTypeString(original)) {
 					w.setType(new ExpressionType(original));
-					w.setNormalized(JOKER);
+					w.setNormalized(Expression.JOKER);
 				}
 			}
 
@@ -163,7 +163,7 @@ final class SentenceImplementation extends Sentence {
     					if (entry == null) {
     						// Don't persist expressions used for joker matching.
     						boolean persist = context.getPersistNewWords() 
-    										&& (!context.isForMatching() || !original.contains(JOKER));
+    										&& (!context.isForMatching() || !original.contains(Expression.JOKER));
 
    	    					// Add the unknown word to the word list.
    							wl.addNewWord(original, persist);
@@ -428,8 +428,8 @@ final class SentenceImplementation extends Sentence {
 
 					// don't merge if there are joker expressions
 					if (context.isForMatching()) {
-						if (curr.getNormalized().contains(JOKER) 
-								|| next.getNormalized().contains(JOKER)) {
+						if (curr.getNormalized().contains(Expression.JOKER) 
+								|| next.getNormalized().contains(Expression.JOKER)) {
     						continue;
     					}
 					}
@@ -584,9 +584,9 @@ final class SentenceImplementation extends Sentence {
 
 						// don't merge if there are joker expressions
 						if (context.isForMatching()) {
-							if (first.getNormalized().contains(JOKER) 
-								||	second.getNormalized().contains(JOKER) 
-								||  third.getNormalized().contains(JOKER)) {
+							if (first.getNormalized().contains(Expression.JOKER) 
+								||	second.getNormalized().contains(Expression.JOKER) 
+								||  third.getNormalized().contains(Expression.JOKER)) {
 	    						continue;
 	    					}
 						}

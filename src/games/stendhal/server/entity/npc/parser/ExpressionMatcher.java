@@ -14,6 +14,7 @@ public class ExpressionMatcher {
 	final static String PM_TYPE_MATCH = "TYPE";
 	final static String PM_EXACT_MATCH = "EXACT";
 	final static String PM_ICASE_MATCH = "ICASE";
+	final static String PM_JOKER_MATCH = "JOKER";
 
 	public final static String PM_SEPARATOR = "|";
 
@@ -26,11 +27,15 @@ public class ExpressionMatcher {
 	/** Flag to enable case insensitive matching. */
 	protected boolean caseInsensitive = false;
 
+	/** Flag to enable joker matching. */
+	protected boolean jokerMatching = false;
+
 	/** Reset all matching flags. */
 	public void clear() {
 		typeMatching = false;
 		exactMatching = false;
 		caseInsensitive = false;
+		jokerMatching = false;
 	}
 
 	/**
@@ -76,12 +81,26 @@ public class ExpressionMatcher {
     }
 
 	/**
+     * @return the jokerMatching
+     */
+    public boolean isJokerMatching() {
+	    return jokerMatching;
+    }
+
+	/**
+     * @param jokerMatching the jokerMatching to set
+     */
+    public void setjokerMatching(boolean jokerMatching) {
+	    this.jokerMatching = jokerMatching;
+    }
+
+	/**
 	 * Return true if any of the available matching flags is set.
 	 *
 	 * @return
 	 */
 	public boolean isAnyFlagSet() {
-	    return typeMatching || exactMatching || caseInsensitive;
+	    return typeMatching || exactMatching || caseInsensitive || jokerMatching;
     }
 
 	/**
@@ -114,6 +133,8 @@ public class ExpressionMatcher {
 					exactMatching = true;
 				} else if (flag.equals(PM_ICASE_MATCH)) {
 					caseInsensitive = true;
+				} else if (flag.equals(PM_JOKER_MATCH)) {
+					jokerMatching = true;
 				} else {
 					break;
 				}
@@ -142,6 +163,8 @@ public class ExpressionMatcher {
     		return readTypeMatchExpressions(text, ctx);
         } else if (exactMatching) {
 			return readExactExpressions(text, ctx);
+        } else if (jokerMatching) {
+			return readJokerExpressions(text, ctx);
     	} else {
     		return ConversationParser.parse(text, ctx);
     	}
@@ -166,6 +189,7 @@ public class ExpressionMatcher {
     			// remove the leading slash from the type string
     			typeStr = tok.nextToken(" \t\n\r\f").substring(1);
 			} catch(NoSuchElementException e) {
+				//TODO mf - handle invalid input syntax without causing a NoSuchElementException
 				e.printStackTrace();
 				typeStr = "???";
 			}
@@ -200,6 +224,34 @@ public class ExpressionMatcher {
     }
 
 	/**
+	 * Read in the words from the given string and create the sentence using the same rules as
+	 * in SentenceImplementation with activated 'forMatching' flag.
+	 *
+	 * @param text: Text to be parsed
+	 * @return Sentence
+	 */
+	private Sentence readJokerExpressions(String text, ConversationContext ctx) {
+		SentenceImplementation sentence = new SentenceImplementation(ctx);
+
+		StringTokenizer tok = new StringTokenizer(text);
+		while (tok.hasMoreTokens()) {
+			String str = tok.nextToken();
+
+			Expression expr = new Expression(str);
+
+			if (ExpressionType.isTypeString(str)) {
+				expr.setType(new ExpressionType(str));
+				expr.setNormalized(Expression.JOKER);
+			}
+
+			expr.setMatcher(this);
+			sentence.expressions.add(expr);
+		}
+
+		return sentence;
+    }
+
+	/**
 	 * Match two Expressions using the mode in matchingFlags.
 	 *
 	 * @param expr1
@@ -225,8 +277,16 @@ public class ExpressionMatcher {
     		}
 		}
 
+		if (jokerMatching) {
+			return expr1.sentenceMatchExpression(expr2);
+		}
+
 		// If no exact match is required, compare the normalized expressions.
 		if (!exactMatching) {
+			if (expr2.getNormalized().equals(Expression.JOKER)) {
+				return true;
+			}
+
 			if (expr1.getNormalized().equals(expr2.getNormalized())) {
 				return true;
 			}
@@ -259,6 +319,8 @@ public class ExpressionMatcher {
     			return false;
     		} else if (caseInsensitive != o.caseInsensitive) {
     			return false;
+    		} else if (jokerMatching != o.jokerMatching) {
+    			return false;
     		} else {
     			return true;
     		}
@@ -286,6 +348,10 @@ public class ExpressionMatcher {
 			hash |= 4;
 		}
 
+		if (jokerMatching) {
+			hash |= 8;
+		}
+
 		return hash;
 	}
 
@@ -309,6 +375,11 @@ public class ExpressionMatcher {
 		if (caseInsensitive) {
 			b.append(PM_SEPARATOR);
 			b.append(PM_ICASE_MATCH);
+		}
+
+		if (jokerMatching) {
+			b.append(PM_SEPARATOR);
+			b.append(PM_JOKER_MATCH);
 		}
 
 		return b.toString();

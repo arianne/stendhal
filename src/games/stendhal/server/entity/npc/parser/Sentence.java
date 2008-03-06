@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence
@@ -26,9 +25,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 	};
 
 	protected SentenceType sentenceType = SentenceType.UNDEFINED;
-
-	/** JOKER is a joker String used in pattern matches. */
-	protected static final String JOKER = "*";
 
 	List<Expression> expressions = new ArrayList<Expression>();
 
@@ -644,21 +640,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 				break;
 			}
 
-			String matchString = e2.getNormalized();
-
-			if (matchString.contains(JOKER)) {
-				if (matchString.equals(JOKER)) {
-					// Type string matching is identified by a single "*" as normalized string expression.
-					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString())) {
-						return false;
-					}
-				} else {
-					// Look for a normalized string match towards the string containing a joker character.
-					if (!matchesJokerString(e1.getNormalized(), matchString)) {
-						return false;
-					}
-				}
-			} else if (!e1.matchesNormalized(e2)) {
+			if (!e1.sentenceMatchExpression(e2)) {
 				return false;
 			}
 		}
@@ -673,23 +655,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 		}
 	
 	}
-
-	/**
-	 * Match the given String towards a pattern String containing JOKER characters.
-	 *
-	 * @param str
-	 * @param matchString
-	 * @return
-	 */
-	private boolean matchesJokerString(String str, String matchString) {
-		if (str.equals(JOKER)) {
-			// Empty strings do not match the "*" joker.
-			return str.length() > 0;
-		} else { 
-			// Convert the joker string into a regular expression and let the Pattern class do the work.
-			return Pattern.compile(matchString.replace(JOKER, ".*")).matcher(str).find();
-		}
-    }
 
 	/**
 	 * Searches for a matching item name in the given Set.

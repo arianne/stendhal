@@ -1,0 +1,16 @@
+package games.stendhal.server.entity.npc.parser;
+
+/**
+ * ExactExpressionMatcher creates an ExpressionMatcher for joker matching.
+ * This mode uses the Expression.sentenceMatchExpression() function of sentence
+ * matching, which chooses automatically between word and type matching.
+ *
+ * @author Martin Fuchs
+ */
+public class JokerExprMatcher extends ExpressionMatcher {
+
+	public JokerExprMatcher() {
+		jokerMatching = true;
+	}
+
+}

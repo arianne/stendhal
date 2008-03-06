@@ -2,6 +2,8 @@ package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.ErrorDrain;
 
+import java.util.regex.Pattern;
+
 
 /**
  * An Expression is part of a Sentence. It encapsulates the original, white space
@@ -35,6 +37,9 @@ public final class Expression {
 
 	/** Instance of an empty Expression. */
 	public static final Expression emptyExpression = new Expression("", "");
+
+	/** JOKER is a joker String used in pattern matches. */
+	protected static final String JOKER = "*";
 
 	/**
 	 * Create an Expression from the given original string.
@@ -371,11 +376,21 @@ public final class Expression {
 	 */
 	public boolean matches(final Expression other) {
 		if (other != null) {
+			// If there is no override by an ExpressionMatcher in 'other', use the
+			// default rule and compare the original strings.
 			if (other.matcher == null) {
 				if (original.equals(other.original)) {
 					return true;
 				}
 			} else {
+				// If both Expressions contain a matcher object, first compare this.
+				if (matcher != null) {
+					if (!matcher.equals(other.matcher)) {
+						return false;
+					}
+				}
+
+				// Now call the matcher to look if the Expression matches the defined rule.
 				return other.matcher.match(this, other);
 			}
 		}
@@ -391,11 +406,20 @@ public final class Expression {
 	 */
 	public boolean matchesNormalized(final Expression other) {
 		if (other != null) {
+			// If there is no override by an ExpressionMatcher in 'other', use the
+			// default rule and compare the normalized strings.
 			if (other.matcher == null) {
 				if (getNormalized().equals(other.getNormalized())) {
 					return true;
 				}
 			} else {
+				// If both Expressions contain a matcher object, first compare this.
+				if (matcher != null) {
+					if (!matcher.equals(other.matcher)) {
+						return false;
+					}
+				}
+
 				return other.matcher.match(this, other);
 			}
 		}
@@ -411,14 +435,69 @@ public final class Expression {
 	 */
 	public boolean matchesNormalizedBeginning(final Expression other) {
 		if (other != null) {
+			// If there is no override by an ExpressionMatcher in 'other', use the
+			// default rule and compare the normalized strings.
 			if (other.matcher == null) {
 				if (getNormalized().startsWith(other.getNormalized())) {
 					return true;
 				}
 			}
+
+			// We don't use ExpressionMatcher here when searching only for matches at the Expression start.
 		}
 
 		return false;
+    }
+
+	/**
+	 * Check if the Expression matches the given matching Expression.
+	 * The matching object can contain explicit expressions, which are
+	 * compared after normalizing, or ExpressionType specifiers like 
+	 * "VER" or "SUB*" in upper case. This defines the joker matching
+	 * algorithm for sentence matching, which chooses automatically
+	 * between word and type matching, depending on which of word and
+	 * word type string is given.
+	 *
+	 * @param other
+	 * @return
+	 */
+	boolean sentenceMatchExpression(Expression other) {
+	    String matchString = other.getNormalized();
+
+	    if (matchString.contains(JOKER)) {
+	    	if (matchString.equals(JOKER)) {
+	    		// Type string matching is identified by a single "*" as normalized string expression.
+	    		if (!matchesJokerString(getTypeString(), other.getTypeString())) {
+	    			return false;
+	    		}
+	    	} else {
+	    		// Look for a normalized string match against the string containing a joker character.
+	    		if (!matchesJokerString(getNormalized(), matchString)) {
+	    			return false;
+	    		}
+	    	}
+	    } else if (!matchesNormalized(other)) {
+	    	return false;
+	    }
+
+	    return true;
+    }
+
+	/**
+	 * Match the given String against a pattern String containing JOKER characters.
+	 *
+	 * @param str
+	 * @param matchString
+	 * @return
+	 */
+	public static boolean matchesJokerString(String str, String matchString) {
+		if (str.equals(JOKER)) {
+			// Empty strings do not match the "*" joker.
+			return str.length() > 0;
+		} else { 
+			// Convert the joker string into a regular expression and let the Pattern class do the work.
+			return Pattern.compile(matchString.replace(JOKER, ".*")).matcher(str).find();
+		}
     }
 
 	/**
