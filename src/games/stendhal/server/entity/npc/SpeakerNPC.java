@@ -23,62 +23,62 @@ import org.apache.log4j.Logger;
  * transducer. * States are denoted by integers. Some constants are defined in
  * ConversationStates for often-used states. * Input is the text that the player
  * says to the SpeakerNPC. * Output is the text that the SpeakerNPC answers.
- * 
+ *
  * See examples to understand how it works. RULES: * State 0 (IDLE) is both the
  * start state and the state that will end the conversation between the player
  * and the SpeakerNPC. * State 1 (ATTENDING) is the state where only one player
  * can talk to NPC and where the prior talk doesn't matter. * State -1 (ANY) is
  * a wildcard and is used to jump from any state whenever the trigger is active. *
  * States from 2 to 100 are reserved for special behaviours and quests.
- * 
+ *
  * Example how it works: First we need to create a message to greet the player
  * and attend it. We add a hi event:
- * 
+ *
  * add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
  * ConversationStates.ATTENDING, "Welcome, player!", null)
- * 
+ *
  * Once the NPC is in the IDLE state and hears the word "hi", it will say
  * "Welcome player!" and move to ATTENDING.
- * 
+ *
  * Now let's add some options when player is in ATTENDING_STATE, like job,
  * offer, buy, sell, etc.
- * 
+ *
  * add(ConversationStates.ATTENDING, ConversationPhrases.JOB_MESSAGES,
  * ConversationStates.ATTENDING, "I work as a part time example showman", null)
- * 
+ *
  * add(ConversationStates.ATTENDING_STATE, "offer",
  * ConversationStates.ATTENDING_STATE, "I sell best quality swords", null)
- * 
+ *
  * Ok, two new events: job and offer, they go from ATTENDING state to ATTENDING
  * state, because after reacting to "job" or "offer", the NPC can directly react
  * to one of these again.
- * 
+ *
  * add(ConversationStates.ATTENDING, "buy",
  * ConversationStates.BUY_PRICE_OFFERED, null, new ChatAction() { public void
  * fire(Player player, String text, SpeakerNPC npc) { int i=text.indexOf(" ");
  * String item=text.substring(i+1); if(item.equals("sword")) { npc.say(item+"
  * costs 10 coins. Do you want to buy?"); } else { npc.say("Sorry, I don't sell " +
  * item + "."); npc.setActualState(ConversationStates.ATTENDING); } } });
- * 
+ *
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle
  * the event. Also see that we move to a new state, BUY_PRICE_OFFERED (20). The
  * player is then replying to a question, so we only expect two possible
  * replies: yes or no.
- * 
+ *
  * add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES,
  * ConversationStates.ATTENDING, "Sorry, I changed my mind. I won't sell
  * anything.", null); // See SellerBehaviour.java for a working example.
- * 
+ *
  * Whatever the reply is, return to ATTENDING state so we can listen to new
  * things.
- * 
+ *
  * Finally we want to finish the conversation, so whatever state we are, we want
  * to finish a conversation with "Bye!".
- * 
+ *
  * add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
  * ConversationStates.IDLE, "Bye!", null);
- * 
+ *
  * We use the state ANY (-1) as a wildcard, so if the input text is "bye" the
  * transition happens, no matter in which state the FSM really is, with the
  * exception of the IDLE state.
@@ -123,7 +123,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Creates a new SpeakerNPC.
-	 * 
+	 *
 	 * @param name
 	 *            The NPC's name. Please note that names should be unique.
 	 */
@@ -162,11 +162,11 @@ public class SpeakerNPC extends NPC {
 	 * nearby the NPC. Nearby means that they are standing less than <i>range</i>
 	 * squares away horizontally and less than <i>range</i> squares away
 	 * vertically.
-	 * 
+	 *
 	 * Why is range a double, not an int? Maybe someone wanted to implement a
 	 * circle instead of the rectangle we're having now. -- mort
 	 * (DHerding@gmx.de)
-	 * 
+	 *
 	 * @param npc
 	 * @param range
 	 * @return A list of nearby players who have recently talked.
@@ -195,7 +195,7 @@ public class SpeakerNPC extends NPC {
 	 * <i>range</i> squares away horizontally and less than <i>range</i>
 	 * squares away vertically. Note, however, that the Euclidian distance is
 	 * used to compare which player is standing closest.
-	 * 
+	 *
 	 * @param range
 	 * @return The nearest player, or null if no player is standing on the same
 	 *         map.
@@ -227,7 +227,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * The player who is currently talking to the NPC, or null if the NPC is
 	 * currently not taking part in a conversation.
-	 * 
+	 *
 	 * @return Player
 	 */
 	public Player getAttending() {
@@ -237,7 +237,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Sets the player to whom the NPC is currently listening. Note: You don't
 	 * need to use this for most NPCs.
-	 * 
+	 *
 	 * @param player
 	 *            the player with whom the NPC should be talking.
 	 */
@@ -267,7 +267,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Sets the time a conversation can be paused before it will be terminated
 	 * by the NPC.
-	 * 
+	 *
 	 * @param playerChatTimeout
 	 *            the time, in turns
 	 */
@@ -367,7 +367,7 @@ public class SpeakerNPC extends NPC {
 
 	}
 
-	/** Message when NPC is attending another player. 
+	/** Message when NPC is attending another player.
 	 * @param text to say to bothering player
 	 * @param action to perform
 	 */
@@ -383,7 +383,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Adds a new transition to the FSM.
-	 * 
+	 *
 	 * @param state
 	 *            the starting state of the FSM
 	 * @param trigger
@@ -421,7 +421,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
+	 *
 	 * @param state
 	 *            the starting state of the FSM
 	 * @param triggers
@@ -443,7 +443,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
+	 *
 	 * @param states
 	 *            the starting states of the FSM
 	 * @param trigger
@@ -467,7 +467,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
+	 *
 	 * @param states
 	 *            the starting states of the FSM
 	 * @param triggers
@@ -490,7 +490,7 @@ public class SpeakerNPC extends NPC {
 		}
 	}
 
-	
+
 	public void add(int state, List<String> triggers, int nextState,
 			String reply, ChatAction action) {
 		for (String trigger : triggers) {
@@ -505,7 +505,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * If the given player says something to this NPC, and the NPC is already
 	 * speaking to another player, tells the given player to wait.
-	 * 
+	 *
 	 * @param player
 	 *            The player who spoke to the player
 	 * @param text
@@ -584,7 +584,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Makes this NPC say a text when it hears a certain trigger during a
 	 * conversation.
-	 * 
+	 *
 	 * @param trigger
 	 *            The text that causes the NPC to answer
 	 * @param text
@@ -606,7 +606,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Makes NPC say a text and/or do an action when a trigger is said.
-	 * 
+	 *
 	 * @param trigger
 	 * @param text
 	 * @param action
@@ -627,7 +627,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Makes NPC say a text and/or do an action when a trigger is said.
-	 * 
+	 *
 	 * @param triggers
 	 * @param text
 	 * @param action
@@ -687,7 +687,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Returns a copy of the transition table.
-	 * 
+	 *
 	 * @return list of transitions
 	 */
 	public List<Transition> getTransitions() {
@@ -708,4 +708,7 @@ public class SpeakerNPC extends NPC {
 		stop();
 	}
 
+	public String getText(){
+		return get("text");
+	}
 }
