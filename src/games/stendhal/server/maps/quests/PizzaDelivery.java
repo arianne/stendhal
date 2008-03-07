@@ -306,8 +306,9 @@ public class PizzaDelivery extends AbstractQuest {
 				.getItem("pizza");
 		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
-		player.equip(pizza, true);
-
+		pizza.setBoundTo(name);
+		
+		if(player.equip(pizza)){
 		// TODO: If there's a space in the NPC name, colorization won't work.
 		npc.say("You must bring this "
 			+ data.flavor
@@ -320,6 +321,9 @@ public class PizzaDelivery extends AbstractQuest {
 			+ " knows that I sent you. Oh, and please wear this uniform on your way.");
 		player.setOutfit(UNIFORM, true);
 		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
+		} else {
+			npc.say("Come back when you have space to carry the pizza!");
+		}
 	}
 
 	/**
