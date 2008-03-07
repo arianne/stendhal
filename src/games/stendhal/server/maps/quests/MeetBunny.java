@@ -18,14 +18,14 @@ import java.util.List;
 /**
  * QUEST: Meet the Easter Bunny anywhere around the World.
  * <p>
- * 
+ *
  * PARTICIPANTS:<ul><li> Easter Bunny</ul>
- * 
+ *
  * STEPS: <ul><li> Find Bunny <li> Say hi <li> Get reward </ul>
- * 
- * REWARD: <ul><li> a basket which can be opend to obtain a random good reward: food,
+ *
+ * REWARD: <ul><li> a basket which can be opened to obtain a random good reward: food,
  * money, potions, items, etc...</ul>
- * 
+ *
  * REPETITIONS: None
  */
 public class MeetBunny extends AbstractQuest {
@@ -60,10 +60,10 @@ public class MeetBunny extends AbstractQuest {
 				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-				
+
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotCompletedCondition(QUEST_SLOT), 
+					new QuestNotCompletedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"Happy Easter! I have an easter basket for you.",
 					new MultipleActions(reward));
