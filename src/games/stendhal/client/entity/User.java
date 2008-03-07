@@ -261,4 +261,25 @@ public class User extends Player {
 	public String getServerVersion() {
 		return serverVersion;
 	}
+
+	/**
+	 * Returns the objectid for the named item.
+	 * 
+	 * @param slotName
+	 *            name of slot to search
+	 * @param itemName
+	 *            name of item
+	 * @return objectid or <code>-1</code> in case there is no such item
+	 */
+	public int findItem(String slotName, String itemName) {
+		for (RPObject item : getSlot(slotName)) {
+			if (item.get("name").equals(itemName)) {
+				int itemID = item.getID().getObjectID();
+
+				return itemID;
+			}
+		}
+
+		return -1;
+    }
 }

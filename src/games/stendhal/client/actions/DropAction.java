@@ -5,7 +5,6 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * Drop a player item.
@@ -50,11 +49,11 @@ class DropAction implements SlashAction {
 		String singularItemName = Grammar.singular(itemName);
 
 		for (String slotName : CARRYING_SLOTS) {
-			int itemID = findItem(slotName, itemName);
+			int itemID = User.get().findItem(slotName, itemName);
 
 			// search again using the singular, in case it was a plural item name
 			if (itemID == -1 && !itemName.equals(singularItemName)) {
-				itemID = findItem(slotName, singularItemName);
+				itemID = User.get().findItem(slotName, singularItemName);
 			}
 
 			if (itemID != -1) {
@@ -75,25 +74,6 @@ class DropAction implements SlashAction {
 
 		StendhalUI.get().addEventLine("You don't have any " + singularItemName);
 		return true;
-	}
-
-	/**
-	 * Returns the objectid for the named item.
-	 * 
-	 * @param slotName
-	 *            name of slot to search
-	 * @param itemName
-	 *            name of item
-	 * @return objectid or <code>-1</code> in case there is no such item
-	 */
-	private int findItem(String slotName, String itemName) {
-		for (RPObject item : User.get().getSlot(slotName)) {
-			if (item.get("name").equals(itemName)) {
-				int itemID = item.getID().getObjectID();
-				return itemID;
-			}
-		}
-		return -1;
 	}
 
 	/**
