@@ -165,7 +165,7 @@ public final class Expression {
 	}
 
 	/**
-	 * Return amount as integer value, default to 1.
+	 * Return amount as long integer value, default to 1.
 	 * 
 	 * @return
 	 */
