@@ -490,7 +490,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Removes the item. I case of StackableItems only one is removed.
+	 * Removes the item. In case of StackableItems only one is removed.
 	 */
 	public void removeOne() {
 		removeFromWorld();
