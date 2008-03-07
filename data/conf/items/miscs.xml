@@ -15,18 +15,6 @@
     </equipable>
   </item>
 
-  <item name="pizza">
-    <type class="misc" subclass="pizza" tileid="-1"/>
-    <description>You see a tasty pizza, and hope they put extra cheese on it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
   <item name="token">
     <type class="misc" subclass="token" tileid="-1"/>
     <description>You see a token, that when placed in the right spot could point you in the right direction.</description>
