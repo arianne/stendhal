@@ -43,7 +43,7 @@ public class GuildMember extends Entity {
     private static final String RPCLASS = "guild_member";
     
     private Player player;
-    private String playerName;
+//	private String playerName;
     private Guild guild;
     private GuildPermission permission;
 
@@ -78,9 +78,9 @@ public class GuildMember extends Entity {
     }
     
     private void loadData() {
-        playerName = get(ATTR_PLAYER);
-        guild = SingletonRepository.getGuildList().getGuild(get(ATTR_GUILD));
-        permission = guild.getPermission(getInt(ATTR_RANK));
+//		playerName = get(ATTR_PLAYER);
+    	guild = SingletonRepository.getGuildList().getGuild(get(ATTR_GUILD));
+    	permission = guild.getPermission(getInt(ATTR_RANK));
     }
 
     public Guild getGuild() {
