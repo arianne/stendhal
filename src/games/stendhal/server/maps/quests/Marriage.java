@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -778,14 +779,18 @@ public class Marriage extends AbstractQuest {
 				new ChatCondition() {
 					@Override
                     public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String room = sentence.getTriggerExpression().getNormalized();
-						int roomNr = Integer.parseInt(room);
-						// check for correct room numbers
-						if (roomNr >= 1 && roomNr <= 15) {
-							return true;
-						} else {
-							return false;
+						Expression number = sentence.getNumeral();
+
+						if (number != null) {
+    						int roomNr = number.getAmount();
+
+    						// check for correct room numbers
+    						if (roomNr >= 1 && roomNr <= 15) {
+    							return true;
+    						}
 						}
+
+    					return false;
                     }
 				}, ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
