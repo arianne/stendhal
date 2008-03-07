@@ -1403,6 +1403,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="int_wofol_bakery" file="interiors/wofol/bakery.tmx">
+ <configurator class-name="games.stendhal.server.maps.wofol.bakery.BakerNPC" />
   <portal x="5" y="14" ref="entrance">
      <destination zone="-1_semos_mine_nw" ref="bakery_entrance"/>
    </portal>
