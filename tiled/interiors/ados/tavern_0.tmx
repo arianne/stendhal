@@ -106,15 +106,15 @@
  </layer>
  <layer name="objects" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjAAHOD7QDRsEoGAWjYBSMAgrAUKnHAHVHZmeACQAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBjc4PwA6aUVAACYdsYDgAkAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvEwMBwaRSThfEBYuQJmUusXeQAYvw0EPbj8j858YHNP+TaTw4YSvbTAgy0/fjAYM1/A2U/IXXYxAmJEWPuYLafUNlIS/tJLdvobT+lgNSyHdkdA6GXVhgAWzcVAIAJAAA=
+   H4sIAAAAAAAAALvEwMBwaRSThfEBYuQJmUesXeSAwWg/ul2Uxge6GLFmY1NDDhhK9tMCDLT9+AA9wn8o2U9IHTZxQmLEmDuY7cenhtb2k1q20dt+SgGpZTuyOwZCL60wAPHgTdaACQAA
   </data>
  </layer>
- <layer name="protection" width="32" height="19" opacity="0.18">
+ <layer name="protection" width="32" height="19" visible="0" opacity="0.18">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DQQ0AAAwDofNvr4bmYi9IWDVVVd8eWLhip4AJAAA=
   </data>
