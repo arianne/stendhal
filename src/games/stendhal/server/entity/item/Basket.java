@@ -16,8 +16,8 @@ public class Basket extends Box {
 
 	// TODO: Make these configurable
 	// for easter presents
-	private static final String[] ITEMS = { "greater potion", "pie",
-			"sandwich", "cherry", "blue elf cloak", "home scroll" };
+	private static final String[] ITEMS = { "mega potion", "fairy cake",
+			"easter egg", "egg", "spotted egg", "mythical egg"};
 
 	/**
 	 * Creates a new Basket.
@@ -46,11 +46,7 @@ public class Basket extends Box {
 	protected boolean useMe(Player player) {
 		this.removeOne();
 		String itemName;
-		if (Rand.roll1D20() == 1) {
-			itemName = "easter egg";
-		} else {
-			itemName = ITEMS[Rand.rand(ITEMS.length)];
-		}
+		itemName = ITEMS[Rand.rand(ITEMS.length)];
 		Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
 		if (itemName.equals("easter egg")) {
