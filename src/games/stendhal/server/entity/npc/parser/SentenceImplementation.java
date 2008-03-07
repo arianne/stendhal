@@ -31,10 +31,12 @@ final class SentenceImplementation extends Sentence {
 	 *
 	 * @param ctx
 	 */
-	SentenceImplementation(Expression expr) {
+	SentenceImplementation(Expression... exprs) {
 	    super(new ConversationContext());
 
-	    expressions.add(expr);
+	    for(Expression e : exprs) {
+	    	expressions.add(e);
+	    }
     }
 
 	/**
