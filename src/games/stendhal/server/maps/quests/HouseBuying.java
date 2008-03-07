@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -149,14 +150,17 @@ public class HouseBuying extends AbstractQuest {
 					new ChatCondition() {
 						@Override
 	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							String house = sentence.getTriggerExpression().getNormalized();
-							int houseNr = Integer.parseInt(house);
-							// check for correct house numbers
-							if (houseNr >= 1 && houseNr <= 25) {
-								return true;
-							} else {
-								return false;
+							Expression number = sentence.getNumeral();
+							if (number != null) {
+	    						int houseNr = number.getAmount();
+
+    							// check for correct house numbers
+    							if (houseNr >= 1 && houseNr <= 25) {
+    								return true;
+    							}
 							}
+
+							return false;
 	                    }
 					},
 					ConversationStates.ATTENDING,
@@ -176,7 +180,7 @@ public class HouseBuying extends AbstractQuest {
 								String postmanslot = postman.getQuest(QUEST_SLOT);
 								String[] boughthouses = postmanslot.split(";");
 								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = sentence.getTriggerExpression().getNormalized();
+								String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money
@@ -363,14 +367,17 @@ public class HouseBuying extends AbstractQuest {
 					new ChatCondition() {
 						@Override
 	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							String house = sentence.getTriggerExpression().getNormalized();
-							int houseNr = Integer.parseInt(house);
-							// check for correct house numbers
-							if (houseNr >= 50 && houseNr <= 68) {
-								return true;
-							} else {
-								return false;
+							Expression number = sentence.getNumeral();
+							if (number != null) {
+	    						int houseNr = number.getAmount();
+
+    							// check for correct house numbers
+    							if (houseNr >= 50 && houseNr <= 68) {
+    								return true;
+    							}
 							}
+
+							return false;
 	                    }
 					},
 					ConversationStates.ATTENDING, 
@@ -390,7 +397,7 @@ public class HouseBuying extends AbstractQuest {
 								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 								String[] boughthouses = postmanslot.split(";");
 								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = sentence.getTriggerExpression().getNormalized();
+								String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money
@@ -550,14 +557,17 @@ public class HouseBuying extends AbstractQuest {
 					new ChatCondition() {
 						@Override
 	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							String house = sentence.getTriggerExpression().getNormalized();
-							int houseNr = Integer.parseInt(house);
-							// check for correct house numbers
-							if (houseNr >= 26 && houseNr <= 49) {
-								return true;
-							} else {
-								return false;
+							Expression number = sentence.getNumeral();
+							if (number != null) {
+	    						int houseNr = number.getAmount();
+
+    							// check for correct house numbers
+    							if (houseNr >= 26 && houseNr <= 49) {
+    								return true;
+    							}
 							}
+
+							return false;
 	                    }
 					},
 					ConversationStates.ATTENDING, 
@@ -577,7 +587,7 @@ public class HouseBuying extends AbstractQuest {
 								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
 								String[] boughthouses = postmanslot.split(";");
 								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = sentence.getTriggerExpression().getNormalized();
+								String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money

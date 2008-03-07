@@ -796,7 +796,7 @@ public class Marriage extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String room = sentence.getTriggerExpression().getNormalized();
+						String room = Integer.toString(sentence.getNumeral().getAmount());
 						npc.say("Great choice! Use this scroll to return to the hotel,"
 								+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
 						player.setQuest(QUEST_SLOT, "done");
