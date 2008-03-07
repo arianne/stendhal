@@ -16,19 +16,10 @@ public class User extends Player {
 
 	private static User instance;
 
-	/**
-	 * Client features.
-	 */
-	/*
-	 * TODO remove unused code private FeatureList features;
-	 */
-
 	private String serverVersion = null;
 
 	public static boolean isNull() {
-
 		return instance == null;
-
 	}
 
 	public static User get() {
@@ -38,9 +29,6 @@ public class User extends Player {
 	public User() {
 		instance = this;
 		modificationCount = 0;
-		/*
-		 * TODO remove unused code features = new FeatureList();
-		 */
 	}
 
 	/**
@@ -144,13 +132,6 @@ public class User extends Player {
 				- HEARING_RANGE, width, width);
 	}
 
-	/*
-	 * TODO remove unused code public String getFeature(String name) { return
-	 * features.get(name); }
-	 * 
-	 * public boolean hasFeature(String name) { return features.has(name); }
-	 */
-
 	/**
 	 * Initialize this entity for an object.
 	 * 
@@ -162,11 +143,6 @@ public class User extends Player {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
-
-		/*
-		 * TODO remove unused code if (object.has("features")) {
-		 * features.decode(object.get("features")); }
-		 */
 	}
 
 	/**
@@ -181,11 +157,6 @@ public class User extends Player {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 		modificationCount++;
-
-		/*
-		 * TODO remove unused code if (changes.has("features")) {
-		 * features.decode(changes.get("features")); }
-		 */
 
 		// The first time we ignore it.
 		if (object != null) {
@@ -227,10 +198,6 @@ public class User extends Player {
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
 		super.onChangedRemoved(base, diff);
-
-		/*
-		 * TODO remove unused code if (diff.has("features")) { features.clear(); }
-		 */
 	}
 
 	/**
@@ -247,14 +214,14 @@ public class User extends Player {
 	}
 
 	/**
-	 * resets the class to uninitialized.
+	 * Resets the class to uninitialized.
 	 */
 	public static void setNull() {
 		instance = null;
 	}
 
 	/**
-	 * query the version of the server we are currently connected to.
+	 * Query the version of the server we are currently connected to.
 	 * 
 	 * @return server version string
 	 */
