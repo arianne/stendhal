@@ -67,7 +67,9 @@ public class MeetBunny extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					"Happy Easter! I have an easter basket for you.",
 					new MultipleActions(reward));
-
+				addQuest("Just be kind and loving this Easter!");
+				addOffer("I give easter baskets to my new friends, every Easter!");
+				addHelp("You can meet me every Easter!");
 				addJob("I am the Easter Bunny!");
 				addGoodbye("Don't eat too much this Easter! Bye!");
 			}
