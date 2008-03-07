@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.entity.User;
+import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
@@ -37,7 +38,7 @@ public class DropActionTest {
 		User pl = new User();
 		pl.initialize(rpo);
 
-		for(String slotName : DropAction.CARRYING_SLOTS) {
+		for(String slotName : Constants.CARRYING_SLOTS) {
 			rpo.addSlot(slotName);
 		}
 

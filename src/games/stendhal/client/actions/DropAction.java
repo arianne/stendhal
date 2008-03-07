@@ -3,6 +3,7 @@ package games.stendhal.client.actions;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
+import games.stendhal.common.Constants;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.RPAction;
 
@@ -10,12 +11,6 @@ import marauroa.common.game.RPAction;
  * Drop a player item.
  */
 class DropAction implements SlashAction {
-	// TODO: find a way to not have this redundant at server and client
-	// possibilities:
-	// a.) move all command line parsing
-	// b.) transfer information about available slots at login time from server to client
-	static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
-			"lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
 
 	/**
 	 * Execute a chat command.
@@ -48,7 +43,7 @@ class DropAction implements SlashAction {
 
 		String singularItemName = Grammar.singular(itemName);
 
-		for (String slotName : CARRYING_SLOTS) {
+		for (String slotName : Constants.CARRYING_SLOTS) {
 			int itemID = User.get().findItem(slotName, itemName);
 
 			// search again using the singular, in case it was a plural item name

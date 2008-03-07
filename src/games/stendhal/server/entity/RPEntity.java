@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -45,7 +46,7 @@ import marauroa.server.game.Statistics;
 
 import org.apache.log4j.Logger;
 
-public abstract class RPEntity extends GuidedEntity {
+public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * The title attribute name.
 	 */
@@ -110,13 +111,6 @@ public abstract class RPEntity extends GuidedEntity {
 	 * turns after they have actually been damaged by the enemy. //
 	 */
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
-
-	/**
-	 * All the slots considered to be "with" the entity. Listed in priority
-	 * order (i.e. bag first).
-	 */
-	public static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
-			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
 
 	public static void generateRPClass() {
 		try {
