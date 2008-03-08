@@ -189,9 +189,7 @@ public class ExpressionMatcher {
     			// remove the leading slash from the type string
     			typeStr = tok.nextToken(" \t\n\r\f").substring(1);
 			} catch(NoSuchElementException e) {
-				//TODO mf - handle invalid input syntax without causing a NoSuchElementException
-				e.printStackTrace();
-				typeStr = "???";
+				typeStr = "*";
 			}
 
 			Expression expr = new Expression(str, typeStr);
