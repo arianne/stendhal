@@ -31,7 +31,6 @@ public class KidsNPCs implements ZoneConfigurator {
 		int[][] start = { {3, 3}, {9, 3}, {15, 3}, {21, 3} };
 		for (int i = 0; i < 4; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {
-
 				@Override
 				protected void createPath() {
 					// they sleeping!
@@ -46,7 +45,6 @@ public class KidsNPCs implements ZoneConfigurator {
 						ConversationStates.IDLE,
 						"ZZzzzz ... ",
 						null);
-			
 				}
 			};
 			npc.setEntityClass(classes[i]);
