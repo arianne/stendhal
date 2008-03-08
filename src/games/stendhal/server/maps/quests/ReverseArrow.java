@@ -380,7 +380,9 @@ public class ReverseArrow extends AbstractQuest implements
 	 *            Player
 	 */
 	public void onTokenMoved(Player player) {
+		//TODO only count if the token really changed its position
 		moveCount++;
+
 		if (moveCount < MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else if (moveCount == MAX_MOVES) {
