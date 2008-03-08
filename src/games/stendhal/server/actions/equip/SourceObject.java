@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -100,7 +101,6 @@ class SourceObject extends MoveableObject {
 		}
 		source = new SourceObject(player, parent, slotName, (Item) entity);
 		return source;
-
 	}
 
 	private static boolean isValidBaseSlot(Player player, RPSlot baseSlot) {
@@ -168,7 +168,6 @@ class SourceObject extends MoveableObject {
 	}
 
 	private Item getNonContainedItem(RPObject.ID baseItemId) {
-
 		Entity entity = null;
 		if (SingletonRepository.getRPWorld().has(baseItemId)) {
 			entity = (Entity) SingletonRepository.getRPWorld().get(baseItemId);
@@ -241,7 +240,7 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * removes the entity from the world and returns it (so it may nbe added
+	 * removes the entity from the world and returns it (so it may be added
 	 * again). In case of splitted StackableItem the only item is reduced and a
 	 * new StackableItem with the splitted off amount is returned.
 	 * 
@@ -284,6 +283,11 @@ class SourceObject extends MoveableObject {
 		return item;
 	}
 
+	/**
+	 * Returns the amount of objects.
+	 *
+	 * @return
+	 */
 	public int getQuantity() {
 		int temp = quantity;
 		if (quantity == 0) {
@@ -295,6 +299,15 @@ class SourceObject extends MoveableObject {
 
 		}
 		return temp;
+	}
+
+	/**
+	 * Sets the quantity.
+	 *
+	 * @param amount
+	 */
+	public void setQuantity(int amount) {
+		quantity = amount;
 	}
 
 	/**
