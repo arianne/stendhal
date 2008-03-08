@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Test the ExpressionMatcher class.
+ * Test the JokerExprMatcher class.
  * 
  * @author Martin Fuchs
  */
-public class JokerExprMatchTest {
+public class JokerExprMatcherTest {
 
 	@Test
 	public final void testJokerMatching() {
