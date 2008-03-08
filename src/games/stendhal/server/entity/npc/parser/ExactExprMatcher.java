@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- *  ExactExpressionMatcher creates an ExpressionMatcher with exact matching.
+ *  ExactExprMatcher creates an ExpressionMatcher with exact matching.
  *
  * @author Martin Fuchs
  */

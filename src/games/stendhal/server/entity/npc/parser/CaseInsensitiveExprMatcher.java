@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- *  ExactExpressionMatcher creates an ExpressionMatcher with exact and
+ *  CaseInsensitiveExprMatcher creates an ExpressionMatcher with exact and
  *  case insensitive matching.
  *
  * @author Martin Fuchs
