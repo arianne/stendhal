@@ -23,7 +23,7 @@ public class WrapAction implements ActionListener {
 	 */
 	public static void register() {
 		WrapAction wrap = new WrapAction();
-		CommandCenter.register("wrap", wrap);
+		CommandCenter.register("wrap", wrap, 800);
 	}
 
 	public void onAction(Player player, RPAction action) {
