@@ -610,13 +610,13 @@ public abstract class Entity extends RPObject {
 	 */
 	public String getDescriptionName(boolean definite) {
 		if (has("subclass")) {
-			return Grammar.article_noun(get("subclass"), definite);
+			return Grammar.article_noun(UpdateConverter.transformItemName(get("subclass")), definite);
 		} else if (has("class")) {
-			return Grammar.article_noun(get("class"), definite);
+			return Grammar.article_noun(UpdateConverter.transformItemName(get("class")), definite);
 		} else {
 			String ret = "something indescribably strange";
 			if (has("type")) {
-				ret += " of type " + get("type");
+				ret += " of type " + UpdateConverter.transformItemName(get("type"));
 			}
 			if (has("id")) {
 				ret += " with id " + get("id");
