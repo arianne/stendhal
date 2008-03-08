@@ -9,8 +9,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.BabyDragon;
+import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -23,38 +26,110 @@ public class SummonAction extends AdministrationAction {
 		CommandCenter.register(_SUMMON, new SummonAction(), 800);
 	}
 
+	/**
+	 * Inline class to create entities of all creature types including pets.
+	 */
+	static abstract class EntityFactory {
+		final Player player;
+		final EntityManager manager = SingletonRepository.getEntityManager();
+
+		protected boolean searching = true;
+
+		public EntityFactory(Player player) {
+			this.player = player;
+		}
+
+        boolean isSearching() {
+	        return searching;
+        }
+
+		abstract void found(String type, Entity entity);
+		abstract void error(String message);
+
+		/**
+		 * Create the named entity (creature, pet or sheep) of type 'type'.
+		 * 
+		 * @param player
+		 * @param type
+		 */
+		private void createEntity(String type) {
+		    Entity entity = manager.getEntity(type);
+
+		    if (entity != null) {
+		    	found(type, entity);
+		    } else if (type.equals("cat")) {
+		    	if (!player.hasPet()) {
+		    		Cat cat = new Cat(player);
+		    		found(type, cat);
+		    	} else {
+		    		error("You already own a pet!");
+		    	}
+			} else if (type.equals("baby dragon")) {
+		    	if (!player.hasPet()) {
+		    		BabyDragon dragon = new BabyDragon(player);
+					found(type, dragon);
+		    	} else {
+		    		error("You already own a pet!");
+		    	}
+			} else if (type.equals("sheep")) {
+		    	if (!player.hasSheep()) {
+		    		Sheep sheep = new Sheep(player);
+		    		found(type, sheep);
+		    	} else {
+		    		error("You already own a sheep!");
+		    	}
+			}
+	    }
+	};
+
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		try {
 			if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
-				StendhalRPZone zone = player.getZone();
-				int x = action.getInt(X);
-				int y = action.getInt(Y);
+				final StendhalRPZone zone = player.getZone();
+				final int x = action.getInt(X);
+				final int y = action.getInt(Y);
 
 				if (!zone.collides(player, x, y)) {
-					EntityManager manager = SingletonRepository.getEntityManager();
-					String type = action.get(_CREATURE);
+					EntityFactory factory = new EntityFactory(player) {
+						void found(String type, Entity entity) {
+							StendhalRPAction.placeat(zone, entity, x, y);
 
-					Entity entity = manager.getEntity(type);
+    						if (manager.isCreature(type)) {
+    							entity = new RaidCreature((Creature) entity);
+    						}
 
-					// see it the name was in plural
-					if (entity == null) {
-						type = Grammar.singular(type);
+    						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
 
-						entity = manager.getEntity(type);
+    						// We found what we are searching for.
+    						searching = false;
+						}
+
+						void error(String message) {
+							player.sendPrivateText(message);
+
+							// Stop searching because of an error.
+							searching = false;
+						}
+					};
+
+					String typeName = action.get(_CREATURE);
+					String type = typeName;
+
+					factory.createEntity(type);
+
+					if (factory.isSearching()) {
+    					// see it the name was in plural
+						type = Grammar.singular(typeName);
+
+						factory.createEntity(type);
+
+						// Did we still not find any matching class?
+						if (factory.isSearching()) {
+    						logger.info("onSummon: Entity \"" + type + "\" not found.");
+    						factory.error("onSummon: Entity \"" + type + "\" not found.");
+						}
 					}
-
-					if (entity == null) {
-						logger.info("onSummon: Entity \"" + type + "\" not found.");
-						player.sendPrivateText("onSummon: Entity \"" + type + "\" not found.");
-						return;
-					} else if (manager.isCreature(type)) {
-						entity = new RaidCreature((Creature) entity);
-					}
-
-					SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
-
-					StendhalRPAction.placeat(zone, entity, x, y);
 				}
 			}
 		} catch (NumberFormatException e) {
