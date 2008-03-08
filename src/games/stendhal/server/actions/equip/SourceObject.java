@@ -86,7 +86,7 @@ class SourceObject extends MoveableObject {
 		}
 		RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
 		if (!baseSlot.has(baseItemId)) {
-			logger.warn("Base item(" + parent + ") doesn't containt item(" + baseItemId + ") on given slot(" + slotName
+			logger.warn("Base item(" + parent + ") doesn't contain item(" + baseItemId + ") on given slot(" + slotName
 					+ ")");
 			player.sendPrivateText("There is no such item in the " + slotName + " of "
 					+ parent.getDescriptionName(true));
@@ -96,7 +96,7 @@ class SourceObject extends MoveableObject {
 		Entity entity = (Entity) baseSlot.get(baseItemId);
 		if (!(entity instanceof Item)) {
 			player.sendPrivateText("Oh, that " + entity.getDescriptionName(true)
-					+ " is not an item and can therefor not be equipped");
+					+ " is not an item and therefore cannot be equipped");
 			return invalidSource;
 		}
 		source = new SourceObject(player, parent, slotName, (Item) entity);
