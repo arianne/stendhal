@@ -9,6 +9,7 @@ import games.stendhal.server.actions.chat.AwayAction;
 import games.stendhal.server.actions.chat.ChatAction;
 import games.stendhal.server.actions.equip.DisplaceAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
+import games.stendhal.server.actions.equip.WrapAction;
 import games.stendhal.server.actions.guild.CreateGuildAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
@@ -72,6 +73,7 @@ public class CommandCenter {
 		StopAction.register();
 		UseAction.register();
 		CreateGuildAction.register();
+		WrapAction.register();
 	}
 
 	public static boolean execute(RPObject caster, RPAction action) {
