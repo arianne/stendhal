@@ -28,8 +28,8 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 
 	private static final int MAX_NUMBER_OF_FRUITS = 5;
 
-	/** How long it takes to grow one berry. */
-	private static final int GROWING_RATE = 2000;
+	/** How long it takes to grow one berry. originally 2000 tt */
+	private static final int GROWING_RATE = 1200;
 
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");

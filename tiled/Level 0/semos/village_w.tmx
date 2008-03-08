@@ -120,7 +120,7 @@
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2auU7EMBCGkwfaSNQcDcdTQJGGuwAkRMlT0IA4F0QRKp6QsTYWI8uOr7E9yeaTRrsbeTP+PeMzqaqZmRVdXVXfa2aq/qPeStEU9NsV1p6ChUfZrtfOpQ1y16Mj8kdV79C+aOpDtlyI1X+kGT90PhvD99L46A9tY85Q5f8Y0MUph/5S+eHSz6Yef1sb2PRzmRd1UOSVi37ObRDL1PPfxpj1U+RlrH51fAlZ24TqoOibFPG3re1MbaJbO+YmRn/omlaWLa1dkLP/N8gEpbULfPS71HcoDzjteyS++lPFrFTb5M5/blDpDxn/XEk5TsToD62XzxyZmlD9HMZuCsa8/qXIGW76n+qVSVL1C7l31unHa5TcqPpTY9LPFeq6ccv/3Kj6c8d+GfEccxkYO3xuVjr+Mf4p6i7uoZ4jNson5hzKX4BdEp2b6jTYzjVtY7cPpjbE9zmGMmf16vME7BHstL/mgtw3tf3YjvdR3OKvy4UW1fkK7BrsBuzW4B/rw2c8qsVqkP+NGbNc/S+Q4Ws6XHJftoGvfnzvlPnvg06vT//32UuY9DcePlX/KptwbQtsG2zHMZbqb1tdhuIfM3b6orvHLlzbA9sH2wi4p6pfN2eE5j9Gjb+JwwEflPN/W/+bxDZnuPhvDWVc5i4bKfSr4DlDIucO1b/vu0u5nn+kOu/4jFj/fkWMHQKhXV1DDz2ryclQDv8S1EXkGUXu+84VnPCJvwk8VxxMQH8OnsHnS+/3p2CbCf3c81eXjxT9XyD058xfPLe9gq+3wu1d8uzjHXx/BK77qSh99hP6/papLVLu/Ti8qzBEyBlACv0PmjK6a1PkbuQ6Y/Jb/Pd+jfXPpIP7Gi01Y95jzMzMzMzw4Q9FoDV7AEAAAA==
+   H4sIAAAAAAAAAO2ayU7EMAyG2weaSpxZLixPAYde2A+AhDjyFFxArAPiUE48IY6mEZGVNJuTuJ1+kjVQder8seMsnaqamVnR1VX1vWaG9R/1VoqmoN+usPYULDzu7XrtXPogdzs6In9U7Q4di6YxZMuFWP1Hmvqh89kY/i6Nj/7QPuYMVf6PAV2ccugvlR8u42zq8bf1gU0/l3lRB0Veuejn3AexTD3/bYxZP0VexurH9SVkbROqg2JsUsTftrYz9Ylu7ZibGP2ha1p5b2ntgpzjv1FMUFq7wEe/S3uH8oDTvkfiqz9VzEr1Te785waV/pD650rKOhGjP7RdPnNkakL1c6jdFIx5/UuRM9z0P9Urk6QaF3LvrNOvrlFyg/WnxqSfK9Rt45b/ucH6c8d+GfEecxkYO/XcrHT8Y/xTtF08A58jNuhT5RzuvwC7JDo31WmwnWvaarcPpj5Un3MM95zVq88TsEew0/6aC3Lf1Pa1Xd1HcYu/Lhdapc1XYNdgN2C3Bv+qPvWMB1usBvndmJrl6n+hmHpNh0vuyz7w1a8+O2X++6DT6zP+ffYSJv2Nh0/sH7MJ17bAtsF2HGOJ/7e1ZSj+MbXTF90zduHaHtg+2EbAM7F+3ZwRmv8qOP4mDgd8UM7/bf1vEtuc4eK/NdzjMnfZSKEfo84ZEjl34N+f4Zpqqi0yd3K9/0h13vHpsd7F9hVROwRCO15DD72ryclQDv8StEXkGUXu+84VnPCJvwl1rjiYgP4cPIPPl97vT8E+E/q5568uHynGv0Doz5m/6tz2Cr7eCvd3ybOPd/D9Ebjup6L02U/o77dMfZFy78fhtwpDhJwBpND/oLlHd22K3I1cZ0x+i+/er7H+mXRwX6OlZsx7jJmZmZkZPvwBM8//eABAAAA=
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">
@@ -135,12 +135,12 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XQQ6EIAyFYef+53EziS48mXFhXA0owrSv/b8DmL6CBaYJwGn+WFcAa172QI86NoMsvfrnZR3uOutVqxsAaphr9KBm1H3D4h4DHcd/qf5vqtf/Rubsh+z51USYN9DDntMQ4b4aIQMAtGIG4q2WO9sqsu++D+vs9W76d39a54DqO9HL3Cuts1VfR/bmSSaP+6p3TbXveZ+To9bIe+6S2pmhnO2XJVAmj3MHAFAW6RzKivP3YtGL7P3Pnh9lEfZHhAwAABu8teDdDkzNmz4AQAAA
+   H4sIAAAAAAAAAO3XMQ7CMAyF4XL/87AglYGTVR2qLuCkaYL9nP8bGZDtuHayLAAOz4d3BPAWpQd6xPFxyKVX/aKcQ60jXrW4AaCEuUYNSkbdNzzuMdCxf5fq36Z6/HfMnPtu9vzVZJg30EPPachwX82QAwC0YgbirpY721uk714X4+z1bvp3fVrngOo7Mcrcs87Zq64ja3Mlp4h91Tum0v9Fn5Ojzih63pbSzlDO7Ze1MidrX3z73WO/RJw7AABb7R5CXOzfk0ctZq//7PnDlqE/MuQAAPDBWwvRbfosPBIAQAAA
   </data>
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZWQ6DMAxE6f0P1ashVFVCiCRexluSkfgpqT3PBCfAcWxt/fT9rHe0+FfUyuyX/uxZauDtA5UPGcezBtpc1ftHVd8obf5oB7Ha/Lrz1UXhn7kGVmyUvXcGVeZHxMvAL/WAqKkHv2aMtaJzR/eEaP5ocTxk8IsWl3+2GszGw1UFfkuPmtgVajeSZu8xg2bhkCobf7X3n2itzu+tzT8+z/meKMmP+pYpza/1Z5nf6r/UGFJ+qreK/M/fKTla/8vOfx/3HNu79m+8rTpKZcmvubc5c4Kb4z4+C//bOGrP4Nagxy+pB8U7N4Z2DfPonb0Y2vXNaw1H1AlRw17s0ZqRtf9ZC9X/vfZfozmkWSs0h5SH69uKXyJULtT9g+hlEXr2JWmMlfmleRH9D+Wj2vVD3v9R/BnqnWHuccZbeKioiPUvw3xFy4JfuyfzFtJb1HOWRqi1eDQ/EM+6Vj0Qtf5R+KXvArLzU/1Ln+ks9yjaZ1CqN2kcjz2aBz/Xg7ci2VseVtSuwa7BJWRfrlpLC/4TffZnEQBAAAA=
+   H4sIAAAAAAAAAO2ZWQ7DIAxE0/sfqleLoqpSFAXwMt6AkfLTEnueSzCkx7G19dP3s97V4l9RK7Nf+rNnqYG3D1Q+ZBzPGmhzVV8/qvpGafNHO4jV5td9X10U/plrYMVG2XtnUGV+RLwM/FIPiJp68GvGWCs6d/SaEM0fLY6HDH7R4vLPVoPZeLiqwG/pURO7Qu1G0uw9ZtAsHFJl46/2/hOt1fm9tfnH33P+T5TkR/2XKc2v9WeZ3+peagwpP9VbRf7n55Qcrfuy89/HPcf2fvs33lYdpbLk1zzbnDnBzXEfn4X/bRx1zeDWoMcvqQfFOzeGtod5rJ29GNr+5tXDEXVC1LAXe9Qzsq5/1qL2UYv5OYrPHaftFZpLysP1bcUvESoX6vlBzUVvPZ9BaYyV+aV577mjhOzFnkI+/1H8GeqdYe5xxlt4qKiI/pdhvqJlwa/dk3kL6S3qnKURqheP5gfirGu1BnqcpbTvArLzU/1Lz3SWexTtGZTqTRrHY4/mwc/14K1I9paHFbVrsGtwCbkuV62lBf8JAlj0bQBAAAA=
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0" opacity="0.31">
