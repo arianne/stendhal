@@ -22,6 +22,7 @@ import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
@@ -1738,25 +1739,42 @@ public class Player extends RPEntity {
 		return disconnected;
 	}
 
-
 	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
-		
-			List<RingOfLife> result = new LinkedList<RingOfLife>();
+		List<RingOfLife> result = new LinkedList<RingOfLife>();
 
-			for (String slotName : CARRYING_SLOTS) {
-				RPSlot slot = getSlot(slotName);
+		for (String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
 
-				for (RPObject object : slot) {
-					if (object instanceof RingOfLife) {
-						RingOfLife ring =  (RingOfLife) object;
-						if (!ring.isBroken()) {
-							result.add(ring);
-						}
-						
+			for (RPObject object : slot) {
+				if (object instanceof RingOfLife) {
+					RingOfLife ring =  (RingOfLife) object;
+					if (!ring.isBroken()) {
+						result.add(ring);
 					}
+					
 				}
 			}
-			return result;
-		
+		}
+
+		return result;
 	}
+
+	/**
+	 * Return a list of all animals associated to this player.
+	 *
+	 * @return
+	 */
+	public List<DomesticAnimal> getAnimals() {
+		List<DomesticAnimal> animals = new ArrayList<DomesticAnimal>();
+
+		if (hasPet()) {
+			animals.add(getPet());
+		}
+
+		if (hasSheep()) {
+			animals.add(getSheep());
+		}
+
+		return animals;
+    }
 }
