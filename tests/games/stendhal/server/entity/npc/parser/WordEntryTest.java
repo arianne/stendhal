@@ -12,7 +12,7 @@ import org.junit.Test;
 public class WordEntryTest {
 
 	@Test
-	public final void testNouns() {
+	public final void testWordEntry() {
 		WordEntry w = new WordEntry();
 		assertEquals("/", w.getNormalizedWithTypeString());
 
