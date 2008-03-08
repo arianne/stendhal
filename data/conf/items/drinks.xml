@@ -20,7 +20,7 @@
 
   <item name="wine">
     <type class="drink" subclass="wine" tileid="-1"/>
-    <description>You see a bottle of wine.  It will quench your thirst.</description>
+    <description>You see a glass of red wine.  It will quench your thirst.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="10"/>
       <frequency value="5"/>
@@ -255,7 +255,7 @@
 
   <item name="mega potion">
     <type class="drink" subclass="mega_potion" tileid="-1"/>
-    <description>You see a mega potion.  It strenghtens greatly.</description>
+    <description>You see a mega potion.  It strengthens greatly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="800"/>
       <frequency value="1"/>
