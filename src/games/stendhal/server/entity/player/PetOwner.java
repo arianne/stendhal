@@ -134,7 +134,6 @@ class PetOwner {
 			logger.error("removed pets attribute" + e);
 			return null;
 		}
-
 	}
 
 	public void destroy() {

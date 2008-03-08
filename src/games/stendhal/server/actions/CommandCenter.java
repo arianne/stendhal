@@ -74,6 +74,7 @@ public class CommandCenter {
 		UseAction.register();
 		CreateGuildAction.register();
 		WrapAction.register();
+		NameAction.register();
 	}
 
 	public static boolean execute(RPObject caster, RPAction action) {
