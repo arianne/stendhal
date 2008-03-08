@@ -14,7 +14,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * Test the UpdateConverter class (was previous UnderScoreConverter).
+ * Test the UpdateConverter class.
  *
  * @author Martin Fuchs
  */
@@ -23,22 +23,6 @@ public class UpdateConverterTest {
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
-	}
-
-	@Test
-	public void testUnderscoreConversion() {
-		assertEquals(null, UpdateConverter.transformItemName(null));
-		assertEquals("", UpdateConverter.transformItemName(""));
-		assertEquals(" ", UpdateConverter.transformItemName(" "));
-		assertEquals(" ", UpdateConverter.transformItemName("_"));
-		assertEquals("x ", UpdateConverter.transformItemName("x_"));
-		assertEquals(" x", UpdateConverter.transformItemName("_x"));
-		assertEquals("abc 1", UpdateConverter.transformItemName("abc_1"));
-		assertEquals("abc def", UpdateConverter.transformItemName("abc def"));
-		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc_def ghi"));
-		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc_def_ghi"));
-		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc def ghi"));
-		assertEquals("chicken", UpdateConverter.transformItemName("chicken"));
 	}
 
 	@Test

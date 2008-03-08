@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
@@ -56,7 +57,7 @@ public abstract class UpdateConverter {
 
     		// Remove underscore characters from old database item names - ConversationParser
     		// is now capable to work with space separated item names.
-    		name = transformItemName(name);
+    		name = ItemTools.itemNameToDisplayName(name);
 
     		// rename some additional items to fix grammar in release 0.66
     		idx = ITEM_NAMES_OLD_0_66.indexOf(name);
@@ -197,26 +198,6 @@ public abstract class UpdateConverter {
     		slot.remove(kills.getID());
     		slot.add(newKills);
 		}
-	}
-
-	/**
-	 * Replace underscores in the given String by spaces.
-	 * This is used to replace underscore characters in compound item and creature names
-	 * after loading data from the database.
-	 * 
-	 * @param name
-	 * @return transformed String if name contained an underscore,
-	 * 			or unchanged String object
-	 * 			or null if name was null
-	 */
-	public static String transformItemName(String name) {
-		if (name != null) {
-			if (name.indexOf('_') != -1) {
-				name = name.replace('_', ' ');
-			}
-		}
-
-		return name;
 	}
 
 	/**

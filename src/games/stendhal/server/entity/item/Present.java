@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.ItemTools;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
@@ -55,7 +56,8 @@ public class Present extends Box {
 
 		String itemName = getInfoString();
 		Item item = SingletonRepository.getEntityManager().getItem(itemName);
-		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));
+		player.sendPrivateText("Congratulations, you've got " +
+				Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)));
 
 		player.equip(item, true);
 		player.notifyWorldAboutChanges();

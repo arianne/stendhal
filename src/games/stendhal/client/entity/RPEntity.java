@@ -19,6 +19,7 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 
@@ -314,9 +315,9 @@ public abstract class RPEntity extends ActiveEntity {
 			return name;
 		} else if (clazz != null) {
 			// replace underscores in clazz and type without calling the function UpdateConverter.transformItemName() located in server code
-			return clazz.replace('_', ' ');
+			return ItemTools.itemNameToDisplayName(clazz);
 		} else if (type != null) {
-			return type.replace('_', ' ');
+			return ItemTools.itemNameToDisplayName(type);
 		} else {
 			return null;
 		}

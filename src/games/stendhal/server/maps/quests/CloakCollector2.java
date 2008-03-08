@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -14,7 +15,6 @@ import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -173,7 +173,7 @@ public class CloakCollector2 extends AbstractQuest {
 						String itemName = sentence.getTriggerExpression().getNormalized();
 						Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
-									+ (item != null ? UpdateConverter.transformItemName(item.getItemSubclass()) : itemName)
+									+ (item != null ? ItemTools.itemNameToDisplayName(item.getItemSubclass()) : itemName)
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
 					}
 

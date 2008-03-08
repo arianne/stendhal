@@ -13,9 +13,9 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -218,11 +218,11 @@ public abstract class Entity extends RPObject {
 	 */
 	public String getTitle() {
 		if (has("subclass")) {
-			return UpdateConverter.transformItemName(get("subclass"));
+			return ItemTools.itemNameToDisplayName(get("subclass"));
 		} else if (has("class")) {
-			return UpdateConverter.transformItemName(get("class"));
+			return ItemTools.itemNameToDisplayName(get("class"));
 		} else if (has("type")) {
-			return UpdateConverter.transformItemName(get("type"));
+			return ItemTools.itemNameToDisplayName(get("type"));
 		} else {
 			return null;
 		}
@@ -610,13 +610,13 @@ public abstract class Entity extends RPObject {
 	 */
 	public String getDescriptionName(boolean definite) {
 		if (has("subclass")) {
-			return Grammar.article_noun(UpdateConverter.transformItemName(get("subclass")), definite);
+			return Grammar.article_noun(ItemTools.itemNameToDisplayName(get("subclass")), definite);
 		} else if (has("class")) {
-			return Grammar.article_noun(UpdateConverter.transformItemName(get("class")), definite);
+			return Grammar.article_noun(ItemTools.itemNameToDisplayName(get("class")), definite);
 		} else {
 			String ret = "something indescribably strange";
 			if (has("type")) {
-				ret += " of type " + UpdateConverter.transformItemName(get("type"));
+				ret += " of type " + ItemTools.itemNameToDisplayName(get("type"));
 			}
 			if (has("id")) {
 				ret += " with id " + get("id");

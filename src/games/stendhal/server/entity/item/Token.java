@@ -70,6 +70,7 @@ public class Token extends Item {
 	@Override
 	public void onPutOnGround(Player player) {
 		super.onPutOnGround(player);
+
 		if ((player != null) && (tokenMoveListener != null)) {
 			tokenMoveListener.onTokenMoved(player);
 		}
