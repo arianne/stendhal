@@ -1,4 +1,4 @@
-# @Version 18
+# @Version 25
 #
 # Word list for the Stendhal conversation parser
 #
@@ -18,6 +18,7 @@
 #  VER-GER		verb in gerund form
 #  VER-CON		verb in conditional form
 #  VER-NEG		verb in negated form
+#  VER-PAS		verb in past form
 #
 #  OBJ			object
 #  OBJ-AMO		amount
@@ -84,14 +85,14 @@ convert	VER
 could	VER-CON	=can
 cya	VER
 delete	VER
-did	VER	=do
+did	VER-PAS	=do
 disembark	VER
 display	VER
 do	VER
 does	VER	=do
 doesn't	VER-NEG	=do
 don't	VER-NEG	=do
-done	VER	=do
+done	VER-PAS	=do
 dressed	VER
 drive	VER
 drop	VER
@@ -118,6 +119,7 @@ get	VER
 give	VER
 go	VER
 gone	VER	=go
+goodbye	VER
 greetings	VER
 grow	VER
 had	VER	=have
@@ -156,6 +158,7 @@ married	VER	=marry
 marry	VER
 may	VER-CON
 mean	VER
+mill	VER
 mix	VER
 move	VER
 need	VER
@@ -183,11 +186,13 @@ rofl	VER
 run	VER
 saw	VER	=see
 say	VER
+see	VER
 seem	VER
 seen	VER	=see
 sell	VER
 send	VER
 sew	VER
+shall	VER
 shoot	VER
 should	VER-CON	=shall
 shout	VER
@@ -230,6 +235,7 @@ work	VER
 worry	VER
 would	VER-CON	=will
 wouldn't	VER-CON-NEG	=won't
+wrap	VER
 yay	VER	=done
 yep	VER
 yes	VER
@@ -263,10 +269,12 @@ basement	OBJ	basements
 basket	OBJ	baskets
 battle	OBJ	battles
 bean	OBJ-FOO	beans
+beaver	OBJ-ANI	beavers
 beer	OBJ-FLU
 bicycle	OBJ	bicycles
 bike	OBJ	bikes
 blackjack	OBJ	blackjacks
+blade	OBJ	blades
 blood	OBJ	bloods
 board	OBJ	boards
 body	OBJ	bodies
@@ -286,6 +294,7 @@ bronze	OBJ	bronzes
 buckler	OBJ	bucklers
 bug	OBJ	bugs
 building	OBJ	buildings
+bull	OBJ-ANI	bulls
 bureau	OBJ	bureaux
 bus	OBJ	bus
 bush	OBJ	bushes
@@ -331,6 +340,7 @@ cod	OBJ-FOO	cods
 code	OBJ	codes
 coffee	OBJ-FLU	coffees
 coffin	OBJ	coffins
+coin	OBJ	=money	coins
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
@@ -346,6 +356,7 @@ cost	OBJ	costs
 costume	OBJ	costumes
 coupon	OBJ	coupons
 courgette	OBJ-FOO	courgettes
+cow	OBJ-ANI	cows
 cream	OBJ	creams
 creature	OBJ	creatures
 crossbow	OBJ	crossbows
@@ -429,6 +440,7 @@ gold	OBJ	golds
 gown	OBJ	gowns
 gpl	OBJ	gpls
 grain	OBJ-FOO	grains
+grass	OBJ-ANI	grasses
 grobble	OBJ	grobbles
 group	OBJ	groups
 hair	OBJ	hairs
@@ -446,6 +458,7 @@ hell	OBJ	hells
 helm	OBJ	helms
 helmet	OBJ	helmets
 help	OBJ	helps
+hen	OBJ-ANI	hens
 herb	OBJ	herbs
 hint	OBJ	hints
 history	OBJ	histories
@@ -469,6 +482,7 @@ it	OBJ-PRO	its
 item	OBJ	items
 jail	OBJ	jails
 job	OBJ	jobs
+juice	OBJ-FLU	juices
 kalavan	OBJ-NAM	kalavans
 kanmararn	OBJ	kanmararns
 karma	OBJ	karmas
@@ -507,7 +521,6 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
-mill	VER
 mine	OBJ-PRO	mines
 minute	OBJ	minutes
 mirror	OBJ	mirrors
@@ -552,6 +565,7 @@ path	OBJ	paths
 perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
+piglet	OBJ-ANI	piglets
 pina	OBJ	pinas
 pinacolad	OBJ-FLU	=pinacolada	pinacoladas
 pinacolada	OBJ-FLU	pinacoladas
@@ -579,8 +593,10 @@ product	OBJ	products
 quest	OBJ	quests
 question	OBJ	questions
 rainbow	OBJ	rainbows
+ram	OBJ-ANI	rams
 ranch	OBJ	ranches
 rate	OBJ	rates
+reputation	OBJ	reputations
 request	OBJ	requests
 restaurant	OBJ	restaurants
 reward	OBJ	rewards
@@ -664,11 +680,9 @@ tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
 text	OBJ	texts
-that	OBJ	=this	this
-these	OBJ-PRO	theses
-this	OBJ-PRO	this
+that	OBJ-PRO	=this	those
+this	OBJ-PRO	these
 thorn	OBJ	thorns
-those	OBJ-PRO	thoses
 time	OBJ	times
 toadstool	OBJ	toadstools
 token	OBJ	tokens
@@ -746,6 +760,7 @@ bat	SUB-ANI	bats
 bear	SUB-ANI	bears
 beholder	SUB	beholders
 ben	SUB-NAM
+bishop	SUB
 blacksmith	SUB
 blader	SUB
 blurble	SUB
@@ -887,6 +902,7 @@ orc	SUB	orcs
 overlord	SUB
 panda	SUB-ANI
 parrot	SUB-ANI
+pawn	SUB
 peasant	SUB
 penguin	SUB-ANI	penguins
 people	SUB
@@ -1136,9 +1152,9 @@ fifteen	NUM	15
 fifty	NUM	50
 first	NUM	1
 five	NUM	5
+forty	NUM	40
 four	NUM	4
 fourteen	NUM	14
-fourty	NUM	40
 hundred	NUM	100
 million	NUM	1000000
 nine	NUM	9
@@ -1204,6 +1220,7 @@ soon	IGN
 the	IGN
 though	IGN
 to	IGN
+very	IGN
 whatever	IGN
 while	IGN
 yeah	IGN

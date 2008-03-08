@@ -8,14 +8,12 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * a present which can be unwrapped.
+ * A present which can be unwrapped.
  * 
  * @author kymara
  */
 public class Present extends Box {
 
-	// TODO: Make these configurable
-	// for presents
 	private static final String[] ITEMS = { "greater potion", "pie",
 			"sandwich", "carrot", "cherry", "blue elf cloak", "summon scroll" };
 
@@ -30,6 +28,15 @@ public class Present extends Box {
 	public Present(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+
+		setContent(ITEMS[Rand.rand(ITEMS.length)]);
+	}
+
+	/**
+	 * Sets content.
+	 */
+	public void setContent(String type) {
+		setInfoString(type);
 	}
 
 	/**
@@ -45,13 +52,14 @@ public class Present extends Box {
 	@Override
 	protected boolean useMe(Player player) {
 		this.removeOne();
-		String itemName = ITEMS[Rand.rand(ITEMS.length)];
-		Item item = SingletonRepository.getEntityManager().getItem(
-				itemName);
-		player.sendPrivateText("Congratulations, you've got "
-				+ Grammar.a_noun(itemName));
+
+		String itemName = getInfoString();
+		Item item = SingletonRepository.getEntityManager().getItem(itemName);
+		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));
+
 		player.equip(item, true);
 		player.notifyWorldAboutChanges();
+
 		return true;
 	}
 

@@ -218,7 +218,7 @@ public class SentenceTest {
 
 		sentence = ConversationParser.parse("they have very good pizza");
 		assertFalse(sentence.hasError());
-		assertEquals("they/SUB-PRO-PLU have/VER very/ good pizza/OBJ-FOO", sentence.toString());
+		assertEquals("they/SUB-PRO-PLU have/VER good pizza/OBJ-FOO", sentence.toString());
 	}
 
 }
