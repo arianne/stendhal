@@ -36,7 +36,7 @@ class SummonAtAction implements SlashAction {
     		try {
     			amount = Integer.parseInt(params[2]);
     		} catch (NumberFormatException ex) {
-    			StendhalUI.get().addEventLine("Invalid amount");
+    			StendhalUI.get().addEventLine("Invalid amount: " + params[2]);
     			return true;
     		}
 

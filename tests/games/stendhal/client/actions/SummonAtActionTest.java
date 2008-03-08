@@ -22,7 +22,7 @@ public class SummonAtActionTest {
 
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
-		assertEquals("Invalid amount", clientUI.getEventBuffer());
+		assertEquals("Invalid amount: 5x", clientUI.getEventBuffer());
 	}
 
 	@Test
