@@ -2,6 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.server.actions.WellKnownActionConstants.X;
 import static games.stendhal.server.actions.WellKnownActionConstants.Y;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,12 +21,10 @@ public class SummonAction extends AdministrationAction {
 
 	public static void register() {
 		CommandCenter.register(_SUMMON, new SummonAction(), 800);
-
 	}
 
 	@Override
 	public void perform(Player player, RPAction action) {
-
 		try {
 			if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
 				StendhalRPZone zone = player.getZone();
@@ -37,6 +36,13 @@ public class SummonAction extends AdministrationAction {
 					String type = action.get(_CREATURE);
 
 					Entity entity = manager.getEntity(type);
+
+					// see it the name was in plural
+					if (entity == null) {
+						type = Grammar.singular(type);
+
+						entity = manager.getEntity(type);
+					}
 
 					if (entity == null) {
 						logger.info("onSummon: Entity \"" + type + "\" not found.");
