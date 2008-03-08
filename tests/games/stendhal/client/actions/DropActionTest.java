@@ -76,7 +76,7 @@ public class DropActionTest {
 
 		// issue "/drop 85x money"
 		assertTrue(action.execute(new String[]{"85x"}, "money"));
-		assertEquals("Invalid quantity", clientUI.getEventBuffer());
+		assertEquals("Invalid quantity: 85x", clientUI.getEventBuffer());
 	}
 
 	@Test

@@ -32,7 +32,7 @@ class DropAction implements SlashAction {
     		try {
     			quantity = Integer.parseInt(params[0]);
     		} catch (NumberFormatException ex) {
-    			StendhalUI.get().addEventLine("Invalid quantity");
+    			StendhalUI.get().addEventLine("Invalid quantity: " + params[0]);
     			return true;
     		}
 
