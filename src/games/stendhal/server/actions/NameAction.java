@@ -43,14 +43,14 @@ public class NameAction implements ActionListener {
     			for(DomesticAnimal animal : animals) {
     				if (animal != null) {
             			if (animal.getTitle().equalsIgnoreCase(curName)) {
-            				String oldName = animal.getName();
+            				String oldName = animal.getTitle();
 
             				// remove quotes, if present
             				if (newName.charAt(0)=='\'' && newName.charAt(newName.length()-1)=='\'') {
             					newName = newName.substring(1, newName.length()-1);
             				}
 
-            				animal.setName(newName);
+            				animal.setTitle(newName);
 
                 			if (oldName != null) {
                 				player.sendPrivateText("You changed the name of '" + oldName + "' to '" + newName + "'");
