@@ -145,8 +145,7 @@ public abstract class Pet extends DomesticAnimal {
 			if (owner.hasPet()) {
 				owner.removePet(this);
 			} else {
-				logger.warn("INCOHERENCE: Pet " + this + " isn't owned by "
-						+ owner);
+				logger.warn("INCOHERENCE: Pet " + this + " isn't owned by " + owner);
 			}
 		}
 	}

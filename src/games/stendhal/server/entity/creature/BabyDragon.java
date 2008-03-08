@@ -81,13 +81,19 @@ public class BabyDragon extends Pet {
 	}
 
 	/**
-	 * Creates a new baby dragon that is owned by a player.
+	 * Creates a new baby dragon that may be owned by a player.
 	 */
 	public BabyDragon(Player owner) {
 		super(owner);
 		setUp();
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
+
+		if (owner != null) {
+			// add pet to zone and create RPID to be used in setPet()
+			owner.getZone().add(this);
+			owner.setPet(this);
+		}
 
 		update();
 	}

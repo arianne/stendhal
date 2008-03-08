@@ -76,9 +76,6 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
 					       	babydragon.setPosition(engine.getX(), engine.getY() + 1);
 
-					       	StendhalRPZone zone = engine.getZone();
-					       	zone.add(babydragon);
-
 					       	player.setPet(babydragon);
     						// clear the quest slot completely when it's not
     						// being used to store egg hatching times

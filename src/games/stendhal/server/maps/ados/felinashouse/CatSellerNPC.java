@@ -71,9 +71,6 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 							cat.setPosition(seller.getX(), seller.getY() + 1);
 
-							StendhalRPZone zone = seller.getZone();
-							zone.add(cat);
-
 							player.setPet(cat);
 							player.notifyWorldAboutChanges();
 
