@@ -159,6 +159,5 @@ public class ArmorForDagobertTest {
 		assertNull(quest.name);
 		quest.init("bla");
 		assertEquals("bla", quest.name);
-
 	}
 }
