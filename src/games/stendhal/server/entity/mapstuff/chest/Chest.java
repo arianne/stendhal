@@ -74,7 +74,6 @@ public class Chest extends Entity implements UseListener {
 		RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
-
 	
 	
 	//
@@ -164,6 +163,7 @@ public class Chest extends Entity implements UseListener {
 			notifyWorldAboutChanges();
 			return true;
 		}
+
 		return false;
 	}
 
