@@ -30,8 +30,9 @@ import java.util.List;
  * <li> Anna gives you a reward
  * </ul>
  * REWARD:<ul>
- * <li> ? some pies?
+ * <li> 3 pies
  * <li> 100 XP
+ * <li> 10 Karma
  * </ul>
  * REPETITIONS: <ul><li> None.</ul>
  */
@@ -141,7 +142,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public String respondToItemBrought() {
-		return "Thank you very much! What else did you bring";
+		return "Thank you very much! What else did you bring?";
 	}
 
 	public String respondToLastItemBrought() {
