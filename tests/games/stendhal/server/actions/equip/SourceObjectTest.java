@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import static org.junit.Assert.*;
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;

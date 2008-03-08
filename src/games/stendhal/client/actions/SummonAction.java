@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
+import games.stendhal.common.Grammar;
 import games.stendhal.common.NameBuilder;
 import marauroa.common.game.RPAction;
 
@@ -51,8 +52,10 @@ class SummonAction implements SlashAction {
 			}
 		}
 
+		String singularName = Grammar.singular(name.toString());
+
 		summon.put("type", "summon");
-		summon.put("creature", name.toString());
+		summon.put("creature", singularName.toString());
 
 		if (x != null) {
 			if (y != null) {

@@ -4,6 +4,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Constants;
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.RPAction;
 
@@ -54,13 +55,13 @@ class DropAction implements SlashAction {
 			if (itemID != -1) {
 				RPAction drop = new RPAction();
 
-				drop.put("type", "drop");
-				drop.put("baseobject", User.get().getObjectID());
-				drop.put("baseslot", slotName);
-				drop.put("x", (int) User.get().getX());
-				drop.put("y", (int) User.get().getY());
-				drop.put("quantity", quantity);
-				drop.put("baseitem", itemID);
+				drop.put(EquipActionConsts.TYPE, "drop");
+				drop.put(EquipActionConsts.BASE_OBJECT, User.get().getObjectID());
+				drop.put(EquipActionConsts.BASE_SLOT, slotName);
+				drop.put(EquipActionConsts.GROUND_X, (int) User.get().getX());
+				drop.put(EquipActionConsts.GROUND_Y, (int) User.get().getY());
+				drop.put(EquipActionConsts.QUANTITY, quantity);
+				drop.put(EquipActionConsts.BASE_ITEM, itemID);
 
 				StendhalClient.get().send(drop);
 				return true;

@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;

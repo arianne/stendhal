@@ -51,6 +51,7 @@ public class SlashActionRepository {
 		actions.put("tell", msg);
 		actions.put("where", new WhereAction());
 		actions.put("who", new WhoAction());
+//		actions.put("wrap", new WrapAction());
 	}
 
 	/**

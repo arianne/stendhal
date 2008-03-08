@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
