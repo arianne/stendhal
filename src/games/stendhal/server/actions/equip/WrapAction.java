@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -40,6 +41,8 @@ public class WrapAction implements ActionListener {
 			itemName += args;
 		}
 
+		itemName = Grammar.singular(itemName);
+
 		Item item = player.getFirstEquipped(itemName);
 
 		if (item != null) {
@@ -55,6 +58,8 @@ public class WrapAction implements ActionListener {
     	    SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "wrap", itemName, slot);
 
     	    player.updateItemAtkDef();
+	    } else {
+			player.sendPrivateText("You don't have any " + itemName);
 	    }
     }
 
