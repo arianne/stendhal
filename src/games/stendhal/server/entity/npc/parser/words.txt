@@ -1,4 +1,4 @@
-# @Version 24
+# @Version 25
 #
 # Word list for the Stendhal conversation parser
 #
@@ -235,6 +235,7 @@ work	VER
 worry	VER
 would	VER-CON	=will
 wouldn't	VER-CON-NEG	=won't
+wrap	VER
 yay	VER	=done
 yep	VER
 yes	VER
