@@ -45,7 +45,7 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBogAIm2AeJQEvQSUmtPlouIt8uGAN+CRDtA7g1A41MTIJsXgGYXPQB6+FAKqBE+6OFNTPqjpj9CGfD7g5w4omW6oTcgJj7omY4JuScQiK1I0KsJxFpQrE2Bu6gNAFHNNBBABgAA
+   H4sIAAAAAAAAAGNgGBogAIm2AeJQEvQSUmtPlovIswsbsCBRPci9AWh8agJk8wLQ7BqKgBrhgx7e5MQzJSCUAb8/yIkjWqYbegNi4oOe6ZiQewKB2IoEvZpArAXF2hS4i9oAAMF1eYJABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
