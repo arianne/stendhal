@@ -1,8 +1,8 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
-import games.stendhal.common.Grammar;
 import games.stendhal.common.NameBuilder;
 import marauroa.common.game.RPAction;
 
@@ -29,33 +29,36 @@ class SummonAction implements SlashAction {
 	public boolean execute(String[] params, String remainder) {
 		RPAction summon = new RPAction();
 
-		NameBuilder name = new NameBuilder();
+		NameBuilder nameBuilder = new NameBuilder();
 		Integer x = null, y = null;
 
 		for (int i = 0; i < params.length; ++i) {
 			String str = params[i];
 
 			if (str != null) {
-    			try {
-    				Integer num = new Integer(str);
+				if (str.matches("[0-9].*")) {
+        			try {
+        				Integer num = new Integer(str);
 
-    				if (x == null) {
-    					x = num;
-    				} else if (y == null) {
-    					y = num;
-    				} else {
-    					name.append(str);
-    				}
-    			} catch (NumberFormatException e) {
-    				name.append(str);
+        				if (x == null) {
+        					x = num;
+        				} else if (y == null) {
+        					y = num;
+        				} else {
+        					nameBuilder.append(str);
+        				}
+        			} catch (NumberFormatException e) {
+        				StendhalUI.get().addEventLine("Invalid number: " + str);
+        				return true;
+        			}
+    			} else {
+    				nameBuilder.append(str);
     			}
 			}
 		}
 
-		String singularName = Grammar.singular(name.toString());
-
 		summon.put("type", "summon");
-		summon.put("creature", singularName.toString());
+		summon.put("creature", nameBuilder.toString());
 
 		if (x != null) {
 			if (y != null) {
