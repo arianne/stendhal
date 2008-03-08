@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui;
 
-//
-//
-
 import games.stendhal.client.StendhalClient;
 import games.stendhal.common.NotificationType;
 
@@ -42,6 +39,7 @@ import marauroa.common.game.RPAction;
  */
 @SuppressWarnings("serial")
 public class KHtmlEdit extends KTextEdit {
+
 	//
 	// KHtmlEdit
 	//
@@ -169,7 +167,20 @@ public class KHtmlEdit extends KTextEdit {
 	 * @return HTML encoded text.
 	 */
 	protected String translateToHTML(final String text) {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
+
+//TODO use common utility class FormatTextParser instead of StringCharacterIterator
+//		try {
+//			new FormatTextParser() {
+//				public void normalText(String txt) throws BadLocationException {
+//				}
+//
+//				public void colorText(String txt) throws BadLocationException {
+//				}
+//			}.format(text);
+//		} catch (Exception ble) { // BadLocationException
+//			System.err.println("Couldn't insert initial text.");
+//		}
 
 		StringCharacterIterator ci = new StringCharacterIterator(text);
 		char ch = ci.current();
@@ -384,8 +395,6 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Configure notification types
 		 */
-
-
 		for (NotificationType type : NotificationType.values()) {
 			Color color = type.getColor();
 
