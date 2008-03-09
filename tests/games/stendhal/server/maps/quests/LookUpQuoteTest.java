@@ -119,10 +119,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("I think you made a mistake. Come back if you can tell me the correct quote.", pequodNpc.get("text"));
 
-		// 
-
+		// determine the correct answer
 		String quote = "";
-        
+
 		switch(fisherman.charAt(0)) {
         	case BULLY_FIRST_LETTER:
         		quote = "Clownfish are always good for a laugh.";

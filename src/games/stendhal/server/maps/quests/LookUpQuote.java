@@ -6,8 +6,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.ConversationContext;
+import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ import java.util.Map;
  */
 
 public class LookUpQuote extends AbstractQuest {
-	static final String QUEST_SLOT = "get_fishing_rod";
+	private static final String QUEST_SLOT = "get_fishing_rod";
 
 	private static Map<String, String> quotes = new HashMap<String, String>();
 	static {
@@ -150,10 +153,14 @@ public class LookUpQuote extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String name = player.getQuest(QUEST_SLOT);
 					String quote = quotes.get(name);
-					if (sentence.equalsNormalized(ConversationParser.parse(quote))) {
+
+					ConversationContext ctx = new ConvCtxForMatchingSource();
+					Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
+					Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
+
+					if (answer.matchesFull(expected)) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
-						Item fishingRod = SingletonRepository.getEntityManager()
-								.getItem("fishing rod");
+						Item fishingRod = SingletonRepository.getEntityManager().getItem("fishing rod");
 						fishingRod.setBoundTo(player.getName());
 						player.equip(fishingRod, true);
 						player.addXP(750);
