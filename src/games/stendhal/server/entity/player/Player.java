@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
+import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -1777,4 +1778,30 @@ public class Player extends RPEntity {
 
 		return animals;
     }
+
+	/**
+	 * Search for an animal with the given name or type.
+	 *
+	 * @param name
+	 * @return
+	 */
+	public DomesticAnimal searchAnimal(String name) {
+		List<DomesticAnimal> animals = getAnimals();
+
+		for(DomesticAnimal animal : animals) {
+			if (animal != null) {
+    			if (animal.getTitle().equalsIgnoreCase(name)) {
+    				return animal;
+    			}
+			}
+
+			String type = animal.get("type");
+
+			if (type != null && ItemTools.itemNameToDisplayName(type).equals(name)) {
+				return animal;
+			}
+		}
+
+		return null;
+	}
 }
