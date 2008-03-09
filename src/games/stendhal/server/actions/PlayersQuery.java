@@ -12,24 +12,24 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
+import games.stendhal.common.ItemTools;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
-import games.stendhal.server.entity.creature.Pet;
-import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.TreeSet;
 
 import marauroa.common.game.RPAction;
-import static games.stendhal.server.actions.WellKnownActionConstants.*;
 
 public class PlayersQuery implements ActionListener {
 
-	private static final String _SHEEP = "sheep";
 	private static final String _WHERE = "where";
 	private static final String _WHO = "who";
 
@@ -54,7 +54,6 @@ public class PlayersQuery implements ActionListener {
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 				public void execute(Player p) {
-
 					StringBuilder text = new StringBuilder(p.getTitle());
 
 					if (p.isGhost()) {
@@ -62,6 +61,7 @@ public class PlayersQuery implements ActionListener {
 					} else {
 						text.append("(");
 					}
+
 					text.append(p.getLevel());
 
 					text.append(") ");
@@ -104,33 +104,24 @@ public class PlayersQuery implements ActionListener {
 			rules.addGameEvent(player.getName(), _WHERE, whoName);
 
 			Player who = rules.getPlayer(whoName);
+			DomesticAnimal animal = player.searchAnimal(whoName, false);
+
 			if (who != null && !who.isGhost()) {
 				StendhalRPZone zone = who.getZone();
 
 				if (zone != null) {
-					player.sendPrivateText(who.getTitle() + " is in " + zone.getName() + " at (" + who.getX() + ","
-							+ who.getY() + ")");
+					player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
+							+ " at (" + who.getX() + "," + who.getY() + ")");
 				}
-			} else if (whoName.equals(_SHEEP)) {
-				Sheep sheep = player.getSheep();
+			}
 
-				if (sheep != null) {
-					player.sendPrivateText("Your sheep is at (" + sheep.getX() + "," + sheep.getY() + ")");
+			if (animal != null) {
+				player.sendPrivateText("Your " + ItemTools.itemNameToDisplayName(animal.get("type"))
+							+ " is at (" + animal.getX() + "," + animal.getY() + ")");
+			}
 
-				} else {
-					player.sendPrivateText("You currently have no sheep.");
-				}
-			} else if (whoName.equals("pet")) {
-				Pet pet = player.getPet();
-
-				if (pet != null) {
-					player.sendPrivateText("Your pet is at (" + pet.getX() + "," + pet.getY() + ")");
-
-				} else {
-					player.sendPrivateText("You currently have no pet.");
-				}
-			} else {
-				player.sendPrivateText("No player named \"" + whoName + "\" is currently logged in.");
+			if (who == null && animal == null) {
+				player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
 			}
 
 			player.notifyWorldAboutChanges();
