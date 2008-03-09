@@ -640,7 +640,11 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 				break;
 			}
 
-			if (!e1.sentenceMatchExpression(e2)) {
+			if (e2.getMatcher() != null) {
+				if (!e2.getMatcher().match(e1, e2)) {
+					return false;
+				}
+			} else if (!e1.sentenceMatchExpression(e2)) {
 				return false;
 			}
 		}
