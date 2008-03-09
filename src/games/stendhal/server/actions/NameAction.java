@@ -37,49 +37,66 @@ public class NameAction implements ActionListener {
 		if (animals.isEmpty()) {
     		player.sendPrivateText("You don't own any " + curName);
 		} else {
-			boolean found = false;
+			DomesticAnimal animal = null;
 
 			do {
-    			for(DomesticAnimal animal : animals) {
-    				if (animal != null) {
-            			if (animal.getTitle().equalsIgnoreCase(curName)) {
+				animal = searchAnimal(animals, curName);
+
+    			if (animal != null) {
+        			if (animal.getTitle().equalsIgnoreCase(curName)) {
+        				// remove quotes, if present
+        				if (newName.charAt(0)=='\'' && newName.charAt(newName.length()-1)=='\'') {
+        					newName = newName.substring(1, newName.length()-1);
+        				}
+
+        				newName = newName.trim();
+
+        				if (searchAnimal(animals, newName) != null) {
+        					player.sendPrivateText("You own already a pet named '" + newName + "'");
+        				} else if (newName.length() > 0) {
             				String oldName = animal.getTitle();
 
-            				// remove quotes, if present
-            				if (newName.charAt(0)=='\'' && newName.charAt(newName.length()-1)=='\'') {
-            					newName = newName.substring(1, newName.length()-1);
-            				}
-
-            				animal.setTitle(newName);
+        					animal.setTitle(newName);
 
                 			if (oldName != null) {
                 				player.sendPrivateText("You changed the name of '" + oldName + "' to '" + newName + "'");
                 			} else {
                 				player.sendPrivateText("Congratulations, your " + curName + " is now called '" + newName + "'.");
                 			}
+        				} else {
+        					player.sendPrivateText("Please don't use empty names.");
+        				}
+        			}
+    			} else {
+        			// see if we can move the word separator one space to the right to search for a pet name
+    				int idxSpace = newName.indexOf(' ');
 
-                			found = true;
-                			break;
-            		    }
-    				}
-    			}
-
-    			// see if we can move the word separator one space to the right to search for a pet name
-    			if (!found) {
-    				int idx = newName.indexOf(' ');
-    				if (idx == -1) {
+    				if (idxSpace != -1) {
+    					int idxLastSpace = newName.lastIndexOf(' ', idxSpace);
+    					curName += " " + newName.substring(0, idxSpace);
+    					newName = newName.substring(idxLastSpace + 1);
+    				} else {
+    					// There is no more other command interpretation.
     					break;
     				}
-
-    				curName += " " + newName.substring(0, idx);
-    				newName = newName.substring(idx + 1);
     			}
-			} while (!found);
+			} while (animal == null);
 
-			if (!found) {
+			if (animal == null) {
 				player.sendPrivateText("You don't own a pet called '" + curName + "'");
 		    }
         }
 	}
 
+	private static DomesticAnimal searchAnimal(List<DomesticAnimal> animals, String name) {
+		for(DomesticAnimal animal : animals) {
+			if (animal != null) {
+    			if (animal.getTitle().equalsIgnoreCase(name)) {
+    				return animal;
+    			}
+			}
+		}
+
+		return null;
+	}
 }
