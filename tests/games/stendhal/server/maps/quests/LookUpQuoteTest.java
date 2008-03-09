@@ -25,22 +25,16 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
-	private static final char TOMMY_FIRST_LETTER = 'T';
-
-	private static final char JACKY_FIRST_LETTER = 'J';
-
-	private static final char BULLY_FIRST_LETTER = 'B';
-	private static final char SODY_FIRST_LETTER = 'S';
+	private static final String QUEST_SLOT = "get_fishing_rod";
 	private static final String ZONE_NAME = "testzone";
 
-	static final String QUEST_SLOT = "get_fishing_rod";
-
+	private static final char TOMMY_FIRST_LETTER = 'T';
+	private static final char JACKY_FIRST_LETTER = 'J';
+	private static final char BULLY_FIRST_LETTER = 'B';
+	private static final char SODY_FIRST_LETTER = 'S';
 	private static final char HUMPREY_FIRST_LETTER = 'H';
-
 	private static final char MONTY_FIRST_LETTER = 'M';
-
 	private static final char CHARBY_FIRST_LETTER = 'C';
-
 	private static final char ALLY_FIRST_LETTER = 'A';
 
 	private static LookUpQuote quest;
