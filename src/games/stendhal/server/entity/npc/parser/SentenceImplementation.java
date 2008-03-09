@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Martin Fuchs
  */
-final class SentenceImplementation extends Sentence {
+final public class SentenceImplementation extends Sentence {
 
 	private static final Logger logger = Logger.getLogger(SentenceImplementation.class);
 
@@ -31,7 +31,7 @@ final class SentenceImplementation extends Sentence {
 	 *
 	 * @param ctx
 	 */
-	SentenceImplementation(Expression... exprs) {
+	public SentenceImplementation(Expression... exprs) {
 	    super(new ConversationContext());
 
 	    for(Expression e : exprs) {
