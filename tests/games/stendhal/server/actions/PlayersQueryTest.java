@@ -64,7 +64,6 @@ public class PlayersQueryTest {
 		assertFalse(whereWasExecuted);
 		al.onAction(player, action);
 		assertTrue(whereWasExecuted);
-
 	}
 
 	@Test
@@ -122,7 +121,7 @@ public class PlayersQueryTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("No player named \"NotThere\" is currently logged in."));
+		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"NotThere\" is currently logged in."));
 	}
 
 	@Test
@@ -139,7 +138,6 @@ public class PlayersQueryTest {
 
 		pq.onWhere(player, action);
 		assertThat(player.getPrivateTextString(), equalTo("bob is in zone at (0,0)"));
-
 	}
 
 	@Test
@@ -153,7 +151,7 @@ public class PlayersQueryTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("You currently have no sheep."));
+		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"sheep\" is currently logged in."));
 	}
 
 	@Test
@@ -167,33 +165,32 @@ public class PlayersQueryTest {
 		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("You currently have no pet."));
+		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"pet\" is currently logged in."));
 		final Pet testPet = new Pet() {
 			@Override
 			public ID getID() {
-
 				return new ID(new RPObject() {
 					@Override
 					public int getInt(String attribute) {
-
 						return 1;
 					}
 				});
 			}
 		};
+		testPet.put("type", "pet");
+
 		final Sheep testSheep = new Sheep() {
 			@Override
 			public ID getID() {
-
 				return new ID(new RPObject() {
 					@Override
 					public int getInt(String attribute) {
-
 						return 1;
 					}
 				});
 			}
 		};
+
 		player = new PrivateTextMockingTestPlayer(new RPObject(), "player") {
 			@Override
 			public Sheep getSheep() {
