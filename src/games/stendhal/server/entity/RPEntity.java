@@ -1799,13 +1799,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public String getTitle() {
 		if (has(ATTR_TITLE)) {
 			return get(ATTR_TITLE);
+		} else if (name != null) {
+			return name;
 		} else {
-
-			if (name != null) {
-				return name;
-			} else {
-				return super.getTitle();
-			}
+			return super.getTitle();
 		}
 	}
 

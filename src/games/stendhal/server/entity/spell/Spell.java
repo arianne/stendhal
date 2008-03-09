@@ -44,12 +44,12 @@ public class Spell extends PassiveEntity implements EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("spell");
 		entity.isA("entity");
-		entity.addAttribute("class", Type.STRING); // the spell class (other
-													// purposes, just to code
-													// old code for now)
-		entity.addAttribute(ATTR_NAME, Type.STRING); // name of spell (such
-														// as "heal")
 
+		// the spell class (other purposes, just to code old code for now)
+		entity.addAttribute("class", Type.STRING);
+ 
+		// name of spell (such as "heal")
+		entity.addAttribute(ATTR_NAME, Type.STRING);
 	}
 
 	/**

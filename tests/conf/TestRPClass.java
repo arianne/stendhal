@@ -16,7 +16,6 @@ public class TestRPClass {
 		assertFalse(sub.subclassOf(("super")));
 		sub.isA("super");
 		assertTrue(sub.subclassOf(("super")));
-
 	}
 
 }

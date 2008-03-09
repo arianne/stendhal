@@ -39,7 +39,6 @@ public class PlayerSheepManager {
 		}
 
 		player.put("sheep", sheep.getID().getObjectID());
-
 	}
 
 	/**
