@@ -73,21 +73,54 @@ public class AdosDeathmatch extends AbstractQuest {
 			@Override
 			protected void createDialog() {
 
-				// player is outside the fence
+				// player is outside the fence. after 'hi' use ConversationStates.INFORMATION_1 only.
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new NotCondition(new PlayerInAreaCondition(arena)),
 						ConversationStates.INFORMATION_1,
-						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join",
+						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join.",
 						null);
 				add(
 						ConversationStates.INFORMATION_1,
 						"Thonatus",
 						null,
 						ConversationStates.INFORMATION_1,
-						"Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.",
+						"Thonatus is the official #Deathmatch Recruitor. He is in the #swamp south west of Ados.",
 						null);
+
+                add(
+					ConversationStates.INFORMATION_1,
+					"swamp",
+					null,
+					ConversationStates.INFORMATION_1,
+					"Yes, south west from here, as I said. Beware, as the swamp is populated with some evil creatures.",
+					null);
+
+
+				add(
+					ConversationStates.INFORMATION_1,
+					"deathmatch",
+					null,
+					ConversationStates.INFORMATION_1,
+					"If you accept the #challenge from #Thonatus, you will arrive here. Strong enemies will surround you and you must kill them all to claim #victory.",
+					null);
+
+                add(
+                    ConversationStates.INFORMATION_1,
+                    "challenge",
+                    null,
+                    ConversationStates.INFORMATION_1,
+                    "Remember the name death in #Deathmatch. Do not accept the challenge unless you think you can defend well. And be sure to check that there is not any elite warrior already inside, battling strong beasts!",
+                    null);
+
+				add(
+                    ConversationStates.INFORMATION_1,
+                    "victory",
+                    null,
+                    ConversationStates.INFORMATION_1,
+                    "The prize is a helmet like the one you see displayed here. The defence it gives increases for every deathmatch round you successfully complete, up to a maximum dependent on your level.",
+                    null);
 
 				// player is inside
 				add(ConversationStates.IDLE,
@@ -101,7 +134,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 				add(
 						ConversationStates.ATTENDING,
-						Arrays.asList("everything", "appears"),
+						Arrays.asList("everything", "appears", "deathmatch"),
 						ConversationStates.ATTENDING,
 						"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
 						null);
