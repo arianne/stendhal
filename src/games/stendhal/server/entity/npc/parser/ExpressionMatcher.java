@@ -13,6 +13,7 @@ public class ExpressionMatcher {
 	// There are some patterns that can be used as leading flags in expression strings, e.g. "|EXACT|":
 	final static String PM_TYPE_MATCH = "TYPE";
 	final static String PM_EXACT_MATCH = "EXACT";
+	final static String PM_SIMILAR_MATCH = "SIMILAR";
 	final static String PM_ICASE_MATCH = "ICASE";
 	final static String PM_JOKER_MATCH = "JOKER";
 
@@ -24,6 +25,9 @@ public class ExpressionMatcher {
 	/** Flag to enforce exact expression matching. */
 	protected boolean exactMatching = false;
 
+	/** Flag to use similarity matching. */
+	protected boolean similarMatching = false;
+
 	/** Flag to enable case insensitive matching. */
 	protected boolean caseInsensitive = false;
 
@@ -34,6 +38,7 @@ public class ExpressionMatcher {
 	public void clear() {
 		typeMatching = false;
 		exactMatching = false;
+		similarMatching = false;
 		caseInsensitive = false;
 		jokerMatching = false;
 	}
@@ -64,6 +69,20 @@ public class ExpressionMatcher {
      */
     public boolean getExactMatching() {
 	    return exactMatching;
+    }
+
+	/**
+     * @param similarMatching the similarMatching to set
+     */
+    public void setSimilarMatching(boolean similarMatching) {
+	    this.similarMatching = similarMatching;
+    }
+
+	/**
+     * @return the similarMatching
+     */
+    public boolean getSimilarMatching() {
+	    return similarMatching;
     }
 
 	/**
@@ -100,7 +119,7 @@ public class ExpressionMatcher {
 	 * @return
 	 */
 	public boolean isAnyFlagSet() {
-	    return typeMatching || exactMatching || caseInsensitive || jokerMatching;
+	    return typeMatching || exactMatching || similarMatching || caseInsensitive || jokerMatching;
     }
 
 	/**
@@ -131,6 +150,8 @@ public class ExpressionMatcher {
     				typeMatching = true;
 				} else if (flag.equals(PM_EXACT_MATCH)) {
 					exactMatching = true;
+				} else if (flag.equals(PM_SIMILAR_MATCH)) {
+					similarMatching = true;
 				} else if (flag.equals(PM_ICASE_MATCH)) {
 					caseInsensitive = true;
 				} else if (flag.equals(PM_JOKER_MATCH)) {
@@ -162,9 +183,13 @@ public class ExpressionMatcher {
 		if (typeMatching) {
     		return readTypeMatchExpressions(text, ctx);
         } else if (exactMatching) {
-			return readExactExpressions(text, ctx);
+			return readSimpleExpressions(text, ctx);
+        } else if (similarMatching) {
+			return readSimpleExpressions(text, ctx);
         } else if (jokerMatching) {
 			return readJokerExpressions(text, ctx);
+        } else if (caseInsensitive) {
+			return readSimpleExpressions(text, ctx);
     	} else {
     		return ConversationParser.parse(text, ctx);
     	}
@@ -206,7 +231,7 @@ public class ExpressionMatcher {
 	 * @param text: Text to be parsed
 	 * @return Sentence
 	 */
-	private Sentence readExactExpressions(String text, ConversationContext ctx) {
+	private Sentence readSimpleExpressions(String text, ConversationContext ctx) {
 		SentenceImplementation sentence = new SentenceImplementation(ctx);
 
 		StringTokenizer tok = new StringTokenizer(text);
@@ -279,6 +304,12 @@ public class ExpressionMatcher {
 			return expr1.sentenceMatchExpression(expr2);
 		}
 
+		if (similarMatching) {
+    		if (SimilarExprMatcher.isSimilar(expr1.getOriginal(), expr2.getOriginal(), 0.1)) {
+    			return true;
+    		}
+		}
+
 		// If no exact match is required, compare the normalized expressions.
 		if (!exactMatching) {
 			if (expr2.getNormalized().equals(Expression.JOKER)) {
@@ -315,6 +346,8 @@ public class ExpressionMatcher {
     			return false;
     		} else if (exactMatching != o.exactMatching) {
     			return false;
+    		} else if (similarMatching != o.similarMatching) {
+    			return false;
     		} else if (caseInsensitive != o.caseInsensitive) {
     			return false;
     		} else if (jokerMatching != o.jokerMatching) {
@@ -342,12 +375,16 @@ public class ExpressionMatcher {
 			hash |= 2;
 		}
 
-		if (caseInsensitive) {
+		if (similarMatching) {
 			hash |= 4;
 		}
 
-		if (jokerMatching) {
+		if (caseInsensitive) {
 			hash |= 8;
+		}
+
+		if (jokerMatching) {
+			hash |= 0x10;
 		}
 
 		return hash;
@@ -368,6 +405,11 @@ public class ExpressionMatcher {
 		if (exactMatching) {
 			b.append(PM_SEPARATOR);
 			b.append(PM_EXACT_MATCH);
+		}
+
+		if (similarMatching) {
+			b.append(PM_SEPARATOR);
+			b.append(PM_SIMILAR_MATCH);
 		}
 
 		if (caseInsensitive) {
