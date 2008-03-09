@@ -1785,7 +1785,7 @@ public class Player extends RPEntity {
 	 * @param name
 	 * @return
 	 */
-	public DomesticAnimal searchAnimal(String name) {
+	public DomesticAnimal searchAnimal(String name, boolean exactly) {
 		List<DomesticAnimal> animals = getAnimals();
 
 		for(DomesticAnimal animal : animals) {
@@ -1793,12 +1793,17 @@ public class Player extends RPEntity {
     			if (animal.getTitle().equalsIgnoreCase(name)) {
     				return animal;
     			}
-			}
 
-			String type = animal.get("type");
+    			if (!exactly) {
+        			String type = animal.get("type");
+        			if (type != null && ItemTools.itemNameToDisplayName(type).equals(name)) {
+        				return animal;
+        			}
 
-			if (type != null && ItemTools.itemNameToDisplayName(type).equals(name)) {
-				return animal;
+        			if (name.equals("pet")) {
+        				return animal;
+        			}
+    			}
 			}
 		}
 
