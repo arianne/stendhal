@@ -104,6 +104,7 @@ public class BarMaidNPCTest {
 	@Test
 	public void testBuyerBehaviour() throws Exception {
 		SingletonRepository.getRPWorld();
+		
 		BarMaidNPC barmaidConfigurator = new BarMaidNPC();
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		barmaidConfigurator.configureZone(zone , null);
