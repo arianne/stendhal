@@ -30,14 +30,12 @@ import org.apache.log4j.Logger;
 /**
  * A pet is a domestic animal that can be owned by a player. It eats chicken
  * from the ground. They move faster than sheep.
- * 
+  
  * Pets starve if they are not fed. They can die.
- * 
- * TODO: pets attack weak animals for you
- */
-/**
+ *
  * @author kymara
- * 
+ *
+ * TODO: pets attack weak animals for you
  */
 public abstract class Pet extends DomesticAnimal {
 
@@ -297,11 +295,8 @@ public abstract class Pet extends DomesticAnimal {
 			}
 		}
 
-		// this is from the same code as saying 'sheep' to bring a sheep to you.
-		// but people are more likely to try 'cat' than 'pet'. can get type
-		// instead?
-		if ((owner != null) && owner.has("text")
-				&& owner.get("text").contains("pet")) {
+		// bring the pet to the owner if he/she calls it
+		if (isOwnerCallingMe()) {
 			clearPath();
 			moveToOwner();
 		}
@@ -314,8 +309,7 @@ public abstract class Pet extends DomesticAnimal {
 	// Should never be called
 	@Override
 	public String describe() {
-		String text = "You see a pet; it looks like it weighs about " + weight
-				+ ".";
+		String text = "You see a pet; it looks like it weighs about " + weight + ".";
 		if (hasDescription()) {
 			text = getDescription();
 		}

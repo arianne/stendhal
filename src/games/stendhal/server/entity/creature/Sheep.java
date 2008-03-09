@@ -356,7 +356,7 @@ public class Sheep extends DomesticAnimal {
 		/*
 		 * Allow owner to call sheep (will override other reactions)
 		 */
-		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
+		if (isOwnerCallingMe()) {
 			moveToOwner();
 		} else if (stopped()) {
 			/*
@@ -385,8 +385,8 @@ public class Sheep extends DomesticAnimal {
 		if (HP > 0) {
 			applyMovement();
 		}
-		notifyWorldAboutChanges();
 
+		notifyWorldAboutChanges();
 	}
 
 	//

@@ -133,8 +133,7 @@ public abstract class DomesticAnimal extends Creature {
 	 */
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		Food food = (Food) SingletonRepository.getEntityManager().getItem(
-				"meat");
+		Food food = (Food) SingletonRepository.getEntityManager().getItem("meat");
 		food.setQuantity(getWeight() / 10 + 1);
 		corpse.add(food);
 	}
@@ -150,5 +149,34 @@ public abstract class DomesticAnimal extends Creature {
 		stop();
 		clearPath();
 	}
+
+	/**
+	 * Is the owner of this pet calling its name or the type name like "pet"?
+	 *
+	 * @return boolean flag
+	 */
+	protected boolean isOwnerCallingMe() {
+    	if (owner != null) {
+    		String text = owner.get("text");
+
+    		if (text != null) {
+    			text = text.trim().toLowerCase();
+
+    			// react on calling the pet's name
+        		String title = getTitle();
+    			if (title != null && text.startsWith(title.trim().toLowerCase())) {
+    				return true;
+    			}
+
+    			// react on calling the pet type ("cat", "sheep", ...)
+        		String type = get("type");
+    			if (type != null && text.startsWith(type)) {
+    				return true;
+    			}
+    		}
+    	}
+    
+    	return false;
+    }
 
 }
