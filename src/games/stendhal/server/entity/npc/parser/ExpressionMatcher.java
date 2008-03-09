@@ -180,19 +180,28 @@ public class ExpressionMatcher {
 	 * @return
 	 */
 	Sentence parseSentence(String text, ConversationContext ctx) {
-		if (typeMatching) {
-    		return readTypeMatchExpressions(text, ctx);
-        } else if (exactMatching) {
-			return readSimpleExpressions(text, ctx);
-        } else if (similarMatching) {
-			return readSimpleExpressions(text, ctx);
-        } else if (jokerMatching) {
-			return readJokerExpressions(text, ctx);
-        } else if (caseInsensitive) {
-			return readSimpleExpressions(text, ctx);
-    	} else {
+		if (isEmpty()) {
     		return ConversationParser.parse(text, ctx);
+		}
+
+		Sentence sentence = new SentenceImplementation(ctx);
+
+		// determine sentence type from trailing punctuation
+		text = ConversationParser.getSentenceType(text.trim(), sentence);
+
+		if (typeMatching) {
+    		readTypeMatchExpressions(text, ctx, sentence);
+        } else if (exactMatching) {
+			readSimpleExpressions(text, ctx, sentence);
+        } else if (similarMatching) {
+			readSimpleExpressions(text, ctx, sentence);
+        } else if (jokerMatching) {
+			readJokerExpressions(text, ctx, sentence);
+        } else if (caseInsensitive) {
+			readSimpleExpressions(text, ctx, sentence);
     	}
+
+		return sentence;
 	}
 
 	/**
@@ -200,12 +209,10 @@ public class ExpressionMatcher {
 	 * should be in the format: "<expression>/<TYPESTRING> <expression>/<TYPESTRING> ..."
 	 *
 	 * @param text: Text to be parsed
-	 * @return Sentence
 	 */
-	private Sentence readTypeMatchExpressions(String text, ConversationContext ctx) {
-		SentenceImplementation sentence = new SentenceImplementation(ctx);
-
+	private void readTypeMatchExpressions(String text, ConversationContext ctx, Sentence sentence) {
 		StringTokenizer tok = new StringTokenizer(text, "/");
+
 		while (tok.hasMoreTokens()) {
 			String str = tok.nextToken();
 			String typeStr;
@@ -221,29 +228,25 @@ public class ExpressionMatcher {
 			expr.setMatcher(this);
 			sentence.expressions.add(expr);
 		}
-
-		return sentence;
     }
 
 	/**
-	 * Read in the words from the given string and create the sentence using this unchanged expressions.
+	 * Read in the words from the given string and create the Sentence object
+	 * using this unchanged expressions.
 	 *
 	 * @param text: Text to be parsed
-	 * @return Sentence
 	 */
-	private Sentence readSimpleExpressions(String text, ConversationContext ctx) {
-		SentenceImplementation sentence = new SentenceImplementation(ctx);
-
+	private void readSimpleExpressions(String text, ConversationContext ctx, Sentence sentence) {
 		StringTokenizer tok = new StringTokenizer(text);
+
 		while (tok.hasMoreTokens()) {
 			String str = tok.nextToken();
 
 			Expression expr = new Expression(str);
+			expr.setNormalized(str);
 			expr.setMatcher(this);
 			sentence.expressions.add(expr);
 		}
-
-		return sentence;
     }
 
 	/**
@@ -251,12 +254,10 @@ public class ExpressionMatcher {
 	 * in SentenceImplementation with activated 'forMatching' flag.
 	 *
 	 * @param text: Text to be parsed
-	 * @return Sentence
 	 */
-	private Sentence readJokerExpressions(String text, ConversationContext ctx) {
-		SentenceImplementation sentence = new SentenceImplementation(ctx);
-
+	private void readJokerExpressions(String text, ConversationContext ctx, Sentence sentence) {
 		StringTokenizer tok = new StringTokenizer(text);
+
 		while (tok.hasMoreTokens()) {
 			String str = tok.nextToken();
 
@@ -272,8 +273,6 @@ public class ExpressionMatcher {
 			expr.setMatcher(this);
 			sentence.expressions.add(expr);
 		}
-
-		return sentence;
     }
 
 	/**

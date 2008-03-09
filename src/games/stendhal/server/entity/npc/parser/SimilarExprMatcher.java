@@ -35,7 +35,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 		}
 
 		int l = Math.min(len1, len2);
-		int limit = (int)((delta * l * l + (l - 1)) / l);
+		int limit = (int)((l * delta * l + (l - 1)) / l);
 
 		return compareLevenshtein(str1, str2, limit);
     }

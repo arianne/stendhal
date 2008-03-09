@@ -37,6 +37,14 @@ public class CaseInsensitiveExprMatcherTest {
 		assertEquals("|ICASE|hello", m1.toString());
 
 		assertEquals(true, ConversationParser.parse("hello").matchesFull(m1));
+		assertEquals(true, ConversationParser.parse("hallo").matchesFull(m1));
+		assertEquals(false, ConversationParser.parse("hailo").matchesFull(m1));
+
+		m1 = ConversationParser.parseForMatching("|EXACT|ICASE|hello");
+		assertFalse(m1.hasError());
+		assertEquals("|EXACT|ICASE|hello", m1.toString());
+
+		assertEquals(true, ConversationParser.parse("hello").matchesFull(m1));
 		assertEquals(false, ConversationParser.parse("hallo").matchesFull(m1));
 		assertEquals(false, ConversationParser.parse("hailo").matchesFull(m1));
 	}

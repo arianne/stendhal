@@ -154,7 +154,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue("lie" , pequodEngine.step(player, "yes")); 
+		assertTrue("lie", pequodEngine.step(player, "yes")); 
 		assertEquals("So, what is it?", pequodNpc.get("text"));
 
 		assertTrue(pequodEngine.step(player, quote));
