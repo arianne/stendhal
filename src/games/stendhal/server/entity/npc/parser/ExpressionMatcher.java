@@ -265,6 +265,8 @@ public class ExpressionMatcher {
 			if (ExpressionType.isTypeString(str)) {
 				expr.setType(new ExpressionType(str));
 				expr.setNormalized(Expression.JOKER);
+			} else {
+				expr.setNormalized(str);
 			}
 
 			expr.setMatcher(this);
