@@ -33,12 +33,15 @@ public class InspectAction extends AdministrationAction {
 		if (target instanceof RPEntity) {
 			RPEntity inspected = (RPEntity) target;
 
-			// display type and name of the entity if they are available
+			// display type and name/title of the entity if they are available
 
 			String type = inspected.get("type");
 			st.append("Inspected " + (type != null ? type : "entity") + " is ");
 
 			String name = inspected.getName();
+			if (name == null) {
+				name = inspected.getTitle();
+			}
 			st.append(name != null ? "called \"" + name + "\"" : "unnamed");
 
 			st.append(" and has the following attributes:");
