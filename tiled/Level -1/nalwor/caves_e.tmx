@@ -73,7 +73,7 @@
   <image source="../../tileset/building/entrance/earthen_4.png"/>
  </tileset>
  <tileset name="assassins" firstgid="220" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/assassins.png"/>
+  <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
  <layer name="0_floor" width="256" height="128">
   <data encoding="base64" compression="gzip">
@@ -102,7 +102,7 @@
  </layer>
  <layer name="objects" width="256" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cMQrAIBAEQP/fheQP5lHxL2nTpBK5U2d6ZbFQYcVSAAAAgIxadAAAtvM9e2rnXL3jgTW54wIZ2IsAAAAAAAAAyEB/DQAAAAAAAAAAAAAAAAAAAAAAAAB9/O0HAAAAAAAAAAAAAAAAAAAAAOM80QEAgKFqdAAAAAAAAADglz6PmR3RASblzR4AAAAAAADkpc8DAAAAAAAAgJx0+gAAsIc7OgAAAAAAAAAAAAAkcUUH2Iz1BgAAAAAAAAAAAAAAYHZndAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACW9wKVWU31AAACAA==
+   H4sIAAAAAAAAAO3cQQqDMBRF0b//mdQ92EUVBN2IM+mk077ke848cAmECEmsAgAAAICqPR1AfdIB8GULjwd667Ln+X6CcViPAAAAAAAAAAAAAAAAAAD8i7etAAAAAAAAAAAAMLYzHQAAAAAAAAAAAAAAAAAAAAAAAAAADfi/HwD0tqUDAAAAAAAAgJ+c5zGzJR0wKXf2AAAAAAAAYFxHOgAAAAAAAAAAALi5zwMAz/NOBwAAAAAAAAAAAMAg1nTAw5hvAAAAAAAAAAAAAAAAZvdKBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDeBW1woUMAAAIA
   </data>
  </layer>
  <layer name="collision" width="256" height="128" opacity="0.37">

@@ -74,4 +74,20 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+  
+   <item name="black pearl">
+    <type class="jewellery" subclass="blackpearl" tileid="-1"/>
+    <description>You see a black pearl, so dark and shiny.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="20000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
 </items>

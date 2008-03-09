@@ -4290,6 +4290,40 @@
     </ai>
   </creature>
 
+   <creature name="disciple assassin">
+    <type class="human" subclass="little_assassin" tileid="human_evil.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="95"/>
+      <def value="20"/>
+      <hp value="180"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="40"/>
+    <experience value="920"/>
+    <respawn value="1400"/>
+    <drops>
+      <item value="money" quantity="[10,40]" probability="100.0"/>
+      <item value="potion" quantity="[1,1]" probability="10.5"/>
+      <item value="marbles" quantity="[1,1]" probability="40.0"/>
+      <item value="assassin dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="I'm gonna tell my mommy."/>
+        <noise value="Teacher, make him stop."/>
+        <noise value="My dad can beat your dad."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+ 
   <creature name="mountain orc">
     <type class="orc" subclass="orc" tileid="mountain_orc.png:2"/>
     <description></description>
@@ -4784,6 +4818,40 @@
     <ai>
       <says>
         <noise value="You will never find the way out!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+   <creature name="apprentice assassin">
+    <type class="human" subclass="apprentice_assassin" tileid="human_evil.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="150"/>
+      <def value="28"/>
+      <hp value="130"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="45"/>
+    <experience value="1400"/>
+    <respawn value="1400"/>
+    <drops>
+      <item value="money" quantity="[20,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,1]" probability="15.5"/>
+      <item value="black pearl" quantity="[1,1]" probability="5.0"/>
+      <item value="assassin dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Come on, i dare you."/>
+        <noise value="You want a piece of me?"/>
+        <noise value="Any time you're ready."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8953,6 +9021,39 @@
       <says>
         <noise value="Chaos will rule!"/>
       </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+   <creature name="master assassin">
+    <type class="human" subclass="master_assassin" tileid="human_evil.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="270"/>
+      <def value="40"/>
+      <hp value="1800"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="130"/>
+    <experience value="21000"/>
+    <respawn value="7400"/>
+    <drops>
+      <item value="money" quantity="[60,340]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="35"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
+      <item value="assassin dagger" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You've been warned before."/>
+        <noise value="Why do you return?"/>
+      </says>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
