@@ -703,4 +703,22 @@
       <slot name="bag"/>
     </equipable>
   </item>
+  
+   <item name="chocolatebar">
+    <type class="food" subclass="chocolatebar" tileid="-1"/>
+    <description>You see an absolutely yummy chocolate bar.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="90"/>
+      <frequency value="5"/>
+      <quantity value="1"/>
+      <regen value="10"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1500"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 </items>
