@@ -40,7 +40,7 @@ public class NameAction implements ActionListener {
 			DomesticAnimal animal = null;
 
 			do {
-				animal = player.searchAnimal(curName);
+				animal = player.searchAnimal(curName, false);
 
     			if (animal != null) {
         			if (animal.getTitle().equalsIgnoreCase(curName)) {
@@ -51,7 +51,7 @@ public class NameAction implements ActionListener {
 
         				newName = newName.trim();
 
-        				if (player.searchAnimal(newName) != null) {
+        				if (player.searchAnimal(newName, false) != null) {
         					player.sendPrivateText("You own already a pet named '" + newName + "'");
         				} else if (newName.length() > 0) {
             				String oldName = animal.getTitle();
