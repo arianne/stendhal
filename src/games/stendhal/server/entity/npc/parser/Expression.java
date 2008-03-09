@@ -476,6 +476,9 @@ public final class Expression {
 	    			return false;
 	    		}
 	    	}
+	    } else if (other.getMatcher() != null) {
+	    	// avoid endless recursion
+	    	return original.equals(other.original);
 	    } else if (!matchesNormalized(other)) {
 	    	return false;
 	    }
