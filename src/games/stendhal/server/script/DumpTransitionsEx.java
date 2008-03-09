@@ -37,9 +37,10 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private CountingMap<PostTransitionAction> actions;
 
 	public static void generateRPEvent() {
-		RPClass rpclass = new RPClass("transition_graph");
-		rpclass.add(DefinitionClass.RPEVENT, "transition_graph",
-				Definition.STANDARD);
+		if (!RPClass.hasRPClass("transition_graph")) {
+    		RPClass rpclass = new RPClass("transition_graph");
+    		rpclass.add(DefinitionClass.RPEVENT, "transition_graph", Definition.STANDARD);
+		}
 	}
 
 	@Override
