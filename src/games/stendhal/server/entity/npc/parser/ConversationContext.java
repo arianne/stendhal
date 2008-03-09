@@ -15,10 +15,10 @@ public class ConversationContext {
 
 	private int state = CCS_NONE;				// current state
 
-	private boolean forMatching = false;		// flag for sentences to be used for matching
-	private boolean mergeExpressions = true;	// flag to enable Expression merging
-	private boolean persistNewWords = true;		// flag to enable storing new words into the database
-	private boolean ignoreIgnorable = true;		// flag to enable ignoring of words marked with the type IGN
+	protected boolean forMatching = false;		// flag for sentences to be used for matching
+	protected boolean mergeExpressions = true;	// flag to enable Expression merging
+	protected boolean persistNewWords = true;	// flag to enable storing new words into the database
+	protected boolean ignoreIgnorable = true;	// flag to enable ignoring of words marked with the type IGN
 
 	public void setState(int state) {
 		this.state = state;

@@ -84,13 +84,11 @@ public final class ConversationParser extends ErrorBuffer {
 	 * @return Expression
 	 */
 	public static Expression createTriggerExpression(String text, ExpressionMatcher matcher) {
-		ConversationContext ctx = new ConversationContext();
+		// prepare context for matching
+		ConversationContext ctx = new ConvCtxForMatcher();
 
 		// don't ignore words with type "IGN" if specified in trigger expressions
 		ctx.setIgnoreIgnorable(false);
-
-		// prepare for matching
-		ctx.setForMatching(true);
 
 		if (matcher != null) {
 			return matcher.parseSentence(text, ctx).getTriggerExpression();
@@ -138,14 +136,27 @@ public final class ConversationParser extends ErrorBuffer {
 			return s;
 		}
 
-		ConversationContext ctx = new ConversationContext();
-		ctx.setForMatching(true);
-
-		s = parse(text, ctx);
+		s = parse(text, new ConvCtxForMatcher());
 
 		matchingSentenceCache.put(text, s);
 
 		return s;
+	}
+
+	/**
+	 * Parse the given text sentence using an explicit Expression matcher.
+	 * 
+	 * @param text
+	 * @param ctx
+	 * @param matcher
+	 * @return
+	 */
+	public static Sentence parse(String text, ExpressionMatcher matcher) {
+		if (matcher != null) {
+			return matcher.parseSentence(text, new ConvCtxForMatcher());
+		} else {
+			return parse(text, new ConversationContext());
+		}
 	}
 
 	/**
