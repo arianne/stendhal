@@ -73,7 +73,6 @@ public class BarMaidNPCTest {
 		assertThat(engine.getCurrentState(),is(ConversationStates.IDLE));
 		assertThat(barMaid.getText(),is("Bye bye!"));
 	}
-
 	@Test
 	public void testJobOfferQuest() throws Exception {
 		SingletonRepository.getRPWorld();
