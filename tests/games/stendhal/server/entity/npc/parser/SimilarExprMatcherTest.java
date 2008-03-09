@@ -18,30 +18,30 @@ public class SimilarExprMatcherTest {
 		assertEquals(true, SimilarExprMatcher.isSimilar(null, null, 0.5));
 		assertEquals(true, SimilarExprMatcher.isSimilar("", "", 0.5));
 
-		assertEquals(true, SimilarExprMatcher.isSimilar("A", "A", 0.2));
-		assertEquals(true, SimilarExprMatcher.isSimilar("A", "a", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("A", "B", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("A", "AB", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("A", "BA", 0.2));
+		assertEquals(true, SimilarExprMatcher.isSimilar("A", "A", 0.1));
+		assertEquals(true, SimilarExprMatcher.isSimilar("A", "a", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("A", "B", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("A", "AB", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("A", "BA", 0.1));
 		assertEquals(false, SimilarExprMatcher.isSimilar("AB", "CD", 0.5));
 
-		assertEquals(true, SimilarExprMatcher.isSimilar("hello", "hallo", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("hello", "hi", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("bus", "taxi", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("heart", "haert", 0.2));
-		assertEquals(true, SimilarExprMatcher.isSimilar("heart", "haart", 0.2));
+		assertEquals(true, SimilarExprMatcher.isSimilar("hello", "hallo", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("hello", "hi", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("bus", "taxi", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("heart", "haert", 0.1));
+		assertEquals(true, SimilarExprMatcher.isSimilar("heart", "haart", 0.1));
 
-		assertEquals(true, SimilarExprMatcher.isSimilar("hello", "hallo", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("hello", "hi", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("telephone", "taxi", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("taxi", "bus", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("bus", "taxi", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("heart", "haert", 0.2));
-		assertEquals(true, SimilarExprMatcher.isSimilar("heart", "haart", 0.2));
-		assertEquals(true, SimilarExprMatcher.isSimilar("abcdefgh-", "-abcdefgh", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("abcdefgh-ABCDEFGHIJKLMN", "ABCDEFGHIJKLMN-abcdefgh", 0.2));
-		assertEquals(false, SimilarExprMatcher.isSimilar("abcabcabcabc-123", "abc-123-abcabcabcabc", 0.2));
-		assertEquals(true, SimilarExprMatcher.isSimilar("abcabcabcabc-abc", "abc-abcabcabcabc", 0.2));
+		assertEquals(true, SimilarExprMatcher.isSimilar("hello", "hallo", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("hello", "hi", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("telephone", "taxi", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("taxi", "bus", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("bus", "taxi", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("heart", "haert", 0.1));
+		assertEquals(true, SimilarExprMatcher.isSimilar("heart", "haart", 0.1));
+		assertEquals(true, SimilarExprMatcher.isSimilar("abcdefgh12345-", "-abcdefgh12345", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("abcdefgh-ABCDEFGHIJKLMN", "ABCDEFGHIJKLMN-abcdefgh", 0.1));
+		assertEquals(false, SimilarExprMatcher.isSimilar("abcabcabcabc-123", "abc-123-abcabcabcabc", 0.1));
+		assertEquals(true, SimilarExprMatcher.isSimilar("abcabcabcabc-abc", "abc-abcabcabcabc", 0.1));
 	}
 
 	@Test
