@@ -106,7 +106,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 	}
 
 	private String getExtendedTransitionName(Transition transition) {
-		String transitionName = transition.getTrigger().getNormalized();
+		String transitionName = transition.getTrigger().toString();
 		if (transition.getCondition() != null) {
 			String key = conditions.add(transition.getCondition());
 			transitionName = "(" + key + ") " + transitionName;
