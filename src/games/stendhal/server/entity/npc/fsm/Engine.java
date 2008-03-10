@@ -25,10 +25,8 @@ public class Engine {
 
 	private static final Logger logger = Logger.getLogger(Engine.class);
 
-	// TODO: remove this dependency cycle, this is just here to simplify
-	// refactoring
-	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and
-	// Player
+	// TODO remove this dependency cycle, this is just here to simplify refactoring
+	// TODO later: remove dependency on games.stendhal.server.entity.npc.* and Player
 	private SpeakerNPC speakerNPC;
 
 	private int maxState;
@@ -375,8 +373,7 @@ public class Engine {
 	 * @param transition
 	 * @return true if transition has been found
 	 */
-	private boolean matchesTransition(MatchType type, Sentence sentence,
-			Transition transition) {
+	private boolean matchesTransition(MatchType type, Sentence sentence, Transition transition) {
 		switch(type) {
 			case EXACT_MATCH:
 				return transition.matches(currentState, sentence);
@@ -385,7 +382,7 @@ public class Engine {
 				return transition.matchesNormalized(currentState, sentence);
 
 			case SIMILAR_MATCH:
-				return transition.matchesBeginning(currentState, sentence);
+				return transition.matchesSimilar(currentState, sentence);
 
 			case ABSOLUTE_JUMP:
 				return (currentState != ConversationStates.IDLE)
@@ -397,16 +394,14 @@ public class Engine {
 
 			case SIMILAR_JUMP:
 				return (currentState != ConversationStates.IDLE)
-						&& transition.matchesWildBeginning(sentence);
+						&& transition.matchesWildSimilar(sentence);
 
 			default:
 				return false;
 		}
 	}
 
-
-	private void executeTransition(Player player, Sentence sentence,
-			Transition trans) {
+	private void executeTransition(Player player, Sentence sentence, Transition trans) {
 		int nextState = trans.getNextState();
 		if (trans.getReply() != null) {
 			speakerNPC.say(trans.getReply());
@@ -425,7 +420,6 @@ public class Engine {
 	 * @return list of transitions
 	 */
 	public List<Transition> getTransitions() {
-
 		// return a copy so that the caller cannot mess up our internal
 		// structure
 		return new LinkedList<Transition>(stateTransitionTable);

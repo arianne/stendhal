@@ -32,12 +32,12 @@ public class ExpressionTest {
 		assertFalse(expr1.matchesNormalized(expr3));
 		assertFalse(expr3.matchesNormalized(expr1));
 
-		assertFalse(expr1.matchesNormalizedBeginning(expr2));
-		assertTrue(expr2.matchesNormalizedBeginning(expr1));
-		assertFalse(expr1.matchesNormalizedBeginning(expr3));
-		assertFalse(expr3.matchesNormalizedBeginning(expr1));
+		assertFalse(expr1.matchesNormalizedSimilar(expr2));
+		assertTrue(expr2.matchesNormalizedSimilar(expr1));
+		assertFalse(expr1.matchesNormalizedSimilar(expr3));
+		assertFalse(expr3.matchesNormalizedSimilar(expr1));
 	}
-	
+
 	@Test
 	public final void testEquals() {
 		Expression exp = new Expression("blabla");

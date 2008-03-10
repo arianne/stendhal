@@ -54,12 +54,12 @@ public class TransitionTest {
 	}
 
 	@Test
-	public final void testMatchesBeginning() {
+	public final void testMatchesSimilar() {
 		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
-		assertTrue(t.matchesBeginning(-2, ConversationParser.parse("triggerstartisok")));
-		assertFalse(t.matchesBeginning(-2, ConversationParser.parse("Nottriggerstartisok")));
-		assertFalse(t.matchesBeginning(0, ConversationParser.parse("triggerstartisok")));
-		assertFalse(t.matchesBeginning(-2, ConversationParser.parse(null)));
+		assertTrue(t.matchesSimilar(-2, ConversationParser.parse("triggerx")));
+		assertFalse(t.matchesSimilar(-2, ConversationParser.parse("xxxtriggerxxx")));
+		assertFalse(t.matchesSimilar(0, ConversationParser.parse("triggerx")));
+		assertFalse(t.matchesSimilar(-2, ConversationParser.parse(null)));
 	}
 
 	@Test

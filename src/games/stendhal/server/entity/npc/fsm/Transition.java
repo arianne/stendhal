@@ -92,15 +92,26 @@ public class Transition {
 
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment of
-	 * SpeakerNPC) and the normalized text beginning matches the trigger.
+	 * SpeakerNPC) and the normalized text is similar to the trigger.
 	 * 
 	 * @param sentence
 	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
 	 */
-	public boolean matchesWildBeginning(Sentence sentence) {
-		return (state == ConversationStates.ANY)
-				&& sentence.getTriggerExpression().matchesNormalizedBeginning(trigger);
+	public boolean matchesWildSimilar(Sentence sentence) {
+		if (state == ConversationStates.ANY) {
+			// If the trigger is an empty string, match any text.
+			//TODO find a better way to handle unconditional matching
+			if (trigger.getNormalized().length() == 0) {
+				return true;
+			}
+
+			if (sentence.getTriggerExpression().matchesNormalizedSimilar(trigger)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -158,8 +169,8 @@ public class Transition {
 	}
 
 	/**
-	 * Checks whether this transition is possible now by only looking at
-	 * the beginning of the normalized expression.
+	 * Checks whether this transition is possible now by checking the similarity of the
+	 * normalized expression.
 	 * 
 	 * @param state
 	 *            old state
@@ -167,8 +178,20 @@ public class Transition {
 	 *            trigger, parsed user input
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matchesBeginning(int state, Sentence sentence) {
-		return (state == this.state) && sentence.getTriggerExpression().matchesNormalizedBeginning(trigger);
+	public boolean matchesSimilar(int state, Sentence sentence) {
+		if (state == this.state) {
+			// If the trigger is an empty string, match any text.
+			//TODO find a better way to handle unconditional matching
+			if (trigger.getNormalized().length() == 0) {
+				return true;
+			}
+
+			if (sentence.getTriggerExpression().matchesNormalizedSimilar(trigger)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

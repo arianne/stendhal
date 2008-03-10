@@ -428,17 +428,17 @@ public final class Expression {
 	}
 
 	/**
-	 * Check if the Expression beginning matches another Expression.
+	 * Check if the Expression is similar to another Expression.
 	 * 
 	 * @param other Expression
 	 * @return
 	 */
-	public boolean matchesNormalizedBeginning(final Expression other) {
+	public boolean matchesNormalizedSimilar(final Expression other) {
 		if (other != null) {
 			// If there is no override by an ExpressionMatcher in 'other', use the
 			// default rule and compare the normalized strings.
 			if (other.matcher == null) {
-				if (getNormalized().startsWith(other.getNormalized())) {
+				if (SimilarExprMatcher.isSimilar(getNormalized(), other.getNormalized(), 0.1)) {
 					return true;
 				}
 			}
