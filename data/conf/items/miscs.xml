@@ -227,5 +227,19 @@
       <slot name="bag"/>
     </equipable>
   </item>
-  
+ 
+    <item name="assassins id">
+    <type class="misc" subclass="license" tileid="-1"/>
+    <description>You see an assassin's ID. Perhaps this can be put to good use.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+ 
 </items>
