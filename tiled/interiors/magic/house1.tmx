@@ -96,6 +96,12 @@
  <tileset name="detail" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>
  </tileset>
+ <tileset name="chaos" firstgid="183" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/chaos.png"/>
+ </tileset>
+ <tileset name="huge animal" firstgid="190" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/huge_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAOtjYGDoG6G4l0566OHOgXAXMW4YDO7C5iZquova5g33+Bis6XmolAeDCQMAOFpoqUAGAAA=
@@ -103,7 +109,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUywrCMBBFZ6Wgq/p+W3AhvhF1Lyq480PUH1AX6nfox3pDEwyBTBKsF86i7eSQkJlGRFR0UAKRZ10ZVEDWQhW0AusylGQLZmAOdvJdHtRAXaszs5F1pk9kKVHx8b0YnxlVx/neKfu483K+BshZaAb62qDrIPb09cndewX69p/wreX6veHrkb3nXP2n58DsWeUCruBG/vfhm198d/DUno+MbxHoXoGTxTcAQzAKdNp8YzABU8f6ByVnVjlbfCL6vyAk/7xfbi4V5Piu5lfMZSclYvABObYhskAGAAA=
+   H4sIAAAAAAAAAK2Uyw7BQBSGz4qEVd3vmliIewR7QWJHvAZeAAs8Bw/rbzoTzdSZS/RPvkXbM196OmfqEVHeQAF4lnVFUAJphjJoONalKMwaTMAUbMS9LKiAaqROzUrUqb4gc4GMje+l8amRdTrfO2Gfrl+drwYyDHXFtxTrt4yvCdoGfOb9doqvS+bZy9F3/nT9doifOdP8ySzJLhdwBTeK78ceHCj+/Wxju7+/cgfPyPVR45s5uhfgxPh6oA8Gjk7ONwQjMDasf1DYs8yZ8QWJ/gtc8s9+mHy6cykhw3N5foNz2UoIH3wA5dRqwEAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -113,7 +119,7 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGPpgAhBPpKJ5G4F4ExXNmwHEM6lo3mAAdlQ2zx5Ku1HZXBjwoJG59AA1QFw30I6gI6hlgPh5FAx+AABG+xvWQAYAAA==
+   H4sIAAAAAAAAAGNgGPpgAhBPpKJ5G4F4ExXNmwHEM0nUY0dF+0HAHkq7UdlcEPCgsnm08jslwBOIvRhoE36EQA0Q1w2AvQMFahkgfh4Fgx8AAJRqAEpABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -123,12 +129,12 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDHSQOtANGwSiAgsyBdsAIBV0DZC8AwqGraUAGAAA=
+   H4sIAAAAAAAAAGNgGAVDHewdaAcMUnBwoB0wCkYBnUDXANkLAM55jIJABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNlYGBwHUaYgQAfWZxcQIp5xKijxDxsaik1j9hwHszmIcc9LdznisbGpo4c/xILKDEPXQ+98gel7iXXPFr7l9pmUpLW6Y0Bi4fVFEAGAAA=
+   H4sIAAAAAAAAAHNlYGBwHUaYgQAfWZxcQIp5xKijxDxsaik1j9SwpoZ56GZQ0zxaug/dTHLsIgdQYga6HnrlD0rdS655tPYvtc2kJC/SGwMAa2+KF0AGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

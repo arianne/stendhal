@@ -87,6 +87,9 @@
  <tileset name="door details" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
+ <tileset name="dark elf" firstgid="170" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/dark_elf.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGBqAiUKMzTxmLOpYcehHF6eH+2CYC4t6Tixi7HR03yigDDRTiEfNG1nmDVYAANDhmCNABgAA
@@ -114,7 +117,7 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwlEHqANkLAPm8mxxABgAA
+   H4sIAAAAAAAAAGNgGAUDATYOtANGwYgG2wfaAVQCWwapWfQGqQNkLwAYze/TQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">

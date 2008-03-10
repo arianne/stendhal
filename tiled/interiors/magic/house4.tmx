@@ -81,6 +81,9 @@
  <tileset name="warmer" firstgid="156" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/warmer.png"/>
  </tileset>
+ <tileset name="fairy" firstgid="158" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/fairy.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAOtiYGDoGqG4B43fSYCPrp5euH0QhBUx4TdYMT3DrxUHpod5xMTHQLqPmPgYDT/KzKM3BgD8ULJoQAYAAA==
@@ -108,7 +111,7 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLnAa6AdMApGwQAC74F2wCigKciigx0Ask/7wUAGAAA=
+   H4sIAAAAAAAAAGNgGLlgwSCwj95uGAUjA8wnQs0CWjuCTECM20cBYZBFBzsA5Hs59UAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.41">

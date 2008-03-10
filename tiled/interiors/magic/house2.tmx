@@ -84,6 +84,9 @@
  <tileset name="detail ns" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
+ <tileset name="fairy" firstgid="223" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/fairy.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvCwMBwZAjgQzgwurp2HBibeQeQzDlABfNGkvtG8SgexaMYAGfgDJJABgAA
@@ -111,7 +114,7 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUApUD7YBRMAqGCfAfaAcMMZA3QPYCAGZeHitABgAA
+   H4sIAAAAAAAAAGNgGAX4wCMS1FbSzBWEASnuHAWjYBQML5A3QPYCAOF4SEdABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">
