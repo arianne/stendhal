@@ -453,7 +453,7 @@ in roaches.
 
    <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
-
+    <configurator class-name="games.stendhal.server.maps.ados.tavern.BarmanNPC" />
     <portal x="12" y="17" ref="entrance_left">
      <destination zone="0_ados_city_n" ref="tavern_entrance_left"/>
     </portal>
