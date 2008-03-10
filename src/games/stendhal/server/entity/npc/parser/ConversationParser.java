@@ -213,10 +213,10 @@ public final class ConversationParser extends ErrorBuffer {
     		// 3.) classify word types and normalize words
     		sentence.classifyWords(parser);
 
-    		// 4.) evaluate sentence type from word order
-    		sentence.evaluateSentenceType();
-
     		if (ctx != null && ctx.getMergeExpressions()) {
+        		// 4.) evaluate sentence type from word order
+        		sentence.evaluateSentenceType();
+
         		// 5.) merge words to form a simpler sentence structure
         		sentence.mergeWords();
 
