@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SentenceImplementation;
 import marauroa.common.Log4J;
@@ -65,12 +66,12 @@ public class BarMaidNPCTest {
 		Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.IDLE);
 
-		Sentence sentence = new SentenceImplementation(new Expression("hi", "VER"));
+		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat(barMaid.getText(),is("Hi!"));
 
-		sentence = new SentenceImplementation(new Expression("bye", "VER"));
+		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.IDLE));
 		assertThat(barMaid.getText(),is("Bye bye!"));
@@ -87,17 +88,17 @@ public class BarMaidNPCTest {
 		Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 
-		Sentence sentence = new SentenceImplementation(new Expression("job", "VER"));
+		Sentence sentence = new SentenceImplementation(new Expression("job", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat("job text", barMaid.getText(),is("I'm a bar maid. But we've run out of food to feed our customers, can you #offer any?"));
 
-		sentence = new SentenceImplementation(new Expression("help", "VER"));
+		sentence = new SentenceImplementation(new Expression("help", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat("help text", barMaid.getText(),is("If you could #offer any meat, ham or cheese to restock our larders I'd be grateful."));
 
-		sentence = new SentenceImplementation(new Expression("quest", "VER"));
+		sentence = new SentenceImplementation(new Expression("quest", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat("quest text", barMaid.getText(),is("Just #offers of food is enough, thank you."));
@@ -115,55 +116,55 @@ public class BarMaidNPCTest {
 		Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 
-		Sentence sentence = new SentenceImplementation(new Expression("offer", "VER"));
+		Sentence sentence = new SentenceImplementation(new Expression("offer", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat("offer text", barMaid.getText(),is("I buy cheese, meat, spinach, ham, flour, and porcini."));
 
-		Expression sell = new Expression("sell", "VER");
+		Expression sell = new Expression("sell", ExpressionType.VERB);
 
 		sentence = new SentenceImplementation(sell);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.ATTENDING));
 		assertThat("offer text", barMaid.getText(),is("Please tell me what you want to sell."));
 
-		sentence = new SentenceImplementation(sell, new Expression("cheese", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("cheese", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 piece of cheese is worth 5. Do you want to sell it?"));
 		engine.setCurrentState(ConversationStates.ATTENDING);
 
-		sentence = new SentenceImplementation(sell, new Expression("meat", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("meat", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 piece of meat is worth 10. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		sentence = new SentenceImplementation(sell, new Expression("spinach", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("spinach", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 spinach is worth 15. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		sentence = new SentenceImplementation(sell, new Expression("ham", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("ham", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 piece of ham is worth 20. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		sentence = new SentenceImplementation(sell, new Expression("flour", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("flour", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 sack of flour is worth 25. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		sentence = new SentenceImplementation(sell, new Expression("porcini", "OBJ"));
+		sentence = new SentenceImplementation(sell, new Expression("porcini", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(),is(ConversationStates.SELL_PRICE_OFFERED));
 		assertThat("offer text", barMaid.getText(),is("1 porcini is worth 30. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		Expression porcini = new Expression("porcini", "OBJ");
+		Expression porcini = new Expression("porcini", ExpressionType.OBJECT);
 		porcini.setAmount(2);
 		sentence = new SentenceImplementation(sell, porcini);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
@@ -171,7 +172,7 @@ public class BarMaidNPCTest {
 		assertThat("offer text", barMaid.getText(),is("2 porcini are worth 60. Do you want to sell them?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		Expression flour = new Expression("flour", "OBJ");
+		Expression flour = new Expression("flour", ExpressionType.OBJECT);
 		flour.setAmount(2);
 		sentence = new SentenceImplementation(sell, flour);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
