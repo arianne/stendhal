@@ -1128,6 +1128,9 @@ black helmet 10000
  <portal x="46" y="3" ref="entrance2">
    <destination zone="int_ados_castle_throne" ref="secret"/>
   </portal>
+ <portal x="9" y="27" ref="crawlyspacedown">
+   <destination zone="-1_ados_city" ref="crawlyspaceup"/>
+  </portal>
  </zone>
 
  <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx">
@@ -1658,6 +1661,10 @@ Assassin Dagger (atk 6 rate 2) 12000
   </portal>
  </zone> 
  <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
+ <portal x="20" y="25" ref="crawlyspaceup">
+   <destination zone="int_ados_castle_dungeons" ref="crawlyspacedown"/>
+  </portal>
+
  </zone>
  <!-- commented out till ready <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
   <portal x="49" y="28" ref="up_left">
@@ -1671,6 +1678,7 @@ Assassin Dagger (atk 6 rate 2) 12000
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
  </zone>
  <zone name="-1_ados_outside_w" level="-1" x="500640" y="500000" file="Level -1/ados/outside_w.tmx">
+
  </zone>
  <!--  Level -2 -->
 
