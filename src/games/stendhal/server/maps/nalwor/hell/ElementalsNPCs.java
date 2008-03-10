@@ -31,28 +31,37 @@ public class ElementalsNPCs implements ZoneConfigurator {
 
 	private void buildNPCs(StendhalRPZone zone) {
 		String[] names = {"Savanka", "Xeoilia", "Azira"};
-		Node[] start = new Node[] { new Node(117, 5), new Node(119, 8), new Node(118, 10) };
+		Node[] start = new Node[] { new Node(115, 6), new Node(124, 10), new Node(116, 18) };
 		for (int i = 0; i < 3; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {
 
 				@Override
 				protected void createPath() {
 					List<Node> nodes = new LinkedList<Node>();
-					nodes.add(new Node(117, 5));
-					nodes.add(new Node(117, 7));
-					nodes.add(new Node(118, 7));
-					nodes.add(new Node(118, 8));
-					nodes.add(new Node(119, 8));
-					nodes.add(new Node(119, 10));
-					nodes.add(new Node(125, 10));
-					nodes.add(new Node(125, 11));
-					nodes.add(new Node(118, 11));
-					nodes.add(new Node(118, 10));
-					nodes.add(new Node(118, 9));
-					nodes.add(new Node(117, 9));
-					nodes.add(new Node(117, 8));
-					nodes.add(new Node(116, 8));
-					nodes.add(new Node(116, 5));
+					nodes.add(new Node(115, 6));
+                    nodes.add(new Node(119, 6));
+					nodes.add(new Node(119, 5));
+                    nodes.add(new Node(122, 5));
+                    nodes.add(new Node(122, 6));
+                    nodes.add(new Node(125, 6));
+                    nodes.add(new Node(125, 10));
+                    nodes.add(new Node(124, 10));
+                    nodes.add(new Node(124, 12));
+					nodes.add(new Node(123, 12));
+					nodes.add(new Node(123, 15));
+                    nodes.add(new Node(124, 15));
+					nodes.add(new Node(124, 17));
+                    nodes.add(new Node(122, 17));
+                    nodes.add(new Node(122, 18));
+                    nodes.add(new Node(116, 18));
+                    nodes.add(new Node(116, 16));
+                    nodes.add(new Node(114, 16));
+                    nodes.add(new Node(114, 15));
+                    nodes.add(new Node(113, 15));
+                    nodes.add(new Node(113, 13));
+                    nodes.add(new Node(111, 13));
+                    nodes.add(new Node(111, 8));
+                    nodes.add(new Node(115, 8));
 					setPath(new FixedPath(nodes, true));
 				}
 
