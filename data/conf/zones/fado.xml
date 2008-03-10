@@ -779,9 +779,6 @@ black halberd     12000
   <portal x="74" y="102" ref="house4_entrance">
    <destination zone="int_magic_house4" ref="entrance"/>
   </portal>
-  <portal x="74" y="102" ref="house5_entrance">
-   <destination zone="int_magic_house5" ref="entrance_right"/>
-  </portal>
   <portal x="47" y="61" ref="lounge_entrance">
    <destination zone="int_magic_lounge" ref="entrance"/>
   </portal>
