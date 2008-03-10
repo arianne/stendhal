@@ -202,7 +202,7 @@ public class FindGhostsTest {
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
 		assertThat(player.getQuest("find_ghosts") , containsString("Zak"));
-		
+
 		// -----------------------------------------------
 		oldxp = player.getXP();
 		int oldHP = player.getBaseHP();
@@ -210,7 +210,7 @@ public class FindGhostsTest {
 		assertEquals("If you found any #spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
-		
+
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
@@ -225,7 +225,7 @@ public class FindGhostsTest {
 
 		en.step(player, "Mary");
 		assertEquals("You've told me that name already, thanks. If you met any other spirits, please tell me their name.", npc.get("text"));
-	
+
 		en.step(player, "Brandy");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
 
@@ -248,8 +248,7 @@ public class FindGhostsTest {
 		en.step(player, "Zak");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("zak"));
-		
-		
+
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
