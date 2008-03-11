@@ -551,10 +551,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	public void setVolume(int volume) {
 		float dB;
-
-		volume = (volume < 0) ? volume = 0 : volume;
-		volume = (volume > 100) ? volume = 100 : volume;
-
+		if (volume < 0) {
+			volume = 0;
+		} else if (volume > 100) {
+			volume = 100;
+		}
+		
 		dB = DBValues.getDBValue(volume);
 		logger.info("- sound system setting volume dB = " + dB + "  (gain "
 				+ volume + ")");
