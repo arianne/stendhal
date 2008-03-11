@@ -289,7 +289,9 @@
  </zone>
  
   <zone name="int_nalwor_assassinhq_1" file="interiors/nalwor/assassinhq_1.tmx">
-   <portal x="24" y="11" ref="hq1up">
+   <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC"/>
+  <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.SchoolMarmNPC"/>
+    <portal x="24" y="11" ref="hq1up">
     <destination zone="int_nalwor_assassinhq_2" ref="hq2down"/>
    </portal>
     <portal x="23" y="11" ref="hq1down">
