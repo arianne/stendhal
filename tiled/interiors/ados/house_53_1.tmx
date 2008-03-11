@@ -66,6 +66,9 @@
  <tileset name="nymph" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/superhuman_nymph.png"/>
  </tileset>
+ <tileset name="banner" firstgid="191" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/banners/superhumans_wall_hanging.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHNjYGBwozFOoIMdo3gUj2LSMQAAH7VOAAQAAA==
@@ -78,7 +81,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3QOQoCQRCF4UZwAb2JmZ7CfV/uoIE4imLkLVxB0URxCSaawMP5By1UUEg3GNjwUY8a3kwzxvzmxEVOiBzigKOYodJPi5wROcIJZzEjz7sVUEQJZcfODXebK6iihrpj/4GnzQ000ULbsS9PB1300Pfsav9K272+vOOCq5jaCTDBAkubp863NGaFNWbC3KO/wdbmEcbi2cDOLPLIKf0d9sp+qOxiyi6FpJ2f78udnP903iPBzEkABAAA
+   H4sIAAAAAAAAAM3QOQoCQRCF4UZwAb2JmZ7CfV/uoIG4oBh5C1dQNFFcgokmEFwP5i+0UEEjPWBgwUc9ang6jFK/Gb/IAVxwhYMlVmI7hn5Y5AhuuMPFGhuxXYv3eeCpcwJJpJC26L5nj4POGWSRQ96yf8RJ5wKKKKFs2ZdTQRU11D12Td/KdDt/+Y0tdmKbpoMuhhjp3LN+S6XGmKAvDDz0p5jp3EJbPGvoHUUcMUN/joXh3jTcfIZbCEG9P/8vb3L/07wAp+PVgwAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -96,7 +99,7 @@
    H4sIAAAAAAAAAGNgGD4gdqAdMApGwRADAAkB5kwABAAA
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPNgYGDwGCQYBnCJ45LHpwYXoLZ+dLMo1U8IEKuH2PAjNayIjQNizaSGm9DlsLmDVPtwmT1cMAAnUraQAAQAAA==
   </data>
