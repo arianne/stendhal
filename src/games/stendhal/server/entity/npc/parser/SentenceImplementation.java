@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Martin Fuchs
  */
-final public class SentenceImplementation extends Sentence {
+public final class SentenceImplementation extends Sentence {
 
 	private static final Logger logger = Logger.getLogger(SentenceImplementation.class);
 
@@ -34,7 +34,7 @@ final public class SentenceImplementation extends Sentence {
 	public SentenceImplementation(Expression... exprs) {
 	    super(new ConversationContext());
 
-	    for(Expression e : exprs) {
+	    for (Expression e : exprs) {
 	    	expressions.add(e);
 	    }
     }
@@ -164,7 +164,7 @@ final public class SentenceImplementation extends Sentence {
 							w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
 						} else {
 							// If normalizeAdjective() changed the word, it should be a derived adjective.
-							logger.error("SentenceImplementation.classifyWords(): unexpected normalized adjective '"+adjective+"' of original '"+original+"'");
+							logger.error("SentenceImplementation.classifyWords(): unexpected normalized adjective '" + adjective + "' of original '" + original + "'");
 							w.setType(adjective.getType());
 						}
 

@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-class BuddyLabel extends JLabel{
+class BuddyLabel extends JLabel {
 
 	/**
 	 * The online icon image.
@@ -40,7 +40,7 @@ class BuddyLabel extends JLabel{
 	}
 
 	/**
-	 * This method initializes this
+	 * This method initializes icons, foreground and size.
 	 *
 	 */
 	private void initialize() {

@@ -6,7 +6,7 @@ package games.stendhal.server.entity.npc.parser;
  *
  * @author Martin Fuchs
  */
-final public class CaseInsensitiveExprMatcher extends ExpressionMatcher {
+public final class CaseInsensitiveExprMatcher extends ExpressionMatcher {
 
 	public CaseInsensitiveExprMatcher() {
 		exactMatching = true;

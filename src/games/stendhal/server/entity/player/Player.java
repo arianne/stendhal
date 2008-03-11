@@ -1788,7 +1788,7 @@ public class Player extends RPEntity {
 	public DomesticAnimal searchAnimal(String name, boolean exactly) {
 		List<DomesticAnimal> animals = getAnimals();
 
-		for(DomesticAnimal animal : animals) {
+		for (DomesticAnimal animal : animals) {
 			if (animal != null) {
     			if (animal.getTitle().equalsIgnoreCase(name)) {
     				return animal;

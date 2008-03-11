@@ -40,6 +40,6 @@ public abstract class FormatTextParser {
 		}
 	}
 
-	abstract public void normalText(String txt) throws Exception;
-	abstract public void colorText(String txt) throws Exception;
+	public abstract void normalText(String txt) throws Exception;
+	public abstract void colorText(String txt) throws Exception;
 }

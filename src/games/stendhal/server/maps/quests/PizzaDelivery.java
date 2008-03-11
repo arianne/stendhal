@@ -308,7 +308,7 @@ public class PizzaDelivery extends AbstractQuest {
 		pizza.setDescription("You see a " + data.flavor + ".");
 		pizza.setBoundTo(name);
 		
-		if(player.equip(pizza)){
+		if (player.equip(pizza)) {
 		// TODO: If there's a space in the NPC name, colorization won't work.
 		npc.say("You must bring this "
 			+ data.flavor

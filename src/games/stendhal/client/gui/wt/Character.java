@@ -92,21 +92,21 @@ public class Character extends WtPanel {
 				st.getSprite("data/gui/helmet-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
 
-		slotPanels.put("armor", new EntitySlot( "armor",
+		slotPanels.put("armor", new EntitySlot("armor",
 				st.getSprite("data/gui/armor-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1)));
 
-		slotPanels.put("rhand", new EntitySlot( "rhand",
+		slotPanels.put("rhand", new EntitySlot("rhand",
 				st.getSprite("data/gui/weapon-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("lhand", new EntitySlot( "lhand",
+		slotPanels.put("lhand", new EntitySlot("lhand",
 				st.getSprite("data/gui/shield-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("finger", new EntitySlot( "finger",
+		slotPanels.put("finger", new EntitySlot("finger",
 				st.getSprite("data/gui/ring-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
@@ -115,12 +115,12 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("legs", new EntitySlot( "legs",
+		slotPanels.put("legs", new EntitySlot("legs",
 				st.getSprite("data/gui/legs-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2)));
 
-		slotPanels.put("feet", new EntitySlot( "feet",
+		slotPanels.put("feet", new EntitySlot("feet",
 				st.getSprite("data/gui/boots-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 3)));

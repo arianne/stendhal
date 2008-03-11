@@ -5,7 +5,7 @@ package games.stendhal.server.entity.npc.parser;
  *
  * @author Martin Fuchs
  */
-final public class ConvCtxForMatchingSource extends ConversationContext {
+public final class ConvCtxForMatchingSource extends ConversationContext {
 
 	public ConvCtxForMatchingSource() {
 		mergeExpressions = false;

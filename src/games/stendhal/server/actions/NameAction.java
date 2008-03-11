@@ -45,8 +45,8 @@ public class NameAction implements ActionListener {
     			if (animal != null) {
         			if (animal.getTitle().equalsIgnoreCase(curName)) {
         				// remove quotes, if present
-        				if (newName.charAt(0)=='\'' && newName.charAt(newName.length()-1)=='\'') {
-        					newName = newName.substring(1, newName.length()-1);
+        				if (newName.charAt(0) == '\'' && newName.charAt(newName.length() - 1) == '\'') {
+        					newName = newName.substring(1, newName.length() - 1);
         				}
 
         				newName = newName.trim();

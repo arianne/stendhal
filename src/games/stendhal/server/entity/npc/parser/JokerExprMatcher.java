@@ -7,7 +7,7 @@ package games.stendhal.server.entity.npc.parser;
  *
  * @author Martin Fuchs
  */
-final public class JokerExprMatcher extends ExpressionMatcher {
+public final class JokerExprMatcher extends ExpressionMatcher {
 
 	public JokerExprMatcher() {
 		jokerMatching = true;

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.BoxLayout;
 
-class BuddyPanel extends StyledJPanel{
+class BuddyPanel extends StyledJPanel {
 	Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
 	public BuddyPanel(Style style) {
 		super(style);
@@ -21,9 +21,9 @@ class BuddyPanel extends StyledJPanel{
 
 
 	public void addBuddy(String buddyName, boolean isOnline) {
-		BuddyLabel bl = new BuddyLabel(buddyName, isOnline);
-		labelMap.put(buddyName, bl);
-		this.add(bl,Component.LEFT_ALIGNMENT);
+		BuddyLabel label = new BuddyLabel(buddyName, isOnline);
+		labelMap.put(buddyName, label);
+		this.add(label, Component.LEFT_ALIGNMENT);
 		revalidate();
 
 	}

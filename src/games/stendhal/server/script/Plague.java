@@ -32,7 +32,7 @@ public class Plague extends ScriptImpl {
 
 		int ringcount = MathHelper.parseIntDefault(args.get(0), -1);
 		int startArgIndex = 1;
-		if (ringcount == -1){
+		if (ringcount == -1) {
 			ringcount = 1;
 			startArgIndex = 0;
 		}
@@ -40,7 +40,7 @@ public class Plague extends ScriptImpl {
 		// concatenate torn words into one
 		
 		String creatureClass = "";
-		List <String>  templist  =   args.subList(startArgIndex,args.size());
+		List <String>  templist = args.subList(startArgIndex, args.size());
 		for (String part : templist) {
 			creatureClass = creatureClass + part + " "; 
 		}

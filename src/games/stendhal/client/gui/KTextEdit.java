@@ -132,7 +132,7 @@ public class KTextEdit extends JPanel {
 		final Document doc = textPane.getDocument();
 
 		try {
-			new FormatTextParser() {
+			FormatTextParser parser =	new FormatTextParser() {
 				@Override
 				public void normalText(String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, getColor(color));
@@ -142,7 +142,8 @@ public class KTextEdit extends JPanel {
 				public void colorText(String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
 				}
-			}.format(text);
+			};
+			parser.format(text);
 		} catch (Exception ble) { // BadLocationException
 			System.err.println("Couldn't insert initial text.");
 		}

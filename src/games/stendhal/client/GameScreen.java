@@ -1095,8 +1095,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		try {
 			// recreate the string without the # characters
 			final StringBuilder temp = new StringBuilder();
-
-			new FormatTextParser() {
+			FormatTextParser parser = new FormatTextParser() {
 				@Override
 				public void normalText(String tok) {
 					temp.append(tok + " ");
@@ -1106,12 +1105,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				public void colorText(String tok) {
 					temp.append(tok + " ");
 				}
-			}.format(line);
+			};
+			parser.format(line);
 
 			// create the attribute string including formating
 			final AttributedString aStyledText = new AttributedString(temp.toString());
 
-			new FormatTextParser() {
+			parser = new FormatTextParser() {
 				private int s = 0;
 
 				@Override
@@ -1131,7 +1131,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 							+ tok.length() + 1);
 					s += tok.length() + 1;
 				}
-			}.format(line);
+			};
+			parser.format(line);
 
 			return aStyledText;
 		} catch (Exception e) {

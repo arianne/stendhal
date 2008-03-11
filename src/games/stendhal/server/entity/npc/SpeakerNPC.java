@@ -708,7 +708,7 @@ public class SpeakerNPC extends NPC {
 		stop();
 	}
 
-	public String getText(){
+	public String getText() {
 		return get("text");
 	}
 }

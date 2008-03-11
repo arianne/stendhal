@@ -22,61 +22,61 @@ public enum NotificationType {
 			return COLOR_CLIENT;
 		}
 	},
-	ERROR("error"){
+	ERROR("error") {
 		@Override
 		public Color getColor() {
 			return COLOR_ERROR;
 		}
 	},
-	INFORMATION("information"){
+	INFORMATION("information") {
 		@Override
 		public Color getColor() {
 			return COLOR_INFORMATION;
 		}
 	},
-	NEGATIVE("negative"){
+	NEGATIVE("negative") {
 		@Override
 		public Color getColor() {
 			return COLOR_NEGATIVE;
 		}
 	},
-	NORMAL("normal"){
+	NORMAL("normal") {
 		@Override
 		public Color getColor() {
 			return COLOR_NORMAL;
 		}
 	},
-	POSITIVE("positive"){
+	POSITIVE("positive") {
 		@Override
 		public Color getColor() {
 			return COLOR_POSITIVE;
 		}
 	},
-	PRIVMSG("privmsg"){
+	PRIVMSG("privmsg") {
 		@Override
 		public Color getColor() {
 			return COLOR_PRIVMSG;
 		}
 	},
-	RESPONSE("response"){
+	RESPONSE("response") {
 		@Override
 		public Color getColor() {
 			return COLOR_RESPONSE;
 		}
 	},
-	SIGNIFICANT_NEGATIVE("significant_negative"){
+	SIGNIFICANT_NEGATIVE("significant_negative") {
 		@Override
 		public Color getColor() {
 			return COLOR_SIGNIFICANT_NEGATIVE;
 		}
 	},
-	SIGNIFICANT_POSITIVE("significant_positive"){
+	SIGNIFICANT_POSITIVE("significant_positive") {
 		@Override
 		public Color getColor() {
 			return COLOR_SIGNIFICANT_POSITIVE;
 		}
 	},
-	TUTORIAL("tutorial"){
+	TUTORIAL("tutorial") {
 		@Override
 		public Color getColor() {
 			return COLOR_TUTORIAL;

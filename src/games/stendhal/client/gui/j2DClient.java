@@ -138,7 +138,7 @@ public class j2DClient extends StendhalUI {
 
 
 	private PositionChangeMulticaster positionChangeListener;
-	private StendhalChatLineListener chatListener ;
+	private StendhalChatLineListener chatListener;
 	/**
 	 * Delayed direction release holder.
 	 */
@@ -1054,7 +1054,7 @@ public class j2DClient extends StendhalUI {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
 
-					j2DClient locclient= new j2DClient(client);
+					j2DClient locclient = new j2DClient(client);
 					locclient.initialize();
 					locclient.gameLoop();
 					locclient.cleanup();

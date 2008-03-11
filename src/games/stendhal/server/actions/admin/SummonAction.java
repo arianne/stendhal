@@ -29,7 +29,7 @@ public class SummonAction extends AdministrationAction {
 	/**
 	 * Inline class to create entities of all creature types including pets.
 	 */
-	static abstract class EntityFactory {
+	abstract static class EntityFactory {
 		final Player player;
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
@@ -92,6 +92,7 @@ public class SummonAction extends AdministrationAction {
 
 				if (!zone.collides(player, x, y)) {
 					EntityFactory factory = new EntityFactory(player) {
+						@Override
 						void found(String type, Entity entity) {
 							StendhalRPAction.placeat(zone, entity, x, y);
 
@@ -105,6 +106,7 @@ public class SummonAction extends AdministrationAction {
     						searching = false;
 						}
 
+						@Override
 						void error(String message) {
 							player.sendPrivateText(message);
 

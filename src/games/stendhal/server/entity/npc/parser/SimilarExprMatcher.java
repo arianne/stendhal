@@ -35,7 +35,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 		}
 
 		int l = Math.min(len1, len2);
-		int limit = (int)((l * delta * l + (l - 1)) / l);
+		int limit = (int) ((l * delta * l + (l - 1)) / l);
 
 		return compareLevenshtein(str1, str2, limit);
     }
@@ -77,7 +77,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 	private static int limitedLevenshtein(final String str1, final String str2, int idx1, int idx2, int limit) {
 		// As long as the current characters match, we can go straight forward.
 		// Stop if we reach the end of one of the strings or find a difference.
-		while(true) {
+		while (true) {
     		if (idx1 == str1.length()) {
     			return str2.length() - idx2;
     		} else if (idx2 == str2.length()) {
@@ -87,7 +87,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
     			if (limit < 1) {
     				return 1;
     			} else {
-    				return 1 + bestLimLev(str1, str2, idx1, idx2, limit-1);
+    				return 1 + bestLimLev(str1, str2, idx1, idx2, limit - 1);
     			}
     		}
 
@@ -101,7 +101,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 	 */
 	private static int bestLimLev(final String str1, final String str2, int idx1, int idx2, int limit) {
 		// check for a replaced character
-		int d1 = limitedLevenshtein(str1, str2, idx1+1, idx2+1, limit);
+		int d1 = limitedLevenshtein(str1, str2, idx1 + 1, idx2 + 1, limit);
 
 		// Shortcut, no other result can be better than 0.
 		if (d1 == 0) {
@@ -109,7 +109,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 		}
 
 		// check for an inserted character
-		int d2 = limitedLevenshtein(str1, str2, idx1+1, idx2, limit);
+		int d2 = limitedLevenshtein(str1, str2, idx1 + 1, idx2, limit);
 
 		// Shortcut, no result can be better than 0.
 		if (d2 == 0) {
@@ -117,7 +117,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 		}
 
 		// check for a removed character
-		int d3 = limitedLevenshtein(str1, str2, idx1, idx2+1, limit);
+		int d3 = limitedLevenshtein(str1, str2, idx1, idx2 + 1, limit);
 
 		// Return the best of the three results.
 		return min(d1, d2, d3);

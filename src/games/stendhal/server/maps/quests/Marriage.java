@@ -251,8 +251,7 @@ public class Marriage extends AbstractQuest {
 			if (!isEngaged(bride)) {
 				giveInvite(bride);
 				additional = "And here are some invitations you can give to your guests.";
-			}
-			else {
+			} else {
 				additional = "I have given invitations for your guests to " + groom.getName() + ".";
 				}
 		} else if (!isEngaged(bride)) {

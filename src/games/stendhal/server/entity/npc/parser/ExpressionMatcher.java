@@ -11,13 +11,13 @@ import java.util.StringTokenizer;
 public class ExpressionMatcher {
 
 	// There are some patterns that can be used as leading flags in expression strings, e.g. "|EXACT|":
-	final static String PM_TYPE_MATCH = "TYPE";
-	final static String PM_EXACT_MATCH = "EXACT";
-	final static String PM_SIMILAR_MATCH = "SIMILAR";
-	final static String PM_ICASE_MATCH = "ICASE";
-	final static String PM_JOKER_MATCH = "JOKER";
+	static final String PM_TYPE_MATCH = "TYPE";
+	static final String PM_EXACT_MATCH = "EXACT";
+	static final String PM_SIMILAR_MATCH = "SIMILAR";
+	static final String PM_ICASE_MATCH = "ICASE";
+	static final String PM_JOKER_MATCH = "JOKER";
 
-	public final static String PM_SEPARATOR = "|";
+	public static final String PM_SEPARATOR = "|";
 
 	/** Flag to enable type string matching. */
 	protected boolean typeMatching = false;
@@ -160,7 +160,7 @@ public class ExpressionMatcher {
 					break;
 				}
 
-				text = text.substring(flag.length()+1);
+				text = text.substring(flag.length() + 1);
     		}
 
     		if (isAnyFlagSet()) {
@@ -220,7 +220,7 @@ public class ExpressionMatcher {
 			try {
     			// remove the leading slash from the type string
     			typeStr = tok.nextToken(" \t\n\r\f").substring(1);
-			} catch(NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				typeStr = "*";
 			}
 
@@ -341,7 +341,7 @@ public class ExpressionMatcher {
 		} else if (other == null) {
 			return false;
 		} else if (other.getClass() == ExpressionMatcher.class) {
-			ExpressionMatcher o = (ExpressionMatcher)other;
+			ExpressionMatcher o = (ExpressionMatcher) other;
 
     		if (typeMatching != o.typeMatching) {
     			return false;

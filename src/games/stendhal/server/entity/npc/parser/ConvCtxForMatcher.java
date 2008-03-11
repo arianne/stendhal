@@ -5,7 +5,7 @@ package games.stendhal.server.entity.npc.parser;
  *
  * @author Martin Fuchs
  */
-final public class ConvCtxForMatcher extends ConversationContext {
+public final class ConvCtxForMatcher extends ConversationContext {
 
 	public ConvCtxForMatcher() {
 		forMatching = true;

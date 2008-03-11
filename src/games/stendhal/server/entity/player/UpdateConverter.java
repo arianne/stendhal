@@ -224,7 +224,7 @@ public abstract class UpdateConverter {
 				StringBuilder buffer = new StringBuilder();
 				boolean first = true;
 
-				for(int i=0; i<parts.length; ++i) {
+				for (int i = 0; i < parts.length; ++i) {
 					String oldName = parts[i];
 
 					// Convert old item names to their new representation with correct grammar
@@ -274,7 +274,7 @@ public abstract class UpdateConverter {
 				String[] oldParts = oldState.split(";");
 				String[] newParts = newState.split(";");
 
-				if (oldParts.length==3 && newParts.length==3) {
+				if (oldParts.length == 3 && newParts.length == 3) {
 					try {
         				int oldAmount = Integer.parseInt(oldParts[0]);
         				int newAmount = Integer.parseInt(newParts[0]);
@@ -292,7 +292,7 @@ public abstract class UpdateConverter {
 
         					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
         				}
-        			} catch(NumberFormatException e) {
+        			} catch (NumberFormatException e) {
         				e.printStackTrace();
         			}
 				}

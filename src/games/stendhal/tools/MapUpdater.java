@@ -49,10 +49,10 @@ public class MapUpdater extends Task {
 	   many things refuse to compile with the usual tiled.jar,
 	   so rewrote it to work with more primitive interfaces. */
 	private boolean isUsedTileset(Map map, TileSet tileset) {
-		for (Iterator<?> tiles = tileset.iterator(); tiles.hasNext();) {
+		for (Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
 			Tile tile = (Tile) tiles.next();
 
-			for (Iterator<?> layers = map.getLayers(); layers.hasNext();) {
+			for (Iterator< ? > layers = map.getLayers(); layers.hasNext();) {
 				MapLayer layer = (MapLayer) layers.next();
 
 				if ((layer instanceof TileLayer) && (((TileLayer) layer).isUsed(tile))) {
@@ -65,7 +65,7 @@ public class MapUpdater extends Task {
 	}
 
 	private void removeUnusedTilesets(Map map) {
-		for (Iterator<?> sets = map.getTilesets().iterator(); sets.hasNext(); ) {
+		for (Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext(); ) {
 			TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
