@@ -38,7 +38,7 @@ public class DropActionTest {
 		User pl = new User();
 		pl.initialize(rpo);
 
-		for(String slotName : Constants.CARRYING_SLOTS) {
+		for (String slotName : Constants.CARRYING_SLOTS) {
 			rpo.addSlot(slotName);
 		}
 

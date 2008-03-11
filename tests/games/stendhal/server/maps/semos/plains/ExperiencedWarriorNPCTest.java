@@ -15,7 +15,7 @@ import org.junit.Test;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
- * Test for ExperiencedWarriorNPC: Starkad
+ * Test for ExperiencedWarriorNPC: Starkad.
  *
  * @author Christian Schnepf
  */
