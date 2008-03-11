@@ -58,7 +58,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * required items for the quest.
 	 */
-	private static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
+	protected static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
 
 	/**
 	 * Name of the slot used for this quest.

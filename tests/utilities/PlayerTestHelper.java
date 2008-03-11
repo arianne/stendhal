@@ -1,5 +1,6 @@
 package utilities;
 
+import utilities.RPClass.ItemTestHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
@@ -182,6 +183,7 @@ public abstract class PlayerTestHelper {
 	 * @return success flag
 	 */
 	public static boolean equipWithItem(Player player, String clazz) {
+		ItemTestHelper.generateRPClasses();
 		Item item = SingletonRepository.getEntityManager().getItem(clazz);
 
 		return player.equip(item);

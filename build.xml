@@ -624,6 +624,7 @@
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${hamcrest_jar}"/>
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
@@ -665,6 +666,7 @@
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${hamcrest_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
