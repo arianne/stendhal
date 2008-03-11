@@ -16,7 +16,6 @@ import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.rp.guilds.Guild;
 import games.stendhal.server.core.rp.guilds.GuildMember;
 import games.stendhal.server.core.rp.guilds.GuildPermission;
-import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
@@ -92,15 +91,13 @@ public class StendhalRPWorld extends RPWorld {
 	// /** The pathfinder thread. */
 	// private PathfinderThread pathfinderThread;
 
-	/** The rule system manager. */
-	private DefaultRuleManager ruleManager;
+
 
 	protected StendhalRPWorld() {
 		super();
 
 		createRPClasses();
 
-		ruleManager = SingletonRepository.getRuleSet();
 		instance = this;
 	}
 
@@ -163,11 +160,7 @@ public class StendhalRPWorld extends RPWorld {
 	// }
 	// }
 
-	/** returns the current rulemanager. */
-	public DefaultRuleManager getRuleManager() {
-		return ruleManager;
-	}
-
+	
 	protected void createRPClasses() {
 		/*
 		 * TODO: Refactor Do as Chadf proposed so the classes self initialize.

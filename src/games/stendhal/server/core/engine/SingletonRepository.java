@@ -11,7 +11,6 @@ import games.stendhal.server.core.rp.guilds.GuildPermissionList;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
-import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.GagManager;
@@ -119,10 +118,6 @@ public class SingletonRepository {
 
 	public static DefaultActionManager getActionManager() {
 		return DefaultActionManager.getInstance();
-	}
-
-	public static DefaultRuleManager getRuleSet() {
-		return new DefaultRuleManager();
 	}
 
 }
