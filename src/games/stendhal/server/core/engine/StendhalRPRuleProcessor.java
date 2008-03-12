@@ -190,6 +190,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				logger.info("No server extensions configured in ini file.");
 			}
 
+			/*
+			 * Remove online info from database.
+			 */
+			database.clearOnlineStatus();
 		} catch (Exception e) {
 			logger.error("cannot set Context. exiting", e);
 			System.exit(-1);
