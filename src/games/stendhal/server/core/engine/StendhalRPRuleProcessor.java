@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** Which stendhal version are we running. */
-	private static final String VERSION = "0.70";
+	private static final String VERSION = "0.67";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
