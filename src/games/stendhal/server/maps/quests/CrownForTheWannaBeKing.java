@@ -296,7 +296,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 			for (String item : missing) {
 				if (hash) {
 					String[] pair = item.split("=");
-					result.add(pair[1] + " #" + pair[0]);
+					result.add(Grammar.quantityplnounWithHash(Integer.parseInt(pair[1]), pair[0]));
 				} else {
 				   result.add(item);
 				}

@@ -163,7 +163,8 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, bob.hasQuest(QUEST_SLOT), is(true));
 			assertThat(playerSays, bob.getKarma(), greaterThan(oldkarma));
 			assertEquals(
-					"I want my crown to be beautiful and shiny. I need 2 #'gold bar', 4 #emerald, 3 #sapphire, 2 #carbuncle, 2 #diamond, and 1 #obsidian. Do you have some of those now with you?",
+					"I want my crown to be beautiful and shiny. I need 2 #'gold bars', 4 #emeralds, 3 #sapphires, 2 #carbuncles, 2 #diamonds, and 1 #obsidian."
+					+" Do you have some of those now with you?",
 					npc.getText());
 		}
 	}
@@ -222,7 +223,7 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(
 				"items",
 				npc.getText(),
-				is("I need 2 #'gold bar', 4 #emerald, 3 #sapphire, 2 #carbuncle, 2 #diamond, and 1 #obsidian. Did you bring something?"));
+				is("I need 2 #'gold bars', 4 #emeralds, 3 #sapphires, 2 #carbuncles, 2 #diamonds, and 1 #obsidian. Did you bring something?"));
 	}
 
 	@Test

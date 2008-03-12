@@ -600,7 +600,18 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnounWithHash(int quantity, String noun) {
-		return "" + quantity + " #'" + plnoun(quantity, noun) + "'";
+		StringBuilder sb = new StringBuilder(Integer.toString(quantity));
+
+		noun = plnoun(quantity, noun);
+
+		if (noun.indexOf(' ') != -1) {
+			sb.append(" #'" + noun + "'");
+		} else {
+			sb.append(" #");
+			sb.append(noun);
+		}
+
+		return sb.toString();
 	}
 
 	/**
