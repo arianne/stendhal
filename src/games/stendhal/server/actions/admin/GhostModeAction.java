@@ -2,6 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -37,8 +38,13 @@ public class GhostModeAction extends AdministrationAction {
 	
 			
 		}
+		/* Notify database that the player is in Ghost mode */
+		StendhalPlayerDatabase database=(StendhalPlayerDatabase)StendhalPlayerDatabase.getDatabase();		
+		database.setOnlineStatus(player,!player.isGhost());
+		
+		/* Notify players about admin going into ghost mode. */
 		StendhalRPRuleProcessor.notifyOnlineStatus(!player.isGhost(), player.getName());
-
+		
 		player.notifyWorldAboutChanges();
 	}
 
