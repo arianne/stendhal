@@ -278,13 +278,13 @@ public class CrownForTheWannaBeKingTest {
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
-			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.setCurrentState(ConversationStates.QUESTION_1);
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("Good, do you have anything else?", npc.getText());
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 
 		for (String playerSays : triggers) {
@@ -294,13 +294,13 @@ public class CrownForTheWannaBeKingTest {
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
-			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.setCurrentState(ConversationStates.QUESTION_1);
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("Good, do you have anything else?", npc.getText());
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 	}
 
@@ -318,11 +318,11 @@ public class CrownForTheWannaBeKingTest {
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
-			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("Good, do you have anything else?", npc.getText());
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 
 		PlayerTestHelper.equipWithItem(bob, "gold bar");
