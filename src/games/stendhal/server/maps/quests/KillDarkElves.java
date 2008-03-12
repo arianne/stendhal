@@ -1,12 +1,16 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -127,24 +131,13 @@ public class KillDarkElves extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
 								   , new KilledCondition("dark elf archer", "dark elf captain", "thing")
 								   , new PlayerHasItemWithHimCondition("amulet"))
-				, ConversationStates.QUEST_STARTED
+				, ConversationStates.ATTENDING
 				, "Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-
-						player.drop("amulet");
-						Item emeraldring = SingletonRepository.getEntityManager()
-								.getItem("emerald ring");
-						emeraldring.setBoundTo(player.getName());
-						player.equip(emeraldring, true);
-						player.addKarma(5.0);
-						player.addXP(10000);
-						player.setQuest(QUEST_SLOT, "done");
-						engine.setCurrentState(ConversationStates.ATTENDING);
-					
-					}
-				});
+				new MultipleActions(new DropItemAction("amulet"),
+						new EquipItemAction("emerald ring", 1, true),
+						new IncreaseXPAction(10000),
+						new IncreaseKarmaAction(5.0),
+						new SetQuestAction(QUEST_SLOT, "done")));
 
 
 		npc.add(
