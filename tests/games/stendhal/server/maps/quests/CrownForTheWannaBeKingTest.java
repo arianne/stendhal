@@ -63,7 +63,7 @@ public class CrownForTheWannaBeKingTest {
 		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 
 			Player bob = PlayerTestHelper.createPlayer("bob");
-			bob.setQuest(QUEST_SLOT, "blabla");
+			bob.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
@@ -142,7 +142,7 @@ public class CrownForTheWannaBeKingTest {
 		for (String playerSays : triggers) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(ConversationStates.ATTENDING);
-			bob.setQuest(QUEST_SLOT, "blabl");
+			bob.setQuest(QUEST_SLOT, "");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(true));
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			npcEngine.step(bob, playerSays);
@@ -237,7 +237,7 @@ public class CrownForTheWannaBeKingTest {
 		String[] triggers = { "no", "nothing" };
 		for (String playerSays : triggers) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
-			bob.setQuest(QUEST_SLOT, "blabla");
+			bob.setQuest(QUEST_SLOT, "");
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
 
@@ -255,7 +255,7 @@ public class CrownForTheWannaBeKingTest {
 		String[] triggers = { "obsidian", "diamond", "carbuncle", "sapphire", "emerald", "gold bar" };
 		for (String playerSays : triggers) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
-			bob.setQuest(QUEST_SLOT, "blabla");
+			bob.setQuest(QUEST_SLOT, "");
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
 
