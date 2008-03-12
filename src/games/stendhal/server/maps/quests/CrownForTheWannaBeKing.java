@@ -11,8 +11,9 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.CountedItemList;
+import games.stendhal.server.util.ItemEntry;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * required items for the quest.
 	 */
-	protected static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
+	protected static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1";
 
 	/**
 	 * Name of the slot used for this quest.
@@ -201,9 +202,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		};
 
 		/* add triggers for the item names */
-		for (String item : NEEDED_ITEMS.split(";")) {
-			String tempItem = item.substring(0, item.indexOf('='));
-			npc.add(ConversationStates.QUESTION_1, tempItem, null,
+		CountedItemList items = new CountedItemList(NEEDED_ITEMS);
+		for (ItemEntry item : items) {
+			npc.add(ConversationStates.QUESTION_1, item.itemName, null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
 		}
 
@@ -292,13 +293,13 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		String missingText = player.getQuest(QUEST_SLOT);
 
 		if (missingText != null && missingText.length() > 0) {
-			List<String> missing = Arrays.asList(missingText.split(";"));
-			for (String item : missing) {
+			CountedItemList items = new CountedItemList(missingText);
+
+			for (ItemEntry item : items) {
 				if (hash) {
-					String[] pair = item.split("=");
-					result.add(Grammar.quantityplnounWithHash(Integer.parseInt(pair[1]), pair[0]));
+					result.add(Grammar.quantityplnounWithHash(item.amount, item.itemName));
 				} else {
-				   result.add(item);
+					result.add(item.itemName + '=' + item.amount);
 				}
 			}
 		}
@@ -318,12 +319,13 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	private boolean dropItems(Player player, String itemName, int itemCount) {
 		boolean result = false;
 
-		String missingText = player.getQuest(QUEST_SLOT);
+		 // parse the quest state into a list of still missing items
+		CountedItemList itemsTodo = new CountedItemList(player.getQuest(QUEST_SLOT));
 
 		if (player.drop(itemName, itemCount)) {
-			missingText = missingText.replaceFirst(itemName + "=\\d+;", "");
-			player.setQuest(QUEST_SLOT, missingText);
-			result = true;
+			if (itemsTodo.removeItem(itemName, itemCount)) {
+				result = true;
+			}
 		} else {
 			/*
 			 * handle the cases the player has part of the items or all divided
@@ -333,34 +335,42 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 			if (items != null) {
 				for (Item item : items) {
 					int quantity = item.getQuantity();
-					if (player.drop(itemName, Math.min(itemCount, quantity))) {
-						itemCount -= quantity;
-						result = true;
+					int n = Math.min(itemCount, quantity);
+
+					if (player.drop(itemName, n)) {
+						itemCount -= n;
+
+						if (itemsTodo.removeItem(itemName, n)) {
+							result = true;
+						}
 					}
+
 					if (itemCount == 0) {
 						result = true;
 						break;
 					}
 				}
-				if (itemCount == 0) {
-					missingText = missingText.replaceFirst(itemName + "=\\d+;", "");
-				} else {
-					missingText = missingText.replaceFirst(itemName + "=\\d+;", itemName + "=" + itemCount + ";");
-				}
-				player.setQuest(QUEST_SLOT, missingText);
 			}
 		}
+
+		 // update the quest state if some items are handed over
+		if (result) {
+			player.setQuest(QUEST_SLOT, itemsTodo.stringForQuestState());
+		}
+
 		return result;
 	}
 
 	private int getMissingCount(String text, List<String> missing) {
 		int result = 0;
+
 		for (String item : missing) {
-			if (item.startsWith(text + "=")) {
+			if (item.startsWith(text + '=')) {
 				result = Integer.parseInt(item.substring(item.indexOf('=') + 1));
 				break;
 			}
 		}
+
 		return result;
 	}
 
