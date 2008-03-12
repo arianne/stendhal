@@ -691,7 +691,7 @@ public class Grammar {
 		if (str != null) {
 			int idx = str.indexOf('#');
 
-			if (idx != -1 && str.indexOf(' ', idx) != -1) {
+			if (idx != -1 && str.indexOf(' ', idx) != -1 && str.charAt(idx+1) != '\'') {
 				return str.substring(0, idx) + "#'" + str.substring(idx+1) + '\'';
 			}
 		}
