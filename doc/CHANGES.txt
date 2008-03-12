@@ -1,5 +1,15 @@
 Changelog
 ---------
+0.68 
+- character panel shows atk_xp needed to level up instead of total atk_xp
+- pizza is edible and can be made at the wofol bakery
+- ados tavern got a makeover and new staff
+- name your pet with /name <pet> <name>
+- assassins tunnel from assassins tower to ados castle
+- new creatures which drop new items in assassins tunnel
+- ados castle gardens in correct place now
+- -1 semos mines zones (mtn dwarf areas) decorated
+
 0.67
 - new players start in semos guardhouse
 - hayunn naratha gives an initial quest to new players
