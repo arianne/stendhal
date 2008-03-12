@@ -42,7 +42,6 @@ public class CrownForTheWannaBeKingTest {
 		cotbk.addToWorld();
 
 		npcEngine = npc.getEngine();
-
 	}
 
 	@AfterClass
@@ -61,7 +60,6 @@ public class CrownForTheWannaBeKingTest {
 	@Test
 	public void testIdleToQuestion1() throws Exception {
 		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-
 			Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(ConversationStates.IDLE);
@@ -197,9 +195,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
-
 		}
-
 	}
 
 	@Test
@@ -211,9 +207,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-
 		}
-
 	}
 
 	@Test
@@ -229,7 +223,6 @@ public class CrownForTheWannaBeKingTest {
 				"items",
 				npc.getText(),
 				is("I need 2 #gold bar, 4 #emerald, 3 #sapphire, 2 #carbuncle, 2 #diamond, and 1 #obsidian. Did you bring something?"));
-
 	}
 
 	@Test
@@ -245,14 +238,13 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.IDLE));
-
 		}
-
 	}
 
 	@Test
 	public void testQuestion1ToQuestion1Itembrought() throws Exception {
 		String[] triggers = { "obsidian", "diamond", "carbuncle", "sapphire", "emerald", "gold bar" };
+
 		for (String playerSays : triggers) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "");
@@ -265,6 +257,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("You have already brought that!", npc.getText());
 		}
+
 		for (String playerSays : triggers) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, CrownForTheWannaBeKing.NEEDED_ITEMS);
@@ -285,6 +278,7 @@ public class CrownForTheWannaBeKingTest {
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.setCurrentState(ConversationStates.QUESTION_1);
 
@@ -300,6 +294,7 @@ public class CrownForTheWannaBeKingTest {
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.setCurrentState(ConversationStates.QUESTION_1);
 
@@ -307,7 +302,6 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("Good, do you have anything else?", npc.getText());
 		}
-
 	}
 
 	@Test
@@ -321,10 +315,10 @@ public class CrownForTheWannaBeKingTest {
 				"sapphire", "emerald", "emerald", "emerald", "emerald", "gold bar" };
 		npcEngine.setCurrentState(ConversationStates.QUESTION_1);
 		for (String playerSays : triggers) {
-
 			PlayerTestHelper.equipWithItem(bob, playerSays);
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
+			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
@@ -353,7 +347,6 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(bob.isQuestCompleted(QUEST_SLOT), is(true));
 		assertThat(bob.getKarma(), greaterThan(oldkarma));
 		assertThat(bob.getATKXP(), greaterThan(oldatk));
-		
 	}
 
 }
