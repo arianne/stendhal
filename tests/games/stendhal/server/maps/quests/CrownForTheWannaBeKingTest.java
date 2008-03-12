@@ -164,7 +164,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, bob.getKarma(), greaterThan(oldkarma));
 			assertEquals(
 					"I want my crown to be beautiful and shiny. I need 2 #'gold bars', 4 #emeralds, 3 #sapphires, 2 #carbuncles, 2 #diamonds, and 1 #obsidian."
-					+" Do you have some of those now with you?",
+					+ " Do you have some of those now with you?",
 					npc.getText());
 		}
 	}
