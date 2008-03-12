@@ -202,7 +202,7 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
-		assertEquals("two and three are missing", "#'two' and #'three'", npc.get("text"));
+		assertEquals("two and three are missing", "#two and #three", npc.get("text"));
 		en.step(player, "two");
 		assertEquals("item brought", quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
 
