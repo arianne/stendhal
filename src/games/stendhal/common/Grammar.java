@@ -688,11 +688,15 @@ public class Grammar {
 	 * @return
 	 */
 	static String quoteHash(String str) {
-		if (str != null && str.length() > 0 && str.charAt(0) == '#') {
-			return "#'" + str.substring(1) + '\'';
-		} else {
-			return str;
+		if (str != null) {
+			int idx = str.indexOf('#');
+
+			if (idx != -1 && str.indexOf(' ', idx) != -1) {
+				return str.substring(0, idx) + "#'" + str.substring(idx+1) + '\'';
+			}
 		}
+
+		return str;
 	}
 
 	/**
