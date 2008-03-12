@@ -213,7 +213,7 @@ public class KillDarkElvesTest {
 					playerSays,
 					"Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
 					npc.getText());
-
+			assertFalse(bob.isEquipped("amulet"));
 			assertTrue(bob.isEquipped("emerald ring"));
 			assertThat(bob.getKarma(), greaterThan(karma));
 			assertThat(bob.getXP(), greaterThan(xp));

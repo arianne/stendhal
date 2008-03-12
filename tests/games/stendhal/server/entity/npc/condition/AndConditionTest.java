@@ -67,6 +67,18 @@ public class AndConditionTest {
 	}
 
 	@Test
+	public void testEqualsthisandsingle() throws Exception {
+		String QUEST_SLOT = "quest";
+		ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
+		   , new KilledCondition("dark elf archer", "dark elf captain", "thing"));
+
+		ChatCondition instate = new QuestInStateCondition(QUEST_SLOT, "start");
+		  assertFalse(andcon.equals(instate));
+		  assertFalse(instate.equals(andcon));
+	}
+	
+	
+	@Test
 	public void testFire() throws Throwable {
 
 		assertTrue("empty And is true", new AndCondition().fire(
