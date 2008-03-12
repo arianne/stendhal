@@ -151,7 +151,6 @@ public class CrownForTheWannaBeKingTest {
 
 	@Test
 	public void testQuestOfferedToQuestion1() throws Exception {
-
 		for (String playerSays : ConversationPhrases.YES_MESSAGES) {
 			Player bob = PlayerTestHelper.createPlayer("bob");
 			double oldkarma = bob.getKarma();
