@@ -44,7 +44,7 @@ public class SchoolMarmNPC implements ZoneConfigurator {
 
 			@Override
 			    protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.IDLE, "What are you bothering me for. Can't you see I have my hands full! Now, Lil Johnnnny, I told you not to poke him in the eye!", null);
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.IDLE, "What are you bothering me for. Can't you see I have my hands full! Now, lil johnnnny, I told you not to poke him in the eye!", null);
 	 	     }
 		    
 		};

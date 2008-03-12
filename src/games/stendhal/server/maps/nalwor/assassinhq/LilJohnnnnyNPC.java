@@ -35,13 +35,13 @@ public class LilJohnnnnyNPC implements ZoneConfigurator {
 				addJob("He was making fun of me.");
 				addHelp("He said my mommy wears army boots.");
 				addOffer("I'm gonna make him sorry he ever said that!");
-				addGoodbye("well, if you have to leave...");
+				addGoodbye("well, if you really have to leave...");
 			}
 		};
 
 		liljohnnnny.setEntityClass("liljohnnnnynpc");
-		liljohnnnny.setPosition(29, 2);
-		liljohnnnny.setBaseHP(100); 
+		liljohnnnny.setPosition(23, 2);
+		liljohnnnny.initHP(100);
 		zone.add(liljohnnnny);
 	}
 }

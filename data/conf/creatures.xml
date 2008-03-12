@@ -8833,6 +8833,35 @@
     </ai>
   </creature>
 
+  <creature name="entwife">
+    <type class="boss" subclass="entwife" tileid="boss.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="213"/>
+      <def value="55"/>
+      <hp value="1250"/>
+      <speed value="0.1"/>
+      <size value="5,3"/>
+    </attributes>
+    <level value="113"/>
+    <experience value="15000"/>
+    <respawn value="3200"/>
+    <drops>
+      <item value="button mushroom" quantity="[5,10]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,3]" probability="30.0"/>
+      <item value="wood" quantity="[2,6]" probability="70.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="armored warrior">
     <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
     <description></description>
