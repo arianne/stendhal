@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 class BuddyLabel extends JLabel {
 
 	/**

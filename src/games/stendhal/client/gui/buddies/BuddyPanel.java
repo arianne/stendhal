@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.BoxLayout;
 
+@SuppressWarnings("serial")
 class BuddyPanel extends StyledJPanel {
 	Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
 	public BuddyPanel(Style style) {
