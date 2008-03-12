@@ -175,6 +175,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				List<String> missingItems = getMissingItems(player, false);
 				String item = sentence.getTriggerExpression().getNormalized();
 				int missingCount = getMissingCount(item, missingItems);
+
 				if (missingCount > 0) {
 					if (dropItems(player, item, missingCount)) {
 						missingItems = getMissingItems(player, false);
@@ -289,10 +290,10 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		List<String> result = new LinkedList<String>();
 
 		String missingText = player.getQuest(QUEST_SLOT);
+
 		if (missingText != null && missingText.length() > 0) {
 			List<String> missing = Arrays.asList(missingText.split(";"));
 			for (String item : missing) {
-
 				if (hash) {
 					String[] pair = item.split("=");
 					result.add(pair[1] + " #" + pair[0]);
@@ -301,6 +302,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -315,7 +317,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 */
 	private boolean dropItems(Player player, String itemName, int itemCount) {
 		boolean result = false;
+
 		String missingText = player.getQuest(QUEST_SLOT);
+
 		if (player.drop(itemName, itemCount)) {
 			missingText = missingText.replaceFirst(itemName + "=\\d+;", "");
 			player.setQuest(QUEST_SLOT, missingText);
@@ -339,11 +343,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 					}
 				}
 				if (itemCount == 0) {
-					missingText = missingText.replaceFirst(itemName + "=\\d+;",
-							"");
+					missingText = missingText.replaceFirst(itemName + "=\\d+;", "");
 				} else {
-					missingText = missingText.replaceFirst(itemName + "=\\d+;",
-							itemName + "=" + itemCount + ";");
+					missingText = missingText.replaceFirst(itemName + "=\\d+;", itemName + "=" + itemCount + ";");
 				}
 				player.setQuest(QUEST_SLOT, missingText);
 			}

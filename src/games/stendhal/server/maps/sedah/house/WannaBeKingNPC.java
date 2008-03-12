@@ -35,7 +35,6 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 	 */
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Ivan Abe") {
-
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();

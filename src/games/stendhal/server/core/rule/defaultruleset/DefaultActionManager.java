@@ -76,6 +76,7 @@ public class DefaultActionManager implements ActionManager {
 				}
 			}
 		}
+
 		// We can't stack it on another item. Check if we can simply
 		// add it to an empty cell.
 		for (String slot : slotNames) {
