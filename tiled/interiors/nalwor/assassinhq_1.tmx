@@ -108,17 +108,17 @@
  </layer>
  <layer name="2_object" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2WRwoCMRSGcwDduBZBcK1Xsveu21E3FgSxexexnM1/EXAMSUybIP7wEebllUwmZQh5Kw8KoEg+tQcHcCR2ytI2I+gvgTKoMPYTOIMLY++BPhgI8jVAE7Toc04ytjSoghqoS/zCGoIRGNN4Vm3QAV3az/NRVUzBJwATMAUzi1o8rR3ni0JzsABLsJL43f0MR6iHQczGIOaqWT/OtKb2bzJ5f5d6Osy1c5jL9fynQJJj/+X1z5vPraf6rudfd//5kmz9654z4W9je//4On+ikur9w9PNsjYvXvTPkbCs9U96AfCyarMACwAA
+   H4sIAAAAAAAAAGNgQIAEIE4E4iQGVDARiCcB8WQG8oEeEWqSgTgFiFPRxKcA8VQgnoYmng/EBUBcSITZ+gy4/QcCikCcBsTpQJxBhHkgUATExUBcAtVPCJBqPjLgIUJNLRDXAXE9EDeQYQc+0EVl82gBWoG4DYjbgbgDj7o99HEOTrCXDD29ZOjZSaL9vGg0ueKEADn+pybYR0WzJlDRLGqHvxwQy2ARH8zpH1t49tPJfmqHP6n5j14AX/ontZxBjhtK6x96lT+0AsTWP9jAbgrtxqZfkQF7u0SIQruGEwAA60G0QwALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXDCdQBcT2VzeSC0vuJULsRiDdR2X5SQBsQtw+g/aNgFIwC/ICYcmQUDE1Ai/qHFEBM/SNAQ/uJqX8EaWj/KCANAACzTUuZAAsAAA==
+   H4sIAAAAAAAAAGNgGAXDBTgBsT0QOwCxLRXN5YLS+4lQuxGIN1HRblJBGxC3D6D9o2AUjAL8gJhyZBQMPUCr+ocUQEz9I0BD+4mpfwRpaP8oIA0AAOiZBM4ACwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDAjwFMJdk3AAsAAA==
+   H4sIAAAAAAAAAGNgGAXDBdQCcR0Q1wNxw8A6ZRSMglEwCkbBCAKj9c8oGGoAABYmCm8ACwAA
   </data>
  </layer>
  <layer name="objects" width="32" height="22">
@@ -126,9 +126,9 @@
    H4sIAAAAAAAAAGNgGAWjYHCBuQPtgFGAAgjFx2h8UQdQOxxNoHgUkAbQ4wFXvIyme9oAUsN7NB5GAbkAALrPMiwACwAA
   </data>
  </layer>
- <layer name="collision" width="32" height="22" opacity="0.37">
+ <layer name="collision" width="32" height="22" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNnYGAwH8UYmBhAibnk2Eeqe2ihllqAFvYTaya58U0IUGo/Lr3EihPrr8Hq/4G2n9rhTw23kgJGw39w+X+o5b+hnv5JAQMZ/tjUUuoGbObhMhef2pGGAXpbypcACwAA
+   H4sIAAAAAAAAADNnYGAwH8UYmBhAqhmU2keqe2ihllqAFvYTa+ZAhz8u+3HpJVacWH8NVv8PtP3UDn9quJUUMBr+g8v/Qy3/DfX0TwoYyPDHppZSN2AzD5e5+NSONAwAU65m8QALAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="22">
