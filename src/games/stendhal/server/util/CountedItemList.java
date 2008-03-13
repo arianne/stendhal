@@ -31,7 +31,7 @@ public class CountedItemList extends LinkedList<ItemEntry> {
 	}
 
 	public boolean removeItem(String itemName, int amount) {
-    	for(ItemEntry e : this) {
+    	for (ItemEntry e : this) {
             if (e.itemName.equals(itemName)) {
             	if (e.amount >= amount) {
             		e.amount -= amount;
@@ -54,7 +54,7 @@ public class CountedItemList extends LinkedList<ItemEntry> {
     	StringBuilder sb = new StringBuilder();
     	boolean first = true;
 
-    	for(ItemEntry e : this) {
+    	for (ItemEntry e : this) {
     		if (first) {
     			first = false;
     		} else {

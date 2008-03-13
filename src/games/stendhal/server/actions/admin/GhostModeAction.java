@@ -39,8 +39,8 @@ public class GhostModeAction extends AdministrationAction {
 			
 		}
 		/* Notify database that the player is in Ghost mode */
-		StendhalPlayerDatabase database=(StendhalPlayerDatabase)StendhalPlayerDatabase.getDatabase();		
-		database.setOnlineStatus(player,!player.isGhost());
+		StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();		
+		database.setOnlineStatus(player, !player.isGhost());
 		
 		/* Notify players about admin going into ghost mode. */
 		StendhalRPRuleProcessor.notifyOnlineStatus(!player.isGhost(), player.getName());
