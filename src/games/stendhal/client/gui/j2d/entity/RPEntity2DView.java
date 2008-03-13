@@ -16,6 +16,7 @@ import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Direction;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -85,19 +86,19 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
 		int y = 0;
-		bladeStrikeSprites.put(STATE_UP, st.getTiles(tiles, 0, y, 3, twidth,
+		bladeStrikeSprites.put(Direction.UP, st.getTiles(tiles, 0, y, 3, twidth,
 				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_RIGHT, st.getTiles(tiles, 0, y, 3, twidth,
+		bladeStrikeSprites.put(Direction.RIGHT, st.getTiles(tiles, 0, y, 3, twidth,
 				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_DOWN, st.getTiles(tiles, 0, y, 3, twidth,
+		bladeStrikeSprites.put(Direction.DOWN, st.getTiles(tiles, 0, y, 3, twidth,
 				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_LEFT, st.getTiles(tiles, 0, y, 3, twidth,
+		bladeStrikeSprites.put(Direction.LEFT, st.getTiles(tiles, 0, y, 3, twidth,
 				theight));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
@@ -141,16 +142,16 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map,
 			final Sprite tiles, final int width, final int height) {
 		int y = 0;
-		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.UP, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_RIGHT, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.RIGHT, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_DOWN, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.DOWN, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.LEFT, createWalkSprite(tiles, y, width, height));
 	}
 
 	/**

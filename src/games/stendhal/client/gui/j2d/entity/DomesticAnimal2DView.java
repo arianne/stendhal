@@ -14,6 +14,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
 import java.util.Map;
@@ -147,16 +148,16 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map,
 			final Sprite tiles, final int width, final int height) {
 		int y = 0;
-		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.UP, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_RIGHT, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.RIGHT, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_DOWN, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.DOWN, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
+		map.put(Direction.LEFT, createWalkSprite(tiles, y, width, height));
 
 		y += height;
 		map.put(STATE_BIG_UP, createWalkSprite(tiles, y, width, height));

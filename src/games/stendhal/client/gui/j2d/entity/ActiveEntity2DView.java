@@ -17,25 +17,6 @@ import games.stendhal.common.Direction;
  * The 2D view of an animated entity.
  */
 public abstract class ActiveEntity2DView extends StateEntity2DView {
-	/**
-	 * The down facing state.
-	 */
-	protected static final String STATE_DOWN = "move_down";
-
-	/**
-	 * The up facing state.
-	 */
-	protected static final String STATE_UP = "move_up";
-
-	/**
-	 * The left facing state.
-	 */
-	protected static final String STATE_LEFT = "move_left";
-
-	/**
-	 * The right facing state.
-	 */
-	protected static final String STATE_RIGHT = "move_right";
 
 	/**
 	 * The active entity.
@@ -66,23 +47,11 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 * 
 	 * @return A named state.
 	 */
-	protected String getDirectionState(final Direction direction) {
-		switch (direction) {
-		case LEFT:
-			return STATE_LEFT;
-
-		case RIGHT:
-			return STATE_RIGHT;
-
-		case UP:
-			return STATE_UP;
-
-		case DOWN:
-			return STATE_DOWN;
-
-		default:
-			return STATE_DOWN;
+	protected Direction getDirectionState(final Direction direction) {
+		if (direction == Direction.STOP) {
+			return Direction.DOWN;
 		}
+		return direction;
 	}
 
 	//
@@ -95,7 +64,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 * @return The model state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Direction getState() {
 		return getDirectionState(activeEntity.getDirection());
 	}
 

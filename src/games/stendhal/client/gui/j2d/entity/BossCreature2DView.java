@@ -12,6 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Direction;
 
 import java.util.Map;
 
@@ -50,10 +51,10 @@ public class BossCreature2DView extends Creature2DView {
 		Sprite right = store.getTile(tiles, 0, 0, width, height);
 		Sprite left = store.getTile(tiles, 0, height, width, height);
 
-		map.put(STATE_RIGHT, right);
-		map.put(STATE_LEFT, left);
-		map.put(STATE_UP, right);
-		map.put(STATE_DOWN, left);
+		map.put(Direction.RIGHT, right);
+		map.put(Direction.LEFT, left);
+		map.put(Direction.UP, right);
+		map.put(Direction.DOWN, left);
 	}
 
 	/**
