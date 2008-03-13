@@ -28,7 +28,6 @@ import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class BringListOfItemsQuestLogicTest {
-
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
@@ -99,7 +98,6 @@ public class BringListOfItemsQuestLogicTest {
 		assertTrue(bob.hasQuest(quest.getSlotName()));
 		assertEquals(Arrays.asList(new String[] { "one" }), logic.getListOfStillMissingItems(bob, false));
 		assertEquals(Arrays.asList(new String[] { "#one" }), logic.getListOfStillMissingItems(bob, true));
-
 	}
 
 	@Test
@@ -115,7 +113,6 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
-
 	}
 
 	@Test
@@ -138,7 +135,6 @@ public class BringListOfItemsQuestLogicTest {
 		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public boolean shouldWelcomeAfterQuestIsCompleted() {
-
 				return true;
 			}
 		};
@@ -153,7 +149,6 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeAfterQuestIsCompleted(), npc.get("text"));
-
 	}
 
 	@Test
@@ -268,7 +263,6 @@ public class BringListOfItemsQuestLogicTest {
 	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
-
 		private SpeakerNPC npc;
 
 		private boolean isWelcomingAfterQuests;
@@ -378,7 +372,6 @@ public class BringListOfItemsQuestLogicTest {
 		public double getKarmaDiffForQuestResponse() {
 			return 5.0;
 		}
-
 	}
 
 	/**
@@ -388,7 +381,6 @@ public class BringListOfItemsQuestLogicTest {
 	 * 
 	 */
 	class NullValueMockBringListOfItemsQuest implements BringListOfItemsQuest {
-
 		private SpeakerNPC npc;
 
 		public String askForItemsAfterPlayerSaidHeHasItems() {
@@ -496,6 +488,5 @@ public class BringListOfItemsQuestLogicTest {
 		public double getKarmaDiffForQuestResponse() {
 			return 0;
 		}
-
 	}
 }
