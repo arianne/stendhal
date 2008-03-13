@@ -77,19 +77,9 @@ public abstract class RPEntity extends ActiveEntity {
 			"slap-1.wav", "arrow-1.wav" };
 
 	public enum Resolution {
-		HIT(0),
-		BLOCKED(1),
-		MISSED(2);
-
-		private final int val;
-
-		Resolution(final int val) {
-			this.val = val;
-		}
-
-		public int get() {
-			return val;
-		}
+		HIT,
+		BLOCKED,
+		MISSED;
 	};
 
 	private int atk;
