@@ -4,7 +4,14 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -121,26 +128,20 @@ public class ElvishArmor extends AbstractQuest {
 
 		// player says yes
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						engine.say("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!");
-						player.setQuest(QUEST_SLOT, "");
-						player.addKarma(5.0);
-					}
-				});
+				ConversationPhrases.YES_MESSAGES, 
+				null,
+				ConversationStates.IDLE, 
+				"The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!", 
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, ""),
+									new IncreaseKarmaAction(5.0)));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						engine.say("Another unhelpful soul, I see.");
-						player.addKarma(-5.0);
-					}
-				});
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, 
+				null,
+				ConversationStates.QUEST_OFFERED, 
+				"Another unhelpful soul, I see.",
+				new DecreaseKarmaAction(5.0));
 
 	}
 
@@ -155,13 +156,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				},
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				"Hello! I hope your search for elvish #equipment is going well?",
 				null);
@@ -245,47 +240,31 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.isQuestCompleted(QUEST_SLOT);
-					}
-				},
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I understand, the green elves protect themselves well. If there's anything else I can do for you, just say.",
 				null);
 
 		// player says he didn't bring any items to different question
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_EXPRESSION,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING,
+				new QuestNotCompletedCondition(QUEST_SLOT), 
+				ConversationStates.ATTENDING,
 				"I see. If there's anything else I can do for you, just say.",
 				null);
 
 		// player returns after finishing the quest
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING,
-				"Greetings again, old friend.", null);
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT), 
+				ConversationStates.ATTENDING,
+				"Greetings again, old friend.", 
+				null);
 
 		// player returns after finishing the quest and says offer
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				},
+				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one.",
 				null);
@@ -294,12 +273,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				},
+				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you.",
 				null);
@@ -307,25 +281,15 @@ public class ElvishArmor extends AbstractQuest {
 		// player returns when the quest is in progress and says quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.QUESTION_1,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
 				"As you already know, I seek elvish #equipment.", null);
 
 		// player returns when the quest is in progress and says offer
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
 				"I don't think I trust you well enough yet ... ", null);
 	}
 
