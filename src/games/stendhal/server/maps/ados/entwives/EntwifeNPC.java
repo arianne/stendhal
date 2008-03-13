@@ -41,7 +41,7 @@ public class EntwifeNPC implements ZoneConfigurator {
 		};
 
 		entwife.setEntityClass("transparentnpc");
-		entwife.setPosition(186, 11);
+		entwife.setPosition(58, 11);
 		entwife.initHP(100); 
 		zone.add(entwife);
 	}
