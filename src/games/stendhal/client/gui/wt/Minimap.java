@@ -30,6 +30,7 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -38,8 +39,9 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The minimap.
@@ -62,6 +64,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * The color of a general entity.
 	 */
 	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
+
+	/**
+	 * The color of the "N" text.
+	 */
+	private static final Color COLOR_NORTH = new Color(0.0f, 0.0f, 0.0f);
 
 	/** width of the minimap. */
 	private static final int MINIMAP_WIDTH = 129;
@@ -154,8 +161,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc,
-			String zone) {
+	public void update(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
 		setTitletext(zone);
 
 		// FOR PATHFINDING THING
@@ -195,6 +201,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				}
 			}
 		}
+
+		mapgrapics.setColor(COLOR_NORTH);
+		mapgrapics.setFont(new Font("SansSerif", Font.PLAIN, 9));
+		mapgrapics.drawString("N", w * scale / 2 - 4, 8);
 
 		mapgrapics.dispose();
 
