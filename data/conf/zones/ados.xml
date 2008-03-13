@@ -7,7 +7,10 @@
    -->
 
  <!--  Ground level -->
- <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
+  <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
+ </zone>
+ 
+ <zone name="0_ados_mountain_nw2" level="0" x="500512" y="499744" file="Level 0/ados/mountain_nw2.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
  </zone>
 
