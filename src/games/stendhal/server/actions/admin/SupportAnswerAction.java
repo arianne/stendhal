@@ -30,7 +30,7 @@ public class SupportAnswerAction extends AdministrationAction {
 			Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
-				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT));
+				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT) + " If you wish to reply, please use /support.");
 				supported.notifyWorldAboutChanges();
 				StendhalRPRuleProcessor.sendMessageToSupporters(message);
 				
