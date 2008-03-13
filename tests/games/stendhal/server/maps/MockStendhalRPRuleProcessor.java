@@ -32,9 +32,7 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 * @param player Player
 	 */
 	public void addPlayer(Player player) {
-		
-			this.onlinePlayers.add(player);
-		
+		this.onlinePlayers.add(player);
 	}
 
 	/**
@@ -42,6 +40,5 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 */
 	public void clearPlayers() {
 		onlinePlayers = new PlayerList();
-		
 	}
 }
