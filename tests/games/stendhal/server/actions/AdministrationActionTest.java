@@ -166,7 +166,7 @@ public class AdministrationActionTest {
 		action.put("text", "huhu");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
-		assertEquals("Support (player) tells you: huhu", bob.getPrivateTextString());
+		assertEquals("Support (player) tells you: huhu If you wish to reply, use /support.", bob.getPrivateTextString());
 		assertEquals("player answers bob's support question: huhu", anptherAdmin.getPrivateTextString());
 
 		bob.resetPrivateTextString();
