@@ -305,16 +305,18 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		Graphics vg = g.create();
 
 		// draw minimap
-		vg.drawImage(image, -panx, -pany, null);
+		vg.translate(-panx, -pany);
+		vg.drawImage(image, 0, 0, null);
 
 		int level = User.getPlayerLevel();
 
+		// display a "N" to show north direction
 		if (level < 10) {
     		vg.setColor(COLOR_NORTH);
     		vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
     		FontMetrics metrics = vg.getFontMetrics();
     		Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
-    		vg.drawString("N", (width - (int)rect.getWidth()) / 2, (int)rect.getHeight());
+    		vg.drawString("N", panx + (width - (int)rect.getWidth()) / 2, pany + (int)rect.getHeight());
 		}
 
 //		PATHFIND ---
