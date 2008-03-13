@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -383,6 +384,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		player.addKarma(10.0);
 		player.setATKXP(player.getATKXP() + (int) (player.getXP() * ATK_REWARD_RATE));
 		player.incATKXP();
+		player.sendPrivateText(NotificationType.POSITIVE, "You gained " + Integer.toString((int) (player.getXP() * ATK_REWARD_RATE)) + " of attack experience points.");
 	}
 
 	@Override
