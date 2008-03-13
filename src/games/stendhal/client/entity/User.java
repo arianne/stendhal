@@ -74,6 +74,7 @@ public class User extends Player {
 		if (isNull()) {
 			return false;
 		}
+
 		User me = User.get();
 		if (me.rpObject == null) {
 			return false;
@@ -81,6 +82,18 @@ public class User extends Player {
 
 		return me.rpObject.has("adminlevel")
 				&& (me.rpObject.getInt("adminlevel") >= 600);
+	}
+
+	public static int getPlayerLevel() {
+		if (!isNull()) {
+			User me = User.get();
+
+    		if (me.rpObject != null) {
+    			return me.getLevel();
+    		}
+		}
+
+		return 0;
 	}
 
 	public int getObjectID() {
