@@ -31,6 +31,7 @@ import games.stendhal.common.CollisionDetection;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -202,10 +203,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			}
 		}
 
-		mapgrapics.setColor(COLOR_NORTH);
-		mapgrapics.setFont(new Font("SansSerif", Font.PLAIN, 9));
-		mapgrapics.drawString("N", w * scale / 2 - 4, 8);
-
 		mapgrapics.dispose();
 
 		// now resize the panel to match the size of the map
@@ -260,7 +257,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	}
 
 	public void update_pathfind() {
-
 		if (nodo_actual != 0) {
 			pathfind.PathJumpToNode(nodo_actual);
 			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
@@ -307,21 +303,34 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		}
 
 		Graphics vg = g.create();
-		vg.translate(-panx, -pany);
 
 		// draw minimap
-		vg.drawImage(image, 0, 0, null);
-		/*
-		 * // PATHFIND--------------------------------------
-		 * 
-		 * pathfind.Reinice(); while (!pathfind.ReachedGoal()) {
-		 * pathfind.PathNextNode(); vg.fillRect(pathfind.NodeGetX() * scale,
-		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
-		 * 
-		 * while (!pathfind.ReachedGoal()) { pathfind.PathJumpNode();
-		 * vg.setColor(Color.CYAN); vg.fillRect(pathfind.NodeGetX() * scale,
-		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
-		 */
+		vg.drawImage(image, -panx, -pany, null);
+
+		int level = User.getPlayerLevel();
+
+		if (level < 10) {
+    		vg.setColor(COLOR_NORTH);
+    		vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
+    		FontMetrics metrics = vg.getFontMetrics();
+    		Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
+    		vg.drawString("N", (width - (int)rect.getWidth()) / 2, (int)rect.getHeight());
+		}
+
+//		PATHFIND ---
+//		pathfind.Reinice();
+//		while (!pathfind.ReachedGoal()) {
+//			pathfind.PathNextNode();
+//			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
+//		}
+//		pathfind.Reinice();
+//
+//		 while (!pathfind.ReachedGoal()) {
+//			 pathfind.PathJumpNode();
+//			 vg.setColor(Color.CYAN);
+//			 vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
+//		}
+//		pathfind.Reinice();
 
 		// --------------------------------------
 		// Draw on ground entities
