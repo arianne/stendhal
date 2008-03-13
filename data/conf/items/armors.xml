@@ -377,4 +377,18 @@
       <slot name="bag"/>
     </equipable>
   </item>
+
+  <item name="mithril armor">
+    <type class="armor" subclass="mithril_armor" tileid="-1"/>
+    <description>You see a suit of mithril armor. Its tightly woven links are truly amazing.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="29"/>
+    </attributes>
+    <weight value="42.0"/>
+    <value value="323032"/>
+    <equipable>
+      <slot name="armor"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 </items>

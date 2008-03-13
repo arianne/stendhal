@@ -315,4 +315,19 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+ 
+  <item name="mithril shield">
+    <type class="shield" subclass="mithril_shield" tileid="-1"/>
+    <description>You see a mithril shield. You will most surely be protected.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="45"/>
+    </attributes>
+    <weight value="30.0"/>
+    <value value="718616"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 </items>

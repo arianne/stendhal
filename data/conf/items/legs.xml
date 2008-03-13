@@ -181,4 +181,18 @@
       <slot name="legs"/>
     </equipable>
   </item>
+ 
+  <item name="mithril legs">
+    <type class="legs" subclass="mithril_legs" tileid="-1"/>
+    <description>You see a pair of mithril legs. They will server you well.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="18"/>
+    </attributes>
+    <weight value="22.0"/>
+    <value value="53625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="legs"/>
+    </equipable>
+  </item>
 </items>

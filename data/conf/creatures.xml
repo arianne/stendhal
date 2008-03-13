@@ -4307,7 +4307,7 @@
       <item value="money" quantity="[10,40]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="10.5"/>
       <item value="marbles" quantity="[1,1]" probability="40.0"/>
-      <item value="chocolatebar" quantity="[1,3]" probability="30.0"/>
+      <item value="chocolate bar" quantity="[1,3]" probability="30.0"/>
       <item value="assassin dagger" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
@@ -4843,7 +4843,8 @@
     <drops>
       <item value="money" quantity="[20,50]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="15.5"/>
-      <item value="black pearl" quantity="[1,1]" probability="5.0"/>
+      <item value="black pearl" quantity="[1,1]" probability="10.0"/>
+      <item value="beer" quantity="[1,4]" probability="40.0"/>
       <item value="assassin dagger" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
@@ -8850,6 +8851,10 @@
       <item value="button mushroom" quantity="[5,10]" probability="100.0"/>
       <item value="greater potion" quantity="[2,3]" probability="30.0"/>
       <item value="wood" quantity="[2,6]" probability="70.0"/>
+      <item value="grain" quantity="[20,50]" probability="30.0"/>
+      <item value="leek" quantity="[10,20]" probability="30.0"/>
+      <item value="cauliflower" quantity="[10,20]" probability="25.0"/>
+      <item value="carrot" quantity="[12,24]" probability="33.0"/>
     </drops>
     <equips>
     </equips>
@@ -9082,6 +9087,7 @@
       <says>
         <noise value="You've been warned before."/>
         <noise value="Why do you return?"/>
+        <noise value="Have you lost your marbles?"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

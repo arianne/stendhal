@@ -209,7 +209,21 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+ 
+  <item name="mithril boots">
+    <type class="boots" subclass="mithril_boots" tileid="-1"/>
+    <description>You see a sparkling set of mithril boots.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="18"/>
+    </attributes>
+    <weight value="14.0"/>
+    <value value="53625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+   
     <item name="killer boots">
     <type class="boots" subclass="killer_boots" tileid="-1"/>
     <description>You see a high heeled pair of killer boots. Are you brave enough to wear them?</description>

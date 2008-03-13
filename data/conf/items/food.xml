@@ -704,7 +704,7 @@
     </equipable>
   </item>
   
-   <item name="chocolatebar">
+   <item name="chocolate bar">
     <type class="food" subclass="chocolatebar" tileid="-1"/>
     <description>You see an absolutely yummy chocolate bar.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>

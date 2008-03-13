@@ -39,6 +39,7 @@ public class LilJohnnnnyNPC implements ZoneConfigurator {
 			}
 		};
 
+		liljohnnnny.setDescription("You see lil johnnnny, plotting his next rebellion.");
 		liljohnnnny.setEntityClass("liljohnnnnynpc");
 		liljohnnnny.setPosition(23, 2);
 		liljohnnnny.initHP(100);
