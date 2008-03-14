@@ -1729,9 +1729,17 @@ public class Player extends RPEntity {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
 
+	public void setSentence(String arg) {
+		put("sentence", arg);		
+	}
+	
 	public String getSentence() {
-		// TODO: Sentence here.
-		return "";
+		String result="";
+		if(has("sentence")) {
+			result=get("sentence");
+		}
+		
+		return result;
 	}
 
 	private boolean disconnected = false;

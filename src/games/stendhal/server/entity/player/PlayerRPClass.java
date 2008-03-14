@@ -134,6 +134,7 @@ class PlayerRPClass {
 		player.addRPSlot("!tutorial", 1, Definition.HIDDEN);
 
 		player.addAttribute("karma", Type.FLOAT, Definition.PRIVATE);
+		player.addAttribute("sentence",Type.STRING, Definition.HIDDEN);
 
 		player.addRPSlot("skills", 1, Definition.HIDDEN);
 
