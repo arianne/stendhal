@@ -9986,6 +9986,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
 <!-- These chess pieces are given a high level to keep them out of deathmatch
     and the mayor's daily quest. They all reward 0 XP to deter people from
     killing them. And a token amount of money. Of course they have to be
@@ -9993,6 +9994,7 @@
     (doesn't have to push it away, say.) The AI profiles ensure they do not
     move except when pushed by player. -->
  <creature name="madaram pawn">
+    <hidden/>
     <type class="madaram" subclass="madaram_peasant" tileid="chess.png:6"/>
     <description>You see a pawn for a game of chess. It will reward nothing if killed.</description>
     <attributes>
@@ -10016,6 +10018,7 @@
   </creature>
 
   <creature name="chaos pawn">
+    <hidden/>
     <type class="chaos" subclass="chaos_soldier" tileid="chess.png:0"/>
     <description>You see a pawn for a game of chess. He will drop nothing if you kill him.</description>
     <attributes>
@@ -10040,6 +10043,7 @@
 
 
  <creature name="madaram rook">
+    <hidden/>
     <type class="madaram" subclass="madaram_axeman" tileid="chess.png:7"/>
     <description>You see a rook for a game of chess. It will scarcely reward you to kill it.</description>
     <attributes>
@@ -10064,6 +10068,7 @@
 
 
   <creature name="chaos rook">
+    <hidden/>
     <type class="chaos" subclass="chaos_commander" tileid="chess.png:1"/>
     <description>You see a rook for a game of chess. He will drop nothing if you kill him.</description>
      <attributes>
@@ -10087,6 +10092,7 @@
   </creature>
 
  <creature name="madaram knight">
+    <hidden/>
     <type class="madaram" subclass="madaram_cavalry" tileid="chess.png:8"/>
     <description>You see a knight, a chess piece. He won't reward you if you kill him.</description>
     <attributes>
@@ -10111,6 +10117,7 @@
 
 
   <creature name="chaos knight">
+    <hidden/>
     <type class="chaos" subclass="chaos_dragonrider" tileid="chess.png:2"/>
     <description>You see a knight for a game of chess. He will drop nothing if you kill him.</description>
     <attributes>
@@ -10134,6 +10141,7 @@
   </creature>
 
  <creature name="madaram bishop">
+    <hidden/>
     <type class="madaram" subclass="madaram_healer" tileid="chess.png:9"/>
     <description>You see a bishop for a game of chess. It will reward you nothing if you slay it.</description>
     <attributes>
@@ -10157,6 +10165,7 @@
   </creature>
 
   <creature name="chaos bishop">
+    <hidden/>
     <type class="chaos" subclass="chaos_sorceror" tileid="chess.png:3"/>
     <description>You see a bishop for a game of chess. He will not reward you if you kill him.</description>
      <attributes>
@@ -10180,6 +10189,7 @@
   </creature>
 
  <creature name="madaram king">
+    <hidden/>
     <type class="madaram" subclass="madaram_buster_blader" tileid="chess.png:10"/>
     <description>You see a king to play chess with, he will reward you nothing if you kill him.</description>
      <attributes>
@@ -10203,6 +10213,7 @@
   </creature>
 
   <creature name="chaos king">
+    <hidden/>
     <type class="chaos" subclass="chaos_lord" tileid="chess.png:4"/>
     <description>You see a king of a game of chess. He will reward nothing if you kill him.</description>
      <attributes>
@@ -10226,6 +10237,7 @@
   </creature>
 
  <creature name="madaram queen ">
+    <hidden/>
     <type class="madaram" subclass="madaram_queen" tileid="chess.png:11"/>
     <description>You see a queen piece for a game of chess. She will reward nothing if you kill her.</description>
     <attributes>
@@ -10249,6 +10261,7 @@
   </creature>
 
   <creature name="chaos queen">
+    <hidden/>
     <type class="chaos" subclass="chaos_overlord" tileid="chess.png:5"/>
     <description>You see a queen piece for a game of chess. She will reward nothing if you kill her.</description>
     <attributes>
@@ -10271,8 +10284,4 @@
       <profile name="heal" params="5,50"/>
     </ai>
   </creature>
- 
-
-
-
 </creatures>
