@@ -70,6 +70,7 @@ public class CommandCenter {
 		OwnAction.register();
 		PlayersQuery.register();
 		QuestListAction.register();
+		SentenceAction.register();
 		StopAction.register();
 		UseAction.register();
 		CreateGuildAction.register();
