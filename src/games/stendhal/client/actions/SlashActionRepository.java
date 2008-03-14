@@ -39,6 +39,7 @@ public class SlashActionRepository {
 		actions.put("msg", msg);
 		actions.put("quit", new QuitAction());
 		actions.put("remove", new RemoveBuddyAction());
+		actions.put("sentence", new SentenceAction());
 		actions.put("sound", new SoundAction());
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
