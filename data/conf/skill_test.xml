@@ -43,6 +43,7 @@
 <!-- SKILL_LVL		= Gets the skill lvl of the current skill -->
 
 
+<skills>
 <!-- Quick Strike - Waste some MP to fire a few fast arrows towards one opponent -->
 <skill name="Quick_Strike">
 	<class value="Archer" />
@@ -199,3 +200,4 @@
 		</LVL>
 	</skill_bonus>
 </skill>
+</skills>
