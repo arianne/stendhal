@@ -21,7 +21,7 @@ public class StackableItem extends Item {
 	/**
 	 * Quantity property.
 	 */
-	public static final Object PROP_QUANTITY = new Object();
+	public static final Property PROP_QUANTITY = new Property();
 
 	/**
 	 * The item quantity.

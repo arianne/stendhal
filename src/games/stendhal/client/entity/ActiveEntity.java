@@ -20,12 +20,12 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Direction property.
 	 */
-	public static final Object PROP_DIRECTION = new Object();
+	public static final Property PROP_DIRECTION = new Property();
 
 	/**
 	 * Speed property.
 	 */
-	public static final Object PROP_SPEED = new Object();
+	public static final Property PROP_SPEED = new Property();
 
 	/**
 	 * The current [facing] direction.

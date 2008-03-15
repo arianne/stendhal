@@ -20,11 +20,11 @@ public class Player extends RPEntity {
 	/**
 	 * Away property.
 	 */
-	public static final Object PROP_AWAY = new Object();
+	public static final Property PROP_AWAY = new Property();
 	/**
 	 * Grumpy property.
 	 */
-	public static final Object PROP_GRUMPY = new Object();
+	public static final Property PROP_GRUMPY = new Property();
 	/**
 	 * The away message of this player.
 	 */

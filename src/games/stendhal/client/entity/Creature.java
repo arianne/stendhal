@@ -23,12 +23,12 @@ public class Creature extends RPEntity {
 	/**
 	 * Debug property.
 	 */
-	public static final Object PROP_DEBUG = new Object();
+	public static final Property PROP_DEBUG = new Property();
 
 	/**
 	 * Metamorphosis property.
 	 */
-	public static final Object PROP_METAMORPHOSIS = new Object();
+	public static final Property PROP_METAMORPHOSIS = new Property();
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {

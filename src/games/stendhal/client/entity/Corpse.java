@@ -25,7 +25,7 @@ public class Corpse extends PassiveEntity {
 	/**
 	 * Content property.
 	 */
-	public static final Object PROP_CONTENT = new Object();
+	public static final Property PROP_CONTENT = new Property();
 
 	/**
 	 * The current content slot.

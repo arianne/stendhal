@@ -19,12 +19,12 @@ public abstract class DomesticAnimal extends RPEntity {
 	/**
 	 * DomesticAnimal idea property.
 	 */
-	public static final Object PROP_IDEA = new Object();
+	public static final Property PROP_IDEA = new Property();
 
 	/**
 	 * DomesticAnimal weight property.
 	 */
-	public static final Object PROP_WEIGHT = new Object();
+	public static final Property PROP_WEIGHT = new Property();
 
 	/**
 	 * The animal's weight (0-100).

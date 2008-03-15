@@ -40,30 +40,32 @@ import org.apache.log4j.Logger;
 public abstract class RPEntity extends ActiveEntity {
 	private static final Logger logger = Logger.getLogger(RPEntity.class);
 
+	
+
 	/**
 	 * Admin Level property.
 	 */
-	public static final Object PROP_ADMIN_LEVEL = new Object();
+	public static final Property PROP_ADMIN_LEVEL = new Property();
 
 	/**
-	 * Ghostmode property.
+	 * ghostmode property.
 	 */
-	public static final Object PROP_GHOSTMODE = new Object();
+	public static final Property PROP_GHOSTMODE = new Property();
 
 	/**
 	 * Indicator text property.
 	 */
-	public static final Object PROP_TEXT_INDICATORS = new Object();
+	public static final Property PROP_TEXT_INDICATORS = new Property();
 
 	/**
 	 * Outfit property.
 	 */
-	public static final Object PROP_OUTFIT = new Object();
+	public static final Property PROP_OUTFIT = new Property();
 
 	/**
 	 * Title Type property.
 	 */
-	public static final Object PROP_TITLE_TYPE = new Object();
+	public static final Property PROP_TITLE_TYPE = new Property();
 
 	/**
 	 * The value of an outfit that isn't set.

@@ -28,42 +28,42 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * Animated property.
 	 */
-	public static final Object PROP_ANIMATED = new Object();
+	public static final Property PROP_ANIMATED = new Property();
 
 	/**
 	 * Entity class/subclass property.
 	 */
-	public static final Object PROP_CLASS = new Object();
+	public static final Property PROP_CLASS = new Property();
 
 	/**
 	 * Name property.
 	 */
-	public static final Object PROP_NAME = new Object();
+	public static final Property PROP_NAME = new Property();
 
 	/**
 	 * Position property.
 	 */
-	public static final Object PROP_POSITION = new Object();
+	public static final Property PROP_POSITION = new Property();
 
 	/**
 	 * Size property.
 	 */
-	public static final Object PROP_SIZE = new Object();
+	public static final Property PROP_SIZE = new Property();
 
 	/**
 	 * Title property.
 	 */
-	public static final Object PROP_TITLE = new Object();
+	public static final Property PROP_TITLE = new Property();
 
 	/**
 	 * Type property.
 	 */
-	public static final Object PROP_TYPE = new Object();
+	public static final Property PROP_TYPE = new Property();
 
 	/**
 	 * Visibility property.
 	 */
-	public static final Object PROP_VISIBILITY = new Object();
+	public static final Property PROP_VISIBILITY = new Property();
 
 	/**
 	 * an array of sounds. out of these randomnly chosen sounds are played while
@@ -227,7 +227,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @param property
 	 *            The changed property.
 	 */
-	protected void fireChange(final Object property) {
+	protected void fireChange(final  Property property) {
 		EntityChangeListener[] listeners = changeListeners;
 
 		for (EntityChangeListener l : listeners) {
