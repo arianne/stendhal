@@ -105,9 +105,12 @@
  <tileset name="newbed4 top" firstgid="207" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/bed_grey2_top_sheet.png"/>
  </tileset>
+ <tileset name="floors" firstgid="208" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floors_3.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEoYPv33lBpuCqqarqkwca8tOlAAsAAA==
+   H4sIAAAAAAAAALvEwMBwaRQzXEbDo/L45dHVDDb3kSo/ikfxKB7FIxUPdPk7Kj9a/w0EBgBXjL67AAsAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="22">
@@ -135,7 +138,7 @@
    H4sIAAAAAAAAAGNgGAWDCRzAI7eLDnZQAxzEIU4t94+CUTCQ4AANzcaVd8gB5lA8CkbBKCAMDhCpDlce3UuE3tE6cHABAOTh9WIACwAA
   </data>
  </layer>
- <layer name="collision" width="32" height="22" opacity="0.37">
+ <layer name="collision" width="32" height="22" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALNiYGCwGsVgDAP45HDJE6MfG5sc+7GpobU8IfcRCiNSzKe1//C5n1D6GJUfnvL0BoPN/sEQB6PyAyuPDAilT2rrZ0BTh0s/OW6ntjw5/iMmfIiNP3L0E3LbSMUA5hc/bAALAAA=
   </data>
