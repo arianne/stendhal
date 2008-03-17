@@ -104,7 +104,7 @@ public class Cache {
 	 */
 	private void cleanCacheOnUpdate() throws IOException {
 		if (!cacheManager.has(VERSION_KEY)
-				|| !cacheManager.get(VERSION_KEY).equals(stendhal.VERSION)) {
+				|| !stendhal.VERSION.equals( cacheManager.get(VERSION_KEY) )) {
 			cleanCache();
 			cacheManager.clear();
 			initCacheManager();

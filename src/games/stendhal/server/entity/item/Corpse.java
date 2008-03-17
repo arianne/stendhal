@@ -70,6 +70,9 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	}
 
 	private void decideSize(String clazz) {
+		//TODO: this should be part of the creatures.xml 
+		
+		
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
 				|| clazz.equals("huge_animal") || clazz.equals("boss")
 				|| clazz.equals("giant_troll") || clazz.equals("giant_madaram")

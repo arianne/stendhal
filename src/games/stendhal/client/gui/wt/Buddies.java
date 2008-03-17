@@ -135,7 +135,7 @@ public class Buddies extends WtPanel {
 	 * Handle a choosen popup item.
 	 */
 	protected void doAction(String command, String buddieName) {
-		if (command.equals("talk")) {
+		if ("talk".equals( command )) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
 			if (buddieName.indexOf(' ') > -1) {
@@ -143,7 +143,7 @@ public class Buddies extends WtPanel {
 			}
 
 			ui.setChatLine("/tell " + buddieName + " ");
-		} else if (command.equals("leave-message")) {
+		} else if ("leave-message".equals( command )) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
 			if (buddieName.indexOf(' ') > -1) {
@@ -151,12 +151,12 @@ public class Buddies extends WtPanel {
 			}
 
 			ui.setChatLine("/msg postman tell " + buddieName + " ");
-		} else if (command.equals("where")) {
+		} else if ("where".equals( command )) {
 			RPAction where = new RPAction();
 			where.put("type", "where");
 			where.put("target", buddieName);
 			ui.getClient().send(where);
-		} else if (command.equals("remove")) {
+		} else if ("remove".equals( command )) {
 			RPAction where = new RPAction();
 			where.put("type", "removebuddy");
 			where.put("target", buddieName);

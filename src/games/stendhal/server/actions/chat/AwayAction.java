@@ -6,12 +6,10 @@
 
 package games.stendhal.server.actions.chat;
 
-//
-//
-
+import static games.stendhal.server.actions.WellKnownActionConstants.MESSAGE;
+import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -40,9 +38,9 @@ public class AwayAction implements ActionListener {
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (action.get(WellKnownActionConstants.TYPE).equals(_AWAY)) {
-			if (action.has(WellKnownActionConstants.MESSAGE)) {
-				player.setAwayMessage(action.get(WellKnownActionConstants.MESSAGE));
+		if (_AWAY.equals( action.get(TYPE) )) {
+			if (action.has(MESSAGE)) {
+				player.setAwayMessage(action.get(MESSAGE));
 			} else {
 				player.setAwayMessage(null);
 			}

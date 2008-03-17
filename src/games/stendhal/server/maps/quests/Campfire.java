@@ -63,7 +63,7 @@ public class Campfire extends AbstractQuest {
 	@Override
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(QUEST_SLOT)
-				&& !player.getQuest(QUEST_SLOT).equals("start");
+				&& !"start".equals( player.getQuest(QUEST_SLOT) );
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Campfire extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
+		if ("rejected".equals( questState )) {
 			res.add("QUEST_REJECTED");
 			return res;
 		}
@@ -96,7 +96,7 @@ public class Campfire extends AbstractQuest {
 	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;
-		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
+		} else if ("start".equals( player.getQuest(QUEST_SLOT) )) {
 			return false;
 		} else {
 		   long lastTime; 

@@ -79,7 +79,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 				clazz = s.substring(0, i);
 				subclazz = s.substring(i + 1);
 
-				if ((subclazz.length() == 0) || subclazz.equals("*")) {
+				if ((subclazz.length() == 0) || "*".equals( subclazz )) {
 					subclazz = null;
 				}
 			} else {
@@ -87,7 +87,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 				subclazz = null;
 			}
 
-			if ((clazz.length() == 0) || clazz.equals("*")) {
+			if ((clazz.length() == 0) || "*".equals( clazz )) {
 				clazz = null;
 			}
 
@@ -113,11 +113,11 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 			return true;
 		}
 
-		if (s.equals("block")) {
+		if ("block".equals( s )) {
 			return true;
 		}
 
-		if (s.equals("allow")) {
+		if ("allow".equals( s )) {
 			return false;
 		}
 

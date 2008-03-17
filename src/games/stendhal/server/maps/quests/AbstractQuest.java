@@ -66,8 +66,8 @@ public abstract class AbstractQuest implements IQuest {
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(slotName)
 				&& (player.isQuestCompleted(slotName)
-						|| player.getQuest(slotName).equals("rejected") || player.getQuest(
-						slotName).equals("failed"));
+						|| "rejected".equals( player.getQuest(slotName) ) || "failed".equals( player.getQuest(
+												slotName) ));
 	}
 
 	public boolean isRepeatable(Player player) {

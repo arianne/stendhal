@@ -184,7 +184,7 @@ public class BuddyListPanel extends JPanel {
 	protected void doAction(String command, String buddieName) {
 		StendhalClient client = ui.getClient();
 
-		if (command.equals("talk")) {
+		if ("talk".equals( command )) {
 			/*
 			 * Compatibility to grandfathered accounts with spaces. New accounts
 			 * cannot contain spaces.
@@ -194,7 +194,7 @@ public class BuddyListPanel extends JPanel {
 			}
 
 			ui.setChatLine("/tell " + buddieName + " ");
-		} else if (command.equals("leave-message")) {
+		} else if ("leave-message".equals( command )) {
 			/*
 			 * Compatibility to grandfathered accounts with spaces. New accounts
 			 * cannot contain spaces.
@@ -204,12 +204,12 @@ public class BuddyListPanel extends JPanel {
 			}
 
 			ui.setChatLine("/msg postman tell " + buddieName + " ");
-		} else if (command.equals("where")) {
+		} else if ("where".equals( command )) {
 			RPAction where = new RPAction();
 			where.put("type", "where");
 			where.put("target", buddieName);
 			client.send(where);
-		} else if (command.equals("remove")) {
+		} else if ("remove".equals( command )) {
 			RPAction where = new RPAction();
 			where.put("type", "removebuddy");
 			where.put("target", buddieName);

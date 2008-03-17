@@ -66,17 +66,17 @@ public class BeerForHayunn extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
+		if ("rejected".equals( questState )) {
 			res.add("QUEST_REJECTED");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
-		if ((questState.equals("start") && player.isEquipped("beer"))
-				|| questState.equals("done")) {
+		if (("start".equals( questState ) && player.isEquipped("beer"))
+				|| "done".equals( questState )) {
 			res.add("FOUND_ITEM");
 		}
-		if (questState.equals("done")) {
+		if ("done".equals( questState )) {
 			res.add("DONE");
 		}
 		return res;
