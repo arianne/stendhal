@@ -68,37 +68,44 @@ public class CreatureLogic {
 	 * @return true, if additional action is required; false if we may sleep
 	 */
 	private boolean logicSleep() {
-		/*
-		 * TODO: Ideally use proximity events to notify others that something
-		 * may be worth looking at nearby. Perhaps with zone macro-blocks to
-		 * minimize overhead.
-		 * 
-		 * TODO: Maybe add an awareness attribute for per-creature reaction
-		 * times.
-		 */
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
-		if (!creature.getZone().getPlayerAndFriends().isEmpty()) {
-			if (!creature.isEnemyNear(30)) {
+		if (creature.getZone().getPlayerAndFriends().isEmpty()) {
+			if (aiState == AiState.SLEEP) {
+				return false;
+			} else {
+
+				fallAsleep();
+				return false;
+			}
+		} else {
+			if (creature.isEnemyNear(30)) {
+				return true;
+			} else {
 				// If we are already sleeping, than don't modify the Entity.
 				if (aiState == AiState.SLEEP) {
 					return false;
+				} else {
+
+					fallAsleep();
+					return false;
 				}
-
-				creature.stopAttack();
-				creature.stop();
-
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					creature.put("debug", "sleep");
-				}
-
-				aiState = AiState.SLEEP;
-				creature.notifyWorldAboutChanges();
-				return false;
 			}
 		}
 
-		return true;
+		
+	}
+
+	private void fallAsleep() {
+		creature.stopAttack();
+		creature.stop();
+
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			creature.put("debug", "sleep");
+		}
+
+		aiState = AiState.SLEEP;
+		creature.notifyWorldAboutChanges();
 	}
 
 	private void logicWeAreNotAttackingButGotAttacked() {
