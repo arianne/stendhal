@@ -382,9 +382,7 @@ public class CreateAccountDialog extends JDialog {
 		// Password strength
 		//
 		boolean valPass = validatePassword(usernameField.getText(), password);
-		if (valPass) {
-			// no problems, keep going
-		} else {
+		if (!valPass) {
 			if (badPasswordReason != null) {
 				// didn't like the password for some reason, show a dialog and
 				// try again
@@ -406,24 +404,24 @@ public class CreateAccountDialog extends JDialog {
 		// Check the email
 		//
 		String email = emailField.getText();
-		if (email.contains("@") && email.contains(".") && (email.length() > 5)) {
-			// email looks ok
-		} else {
+		if (isInvalid(email)) {
 			String text = "The email you entered appears to be invalid.\n"
 					+ "You must provide a recover a lost password. Are you sure this email is correct? ";
 			int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
 					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, null, 1);
 
-			if (i == 0) {
-				// yes
-			} else {
+			if (i != 0) {
 				// no
 				return false;
-			}
+			} 
 		}
 
 		return true;
+	}
+
+	private boolean isInvalid(String email) {
+		return !email.contains("@") || !email.contains(".") || (email.length() <= 5);
 	}
 
 	/**
