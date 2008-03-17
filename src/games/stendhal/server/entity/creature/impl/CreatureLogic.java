@@ -71,25 +71,14 @@ public class CreatureLogic {
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
 		if (creature.getZone().getPlayerAndFriends().isEmpty()) {
-			if (aiState == AiState.SLEEP) {
-				return false;
-			} else {
-
-				fallAsleep();
-				return false;
-			}
+			fallAsleep();
+			return false;
 		} else {
 			if (creature.isEnemyNear(30)) {
 				return true;
 			} else {
-				// If we are already sleeping, than don't modify the Entity.
-				if (aiState == AiState.SLEEP) {
-					return false;
-				} else {
-
-					fallAsleep();
-					return false;
-				}
+				fallAsleep();
+				return false;	
 			}
 		}
 
@@ -97,15 +86,17 @@ public class CreatureLogic {
 	}
 
 	private void fallAsleep() {
-		creature.stopAttack();
-		creature.stop();
-
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			creature.put("debug", "sleep");
+		if (aiState != AiState.SLEEP) {
+			creature.stopAttack();
+			creature.stop();
+	
+			if (Debug.CREATURES_DEBUG_SERVER) {
+				creature.put("debug", "sleep");
+			}
+	
+			aiState = AiState.SLEEP;
+			creature.notifyWorldAboutChanges();
 		}
-
-		aiState = AiState.SLEEP;
-		creature.notifyWorldAboutChanges();
 	}
 
 	private void logicWeAreNotAttackingButGotAttacked() {
