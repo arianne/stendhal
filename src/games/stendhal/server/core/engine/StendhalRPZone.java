@@ -842,7 +842,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	private Entity getCollidingObject(Entity entity, Rectangle2D area) {
-		Rectangle2D otherArea = new Rectangle.Double();
 		for (RPObject other : objects.values()) {
 			/*
 			 * Ignore same object
@@ -851,7 +850,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				Entity otherEntity = (Entity) other;
 
 				// Check if the objects overlap
-				otherEntity.getArea(otherArea, otherEntity.getX(),
+				Rectangle2D otherArea = otherEntity.getArea( otherEntity.getX(),
 						otherEntity.getY());
 
 				if (area.intersects(otherArea)) {

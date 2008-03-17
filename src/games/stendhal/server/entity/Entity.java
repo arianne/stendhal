@@ -59,7 +59,7 @@ public abstract class Entity extends RPObject {
 	private StendhalRPZone zone;
 	private StendhalRPZone lastZone;
 
-	private Rectangle2D area = new Rectangle.Double();;
+	protected Rectangle2D area = new Rectangle.Double();
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
@@ -332,22 +332,22 @@ public abstract class Entity extends RPObject {
 	 *            The second rectangle.
 	 * @return The squared distance between the two rectangles.
 	 */
-	private static int squaredDistanceBetween(Rectangle2D rect1,
+	private static double squaredDistanceBetween(Rectangle2D rect1,
 			Rectangle2D rect2) {
-		int left1 = (int) rect1.getMinX();
+		double left1 = rect1.getMinX();
 		// minus one because we want the distance of two 1x1 entities standing
 		// directly next to each other to be 1, not 0.
-		int right1 = (int) rect1.getMaxX() - 1;
-		int top1 = (int) rect1.getMinY();
-		int bottom1 = (int) rect1.getMaxY() - 1;
+		double right1 =  rect1.getMaxX() - 1;
+		double top1 =  rect1.getMinY();
+		double  bottom1 =  rect1.getMaxY() - 1;
 
-		int left2 = (int) rect2.getMinX();
-		int right2 = (int) rect2.getMaxX() - 1;
-		int top2 = (int) rect2.getMinY();
-		int bottom2 = (int) rect2.getMaxY() - 1;
+		double  left2 =  rect2.getMinX();
+		double right2 =  rect2.getMaxX() - 1;
+		double top2 =  rect2.getMinY();
+		double  bottom2 =  rect2.getMaxY() - 1;
 
-		int xDist = 0;
-		int yDist = 0;
+		double  xDist = 0;
+		double  yDist = 0;
 
 		if (right1 < right2) {
 			if (right1 > left2) {
@@ -421,13 +421,9 @@ public abstract class Entity extends RPObject {
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
 		}
-		Rectangle2D thisArea = getArea();
-		// for 1x2 size creatures the destArea, needs bo be one up (this sucks
-		// badly)
-		thisArea = new Rectangle2D.Double(thisArea.getX(), this.getY(),
-				thisArea.getWidth(), thisArea.getHeight());
-
-		return squaredDistanceBetween(thisArea, new Rectangle(x, y, 1, 1));
+		area.setRect(x, y, width, height);
+		
+		return squaredDistanceBetween(area, new Rectangle(x, y, 1, 1));
 	}
 
 	/**
