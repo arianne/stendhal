@@ -95,7 +95,9 @@ public class MersenneTwister extends Random {
 	/* key_length is its length */
 	/* slight change for C++, 2004/2/26 */
 	public void initByArray(long[] init_key, int key_length) {
-		int i, j, k;
+		int i;
+		int j;
+		int k;
 		initGenRand(19650218);
 		i = 1;
 		j = 0;

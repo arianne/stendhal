@@ -30,12 +30,21 @@ import tiled.mapeditor.widget.*;
 public class ConfigurationDialog extends JDialog implements ActionListener, ChangeListener, ItemListener {
 	private static final long serialVersionUID = 1243451595127896953L;
 
-	private JButton bOk, bApply, bCancel;
-	private JPanel layerOps, generalOps, tilesetOps, gridOps;
-	private IntegerSpinner undoDepth, gridOpacity;
-	private JCheckBox cbBinaryEncode, cbCompressLayerData, cbEmbedImages;
+	private JButton bOk;
+	private int bApply;
+	private int bCancel;
+	private JPanel layerOps;
+	private JPanel generalOps;
+	private JPanel tilesetOps;
+	private JPanel gridOps;
+	private IntegerSpinner undoDepth;
+	private IntegerSpinner gridOpacity;
+	private JCheckBox cbBinaryEncode;
+	private JCheckBox cbCompressLayerData;
+	private JCheckBox cbEmbedImages;
 	private JCheckBox cbReportIOWarnings;
-	private JRadioButton rbEmbedInTiles, rbEmbedInSet;
+	private JRadioButton rbEmbedInTiles;
+	private JRadioButton rbEmbedInSet;
 	private JCheckBox cbGridAA;
 	private TiledConfiguration configuration;
 

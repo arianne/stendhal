@@ -26,7 +26,11 @@ public class Sprite {
 
 	private List<KeyFrame> keys;
 	KeyFrame currentKey = null;
-	private int totalFrames = 0, borderWidth = 0, fpl = 0, totalKeys = -1, transparent = 0;
+	private int totalFrames = 0;
+	private int borderWidth = 0;
+	private int fpl = 0;
+	private int totalKeys = -1;
+	private int transparent = 0;
 
 	private float currentFrame = 0;
 	private Rectangle frameSize;
@@ -238,7 +242,8 @@ public class Sprite {
 	}
 
 	public void draw(Graphics g) {
-		int x = 0, y = 0;
+		int x = 0;
+		int y = 0;
 
 		if (frameSize.height > 0 && frameSize.width > 0) {
 			y = (((int) currentFrame) / fpl) * (frameSize.height + borderWidth);

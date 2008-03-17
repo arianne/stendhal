@@ -198,7 +198,8 @@ public final class PluginClassLoader extends URLClassLoader {
 					String readerClassName = jf.getManifest().getMainAttributes().getValue("Reader-Class");
 					String writerClassName = jf.getManifest().getMainAttributes().getValue("Writer-Class");
 
-					Class readerClass = null, writerClass = null;
+					Class readerClass = null;
+					Class writerClass = null;
 
 					// Verify that the jar has the necessary files to be a
 					// plugin

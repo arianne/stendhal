@@ -344,7 +344,8 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 class SmoothZoomer extends Thread {
 	private MapView mapView;
-	private double zoomFrom, zoomTo;
+	private double zoomFrom;
+	private double zoomTo;
 	private boolean keepZooming;
 
 	public SmoothZoomer(MapView view, double from, double to) {

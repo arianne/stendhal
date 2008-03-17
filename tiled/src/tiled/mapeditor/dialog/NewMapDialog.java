@@ -28,8 +28,10 @@ public class NewMapDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = -5637072413306626416L;
 
 	private Map newMap;
-	private IntegerSpinner mapWidth, mapHeight;
-	private IntegerSpinner tileWidth, tileHeight;
+	private IntegerSpinner mapWidth;
+	private IntegerSpinner mapHeight;
+	private IntegerSpinner tileWidth;
+	private IntegerSpinner tileHeight;
 	private JComboBox mapTypeChooser;
 
 	public NewMapDialog(JFrame parent) {

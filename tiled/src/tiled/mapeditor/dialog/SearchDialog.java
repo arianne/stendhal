@@ -34,9 +34,12 @@ public class SearchDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = -7402966992244410123L;
 
 	private Map myMap;
-	private JComboBox searchCBox, replaceCBox;
-	private JButton bFind, bFindAll;
-	private JButton bReplace, bReplaceAll;
+	private JComboBox searchCBox;
+	private JComboBox replaceCBox;
+	private JButton bFind;
+	private JButton bFindAll;
+	private JButton bReplace;
+	private JButton bReplaceAll;
 	private JButton bClose;
 	private Point currentMatch = null;
 	private SelectionLayer sl;

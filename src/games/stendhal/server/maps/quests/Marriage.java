@@ -629,7 +629,8 @@ public class Marriage extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						Player husband, wife;
+						Player husband;
+						Player wife;
 						String partnerName;
 						husband = player;
 						partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);

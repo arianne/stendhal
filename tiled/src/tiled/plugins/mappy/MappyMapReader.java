@@ -31,16 +31,24 @@ public class MappyMapReader implements MapReader, FileFilter {
 	private List<Chunk> chunks;
 	private List<BlkStr> blocks;
 	private static final int BLKSTR_WIDTH = 32;
-	private int twidth, theight;
+	private int twidth;
+	private int theight;
 
 	public static class BlkStr {
 		public BlkStr() {
 		}
 
-		public long bg, fg0, fg1, fg2;
-		public long user1, user2; // user long data
-		public int user3, user4; // user short data
-		public int user5, user6, user7; // user byte data
+		public long bg;
+		public long fg0;
+		public long fg1;
+		public long fg2;
+		public long user1;
+		public long user2; // user long data
+		public int user3;
+		public int user4; // user short data
+		public int user5;
+		public int user6;
+		public int user7; // user byte data
 		public int bits; // collision and trigger bits
 	}
 
@@ -168,7 +176,8 @@ public class MappyMapReader implements MapReader, FileFilter {
 	private Map readMPHDChunk(InputStream in) throws IOException {
 		Map ret = null;
 		TileSet set = new TileSet();
-		int major, minor;
+		int major;
+		int minor;
 		major = in.read();
 		minor = in.read();
 		in.skip(2); // skip lsb and reserved bytes - always msb
@@ -248,7 +257,10 @@ public class MappyMapReader implements MapReader, FileFilter {
 	 */
 	private void readBODYChunk(Map m, InputStream in) throws IOException {
 		TileSet set = (TileSet) m.getTilesets().get(0);
-		TileLayer bg = (TileLayer) m.getLayer(0), fg0 = (TileLayer) m.getLayer(7), fg1 = (TileLayer) m.getLayer(8), fg2 = (TileLayer) m.getLayer(9);
+		TileLayer bg = (TileLayer) m.getLayer(0);
+		TileLayer fg0 = (TileLayer) m.getLayer(7);
+		TileLayer fg1 = (TileLayer) m.getLayer(8);
+		TileLayer fg2 = (TileLayer) m.getLayer(9);
 
 		for (int i = 0; i < m.getHeight(); i++) {
 			for (int j = 0; j < m.getWidth(); j++) {

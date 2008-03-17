@@ -269,7 +269,8 @@ public class HexMapView extends MapView {
 	}
 
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
-		double centrex, centrey;
+		double centrex;
+		double centrey;
 		Dimension tileSize = getTileSize(zoom);
 		Polygon poly = new Polygon();
 

@@ -26,7 +26,9 @@ public class KeyFrame {
 	public static final int KEY_NAME_LENGTH_MAX = 32;
 
 	private String name = null;
-	private int firstFrame = 0, lastFrame = 0, id = -1;
+	private int firstFrame = 0;
+	private int lastFrame = 0, 
+	private int id = -1;
 	private long flags = KEY_LOOP;
 	private float frameRate = 0;
 

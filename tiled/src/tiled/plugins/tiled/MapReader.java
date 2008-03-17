@@ -589,7 +589,8 @@ public class MapReader implements MapReaderPlugin {
 						}
 					}
 				} else {
-					int x = 0, y = 0;
+					int x = 0;
+					int y = 0;
 					for (Node dataChild = child.getFirstChild(); dataChild != null; dataChild = dataChild.getNextSibling()) {
 						if (dataChild.getNodeName().equalsIgnoreCase("tile")) {
 							int tileId = getAttribute(dataChild, "gid", -1);
@@ -620,7 +621,8 @@ public class MapReader implements MapReaderPlugin {
 	}
 
 	private Map buildMap(Document doc) throws Exception {
-		Node item, mapNode;
+		Node item;
+		Node mapNode;
 
 		mapNode = doc.getDocumentElement();
 

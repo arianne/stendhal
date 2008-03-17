@@ -630,7 +630,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 	    // loop over all expressions and match them between both sides
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
-	    Expression e1, e2;
+	    Expression e1;
+	    Expression e2;
 
 		while (true) {
 			e1 = nextValid(it1);

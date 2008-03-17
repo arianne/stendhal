@@ -34,7 +34,9 @@ public class PropertiesDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JTable tProperties;
-	private JButton bOk, bCancel, bDel;
+	private JButton bOk;
+	private JButton bCancel;
+	private JButton bDel;
 	/** the modifyable properties. */
 	private Properties properties;
 

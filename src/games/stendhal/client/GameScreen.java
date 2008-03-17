@@ -127,10 +127,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private int y;
 
 	/** Actual size of the screen in pixels. */
-	private int sw, sh;
+	private int sw;
+	private int sh;
 
 	/** Actual size of the world in world units. */
-	protected int ww, wh;
+	protected int ww;
+	protected int wh;
 
 	/** the singleton instance. */
 	private static IGameScreen screen;

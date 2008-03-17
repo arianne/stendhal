@@ -30,7 +30,8 @@ class SummonAction implements SlashAction {
 		RPAction summon = new RPAction();
 
 		NameBuilder nameBuilder = new NameBuilder();
-		Integer x = null, y = null;
+		Integer x = null;
+		Integer y = null;
 
 		for (int i = 0; i < params.length; ++i) {
 			String str = params[i];

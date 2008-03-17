@@ -34,8 +34,12 @@ public class ResizeDialog extends JDialog implements ActionListener, PropertyCha
 	private static final long serialVersionUID = -7137557402125395204L;
 
 	private Map currentMap;
-	private IntegerSpinner width, height, offsetX, offsetY;
-	private JButton bOk, bCancel;
+	private IntegerSpinner width;
+	private IntegerSpinner height;
+	private IntegerSpinner offsetX;
+	private IntegerSpinner offsetY;
+	private JButton bOk;
+	private JButton bCancel;
 	private ResizePanel orient;
 
 	public ResizeDialog(JFrame parent, MapEditor m) {

@@ -40,14 +40,22 @@ public class NewTilesetDialog extends JDialog implements ActionListener, ChangeL
 
 	private Map map;
 	private TileSet newTileset;
-	private JTextField tileWidth, tileHeight;
+	private JTextField tileWidth;
+	private JTextField tileHeight;
 	private IntegerSpinner tileSpacing;
 	private JTextField tilesetName;
 	private JTextField tilebmpFile;
-	private JLabel nameLabel, tileWidthLabel, tileHeightLabel, spacingLabel;
+	private JLabel nameLabel;
+	private JLabel tileWidthLabel;
+	private JLabel tileHeightLabel;
+	private JLabel spacingLabel;
 	private JLabel tilebmpFileLabel;
-	private JCheckBox tilebmpCheck, tileAutoCheck, transCheck;
-	private JButton okButton, cancelButton, browseButton;
+	private JCheckBox tilebmpCheck;
+	private JCheckBox  tileAutoCheck;
+	private JCheckBox transCheck;
+	private JButton okButton;
+	private JButton cancelButton;
+	private JButton browseButton;
 	private ColorButton colorButton;
 	private String path;
 

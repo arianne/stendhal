@@ -16,7 +16,8 @@ public class FXLayer {
 
 	private Graphics2D g;
 
-	private int width, height;
+	private int width;
+	private int height;
 
 	private AlphaComposite myAlpha;
 

@@ -36,7 +36,9 @@ public class PluginDialog extends JDialog implements ActionListener, ListSelecti
 
 	private PluginClassLoader pluginLoader;
 	private JList pluginList = null;
-	private JButton closeButton, infoButton, removeButton;
+	private JButton closeButton;
+	private JButton infoButton;
+	private JButton removeButton;
 
 	public PluginDialog(JFrame parent, PluginClassLoader pluginLoader) {
 		super(parent, "Available Plugins", true);

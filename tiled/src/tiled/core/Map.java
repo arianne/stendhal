@@ -48,7 +48,8 @@ public class Map extends MultilayerPlane {
 	private PropertiesLayer propertiesLayer;
 
 	/** map size. */
-	private int tileWidth, tileHeight;
+	private int tileWidth;
+	private int tileHeight;
 	/** the map type. */
 	private int orientation = MDO_ORTHO;
 	/** change listeners. */

@@ -140,7 +140,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	 ssi <!--#include --> directives. */ 
 	public static void outputHTML(StringBuilder s, PrintStream out, Request req,
 			String dir) throws Exception {
-		int left = 0, right;
+		int left = 0;
+		int right;
 		while ((left = s.indexOf("<!--#include", left)) >= 0) {
 			right = s.indexOf("-->", left + 13);
 			String[] result = s.substring(left + 13, right).trim().split(
