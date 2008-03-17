@@ -93,16 +93,16 @@ public class CloaksForBario extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							// player has already finished the quest
+							engine.say("I don't have anything else for you to do, really. Thanks for the offer.");
+							engine.setCurrentState(ConversationStates.ATTENDING);
+						} else {
 							if (player.hasQuest(QUEST_SLOT) && !"rejected".equals(player.getQuest(QUEST_SLOT))) {
 								engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
 							} else {
 								engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
 							}
-						} else {
-							// player has already finished the quest
-							engine.say("I don't have anything else for you to do, really. Thanks for the offer.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});

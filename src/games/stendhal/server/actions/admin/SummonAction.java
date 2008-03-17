@@ -57,26 +57,26 @@ public class SummonAction extends AdministrationAction {
 
 		    if (entity != null) {
 		    	found(type, entity);
-		    } else if (type.equals("cat")) {
-		    	if (!player.hasPet()) {
+		    } else if ("cat".equals( type )) {
+		    	if (player.hasPet()) {
+		    		error("You already own a pet!");
+		    	} else {
 		    		Cat cat = new Cat(player);
 		    		found(type, cat);
-		    	} else {
-		    		error("You already own a pet!");
 		    	}
-			} else if (type.equals("baby dragon")) {
-		    	if (!player.hasPet()) {
+			} else if ("baby dragon".equals( type )) {
+		    	if (player.hasPet()) {
+		    		error("You already own a pet!");
+		    	} else {
 		    		BabyDragon dragon = new BabyDragon(player);
 					found(type, dragon);
-		    	} else {
-		    		error("You already own a pet!");
 		    	}
-			} else if (type.equals("sheep")) {
-		    	if (!player.hasSheep()) {
+			} else if ("sheep".equals( type )) {
+		    	if (player.hasSheep()) {
+		    		error("You already own a sheep!");
+		    	} else {
 		    		Sheep sheep = new Sheep(player);
 		    		found(type, sheep);
-		    	} else {
-		    		error("You already own a sheep!");
 		    	}
 			}
 	    }

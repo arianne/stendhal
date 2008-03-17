@@ -161,9 +161,7 @@ public class VampireSword extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (!player.isEquipped("iron", REQUIRED_IRON)) {
-						npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
-					} else {
+					if (player.isEquipped("iron", REQUIRED_IRON)) {
 						player.drop("goblet");
 						player.drop("iron", REQUIRED_IRON);
 						npc.say("You've brought everything I need to make the vampire sword. Come back in "
@@ -172,6 +170,8 @@ public class VampireSword extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, "forging;"
 								+ System.currentTimeMillis());
 						npc.setCurrentState(ConversationStates.IDLE);
+					} else {
+						npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
 					}
 				}
 			});

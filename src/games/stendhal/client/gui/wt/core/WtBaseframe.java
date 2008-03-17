@@ -274,12 +274,12 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			// did we get an object
 			if (draggedObject != null) {
 				// do the object want to be dragged
-				if (!draggedObject.dragStarted()) {
-					// dragging disabled
-					draggedObject = null;
-				} else {
+				if (draggedObject.dragStarted()) {
 					// start drag
 					dragStartPoint = e.getPoint();
+				} else {
+					// dragging disabled
+					draggedObject = null;
 				}
 			}
 			// drag is started anyway, even when there is no object to move

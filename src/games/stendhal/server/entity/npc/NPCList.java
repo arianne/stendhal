@@ -74,12 +74,12 @@ public class NPCList implements Iterable<SpeakerNPC> {
 		// searches for teleport commands, etc.
 		String name = npc.getName().toLowerCase();
 
-		if (!contents.containsKey(name)) {
-			contents.put(name, npc);
-		} else {
+		if (contents.containsKey(name)) {
 			logger.error("Not adding " + npc
 					+ " to NPCList because there is already an NPC called "
 					+ npc.getName());
+		} else {
+			contents.put(name, npc);
 		}
 	}
 

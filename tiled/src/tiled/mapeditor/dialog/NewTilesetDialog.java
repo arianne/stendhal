@@ -229,10 +229,7 @@ public class NewTilesetDialog extends JDialog implements ActionListener, ChangeL
 				String file = tilebmpFile.getText();
 				int spacing = tileSpacing.intValue();
 				try {
-					if (!transCheck.isSelected()) {
-						newTileset.importTileBitmap(file, map.getTileWidth(), map.getTileHeight(), spacing,
-								tileAutoCheck.isSelected());
-					} else {
+					if (transCheck.isSelected()) {
 						try {
 							Toolkit tk = Toolkit.getDefaultToolkit();
 							Image orig = ImageIO.read(new File(file));
@@ -251,6 +248,9 @@ public class NewTilesetDialog extends JDialog implements ActionListener, ChangeL
 							newTileset.setTilesetImageFilename(file);
 						} catch (Exception e) {
 						}
+					} else {
+						newTileset.importTileBitmap(file, map.getTileWidth(), map.getTileHeight(), spacing,
+								tileAutoCheck.isSelected());
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(this, e.getMessage(), "Error while importing tileset",

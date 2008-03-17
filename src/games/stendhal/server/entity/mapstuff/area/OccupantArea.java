@@ -353,9 +353,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 		while (iter.hasNext()) {
 			RPEntity.ID id = iter.next();
 
-			if (!zone.has(id)) {
-				iter.remove();
-			} else {
+			if (zone.has(id)) {
 				RPEntity entity = (RPEntity) zone.get(id);
 
 				if (area.intersects(entity.getArea())) {
@@ -367,6 +365,8 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 					handleRemoved(entity);
 					iter.remove();
 				}
+			} else {
+				iter.remove();
 			}
 		}
 

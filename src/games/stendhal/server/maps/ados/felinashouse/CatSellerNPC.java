@@ -60,7 +60,10 @@ public class CatSellerNPC implements ZoneConfigurator {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
-						} else if (!player.hasPet()) {
+						} else if (player.hasPet()) {
+							say("Well, why don't you make sure you can look after that pet you already have first?");
+							return false;
+						} else {
 							if (!player.drop("money", getCharge(seller, player))) {
 								seller.say("You don't seem to have enough money.");
 								return false;
@@ -75,9 +78,6 @@ public class CatSellerNPC implements ZoneConfigurator {
 							player.notifyWorldAboutChanges();
 
 							return true;
-						} else {
-							say("Well, why don't you make sure you can look after that pet you already have first?");
-							return false;
 						}
 					}
 				}

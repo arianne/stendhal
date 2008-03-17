@@ -171,12 +171,12 @@ class SourceObject extends MoveableObject {
 		Entity entity = null;
 		if (SingletonRepository.getRPWorld().has(baseItemId)) {
 			entity = (Entity) SingletonRepository.getRPWorld().get(baseItemId);
-			if (!(entity instanceof Item)) {
-				entity = null;
-			} else {
+			if ((entity instanceof Item)) {
 				if (isItemBelowOtherPlayer((Item) entity)) {
 					entity = null;
 				}
+			} else {
+				entity = null;
 			}
 		}
 		return (Item) entity;

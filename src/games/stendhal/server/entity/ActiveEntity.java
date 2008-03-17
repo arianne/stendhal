@@ -114,7 +114,13 @@ public abstract class ActiveEntity extends Entity {
 
 		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
 
-		if (!collision) {
+		if (collision) {
+			/* Collision */
+			if (logger.isDebugEnabled()) {
+				logger.debug("Collision at (" + nx + "," + ny + ")");
+			}
+			handleObjectCollision();
+		} else {
 			if (!isMoveCompleted()) {
 				if (logger.isDebugEnabled()) {
 					logger.debug(get("type") + ") move not completed");
@@ -128,12 +134,6 @@ public abstract class ActiveEntity extends Entity {
 			}
 
 			move(x, y, nx, ny);
-		} else {
-			/* Collision */
-			if (logger.isDebugEnabled()) {
-				logger.debug("Collision at (" + nx + "," + ny + ")");
-			}
-			handleObjectCollision();
 		}
 
 		notifyWorldAboutChanges();

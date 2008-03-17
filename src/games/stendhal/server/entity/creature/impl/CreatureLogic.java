@@ -78,23 +78,24 @@ public class CreatureLogic {
 		 */
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
-		if (!creature.getZone().getPlayerAndFriends().isEmpty())
-		if (!creature.isEnemyNear(30)) {
-			// If we are already sleeping, than don't modify the Entity.
-			if (aiState == AiState.SLEEP) {
+		if (!creature.getZone().getPlayerAndFriends().isEmpty()) {
+			if (!creature.isEnemyNear(30)) {
+				// If we are already sleeping, than don't modify the Entity.
+				if (aiState == AiState.SLEEP) {
+					return false;
+				}
+
+				creature.stopAttack();
+				creature.stop();
+
+				if (Debug.CREATURES_DEBUG_SERVER) {
+					creature.put("debug", "sleep");
+				}
+
+				aiState = AiState.SLEEP;
+				creature.notifyWorldAboutChanges();
 				return false;
 			}
-
-			creature.stopAttack();
-			creature.stop();
-
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				creature.put("debug", "sleep");
-			}
-
-			aiState = AiState.SLEEP;
-			creature.notifyWorldAboutChanges();
-			return false;
 		}
 
 		return true;

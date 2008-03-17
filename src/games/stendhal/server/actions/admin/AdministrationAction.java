@@ -149,11 +149,11 @@ public abstract class AdministrationAction implements ActionListener {
 			id = action.get(WellKnownActionConstants.TARGET);
 		}
 		if (id != null) {
-			if (!id.startsWith("#")) {
+			if (id.startsWith("#")) {
+				id = id.substring(1);
+			} else {
 				target = SingletonRepository.getRuleProcessor().getPlayer(id);
 				return target;
-			} else {
-				id = id.substring(1);
 			}
 		}
 

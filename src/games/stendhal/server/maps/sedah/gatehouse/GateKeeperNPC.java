@@ -48,9 +48,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isEquipped("sedah gate key")) {
-							engine.say("What do you want?");
-						} else {
+						if (player.isEquipped("sedah gate key")) {
 							// toss a coin to see if he notices player still has
 							// the gate key
 							if (Rand.throwCoin() == 1) {
@@ -59,6 +57,8 @@ public class GateKeeperNPC implements ZoneConfigurator {
 							} else {
 								engine.say("Hi, again.");
 							}
+						} else {
+							engine.say("What do you want?");
 						}
 					}
 				});

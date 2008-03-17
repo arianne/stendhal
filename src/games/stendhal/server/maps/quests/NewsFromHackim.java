@@ -105,10 +105,10 @@ public class NewsFromHackim extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					String answer;
-					if (!player.isEquipped("leather legs")) {
-						answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
-					} else {
+					if (player.isEquipped("leather legs")) {
 						answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
+					} else {
+						answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
 					}
 					// player.say("Well, to make a long story short; I know
 					// your business with Hackim and I'm here to tell you

@@ -364,14 +364,14 @@ class AmbientSound {
 		// if map-localized
 		if (soundPos != null) {
 			// adjust to player settings
-			if (!User.isNull()) {
+			if (User.isNull()) {
+				return;
+			} else {
 
 				// return if sound object is out of range
 				if (!canPlay()) {
 					return;
 				}
-			} else {
-				return;
 			}
 		}
 

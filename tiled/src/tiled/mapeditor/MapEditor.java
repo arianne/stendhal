@@ -971,14 +971,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 		currentMap = newMap;
 		boolean mapLoaded = (currentMap != null);
 
-		if (!mapLoaded) {
-			mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPINACTIVE);
-			mapView = null;
-			setCurrentPointerState(PS_POINT);
-			statusBar.clearLabels();
-			mapEditPanel.setMapView(null);
-			currentBuilder = null;
-		} else {
+		if (mapLoaded) {
 			mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPACTIVE);
 			mapView = new Orthogonal();
 			mapView.setMap(currentMap);
@@ -993,6 +986,13 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 			statusBar.setZoom(mapEditPanel.getMapView().getScale());
 
 			updateBuilder();
+		} else {
+			mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPINACTIVE);
+			mapView = null;
+			setCurrentPointerState(PS_POINT);
+			statusBar.clearLabels();
+			mapEditPanel.setMapView(null);
+			currentBuilder = null;
 		}
 
 		actionManager.getAction(ZoomInAction.class).setEnabled(mapLoaded);

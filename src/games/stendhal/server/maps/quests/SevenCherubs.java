@@ -110,7 +110,13 @@ public class SevenCherubs extends AbstractQuest {
 						List<String> list = Arrays.asList(done);
 						int left = 7 - list.size();
 
-						if (!list.contains(engine.getName())) {
+						if (list.contains(engine.getName())) {
+							if (left > -1) {
+								engine.say("Seek out the other cherubim to get thy reward!");
+							} else {
+								engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
+							}
+						} else {
 							player.setQuest(QUEST_SLOT, npcDoneText + ";"
 									+ engine.getName());
 
@@ -156,12 +162,6 @@ public class SevenCherubs extends AbstractQuest {
 								item.setBoundTo(player.getName());
 								player.equip(item, true);
 								player.addXP(2000);
-							}
-						} else {
-							if (left > -1) {
-								engine.say("Seek out the other cherubim to get thy reward!");
-							} else {
-								engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
 							}
 						}
 						player.notifyWorldAboutChanges();

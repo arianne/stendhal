@@ -25,12 +25,12 @@ public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				        if (!player.hasQuest("meet_hackim")) {
-					        npc.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-					        player.setQuest("meet_hackim", "start");
-				        } else {
+				        if (player.hasQuest("meet_hackim")) {
 					        npc.say("Hi again, " + player.getTitle()
 					                + ". How can I #help you this time?");
+				        } else {
+					        npc.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+					        player.setQuest("meet_hackim", "start");
 				        }
 			        }
 		        });

@@ -61,17 +61,14 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		String zone;
 		Object identifier;
 
-		if (!element.hasAttribute("zone")) {
+		if (element.hasAttribute("zone")) {
+			zone = element.getAttribute("zone");
+		} else {
 			logger.error("Portal destination without zone");
 			return;
-		} else {
-			zone = element.getAttribute("zone");
 		}
 
-		if (!element.hasAttribute("ref")) {
-			logger.error("Portal destination without 'ref' value");
-			return;
-		} else {
+		if (element.hasAttribute("ref")) {
 			String s = element.getAttribute("ref");
 
 			/*
@@ -82,6 +79,9 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			} catch (NumberFormatException ex) {
 				identifier = s;
 			}
+		} else {
+			logger.error("Portal destination without 'ref' value");
+			return;
 		}
 
 		desc.setDestination(zone, identifier);
@@ -104,10 +104,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			final int y) {
 		Object identifier;
 
-		if (!element.hasAttribute("ref")) {
-			logger.warn("Portal without 'ref' value");
-			return null;
-		} else {
+		if (element.hasAttribute("ref")) {
 			String s = element.getAttribute("ref");
 
 			/*
@@ -118,6 +115,9 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			} catch (NumberFormatException ex) {
 				identifier = s;
 			}
+		} else {
+			logger.warn("Portal without 'ref' value");
+			return null;
 		}
 
 		PortalSetupDescriptor desc = read(element, x, y, identifier);

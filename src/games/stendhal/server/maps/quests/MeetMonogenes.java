@@ -36,15 +36,15 @@ public class MeetMonogenes extends AbstractQuest {
 						// player before and react accordingly.
 						// NPC_name quest doesn't exist anywhere else neither is
 						// used for any other purpose.
-						if (!player.isQuestCompleted("Monogenes")) {
+						if (player.isQuestCompleted("Monogenes")) {
+							engine.say("Hi again, " + player.getTitle()
+									+ ". How can I #help you this time?");
+						} else {
 							engine
 									.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... the fear of Blordrough and his forces has spread all over the country, and we're all a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
 							player.setQuest("Monogenes", "done");
 							engine
 									.setCurrentState(ConversationStates.INFORMATION_1);
-						} else {
-							engine.say("Hi again, " + player.getTitle()
-									+ ". How can I #help you this time?");
 						}
 					}
 				});

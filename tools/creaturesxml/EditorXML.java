@@ -149,9 +149,7 @@ public class EditorXML {
 	}
 
 	public void requestFormClosing(JFrame frame) {
-		if (!hasChanges()) {
-			System.exit(0);
-		} else {
+		if (hasChanges()) {
 			int answer = JOptionPane.showConfirmDialog(frame,
 					"Exit without saving?");
 			if (answer == JOptionPane.YES_OPTION) {
@@ -159,6 +157,8 @@ public class EditorXML {
 			} else if (answer == JOptionPane.NO_OPTION) {
 				frame.setVisible(true);
 			}
+		} else {
+			System.exit(0);
 		}
 	}
 

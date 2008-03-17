@@ -212,13 +212,13 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				addReply("leave", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							engine.say("Leave where?");
+						} else {
 							teleportAway(player);
 							// remove the players Timer
 							SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
 							engine.say("Thank you for using the Wizard's Bank");
-						} else {
-							engine.say("Leave where?");
 						}
 					}
 				});

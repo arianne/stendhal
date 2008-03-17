@@ -60,10 +60,10 @@ public class FixedPath {
 
 		pos = 0;
 
-		if (!nodes.isEmpty()) {
-			currentGoal = nodes.get(0);
-		} else {
+		if (nodes.isEmpty()) {
 			currentGoal = null;
+		} else {
+			currentGoal = nodes.get(0);
 		}
 
 	}

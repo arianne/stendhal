@@ -306,11 +306,11 @@ public class ShopList {
 	public void add(String name, String item, int price) {
 		Map<String, Integer> shop;
 
-		if (!contents.containsKey(name)) {
+		if (contents.containsKey(name)) {
+			shop = contents.get(name);
+		} else {
 			shop = new LinkedHashMap<String, Integer>();
 			contents.put(name, shop);
-		} else {
-			shop = contents.get(name);
 		}
 
 		shop.put(item, price);

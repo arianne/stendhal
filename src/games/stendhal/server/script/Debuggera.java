@@ -142,7 +142,21 @@ public class Debuggera extends ScriptImpl {
 		public void onTurnReached(int currentTurn) {
 			boolean keepRunning = true;
 			counter++;
-			if (!beamed) {
+			if (beamed) {
+				// slow down
+				if (counter % inversedSpeed == 0) {
+					Direction direction = player.getDirection();
+					direction = Direction.build((direction.get()) % 4 + 1);
+					player.setDirection(direction);
+					sandbox.modify(player);
+					if (direction == Direction.DOWN) {
+						inversedSpeed++;
+						if (inversedSpeed == 3) {
+							keepRunning = false;
+						}
+					}
+				}
+			} else {
 				// speed up
 				if (counter % inversedSpeed == 0) {
 					Direction direction = player.getDirection();
@@ -189,20 +203,6 @@ public class Debuggera extends ScriptImpl {
 							break;
 						}
 						textCounter++;
-					}
-				}
-			} else {
-				// slow down
-				if (counter % inversedSpeed == 0) {
-					Direction direction = player.getDirection();
-					direction = Direction.build((direction.get()) % 4 + 1);
-					player.setDirection(direction);
-					sandbox.modify(player);
-					if (direction == Direction.DOWN) {
-						inversedSpeed++;
-						if (inversedSpeed == 3) {
-							keepRunning = false;
-						}
 					}
 				}
 			}

@@ -93,12 +93,12 @@ public class MarkedScroll extends TeleportScroll {
 								+ "you cannot concentrate on it because you have never been there.");
 						return false;
 					} else {
-						if (!zone.isTeleportAllowed()) {
-							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
-						} else {
+						if (zone.isTeleportAllowed()) {
 							zone = temp;
 							x = Integer.parseInt(st.nextToken());
 							y = Integer.parseInt(st.nextToken());
+						} else {
+							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
 						}
 					}
 				}

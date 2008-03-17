@@ -91,7 +91,11 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 			        addReply("hatch", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					    if (!player.hasPet()) {
+					    if (player.hasPet()) {
+						// there's actually also a check for this when the egg is hatched,
+						// but we might as well warn player here that they wouldn't be allowed two.
+							engine.say("You've already got a pet. If you get another they might fight ... or worse ...");
+					   } else {
 						if (player.isEquipped("mythical egg")) {
 						    player.drop("mythical egg");
 						    engine.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
@@ -100,11 +104,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 						} else {
 						    engine.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
 						}
-					    } else {
-						// there's actually also a check for this when the egg is hatched,
-						// but we might as well warn player here that they wouldn't be allowed two.
-							engine.say("You've already got a pet. If you get another they might fight ... or worse ...");
-					   }
+					    }
 					}
 				    });
 				addJob("I breed baby dragons. You need an egg to get one #hatched.");

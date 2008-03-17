@@ -187,15 +187,15 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 
 		if (tile != null && builder != null) {
 			Rectangle affectedRegion = null;
-			if (!dragged) {
-				affectedRegion = builder.startBuilder(tile);
-				builder.finishBuilder(null);
-			} else {
+			if (dragged) {
 				if (builder.isStarted()) {
 					affectedRegion = builder.moveBuilder(tile);
 				} else {
 					affectedRegion = builder.startBuilder(tile);
 				}
+			} else {
+				affectedRegion = builder.startBuilder(tile);
+				builder.finishBuilder(null);
 			}
 
 			updateModifiedRegion(affectedRegion);

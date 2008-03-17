@@ -52,11 +52,11 @@ public abstract class SetupXMLReader {
 		List<Element> list = XMLUtil.getElements(element, "parameter");
 
 		for (Element param : list) {
-			if (!param.hasAttribute("name")) {
-				logger.error("Unnamed parameter");
-			} else {
+			if (param.hasAttribute("name")) {
 				desc.setParameter(param.getAttribute("name"), XMLUtil.getText(
 						param).trim());
+			} else {
+				logger.error("Unnamed parameter");
 			}
 		}
 	}

@@ -187,21 +187,21 @@ public class SpriteStore {
 
 		try {
 			URL url;
-			if (!ref.startsWith("http://")) {
-				url = getResourceURL(ref);
-			} else {
+			if (ref.startsWith("http://")) {
 				logger.info("Loading sprite from a URL...");
 				url = new URL(ref);
+			} else {
+				url = getResourceURL(ref);
 			}
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 
 				// avoid infinite loop and stack overflow in case of missing
 				// failsafe icon
-				if (!ref.equals(FAILSAFE_ICON_REF)) {
-					return getFailsafe();
-				} else {
+				if (ref.equals(FAILSAFE_ICON_REF)) {
 					return null;
+				} else {
+					return getFailsafe();
 				}
 			}
 

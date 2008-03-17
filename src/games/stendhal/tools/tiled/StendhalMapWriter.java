@@ -83,10 +83,10 @@ public class StendhalMapWriter implements MapWriter {
 		String x = (String) prop.get("x");
 		String y = (String) prop.get("y");
 
-		if (!level.equals("int")) {
-			writer.println("  <location level=\"" + level + "\" x=\"" + x + "\" y=\"" + y + "\"/>");
-		} else {
+		if (level.equals("int")) {
 			writer.println("  <location level=\"int\"/>");
+		} else {
+			writer.println("  <location level=\"" + level + "\" x=\"" + x + "\" y=\"" + y + "\"/>");
 		}
 
 		boolean firstTime = true;

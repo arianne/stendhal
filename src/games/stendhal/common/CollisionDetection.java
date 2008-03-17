@@ -109,10 +109,10 @@ public class CollisionDetection {
 				if ((j >= 0) && (j < height) && (i >= 0) && (i < width)) {
 					if ((j == y) && (i == x)) {
 						System.out.print("O");
-					} else if (!blocked[j * width + i]) {
-						System.out.print(".");
-					} else {
+					} else if (blocked[j * width + i]) {
 						System.out.print("X");
+					} else {
+						System.out.print(".");
 					}
 				}
 			}

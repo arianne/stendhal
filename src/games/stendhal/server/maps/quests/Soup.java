@@ -174,14 +174,15 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (!(player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT))) {
-						npc.say("My special soup has a magic touch. "
-								+ "I need you to bring me the #ingredients.");
-					} else { // to be honest i don't understand when this
+					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
+						// to be honest i don't understand when this
 								// would be implemented. i put the text i
 								// want down in stage 3 and it works fine.
 						npc.say("I have everything for the recipe now.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
+					} else {
+						npc.say("My special soup has a magic touch. "
+								+ "I need you to bring me the #ingredients.");
 					}
 				}
 			});

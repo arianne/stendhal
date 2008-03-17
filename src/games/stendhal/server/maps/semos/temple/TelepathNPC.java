@@ -54,15 +54,15 @@ public class TelepathNPC implements ZoneConfigurator {
 
 					        @Override
 					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						        if (!player.hasQuest("meet_io")) {
+						        if (player.hasQuest("meet_io")) {
+							        engine.say("Hi again, " + player.getTitle()
+							                + ". How can I #help you this time? Not that I don't already know...");
+						        } else {
 							        engine
 							                .say("I awaited you, "
 							                        + player.getTitle()
 							                        + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
 							        player.setQuest("meet_io", "start");
-						        } else {
-							        engine.say("Hi again, " + player.getTitle()
-							                + ". How can I #help you this time? Not that I don't already know...");
 						        }
 					        }
 				        });

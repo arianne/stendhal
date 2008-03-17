@@ -30,12 +30,12 @@ public class GossipNPC extends SpeakerNPCFactory {
 				        // player before anc react accordingly
 				        // NPC_name quest doesn't exist anywhere else neither is
 				        // used for any other purpose
-				        if (!player.isQuestCompleted("Nomyr")) {
-					        npc.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
-					        player.setQuest("Nomyr", "done");
-				        } else {
+				        if (player.isQuestCompleted("Nomyr")) {
 					        npc.say("Hi again, " + player.getTitle()
 					                + ". How can I #help you this time?");
+				        } else {
+					        npc.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
+					        player.setQuest("Nomyr", "done");
 				        }
 			        }
 		        });

@@ -256,9 +256,7 @@ public class CloakCollector2 extends AbstractQuest {
 								// check if the player has brought all cloaks
 								missing = new TriggerList(missingcloaks2(player, true));
 
-								if (!missing.isEmpty()) {
-									engine.say("Wow, thank you! What else did you bring?");
-								} else {
+								if (missing.isEmpty()) {
 									rewardPlayer(player);
 									// TODO: Make speech mention scent reward if applicable.
 									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
@@ -268,6 +266,8 @@ public class CloakCollector2 extends AbstractQuest {
 									player.equip(boots, true);
 									player.notifyWorldAboutChanges();
 									engine.setCurrentState(ConversationStates.ATTENDING);
+								} else {
+									engine.say("Wow, thank you! What else did you bring?");
 								}
 							} else {
 								engine.say("Oh, I'm disappointed. You don't really have "

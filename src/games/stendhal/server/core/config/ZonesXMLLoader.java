@@ -240,11 +240,7 @@ public class ZonesXMLLoader {
 		/**
 		 * Interior zones don't have levels (why not?)
 		 */
-		if (!element.hasAttribute("level")) {
-			level = ZoneDesc.UNSET;
-			x = ZoneDesc.UNSET;
-			y = ZoneDesc.UNSET;
-		} else {
+		if (element.hasAttribute("level")) {
 			String s = element.getAttribute("level");
 
 			try {
@@ -283,6 +279,10 @@ public class ZonesXMLLoader {
 					return null;
 				}
 			}
+		} else {
+			level = ZoneDesc.UNSET;
+			x = ZoneDesc.UNSET;
+			y = ZoneDesc.UNSET;
 		}
 
 		ZoneDesc desc = new ZoneDesc(name, file, level, x, y);

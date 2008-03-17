@@ -55,10 +55,7 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	 */
 	@Override
 	public SetupDescriptor read(final Element element) {
-		if (!element.hasAttribute("class-name")) {
-			logger.error("Implmentation without class-name");
-			return null;
-		} else {
+		if (element.hasAttribute("class-name")) {
 			String className = element.getAttribute("class-name");
 
 			ConfiguratorDescriptor desc = read(element, className);
@@ -66,6 +63,9 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 			readParameters(desc, element);
 
 			return desc;
+		} else {
+			logger.error("Implmentation without class-name");
+			return null;
 		}
 	}
 }

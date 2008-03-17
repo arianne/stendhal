@@ -59,11 +59,11 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		List<Element> list = XMLUtil.getElements(element, "attribute");
 
 		for (Element attr : list) {
-			if (!attr.hasAttribute("name")) {
-				logger.error("Unnamed attribute");
-			} else {
+			if (attr.hasAttribute("name")) {
 				desc.setAttribute(attr.getAttribute("name"), XMLUtil.getText(
 						attr).trim());
+			} else {
+				logger.error("Unnamed attribute");
 			}
 		}
 	}
@@ -78,10 +78,10 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 */
 	protected void readImplementation(final EntitySetupDescriptor desc,
 			final Element element) {
-		if (!element.hasAttribute("class-name")) {
-			logger.error("Implmentation without class-name");
-		} else {
+		if (element.hasAttribute("class-name")) {
 			desc.setImplementation(element.getAttribute("class-name"));
+		} else {
+			logger.error("Implmentation without class-name");
 		}
 
 		readParameters(desc, element);
@@ -104,10 +104,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		int x;
 		int y;
 
-		if (!element.hasAttribute("x")) {
-			logger.error("Entity without 'x' coordinate");
-			return null;
-		} else {
+		if (element.hasAttribute("x")) {
 			String s = element.getAttribute("x");
 
 			try {
@@ -116,12 +113,12 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 				logger.error("Invalid entity 'x' coordinate: " + s);
 				return null;
 			}
+		} else {
+			logger.error("Entity without 'x' coordinate");
+			return null;
 		}
 
-		if (!element.hasAttribute("y")) {
-			logger.error("Entity without 'y' coordinate");
-			return null;
-		} else {
+		if (element.hasAttribute("y")) {
 			String s = element.getAttribute("y");
 
 			try {
@@ -130,6 +127,9 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 				logger.error("Invalid entity 'y' coordinate: " + s);
 				return null;
 			}
+		} else {
+			logger.error("Entity without 'y' coordinate");
+			return null;
 		}
 
 		EntitySetupDescriptor desc = read(element, x, y);

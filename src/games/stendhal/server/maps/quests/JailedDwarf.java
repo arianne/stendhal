@@ -36,7 +36,9 @@ public class JailedDwarf extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							engine.say("Hi. As you see, I am still to nervous to leave ...");
+						} else {
 							if (player.isEquipped("kanmararn prison key")) {
 								player.setQuest(QUEST_SLOT, "done");
 								player.addXP(2000);
@@ -46,8 +48,6 @@ public class JailedDwarf extends AbstractQuest {
 								player.setQuest(QUEST_SLOT, "start");
 								engine.setCurrentState(ConversationStates.IDLE);
 							}
-						} else {
-							engine.say("Hi. As you see, I am still to nervous to leave ...");
 						}
 					}
 				});

@@ -133,15 +133,15 @@ public class ReverseArrow extends AbstractQuest implements
 		 */
 		public void onTurnReached(int currentTurn) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
-				if (!player.isQuestCompleted(QUEST_SLOT)) {
+				if (player.isQuestCompleted(QUEST_SLOT)) {
+					npc.say("Congratulations, you solved the quiz again. But unfortunately I don't have any further rewards for you.");
+				} else {
 					npc.say("Congratulations, you solved the quiz.");
 					StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 									"money");
 					money.setQuantity(50);
 					player.equip(money);
 					player.addXP(100);
-				} else {
-					npc.say("Congratulations, you solved the quiz again. But unfortunately I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
@@ -320,12 +320,12 @@ public class ReverseArrow extends AbstractQuest implements
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
-						} else {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi again "
 								+ player.getTitle()
 								+ ". I rembemer that you solved this problem already. You can do it again, of course.");
+						} else {
+							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						}
 					}
 				});

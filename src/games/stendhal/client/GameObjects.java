@@ -172,7 +172,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if (!object.has("server-only")) {
+		if (object.has("server-only")) {
+			logger.debug("Discarding object: " + object);
+		} else {
 			if (!object.getRPClass().subclassOf("entity")) {
 				logger.debug("Skipping non-entity object: " + object);
 				return;
@@ -195,8 +197,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			} else {
 				logger.error("No entity for: " + object);
 			}
-		} else {
-			logger.debug("Discarding object: " + object);
 		}
 	}
 

@@ -122,12 +122,12 @@ public class WeaponsCollector2 extends AbstractQuest {
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							if (!player.isQuestCompleted(QUEST_SLOT)) {
-								engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
-										+ "Would you fight these creatures and bring their weapons to me?");
-							} else {
+							if (player.isQuestCompleted(QUEST_SLOT)) {
 								engine.say("My collection is now complete! Thanks again.");
 								engine.setCurrentState(ConversationStates.ATTENDING);
+							} else {
+								engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
+										+ "Would you fight these creatures and bring their weapons to me?");
 							}
 						}
 				});

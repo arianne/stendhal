@@ -485,7 +485,14 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// The p.y seems higher than it should after adjustment.
 
 		// If teleclickmode is disabled.
-		if (!client.getPlayer().has("teleclickmode")) {
+		if (client.getPlayer().has("teleclickmode")) { // If teleclickmode is enabled.
+			RPAction action = new RPAction();
+			action.put("type", "moveto");
+			action.put("x", (p.x + panx - getClientX()) / scale);
+			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
+
+			client.send(action);
+		} else {
 			/*
 			 * Move the player to the coordinates using Pathfinding
 			 */
@@ -538,13 +545,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 						+ (System.currentTimeMillis() - computation_time)
 						+ "ms");
 			}
-		} else { // If teleclickmode is enabled.
-			RPAction action = new RPAction();
-			action.put("type", "moveto");
-			action.put("x", (p.x + panx - getClientX()) / scale);
-			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
-
-			client.send(action);
 		}
 		return true;
 	}

@@ -227,11 +227,11 @@ class PlayerRPClass {
 
 		try {
 			if (object.has("zoneid") && object.has("x") && object.has("y")) {
-				if (!object.get("release").equals(Debug.VERSION)) {
+				if (object.get("release").equals(Debug.VERSION)) {
+					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
+				} else {
 					player.put("release", Debug.VERSION);
 					TutorialNotifier.newrelease(player);
-				} else {
-					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				}
 			}
 		} catch (RuntimeException e) {

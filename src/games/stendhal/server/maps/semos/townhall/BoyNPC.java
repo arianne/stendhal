@@ -36,10 +36,10 @@ public class BoyNPC implements ZoneConfigurator {
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 						if (player.hasQuest("introduce_players")) {
-							if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("*sniff* *sniff* I still feel ill, please hurry");
-							} else {
+							if (player.isQuestCompleted("introduce_players")) {
 							engine.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
+							} else {
+							engine.say("*sniff* *sniff* I still feel ill, please hurry");
 							}
 						} else {
 							engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");

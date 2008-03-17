@@ -146,7 +146,10 @@ public class StuffForVulcanus extends AbstractQuest {
 					boolean missingSomething = false;
 
 					if (!missingSomething && neededIron > 0) {
-						if (!player.isEquipped("iron", neededIron)) {
+						if (player.isEquipped("iron", neededIron)) {
+							player.drop("iron", neededIron);
+							neededIron = 0;
+						} else {
 							int amount = player.getNumberOfEquipped("iron");
 							if (amount > 0) {
 								player.drop("iron", amount);
@@ -158,14 +161,14 @@ public class StuffForVulcanus extends AbstractQuest {
 										neededIron, "iron")
 								+ ".");
 							missingSomething = true;
-						} else {
-							player.drop("iron", neededIron);
-							neededIron = 0;
 						}
 					}
 
 					if (!missingSomething && neededWoodLogs > 0) {
-						if (!player.isEquipped("wood", neededWoodLogs)) {
+						if (player.isEquipped("wood", neededWoodLogs)) {
+							player.drop("wood", neededWoodLogs);
+							neededWoodLogs = 0;
+						} else {
 							int amount = player.getNumberOfEquipped("wood");
 							if (amount > 0) {
 								player.drop("wood", amount);
@@ -176,14 +179,14 @@ public class StuffForVulcanus extends AbstractQuest {
 								+ Grammar.quantityplnoun(neededWoodLogs, "wood log")
 								+ " for the fire?");
 							missingSomething = true;
-						} else {
-							player.drop("wood", neededWoodLogs);
-							neededWoodLogs = 0;
 						}
 					}
 
 					if (!missingSomething && neededGoldBars > 0) {
-						if (!player.isEquipped("gold bar", neededGoldBars)) {
+						if (player.isEquipped("gold bar", neededGoldBars)) {
+							player.drop("gold bar", neededGoldBars);
+							neededGoldBars = 0;
+						} else {
 							int amount = player.getNumberOfEquipped("gold bar");
 							if (amount > 0) {
 								player.drop("gold bar", amount);
@@ -192,14 +195,14 @@ public class StuffForVulcanus extends AbstractQuest {
 							engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
 									+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " more.");
 							missingSomething = true;
-						} else {
-							player.drop("gold bar", neededGoldBars);
-							neededGoldBars = 0;
 						}
 					}
 
 					if (!missingSomething && neededGiantHearts > 0) {
-						if (!player.isEquipped("giant heart", neededGiantHearts)) {
+						if (player.isEquipped("giant heart", neededGiantHearts)) {
+							player.drop("giant heart", neededGiantHearts);
+							neededGiantHearts = 0;
+						} else {
 							int amount = player.getNumberOfEquipped("giant heart");
 							if (amount > 0) {
 								player.drop("giant heart", amount);
@@ -208,9 +211,6 @@ public class StuffForVulcanus extends AbstractQuest {
 							engine.say("It is the base element of the enchantment. I need "
 								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart") + " still.");
 							missingSomething = true;
-						} else {
-							player.drop("giant heart", neededGiantHearts);
-							neededGiantHearts = 0;
 						}
 					}
 
