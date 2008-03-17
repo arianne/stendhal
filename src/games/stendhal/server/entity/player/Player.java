@@ -945,13 +945,11 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onAttacked(Entity attacker, boolean keepAttacking) {
-		super.onAttacked(attacker, keepAttacking);
-		if (keepAttacking) {
-			TutorialNotifier.attacked(this);
-		}
+	public void keepAttacking(Entity attacker) {
+		TutorialNotifier.attacked(this);
+		super.keepAttacking(attacker);
 	}
-
+	
 	@Override
 	public void onDead(Entity killer) {
 		dieer.onDead(killer);

@@ -59,6 +59,8 @@ public abstract class Entity extends RPObject {
 	private StendhalRPZone zone;
 	private StendhalRPZone lastZone;
 
+	private Rectangle2D area = new Rectangle.Double();;
+
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
 
@@ -507,9 +509,9 @@ public abstract class Entity extends RPObject {
 	 * @return rectangle for the used area
 	 */
 	public Rectangle2D getArea(double ex, double ey) {
-		Rectangle2D rect = new Rectangle.Double();
-		getArea(rect, ex, ey);
-		return rect;
+		
+		getArea(area, ex, ey);
+		return area;
 	}
 
 	/**

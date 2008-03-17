@@ -88,10 +88,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	private Map<RPEntity, Integer> enemiesThatGiveFightXP;
 
-	/** List of all enemies that are currently attacking of this entity. */
+	/** List of all enemies that are currently attacking this entity. */
 	private List<Entity> attackSources;
 
-	/** current target. */
+	/** the enemy that is currently attacked by this entity. */
 	private RPEntity attackTarget;
 
 	/**
@@ -679,25 +679,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return true;
 	}
 
-	/**
-	 * This method is called on each round when this entity has been attacked by
-	 * the given attacker.
-	 * 
-	 * @param attacker
-	 *            The attacker.
-	 * @param keepAttacking
-	 *            true means "keep attacking" and false means "stop attacking".
-	 */
-	public void onAttacked(Entity attacker, boolean keepAttacking) {
-		if (keepAttacking) {
-			if (!attackSources.contains(attacker)) {
-				attackSources.add(attacker);
-			}
-		} else {
-			if (attacker.has("target")) {
-				attacker.remove("target");
-			}
-			// attackSources.remove(attacker);
+
+	public void stopAttacking(Entity attacker) {
+		if (attacker.has("target")) {
+			attacker.remove("target");
+		}
+	}
+
+	public void keepAttacking(Entity attacker) {
+		if (!attackSources.contains(attacker)) {
+			attackSources.add(attacker);
 		}
 	}
 

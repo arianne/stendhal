@@ -30,6 +30,8 @@ public class CreatureLogic {
 	 * is blocked and the target is not moving.
 	 */
 	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
+	/** the number of rounds to wait for a path the target. */
+	private int waitRounds;
 
 	private Creature creature;
 
@@ -40,8 +42,6 @@ public class CreatureLogic {
 	/** the current (logic)state .*/
 	private AiState aiState;
 
-	/** the number of rounds to wait for a path the target. */
-	private int waitRounds;
 
 	private List<Node> patrolPath;
 
@@ -78,6 +78,7 @@ public class CreatureLogic {
 		 */
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
+		if (!creature.getZone().getPlayerAndFriends().isEmpty())
 		if (!creature.isEnemyNear(30)) {
 			// If we are already sleeping, than don't modify the Entity.
 			if (aiState == AiState.SLEEP) {

@@ -313,7 +313,7 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		defender.onAttacked(attacker, true);
+		defender.keepAttacking(attacker);
 		setPVPTimeIfDoingPVP(attacker, defender);
 
 		if (!attacker.nextTo(defender)) {

@@ -110,7 +110,7 @@ public class LifeDrainArea extends OccupantArea {
 			return false;
 		}
 
-		entity.onAttacked(this, true);
+		entity.keepAttacking(this);
 		return doDamage(entity);
 	}
 
@@ -137,7 +137,7 @@ public class LifeDrainArea extends OccupantArea {
 	 */
 	@Override
 	protected void handleRemoved(RPEntity entity) {
-		entity.onAttacked(this, false);
+		entity.stopAttacking(this);
 		super.handleRemoved(entity);
 	}
 }
