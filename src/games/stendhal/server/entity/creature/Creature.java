@@ -22,16 +22,16 @@ import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.impl.Attacker;
 import games.stendhal.server.entity.creature.impl.CreatureLogic;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.creature.impl.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.awt.Rectangle;
@@ -95,7 +95,7 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-
+	Attacker poisoner; 
 	private CreatureLogic creatureLogic;
 
 	public static void generateRPClass() {
@@ -281,6 +281,8 @@ public class Creature extends NPC {
 	private void setAiProfiles(Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 		creatureLogic.setHealer(aiProfiles.get("heal"));
+		poisoner = PoisonerFactory.get(aiProfiles.get("poisonous"));
+		
 	}
 
 	private Map<String, String> getAiProfiles() {
@@ -523,36 +525,17 @@ public class Creature extends NPC {
 	}
 
 	public void tryToPoison() {
-		if ((getAttackTarget() != null) && nextTo(getAttackTarget())
-				&& getAiProfiles().containsKey("poisonous")) {
-			int roll = Rand.roll1D100();
-			String[] poison = getAiProfiles().get("poisonous").split(",");
-			int prob = Integer.parseInt(poison[0]);
-			String poisonType = poison[1];
+		
+		RPEntity entity = getAttackTarget();
+		if ((entity != null) && nextTo(entity)){
+			
+			if(poisoner.attack(entity)){
+				SingletonRepository.getRuleProcessor().addGameEvent(
+				getName(), "poison", entity.getName());
 
-			if (roll <= prob) {
-				ConsumableItem item = (ConsumableItem) SingletonRepository.getEntityManager().getItem(
-						poisonType);
-				if (item == null) {
-					logger.error("Creature unable to poisoning with "
-							+ poisonType);
-				} else {
-					RPEntity entity = getAttackTarget();
-
-					if (entity instanceof Player) {
-						Player player = (Player) entity;
-
-						if (player.poison(item)) {
-							SingletonRepository.getRuleProcessor().addGameEvent(
-									getName(), "poison", player.getName());
-
-							// TODO: Use a_noun()?
-							player.sendPrivateText("You have been poisoned by a "
-									+ getTitle());
-						}
-					}
-				}
+					entity.sendPrivateText("You have been poisoned by a " + getName());
 			}
+			
 		}
 	}
 
