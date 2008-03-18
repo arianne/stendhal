@@ -17,7 +17,13 @@
 
 package tiled.mapeditor.widget;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -57,6 +63,7 @@ public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionL
 		revalidate();
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		if (mapView == null) {
 			return new Dimension(100, 100);
@@ -79,6 +86,7 @@ public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionL
 		g.fillRect(clip.x, clip.y, clip.width, clip.height);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		if (paintingInProgress) {
 			// recursive painting caused by scrollRectToVisible(..)

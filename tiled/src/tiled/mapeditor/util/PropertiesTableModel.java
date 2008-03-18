@@ -49,6 +49,7 @@ public class PropertiesTableModel extends AbstractTableModel {
 		return properties.size() + 1;
 	}
 
+	@Override
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -61,6 +62,7 @@ public class PropertiesTableModel extends AbstractTableModel {
 	 * Returns wether the given position in the table is editable. Values can
 	 * only be edited when they have a name.
 	 */
+	@Override
 	public boolean isCellEditable(int row, int col) {
 		return (col == 0) || (col == 1 && getValueAt(row, 0) != null);
 	}
@@ -77,6 +79,7 @@ public class PropertiesTableModel extends AbstractTableModel {
 		return null;
 	}
 
+	@Override
 	public void setValueAt(Object value, int row, int col) {
 		// TODO: When the name is set to an empty string, consider removing the
 		// property (and ignore when it happens on the last row).

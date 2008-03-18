@@ -50,10 +50,12 @@ public class StendReader extends Reader implements MapReaderPlugin {
 	public FileFilter[] getFilters() {
 		return new FileFilter[] { new FileFilter() {
 
+			@Override
 			public boolean accept(File pathname) {
 				return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".stend");
 			}
 
+			@Override
 			public String getDescription() {
 				return "Stendhal Map Files (*.stend)";
 			}

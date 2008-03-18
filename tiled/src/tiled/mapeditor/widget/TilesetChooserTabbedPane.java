@@ -52,6 +52,7 @@ public class TilesetChooserTabbedPane extends TilesetChooser implements TileSele
 	}
 
 	/** sets the tilesets to display. */
+	@Override
 	public void setTilesets(List<TileSet> tilesets) {
 		// recreate the panes
 		recreateUI(tilesets);
@@ -101,11 +102,13 @@ public class TilesetChooserTabbedPane extends TilesetChooser implements TileSele
 	}
 
 	/** informs the editor of the new tile. */
+	@Override
 	public void tileSelected(TileSelectionEvent e) {
 		mapEditor.setCurrentTiles(e.getTiles());
 	}
 
 	/** sets the tiles panes to the the ones from this map. */
+	@Override
 	public void setMap(Map currentMap) {
 		if (currentMap == null) {
 			pane.removeAll();

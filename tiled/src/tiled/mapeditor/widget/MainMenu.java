@@ -29,7 +29,36 @@ import javax.swing.KeyStroke;
 
 import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.actions.*;
+import tiled.mapeditor.actions.AddLayerAction;
+import tiled.mapeditor.actions.CancelSelectionAction;
+import tiled.mapeditor.actions.CloseAction;
+import tiled.mapeditor.actions.CopyAction;
+import tiled.mapeditor.actions.CutAction;
+import tiled.mapeditor.actions.DelLayerAction;
+import tiled.mapeditor.actions.DuplicateLayerAction;
+import tiled.mapeditor.actions.ExitApplicationAction;
+import tiled.mapeditor.actions.ImportTilesetAction;
+import tiled.mapeditor.actions.InverseSelectionAction;
+import tiled.mapeditor.actions.LayerPropertiesAction;
+import tiled.mapeditor.actions.LayerTransformAction;
+import tiled.mapeditor.actions.MapPropertiesAction;
+import tiled.mapeditor.actions.MoveLayerDownAction;
+import tiled.mapeditor.actions.MoveLayerUpAction;
+import tiled.mapeditor.actions.NewMapAction;
+import tiled.mapeditor.actions.NewTilesetAction;
+import tiled.mapeditor.actions.OpenAction;
+import tiled.mapeditor.actions.PasteAction;
+import tiled.mapeditor.actions.RedoAction;
+import tiled.mapeditor.actions.SaveAsImageAction;
+import tiled.mapeditor.actions.SaveMapAction;
+import tiled.mapeditor.actions.SelectAllAction;
+import tiled.mapeditor.actions.TilesetManagerAction;
+import tiled.mapeditor.actions.ToggleGridAction;
+import tiled.mapeditor.actions.TreeTilesetChooserAction;
+import tiled.mapeditor.actions.UndoAction;
+import tiled.mapeditor.actions.ZoomInAction;
+import tiled.mapeditor.actions.ZoomNormalAction;
+import tiled.mapeditor.actions.ZoomOutAction;
 import tiled.mapeditor.util.MapEventAdapter;
 
 /**

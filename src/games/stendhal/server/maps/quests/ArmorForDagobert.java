@@ -67,17 +67,16 @@ public class ArmorForDagobert extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if ("rejected".equals( questState )) {
+		if ("rejected".equals(questState)) {
 			res.add("QUEST_REJECTED");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
-		if (("start".equals( questState ) && player.isEquipped("leather cuirass"))
-				|| "done".equals( questState )) {
+		if (("start".equals(questState) && player.isEquipped("leather cuirass")) || "done".equals(questState)) {
 			res.add("FOUND_ITEM");
 		}
-		if ("done".equals( questState )) {
+		if ("done".equals(questState)) {
 			res.add("DONE");
 		}
 		return res;

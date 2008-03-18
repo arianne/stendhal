@@ -88,6 +88,7 @@ public class PropertiesLayer extends MapLayer {
 	 * creates a diff of the layers. The return layers contains all differences
 	 * of <code>ml</code>
 	 */
+	@Override
 	public MapLayer createDiff(MapLayer ml) {
 		if (!(ml instanceof PropertiesLayer)) {
 			return null;
@@ -125,6 +126,7 @@ public class PropertiesLayer extends MapLayer {
 	 * @see tiled.core.MapLayer#copyFrom
 	 * @param other
 	 */
+	@Override
 	public void copyFrom(MapLayer other) {
 		if (!canEdit() || !(other instanceof PropertiesLayer)) {
 			return;
@@ -148,6 +150,7 @@ public class PropertiesLayer extends MapLayer {
 	 * @see tiled.core.MapLayer#mergeOnto
 	 * @param other
 	 */
+	@Override
 	public void mergeOnto(MapLayer other) {
 		if (!canEdit() || !(other instanceof PropertiesLayer)) {
 			return;
@@ -170,6 +173,7 @@ public class PropertiesLayer extends MapLayer {
 	 * @param other
 	 *            the layer to copy this layer to
 	 */
+	@Override
 	public void copyTo(MapLayer other) {
 		if (!canEdit() || !(other instanceof PropertiesLayer)) {
 			return;
@@ -191,6 +195,7 @@ public class PropertiesLayer extends MapLayer {
 	 * @return a clone of this layer, as complete as possible
 	 * @exception CloneNotSupportedException
 	 */
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		PropertiesLayer clone = (PropertiesLayer) super.clone();
 
@@ -211,19 +216,24 @@ public class PropertiesLayer extends MapLayer {
 	}
 
 	// TODO: not yet implemented
+	@Override
 	public void rotate(int angle) {
 	}
 
+	@Override
 	public void mirror(int dir) {
 	}
 
+	@Override
 	public void resize(int width, int height, int dx, int dy) {
 	}
 
+	@Override
 	public void maskedCopyFrom(MapLayer other, Area mask) {
 	}
 
 	/** returns a copy of the layer. */
+	@Override
 	public MapLayer getLayerCopy(Rectangle bounds) {
 		return null;
 	}

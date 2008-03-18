@@ -37,6 +37,7 @@ public class LayerTableModel extends AbstractTableModel {
 		fireTableDataChanged();
 	}
 
+	@Override
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -53,6 +54,7 @@ public class LayerTableModel extends AbstractTableModel {
 		return columnNames.length;
 	}
 
+	@Override
 	public Class< ? > getColumnClass(int col) {
 		switch (col) {
 		case 0:
@@ -85,6 +87,7 @@ public class LayerTableModel extends AbstractTableModel {
 		return null;
 	}
 
+	@Override
 	public boolean isCellEditable(int row, int col) {
 		if (map != null) {
 			MapLayer layer = map.getLayer(getRowCount() - row - 1);
@@ -94,6 +97,7 @@ public class LayerTableModel extends AbstractTableModel {
 		return false;
 	}
 
+	@Override
 	public void setValueAt(Object value, int row, int col) {
 		if (map == null) {
 			return;

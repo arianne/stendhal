@@ -18,7 +18,9 @@
 package tiled.mapeditor.undo;
 
 import java.util.Iterator;
-import javax.swing.undo.*;
+
+import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
 
 import tiled.mapeditor.MapEditor;
 import tiled.util.TiledConfiguration;
@@ -71,6 +73,7 @@ public class UndoStack extends UndoManager {
 	 * @see CompoundEdit#end
 	 * @see CompoundEdit#addEdit
 	 */
+	@Override
 	public synchronized boolean addEdit(UndoableEdit anEdit) {
 		boolean ret = super.addEdit(anEdit);
 
@@ -81,6 +84,7 @@ public class UndoStack extends UndoManager {
 	}
 
 	/** nice toString. */
+	@Override
 	public String toString() {
 		StringBuilder buf = new StringBuilder();
 		String[] strings = getEdits();

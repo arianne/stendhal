@@ -17,7 +17,11 @@
 
 package tiled.plugins.mappy;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class Chunk {
 
@@ -55,6 +59,7 @@ public class Chunk {
 		return chunkSize > 0;
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof String) {
 			return o.equals(headerTag);

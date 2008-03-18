@@ -24,11 +24,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Properties;
-import javax.swing.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.util.*;
-import tiled.mapeditor.widget.*;
+import tiled.mapeditor.util.PropertiesTableModel;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 
 public class PropertiesDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -91,6 +101,7 @@ public class PropertiesDialog extends JDialog implements ActionListener {
 		mainPanel.add(buttons);
 
 		tProperties.addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					dispose();

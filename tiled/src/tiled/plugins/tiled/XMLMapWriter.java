@@ -17,10 +17,17 @@
 
 package tiled.plugins.tiled;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Color;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -29,10 +36,15 @@ import java.util.Properties;
 import java.util.Stack;
 import java.util.zip.GZIPOutputStream;
 
-import tiled.core.*;
-import tiled.io.*;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
+import tiled.io.ImageHelper;
 import tiled.mapeditor.selection.SelectionLayer;
-import tiled.util.*;
+import tiled.util.Base64;
+import tiled.util.TiledConfiguration;
 
 /**
  * Writes tiled maps.

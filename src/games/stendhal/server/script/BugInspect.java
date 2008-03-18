@@ -51,8 +51,10 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 					// inspect slots
 					for (RPSlot slot : player.slots()) {
-						if ("!buddy".equals( slot.getName() ) || "!ignore".equals( slot.getName() )
-								|| "!kills".equals( slot.getName() ) || "!quests".equals( slot.getName() )) {
+						if ("!buddy".equals(slot.getName()) 
+							|| "!ignore".equals(slot.getName())
+							|| "!kills".equals(slot.getName()) 
+							|| "!quests".equals(slot.getName())) {
 							continue;
 						}
 						sb.append("\nSlot " + slot.getName() + ": \n");
@@ -61,16 +63,16 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 						for (RPObject object : slot) {
 							if (object instanceof StackableItem) {
 								StackableItem item = (StackableItem) object;
-								if (!"money".equals( item.getName() ) && item.getQuantity() > 10000) {
+								if (!"money".equals(item.getName()) && item.getQuantity() > 10000) {
 									caught = true;
 								}
-								if ("money".equals( item.getName() ) && item.getQuantity() > 10000000) {
+								if ("money".equals(item.getName()) && item.getQuantity() > 10000000) {
 									caught = true;
 								}
-								if (!"money".equals( item.getName() ) && item.getQuantity() > 1000) {
+								if (!"money".equals(item.getName()) && item.getQuantity() > 1000) {
 									warn = true;
 								}
-								if ("money".equals( item.getName() ) && item.getQuantity() > 100000) {
+								if ("money".equals(item.getName()) && item.getQuantity() > 100000) {
 									warn = true;
 								}
 							}

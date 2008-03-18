@@ -16,7 +16,17 @@
  */
 package tiled.view;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +54,7 @@ public class Orthogonal extends MapView {
 	}
 
 	/** size of the map. */
+	@Override
 	public Dimension getSize() {
 		if (map == null) {
 			return new Dimension(1000, 1000);
@@ -66,6 +77,7 @@ public class Orthogonal extends MapView {
 	 * @param clipArea
 	 *            the are to draw in tile coordinates
 	 */
+	@Override
 	public void draw(Graphics g, Rectangle clipArea) {
 		draw(g, clipArea, zoom, padding);
 	}
@@ -191,6 +203,7 @@ public class Orthogonal extends MapView {
 	 *            tile coords
 	 * @return screen coords (upper left corner of the tile)
 	 */
+	@Override
 	public Point screenToTileCoords(Point screenCoords) {
 		Dimension tsize = getTileSize(zoom, padding);
 		Point p = new Point(screenCoords.x / tsize.width, screenCoords.y / tsize.height);
@@ -211,12 +224,14 @@ public class Orthogonal extends MapView {
 	 *            screen coords
 	 * @return tile coords
 	 */
+	@Override
 	public Point tileToScreenCoords(Point tileCoords) {
 		Dimension tsize = getTileSize(zoom, padding);
 		return new Point(tileCoords.x * tsize.width, tileCoords.y * tsize.height);
 	}
 
 	/** returns a minimap. */
+	@Override
 	protected BufferedImage prepareMinimapImage() {
 		int width = (int) (map.getWidth() * MINIMAP_TILE_SIZE);
 		int height = (int) (map.getHeight() * MINIMAP_TILE_SIZE);
@@ -228,11 +243,13 @@ public class Orthogonal extends MapView {
 	}
 
 	/** returns the minimap zoom level. */
+	@Override
 	public double getMinimapScale() {
 		return (1.0 / ((map.getTileWidth()) / MINIMAP_TILE_SIZE));
 	}
 
 	/** updates the minimap. */
+	@Override
 	public void updateMinimapImage(Rectangle modifiedRegion) {
 		if (minimapImage == null) {
 			// minimap not prepared yet
@@ -250,6 +267,7 @@ public class Orthogonal extends MapView {
 	 *            the rectangle (in tile coordinate space)
 	 * @return list of tiles in the rectangle
 	 */
+	@Override
 	public List<Point> getSelectedTiles(Rectangle rect, int layer) {
 		List<Point> list = new ArrayList<Point>();
 
@@ -314,6 +332,7 @@ public class Orthogonal extends MapView {
 	 * @param tileGroup
 	 *            the tilegroup
 	 */
+	@Override
 	public BufferedImage drawTileGroup(TileGroup tileGroup) {
 		int tileWidth = -1;
 		int tileHeight = -1;

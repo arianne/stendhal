@@ -43,6 +43,7 @@ public class MultiTileBrush extends AbstractBrush {
 	}
 
 	/** returns the bounds of the brush in tile coordinates. */
+	@Override
 	public Rectangle getBounds() {
 		if (cachedBounds == null) {
 			cachedBounds = recalculateBounds();
@@ -87,6 +88,7 @@ public class MultiTileBrush extends AbstractBrush {
 	}
 
 	/** Sets the currently selected Tiles. */
+	@Override
 	public void setTiles(List<StatefulTile> selectedTiles) {
 		super.setTiles(selectedTiles);
 		cachedBounds = null;
@@ -117,6 +119,7 @@ public class MultiTileBrush extends AbstractBrush {
 		return false;
 	}
 
+	@Override
 	public String toString() {
 		StringBuilder buf = new StringBuilder();
 		buf.append("[MultiTileBrush: ");

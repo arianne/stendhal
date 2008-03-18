@@ -150,6 +150,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 		appFrame = new JFrame(TITLE);
 		appFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		appFrame.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent event) {
 				exit();
 			}

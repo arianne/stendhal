@@ -23,7 +23,8 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.TileLayer;
 
 public class ObliqueMapView extends MapView {
 	private static final long serialVersionUID = 4808852853766904081L;
@@ -32,21 +33,25 @@ public class ObliqueMapView extends MapView {
 		super(m);
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub
 		return new Dimension(0, 0);
 	}
 
+	@Override
 	protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
 		// TODO Auto-generated method stub
 	}
@@ -55,24 +60,29 @@ public class ObliqueMapView extends MapView {
 	// // TODO Auto-generated method stub
 	// }
 
+	@Override
 	protected void paintGrid(Graphics2D g2d, double zoom) {
 		// TODO: Implement paintGrid for ObliqueMapView
 	}
 
+	@Override
 	protected void paintCoordinates(Graphics2D g2d, double zoom) {
 		// TODO: Implement paintCoordinates for ObliqueMapView
 	}
 
+	@Override
 	public Point screenToTileCoords(int x, int y) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public Point tileToScreenCoords(double x, double y) {
 		// TODO Auto-generated method stub
 		return null;

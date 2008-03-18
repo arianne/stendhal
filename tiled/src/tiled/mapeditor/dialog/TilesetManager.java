@@ -17,19 +17,38 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
-import javax.swing.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.MapHelper;
 import tiled.io.MapWriter;
-import tiled.mapeditor.util.*;
 import tiled.mapeditor.plugin.PluginClassLoader;
+import tiled.mapeditor.util.TiledFileFilter;
+import tiled.mapeditor.util.TilesetTableModel;
 
 public class TilesetManager extends JDialog implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = -8924814617314058601L;

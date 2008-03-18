@@ -47,6 +47,7 @@ public class TMenuItem extends JMenuItem {
 		this.showIcon = showIcon;
 	}
 
+	@Override
 	public void setIcon(Icon icon) {
 		if (showIcon) {
 			super.setIcon(icon);

@@ -36,7 +36,7 @@ public class PoisonerTest {
 
 	@Test
 	public void testPoisoner() {
-		String poisontype ="greater poison";
+		String poisontype = "greater poison";
 		ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
 		Poisoner poisoner = new Poisoner(100, poison);
@@ -47,7 +47,7 @@ public class PoisonerTest {
 
 	@Test
 	public void testPoisonerProbabilityZero() {
-		String poisontype ="greater poison";
+		String poisontype = "greater poison";
 		ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
 		Poisoner poisoner = new Poisoner(0, poison);

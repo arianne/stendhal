@@ -35,10 +35,12 @@ public class VerticalStaticJPanel extends JPanel {
 		super(manager);
 	}
 
+	@Override
 	public Dimension getMaximumSize() {
 		return new Dimension(super.getMaximumSize().width, getPreferredSize().height);
 	}
 
+	@Override
 	public Dimension getMinimumSize() {
 		return new Dimension(super.getMinimumSize().width, getPreferredSize().height);
 	}

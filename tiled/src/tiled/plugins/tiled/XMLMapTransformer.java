@@ -22,26 +22,42 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.FilteredImageSource;
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.Stack;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.Stack;
 import java.util.zip.GZIPInputStream;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.ImageHelper;
 import tiled.io.MapReader;
 import tiled.mapeditor.util.TransparentImageFilter;
-import tiled.util.*;
+import tiled.util.Base64;
+import tiled.util.Util;
 
 public class XMLMapTransformer implements MapReader, FileFilter {
 	private Map map = null;

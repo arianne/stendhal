@@ -29,7 +29,9 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.SwingConstants;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
 import tiled.mapeditor.selection.SelectionLayer;
 
 public class OrthoMapView extends MapView {
@@ -39,6 +41,7 @@ public class OrthoMapView extends MapView {
 		super(m);
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 
@@ -49,6 +52,7 @@ public class OrthoMapView extends MapView {
 		}
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 		if (orientation == SwingConstants.VERTICAL) {
@@ -58,6 +62,7 @@ public class OrthoMapView extends MapView {
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Dimension tsize = getTileSize(zoom);
 		int border = ((modeFlags & PF_GRIDMODE) != 0) ? 1 : 0;
@@ -65,6 +70,7 @@ public class OrthoMapView extends MapView {
 		return new Dimension(myMap.getWidth() * tsize.width + border, myMap.getHeight() * tsize.height + border);
 	}
 
+	@Override
 	protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
 		// Determine tile size and offset
 		Dimension tsize = getTileSize(zoom);
@@ -116,6 +122,7 @@ public class OrthoMapView extends MapView {
 	// }
 	// }
 
+	@Override
 	protected void paintGrid(Graphics2D g2d, double zoom) {
 		// Determine tile size
 		Dimension tsize = getTileSize(zoom);
@@ -142,6 +149,7 @@ public class OrthoMapView extends MapView {
 		}
 	}
 
+	@Override
 	protected void paintCoordinates(Graphics2D g2d, double zoom) {
 		Dimension tsize = getTileSize(zoom);
 		if (tsize.width <= 0 || tsize.height <= 0) {
@@ -180,6 +188,7 @@ public class OrthoMapView extends MapView {
 		}
 	}
 
+	@Override
 	public void repaintRegion(Rectangle region) {
 		Dimension tsize = getTileSize(zoom);
 		if (tsize.width <= 0 || tsize.height <= 0) {
@@ -199,6 +208,7 @@ public class OrthoMapView extends MapView {
 		repaint(dirty);
 	}
 
+	@Override
 	public Point screenToTileCoords(int x, int y) {
 		Dimension tsize = getTileSize(zoom);
 		return new Point(x / tsize.width, y / tsize.height);
@@ -210,6 +220,7 @@ public class OrthoMapView extends MapView {
 		return new Dimension((int) (myMap.getTileWidth() * zoom) + grid, (int) (myMap.getTileHeight() * zoom) + grid);
 	}
 
+	@Override
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
 		Dimension tsize = getTileSize(zoom);
 
@@ -222,6 +233,7 @@ public class OrthoMapView extends MapView {
 		return poly;
 	}
 
+	@Override
 	public Point tileToScreenCoords(double x, double y) {
 		Dimension tsize = getTileSize(zoom);
 		return new Point((int) x * tsize.width, (int) y * tsize.height);

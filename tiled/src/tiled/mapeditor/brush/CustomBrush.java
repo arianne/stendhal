@@ -35,6 +35,7 @@ public class CustomBrush extends AbstractBrush {
 		this.addAllLayers(m.getLayerList());
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return getBounds();
 	}

@@ -17,9 +17,13 @@
 
 package tiled.core;
 
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.Properties;
 
 /**
  * The core class for our tiles.
@@ -241,6 +245,7 @@ public class Tile {
 		return null;
 	}
 
+	@Override
 	public String toString() {
 		String out = "";
 		out += "Tile: " + id + " Image: " + tileImageId + " (" + getWidth() + "x" + getHeight() + ")";

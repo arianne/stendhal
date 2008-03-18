@@ -172,6 +172,7 @@ public class MersenneTwister extends Random {
 		return y;
 	}
 
+	@Override
 	protected synchronized int next(int bits) {
 		return (int) genrand();
 	}

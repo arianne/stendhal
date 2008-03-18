@@ -43,6 +43,7 @@ public class TileGroupBrush extends AbstractBrush {
 	}
 
 	/** returns the bounds of the brush in tile coordinates.*/
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(0, 0, tileGroup.getWidth(), tileGroup.getHeight());
 	}
@@ -80,6 +81,7 @@ public class TileGroupBrush extends AbstractBrush {
 		return false;
 	}
 
+	@Override
 	public String toString() {
 		return "[" + this.getClass().getName() + ":" + tileGroup + "]";
 	}
@@ -99,6 +101,7 @@ public class TileGroupBrush extends AbstractBrush {
 	}
 
 	/** returns the used tiles. */
+	@Override
 	public List<StatefulTile> getTiles() {
 		List<StatefulTile> tileList = new ArrayList<StatefulTile>();
 

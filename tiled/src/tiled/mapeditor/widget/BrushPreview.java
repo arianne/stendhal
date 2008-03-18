@@ -46,6 +46,7 @@ public class BrushPreview extends JPanel {
 		repaint();
 	}
 
+	@Override
 	protected void paintComponent(Graphics g) {
 		if (brush == null) {
 			return;

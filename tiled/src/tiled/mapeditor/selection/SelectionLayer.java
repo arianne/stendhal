@@ -17,11 +17,13 @@
 
 package tiled.mapeditor.selection;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
-import tiled.core.*;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
 import tiled.util.TiledConfiguration;
 
 /**

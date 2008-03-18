@@ -17,20 +17,42 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.FilteredImageSource;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.TileSet;
 import tiled.mapeditor.util.TransparentImageFilter;
-import tiled.mapeditor.widget.*;
+import tiled.mapeditor.widget.ColorButton;
+import tiled.mapeditor.widget.IntegerSpinner;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 
 /**
  * A dialog for creating a new tileset.

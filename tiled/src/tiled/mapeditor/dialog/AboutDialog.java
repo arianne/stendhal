@@ -18,8 +18,12 @@
 package tiled.mapeditor.dialog;
 
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import tiled.mapeditor.MapEditor;
 
@@ -54,6 +58,7 @@ public class AboutDialog extends JFrame {
 		}
 	}
 
+	@Override
 	public void setVisible(boolean visible) {
 		if (visible) {
 			setLocationRelativeTo(parent);

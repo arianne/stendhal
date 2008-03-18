@@ -17,7 +17,9 @@
 
 package tiled.core;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -258,6 +260,7 @@ public class Sprite {
 		g.drawImage(sprite, 0, 0, null);
 	}
 
+	@Override
 	public String toString() {
 		String s = null;
 		s = "Frame: (" + frameSize.width + "x" + frameSize.height + ")\nBorder: " + borderWidth + "\nFPL: " + fpl

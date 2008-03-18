@@ -23,8 +23,11 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+
 import javax.swing.SwingConstants;
-import tiled.core.*;
+
+import tiled.core.Map;
+import tiled.core.TileLayer;
 
 public class ShiftedMapView extends MapView {
 	private static final long serialVersionUID = 8005158798642048422L;
@@ -39,6 +42,7 @@ public class ShiftedMapView extends MapView {
 		verSide = 0;
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 		int unit = getScrollableUnitIncrement(visibleRect, orientation, direction);
 
@@ -49,6 +53,7 @@ public class ShiftedMapView extends MapView {
 		}
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 		if (orientation == SwingConstants.VERTICAL) {
@@ -58,6 +63,7 @@ public class ShiftedMapView extends MapView {
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Dimension tsize = getTileSize(zoom);
 		int border = ((modeFlags & PF_GRIDMODE) != 0) ? 1 : 0;
@@ -69,6 +75,7 @@ public class ShiftedMapView extends MapView {
 		return new Dimension(myMap.getWidth() * repeatX + onceX + border, myMap.getHeight() * repeatY + onceY + border);
 	}
 
+	@Override
 	protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
 	}
 
@@ -76,6 +83,7 @@ public class ShiftedMapView extends MapView {
 	// {
 	// }
 
+	@Override
 	protected void paintGrid(Graphics2D g2d, double zoom) {
 		// Determine tile size
 		Dimension tsize = getTileSize(zoom);
@@ -115,12 +123,15 @@ public class ShiftedMapView extends MapView {
 		g2d.setColor(gridColor);
 	}
 
+	@Override
 	protected void paintCoordinates(Graphics2D g2d, double zoom) {
 	}
 
+	@Override
 	public void repaintRegion(Rectangle region) {
 	}
 
+	@Override
 	public Point screenToTileCoords(int x, int y) {
 		return new Point(0, 0);
 	}
@@ -129,10 +140,12 @@ public class ShiftedMapView extends MapView {
 		return new Dimension((int) (myMap.getTileWidth() * zoom), (int) (myMap.getTileHeight() * zoom));
 	}
 
+	@Override
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
 		return new Polygon();
 	}
 
+	@Override
 	public Point tileToScreenCoords(double x, double y) {
 		return new Point(0, 0);
 	}

@@ -527,15 +527,12 @@ public class Creature extends NPC {
 	public void tryToPoison() {
 		
 		RPEntity entity = getAttackTarget();
-		if ((entity != null) && nextTo(entity)){
-			
-			if(poisoner.attack(entity)){
+		if ((entity != null) && nextTo(entity)) {
+			if (poisoner.attack(entity)) {
 				SingletonRepository.getRuleProcessor().addGameEvent(
 				getName(), "poison", entity.getName());
-
-					entity.sendPrivateText("You have been poisoned by a " + getName());
+				entity.sendPrivateText("You have been poisoned by a " + getName());
 			}
-			
 		}
 	}
 

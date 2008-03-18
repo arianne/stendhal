@@ -66,6 +66,7 @@ public class SimpleBuilder extends AbstractBuilder {
 	}
 
 	/** starts the builder. simply commits the brush to the given tile */
+	@Override
 	public Rectangle startBuilder(Point tile) {
 		start(map.getLayer(startLayer));
 		Rectangle modified = draw(tile, true);
@@ -74,6 +75,7 @@ public class SimpleBuilder extends AbstractBuilder {
 	}
 
 	/** commits the brush to the given tile. */
+	@Override
 	public Rectangle moveBuilder(Point tile) {
 		if (!tile.equals(lastPoint)) {
 			return draw(tile, false);
@@ -82,6 +84,7 @@ public class SimpleBuilder extends AbstractBuilder {
 	}
 
 	/** finished the builder. the last brush commit. */
+	@Override
 	public Rectangle finishBuilder(Point tile) {
 		if (!started) {
 			return new Rectangle();
@@ -103,6 +106,7 @@ public class SimpleBuilder extends AbstractBuilder {
 	}
 
 	/** returns the brush's bounds. */
+	@Override
 	public Rectangle getBounds() {
 		return brush.getBounds();
 	}

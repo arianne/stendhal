@@ -17,7 +17,9 @@
 
 package tiled.mapeditor.widget;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 
@@ -35,6 +37,7 @@ public class ImageViewPanel extends JPanel {
 		image = i;
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(150, 150);
 	}
@@ -51,6 +54,7 @@ public class ImageViewPanel extends JPanel {
 		return false;
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		g.drawImage(image, 0, 0, null);
 	}

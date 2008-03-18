@@ -300,7 +300,7 @@ public class Grammar {
 			return expr;
 		}
 
-		String lastExpr ;
+		String lastExpr;
 		String result = expr;
 
 		// loop until all prefix strings are removed

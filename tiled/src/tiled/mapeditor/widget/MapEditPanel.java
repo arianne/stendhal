@@ -17,7 +17,12 @@
 
 package tiled.mapeditor.widget;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -100,6 +105,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 	}
 
 	/** Draws the map. */
+	@Override
 	public void paintComponent(Graphics g) {
 		if (mapView != null) {
 			mapView.draw(g);
@@ -142,6 +148,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 	}
 
 	/** returns the prefered size of the panel. */
+	@Override
 	public Dimension getPreferredSize() {
 		if (mapView != null) {
 			return mapView.getSize();

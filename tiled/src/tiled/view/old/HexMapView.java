@@ -17,11 +17,18 @@
 
 package tiled.view.old;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
 import tiled.mapeditor.selection.SelectionLayer;
 
 /**
@@ -64,6 +71,7 @@ public class HexMapView extends MapView {
 		super(m);
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 
@@ -74,6 +82,7 @@ public class HexMapView extends MapView {
 		}
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 		if (orientation == SwingConstants.VERTICAL) {
@@ -83,6 +92,7 @@ public class HexMapView extends MapView {
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Dimension tsize = getTileSize(zoom);
 		int border = ((modeFlags & PF_GRIDMODE) != 0) ? 1 : 0;
@@ -92,6 +102,7 @@ public class HexMapView extends MapView {
 				+ tsize.height / 2);
 	}
 
+	@Override
 	protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
 		// Determine area to draw from clipping rectangle
 		Dimension tsize = getTileSize(zoom);
@@ -144,6 +155,7 @@ public class HexMapView extends MapView {
 		return new Dimension((int) (myMap.getTileWidth() * zoom), (int) (myMap.getTileHeight() * zoom));
 	}
 
+	@Override
 	protected void paintGrid(Graphics2D g2d, double zoom) {
 		g2d.setColor(Color.black);
 		Dimension tileSize = getTileSize(zoom);
@@ -170,10 +182,12 @@ public class HexMapView extends MapView {
 		}
 	}
 
+	@Override
 	protected void paintCoordinates(Graphics2D g2d, double zoom) {
 		// TODO: Implement paintCoordinates for HexMapView
 	}
 
+	@Override
 	public Point screenToTileCoords(int screenX, int screenY) {
 		// An algorithm copied from the net years ago
 		// Note the C style short variable names :-)
@@ -247,6 +261,7 @@ public class HexMapView extends MapView {
 		return myMap.getTileHeight();
 	}
 
+	@Override
 	public void repaintRegion(Rectangle region) {
 		super.repaintRegion(region);
 		// This code should work. I've disabled it because of general problems
@@ -268,6 +283,7 @@ public class HexMapView extends MapView {
 		// repaint(dirty);
 	}
 
+	@Override
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
 		double centrex;
 		double centrey;
@@ -293,6 +309,7 @@ public class HexMapView extends MapView {
 	 * 
 	 * @return The point at the centre of the Hex.
 	 */
+	@Override
 	public Point tileToScreenCoords(double x, double y) {
 		double xx = getWidthBetweenHexCentres() * x;
 		double yy = getTileHeight() * y;

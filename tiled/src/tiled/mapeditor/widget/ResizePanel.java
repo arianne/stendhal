@@ -17,11 +17,15 @@
 
 package tiled.mapeditor.widget;
 
-import java.awt.Point;
 import java.awt.Dimension;
-import java.awt.event.*;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 import tiled.core.Map;
 import tiled.view.old.MapView;
@@ -76,6 +80,7 @@ public class ResizePanel extends JPanel implements MouseListener, MouseMotionLis
 	public void setNewDimensions(Dimension n) {
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return oldDim;
 	}

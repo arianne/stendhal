@@ -102,6 +102,7 @@ public class TileLayer extends MapLayer {
 	 *            The Euler angle (0-360) to rotate the layer array data by.
 	 * @see MapLayer#rotate(int)
 	 */
+	@Override
 	public void rotate(int angle) {
 		Tile[][] trans;
 		int xtrans = 0, ytrans = 0;
@@ -156,6 +157,7 @@ public class TileLayer extends MapLayer {
 	 * @param dir
 	 *            the axial orientation to mirror around
 	 */
+	@Override
 	public void mirror(int dir) {
 		if (!canEdit()) {
 			return;
@@ -202,6 +204,7 @@ public class TileLayer extends MapLayer {
 	 * @param bounds
 	 * @see MapLayer#setBounds
 	 */
+	@Override
 	public void setBounds(Rectangle bounds) {
 		super.setBounds(bounds);
 		map = new Tile[bounds.height][bounds.width];
@@ -215,6 +218,7 @@ public class TileLayer extends MapLayer {
 	 * @return A new MapLayer that represents the difference between this layer,
 	 *         and the argument, or <b>null</b> if no difference exists.
 	 */
+	@Override
 	public MapLayer createDiff(MapLayer ml) {
 		if (ml == null || !(ml instanceof TileLayer)) {
 			return null;
@@ -387,6 +391,7 @@ public class TileLayer extends MapLayer {
 	 * @param other
 	 *            the insignificant layer to merge with
 	 */
+	@Override
 	public void mergeOnto(MapLayer other) {
 		if (!other.canEdit() || !(other instanceof TileLayer)) {
 			return;
@@ -409,6 +414,7 @@ public class TileLayer extends MapLayer {
 	 * @see tiled.core.MapLayer#copyFrom
 	 * @param other
 	 */
+	@Override
 	public void copyFrom(MapLayer other) {
 		if (!canEdit() || !(other instanceof TileLayer)) {
 			return;
@@ -432,6 +438,7 @@ public class TileLayer extends MapLayer {
 	 * @param other
 	 * @param mask
 	 */
+	@Override
 	public void maskedCopyFrom(MapLayer other, Area mask) {
 		if (!canEdit() || !(other instanceof TileLayer)) {
 			return;
@@ -456,6 +463,7 @@ public class TileLayer extends MapLayer {
 	 * @param other
 	 *            the layer to copy this layer to
 	 */
+	@Override
 	public void copyTo(MapLayer other) {
 		if (!other.canEdit() || !(other instanceof TileLayer)) {
 			return;
@@ -475,6 +483,7 @@ public class TileLayer extends MapLayer {
 	 * @return a clone of this layer, as complete as possible
 	 * @exception CloneNotSupportedException
 	 */
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		TileLayer clone = (TileLayer) super.clone();
 
@@ -499,6 +508,7 @@ public class TileLayer extends MapLayer {
 	 * @param dy
 	 *            the shift in y direction
 	 */
+	@Override
 	public void resize(int width, int height, int dx, int dy) {
 		if (!canEdit()) {
 			return;
@@ -521,6 +531,7 @@ public class TileLayer extends MapLayer {
 	}
 
 	/** copies the layer. */
+	@Override
 	public MapLayer getLayerCopy(Rectangle bounds) {
 		Rectangle realBounds = bounds.union(bounds);
 		TileLayer other = new TileLayer();

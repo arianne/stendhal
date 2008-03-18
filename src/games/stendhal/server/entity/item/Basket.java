@@ -49,7 +49,7 @@ public class Basket extends Box {
 		itemName = ITEMS[Rand.rand(ITEMS.length)];
 		Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
-		if ("easter egg".equals( itemName )) {
+		if ("easter egg".equals(itemName)) {
 			item.setBoundTo(player.getName());
 		}
 		player.sendPrivateText("Congratulations, you've got "

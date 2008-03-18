@@ -19,9 +19,14 @@ package tiled.mapeditor.util;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 
 public class TilesetTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 9164983301574753663L;
@@ -39,6 +44,7 @@ public class TilesetTableModel extends AbstractTableModel {
 		fireTableDataChanged();
 	}
 
+	@Override
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -69,6 +75,7 @@ public class TilesetTableModel extends AbstractTableModel {
 		}
 	}
 
+	@Override
 	public boolean isCellEditable(int row, int col) {
 		if (col == 0) {
 			return true;
@@ -76,6 +83,7 @@ public class TilesetTableModel extends AbstractTableModel {
 		return false;
 	}
 
+	@Override
 	public void setValueAt(Object value, int row, int col) {
 		List<TileSet> tilesets = map.getTilesets();
 		if (row >= 0 && row < tilesets.size()) {

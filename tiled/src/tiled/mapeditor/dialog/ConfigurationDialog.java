@@ -17,22 +17,43 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-import javax.swing.*;
-import javax.swing.event.ChangeListener;
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import tiled.mapeditor.widget.IntegerSpinner;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 import tiled.util.TiledConfiguration;
-import tiled.mapeditor.widget.*;
 
 public class ConfigurationDialog extends JDialog implements ActionListener, ChangeListener, ItemListener {
 	private static final long serialVersionUID = 1243451595127896953L;
 
 	private JButton bOk;
-	private int bApply;
-	private int bCancel;
+	private JButton bApply;
+	private JButton bCancel;
 	private JPanel layerOps;
 	private JPanel generalOps;
 	private JPanel tilesetOps;

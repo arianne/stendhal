@@ -19,11 +19,12 @@ package tiled.mapeditor.util;
 
 import java.awt.Component;
 import java.awt.Image;
+
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
-import javax.swing.DefaultListCellRenderer;
 
-import tiled.core.*;
+import tiled.core.Tile;
 
 public class TileDialogListRenderer extends DefaultListCellRenderer {
 	private static final long serialVersionUID = -3416846019183710768L;
@@ -38,6 +39,7 @@ public class TileDialogListRenderer extends DefaultListCellRenderer {
 		this.zoom = zoom;
 	}
 
+	@Override
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 			boolean cellHasFocus) {
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

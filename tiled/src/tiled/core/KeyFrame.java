@@ -27,7 +27,7 @@ public class KeyFrame {
 
 	private String name = null;
 	private int firstFrame = 0;
-	private int lastFrame = 0, 
+	private int lastFrame = 0; 
 	private int id = -1;
 	private long flags = KEY_LOOP;
 	private float frameRate = 0;
@@ -93,6 +93,7 @@ public class KeyFrame {
 		return (false);
 	}
 
+	@Override
 	public String toString() {
 		return "(" + name + ")" + id + ": " + firstFrame + "->" + lastFrame + " @ " + frameRate;
 	}

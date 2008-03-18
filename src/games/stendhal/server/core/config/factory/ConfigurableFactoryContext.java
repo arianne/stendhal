@@ -46,11 +46,11 @@ public class ConfigurableFactoryContext {
 	 *             in case the value is not a valid boolean
 	 */
 	private static boolean extractBooleanFromString(String name, String value) {
-		if ("true".equals( value )) {
+		if ("true".equals(value)) {
 			return true;
 		}
 
-		if ("false".equals( value )) {
+		if ("false".equals(value)) {
 			return false;
 		}
 		throw new IllegalArgumentException("Invalid '" + name

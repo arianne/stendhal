@@ -518,10 +518,12 @@ public class MapWriter implements MapWriterPlugin {
 	public FileFilter[] getFilters() {
 		return new FileFilter[] { new FileFilter() {
 
+			@Override
 			public boolean accept(File pathname) {
 				return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".tmx");
 			}
 
+			@Override
 			public String getDescription() {
 				return "Tiled XML map (*.tmx)";
 			}

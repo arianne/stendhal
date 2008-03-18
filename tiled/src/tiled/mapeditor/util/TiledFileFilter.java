@@ -71,6 +71,7 @@ public class TiledFileFilter extends FileFilter {
 		exts.add(e);
 	}
 
+	@Override
 	public boolean accept(File f) {
 		if (f.isFile()) {
 			if (f.getAbsolutePath().lastIndexOf('.') == -1) {
@@ -91,6 +92,7 @@ public class TiledFileFilter extends FileFilter {
 		return true;
 	}
 
+	@Override
 	public String getDescription() {
 		String filter = "(";
 		Iterator<String> itr = exts.iterator();

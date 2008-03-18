@@ -5,13 +5,13 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
-public class Poisoner implements Attacker{
+public class Poisoner implements Attacker {
 	ConsumableItem poison;
 	private int probability;
 
 	public Poisoner(int probability, ConsumableItem poison) {
 		this.probability = probability;
-		this.poison =poison;
+		this.poison = poison;
 	}
 
 	public Poisoner() {

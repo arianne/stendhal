@@ -69,7 +69,7 @@ public class AmazonPrincess extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						if (!player.hasQuest(QUEST_SLOT) || "rejected".equals( player.getQuest(QUEST_SLOT) )) {
+						if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 							npc.say("I'm looking for a drink, should be an exotic one. Can you bring me one?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen

@@ -190,7 +190,7 @@ public final class TurnNotifier {
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions.
 			Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
-			if (set.contains(turnListener)){
+			if (set.contains(turnListener)) {
 					toBeRemoved.add(turnListener);
 			}
 			for (TurnListener event : toBeRemoved) {

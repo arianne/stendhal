@@ -34,7 +34,7 @@ public class AdminSign extends ScriptImpl {
 
 			// read zone and x,y. Use player's data as default on "-".
 			String myZone = args.get(0);
-			if ("-".equals( myZone )) {
+			if ("-".equals(myZone)) {
 				sandbox.setZone(sandbox.getZone(player));
 			} else {
 				if (!sandbox.setZone(myZone)) {
@@ -43,13 +43,13 @@ public class AdminSign extends ScriptImpl {
 				}
 			}
 			int x = 0;
-			if ("-".equals( args.get(1) )) {
+			if ("-".equals(args.get(1))) {
 				x = player.getX();
 			} else {
 				x = MathHelper.parseInt(args.get(1));
 			}
 			int y = 0;
-			if ("-".equals( args.get(2) )) {
+			if ("-".equals(args.get(2))) {
 				y = player.getY();
 			} else {
 				y = MathHelper.parseInt(args.get(2));
@@ -150,10 +150,9 @@ public class AdminSign extends ScriptImpl {
 		}
 
 		String temp = args.get(0);
-		if ("list".equals( temp )) {
+		if ("list".equals(temp)) {
 			list(admin);
-		} else if ("del".equals( temp ) || "delete".equals( temp )
-				|| "remove".equals( temp )) {
+		} else if ("del".equals(temp) || "delete".equals(temp) || "remove".equals(temp)) {
 			delete(admin, args);
 		} else {
 			add(admin, args);

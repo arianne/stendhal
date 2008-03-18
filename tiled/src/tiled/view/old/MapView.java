@@ -17,12 +17,24 @@
 
 package tiled.view.old;
 
-import java.awt.*; // import java.awt.geom.PathIterator;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.util.Iterator;
-import javax.swing.Scrollable;
-import javax.swing.JPanel;
 
-import tiled.core.*;
+import javax.swing.JPanel;
+import javax.swing.Scrollable;
+
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.TileLayer;
 import tiled.util.TiledConfiguration;
 
 /**
@@ -122,6 +134,7 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 	// Scrolling
 
+	@Override
 	public abstract Dimension getPreferredSize();
 
 	public Dimension getPreferredScrollableViewportSize() {
@@ -181,6 +194,7 @@ public abstract class MapView extends JPanel implements Scrollable {
 	 * @see MapLayer
 	 * @see SelectionLayer
 	 */
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g.create();
 		TiledConfiguration conf = TiledConfiguration.getInstance();
@@ -359,6 +373,7 @@ class SmoothZoomer extends Thread {
 		keepZooming = false;
 	}
 
+	@Override
 	public void run() {
 		long currentTime = System.currentTimeMillis();
 		long endTime = currentTime + 500;

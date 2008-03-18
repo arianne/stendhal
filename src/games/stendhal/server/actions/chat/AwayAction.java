@@ -38,7 +38,7 @@ public class AwayAction implements ActionListener {
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (_AWAY.equals( action.get(TYPE) )) {
+		if (_AWAY.equals(action.get(TYPE))) {
 			if (action.has(MESSAGE)) {
 				player.setAwayMessage(action.get(MESSAGE));
 			} else {

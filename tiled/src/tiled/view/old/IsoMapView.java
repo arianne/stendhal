@@ -17,13 +17,21 @@
 
 package tiled.view.old;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.SwingConstants;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
 import tiled.mapeditor.selection.SelectionLayer;
 
 public class IsoMapView extends MapView {
@@ -33,6 +41,7 @@ public class IsoMapView extends MapView {
 		super(m);
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 		if (orientation == SwingConstants.VERTICAL) {
@@ -42,6 +51,7 @@ public class IsoMapView extends MapView {
 		}
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		Dimension tsize = getTileSize(zoom);
 		if (orientation == SwingConstants.VERTICAL) {
@@ -51,6 +61,7 @@ public class IsoMapView extends MapView {
 		}
 	}
 
+	@Override
 	protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
 		// Turn anti alias on for selection drawing
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -108,6 +119,7 @@ public class IsoMapView extends MapView {
 	// // TODO: Implement objectgroup painting for IsoMapView
 	// }
 
+	@Override
 	protected void paintGrid(Graphics2D g2d, double zoom) {
 		Dimension tileSize = getTileSize(zoom);
 		Rectangle clipRect = g2d.getClipBounds();
@@ -134,6 +146,7 @@ public class IsoMapView extends MapView {
 		}
 	}
 
+	@Override
 	protected void paintCoordinates(Graphics2D g2d, double zoom) {
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
@@ -187,6 +200,7 @@ public class IsoMapView extends MapView {
 		}
 	}
 
+	@Override
 	public void repaintRegion(Rectangle region) {
 		Dimension tileSize = getTileSize(zoom);
 		int maxExtraHeight = (int) (myMap.getTileHeightMax() * zoom) - tileSize.height;
@@ -204,6 +218,7 @@ public class IsoMapView extends MapView {
 		repaint(new Rectangle(x1, y1, x2 - x1, y2 - y1));
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Dimension tileSize = getTileSize(zoom);
 		int border = ((modeFlags & PF_GRIDMODE) != 0) ? 1 : 0;
@@ -215,6 +230,7 @@ public class IsoMapView extends MapView {
 	/**
 	 * Returns the coordinates of the tile at the given screen coordinates.
 	 */
+	@Override
 	public Point screenToTileCoords(int x, int y) {
 		Dimension tileSize = getTileSize(zoom);
 		double r = getTileRatio();
@@ -231,6 +247,7 @@ public class IsoMapView extends MapView {
 				/ tileSize.height);
 	}
 
+	@Override
 	protected Polygon createGridPolygon(int tx, int ty, int border) {
 		Dimension tileSize = getTileSize(zoom);
 		tileSize.width -= border * 2;
@@ -255,6 +272,7 @@ public class IsoMapView extends MapView {
 	/**
 	 * Returns the location on the screen of the top corner of a tile.
 	 */
+	@Override
 	public Point tileToScreenCoords(double x, double y) {
 		Dimension tileSize = getTileSize(zoom);
 		int originX = (myMap.getHeight() * tileSize.width) / 2;

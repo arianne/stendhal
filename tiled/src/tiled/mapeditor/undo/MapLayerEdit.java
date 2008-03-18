@@ -21,9 +21,13 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.undo.*;
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoableEdit;
 
-import tiled.core.*;
+import tiled.core.Map;
+import tiled.core.MapLayer;
 
 /** This class handles all layer modification. */
 public class MapLayerEdit extends AbstractUndoableEdit {
@@ -154,30 +158,36 @@ public class MapLayerEdit extends AbstractUndoableEdit {
 	}
 
 	/* inherited methods */
+	@Override
 	public void undo() throws CannotUndoException {
 		applyLayers(layerUndo);
 	}
 
 	/** undo the last paint. */
+	@Override
 	public boolean canUndo() {
 		return (layerUndo != null) && (layerUndo.size() > 0);
 	}
 
+	@Override
 	public void redo() throws CannotRedoException {
 		applyLayers(layerRedo);
 	}
 
 	/** redo the last paint. */
+	@Override
 	public boolean canRedo() {
 		return (layerRedo != null) && (layerRedo.size() > 0);
 	}
 
+	@Override
 	public void die() {
 		layerUndo = null;
 		layerRedo = null;
 		inProgress = false;
 	}
 
+	@Override
 	public boolean addEdit(UndoableEdit anEdit) {
 		if (inProgress && anEdit.getClass() == this.getClass()) {
 			// TODO: absorb the edit
@@ -190,6 +200,7 @@ public class MapLayerEdit extends AbstractUndoableEdit {
 		name = s;
 	}
 
+	@Override
 	public String getPresentationName() {
 		return name;
 	}

@@ -67,6 +67,7 @@ public class RandomBrush extends ShapeBrush {
 	 * @param y
 	 *            The y-coordinate where the click occurred.
 	 */
+	@Override
 	public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer) {
 		if (selectedTiles.size() == 0) {
 			return new Rectangle(x, y, 0, 0);

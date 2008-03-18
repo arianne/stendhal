@@ -316,7 +316,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
     		vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
     		FontMetrics metrics = vg.getFontMetrics();
     		Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
-    		vg.drawString("N", panx + (width - (int)rect.getWidth()) / 2, pany + (int)rect.getHeight());
+    		vg.drawString("N", panx + (width - (int) rect.getWidth()) / 2, pany + (int) rect.getHeight());
 		}
 
 //		PATHFIND ---

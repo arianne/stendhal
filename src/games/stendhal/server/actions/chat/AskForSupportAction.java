@@ -22,7 +22,7 @@ public class AskForSupportAction  implements ActionListener {
 	public void onAction(Player player, RPAction action) {
 		if (action.has(TEXT)) {
 
-			if ("".equals( action.get(TEXT).trim() )) {
+			if ("".equals(action.get(TEXT).trim())) {
 				player.sendPrivateText("Usage /support <your message here>");
 				return;
 			}

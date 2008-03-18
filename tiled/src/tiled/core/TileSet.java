@@ -17,7 +17,10 @@
 
 package tiled.core;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
 import java.io.ByteArrayInputStream;
@@ -501,6 +504,7 @@ public class TileSet implements Iterable<Tile> {
 	/**
 	 * @return the name of the tileset, and the total tiles
 	 */
+	@Override
 	public String toString() {
 		return getName() + " [" + size() + "]";
 	}

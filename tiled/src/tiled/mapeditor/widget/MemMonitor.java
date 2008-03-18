@@ -46,10 +46,12 @@ public class MemMonitor extends JPanel {
 		updaterThread.start();
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return progressBar.getPreferredSize();
 	}
 
+	@Override
 	public Dimension getMinimumSize() {
 		return progressBar.getMinimumSize();
 	}

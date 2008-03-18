@@ -1732,9 +1732,9 @@ public class Player extends RPEntity {
 	}
 	
 	public String getSentence() {
-		String result="";
-		if(has("sentence")) {
-			result=get("sentence");
+		String result = "";
+		if (has("sentence")) {
+			result = get("sentence");
 		}
 		
 		return result;

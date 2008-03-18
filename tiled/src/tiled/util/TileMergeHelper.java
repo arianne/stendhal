@@ -17,12 +17,19 @@
 
 package tiled.util;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import tiled.core.*;
 import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 
 /**
  * Some helper methods for merging tile images.

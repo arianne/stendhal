@@ -66,14 +66,17 @@ public class TileGroupButton extends JToggleButton {
 		return tileGroup;
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(width, height);
 	}
 
+	@Override
 	public Dimension getMaximumSize() {
 		return getPreferredSize();
 	}
 
+	@Override
 	public Dimension getMinimumSize() {
 		return getPreferredSize();
 	}

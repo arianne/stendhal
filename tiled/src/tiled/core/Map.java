@@ -17,11 +17,16 @@
 
 package tiled.core;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 
 import javax.swing.event.EventListenerList;
 
-import tiled.mapeditor.util.*;
+import tiled.mapeditor.util.MapChangeListener;
+import tiled.mapeditor.util.MapChangedEvent;
 
 /**
  * The Map class is the focal point of the <code>tiled.core</code> package.
@@ -133,6 +138,7 @@ public class Map extends MultilayerPlane {
 	}
 
 	/** adds a layer to the map. */
+	@Override
 	public MapLayer addLayer(MapLayer l) {
 		l.setMap(this);
 		super.addLayer(l);
@@ -244,6 +250,7 @@ public class Map extends MultilayerPlane {
 	 * 
 	 * @see MultilayerPlane#removeLayer(int)
 	 */
+	@Override
 	public MapLayer removeLayer(int index) {
 		MapLayer layer = super.removeLayer(index);
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -255,12 +262,14 @@ public class Map extends MultilayerPlane {
 	 * 
 	 * @see MultilayerPlane#removeAllLayers
 	 */
+	@Override
 	public void removeAllLayers() {
 		super.removeAllLayers();
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
 	}
 
 	/** sets all layers. */
+	@Override
 	public void setLayers(List<MapLayer> layers) {
 		super.setLayers(layers);
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -269,6 +278,7 @@ public class Map extends MultilayerPlane {
 	/**
 	 * @see MultilayerPlane#swapLayerUp
 	 */
+	@Override
 	public void swapLayerUp(int index) throws Exception {
 		super.swapLayerUp(index);
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -277,6 +287,7 @@ public class Map extends MultilayerPlane {
 	/**
 	 * @see MultilayerPlane#swapLayerDown
 	 */
+	@Override
 	public void swapLayerDown(int index) throws Exception {
 		super.swapLayerDown(index);
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -285,6 +296,7 @@ public class Map extends MultilayerPlane {
 	/**
 	 * @see MultilayerPlane#mergeLayerDown
 	 */
+	@Override
 	public void mergeLayerDown(int index) throws Exception {
 		super.mergeLayerDown(index);
 		fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -313,6 +325,7 @@ public class Map extends MultilayerPlane {
 	/**
 	 * @see MultilayerPlane#resize
 	 */
+	@Override
 	public void resize(int width, int height, int dx, int dy) {
 		super.resize(width, height, dx, dy);
 		fireMapChanged(MapChangedEvent.Type.SIZE);
@@ -438,6 +451,7 @@ public class Map extends MultilayerPlane {
 	 * 
 	 * @return string describing map
 	 */
+	@Override
 	public String toString() {
 		return "Map[" + widthInTiles + "x" + heightInTiles + "x" + getTotalLayers() + "][" + tileWidth + "x"
 				+ tileHeight + "]";

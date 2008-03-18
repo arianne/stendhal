@@ -72,10 +72,12 @@ public class BrushMenu extends JPanel implements MapChangeListener {
 		defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(8, 8)));
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return combobox.getPreferredSize();
 	}
 
+	@Override
 	public Dimension getMaximumSize() {
 		return getPreferredSize();
 	}
@@ -147,6 +149,7 @@ public class BrushMenu extends JPanel implements MapChangeListener {
 		}
 
 		/**  */
+		@Override
 		public String toString() {
 			return brush.getName();
 		}

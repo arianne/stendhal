@@ -17,10 +17,16 @@
 
 package tiled.mapeditor.brush;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
-import tiled.core.*;
+import tiled.core.MapLayer;
+import tiled.core.MultilayerPlane;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
 
 public class ShapeBrush extends AbstractBrush {
 	protected Shape shape;
@@ -103,6 +109,7 @@ public class ShapeBrush extends AbstractBrush {
 		return new Rectangle(x, y, bounds.width, bounds.height);
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return bounds;
 	}

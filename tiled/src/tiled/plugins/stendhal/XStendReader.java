@@ -48,10 +48,12 @@ public class XStendReader extends Reader implements MapReaderPlugin {
 	public FileFilter[] getFilters() {
 		return new FileFilter[] { new FileFilter() {
 
+			@Override
 			public boolean accept(File pathname) {
 				return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".xstend");
 			}
 
+			@Override
 			public String getDescription() {
 				return "Stendhal Compressed Map Files (*.xstend)";
 			}

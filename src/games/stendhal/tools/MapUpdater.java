@@ -65,7 +65,7 @@ public class MapUpdater extends Task {
 	}
 
 	private void removeUnusedTilesets(Map map) {
-		for (Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext(); ) {
+		for (Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext();) {
 			TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {

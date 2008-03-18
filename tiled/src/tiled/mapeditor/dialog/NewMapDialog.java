@@ -17,12 +17,26 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import tiled.core.*;
-import tiled.mapeditor.widget.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import tiled.core.Map;
+import tiled.mapeditor.widget.IntegerSpinner;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 
 public class NewMapDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = -5637072413306626416L;

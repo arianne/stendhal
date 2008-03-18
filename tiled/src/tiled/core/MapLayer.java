@@ -249,7 +249,8 @@ public abstract class MapLayer implements Cloneable {
      * @return a clone of this layer, as complete as possible
      * @exception CloneNotSupportedException
      */
-    public Object clone() throws CloneNotSupportedException {
+    @Override
+	public Object clone() throws CloneNotSupportedException {
         MapLayer clone = null;
         clone = (MapLayer) super.clone();
 

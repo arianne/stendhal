@@ -17,18 +17,37 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.mapeditor.selection.SelectionLayer;
 import tiled.mapeditor.util.MultisetListRenderer;
-import tiled.mapeditor.widget.*;
-import tiled.core.*;
-import tiled.core.Map;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 
 public class SearchDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = -7402966992244410123L;

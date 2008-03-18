@@ -42,20 +42,19 @@ public class AlterAction extends AdministrationAction {
 
 			String stat = action.get(_STAT);
 
-			if ("name".equals( stat ) && (changed instanceof Player)) {
-				logger.error("DENIED: Admin " + player.getName()
-						+ " trying to change player " + action.get(_TARGET)
+			if ("name".equals(stat) && (changed instanceof Player)) {
+				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(_TARGET)
 						+ "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
 			}
 
-			if (ATTR_ADMINLEVEL.equals( stat )) {
+			if (ATTR_ADMINLEVEL.equals(stat)) {
 				player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
 				return;
 			}
 
-			if (ATTR_TITLE.equals( stat ) && (changed instanceof Player)) {
+			if (ATTR_TITLE.equals(stat) && (changed instanceof Player)) {
 				player.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
@@ -104,20 +103,15 @@ public class AlterAction extends AdministrationAction {
 						numberValue = changed.getInt(stat) - numberValue;
 					}
 
-					if (_ATTR_HP.equals( stat )
-							&& (changed.getInt("base_hp") < numberValue)) {
-						logger.error("DENIED: Admin " + player.getName()
-								+ " trying to set player "
-								+ Grammar.suffix_s(action.get(_TARGET))
-								+ " HP over its Base HP");
+					if (_ATTR_HP.equals(stat) && (changed.getInt("base_hp") < numberValue)) {
+						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
+								+ Grammar.suffix_s(action.get(_TARGET)) + " HP over its Base HP");
 						return;
 					}
 
-					if (_ATTR_HP.equals( stat ) && numberValue == 0) {
-						logger.error("DENIED: Admin " + player.getName()
-								+ " trying to set player "
-								+ Grammar.suffix_s(action.get(_TARGET))
-								+ " HP to 0, making it so unkillable.");
+					if (_ATTR_HP.equals(stat) && numberValue == 0) {
+						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
+								+ Grammar.suffix_s(action.get(_TARGET)) + " HP to 0, making it so unkillable.");
 						return;
 					}
 

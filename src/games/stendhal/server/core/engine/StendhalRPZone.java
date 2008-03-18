@@ -850,7 +850,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				Entity otherEntity = (Entity) other;
 
 				// Check if the objects overlap
-				Rectangle2D otherArea = otherEntity.getArea( otherEntity.getX(),
+				Rectangle2D otherArea = otherEntity.getArea(otherEntity.getX(),
 						otherEntity.getY());
 
 				if (area.intersects(otherArea)) {

@@ -17,15 +17,23 @@
 
 package tiled.plugins.mappy;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Stack;
-import java.util.Iterator;
 
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.MapReader;
-import tiled.core.*;
 
 public class MappyMapReader implements MapReader, FileFilter {
 	private List<Chunk> chunks;

@@ -17,7 +17,14 @@
 
 package tiled.mapeditor.widget;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +34,13 @@ import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.MouseInputListener;
 
-import tiled.core.*;
+import tiled.core.StatefulTile;
+import tiled.core.Tile;
+import tiled.core.TileSet;
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.dialog.PropertiesDialog;
-import tiled.mapeditor.util.*;
+import tiled.mapeditor.util.TileSelectionEvent;
+import tiled.mapeditor.util.TileSelectionListener;
 import tiled.util.Util;
 
 public class TilePalettePanel extends JPanel implements MouseInputListener {
@@ -134,6 +144,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener {
 	}
 
 	/** paints the component. */
+	@Override
 	public void paint(Graphics g) {
 		paintBackground(g);
 
@@ -234,6 +245,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener {
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		if (tileset == null) {
 			return new Dimension(10, 100);
@@ -341,6 +353,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener {
 	}
 
 	/** returns tooltip text. */
+	@Override
 	public String getToolTipText(MouseEvent e) {
 		Tile tile = getTileAtPoint(e.getPoint().x, e.getPoint().y);
 		if (tile == null) {

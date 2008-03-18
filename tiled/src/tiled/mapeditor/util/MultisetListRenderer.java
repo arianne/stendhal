@@ -17,16 +17,20 @@
 
 package tiled.mapeditor.util;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Image;
 import java.io.IOException;
-import java.util.*;
+import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
 
-import tiled.core.*;
-import tiled.mapeditor.MapEditor;
 import tiled.core.Map;
+import tiled.core.Tile;
+import tiled.core.TileSet;
+import tiled.mapeditor.MapEditor;
 
 public class MultisetListRenderer extends DefaultListCellRenderer {
 	private static final long serialVersionUID = 1442128156943993715L;
@@ -58,6 +62,7 @@ public class MultisetListRenderer extends DefaultListCellRenderer {
 		buildList();
 	}
 
+	@Override
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 			boolean cellHasFocus) {
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

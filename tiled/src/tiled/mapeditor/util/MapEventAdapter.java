@@ -18,7 +18,9 @@
 package tiled.mapeditor.util;
 
 import java.awt.Component;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MapEventAdapter {
 	public static final int ME_MAPACTIVE = 1;

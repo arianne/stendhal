@@ -110,10 +110,12 @@ public class MapReader implements MapReaderPlugin {
 	public FileFilter[] getFilters() {
 		return new FileFilter[] { new FileFilter() {
 
+			@Override
 			public boolean accept(File pathname) {
 				return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".tmx");
 			}
 
+			@Override
 			public String getDescription() {
 				return "Tiled Map Files (*.tmx)";
 			}
@@ -152,7 +154,7 @@ public class MapReader implements MapReaderPlugin {
 	}
 
 	private void reflectInvokeMethod(Object invokeVictim, Method method, String[] args)
-			throws InvocationTargetException {
+			throws Exception {
 		Class[] parameterTypes = method.getParameterTypes();
 		Object[] conformingArguments = new Object[parameterTypes.length];
 

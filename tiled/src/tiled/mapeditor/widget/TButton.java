@@ -51,6 +51,7 @@ public class TButton extends JButton {
 		this.showText = showText;
 	}
 
+	@Override
 	public void setText(String text) {
 		if (showText) {
 			super.setText(text);

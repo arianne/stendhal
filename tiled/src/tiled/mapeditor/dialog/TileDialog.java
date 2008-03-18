@@ -17,22 +17,46 @@
 
 package tiled.mapeditor.dialog;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import tiled.core.*;
-import tiled.mapeditor.util.*;
-import tiled.mapeditor.widget.*;
+import tiled.core.Tile;
+import tiled.core.TileSet;
+import tiled.mapeditor.util.ImageCellRenderer;
+import tiled.mapeditor.util.PropertiesTableModel;
+import tiled.mapeditor.util.TileDialogListRenderer;
+import tiled.mapeditor.widget.VerticalStaticJPanel;
 
 public class TileDialog extends JDialog implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = -124706696709249122L;

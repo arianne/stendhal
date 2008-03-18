@@ -360,12 +360,12 @@ public class CreatureLogic {
 		creature.applyMovement();
 	}
 
-	private void logicDoAttack(final int turn) {
+	private void logicDoAttack() {
 		if (!creature.isAttacking()) {
 			return;
 		}
 
-		if ((turn % StendhalRPAction.getAttackRate(creature)) == attackTurn) {
+		if ((SingletonRepository.getRuleProcessor().getTurn() % StendhalRPAction.getAttackRate(creature)) == attackTurn) {
 			StendhalRPAction.attack(creature, creature.getAttackTarget());
 			creature.tryToPoison();
 		}
@@ -378,18 +378,21 @@ public class CreatureLogic {
 		}
 	}
 
+	
+	
 	public void logic() {
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		healer.heal(creature);
 
-		int turn = SingletonRepository.getRuleProcessor().getTurn();
+		
+		
 
 		/*
 		 * We only *think* once each few turns. So we save CPU time. Each
 		 * creature [logic] uses a random turn slice. TODO: Improve this in a
 		 * event oriented way.
 		 */
-		if ((turn % 3) == turnReaction) {
+		if (shallWeThink()) {
 			if (!logicSleep()) {
 				return;
 			}
@@ -429,10 +432,15 @@ public class CreatureLogic {
 		}
 
 		logicDoMove();
-		logicDoAttack(turn);
+		logicDoAttack();
 		logicDoNoice();
 
 		creature.notifyWorldAboutChanges();
+	}
+
+	private boolean shallWeThink() {
+		
+		return (SingletonRepository.getRuleProcessor().getTurn() % 3) == turnReaction;
 	}
 
 	/**

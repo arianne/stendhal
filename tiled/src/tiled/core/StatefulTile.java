@@ -35,6 +35,7 @@ public class StatefulTile {
 		this.tile = tile;
 	}
 
+	@Override
 	public String toString() {
 		return "[TileWrapper: " + p + " " + tile + "]";
 	}

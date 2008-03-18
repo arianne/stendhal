@@ -19,8 +19,11 @@ package tiled.io;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.*;
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 /**

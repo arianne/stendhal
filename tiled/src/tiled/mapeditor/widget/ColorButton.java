@@ -40,6 +40,7 @@ public class ColorButton extends JButton implements ActionListener {
 		this(Color.white);
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(40, 15);
 	}
