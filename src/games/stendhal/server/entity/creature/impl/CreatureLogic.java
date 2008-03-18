@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.creature.impl;
 
-import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -18,12 +17,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 public class CreatureLogic {
 	private int turnReaction;
-
-	private static Logger logger = Logger.getLogger(CreatureLogic.class);
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target
@@ -47,18 +42,12 @@ public class CreatureLogic {
 
 	private int attackTurn;
 
-	// creature will keep track of the logic so the client can display it
-	private StringBuilder debug;
-
 	public CreatureLogic(Creature creature) {
 		this.creature = creature;
 
 		turnReaction = Rand.rand(3);
 		attackTurn = Rand.rand(5);
 
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug = new StringBuilder(100);
-		}
 	}
 
 	/**
@@ -90,10 +79,6 @@ public class CreatureLogic {
 			creature.stopAttack();
 			creature.stop();
 	
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				creature.put("debug", "sleep");
-			}
-	
 			aiState = AiState.SLEEP;
 			creature.notifyWorldAboutChanges();
 		}
@@ -117,17 +102,6 @@ public class CreatureLogic {
 			}
 		}
 
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("attacked;");
-			debug.append(target.getID().getObjectID());
-			debug.append('|');
-		}
-
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Creature("
-					+ creature.get("type") + ") has been attacked by "
-					+ target.get("type"));
-		}
 	}
 
 	/**
@@ -136,9 +110,6 @@ public class CreatureLogic {
 	private void logicForgetCurrentTarget() {
 		if (creature.isAttacking()) {
 			// stop the attack...
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("cancelattack|");
-			}
 			target = null;
 			creature.clearPath();
 			creature.stopAttack();
@@ -153,17 +124,6 @@ public class CreatureLogic {
 		// ...and find another target
 		target = creature.getNearestEnemy(7 + Math.max(creature.getWidth(),
 				creature.getHeight()));
-		if (target != null) {
-			if (logger.isDebugEnabled()) {
-				logger.debug(creature.getIDforDebug() + " Creature("
-						+ creature.get("type") + ") gets a new target.");
-			}
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("newtarget;");
-				debug.append(target.getID().getObjectID());
-				debug.append('|');
-			}
-		}
 	}
 
 	/**
@@ -171,12 +131,7 @@ public class CreatureLogic {
 	 */
 	private void logicCreatePatrolPath() {
 		// Create a patrolpath
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug()
-					+ " Creating Path for creature entity");
-		}
 		List<Node> nodes = new LinkedList<Node>();
-		long time = System.nanoTime();
 		if (creature.getAIProfile("patrolling") != null) {
 
 			int size = patrolPath.size();
@@ -191,25 +146,14 @@ public class CreatureLogic {
 								next.getY() + creature.getY(), 1.0, 1.0)));
 			}
 		}
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Path is: " + nodes);
-		}
 		creature.setPath(new FixedPath(nodes, true));
 
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("generatepatrolpath;");
-			debug.append(System.nanoTime() - time);
-			debug.append('|');
-		}
 	}
 
 	/**
 	 * Follow the patrolling path.
 	 */
 	private void logicFollowPatrolPath() {
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Following path");
-		}
 		if (creature.hasPath()) {
 			creature.followPath();
 		}
@@ -219,19 +163,10 @@ public class CreatureLogic {
 	 * Stops attacking the current target and logs that it got out of reach.
 	 */
 	private void logicStopAttackBecauseTargetOutOfReach() {
-		// target out of reach
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug()
-					+ " Attacker is too far. Creature stops attack");
-		}
 		target = null;
 		creature.clearPath();
 		creature.stopAttack();
 		creature.stop();
-
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("outofreachstopped|");
-		}
 	}
 
 	/**
@@ -239,10 +174,6 @@ public class CreatureLogic {
 	 */
 	private void logicCreateNewPathToMovingTarget() {
 		// target not near but in reach and is moving
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug()
-					+ " Moving to target. Searching new path");
-		}
 		creature.clearPath();
 		creature.setMovement(target, 0, 0, 20.0);
 
@@ -250,10 +181,6 @@ public class CreatureLogic {
 			if (!creature.nextTo(target)) {
 				creature.stopAttack();
 				target = null;
-				if (logger.isDebugEnabled()) {
-					logger.debug(creature.getIDforDebug()
-							+ " Large creature wall bug workaround");
-				}
 				return;
 			}
 		}
@@ -267,14 +194,7 @@ public class CreatureLogic {
 	 * attacks the target.
 	 */
 	private void logicAttack() {
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("attacking|");
-		}
 		// target is near
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug()
-					+ " Next to target. Creature stops and attacks");
-		}
 		creature.stop();
 		creature.attack(target);
 		creature.faceToward(target);
@@ -317,13 +237,6 @@ public class CreatureLogic {
 	 * prefers positions which are closer to the target.
 	 */
 	private void logicRangeAttack() {
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("rangeattack|");
-		}
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Range Attack");
-		}
-
 		if (creature.collides()) {
 			creature.clearPath();
 		}
@@ -388,13 +301,6 @@ public class CreatureLogic {
 
 	private void logicMoveToTargetAndAttack() {
 		// target in reach and not moving
-		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug()
-					+ " Moving to target. Creature attacks");
-		}
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("movetotarget");
-		}
 		aiState = AiState.APPROACHING_STOPPED_TARGET;
 		creature.attack(target);
 
@@ -405,9 +311,6 @@ public class CreatureLogic {
 		// our current Path is blocked...mostly by the target or another
 		// attacker
 		if (creature.collides()) {
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append(";blocked");
-			}
 			// invalidate the path and stop
 			creature.clearPath();
 
@@ -426,9 +329,6 @@ public class CreatureLogic {
 		// be sure to let the blocking creatures pass before trying to find a
 		// new path
 		if (waitRounds > 0) {
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append(";waiting");
-			}
 			waitRounds--;
 		} else {
 			// Are we still patrolling?
@@ -440,22 +340,11 @@ public class CreatureLogic {
 
 			creature.setMovement(target, 0, 0, 20.0);
 
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append(";newpath");
-			}
 
 			if (!creature.hasPath()) {
 				// If creature is blocked, choose a new target
 				// TODO: if we are an archer and in range, creature is ok
 				// don't get to near to the enemy.
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append(";blocked");
-				}
-				if (logger.isDebugEnabled()) {
-					logger.debug(creature.getIDforDebug()
-							+ " Blocked. Choosing a new target.");
-				}
-
 				target = null;
 				creature.clearPath();
 				creature.stopAttack();
@@ -465,9 +354,6 @@ public class CreatureLogic {
 			}
 		}
 
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append(";dummy|");
-		}
 	}
 
 	private void logicDoMove() {
@@ -546,9 +432,6 @@ public class CreatureLogic {
 		logicDoAttack(turn);
 		logicDoNoice();
 
-		if (Debug.CREATURES_DEBUG_SERVER) {
-			creature.put("debug", debug.toString());
-		}
 		creature.notifyWorldAboutChanges();
 	}
 
