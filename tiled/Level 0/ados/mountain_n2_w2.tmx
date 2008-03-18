@@ -117,6 +117,9 @@
  <tileset name="stone_fence" firstgid="705" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/stone_fence_white.png"/>
  </tileset>
+ <tileset name="gnomepatrol" firstgid="714" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/gnome_patrol.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQ0AAAzDoM6/6Qs5JKyaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq7x+e3FbSAAABAA==
@@ -144,7 +147,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YQQqAIBAF0PI4dYMWQaeo+58kWgTVIrAsUd7buFRwxvnYNAAA98Y29wn4irsFAHZyQf2e3rHaAID6mO8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQwh9wnAABy6GQAbiwR9aGWoCwx/Q2UzYyG+qTo697bAFA9ORCAzXUeDOG8AmV5m/GmcF6/2gcAgP8cs5scBwAAAFz5L4Ay6FUAAAAAAAAghxVMhe6WAAABAA==
+   H4sIAAAAAAAAAO3aSw7CIBAA0Mpx9AYuTDyFnlkvZVyYtEZNsR9g+t6GZQnMMBNK1wEA/HbalZ4BS7G3AMCLviC+f/dYbABAPOo7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABru6fSMwAicrYAQHkX9RgANmlfQQ9wq2AOfHbN2JsaYgkYLye/gbap0W3QE5Njjrw+iDmA8PSBADy914NjGo7k8951PGs1v6k93jkNx6W+AwDAevq9mz4OAABgfd5/Ujv3BUwR/Yyr6Z+2XAUAAABoQ/Q7s62o6W7wG7EGzKGF8w6iaTHvHh4JR8oAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
