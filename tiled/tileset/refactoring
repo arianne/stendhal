@@ -73,7 +73,7 @@ d*/building/entrance/earthen_4.png
 ./building/entrance/earthen_6.png
 d*/building/entrance/earthen_face.png
 d*/building/entrance/earthen_face_2.png
-./building/entrance/earthen_face_4.png
+./building/entrance/earthen_face_4.png 		deleted
 k*/building/entrance/grey.png
 m*/building/entrance/int_iron_bars.png
 K*/building/entrance/light_red_ns_ew.png
@@ -96,7 +96,7 @@ z*/building/roof/straw2.png
 z*/building/roof/straw3.png
 k*/building/stairs/blue_stone.png
 k*/building/stairs/dark_stairs.png
-d*/building/stairs/int_earthen.png
+./building/stairs/int_earthen.png
 K*./building/stairs/int_ew.png
 K*/building/stairs/int_green.png
 K*./building/stairs/int_ns.png
