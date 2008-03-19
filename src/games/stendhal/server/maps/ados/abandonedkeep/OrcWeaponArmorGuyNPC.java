@@ -52,7 +52,7 @@ public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am Salesman. What you?");
-				addHelp("I buy and sell items, look at blackboard on wall.");
+				addHelp("I sell nice items, look at blackboard on wall.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellbetterstuff1")), false);
 				addOffer("Look at blackboard on wall to see my offer.");
 				addQuest("I am so happy as I am. I want nothing.");

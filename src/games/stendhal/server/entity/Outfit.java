@@ -226,7 +226,7 @@ public class Outfit {
 	 */
 	public boolean isChoosableByPlayers() {
 		return (hair < 50) && (hair >= 0) && (head < 50) && (head >= 0)
-				&& (dress < 50) && (dress >= 0) && (base < 50) && (base >= 0);
+				&& (dress < 52) && (dress >= 0) && (base < 50) && (base >= 0);
 	}
 
 	/**

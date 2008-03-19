@@ -265,6 +265,36 @@
  </zone>
  
   <zone name="int_nalwor_assassinhq_cellar" file="interiors/nalwor/assassinhq_cellar.tmx">
+<!--    -->
+   <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC"/>
+      <entity x="23" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+I buy vegetables:
+
+leek 25
+salad 20
+carrot 5
+onion 20
+tomato 20
+broccoli 30
+cauliflower 30
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+      <entity x="24" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+I buy herbs:
+
+kekik 25
+kokuda 200
+sclaria 25
+arundula 10
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+    
    <portal x="24" y="11" ref="hqcellarup">
     <destination zone="int_nalwor_assassinhq_0" ref="hq0down"/>
    </portal>
@@ -274,6 +304,23 @@
  </zone>
 
   <zone name="int_nalwor_assassinhq_0" file="interiors/nalwor/assassinhq_0.tmx">
+   <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.PrincipalNPC"/>
+      <entity x="3" y="10">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+We Buy Armor and Weapons:
+
+buckler  20
+aventail 25
+robins hat 30
+leather boots 25
+dwarf cloak 60
+dwarvish armor 9000
+
+assassin dagger 8000
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
    <portal x="24" y="11" ref="hq0up">
     <destination zone="int_nalwor_assassinhq_1" ref="hq1down"/>
    </portal>
@@ -286,10 +333,11 @@
    <portal x="24" y="20" ref="hqrightdoor">
     <destination zone="0_nalwor_forest_ne"  ref="hqrightdoorin"/>
    </portal>
+
  </zone>
  
   <zone name="int_nalwor_assassinhq_1" file="interiors/nalwor/assassinhq_1.tmx">
-   <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC"/>
+  <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC"/>
   <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.SchoolMarmNPC"/>
     <portal x="24" y="11" ref="hq1up">
     <destination zone="int_nalwor_assassinhq_2" ref="hq2down"/>
@@ -318,17 +366,8 @@
  </zone>
  
   <zone name="int_nalwor_assassinhq_4" file="interiors/nalwor/assassinhq_4.tmx">
-   <portal x="24" y="11" ref="hq4up">
-    <destination zone="int_nalwor_assassinhq_5"  ref="hq5down"/>
-   </portal>
    <portal x="23" y="11" ref="hq4down">
     <destination zone="int_nalwor_assassinhq_3"  ref="hq3up"/>
-   </portal>
- </zone>
- 
-  <zone name="int_nalwor_assassinhq_5" file="interiors/nalwor/assassinhq_5.tmx">
-   <portal x="23" y="11" ref="hq5down">
-    <destination zone="int_nalwor_assassinhq_4" ref="hq4up"/>
    </portal>
  </zone>
  
@@ -743,9 +782,19 @@
  </zone>
 
  <zone name="-1_nalwor_caves_e" level="-1" x="500384" y="500128" file="Level -1/nalwor/caves_e.tmx">
+  <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.KaryoNPC" />
+    <portal x="61" y="80" ref="crawlyhole1">
+      <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellardown"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
+        <parameter name="class">assassin_door</parameter>
+        <parameter name="key">assassins id</parameter>
+      </implementation>
+    </portal>
+    <!--  
   <portal x="61" y="80" ref="crawlyhole1">
   	<destination zone="int_nalwor_assassinhq_cellar" ref="hqcellardown"/>
    </portal>
+   -->
  </zone>
 
 <zone name="-1_nalwor_drows_tunnel_nw" level="-1" x="500128" y="500256" file="Level -1/nalwor/drows_tunnel_nw.tmx">

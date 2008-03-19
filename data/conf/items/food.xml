@@ -721,4 +721,91 @@
       <slot name="bag"/>
     </equipable>
   </item>
+  
+  <item name="tuna sandwich">
+    <type class="food" subclass="tuna_sandwich" tileid="-1"/>
+    <description>You see what looks like tuna sandwich.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="110"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="11"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="8"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+ 
+   <item name="sausage">
+    <type class="food" subclass="sausage" tileid="-1"/>
+    <description>You see what looks like a tasty sausage.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="80"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="10"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="8"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item> 
+   <item name="cheese sausage">
+    <type class="food" subclass="cheesesausage" tileid="-1"/>
+    <description>You see what looks like a tasty cheese sausage.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="70"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="10"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="8"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item> 
+   <item name="hotdog">
+    <type class="food" subclass="sausage_on_bun" tileid="-1"/>
+    <description>You see what looks like a tasty hotdog on a bun.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="160"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="16"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="8"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item> 
+   <item name="cheesedog">
+    <type class="food" subclass="cheesesausage_on_bun" tileid="-1"/>
+    <description>You see what looks like a tasty cheesey hotdog on a bun.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="170"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="17"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="8"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item> 
 </items>

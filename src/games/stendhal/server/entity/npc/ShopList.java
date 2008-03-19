@@ -264,7 +264,76 @@ public class ShopList {
 		shops.add("buymainio", "mainio helmet", 8000);
 		shops.add("buymainio", "mainio legs", 7000);
 		shops.add("buymainio", "mainio shield", 16000);
+		
+		// assassinhq principal Femme Fatale)
+		shops.add("buy4assassins", "buckler", 20);
+		shops.add("buy4assassins", "aventail", 25);
+		shops.add("buy4assassins", "leather boots", 30);
+		shops.add("buy4assassins", "dwarf cloak", 60);
+		shops.add("buy4assassins", "dwarvish armor", 9000);
+		shops.add("buy4assassins", "assassin dagger", 7000);
+		
+		// mountain dwarf buyer of odds and ends -3 ados abandoned keep)
+		shops.add("buyoddsandends", "shuriken", 20);
+		shops.add("buyoddsandends", "amulet", 800);
+		shops.add("buyoddsandends", "black pearl", 100);
+		shops.add("buyoddsandends", "lucky charm", 60);
+		shops.add("buyoddsandends", "knife", 5);
+		shops.add("buyoddsandends", "dagger", 20);
+		shops.add("buyoddsandends", "skull ring", 50);
 
+		// archery shop in nalwor)
+		shops.add("buyarcherstuff", "wooden arrow", 1);
+		shops.add("buyarcherstuff", "steel arrow", 5);
+		shops.add("buyarcherstuff", "golden arrow", 20);
+		shops.add("buyarcherstuff", "power arrow", 50);
+		shops.add("buyarcherstuff", "wooden bow", 250);
+		shops.add("buyarcherstuff", "longbow", 300);
+		shops.add("buyarcherstuff", "composite bow", 350);
+		shops.add("buyarcherstuff", "crossbow", 500);	
+		shops.add("buyarcherstuff", "hunter crossbow", 800);	
+		
+		// assassinhq chief falatheen the dishwasher and veggie buyer)
+		shops.add("buyveggiesandherbs", "carrot", 5);
+		shops.add("buyveggiesandherbs", "salad", 10);
+		shops.add("buyveggiesandherbs", "leek", 25);
+		shops.add("buyveggiesandherbs", "broccoli", 30);
+		shops.add("buyveggiesandherbs", "courgette", 10);
+		shops.add("buyveggiesandherbs", "cauliflower", 30);
+		shops.add("buyveggiesandherbs", "tomato", 20);
+		shops.add("buyveggiesandherbs", "arundula", 10);
+		shops.add("buyveggiesandherbs", "kokuda", 200);	
+		shops.add("buyveggiesandherbs", "kekik", 25);
+		shops.add("buyveggiesandherbs", "sclaria", 25);
+		
+		// gnome village buyer in 0 ados mountain n2 w2)
+		shops.add("buy4gnomes", "leather armor", 25);
+		shops.add("buy4gnomes", "club", 35);
+		shops.add("buy4gnomes", "leather helmet", 15);
+		shops.add("buy4gnomes", "cloak", 25);
+		shops.add("buy4gnomes", "apple", 5);
+		shops.add("buy4gnomes", "marbles", 50);
+		shops.add("buy4gnomes", "wooden shield", 20);
+		
+		// hotdog lady in athor)
+		shops.add("buy4hotdogs", "sausage", 30);
+		shops.add("buy4hotdogs", "cheese sausage", 25);
+		shops.add("buy4hotdogs", "bread", 15);
+		shops.add("buy4hotdogs", "onion", 20);
+		shops.add("buy4hotdogs", "tuna", 15);
+		shops.add("buy4hotdogs", "ham", 15);
+		shops.add("buy4hotdogs", "cheese", 5);
+		shops.add("sellhotdogs", "hotdog", 130);
+		shops.add("sellhotdogs", "cheesedog", 140);
+		shops.add("sellhotdogs", "tuna sandwich", 115);
+		shops.add("sellhotdogs", "sandwich", 125);
+		
+		// black sheep meat mant in ados)
+		shops.add("buy4sausage", "vampirette entrails", 50);
+		shops.add("buy4sausage", "bat entrails", 25);
+		shops.add("buy4sausage", "chicken", 25);
+		shops.add("buy4sausage", "mackerel", 15);
+		
 	}
 
 	private static ShopList instance;
