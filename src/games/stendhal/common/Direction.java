@@ -13,11 +13,37 @@
 package games.stendhal.common;
 
 public enum Direction {
-	STOP(0, 0, 0),
-	UP(1, 0, -1),
-	RIGHT(2, 1, 0),
-	DOWN(3, 0, 1),
-	LEFT(4, -1, 0);
+	STOP(0, 0, 0) {
+		@Override
+		public Direction nextDirection() {
+			return LEFT;
+		}
+
+	},
+	UP(1, 0, -1) {
+		@Override
+		public Direction nextDirection() {
+			return RIGHT;
+		}
+	},
+	RIGHT(2, 1, 0) {
+		@Override
+		public Direction nextDirection() {
+			return DOWN;
+		}
+	},
+	DOWN(3, 0, 1) {
+		@Override
+		public Direction nextDirection() {
+			return LEFT;
+		}
+	},
+	LEFT(4, -1, 0) {
+		@Override
+		public Direction nextDirection() {
+			return UP;
+		}
+	};
 
 	private final int val;
 	private final int dx;
@@ -52,7 +78,7 @@ public enum Direction {
 	}
 
 	public static Direction rand() {
-		return build(Rand.rand(4) + 1);
+		return Direction.values()[Rand.rand(4)+1];
 	}
 
 	Direction(int val, int dx, int dy) {
@@ -79,4 +105,6 @@ public enum Direction {
 			return STOP;
 		}
 	}
+
+	abstract public Direction nextDirection();
 }

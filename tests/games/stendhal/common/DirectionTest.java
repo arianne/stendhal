@@ -1,7 +1,13 @@
 package games.stendhal.common;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
+
+import java.util.BitSet;
+
 import org.junit.Test;
 
 public class DirectionTest {
@@ -54,5 +60,40 @@ public class DirectionTest {
 		assertEquals(Direction.UP, Direction.UP.oppositeDirection()
 				.oppositeDirection());
 	}
+	@Test
+	public final void testNextDirection() {
+		assertEquals(Direction.LEFT, Direction.STOP.nextDirection());
+		assertEquals(Direction.LEFT, Direction.DOWN.nextDirection());
+		assertEquals(Direction.UP, Direction.LEFT.nextDirection());
+		assertEquals(Direction.RIGHT, Direction.UP.nextDirection());
+		assertEquals(Direction.DOWN, Direction.RIGHT.nextDirection());
+	}
+
+	@Test (timeout = 10000 )
+	public final void testRand() {
+		
+		BitSet gotcha = new BitSet(5);
+		gotcha.set(0);
+		assertThat(gotcha.cardinality(),is(1));
+		gotcha.set(2);
+		assertThat(gotcha.cardinality(),is(2));
+		gotcha.set(1);
+		assertThat(gotcha.cardinality(),is(3));
+		gotcha.set(3);
+		assertThat(gotcha.cardinality(),is(4));
+		gotcha.set(4);
+		assertThat(gotcha.cardinality(),is(5));
+		
+		gotcha = new BitSet(5);
+		int val;
+		while(gotcha.cardinality()<4){
+			val = Direction.rand().get();
+			gotcha.set(val);	
+		}
+		
+		assertFalse(gotcha.get(0));
+	}
+	
+	
 
 }
