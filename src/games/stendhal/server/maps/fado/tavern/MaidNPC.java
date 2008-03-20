@@ -78,6 +78,7 @@ public class MaidNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};
+
 		tavernMaid.setPlayerChatTimeout(TIME_OUT); 
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);

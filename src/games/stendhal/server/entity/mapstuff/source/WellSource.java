@@ -121,8 +121,7 @@ public class WellSource extends PlayerActivityEntity {
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
 			String itemName = items[Rand.rand(items.length)];
-			Item item = SingletonRepository.getEntityManager().getItem(
-					itemName);
+			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			// TODO: player bind the better prizes below:
 			// horned golden helmet & dark dagger

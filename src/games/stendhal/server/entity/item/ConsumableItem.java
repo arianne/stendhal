@@ -40,6 +40,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+
 		left = getAmount();
 		feeder = FeederFactory.get(this);
 	}
@@ -76,6 +77,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	public int consume() {
 		// note that amount and regen are negative for poison
 		int consumedAmount;
+
 		if (Math.abs(left) < Math.abs(getRegen())) {
 			consumedAmount = left;
 			left = 0;
@@ -83,6 +85,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 			consumedAmount = getRegen();
 			left -= getRegen();
 		}
+
 		return consumedAmount;
 	}
 
