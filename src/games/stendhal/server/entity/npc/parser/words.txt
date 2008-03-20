@@ -1,4 +1,4 @@
-# @Version 25
+# @Version 26
 #
 # Word list for the Stendhal conversation parser
 #
@@ -83,6 +83,7 @@ confuse	VER
 consider	VER
 convert	VER
 could	VER-CON	=can
+create	VER
 cya	VER
 delete	VER
 did	VER-PAS	=do
@@ -1225,4 +1226,3 @@ whatever	IGN
 while	IGN
 yeah	IGN
 yet	IGN
-
