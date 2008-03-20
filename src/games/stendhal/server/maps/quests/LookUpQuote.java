@@ -6,8 +6,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
+import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
@@ -166,7 +166,11 @@ public class LookUpQuote extends AbstractQuest {
 						player.addXP(750);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();
-					} else {
+					} else if (sentence.getTriggerExpression().getNormalized().equals("bye")) {
+						npc.say("Good bye - see you next time!");
+						npc.setCurrentState(ConversationStates.IDLE);
+					}
+					else {
 						npc.say("I think you made a mistake. Come back if you can tell me the correct quote.");
 						npc.setCurrentState(ConversationStates.IDLE);
 					}
