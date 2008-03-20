@@ -210,7 +210,7 @@
   <portal x="77" y="104" ref="47">
    <destination zone="int_kirdneh_house_47" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">private key 45</parameter>
+    <parameter name="key">private key 47</parameter>
     <parameter name="rejected">The door is locked.</parameter>
    </implementation>
   </portal>
