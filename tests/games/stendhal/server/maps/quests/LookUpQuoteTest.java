@@ -117,7 +117,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue("lie", pequodEngine.step(player, "yes")); 
 		assertEquals("So, what is it?", pequodNpc.get("text"));
 		assertTrue(pequodEngine.step(player, "bye"));
-		assertEquals("I think you made a mistake. Come back if you can tell me the correct quote.", pequodNpc.get("text"));
+		assertEquals("Good bye - see you next time!", pequodNpc.get("text"));
 
 		// determine the correct answer
 		String quote = "";
