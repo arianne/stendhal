@@ -41,15 +41,16 @@ public class Pathfind {
 	private Node current_node;
 	int final_path_index = 0;
 
-	private static int colision(CollisionDetection collisiondetection, int x1,
-			int y1) {
-		/*
-		 * if (x1 < 0) return 1; if (y1 < 0) return 1;
-		 * 
-		 * if (x1 >= collisiondetection.getWidth()) return 1; if (y1 >=
-		 * collisiondetection.getHeight()) return 1;
-		 * 
-		 */
+	private static int colision(CollisionDetection collisiondetection, int x1, int y1) {
+//		if (x1 < 0)
+//			return 1;
+//		if (y1 < 0)
+//			return 1;
+// 
+//		if (x1 >= collisiondetection.getWidth())
+//			return 1;
+//		if (y1 >= collisiondetection.getHeight())
+//			return 1;
 
 		if (x1 < search_area.getMinX()) {
 			return 1;
@@ -139,11 +140,12 @@ public class Pathfind {
 		// System.out.println("AREA: " + search_area.getMinX() + " " +
 		// search_area.getMinY() + " " +search_area.getMaxX() + " " +
 		// search_area.getMaxY());
-		/*
-		 * if (colision( collisiondetection,final_x,final_y)!=0){
-		 * System.out.println("NON-WALKABLE DESTINATION: " + initial_x + " " +
-		 * initial_y + " " +final_x + " "+ final_y + " " ); return false; }
-		 */
+
+//		if (colision(collisiondetection,final_x,final_y) != 0) {
+//			System.out.println("NON-WALKABLE DESTINATION: " + initial_x + " " + initial_y + " " +final_x + " "+ final_y + " " );
+//			return false; 
+//		}
+
 		// long computation_time = System.currentTimeMillis();
 		Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
 
@@ -319,13 +321,14 @@ public class Pathfind {
 		return ((final_path.size() > 0) ? true : false);
 	}
 
-	public static void main(String[] args) {
-		/*
-		 * Pathfind Path = new Pathfind(); Path.NewPath(1,2,5,2); while
-		 * (!Path.ReachedGoal()){ Path.PathNextNode();
-		 * System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY()); }
-		 */
-	}
+//	public static void main(String[] args) {
+//		Pathfind Path = new Pathfind();
+//		Path.NewPath(1,2,5,2);
+//		while (!Path.ReachedGoal()) {
+//			Path.PathNextNode();
+//			System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY());
+//		}
+//	}
 
 	private class Node {
 		private int x;
