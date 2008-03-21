@@ -308,7 +308,7 @@ public class ShopList {
 		
 		// gnome village buyer in 0 ados mountain n2 w2)
 		shops.add("buy4gnomes", "leather armor", 25);
-		shops.add("buy4gnomes", "club", 35);
+		shops.add("buy4gnomes", "club", 3);
 		shops.add("buy4gnomes", "leather helmet", 15);
 		shops.add("buy4gnomes", "cloak", 25);
 		shops.add("buy4gnomes", "apple", 5);
@@ -320,19 +320,13 @@ public class ShopList {
 		shops.add("buy4hotdogs", "cheese sausage", 25);
 		shops.add("buy4hotdogs", "bread", 15);
 		shops.add("buy4hotdogs", "onion", 20);
-		shops.add("buy4hotdogs", "tuna", 15);
+		shops.add("buy4hotdogs", "canned tuna", 15);
 		shops.add("buy4hotdogs", "ham", 15);
 		shops.add("buy4hotdogs", "cheese", 5);
-		shops.add("sellhotdogs", "hotdog", 130);
-		shops.add("sellhotdogs", "cheesedog", 140);
-		shops.add("sellhotdogs", "tuna sandwich", 115);
-		shops.add("sellhotdogs", "sandwich", 125);
-		
-		// black sheep meat mant in ados)
-		shops.add("buy4sausage", "vampirette entrails", 50);
-		shops.add("buy4sausage", "bat entrails", 25);
-		shops.add("buy4sausage", "chicken", 25);
-		shops.add("buy4sausage", "mackerel", 15);
+		shops.add("sellhotdogs", "hotdog", 160);
+		shops.add("sellhotdogs", "cheesedog", 180);
+		shops.add("sellhotdogs", "tuna sandwich", 130);
+		shops.add("sellhotdogs", "sandwich", 120);
 		
 	}
 

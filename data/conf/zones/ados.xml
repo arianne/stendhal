@@ -840,6 +840,54 @@ black helmet 10000
    </zone>
    
    <zone name="int_ados_fishermans_hut_south" file="interiors/ados/fishermans_hut_south.tmx">
+   <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepHarryNPC" />
+   <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepJoeNPC" />
+   <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepBobNPC" />
+      <entity x="4" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+To make 1 sausage:
+
+1 meat
+1 bat entrails
+1 vampirette entrails
+
+My fee: 
+
+2 wine (for me and the old lady)
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity> 
+      <entity x="11" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+To make 1 cheese sausage:
+
+1 cheese
+1 chicken
+1 bat entrails
+1 vampirette entrails
+
+My fee:
+
+1 black pearl (for a necklace for my wife)
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity> 
+      <entity x="8" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+To make 1 canned tuna:
+
+1 perch
+1 mackerel
+
+My fee:
+
+2 marbles (for my daughter)
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity> 
     <portal x="8" y="14" ref="entrance_fishermans_hut_south">
      <destination zone="0_ados_city" ref="fishermans_hut_south_entrance"/>
     </portal>

@@ -241,11 +241,10 @@
       <slot name="bag"/>
     </equipable>
   </item>
-
-    <item name="canotuna">
+   <item name="canned tuna">
     <type class="misc" subclass="canotuna" tileid="-1"/>
-    <description>You see a can of tuna. Too bad you have no can opener.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <description>You see tuna in a can. Too bad you don't have a can opener.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -255,5 +254,4 @@
       <slot name="bag"/>
     </equipable>
   </item>
-
 </items>

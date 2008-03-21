@@ -1,0 +1,80 @@
+package games.stendhal.server.maps.ados.fishermans_hut;
+
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * Inside Ados fishermans hut south.
+ */
+public class BlacksheepHarryNPC implements ZoneConfigurator {
+    private ShopList shops = SingletonRepository.getShopList();
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildblacksheepharry(zone);
+	}
+
+	private void buildblacksheepharry(StendhalRPZone zone) {
+		SpeakerNPC blacksheepharry = new SpeakerNPC("Blacksheep Harry") {
+
+			@Override
+			protected void createPath() {
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(5, 2));
+				nodes.add(new Node(10, 2));
+				setPath(new FixedPath(nodes, true));
+
+			}
+
+		@Override
+		protected void createDialog() {
+			addJob("I supply canned tuna for the whole world.");
+			addHelp("I only #make canned tuna. My brothers here make sausage and cheese sausage.");
+			addOffer("Just give me some mackerel, I will #make you some canned tuna.");
+			addQuest("I don't really think I should ask for help right now.");
+			addGoodbye("Good bye. Tell all your friends about us.");
+
+			// Blacksheep Harry makes you some tuna if you bring him a mackerel and a perch
+			// (uses sorted TreeMap instead of HashMap)
+			Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+			requiredResources.put("mackerel", Integer.valueOf(1));
+			requiredResources.put("perch", Integer.valueOf(1));
+			requiredResources.put("marbles", Integer.valueOf(2));
+
+			ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepharry_make_tuna", "make", "canned tuna",
+			        requiredResources, 2 * 60);
+
+			new ProducerAdder().addProducer(this, behaviour,
+			        "Welcome to Blacksheep Meat Market. Can I #make you some canned tuna?");
+		}
+	};
+
+	blacksheepharry.setEntityClass("blacksheepnpc");
+	blacksheepharry.setDirection(Direction.DOWN);
+	blacksheepharry.setPosition(5, 2);
+	blacksheepharry.initHP(100);
+	zone.add(blacksheepharry);
+		
+	}
+}

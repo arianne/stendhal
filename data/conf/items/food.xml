@@ -726,10 +726,10 @@
     <type class="food" subclass="tuna_sandwich" tileid="-1"/>
     <description>You see what looks like tuna sandwich.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="110"/>
+      <amount value="130"/>
       <frequency value="20"/>
       <quantity value="1"/>
-      <regen value="11"/>
+      <regen value="13"/>
     </attributes>
     <weight value="1.0"/>
     <value value="8"/>
@@ -761,7 +761,7 @@
     <type class="food" subclass="cheesesausage" tileid="-1"/>
     <description>You see what looks like a tasty cheese sausage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="70"/>
+      <amount value="90"/>
       <frequency value="20"/>
       <quantity value="1"/>
       <regen value="10"/>
@@ -795,10 +795,10 @@
     <type class="food" subclass="cheesesausage_on_bun" tileid="-1"/>
     <description>You see what looks like a tasty cheesey hotdog on a bun.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="170"/>
+      <amount value="180"/>
       <frequency value="20"/>
       <quantity value="1"/>
-      <regen value="17"/>
+      <regen value="18"/>
     </attributes>
     <weight value="1.0"/>
     <value value="8"/>
