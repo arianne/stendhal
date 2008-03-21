@@ -14,8 +14,6 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.wt.Character;
-import games.stendhal.client.soundreview.SoundMaster;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
 import marauroa.common.io.Persistence;
+
+import org.apache.log4j.Logger;
 
 /**
  * This manager keeps track of all the windows and their positions/ minimized
@@ -187,23 +186,6 @@ public class WtWindowManager {
 	/** the panels minimized state changed, update the internal representation. */
 	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
-
-		if (config.minimized != state) {
-			if (!state) {
-				if (config.name.equals("bag")) {
-					SoundMaster.play("click-8.wav");
-				} else if ((panel instanceof Character)) {
-					SoundMaster.play("click-6.wav");
-				} else if (config.name.equals("settings")
-						|| config.name.equals("minimap")) {
-					SoundMaster.play("click-4.wav");
-				} else if (config.name.equals("chest")) {
-					SoundMaster.play("click-5.wav");
-				}
-			} else {
-				SoundMaster.play("click-10.wav");
-			}
-		}
 
 		config.minimized = state;
 	}

@@ -17,6 +17,8 @@
 package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.gui.wt.Character;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
@@ -1047,7 +1049,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// check if the minimize button has been clicked
 		if (titleBar && minimizeable && hitMinimizeButton(p.x, p.y)) {
 			// change minimized state
-			setMinimized(!isMinimized());
+			boolean state = !isMinimized();
+			
+			setMinimized(state);
+			clickSound(state);
+
 			return true;
 		}
 
@@ -1078,9 +1084,27 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				return panel.onMouseClick(point);
 			}
 		}
+
 		// click not processed
 		return false;
 	}
+
+	private void clickSound(boolean state) {
+	    if (state) {
+	    	if (name.equals("bag")) {
+	    		SoundMaster.play("click-8.wav");
+	    	} else if (this instanceof Character) {
+	    		SoundMaster.play("click-6.wav");
+	    	} else if (name.equals("settings")
+	    			|| name.equals("minimap")) {
+	    		SoundMaster.play("click-4.wav");
+	    	} else if (name.equals("chest")) {
+	    		SoundMaster.play("click-5.wav");
+	    	}
+	    } else {
+	    	SoundMaster.play("click-10.wav");
+	    }
+    }
 
 	/** callback for a doubleclick. */
 	public synchronized boolean onMouseDoubleClick(Point p) {
