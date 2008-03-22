@@ -1,4 +1,4 @@
-# @Version 26
+# @Version 27
 #
 # Word list for the Stendhal conversation parser
 #
@@ -614,7 +614,7 @@ rug	OBJ	rugs
 sack	OBJ-AMO	sacks
 safety	OBJ	safeties
 salad	OBJ	salads
-sandwich	OBJ	sandwiches
+sandwich	OBJ-FOO	sandwiches
 sapphire	OBJ	sapphires
 scale	OBJ	scales
 scarlet	OBJ	scarlets
@@ -703,6 +703,7 @@ trouser	OBJ	trousers
 trout	OBJ-ANI	trouts
 trunk	OBJ	trunks
 trust	OBJ	trusts
+tuna	OBJ-FOO	tunas
 tunnel	OBJ	tunnels
 ugmash	OBJ	ugmashes
 url	OBJ	urls
@@ -996,6 +997,7 @@ bloody	ADJ
 blue	ADJ-COL
 broken	ADJ
 brown	ADJ-COL
+canned	ADJ
 central	ADJ
 closed	ADJ
 complete	ADJ
