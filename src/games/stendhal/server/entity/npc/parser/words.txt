@@ -1,4 +1,4 @@
-# @Version 27
+# @Version 28
 #
 # Word list for the Stendhal conversation parser
 #
@@ -645,6 +645,7 @@ silver	OBJ	silvers
 skull	OBJ	skulls
 snow	OBJ	snows
 snowball	OBJ	snowballs
+snowglobe   OBJ snowglobes
 sodium	OBJ	sodia
 something	OBJ	somethings
 soul	OBJ	souls

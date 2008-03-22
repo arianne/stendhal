@@ -324,9 +324,14 @@ public class ShopList {
 		shops.add("buy4hotdogs", "ham", 15);
 		shops.add("buy4hotdogs", "cheese", 5);
 		shops.add("sellhotdogs", "hotdog", 160);
-		shops.add("sellhotdogs", "cheesedog", 180);
+		shops.add("sellhotdogs", "cheeseydog", 180);
 		shops.add("sellhotdogs", "tuna sandwich", 130);
 		shops.add("sellhotdogs", "sandwich", 120);
+		shops.add("sellhotdogs", "vanilla shake", 110);
+		shops.add("sellhotdogs", "chocolate shake", 110);
+		shops.add("sellhotdogs", "chocolate bar", 100);
+		shops.add("sellhotdogs", "snowglobe", 200);
+		
 		
 	}
 

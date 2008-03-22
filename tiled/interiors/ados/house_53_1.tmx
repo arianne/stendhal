@@ -64,7 +64,7 @@
   <image source="../../tileset/item/furniture/light/weird_lamp.png"/>
  </tileset>
  <tileset name="nymph" firstgid="187" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/superhuman_nymph.png"/>
+  <image source="../../tileset/item/statue/nymph_aqua.png"/>
  </tileset>
  <tileset name="banner" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/superhumans_wall_hanging.png"/>

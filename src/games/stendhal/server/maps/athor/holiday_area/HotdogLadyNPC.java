@@ -56,7 +56,7 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buy4hotdogs")), false);
 				addOffer("Lookit the blackboards ta see my offers.");
 				addQuest("Why you can't do nuthin special fer little ole me. But thank y'all fer askin.");
-				addGoodbye("Thanks so much fer stoppin by. Come on back next time yer on vacation.");
+				addGoodbye("You want fries with that?");
 			}
 		};
 
