@@ -335,6 +335,7 @@
      		<parameter name="species">surgeonfish</parameter>
     		</implementation>
   		</entity>
+<!-- 
    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
       <entity x="34" y="65">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -342,7 +343,7 @@
 Things I need to buy:
 
 ham 15
-tuna 15
+tuna 20
 bread 15
 onion 20
 cheese 5
@@ -357,13 +358,15 @@ cheese sausage 25
      <attribute name="text">
 Things you can buy:
 
-hotdog 130
-sandwich 125
-tuna sandwich 115
-cheesey hotdog 140
+hotdog 160
+sandwich 120
+cheeseydog 180
+tuna sandwich 130
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
+ -->    
+    
      </zone>
      
      <zone name="int_athor_holiday_apartment_1" file="interiors/athor/holiday_apartment_1.tmx">
