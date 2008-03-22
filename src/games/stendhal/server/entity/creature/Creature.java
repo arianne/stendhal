@@ -34,7 +34,6 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.slot.EntitySlot;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -414,8 +413,8 @@ public class Creature extends NPC {
 
 		// where are we?
 		Rectangle2D entityArea = getArea(getX(), getY());
-		int x = (int) entityArea.getCenterX();
-		int y = (int) entityArea.getCenterY();
+		double centerX = entityArea.getCenterX();
+		double centerY =  entityArea.getCenterY();
 
 		// calculate the distance of all possible enemies
 		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
@@ -427,16 +426,24 @@ public class Creature extends NPC {
 			if (enemy.isInvisible()) {
 				continue;
 			}
+			assert (enemy.getZone() == getZone());
+			
+			Rectangle2D rect = enemy.getArea();
+				double fx = rect.getCenterX();
+				double fy = rect.getCenterY();
 
-			if (enemy.getZone() == getZone()) {
-				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(),
-						enemy.getY());
-				int fx = (int) rect.getCenterX();
-				int fy = (int) rect.getCenterY();
+			double xdistance = Math.abs(fx - centerX) - (getWidth() + enemy.getWidth()) / 2;
+			double ydistance = Math.abs(fy - centerY) - (getHeight() + enemy.getHeight()) / 2;
+			if (xdistance < 0) {
+				xdistance = 0;
+			}
+			if (ydistance < 0) {
+				ydistance = 0;
+			}
 
-				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)) {
-					distances.put(enemy, squaredDistance(enemy));
-				}
+			Double squareddistance = xdistance * xdistance + ydistance * ydistance;
+			if (squareddistance <= (range * range)) {
+				distances.put(enemy, squareddistance);
 			}
 		}
 
@@ -452,22 +459,9 @@ public class Creature extends NPC {
 				}
 			}
 
-			// calculate the destArea
-			Rectangle2D targetArea = chosen.getArea(chosen.getX(),
-					chosen.getY());
-			Rectangle destArea = new Rectangle(
-					(int) (targetArea.getX() - entityArea.getWidth()),
-					(int) (targetArea.getY() - entityArea.getHeight()),
-					(int) (entityArea.getWidth() + targetArea.getWidth() + 1),
-					(int) (entityArea.getHeight() + targetArea.getHeight() + 1));
-
-			// for 1x2 size creatures the destArea, needs bo be one up
-			destArea.translate(0, (int) (this.getY() - entityArea.getY()));
-
 			// is there a path to this enemy?
 			// List<Path.Node> path = Path.searchPath(this, chosen, 20.0);
-			List<Node> path = Path.searchPath(this, getX(), getY(), destArea,
-					20.0);
+			List<Node> path = Path.searchPath(this, chosen, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
 				chosen = null;
