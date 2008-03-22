@@ -69,28 +69,28 @@ public class DirectionTest {
 		assertEquals(Direction.DOWN, Direction.RIGHT.nextDirection());
 	}
 
-	@Test (timeout = 10000 )
+	@Test(timeout = 10000)
 	public final void testRand() {
-		
+
 		BitSet gotcha = new BitSet(5);
 		gotcha.set(0);
-		assertThat(gotcha.cardinality(),is(1));
+		assertThat(gotcha.cardinality(), is(1));
 		gotcha.set(2);
-		assertThat(gotcha.cardinality(),is(2));
+		assertThat(gotcha.cardinality(), is(2));
 		gotcha.set(1);
-		assertThat(gotcha.cardinality(),is(3));
+		assertThat(gotcha.cardinality(), is(3));
 		gotcha.set(3);
-		assertThat(gotcha.cardinality(),is(4));
+		assertThat(gotcha.cardinality(), is(4));
 		gotcha.set(4);
-		assertThat(gotcha.cardinality(),is(5));
-		
+		assertThat(gotcha.cardinality(), is(5));
+
 		gotcha = new BitSet(5);
 		int val;
-		while(gotcha.cardinality()<4){
+		while (gotcha.cardinality() < 4) {
 			val = Direction.rand().get();
-			gotcha.set(val);	
+			gotcha.set(val);
 		}
-		
+
 		assertFalse(gotcha.get(0));
 	}
 	
