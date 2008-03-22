@@ -321,6 +321,7 @@ char	OBJ	chars
 character	OBJ	characters
 charm	OBJ	charms
 cheese	OBJ-FOO	cheeses
+cheeseydog  OBJ-FOO cheeseydogs
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
 chicken	OBJ-ANI	chickens
@@ -563,6 +564,7 @@ paper	OBJ	papers
 park	OBJ	parks
 patch	OBJ	patches
 path	OBJ	paths
+pearl   OBJ
 perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
@@ -631,6 +633,7 @@ semos	OBJ	semos
 sense	OBJ	senses
 server	OBJ	servers
 shadow	OBJ	shadows
+shake   OBJ-FOO shakes
 sheaf	OBJ-AMO	sheaves
 sheep	OBJ-ANI	sheep
 sheet	OBJ	sheets
@@ -703,7 +706,11 @@ trouser	OBJ	trousers
 trout	OBJ-ANI	trouts
 trunk	OBJ	trunks
 trust	OBJ	trusts
+<<<<<<< words.txt
+tuna	OBJ tunas
+=======
 tuna	OBJ-FOO	tunas
+>>>>>>> 1.51
 tunnel	OBJ	tunnels
 ugmash	OBJ	ugmashes
 url	OBJ	urls
@@ -999,6 +1006,7 @@ broken	ADJ
 brown	ADJ-COL
 canned	ADJ
 central	ADJ
+chocolate  ADJ
 closed	ADJ
 complete	ADJ
 composite	ADJ
@@ -1133,6 +1141,7 @@ ugly	ADJ
 unfair	ADJ
 unsealed	ADJ
 unused	ADJ
+vanilla  ADJ
 violet	ADJ-COL
 weekly	ADJ
 weird	ADJ
