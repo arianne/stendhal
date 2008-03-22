@@ -706,11 +706,7 @@ trouser	OBJ	trousers
 trout	OBJ-ANI	trouts
 trunk	OBJ	trunks
 trust	OBJ	trusts
-<<<<<<< words.txt
-tuna	OBJ tunas
-=======
 tuna	OBJ-FOO	tunas
->>>>>>> 1.51
 tunnel	OBJ	tunnels
 ugmash	OBJ	ugmashes
 url	OBJ	urls
