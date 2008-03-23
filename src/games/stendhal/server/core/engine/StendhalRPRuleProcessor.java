@@ -381,20 +381,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public synchronized void endTurn() {
 		int currentTurn = getTurn();
-		long globalStart = System.currentTimeMillis();
 		try {
-			StringBuilder sb = new StringBuilder();
 			for (IRPZone zoneI : SingletonRepository.getRPWorld()) {
-				long start = System.currentTimeMillis();
 				StendhalRPZone zone = (StendhalRPZone) zoneI;
 				zone.logic();
-				long end = System.currentTimeMillis();
-				if (end - start > 30) {
-					sb.append(" " + zone.getID().getID() + "=" + (end - start));
-				}
-			}
-			if (System.currentTimeMillis() - globalStart > 100) {
-				logger.warn("Spent time in npc.logic: " + sb.toString());
 			}
 
 			// run registered object's logic method for this turn
