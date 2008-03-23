@@ -23,8 +23,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
+
+import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings. */
 
@@ -172,7 +173,9 @@ public class StaticGameLayers {
 	public boolean collides(Rectangle2D shape) {
 		validate();
 
-		if (collision != null && !User.get().isGhostMode()) {
+		User user = User.get();
+
+		if (collision != null && (user==null || !User.get().isGhostMode())) {
 			return collision.collides(shape);
 		}
 
