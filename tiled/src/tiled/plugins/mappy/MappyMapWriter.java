@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Stack;
 
 import tiled.core.Map;
+import tiled.core.MapLayer;
 import tiled.core.TileSet;
 import tiled.io.MapWriter;
 
@@ -105,7 +106,7 @@ public class MappyMapWriter implements MapWriter, FileFilter {
 		return false;
 	}
 
-	public void setErrorStack(Stack es) {
+	public void setErrorStack(Stack<String> es) {
 		// TODO: implement setErrorStack
 	}
 
@@ -152,7 +153,7 @@ public class MappyMapWriter implements MapWriter, FileFilter {
 	// chunks.add(c);
 	// }
 
-	private LinkedList findAllBlocks(Map m) {
+	private LinkedList<MapLayer> findAllBlocks(Map m) {
 		// TODO: this
 		return null;
 	}
