@@ -547,7 +547,6 @@
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/tools/MapConverter.java"/>
-<!--			<include name="../tiled/src/tiled/view/old/*.java"/> -->
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -558,7 +557,6 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_tiled}"/>
-				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</javac>
 
@@ -566,7 +564,6 @@
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${build_tiled}"/>
-				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</taskdef>
 
@@ -592,7 +589,6 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_tiled}"/>
-				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</javac>
 
@@ -600,7 +596,6 @@
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${build_tiled}"/>
-				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</taskdef>
 
