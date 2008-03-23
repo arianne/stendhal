@@ -42,8 +42,7 @@ public class Text {
 	}
 
 	public void draw(final IGameScreen screen) {
-		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y
-				- screen.getScreenViewY());
+		screen.drawInScreen(sprite, x - screen.getScreenViewPos().x, y - screen.getScreenViewPos().y);
 
 		if (System.currentTimeMillis() >= removeTime) {
 			screen.removeText(this);

@@ -20,13 +20,10 @@ public class MainFrame {
 	}
 
 	 private void initialize() {
-
-
-		 setTitle();
-		setIcon();
-		setDefaultCloseBehaviour();
-		setLayout();
-
+        setTitle();
+        setIcon();
+        setDefaultCloseBehaviour();
+        setLayout();
 	}
 
 	private void setLayout() {

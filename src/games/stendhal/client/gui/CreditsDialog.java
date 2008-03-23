@@ -89,8 +89,7 @@ public class CreditsDialog extends JDialog {
 		// unreadable if inlined
 		List<String> creditsList = readCredits();
 		String[] credits = creditsList.toArray(new String[creditsList.size()]);
-		sp = new ScrollerPanel(credits, textFont, 0, textColor,
-				backgroundColor, 20);
+		sp = new ScrollerPanel(credits, textFont, 0, textColor, backgroundColor, 20);
 
 		buttonPane.setOpaque(false);
 		buttonPane.add(closeButton);
