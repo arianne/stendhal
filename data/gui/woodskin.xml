@@ -1,0 +1,109 @@
+<synth>
+
+  <!-- Synth look and feel configuration for the Wood GUI style -->
+
+<!--  <object id="woodstylepainter" class="games.stendhal.client.gui.laf.WoodStylePainter"/> -->
+
+  <style id="defaultStyle">
+    <!-- Make all the regions opaque-->
+    <opaque value="true"/>
+
+    <font name="Dialog" size="12"/>
+
+    <state>
+      <!-- Provide default colors -->
+<!--  <color value="#998032" type="BACKGROUND"/> -->
+      <color value="black" type="FOREGROUND"/>
+    </state>
+  </style>
+
+  <bind style="defaultStyle" type="REGION" key=".*"/>
+
+
+  <style id="buttonStyle">
+    <!-- Shift the text one pixel when pressed -->
+    <property key="Button.textShiftOffset" type="integer" value="1"/>
+
+    <insets top="0" left="0" right="0" bottom="0"/>
+
+    <state>
+      <imagePainter method="ButtonBackground" path="panelwood003.jpg" sourceInsets="0 0 0 0" stretch="false"/>
+<!--  <imagePainter method="ButtonBorder" path="panelwood003.jpg" sourceInsets="0 0 0 0" stretch="false"/> -->
+    </state>
+
+    <state value="PRESSED">
+      <imagePainter method="ButtonBackground" path="panelwood003.jpg" sourceInsets="2 2 2 2" stretch="false"/>
+
+<!-- <imagePainter method="ButtonBorder" path="panelwood003.jpg" sourceInsets="2 2 2 2" stretch="false"/>
+      <imagePainter method="ButtonBackground" path="panelwood003.jpg" sourceInsets="2 2 2 2" stretch="false"/>
+      <imagePainter method="ToggleButtonBackground" path="panelwood003.jpg" sourceInsets="2 2 2 2" stretch="false"/> -->
+    </state>
+  </style>
+
+  <!-- Bind buttonStyle to all buttons -->
+  <bind style="buttonStyle" type="REGION" key=".*button"/> 
+
+
+  <style id="InternalFrame">
+	<state>
+	  <imagePainter method="InternalFrameTitlePaneBackground" path="panelwood006.jpg" sourceInsets="0 0 0 0" stretch="false"/>
+<!--  <painter method="InternalFrameTitlePaneBackground" idref="woodstylepainter"/> -->
+	 </state>
+  </style>
+
+  <bind style="InternalFrame" type="name" key="InternalFrame.*"/>
+
+<!--
+  <style id="InternalFrameTitlePane.closeButton">
+	<state>
+	  <imageIcon id="icon-InternalFrameTitlePane.closeButton-icon-ENABLED"
+	               path="icon-InternalFrameTitlePane.closeButton-icon-ENABLED.png"/>
+	  <property key="Button.icon"
+	              value="icon-InternalFrameTitlePane.closeButton-icon-ENABLED"/>
+	 </state>
+
+	 <state value="MOUSE_OVER">
+	   <imageIcon id="icon-InternalFrameTitlePane.closeButton-icon-MOUSE_OVER"
+	               path="icon-InternalFrameTitlePane.closeButton-icon-MOUSE_OVER.png"/>
+
+	   <property key="Button.icon"
+	              value="icon-InternalFrameTitlePane.closeButton-icon-MOUSE_OVER"/>
+	</state>
+  </style>
+
+  <bind style="InternalFrameTitlePane.closeButton" type="name" key="InternalFrameTitlePane.closeButton"/>
+-->
+
+
+  <style id="panelStyle">
+    <state>
+      <color value="#998032" type="BACKGROUND"/>
+      <color value="white" type="FOREGROUND"/>
+
+	  <imagePainter path="panelwood003.jpg" sourceInsets="0 0 0 0" stretch="false"/>
+<!--  <painter idref="woodstylepainter"/> -->
+    </state>
+  </style>
+
+  <bind style="panelStyle" type="REGION" key="Panel"/>
+
+
+  <style id="textfieldStyle">
+    <insets top="2" left="2" bottom="2" right="2"/>
+    
+    <state>
+      <color value="white" type="BACKGROUND"/>
+    </state>
+
+<!--<imagePainter method="TextFieldBorder" path="panelwood003.jpg" sourceInsets="2 2 2 2"/> -->
+<!--
+	<painter method="textFieldBorder" idref="x"/>
+    <object class="CustomGraphicsUtils" id="graphics"/>
+  <graphicsUtils idref="graphics"/>
+-->
+
+  </style>
+
+  <bind style="textfieldStyle" type="REGION" key="TextField"/>
+
+</synth>
