@@ -23,7 +23,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Stack;
@@ -165,19 +164,17 @@ public class MappyMapReader implements MapReader, FileFilter {
 		return false;
 	}
 
-	public void setErrorStack(Stack es) {
+	public void setErrorStack(Stack<String> es) {
 		// TODO: implement setErrorStack
 	}
 
 	private Chunk findChunk(String header) {
-		Iterator itr = chunks.iterator();
-
-		while (itr.hasNext()) {
-			Chunk c = (Chunk) itr.next();
+		for(Chunk c : chunks) {
 			if (c.equals(header)) {
 				return c;
 			}
 		}
+
 		return null;
 	}
 

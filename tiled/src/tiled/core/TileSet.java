@@ -119,7 +119,7 @@ public class TileSet implements Iterable<Tile> {
 			tilebmpFile = imgFilename;
 		}
 
-		importTileBitmap(ImageIO.read(imgFile.toURL()), tileWidth, tileHeight, spacing, createTiles);
+		importTileBitmap(ImageIO.read(imgFile.toURI().toURL()), tileWidth, tileHeight, spacing, createTiles);
 	}
 
 	/**
@@ -670,9 +670,7 @@ public class TileSet implements Iterable<Tile> {
 		String hash = checksumImage(image);
 		image = imageCache.get(hash);
 		if (image != null) {
-			Iterator itr = images.keySet().iterator();
-			while (itr.hasNext()) {
-				Object key = itr.next();
+			for(String key : images.keySet()) {
 				Image[] imgs = images.get(key);
 				if (imgs[0] == image) {
 					return key;

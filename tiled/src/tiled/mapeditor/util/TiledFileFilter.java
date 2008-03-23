@@ -80,9 +80,7 @@ public class TiledFileFilter extends FileFilter {
 
 			String fileName = f.getAbsolutePath().toLowerCase();
 
-			Iterator itr = exts.iterator();
-			while (itr.hasNext()) {
-				String ext = (String) itr.next();
+			for(String ext : exts) {
 				if (fileName.endsWith(ext)) {
 					return true;
 				}

@@ -17,8 +17,7 @@
 
 package tiled.mapeditor.undo;
 
-import java.util.Iterator;
-
+import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
 
@@ -48,11 +47,9 @@ public class UndoStack extends UndoManager {
 
 	public String[] getEdits() {
 		String[] list = new String[edits.size()];
-		Iterator itr = edits.iterator();
 		int i = 0;
 
-		while (itr.hasNext()) {
-			UndoableEdit e = (UndoableEdit) itr.next();
+		for(UndoableEdit e : edits) {
 			list[i++] = e.getPresentationName();
 		}
 

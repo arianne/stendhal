@@ -17,7 +17,6 @@
 
 package tiled.mapeditor.util;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -32,6 +31,7 @@ public class TilesetTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 9164983301574753663L;
 
 	private Map map;
+
 	// private String[] columnNames = { "Tileset name", "Usage count" };
 	private String[] columnNames = { "Tileset name" };
 
@@ -97,15 +97,9 @@ public class TilesetTableModel extends AbstractTableModel {
 
 	private int checkSetUsage(TileSet s) {
 		int used = 0;
-		Iterator tileIterator = s.iterator();
 
-		while (tileIterator.hasNext()) {
-			Tile tile = (Tile) tileIterator.next();
-			Iterator itr = map.iterator();
-
-			while (itr.hasNext()) {
-				MapLayer ml = (MapLayer) itr.next();
-
+		for(Tile tile : s) {
+			for(MapLayer ml : map) {
 				if (ml instanceof TileLayer) {
 					if (((TileLayer) ml).isUsed(tile)) {
 						used++;
