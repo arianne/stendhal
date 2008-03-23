@@ -21,14 +21,14 @@ import java.util.Stack;
 import tiled.core.Map;
 import tiled.core.TileSet;
 import tiled.io.MapReader;
-import tiled.io.PluginLogger;
 
 /**
  * experimental reader for *.stend files.
  */
+@Deprecated
 public class StendhalMapReader implements MapReader {
 
-	private PluginLogger pluginLogger;
+//	private PluginLogger pluginLogger;
 
 	/**
 	 * Method readMap.
@@ -81,7 +81,7 @@ public class StendhalMapReader implements MapReader {
 				return true;
 			}
 		} catch (IOException e) {
-			pluginLogger.error(e);
+//			pluginLogger.error(e);
 		}
 		return false;
 	}
@@ -111,11 +111,11 @@ public class StendhalMapReader implements MapReader {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack< ? > es) {
+	public void setErrorStack(Stack<String> es) {
 		// not implemented
 	}
 
-	public void setLogger(PluginLogger pluginLogger) {
-		this.pluginLogger = pluginLogger;
-	}
+//	public void setLogger(PluginLogger pluginLogger) {
+//		this.pluginLogger = pluginLogger;
+//	}
 }

@@ -34,7 +34,8 @@ import tiled.core.MapLayer;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
-import tiled.io.xml.XMLMapTransformer;
+import tiled.plugins.tiled.XMLMapTransformer;
+import tiled.plugins.tiled.XMLMapWriter;
 
 /**
  * Fix maps by loading and saving thems.
@@ -52,9 +53,7 @@ public class MapUpdater extends Task {
 		for (Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
 			Tile tile = (Tile) tiles.next();
 
-			for (Iterator< ? > layers = map.getLayers(); layers.hasNext();) {
-				MapLayer layer = (MapLayer) layers.next();
-
+			for (MapLayer layer : map.getLayerList()) {
 				if ((layer instanceof TileLayer) && (((TileLayer) layer).isUsed(tile))) {
 					return true;
 				}
@@ -81,7 +80,7 @@ public class MapUpdater extends Task {
 		String filename = file.getAbsolutePath();
 		Map map = new XMLMapTransformer().readMap(filename);
 		removeUnusedTilesets(map);
-		new tiled.io.xml.XMLMapWriter().writeMap(map, filename);
+		new XMLMapWriter().writeMap(map, filename);
 	}
 
 	/**

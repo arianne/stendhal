@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Properties;
 import java.util.Stack;
 
@@ -28,7 +27,6 @@ import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
 import tiled.io.MapWriter;
-import tiled.io.PluginLogger;
 
 /**
  * Writer Plugin for tiled. Saves maps as *.stend files. This plugin ignores the
@@ -37,10 +35,9 @@ import tiled.io.PluginLogger;
 @Deprecated
 public class StendhalMapWriter implements MapWriter {
 
-	private PluginLogger pluginLogger;
+//	private PluginLogger pluginLogger;
 
 	/**
-	 * 
 	 *
 	 * @param map
 	 * @param filename
@@ -90,7 +87,7 @@ public class StendhalMapWriter implements MapWriter {
 		}
 
 		boolean firstTime = true;
-		for (MapLayer layer : (List<MapLayer>) map.getLayerVector()) {
+		for (MapLayer layer : map.getLayerList()) {
 			if (firstTime) {
 				firstTime = false;
 				writer.println("  <size width=\"" + layer.getWidth() + "\" height=\"" + layer.getHeight() + "\"/>");
@@ -160,7 +157,7 @@ public class StendhalMapWriter implements MapWriter {
 				return true;
 			}
 		} catch (IOException e) {
-			pluginLogger.error(e);
+//			pluginLogger.error(e);
 		}
 		return false;
 	}
@@ -186,7 +183,7 @@ public class StendhalMapWriter implements MapWriter {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack < ? > es) {
+	public void setErrorStack(Stack<String> es) {
 		// not implemented
 	}
 
@@ -194,8 +191,8 @@ public class StendhalMapWriter implements MapWriter {
 		return null;
 	}
 
-	public void setLogger(PluginLogger pluginLogger) {
-		this.pluginLogger = pluginLogger;
-	}
+//	public void setLogger(PluginLogger pluginLogger) {
+//		this.pluginLogger = pluginLogger;
+//	}
 
 }

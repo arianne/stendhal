@@ -35,8 +35,8 @@ import org.apache.tools.ant.types.FileSet;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.io.xml.XMLMapTransformer;
-import tiled.view.MapView;
+import tiled.plugins.tiled.XMLMapTransformer;
+import tiled.view.old.MapView;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend This class can be started
@@ -63,7 +63,7 @@ public class MapConverter extends Task {
 	private void saveImageMap(Map map, String tmxFile) {
 		File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
-		for (MapLayer layer : (List<MapLayer>) map.getLayerVector()) {
+		for (MapLayer layer : map.getLayerList()) {
 			if (layer.getName().equals("navigation")
 					|| layer.getName().equals("collision")
 					|| layer.getName().equals("objects")
@@ -88,6 +88,7 @@ public class MapConverter extends Task {
 		String area = file.getParentFile().getName();
 		String level;
 		String fileContainer = file.getParentFile().getParent();
+
 		if (fileContainer.contains("Level ")) {
 			level = fileContainer.split("Level ")[1];
 		} else {
