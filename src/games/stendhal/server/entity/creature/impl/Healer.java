@@ -14,7 +14,7 @@ class Healer extends Healingbehaviour {
 	}
 
 	@Override
-	void heal(Creature creature) {
+	public void heal(Creature creature) {
 		creature.healSelf(amount, frequency);
 	}
 

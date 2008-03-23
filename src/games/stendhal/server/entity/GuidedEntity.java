@@ -85,18 +85,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 	}
 
-	public final void setTempPath(final FixedPath path) {
-		if ((path != null) && !path.isFinished()) {
-			setSpeed(getBaseSpeed());
-			guide.path = path;
-			guide.pathPosition = 0;
-			guide.followPath(this);
-		} else {
-			guide.clearPath();
-		}
-
-	}
-
 	/**
 	 * Clear the entity's path.
 	 */

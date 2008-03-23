@@ -22,10 +22,14 @@ import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.impl.AttackStrategy;
+import games.stendhal.server.entity.creature.impl.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.Attacker;
-import games.stendhal.server.entity.creature.impl.CreatureLogic;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
+import games.stendhal.server.entity.creature.impl.Healingbehaviour;
+import games.stendhal.server.entity.creature.impl.IdleBehaviourFactory;
+import games.stendhal.server.entity.creature.impl.Idlebehaviour;
 import games.stendhal.server.entity.creature.impl.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -63,6 +67,13 @@ import org.apache.log4j.Logger;
  */
 public class Creature extends NPC {
 
+
+	public Healingbehaviour healer = Healingbehaviour.get(null);
+
+	public AttackStrategy strategy;
+
+
+	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Creature.class);
 
@@ -94,8 +105,20 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	Attacker poisoner; 
-	private CreatureLogic creatureLogic;
+	private Attacker poisoner; 
+	private Idlebehaviour idler; 
+	
+	private int targetX;
+
+	private int targetY;
+	
+	private int attackTurn = Rand.rand(5);
+
+	private boolean isIdle; 
+
+	public int getAttackTurn() {
+		return attackTurn;
+	}
 
 	public static void generateRPClass() {
 		try {
@@ -111,7 +134,6 @@ public class Creature extends NPC {
 
 	public Creature(RPObject object) {
 		super(object);
-		creatureLogic = new CreatureLogic(this);
 
 		setRPClass("creature");
 		put("type", "creature");
@@ -119,8 +141,6 @@ public class Creature extends NPC {
 		if (object.has("title_type")) {
 			put("title_type", object.get("title_type"));
 		}
-		creatureLogic.createPath();
-
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
@@ -178,13 +198,9 @@ public class Creature extends NPC {
 	 */
 	public Creature() {
 		super();
-		creatureLogic = new CreatureLogic(this);
 		setRPClass("creature");
 		put("type", "creature");
 		put("title_type", "enemy");
-
-		creatureLogic.createPath();
-
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
@@ -279,8 +295,10 @@ public class Creature extends NPC {
 
 	private void setAiProfiles(Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
-		creatureLogic.setHealer(aiProfiles.get("heal"));
+		setHealer(aiProfiles.get("heal"));
+		setAttackStrategy(aiProfiles);
 		poisoner = PoisonerFactory.get(aiProfiles.get("poisonous"));
+		idler = IdleBehaviourFactory.get(aiProfiles);
 		
 	}
 
@@ -514,7 +532,7 @@ public class Creature extends NPC {
 	/** need to recalculate the ai when we stop the attack. */
 	@Override
 	public void stopAttack() {
-		creatureLogic.resetAIState();
+	
 		super.stopAttack();
 	}
 
@@ -598,7 +616,8 @@ public class Creature extends NPC {
 			// TODO: make the max distance configurable via creatures.xml.
 			return squaredDistance(target) <= 7 * 7;
 		}
-		return super.canDoRangeAttack(target);
+		return false;
+		//  return super.canDoRangeAttack(target);
 	}
 
 	/**
@@ -621,7 +640,32 @@ public class Creature extends NPC {
 
 	@Override
 	public void logic() {
-		creatureLogic.logic();
+		healer.heal(this);
+		if (!this.getZone().getPlayerAndFriends().isEmpty()) {
+		
+			if (strategy.hasValidTarget(this)) {
+				strategy.getBetterAttackPosition(this);
+				this.applyMovement();
+				if (strategy.canAttackNow(this)) {
+					
+					strategy.attack(this);
+				}
+		
+			} else {
+				this.stopAttack();
+				strategy.findNewTarget(this);
+				if (strategy.hasValidTarget(this)) {
+					this.setBusy();
+				} else {
+					this.setIdle();
+				}
+			}
+			// with a probability of 1 %, a random noise is made.
+			if (Rand.roll1D100() == 1) {
+				this.makeNoise();
+			}
+		}
+		this.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -636,6 +680,42 @@ public class Creature extends NPC {
 			int pos = Rand.rand(noises.size());
 			say(noises.get(pos));
 		}
+	}
+
+	public boolean hasTargetMoved() {
+		if (targetX == getAttackTarget().getX() && targetY == getAttackTarget().getY()){
+			targetX = getAttackTarget().getX();
+			targetY = getAttackTarget().getY();
+				
+			return false;
+		}
+		return true;
+	}
+
+	public void setIdle() {
+		if (!isIdle){
+			isIdle = true;
+			clearPath();
+			stopAttack();
+			stop();
+		} else {
+			idler.perform(this);
+			
+		}
+	
+	}
+
+	public void setBusy() {
+		isIdle = false;
+	}
+
+	public void setAttackStrategy(Map<String, String> aiProfiles) {
+		strategy= AttackStrategyFactory.get(aiProfiles);
+		
+	}
+
+	public void setHealer(String aiprofile) {
+		healer = Healingbehaviour.get(aiprofile);
 	}
 
 }

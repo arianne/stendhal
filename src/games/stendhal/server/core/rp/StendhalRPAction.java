@@ -57,57 +57,6 @@ public class StendhalRPAction {
 	}
 
 	/**
-	 * Chooses randomly if the attacker has hit the defender, or if he missed
-	 * him. Note that, even if this method returns true, the damage done might
-	 * be 0 (if the defender blocks the attack).
-	 * 
-	 * @param attacker
-	 *            The attacking RPEntity.
-	 * @param defender
-	 *            The attacked RPEntity.
-	 * @return true if the attacker has hit the defender (the defender may still
-	 *         block this); false if the attacker has missed the defender.
-	 */
-	public static boolean riskToHit(RPEntity attacker, RPEntity defender) {
-		boolean result = false;
-
-		int roll = Rand.roll1D20();
-		int risk = 2 * attacker.getATK() - defender.getDEF() + roll - 10;
-
-		/*
-		 * Apply some karma
-		 */
-		double karma = attacker.useKarma(0.3) - defender.useKarma(0.3);
-
-		if (karma > 0.2) {
-			risk += 4;
-		} else if (karma > 0.1) {
-			risk++;
-		} else if (karma < -0.2) {
-			risk -= 4;
-		} else if (karma < -0.1) {
-			risk--;
-		}
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("attack from " + attacker + " to " + defender
-					+ ": Risk to strike: " + risk);
-		}
-
-		if (risk < 0) {
-			risk = 0;
-		}
-
-		if (risk > 1) {
-			risk = 1;
-			result = true;
-		}
-
-		attacker.put("risk", risk);
-		return result;
-	}
-
-	/**
 	 * Calculates the damage that will be done in a distance attack (bow and
 	 * arrows, spear, etc.).
 	 * 
@@ -124,6 +73,10 @@ public class StendhalRPAction {
 			RPEntity defender, int damage) {
 		double distance = attacker.squaredDistance(defender);
 
+		return applydistanceattackModifiers(damage, distance);
+	}
+
+	protected static int applydistanceattackModifiers(int damage, double distance) {
 		double minrangeSquared = 2 * 2;
 		double maxrangeSquared = 7 * 7;
 		// TODO: docu
@@ -209,40 +162,40 @@ public class StendhalRPAction {
 	 * @param entity
 	 *            The target of attack.
 	 */
-	public static void startAttack(Player player, RPEntity entity) {
+	public static void startAttack(Player player, RPEntity victim) {
 		/*
 		 * Player's can't attack themselves
 		 */
-		if (player.equals(entity)) {
+		if (player.equals(victim)) {
 			return;
 		}
 
 		// Disable attacking NPCS that are created as not attackable.
-		if (!entity.isAttackable()) {
+		if (!victim.isAttackable()) {
 			logger.info("REJECTED. " + player.getName() + " is attacking "
-					+ entity.getName());
+					+ victim.getName());
 			return;
 		}
 
 		// Enabled PVP
-		if ((entity instanceof Player) || (entity instanceof DomesticAnimal)) {
+		if ((victim instanceof Player) || (victim instanceof DomesticAnimal)) {
 			StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
 			// sheep) who are inside a protection area.
-			if (zone.isInProtectionArea(entity)) {
-				logger.info("REJECTED. " + entity.getName()
+			if (zone.isInProtectionArea(victim)) {
+				logger.info("REJECTED. " + victim.getName()
 						+ " is in a protection zone");
 
-				String name = entity.getTitle();
+				String name = victim.getTitle();
 
-				if (entity instanceof DomesticAnimal) {
-					Player owner = ((DomesticAnimal) entity).getOwner();
+				if (victim instanceof DomesticAnimal) {
+					Player owner = ((DomesticAnimal) victim).getOwner();
 
 					if (owner != null) {
 						name = Grammar.suffix_s(owner.getTitle()) + " " + name;
 					} else {
-						if (entity instanceof Sheep) {
+						if (victim instanceof Sheep) {
 							name = "that " + name;
 						} else {
 							name = "that poor little " + name;
@@ -255,39 +208,16 @@ public class StendhalRPAction {
 				return;
 			}
 
-			logger.info(player.getName() + " is attacking " + entity.getName());
+			logger.info(player.getName() + " is attacking " + victim.getName());
 		}
 
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "attack",
-				entity.getName());
+				victim.getName());
 
-		player.attack(entity);
-		player.faceToward(entity);
+		player.setTarget(victim);
+		player.faceToward(victim);
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
-	}
-
-	/**
-	 * Returns the attack rate, the lower the better.
-	 * 
-	 * @param attacker
-	 * @return
-	 */
-	public static int getAttackRate(RPEntity attacker) {
-		List<Item> weapons = attacker.getWeapons();
-
-		if (weapons.isEmpty()) {
-			return 5;
-		}
-		int best = weapons.get(0).getAttackRate();
-		for (Item weapon : weapons) {
-			int res = weapon.getAttackRate();
-			if (res < best) {
-				best = res;
-			}
-		}
-
-		return best;
 	}
 
 	/**
@@ -314,53 +244,11 @@ public class StendhalRPAction {
 		}
 
 		defender.keepAttacking(attacker);
-		setPVPTimeIfDoingPVP(attacker, defender);
-
-		if (!attacker.nextTo(defender)) {
-			// The attacker is not directly standing next to the defender.
-			// Find out if he can attack from the distance.
-			if (attacker.canDoRangeAttack(defender)) {
-				// TODO: Should different weapons have different ranges??
-
-				// Check line of view to see if there is any obstacle.
-				if (zone.collidesOnLine(attacker.getX(), attacker.getY(),
-						defender.getX(), defender.getY())) {
-					return false;
-				}
-				// Get the projectile that will be thrown/shot.
-				StackableItem projectilesItem = null;
-				if (attacker.getRangeWeapon() != null) {
-					projectilesItem = attacker.getAmmunition();
-				}
-				if (projectilesItem == null) {
-					// no arrows... but maybe a spear?
-					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
-				}
-				// Creatures can attack without having projectiles, but players
-				// will lose a projectile for each shot.
-				if (projectilesItem != null) {
-					projectilesItem.removeOne();
-				}
-			} else {
-				logger.debug("Attack from " + attacker + " to " + defender
-						+ " failed because target is not near.");
-				return false;
-			}
-		}
 
 		// {lifesteal} uncomented following line, also changed name:
 		List<Item> weapons = attacker.getWeapons();
 
-		if ((attacker instanceof Player) && !(defender instanceof SpeakerNPC)
-				&& attacker.getsFightXpFrom(defender)) {
-			// disabled attack xp for attacking NPC's
-			attacker.incATKXP();
-		}
-
-		// Throw dices to determine if the attacker has missed the defender
-		boolean beaten = riskToHit(attacker, defender);
-
-		if (beaten) {
+		if (attacker.canHit(defender)) {
 			if ((defender instanceof Player)
 					&& defender.getsFightXpFrom(attacker)) {
 				defender.incDEFXP();
@@ -395,13 +283,114 @@ public class StendhalRPAction {
 
 		return result;
 	}
+	/**
+	 * Lets the attacker try to attack the defender.
+	 * 
+	 * @param attacker
+	 *            The attacking RPEntity.
+	 * @param defender
+	 *            The defending RPEntity.
+	 * @return true iff the attacker has done damage to the defender.
+	 * 
+	 */
+	public static boolean playerAttack(Player player, RPEntity defender) {
+		boolean result = false;
 
-	private static void setPVPTimeIfDoingPVP(RPEntity attacker,
-			RPEntity defender) {
-		if ((attacker instanceof Player) && (defender instanceof Player)) {
-			((Player) attacker).storeLastPVPActionTime();
+		StendhalRPZone zone = player.getZone();
+		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
+			logger.debug("Attack from " + player + " to " + defender
+					+ " stopped because target was lost("
+					+ zone.has(defender.getID()) + ") or dead.");
+			player.stopAttack();
+
+			return false;
 		}
+
+		defender.keepAttacking(player);
+		if (defender instanceof Player) {
+			player.storeLastPVPActionTime();
+		}
+
+		if (!player.nextTo(defender)) {
+			// The attacker is not directly standing next to the defender.
+			// Find out if he can attack from the distance.
+			if (player.canDoRangeAttack(defender)) {
+				// TODO: Should different weapons have different ranges??
+
+				// Check line of view to see if there is any obstacle.
+				if (zone.collidesOnLine(player.getX(), player.getY(),
+						defender.getX(), defender.getY())) {
+					return false;
+				}
+				// Get the projectile that will be thrown/shot.
+				StackableItem projectilesItem = null;
+				if (player.getRangeWeapon() != null) {
+					projectilesItem = player.getAmmunition();
+				}
+				if (projectilesItem == null) {
+					// no arrows... but maybe a spear?
+					projectilesItem = player.getMissileIfNotHoldingOtherWeapon();
+				}
+				// Creatures can attack without having projectiles, but players
+				// will lose a projectile for each shot.
+				if (projectilesItem != null) {
+					projectilesItem.removeOne();
+				}
+			} else {
+				logger.debug("Attack from " + player + " to " + defender
+						+ " failed because target is not near.");
+				return false;
+			}
+		}
+
+		// {lifesteal} uncomented following line, also changed name:
+		List<Item> weapons = player.getWeapons();
+
+		if (!(defender instanceof SpeakerNPC)
+				&& player.getsFightXpFrom(defender)) {
+			// disabled attack xp for attacking NPC's
+			player.incATKXP();
+		}
+
+		// Throw dices to determine if the attacker has missed the defender
+		boolean beaten = player.canHit(defender);
+
+		if (beaten) {
+			if ((defender instanceof Player)
+					&& defender.getsFightXpFrom(player)) {
+				defender.incDEFXP();
+			}
+
+			int damage = damageDone(player, defender);
+			if (damage > 0) {
+
+				// limit damage to target HP
+				damage = Math.min(damage, defender.getHP());
+				damage = handleLifesteal(player, weapons, damage);
+
+				defender.onDamaged(player, damage);
+				player.put("damage", damage);
+				logger.debug("attack from " + player.getID() + " to "
+						+ defender.getID() + ": Damage: " + damage);
+
+				result = true;
+			} else {
+				// The attack was too weak, it was blocked
+				player.put("damage", 0);
+				logger.debug("attack from " + player.getID() + " to "
+						+ defender.getID() + ": Damage: " + 0);
+			}
+		} else { // Missed
+			logger.debug("attack from " + player.getID() + " to "
+					+ defender.getID() + ": Missed");
+			player.put("damage", 0);
+		}
+
+		player.notifyWorldAboutChanges();
+
+		return result;
 	}
+
 
 	/**
 	 * Calculate lifesteal and update hp of source.

@@ -138,11 +138,7 @@ public abstract class Entity extends RPObject {
 		x = 0;
 		y = 0;
 
-		put("width", 1);
-		put("height", 1);
-
-		width = 1;
-		height = 1;
+		setSize(1,1);
 
 		setResistance(100);
 		setVisibility(100);
@@ -334,6 +330,8 @@ public abstract class Entity extends RPObject {
 	 */
 	private static double squaredDistanceBetween(Rectangle2D rect1,
 			Rectangle2D rect2) {
+		
+		
 		double left1 = rect1.getMinX();
 		// minus one because we want the distance of two 1x1 entities standing
 		// directly next to each other to be 1, not 0.
@@ -469,8 +467,6 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(Entity entity, double step) {
 		Rectangle2D thisArea = getArea();
-		Rectangle2D otherArea = entity.getArea();
-
 		// To check the overlapping between 'this' and the other 'entity'
 		// we create two temporary rectangle objects and initialise them
 		// with the position of the two entities.
@@ -478,12 +474,10 @@ public abstract class Entity extends RPObject {
 		// 'step' distance on both sides of the two rectangles.
 		// As the absolute position is not important, 'step' need not be
 		// subtracted from the values of getX() and getY().
-		thisArea.setRect(thisArea.getX(), thisArea.getY(), thisArea.getWidth()
-				+ step, thisArea.getHeight() + step);
-		otherArea.setRect(otherArea.getX(), otherArea.getY(),
-				otherArea.getWidth() + step, otherArea.getHeight() + step);
-
-		return thisArea.intersects(otherArea);
+		thisArea.setRect(x-step, y-step, width
+				+ 2 * step, height + 2 * step);
+		
+		return thisArea.intersects(entity.getArea());
 	}
 
 	/**

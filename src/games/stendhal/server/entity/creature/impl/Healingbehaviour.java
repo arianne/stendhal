@@ -2,12 +2,12 @@ package games.stendhal.server.entity.creature.impl;
 
 import games.stendhal.server.entity.creature.Creature;
 
-abstract class Healingbehaviour {
+public abstract class Healingbehaviour {
 	private static NonHealingBehaviour nb = new NonHealingBehaviour();
 
-	abstract void heal(Creature creature);
+	public abstract void heal(Creature creature);
 
-	static Healingbehaviour get(String healingProfile) {
+	public static Healingbehaviour get(String healingProfile) {
 		if (healingProfile == null) {
 			return nb;
 		}

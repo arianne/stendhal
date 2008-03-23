@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -634,7 +635,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/** Modify the entity to order to attack the target entity. 
 	 * @param target 
 	 */
-	public void attack(RPEntity target) {
+	public void setTarget(RPEntity target) {
 		put("target", target.getID().getObjectID());
 		attackTarget = target;
 	}
@@ -1696,6 +1697,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         target is in range.
 	 */
 	public boolean canDoRangeAttack(RPEntity target) {
+		int maxRange = getMaxRangeForArcher();
+		return (squaredDistance(target) >= 2 * 2)
+				&& (squaredDistance(target) <= maxRange * maxRange);
+	}
+
+	private int getMaxRangeForArcher() {
 		Item rangeWeapon = getRangeWeapon();
 		StackableItem ammunition = getAmmunition();
 		StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
@@ -1707,10 +1714,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			maxRange = missiles.getInt("range");
 		} else {
 			// The entity doesn't hold the necessary distance weapons.
-			return false;
+			maxRange = 0;
 		}
-		return (squaredDistance(target) >= 2 * 2)
-				&& (squaredDistance(target) <= maxRange * maxRange);
+		return maxRange;
 	}
 
 	/**
@@ -1801,4 +1807,87 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * Perform cycle logic.
 	 */
 	public abstract void logic();
+
+
+	/**
+	 * Chooses randomly if this has hit the defender, or if this missed
+	 * him. Note that, even if this method returns true, the damage done might
+	 * be 0 (if the defender blocks the attack).
+	 * 
+	 * @param defender
+	 *            The attacked RPEntity.
+	 * @return true if the attacker has hit the defender (the defender may still
+	 *         block this); false if the attacker has missed the defender.
+	 */
+	public boolean canHit(RPEntity defender) {
+		boolean result = false;
+		
+		int roll = Rand.roll1D20();
+		
+		int defenderDEF = defender.getDEF();
+		
+		int attackerATK = this.getATK();
+		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
+	
+		/*
+		 * Apply some karma
+		 */
+		double karma = this.useKarma(0.3) - defender.useKarma(0.3);
+	
+		if (karma > 0.2) {
+			risk += 4;
+		} else if (karma > 0.1) {
+			risk++;
+		} else if (karma < -0.2) {
+			risk -= 4;
+		} else if (karma < -0.1) {
+			risk--;
+		}
+	
+		if (logger.isDebugEnabled()) {
+			logger.debug("attack from " + this + " to " + defender
+					+ ": Risk to strike: " + risk);
+		}
+	
+		if (risk < 0) {
+			risk = 0;
+		}
+	
+		if (risk > 1) {
+			risk = 1;
+			result = true;
+		}
+	
+		this.put("risk", risk);
+		return result;
+	}
+
+	int calculateRiskForCanHit(int roll, int defenderDEF, int attackerATK) {
+		return 2 * attackerATK - defenderDEF + roll - 10;
+	}
+
+	/**
+	 * Returns the attack rate, the lower the better.
+	 * 
+	 * @param attacker
+	 * @return
+	 */
+	public int getAttackRate() {
+		
+		
+		List<Item> weapons = getWeapons();
+	
+		if (weapons.isEmpty()) {
+			return 5;
+		}
+		int best = weapons.get(0).getAttackRate();
+		for (Item weapon : weapons) {
+			int res = weapon.getAttackRate();
+			if (res < best) {
+				best = res;
+			}
+		}
+	
+		return best;
+	}
 }

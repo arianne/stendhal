@@ -52,7 +52,7 @@ public class BalanceRPGame {
 		while (!combatFinishedWinPlayer) {
 			turns++;
 
-			if (StendhalRPAction.riskToHit(player, target)) {
+			if (player.canHit(target)) {
 				int damage = StendhalRPAction.damageDone(player, target);
 				if (damage < 0) {
 					damage = 0;
@@ -66,7 +66,7 @@ public class BalanceRPGame {
 				break;
 			}
 
-			if (StendhalRPAction.riskToHit(target, player)) {
+			if (target.canHit(player)) {
 				int damage = StendhalRPAction.damageDone(target, player);
 				if (damage < 0) {
 					damage = 0;

@@ -1583,13 +1583,9 @@ public class Player extends RPEntity {
 
 		int turn = SingletonRepository.getRuleProcessor().getTurn();
 
-		/*
-		 * TODO: Refactor Implement the attack rate into attack itself. Done in
-		 * the new RP.
-		 */
 		if (isAttacking()
-				&& ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
-			StendhalRPAction.attack(this, getAttackTarget());
+				&& ((turn % getAttackRate()) == 0)) {
+			StendhalRPAction.playerAttack(this, getAttackTarget());
 		}
 
 		agePlayer(turn);

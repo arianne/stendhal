@@ -97,7 +97,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		SingletonRepository.getTurnNotifier().notifyInTurns(Rand.rand(respawnTime), this); // don't
+		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); // don't
 																		// respawn
 																		// in
 																		// next
@@ -130,7 +130,7 @@ public class CreatureRespawnPoint implements TurnListener {
 			// start respawning a new creature
 			respawning = true;
 			SingletonRepository.getTurnNotifier().notifyInTurns(
-					Rand.rand(respawnTime) + respawnTime / 2, this);
+					calculateNextRespawnTurn(), this);
 		}
 
 		creatures.remove(dead);
@@ -148,11 +148,18 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (creatures.size() == maximum) {
 			respawning = false;
 		} else {
-			// Spawns a new creature with time equally distributed
-			// in [respawnTime/2,respawnTime + respawnTime/2]
+			
 			SingletonRepository.getTurnNotifier().notifyInTurns(
-					Rand.rand(respawnTime) + respawnTime / 2, this);
+					calculateNextRespawnTurn(), this);
 		}
+	}
+	
+	/**
+	 * calculates a randomized respawn time in the interval of [respawnTime/2,respawnTime + respawnTime/2]
+	 * @return the amount of turns calculated
+	 */
+	private int calculateNextRespawnTurn() {
+		return Rand.rand(respawnTime) + respawnTime / 2;
 	}
 
 	/**

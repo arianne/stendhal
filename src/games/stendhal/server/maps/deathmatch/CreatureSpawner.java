@@ -130,7 +130,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();
-			creature.attack(player);
+			creature.setTarget(player);
 			creature.setPlayerToReward(player);
 
 			spawnedCreatures.add(creature);
