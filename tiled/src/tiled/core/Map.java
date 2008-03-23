@@ -30,7 +30,7 @@ import tiled.mapeditor.util.MapChangedEvent;
 
 /**
  * The Map class is the focal point of the <code>tiled.core</code> package.
- * This class also handles notifing listeners if there is a change to any layer
+ * This class also handles notifying listeners if there is a change to any layer
  * or object contained by the map.
  */
 public class Map extends MultilayerPlane {
