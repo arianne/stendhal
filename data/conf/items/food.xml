@@ -167,10 +167,10 @@
     <type class="food" subclass="blackapple" tileid="-1"/>
     <description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="20"/>
-      <frequency value="30"/>
+      <amount value="130"/>
+      <frequency value="10"/>
       <quantity value="1"/>
-      <regen value="3"/>
+      <regen value="13"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
