@@ -40,6 +40,9 @@ Walk on, and you will be returned to the land of the living...
  <zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx">
  </zone>
 
+ <zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx">
+ </zone>
+
  <zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx">
   <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
 

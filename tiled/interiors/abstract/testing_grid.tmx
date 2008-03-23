@@ -9,14 +9,17 @@
  <tileset name="Untitled" firstgid="35" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="49" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/sand_2.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFNiYGBQGsXDEjMOAjeM4sGNAUKGetYABAAA
+   H4sIAAAAAAAAADNhYGAwGcXDElsMAjeM4sGNARsxSYkABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAAFNiYGBQGsWjeBSPSAwAszma+QAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
