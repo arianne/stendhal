@@ -23,8 +23,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
 import java.util.Properties;
@@ -47,31 +47,37 @@ import tiled.view.MapView;
  * 
  * @author Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
-public class MapEditPanel extends JPanel implements MouseListener, MouseMotionListener, Scrollable {
+public class MapEditPanel extends JPanel implements MouseMotionListener, Scrollable {
 	private static final long serialVersionUID = 1L;
 
 	/** the map view. */
 	private MapView mapView;
+
 	/** the minimap panel. */
 	private MiniMapViewer miniMapViewer;
 
 	/** list of modify listeners. */
 	private List<MapModifyListener> listeners;
+
 	/** base map editor. */
 	private MapEditor mapEditor;
+
 	/** last drawn cursor rectangle. */
 	private Rectangle lastDrawnCursor;
+
 	/** dragging op in progress? */
 	private boolean dragInProgress;
+
 	/** point where the drag started. */
 	private Point dragStartPoint;
+
 	/** */
 	private DragType dragType;
 
 	/** constructor. */
 	public MapEditPanel(MapEditor mapEditor) {
 		this.mapEditor = mapEditor;
-		addMouseListener(this);
+		addMouseListener(new MouseHandler());
 		addMouseMotionListener(this);
 	}
 
@@ -253,20 +259,25 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 		}
 	}
 
-	public void mousePressed(MouseEvent e) {
+	class MouseHandler extends MouseAdapter {
+    	@Override
+    	public void mouseReleased(MouseEvent e) {
+    		finishDrag(e.getPoint());
+    	}
+
+    	@Override
+    	public void mouseEntered(MouseEvent e) {
+    		repaintLastCursorPosition();
+    	}
+
+    	@Override
+    	public void mouseExited(MouseEvent e) {
+    		repaintLastCursorPosition();
+    	}
 	}
 
-	public void mouseReleased(MouseEvent e) {
-		finishDrag(e.getPoint());
-	}
 
-	public void mouseEntered(MouseEvent e) {
-		repaintLastCursorPosition();
-	}
-
-	public void mouseExited(MouseEvent e) {
-		repaintLastCursorPosition();
-	}
+	// MouseMotionListener
 
 	public void mouseDragged(MouseEvent e) {
 		if ((e.getModifiers() & MouseEvent.BUTTON1_MASK) == MouseEvent.BUTTON1_MASK) {
@@ -291,7 +302,6 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 				repaintLastCursorPosition();
 			}
 		}
-
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -314,6 +324,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 			}
 		}
 	}
+
 
 	/** enum indicating the current drag operation. */
 	public enum DragType {
