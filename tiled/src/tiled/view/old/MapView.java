@@ -27,14 +27,15 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.util.Iterator;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.core.TileLayer;
+import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.TiledConfiguration;
 
 /**
@@ -200,8 +201,6 @@ public abstract class MapView extends JPanel implements Scrollable {
 		TiledConfiguration conf = TiledConfiguration.getInstance();
 
 		double currentZoom = zoom;
-		Iterator li = myMap.iterator();
-		MapLayer layer;
 		Rectangle clip = g2d.getClipBounds();
 
 		g2d.setStroke(new BasicStroke(2.0f));
@@ -216,8 +215,8 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 		g2d.fillRect(clip.x, clip.y, clip.width, clip.height);
 
-		while (li.hasNext()) {
-			if ((layer = (MapLayer) li.next()) != null) {
+		for(MapLayer layer : myMap) {
+			if (layer != null) {
 				float opacity = layer.getOpacity();
 				if (layer.isVisible() && opacity > 0.0f) {
 					if (opacity < 1.0f) {
@@ -228,8 +227,8 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 					if (layer instanceof TileLayer) {
 						paintLayer(g2d, (TileLayer) layer, currentZoom);
-						// } else if (layer instanceof ObjectGroup) {
-						// paintLayer(g2d, (ObjectGroup)layer, currentZoom);
+//					} else if (layer instanceof ObjectGroup) {
+//						paintLayer(g2d, (ObjectGroup)layer, currentZoom);
 					}
 				}
 			}

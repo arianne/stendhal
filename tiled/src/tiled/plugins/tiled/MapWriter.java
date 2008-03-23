@@ -104,7 +104,7 @@ public class MapWriter implements MapWriterPlugin {
 			xmlWriter.writeAttribute("tileheight", "" + map.getTileHeight());
 
 			Properties props = map.getProperties();
-			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+			for (Enumeration<Object> keys = props.keys(); keys.hasMoreElements();) {
 				String key = (String) keys.nextElement();
 				xmlWriter.startElement("property");
 				xmlWriter.writeAttribute("name", key);
@@ -112,17 +112,13 @@ public class MapWriter implements MapWriterPlugin {
 				xmlWriter.endElement();
 			}
 			int firstgid = 1;
-			Iterator itr = map.getTilesets().iterator();
-			while (itr.hasNext()) {
-				TileSet tileset = (TileSet) itr.next();
+			for(TileSet tileset : map.getTilesets()) {
 				tileset.setFirstGid(firstgid);
 				writeTilesetReference(tileset, xmlWriter, workPath);
 				firstgid += tileset.getMaxTileId() + 1;
 			}
 
-			Iterator ml = map.iterator();
-			while (ml.hasNext()) {
-				MapLayer layer = (MapLayer) ml.next();
+			for(MapLayer layer : map) {
 				writeMapLayer(layer, xmlWriter);
 			}
 
@@ -227,14 +223,12 @@ public class MapWriter implements MapWriterPlugin {
 
 				// Check to see if there is a need to write tile elements
 				if (set.isOneForOne()) {
-					Iterator tileIterator = set.iterator();
 					boolean needWrite = false;
 
 					if (conf.keyHasValue("tmx.save.embedImages", "1")) {
 						needWrite = true;
 					} else {
-						while (tileIterator.hasNext()) {
-							Tile tile = (Tile) tileIterator.next();
+						for(Tile tile : set) {
 							if (!tile.getProperties().isEmpty()) {
 								needWrite = true;
 								break;
@@ -246,9 +240,7 @@ public class MapWriter implements MapWriterPlugin {
 					}
 
 					if (needWrite) {
-						tileIterator = set.iterator();
-						while (tileIterator.hasNext()) {
-							Tile tile = (Tile) tileIterator.next();
+						for(Tile tile : set) {
 							writeTile(tile, w);
 						}
 					}
@@ -273,7 +265,7 @@ public class MapWriter implements MapWriterPlugin {
 			// }
 
 			Properties props = tile.getProperties();
-			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+			for (Enumeration<Object> keys = props.keys(); keys.hasMoreElements();) {
 				String key = (String) keys.nextElement();
 				w.startElement("property");
 				w.writeAttribute("name", key);
@@ -371,7 +363,7 @@ public class MapWriter implements MapWriterPlugin {
 			}
 
 			Properties props = l.getProperties();
-			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+			for (Enumeration<Object> keys = props.keys(); keys.hasMoreElements();) {
 				String key = (String) keys.nextElement();
 				w.startElement("property");
 				w.writeAttribute("name", key);
