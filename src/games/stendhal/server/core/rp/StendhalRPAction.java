@@ -69,20 +69,14 @@ public class StendhalRPAction {
 	 *            modifiers for distance attacks.
 	 * @return The damage that will be done with the distance attack.
 	 */
-	private static int applyDistanceAttackModifiers(RPEntity attacker,
-			RPEntity defender, int damage) {
-		double distance = attacker.squaredDistance(defender);
-
-		return applydistanceattackModifiers(damage, distance);
-	}
-
-	protected static int applydistanceattackModifiers(int damage, double distance) {
+	protected static int applyDistanceAttackModifiers(int damage, double squareDistance) {
 		double minrangeSquared = 2 * 2;
 		double maxrangeSquared = 7 * 7;
-		// TODO: docu
-		return (int) (damage * (1.0 - distance / maxrangeSquared) + (damage - damage
+		// FIXME: make a gaussian like result
+		// TODO: make range configurable
+		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
 				* (1.0 - (minrangeSquared / maxrangeSquared)))
-				* (1.0 - distance / maxrangeSquared));
+				* (1.0 - squareDistance / maxrangeSquared));
 	}
 
 	/**
@@ -148,7 +142,7 @@ public class StendhalRPAction {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
-			damage = applyDistanceAttackModifiers(attacker, defender, damage);
+			damage = applyDistanceAttackModifiers(damage, attacker.squaredDistance(defender));
 		}
 
 		return damage;
