@@ -35,7 +35,6 @@ public class User2DView extends Player2DView {
 		super(user);
 
 		this.user = user;
-
 	}
 
 	//
