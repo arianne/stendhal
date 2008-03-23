@@ -10,6 +10,7 @@
 
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_tools" value="${buildroot}/build_tools"/>
+	<property name="build_tiled" value="${buildroot}/build_tiled"/>
 
 	<property name="build_client" value="${buildroot}/build_client"/>
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
@@ -84,6 +85,7 @@
 		<delete dir="${buildroot}/build_server_xmlconf"/>
 		<delete dir="${build_tests}"/>
 		<delete dir="${build_tools}"/>
+		<delete dir="${build_tiled}"/>
 		<delete dir="${buildroot}/build_tiled_convertmaps"/>
 	</target>
 
@@ -540,11 +542,12 @@
 		<delete dir="${buildroot}/stendhal-${version}-src"/>
 	</target>
 
-	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
+	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_tiled">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/tools/MapConverter.java"/>
+<!--			<include name="../tiled/src/tiled/view/old/*.java"/> -->
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -554,14 +557,16 @@
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${build_tiled}"/>
+				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</javac>
 
 		<taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
-				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${build_tiled}"/>
+				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</taskdef>
 
@@ -573,7 +578,7 @@
 		</mapconverter>
 	</target>
 
-	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes.">
+	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_tiled">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
@@ -586,14 +591,16 @@
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${build_tiled}"/>
+				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</javac>
 
 		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
-				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${build_tiled}"/>
+				<!--<pathelement path="${tiled_jar}"/>-->
 			</classpath>
 		</taskdef>
 
@@ -629,6 +636,7 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${build_tools}"/>
+				<pathelement path="${build_tiled}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -686,6 +694,25 @@
 				</fileset>
 			</batchtest>
 		</junit>
+	</target>
+
+	<target name="compile_tiled" description="Compile tiled">
+		<mkdir dir="${build_tiled}"/>
+
+		<javac srcdir="${tiled}/src" destdir="${build_tiled}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="**/*.java"/>
+		</javac>
+
+		<copy todir="${build_tiled}">
+			<fileset dir="${tiled}/src">
+				<include name="**/*.png"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Runs the Tiled editor -->
+	<target name="tiled_run" depends="compile_tiled" description="Runs Tiled">
+		<java classname="tiled.mapeditor.MapEditor" classpath="${build_tiled}" fork="true"/>
 	</target>
 
 	<target name="checkxml" description="Verify XML files are well-formed">
