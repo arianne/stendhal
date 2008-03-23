@@ -37,7 +37,7 @@ public interface MapReader extends PluggableMapIO, FileFilter {
 	 * @return A {@link tiled.core.Map} instance with the relevant data
 	 * @throws Exception
 	 */
-	public Map readMap(String filename) throws Exception;
+	Map readMap(String filename) throws Exception;
 
 	/**
 	 * Loads a tileset from a file.
@@ -47,7 +47,7 @@ public interface MapReader extends PluggableMapIO, FileFilter {
 	 * @return A {@link tiled.core.TileSet} instance with the relevant data
 	 * @throws Exception
 	 */
-	public TileSet readTileset(String filename) throws Exception;
+	TileSet readTileset(String filename) throws Exception;
 
 	/**
 	 * Overload this to load a map from an already opened stream. Useful for
@@ -57,7 +57,7 @@ public interface MapReader extends PluggableMapIO, FileFilter {
 	 * @return A {@link tiled.core.Map} object with the relevant data
 	 * @throws Exception
 	 */
-	public Map readMap(InputStream in) throws Exception;
+	Map readMap(InputStream in) throws Exception;
 
 	/**
 	 * Overload this to load a tileset from an open stream.
@@ -66,5 +66,5 @@ public interface MapReader extends PluggableMapIO, FileFilter {
 	 * @return A (@link tiled.core.TileSet} instance
 	 * @throws Exception
 	 */
-	public TileSet readTileset(InputStream in) throws Exception;
+	TileSet readTileset(InputStream in) throws Exception;
 }

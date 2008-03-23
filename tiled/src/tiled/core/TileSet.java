@@ -670,7 +670,7 @@ public class TileSet implements Iterable<Tile> {
 		String hash = checksumImage(image);
 		image = imageCache.get(hash);
 		if (image != null) {
-			for(String key : images.keySet()) {
+			for (String key : images.keySet()) {
 				Image[] imgs = images.get(key);
 				if (imgs[0] == image) {
 					return key;

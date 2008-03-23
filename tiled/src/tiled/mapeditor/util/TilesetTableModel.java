@@ -98,8 +98,8 @@ public class TilesetTableModel extends AbstractTableModel {
 	private int checkSetUsage(TileSet s) {
 		int used = 0;
 
-		for(Tile tile : s) {
-			for(MapLayer ml : map) {
+		for (Tile tile : s) {
+			for (MapLayer ml : map) {
 				if (ml instanceof TileLayer) {
 					if (((TileLayer) ml).isUsed(tile)) {
 						used++;

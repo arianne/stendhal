@@ -128,7 +128,7 @@ public class Sprite {
 	}
 
 	public void setKeyFrameTo(String name) {
-		for(KeyFrame k : keys) {
+		for (KeyFrame k : keys) {
 			if (k.equalsIgnoreCase(name)) {
 				currentKey = k;
 				break;

@@ -36,8 +36,8 @@ public class HandToHandTest {
 	public void testCanAttackNow() {
 		HandToHand hth = new HandToHand();
 		Creature creature = new Creature();	
-		assertFalse("no target yet",hth.canAttackNow(creature));
-		RPEntity victim = new RPEntity(){
+		assertFalse("no target yet", hth.canAttackNow(creature));
+		RPEntity victim = new RPEntity() {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
@@ -49,11 +49,12 @@ public class HandToHandTest {
 			public void logic() {
 				// TODO Auto-generated method stub
 				
-			}};
-		victim.put("id",1);
+			}
+		};
+		victim.put("id", 1);
 		creature.setTarget(victim);
-		assertTrue("new ones stand on same positon",hth.canAttackNow(creature));
-		victim.setPosition(10,10);
+		assertTrue("new ones stand on same positon", hth.canAttackNow(creature));
+		victim.setPosition(10, 10);
 		assertFalse("too far away", hth.canAttackNow(creature));
 		
 		
@@ -68,7 +69,7 @@ public class HandToHandTest {
 	public void testGetBetterAttackPosition() {
 		fail("Not yet implemented");
 	}
-	static private boolean mockinvisible;
+	private static boolean mockinvisible;
 
 	@Test
 	public void testHasValidTarget() {
@@ -76,8 +77,8 @@ public class HandToHandTest {
 		
 		HandToHand hth = new HandToHand();
 		Creature creature = new Creature();	
-		assertFalse("is not attacking",hth.hasValidTarget(creature));
-		RPEntity victim = new RPEntity(){
+		assertFalse("is not attacking", hth.hasValidTarget(creature));
+		RPEntity victim = new RPEntity() {
 		
 			@Override
 			public boolean isInvisible() {
@@ -91,21 +92,22 @@ public class HandToHandTest {
 			@Override
 			public void logic() {
 				
-			}};
-		victim.put("id",1);
+			}
+		};
+		victim.put("id", 1);
 		creature.setTarget(victim);
-		mockinvisible=true;
+		mockinvisible = true;
 		assertTrue(victim.isInvisible());
-		assertFalse("victim is invisible",hth.hasValidTarget(creature));
-		mockinvisible=false;
+		assertFalse("victim is invisible", hth.hasValidTarget(creature));
+		mockinvisible = false;
 		assertFalse(victim.isInvisible());
 		zone.add(victim);
 		assertFalse("not in same zone", hth.hasValidTarget(creature));
 		zone.add(creature);
 		assertTrue("in same zone, on same spot", hth.hasValidTarget(creature));
-		victim.setPosition(11,0);
+		victim.setPosition(11, 0);
 		assertTrue("in same zone, not too far away", hth.hasValidTarget(creature));
-		victim.setPosition(12,0);
+		victim.setPosition(12, 0);
 		assertFalse("in same zone, too far away", hth.hasValidTarget(creature));
 		
 

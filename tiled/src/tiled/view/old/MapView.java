@@ -28,14 +28,12 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.core.TileLayer;
-import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.TiledConfiguration;
 
 /**
@@ -215,7 +213,7 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 		g2d.fillRect(clip.x, clip.y, clip.width, clip.height);
 
-		for(MapLayer layer : myMap) {
+		for (MapLayer layer : myMap) {
 			if (layer != null) {
 				float opacity = layer.getOpacity();
 				if (layer.isVisible() && opacity > 0.0f) {

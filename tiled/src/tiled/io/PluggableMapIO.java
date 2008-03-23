@@ -34,7 +34,7 @@ public interface PluggableMapIO {
 	 * @throws Exception
 	 *             use <B>public FileFilter[] getFilters();</B>
 	 */
-	public String getFilter() throws Exception;
+	String getFilter() throws Exception;
 
 	/**
 	 * Returns a short description of the plugin, or the plugin name. This
@@ -43,7 +43,7 @@ public interface PluggableMapIO {
 	 * 
 	 * @return a short name or description
 	 */
-	public String getName();
+	String getName();
 
 	/**
 	 * Returns a long description (no limit) that details the plugin's
@@ -51,14 +51,14 @@ public interface PluggableMapIO {
 	 * 
 	 * @return a long description of the plugin
 	 */
-	public String getDescription();
+	String getDescription();
 
 	/**
 	 * Returns the base Java package string for the plugin.
 	 * 
 	 * @return String the base package of the plugin
 	 */
-	public String getPluginPackage();
+	String getPluginPackage();
 
 	/**
 	 * The Stack object passed by the editor when the plugin is called to load
@@ -69,7 +69,7 @@ public interface PluggableMapIO {
 	 *            an initialized Stack that will be used by the editor to print
 	 *            messages from the plugin
 	 */
-	public void setErrorStack(Stack<String> es);
+	void setErrorStack(Stack<String> es);
 
 	/**
 	 * Lists supported file extensions. This function is used by the editor to
@@ -77,6 +77,6 @@ public interface PluggableMapIO {
 	 * 
 	 * @return an array with the FileFilter instances for this plugin
 	 */
-	public FileFilter[] getFilters();
+	FileFilter[] getFilters();
 
 }

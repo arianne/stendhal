@@ -35,14 +35,14 @@ public interface Brush {
 	 * @return the layers of this brush or an empty array if the brush is layer
 	 *         independent.
 	 */
-	public MapLayer[] getAffectedLayers();
+	MapLayer[] getAffectedLayers();
 
 	/**
 	 * Returns the size of the brush (in tiles).
 	 * 
 	 * @return size if the brush
 	 */
-	public Rectangle getBounds();
+	Rectangle getBounds();
 
 	/**
 	 * This is the main processing method for a Brush object. Painting starts on
@@ -60,17 +60,17 @@ public interface Brush {
 	 *            The first layer to paint to.
 	 * @return The rectangular region affected by the painting
 	 */
-	public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer);
+	Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer);
 
 	/**
 	 * Returns a name for the brush.
 	 * 
 	 * @return name of the brush
 	 */
-	public String getName();
+	String getName();
 
 	/** Paints the brush. */
-	public void paint(Graphics g, int x, int y);
+	void paint(Graphics g, int x, int y);
 
 	/**
 	 * Sets the tiles for the brush.
@@ -78,15 +78,15 @@ public interface Brush {
 	 * @param tiles
 	 *            tiles to use
 	 */
-	public void setTiles(List<StatefulTile> tiles);
+	void setTiles(List<StatefulTile> tiles);
 
 	/**
 	 * Returns the tiles.
 	 * 
 	 * @return the currently used tiles
 	 */
-	public List<StatefulTile> getTiles();
+	List<StatefulTile> getTiles();
 
 	/** */
-	public boolean equals(Brush b);
+	boolean equals(Brush b);
 }

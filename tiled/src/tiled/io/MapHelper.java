@@ -184,7 +184,7 @@ public class MapHelper {
 		if (config.keyHasValue("tiled.report.io", 1)) {
 			if (st.size() > 0) {
 				StringBuilder warnings = new StringBuilder();
-				for(String s : st) {
+				for (String s : st) {
 					warnings.append(s + "\n");
 				}
 				JOptionPane.showMessageDialog(null, warnings.toString(), "Loading Messages",
@@ -196,10 +196,10 @@ public class MapHelper {
 	/** returns a list of all currently registered map reader plugins. */
 	public static List<MapReaderPlugin> getMapReaderPlugins() {
 		PluginManager pluginManager = PluginManager.getInstance();
-		List<Class<? extends TiledPlugin>> list = pluginManager.getPlugins(MapReaderPlugin.class);
+		List<Class< ? extends TiledPlugin>> list = pluginManager.getPlugins(MapReaderPlugin.class);
 		List<MapReaderPlugin> plugins = new ArrayList<MapReaderPlugin>();
 		// instantiate the plugins
-		for (Class<? extends TiledPlugin> clazz : list) {
+		for (Class< ? extends TiledPlugin> clazz : list) {
 			try {
 				plugins.add((MapReaderPlugin) clazz.newInstance());
 			} catch (Exception e) {
@@ -214,11 +214,11 @@ public class MapHelper {
 	public static List<MapWriterPlugin> getMapWriterPlugins() {
 		PluginManager pluginManager = PluginManager.getInstance();
 
-		List<Class<? extends TiledPlugin>> list = pluginManager.getPlugins(MapWriterPlugin.class);
+		List<Class< ? extends TiledPlugin>> list = pluginManager.getPlugins(MapWriterPlugin.class);
 		List<MapWriterPlugin> plugins = new ArrayList<MapWriterPlugin>();
 
 		// instantiate the plugins
-		for (Class<? extends TiledPlugin> clazz : list) {
+		for (Class< ? extends TiledPlugin> clazz : list) {
 			try {
 				plugins.add((MapWriterPlugin) clazz.newInstance());
 			} catch (Exception e) {

@@ -38,7 +38,7 @@ import tiled.plugins.tiled.MapWriter;
  * @author mtotz
  */
 public class PluginManager {
-	private Map<Class<? extends TiledPlugin>, List<Class<? extends TiledPlugin>>> plugins;
+	private Map<Class< ? extends TiledPlugin>, List<Class< ? extends TiledPlugin>>> plugins;
 	private static PluginManager instance;
 
 	/**    */
@@ -60,7 +60,7 @@ public class PluginManager {
 	 * 
 	 */
 	public void readPlugins(String base) {
-		plugins = new HashMap<Class<? extends TiledPlugin>, List<Class<? extends TiledPlugin>>>();
+		plugins = new HashMap<Class< ? extends TiledPlugin>, List<Class< ? extends TiledPlugin>>>();
 
 		// buildin plugins
 		addPlugin(MapReaderPlugin.class, StendReader.class);
@@ -77,15 +77,15 @@ public class PluginManager {
 	 *            the plugin interface
 	 * @param pluginClass
 	 */
-	private void addPlugin(Class<? extends TiledPlugin> interfaceClass, Class< ? extends TiledPlugin> pluginClass) {
+	private void addPlugin(Class< ? extends TiledPlugin> interfaceClass, Class< ? extends TiledPlugin> pluginClass) {
 		if (!interfaceClass.isAssignableFrom(pluginClass)) {
 			System.out.println(pluginClass.getName() + " is not an instance of " + interfaceClass.getName());
 		}
 		if (!plugins.containsKey(interfaceClass)) {
-			plugins.put(interfaceClass, new ArrayList<Class<? extends TiledPlugin>>());
+			plugins.put(interfaceClass, new ArrayList<Class< ? extends TiledPlugin>>());
 		}
 
-		List<Class<? extends TiledPlugin>> list = plugins.get(interfaceClass);
+		List<Class< ? extends TiledPlugin>> list = plugins.get(interfaceClass);
 		if (!list.contains(pluginClass)) {
 			list.add(pluginClass);
 		}
@@ -96,7 +96,7 @@ public class PluginManager {
 	 *            the plugin interface
 	 * @return the list of known plugins of this type
 	 */
-	public List<Class<? extends TiledPlugin>> getPlugins(Class<? extends TiledPlugin> pluginInterface) {
+	public List<Class< ? extends TiledPlugin>> getPlugins(Class< ? extends TiledPlugin> pluginInterface) {
 		return plugins.get(pluginInterface);
 	}
 

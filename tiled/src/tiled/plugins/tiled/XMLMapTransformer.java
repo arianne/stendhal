@@ -78,7 +78,7 @@ public class XMLMapTransformer implements MapReader, FileFilter {
 		return url;
 	}
 
-	private int reflectFindMethodByName(Class<?> c, String methodName) {
+	private int reflectFindMethodByName(Class< ? > c, String methodName) {
 		Method[] methods = c.getMethods();
 		for (int i = 0; i < methods.length; i++) {
 			if (methods[i].getName().equalsIgnoreCase(methodName)) {
@@ -90,7 +90,7 @@ public class XMLMapTransformer implements MapReader, FileFilter {
 
 	private void reflectInvokeMethod(Object invokeVictim, Method method, String[] args)
 			throws InvocationTargetException, Exception {
-		Class<?>[] parameterTypes = method.getParameterTypes();
+		Class< ? >[] parameterTypes = method.getParameterTypes();
 		Object[] conformingArguments = new Object[parameterTypes.length];
 
 		if (args.length < parameterTypes.length) {
@@ -153,11 +153,11 @@ public class XMLMapTransformer implements MapReader, FileFilter {
 		}
 	}
 
-	private Object unmarshalClass(Class<?> reflector, Node node) throws InstantiationException, IllegalAccessException,
-			InvocationTargetException {
-		Constructor<?> cons = null;
+	private Object unmarshalClass(Class< ? > reflector, Node node) throws InstantiationException,
+			IllegalAccessException, InvocationTargetException {
+		Constructor< ? > cons = null;
 		try {
-			cons = reflector.getConstructor((Class<?>[]) null);
+			cons = reflector.getConstructor((Class< ? >[]) null);
 		} catch (SecurityException e1) {
 			e1.printStackTrace();
 		} catch (NoSuchMethodException e1) {

@@ -31,10 +31,10 @@ public class AttackStrategyFactoryTest {
 
 	@Test
 	public void testGet() {
-		Map<String , String> profiles= new HashMap<String, String>();
-		assertTrue (AttackStrategyFactory.get(profiles) instanceof HandToHand);
-		profiles.put("archer",null);
-		assertTrue (AttackStrategyFactory.get(profiles) instanceof RangeAttack);
+		Map<String , String> profiles = new HashMap<String, String>();
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
+		profiles.put("archer", null);
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof RangeAttack);
 		
 		
 	}

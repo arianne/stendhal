@@ -14,26 +14,29 @@ import utilities.RPClass.CreatureTestHelper;
 
 public class HealingbehaviourTest {
 	static boolean called;
+
 	@Test
 	public void testHealNonHealer() {
 		called = false;
 		MockStendlRPWorld.get();
 		StendhalRPZone zone = new StendhalRPZone("blabl");
 		CreatureTestHelper.generateRPClasses();
-		Creature creature = new Creature(){@Override
-		public void healSelf(int amount, int frequency) {
+		Creature creature = new Creature() {
+			@Override
+			public void healSelf(int amount, int frequency) {
 				called = true;
-		}};
+			}
+		};
 		zone.add(creature);
 		creature.setBaseHP(100);
 		creature.setHP(50);
 		creature.setHealer(null);
 		creature.logic();
-		assertThat(creature.getHP(),is(50));
+		assertThat(creature.getHP(), is(50));
 		creature.setHealer("10,1");
 		creature.logic();
 		assertTrue(called);
-		
+
 	}
 
 	@Test

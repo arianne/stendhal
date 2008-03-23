@@ -78,7 +78,7 @@ public enum Direction {
 	}
 
 	public static Direction rand() {
-		return Direction.values()[Rand.rand(4)+1];
+		return Direction.values()[Rand.rand(4) + 1];
 	}
 
 	Direction(int val, int dx, int dy) {
@@ -106,5 +106,5 @@ public enum Direction {
 		}
 	}
 
-	abstract public Direction nextDirection();
+	public abstract Direction nextDirection();
 }

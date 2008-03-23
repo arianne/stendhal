@@ -92,13 +92,13 @@ public class ShapeBrush extends AbstractBrush {
 			return new Rectangle(x, y, 0, 0);
 		}
 
-		Rectangle bounds = shape.getBounds();
+		Rectangle tempBounds = shape.getBounds();
 
 		TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
 		Tile tile = selectedTiles.get(0).tile;
 
-		for (int x1 = 0; x1 < bounds.width + 1; x1++) {
-			for (int y1 = 0; y1 < bounds.height + 1; y1++) {
+		for (int x1 = 0; x1 < tempBounds.width + 1; x1++) {
+			for (int y1 = 0; y1 < tempBounds.height + 1; y1++) {
 				if (shape.contains(x1, y1)) {
 					tileLayer.setTileAt(x + x1, y + y1, tile);
 				}
@@ -106,7 +106,7 @@ public class ShapeBrush extends AbstractBrush {
 		}
 
 		// Return affected area
-		return new Rectangle(x, y, bounds.width, bounds.height);
+		return new Rectangle(x, y, tempBounds.width, tempBounds.height);
 	}
 
 	@Override

@@ -185,12 +185,12 @@ public class TilesetChooserTree extends TilesetChooser implements TreeSelectionL
 			// now find the childs of this node
 			List<TileSet> childList = new ArrayList<TileSet>();
 			for (TileSet set : tilesets) {
-				String name = set.getName();
-				if (name.startsWith(path) && name.length() > path.length()) {
+				String TempName = set.getName();
+				if (TempName.startsWith(path) && TempName.length() > path.length()) {
 					childList.add(set);
 				}
 
-				if (path.equals(name)) {
+				if (path.equals(TempName)) {
 					tileset = set;
 				}
 			}
@@ -199,9 +199,9 @@ public class TilesetChooserTree extends TilesetChooser implements TreeSelectionL
 			List<String> gotPath = new ArrayList<String>();
 			// now parse the new childlist
 			for (TileSet set : childList) {
-				String name = set.getName();
-				int newPathIndex = name.indexOf('/', path.length() + 1);
-				String newPath = (newPathIndex > 0) ? name.substring(0, newPathIndex) : name;
+				String tempName = set.getName();
+				int newPathIndex = tempName.indexOf('/', path.length() + 1);
+				String newPath = (newPathIndex > 0) ? tempName.substring(0, newPathIndex) : tempName;
 
 				// parse a given path only one time
 				if (!gotPath.contains(newPath)) {

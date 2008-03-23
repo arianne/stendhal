@@ -112,13 +112,13 @@ public class MapWriter implements MapWriterPlugin {
 				xmlWriter.endElement();
 			}
 			int firstgid = 1;
-			for(TileSet tileset : map.getTilesets()) {
+			for (TileSet tileset : map.getTilesets()) {
 				tileset.setFirstGid(firstgid);
 				writeTilesetReference(tileset, xmlWriter, workPath);
 				firstgid += tileset.getMaxTileId() + 1;
 			}
 
-			for(MapLayer layer : map) {
+			for (MapLayer layer : map) {
 				writeMapLayer(layer, xmlWriter);
 			}
 
@@ -228,7 +228,7 @@ public class MapWriter implements MapWriterPlugin {
 					if (conf.keyHasValue("tmx.save.embedImages", "1")) {
 						needWrite = true;
 					} else {
-						for(Tile tile : set) {
+						for (Tile tile : set) {
 							if (!tile.getProperties().isEmpty()) {
 								needWrite = true;
 								break;
@@ -240,7 +240,7 @@ public class MapWriter implements MapWriterPlugin {
 					}
 
 					if (needWrite) {
-						for(Tile tile : set) {
+						for (Tile tile : set) {
 							writeTile(tile, w);
 						}
 					}

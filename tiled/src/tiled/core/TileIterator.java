@@ -39,8 +39,11 @@ public class TileIterator implements Iterator<Tile> {
 		}
 		return false;
 	}
-
-	public Tile next() throws NoSuchElementException {
+	
+	/**
+	 * @ throws NoSuchElementException
+	 */
+	public Tile next() {
 		while (pos < tiles.size()) {
 			Tile t = tiles.get(pos);
 			pos++;
@@ -51,7 +54,7 @@ public class TileIterator implements Iterator<Tile> {
 		throw new NoSuchElementException();
 	}
 
-	public void remove() throws UnsupportedOperationException, IllegalStateException {
+	public void remove() {
 		throw new UnsupportedOperationException();
 	}
 }

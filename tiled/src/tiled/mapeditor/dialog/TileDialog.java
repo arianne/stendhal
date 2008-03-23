@@ -437,7 +437,7 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 			bDeleteAllUnusedImages.setEnabled(!tilebmp);
 			boolean image_used = false;
 
-			for(Tile tile : tileset) {
+			for (Tile tile : tileset) {
 				if (tile.getImageId() == currentImageIndex) {
 					image_used = true;
 				}
@@ -500,7 +500,7 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 					externalBitmapCheck.setSelected(true);
 				}
 			}
-		}
+		
 		/*
 		 * else if (source == sharedImagesCheck) { if
 		 * (sharedImagesCheck.isSelected()) { tileset.enableSharedImages();
@@ -513,7 +513,7 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 		 * JOptionPane.YES_OPTION) { tileset.disableSharedImages();
 		 * updateEnabledState(); } else { sharedImagesCheck.setSelected(true); } } }
 		 */
-		else if (source == bAddImage) {
+		} else if (source == bAddImage) {
 			Image img = loadImage();
 			if (img != null) {
 				tileset.addImage(img);
@@ -537,7 +537,7 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 					int id = Integer.parseInt((String) ids.next());
 					boolean image_used = false;
 
-					for(Tile tile : tileset) {
+					for (Tile tile : tileset) {
 						if (tile.getImageId() == id) {
 							image_used = true;
 						}

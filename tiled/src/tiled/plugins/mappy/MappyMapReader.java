@@ -169,7 +169,7 @@ public class MappyMapReader implements MapReader, FileFilter {
 	}
 
 	private Chunk findChunk(String header) {
-		for(Chunk c : chunks) {
+		for (Chunk c : chunks) {
 			if (c.equals(header)) {
 				return c;
 			}

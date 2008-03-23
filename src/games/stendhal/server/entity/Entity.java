@@ -138,7 +138,7 @@ public abstract class Entity extends RPObject {
 		x = 0;
 		y = 0;
 
-		setSize(1,1);
+		setSize(1, 1);
 
 		setResistance(100);
 		setVisibility(100);
@@ -474,7 +474,7 @@ public abstract class Entity extends RPObject {
 		// 'step' distance on both sides of the two rectangles.
 		// As the absolute position is not important, 'step' need not be
 		// subtracted from the values of getX() and getY().
-		thisArea.setRect(x-step, y-step, width
+		thisArea.setRect(x - step, y - step, width
 				+ 2 * step, height + 2 * step);
 		
 		return thisArea.intersects(entity.getArea());

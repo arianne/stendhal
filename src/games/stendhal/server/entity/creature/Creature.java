@@ -542,15 +542,20 @@ public class Creature extends NPC {
 		super.stopAttack();
 	}
 
+	/**
+	 *  poisons attacktarget with the behaviour in Poisoner.
+	 * 
+	 *  @see Poisoner
+	 * 
+	 * @throws NullPointerException if attacktarget is null
+	 */
+	
 	public void tryToPoison() {
 		
 		RPEntity entity = getAttackTarget();
-		if ((entity != null) && nextTo(entity)) {
-			if (poisoner.attack(entity)) {
-				SingletonRepository.getRuleProcessor().addGameEvent(
-				getName(), "poison", entity.getName());
-				entity.sendPrivateText("You have been poisoned by a " + getName());
-			}
+		if (poisoner.attack(entity)) {
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "poison", entity.getName());
+			entity.sendPrivateText("You have been poisoned by a " + getName());
 		}
 	}
 
@@ -689,7 +694,7 @@ public class Creature extends NPC {
 	}
 
 	public boolean hasTargetMoved() {
-		if (targetX == getAttackTarget().getX() && targetY == getAttackTarget().getY()){
+		if (targetX == getAttackTarget().getX() && targetY == getAttackTarget().getY()) {
 			targetX = getAttackTarget().getX();
 			targetY = getAttackTarget().getY();
 				
@@ -699,7 +704,7 @@ public class Creature extends NPC {
 	}
 
 	public void setIdle() {
-		if (!isIdle){
+		if (!isIdle) {
 			isIdle = true;
 			clearPath();
 			stopAttack();
@@ -716,7 +721,7 @@ public class Creature extends NPC {
 	}
 
 	public void setAttackStrategy(Map<String, String> aiProfiles) {
-		strategy= AttackStrategyFactory.get(aiProfiles);
+		strategy = AttackStrategyFactory.get(aiProfiles);
 		
 	}
 

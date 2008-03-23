@@ -60,7 +60,7 @@ public class CustomBrush extends AbstractBrush {
 		int centerx = (int) (x - (bounds.width / 2));
 		int centery = (int) (y - (bounds.height / 2));
 
-		for(MapLayer tl : this) {
+		for (MapLayer tl : this) {
 			TileLayer tm = (TileLayer) mp.getLayer(initLayer++);
 			if (tm != null && tm.isVisible()) {
 				tl.setOffset(centerx, centery);

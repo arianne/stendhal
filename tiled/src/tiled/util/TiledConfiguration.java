@@ -199,7 +199,7 @@ public final class TiledConfiguration {
 		bw = new BufferedWriter(new FileWriter(filename));
 
 		// Iterate through all existing lines in the file
-		for(String line : inputLines) {
+		for (String line : inputLines) {
 			// Make sure it isn't a comment
 			if (!line.trim().startsWith("#") && line.trim().length() > 0) {
 				String[] keyValue = line.split("[ ]*=[ ]*");
@@ -219,7 +219,7 @@ public final class TiledConfiguration {
 
 		// Iterate through configuration options, saving the options that were
 		// not yet in the file already.
-		for(Object key : settings.keySet()) {
+		for (Object key : settings.keySet()) {
 			if (!availableKeys.containsKey(key) && settings.get(key) != null) {
 				bw.write(key.toString() + " = " + settings.get(key));
 				bw.newLine();
