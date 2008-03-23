@@ -21,7 +21,7 @@
 	<property name="build_server_script" value="${buildroot}/build_server_script"/>
 	<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf"/>
 
-	<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps"/>
+	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
 
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
@@ -86,10 +86,10 @@
 		<delete dir="${build_tests}"/>
 		<delete dir="${build_tools}"/>
 		<delete dir="${build_tiled}"/>
-		<delete dir="${buildroot}/build_tiled_convertmaps"/>
+		<delete dir="${buildroot}/build_stendhaltools"/>
 	</target>
 
-	<target name="server_build" depends="init,checkxml" description="Build JAR file for Stendhal server">
+	<target name="server_build" depends="init, checkxml" description="Build JAR file for Stendhal server">
 		<mkdir dir="${build_server}"/>
 
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
@@ -542,27 +542,28 @@
 		<delete dir="${buildroot}/stendhal-${version}-src"/>
 	</target>
 
-	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_tiled">
-		<mkdir dir="${build_tiled_convertmaps}"/>
+	<target name="compile_stendhaltools" depends="compile_tiled" description="compiles the Stendhal build tools">
+		<mkdir dir="${build_stendhaltools}"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/tools/MapConverter.java"/>
+			<include name="games/stendhal/tools/MapUpdater.java"/>
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<classpath>
-				<pathelement path="${build_tiled_convertmaps}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
 		</javac>
+	</target>
 
+	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
 		<taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
 			<classpath>
-				<pathelement path="${build_tiled_convertmaps}"/>
+				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
 		</taskdef>
@@ -575,26 +576,10 @@
 		</mapconverter>
 	</target>
 
-	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_tiled">
-		<mkdir dir="${build_tiled_convertmaps}"/>
-
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
-			<include name="games/stendhal/tools/MapUpdater.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-
-			<classpath>
-				<pathelement path="${build_tiled_convertmaps}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${build_tiled}"/>
-			</classpath>
-		</javac>
-
+	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
 		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
 			<classpath>
-				<pathelement path="${build_tiled_convertmaps}"/>
+				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
 		</taskdef>
