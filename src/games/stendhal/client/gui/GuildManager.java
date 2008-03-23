@@ -9,6 +9,11 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JOptionPane;
 
 import marauroa.common.game.RPAction;
@@ -17,8 +22,8 @@ import marauroa.common.game.RPAction;
  * 
  * @author timothyb89
  */
+@SuppressWarnings("serial")
 public class GuildManager extends javax.swing.JFrame {
-	private static final long serialVersionUID = -1607102841664745919L;
 
 	/** Creates new form GuildManager. */
 	public GuildManager() {
@@ -58,9 +63,9 @@ public class GuildManager extends javax.swing.JFrame {
 		jLabel1.setBounds(10, 10, 270, 22);
 
 		guildTextBoxCreate.setText("Guild Name Here");
-		guildTextBoxCreate.addMouseListener(new java.awt.event.MouseAdapter() {
+		guildTextBoxCreate.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
+			public void mouseClicked(MouseEvent evt) {
 				guildTextBoxCreateMouseClicked(evt);
 			}
 		});
@@ -69,8 +74,8 @@ public class GuildManager extends javax.swing.JFrame {
 		guildTextBoxCreate.setBounds(10, 40, 280, 19);
 
 		jButton1.setText("Create");
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		jButton1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
@@ -83,8 +88,8 @@ public class GuildManager extends javax.swing.JFrame {
 		jLabel2.setBounds(10, 70, 356, 30);
 
 		jButton2.setText("Leave Guild");
-		jButton2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		jButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
 		});
@@ -107,8 +112,8 @@ public class GuildManager extends javax.swing.JFrame {
 		invitePlayerName.setBounds(10, 110, 290, 19);
 
 		jButton3.setText("Invite");
-		jButton3.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		jButton3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				jButton3ActionPerformed(evt);
 			}
 		});
@@ -123,31 +128,31 @@ public class GuildManager extends javax.swing.JFrame {
 		pack();
 	}
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+	private void jButton1ActionPerformed(ActionEvent evt) {
 		// creates the guild for the player
 		createGuild(guildTextBoxCreate.getText());
 		JOptionPane.showMessageDialog(null, "You have created the guild \""
 				+ guildTextBoxCreate.getText() + "\".");
 	}
 
-	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
+	private void jButton3ActionPerformed(ActionEvent evt) {
 		String guild = playerEntity.getGuild();
 		inviteToGuild(invitePlayerName.getText(), guild);
 		JOptionPane.showMessageDialog(null, "You have invited \""
 				+ invitePlayerName.getText() + "\" to the \"" + guild
 				+ "\" guild.");
-	} // GEN-LAST:event_jButton3ActionPerformed
+	}
 
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
+	private void jButton2ActionPerformed(ActionEvent evt) {
 		removeFromGuild("user");
 		JOptionPane.showMessageDialog(null,
 				"You have been removed from your old guild. You may now join a new one.");
-	} // GEN-LAST:event_jButton2ActionPerformed
+	}
 
-	private void guildTextBoxCreateMouseClicked(java.awt.event.MouseEvent evt) { // GEN-FIRST:event_guildTextBoxCreateMouseClicked
+	private void guildTextBoxCreateMouseClicked(MouseEvent evt) {
 		// erase text
 		guildTextBoxCreate.setText("");
-	} // GEN-LAST:event_guildTextBoxCreateMouseClicked
+	}
 
 	/**
 	 * Create guild.

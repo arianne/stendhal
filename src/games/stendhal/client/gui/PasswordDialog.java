@@ -6,6 +6,13 @@
 
 package games.stendhal.client.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -44,9 +51,9 @@ public class PasswordDialog extends javax.swing.JFrame {
 		getContentPane().add(jLabel1);
 		jLabel1.setBounds(10, 10, 166, 17);
 
-		currrentPass.addMouseListener(new java.awt.event.MouseAdapter() {
+		currrentPass.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
+			public void mouseClicked(MouseEvent evt) {
 				currrentPassMouseClicked(evt);
 			}
 		});
@@ -65,9 +72,9 @@ public class PasswordDialog extends javax.swing.JFrame {
 		getContentPane().add(jLabel3);
 		jLabel3.setBounds(10, 70, 111, 30);
 
-		newPass.addKeyListener(new java.awt.event.KeyAdapter() {
+		newPass.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(java.awt.event.KeyEvent evt) {
+			public void keyTyped(KeyEvent evt) {
 				newPassKeyTyped(evt);
 			}
 		});
@@ -79,9 +86,9 @@ public class PasswordDialog extends javax.swing.JFrame {
 		getContentPane().add(jLabel4);
 		jLabel4.setBounds(10, 110, 100, 30);
 
-		newPassRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
+		newPassRepeat.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(java.awt.event.KeyEvent evt) {
+			public void keyTyped(KeyEvent evt) {
 				newPassRepeatKeyTyped(evt);
 			}
 		});
@@ -94,8 +101,8 @@ public class PasswordDialog extends javax.swing.JFrame {
 		jLabel5.setBounds(10, 150, 137, 30);
 
 		acceptButton.setText("Accept");
-		acceptButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		acceptButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				acceptButtonActionPerformed(evt);
 			}
 		});
@@ -110,7 +117,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 		pack();
 	} 
 
-	private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
+	private void acceptButtonActionPerformed(ActionEvent evt) {
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 			// check for server password and see if that is accepted
 			// remove this- just for testing.
@@ -121,17 +128,17 @@ public class PasswordDialog extends javax.swing.JFrame {
 		}
 	} 
 
-	private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) { 
+	private void newPassRepeatKeyTyped(KeyEvent evt) { 
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
 	} 
 
-	private void newPassKeyTyped(java.awt.event.KeyEvent evt) { 
+	private void newPassKeyTyped(KeyEvent evt) { 
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
 	} 
 
 	private boolean clear;
 
-	private void currrentPassMouseClicked(java.awt.event.MouseEvent evt) { 
+	private void currrentPassMouseClicked(MouseEvent evt) { 
 		if (!clear) {
 			currrentPass.setText("");
 			clear = true;
@@ -160,7 +167,6 @@ public class PasswordDialog extends javax.swing.JFrame {
 		});
 	}
 
-
 	private javax.swing.JButton acceptButton;
 
 	private javax.swing.JButton cancelButton;
@@ -182,6 +188,5 @@ public class PasswordDialog extends javax.swing.JFrame {
 	private javax.swing.JPasswordField newPass;
 
 	private javax.swing.JPasswordField newPassRepeat;
-
 
 }
