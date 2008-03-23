@@ -65,11 +65,11 @@ public class ScrollerPanel extends JPanel {
 	private boolean scrollingStarted;
 
 	/**
-	 * creates an ScrollerPane wich scrolls the given text and using defaults
+	 * creates an ScrollerPane which scrolls the given text and using defaults
 	 * for the other attributes.
 	 * 
 	 * @param text
-	 *            the text araay whis should be scrolled - one string per line
+	 *            the text array which should be scrolled - one string per line
 	 *            is scrolled
 	 */
 	public ScrollerPanel(String[] text) {
@@ -143,8 +143,7 @@ public class ScrollerPanel extends JPanel {
 					RenderingHints.VALUE_ANTIALIAS_ON);
 			g2d.setBackground(backgroundColor);
 			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
-					this.getHeight() / 2, textColor, true);
+			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f, this.getHeight() / 2, textColor, true);
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			FontMetrics metrics = g2d.getFontMetrics();
