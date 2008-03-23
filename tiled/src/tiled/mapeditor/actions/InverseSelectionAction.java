@@ -32,13 +32,13 @@ import tiled.mapeditor.MapEditor;
 public class InverseSelectionAction extends AbstractAction {
 	private static final long serialVersionUID = -3030827051213056224L;
 
-	private MapEditor mapEditor;
+//	private MapEditor mapEditor;
 
 	public InverseSelectionAction(MapEditor mapEditor) {
 		super("Invert");
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control I"));
 		putValue(SHORT_DESCRIPTION, "Inverse of the current selection");
-		this.mapEditor = mapEditor;
+//		this.mapEditor = mapEditor;
 	}
 
 	public void actionPerformed(ActionEvent e) {
