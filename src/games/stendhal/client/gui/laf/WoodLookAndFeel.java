@@ -1,6 +1,7 @@
 package games.stendhal.client.gui.laf;
 
 import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import data.gui.LFRessourceBase;
@@ -12,6 +13,18 @@ import data.gui.LFRessourceBase;
  */
 @SuppressWarnings("serial")
 public class WoodLookAndFeel extends SynthLookAndFeel {
+
+	/**
+	 * Activate the Wood look and feel
+	 */
+	public static void activate() {
+		try {
+        	UIManager.setLookAndFeel(new WoodLookAndFeel());
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }
+	}
+
 
 	public WoodLookAndFeel() {
 		try {
