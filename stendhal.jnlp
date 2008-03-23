@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- set codebase to game-server to allow connection (security restriction) -->
 <!-- the .jar-files are downloaded from sf.net in order not to cause lag in game -->
-<jnlp  spec="1.0+"  codebase="http://stendhal.game-host.org/stendhal" href="stendhal.jnlp">
+<jnlp spec="1.0+" codebase="http://stendhal.game-host.org/stendhal" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
@@ -10,8 +10,8 @@
 Stendhal is a multiplayer online adventures game inspired in Acorn with the 90's Zelda look.
 Your task is to talk with other people in the village and find jobs to do that will drive to interesting quests that will reveal the hidden plot behind the world of stendhal
 
-In stendhal, you can also just walk around, chat with people, buy and sell items and kill some of them :)
-Some of these people are NPC, they will give you tasks to accomplish and hints to solve your quest.    </description>
+In Stendhal, you can also just walk around, chat with people, buy and sell items and kill some of them :)
+Some of these people are NPC, they will give you tasks to accomplish and hints to solve your quest.</description>
     <description kind="short">A multiplayer online adventures game</description>
     <icon href="StendhalIcon.gif"/>
     <icon kind="splash" href="StendhalSplash.jpg"/>
