@@ -73,7 +73,7 @@ public class CloakCollectorTest {
 
 		en.stepTest(monica, "elf cloak");
 		assertEquals(
-				"You haven't seen one before? Well, it's a white cloak. So, will you find them all?",
+				"You haven't seen one before? Well, it's a elf cloak. So, will you find them all?",
 				npc.get("text"));
 
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
