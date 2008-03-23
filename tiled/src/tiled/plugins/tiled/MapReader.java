@@ -138,12 +138,12 @@ public class MapReader implements MapReaderPlugin {
 		if (filename.indexOf("://") > 0 || filename.startsWith("file:")) {
 			url = filename;
 		} else {
-			url = (new File(filename)).toURL().toString();
+			url = (new File(filename)).toURI().toURL().toString();
 		}
 		return url;
 	}
 
-	private int reflectFindMethodByName(Class c, String methodName) {
+	private int reflectFindMethodByName(Class<?> c, String methodName) {
 		Method[] methods = c.getMethods();
 		for (int i = 0; i < methods.length; i++) {
 			if (methods[i].getName().equalsIgnoreCase(methodName)) {
@@ -155,7 +155,7 @@ public class MapReader implements MapReaderPlugin {
 
 	private void reflectInvokeMethod(Object invokeVictim, Method method, String[] args)
 			throws Exception {
-		Class[] parameterTypes = method.getParameterTypes();
+		Class<?>[] parameterTypes = method.getParameterTypes();
 		Object[] conformingArguments = new Object[parameterTypes.length];
 
 		if (args.length < parameterTypes.length) {
@@ -218,9 +218,9 @@ public class MapReader implements MapReaderPlugin {
 		}
 	}
 
-	private Object unmarshalClass(Class reflector, Node node) throws InstantiationException, IllegalAccessException,
+	private Object unmarshalClass(Class<?> reflector, Node node) throws InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Constructor cons = null;
+		Constructor<?> cons = null;
 		try {
 			cons = reflector.getConstructor((Class[]) null);
 		} catch (SecurityException e1) {
