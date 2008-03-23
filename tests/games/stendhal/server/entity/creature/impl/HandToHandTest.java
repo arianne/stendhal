@@ -2,7 +2,6 @@ package games.stendhal.server.entity.creature.impl;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -27,11 +26,7 @@ public class HandToHandTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testAttack() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testCanAttackNow() {
 		HandToHand hth = new HandToHand();
@@ -60,15 +55,7 @@ public class HandToHandTest {
 		
 	}
 
-	@Test
-	public void testFindNewTarget() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBetterAttackPosition() {
-		fail("Not yet implemented");
-	}
+	
 	private static boolean mockinvisible;
 
 	@Test
