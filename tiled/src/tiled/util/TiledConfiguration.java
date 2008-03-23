@@ -25,7 +25,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -183,10 +182,10 @@ public final class TiledConfiguration {
 		BufferedWriter bw;
 		List<String> inputLines = new ArrayList<String>();
 		Map<String, String> availableKeys = new HashMap<String, String>();
-		String line;
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
+			String line;
 			while ((line = br.readLine()) != null) {
 				inputLines.add(line);
 			}
@@ -200,9 +199,7 @@ public final class TiledConfiguration {
 		bw = new BufferedWriter(new FileWriter(filename));
 
 		// Iterate through all existing lines in the file
-		Iterator lineItr = inputLines.iterator();
-		while (lineItr.hasNext()) {
-			line = (String) lineItr.next();
+		for(String line : inputLines) {
 			// Make sure it isn't a comment
 			if (!line.trim().startsWith("#") && line.trim().length() > 0) {
 				String[] keyValue = line.split("[ ]*=[ ]*");
@@ -222,11 +219,9 @@ public final class TiledConfiguration {
 
 		// Iterate through configuration options, saving the options that were
 		// not yet in the file already.
-		Iterator keyItr = settings.keySet().iterator();
-		while (keyItr.hasNext()) {
-			String key = (String) keyItr.next();
+		for(Object key : settings.keySet()) {
 			if (!availableKeys.containsKey(key) && settings.get(key) != null) {
-				bw.write(key + " = " + settings.get(key));
+				bw.write(key.toString() + " = " + settings.get(key));
 				bw.newLine();
 			}
 		}

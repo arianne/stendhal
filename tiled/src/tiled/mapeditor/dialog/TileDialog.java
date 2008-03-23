@@ -436,14 +436,13 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 			bAddImage.setEnabled(!tilebmp);
 			bDeleteAllUnusedImages.setEnabled(!tilebmp);
 			boolean image_used = false;
-			Iterator tileIterator = tileset.iterator();
 
-			while (tileIterator.hasNext()) {
-				Tile tile = (Tile) tileIterator.next();
+			for(Tile tile : tileset) {
 				if (tile.getImageId() == currentImageIndex) {
 					image_used = true;
 				}
 			}
+
 			bDeleteImage.setEnabled(!tilebmp && currentImageIndex >= 0 && !image_used);
 		}
 	}
@@ -537,10 +536,8 @@ public class TileDialog extends JDialog implements ActionListener, ListSelection
 				while (ids.hasNext()) {
 					int id = Integer.parseInt((String) ids.next());
 					boolean image_used = false;
-					Iterator tileIterator = tileset.iterator();
 
-					while (tileIterator.hasNext()) {
-						Tile tile = (Tile) tileIterator.next();
+					for(Tile tile : tileset) {
 						if (tile.getImageId() == id) {
 							image_used = true;
 						}

@@ -19,7 +19,6 @@ package tiled.mapeditor.brush;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.ListIterator;
 
 import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
@@ -61,9 +60,7 @@ public class CustomBrush extends AbstractBrush {
 		int centerx = (int) (x - (bounds.width / 2));
 		int centery = (int) (y - (bounds.height / 2));
 
-		ListIterator itr = iterator();
-		while (itr.hasNext()) {
-			TileLayer tl = (TileLayer) itr.next();
+		for(MapLayer tl : this) {
 			TileLayer tm = (TileLayer) mp.getLayer(initLayer++);
 			if (tm != null && tm.isVisible()) {
 				tl.setOffset(centerx, centery);
