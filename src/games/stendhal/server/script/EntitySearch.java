@@ -88,7 +88,7 @@ public class EntitySearch extends ScriptImpl {
 			for (RPObject rpObj : zone) {
 				if (isACreatureButNoPet(rpObj)) { 
 					Creature c = (Creature) rpObj;
-					if (c.getRespawnPoint() == null) {
+					if (!c.isSpawned()) {
 						String zoneName = zone.getName();
 						res.append("\r\n" + c.getName() + " (" + c.getLevel()
 								+ ")");

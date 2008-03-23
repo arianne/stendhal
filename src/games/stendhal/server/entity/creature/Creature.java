@@ -84,7 +84,8 @@ public class Creature extends NPC {
 	private static final double SERVER_DROP_GENEROSITY = 1;
 
 	private CreatureRespawnPoint point;
-
+	boolean isRespawned;
+	
 	/**
 	 * Ths list of item names this creature may drop Note; per default this list
 	 * is shared with all creatures of that class.
@@ -115,6 +116,14 @@ public class Creature extends NPC {
 	private int attackTurn = Rand.rand(5);
 
 	private boolean isIdle; 
+
+	public boolean isSpawned() {
+		return isRespawned;
+	}
+
+	public void setRespawned(boolean isRespawned) {
+		this.isRespawned = isRespawned;
+	}
 
 	public int getAttackTurn() {
 		return attackTurn;
@@ -308,14 +317,11 @@ public class Creature extends NPC {
 
 	public void setRespawnPoint(CreatureRespawnPoint point) {
 		this.point = point;
+		setRespawned(true);
 	}
 
 	public int getRespawnTime() {
 		return respawnTime;
-	}
-
-	public CreatureRespawnPoint getRespawnPoint() {
-		return point;
 	}
 
 	/**
