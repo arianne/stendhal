@@ -255,7 +255,7 @@ public class MapReader implements MapReaderPlugin {
 		return o;
 	}
 
-	private Image unmarshalImage(Node t, String baseDir) throws MalformedURLException, IOException {
+	private Image unmarshalImage(Node t, String baseDir) throws IOException {
 		Image img = null;
 
 		String source = getAttributeValue(t, "source");
@@ -701,7 +701,7 @@ public class MapReader implements MapReaderPlugin {
 		return map;
 	}
 
-	private Map unmarshal(InputStream in) throws IOException, Exception {
+	private Map unmarshal(InputStream in) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document doc;
 		try {

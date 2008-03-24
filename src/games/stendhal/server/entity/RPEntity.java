@@ -19,6 +19,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.ActionManager;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -1982,4 +1983,66 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	
 		return best;
 	}
+	
+	/**
+	 * Lets the attacker attack its target.
+	 * 
+	 * @param attacker
+	 *            The attacking RPEntity.
+	 * @param defender
+	 *            The defending RPEntity.
+	 * @return true iff the attacker has done damage to the defender.
+	 * 
+	 */
+	public boolean attack() {
+		boolean result = false;
+		 RPEntity defender = this.getAttackTarget();
+		StendhalRPZone zone = this.getZone();
+		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
+			logger.debug("Attack from " + this + " to " + defender
+					+ " stopped because target was lost("
+					+ zone.has(defender.getID()) + ") or dead.");
+			this.stopAttack();
+
+			return false;
+		}
+
+		defender.rememberAttacker(this);
+
+		if (this.canHit(defender)) {
+			if ((defender instanceof Player)
+					&& defender.getsFightXpFrom(this)) {
+				defender.incDEFXP();
+			}
+
+			int damage = this.damageDone(defender);
+			if (damage > 0) {
+
+				// limit damage to target HP
+				damage = Math.min(damage, defender.getHP());
+				damage = StendhalRPAction.handleLifesteal(this, this.getWeapons(), damage);
+
+				defender.onDamaged(this, damage);
+				this.put("damage", damage);
+				logger.debug("attack from " + this.getID() + " to "
+						+ defender.getID() + ": Damage: " + damage);
+
+				result = true;
+			} else {
+				// The attack was too weak, it was blocked
+				this.put("damage", 0);
+				logger.debug("attack from " + this.getID() + " to "
+						+ defender.getID() + ": Damage: " + 0);
+			}
+		} else { // Missed
+			logger.debug("attack from " + this.getID() + " to "
+					+ defender.getID() + ": Missed");
+			this.put("damage", 0);
+		}
+
+		this.notifyWorldAboutChanges();
+
+		return result;
+	}
+	
 }

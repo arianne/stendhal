@@ -331,21 +331,21 @@ public class TilePalettePanel extends JPanel implements MouseInputListener {
 
 	/** selects all tiles within the selection rectangle. */
 	private void refreshSelectedTiles(Rectangle rect) {
-		int twidth = tileset.getStandardWidth() + 1;
-		int theight = tileset.getTileHeightMax() + 1;
+		int tempTwidth = tileset.getStandardWidth() + 1;
+		int tempTheight = tileset.getTileHeightMax() + 1;
 
 		int maxx = rect.x + rect.width;
-		maxx += (maxx % twidth > 0) ? twidth - (maxx % twidth) : 0;
+		maxx += (maxx % tempTwidth > 0) ? tempTwidth - (maxx % tempTwidth) : 0;
 		int maxy = rect.y + rect.height;
-		maxy += (maxy % theight > 0) ? theight - (maxy % theight) : 0;
+		maxy += (maxy % tempTheight > 0) ? tempTheight - (maxy % tempTheight) : 0;
 
 		List<StatefulTile> statefulTiles = new ArrayList<StatefulTile>();
 
-		for (int x = rect.x, brushx = 0; x < maxx; x += twidth, brushx++) {
-			for (int y = rect.y, brushy = 0; y < maxy; y += theight, brushy++) {
+		for (int x = rect.x, brushx = 0; x < maxx; x += tempTwidth, brushx++) {
+			for (int y = rect.y, brushy = 0; y < maxy; y += tempTheight, brushy++) {
 				Tile tile = getTileAtPoint(x, y);
 				if (tile != null) {
-					statefulTiles.add(new StatefulTile(new Point(x / twidth, y / twidth), 0, tile));
+					statefulTiles.add(new StatefulTile(new Point(x / tempTwidth, y / tempTwidth), 0, tile));
 				}
 			}
 		}

@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.undo.AbstractUndoableEdit;
-import javax.swing.undo.CannotRedoException;
-import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
 
 import tiled.core.Map;
@@ -158,8 +156,12 @@ public class MapLayerEdit extends AbstractUndoableEdit {
 	}
 
 	/* inherited methods */
+	
+	/* (non-Javadoc)
+	 * @see javax.swing.undo.AbstractUndoableEdit#undo()
+	 */
 	@Override
-	public void undo() throws CannotUndoException {
+	public void undo() {
 		applyLayers(layerUndo);
 	}
 
@@ -169,8 +171,11 @@ public class MapLayerEdit extends AbstractUndoableEdit {
 		return (layerUndo != null) && (layerUndo.size() > 0);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.undo.AbstractUndoableEdit#redo()
+	 */
 	@Override
-	public void redo() throws CannotRedoException {
+	public void redo() {
 		applyLayers(layerRedo);
 	}
 

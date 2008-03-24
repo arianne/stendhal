@@ -12,7 +12,7 @@ class HandToHand implements AttackStrategy {
 	public void attack(Creature creature) {
 
 		if ((SingletonRepository.getRuleProcessor().getTurn() % 5 == creature.getAttackTurn())) {
-			StendhalRPAction.attack(creature, creature.getAttackTarget());
+			creature.attack();
 			creature.tryToPoison();
 		}
 	}

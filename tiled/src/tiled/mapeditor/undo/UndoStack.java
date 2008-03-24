@@ -17,7 +17,6 @@
 
 package tiled.mapeditor.undo;
 
-import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
 

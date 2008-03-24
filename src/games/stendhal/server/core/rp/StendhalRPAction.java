@@ -122,69 +122,7 @@ public class StendhalRPAction {
 		player.notifyWorldAboutChanges();
 	}
 
-	/**
-	 * Lets the attacker try to attack the defender.
-	 * 
-	 * @param attacker
-	 *            The attacking RPEntity.
-	 * @param defender
-	 *            The defending RPEntity.
-	 * @return true iff the attacker has done damage to the defender.
-	 * 
-	 */
-	public static boolean attack(RPEntity attacker, RPEntity defender) {
-		boolean result = false;
-
-		StendhalRPZone zone = attacker.getZone();
-		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
-			logger.debug("Attack from " + attacker + " to " + defender
-					+ " stopped because target was lost("
-					+ zone.has(defender.getID()) + ") or dead.");
-			attacker.stopAttack();
-
-			return false;
-		}
-
-		defender.rememberAttacker(attacker);
-
-		List<Item> weapons = attacker.getWeapons();
-
-		if (attacker.canHit(defender)) {
-			if ((defender instanceof Player)
-					&& defender.getsFightXpFrom(attacker)) {
-				defender.incDEFXP();
-			}
-
-			int damage = attacker.damageDone( defender);
-			if (damage > 0) {
-
-				// limit damage to target HP
-				damage = Math.min(damage, defender.getHP());
-				damage = handleLifesteal(attacker, weapons, damage);
-
-				defender.onDamaged(attacker, damage);
-				attacker.put("damage", damage);
-				logger.debug("attack from " + attacker.getID() + " to "
-						+ defender.getID() + ": Damage: " + damage);
-
-				result = true;
-			} else {
-				// The attack was too weak, it was blocked
-				attacker.put("damage", 0);
-				logger.debug("attack from " + attacker.getID() + " to "
-						+ defender.getID() + ": Damage: " + 0);
-			}
-		} else { // Missed
-			logger.debug("attack from " + attacker.getID() + " to "
-					+ defender.getID() + ": Missed");
-			attacker.put("damage", 0);
-		}
-
-		attacker.notifyWorldAboutChanges();
-
-		return result;
-	}
-	/**
+/**
 	 * Lets the attacker try to attack the defender.
 	 * 
 	 * @param attacker
@@ -304,7 +242,7 @@ public class StendhalRPAction {
 	 *            the damage done by this hit.
 	 * @return damage (may be altered inside this method)
 	 */
-	private static int handleLifesteal(RPEntity attacker,
+	public static int handleLifesteal(RPEntity attacker,
 			List<Item> attackerWeapons, int damage) {
 
 		// Calculate the lifesteal value based on the configured factor
