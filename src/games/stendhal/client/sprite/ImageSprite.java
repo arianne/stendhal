@@ -130,10 +130,12 @@ public class ImageSprite implements Sprite {
 		BufferedImage i = getGC().createCompatibleImage(getWidth(),
 				getHeight(), Transparency.TRANSLUCENT);
 		draw(i.getGraphics(), 0, 0);
+
 		Graphics2D g = i.createGraphics();
 		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
 				(int) (alpha * 255)));
 		g.fillRect(0, 0, i.getWidth(), i.getHeight());
+		g.dispose();
 
 		return i;
 	}
