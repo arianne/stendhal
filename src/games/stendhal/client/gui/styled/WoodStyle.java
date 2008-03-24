@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui.styled;
 
-//
-//
-
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -48,11 +45,11 @@ public class WoodStyle implements Style {
 		/*
 		 * Load the texture
 		 */
-		SpriteStore st = SpriteStore.get();
-		background = st.getSprite("data/gui/panelwood003.jpg");
+		background = SpriteStore.get().getSprite("data/gui/panelwood003.jpg");
 
-		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f,
-				0.2f), new Color(0.3f, 0.25f, 0.1f));
+		border = new SoftBevelBorder(BevelBorder.RAISED,
+				new Color(0.6f, 0.5f, 0.2f),
+				new Color(0.3f, 0.25f, 0.1f));
 
 		font = new Font("Dialog", Font.PLAIN, 12);
 	}

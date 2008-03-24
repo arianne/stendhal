@@ -22,8 +22,8 @@ import javax.swing.border.Border;
 /**
  * A styled JPopupMenu.
  */
+@SuppressWarnings("serial")
 public class StyledJPopupMenu extends JPopupMenu {
-	private static final long serialVersionUID = -1607102841664745919L;
 
 	/*
 	 * Style used.
@@ -147,4 +147,5 @@ public class StyledJPopupMenu extends JPopupMenu {
 			super.paintComponent(g);
 		}
 	}
+
 }
