@@ -10,7 +10,7 @@ public class RangeAttack implements AttackStrategy {
 	public void attack(Creature creature) {
 
 		if ((SingletonRepository.getRuleProcessor().getTurn() % 5 == creature.getAttackTurn())) {
-			StendhalRPAction.attack(creature, creature.getAttackTarget());
+			creature.attack();
 			creature.tryToPoison();
 		}
 	}
@@ -18,7 +18,7 @@ public class RangeAttack implements AttackStrategy {
 	public boolean canAttackNow(Creature creature) {
 		if (creature.getAttackTarget() != null) {
 
-			return !(creature.squaredDistance(creature) > 50 || creature.getZone().collidesOnLine(creature.getX(),
+			return !(creature.squaredDistance(creature.getAttackTarget()) > 50 || creature.getZone().collidesOnLine(creature.getX(),
 					creature.getY(), creature.getAttackTarget().getX(), creature.getAttackTarget().getY()));
 		} else {
 			return false;
