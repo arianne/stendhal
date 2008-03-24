@@ -24,6 +24,14 @@
  </zone>
 
  <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744" file="Level 0/semos/mountain_n2.tmx">
+  <portal x="80" y="108" ref="frank_house">
+   <destination zone="int_semos_frank_house" ref="exit"/>
+  <portal> 
+ </zone>
+  <zone name="int_semos_frank_house" file="interiors/semos/frank_house.tmx">
+  <portal x="7" y="30" ref="exit">
+    <destination zone="0_semos_mountain_n2" ref="frank_house"/>
+  </portal>
  </zone>
 
  <zone name="0_semos_mountain_n2_e" level="0" x="500128" y="499744" file="Level 0/semos/mountain_n2_e.tmx">
