@@ -2,12 +2,15 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.styled.WoodStyle;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.border.Border;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 /**
  * ClientPanel is the base class for windows in the new Swing based Stendhal client.
@@ -37,9 +42,67 @@ public class ClientPanel extends JInternalFrame {
 
 		clntSize = new Dimension(width, height);
 
+		// Closing only hides the window for further usage.
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
 		setIconifiable(true);
+
+		installFocusHandling();
 	}
+
+
+	// pretty ugly code to force keyboard input focus to the chat window
+
+	private static Component focusTarget;
+
+	public static void setFocusTarget(Component comp) {
+	    focusTarget = comp;
+    }
+
+	protected void restoreTargetFocus() {
+		if (focusTarget != null) {
+			focusTarget.requestFocus();
+		}
+	}
+
+	private void installFocusHandling() {
+		/*
+		 * Always redirect the keyboard focus to the chat input field.
+		 */
+		addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				restoreTargetFocus();
+			}
+
+			public void focusLost(FocusEvent e) {
+			}
+		});
+
+		addInternalFrameListener(new InternalFrameListener() {
+			public void internalFrameActivated(InternalFrameEvent e) {
+			}
+
+			public void internalFrameClosed(InternalFrameEvent e) {
+            }
+
+			public void internalFrameClosing(InternalFrameEvent e) {
+            }
+
+			public void internalFrameDeactivated(InternalFrameEvent e) {
+            }
+
+			public void internalFrameDeiconified(InternalFrameEvent e) {
+				restoreTargetFocus();
+            }
+
+			public void internalFrameIconified(InternalFrameEvent e) {
+            }
+
+			public void internalFrameOpened(InternalFrameEvent e) {
+            }
+		});
+	}
+
 
 	/** Returns size of the client area.*/
 	public Dimension getClientSize() {
