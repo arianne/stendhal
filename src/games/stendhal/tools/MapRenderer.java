@@ -36,15 +36,16 @@ import org.apache.tools.ant.types.FileSet;
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.plugins.tiled.XMLMapTransformer;
-import tiled.view.old.MapView;
+import tiled.view.MapView;
+import tiled.view.OrthoMapView;
 
 /**
- * Converts the stendhal maps from *.tmx to *.stend This class can be started
+ * Renders Stendhal maps from *.tmx into PNG files of the same base name. This class can be started
  * from the command line or through an ant task.
  * 
  * @author mtotz
  */
-public class MapConverter extends Task {
+public class MapRenderer extends Task {
 	private String imagePath;
 
 	/** list of *.tmx files to convert. */
@@ -74,16 +75,14 @@ public class MapConverter extends Task {
 			}
 		}
 
-		MapView myView = MapView.createViewforMap(map);
-		myView.setDoubleBuffered(false);
-		// myView.enableMode(MapView.PF_NOSPECIAL);
-		myView.setZoom(0.0625);
-		Dimension d = myView.getPreferredSize();
-		BufferedImage i = new BufferedImage(d.width, d.height,
-				BufferedImage.TYPE_INT_ARGB);
+		MapView myView = new OrthoMapView();
+		myView.setMap(map);
+		myView.setScale(0.0625);
+		Dimension d = myView.getSize();
+		BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
-		myView.paint(g);
+		myView.draw(g);
 
 		String area = file.getParentFile().getName();
 		String level;
@@ -109,7 +108,6 @@ public class MapConverter extends Task {
 		} catch (java.io.IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -157,7 +155,7 @@ public class MapConverter extends Task {
 		}
 
 		// do the job
-		MapConverter converter = new MapConverter();
+		MapRenderer converter = new MapRenderer();
 		converter.imagePath = args[1];
 		converter.convert(args[0]);
 	}

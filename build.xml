@@ -546,7 +546,7 @@
 		<mkdir dir="${build_stendhaltools}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
-			<include name="games/stendhal/tools/MapConverter.java"/>
+			<include name="games/stendhal/tools/MapRenderer.java"/>
 			<include name="games/stendhal/tools/MapUpdater.java"/>
 
 			<compilerarg value="-encoding"/>
@@ -561,7 +561,7 @@
 	</target>
 
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
-		<taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
+		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
 			<classpath>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
@@ -569,11 +569,11 @@
 		</taskdef>
 
 		<mkdir dir="tiled/world"/>
-		<mapconverter imagePath="${tiled}/world/">
+		<maprenderer imagePath="${tiled}/world/">
 			<fileset dir="tiled">
 				<include name="Level */**/*.tmx"/>
 			</fileset>
-		</mapconverter>
+		</maprenderer>
 	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
