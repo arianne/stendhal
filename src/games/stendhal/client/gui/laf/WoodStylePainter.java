@@ -20,16 +20,13 @@ public class WoodStylePainter extends SynthPainter {
 	public static final Color borderColor = new Color(0.6f, 0.5f, 0.2f);
 
 	private BufferedImage img;
-//	private TexturePaint texture;
 
 	public WoodStylePainter(String textureName) {
 		try {
 	        img = ImageIO.read(SpriteStore.get().getResourceURL(textureName));
-//	        texture = new TexturePaint(img, new Rectangle2D.Float(0, 0, img.getWidth(), img.getHeight()));
         } catch(Exception e) {
 	        e.printStackTrace();
 	        img = null;
-//	        texture = null;
         }
 	}
 
@@ -53,26 +50,8 @@ public class WoodStylePainter extends SynthPainter {
 		}
     }
 
-// inperformant
-//	private void drawTexture(Graphics g, int x, int y, int w, int h) {
-//		Graphics2D g2 = (Graphics2D)g;
-//		g2.setPaint(texture);
-//		g2.fillRect(x, y, w, h);
-//		g2.setPaint(null);
-//	}
-
-//	private static void paintGradient(Graphics g, int x, int y, int w, int h) {
-//		// For simplicity this always recreates the GradientPaint.
-//		// In a real app you should cache this to avoid garbage.
-//		Graphics2D g2 = (Graphics2D)g;
-//		g2.setPaint(new GradientPaint((float)x, (float)y, Color.WHITE, (float)(x + w), (float)(y + h), Color.RED));
-//		g2.fillRect(x, y, w, h);
-//		g2.setPaint(null);
-//	}
-
 	private void paint(Graphics g, int x, int y, int w, int h) {
 		drawTiles(g, img, x, y, x+w, y+h);
-//		drawTexture(g, x, y, w, h);
 	}
 
 

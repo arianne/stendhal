@@ -1,16 +1,11 @@
 package games.stendhal.client.gui.laf;
 
-import java.awt.Font;
-
 import javax.swing.JComponent;
 import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.synth.Region;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 import javax.swing.plaf.synth.SynthStyle;
 import javax.swing.plaf.synth.SynthStyleFactory;
-
-import sun.swing.plaf.synth.DefaultSynthStyle;
 
 /**
  * Because of bugs in the Synth Look&Feel implementation of Java 1.5,
@@ -37,31 +32,22 @@ public class WoodStyleFactory extends SynthStyleFactory {
 	}
 
 
-    /**
-     * Wood style objects.
-     */
-    private final DefaultSynthStyle woodStyle;
-    private final DefaultSynthStyle woodTitleStyle;
+	// Wood style objects
+	private final SynthStyle woodStyle;
+	private final SynthStyle woodTitleStyle;
+	private final SynthStyle woodButtonStyle;
+//	private final SynthStyle woodMenuStyle;
 
-    private final DefaultSynthStyle woodButtonStyle;
-
-    private final DefaultSynthStyle defaultStyle;
+    // default Synth style for all other controls
+    private final SynthStyle defaultStyle;
 
 	public WoodStyleFactory() {
-		woodStyle = new DefaultSynthStyle();
-		woodStyle.setFont(new FontUIResource("Dialog", Font.PLAIN, 12));
-		woodStyle.setPainter(new WoodStylePainter("data/gui/panelwood003.jpg"));
+		woodStyle = new WoodSynthStyle("data/gui/panelwood003.jpg");
+		woodButtonStyle = new WoodSynthButtonStyle("data/gui/panelwood006.jpg", 2);
+		woodTitleStyle = new WoodSynthStyle("data/gui/panelwood119.jpg");
+//		woodMenuStyle = new WoodSynthStyle("data/gui/panelwood003.jpg");
 
-		woodButtonStyle = new DefaultSynthStyle();
-		woodButtonStyle.setFont(new FontUIResource("Dialog", Font.PLAIN, 12));
-		woodButtonStyle.setPainter(new WoodStyleButtonPainter("data/gui/panelwood006.jpg", 2));
-
-		woodTitleStyle = new DefaultSynthStyle();
-		woodTitleStyle.setFont(new FontUIResource("Dialog", Font.PLAIN, 12));
-		woodTitleStyle.setPainter(new WoodStylePainter("data/gui/panelwood119.jpg"));
-
-		defaultStyle = new DefaultSynthStyle();
-		woodTitleStyle.setFont(new FontUIResource("Dialog", Font.PLAIN, 12));
+		defaultStyle = new WoodSynthBaseStyle(null);
 	}
 
 	@Override
@@ -72,6 +58,8 @@ public class WoodStyleFactory extends SynthStyleFactory {
     		return woodTitleStyle;
     	} else if (id == Region.BUTTON || id.toString().endsWith("Button")) {
 			return woodButtonStyle;
+//		} else if (id == Region.MENU || id == Region.MENU_BAR || id == Region.MENU_ITEM_ACCELERATOR) {
+//			return woodMenuStyle;
         } else {
         	return defaultStyle;
         }
