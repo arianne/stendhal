@@ -34,7 +34,7 @@ import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.mapeditor.selection.SelectionLayer;
 
-public class IsoMapView extends MapView {
+public class IsoMapView extends MapViewPanel {
 	private static final long serialVersionUID = -3682315460749405130L;
 
 	public IsoMapView(Map m) {

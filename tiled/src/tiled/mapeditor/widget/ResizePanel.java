@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 
 import tiled.core.Map;
-import tiled.view.old.MapView;
+import tiled.view.old.MapViewPanel;
 
 /**
  * A special widget designed as an aid for resizing the map. Based on a similar
@@ -36,7 +36,7 @@ import tiled.view.old.MapView;
  */
 public class ResizePanel extends JPanel implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = -155382559935793032L;
-	private MapView inner;
+	private MapViewPanel inner;
 	private Map currentMap;
 	private Dimension oldDim;
 	private int offsetX, offsetY;
@@ -51,7 +51,7 @@ public class ResizePanel extends JPanel implements MouseListener, MouseMotionLis
 
 	public ResizePanel(Map map) {
 		this();
-		inner = MapView.createViewforMap(map);
+		inner = MapViewPanel.createViewforMap(map);
 		inner.addMouseListener(this);
 		inner.addMouseMotionListener(this);
 		add(inner);

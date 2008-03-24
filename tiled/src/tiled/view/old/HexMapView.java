@@ -62,7 +62,7 @@ import tiled.mapeditor.selection.SelectionLayer;
  * height of a hex (i.e. from the bottom edge to the top edge). This is equal to
  * the distance between two adjacent hexes (in the same column)
  */
-public class HexMapView extends MapView {
+public class HexMapView extends MapViewPanel {
 	private static final long serialVersionUID = 1644191239700013106L;
 
 	private static double HEX_SLOPE = Math.tan(Math.toRadians(60));

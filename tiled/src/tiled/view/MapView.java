@@ -43,22 +43,31 @@ import tiled.util.TiledConfiguration;
  * @author mtotz
  */
 public abstract class MapView implements MapChangeListener {
+
 	/** default zoom level for the minimap. */
 	protected static final double DEFAULT_MINIMAP_ZOOM = 0.0625;
+
 	/** index of default zoom (100%) in zoom level array. */
 	private static final int DEFAULT_ZOOM_LEVEL = 5;
+
 	/** valid zoom levels. */
 	protected static double[] zoomLevels = { 0.0625, 0.125, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0 };
+
 	/** the zoom-level index. */
 	private int zoomLevel = DEFAULT_ZOOM_LEVEL;
+
 	/** the map. */
 	protected Map map;
+
 	/** current zoom. */
 	protected double zoom = 1.0;
+
 	/** the cached minimap image. */
 	protected BufferedImage minimapImage;
+
 	/** the background color. */
 	private Color backgroundColor;
+
 	/** padding between the tiles. */
 	protected int padding;
 

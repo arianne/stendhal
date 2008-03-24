@@ -26,7 +26,7 @@ import java.awt.Rectangle;
 import tiled.core.Map;
 import tiled.core.TileLayer;
 
-public class ObliqueMapView extends MapView {
+public class ObliqueMapView extends MapViewPanel {
 	private static final long serialVersionUID = 4808852853766904081L;
 
 	public ObliqueMapView(Map m) {

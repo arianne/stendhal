@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
 import tiled.core.Map;
 import tiled.core.TileLayer;
 
-public class ShiftedMapView extends MapView {
+public class ShiftedMapView extends MapViewPanel {
 	private static final long serialVersionUID = 8005158798642048422L;
 
 	private int horSide; // Length of horizontal sides

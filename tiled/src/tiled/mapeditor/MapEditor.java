@@ -77,7 +77,7 @@ import tiled.mapeditor.widget.ToolBar;
 import tiled.util.TiledConfiguration;
 import tiled.util.Util;
 import tiled.view.MapView;
-import tiled.view.Orthogonal;
+import tiled.view.OrthoMapView;
 
 /**
  * The main class for the Tiled Map Editor.
@@ -974,7 +974,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 
 		if (mapLoaded) {
 			mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPACTIVE);
-			mapView = new Orthogonal();
+			mapView = new OrthoMapView();
 			mapView.setMap(currentMap);
 			mapEditPanel.setMapView(mapView);
 			setCurrentPointerState(PS_PAINT);

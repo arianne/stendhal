@@ -29,7 +29,7 @@ import tiled.core.MapLayer;
 import tiled.core.StatefulTile;
 import tiled.core.TileLayer;
 import tiled.mapeditor.brush.Brush;
-import tiled.view.Orthogonal;
+import tiled.view.OrthoMapView;
 
 /**
  * Shows a preview of the currently selected Brush.
@@ -98,7 +98,7 @@ public class BrushPreview extends JPanel {
 		newMap.setTileWidth(width);
 		brush.commitPaint(newMap, 0, 0, 0);
 
-		Orthogonal orthogonal = new Orthogonal();
+		OrthoMapView orthogonal = new OrthoMapView();
 		orthogonal.setMap(newMap);
 		orthogonal.setScale(scale);
 		orthogonal.draw(g);

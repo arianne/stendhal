@@ -34,7 +34,7 @@ import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.mapeditor.selection.SelectionLayer;
 
-public class OrthoMapView extends MapView {
+public class OrthoMapView extends MapViewPanel {
 	private static final long serialVersionUID = -6457593181854273044L;
 
 	public OrthoMapView(Map m) {
