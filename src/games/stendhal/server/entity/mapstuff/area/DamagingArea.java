@@ -182,7 +182,7 @@ public class DamagingArea extends OccupantArea {
 			return false;
 		}
 
-		entity.keepAttacking(this);
+		entity.rememberAttacker(this);
 		return doDamage(entity);
 	}
 

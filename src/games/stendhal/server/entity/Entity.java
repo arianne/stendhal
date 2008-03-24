@@ -311,76 +311,6 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * Calculates the squared distance between the two given rectangles, i.e.
-	 * the square of the minimal distance between a point in rect1 and a point
-	 * in rect2.
-	 * 
-	 * We're calculating the square because the square root operation would be
-	 * expensive. As long as we only need to compare distances, it doesn't
-	 * matter if we compare the distances or the squares of the distances (the
-	 * square operation is strictly monotonous for positive numbers).
-	 * 
-	 * TODO: consider moving this to a class in games.stendhal.common
-	 * 
-	 * @param rect1
-	 *            The first rectangle.
-	 * @param rect2
-	 *            The second rectangle.
-	 * @return The squared distance between the two rectangles.
-	 */
-	private static double squaredDistanceBetween(Rectangle2D rect1,
-			Rectangle2D rect2) {
-		
-		
-		double left1 = rect1.getMinX();
-		// minus one because we want the distance of two 1x1 entities standing
-		// directly next to each other to be 1, not 0.
-		double right1 =  rect1.getMaxX() - 1;
-		double top1 =  rect1.getMinY();
-		double  bottom1 =  rect1.getMaxY() - 1;
-
-		double  left2 =  rect2.getMinX();
-		double right2 =  rect2.getMaxX() - 1;
-		double top2 =  rect2.getMinY();
-		double  bottom2 =  rect2.getMaxY() - 1;
-
-		double  xDist = 0;
-		double  yDist = 0;
-
-		if (right1 < right2) {
-			if (right1 > left2) {
-				xDist = 0;
-			} else {
-				// rect1 is left of rect2
-				xDist = left2 - right1;
-			}
-		} else {
-			if (right2 > left1) {
-				xDist = 0;
-			} else {
-				// rect1 is right of rect2
-				xDist = left1 - right2;
-			}
-		}
-		if (bottom1 < bottom2) {
-			if (bottom1 > top2) {
-				yDist = 0;
-			} else {
-				// rect1 is over rect2
-				yDist = top2 - bottom1;
-			}
-		} else {
-			if (bottom2 > top1) {
-				yDist = 0;
-			} else {
-				// rect1 is under rect2
-				yDist = top1 - bottom2;
-			}
-		}
-		return xDist * xDist + yDist * yDist;
-	}
-
-	/**
 	 * This returns square of the distance between this entity and the given
 	 * one. We're calculating the square because the square root operation would
 	 * be expensive. As long as we only need to compare distances, it doesn't
@@ -391,13 +321,25 @@ public abstract class Entity extends RPObject {
 	 *            the entity to which the distance should be calculated
 	 * @return double representing the squared distance
 	 */
-	public double squaredDistance(Entity other) {
-		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
-			// This doesn't work properly if the other entity is larger
-			// than 1x1, but it is faster.
-			return squaredDistance(other.x, other.y);
+	public final double squaredDistance(Entity other) {
+		Rectangle2D otherArea = other.getArea();
+		double otherMiddleX = otherArea.getCenterX();
+		double otherMiddleY = otherArea.getCenterY();
+
+		Rectangle2D thisArea = getArea();
+		double thisMiddleX = thisArea.getCenterX();
+		double thisMiddleY = thisArea.getCenterY();
+		
+		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + other.width) / 2;
+		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + other.height) / 2;
+
+		if (xDistance < 0) {
+			xDistance = 0;
 		}
-		return squaredDistanceBetween(getArea(), other.getArea());
+		if (yDistance < 0) {
+			yDistance = 0;
+		}
+		return xDistance * xDistance + yDistance * yDistance;
 	}
 
 	/**
@@ -414,14 +356,28 @@ public abstract class Entity extends RPObject {
 	 * @return double representing the squared distance
 	 */
 	public double squaredDistance(int x, int y) {
-		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
-			// This doesn't work properly if this entity is larger
-			// than 1x1, but it is faster.
-			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
-		}
-		area.setRect(x, y, width, height);
 		
-		return squaredDistanceBetween(area, new Rectangle(x, y, 1, 1));
+		
+		double otherMiddleX = x + 0.5;
+		double otherMiddleY = y + 0.5;
+
+
+		Rectangle2D thisArea = getArea();
+		
+		double thisMiddleX = thisArea.getCenterX();
+		double thisMiddleY = thisArea.getCenterY();
+		
+		
+		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + 1) / 2;
+		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + 1) / 2;
+
+		if (xDistance < 0) {
+			xDistance = 0;
+		}
+		if (yDistance < 0) {
+			yDistance = 0;
+		}
+		return xDistance * xDistance + yDistance * yDistance;
 	}
 
 	/**
@@ -644,7 +600,7 @@ public abstract class Entity extends RPObject {
 	 * @param clazz
 	 *            The class name.
 	 */
-	public void setEntityClass(final String clazz) {
+	public final void setEntityClass(final String clazz) {
 		put("class", clazz);
 	}
 
@@ -654,7 +610,7 @@ public abstract class Entity extends RPObject {
 	 * @param subclazz
 	 *            The sub-class name.
 	 */
-	public void setEntitySubClass(final String subclazz) {
+	public final void setEntitySubClass(final String subclazz) {
 		put("subclass", subclazz);
 	}
 
@@ -673,7 +629,7 @@ public abstract class Entity extends RPObject {
 	 * @param y
 	 *            The y position (in world units).
 	 */
-	public void setPosition(final int x, final int y) {
+	public final void setPosition(final int x, final int y) {
 		int oldX = this.x;
 		int oldY = this.y;
 		boolean moved = false;
@@ -701,7 +657,7 @@ public abstract class Entity extends RPObject {
 	 * @param resistance
 	 *            The amount of resistance (0-100).
 	 */
-	public void setResistance(int resistance) {
+	public final void setResistance(int resistance) {
 		this.resistance = resistance;
 		put("resistance", resistance);
 	}
@@ -714,7 +670,7 @@ public abstract class Entity extends RPObject {
 	 * @param height
 	 *            The height (in world units).
 	 */
-	protected void setSize(final int width, final int height) {
+	protected final void setSize(final int width, final int height) {
 		this.width = width;
 		put("width", width);
 
@@ -728,7 +684,7 @@ public abstract class Entity extends RPObject {
 	 * @param visibility
 	 *            The visibility (0-100).
 	 */
-	public void setVisibility(final int visibility) {
+	public final void setVisibility(final int visibility) {
 		put("visibility", visibility);
 	}
 
