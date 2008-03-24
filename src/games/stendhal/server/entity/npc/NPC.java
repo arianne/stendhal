@@ -132,7 +132,7 @@ public abstract class NPC extends RPEntity {
 						+ min + ") of (" + getX() + "," + getY() + ")");
 				clearPath();
 			}
-		} else if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max)) {
+		} else if ((squaredDistance(destEntity) > max)) {
 			logger.debug("Creating path because (" + getX() + "," + getY()
 					+ ") distance(" + destEntity.getX() + ","
 					+ destEntity.getY() + ")>" + max);

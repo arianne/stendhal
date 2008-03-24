@@ -945,9 +945,9 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void keepAttacking(Entity attacker) {
+	public void rememberAttacker(Entity attacker) {
 		TutorialNotifier.attacked(this);
-		super.keepAttacking(attacker);
+		super.rememberAttacker(attacker);
 	}
 	
 	@Override

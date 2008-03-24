@@ -27,7 +27,20 @@ public class RPEntityTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	@Test
+	public void testApplydistanceattackModifiers() {
+		
+		int damage = 100;
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0), is(108));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1), is(105));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4), is(99));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9), is(88));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16), is(72));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25), is(52));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36), is(28));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49), is(0));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64), is(-33));
+	}
 	@Test
 	public void testCalculateRiskForCanHit() {
 		RPEntity entity = new RPEntity() {

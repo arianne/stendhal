@@ -379,6 +379,98 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
+	 * Is called when the given attacker has hit the given defender. Determines
+	 * how much hitpoints the defender will lose, based on the attacker's ATK
+	 * experience and weapon(s), the defender's DEF experience and defensive
+	 * items, and a random generator.
+	 * 
+	 * @param attacker
+	 *            The attacker.
+	 * @param defender
+	 *            The defender.
+	 * @return The number of hitpoints that the target should lose. 0 if the
+	 *         attack was completely blocked by the defender.
+	 */
+	public int damageDone(RPEntity defender) {
+
+		float weapon = getItemAtk();
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("attacker has " + getATK()
+					+ " and uses a weapon of " + weapon);
+		}
+
+		// TODO: docu
+		int sourceAtk = getATK();
+		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
+				* sourceAtk;
+		float attackerComponent = (Rand.roll1D100() / 100.0f)
+				* maxAttackerComponent;
+
+		/*
+		 * Account for karma (+/-10%)
+		 */
+		attackerComponent += (attackerComponent * (float) useKarma(0.1));
+
+		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
+				+ attackerComponent);
+
+		// TODO: docu
+		float armor = defender.getItemDef();
+		int targetDef = defender.getDEF();
+		double maxDefenderComponent = (0.6f * targetDef + armor)
+				* (10 + 0.5f * defender.getLevel());
+
+		double defenderComponent = (Rand.roll1D100() / 100.0f)
+				* maxDefenderComponent;
+
+		/*
+		 * Account for karma (+/-10%)
+		 */
+		defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: "
+					+ defenderComponent);
+		}
+
+		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
+				* (maxAttackerComponent / maxDefenderComponent) * (getATK() / 10.0f));
+
+		if (canDoRangeAttack(defender)) {
+			// The attacker is attacking either using a range weapon with
+			// ammunition such as a bow and arrows, or a missile such as a
+			// spear.
+			damage = applyDistanceAttackModifiers(damage, squaredDistance(defender));
+		}
+
+		return damage;
+	}
+	/**
+	 * Calculates the damage that will be done in a distance attack (bow and
+	 * arrows, spear, etc.).
+	 * 
+	 * @param attacker
+	 *            The RPEntity that did the distance attack.
+	 * @param defender
+	 *            The RPEntity that was hit.
+	 * @param damage
+	 *            The damage that would have been done if there would be no
+	 *            modifiers for distance attacks.
+	 * @return The damage that will be done with the distance attack.
+	 */
+	public static int applyDistanceAttackModifiers(int damage, double squareDistance) {
+		double minrangeSquared = 2 * 2;
+		double maxrangeSquared = 7 * 7;
+		// FIXME: make a gaussian like result
+		// TODO: make range configurable
+		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
+				* (1.0 - (minrangeSquared / maxrangeSquared)))
+				* (1.0 - squareDistance / maxrangeSquared));
+	}
+
+
+	/**
 	 * Set the entity's name.
 	 * 
 	 * @param name
@@ -687,7 +779,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 	}
 
-	public void keepAttacking(Entity attacker) {
+	public void rememberAttacker(Entity attacker) {
 		if (!attackSources.contains(attacker)) {
 			attackSources.add(attacker);
 		}

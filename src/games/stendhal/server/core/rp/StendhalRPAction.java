@@ -13,7 +13,6 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -56,98 +55,7 @@ public class StendhalRPAction {
 		StendhalRPAction.rpman = rpman;
 	}
 
-	/**
-	 * Calculates the damage that will be done in a distance attack (bow and
-	 * arrows, spear, etc.).
-	 * 
-	 * @param attacker
-	 *            The RPEntity that did the distance attack.
-	 * @param defender
-	 *            The RPEntity that was hit.
-	 * @param damage
-	 *            The damage that would have been done if there would be no
-	 *            modifiers for distance attacks.
-	 * @return The damage that will be done with the distance attack.
-	 */
-	protected static int applyDistanceAttackModifiers(int damage, double squareDistance) {
-		double minrangeSquared = 2 * 2;
-		double maxrangeSquared = 7 * 7;
-		// FIXME: make a gaussian like result
-		// TODO: make range configurable
-		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
-				* (1.0 - (minrangeSquared / maxrangeSquared)))
-				* (1.0 - squareDistance / maxrangeSquared));
-	}
-
-	/**
-	 * Is called when the given attacker has hit the given defender. Determines
-	 * how much hitpoints the defender will lose, based on the attacker's ATK
-	 * experience and weapon(s), the defender's DEF experience and defensive
-	 * items, and a random generator.
-	 * 
-	 * @param attacker
-	 *            The attacker.
-	 * @param defender
-	 *            The defender.
-	 * @return The number of hitpoints that the target should lose. 0 if the
-	 *         attack was completely blocked by the defender.
-	 */
-	public static int damageDone(RPEntity attacker, RPEntity defender) {
-
-		float weapon = attacker.getItemAtk();
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + attacker.getATK()
-					+ " and uses a weapon of " + weapon);
-		}
-
-		// TODO: docu
-		int sourceAtk = attacker.getATK();
-		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
-				* sourceAtk;
-		float attackerComponent = (Rand.roll1D100() / 100.0f)
-				* maxAttackerComponent;
-
-		/*
-		 * Account for karma (+/-10%)
-		 */
-		attackerComponent += (attackerComponent * (float) attacker.useKarma(0.1));
-
-		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
-				+ attackerComponent);
-
-		// TODO: docu
-		float armor = defender.getItemDef();
-		int targetDef = defender.getDEF();
-		double maxDefenderComponent = (0.6f * targetDef + armor)
-				* (10 + 0.5f * defender.getLevel());
-
-		double defenderComponent = (Rand.roll1D100() / 100.0f)
-				* maxDefenderComponent;
-
-		/*
-		 * Account for karma (+/-10%)
-		 */
-		defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: "
-					+ defenderComponent);
-		}
-
-		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
-				* (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
-
-		if (attacker.canDoRangeAttack(defender)) {
-			// The attacker is attacking either using a range weapon with
-			// ammunition such as a bow and arrows, or a missile such as a
-			// spear.
-			damage = applyDistanceAttackModifiers(damage, attacker.squaredDistance(defender));
-		}
-
-		return damage;
-	}
-
+		
 	/**
 	 * Do logic for starting an attack on an entity.
 	 * 
@@ -237,9 +145,8 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		defender.keepAttacking(attacker);
+		defender.rememberAttacker(attacker);
 
-		// {lifesteal} uncomented following line, also changed name:
 		List<Item> weapons = attacker.getWeapons();
 
 		if (attacker.canHit(defender)) {
@@ -248,7 +155,7 @@ public class StendhalRPAction {
 				defender.incDEFXP();
 			}
 
-			int damage = damageDone(attacker, defender);
+			int damage = attacker.damageDone( defender);
 			if (damage > 0) {
 
 				// limit damage to target HP
@@ -300,7 +207,7 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		defender.keepAttacking(player);
+		defender.rememberAttacker(player);
 		if (defender instanceof Player) {
 			player.storeLastPVPActionTime();
 		}
@@ -355,7 +262,7 @@ public class StendhalRPAction {
 				defender.incDEFXP();
 			}
 
-			int damage = damageDone(player, defender);
+			int damage = player.damageDone(defender);
 			if (damage > 0) {
 
 				// limit damage to target HP

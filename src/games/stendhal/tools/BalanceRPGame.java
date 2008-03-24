@@ -4,7 +4,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -53,7 +52,7 @@ public class BalanceRPGame {
 			turns++;
 
 			if (player.canHit(target)) {
-				int damage = StendhalRPAction.damageDone(player, target);
+				int damage = player.damageDone(target);
 				if (damage < 0) {
 					damage = 0;
 				}
@@ -67,7 +66,7 @@ public class BalanceRPGame {
 			}
 
 			if (target.canHit(player)) {
-				int damage = StendhalRPAction.damageDone(target, player);
+				int damage = target.damageDone(player);
 				if (damage < 0) {
 					damage = 0;
 				}

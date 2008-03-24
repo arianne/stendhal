@@ -67,10 +67,6 @@ public class CreatureTest {
 	private static class MockCreature extends Creature {
 		
 
-		@Override
-		public void setSize(int width, int height) {
-			super.setSize(width, height);
-		}
 		
 		@Override
 		protected List<RPEntity> getEnemyList() {
