@@ -9,6 +9,14 @@ Changelog
 - new creatures which drop new items in assassins tunnel
 - ados castle gardens in correct place now
 - -1 semos mines zones (mtn dwarf areas) decorated
+- tiled:
+  - fixed tiled's source code so the the tiled/src directory can be added to the Eclipse project configuration
+  - added tiled as target to build.xml (targets "compile_tiled" and "tiled_run")
+  - Java 1.5 fixes to eliminate compiler warnings
+  - you can launch tiled directly from Eclipse or using ANT
+  - updated tiled.jar
+- ANT targets "rendermaps" and "updatemaps" now use the new tiled code
+
 
 0.67
 - new players start in semos guardhouse
