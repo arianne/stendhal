@@ -35,7 +35,7 @@ public class DiceGambling extends AbstractQuest {
 				null, // 2 - can't happen
 				// secret consolation prize for throwing three ones ;)
 				new Pair<String, String>(
-						"fire_sword",
+						"fire sword",
 						"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."), // 3
 				null, // 4 - no prize
 				null, // 5 - no prize
