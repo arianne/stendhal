@@ -12,7 +12,7 @@
  *                                                                         *
  ***************************************************************************/
 /*
- * MapConverter.java
+ * MapRenderer.java
  *
  * Created on 13. Oktober 2005, 18:24
  *
@@ -83,6 +83,7 @@ public class MapRenderer extends Task {
 		Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
 		myView.draw(g);
+		g.dispose();
 
 		String area = file.getParentFile().getName();
 		String level;
@@ -150,14 +151,14 @@ public class MapRenderer extends Task {
 
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1) {
-			System.out.println("usage: java games.stendhal.tools.MapConverter <tmx file>");
+			System.out.println("usage: java games.stendhal.tools.MapRenderer <tmx file>");
 			return;
 		}
 
 		// do the job
-		MapRenderer converter = new MapRenderer();
-		converter.imagePath = args[1];
-		converter.convert(args[0]);
+		MapRenderer renderet = new MapRenderer();
+		renderet.imagePath = args[1];
+		renderet.convert(args[0]);
 	}
 
 }
