@@ -40,7 +40,7 @@ import tiled.util.TiledConfiguration;
  * The base class for map views. This is meant to be extended for different tile
  * map orientations, such as orthagonal and isometric.
  */
-public abstract class MapView extends JPanel implements Scrollable {
+public abstract class MapViewPanel extends JPanel implements Scrollable {
 	public static final int PF_GRIDMODE = 0x00000001;
 	public static final int PF_BOUNDARYMODE = 0x00000002;
 	public static final int PF_COORDINATES = 0x00000004;
@@ -56,7 +56,7 @@ public abstract class MapView extends JPanel implements Scrollable {
 
 	private SmoothZoomer smoothZoomer;
 
-	public MapView(Map m) {
+	public MapViewPanel(Map m) {
 		myMap = m;
 		setSize(getPreferredSize());
 	}
@@ -161,8 +161,8 @@ public abstract class MapView extends JPanel implements Scrollable {
 	 * @return a suitable instance of a MapView for the given Map
 	 * @see Map#getOrientation()
 	 */
-	public static MapView createViewforMap(Map p) {
-		MapView mapView = null;
+	public static MapViewPanel createViewforMap(Map p) {
+		MapViewPanel mapView = null;
 
 		int orientation = p.getOrientation();
 
@@ -354,12 +354,12 @@ public abstract class MapView extends JPanel implements Scrollable {
 }
 
 class SmoothZoomer extends Thread {
-	private MapView mapView;
+	private MapViewPanel mapView;
 	private double zoomFrom;
 	private double zoomTo;
 	private boolean keepZooming;
 
-	public SmoothZoomer(MapView view, double from, double to) {
+	public SmoothZoomer(MapViewPanel view, double from, double to) {
 		mapView = view;
 		zoomFrom = from;
 		zoomTo = to;
