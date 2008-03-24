@@ -22,7 +22,7 @@ import javax.swing.border.Border;
  * @author Martin Fuchs
  */
 @SuppressWarnings("serial")
-public class ClientPanel extends JInternalFrame implements ManagedWindow {
+public class ClientPanel extends JInternalFrame {
 
 	private Dimension clntSize;
 
@@ -182,10 +182,5 @@ public class ClientPanel extends JInternalFrame implements ManagedWindow {
     public void dispose() {
 		closeListeners.clear();
     }
-
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-	}
 
 }
