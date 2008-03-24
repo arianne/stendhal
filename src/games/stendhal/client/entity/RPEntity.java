@@ -126,7 +126,7 @@ public abstract class RPEntity extends ActiveEntity {
 	private String titleType;
 
 	/**
-	 * Entity we are attacking. (need to reconsile this with 'attacking')
+	 * Entity we are attacking. (need to reconcile this with 'attacking')
 	 */
 	protected RPEntity attackTarget;
 
@@ -700,57 +700,59 @@ public abstract class RPEntity extends ActiveEntity {
 			onHealed(object.getInt("heal"));
 		}
 
-		/*
-		 * Attack Target
-		 */
-		if (object.has("target")) {
-			int target = object.getInt("target");
+		GameObjects gameObjects = GameObjects.getInstance();
 
-			RPObject.ID targetEntityID = new RPObject.ID(target,
-					object.get("zoneid"));
+		synchronized (gameObjects) {
+    		/*
+    		 * Attack Target
+    		 */
+    		if (object.has("target")) {
+    			int target = object.getInt("target");
 
-			/*
-			 * TODO This is probably meaningless, as create order is
-			 * unpredictable, and the target entity may not have been added yet XXX
-			 */
-			attackTarget = (RPEntity) GameObjects.getInstance().get(
-					targetEntityID);
+    			RPObject.ID targetEntityID = new RPObject.ID(target, object.get("zoneid"));
 
-			if (attackTarget != null) {
-				onAttack(attackTarget);
-				attackTarget.onAttacked(this);
-				// attackTarget.onAttacked(this,risk,damage);
-			}
-		} else {
-			attackTarget = null;
-		}
+    			/*
+    			 * TODO This is probably meaningless, as create order is
+    			 * unpredictable, and the target entity may not have been added yet XXX
+    			 */
+    			attackTarget = (RPEntity) gameObjects.get(targetEntityID);
 
-		if (attackTarget != null) {
-			int risk;
-			int damage;
+    			if (attackTarget != null) {
+    				onAttack(attackTarget);
+    				attackTarget.onAttacked(this);
+    				// attackTarget.onAttacked(this,risk,damage);
+    			}
+    		} else {
+    			attackTarget = null;
+    		}
 
-			if (object.has("risk")) {
-				risk = object.getInt("risk");
-			} else {
-				risk = 0;
-			}
+    		if (attackTarget != null) {
+    			int risk;
+    			int damage;
 
-			if (object.has("damage")) {
-				damage = object.getInt("damage");
-			} else {
-				damage = 0;
-			}
+    			if (object.has("risk")) {
+    				risk = object.getInt("risk");
+    			} else {
+    				risk = 0;
+    			}
 
-			if (risk == 0) {
-				onAttackMissed(attackTarget);
-				attackTarget.onMissed(this);
-			} else if ((risk > 0) && (damage == 0)) {
-				onAttackBlocked(attackTarget);
-				attackTarget.onBlocked(this);
-			} else if ((risk > 0) && (damage > 0)) {
-				onAttackDamage(attackTarget, damage);
-				attackTarget.onDamaged(this, damage);
-			}
+    			if (object.has("damage")) {
+    				damage = object.getInt("damage");
+    			} else {
+    				damage = 0;
+    			}
+
+    			if (risk == 0) {
+    				onAttackMissed(attackTarget);
+    				attackTarget.onMissed(this);
+    			} else if ((risk > 0) && (damage == 0)) {
+    				onAttackBlocked(attackTarget);
+    				attackTarget.onBlocked(this);
+    			} else if ((risk > 0) && (damage > 0)) {
+    				onAttackDamage(attackTarget, damage);
+    				attackTarget.onDamaged(this, damage);
+    			}
+    		}
 		}
 
 		/*
@@ -926,71 +928,73 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 			}
 
-			/*
-			 * Attack Target
-			 */
-			if (changes.has("target")) {
-				int target = changes.getInt("target");
+			GameObjects gameObjects = GameObjects.getInstance();
 
-				RPObject.ID targetEntityID = new RPObject.ID(target,
-						changes.get("zoneid"));
+			synchronized (gameObjects) {
+    			/*
+    			 * Attack Target
+    			 */
+    			if (changes.has("target")) {
+    				int target = changes.getInt("target");
 
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
-						targetEntityID);
+    				RPObject.ID targetEntityID = new RPObject.ID(target, changes.get("zoneid"));
 
-				if (targetEntity != attackTarget) {
-					onStopAttack();
+    				RPEntity targetEntity = (RPEntity) gameObjects.get(targetEntityID);
 
-					if (attackTarget != null) {
-						attackTarget.onStopAttacked(this);
-					}
+    				if (targetEntity != attackTarget) {
+    					onStopAttack();
 
-					attackTarget = targetEntity;
+    					if (attackTarget != null) {
+    						attackTarget.onStopAttacked(this);
+    					}
 
-					if (attackTarget != null) {
-						onAttack(attackTarget);
-						attackTarget.onAttacked(this);
-						// attackTarget.onAttacked(this,risk,damage);
-					}
-				}
-			}
+    					attackTarget = targetEntity;
 
-			if (attackTarget != null) {
-				int risk;
-				int damage;
+    					if (attackTarget != null) {
+    						onAttack(attackTarget);
+    						attackTarget.onAttacked(this);
+    						// attackTarget.onAttacked(this,risk,damage);
+    					}
+    				}
+    			}
 
-				boolean thereIsEvent = false;
+    			if (attackTarget != null) {
+    				int risk;
+    				int damage;
 
-				if (changes.has("risk")) {
-					risk = changes.getInt("risk");
-					thereIsEvent = true;
-				} else if (object.has("risk")) {
-					risk = object.getInt("risk");
-				} else {
-					risk = 0;
-				}
+    				boolean thereIsEvent = false;
 
-				if (changes.has("damage")) {
-					damage = changes.getInt("damage");
-					thereIsEvent = true;
-				} else if (object.has("damage")) {
-					damage = object.getInt("damage");
-				} else {
-					damage = 0;
-				}
+    				if (changes.has("risk")) {
+    					risk = changes.getInt("risk");
+    					thereIsEvent = true;
+    				} else if (object.has("risk")) {
+    					risk = object.getInt("risk");
+    				} else {
+    					risk = 0;
+    				}
 
-				if (thereIsEvent) {
-					if (risk == 0) {
-						onAttackMissed(attackTarget);
-						attackTarget.onMissed(this);
-					} else if ((risk > 0) && (damage == 0)) {
-						onAttackBlocked(attackTarget);
-						attackTarget.onBlocked(this);
-					} else if ((risk > 0) && (damage > 0)) {
-						onAttackDamage(attackTarget, damage);
-						attackTarget.onDamaged(this, damage);
-					}
-				}
+    				if (changes.has("damage")) {
+    					damage = changes.getInt("damage");
+    					thereIsEvent = true;
+    				} else if (object.has("damage")) {
+    					damage = object.getInt("damage");
+    				} else {
+    					damage = 0;
+    				}
+
+    				if (thereIsEvent) {
+    					if (risk == 0) {
+    						onAttackMissed(attackTarget);
+    						attackTarget.onMissed(this);
+    					} else if ((risk > 0) && (damage == 0)) {
+    						onAttackBlocked(attackTarget);
+    						attackTarget.onBlocked(this);
+    					} else if ((risk > 0) && (damage > 0)) {
+    						onAttackDamage(attackTarget, damage);
+    						attackTarget.onDamaged(this, damage);
+    					}
+    				}
+    			}
 			}
 
 			/*
