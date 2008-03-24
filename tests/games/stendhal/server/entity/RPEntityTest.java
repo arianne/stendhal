@@ -2,7 +2,12 @@ package games.stendhal.server.entity;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.slot.PlayerSlot;
+
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,10 +15,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.RPClass.ItemTestHelper;
+
 public class RPEntityTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+		ItemTestHelper.generateRPClasses();
+		
 	}
 
 	@AfterClass
@@ -103,5 +113,132 @@ public class RPEntityTest {
 		assertThat(entity.calculateRiskForCanHit(19, defenderDEF, attackerATK), is(9));
 		assertThat(entity.calculateRiskForCanHit(20, defenderDEF, attackerATK), is(10));
 	}
+	@Test
+	public void testGetItemAtkforsimpleweapon() {
+		float magicFour = 4.0f;
+		
+		RPEntity entity = new RPEntity() {
 
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void logic() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		entity.addSlot(new PlayerSlot("lhand"));
+		entity.addSlot(new PlayerSlot("rhand"));
+		
+		assertThat(entity.getItemAtk(), is(0f));
+		Item item = SingletonRepository.getEntityManager().getItem("dagger");
+		entity.getSlot("lhand").add(item);
+		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));		
+		entity.getSlot("rhand").add(item);
+		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));
+		entity.getSlot("lhand").remove(item.getID());
+		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));		
+		
+	}
+	@Test
+	public void testGetItemAtkforcheese() {
+			
+		RPEntity entity = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void logic() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		entity.addSlot(new PlayerSlot("lhand"));
+		entity.addSlot(new PlayerSlot("rhand"));
+		
+		assertThat(entity.getItemAtk(), is(0f));
+		Item item = SingletonRepository.getEntityManager().getItem("cheese");
+		entity.getSlot("lhand").add(item);
+		assertThat(entity.getItemAtk(), is(0f));		
+		entity.getSlot("rhand").add(item);
+		assertThat(entity.getItemAtk(), is(0f));
+		entity.getSlot("lhand").remove(item.getID());
+		assertThat(entity.getItemAtk(), is(0f));
+	}
+	
+	@Test
+	public void testGetItemAtkforLeftandRightweaponCorrectlyWorn() {
+		float magicFour = 4.0f;
+		
+		ItemTestHelper.generateRPClasses();
+		RPEntity entity = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		entity.addSlot(new PlayerSlot("lhand"));
+		entity.addSlot(new PlayerSlot("rhand"));
+		
+		assertThat(entity.getItemAtk(), is(0f));
+		Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
+		entity.getSlot("lhand").add(lefthanditem);
+		assertThat(entity.getItemAtk(), is(0f));	
+
+		Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
+		entity.getSlot("rhand").add(righthanditem);
+		assertThat(entity.getItemAtk(), is(magicFour * (lefthanditem.getAttack() + righthanditem.getAttack())));
+	}
+	
+	@Test
+	public void testGetItemAtkforLeftandRightweaponIncorrectlyWorn() {
+				
+		ItemTestHelper.generateRPClasses();
+		RPEntity entity = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		entity.addSlot(new PlayerSlot("lhand"));
+		entity.addSlot(new PlayerSlot("rhand"));
+		
+		assertThat(entity.getItemAtk(), is(0f));
+
+		Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
+		entity.getSlot("rhand").add(lefthanditem);
+		assertThat(entity.getItemAtk(), is(0f));		
+
+		Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
+		entity.getSlot("lhand").add(righthanditem);
+		assertThat(entity.getItemAtk(), is(0f));
+		
+	}
+
+	
+	
 }

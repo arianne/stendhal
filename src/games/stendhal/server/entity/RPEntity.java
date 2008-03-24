@@ -29,7 +29,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -172,7 +171,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new WeakHashMap<Entity, Integer>();
 		playersToReward = new HashSet<String>();
-		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
+		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
@@ -181,7 +180,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new WeakHashMap<Entity, Integer>();
 		playersToReward = new HashSet<String>();
-		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
+		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
@@ -936,7 +935,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param oldLevel
 	 *            The level that this RPEntity had before being killed.
 	 */
-	protected void rewardKillers(int oldXP, int oldLevel) {
+	protected void rewardKillers(int oldXP) {
 		int xpReward = (int) (oldXP * 0.05);
 
 		for (String killerName : playersToReward) {
@@ -1050,13 +1049,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	protected void onDead(String killerName, boolean remove) {
 		stopAttack();
-		int oldLevel = this.getLevel();
+		
 		int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
 		if (oldXP > 0) {
 			// give XP to everyone who helped killing this RPEntity
-			rewardKillers(oldXP, oldLevel);
+			rewardKillers(oldXP);
 		}
 
 		damageReceived.clear();
@@ -1502,13 +1501,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Returns true if this entity is holding a weapon equipped in its hands.
-	 */
-	public boolean hasWeapon() {
-		return getWeapon() != null;
-	}
-
-	/**
 	 * Gets the weapon that this entity is holding in its hands.
 	 * 
 	 * @return The weapon, or null if this entity is not holding a weapon. If
@@ -1516,6 +1508,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         left hand.
 	 */
 	private Item getWeapon() {
+		
 		String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
 
 		for (String weaponClass : weaponsClasses) {
@@ -1531,6 +1524,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	public List<Item> getWeapons() {
+		
+		
 		List<Item> weapons = new ArrayList<Item>();
 		Item weaponItem = getWeapon();
 		if (weaponItem != null) {

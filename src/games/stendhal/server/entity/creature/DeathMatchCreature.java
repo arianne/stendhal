@@ -46,7 +46,7 @@ public class DeathMatchCreature extends Creature {
 	}
 
 	@Override
-	protected void rewardKillers(int oldXP, int oldLevel) {
+	protected void rewardKillers(int oldXP) {
 		Integer damageReceivedByPlayer = damageReceived.get(player);
 		if (damageReceivedByPlayer != null) {
 			points = player.getLevel()
