@@ -97,7 +97,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/**
 	 * Removes all the object entities.
 	 */
-	public void clear() {
+	public synchronized void clear() {
 		if (!objects.isEmpty()) {
 			logger.debug("Game objects not empty!");
 
@@ -114,7 +114,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-	public boolean collides(Entity entity) {
+	public synchronized boolean collides(Entity entity) {
 		Rectangle2D area = entity.getArea();
 
 		// TODO: Ugly, use similar method that server uses
@@ -137,7 +137,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
-	public void update(int delta) {
+	public synchronized void update(int delta) {
 		for (Entity entity : objects.values()) {
 			entity.update(delta);
 		}
@@ -151,7 +151,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * 
 	 * @return An entity.
 	 */
-	protected Entity add(final RPObject object) {
+	protected synchronized Entity add(final RPObject object) {
 		Entity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
@@ -171,7 +171,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param object
 	 *            The object.
 	 */
-	public void onAdded(final RPObject object) {
+	public synchronized void onAdded(final RPObject object) {
 		if (object.has("server-only")) {
 			logger.debug("Discarding object: " + object);
 		} else {
@@ -208,7 +208,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param changes
 	 *            The changes.
 	 */
-	public void onChangedAdded(final RPObject object, final RPObject changes) {
+	public synchronized void onChangedAdded(final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
@@ -224,7 +224,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param changes
 	 *            The changes.
 	 */
-	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+	public synchronized void onChangedRemoved(final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
@@ -238,7 +238,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param object
 	 *            The object.
 	 */
-	public void onRemoved(final RPObject object) {
+	public synchronized void onRemoved(final RPObject object) {
 		RPObject.ID id = object.getID();
 
 		logger.debug("removed " + id);
@@ -277,7 +277,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
-	public void onSlotChangedAdded(final RPObject object,
+	public synchronized void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
 		Entity entity = objects.get(FQID.create(object));
@@ -299,7 +299,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
-	public void onSlotChangedRemoved(final RPObject object,
+	public synchronized void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
 		Entity entity = objects.get(FQID.create(object));

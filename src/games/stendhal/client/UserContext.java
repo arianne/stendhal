@@ -613,17 +613,19 @@ public class UserContext implements RPObjectChangeListener {
 		if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			Entity entity = gameObjects.get(sobject);
+			synchronized (gameObjects) {
+				Entity entity = gameObjects.get(sobject);
 
-			if (entity != null) {
-				Entity parent = gameObjects.get(object);
+    			if (entity != null) {
+    				Entity parent = gameObjects.get(object);
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Added: " + entity);
-					logger.debug("   To: " + parent + "  [" + slotName + "]");
-				}
+    				if (logger.isDebugEnabled()) {
+    					logger.debug("Added: " + entity);
+    					logger.debug("   To: " + parent + "  [" + slotName + "]");
+    				}
 
-				entitySlotListener.entityAdded(parent, slotName, entity);
+    				entitySlotListener.entityAdded(parent, slotName, entity);
+    			}
 			}
 		}
 	}
@@ -689,17 +691,19 @@ public class UserContext implements RPObjectChangeListener {
 		} else if (slotName.equals("!features")) {
 			processFeaturesRemoved(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			Entity entity = gameObjects.get(sobject);
+			synchronized (gameObjects) {
+				Entity entity = gameObjects.get(sobject);
 
-			if (entity != null) {
-				Entity parent = gameObjects.get(object);
+    			if (entity != null) {
+    				Entity parent = gameObjects.get(object);
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Removed: " + entity);
-					logger.debug("   From: " + parent + "  [" + slotName + "]");
-				}
+    				if (logger.isDebugEnabled()) {
+    					logger.debug("Removed: " + entity);
+    					logger.debug("   From: " + parent + "  [" + slotName + "]");
+    				}
 
-				entitySlotListener.entityRemoved(parent, slotName, entity);
+    				entitySlotListener.entityRemoved(parent, slotName, entity);
+    			}
 			}
 		}
 	}
