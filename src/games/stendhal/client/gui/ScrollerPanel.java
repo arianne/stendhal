@@ -188,11 +188,13 @@ public class ScrollerPanel extends JPanel {
 	 */
 	private void calculateSizes() {
 		this.prefferedSize = new Dimension();
-		BufferedImage image = new BufferedImage(100, 100,
-				BufferedImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+
 		Graphics2D g2d = image.createGraphics();
 		g2d.setFont(font);
 		FontMetrics metrics = g2d.getFontMetrics();
+		g2d.dispose();
+
 		this.lineHeight = metrics.getHeight();
 		this.prefferedSize.height = this.lineHeight * 8;
 		for (int i = 0, n = text.length; i < n; i++) {
