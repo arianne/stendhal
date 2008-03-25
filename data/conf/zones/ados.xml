@@ -888,8 +888,8 @@ My fee:
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity> 
-    <portal x="8" y="14" ref="entrance_fishermans_hut_south">
-     <destination zone="0_ados_city" ref="fishermans_hut_south_entrance"/>
+    <portal x="8" y="14" ref="entrance_meat_market">
+     <destination zone="0_ados_city" ref="meat_market_entrance"/>
     </portal>
    </zone>
 
@@ -1563,8 +1563,8 @@ Southeast: Docks
    <portal x="75" y="61" ref="fishermans_hut_north_entrance">
      	<destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north"/>
     </portal>
-   <portal x="75" y="70" ref="fishermans_hut_south_entrance">
-     	<destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south"/>
+   <portal x="75" y="70" ref="meat_market_entrance">
+     	<destination zone="int_ados_meat_market" ref="entrance_meat_market"/>
     </portal>
    <portal x="42" y="93" ref="town_hall_entrance">
      <destination zone="int_ados_town_hall" ref="entrance"/>
