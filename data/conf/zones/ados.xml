@@ -839,7 +839,7 @@ black helmet 10000
     </portal>
    </zone>
    
-   <zone name="int_ados_fishermans_hut_south" file="interiors/ados/fishermans_hut_south.tmx">
+   <zone name="int_ados_meat_market" file="interiors/ados/meat_market.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepHarryNPC" />
    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepJoeNPC" />
    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.BlacksheepBobNPC" />
