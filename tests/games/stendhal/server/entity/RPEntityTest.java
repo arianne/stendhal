@@ -1,11 +1,14 @@
 package games.stendhal.server.entity;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.PlayerSlot;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.Log4J;
 
@@ -239,6 +242,173 @@ public class RPEntityTest {
 		
 	}
 
-	
+	@Test
+	public void testAttackdeadcreature() {
+		MockStendlRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		RPEntity attacker = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		RPEntity defender = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		
+		zone.add(attacker);
+		zone.add(defender);
+		
+		
+		attacker.setTarget(defender);
+		assertTrue(zone.has(defender.getID()));
+		assertEquals(defender.getHP(), 0);
+		assertFalse(attacker.attack());
+		assertNull(attacker.getAttackTarget());
+		}
+
+	@Test
+	public void testAttackCanHitreturnTruedamageZero() {
+		MockStendlRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		RPEntity attacker = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+
+			}
+
+			@Override
+			public boolean canHit(RPEntity defender) {
+				return true;
+			}
+			@Override
+			public int damageDone(RPEntity defender) {
+				return 0;
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+
+			}
+		};
+		RPEntity defender = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		
+		zone.add(attacker);
+		zone.add(defender);
+		
+		
+		attacker.setTarget(defender);
+		defender.setHP(100);
+		
+		assertTrue(zone.has(defender.getID()));
+		assertThat(defender.getHP(), greaterThan(0));
+		assertFalse(attacker.has("damage"));
+		
+		assertFalse(attacker.attack());
+		
+		assertNotNull(attacker.getAttackTarget());
+		assertTrue(attacker.has("damage"));
+		assertThat("no damage done " , attacker.get("damage"), is("0"));
+		}
+
+	@Test
+	public void testAttackCanHitreturnTruedamage30() {
+		MockStendlRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		RPEntity attacker = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+
+			}
+
+			@Override
+			public boolean canHit(RPEntity defender) {
+				return true;
+			}
+			@Override
+			public int damageDone(RPEntity defender) {
+				return 30;
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+
+			}
+		};
+		RPEntity defender = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void onDamaged(Entity attacker, int damage) {
+				assertEquals(30, damage);
+			}
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		
+		zone.add(attacker);
+		zone.add(defender);
+		
+		
+		attacker.setTarget(defender);
+		defender.setHP(100);
+		
+		assertTrue(zone.has(defender.getID()));
+		assertThat(defender.getHP(), greaterThan(0));
+		assertFalse(attacker.has("damage"));
+		
+		assertTrue(attacker.attack());
+		
+		assertNotNull(attacker.getAttackTarget());
+		assertTrue(attacker.has("damage"));
+		assertThat("no damge done " , attacker.get("damage"), is("30"));
+		}
+
 	
 }

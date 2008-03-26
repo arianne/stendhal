@@ -2005,10 +2005,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		defender.rememberAttacker(this);
 
 		if (this.canHit(defender)) {
-			if ((defender instanceof Player)
-					&& defender.getsFightXpFrom(this)) {
-				defender.incDEFXP();
-			}
+			defender.applyDefXP(this);
 
 			int damage = this.damageDone(defender);
 			if (damage > 0) {
@@ -2038,6 +2035,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.notifyWorldAboutChanges();
 
 		return result;
+	}
+
+	void applyDefXP(RPEntity entity) {
+	
 	}
 	
 }

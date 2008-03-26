@@ -1811,4 +1811,10 @@ public class Player extends RPEntity {
 
 		return null;
 	}
+	
+	void applyDefXP(RPEntity entity) {
+		if (getsFightXpFrom(entity)) {
+			incDEFXP();
+		}
+	}
 }
