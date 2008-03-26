@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.creature.impl;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
