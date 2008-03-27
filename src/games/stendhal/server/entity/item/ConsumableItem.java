@@ -21,8 +21,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
 
 /*
@@ -34,7 +32,6 @@ import marauroa.common.game.RPObject;
  */
 public class ConsumableItem extends StackableItem implements UseListener,
 		Comparable<ConsumableItem> {
-	private static Logger logger = Logger.getLogger(ConsumableItem.class);
 	/** How much of this item has not yet been consumed. */
 	private int left;
 	private Feeder feeder;
@@ -48,7 +45,6 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	private void checkAmount(String attribute, double value) {
 	
 		if ("amount".equals(attribute)) {
-			logger.info("triggered double amountchange: " + value);
 			left = (int) value;
 		}
 		
@@ -63,7 +59,6 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	@Override
 	public void put(String attribute, String value) {
 		if ("amount".equals(attribute)) {
-			logger.info("triggered double amountchange: " + value);
 			left = Integer.parseInt(value);
 		}
 		super.put(attribute, value);
