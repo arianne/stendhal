@@ -6,19 +6,21 @@ import java.util.Map;
 
 public class IdleBehaviourFactory {
 	private static final Idlebehaviour nothing = new DoNothingOnIdle();
-	private static final Idlebehaviour patroller = new Patroller();
+	
 	public static Idlebehaviour get(Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
-			return patroller;
+			return new Patroller();
 		}
 		return nothing;
 	}
 
 	private static class DoNothingOnIdle implements Idlebehaviour {
-
-		public void perform(Creature creature) {
-			// do nothing
-			
+		
+		public void startIdleness(Creature creature) {
+			// Do nothing 
+		}
+		public void perform(Creature creature) { 
+			// Do nothing 
 		}
 		
 	}

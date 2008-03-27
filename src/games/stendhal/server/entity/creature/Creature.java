@@ -709,6 +709,7 @@ public class Creature extends NPC {
 			clearPath();
 			stopAttack();
 			stop();
+			idler.startIdleness(this);
 		} else {
 			idler.perform(this);
 			
