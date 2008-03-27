@@ -42,15 +42,6 @@ public class Pathfind {
 	int final_path_index = 0;
 
 	private static int colision(CollisionDetection collisiondetection, int x1, int y1) {
-//		if (x1 < 0)
-//			return 1;
-//		if (y1 < 0)
-//			return 1;
-// 
-//		if (x1 >= collisiondetection.getWidth())
-//			return 1;
-//		if (y1 >= collisiondetection.getHeight())
-//			return 1;
 
 		if (x1 < search_area.getMinX()) {
 			return 1;
@@ -75,20 +66,55 @@ public class Pathfind {
 
 	public void PathNextNode() {
 
-		if (final_path_index != 0) {
+		if (final_path_index > 0) {
 			final_path_index--;
 			current_node = final_path.get(final_path_index);
 		}
 	}
 
 	public void PathJumpNode() {
-		final_path_index = final_path_index - 20;
-
-		if (final_path_index < 0) {
+		
+		current_node = final_path.get(final_path_index);
+		
+		int next_node = final_path_index -2; 
+		
+		if (next_node < 1)
+		{
 			final_path_index = 0;
+			current_node = final_path.get(final_path_index);
+			return;
+		}
+		
+
+		int next_node_final = final_path_index - 20;
+
+		if (next_node_final < 0) {
+			next_node_final = 0;
+		}
+		
+		if (final_path.get(next_node+1).y==final_path.get(next_node).y)
+		{
+			for (next_node = final_path_index-2; next_node>next_node_final; next_node--)
+			{
+				if (final_path.get(next_node+1).y!=final_path.get(next_node).y)
+					break;
+			}
+			
+		}
+		else
+		{
+			for (next_node = final_path_index-2; next_node>next_node_final; next_node--)
+			{
+				if (final_path.get(next_node+1).x!=final_path.get(next_node).x)
+				break;
+				
+			}
+			
 		}
 
-		current_node = final_path.get(final_path_index);
+		final_path_index = next_node;
+		current_node = final_path.get(final_path_index);		
+
 	}
 
 	public void PathJumpToNode(int destnode) {
@@ -113,8 +139,8 @@ public class Pathfind {
 	}
 
 	public void Reinice() {
-		if (final_path != null) {
-			final_path_index = final_path.size();
+		if (final_path.size() != 0) {
+			final_path_index = final_path.size() - 1;
 		}
 	}
 
@@ -311,7 +337,7 @@ public class Pathfind {
 			}
 		}
 
-		final_path_index = final_path.size();
+		final_path_index = final_path.size() - 1;
 
 		// computation_time = System.currentTimeMillis() - computation_time;
 

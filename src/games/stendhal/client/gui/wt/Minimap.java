@@ -319,18 +319,18 @@ public class Minimap extends WtPanel implements PositionChangeListener {
     		vg.drawString("N", panx + (width - (int) rect.getWidth()) / 2, pany + (int) rect.getHeight());
 		}
 
-//		PATHFIND ---
+
 //		pathfind.Reinice();
 //		while (!pathfind.ReachedGoal()) {
 //			pathfind.PathNextNode();
-//			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
+//			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() *scale, scale, scale);
 //		}
 //		pathfind.Reinice();
 //
 //		 while (!pathfind.ReachedGoal()) {
 //			 pathfind.PathJumpNode();
 //			 vg.setColor(Color.CYAN);
-//			 vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
+//			 vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() *scale, scale, scale);
 //		}
 //		pathfind.Reinice();
 
@@ -533,6 +533,12 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				action.put("y", pathfind.NodeGetY());
 
 				client.send(action);
+				
+				if (nodo_actual==0)//llegamos al destino
+				{
+					pathfind.ClearPath();
+				}
+				
 
 			} else {
 				if (logger.isDebugEnabled()) {
