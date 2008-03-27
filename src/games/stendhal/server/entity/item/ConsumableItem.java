@@ -19,7 +19,6 @@ import games.stendhal.server.entity.item.consumption.Feeder;
 import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -42,7 +41,6 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	@Override
 	public void put(String attribute, double value) {
-		
 		super.put(attribute, value);
 		checkAmount(attribute, value);
 	}
@@ -58,16 +56,8 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	@Override
 	public void put(String attribute, int value) {
-		// TODO Auto-generated method stub
 		super.put(attribute, value);
 		checkAmount(attribute, value);
-	}
-
-	@Override
-	public void put(String attribute, List<String> value) {
-		// TODO Auto-generated method stub
-		super.put(attribute, value);
-		
 	}
 
 	@Override
