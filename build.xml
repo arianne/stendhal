@@ -688,8 +688,16 @@
 				<include name="**/*.png"/>
 			</fileset>
 		</copy>
+		<jar jarfile="${buildroot}/tiled.jar" basedir="${build_tiled}">
+						<manifest>
+							<attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
+							<attribute name="Class-path" value="${build_tiled}"/>
+						</manifest>
+		</jar>
+
 	</target>
 
+	
 	<!-- Runs the Tiled editor -->
 	<target name="tiled_run" depends="compile_tiled" description="Runs Tiled">
 		<java classname="tiled.mapeditor.MapEditor" classpath="${build_tiled}" fork="true"/>
