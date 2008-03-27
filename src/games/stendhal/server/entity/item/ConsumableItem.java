@@ -19,7 +19,10 @@ import games.stendhal.server.entity.item.consumption.Feeder;
 import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPObject;
 
@@ -32,10 +35,50 @@ import marauroa.common.game.RPObject;
  */
 public class ConsumableItem extends StackableItem implements UseListener,
 		Comparable<ConsumableItem> {
-
+	private static Logger logger = Logger.getLogger(ConsumableItem.class);
 	/** How much of this item has not yet been consumed. */
 	private int left;
 	private Feeder feeder;
+
+	@Override
+	public void put(String attribute, double value) {
+		
+		super.put(attribute, value);
+		checkAmount(attribute, value);
+	}
+
+	private void checkAmount(String attribute, double value) {
+	
+		if ("amount".equals(attribute)) {
+			logger.info("triggered double amountchange: " + value);
+			left = (int) value;
+		}
+		
+	}
+
+	@Override
+	public void put(String attribute, int value) {
+		// TODO Auto-generated method stub
+		super.put(attribute, value);
+		checkAmount(attribute, value);
+	}
+
+	@Override
+	public void put(String attribute, List<String> value) {
+		// TODO Auto-generated method stub
+		super.put(attribute, value);
+		
+	}
+
+	@Override
+	public void put(String attribute, String value) {
+		if ("amount".equals(attribute)) {
+			logger.info("triggered double amountchange: " + value);
+			left = Integer.parseInt(value);
+		}
+		super.put(attribute, value);
+		
+	}
 
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
@@ -141,4 +184,5 @@ public class ConsumableItem extends StackableItem implements UseListener,
 				- (float) getRegen() / (float) getFrecuency();
 		return (int) Math.signum(result);
 	}
+	
 }
