@@ -19,8 +19,8 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
-import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.ActionManager;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -2003,16 +2003,18 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 
 		defender.rememberAttacker(this);
-
+		
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
 			int damage = this.damageDone(defender);
+			
+			
 			if (damage > 0) {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());
-				damage = StendhalRPAction.handleLifesteal(this, this.getWeapons(), damage);
+				damage = this.handleLifesteal(this, this.getWeapons(), damage);
 
 				defender.onDamaged(this, damage);
 				this.put("damage", damage);
@@ -2040,5 +2042,69 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	void applyDefXP(RPEntity entity) {
 	
 	}
-	
+	/**
+	 * Calculate lifesteal and update hp of source.
+	 * 
+	 * @param attacker
+	 *            the RPEntity doing the hit
+	 * @param attackerWeapons
+	 *            the weapons of the RPEntity doing the hit
+	 * @param damage
+	 *            the damage done by this hit.
+	 * @return damage (may be altered inside this method)
+	 */
+	public int handleLifesteal(RPEntity attacker,
+			List<Item> attackerWeapons, int damage) {
+
+		// Calculate the lifesteal value based on the configured factor
+		// In case of a lifesteal weapon used together with a non-lifesteal
+		// weapon,
+		// weight it based on the atk-values of the weapons.
+		float sumAll = 0;
+		float sumLifesteal = 0;
+
+		// Creature with lifesteal profile?
+		if (attacker instanceof Creature) {
+			sumAll = 1;
+			String value = ((Creature) attacker).getAIProfile("lifesteal");
+			if (value == null) {
+				// The creature doesn't steal life.
+				return damage;
+			}
+			sumLifesteal = Float.parseFloat(value);
+		} else {
+			// weapons with lifesteal attribute for players
+			for (Item weaponItem : attackerWeapons) {
+				sumAll += weaponItem.getAttack();
+				if (weaponItem.has("lifesteal")) {
+					sumLifesteal += weaponItem.getAttack()
+							* weaponItem.getDouble("lifesteal");
+				}
+			}
+		}
+
+		// process the lifesteal
+		if (sumLifesteal != 0) {
+			// 0.5f is used for rounding
+			int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
+
+			if (lifesteal >= 0) {
+				if (attacker.heal(lifesteal, true) == 0) {
+					// If no effective healing, reduce damage
+					if (damage > 1) {
+						damage /= 2;
+					}
+				}
+			} else {
+				/*
+				 * Negative lifesteal means that we hurt ourselves.
+				 */
+				attacker.damage(-lifesteal, attacker);
+			}
+
+			attacker.notifyWorldAboutChanges();
+		}
+		return damage;
+	}
+
 }
