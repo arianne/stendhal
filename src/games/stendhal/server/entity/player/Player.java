@@ -1825,7 +1825,7 @@ public class Player extends RPEntity {
 
 
 	public void setDamage(int damage) {
-		put("damage",damage);
+		put("damage", damage);
 		
 	}
 }
