@@ -435,11 +435,6 @@ public class Creature extends NPC {
 			return null;
 		}
 
-		// where are we?
-		Rectangle2D entityArea = getArea(getX(), getY());
-		double centerX = entityArea.getCenterX();
-		double centerY =  entityArea.getCenterY();
-
 		// calculate the distance of all possible enemies
 		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
 		for (RPEntity enemy : enemyList) {
@@ -452,22 +447,10 @@ public class Creature extends NPC {
 			}
 			assert (enemy.getZone() == getZone());
 			
-			Rectangle2D rect = enemy.getArea();
-				double fx = rect.getCenterX();
-				double fy = rect.getCenterY();
 
-			double xdistance = Math.abs(fx - centerX) - (getWidth() + enemy.getWidth()) / 2;
-			double ydistance = Math.abs(fy - centerY) - (getHeight() + enemy.getHeight()) / 2;
-			if (xdistance < 0) {
-				xdistance = 0;
-			}
-			if (ydistance < 0) {
-				ydistance = 0;
-			}
-
-			Double squareddistance = xdistance * xdistance + ydistance * ydistance;
-			if (squareddistance <= (range * range)) {
-				distances.put(enemy, squareddistance);
+			double squaredDistance = this.squaredDistance(enemy);
+			if (squaredDistance <= (range * range)) {
+				distances.put(enemy, squaredDistance);
 			}
 		}
 
@@ -502,9 +485,6 @@ public class Creature extends NPC {
 		int x = getX();
 		int y = getY();
 
-		double distance = range * range; // We save this way several sqrt
-		// operations
-
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
 			StendhalRPZone zone = getZone();
@@ -525,9 +505,7 @@ public class Creature extends NPC {
 				int fy = playerOrFriend.getY();
 
 				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)) {
-					if (squaredDistance(playerOrFriend) < distance) {
-						return true;
-					}
+					return true;
 				}
 			}
 		}
