@@ -108,7 +108,7 @@ public class BabyDragon extends Pet {
 	 */
 	public BabyDragon(RPObject object, Player owner) {
 		super(object, owner);
-		setUp();
+	
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
 
