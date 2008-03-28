@@ -38,7 +38,6 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.slot.EntitySlot;
 
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -397,16 +396,6 @@ public class Creature extends NPC {
 		}
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		// TODO: Remove need for this hack
-		if ((getWidth() == 1) && (getHeight() == 2)) {
-			// The size 1,2 is a bit special... :)
-			rect.setRect(x, y + 1.0, 1.0, 1.0);
-		} else {
-			super.getArea(rect, x, y);
-		}
-	}
 
 	/**
 	 * Returns a list of enemies. One of it will be attacked.
