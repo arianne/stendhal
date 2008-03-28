@@ -10,7 +10,7 @@ class Patroller implements Idlebehaviour {
 	private int maxY;
 	
 
-	
+
 	public void startIdleness(Creature creature) {
 		minX = creature.getX() - 3;
 		maxX = creature.getX() + 3;
@@ -23,20 +23,22 @@ class Patroller implements Idlebehaviour {
 			creature.followPath();
 		} else {
 			Direction d = Direction.rand();
-			// If we're going to leave the patrol region,
-			// Use a different direction.
-			while (((d == Direction.UP) && (creature.getY() <= minY))
-					|| ((d == Direction.DOWN) && (creature.getY() >= maxY))
-					|| ((d == Direction.LEFT) && (creature.getX() <= minX))
-					|| ((d == Direction.RIGHT) && (creature.getX() >= maxX))) {
+			while (weWouldLeaveArea(creature, d)) {
 				d = d.nextDirection();
 			}
 			
 			creature.setDirection(d);
 			creature.setSpeed(creature.getBaseSpeed());
-                        creature.applyMovement();
+            creature.applyMovement();
 		}
 		creature.applyMovement();
+	}
+
+	private boolean weWouldLeaveArea(Creature creature, Direction d) {
+		return (creature.getY() + d.getdy() <= minY)
+				|| (creature.getY() + d.getdy() >= maxY)
+				|| (creature.getX() + d.getdx() <= minX)
+				|| (creature.getX() + d.getdx() >= maxX);
 	}
 
 }
