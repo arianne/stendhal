@@ -183,8 +183,8 @@ public class RingMakerTest {
 		Item ring = player.getFirstEquipped("emerald ring");
 		assertNotNull(ring.getBoundTo());
 		assertEquals("player", ring.getBoundTo());
-		assertEquals("You see ring of life. Wear it, and you risk less from death.",ring.getDescription());
-		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.",ring.describe());
+		assertEquals("You see ring of life. Wear it, and you risk less from death.", ring.getDescription());
+		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ring.describe());
 
 		assertEquals("Bye, my friend.", npc.get("text"));
 	}

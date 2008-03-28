@@ -76,10 +76,9 @@ public class Pathfind {
 		
 		current_node = final_path.get(final_path_index);
 		
-		int next_node = final_path_index -2; 
+		int next_node = final_path_index - 2; 
 		
-		if (next_node < 1)
-		{
+		if (next_node < 1) {
 			final_path_index = 0;
 			current_node = final_path.get(final_path_index);
 			return;
@@ -92,24 +91,21 @@ public class Pathfind {
 			next_node_final = 0;
 		}
 		
-		if (final_path.get(next_node+1).y==final_path.get(next_node).y)
-		{
-			for (next_node = final_path_index-2; next_node>next_node_final; next_node--)
-			{
-				if (final_path.get(next_node+1).y!=final_path.get(next_node).y)
+		if (final_path.get(next_node + 1).y == final_path.get(next_node).y) {
+			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
+				if (final_path.get(next_node + 1).y != final_path.get(next_node).y) {
 					break;
+				}
 			}
-			
-		}
-		else
-		{
-			for (next_node = final_path_index-2; next_node>next_node_final; next_node--)
-			{
-				if (final_path.get(next_node+1).x!=final_path.get(next_node).x)
-				break;
-				
+
+		} else {
+			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
+				if (final_path.get(next_node + 1).x != final_path.get(next_node).x) {
+					break;
+				}
+
 			}
-			
+
 		}
 
 		final_path_index = next_node;

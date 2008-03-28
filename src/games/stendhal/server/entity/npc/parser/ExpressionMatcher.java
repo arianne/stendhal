@@ -205,8 +205,8 @@ public class ExpressionMatcher {
 	}
 
 	/**
-	 * Read in the expressions from the given string in prepared form. The given text
-	 * should be in the format: "<expression>/<TYPESTRING> <expression>/<TYPESTRING> ..."
+	 * Reads in the expressions from the given string in prepared form. The given text
+	 * should be in the format: "&lt;expression&gt;/&lt;TYPESTRING&gt; &lt;expression&gt;/&lt;TYPESTRING&gt; ..."
 	 *
 	 * @param text: Text to be parsed
 	 */

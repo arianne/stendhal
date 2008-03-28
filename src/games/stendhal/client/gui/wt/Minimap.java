@@ -534,8 +534,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				client.send(action);
 				
-				if (nodo_actual==0)//llegamos al destino
-				{
+				if (nodo_actual == 0) {
 					pathfind.ClearPath();
 				}
 				
