@@ -1812,9 +1812,14 @@ public class Player extends RPEntity {
 		return null;
 	}
 	
-	void applyDefXP(RPEntity entity) {
+	@Override
+	protected void applyDefXP(RPEntity entity) {
 		if (getsFightXpFrom(entity)) {
 			incDEFXP();
 		}
+	}
+	@Override
+	protected void handleObjectCollision() {
+		clearPath();
 	}
 }

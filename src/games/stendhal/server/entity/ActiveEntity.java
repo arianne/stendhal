@@ -86,8 +86,6 @@ public abstract class ActiveEntity extends Entity {
 			return;
 		}
 
-		setCollides(false);
-
 		int x = getX();
 		int y = getY();
 		int nx = x + direction.getdx();
@@ -141,7 +139,7 @@ public abstract class ActiveEntity extends Entity {
 
 	protected void handleObjectCollision() {
 
-		setCollides(true);
+		
 	}
 
 	private void move(int x, int y, int nx, int ny) {
@@ -172,8 +170,6 @@ public abstract class ActiveEntity extends Entity {
 		}
 		if (isGhost()) {
 			move(getX(), getY(), nx, ny);
-		} else {
-			setCollides(true);
 		}
 	}
 

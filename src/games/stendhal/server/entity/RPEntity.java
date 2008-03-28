@@ -2039,7 +2039,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return result;
 	}
 
-	void applyDefXP(RPEntity entity) {
+	protected void applyDefXP(RPEntity entity) {
 	
 	}
 	/**

@@ -49,8 +49,6 @@ public abstract class Entity extends RPObject {
 	 */
 	private double height;
 
-	private boolean collides;
-
 	/**
 	 * Amount of resistance this has with other entities (0-100).
 	 */
@@ -267,14 +265,6 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean stopped() {
 		return true;
-	}
-
-	protected void setCollides(boolean collides) {
-		this.collides = collides;
-	}
-
-	public boolean collides() {
-		return collides;
 	}
 
 	/**
