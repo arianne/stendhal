@@ -207,21 +207,21 @@ public class StendhalRPAction {
 				damage = player.handleLifesteal(player, weapons, damage);
 
 				defender.onDamaged(player, damage);
-				player.put("damage", damage);
+				player.setDamage(damage);
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
 			} else {
 				// The attack was too weak, it was blocked
-				player.put("damage", 0);
+				player.setDamage(0);
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
 		} else { // Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
-			player.put("damage", 0);
+			player.setDamage(0);
 		}
 
 		player.notifyWorldAboutChanges();

@@ -1822,4 +1822,10 @@ public class Player extends RPEntity {
 	protected void handleObjectCollision() {
 		clearPath();
 	}
+
+
+	public void setDamage(int damage) {
+		put("damage",damage);
+		
+	}
 }
