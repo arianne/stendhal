@@ -27,15 +27,23 @@ import java.util.List;
 
 /**
  * QUEST: Kill Dark Elves
- *
- * PARTICIPANTS: - Maerion
- *
- * STEPS: - Maerion asks you fix his dark elf problem - You go kill at least a
- * dark elf archer, captain, and thing - The thing drops an amulet - Maerion
- * checks your kills, takes the amulet and gives you a ring of life as reward
- *
- * REWARD: - emerald ring - 10000 XP
- *
+ * <p>
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Maerion
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Maerion asks you fix his dark elf problem
+ * <li> You go kill at least a dark elf archer, captain, and thing
+ * <li> The thing drops an amulet
+ * <li> Maerion checks your kills, takes the amulet and gives you a ring of life
+ * as reward
+ * </ul>
+ * REWARD: <ul><li> emerald ring <li> 10000 XP</ul>
+ * 
  * REPETITIONS: - None.
  */
 public class KillDarkElves extends AbstractQuest {
