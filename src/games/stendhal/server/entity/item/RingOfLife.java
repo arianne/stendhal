@@ -50,10 +50,17 @@ public class RingOfLife extends Ring {
 	 */
 	@Override
 	public String describe() {
+		String text;
 		if (isBroken()) {
-			return "You see the ring of life. The gleam is lost from the stone and it has no powers.";
+			text = "You see the ring of life. The gleam is lost from the stone and it has no powers.";
 		} else {
-			return "You see the ring of life. Wear it, and you risk less from death.";
+			text = "You see the ring of life. Wear it, and you risk less from death.";
 		}
+		
+		if (getBoundTo() != null) {
+			text = text + " It is a special quest reward for " + getBoundTo()
+					+ ", and cannot be used by others.";
+		}
+		return text;
 	}
 }

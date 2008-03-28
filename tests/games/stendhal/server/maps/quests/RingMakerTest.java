@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -179,6 +180,12 @@ public class RingMakerTest {
 		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", npc.get("text"));
 		assertEquals("player earns 500 experience points.", oldXP + 500, player.getXP());
 		en.step(player, "bye");
+		Item ring = player.getFirstEquipped("emerald ring");
+		assertNotNull(ring.getBoundTo());
+		assertEquals("player", ring.getBoundTo());
+		assertEquals("You see ring of life. Wear it, and you risk less from death.",ring.getDescription());
+		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.",ring.describe());
+
 		assertEquals("Bye, my friend.", npc.get("text"));
 	}
 
