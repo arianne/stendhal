@@ -1,7 +1,9 @@
 package games.stendhal.server.entity.creature;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -75,4 +77,20 @@ public class CreatureTest {
 		}
 	}
 
+	@Test
+	public void testhasTargetMoved() {
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		Creature attacker = new Creature();
+
+		Creature attackTarget = new Creature();
+		zone.add(attacker);
+		zone.add(attackTarget);
+		attacker.setTarget(attackTarget);
+		assertFalse(attacker.hasTargetMoved());
+		assertFalse(attacker.hasTargetMoved());
+		attackTarget.setPosition(1, 0);
+		assertTrue(attacker.hasTargetMoved());
+		assertFalse(attacker.hasTargetMoved());
+	}
+	
 }
