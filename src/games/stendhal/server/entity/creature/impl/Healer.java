@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.creature.impl;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 
 class Healer extends Healingbehaviour {
@@ -15,7 +16,11 @@ class Healer extends Healingbehaviour {
 
 	@Override
 	public void heal(Creature creature) {
-		creature.healSelf(amount, frequency);
+		if ((SingletonRepository.getRuleProcessor().getTurn() % frequency == 0)
+				&& (creature.getHP() > 0)) {
+			creature.heal(amount);
+		}
+		
 	}
 
 }

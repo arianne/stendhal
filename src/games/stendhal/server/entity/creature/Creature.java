@@ -537,23 +537,6 @@ public class Creature extends NPC {
 		}
 	}
 
-	/**
-	 * This method should be called every turn if the animal is supposed to heal
-	 * itself on its own. If it is used, an injured animal will heal itself by
-	 * up to <i>amount</i> hitpoints every <i>frequency</i> turns.
-	 * 
-	 * @param amount
-	 *            The number of hitpoints that can be restored at a time
-	 * @param frequency
-	 *            The number of turns between healings
-	 */
-	public void healSelf(int amount, int frequency) {
-		if ((SingletonRepository.getRuleProcessor().getTurn() % frequency == 0)
-				&& (getHP() > 0)) {
-			heal(amount);
-		}
-	}
-
 	public void equip(List<EquipItem> items) {
 		for (EquipItem equippedItem : items) {
 			if (!hasSlot(equippedItem.slot)) {

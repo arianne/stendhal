@@ -23,8 +23,9 @@ public class HealingbehaviourTest {
 		CreatureTestHelper.generateRPClasses();
 		Creature creature = new Creature() {
 			@Override
-			public void healSelf(int amount, int frequency) {
+			public int heal(int amount) {
 				called = true;
+				return amount;
 			}
 		};
 		zone.add(creature);
