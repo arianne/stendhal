@@ -64,7 +64,7 @@ public class DeathMatchCreature extends Creature {
 			player.notifyWorldAboutChanges();
 
 		} else {
-			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
+			Logger.getLogger(DeathMatchCreature.class).error(this + " rewardkillers with amount: " + damageReceived);
 		}
 	}
 
