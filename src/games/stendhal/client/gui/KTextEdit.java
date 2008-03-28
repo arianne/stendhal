@@ -240,8 +240,7 @@ public class KTextEdit extends JPanel {
 				try {
 					textPane.getDocument().remove(0, 100);
 				} catch (BadLocationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info(e);
 				}
 				
 			}
