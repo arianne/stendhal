@@ -510,6 +510,7 @@ in roaches.
    
    <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC" />
     <portal x="4" y="14" ref="entrance_goldsmith">
      <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
     </portal>
