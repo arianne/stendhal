@@ -55,7 +55,7 @@ public class Reaper2NPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "evael", null, ConversationStates.QUESTION_1, "?erus uoy erA .truh lliw tI", null);
 				List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 				processStep.add(new TeleportAction("int_afterlife", 31, 23, Direction.UP));
-				processStep.add(new DecreaseKarmaAction(-100.0));
+				processStep.add(new DecreaseKarmaAction(100.0));
 				processStep.add(new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
