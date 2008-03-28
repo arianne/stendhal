@@ -1758,8 +1758,7 @@ Assassin Dagger (atk 6 rate 2) 12000
  <!--  Level -3 -->
 
   <zone name="-3_ados_abandoned_keep" level="-3" x="500512" y="499744" file="Level -3/ados/abandoned_keep.tmx">
-  <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfBuyerGuyNPC" />
-     <entity x="35" y="31">
+      <entity x="35" y="31">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 I buy several things:
@@ -1774,7 +1773,15 @@ lucky charm 60
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
- </zone>
+    <entity x="25" y="32">
+    <implementation class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfBuyerGuyNPC">
+      <parameter name="name">Ritati Dragontracker</parameter>
+      <parameter name="node0">25,32</parameter>
+      <parameter name="node1">38,32</parameter>
+    </implementation>
+    <attribute name="class">olddwarfnpc</attribute>
+  </entity>    
+   </zone>
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
