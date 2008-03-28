@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.creature.impl;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
 
 class Patroller implements Idlebehaviour {
@@ -22,7 +23,12 @@ class Patroller implements Idlebehaviour {
 		if (creature.hasPath()) {
 			creature.followPath();
 		} else {
-			Direction d = Direction.rand();
+			Direction d;
+			if (Rand.throwCoin() == 1) {
+				 d = Direction.rand();
+			} else {
+				d = creature.getDirection();
+			}
 			while (weWouldLeaveArea(creature, d)) {
 				d = d.nextDirection();
 			}
