@@ -28,7 +28,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 	}
 
 	private void buildForger(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC forger = new SpeakerNPC("XXX") {
+		SpeakerNPC forger = new SpeakerNPC("Pedinghaus") {
 
 			@Override
 			protected void createPath() {
@@ -42,12 +42,12 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 				addHelp("If you're here for gold bars, you must speak with Joshua. I #cast the rare and precious #mithril #bar.");
 				addGoodbye("Bye.");
 
-				// X makes mithril if you bring him mithril nugget and wood
+				// Pedinghaus makes mithril if you bring him mithril nugget and wood
 				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("wood", 20);
 				requiredResources.put("mithril nugget", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("XXX_cast_mithril",
+				ProducerBehaviour behaviour = new ProducerBehaviour("Pedinghaus_cast_mithril",
 						"cast", "mithril bar", requiredResources, 18 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
