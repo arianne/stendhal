@@ -345,7 +345,7 @@ public abstract class Entity extends RPObject {
 	 *            The vertical coordinate of the point
 	 * @return double representing the squared distance
 	 */
-	public double squaredDistance(int x, int y) {
+	public final double squaredDistance(int x, int y) {
 		
 		
 		double otherMiddleX = x + 0.5;
