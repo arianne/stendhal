@@ -351,11 +351,10 @@ public class ExpressionMatcher {
     			return false;
     		} else if (caseInsensitive != o.caseInsensitive) {
     			return false;
-    		} else if (jokerMatching != o.jokerMatching) {
-    			return false;
     		} else {
-    			return true;
+    			return (jokerMatching == o.jokerMatching);
     		}
+    			
 		} else {
 			return false;
 		}
