@@ -177,8 +177,9 @@ public final class TiledConfiguration {
 	 * 
 	 * @param filename
 	 *            the file to write the configuration to
+	 * @throws IOException 
 	 */
-	public void write(String filename) {
+	public void write(String filename) throws IOException {
 		BufferedWriter bw;
 		List<String> inputLines = new ArrayList<String>();
 		Map<String, String> availableKeys = new HashMap<String, String>();
