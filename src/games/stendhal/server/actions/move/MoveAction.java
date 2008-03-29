@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
+import static games.stendhal.server.actions.WellKnownActionConstants.X;
+import static games.stendhal.server.actions.WellKnownActionConstants.Y;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -32,8 +35,6 @@ import games.stendhal.server.util.EntityHelper;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
 
 public class MoveAction implements ActionListener {
 
@@ -141,10 +142,10 @@ public class MoveAction implements ActionListener {
 			player.clearPath();
 		}
 
-		if (action.has(WellKnownActionConstants.X)
-				&& action.has(WellKnownActionConstants.Y)) {
-			int x = action.getInt(WellKnownActionConstants.X);
-			int y = action.getInt(WellKnownActionConstants.Y);
+		if (action.has(X)
+				&& action.has(Y)) {
+			int x = action.getInt(X);
+			int y = action.getInt(Y);
 			if (player.has(_TELECLICKMODE)) {
 				// Teleport
 				StendhalRPZone zone = player.getZone();
