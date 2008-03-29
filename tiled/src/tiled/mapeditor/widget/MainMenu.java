@@ -53,6 +53,7 @@ import tiled.mapeditor.actions.SaveAsImageAction;
 import tiled.mapeditor.actions.SaveMapAction;
 import tiled.mapeditor.actions.SelectAllAction;
 import tiled.mapeditor.actions.TilesetManagerAction;
+import tiled.mapeditor.actions.ToggleCoordinatesAction;
 import tiled.mapeditor.actions.ToggleGridAction;
 import tiled.mapeditor.actions.TreeTilesetChooserAction;
 import tiled.mapeditor.actions.UndoAction;
@@ -85,10 +86,6 @@ public class MainMenu extends JMenuBar implements ActionListener {
 	private JMenuItem layerDown;
 	private JMenuItem layerMerge;
 	private JMenuItem layerMergeAll;
-
-	// view menu
-	private JCheckBoxMenuItem coordinatesMenuItem;
-	private JCheckBoxMenuItem gridMenuItem;
 
 	/** creates the main menu. */
 	public MainMenu(MapEditor mapEditor, MapEventAdapter mapEventAdapter) {
@@ -209,19 +206,13 @@ public class MainMenu extends JMenuBar implements ActionListener {
 		selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(CancelSelectionAction.class), true));
 		selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(InverseSelectionAction.class), true));
 
-		gridMenuItem = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleGridAction.class));
-
-		coordinatesMenuItem = new JCheckBoxMenuItem("Show Coordinates");
-		coordinatesMenuItem.addActionListener(mapEditor);
-		coordinatesMenuItem.setToolTipText("Toggle tile coordinates");
-
 		JMenu viewMenu = new JMenu("View");
 		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomInAction.class)));
 		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomOutAction.class)));
 		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomNormalAction.class)));
 		viewMenu.addSeparator();
-		viewMenu.add(gridMenuItem);
-		viewMenu.add(coordinatesMenuItem);
+		viewMenu.add(new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleGridAction.class)));
+		viewMenu.add(new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleCoordinatesAction.class)));
 
 		mapEventAdapter.addListener(layerMenu);
 		mapEventAdapter.addListener(tilesetMenu);
@@ -307,14 +298,6 @@ public class MainMenu extends JMenuBar implements ActionListener {
 		JMenuItem recentOption = createMenuItem(name, null, null);
 		recentOption.setActionCommand(actionCmd);
 		recentMenu.add(recentOption);
-	}
-
-	public void setShowGrid(boolean mode) {
-		gridMenuItem.setState(mode);
-	}
-
-	public void setShowCoordinates(boolean mode) {
-		coordinatesMenuItem.setState(mode);
 	}
 
 	public void actionPerformed(ActionEvent event) {
