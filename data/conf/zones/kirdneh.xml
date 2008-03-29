@@ -27,7 +27,7 @@
    <destination zone="0_kirdneh_city" ref="pool"/>
    <attribute name="hidden"/>
   </portal>
-  <portal x="32" y="89" ref="tavern">
+  <portal x="10" y="92" ref="tavern">
    <destination zone="int_kirdneh_inn" ref="entrance"/>
   </portal>
   <portal x="48" y="7" ref="pool">
@@ -81,7 +81,7 @@
     <parameter name="rejected">The door is locked.</parameter>
    </implementation>
   </portal>
-  <portal x="96" y="25" ref="29">
+  <portal x="96" y="27" ref="29">
    <destination zone="int_kirdneh_house_29" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">private key 29</parameter>
