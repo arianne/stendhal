@@ -1992,15 +1992,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public boolean attack() {
 		boolean result = false;
 		 RPEntity defender = this.getAttackTarget();
-		StendhalRPZone zone = this.getZone();
-		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
-			logger.debug("Attack from " + this + " to " + defender
-					+ " stopped because target was lost("
-					+ zone.has(defender.getID()) + ") or dead.");
-			this.stopAttack();
-
-			return false;
-		}
+//		isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
 		
@@ -2037,6 +2029,19 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.notifyWorldAboutChanges();
 
 		return result;
+	}
+
+	private boolean isInZoneandNotDead(RPEntity defender) {
+		StendhalRPZone zone = this.getZone();
+		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
+			logger.debug("Attack from " + this + " to " + defender
+					+ " stopped because target was lost("
+					+ zone.has(defender.getID()) + ") or dead.");
+			this.stopAttack();
+
+			return false;
+		}
+		return true;
 	}
 
 	protected void applyDefXP(RPEntity entity) {
