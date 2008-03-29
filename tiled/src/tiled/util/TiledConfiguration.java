@@ -74,7 +74,7 @@ public final class TiledConfiguration {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public void parse(String filename) throws FileNotFoundException, IOException {
+	public void parse(String filename) throws IOException {
 		parse(new BufferedReader(new FileReader(filename)));
 	}
 
@@ -178,7 +178,7 @@ public final class TiledConfiguration {
 	 * @param filename
 	 *            the file to write the configuration to
 	 */
-	public void write(String filename) throws IOException, Exception {
+	public void write(String filename) {
 		BufferedWriter bw;
 		List<String> inputLines = new ArrayList<String>();
 		Map<String, String> availableKeys = new HashMap<String, String>();
