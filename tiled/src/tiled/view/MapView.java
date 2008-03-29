@@ -173,6 +173,7 @@ public abstract class MapView implements MapChangeListener {
 				Graphics g = minimapImage.createGraphics();
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, minimapImage.getWidth(), minimapImage.getHeight());
+				g.dispose();
 				updateMinimapImage(all);
 			}
 
@@ -189,6 +190,7 @@ public abstract class MapView implements MapChangeListener {
 	/** Sets the layer opacity in the graphics context g. */
 	protected void setLayerOpacity(Graphics g, TileLayer layer) {
 		float opacity = layer.getOpacity();
+
 		if (layer.isVisible() && opacity > 0.0f) {
 			if (opacity < 1.0f) {
 				((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, opacity));

@@ -871,10 +871,11 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 
 				Dimension d = mapView.getSize();
 				BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
-				Graphics2D g = i.createGraphics();
 
+				Graphics2D g = i.createGraphics();
 				g.setClip(0, 0, d.width, d.height);
 				mapView.draw(g);
+				g.dispose();
 
 				String format = filename.substring(filename.lastIndexOf('.') + 1);
 

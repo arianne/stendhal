@@ -258,6 +258,7 @@ public class OrthoMapView extends MapView {
 
 		Graphics minimapGraphics = minimapImage.createGraphics();
 		draw(minimapGraphics, modifiedRegion, getMinimapScale(), 0);
+		minimapGraphics.dispose();
 	}
 
 	/**
@@ -356,6 +357,10 @@ public class OrthoMapView extends MapView {
 							GraphicsConfiguration config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 							image = config.createCompatibleImage(tileWidth * tileGroup.getWidth(), tileHeight
 									* tileGroup.getHeight(), Transparency.TRANSLUCENT);
+							if (g != null) {
+								g.dispose();
+							}
+
 							g = image.createGraphics();
 							g.setColor(Color.BLACK);
 							g.fillRect(0, 0, image.getWidth(), image.getHeight());
@@ -364,6 +369,10 @@ public class OrthoMapView extends MapView {
 					}
 				}
 			}
+		}
+
+		if (g != null) {
+			g.dispose();
 		}
 
 		return image;

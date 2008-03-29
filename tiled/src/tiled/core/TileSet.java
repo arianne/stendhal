@@ -158,11 +158,11 @@ public class TileSet implements Iterable<Tile> {
 		// some platforms...
 		// GraphicsConfiguration config =
 		// GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		// Image tilesetImage = config.createCompatibleImage(tileWidth,
-		// tileHeight);
+		// Image tilesetImage = config.createCompatibleImage(tileWidth, tileHeight);
 		// Graphics tg = tilesetImage.getGraphics();
 
 		tg.drawImage(tilebmp, 0, 0, iw, ih, 0, 0, iw, ih, null);
+		tg.dispose();
 
 		if (iw > 0 && ih > 0) {
 			for (int y = 0; y <= ih - tileHeight; y += tileHeight + spacing) {

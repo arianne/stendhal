@@ -55,6 +55,7 @@ public class TileGroupButton extends JToggleButton {
 		g.setColor(Color.WHITE);
 		g.drawRect(0, 0, width - 1, height - 1);
 		g.drawRect(1, 1, width - 3, height - 3);
+		g.dispose();
 
 		setIcon(new ImageIcon(image));
 		setText(null);
