@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.sprite.Sprite;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 
 public class Text {
@@ -42,7 +43,9 @@ public class Text {
 	}
 
 	public void draw(final IGameScreen screen) {
-		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y - screen.getScreenViewY());
+		Point pos = screen.getScreenViewPos();
+
+		screen.drawInScreen(sprite, x - pos.x, y - pos.y);
 
 		if (System.currentTimeMillis() >= removeTime) {
 			screen.removeText(this);
