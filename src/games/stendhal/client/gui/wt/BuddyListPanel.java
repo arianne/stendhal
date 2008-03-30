@@ -6,29 +6,25 @@
 
 package games.stendhal.client.gui.wt;
 
-//
-//
-
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+import games.stendhal.client.gui.ClientPanel;
+import games.stendhal.client.gui.MouseHandlerAdapter;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -37,8 +33,8 @@ import marauroa.common.game.RPSlot;
 /**
  * A panel representing a buddy list.
  */
-public class BuddyListPanel extends JPanel {
-	private static final long serialVersionUID = -1607102841664745919L;
+@SuppressWarnings("serial")
+public final class BuddyListPanel extends ClientPanel {
 
 	/**
 	 * The UI.
@@ -61,12 +57,59 @@ public class BuddyListPanel extends JPanel {
 	private List<Entry> buddies;
 
 	/**
+	 * A buddy entry.
+	 */
+	protected static class Entry {
+
+		/**
+		 * The buddy name.
+		 */
+		protected String name;
+
+		/**
+		 * Whether the buddy is online.
+		 */
+		protected boolean online;
+
+		/**
+		 * Create a buddy entry.
+		 *
+		 * @param name
+		 *            The buddy name.
+		 * @param online
+		 *            Whether the buddy is online.
+		 */
+		public Entry(String name, boolean online) {
+			this.name = name;
+			this.online = online;
+		}
+
+		/**
+		 * Get the buddy name.
+		 *
+		 * @return The buddy name.
+		 */
+		public String getName() {
+			return name;
+		}
+
+		/**
+		 * Determine is the buddy is online.
+		 *
+		 * @return <code>true</code> if online.
+		 */
+		public boolean isOnline() {
+			return online;
+		}
+	}
+
+	/**
 	 * Create a buddy list panel.
 	 */
 	public BuddyListPanel(StendhalUI ui) {
-		this.ui = ui;
+		super("Buddy List", 100, 100);
 
-		setOpaque(false);
+		this.ui = ui;
 
 		SpriteStore st = SpriteStore.get();
 		online = st.getSprite("data/gui/buddy_online.png");
@@ -76,6 +119,8 @@ public class BuddyListPanel extends JPanel {
 
 		setPreferredSize(new Dimension(132, 1));
 		addMouseListener(new MouseClickCB());
+
+		updateList();
 	}
 
 	/**
@@ -98,83 +143,141 @@ public class BuddyListPanel extends JPanel {
 	 *            The buddy list object.
 	 */
 	protected void updateList(RPObject buddy) {
-		buddies.clear();
+		synchronized (buddies) {
+			buddies.clear();
 
-		for (String key : buddy) {
-			if (!key.startsWith("_")) {
-				continue;
-			}
-			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
+    		for (String key : buddy) {
+    			if (!key.startsWith("_")) {
+    				continue;
+    			}
+
+    			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
+    		}
 		}
 
 		int height = buddies.size() * 20 + 3;
 
 		if (height != getHeight()) {
-			setPreferredSize(new Dimension(132, height));
-
-			/*
-			 * Tell the parent to re-pack() itself
-			 *
-			 * TODO Maybe there's a better way (without introducing
-			 * dependencies/code-coupling) XXX
-			 */
-			putClientProperty("size-change", Integer.valueOf(height));
+			setClientSize(132, height);
 		}
 	}
 
+	//
+	// JComponent
+	//
+
 	/**
-	 * Handle a popup click.
+	 * Render the buddy list. Eventually this will be replaced by a JList that
+	 * can be scrolled (for popular players with many friends).
 	 *
-	 * @param comp
-	 *            The component clicked on.
-	 * @param x
-	 *            The X coordinate of the mouse click.
-	 * @param y
-	 *            The X coordinate of the mouse click.
+	 * @param g
+	 *            The graphics context.
 	 */
-	protected void doPopup(Component comp, int x, int y) {
-		JMenuItem mi;
+	@Override
+    public void paint(Graphics g) {
+		super.paint(g);
 
-		int i = y / 20;
+		Point clnt = getClientPos();
 
-		if ((i < 0) || (i >= buddies.size())) {
-			return;
+		int y = clnt.y;
+
+		synchronized (buddies) {
+    		for (Entry entry : buddies) {
+    			if (entry.isOnline()) {
+    				g.setColor(Color.GREEN);
+    				online.draw(g, clnt.x + 3, 2 + y);
+    			} else {
+    				g.setColor(Color.RED);
+    				offline.draw(g, clnt.x + 3, 2 + y);
+    			}
+
+    			g.drawString(entry.getName(), clnt.x + 24, 16 + y);
+
+    			y += 20;
+    		}
 		}
+	}
 
-		Entry entry = buddies.get(i);
 
-		StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(),
-				entry.getName());
+	private class MouseClickCB extends MouseHandlerAdapter {
+		/**
+		 * Handle popup menus.
+		 */
+		@Override
+		public void onPopup(MouseEvent e) {
+			int i = (e.getY()-getClientPos().y) / 20;
 
-		ActionListener listener = new ActionSelectedCB(entry.getName());
+			synchronized (buddies) {
+	    		if ((i < 0) || (i >= buddies.size())) {
+	    			return;
+	    		}
 
-		if (entry.isOnline()) {
-			mi = new JMenuItem("Talk");
-			mi.setActionCommand("talk");
-			mi.addActionListener(listener);
-			menu.add(mi);
+	    		Entry entry = buddies.get(i);
 
-			mi = new JMenuItem("Where");
-			mi.setActionCommand("where");
-			mi.addActionListener(listener);
-			menu.add(mi);
-		} else {
-			mi = new JMenuItem("Leave Message");
-			mi.setActionCommand("leave-message");
-			mi.addActionListener(listener);
-			menu.add(mi);
+	    		JPopupMenu menu = new JPopupMenu(entry.getName());
+//	    		JPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(), entry.getName());
+	    		ActionListener listener = new ActionSelectedCB(entry.getName());
+
+				JMenuItem mi;
+
+	            if (entry.isOnline()) {
+	            	mi = new JMenuItem("Talk");
+	            	mi.setActionCommand("talk");
+	            	mi.addActionListener(listener);
+	            	menu.add(mi);
+
+	            	mi = new JMenuItem("Where");
+	            	mi.setActionCommand("where");
+	            	mi.addActionListener(listener);
+	            	menu.add(mi);
+	            } else {
+	            	mi = new JMenuItem("Leave Message");
+	            	mi.setActionCommand("leave-message");
+	            	mi.addActionListener(listener);
+	            	menu.add(mi);
+	            }
+
+	            mi = new JMenuItem("Remove");
+	            mi.setActionCommand("remove");
+	            mi.addActionListener(listener);
+	            menu.add(mi);
+
+	            menu.show(e.getComponent(), e.getX(), e.getY());
+			}
 		}
-
-		mi = new JMenuItem("Remove");
-		mi.setActionCommand("remove");
-		mi.addActionListener(listener);
-		menu.add(mi);
-
-		menu.show(comp, x, y);
 	}
 
 	/**
-	 * Handle a choosen popup item.
+	 * Handle action selection.
+	 */
+	protected class ActionSelectedCB implements ActionListener {
+
+		/**
+		 * The buddy to act on.
+		 */
+		protected String buddy;
+
+		/**
+		 * Create a listener for action items.
+		 *
+		 * @param buddy
+		 *            The buddy to act on.
+		 */
+		public ActionSelectedCB(String buddy) {
+			this.buddy = buddy;
+		}
+
+		//
+		// ActionListener
+		//
+
+		public void actionPerformed(ActionEvent ev) {
+			doAction(ev.getActionCommand(), buddy);
+		}
+	}
+
+	/**
+	 * Handle a chosen popup item.
 	 *
 	 * @param command
 	 *            The command mnemonic selected.
@@ -217,148 +320,4 @@ public class BuddyListPanel extends JPanel {
 		}
 	}
 
-	//
-	// JComponent
-	//
-
-	/**
-	 * Render the buddy list. Eventually this will be replaced by a JList that
-	 * can be scrolled (for popular players with many friends).
-	 *
-	 * @param g
-	 *            The graphics context.
-	 */
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-		int y = 0;
-
-		for (Entry entry : buddies) {
-			if (entry.isOnline()) {
-				g.setColor(Color.GREEN);
-				online.draw(g, 3, 2 + y);
-			} else {
-				g.setColor(Color.RED);
-				offline.draw(g, 3, 2 + y);
-			}
-
-			g.drawString(entry.getName(), 24, 16 + y);
-
-			y += 20;
-		}
-	}
-
-	//
-	//
-
-	/**
-	 * A buddy entry.
-	 */
-	protected static class Entry {
-
-		/**
-		 * The buddy name.
-		 */
-		protected String name;
-
-		/**
-		 * Whether the buddy is online.
-		 */
-		protected boolean online;
-
-		/**
-		 * Create a buddy entry.
-		 *
-		 * @param name
-		 *            The buddy name.
-		 * @param online
-		 *            Whether the buddy is online.
-		 */
-		public Entry(String name, boolean online) {
-			this.name = name;
-			this.online = online;
-		}
-
-		//
-		// Entry
-		//
-
-		/**
-		 * Get the buddy name.
-		 *
-		 * @return The buddy name.
-		 */
-		public String getName() {
-			return name;
-		}
-
-		/**
-		 * Determine is the buddy is online.
-		 *
-		 * @return <code>true</code> if online.
-		 */
-		public boolean isOnline() {
-			return online;
-		}
-	}
-
-	/**
-	 * Handle action selection.
-	 */
-	protected class ActionSelectedCB implements ActionListener {
-
-		/**
-		 * The buddy to act on.
-		 */
-		protected String buddy;
-
-		/**
-		 * Create a listener for action items.
-		 *
-		 * @param buddy
-		 *            The buddy to act on.
-		 */
-		public ActionSelectedCB(String buddy) {
-			this.buddy = buddy;
-		}
-
-		//
-		// ActionListener
-		//
-
-		public void actionPerformed(ActionEvent ev) {
-			doAction(ev.getActionCommand(), buddy);
-		}
-	}
-
-	/**
-	 * Handle mouse clicks.
-	 */
-	protected class MouseClickCB extends MouseAdapter {
-
-		//
-		// MouseListener
-		//
-
-		/**
-		 * Track mouse presses.
-		 */
-		@Override
-		public void mousePressed(MouseEvent ev) {
-			if (ev.isPopupTrigger()) {
-				doPopup(ev.getComponent(), ev.getX(), ev.getY());
-			}
-		}
-
-		/**
-		 * Track mouse releases.
-		 */
-		@Override
-		public void mouseReleased(MouseEvent ev) {
-			if (ev.isPopupTrigger()) {
-				doPopup(ev.getComponent(), ev.getX(), ev.getY());
-			}
-		}
-	}
 }
