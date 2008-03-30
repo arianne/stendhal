@@ -91,7 +91,12 @@ public class HandToHandTest {
 		zone.add(victim);
 		assertFalse("not in same zone", hth.hasValidTarget(creature));
 		zone.add(creature);
+		assertFalse("in same zone, on same spot and dead", hth.hasValidTarget(creature));
+		
+		creature.setTarget(victim);
+		victim.setHP(1);
 		assertTrue("in same zone, on same spot", hth.hasValidTarget(creature));
+
 		victim.setPosition(12, 0);
 		assertTrue("in same zone, not too far away", hth.hasValidTarget(creature));
 		victim.setPosition(13, 0);

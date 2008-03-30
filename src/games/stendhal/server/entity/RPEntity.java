@@ -1128,8 +1128,20 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return list;
 	}
 
-	/** Return true if this entity is attacking. */
+	
+	/**
+	 *  Checks whether the attacktarget is null.
+	 *  Sets attacktarget to null if hp of attacktarget <=0; 
+	 * @return true if attacktarget != null and not dead
+	 */
 	public boolean isAttacking() {
+		if (attackTarget != null) {
+		if (attackTarget.getHP() <= 0) {
+			attackTarget = null;
+		}
+		} else {
+			return false;
+		}
 		return attackTarget != null;
 	}
 
@@ -2029,19 +2041,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.notifyWorldAboutChanges();
 
 		return result;
-	}
-
-	private boolean isInZoneandNotDead(RPEntity defender) {
-		StendhalRPZone zone = this.getZone();
-		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
-			logger.debug("Attack from " + this + " to " + defender
-					+ " stopped because target was lost("
-					+ zone.has(defender.getID()) + ") or dead.");
-			this.stopAttack();
-
-			return false;
-		}
-		return true;
 	}
 
 	protected void applyDefXP(RPEntity entity) {
