@@ -63,8 +63,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 		if (rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject",
-					rpObject.getContainer().getID().getObjectID());
+			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
@@ -125,10 +124,9 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/** moved. */
-	public boolean dragMoved(Point p) {
+	public void dragMoved(Point p) {
 		x = p.x;
 		y = p.y;
-		return true;
 	}
 
 	/**
@@ -144,4 +142,5 @@ public class MoveableEntityContainer implements WtDraggable {
 			cg.dispose();
 		}
 	}
+
 }
