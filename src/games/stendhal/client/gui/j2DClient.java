@@ -256,57 +256,6 @@ public class j2DClient extends StendhalUI {
 
 		mainFrame.getFrame().pack();
 
-//		if (System.getProperty("stendhal.onewindow") != null) {
-//			content.add(gameLog);
-//			mainFrame.getFrame().pack();
-//		} else if (System.getProperty("stendhal.onewindowtitle") != null
-//				|| System.getProperty("stendhal.refactoringguiui") != null) {
-//			JLabel header = new JLabel();
-//			header.setText("Game Chat and Events Log");
-//			header.setFont(new java.awt.Font("Dialog", 3, 14));
-//			content.add(header);
-//			content.add(gameLog);
-//			mainFrame.getFrame().pack();
-//		} else {
-//			/*
-//			 * In own window
-//			 */
-//			final JDialog dialog = new JDialog(mainFrame.getFrame(),
-//					"Game chat and events log");
-//
-//			content = dialog.getContentPane();
-//			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-//			content.add(gameLog);
-//
-//			dialog.addFocusListener(new FocusListener() {
-//				public void focusGained(FocusEvent e) {
-//					playerChatText.requestFocus();
-//				}
-//
-//				public void focusLost(FocusEvent e) {
-//				}
-//			});
-//
-//			dialog.pack();
-//
-//			/*
-//			 * Move tracker
-//			 */
-//			mainFrame.getFrame().addComponentListener(new ComponentAdapter() {
-//				@Override
-//				public void componentShown(ComponentEvent e) {
-//					Rectangle bounds = mainFrame.getFrame().getBounds();
-//					dialog.setLocation(bounds.x, bounds.y + bounds.height);
-//					dialog.setVisible(true);
-//				}
-//
-//				@Override
-//				public void componentMoved(ComponentEvent e) {
-//					Rectangle bounds = mainFrame.getFrame().getBounds();
-//					dialog.setLocation(bounds.x, bounds.y + bounds.height);
-//				}
-//			});
-//		}
 
 		KeyListener keyListener = new GameKeyHandler();
 
