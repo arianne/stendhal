@@ -1,90 +1,81 @@
 package games.stendhal.client.gui;
 
-
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJButton;
-import games.stendhal.client.gui.wt.InternalManagedDialog;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
-public class QuitDialog {
-	Component quitDialog;
-	
-	Component getQuitDialog() {
-		return quitDialog;
-	}
+@SuppressWarnings("serial")
+public final class QuitDialog extends ClientPanel {
+
+	private static final int WIDTH = 150;
+	private static final int HEIGHT = 75;
+
+	private boolean disableMovement = false;
+
 	public QuitDialog() {
-		quitDialog = buildQuitDialog();
-		quitDialog.setVisible(false);
+		super("quit", WIDTH, HEIGHT);
+
+		initComponents();
+
+		setVisible(false);
+		setIconifiable(false);
 	}
+
+	@Override
+	public void reshape(int x, int y, int width, int height) {
+		// disallow window movement to simulate a system modal dialog
+		//TODO find a better solution, may be using a JDialog
+		if (!disableMovement) {
+			super.reshape(x, y, width, height);
+		}
+	}
+
+	private JButton yesButton;
+
 	/**
 	 * Build the in-window quit dialog [panel].
-	 * 
-	 * 
 	 */
-	protected Component buildQuitDialog() {
-		InternalManagedDialog imd;
-		Style style;
-		JPanel panel;
-		JButton b;
+	private void initComponents() {
+		setLayout(null);
 
-		panel = new JPanel();
-		panel.setOpaque(false);
-		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(150, 75));
+		yesButton = new JButton();
+		yesButton.setText("Yes");
+		yesButton.setBounds(20, 25, 55, 25);
+		yesButton.addActionListener(new QuitConfirmCB());
+		add(yesButton);
+		
+		JButton noButton = new JButton();
+		noButton.setText("No");
+		noButton.setBounds(90, 25, 55, 25);
+		noButton.addActionListener(new QuitCancelCB());
+		add(noButton);
 
-		style = WoodStyle.getInstance();
-
-		b = new StyledJButton(style);
-		b.setText("Yes");
-		b.setBounds(30, 25, 40, 25);
-		b.addActionListener(new QuitConfirmCB());
-
-		panel.add(b);
-
-		b = new StyledJButton(style);
-		b.setText("No");
-		b.setBounds(80, 25, 40, 25);
-		b.addActionListener(new QuitCancelCB());
-
-		panel.add(b);
-
-		imd = new InternalManagedDialog("quit", "Quit");
-		imd.setContent(panel);
-		imd.setMinimizable(false);
-		imd.setMovable(false);
-
-		return imd.getDialog();
+		getRootPane().setDefaultButton(yesButton);
 	}
-	
+
 	protected class QuitCancelCB implements ActionListener {
 		public void actionPerformed(ActionEvent ev) {
-			quitDialog.setVisible(false);
+			setVisible(false);
+
+			disableMovement = false;
 		}
 	}
 
 	protected class QuitConfirmCB implements ActionListener {
 		public void actionPerformed(ActionEvent ev) {
-		
-				j2DClient.get().shutdown();
-		
+			j2DClient.get().shutdown();
 		}
 	}
-	
+
 	/**
 	 * Request quit confirmation from the user. This stops all player actions
 	 * and shows a dialog in which the player can confirm that they really wants
 	 * to quit the program. If so it flags the client for termination.
 	 */
-	
+
 	public void requestQuit() {
 		/*
 		 * Stop the player
@@ -94,12 +85,12 @@ public class QuitDialog {
 		/*
 		 * Center dialog
 		 */
-		Dimension psize = quitDialog.getPreferredSize();
+		setBounds((j2DClient.get().getWidth() - WIDTH) / 2,
+				(j2DClient.get().getHeight() - HEIGHT) / 2, WIDTH, HEIGHT);
 
-		quitDialog.setBounds((j2DClient.get().getWidth() - psize.width) / 2,
-				(j2DClient.get().getHeight() - psize.height) / 2, psize.width, psize.height);
+		setVisible(true);
+		disableMovement = true;
 
-		quitDialog.validate();
-		quitDialog.setVisible(true);
+		yesButton.requestFocus();
 	}
 }

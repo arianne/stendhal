@@ -1,7 +1,8 @@
 package games.stendhal.client.gui.imageviewer;
 
+import games.stendhal.client.gui.ClientPanel;
 import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.wt.InternalManagedDialog;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import java.net.URL;
@@ -11,7 +12,8 @@ import java.net.URL;
  * 
  * @author timothyb89
  */
-public class ImageViewWindow extends InternalManagedDialog {
+@SuppressWarnings("serial")
+public final class ImageViewWindow extends ClientPanel {
 
 	/**
 	 * The padding of the window, in pixels, when generating the maximum size.
@@ -22,16 +24,17 @@ public class ImageViewWindow extends InternalManagedDialog {
 	private String alt;
 
 	public ImageViewWindow(URL url) {
-		super("examine", "Examine");
+		super("Examine", 100, 100);
+		setName("examine");
 
 		this.url = url;
 
 		init();
-
 	}
 
 	public ImageViewWindow(URL url, String title) {
-		super("examine", title);
+		super(title, 100, 100);
+		setName("examine");
 
 		this.url = url;
 		alt = title;
@@ -40,7 +43,8 @@ public class ImageViewWindow extends InternalManagedDialog {
 	}
 
 	public ImageViewWindow(URL url, String title, String alt) {
-		super("examine", title);
+		super(title, 100, 100);
+		setName("examine");
 
 		this.url = url;
 		this.alt = alt;
@@ -50,14 +54,14 @@ public class ImageViewWindow extends InternalManagedDialog {
 
 	public void init() {
 		ImageViewPanel ivp = new ImageViewPanel(this, url, alt);
-		setContent(ivp);
-		j2DClient.get().addWindow(this);
-		Point center = genCenterPoint();
-		this.moveTo(center.x, center.y);
-		view();
-	}
 
-	public void view() {
+		add(ivp);
+
+		j2DClient.get().addDialog(this);
+
+		Point center = genCenterPoint();
+		setLocation(center.x, center.y);
+
 		setVisible(true);
 	}
 
@@ -68,8 +72,8 @@ public class ImageViewWindow extends InternalManagedDialog {
 	}
 
 	public Point genCenterPoint() {
-		int x = (j2DClient.SCREEN_WIDTH - this.getDialog().getWidth()) / 2;
-		int y = (j2DClient.SCREEN_HEIGHT - this.getDialog().getHeight()) / 2;
+		int x = (j2DClient.SCREEN_WIDTH - getWidth()) / 2;
+		int y = (j2DClient.SCREEN_HEIGHT - getHeight()) / 2;
 
 		return new Point(x, y);
 	}
