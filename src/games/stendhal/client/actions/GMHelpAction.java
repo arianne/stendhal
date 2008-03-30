@@ -37,7 +37,9 @@ class GMHelpAction implements SlashAction {
 				"- /summonat <player> <slot> [amount] <item> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
 				"- /invisible \t\t\tToggles whether or not you are invisible to creatures",
 				"- /inspect <player> \t\t\tShow complete details of <player>",
-				"- /destroy <entity> \t\t\tDestroy an entity completely" };
+				"- /destroy <entity> \t\t\tDestroy an entity completely",
+				"- /wrap <item>\t\tWraps the named item into a nice present.",
+		};
 
 		for (String line : lines) {
 			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);
