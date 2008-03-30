@@ -17,6 +17,9 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.Tileset;
 
+import java.awt.Dimension;
+import java.awt.geom.Point2D;
+
 /**
  * This is a helper base class to render a layer.
  */
@@ -48,12 +51,10 @@ public abstract class LayerRenderer {
 	 *            The screen to draw on.
 	 */
 	public void draw(IGameScreen screen) {
-		int x = (int) screen.getViewX();
-		int y = (int) screen.getViewY();
-		int w = (int) screen.getViewWidth();
-		int h = (int) screen.getViewHeight();
+		Point2D pos = screen.getViewPos();
+		Dimension s = screen.getViewSize();
 
-		draw(screen, x, y, w, h);
+		draw(screen, (int)pos.getX(), (int)pos.getY(), s.width, s.height);
 	}
 
 	/**

@@ -3,16 +3,17 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.text.AttributedString;
@@ -22,22 +23,11 @@ public interface IGameScreen {
 	/** The width / height of one tile. */
 	int SIZE_UNIT_PIXELS = 32;
 
-	/** @return screen width in world units. */
-	double getViewWidth();
+	/** @return screen size in world units. */
+	Dimension getViewSize();
 
-	/** @return screen height in world units .*/
-	double getViewHeight();
-
-	/** Prepare screen for the next frame to be rendered and move it if needed .*/
+		/** Prepare screen for the next frame to be rendered and move it if needed .*/
 	void nextFrame();
-
-	/**
-	 * Add a legacy dialog to the screen.
-	 *
-	 * @param panel
-	 *            The dialog to add.
-	 */
-	void addDialog(final WtPanel panel);
 
 	/**
 	 * Add an entity.
@@ -74,18 +64,11 @@ public interface IGameScreen {
 	void draw();
 
 	/**
-	 * Get the view X world coordinate.
+	 * Get the view world coordinate.
 	 *
-	 * @return The X coordinate of the left side.
+	 * @return The coordinate of the left top side.
 	 */
-	double getViewX();
-
-	/**
-	 * Get the view Y world coordinate.
-	 *
-	 * @return The Y coordinate of the left side.
-	 */
-	double getViewY();
+	Point2D getViewPos();
 
 	/**
 	 * Sets the world size.
@@ -220,38 +203,28 @@ public interface IGameScreen {
 	 *            The X world coordinate.
 	 * @param y
 	 *            The Y world coordinate.
-	 * @return the text bubble at the given coorodinate or <code>null</code> if not found.
+	 * @return the text bubble at the given coordinate or <code>null</code> if not found.
 	 *
 	 */
 	Text getTextAt(double x, double y);
 
 	/**
-	 * Convert world X coordinate to screen view coordinate.
+	 * Convert world coordinate to screen view coordinate.
 	 *
-	 * @param wx
-	 *            World X coordinate.
-	 *
-	 * @return Screen X coordinate (in integer value).
-	 */
-	int convertWorldXToScreenView(double wx);
-
-	/**
-	 * Convert world Y coordinate to screen view coordinate.
-	 *
-	 * @param wy
-	 *            World Y coordinate.
-	 *
-	 * @return Screen Y coordinate (in integer value).
-	 */
-	int convertWorldYToScreenView(double wy);
-
-	/**
-	 * Convert world coordinates to screen view coordinates.
-	 *
-	 * This does have some theorical range limits. Assuming a tile size of
+	 * This does have some theoretical range limits. Assuming a tile size of
 	 * 256x256 pixels (very high def), world coordinates are limited to a little
 	 * over +/-8 million, before the int (31-bit) values returned from this are
 	 * wrapped. So I see no issues, even if absolute world coordinates are used.
+	 *
+	 * @param pos
+	 *            World coordinate.
+	 *
+	 * @return Screen coordinate (in integer value).
+	 */
+	Point convertWorldToScreenView(Point2D pos);
+
+	/**
+	 * Convert world coordinates to screen view coordinates.
 	 *
 	 * @param wx
 	 *            World X coordinate.
@@ -342,8 +315,7 @@ public interface IGameScreen {
 	 *
 	 * @return A sprite.
 	 */
-	Sprite createString(final String text,
-			final NotificationType type);
+	Sprite createString(final String text, final NotificationType type);
 
 	/**
 	 * Create a sprite representation of some text.
@@ -374,8 +346,7 @@ public interface IGameScreen {
 	 * @param y
 	 *            The Y position.
 	 */
-	void drawOutlineString(final Graphics g,
-			final Color textColor, final String text, final int x, final int y);
+	void drawOutlineString(final Graphics g, final Color textColor, final String text, final int x, final int y);
 
 	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
@@ -428,6 +399,16 @@ public interface IGameScreen {
 	int convertWorldToScreen(double w);
 
 	/**
+	 * Convert a world unit value to a screen unit value.
+	 *
+	 * @param d
+	 *            World value.
+	 *
+	 * @return A screen value (in pixels).
+	 */
+	Dimension convertWorldToScreen(Dimension2D d);
+
+	/**
 	 * Convert screen coordinates to world coordinates.
 	 *
 	 * @param x
@@ -462,46 +443,25 @@ public interface IGameScreen {
 	Point2D convertScreenViewToWorld(final int x, final int y);
 
 	/**
-	 * Get the full screen height in pixels.
+	 * Get the full screen size in pixels.
 	 *
-	 * @return The height.
+	 * @return The size.
 	 */
-	int getScreenHeight();
+	Dimension getScreenSize();
 
 	/**
-	 * Get the full screen width in pixels.
-	 *
-	 * @return The width.
-	 */
-	int getScreenWidth();
-
-	/**
-	 * Get the view height in pixels.
+	 * Get the view size in pixels.
 	 *
 	 * @return The view height.
 	 */
-	int getScreenViewHeight();
+	Dimension getScreenViewSize();
 
 	/**
-	 * Get the view width in pixels.
+	 * Get the view screen coordinate.
 	 *
-	 * @return The view width.
+	 * @return The coordinate of the left top side.
 	 */
-	int getScreenViewWidth();
-
-	/**
-	 * Get the view X screen coordinate.
-	 *
-	 * @return The X coordinate of the left side.
-	 */
-	int getScreenViewX();
-
-	/**
-	 * Get the view Y screen coordinate.
-	 *
-	 * @return The Y coordinate of the left side.
-	 */
-	int getScreenViewY();
+	Point getScreenViewPos();
 
 	/**
 	 * The user position changed. This sets the target coordinates that the
