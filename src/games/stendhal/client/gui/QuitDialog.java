@@ -27,7 +27,7 @@ public final class QuitDialog extends ClientPanel {
 	@Override
 	public void reshape(int x, int y, int width, int height) {
 		// disallow window movement to simulate a system modal dialog
-		//TODO find a better solution, may be using a JDialog
+		//TODO find a better solution, may be using a JDialog or just use JOptionPane
 		if (!disableMovement) {
 			super.reshape(x, y, width, height);
 		}

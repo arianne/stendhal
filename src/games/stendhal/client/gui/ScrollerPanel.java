@@ -209,4 +209,5 @@ public class ScrollerPanel extends JPanel {
 	public Dimension getPreferredSize() {
 		return this.prefferedSize;
 	}
+
 }

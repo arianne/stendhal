@@ -6,19 +6,18 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-//
-//
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Box;
 
 import java.util.List;
 
-import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Box;
 import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a box.
  */
 public class Box2DView extends Item2DView {
+
 	/**
 	 * Create a 2D view of a box.
 	 * 
@@ -83,4 +82,5 @@ public class Box2DView extends Item2DView {
 			break;
 		}
 	}
+
 }
