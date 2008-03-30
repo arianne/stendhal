@@ -132,7 +132,7 @@ public class ClientPanel extends JInternalFrame {
 	}
 
 	/** Return position of the client area. */
-	protected Point getClientPos() {
+	public Point getClientPos() {
 		Container clnt = getRootPane();
 		Insets insets = getInsets();
 		int x, y;
