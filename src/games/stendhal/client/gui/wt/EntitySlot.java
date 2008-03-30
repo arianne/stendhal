@@ -24,15 +24,23 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.DragDropOwner;
+import games.stendhal.client.gui.DragDropSource;
+import games.stendhal.client.gui.DragDropTarget;
+import games.stendhal.client.gui.MouseHandlerAdapter;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JPanel;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -45,7 +53,9 @@ import marauroa.common.game.RPObject;
  * 
  * @author mtotz
  */
-public class EntitySlot extends WtPanel implements WtDropTarget {
+@SuppressWarnings("serial")
+public class EntitySlot extends JPanel implements WtDropTarget, DragDropOwner
+{
 	/**
 	 * The background surface sprite.
 	 */
@@ -69,14 +79,23 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * Create an entity slot.
 	 */
-	public EntitySlot(String name, Sprite placeholder,
-			int x, int y) {
-		super(name, x, y, background.getWidth(), background.getHeight());
+	public EntitySlot(String name, Sprite placeholder, int x, int y) {
+		setName(name);
+
+		setLocation(x, y);
+		setSize(background.getWidth(), background.getHeight());
+
 		this.placeholder = placeholder;
 
 		view = null;
+
+		addMouseListener(new MyMouseHandlerAdapter());
+
+		new DragDropTarget(this).associate(this);
+		new DragDropSource(this).associate(this);
 	}
 
+	/** called from EntityContainer */
 	public static int getDefaultHeight() {
 		return background.getHeight();
 	}
@@ -93,7 +112,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	}
 
 	/** called when an object is dropped. */
-	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
+	public boolean onDrop(final DropTargetDropEvent dsde, final WtDraggable droppedObject) {
 		if (parent == null) {
 			return false;
 		}
@@ -163,8 +182,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D childArea) {
-		super.drawContent(childArea);
+    public void paint(Graphics childArea) {
+		super.paint(childArea);
 
 		// draw the background image
 		background.draw(childArea, 0, 0);
@@ -175,8 +194,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
 			int y = (getHeight() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
 
-			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
-					getHeight());
+			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(), getHeight());
 			vg.translate(x, y);
 			view.draw(vg);
 			vg.dispose();
@@ -188,11 +206,56 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 	}
 
+	private final class MyMouseHandlerAdapter extends MouseHandlerAdapter {
+
+		/** A popup menu has been triggered. */
+    	@Override
+        protected void onPopup(MouseEvent e) {
+            if (view != null) {
+            	// create the context menu
+            	CommandList popup = new CommandList(getName(), view.getActions(), view);
+
+            	popup.display(e);
+            }
+        }
+
+        /** doubleclick moves this item to the players inventory. */
+    	@Override
+    	protected void onLDoubleClick(MouseEvent e) {
+            // click into an empty slot should be ignored
+            if (view == null) {
+            	return;
+            }
+
+            // moveto events are not the default for items in a bag
+            if (parent instanceof Player) {
+            	view.onAction();
+            	return;
+            }
+
+            RPObject content = view.getEntity().getRPObject();
+
+            RPAction action = new RPAction();
+            action.put("type", "equip");
+
+            // source object and content from THIS container
+            action.put("baseobject", parent.getID().getObjectID());
+            action.put("baseslot", getName());
+            action.put("baseitem", content.getID().getObjectID());
+    
+            // target is player's bag
+            action.put("targetobject", User.get().getID().getObjectID());
+            action.put("targetslot", "bag");
+    
+            StendhalClient.get().send(action);
+        }
+
+	}
+
 	/**
 	 * returns a draggable object.
 	 */
-	@Override
-	protected WtDraggable getDragged(int x, int y) {
+    public WtDraggable getDragged(Point pt) {
 		if (view != null) {
 			return new MoveableEntityContainer(view.getEntity());
 		}
@@ -200,50 +263,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		return null;
 	}
 
-	/** right mouse button was clicked. */
-	@Override
-	public synchronized boolean onMouseRightClick(Point p) {
-		if (view != null) {
-			// create the context menu
-			CommandList list = new CommandList(getName(), view.getActions(),
-					view);
-			setContextMenu(list);
-		}
-		return true;
-	}
-
-	/** doubleclick moves this item to the players inventory. */
-	@Override
-	public synchronized boolean onMouseDoubleClick(Point p) {
-		// check if the baseclass wants to process the event
-		if (super.onMouseDoubleClick(p)) {
-			return true;
-		}
-
-		// click into an empty slot should be ignored
-		if (view == null) {
-			return false;
-		}
-
-		// moveto events are not the default for items in a bag
-		if (parent instanceof Player) {
-			view.onAction();
-			return true;
-		}
-
-		RPObject content = view.getEntity().getRPObject();
-
-		RPAction action = new RPAction();
-		action.put("type", "equip");
-		// source object and content from THIS container
-		action.put("baseobject", parent.getID().getObjectID());
-		action.put("baseslot", getName());
-		action.put("baseitem", content.getID().getObjectID());
-		// target is player's bag
-		action.put("targetobject", User.get().getID().getObjectID());
-		action.put("targetslot", "bag");
-		StendhalClient.get().send(action);
-
-		return true;
+	/** Return position of the client area. */
+	public Point getClientPos() {
+		return new Point(0, 0);	//@@
 	}
 }
