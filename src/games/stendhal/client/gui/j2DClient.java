@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StaticGameLayers;
@@ -24,15 +23,12 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
-import games.stendhal.client.gui.wt.Buddies;
-import games.stendhal.client.gui.wt.BuddyListDialog;
+import games.stendhal.client.gui.wt.BuddyListPanel;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
-import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.client.gui.wt.SettingsPanel;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -40,16 +36,12 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 
-import java.awt.Canvas;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
-import java.awt.Rectangle;
-
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -57,36 +49,27 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
+import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
+import javax.swing.border.BevelBorder;
 
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-
-/** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
 
+	private final static int BORDER_WIDTH = 155;
 
-	private static final long serialVersionUID = 3356310866399084117L;
-
-	/** width of the game screen (without the chat line). */
-	public static int SCREEN_WIDTH;
+	/** Width of the game screen is calculated by substracting the border widths from 1024 . */
+	public static int SCREEN_WIDTH = (1024 - 2*BORDER_WIDTH) / 32 * 32;
 
 	/** height of the game screen (without the chat line). */
-	public static int SCREEN_HEIGHT;
-
-	static {
-		String[] dim = stendhal.SCREEN_SIZE.split("x");
-		SCREEN_WIDTH = Integer.parseInt(dim[0]);
-		SCREEN_HEIGHT = Integer.parseInt(dim[1]);
-	}
+	public static int SCREEN_HEIGHT = 480;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
@@ -96,9 +79,7 @@ public class j2DClient extends StendhalUI {
 
 	private GameScreen screen;
 
-	private Canvas canvas;
-
-	private JLayeredPane pane;
+	private Desktop desktop;
 
 	private KTextEdit gameLog;
 
@@ -106,12 +87,6 @@ public class j2DClient extends StendhalUI {
 
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
-
-	private boolean ctrlDown;
-
-	private boolean shiftDown;
-
-	private boolean altDown;
 
 	/** settings panel. */
 	private SettingsPanel settings;
@@ -123,9 +98,7 @@ public class j2DClient extends StendhalUI {
 	private KeyRing keyring;
 
 	/** the buddy list panel. */
-	private BuddyListDialog nbuddies;
-
-	private ManagedWindow buddies;
+	private BuddyListPanel buddies;
 
 
 	/** the minimap panel. */
@@ -139,12 +112,11 @@ public class j2DClient extends StendhalUI {
 
 	private PositionChangeMulticaster positionChangeListener;
 	private StendhalChatLineListener chatListener;
+
 	/**
 	 * Delayed direction release holder.
 	 */
 	protected DelayedDirectionRelease directionRelease;
-
-	private static final boolean newCode = (System.getProperty("stendhal.newgui") != null);
 
 	/**
 	 * A constructor for JUnit tests.
@@ -154,52 +126,33 @@ public class j2DClient extends StendhalUI {
 		setDefault(this);
 	}
 
-	public j2DClient(StendhalClient client) {
+	@SuppressWarnings("serial")
+    public j2DClient(StendhalClient client) {
 		super(client);
 
 		setDefault(this);
-		mainFrame = new MainFrame();
 
 
+		// Setup "Wood" look and feel
+//		WoodStyleFactory.activate();	// for Java 1.5
+//		WoodLookAndFeel.activate();		// for Java 1.6: generic implementation using XML configuration
 
+
+        mainFrame = new MainFrame();
 
 		positionChangeListener = new PositionChangeMulticaster();
 
-		Container content = mainFrame.getMainFrame().getContentPane();
-
-
-		/*
-		 * Get hold the content of the frame and set up the resolution of the
-		 * game
-		 */
-		pane = new JLayeredPane();
-		pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-		content.add(pane);
+		Container content = mainFrame.getFrame().getContentPane();
 
 		/*
-		 * Wrap canvas in panel that can has setPreferredSize()
+		 * Get hold of the frame content and set up the resolution of the game
 		 */
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-		pane.add(panel, JLayeredPane.DEFAULT_LAYER);
+		desktop = new Desktop(content.getGraphicsConfiguration(), BORDER_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT);
+		desktop.setPreferredSize(new Dimension(SCREEN_WIDTH+2*BORDER_WIDTH, SCREEN_HEIGHT));
+		desktop.setVisible(true);
 
-		/*
-		 * Setup our rendering canvas
-		 */
-
-		if (System.getProperty("stendhal.refactoringgui") != null) {
-			canvas = new Canvas();
-			// A bit repetitive... oh well
-			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);
-		} else {
-			canvas = new Canvas();
-			canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		}
-		// Tell AWT not to bother repainting our canvas since we're
-		// going to do that our self in accelerated mode
-		canvas.setIgnoreRepaint(true);
-		panel.add(canvas);
+		content.setLayout(new BorderLayout());
+		content.add(desktop, BorderLayout.CENTER);
 
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
@@ -207,31 +160,51 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Chat input field
 		 */
-		playerChatText = new JTextField("");
+		playerChatText = new JTextField("") {
+			{
+				/*
+				 * Always redirect focus to the chat field
+				 */
+				addFocusListener(new FocusListener() {
+    				public void focusGained(FocusEvent e) {
+    				}
 
-		chatListener = new StendhalChatLineListener(
-				client, playerChatText);
+    				public void focusLost(FocusEvent e) {
+    					Component c = e.getOppositeComponent();
+
+    					if (c instanceof AbstractButton) {
+    						return;
+    					}
+
+    					for(; c != null; c = c.getParent()) {
+    						if (c == gameLog) {
+    							return;
+    						}
+						}
+
+   						requestFocus();
+    				}
+    			});
+			}
+		};
+
+		chatListener = new StendhalChatLineListener(client, playerChatText);
 		playerChatText.addActionListener(chatListener);
 		playerChatText.addKeyListener(chatListener);
 
-		content.add(playerChatText);
 
 		/*
-		 * Always redirect focus to chat field
+		 * Always redirect focus from desktop and floating windows to chat field
 		 */
-		canvas.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				playerChatText.requestFocus();
-			}
+		registerFocusRedirect(content);
+		registerFocusRedirect(desktop);
+		ClientPanel.setFocusTarget(playerChatText);
 
-			public void focusLost(FocusEvent e) {
-			}
-		});
 
 		/*
 		 * Handle focus assertion and window closing
 		 */
-		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
+		mainFrame.getFrame().addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent ev) {
 				playerChatText.requestFocus();
@@ -255,141 +228,139 @@ public class j2DClient extends StendhalUI {
 
 		/*
 		 * Quit dialog
-		 *
-		 *
 		 */
 		quitDialog = new QuitDialog();
 
-		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
+		desktop.add(quitDialog, JLayeredPane.MODAL_LAYER);
 
 		/*
 		 * Game log
 		 */
-		gameLog = new KTextEdit();
+		gameLog = new KTextEdit();	//TODO use KHtmlEdit instead
 		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 171));
+		gameLog.setBorder(new BevelBorder(BevelBorder.LOWERED));
 
-		if (System.getProperty("stendhal.onewindow") != null) {
-			content.add(gameLog);
-			mainFrame.getMainFrame().pack();
-		} else if (System.getProperty("stendhal.onewindowtitle") != null
-				|| System.getProperty("stendhal.refactoringguiui") != null) {
-			JLabel header = new JLabel();
-			header.setText("Game Chat and Events Log");
-			header.setFont(new java.awt.Font("Dialog", 3, 14));
-			content.add(header);
-			content.add(gameLog);
-			mainFrame.getMainFrame().pack();
-		} else {
-			/*
-			 * In own window
-			 */
-			final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
-					"Game chat and events log");
+//		JPanel leftPanel = new JPanel();
+//		JPanel rightPanel = new JPanel();
+		JPanel bottomPanel = new JPanel();
+//		content.add(leftPanel, BorderLayout.WEST);
+//		content.add(rightPanel, BorderLayout.EAST);
+		content.add(bottomPanel, BorderLayout.SOUTH);
 
-			content = dialog.getContentPane();
-			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-			content.add(gameLog);
+//		leftPanel.setPreferredSize(new Dimension(BORDER_WIDTH, SCREEN_HEIGHT));
+//		rightPanel.setPreferredSize(new Dimension(BORDER_WIDTH, SCREEN_HEIGHT));
 
-			dialog.addFocusListener(new FocusListener() {
-				public void focusGained(FocusEvent e) {
-					playerChatText.requestFocus();
-				}
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+		bottomPanel.add(gameLog);
+		bottomPanel.add(playerChatText);
 
-				public void focusLost(FocusEvent e) {
-				}
-			});
+		mainFrame.getFrame().pack();
 
-			dialog.pack();
-
-			/*
-			 * Move tracker
-			 */
-			mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
-				@Override
-				public void componentShown(ComponentEvent e) {
-					Rectangle bounds = mainFrame.getMainFrame().getBounds();
-
-					dialog.setLocation(bounds.x, bounds.y + bounds.height);
-
-					dialog.setVisible(true);
-				}
-
-				@Override
-				public void componentMoved(ComponentEvent e) {
-					Rectangle bounds = mainFrame.getMainFrame().getBounds();
-
-					dialog.setLocation(bounds.x, bounds.y + bounds.height);
-				}
-			});
-		}
+//		if (System.getProperty("stendhal.onewindow") != null) {
+//			content.add(gameLog);
+//			mainFrame.getFrame().pack();
+//		} else if (System.getProperty("stendhal.onewindowtitle") != null
+//				|| System.getProperty("stendhal.refactoringguiui") != null) {
+//			JLabel header = new JLabel();
+//			header.setText("Game Chat and Events Log");
+//			header.setFont(new java.awt.Font("Dialog", 3, 14));
+//			content.add(header);
+//			content.add(gameLog);
+//			mainFrame.getFrame().pack();
+//		} else {
+//			/*
+//			 * In own window
+//			 */
+//			final JDialog dialog = new JDialog(mainFrame.getFrame(),
+//					"Game chat and events log");
+//
+//			content = dialog.getContentPane();
+//			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+//			content.add(gameLog);
+//
+//			dialog.addFocusListener(new FocusListener() {
+//				public void focusGained(FocusEvent e) {
+//					playerChatText.requestFocus();
+//				}
+//
+//				public void focusLost(FocusEvent e) {
+//				}
+//			});
+//
+//			dialog.pack();
+//
+//			/*
+//			 * Move tracker
+//			 */
+//			mainFrame.getFrame().addComponentListener(new ComponentAdapter() {
+//				@Override
+//				public void componentShown(ComponentEvent e) {
+//					Rectangle bounds = mainFrame.getFrame().getBounds();
+//					dialog.setLocation(bounds.x, bounds.y + bounds.height);
+//					dialog.setVisible(true);
+//				}
+//
+//				@Override
+//				public void componentMoved(ComponentEvent e) {
+//					Rectangle bounds = mainFrame.getFrame().getBounds();
+//					dialog.setLocation(bounds.x, bounds.y + bounds.height);
+//				}
+//			});
+//		}
 
 		KeyListener keyListener = new GameKeyHandler();
 
-		// add a key input system (defined below) to our canvas so we can
+		// add a key input system (defined below) to our desktop so we can
 		// respond to key pressed
 		playerChatText.addKeyListener(keyListener);
-		canvas.addKeyListener(keyListener);
+		desktop.addKeyListener(keyListener);
 
-		// Display a warning message in case the screen size was adjusted
-		// This is a temporary solution until this issue is fixed server side.
-		// I hope that it discourages its use without the risks of unupdateable
-		// clients being distributed
-		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
-			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE,
-					NotificationType.NEGATIVE);
-		}
-
-		mainFrame.getMainFrame().setLocation(new Point(20, 20));
+		mainFrame.getFrame().setLocation(new Point(20, 20));
 
 		// finally make the window visible
-		mainFrame.getMainFrame().pack();
-		mainFrame.getMainFrame().setResizable(false);
-		mainFrame.getMainFrame().setVisible(true);
+		mainFrame.getFrame().pack();
+		mainFrame.getFrame().setResizable(false);
+		mainFrame.getFrame().setVisible(true);
 
-		screen = new GameScreen(client, canvas);
-
-		GameScreen.setDefaultScreen(screen);
+		screen = new GameScreen(client, desktop);
+		client.setDesktop(desktop);
 		client.setScreen(screen);
+		client.setMainframe(mainFrame.getFrame());
+		GameScreen.setDefaultScreen(screen);
 
 		positionChangeListener.add(screen);
 
-		mainFrame.getMainFrame().toFront();
+		mainFrame.getFrame().toFront();
 
 		/*
 		 * In-screen dialogs
 		 */
-		settings = new SettingsPanel(SCREEN_WIDTH);
-		screen.addDialog(settings);
-
-		minimap = new Minimap(client);
-		addWindow(minimap);
-		settings.add(minimap, "Enable Minimap");
-
-		positionChangeListener.add(minimap);
-
-		character = new Character(this);
-		addWindow(character);
-		settings.add(character, "Enable Character");
-
-		inventory = new EntityContainer("bag", 3, 4);
-		addWindow(inventory);
-		settings.add(inventory, "Enable Bag");
+		settings = new SettingsPanel(SCREEN_WIDTH+BORDER_WIDTH);
+		addWindow(settings);
 
 		keyring = new KeyRing();
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
-		settings.add(keyring, "Enable Key Ring");
+		settings.addEntry(keyring, "Enable Key Ring");
 
-		if (newCode) {
-			nbuddies = new BuddyListDialog(this);
-			buddies = nbuddies;
-		} else {
-			Buddies obuddies = new Buddies(this);
-			buddies = obuddies;
-		}
-
+		buddies = new BuddyListPanel(this);
+		buddies.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 300);
 		addWindow(buddies);
-		settings.add(buddies, "Enable Buddies");
+		settings.addEntry(buddies, "Enable Buddies");
+
+		character = new Character();
+		character.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 0);
+		addWindow(character);
+		settings.addEntry(character, "Enable Character");
+
+		minimap = new Minimap(client);
+		addWindow(minimap);
+		settings.addEntry(minimap, "Enable Minimap");
+		positionChangeListener.add(minimap);
+
+		inventory = new EntityContainer("bag", 3, 4);
+		addWindow(inventory);
+		settings.addEntry(inventory, "Enable Bag");
 
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -398,10 +369,21 @@ public class j2DClient extends StendhalUI {
 
 		directionRelease = null;
 
+		playerChatText.requestFocus();
 	} // constructor
 
-	public void initialize() {
+	private void registerFocusRedirect(Component comp) {
+		comp.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				playerChatText.requestFocus();
+			}
 
+			public void focusLost(FocusEvent e) {
+			}
+		});
+    }
+
+	public void initialize() {
 	}
 
 	public void cleanup() {
@@ -417,9 +399,27 @@ public class j2DClient extends StendhalUI {
 	 *            The component to add.
 	 */
 	public void addDialog(Component comp) {
-		pane.add(comp, JLayeredPane.PALETTE_LAYER);
+		desktop.add(comp, JLayeredPane.PALETTE_LAYER);
 	}
 
+	/**
+	 * Add a panel to the screen.
+	 *
+	 * @param panel
+	 */
+	private void addWindow(JInternalFrame panel) {
+		addWindow(panel, true);
+    }
+
+	/**
+	 * Add a panel to the screen.
+	 *
+	 * @param panel
+	 */
+	private void addWindow(JInternalFrame panel, boolean show) {
+		desktop.add(panel, JLayeredPane.DEFAULT_LAYER);
+		panel.setVisible(show);
+    }
 
 	// MEMORY DEBUGGING:
 	// private long avgmemt = 0L;
@@ -428,11 +428,10 @@ public class j2DClient extends StendhalUI {
 	public void gameLoop() {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 		int fps = 0;
-		GameObjects gameObjects = client.getGameObjects();
-		StaticGameLayers gameLayers = client.getStaticGameLayers();
 
 		// Clear the first screen
 		screen.clear();
+
 		// screen.place(-100, -100);
 		SoundMaster.play("harp-1.wav");
 
@@ -455,11 +454,12 @@ public class j2DClient extends StendhalUI {
 		while (!canExit) {
 			fps++;
 			// figure out what time it is right after the screen flip then
-			// later we can figure out how long we have been doing redrawing
-			// / networking, then we know how long we need to sleep to make
+			// later we can figure out how long we have been doing redrawing /
+			// networking, then we know how long we need to sleep to make
 			// the next flip happen at the right time
 
 			screen.nextFrame();
+
 			long now = System.currentTimeMillis();
 			int delta = (int) (now - refreshTime);
 			refreshTime = now;
@@ -473,19 +473,20 @@ public class j2DClient extends StendhalUI {
 			// System.err.println("mem = " + (avgmemt / avgmemc) + "k");
 			// //rt.gc();
 			logger.debug("Move objects");
-			gameObjects.update(delta);
+			client.getGameObjects().update(delta);
 
 			/*
 			 * TODO: Consolidate the next 3 parts into one isInBatchUpdate()
 			 * check, if User update code can be skipped [without side effects]
 			 * while in it.
 			 */
+			StaticGameLayers gameLayers = client.getStaticGameLayers();
+
 			if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
 				/*
 				 * Update the screen
 				 */
-				screen.setMaxWorldSize(gameLayers.getWidth(),
-						gameLayers.getHeight());
+				screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
 				screen.clear();
 				screen.center();
 
@@ -493,7 +494,8 @@ public class j2DClient extends StendhalUI {
 				//
 				// TODO: Replace with listener notification
 				CollisionDetection cd = gameLayers.getCollisionDetection();
-				if (cd != null) {
+
+				if (minimap != null && cd != null) {
 					minimap.update(cd,
 							screen.expose().getDeviceConfiguration(),
 							gameLayers.getArea());
@@ -505,13 +507,11 @@ public class j2DClient extends StendhalUI {
 			User user = User.get();
 
 			if (user != null) {
-				if (newCode) {
-					/*
-					 * Hack! Need to update list when changes arrive
-					 */
-					if (nbuddies.isVisible()) {
-						nbuddies.update();
-					}
+				/*
+				 * Hack! Need to update list when changes arrive
+				 */
+				if (buddies.isVisible()) {
+					buddies.updateList();
 				}
 
 				// check if the player object has changed.
@@ -526,8 +526,11 @@ public class j2DClient extends StendhalUI {
 			}
 
 			if (!client.isInBatchUpdate()) {
-				minimap.update_pathfind();
-				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+				if (minimap != null) {
+					minimap.update_pathfind();
+				}
+
+				if (mainFrame.getFrame().getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
 				}
@@ -782,21 +785,6 @@ public class j2DClient extends StendhalUI {
 	}
 
 
-
-
-
-	/**
-	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 *
-	 * @param ev
-	 *            The keyboard event.
-	 */
-	protected void updateModifiers(KeyEvent ev) {
-		altDown = ev.isAltDown();
-		ctrlDown = ev.isControlDown();
-		shiftDown = ev.isShiftDown();
-	}
-
 	/**
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
@@ -806,61 +794,6 @@ public class j2DClient extends StendhalUI {
 
 		// try to save the window configuration
 		WtWindowManager.getInstance().save();
-	}
-
-	//
-	// <StendhalGUI>
-	//
-
-	/**
-	 * Add a new window.
-	 *
-	 * @param mw
-	 *            A managed window.
-	 *
-	 * @throws IllegalArgumentException
-	 *             If an unsupported ManagedWindow is given.
-	 */
-	@Override
-	public void addWindow(ManagedWindow mw) {
-		if (mw instanceof InternalManagedDialog) {
-			addDialog(((InternalManagedDialog) mw).getDialog());
-		} else if (mw instanceof WtPanel) {
-			screen.addDialog((WtPanel) mw);
-		} else {
-			throw new IllegalArgumentException("Unsupport ManagedWindow type: "
-					+ mw.getClass().getName());
-		}
-	}
-
-	/**
-	 * Determine if the Alt key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	@Override
-	public boolean isAltDown() {
-		return altDown;
-	}
-
-	/**
-	 * Determine if the [Ctrl] key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	@Override
-	public boolean isCtrlDown() {
-		return ctrlDown;
-	}
-
-	/**
-	 * Determine if the [Shift] key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	@Override
-	public boolean isShiftDown() {
-		return shiftDown;
 	}
 
 	//
@@ -920,7 +853,7 @@ public class j2DClient extends StendhalUI {
 		}
 
 		// Should really keep only one instance of this around
-		OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
+		OutfitDialog dialog = new OutfitDialog(mainFrame.getFrame(), "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
 
@@ -961,7 +894,6 @@ public class j2DClient extends StendhalUI {
 	}
 
 
-
 	/**
 	 * Set the input chat line text.
 	 *
@@ -997,18 +929,13 @@ public class j2DClient extends StendhalUI {
 		screen.setOffline(offline);
 	}
 
-	//
-	//
 
 	protected class GameKeyHandler implements KeyListener {
 		public void keyPressed(KeyEvent e) {
-			updateModifiers(e);
-
 			onKeyPressed(e);
 		}
 
 		public void keyReleased(KeyEvent e) {
-			updateModifiers(e);
 			onKeyReleased(e);
 		}
 
@@ -1019,11 +946,6 @@ public class j2DClient extends StendhalUI {
 			}
 		}
 	}
-
-
-
-
-
 
 	public static void main(String[] args) {
 		if (args.length > 0) {
@@ -1053,6 +975,7 @@ public class j2DClient extends StendhalUI {
 				try {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
+					client.setAccountUsername(username);
 
 					j2DClient locclient = new j2DClient(client);
 					locclient.initialize();
@@ -1158,14 +1081,9 @@ public class j2DClient extends StendhalUI {
 		}
 	}
 
-
-
-
-
-
 	@Override
 	public void requestQuit() {
 		quitDialog.requestQuit();
-
 	}
+
 }
