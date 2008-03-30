@@ -15,6 +15,7 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
+import games.stendhal.client.gui.Desktop;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -33,6 +34,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import marauroa.client.ClientFramework;
@@ -71,6 +73,10 @@ public class StendhalClient extends ClientFramework {
 	private GameObjects gameObjects;
 
 	protected static StendhalClient client;
+
+	private Desktop desktop;
+
+	private JFrame mainFrame;
 
 	private Cache cache;
 
@@ -165,6 +171,26 @@ public class StendhalClient extends ClientFramework {
 	public void setScreen(IGameScreen screen) {
 		this.screen = screen;
 	}
+
+	public IGameScreen getScreen() {
+	    return screen;
+    }
+
+	public void setDesktop(Desktop desktop) {
+	    this.desktop = desktop;
+    }
+
+	public Desktop getDesktop() {
+	    return desktop;
+    }
+
+	public void setMainframe(JFrame frame) {
+	    mainFrame = frame;	    
+    }
+
+	public JFrame getMainFrame() {
+	    return mainFrame;	    
+    }
 
 	public StaticGameLayers getStaticGameLayers() {
 		return staticLayers;
@@ -718,4 +744,5 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
+
 }
