@@ -114,7 +114,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-	public synchronized boolean collides(Entity entity) {
+	public boolean collides(Entity entity) {
 		Rectangle2D area = entity.getArea();
 
 		// TODO: Ugly, use similar method that server uses
@@ -122,10 +122,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return true;
 		}
 
-		for (Entity other : objects.values()) {
-			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
-				return true;
-			}
+		synchronized (this) {
+    		for (Entity other : objects.values()) {
+    			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
+    				return true;
+    			}
+    		}
 		}
 
 		return false;
@@ -151,11 +153,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * 
 	 * @return An entity.
 	 */
-	protected synchronized Entity add(final RPObject object) {
+	protected Entity add(final RPObject object) {
 		Entity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
-			objects.put(FQID.create(object), entity);
+			synchronized (this) {
+				objects.put(FQID.create(object), entity);
+			}
 		}
 
 		return entity;
@@ -171,7 +175,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param object
 	 *            The object.
 	 */
-	public synchronized void onAdded(final RPObject object) {
+	public void onAdded(final RPObject object) {
 		if (object.has("server-only")) {
 			logger.debug("Discarding object: " + object);
 		} else {
@@ -208,8 +212,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param changes
 	 *            The changes.
 	 */
-	public synchronized void onChangedAdded(final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(object));
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		Entity entity;
+
+		synchronized (this) {
+			entity = objects.get(FQID.create(object));
+		}
 
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
@@ -224,8 +232,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param changes
 	 *            The changes.
 	 */
-	public synchronized void onChangedRemoved(final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(object));
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		Entity entity;
+
+		synchronized (this) {
+			entity = objects.get(FQID.create(object));
+		}
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
@@ -238,12 +250,16 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param object
 	 *            The object.
 	 */
-	public synchronized void onRemoved(final RPObject object) {
+	public void onRemoved(final RPObject object) {
 		RPObject.ID id = object.getID();
 
 		logger.debug("removed " + id);
 
-		Entity entity = objects.remove(FQID.create(object));
+		Entity entity;
+		
+		synchronized (this) {
+			entity = objects.remove(FQID.create(object));
+		}
 
 		if (entity != null) {
 			GameScreen.get().removeEntity(entity);
@@ -277,10 +293,14 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
-	public synchronized void onSlotChangedAdded(final RPObject object,
+	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity = objects.get(FQID.create(object));
+		Entity entity;
+
+		synchronized (this) {
+			entity = objects.get(FQID.create(object));
+		}
 
 		if (entity != null) {
 			entity.onSlotChangedAdded(object, slotName, sobject, schanges);
@@ -299,10 +319,14 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
-	public synchronized void onSlotChangedRemoved(final RPObject object,
+	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity = objects.get(FQID.create(object));
+		Entity entity;
+
+		synchronized (this) {
+			entity = objects.get(FQID.create(object));
+		}
 
 		if (entity != null) {
 			entity.onSlotChangedRemoved(object, slotName, sobject, schanges);
