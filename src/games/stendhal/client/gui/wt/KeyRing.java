@@ -6,16 +6,15 @@
 
 package games.stendhal.client.gui.wt;
 
-//
-//
-
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.events.FeatureChangeListener;
 
 /**
  * A key ring.
  */
-public class KeyRing extends EntityContainer implements FeatureChangeListener {
+@SuppressWarnings("serial")
+public final class KeyRing extends EntityContainer implements FeatureChangeListener {
+
 	/**
 	 * Create a key ring.
 	 * 
@@ -27,22 +26,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		// src/games/stendhal/server/entity/RPEntity.java
 		super("keyring", 2, 4);
 
-		// Disable by default
-		disable();
-	}
-
-	//
-	// KeyRing
-	//
-
-	/**
-	 * Disable the keyring.
-	 */
-	protected void disable() {
-		if (isMinimizeable()) {
-			setMinimizeable(false);
-			setMinimized(true);
-		}
+		setLocation(4, 200);
 	}
 
 	//
@@ -57,7 +41,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	public void featureDisabled(String name) {
 		if (name.equals("keyring")) {
-			disable();
+			setVisible(false);
 		}
 	}
 
@@ -71,25 +55,19 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	public void featureEnabled(String name, String value) {
 		if (name.equals("keyring")) {
-			if (!isMinimizeable()) {
-				setMinimizeable(true);
-				setMinimized(false);
-			}
+			setVisible(true);
 		}
 	}
-
-	//
-	// WtPanel
-	//
 
 	/**
 	 * Destroy the panel.
 	 */
 	@Override
-	public void destroy() {
+	public void dispose() {
 		// TODO: Could be cleaner reference
 		StendhalClient.get().removeFeatureChangeListener(this);
 
-		super.destroy();
+		super.dispose();
 	}
+
 }
