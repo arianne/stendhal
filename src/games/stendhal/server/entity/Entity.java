@@ -445,11 +445,10 @@ public abstract class Entity extends RPObject {
 	 * @return rectangle for the used area
 	 */
 	public Rectangle2D getArea(double ex, double ey) {
-		
-		getArea(area, ex, ey);
-		return area;
+		Rectangle2D tempRect = new Rectangle.Double();
+		getArea(tempRect, ex, ey);
+		return tempRect;
 	}
-
 	/**
 	 * returns the area used by this entity. Note for performance reasons the
 	 * Rectangle is not returned as new object but the one supplied as first
