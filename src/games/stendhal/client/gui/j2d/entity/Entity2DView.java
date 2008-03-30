@@ -32,9 +32,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an entity.
@@ -222,10 +222,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Draw the entity.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics to drawn on.
 	 */
-	public void draw(final Graphics2D g2d) {
+	public void draw(final Graphics2D g) {
 		applyChanges();
 
 		Rectangle r = getArea();
@@ -233,30 +233,30 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= screen.getScreenViewX();
-			r.y -= screen.getScreenViewY();
+			r.x -= screen.getScreenViewPos().x;
+			r.y -= screen.getScreenViewPos().y;
 
 			if (!screen.isInScreen(r)) {
 				return;
 			}
 		}
 
-		Composite oldComposite = g2d.getComposite();
+		Composite oldComposite = g.getComposite();
 
 		try {
-			g2d.setComposite(entityComposite);
-			draw(g2d, r.x, r.y, r.width, r.height);
+			g.setComposite(entityComposite);
+			draw(g, r.x, r.y, r.width, r.height);
 		} finally {
-			g2d.setComposite(oldComposite);
+			g.setComposite(oldComposite);
 		}
 
-		drawEffect(g2d, r.x, r.y, r.width, r.height);
+		drawEffect(g, r.x, r.y, r.width, r.height);
 	}
 
 	/**
 	 * Draw the entity.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -267,16 +267,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param height
 	 *            The drawn entity height.
 	 */
-	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		drawEntity(g2d, x, y, width, height);
+	protected void draw(final Graphics2D g, final int x, final int y, final int width, final int height) {
+		drawEntity(g, x, y, width, height);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
-			g2d.setColor(Color.blue);
-			g2d.drawRect(x, y, width, height);
+			g.setColor(Color.blue);
+			g.drawRect(x, y, width, height);
 
-			g2d.setColor(Color.green);
-			g2d.draw(screen.convertWorldToScreenView(entity.getArea()));
+			g.setColor(Color.green);
+			g.draw(screen.convertWorldToScreenView(entity.getArea()));
 		}
 	}
 
@@ -284,7 +283,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Draw the effect part. This is drawn independent of the visibility
 	 * setting.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -295,14 +294,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param height
 	 *            The drawn entity height.
 	 */
-	protected void drawEffect(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
+	protected void drawEffect(final Graphics2D g, final int x, final int y, final int width, final int height) {
 	}
 
 	/**
 	 * Draw the base entity part.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -313,46 +311,45 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param height
 	 *            The drawn entity height.
 	 */
-	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		getSprite().draw(g2d, x, y);
+	protected void drawEntity(final Graphics2D g, final int x, final int y, final int width, final int height) {
+		getSprite().draw(g, x, y);
 	}
 
 	/**
 	 * Draw the top layer parts of an entity. This will be on down after all
 	 * other game layers are rendered.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics to drawn on.
 	 */
-	public void drawTop(final Graphics2D g2d) {
+	public void drawTop(final Graphics2D g) {
 		Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= screen.getScreenViewX();
-			r.y -= screen.getScreenViewY();
+			r.x -= screen.getScreenViewPos().x;
+			r.y -= screen.getScreenViewPos().y;
 
 			if (!screen.isInScreen(r)) {
 				return;
 			}
 		}
 
-		Composite oldComposite = g2d.getComposite();
+		Composite oldComposite = g.getComposite();
 
 		try {
-			g2d.setComposite(entityComposite);
-			drawTop(g2d, r.x, r.y, r.width, r.height);
+			g.setComposite(entityComposite);
+			drawTop(g, r.x, r.y, r.width, r.height);
 		} finally {
-			g2d.setComposite(oldComposite);
+			g.setComposite(oldComposite);
 		}
 	}
 
 	/**
 	 * Draw the entity.
 	 * 
-	 * @param g2d
+	 * @param g
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -363,8 +360,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param height
 	 *            The drawn entity height.
 	 */
-	protected void drawTop(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
+	protected void drawTop(final Graphics2D g, final int x, final int y, final int width, final int height) {
 	}
 
 	/**

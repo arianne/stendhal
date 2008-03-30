@@ -167,12 +167,11 @@ public class Chest2DView extends StateEntity2DView {
 			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest,
-							chest.getContent(), wtEntityContainer, 5, 6);
+					wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer, 5, 6);
 				}
 			} else {
 				if (wtEntityContainer != null) {
-					wtEntityContainer.destroy();
+					wtEntityContainer.dispose();
 					wtEntityContainer = null;
 				}
 			}
@@ -218,10 +217,8 @@ public class Chest2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			
-			
-			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
-					wtEntityContainer, 5, 6);
+
+			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer, 5, 6);
 			break;
 
 		case OPEN:
@@ -254,7 +251,7 @@ public class Chest2DView extends StateEntity2DView {
 	@Override
 	public void release() {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy();
+			wtEntityContainer.dispose();
 			wtEntityContainer = null;
 		}
 

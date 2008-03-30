@@ -10,8 +10,8 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
@@ -208,12 +208,11 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		super.draw(g2d, x, y, width, height);
+	protected void draw(final Graphics2D g, final int x, final int y, final int width, final int height) {
+		super.draw(g, x, y, width, height);
 
 		if (ideaSprite != null) {
-			ideaSprite.draw(g2d, x + width - 8, y - 8);
+			ideaSprite.draw(g, x + width - 8, y - 8);
 		}
 	}
 

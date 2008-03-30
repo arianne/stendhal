@@ -105,9 +105,8 @@ public class StackableItem2DView extends Item2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		super.draw(g2d, x, y, width, height);
+	protected void draw(final Graphics2D g, final int x, final int y, final int width, final int height) {
+		super.draw(g, x, y, width, height);
 
 		if (showQuantity && (quantitySprite != null)) {
 			/*
@@ -124,7 +123,7 @@ public class StackableItem2DView extends Item2DView {
 				qx = x + (width - quantitySprite.getWidth()) / 2;
 			}
 
-			quantitySprite.draw(g2d, qx, y - 5);
+			quantitySprite.draw(g, qx, y - 5);
 		}
 	}
 

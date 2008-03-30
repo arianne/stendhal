@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-//
-//
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
@@ -223,7 +220,7 @@ public class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -247,7 +244,7 @@ public class Corpse2DView extends Entity2DView {
 	@Override
 	public void release() {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy();
+			wtEntityContainer.dispose();
 			wtEntityContainer = null;
 		}
 
