@@ -7,34 +7,30 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.ClientPanel;
 import games.stendhal.client.gui.HelpDialog;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJButton;
+
+import javax.swing.JButton;
 
 /**
  * 
  * @author timothyb89
  */
-public class GameButtonHelperContent extends javax.swing.JPanel {
-	private static final long serialVersionUID = -1607102841664745919L;
-
-	
+@SuppressWarnings("serial")
+public class GameButtonHelperContent extends ClientPanel {
 
 	/** Creates new form PurchaseHelperContent. */
-	public GameButtonHelperContent(SettingsPanel sp, GameButtonHelper gbh,
-			StendhalUI ui) { 
-		// settings panel for the setVisable stuff
-		initComponents();
-		
+	public GameButtonHelperContent(SettingsPanel sp, StendhalUI ui) { 
+		super("gametools", 100, 100);
 
+		// settings panel for the setVisible() stuff
+		initComponents();
 	}
 
-	// <editor-fold defaultstate="collapsed" desc=" Generated Code
-	// ">//GEN-BEGIN:initComponents
 	private void initComponents() {
-		WoodStyle style = new WoodStyle();
-		gh = new StyledJButton(style);
-		jButton1 = new StyledJButton(style);
+//		WoodStyle style = new WoodStyle();
+		gh = new JButton();
+		jButton1 = new JButton();
 
 		setLayout(null);
 
@@ -63,7 +59,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 		add(jButton1);
 		jButton1.setBounds(0, 30, 150, 25);
 
-	} // </editor-fold>//GEN-END:initComponents
+	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
 	// TODO: Do right
@@ -79,9 +75,9 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	} // GEN-LAST:event_ghActionPerformed
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private StyledJButton gh;
+	private JButton gh;
 
-	private StyledJButton jButton1;
+	private JButton jButton1;
 	// End of variables declaration//GEN-END:variables
 
 }
