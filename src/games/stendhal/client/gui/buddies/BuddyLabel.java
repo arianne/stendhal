@@ -20,7 +20,7 @@ class BuddyLabel extends JLabel {
 	private static ImageIcon offlineIcon = new ImageIcon("data/gui/buddy_offline.png");
 
 	void setOnline(boolean online) {
-			this.setEnabled(online);
+		this.setEnabled(online);
 	}
 
 	public BuddyLabel() {

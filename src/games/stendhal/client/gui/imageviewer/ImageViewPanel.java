@@ -1,12 +1,12 @@
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * A JPanel to be viewed from an ImageViewWindow.
@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author timothyb89
  */
 @SuppressWarnings("serial")
-public class ImageViewPanel extends StyledJPanel {
+public class ImageViewPanel extends JPanel {
 
 	/**
 	 * The image to be displayed.
@@ -29,7 +29,6 @@ public class ImageViewPanel extends StyledJPanel {
 	public static final String FONT_SIZE = "5";
 
 	public ImageViewPanel(ImageViewWindow imw, URL url, String alt) {
-		super(WoodStyle.getInstance());
 		this.url = url;
 		this.alt = alt;
 		this.imw = imw;
@@ -72,7 +71,6 @@ public class ImageViewPanel extends StyledJPanel {
 			caption = "<b><i><font color=\"" + FONT_COLOR + "\" size=\""
 					+ FONT_SIZE + "\">" + alt + "</big></i></b><br>";
 		}
-
 		
 		String img = "<img width=" + width + " height=" + height + " src="
 					+ url.toString() + ">";
