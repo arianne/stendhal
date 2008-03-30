@@ -15,38 +15,22 @@ package games.stendhal.common;
  * 
  * @author mtotz
  * 
- * TODO: Reemplaze with a XML configuration file?
+ * TODO: Replace with an XML configuration file?
  */
-public class Debug {
+public interface Debug {
 
 	/** server version. */
-	public static final String VERSION = "0.67";
-
-	/** if this is enable tileset are loaded on demand. */
-	public static final boolean VERY_FAST_CLIENT_START = true;
-
-	/** enables cycling through the panel textures by clicking at the title bar. */
-	public static final boolean CYCLE_PANEL_TEXTURES = false;
+	static final String VERSION = "0.67";
 
 	/**
 	 * This emulates perception losses. Never make this true and commit it to
 	 * CVS
 	 */
-	public static final boolean EMULATE_PERCEPTION_LOSS = false;
-
-	/**
-	 * Just a try to get webstart work without additional rights.
-	 */
-	public static boolean WEB_START_SANDBOX;
+	static final boolean EMULATE_PERCEPTION_LOSS = false;
 
 	/**
 	 * Log list sizes to find the memory leak. It must be somewhere...
 	 */
-	public static boolean SHOW_LIST_SIZES;
-
-	/** no instance. */
-	private Debug() {
-		// this is a collection of constants
-	}
+	static final boolean SHOW_LIST_SIZES = false;
 
 }
