@@ -18,23 +18,26 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.wt.core.WtButton;
-import games.stendhal.client.gui.wt.core.WtClickListener;
-import games.stendhal.client.gui.wt.core.WtCloseListener;
-import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.gui.ClientPanel;
+import games.stendhal.client.gui.CloseListener;
 
-import java.awt.Point;
+import java.awt.Component;
+import java.beans.PropertyVetoException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * The panel where you can adjust your settings.
  * 
  * @author mtotz
  */
-public class SettingsPanel extends WtPanel implements WtClickListener,
-		WtCloseListener {
+@SuppressWarnings("serial")
+public final class SettingsPanel extends ClientPanel implements ChangeListener, CloseListener
+{
 	/**
 	 * The button height.
 	 */
@@ -58,15 +61,14 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 	/** Creates a new instance of OptionsPanel. */
 	public SettingsPanel(final int frameWidth) {
-		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2);
+		super("Settings", WIDTH, SPACING * 2);
 
-		setTitletext("Settings");
+		setLocation(frameWidth - WIDTH, 0);
 
-		setFrame(true);
-		setTitleBar(true);
-		setMinimizeable(true);
-		setMinimized(true);
-		setCloseable(false);
+		// don't allow closing this window
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+		setLayout(null);
 
 		entries = new HashMap<String, Entry>();
 	}
@@ -79,43 +81,47 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param label
 	 *            The menu label.
 	 */
-	public void add(final ManagedWindow window, final String label) {
-		window.registerCloseListener(this);
+	public void addEntry(ClientPanel panel, String label) {
+		panel.registerCloseListener(this);
 
-		String mnemonic = window.getName();
+		String mnemonic = panel.getName();
 
 		int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 
-		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
-				label);
+		JToggleButton button = new JToggleButton(label);
+		button.setName(mnemonic);
+		button.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
 
-		button.moveTo(SPACING, y);
-		button.setPressed(window.isVisible());
-		button.registerClickListener(this);
+		button.setLocation(SPACING, y);
+		button.setSelected(panel.isVisible());
+		button.addChangeListener(this);
 
-		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y
-				+ BUTTON_HEIGHT + SPACING);
+		setClientSize(SPACING + BUTTON_WIDTH + SPACING, y + BUTTON_HEIGHT + SPACING);
 
-		addChild(button);
-		entries.put(mnemonic, new Entry(button, window));
-	}
+		add(button);
 
-	/** we're using the window manager. */
-	@Override
-	protected boolean useWindowManager() {
-		return true;
+		entries.put(mnemonic, new Entry(button, panel));
 	}
 
 	/** a button was clicked. */
-	public void onClick(String name, Point point) {
+	public void stateChanged(ChangeEvent e) {
 		/*
 		 * Set window visibility
 		 */
-		Entry entry = entries.get(name);
+		Entry entry = entries.get(((Component)e.getSource()).getName());
 
 		if (entry != null) {
 			entry.setVisible(entry.isPressed());
 		}
+
+		// re-activate the settings panel after opening other windows
+		try {
+	        setSelected(true);
+        } catch(PropertyVetoException e1) {
+        }
+
+        // restore keyboard focus to the chat window
+		restoreTargetFocus();
 	}
 
 	/** a window is closed. */
@@ -130,31 +136,30 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		}
 	}
 
-	//
-	//
 
 	/**
 	 * A menu entry.
 	 */
 	protected static class Entry {
-		protected WtButton button;
-		protected ManagedWindow window;
+		protected JToggleButton button;
+		protected Component window;
 
-		public Entry(final WtButton button, final ManagedWindow window) {
+		public Entry(JToggleButton button, Component window) {
 			this.button = button;
 			this.window = window;
 		}
 
 		public boolean isPressed() {
-			return button.isPressed();
+			return button.isSelected();
 		}
 
-		public void setPressed(final boolean pressed) {
-			button.setPressed(pressed);
+		public void setPressed(boolean pressed) {
+			button.setSelected(pressed);
 		}
 
-		public void setVisible(final boolean visible) {
+		public void setVisible(boolean visible) {
 			window.setVisible(visible);
 		}
 	}
+
 }
