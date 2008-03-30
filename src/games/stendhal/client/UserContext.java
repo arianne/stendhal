@@ -6,9 +6,6 @@
 
 package games.stendhal.client;
 
-//
-//
-
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.EntityHolderListener;
@@ -34,6 +31,7 @@ import org.apache.log4j.Logger;
  * directly used by other code later.
  */
 public class UserContext implements RPObjectChangeListener {
+
 	/**
 	 * The logger.
 	 */
@@ -609,8 +607,7 @@ public class UserContext implements RPObjectChangeListener {
 			final RPObject sobject) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(sobject);
-		}
-		if (slotName.equals("!features")) {
+		} else if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
 			synchronized (gameObjects) {
@@ -707,4 +704,5 @@ public class UserContext implements RPObjectChangeListener {
 			}
 		}
 	}
+
 }
