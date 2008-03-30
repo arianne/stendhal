@@ -19,16 +19,15 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.gui.wt.core.WtTextPanel;
+import games.stendhal.client.gui.ClientPanel;
+import games.stendhal.client.gui.ClientTextPanel;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Level;
 
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,7 +40,8 @@ import marauroa.common.game.RPSlot;
  * 
  * @author mtotz
  */
-public class Character extends WtPanel {
+@SuppressWarnings("serial")
+public final class Character extends ClientPanel {
 
 	/** Panel width. */
 	private static final int PANEL_WIDTH = 170;
@@ -56,8 +56,7 @@ public class Character extends WtPanel {
 	private static final int SLOT_SPACING = 3; // estimate
 
 	/** the stats panel. */
-	private WtTextPanel statsPanel;
-
+	private ClientTextPanel statsPanel;
 	
 	private Map<String, EntitySlot> slotPanels;
 
@@ -71,14 +70,11 @@ public class Character extends WtPanel {
 	private long oldPlayerModificationCount;
 
 	/** Creates a new instance of Character. */
-	public Character(StendhalUI ui) {
-		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
-				PANEL_HEIGHT);
+	public Character() {
+		super("character", PANEL_WIDTH, PANEL_HEIGHT);
 
-		setTitleBar(true);
-		setFrame(true);
-		setMovable(true);
-		setMinimizeable(true);
+		// manually position the client controls
+		setLayout(null);
 
 		slotPanels = new HashMap<String, EntitySlot>();
 
@@ -86,7 +82,7 @@ public class Character extends WtPanel {
 		SpriteStore st = SpriteStore.get();
 
 		// Offset to center the slot holders
-		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
+		int xoff = (getClientSize().width - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
 		slotPanels.put("head", new EntitySlot("head",
 				st.getSprite("data/gui/helmet-slot.png"),
@@ -126,25 +122,12 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 3)));
 
 		for (EntitySlot slot : slotPanels.values()) {
-			addChild(slot);
+			add(slot);
 		}
 
-		statsPanel = new WtTextPanel(
-				"stats",
-				5,
-				((SLOT_SIZE + SLOT_SPACING) * 4),
-				170,
-				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
-		statsPanel.setFrame(false);
-		statsPanel.setTitleBar(false);
-		addChild(statsPanel);
-	}
-
-	/** we're using the window manager. */
-	@Override
-	protected boolean useWindowManager() {
-		return true;
+		statsPanel = new ClientTextPanel("stats", 5, (SLOT_SIZE+SLOT_SPACING) * 4, 170, 100);
+		statsPanel.setFormat("HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
+		add(statsPanel);
 	}
 
 	/** sets the player entity. */
@@ -166,41 +149,41 @@ public class Character extends WtPanel {
 
 		GameObjects gameObjects = GameObjects.getInstance();
 
-		// taverse all carrying slots
+		// traverse all carrying slots
 		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
 
 		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);
 
-			if (slot == null) {
-				continue;
-			}
+			if (slot != null) {
+				EntitySlot entitySlot = slotPanels.get(slotName);
 
-			EntitySlot entitySlot = slotPanels.get(slotName);
+    			if (entitySlot != null) {
+    				entitySlot.setParent(playerEntity);
 
-			if (entitySlot != null) {
-				entitySlot.setParent(playerEntity);
+    				Iterator<RPObject> iter = slot.iterator();
 
-				Iterator<RPObject> iter = slot.iterator();
+    				if (iter.hasNext()) {
+    					RPObject object = iter.next();
 
-				if (iter.hasNext()) {
-					RPObject object = iter.next();
+    					synchronized (gameObjects) {
+    						Entity entity = gameObjects.get(object);
 
-					Entity entity = gameObjects.get(object);
+        					/*
+        					 * TODO: Remove once object mapping verified to work in all
+        					 * cases.
+        					 */
+        					if (entity == null) {
+        						entity = EntityFactory.createEntity(object);
+        					}
 
-					/*
-					 * TODO: Remove once object mapping verified to work in all
-					 * cases.
-					 */
-					if (entity == null) {
-						entity = EntityFactory.createEntity(object);
-					}
-
-					entitySlot.setEntity(entity);
-				} else {
-					entitySlot.setEntity(null);
-				}
+        					entitySlot.setEntity(entity);
+    					}
+    				} else {
+    					entitySlot.setEntity(null);
+    				}
+    			}
 			}
 
 			// count all money
@@ -215,14 +198,13 @@ public class Character extends WtPanel {
 		int atkitem = playerEntity.getAtkItem();
 		int defitem = playerEntity.getDefItem();
 
-		setTitletext(playerEntity.getName());
+		setTitle(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
 		statsPanel.set("maxhp", playerEntity.getBase_hp());
 		statsPanel.set("atk", playerEntity.getAtk());
 		statsPanel.set("def", playerEntity.getDef());
 		statsPanel.set("atkitem", atkitem);
 		statsPanel.set("defitem", defitem);
-
 
 		/*
 		 * Show the amount of XP left to level up on ATK
@@ -237,8 +219,7 @@ public class Character extends WtPanel {
 		int defLvl = Level.getLevel(playerEntity.getDefXp());
 		int nextDefXp = Level.getXP(defLvl + 1) -  playerEntity.getDefXp();
 		statsPanel.set("defxp", Integer.toString(nextDefXp));
-			
-		
+
 		statsPanel.set("xp", playerEntity.getXp());
 		int level = Level.getLevel(playerEntity.getXp());
 		statsPanel.set("xptonextlevel", Level.getXP(level + 1) - playerEntity.getXp());
@@ -255,9 +236,10 @@ public class Character extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
+    public void paint(Graphics g) {
 		refreshPlayerStats();
 
-		super.drawContent(g);
+		super.paint(g);
 	}
+
 }
