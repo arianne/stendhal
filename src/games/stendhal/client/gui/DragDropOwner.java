@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.Point;
 
@@ -11,7 +10,7 @@ import java.awt.Point;
  */
 public interface DragDropOwner {
 
-	WtDraggable getDragged(Point pt);
+	IDraggable getDragged(Point pt);
 
 	Point getClientPos();
 

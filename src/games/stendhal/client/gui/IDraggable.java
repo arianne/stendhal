@@ -15,7 +15,7 @@
  * Created on 17. Oktober 2005, 17:50
  */
 
-package games.stendhal.client.gui.wt.core;
+package games.stendhal.client.gui;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -25,7 +25,7 @@ import java.awt.Point;
  * 
  * @author mtotz
  */
-public interface WtDraggable {
+public interface IDraggable {
 
 	/**
 	 * this object has been started to drag around.

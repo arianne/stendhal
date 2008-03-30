@@ -16,7 +16,7 @@
  * Created on 19. Oktober 2005, 20:45
  */
 
-package games.stendhal.client.gui.wt.core;
+package games.stendhal.client.gui;
 
 import java.awt.dnd.DropTargetDropEvent;
 
@@ -26,9 +26,9 @@ import java.awt.dnd.DropTargetDropEvent;
  * 
  * @author mtotz
  */
-public interface WtDropTarget {
+public interface IDropTarget {
 
 	/** called when an object is dropped. */
-	boolean onDrop(DropTargetDropEvent dsde, WtDraggable droppedObject);
+	boolean onDrop(DropTargetDropEvent dsde, IDraggable droppedObject);
 
 }

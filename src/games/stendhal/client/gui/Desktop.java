@@ -4,8 +4,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.gui.wt.MoveableEntityContainer;
-import games.stendhal.client.gui.wt.core.WtDraggable;
-import games.stendhal.client.gui.wt.core.WtDropTarget;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,7 +25,7 @@ import marauroa.common.game.RPAction;
  * @author Martin Fuchs
  */
 @SuppressWarnings("serial")
-public class Desktop extends JDesktopPane implements WtDropTarget, DragDropOwner {
+public class Desktop extends JDesktopPane implements IDropTarget, DragDropOwner {
 
 	final private Dimension bufferSize;
 
@@ -94,7 +92,7 @@ public class Desktop extends JDesktopPane implements WtDropTarget, DragDropOwner
 	    return offset;
     }
 
-	public WtDraggable getDragged(Point pt) {
+	public IDraggable getDragged(Point pt) {
 		IGameScreen screen = StendhalClient.get().getScreen();
 
 		Point2D point = screen.convertScreenViewToWorld(pt);
@@ -110,7 +108,7 @@ public class Desktop extends JDesktopPane implements WtDropTarget, DragDropOwner
 
 
 	/** called when an object is dropped. */
-	public boolean onDrop(DropTargetDropEvent dsde, WtDraggable droppedObject) {
+	public boolean onDrop(DropTargetDropEvent dsde, IDraggable droppedObject) {
 		// Not an entity?
 		if (!(droppedObject instanceof MoveableEntityContainer)) {
 			return false;

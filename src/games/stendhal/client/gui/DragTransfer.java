@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -14,13 +13,13 @@ import java.io.IOException;
  */
 public class DragTransfer implements Transferable {
 
-	public final static DataFlavor standhalFlavor = new DataFlavor(WtDraggable.class, "Stendhal draggable");
+	public final static DataFlavor standhalFlavor = new DataFlavor(IDraggable.class, "Stendhal draggable");
 
 	private DataFlavor[] flavors = {standhalFlavor};
 
-	private WtDraggable draggedObject;
+	private IDraggable draggedObject;
 
-	public DragTransfer(WtDraggable draggedObject) {
+	public DragTransfer(IDraggable draggedObject) {
 		this.draggedObject = draggedObject;
 	}
 

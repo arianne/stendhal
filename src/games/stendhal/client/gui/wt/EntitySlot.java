@@ -27,10 +27,10 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.DragDropOwner;
 import games.stendhal.client.gui.DragDropSource;
 import games.stendhal.client.gui.DragDropTarget;
+import games.stendhal.client.gui.IDraggable;
+import games.stendhal.client.gui.IDropTarget;
 import games.stendhal.client.gui.MouseHandlerAdapter;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
-import games.stendhal.client.gui.wt.core.WtDraggable;
-import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -54,7 +54,7 @@ import marauroa.common.game.RPObject;
  * @author mtotz
  */
 @SuppressWarnings("serial")
-public class EntitySlot extends JPanel implements WtDropTarget, DragDropOwner
+public class EntitySlot extends JPanel implements IDropTarget, DragDropOwner
 {
 	/**
 	 * The background surface sprite.
@@ -112,7 +112,7 @@ public class EntitySlot extends JPanel implements WtDropTarget, DragDropOwner
 	}
 
 	/** called when an object is dropped. */
-	public boolean onDrop(final DropTargetDropEvent dsde, final WtDraggable droppedObject) {
+	public boolean onDrop(final DropTargetDropEvent dsde, final IDraggable droppedObject) {
 		if (parent == null) {
 			return false;
 		}
@@ -255,7 +255,7 @@ public class EntitySlot extends JPanel implements WtDropTarget, DragDropOwner
 	/**
 	 * returns a draggable object.
 	 */
-    public WtDraggable getDragged(Point pt) {
+    public IDraggable getDragged(Point pt) {
 		if (view != null) {
 			return new MoveableEntityContainer(view.getEntity());
 		}

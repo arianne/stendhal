@@ -14,9 +14,9 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.gui.IDraggable;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
-import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,7 +26,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around .*/
-public class MoveableEntityContainer implements WtDraggable {
+public class MoveableEntityContainer implements IDraggable {
 
 	/** current x-pos of the dragged item. */
 	private int x;

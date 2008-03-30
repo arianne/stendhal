@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -28,7 +27,7 @@ public class DragDropSource extends DragSourceAdapter implements DragGestureList
 	private DragDropOwner owner;
 
 	/** The currently dragged object or null if there is no such drag operation. */
-	private WtDraggable draggedObject;
+	private IDraggable draggedObject;
 
 	/**
 	 * Constructor taking the owner as parameter.

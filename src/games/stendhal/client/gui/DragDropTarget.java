@@ -1,7 +1,5 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.wt.core.WtDraggable;
-import games.stendhal.client.gui.wt.core.WtDropTarget;
 
 import java.awt.Component;
 import java.awt.dnd.DnDConstants;
@@ -24,11 +22,11 @@ public class DragDropTarget {
 	 *
 	 * @param owner
 	 */
-	public DragDropTarget(final WtDropTarget callback) {
+	public DragDropTarget(final IDropTarget callback) {
 		dtListener = new DropTargetAdapter() {
 			public void drop(DropTargetDropEvent dtde) {
 				try {
-	                callback.onDrop(dtde, (WtDraggable)dtde.getTransferable().getTransferData(DragTransfer.standhalFlavor));
+	                callback.onDrop(dtde, (IDraggable)dtde.getTransferable().getTransferData(DragTransfer.standhalFlavor));
                 } catch(Exception e) {
                 }
             }
