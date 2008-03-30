@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 public class MainFrame {
 
 	private JFrame mainFrame = new JFrame();
+
 	public MainFrame() {
 		initialize();
 	}
@@ -38,9 +39,9 @@ public class MainFrame {
 	}
 
 	private void setIcon() {
-		URL url = SpriteStore.get().getResourceURL(
-				ClientGameConfiguration.get("GAME_ICON"));
-		getMainFrame().setIconImage(new ImageIcon(url).getImage());
+		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
+
+		mainFrame.setIconImage(new ImageIcon(url).getImage());
 	}
 
 	private void setTitle() {
@@ -49,7 +50,7 @@ public class MainFrame {
 				+ " - a multiplayer online game using Arianne");
 	}
 
-	 JFrame getMainFrame() {
+	 JFrame getFrame() {
 		return mainFrame;
 	}
 
