@@ -39,25 +39,26 @@ public interface WtDraggable {
 	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
-	 *            the drag startpoint)
+	 *            the drag starting point)
 	 * @return true when this item can be dropped on point p, false otherwise
 	 */
 	boolean dragFinished(Point p);
 
 	/**
+	 * Draws the dragged item.
+	 */
+	void drawDragged(Graphics g);
+
+	/**
 	 * This object is dragged around the screen. When this method returns false
-	 * the ui should move it back to it's start point to show the user that it
+	 * the UI should move it back to it's start point to show the user that it
 	 * is not allowed to drop the object here.
 	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
-	 *            the drag start point)
+	 *            the drag starting point)
 	 * @return true when this item can be moved to this point, false otherwise
 	 */
-	boolean dragMoved(Point p);
+	void dragMoved(Point p);
 
-	/**
-	 * Draws the dragged item.
-	 */
-	void drawDragged(Graphics g);
 }

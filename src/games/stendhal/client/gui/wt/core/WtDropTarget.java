@@ -18,13 +18,17 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import java.awt.dnd.DropTargetDropEvent;
+
 /**
- * Each Panel wanting to reveive events when an object is dropped over them must
- * inplement this interface.
+ * Each Panel wanting to receive events when an object is dropped over them must
+ * implement this interface.
  * 
  * @author mtotz
  */
 public interface WtDropTarget {
+
 	/** called when an object is dropped. */
-	boolean onDrop(int x, int y, WtDraggable droppedObject);
+	boolean onDrop(DropTargetDropEvent dsde, WtDraggable droppedObject);
+
 }

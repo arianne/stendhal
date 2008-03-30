@@ -13,8 +13,8 @@
 package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.ManagedWindow;
 
+import java.awt.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -117,7 +117,7 @@ public class WtWindowManager {
 	}
 
 	/** returns the config. If it does not exist yet, a new one is created. */
-	private WindowConfiguration getConfig(ManagedWindow panel) {
+	private WindowConfiguration getConfig(Component panel) {
 		String name = panel.getName();
 		WindowConfiguration winC = configs.get(name);
 		if (winC == null) {
@@ -164,33 +164,33 @@ public class WtWindowManager {
 	 * Formats the window with the saved config. Nothing happens when this
 	 * windows config is not known.
 	 */
-	public void formatWindow(ManagedWindow panel) {
+	public void formatWindow(Component panel) {
 		WindowConfiguration config = getConfig(panel);
 		if (config == null) {
 			// window not supervised
 			return;
 		}
 
-		panel.moveTo(config.x, config.y);
-		panel.setMinimized(config.minimized);
+		panel.setLocation(config.x, config.y);
+//@@	panel.setMinimized(config.minimized);
 		panel.setVisible(config.visible);
 	}
 
 	/** the panel was moved, so update the internal representation. */
-	public void moveTo(ManagedWindow panel, int x, int y) {
+	public void moveTo(Component panel, int x, int y) {
 		WindowConfiguration config = getConfig(panel);
 		config.x = x;
 		config.y = y;
 	}
 
 	/** the panels minimized state changed, update the internal representation. */
-	public void setMinimized(ManagedWindow panel, boolean state) {
+	public void setMinimized(Component panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
 		config.minimized = state;
 	}
 
-	public void setVisible(ManagedWindow panel, boolean state) {
+	public void setVisible(Component panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
 		config.visible = state;
@@ -255,11 +255,9 @@ public class WtWindowManager {
 		}
 
 		/** reads the config from the properties. */
-		public void readFromProperties(Properties props, ManagedWindow defaults) {
-			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
-					defaults.getY(), defaults.isVisible());
+		public void readFromProperties(Properties props, Component defaults) {
+			readFromProperties(props, false/*@@defaults.isIcon()*/, defaults.getX(), defaults.getY(), defaults.isVisible());
 		}
-
 	}
 
 }
