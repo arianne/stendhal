@@ -24,7 +24,7 @@ class Patroller implements Idlebehaviour {
 			creature.followPath();
 		} else {
 			Direction d;
-			if (Rand.throwCoin() == 1) {
+			if (Rand.rand(3) == 1) {
 				 d = Direction.rand();
 			} else {
 				d = creature.getDirection();
