@@ -243,50 +243,6 @@ public class RPEntityTest {
 	}
 
 	@Test
-	public void testAttackdeadcreature() {
-		MockStendlRPWorld.get();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
-		RPEntity attacker = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(Corpse corpse) {
-				// do nothing
-				
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-				
-			}
-		};
-		RPEntity defender = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(Corpse corpse) {
-				// do nothing
-				
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-				
-			}
-		};
-		
-		zone.add(attacker);
-		zone.add(defender);
-		
-		
-		attacker.setTarget(defender);
-		assertTrue(zone.has(defender.getID()));
-		assertEquals(defender.getHP(), 0);
-		assertFalse(attacker.attack());
-		assertNull(attacker.getAttackTarget());
-		}
-
-	@Test
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
 		StendhalRPZone zone = new StendhalRPZone("testzone");
