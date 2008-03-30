@@ -44,14 +44,13 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.apache.log4j.Logger;
-
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
-
 import marauroa.common.io.Persistence;
 import marauroa.common.net.InvalidVersionException;
+
+import org.apache.log4j.Logger;
 
 /**
  * Server login dialog.

@@ -41,10 +41,10 @@ import javax.swing.text.PlainDocument;
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.AccountResult;
 import marauroa.common.net.InvalidVersionException;
+
+import org.apache.log4j.Logger;
 
 
 public class CreateAccountDialog extends JDialog {

@@ -1,7 +1,9 @@
 package games.stendhal.client.gui.imageviewer;
 
 import java.net.URL;
+
 import marauroa.common.game.RPEvent;
+
 import org.apache.log4j.Logger;
 
 /**
