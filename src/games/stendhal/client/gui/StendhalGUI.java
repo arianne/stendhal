@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui;
 
-//
-//
-
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.common.Direction;
@@ -24,6 +21,7 @@ import org.apache.log4j.Logger;
  * AWT, but not any specific display format (e.g. 2D, 3D).
  */
 public abstract class StendhalGUI extends StendhalUI {
+
 	/**
 	 * Color for local client messages.
 	 */
@@ -79,21 +77,6 @@ public abstract class StendhalGUI extends StendhalUI {
 	 * The logger.
 	 */
 	private static final Logger logger = Logger.getLogger(StendhalGUI.class);
-
-	/**
-	 * Whether the Ctrl key is currently down.
-	 */
-	private boolean ctrlDown;
-
-	/**
-	 * Whether the Shift key is currently down.
-	 */
-	private boolean shiftDown;
-
-	/**
-	 * Whether the Alt key is currently down.
-	 */
-	private boolean altDown;
 
 	/**
 	 * Delayed direction release holder.
@@ -249,51 +232,8 @@ public abstract class StendhalGUI extends StendhalUI {
 		directionRelease = new DelayedDirectionRelease(direction, facing);
 	}
 
-	/**
-	 * Determine if the Alt key is held down.
-	 * 
-	 * @return <code>true</code> if down.
-	 */
-	@Override
-	public boolean isAltDown() {
-		return altDown;
-	}
-
-	/**
-	 * Determine if the [Ctrl] key is held down.
-	 * 
-	 * @return <code>true</code> if down.
-	 */
-	@Override
-	public boolean isCtrlDown() {
-		return ctrlDown;
-	}
-
-	/**
-	 * Determine if the [Shift] key is held down.
-	 * 
-	 * @return <code>true</code> if down.
-	 */
-	@Override
-	public boolean isShiftDown() {
-		return shiftDown;
-	}
-
-	/**
-	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 * 
-	 * @param ev
-	 *            The keyboard event.
-	 */
-	protected void updateModifiers(final KeyEvent ev) {
-		altDown = ev.isAltDown();
-		ctrlDown = ev.isControlDown();
-		shiftDown = ev.isShiftDown();
-	}
-
-	
-
 	protected static class DelayedDirectionRelease {
+
 		/**
 		 * The maximum delay between auto-repeat release-press.
 		 */
@@ -387,4 +327,5 @@ public abstract class StendhalGUI extends StendhalUI {
 			return true;
 		}
 	}
+
 }

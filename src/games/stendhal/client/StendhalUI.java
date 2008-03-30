@@ -6,8 +6,9 @@
 
 package games.stendhal.client;
 
-import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.common.NotificationType;
+
+import java.awt.Component;
 
 /**
  * A base class for the stendhal client UI (not GUI).
@@ -62,13 +63,12 @@ public abstract class StendhalUI {
 	 * Add an event line.
 	 *
 	 */
-	public abstract void addEventLine(String header, String text,
-			NotificationType type);
+	public abstract void addEventLine(String header, String text, NotificationType type);
 
 	/**
 	 * Adds a Swing component to the view.
 	 */
-	public abstract void addWindow(ManagedWindow imd);
+	public abstract void addDialog(Component dlg);
 
 	/**
 	 * Initiate outfit selection by the user.
@@ -159,30 +159,6 @@ public abstract class StendhalUI {
 	 *            The user's Y coordinate.
 	 */
 	public abstract void setPosition(double x, double y);
-
-	//
-	// <StendhalGUI>
-	//
-	// These really shouldn't be here, as they are UI implementation
-	// specific. But for now this will allow more code refactoring,
-	// until this can be pushed into a sub-class.
-	//
-
-	/**
-	 * @return Returns the altDown.
-	 */
-	public abstract boolean isAltDown();
-
-	/**
-	 * @return Returns the ctrlDown.
-	 */
-	public abstract boolean isCtrlDown();
-
-	/**
-	 * @return Returns the shiftDown.
-	 */
-	public abstract boolean isShiftDown();
-
 
 	public abstract void shutdown();
 }
