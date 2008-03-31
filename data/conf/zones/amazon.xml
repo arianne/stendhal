@@ -65,7 +65,7 @@
  <zone name="-1_amazon_tunnel_e" level="-1" x="501024" y="499744" file="Level -1/amazon/tunnel_e.tmx">
  </zone>
 
- <zone name="-1_amazon_tunnel_e2" level="-1" x="500896" y="499744" file="Level -1/amazon/tunnel_e2.tmx">
+ <zone name="-1_amazon_tunnel" level="-1" x="500896" y="499744" file="Level -1/amazon/tunnel.tmx">
  </zone>
  
  <!--  Level -2 -->
