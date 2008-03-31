@@ -48,9 +48,15 @@
  <tileset name="ship" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/ship.png"/>
  </tileset>
+ <tileset name="water from ground" firstgid="487" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground.png"/>
+ </tileset>
+ <tileset name="pool" firstgid="520" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/water/pool_deep.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VsQ2AMAwAQUsZgIYxs39NwwSA4hhfcX2sj+UREQMAAAAAAAAAAAAAAACA35kPZb8b/dEf/dEf/Vnb31+o703/85Y9Azn97X997n9v+vemf29f9D82mIO8/tSlf2/6oz3aoz3aoz3aAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsNIFW34oAgAAAQA=
+   H4sIAAAAAAAAAO3bvW7bMBQGULlTgg5d+ph9eQcwYMBLh9aAckFavxQp8wwHMYJECfTdS1KUdL0Mw7Winz+G4etCLTWz/5B9dbLvW43cP2XfDLn3zVjfN9n3zXjfN7n3zVjfN9n3TfZ92zrPm+vPbW3+7tu8hzX9ruffh2u6vlnb9a1m9o//ap+Dnh2dvbzbsvf6/pH5HH9GHbRhTe+XyO4W1D4vvSgx7t9HlmQu+/r5x3E/dc3/uHwfw+N4cL+8rgE5t2Ov3s/NCTF/fd6WUnu6uXq4ha+0kX/s/Tnz9xZ3NdCEqXH/iDqofQ56tvWezp9hHfmfw9S1/tb8OY9ULeyVf24vwBqhLbEG9sj/ecyYt+zbkloLGv/f07jPx3t5sSePzN94UE/uen1L/lO18Nxjtg6o69X535L/7+GfOX9b/m3au//HawyZH2/pvf295//nPGN/uL45tWD935cS1/+0Zcm4u0f+v9RDM5buv27Nf06t5Z4z4phaKJV/6vipPUbrwGMt6bMS6//47KD821Zq7Wfv7zxKZG++b9PaveDc8eJ8P+cdIsplm8o3ZpR7LnDv633PgtQVc556tyNVA1v/B9mfz1T2qb5OZZzrffVwXjHz+DlXG+aB9zCVn4zbsqTvXj3PP3dv2TtibYvZxTXhffT93O/MPTbnZA8XAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqO0vBDNCUgAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
