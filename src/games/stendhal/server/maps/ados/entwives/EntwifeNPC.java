@@ -22,7 +22,7 @@ public class EntwifeNPC implements ZoneConfigurator {
 	}
 
 	private void buildentwife(StendhalRPZone zone) {
-		SpeakerNPC entwife = new SpeakerNPC("Fimbrethil") {
+		SpeakerNPC entwife = new SpeakerNPC("Tendertwig") {
 
 			@Override
 			protected void createPath() {
