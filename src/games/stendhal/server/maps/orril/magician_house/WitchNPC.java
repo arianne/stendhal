@@ -71,7 +71,7 @@ public class WitchNPC implements ZoneConfigurator {
 				 */
 				addHelp("I can #heal you, and I can #offer you powerful #magic #scrolls.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
-				new HealerAdder().addHealer(this, 200);
+				new HealerAdder().addHealer(this, 300);
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("magic", "scroll", "scrolls"),
