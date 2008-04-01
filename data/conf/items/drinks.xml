@@ -54,6 +54,42 @@
     </equipable>
   </item>
 
+ <item name="tea">
+    <type class="drink" subclass="tea" tileid="-1"/>
+    <description>You see a lovely cup of tea.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="30"/>
+      <frequency value="5"/>
+      <quantity value="1"/>
+      <regen value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+ <item name="milk">
+    <type class="drink" subclass="milk" tileid="-1"/>
+    <description>You see a small bottle of fresh milk.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="10"/>
+      <frequency value="5"/>
+      <quantity value="1"/>
+      <regen value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
     <description>You see an antidote, to cure you of poison and protect you for a while.</description>

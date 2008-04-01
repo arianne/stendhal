@@ -842,4 +842,22 @@
       <slot name="bag"/>
     </equipable>
   </item> 
+
+   <item name="honey">
+    <type class="food" subclass="honey" tileid="-1"/>
+    <description>You see a jar of sticky sweet honey. It's the clear runny kind.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="20"/>
+      <frequency value="40"/>
+      <quantity value="1"/>
+      <regen value="4"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="6"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 </items>
