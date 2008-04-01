@@ -29,7 +29,7 @@ import java.util.List;
  * REPETITIONS: None
  */
 public class MeetBunny extends AbstractQuest {
-	private static final String QUEST_SLOT = "meet_bunny_08";
+	private static final String QUEST_SLOT = "meet_bunny_09";
 
 	/** the Bunny NPC. */
 	protected SpeakerNPC bunny;
