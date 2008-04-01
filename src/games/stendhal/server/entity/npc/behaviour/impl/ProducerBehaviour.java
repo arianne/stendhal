@@ -184,7 +184,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            The amount of products that were requested
 	 * @return A string describing the required resources.
 	 */
-	private String getRequiredResourceNamesWithHashes(int amount) {
+	protected String getRequiredResourceNamesWithHashes(int amount) {
 		// use sorted TreeSet instead of HashSet
 		Set<String> requiredResourcesWithHashes = new TreeSet<String>();
 		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
@@ -208,7 +208,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		return TimeUtil.approxTimeUntil(remainingSeconds);
 	}
 
-	private int getMaximalAmount(Player player) {
+	protected int getMaximalAmount(Player player) {
 		int maxAmount = Integer.MAX_VALUE;
 		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey())
