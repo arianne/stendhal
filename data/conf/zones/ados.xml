@@ -1427,6 +1427,7 @@ My fee:
   </zone>
 
   <zone name="int_ados_farm_house" file="interiors/ados/farm_house.tmx">
+   <configurator class-name="games.stendhal.server.maps.ados.farmhouse.FarmersWifeNPC"/>
    <portal x="22" y="23" ref="in">
     <destination zone="0_ados_forest_w2" ref="farm"/>
    </portal>
