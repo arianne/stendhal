@@ -635,6 +635,7 @@ black halberd     12000
   </portal>
  </zone>
 <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
+ <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
 </zone>
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
 </zone>
