@@ -501,7 +501,17 @@
   <portal x="123" y="118" ref="greenhouse_2_entrance">
    <destination zone="int_kalavan_greenhouse_2" ref="entrance"/>
   </portal>
+  <portal x="40" y="26" ref="cottage_entrance">
+   <destination zone="int_kalavan_cottage" ref="entrance"/>
+  </portal>
  </zone>
+
+ <zone name="int_kalavan_cottage" file="interiors/kalavan/cottage.tmx">
+  <configurator class-name="games.stendhal.server.maps.kalavan.cottage.HouseKeeperNPC"/>
+  <portal x="14" y="19" ref="entrance">
+   <destination zone="0_kalavan_city_gardens" ref="cottage_entrance"/>
+  </portal>
+ </zone> 
 
  <zone name="int_kalavan_greenhouse_1" file="interiors/kalavan/greenhouse_1.tmx">
   <portal x="7" y="19" ref="entrance">
