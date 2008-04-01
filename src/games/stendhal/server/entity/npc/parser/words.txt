@@ -63,6 +63,7 @@ bet	VER
 blow	VER
 boo	VER
 borrow	VER
+brew VER
 bribe	VER
 buy	VER
 bye	VER
@@ -212,6 +213,7 @@ stay	VER
 steal	VER
 summon	VER
 summonat	VER
+swap VER
 take	VER
 talk	VER
 tease	VER
