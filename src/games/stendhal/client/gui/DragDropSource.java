@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -39,7 +38,7 @@ public class DragDropSource extends DragSourceAdapter implements DragGestureList
 	}
 
 	public void associate(Component comp) {
-		DragSource.getDefaultDragSource().createDefaultDragGestureRecognizer(comp, DnDConstants.ACTION_MOVE, this);
+		DragSource.getDefaultDragSource().createDefaultDragGestureRecognizer(comp, DnDConstants.ACTION_COPY_OR_MOVE, this);
 	}
 
 	/**

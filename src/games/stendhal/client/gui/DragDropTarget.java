@@ -1,6 +1,5 @@
 package games.stendhal.client.gui;
 
-
 import java.awt.Component;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -34,7 +33,7 @@ public class DragDropTarget {
 	}
 
 	public void associate(final Component comp) {
-		new DropTarget(comp, DnDConstants.ACTION_MOVE, dtListener, true);
+		new DropTarget(comp, DnDConstants.ACTION_COPY_OR_MOVE, dtListener, true);
 	}
 
 }

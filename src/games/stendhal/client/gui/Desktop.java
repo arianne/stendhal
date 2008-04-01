@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Point;
+import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -127,9 +128,12 @@ public class Desktop extends JDesktopPane implements IDropTarget, DragDropOwner 
 		}
 
 		// HACK: if ctrl is pressed, attempt to split stackables
-//		if (dsde.isControlDown()) {
-//			action.put("quantity", 1);
-//		}
+		int dragAction = dsde.getDropAction();
+
+		// Was CTRL pressed?
+		if (dragAction == DnDConstants.ACTION_COPY) {
+			action.put("quantity", 1);
+		}
 
 		// fill 'moved from' parameters
 		container.fillRPAction(action);
