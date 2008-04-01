@@ -1,6 +1,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,11 +83,12 @@ public final class QuitDialog extends ClientPanel {
 		 */
 		StendhalClient.get().stop();
 
+		StendhalUI ui = j2DClient.get();
+
 		/*
 		 * Center dialog
 		 */
-		setBounds((j2DClient.get().getWidth() - WIDTH) / 2,
-				(j2DClient.get().getHeight() - HEIGHT) / 2, WIDTH, HEIGHT);
+		setBounds((ui.getWidth() - WIDTH) / 2, (ui.getHeight() - HEIGHT) / 2, WIDTH, HEIGHT);
 
 		setVisible(true);
 		disableMovement = true;

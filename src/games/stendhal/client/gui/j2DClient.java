@@ -29,7 +29,6 @@ import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.Minimap;
-import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -88,9 +87,6 @@ public class j2DClient extends StendhalUI {
 
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
-
-	/** settings panel. */
-	private SettingsPanel settings;
 
 	/** the Character panel. */
 	private Character character;
@@ -286,32 +282,24 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * In-screen dialogs
 		 */
-		settings = new SettingsPanel(SCREEN_WIDTH+BORDER_WIDTH);
-		addWindow(settings);
-
 		keyring = new KeyRing();
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
-		settings.addEntry(keyring, "Enable Key Ring");
 
 		buddies = new BuddyListPanel(this);
 		buddies.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 300);
 		addWindow(buddies);
-		settings.addEntry(buddies, "Enable Buddies");
 
 		character = new Character();
 		character.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 0);
 		addWindow(character);
-		settings.addEntry(character, "Enable Character");
 
 		minimap = new Minimap(client);
 		addWindow(minimap);
-		settings.addEntry(minimap, "Enable Minimap");
 		positionChangeListener.add(minimap);
 
 		inventory = new EntityContainer("bag", 3, 4);
 		addWindow(inventory);
-		settings.addEntry(inventory, "Enable Bag");
 
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();

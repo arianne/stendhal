@@ -12,8 +12,6 @@ import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -30,9 +28,6 @@ import javax.swing.event.InternalFrameListener;
 public class ClientPanel extends JInternalFrame {
 
 	private Dimension clntSize;
-
-	/** List of registered CloseListener. */
-	protected List<CloseListener> closeListeners = new ArrayList<CloseListener>();
 
 	protected ClientPanel(String title, int width, int height) {
 		super(title);
@@ -172,29 +167,7 @@ public class ClientPanel extends JInternalFrame {
 
 		if (flag) {
 			resizeToFitClientArea();
-		} else if (closeListeners != null) {
-			// inform all listeners we're closed
-			CloseListener[] listeners = closeListeners.toArray(new CloseListener[closeListeners.size()]);
-
-			for (CloseListener listener : listeners) {
-				listener.onClose(getName());
-			}
 		}
-	}
-
-	/**
-	 * Adds a CloseListener to this panel. All registered closelistener are
-	 * notified before the panel is closed
-	 */
-	public void registerCloseListener(CloseListener listener) {
-		closeListeners.add(listener);
-
-		setClosable(true);
-	}
-
-	/** removes a (registered) closelistener. */
-	public void removeCloseListener(CloseListener listener) {
-		closeListeners.remove(listener);
 	}
 
 	public boolean setMinimized(boolean minimized) {
@@ -239,11 +212,6 @@ public class ClientPanel extends JInternalFrame {
         if (border != null) {
             border.paintBorder(this, g, 0, 0, getWidth(), getHeight());
         }
-    }
-
-    @Override
-    public void dispose() {
-		closeListeners.clear();
     }
 
 }
