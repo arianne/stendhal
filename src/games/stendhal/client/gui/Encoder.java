@@ -127,7 +127,8 @@ public class Encoder {
 			// add to buffer
 			binary = Integer.toBinaryString(theString.charAt(i));
 			len = binary.length();
-			// somtimes integers do not take up the total 7 bits. So padding is necessary
+
+			// sometimes integers do not take up the total 7 bits. So padding is necessary
 			if (len < 7) { 
 				// how many binary digits are missing to be complete
 				paddingNeededSize = 7 - len; 
@@ -140,6 +141,7 @@ public class Encoder {
 
 			strBuff.append(binary);
 		}
+
 		return strBuff.toString();
 	}
 }
