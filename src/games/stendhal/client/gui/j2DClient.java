@@ -65,8 +65,8 @@ public class j2DClient extends StendhalUI {
 
 	private final static int BORDER_WIDTH = 155;
 
-	/** Width of the game screen is calculated by substracting the border widths from 1024 . */
-	public static int SCREEN_WIDTH = (1024 - 2*BORDER_WIDTH) / 32 * 32;
+	/** Width of the game screen is calculated by substracting the border widths from 1000. */
+	public static int SCREEN_WIDTH = (1000 - 2*BORDER_WIDTH) / 32 * 32;
 
 	/** height of the game screen (without the chat line). */
 	public static int SCREEN_HEIGHT = 480;
