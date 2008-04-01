@@ -1,5 +1,5 @@
 /*
- * @(#) src/games/stendhal/client/StendhalUI.java
+ * @(#) src/games/Stendhal/client/StendhalUI.java
  *
  * $Id$
  */
@@ -11,24 +11,25 @@ import games.stendhal.common.NotificationType;
 import java.awt.Component;
 
 /**
- * A base class for the stendhal client UI (not GUI).
+ * A base class for the Stendhal client UI (not GUI).
  *
  * This should have minimal UI-implementation dependent code. That's what
  * sub-classes are for!
  */
 public abstract class StendhalUI {
+
 	/**
 	 * A shared [singleton] copy.
 	 */
 	private static StendhalUI sharedUI;
 
 	/**
-	 * The stendhal client.
+	 * The Stendhal client.
 	 */
 	protected StendhalClient client;
 
 	/**
-	 * Create a stendhal UI.
+	 * Create a Stendhal UI.
 	 *
 	 * @param client
 	 *            The client.
@@ -128,7 +129,7 @@ public abstract class StendhalUI {
 	 * Set the shared [singleton] value.
 	 *
 	 * @param sharedUI
-	 *            The stendhal UI.
+	 *            The Stendhal UI.
 	 */
 	public static void setDefault(StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;
@@ -161,4 +162,5 @@ public abstract class StendhalUI {
 	public abstract void setPosition(double x, double y);
 
 	public abstract void shutdown();
+
 }

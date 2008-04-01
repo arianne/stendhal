@@ -53,6 +53,7 @@ import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -61,6 +62,7 @@ import javax.swing.border.BevelBorder;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
+
 public class j2DClient extends StendhalUI {
 
 	private final static int BORDER_WIDTH = 155;
@@ -75,7 +77,6 @@ public class j2DClient extends StendhalUI {
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
 	private MainFrame mainFrame;
-	private QuitDialog quitDialog;
 
 	private GameScreen screen;
 
@@ -224,12 +225,6 @@ public class j2DClient extends StendhalUI {
 			}
 		});
 
-		/*
-		 * Quit dialog
-		 */
-		quitDialog = new QuitDialog();
-
-		desktop.add(quitDialog, JLayeredPane.MODAL_LAYER);
 
 		/*
 		 * Game log
@@ -1022,7 +1017,10 @@ public class j2DClient extends StendhalUI {
 
 	@Override
 	public void requestQuit() {
-		quitDialog.requestQuit();
+		if (JOptionPane.showConfirmDialog(desktop, "Are you sure you want to leave Standhal?",
+				"Stendhal", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			j2DClient.get().shutdown();
+		}
 	}
 
 }
