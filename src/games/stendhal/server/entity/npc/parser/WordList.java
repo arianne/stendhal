@@ -199,12 +199,7 @@ public final class WordList {
 			}
 
 			if (line.startsWith("#")) {
-				// look for the version keyword
-				int idxVersion = line.indexOf(HASH_KEYWORD);
-
-				if (idxVersion != -1) {
-					hash = line.substring(idxVersion + HASH_KEYWORD.length()).trim();
-				} else if (comments != null) {
+				if (comments != null) {
 					comments.add(line);
 				}
 			} else {
@@ -224,6 +219,9 @@ public final class WordList {
     			addEntry(key, entry);
 			}
 		}
+
+		 // calculate the hash value from all word entries
+		calculateHash();
 	}
 
 	/**

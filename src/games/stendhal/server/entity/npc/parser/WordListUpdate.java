@@ -49,8 +49,6 @@ public final class WordListUpdate {
 
         	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
 
-        	writer.println("# " + WordList.HASH_KEYWORD + " " + wl.getHash());
-
         	for (String c : comments) {
     			writer.println(c);
     		}
