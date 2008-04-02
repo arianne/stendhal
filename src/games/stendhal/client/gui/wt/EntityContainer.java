@@ -54,10 +54,15 @@ public class EntityContainer extends ClientPanel implements PositionChangeListen
 
 	private RPSlot shownSlot;
 
+	/** flag to enable the distance check for automatic window closing */
+	private final boolean distanceCheck;
+
 	/** Creates the panel. */
-	public EntityContainer(String name, int width, int height) {
+	public EntityContainer(String name, int width, int height, boolean distanceCheck) {
 		super(name, width * EntitySlot.getDefaultWidth() + (width - 1),
 					height * EntitySlot.getDefaultHeight() + (height - 1));
+
+		this.distanceCheck = distanceCheck;
 
 		setLayout(null);
 
@@ -205,7 +210,9 @@ public class EntityContainer extends ClientPanel implements PositionChangeListen
 		super.paint(g);
 
 		// TODO: Change to event model, rather than polling
-		checkDistance();
+		if (distanceCheck) {
+			checkDistance();
+		}
 	}
 
 	/**

@@ -186,7 +186,7 @@ public class GroundContainer extends JInternalFrame implements Inspector
 
 	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container, int width, int height) {
 		if (container == null || !container.isVisible()) {
-			container = new EntityContainer(suspect.getType(), width, height);
+			container = new EntityContainer(suspect.getType(), width, height, true);
 
 			// immediately free the memory after closing inspect windows
 			container.setClosable(true);

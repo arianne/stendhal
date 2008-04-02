@@ -293,7 +293,7 @@ public class j2DClient extends StendhalUI {
 		addWindow(minimap);
 		positionChangeListener.add(minimap);
 
-		inventory = new EntityContainer("bag", 3, 4);
+		inventory = new EntityContainer("bag", 3, 4, false);
 		addWindow(inventory);
 
 		// set some default window positions
