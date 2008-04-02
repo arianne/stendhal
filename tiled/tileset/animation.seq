@@ -443,3 +443,5 @@ tileset/item/furniture/light/sparkle_middle.png * 0:2
 tileset/item/furniture/light/sparkle_middle.png * 1:3
 tileset/item/furniture/light/sparkle_middle.png * 2:0
 tileset/item/furniture/light/sparkle_middle.png * 3:1
+# make bees buzzing bees
+tileset/item/buzzing_bees.png * 0:1:2:3:4
