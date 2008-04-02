@@ -1041,6 +1041,31 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 </zone>
 <!-- Interiors for Magic underground city here -->
 <zone name="int_magic_theater" file="interiors/magic/theater.tmx">
+   <configurator class-name="games.stendhal.server.maps.magic.theater.MagicBarmaidNPC" />
+      <entity x="16" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+Magic City Theater Concession:
+
+hotdog 160
+licorice 100
+sandwich 120
+cheeseydog 180
+tuna sandwich 130
+vanilla shake 110
+chocolate bar 100
+chocolate shake 110
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+    <!-- 
+    <entity x="4" y="6">
+    <implementation class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC">
+      <parameter name="name">Baldemar</parameter>
+    </implementation>
+    <attribute name="class">mithrilforger</attribute>
+  </entity> 
+   -->
   <portal x="30" y="1" ref="entrance_left">
    <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left"/>
   </portal>
