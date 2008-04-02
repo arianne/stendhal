@@ -1,4 +1,4 @@
-# @Version 29
+# @Version 30
 #
 # Word list for the Stendhal conversation parser
 #
@@ -63,7 +63,7 @@ bet	VER
 blow	VER
 boo	VER
 borrow	VER
-brew VER
+brew	VER
 bribe	VER
 buy	VER
 bye	VER
@@ -213,7 +213,7 @@ stay	VER
 steal	VER
 summon	VER
 summonat	VER
-swap VER
+swap	VER
 take	VER
 talk	VER
 tease	VER
@@ -323,7 +323,7 @@ char	OBJ	chars
 character	OBJ	characters
 charm	OBJ	charms
 cheese	OBJ-FOO	cheeses
-cheeseydog  OBJ-FOO cheeseydogs
+cheeseydog	OBJ-FOO	cheeseydogs
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
 chicken	OBJ-ANI	chickens
@@ -467,7 +467,7 @@ herb	OBJ	herbs
 hint	OBJ	hints
 history	OBJ	histories
 home	OBJ	homes
-honey   OBJ-FOO honeys
+honey	OBJ-FOO	honeys
 honeymoon	OBJ	honeymoons
 hospital	OBJ	hospitals
 hotel	OBJ	hotels
@@ -526,7 +526,7 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
-milk OBJ-FLU milks
+milk	OBJ-FLU	milks
 mine	OBJ-PRO	mines
 minute	OBJ	minutes
 mirror	OBJ	mirrors
@@ -568,7 +568,7 @@ paper	OBJ	papers
 park	OBJ	parks
 patch	OBJ	patches
 path	OBJ	paths
-pearl   OBJ
+pearl	OBJ	pearls
 perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
@@ -637,7 +637,7 @@ semos	OBJ	semos
 sense	OBJ	senses
 server	OBJ	servers
 shadow	OBJ	shadows
-shake   OBJ-FOO shakes
+shake	OBJ-FOO	shakes
 sheaf	OBJ-AMO	sheaves
 sheep	OBJ-ANI	sheep
 sheet	OBJ	sheets
@@ -649,7 +649,7 @@ silver	OBJ	silvers
 skull	OBJ	skulls
 snow	OBJ	snows
 snowball	OBJ	snowballs
-snowglobe   OBJ snowglobes
+snowglobe	OBJ	snowglobes
 sodium	OBJ	sodia
 something	OBJ	somethings
 soul	OBJ	souls
@@ -1007,7 +1007,7 @@ broken	ADJ
 brown	ADJ-COL
 canned	ADJ
 central	ADJ
-chocolate  ADJ
+chocolate	ADJ
 closed	ADJ
 complete	ADJ
 composite	ADJ
@@ -1142,7 +1142,7 @@ ugly	ADJ
 unfair	ADJ
 unsealed	ADJ
 unused	ADJ
-vanilla  ADJ
+vanilla	ADJ
 violet	ADJ-COL
 weekly	ADJ
 weird	ADJ
@@ -1238,3 +1238,4 @@ whatever	IGN
 while	IGN
 yeah	IGN
 yet	IGN
+
