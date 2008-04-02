@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.kalavan.citygardens;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -10,11 +11,15 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +33,7 @@ import java.util.TreeMap;
 public class GardenerNPC implements ZoneConfigurator {
 
 	private static final String QUEST_SLOT = "sue_swap_kalavan_city_scroll";
-
+    private static final Integer MAX_LUNCHES = 7;
 	//
 	// ZoneConfigurator
 	//
@@ -76,7 +81,24 @@ public class GardenerNPC implements ZoneConfigurator {
 
 					@Override
 						public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
-						if (getMaximalAmount(player) < amount) {
+						if (player.getQuest(QUEST_SLOT).startsWith("done;")) {
+							// she is eating. number of lunches is in tokens[1]
+							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							// delay is number of lunches * one day - eats one lunch per day
+							long delay = (Long.parseLong(tokens[1])) * MathHelper.MILLISECONDS_IN_ONE_DAY;
+							long timeRemaining = (Long.parseLong(tokens[2]) + delay)
+								- System.currentTimeMillis();
+							if (timeRemaining > 0) {
+								npc.say("I'm still eating the lunch you brought me last time. It's enough to last me for another "
+                                        + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000))
+                                        + "!");
+                                return false;
+							}
+					    } 
+						if (amount > MAX_LUNCHES){
+							npc.say("I can't take more than a week's worth of sandwiches at once! They'll go stale!");
+							return false;
+						} else if (getMaximalAmount(player) < amount) {
 							npc.say("I would only " + getProductionActivity() + " you "
 									+ Grammar.quantityplnoun(amount, getProductName())
 									+ " if you bring me "
@@ -105,10 +127,9 @@ public class GardenerNPC implements ZoneConfigurator {
 							long timeNow = new Date().getTime();
 							player.setQuest(QUEST_SLOT, amount + ";" + getProductName() + ";"
 											+ timeNow);
-							npc.say("Thanks for the "
-									+ amount
-									+ " lunches! Come back in "
-									+ getApproximateRemainingTime(player) + ", when I've finished eating.");
+							npc.say("Thanks! Come back in "
+									+ getApproximateRemainingTime(player) + ", and I'll have got your " 
+									+ Grammar.quantityplnoun(amount,getProductName()) + " for you.");
 							return true;
 						}
 					}
@@ -121,8 +142,8 @@ public class GardenerNPC implements ZoneConfigurator {
 						long orderTime = Long.parseLong(order[2]);
 						long timeNow = new Date().getTime();
 						if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
-							npc.say("Hello again! I'm still eating lunch. Come back in "
-									+ getApproximateRemainingTime(player) + " to get your scrolls.");
+							npc.say("Hello again! Oops, I still don't have your scrolls! Come back in "
+									+ getApproximateRemainingTime(player) + " to get them.");
 						} else {
                         StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
                                         getProductName());
@@ -134,10 +155,12 @@ public class GardenerNPC implements ZoneConfigurator {
                         }
 
                         player.equip(products, true);
-                        npc.say("Welcome back! I've finished lunch. In exchange here you have "
+                        npc.say("Welcome back! I've put my lunch inside ready to eat later. In exchange here you have "
 								+ Grammar.quantityplnoun(numberOfProductItems,
                                                         getProductName()) + ".");
-                        player.setQuest(QUEST_SLOT, "done");
+                        // store the number of lunches given and the time so we know how long she eats for
+						player.setQuest(QUEST_SLOT, "done" + ";" + numberOfProductItems + ";"
+										+ System.currentTimeMillis());
                         // give some XP as a little bonus for industrious workers
                         player.addXP(15*numberOfProductItems);
                         player.notifyWorldAboutChanges();
@@ -147,20 +170,23 @@ public class GardenerNPC implements ZoneConfigurator {
 				addReply(ConversationPhrases.YES_MESSAGES, "Very warm...");
 				addReply(ConversationPhrases.NO_MESSAGES, "It's better than rain!");
 				addJob("I am the gardener. I hope you like the flowerbeds.");
-				addHelp("If you bring me some #lunch I'll #swap you for a scroll.");
-				addOffer("I haven't anything to trade yet. Wait till the autumn when I'll have some cuttings and seeds.");
+				addHelp("If you bring me some #lunch I'll #swap you for a magic scroll.");
+				addOffer("My tomatoes are doing well, I have enough that I am selling some.");
+				Map<String, Integer> offerings = new HashMap<String, Integer>();
+                offerings.put("tomato", 30);
+                new SellerAdder().addSeller(this, new SellerBehaviour(offerings),false);
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
-				addReply("kalavan city scroll", "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");
+				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");
 				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("tea", 1);
 				requiredResources.put("sandwich", 1);
 
-				ProducerBehaviour behaviour = new SpecialProducerBehaviour("swap", "kalavan city scroll", requiredResources, 10 * 60);
+				ProducerBehaviour behaviour = new SpecialProducerBehaviour("swap", "kalavan city scroll", requiredResources, 1 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Fine day, isn't it?");
-				addQuest("I'd love a cup of #tea, it's thirsty work, gardening.");
+				addQuest("I'd love a cup of #tea, it's thirsty work, gardening. If you bring me a #sandwich too I'll #swap you for a magic scroll.");
 				addReply("tea", "Old Granny Graham may brew you a cup. She's in that big cottage over there.");
 				addGoodbye("Bye. Enjoy the rest of the gardens.");
 			}
