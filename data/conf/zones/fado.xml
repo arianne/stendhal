@@ -1058,14 +1058,7 @@ chocolate shake 110
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
-    <!-- 
-    <entity x="4" y="6">
-    <implementation class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC">
-      <parameter name="name">Baldemar</parameter>
-    </implementation>
-    <attribute name="class">mithrilforger</attribute>
-  </entity> 
-   -->
+   <configurator class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC" />
   <portal x="30" y="1" ref="entrance_left">
    <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left"/>
   </portal>
