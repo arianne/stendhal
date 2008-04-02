@@ -48,6 +48,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyVetoException;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -280,6 +281,10 @@ public class j2DClient extends StendhalUI {
 		keyring = new KeyRing();
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
+		try {
+			keyring.setIcon(true);
+        } catch(PropertyVetoException e) {
+        }
 
 		buddies = new BuddyListPanel(this);
 		buddies.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 300);
