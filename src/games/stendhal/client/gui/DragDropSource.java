@@ -62,13 +62,22 @@ public class DragDropSource extends DragSourceAdapter implements DragGestureList
 			if (draggedObject.dragStarted()) {
 				// start drag
 				Transferable transferable = new DragTransfer(draggedObject);
-
 			    Toolkit tk = Toolkit.getDefaultToolkit();
-			    Dimension size = tk.getBestCursorSize(32, 32);
+
+			     // search for the best matching cursor size
+				Dimension size = draggedObject.getSize();
+
+				if (size == null) {
+					size = new Dimension(32, 32);
+				}
+
+				size = tk.getBestCursorSize(size.width, size.height);
+
+				 // draw the object into an image buffer
 			    Image image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
 
 			    Graphics g = image.getGraphics();
-			    draggedObject.drawDragged(g);
+			    draggedObject.drawDragged(g, size);
 			    g.dispose();
 
 				Cursor crsr = tk.createCustomCursor(image, new Point(0,0), draggedObject.toString());

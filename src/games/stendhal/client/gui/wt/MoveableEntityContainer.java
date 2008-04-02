@@ -18,9 +18,11 @@ import games.stendhal.client.gui.IDraggable;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -130,15 +132,39 @@ public class MoveableEntityContainer implements IDraggable {
 	}
 
 	/**
+	 * Get the image size of the dragged object.
+	 * 
+	 * @return The image size.
+	 */
+	public Dimension getSize() {
+		if (view != null) {
+			return new Dimension(view.getWidth(), view.getHeight());
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * draws the entity.
 	 * @param g the Graphic context to draw to.
 	 */
-	public void drawDragged(Graphics g) {
+	public void drawDragged(Graphics g, Dimension size) {
 		if (view != null) {
 			Graphics2D cg = (Graphics2D) g.create();
+			Rectangle area = view.getArea();
 
 			cg.translate(x, y);
+
+			if (area.height > size.width || area.height > size.height) {
+				 // scale the image down to cursor size
+				int xMax = Math.max(area.height, size.width);
+				int yMax = Math.max(area.width, size.width);
+
+				cg.scale((double)size.width/xMax, (double)size.height/yMax);
+			}
+
 			view.draw(cg);
+
 			cg.dispose();
 		}
 	}
