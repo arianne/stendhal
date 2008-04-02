@@ -14,12 +14,12 @@ public class StendhalTheme extends DefaultMetalTheme // gradient title bars: use
     public String getName() {return "Stendhal";}
 
     private static final ColorUIResource color1 = new ColorUIResource(0xb09257);   
-    private static final ColorUIResource color2 = new ColorUIResource(0xf8f7bf);
-    private static final ColorUIResource color3 = new ColorUIResource(0x7b5a2b);	// active title bar
+    private static final ColorUIResource color2 = new ColorUIResource(0x936138);    // slider on chat window
+    private static final ColorUIResource color3 = new ColorUIResource(0x7b5a2b);	// active title bar and selected text
 
     private static final ColorUIResource color4 = new ColorUIResource(0xefe5ac);
     private static final ColorUIResource color5 = new ColorUIResource(0xF0CFE5);	// buttons
-    private static final ColorUIResource color6 = new ColorUIResource(0x6a4f1a);	// background
+    private static final ColorUIResource color6 = new ColorUIResource(0x6a3e1a);	// background
 
     protected ColorUIResource getPrimary1() {return color1;}
     protected ColorUIResource getPrimary2() {return color2;}
