@@ -31,9 +31,10 @@ public class KaryoNPC implements ZoneConfigurator {
 
 			@Override
 			public void createDialog() {
-				addGreeting("Welcome. May i help you?");
+				addGreeting("Yes, may i help you?");
 				addJob("My job is to see you don't enter unless you have the proper ID.");
-				addGoodbye("Good bye.  If you wish to enter headquarters, obtain an assassin's license.");
+				addHelp("My job is not to help you. You must help yourself.");
+				addGoodbye("Good bye.  If you wish to enter headquarters, obtain an assassin's ID.");
 				// all other behaviour is defined in the quest.
 			}
 		};

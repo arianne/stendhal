@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="brown_rug2" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/brown_rug2.png"/>
  </tileset>
@@ -126,12 +126,12 @@
    H4sIAAAAAAAAAO3WMQ6DMAwAQP7/HtQJVWpf1omFoQqpcXFyNyPLJI7tZQEgyxYc7xUcD6JrdGS/nJVzPu/57wSKMBdiqTt20X37HRzvqKd2r86JOJV6k52HarJ6obfBDOwWMC9zDoBRrA3f9My9lrhQwbdafqRlUddoe/No/wMZvJv7arkb9wcAAABAhg+R4F2YAEAAAA==
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.46">
+ <layer name="collision" width="64" height="64" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Yaw4DIQiEvf8hPGt/bWK2grI8hDiTmD62jHwqxLS31jpG+Bh1Opcxnz68znKl8m7t34dj5rTKbzYvFbPrI8lPk3+kxwlvag5tvDe/Rx1Z8lsru3/2/CTet/Fb+HPxK7+d+bi61Xpz/ruKPp/ec3jGf3nuff4zS7L/VvWQSRHn31MW9VCZ30Lo/+j/Ve8/Ftr1t1jbyvyn/D3rM6L3V91/zVxvn2r8X+e09KI8Kf9dn5Wn95DqZK7gB/+t/FQus5zGZ9R7Lb9kDipm5suxrzwqiVpDizNaVTezPwI/+C3X4B0f/Vki9L972R+B35a/Uv0/8dh/8IMf9Y/9v0/gBz/4wf+Fn/sP8eTQMEhjsymK37pmrO5eGg5p3CmtcvXmz3ju35KwoP+DH/z3rYGGPfM6RfT/7PwR/T/jGkTc/7L2CwuWPny/E5NNO7n1yW8x7h4/PT3n9gBAAAA=
+   H4sIAAAAAAAAAO2Yaw4DIQiEvf8hPGt/bWK2orIOCHEmMX1sGflUiGktpVQO99HqdC5tPrV57eUq5V3Kv8+IeaRZfr15pZhVH01+O/l7emi8Lc4R+XH8aEX3j56fxvs2foT/KH7mtzLfqG53vUf+q/I+n9ZzWMZ/eW59/iNLs/+oeogkj/NvKUQ9ZOZHiP2f/T/r/QehVX/E2mbmP+VvWZ8evT/r/u/M9fbJxv91TqSX5Cn5r/rMPK2HVidzJT/5b+WXcunl1D6T3u/ya+aQYnq+I/aZRyZJa4g4o1l1M/sj8pMfuQbveO/PGrH/3cv+iPxY/kz1/8Rz/8lPftY/9/8+kZ/85Cf/F/7Rf4gnxw6DNjaavPjRNYO6e+1waONOaZarNX/Ec/+WhoX9n/zkv28Ndtgjr5NH/4/O79H/I66Bx/0var9AsNTm+5WYaFrJrXZ+y3H3+AGEvt8tAEAAAA==
   </data>
  </layer>
- <layer name="protection" width="64" height="64" visible="0">
+ <layer name="protection" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>

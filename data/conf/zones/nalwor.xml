@@ -310,14 +310,11 @@ arundula 10
     </entity>
     <portal x="24" y="11" ref="hqcellarup">
        </portal>
- <!--   
-   <portal x="24" y="11" ref="hqcellarup">
-    <destination zone="int_nalwor_assassinhq_0" ref="hq0down"/>
-   </portal>
+
    <portal x="6" y="0" ref="hqcellardown">
     <destination zone="-1_nalwor_caves_e"  ref="crawlyhole1"/>
    </portal>
-    --> 
+
  </zone>
 
   <zone name="int_nalwor_assassinhq_0" file="interiors/nalwor/assassinhq_0.tmx">
