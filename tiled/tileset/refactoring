@@ -103,8 +103,8 @@ K*./building/stairs/int_ns.png
 m/K*./building/stairs/stairs.png
 d*/building/stairs/winding.png
 d*/building/stairs/winding_2.png
-d+k*/building/wall/earthen.png	parts by danter
-./building/wall/earthen_2.png	parts by danter
+d+k*/building/wall/earthen.png
+d+k/building/wall/earthen_2.png
 d+k*/building/wall/earthen_3.png
 K*/building/wall/int_blue_green.png
 K*/building/wall/int_green_blue.png
