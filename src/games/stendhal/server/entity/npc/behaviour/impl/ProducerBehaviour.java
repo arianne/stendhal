@@ -131,6 +131,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		this.productionTimePerItem = productionTimePerItem;
 		this.productBound = productBound;
 
+		// add the activity word as verb to the word list in case it is still missing there
+		WordList.getInstance().registerName(productionActivity, ExpressionType.VERB);
+
 		for (String itemName : requiredResourcesPerItem.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
