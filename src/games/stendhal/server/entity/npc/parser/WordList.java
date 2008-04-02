@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,13 +48,13 @@ public final class WordList {
 
 	public static final String WORDS_FILENAME = "words.txt";
 
-	static final String VERSION_KEYWORD = "@Version";
+	static final String HASH_KEYWORD = "@Hash";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	Set<Sentence> compoundNames = new HashSet<Sentence>();
 
-	private int version = 0;
+	private String hash = "";
 
 	private static boolean enableDatabaseAccess = false;
 
@@ -91,7 +93,7 @@ public final class WordList {
 
 		int ret = dbWordList.readFromDB();
 
-		int dbVersion = dbWordList.version;
+		String dbHash = dbWordList.hash;
 
 		// At this point instance already contains the word list of "words.txt",
 		// so let's use this to compare the version number against the database content.
@@ -99,7 +101,7 @@ public final class WordList {
 		// If the database is still empty, store the default entries into it.
 		// If not, check the version number of the word list between database
 		// and "words.txt". If not equal, re-initialize the DB word list.
-		if (ret == 0 || instance.version != dbVersion) {
+		if (ret == 0 || !instance.hash.equals(dbHash)) {
 			// store the new word list into the DB
 			instance.writeToDB();
 		} else {
@@ -133,17 +135,54 @@ public final class WordList {
 
 	/**
 	 * Returns the WordList version number. 
-	 * @return version number
+	 * @return MD5 hash code
 	 */
-	public int getVersion() {
-	    return version;
+	public String getHash() {
+	    return hash;
     }
 
 	/**
-	 * Increments the WordList version number.
+	 * Updates the MD5 hash code.
 	 */
-	void incrementVersion() {
-		++version;
+	boolean calculateHash() {
+	    MessageDigest md;
+
+        try {
+	        md = MessageDigest.getInstance("MD5");
+        } catch(NoSuchAlgorithmException e) {
+        	return false;
+        }
+
+        for(WordEntry e : words.values()) {
+        	String s = e.getNormalized();
+        	if (s != null) {
+        		md.update(s.getBytes());
+        	}
+
+        	s = e.getPlurSing();
+        	if (s != null) {
+        		md.update(s.getBytes());
+        	}
+
+        	s = e.getTypeString();
+        	if (s != null) {
+        		md.update(s.getBytes());
+        	}
+
+        	//md.update(e.getValue().getBytes());
+        }
+
+	    byte[] buffer = md.digest();
+
+	    StringBuffer sb = new StringBuffer();
+
+		for(byte b : buffer) {
+			sb.append(Integer.toHexString(b & 0xFF).toUpperCase());
+		}
+
+		hash = sb.toString();
+
+		return true;
     }
 
 	/**
@@ -161,16 +200,10 @@ public final class WordList {
 
 			if (line.startsWith("#")) {
 				// look for the version keyword
-				int idxVersion = line.indexOf(VERSION_KEYWORD);
+				int idxVersion = line.indexOf(HASH_KEYWORD);
 
 				if (idxVersion != -1) {
-					String verStr = line.substring(idxVersion + VERSION_KEYWORD.length()).trim();
-
-					try {
-						version = Integer.parseInt(verStr);
-					} catch (NumberFormatException e) {
-						version = 0;
-					}
+					hash = line.substring(idxVersion + HASH_KEYWORD.length()).trim();
 				} else if (comments != null) {
 					comments.add(line);
 				}
@@ -676,8 +709,8 @@ public final class WordList {
 
         	try {
         		try {
-        			acc.execute("insert into words(normalized, type, value)\n"
-        					+ "values('" + VERSION_KEYWORD + "', '" + VERSION_KEYWORD + "', " + version + ")");
+        			acc.execute("insert into words(normalized, type, plural)\n"
+        					+ "values('" + HASH_KEYWORD + "', '" + HASH_KEYWORD + "', '" + hash + "')");
         		} finally {
             		acc.close();
         		}
@@ -868,14 +901,14 @@ public final class WordList {
 
 			trans.commit();
 
-			WordEntry versionEntry = find(VERSION_KEYWORD);
+			WordEntry versionEntry = find(HASH_KEYWORD);
 
 			if (versionEntry != null) {
-				version = versionEntry.getValue();
+				hash = versionEntry.getPlurSing();
 				words.remove(versionEntry.getNormalized());
 				--count;
 			} else {
-				version = 0;
+				hash = "";
 			}
 
 			logger.debug("read " + count + " word entries from database");

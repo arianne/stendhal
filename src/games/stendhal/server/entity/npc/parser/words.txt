@@ -1,4 +1,4 @@
-# @Version 30
+# @Hash 3473E54867B85739D75EEE9C6548C2
 #
 # Word list for the Stendhal conversation parser
 #

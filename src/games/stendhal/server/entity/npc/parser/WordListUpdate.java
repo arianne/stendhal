@@ -35,8 +35,8 @@ public final class WordListUpdate {
 			wl.read(reader, comments);
 			reader.close();
 
-			// increment version counter
-			wl.incrementVersion();
+			// update the hash value
+			wl.calculateHash();
 
 	    	// see if we can find the word list source file in the file system
 	    	String outputPath = "src/games/stendhal/server/entity/npc/parser/" + WordList.WORDS_FILENAME;
@@ -49,7 +49,7 @@ public final class WordListUpdate {
 
         	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
 
-        	writer.println("# " + WordList.VERSION_KEYWORD + " " + wl.getVersion());
+        	writer.println("# " + WordList.HASH_KEYWORD + " " + wl.getHash());
 
         	for (String c : comments) {
     			writer.println(c);
