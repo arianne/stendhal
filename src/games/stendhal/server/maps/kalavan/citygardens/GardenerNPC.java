@@ -81,7 +81,7 @@ public class GardenerNPC implements ZoneConfigurator {
 
 					@Override
 						public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
-						if (player.getQuest(QUEST_SLOT).startsWith("done;")) {
+						if (player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							// she is eating. number of lunches is in tokens[1]
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							// delay is number of lunches * one day - eats one lunch per day
