@@ -242,7 +242,7 @@ public final class BuddyListPanel extends ClientPanel {
 	            mi.addActionListener(listener);
 	            menu.add(mi);
 
-	            menu.show(e.getComponent(), e.getX(), e.getY());
+	            menu.show(e.getComponent(), e.getX()-10, e.getY()-10);
 			}
 		}
 	}

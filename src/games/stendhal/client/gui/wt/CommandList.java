@@ -52,7 +52,7 @@ public class CommandList extends JPopupMenu //StyledJPopupMenu
 	 * @param pt
 	 */
 	public void display(MouseEvent e) {
-    	show(e.getComponent(), e.getX(), e.getY());
+    	show(e.getComponent(), e.getX()-10, e.getY()-10);
 	}
 
 	protected void populate(String[] items) {
