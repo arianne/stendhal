@@ -331,7 +331,16 @@ public class ShopList {
 		shops.add("sellhotdogs", "chocolate shake", 110);
 		shops.add("sellhotdogs", "chocolate bar", 100);
 		shops.add("sellhotdogs", "snowglobe", 200);
-		
+
+		// magic city barmaid)
+		shops.add("sellmagic", "hotdog", 160);
+		shops.add("sellmagic", "cheeseydog", 180);
+		shops.add("sellmagic", "tuna sandwich", 130);
+		shops.add("sellmagic", "sandwich", 120);
+		shops.add("sellmagic", "vanilla shake", 110);
+		shops.add("sellmagic", "chocolate shake", 110);
+		shops.add("sellmagic", "chocolate bar", 100);
+		shops.add("sellmagic", "licorice", 100);
 		
 	}
 
