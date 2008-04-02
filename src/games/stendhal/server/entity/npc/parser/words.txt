@@ -1,4 +1,4 @@
-# @Version 28
+# @Version 29
 #
 # Word list for the Stendhal conversation parser
 #
@@ -467,6 +467,7 @@ herb	OBJ	herbs
 hint	OBJ	hints
 history	OBJ	histories
 home	OBJ	homes
+honey   OBJ-FOO honeys
 honeymoon	OBJ	honeymoons
 hospital	OBJ	hospitals
 hotel	OBJ	hotels
@@ -525,6 +526,7 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
+milk OBJ-FLU milks
 mine	OBJ-PRO	mines
 minute	OBJ	minutes
 mirror	OBJ	mirrors
