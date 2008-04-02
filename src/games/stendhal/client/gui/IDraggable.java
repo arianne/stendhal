@@ -17,6 +17,7 @@
 
 package games.stendhal.client.gui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -45,9 +46,16 @@ public interface IDraggable {
 	boolean dragFinished(Point p);
 
 	/**
+	 * Get the image size of the dragged object.
+	 * 
+	 * @return The image size.
+	 */
+	Dimension getSize();
+
+	/**
 	 * Draws the dragged item.
 	 */
-	void drawDragged(Graphics g);
+	void drawDragged(Graphics g, Dimension size);
 
 	/**
 	 * This object is dragged around the screen. When this method returns false
