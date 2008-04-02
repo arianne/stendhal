@@ -418,7 +418,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The height (in pixels).
 	 */
 	public int getHeight() {
-		return IGameScreen.SIZE_UNIT_PIXELS;
+		applyChanges();
+
+		if (sprite != null) {
+			return sprite.getHeight();
+		} else {
+			return IGameScreen.SIZE_UNIT_PIXELS;
+		}
 	}
 
 	/**
@@ -445,7 +451,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The width (in pixels).
 	 */
 	public int getWidth() {
-		return IGameScreen.SIZE_UNIT_PIXELS;
+		applyChanges();
+
+		if (sprite != null) {
+			return sprite.getWidth();
+		} else {
+			return IGameScreen.SIZE_UNIT_PIXELS;
+		}
 	}
 
 	/**

@@ -6,7 +6,6 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Entity;
@@ -28,16 +27,6 @@ public class Corpse2DView extends Entity2DView {
 	private Corpse corpse;
 
 	/**
-	 * The corpse height.
-	 */
-	private int height;
-
-	/**
-	 * The corpse width.
-	 */
-	private int width;
-
-	/**
 	 * The slot content inspector.
 	 */
 	private Inspector inspector;
@@ -57,9 +46,6 @@ public class Corpse2DView extends Entity2DView {
 		super(corpse);
 
 		this.corpse = corpse;
-
-		height = IGameScreen.SIZE_UNIT_PIXELS;
-		width = IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	//
@@ -122,32 +108,12 @@ public class Corpse2DView extends Entity2DView {
 
 		Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
 
-		width = sprite.getWidth();
-		height = sprite.getHeight();
+		int width = sprite.getWidth();
+		int height = sprite.getHeight();
 
 		setSprite(sprite);
 
 		calculateOffset(width, height);
-	}
-
-	/**
-	 * Get the height.
-	 * 
-	 * @return The height (in pixels).
-	 */
-	@Override
-	public int getHeight() {
-		return height;
-	}
-
-	/**
-	 * Get the width.
-	 * 
-	 * @return The width (in pixels).
-	 */
-	@Override
-	public int getWidth() {
-		return width;
 	}
 
 	/**
