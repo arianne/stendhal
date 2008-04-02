@@ -44,10 +44,10 @@ import marauroa.common.game.RPSlot;
 public final class Character extends ClientPanel {
 
 	/** Panel width. */
-	private static final int PANEL_WIDTH = 170;
+	private static final int PANEL_WIDTH = 150;
 
 	/** Panel height. */
-	private static final int PANEL_HEIGHT = 285;
+	private static final int PANEL_HEIGHT = 260;
 
 	/** Height/width of slots. */
 	private static final int SLOT_SIZE = 39; // estimate
