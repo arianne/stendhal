@@ -1017,7 +1017,7 @@ public class j2DClient extends StendhalUI {
 
 	@Override
 	public void requestQuit() {
-		if (JOptionPane.showConfirmDialog(desktop, "Are you sure you want to leave Standhal?",
+		if (JOptionPane.showConfirmDialog(desktop, "Are you sure you want to leave Stendhal?",
 				"Stendhal", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			j2DClient.get().shutdown();
 		}
