@@ -66,7 +66,7 @@ public class j2DClient extends StendhalUI {
 	private final static int BORDER_WIDTH = 155;
 
 	/** Width of the game screen is calculated by substracting the border widths from 1000. */
-	public static int SCREEN_WIDTH = (1000 - 2*BORDER_WIDTH) / 32 * 32;
+	public static int SCREEN_WIDTH = 640; //(1000 - 2*BORDER_WIDTH) / 32 * 32;
 
 	/** height of the game screen (without the chat line). */
 	public static int SCREEN_HEIGHT = 480;
@@ -495,7 +495,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 
-			// Shows a offline icon if no messages are received in 120 seconds.
+			// Shows an offline icon if no messages are received in 120 seconds.
 			if ((refreshTime - lastMessageHandle > 120000L)
 					|| !client.getConnectionState()) {
 				setOffline(true);
