@@ -3,112 +3,111 @@ package games.stendhal.server.entity.npc.parser;
 import java.io.PrintWriter;
 
 /**
- * Word list entry, used to categorize words. Nouns and verbs can be associated
- * with their plural form.
- * 
+ * Word list entry, used to categorize words. Nouns and verbs can be associated with their plural form.
+ *
  * @author Martin Fuchs
  */
 public final class WordEntry {
 
-	// normalized word
-	private String normalized = "";
+    // normalized word
+    private String normalized = "";
 
-	// pluralized word (or singular for entries of type ...-PLU
-	private String plurSing;
+    // pluralized word (or singular for entries of type ...-PLU
+    private String plurSing;
 
-	// Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
-	private ExpressionType type;
+    // Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
+    private ExpressionType type;
 
-	// numeric value for words of type NUM
-	private Integer value;
+    // numeric value for words of type NUM
+    private Integer value;
 
-	// database ID
-	private int id;
+    // database ID
+    private int id;
 
-	/**
-	 * Write word entry to the given print writer.
-	 *
-	 * @param pw
-	 * @param key
-	 */
-	public void print(PrintWriter pw, String key) {
-		pw.printf("%s\t", key);
+    /**
+     * Write word entry to the given print writer.
+     *
+     * @param pw
+     * @param key
+     */
+    public void print(final PrintWriter pw, final String key) {
+        pw.printf("%s\t", key);
 
-		if (type != null) {
-			pw.print(type);
-		}
+        if (type != null) {
+            pw.print(type);
+        }
 
-		if (!normalized.equals(key)) {
-			pw.printf("\t=%s", normalized);
-		}
+        if (!normalized.equals(key)) {
+            pw.printf("\t=%s", normalized);
+        }
 
-		if (value != null) {
-			pw.printf("\t%d", value);
-		}
+        if (value != null) {
+            pw.printf("\t%d", value);
+        }
 
-		if (plurSing != null) {
-			pw.printf("\t%s", plurSing);
-		}
-	}
-
-	void setNormalized(String normalized) {
-		this.normalized = normalized;
-	}
-
-	public String getNormalized() {
-		return normalized;
-	}
-
-	void setType(ExpressionType type) {
-		this.type = type;
-	}
-
-	public ExpressionType getType() {
-		return type;
-	}
-
-	public String getTypeString() {
-		return type != null ? type.getTypeString() : "";
-	}
-
-	public String getNormalizedWithTypeString() {
-		return normalized + "/" + getTypeString();
+        if (plurSing != null) {
+            pw.printf("\t%s", plurSing);
+        }
     }
 
-	void setPlurSing(String plurSing) {
-		this.plurSing = plurSing;
-	}
-
-	public String getPlurSing() {
-		return plurSing;
-	}
-
-	public boolean isPlural() {
-	    return type != null && type.isPlural();
+    void setNormalized(final String normalized) {
+        this.normalized = normalized;
     }
 
-	void setValue(Integer value) {
-		this.value = value;
-	}
-
-	public Integer getValue() {
-		return value;
-	}
-
-	void setId(int id) {
-	    this.id = id;	    
+    public String getNormalized() {
+        return normalized;
     }
 
-	public int getId() {
-	    return id;	    
+    void setType(final ExpressionType type) {
+        this.type = type;
     }
 
-	/**
-	 * Return a simple string representation of the Expression.
-	 */
-	@Override
-	public String toString() {
-		return getNormalizedWithTypeString();
-	}
+    public ExpressionType getType() {
+        return type;
+    }
+
+    public String getTypeString() {
+        return type != null? type.getTypeString(): "";
+    }
+
+    public String getNormalizedWithTypeString() {
+        return normalized + "/" + getTypeString();
+    }
+
+    void setPlurSing(final String plurSing) {
+        this.plurSing = plurSing;
+    }
+
+    public String getPlurSing() {
+        return plurSing;
+    }
+
+    public boolean isPlural() {
+        return type != null && type.isPlural();
+    }
+
+    void setValue(final Integer value) {
+        this.value = value;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    void setId(final int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Return a simple string representation of the Expression.
+     */
+    @Override
+    public String toString() {
+        return getNormalizedWithTypeString();
+    }
 
 }

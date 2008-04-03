@@ -39,7 +39,7 @@ the grammatical aliases by simple rules like:
 - can YOU give ME OBJECT?
 
 Filling words like "please" should be silently ignored, common words like
-"could" should be replaced by their normal form like "can".  
+"could" should be replaced by their normal form like "can".
 
 
 (from developer blog)
@@ -52,9 +52,9 @@ singular and plural nouns like "buy two bananas". The next stage of conversation
 to understand sentences like "Can you give me three bananas, please?". To achieve this, it will be based
 on a list known words with associated word types. If an user speaks to a NPC, the sentences are parsed
 into grammatical expressions like "SUBJECT VERB OBJECT" and matched with predefined expressions to model
-the character response. 
+the character response.
 
-(see also the related Developer Track entry.) 
+(see also the related Developer Track entry.)
 
 
 ...

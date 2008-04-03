@@ -10,69 +10,69 @@ import java.util.Set;
  * @author Martin Fuchs
  */
 public final class NameSearch {
-	NameSearch(Set<String> names) {
-		this.names = names;
-		this.name = null;
-		this.amount = 1;
-	}
+    NameSearch(final Set<String> names) {
+        this.names = names;
+        this.name = null;
+        this.amount = 1;
+    }
 
-	private Set<String> names;
+    private final Set<String> names;
 
-	private String name;
-	private int	amount;
+    private String name;
+    private int amount;
 
-	/**
-	 * Searches for item to match the given Expression. 
-	 *
-	 * @param item
-	 * @return item name, or null if no match
-	 */
-	public boolean search(Expression item) {
-		// see if the word matches an item in our list
-		String itemName = item.getNormalized();
+    /**
+     * Searches for item to match the given Expression.
+     *
+     * @param item
+     * @return item name, or null if no match
+     */
+    public boolean search(final Expression item) {
+        // see if the word matches an item in our list
+        String itemName = item.getNormalized();
 
-		if (names.contains(itemName)) {
-			name = itemName;
-			amount = item.getAmount();
-			return true;
-    	}
+        if (names.contains(itemName)) {
+            name = itemName;
+            amount = item.getAmount();
+            return true;
+        }
 
-		// see if instead the plural matches
-		String plural = Grammar.plural(itemName);
+        // see if instead the plural matches
+        String plural = Grammar.plural(itemName);
 
-		if (names.contains(plural)) {
-			name = plural;
-			amount = item.getAmount();
-			return true;
-		}
+        if (names.contains(plural)) {
+            name = plural;
+            amount = item.getAmount();
+            return true;
+        }
 
-    	return false;
-	}
+        return false;
+    }
 
-	/**
-	 * Return true if matching name found.
-	 *
-	 * @return boolean find flag
-	 */
-	public boolean found() {
+    /**
+     * Return true if matching name found.
+     *
+     * @return boolean find flag
+     */
+    public boolean found() {
         return name != null;
     }
 
-	/**
-	 * Return item name.
-	 *
-	 * @return 
-	 */
-	public String getName() {
+    /**
+     * Return item name.
+     *
+     * @return
+     */
+    public String getName() {
         return name;
     }
 
-	/**
-	 * Return amount of items.
-	 *
-	 * @return
-	 */
-	public int getAmount() {
+    /**
+     * Return amount of items.
+     *
+     * @return
+     */
+    public int getAmount() {
         return amount;
     }
 }
