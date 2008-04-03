@@ -129,8 +129,6 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 		// Show nothing until there is map data
 		super("Minimap", 100, 0);
 
-		setLocation(4/*StendhalUI.get().getWidth() - 200*/, 220);
-
 		this.client = client;
 
 //		if (System.getProperty("stendhal.transparency") != null) {

@@ -29,7 +29,6 @@ import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.Minimap;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
@@ -48,11 +47,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyVetoException;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
-import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -275,36 +272,37 @@ public class j2DClient extends StendhalUI {
 
 		mainFrame.getFrame().toFront();
 
-		/*
+        // set default window positions
+        PropertyManager propertyMgr = PropertyManager.getInstance();
+
+        propertyMgr.setDefaultProperties("Keyring", true, 4, 200);
+        propertyMgr.setDefaultProperties("Buddies", false, SCREEN_WIDTH+BORDER_WIDTH, 300);
+        propertyMgr.setDefaultProperties("Character", false, SCREEN_WIDTH+BORDER_WIDTH, 0);
+        propertyMgr.setDefaultProperties("Minimap", false, 4, 220);
+        propertyMgr.setDefaultProperties("Bag", false, 0, 0);
+
+        propertyMgr.setDefaultProperties("corpse", false, BORDER_WIDTH, 190);
+        propertyMgr.setDefaultProperties("chest", false, BORDER_WIDTH+100, 190);
+
+        /*
 		 * In-screen dialogs
 		 */
 		keyring = new KeyRing();
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
-		try {
-			keyring.setIcon(true);
-        } catch(PropertyVetoException e) {
-        }
 
 		buddies = new BuddyListPanel(this);
-		buddies.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 300);
 		addWindow(buddies);
 
 		character = new Character();
-		character.setLocation(SCREEN_WIDTH+BORDER_WIDTH, 0);
 		addWindow(character);
 
 		minimap = new Minimap(client);
 		addWindow(minimap);
 		positionChangeListener.add(minimap);
 
-		inventory = new EntityContainer("bag", 3, 4, false);
+		inventory = new EntityContainer("Bag", 3, 4, false);
 		addWindow(inventory);
-
-		// set some default window positions
-		WtWindowManager windowManager = WtWindowManager.getInstance();
-		windowManager.setDefaultProperties("corpse", false, 0, 190);
-		windowManager.setDefaultProperties("chest", false, 100, 190);
 
 		directionRelease = null;
 
@@ -346,18 +344,10 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @param panel
 	 */
-	private void addWindow(JInternalFrame panel) {
-		addWindow(panel, true);
-    }
-
-	/**
-	 * Add a panel to the screen.
-	 *
-	 * @param panel
-	 */
-	private void addWindow(JInternalFrame panel, boolean show) {
+	private void addWindow(ClientPanel panel) {
 		desktop.add(panel, JLayeredPane.DEFAULT_LAYER);
-		panel.setVisible(show);
+
+        PropertyManager.getInstance().formatWindow(panel);
     }
 
 	// MEMORY DEBUGGING:
@@ -537,8 +527,7 @@ public class j2DClient extends StendhalUI {
 				logger.info("Request logout");
 				try {
 					/*
-					 * We request server permision to logout. Server can deny
-					 * it.
+					 * We request server permission to logout. Server can deny it.
 					 */
 					if (client.logout()) {
 						canExit = true;
@@ -555,6 +544,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 		}
+
 		// MEMORY DEBUGGING:
 		// {
 		// Runtime rt = Runtime.getRuntime();
@@ -729,10 +719,10 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public void shutdown() {
-		gameRunning = false;
-
 		// try to save the window configuration
-		WtWindowManager.getInstance().save();
+		PropertyManager.getInstance().save();
+
+        gameRunning = false;
 	}
 
 	//

@@ -107,7 +107,7 @@ public final class BuddyListPanel extends ClientPanel {
 	 * Create a buddy list panel.
 	 */
 	public BuddyListPanel(StendhalUI ui) {
-		super("Buddy List", 100, 100);
+		super("Buddies", 100, 100);
 
 		this.ui = ui;
 

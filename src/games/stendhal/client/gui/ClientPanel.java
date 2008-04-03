@@ -99,6 +99,24 @@ public class ClientPanel extends JInternalFrame {
 	}
 
 
+	/**
+	 * Notify PropertyManager of the current window state.
+	 */
+    public void setIcon(boolean state) throws PropertyVetoException {
+        PropertyManager.getInstance().setMinimized(this, state);
+
+        super.setIcon(state);
+    }
+
+    public void setBounds(int x, int y, int width, int height) {
+        if (x != 0 && y != 0) {
+            PropertyManager.getInstance().moveTo(this, x, y);
+        }
+
+        super.setBounds(x, y, width, height);
+    }
+
+
 	/** Returns size of the client area.*/
 	public Dimension getClientSize() {
 		return clntSize;

@@ -71,7 +71,7 @@ public final class Character extends ClientPanel {
 
 	/** Creates a new instance of Character. */
 	public Character() {
-		super("character", PANEL_WIDTH, PANEL_HEIGHT);
+		super("Character", PANEL_WIDTH, PANEL_HEIGHT);
 
 		// manually position the client controls
 		setLayout(null);

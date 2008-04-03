@@ -21,6 +21,7 @@ import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.Desktop;
 import games.stendhal.client.gui.MouseHandlerAdapter;
+import games.stendhal.client.gui.PropertyManager;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 
@@ -195,7 +196,9 @@ public class GroundContainer extends JInternalFrame implements Inspector
 			desktop.add(container);
 
 			container.setSlot(suspect, content.getName());
-			container.setVisible(true);
+
+//			container.setVisible(true);
+	        PropertyManager.getInstance().formatWindow(container);
 		}
 
 		return container;

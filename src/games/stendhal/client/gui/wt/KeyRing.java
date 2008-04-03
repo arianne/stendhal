@@ -17,16 +17,9 @@ public final class KeyRing extends EntityContainer implements FeatureChangeListe
 
 	/**
 	 * Create a key ring.
-	 * 
-	 * @param client
-	 *            The stendhal client.
 	 */
 	public KeyRing() {
-		// Remember if you change these numbers change also a number in
-		// src/games/stendhal/server/entity/RPEntity.java
-		super("keyring", 2, 4, false);
-
-		setLocation(4, 200);
+		super("Keyring", 2, 4, false);
 	}
 
 	//

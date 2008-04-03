@@ -1,7 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.gui.PropertyManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
 
@@ -26,7 +26,7 @@ class SoundAction implements SlashAction {
 		if (command.equals("mute")) {
 			String param = params[1];
 
-			WtWindowManager.getInstance().setProperty("sound.mute", param);
+			PropertyManager.getInstance().setProperty("sound.mute", param);
 			SoundMaster.setMute(param.equals("on"));
 			SoundSystem.get().setMute(param.equals("on"));
 		} else if (command.equals("volume")) {
@@ -42,8 +42,7 @@ class SoundAction implements SlashAction {
 				StendhalUI.get().addEventLine(
 						"Volume must be an integer between 0 and 100");
 			} else {
-				WtWindowManager.getInstance().setProperty("sound.volume",
-						Integer.toString(vol));
+				PropertyManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
 				SoundSystem.get().setVolume(vol);
 			}
 		}
