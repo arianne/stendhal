@@ -95,7 +95,7 @@ public class GroundContainer extends JInternalFrame implements Inspector
     			if (actions.length > 0) {
     				Entity entity = view.getEntity();
 
-    				new CommandList(entity.getType(), actions, view).show(e.getComponent(), e.getX()-10, e.getY()-10);
+    				new CommandList(entity.getType(), actions, view).display(e);
     			}
     		}
     	}
