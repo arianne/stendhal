@@ -84,7 +84,6 @@ public class j2DClient extends StendhalUI {
 
 	private boolean gameRunning;
 
-	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
 
 	/** the Character panel. */
