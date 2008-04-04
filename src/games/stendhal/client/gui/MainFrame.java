@@ -12,9 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class MainFrame {
-
-	private JFrame mainFrame = new JFrame();
+@SuppressWarnings("serial")
+public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		initialize();
@@ -28,30 +27,26 @@ public class MainFrame {
 	}
 
 	private void setLayout() {
-		Container content = mainFrame.getContentPane();
+		Container content = getContentPane();
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 	}
 
 	private void setDefaultCloseBehaviour() {
 		// When the user tries to close the window, don't close immediately,
 		// but show a confirmation dialog.
-		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 	}
 
 	private void setIcon() {
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 
-		mainFrame.setIconImage(new ImageIcon(url).getImage());
+		setIconImage(new ImageIcon(url).getImage());
 	}
 
 	private void setTitle() {
-		mainFrame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
+		setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
 				+ stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
-	}
-
-	 JFrame getFrame() {
-		return mainFrame;
 	}
 
 }

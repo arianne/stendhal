@@ -49,7 +49,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -138,7 +137,7 @@ public class j2DClient extends StendhalUI {
 
 		positionChangeListener = new PositionChangeMulticaster();
 
-		Container content = mainFrame.getFrame().getContentPane();
+		Container content = mainFrame.getContentPane();
 
 		/*
 		 * Get hold of the frame content and set up the resolution of the game
@@ -148,7 +147,7 @@ public class j2DClient extends StendhalUI {
 		desktop.setVisible(true);
 
 		content.setLayout(new BorderLayout());
-		content.add(desktop, BorderLayout.CENTER);
+		content.add(desktop, BorderLayout.NORTH);
 
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
@@ -200,7 +199,7 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Handle focus assertion and window closing
 		 */
-		mainFrame.getFrame().addWindowListener(new WindowAdapter() {
+		mainFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent ev) {
 				playerChatText.requestFocus();
@@ -235,16 +234,16 @@ public class j2DClient extends StendhalUI {
 		JPanel bottomPanel = new JPanel();
 //		content.add(leftPanel, BorderLayout.WEST);
 //		content.add(rightPanel, BorderLayout.EAST);
-		content.add(bottomPanel, BorderLayout.SOUTH);
+		content.add(bottomPanel, BorderLayout.CENTER);
 
 //		leftPanel.setPreferredSize(new Dimension(BORDER_WIDTH, SCREEN_HEIGHT));
 //		rightPanel.setPreferredSize(new Dimension(BORDER_WIDTH, SCREEN_HEIGHT));
 
-		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-		bottomPanel.add(gameLog);
-		bottomPanel.add(playerChatText);
+		bottomPanel.setLayout(new BorderLayout());
+		bottomPanel.add(gameLog, BorderLayout.CENTER);
+		bottomPanel.add(playerChatText, BorderLayout.SOUTH);
 
-		mainFrame.getFrame().pack();
+		mainFrame.pack();
 
 
 		KeyListener keyListener = new GameKeyHandler();
@@ -254,22 +253,23 @@ public class j2DClient extends StendhalUI {
 		playerChatText.addKeyListener(keyListener);
 		desktop.addKeyListener(keyListener);
 
-		mainFrame.getFrame().setLocation(new Point(20, 20));
+		mainFrame.setLocation(new Point(20, 20));
 
 		// finally make the window visible
-		mainFrame.getFrame().pack();
-		mainFrame.getFrame().setResizable(false);
-		mainFrame.getFrame().setVisible(true);
+		mainFrame.pack();
+        mainFrame.setMinimumSize(mainFrame.getSize());
+		mainFrame.setVisible(true);
 
 		screen = new GameScreen(client, desktop);
+
 		client.setDesktop(desktop);
 		client.setScreen(screen);
-		client.setMainframe(mainFrame.getFrame());
+		client.setMainframe(mainFrame);
 		GameScreen.setDefaultScreen(screen);
 
 		positionChangeListener.add(screen);
 
-		mainFrame.getFrame().toFront();
+		mainFrame.toFront();
 
         // set default window positions
         PropertyManager propertyMgr = PropertyManager.getInstance();
@@ -458,7 +458,7 @@ public class j2DClient extends StendhalUI {
 					minimap.update_pathfind();
 				}
 
-				if (mainFrame.getFrame().getState() != Frame.ICONIFIED) {
+				if (mainFrame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
 				}
@@ -781,7 +781,7 @@ public class j2DClient extends StendhalUI {
 		}
 
 		// Should really keep only one instance of this around
-		OutfitDialog dialog = new OutfitDialog(mainFrame.getFrame(), "Set outfit", outfit);
+		OutfitDialog dialog = new OutfitDialog(mainFrame, "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
 
@@ -834,7 +834,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
-	 * Set the user's positiion.
+	 * Set the user's position.
 	 *
 	 * @param x
 	 *            The user's X coordinate.
