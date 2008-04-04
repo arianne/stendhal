@@ -34,6 +34,7 @@ public class GardenerNPC implements ZoneConfigurator {
 
 	private static final String QUEST_SLOT = "sue_swap_kalavan_city_scroll";
     private static final Integer MAX_LUNCHES = 7;
+
 	//
 	// ZoneConfigurator
 	//
@@ -197,4 +198,5 @@ public class GardenerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 	}
+
 }
