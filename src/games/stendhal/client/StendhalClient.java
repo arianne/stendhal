@@ -16,6 +16,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.gui.Desktop;
+import games.stendhal.client.gui.MainFrame;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -34,7 +35,6 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import marauroa.client.ClientFramework;
@@ -76,7 +76,7 @@ public class StendhalClient extends ClientFramework {
 
 	private Desktop desktop;
 
-	private JFrame mainFrame;
+	private MainFrame mainFrame;
 
 	private Cache cache;
 
@@ -184,11 +184,11 @@ public class StendhalClient extends ClientFramework {
 	    return desktop;
     }
 
-	public void setMainframe(JFrame frame) {
+	public void setMainframe(MainFrame frame) {
 	    mainFrame = frame;	    
     }
 
-	public JFrame getMainFrame() {
+	public MainFrame getMainFrame() {
 	    return mainFrame;	    
     }
 

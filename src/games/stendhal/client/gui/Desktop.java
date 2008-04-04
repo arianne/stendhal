@@ -79,6 +79,12 @@ public class Desktop extends JDesktopPane implements IDropTarget, DragDropOwner 
 
 	@Override
 	public void paint(Graphics g) {
+	    MainFrame mainFrame = StendhalClient.get().getMainFrame();
+
+	    if (mainFrame != null) {
+	        offset.x = (mainFrame.getSize().width - j2DClient.SCREEN_WIDTH) / 2;
+	    }
+
 		synchronized (this) {
 			g.drawImage(imgPaint, offset.x, offset.y, imgPaint.getWidth(), imgPaint.getHeight(), Color.black, null);
         }
