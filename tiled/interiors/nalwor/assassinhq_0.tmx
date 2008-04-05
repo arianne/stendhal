@@ -68,27 +68,27 @@
  </tileset>
  <layer name="0_floor" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtiYGCoGgAMAwNh96j9o/aP2j9q/6j9o/aP2j9q/0i2f6QDAGttkBUACwAA
+   H4sIAAAAAAAAAKtiYGCoGgAMAwNh96j9o/YPR/sd0Wh62x8KpcMGyH5PKO01QPbbodH0tp8UPGr/qP2j9o/aP9IBAFpJyK0ACwAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNgYGDwpAL2woIJqfEGYgcg9gViOzpjPyD2h9pvy0B/4DRq/6j9UPsDgdiRzjgIan8IEIdSCYeh0YTUhgOxBwN1yh9Y+YKrLMKGR8sf+tvfSsB+JijGB8rR+KVkuAOX/RxQTGswaj/59g+n+A9As58FiNnobP9A1z9hOHAMHjliMT4zQPUPAPyhFs4ACwAA
+   H4sIAAAAAAAAAPNgYGDwpAL2woIJqfEGYgcg9gViOzpjPyD2h9pvy0B/4DRq/6j9UPsDgdiRCjgCiCOBOIoItUFQ+0OAOJRKOBqIY4A4lgi1YUAcDsQeDNQpf0A4DojjgTiBAXt5ROvyJxGIk4A4mQi1I7X8aSVgPxMU4wPlaPxSMtyBy34OKKY1GLWffPuHU/wHoNnPAsRsdLafWvUPKRi5/gnDgWPwyBGL8ZkBqn8AccWacQALAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWVywrCMBBFs3HT+gQfiLqy4Ft/R23rq4j4I363d1EhSKOTycQuPHAopDN3hnYRpYoZGc6pDD+8qztmu9IoeX6TWBdY5lbhANYs+zhZ1N0CTVtCw/lrt2+0YUezq2S+jQ2hpm+2cAf3P5hVRAwTmApkXRk9B3iEJ4GsG6PnDC8wE8i6M3re6cOeUNY/0SLUTOAUzjzvYmIOF3BZ0vwVXMONcO5DOI8D5f/7opLrizGMCHUSd4lLRpw/Xe4SSsYTYkVUYgALAAA=
+   H4sIAAAAAAAAAGNgwA5kcYgTC2TwyPFRaDalgH+A7RcgUh0XiebyALE0EPOSqI8cs4h1GxcSJhVw4xCHuY0QEAFiUSQsxkCdsCEFcCPhUUA8SB1gs9KpaD85ZmVSwV5JIBanklkjCQgSoUYdiDWAWJPGbsEFtIBYG4h1Bsh+XSDWA2J9KpvbRmXzyAHExD+tACsU0wooA7EKEeoigDgSiKMosIsSM6KhdCwF9hNjBgDYYA43AAsAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMB+CIRtMbhAFxN5QeCOAJxH1QeiCAHRo9GEELFcwoQ+OXUMHMUTB0wGj8kw/kgVhhoB0xCuAAAOaWpiYACwAA
+   H4sIAAAAAAAAAGNgGAWjYBSMAspBGBpNb+CJRo8CTNBCBTPK0PglVDBzFAwdMBr/5AN5IFYYaEeMAjgAAPb+e/oACwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMBxABpaMGyP5oKB07QPbHQemEAbI/EUonD5D9o2AUjIJRMAqIBwARqJInAAsAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMAspBNBB3A3HsANkfB8R9QJwwQPaPglEwCkbBKBg6AABYceswAAsAAA==
   </data>
  </layer>
  <layer name="objects" width="32" height="22">

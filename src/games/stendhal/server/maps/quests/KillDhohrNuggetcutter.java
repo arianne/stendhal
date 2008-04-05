@@ -62,7 +62,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
-							engine.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill him?");
+							engine.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
 						}  else if (player.getQuest(QUEST_SLOT).equals("start")) {
 							engine.say("I already asked you to kill Dhohr Nuggetcutter!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
