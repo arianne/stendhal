@@ -39,7 +39,7 @@ public class BoyNPC implements ZoneConfigurator {
 							if (player.isQuestCompleted("introduce_players")) {
 							engine.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
 							} else {
-							engine.say("*sniff* *sniff* I still feel ill, please hurry");
+							engine.say("*sniff* *sniff* I still feel ill, please hurry with that #favour for me.");
 							}
 						} else {
 							engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");

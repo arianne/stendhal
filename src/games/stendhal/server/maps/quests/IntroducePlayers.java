@@ -90,7 +90,7 @@ public class IntroducePlayers extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
 				"I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?",
 				null);
@@ -132,6 +132,14 @@ public class IntroducePlayers extends AbstractQuest {
 				"*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
 				null);
 
+        /** Remind player about the quest */
+        npc.add(ConversationStates.ATTENDING,
+                ConversationPhrases.QUEST_MESSAGES,
+                new QuestInStateCondition(QUEST_SLOT, "start"),
+                ConversationStates.ATTENDING,
+                "*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
+                null);
+
 		npc.add(ConversationStates.ATTENDING, "margaret", null,
 				ConversationStates.ATTENDING,
 				"Margaret is the maid in the inn just down the street.", null);
@@ -158,6 +166,14 @@ public class IntroducePlayers extends AbstractQuest {
 				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
 				new MultipleActions(processStep));
 
+		// player said hi with flask on ground then picked it up and said flask
+		npc.add(ConversationStates.ATTENDING, "flask",
+                new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
+                ConversationStates.ATTENDING,
+                "Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
+                new MultipleActions(processStep));
+
+
 		// remind the player to take the flask to ilisa.
 		// note Ilisa is spelled with a small i here because I
 		// and l cannot be told apart in game
@@ -166,6 +182,13 @@ public class IntroducePlayers extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
 				null);
+
+		// another reminder incase player says task again
+        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+                new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+                ConversationStates.ATTENDING,
+                "I need you to take a flask to #ilisa... she'll know what to do next.",
+                null);
 
 		npc.add(ConversationStates.ATTENDING, "ilisa", null,
 				ConversationStates.ATTENDING,
@@ -234,6 +257,13 @@ public class IntroducePlayers extends AbstractQuest {
 
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
+
+        // another reminder incase player says task again                                                                                                    
+        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+                new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+                ConversationStates.ATTENDING,
+                "*cough* I hope #ilisa hurries with my medicine...",
+                null);
 
 		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new IncreaseXPAction(100));
