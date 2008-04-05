@@ -1029,8 +1029,26 @@ Holy mackerel! These chips are tasty.
       <parameter name="new-x">29</parameter>
       <parameter name="new-y">8</parameter>
      </implementation>
-     <attribute name="name">deathmatch spikes</attribute>
+     <attribute name="name">trading table</attribute>
     </entity>
+<!-- passages next to trading table now one player areas-->
+    <entity x="36" y="7">
+     <implementation
+      class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">5</parameter>
+      <parameter name="height">2</parameter>
+     </implementation>
+    </entity>
+
+   <entity x="36" y="2">
+     <implementation
+      class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">5</parameter>
+      <parameter name="height">2</parameter>
+     </implementation>
+    </entity>
+
+
    </zone>
 
    <zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
