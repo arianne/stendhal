@@ -39,6 +39,10 @@ import org.apache.log4j.Logger;
  * <p>
  * REPETITIONS: - once a day
  */
+// TODO port quest slots for players who have been asked to kill
+// super human, armored warrior or armored leader
+// as these have been changed to
+// blordrough storm trooper, blordrough quartermaster and blordrough corporal
 public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";

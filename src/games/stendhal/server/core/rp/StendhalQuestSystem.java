@@ -63,6 +63,7 @@ public class StendhalQuestSystem {
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
 		// loadQuest("DiogenesCataclysm");
+		loadQuest("DragonLair");
 		loadQuest("ElfPrincess");
 		loadQuest("ElvishArmor");
 		loadQuest("FindGhosts");

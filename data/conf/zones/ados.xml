@@ -27,8 +27,14 @@ leather helmet  15
  </zone>
  
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
-<!--  <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
- --> 
+  <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
+    <!-- wishing well-->
+  <entity x="86" y="21">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+  </entity>
+  <entity x="87" y="21">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+  </entity>
  </zone>
 
  <zone name="0_ados_mountain_n2" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2.tmx">
@@ -1749,6 +1755,22 @@ Assassin Dagger (atk 6 rate 2) 12000
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
  </zone>
  <zone name="-1_ados_outside_w" level="-1" x="500640" y="500000" file="Level -1/ados/outside_w.tmx">
+      <entity x="0" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
+      <parameter name="width">27</parameter>
+      <parameter name="height">44</parameter>
+      <parameter name="new-x">29</parameter>
+      <parameter name="new-y">27</parameter>
+     </implementation>
+     <attribute name="name">dragon lair</attribute>
+    </entity>
+  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+  <configurator class-name="games.stendhal.server.maps.ados.tunnel.WishmanNPC"/>
+ <portal x="25" y="28" ref="dragonlairinside">
+   <destination zone="-1_ados_outside_w" ref="dragonlairoutside"/>
+  </portal>
+   <portal x="28" y="28" ref="dragonlairoutside">
+  </portal>
  </zone>
  <!--  Level -2 -->
 
