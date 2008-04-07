@@ -721,6 +721,13 @@ in roaches.
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
+    <entity x="16" y="13">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyveggiesandherbs</parameter>
+      <parameter name="title">-- Chief Falatheen Humble Dishwasher (Assassin HQ) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
+    </entity>
     <entity x="4" y="12">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buystuff2</parameter>
@@ -774,6 +781,27 @@ black helmet 10000
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
+    <entity x="4" y="15">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buy4gnomes</parameter>
+      <parameter name="title">-- Garbiddle (Gnome Village - Ados) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_blue</attribute>
+    </entity> 
+      <entity x="5" y="15">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyoddsandends</parameter>
+      <parameter name="title">-- Ritati Dragontracker (Abandoned Keep) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_blue</attribute>
+    </entity>  
+    <entity x="5" y="15">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buy4assassins</parameter>
+      <parameter name="title">-- Femme Fatale (Assassin HQ) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_blue</attribute>
+    </entity>
     <entity x="5" y="11">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buychaos</parameter>
@@ -789,7 +817,13 @@ black helmet 10000
      <attribute name="class">transparent</attribute>
     </entity>
    </zone> 
-   
+    <entity x="14" y="12">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buy4hotdogs</parameter>
+      <parameter name="title">Sara Beth (Athor) reported to buy:</parameter>
+     </implementation>
+     <attribute name="class">transparent</attribute>
+    </entity>  
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
     <entity x="25" y="6">
@@ -1769,7 +1803,8 @@ Assassin Dagger (atk 6 rate 2) 12000
  <portal x="25" y="28" ref="dragonlairinside">
    <destination zone="-1_ados_outside_w" ref="dragonlairoutside"/>
   </portal>
-   <portal x="28" y="28" ref="dragonlairoutside">
+   <portal x="29" y="27" ref="dragonlairoutside">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
  <!--  Level -2 -->

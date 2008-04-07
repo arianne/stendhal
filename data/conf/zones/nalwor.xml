@@ -308,7 +308,8 @@ arundula 10
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
-    <portal x="24" y="11" ref="hqcellarup">
+    <portal x="23" y="12" ref="hqcellarup">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
        </portal>
 
    <portal x="6" y="0" ref="hqcellardown">
