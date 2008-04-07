@@ -82,7 +82,7 @@ public class DragonLair extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Great! Enjoy your visit. I KNOW they will.",
+				"Great! Enjoy your visit. I know THEY will.",
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
