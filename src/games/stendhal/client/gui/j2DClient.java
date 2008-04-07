@@ -486,6 +486,8 @@ public class j2DClient extends StendhalUI {
             } else {
                 setOffline(false);
             }
+            
+            extensionsCallBack();
 
             logger.debug("Start sleeping");
             // we know how long we want per screen refresh (40ms) then
@@ -541,6 +543,12 @@ public class j2DClient extends StendhalUI {
     }
 
     /**
+     * This method can be extended by subclasses to add extra behaviour on a per loop basis.
+     */
+    protected void extensionsCallBack() {
+    }
+
+	/**
      * Convert a keycode to the corresponding direction.
      * 
      * @param keyCode
