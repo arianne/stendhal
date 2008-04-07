@@ -63,7 +63,7 @@
  <tileset name="intstairs" firstgid="292" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png"/>
  </tileset>
- <layer name="0_floor" width="40" height="20">
+ <layer name="0_floor" width="40" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OsQkAMAwDQS2awpD9Z0gVCF7AKa645kGgSlLNfty2mr6Z9vs/AAAgOZEb0diADAAA
   </data>
@@ -75,12 +75,12 @@
  </layer>
  <layer name="2_object" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2T2QrCQAxFp/rRiv7f+DI/4L7vWGg/QL0PVxjFNoMQcCAHDklnSUJLnXtnyOgZe+6/6DMGxkHCnRLemO/hAR6j/TlcCC5ZoxR6+Sgf8Tk0nH1Rw4r5GV7gNdpfw43gljVqoVf4mNE3HVRkJexL70ubnWLtO3y06Aq5huZ8Bfp3WuwmzHdSnM8wfmEKZwlrRp6M4SRhzciTb9/S/t/8eQLjaiIXgAwAAA==
+   H4sIAAAAAAAAAO2TWwrCMBBFU110RfcXf7IB31i1vrDQLkC9H1dIxXaCEDQwBw4zzWNmaKkxbSaMljE3/8WI0TGOA+5U8Mb8AEt49PZXcC24YY1K6GW9fMpn13H2RQNr5md4gVdvfwsLwR1rNEIv9zaj7Tr4Q6T3FZt9xNp3+OjRZHKNmPNl6D/ocRgw3ynifIryDQu4DFhT0mQG5wFrSpp8+pb6/6bPE/KlXJuADAAA
   </data>
  </layer>
  <layer name="3_roof" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYGgBXiDmA2J+IBZAk/sNxH/w4L90cqMQEAvjkf8Jpb9BMQj8oKmLUAEh9w0kEAViMSAWB2KJAXbLKGBgkAFiWSCWw6PmOhDfIEKMFkAeiBWAWJEOdo1UcBWIrxEhNgqGJsAWl/TKv6Ng5AIAIkYQwYAMAAA=
+   H4sIAAAAAAAAAGNgGAWjgL7gAYX6eYGYD4j5gVgATe43EP/Bg/9SaDexQAiIhfHI/4TS36AYBH7Q1EWogJD7BhKIArEYEIsDscQAu2UUMDDIALEsEMvhUXMdiG8QIUYLIA/ECkCsSAe7Riq4CsTXiBAbBUMTYItLeuXfUTByAQAziW5NgAwAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="20">
@@ -93,7 +93,7 @@
    H4sIAAAAAAAAAGNgwA4UGXFIjIJRMAroBvgZsbNJBZyj+XkUjAKqA3rWkxyjeZhmgFphOxBxJDyaLkbBEAUAhHzfQYAMAAA=
   </data>
  </layer>
- <layer name="collision" width="40" height="20" opacity="0.41">
+ <layer name="collision" width="40" height="20" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2USwoAIAhE6x7e/5zR3so/Gg7MRjJfKsEcAxBvYfEszsaH6RanvOl1ntMbjjS5ETW8+ajzlfBJd8mSj3t3NF+1/bP6PzQ9bz7+7p7Yvep69c9D1fg0843gi8r9lS/7fNsyL4E0BCyADAAA
   </data>
