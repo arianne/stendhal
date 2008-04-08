@@ -290,7 +290,6 @@ public class ShopList {
 		shops.add("buyarcherstuff", "wooden bow", 250);
 		shops.add("buyarcherstuff", "longbow", 300);
 		shops.add("buyarcherstuff", "composite bow", 350);
-		shops.add("buyarcherstuff", "crossbow", 500);	
 		shops.add("buyarcherstuff", "hunter crossbow", 800);	
 		
 		// assassinhq chief falatheen the dishwasher and veggie buyer)
