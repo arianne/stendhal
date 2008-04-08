@@ -657,26 +657,19 @@ in roaches.
      <destination zone="int_ados_town_hall_1" ref="downstairs"/>
     </portal>
 
+    <entity x="5" y="11">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buychaos</parameter>
+      <parameter name="title">Hunel (Kanmararn) suspected to buy:</parameter>
+     </implementation>
+     <attribute name="class">transparent</attribute>
+    </entity>
     <entity x="2" y="12">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buystuff</parameter>
       <parameter name="title">-- Xin Blanca (Semos) buys --</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
-    </entity>
-    <entity x="6" y="12">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyiron</parameter>
-      <parameter name="title">-- Loretta (Or'ril) buys --</parameter>
-     </implementation>
-     <attribute name="class">book_red</attribute>
-    </entity>
-    <entity x="10" y="14">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyprecious</parameter>
-      <parameter name="title">-- Ognir (Fado) buys --</parameter>
-     </implementation>
-     <attribute name="class">book_red</attribute>
     </entity>
     <entity x="3" y="12">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -685,12 +678,41 @@ in roaches.
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
-    <entity x="17" y="15">
+     <entity x="4" y="12">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">elfbuyrare</parameter>
-      <parameter name="title">-- Elodrin (Nalwor) buys --</parameter>
+      <parameter name="shop">buystuff2</parameter>
+      <parameter name="title">-- Wrvil (Wo'fol) buys --</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
+    </entity>
+    <entity x="6" y="12">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyiron</parameter>
+      <parameter name="title">-- Loretta (Or'ril) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
+    </entity>
+    <entity x="12" y="12">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyelvish</parameter>
+      <parameter name="title">Lupos (Fado Forest) suspected to buy:</parameter>
+     </implementation>
+     <attribute name="class">transparent</attribute>
+    </entity>
+    <entity x="14" y="12">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buy4hotdogs</parameter>
+      <parameter name="title">Sara Beth (Athor) reported to buy:</parameter>
+     </implementation>
+     <attribute name="class">transparent</attribute>
+    </entity> 
+    <entity x="12" y="13">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyarcherstuff</parameter>
+      <parameter name="title">-- Merenwen (Nalwor) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_blue</attribute>
+     <attribute name="resistance">10</attribute>
     </entity>
     <entity x="13" y="13">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -707,13 +729,6 @@ in roaches.
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
-    <entity x="11" y="14">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyrare2</parameter>
-      <parameter name="title">-- Yorphin Baos (Fado) buys --</parameter>
-     </implementation>
-     <attribute name="class">book_red</attribute>
-    </entity>
     <entity x="15" y="13">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyfood</parameter>
@@ -725,20 +740,6 @@ in roaches.
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyveggiesandherbs</parameter>
       <parameter name="title">-- Chief Falatheen Humble Dishwasher (Assassin HQ) buys --</parameter>
-     </implementation>
-     <attribute name="class">book_red</attribute>
-    </entity>
-    <entity x="4" y="12">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buystuff2</parameter>
-      <parameter name="title">-- Wrvil (Wo'fol) buys --</parameter>
-     </implementation>
-     <attribute name="class">book_red</attribute>
-    </entity>
-    <entity x="2" y="15">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyred</parameter>
-      <parameter name="title">-- Pjotr Yearl (Sedah) buys --</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -767,12 +768,33 @@ black helmet 10000
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
+    <entity x="10" y="14">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyprecious</parameter>
+      <parameter name="title">-- Ognir (Fado) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
+    </entity>
+    <entity x="11" y="14">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyrare2</parameter>
+      <parameter name="title">-- Yorphin Baos (Fado) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
+    </entity>
     <entity x="12" y="14">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyaxe</parameter>
       <parameter name="title">-- Woody (Fado) buys --</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
+    </entity>
+    <entity x="2" y="15">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyred</parameter>
+      <parameter name="title">-- Pjotr Yearl (Sedah) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
     </entity>
     <entity x="3" y="15">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -788,42 +810,29 @@ black helmet 10000
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity> 
-      <entity x="5" y="15">
+    <entity x="5" y="15">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyoddsandends</parameter>
       <parameter name="title">-- Ritati Dragontracker (Abandoned Keep) buys --</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>  
-    <entity x="5" y="15">
+    <entity x="17" y="15">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">elfbuyrare</parameter>
+      <parameter name="title">-- Elodrin (Nalwor) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_red</attribute>
+    </entity>
+    <entity x="18" y="15">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buy4assassins</parameter>
       <parameter name="title">-- Femme Fatale (Assassin HQ) buys --</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
-    <entity x="5" y="11">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buychaos</parameter>
-      <parameter name="title">Hunel (Kanmararn) suspected to buy:</parameter>
-     </implementation>
-     <attribute name="class">transparent</attribute>
-    </entity>
-    <entity x="12" y="12">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyelvish</parameter>
-      <parameter name="title">Lupos (Fado Forest) suspected to buy:</parameter>
-     </implementation>
-     <attribute name="class">transparent</attribute>
-    </entity>
    </zone> 
-    <entity x="14" y="12">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buy4hotdogs</parameter>
-      <parameter name="title">Sara Beth (Athor) reported to buy:</parameter>
-     </implementation>
-     <attribute name="class">transparent</attribute>
-    </entity>  
+ 
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
     <entity x="25" y="6">
@@ -912,7 +921,7 @@ To make 1 cheese sausage:
 
 My fee:
 
-1 black pearl (for a necklace for my wife)
+1 black pearl (to make necklace for the little woman)
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity> 

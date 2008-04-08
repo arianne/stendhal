@@ -288,6 +288,7 @@ public class ShopList {
 		shops.add("buyarcherstuff", "golden arrow", 20);
 		shops.add("buyarcherstuff", "power arrow", 50);
 		shops.add("buyarcherstuff", "wooden bow", 250);
+		shops.add("buyarcherstuff", "crossbow", 400);
 		shops.add("buyarcherstuff", "longbow", 300);
 		shops.add("buyarcherstuff", "composite bow", 350);
 		shops.add("buyarcherstuff", "hunter crossbow", 800);	
