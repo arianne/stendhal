@@ -34,7 +34,7 @@ public class WishmanNPC implements ZoneConfigurator {
 				addGreeting("Greetings, my fellow traveler. What may I do for you?");
 				addOffer("We are content here. A place to call home and our wonderful dragons.");
 				addJob("I am ever vigilant for those who wish to harm our dragons. They're all that are left of our glorious weyr.");
-				addHelp("Perhaps you wish instead to visit with my brethern back a ways in the tunnel. Mind that you watch out for the assassins. They have taken over the tunnels.");
+				addHelp("Perhaps you wish instead to visit with my brethren back a ways in the tunnel. Mind that you watch out for the assassins. They have taken over the tunnels.");
 				addGoodbye("Farewell. May your days be many and your heart be free.");
 				// all other behaviour is defined in the quest.
 			}

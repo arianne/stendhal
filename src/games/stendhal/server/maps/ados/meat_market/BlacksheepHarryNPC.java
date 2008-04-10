@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados.fishermans_hut;
+package games.stendhal.server.maps.ados.meat_market;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Inside Ados fishermans hut south.
+ * Inside Ados meat market.
  */
 public class BlacksheepHarryNPC implements ZoneConfigurator {
     
