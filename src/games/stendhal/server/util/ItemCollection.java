@@ -20,6 +20,12 @@ import java.util.TreeMap;
 public class ItemCollection extends TreeMap<String, Integer> {
 
     /**
+     * Construct an empty ItemCollection.
+     */
+    public ItemCollection() {
+    }
+
+    /**
      * Construct an ItemCollection from a quest state string in
      * the form "item1=n1;item2=n2;...".
      * @param str
@@ -45,7 +51,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * Return the items as quest state string.
      * @return
      */
-    public String stringForQuestState() {
+    public String toStringForQuestState() {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
 
@@ -89,6 +95,21 @@ public class ItemCollection extends TreeMap<String, Integer> {
 
     	return false;
 	}
+
+    /**
+     * Add the specified amount of items to the collection.
+     * @param itemName
+     * @param amount
+     */
+    public void addItem(String itemName, int amount) {
+        Integer curAmount = get(itemName);
+
+        if (curAmount != null) {
+            put(itemName, curAmount + amount);
+        } else {
+            put(itemName, amount);
+        }
+    }
 
     /**
      * Return a String list containing the items in the format "xxx=n".
