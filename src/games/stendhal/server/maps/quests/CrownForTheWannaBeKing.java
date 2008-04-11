@@ -341,7 +341,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 		 // update the quest state if some items are handed over
 		if (result) {
-			player.setQuest(QUEST_SLOT, itemsTodo.stringForQuestState());
+			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
 		}
 
 		return result;
