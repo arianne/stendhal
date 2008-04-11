@@ -85,17 +85,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggABRNIwOrAnIUwqs0TCp8qNgZAFapUUBNBoXoEVaFEbj81PR7FH7R8FgBnwD7YARCgBXw3DoAAgAAA==
+   H4sIAAAAAAAAAGNggABRNIwOrAnIUwqs0TCp8qNgZAFapUUBNBoXoEVaFEbj81PR7FH7aQe2AfF2IN4BxDsH2C1DFfANtANGKAAAph5i/wAIAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKXUuUpDQRTG8XkIl0aNiIKCgnZqojYi7guIIirirp36Gi5x6VwbWwUbl0bwReIasLDQwsLO/yV34HgyceL1wI/cGeY7h8CdGzPGFDpUokqs93EQOnScKUPM00MLMsVoQye60I04qlETPgeOcBw6UWdaUSR6xXP0kGSmCT3oRZ/5W52hUfVKeTIpRybfakezknD0useDyOl11PmnKEeBons94knk9Po/8yvwije8m8y7pHs940Xk9Drq/A6TeX8+8Ikvk/0uBbWODWXTMb8WdWJ/GjOYFXu2l8zLcv2XLSSVbUemHg2e+baXzPvm72BX2fNkgprDPBbEnu0l8775vtKZfgwLAzlyIxjFmNg7F88XEecPYiqcHfwO5ciNYwKTYu8SV7jGTbhn73s6XKfNz2+Anm/7WrK/r27F8134q++73ot6/1zl6qXvu96TmRaT/U21FrGE5V/OJPLs5cqUmuxvqbSCVax5zpXk0cuV+QaZ6tcRAAgAAA==
+   H4sIAAAAAAAAAKXUyS4EURTG8fsQhg1ahISEhB26sRExD4kQQcTMDq9haMPOuLE1bQwbiRdpYycWFiws7PwrXZUcp2+5pZ3kl6p7c79zupOqihlj8i3KUSHWu9jz7VvOlCDm6KF5mUK0oB0d6EQclajy7z0HOPQdqTPNKBC94iE9JJlpQBe60WP+VieoV71SjkzKkolarWhUEpZe93gQOb3Odf4xSpGn6F6PeBI5vf7P/DK84g3vJvMs6V7PeBE5vc51fpvJPD8f+MSXyX6WvFrFmrJumV+NGrE/iSlMi72gl8zLsv2XDSSVTUumFnWO+UEvmXfN38K2suPIeDWDWcyJvaCXzMs6xRnOcRFyxvWbezEo9IXkhjCMkYhzos7vx4Q/27sOhORGMYZxsXeJK1zjxt8L3ve0v06bn98APT/oG5D9XXUr7u/8q37f9V6u75+tbL30+673ZKbJZH9TA/NYwOIvZxIRe9kyxSb7WyotYRkrjnNFEXrZMt9OJEIqAAgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMAgh4BsTPB9oRQxCsB+INA2j/HyD+S4F+Xgrt3w/EByg0YxTQHwAAY5aKGwAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMAgh4BsTPB9oRQxD8AeK/Q9h+Xgrt3w/EByg0YxTQHwAA7eTvxwAIAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -108,7 +108,7 @@
    H4sIAAAAAAAAAGNnZGBgH8UomFRAqhmU2Ems+9HNxcUfrvaTas5gsZ8abhq1n3Q9xMYjITfT2n5iAa78iI1PTbtw5X90MWr6l1bhT8i9wwEDAPVZe5wACAAA
   </data>
  </layer>
- <layer name="protection" width="32" height="16" visible="0" opacity="0.24">
+ <layer name="protection" width="32" height="16" opacity="0.24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgZGDgGMWjeBSP4lE8ikfxiMIAypJecgAIAAA=
   </data>
