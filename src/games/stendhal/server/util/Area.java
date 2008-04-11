@@ -33,7 +33,7 @@ public class Area {
 	}
 
 	/**
-	 * Checks wether an entity is in this area (e. g. on this zone and inside of
+	 * Checks whether an entity is in this area (e. g. on this zone and inside of
 	 * the shape)
 	 * 
 	 * @param entity
@@ -57,4 +57,5 @@ public class Area {
 	public Shape getShape() {
 		return shape;
 	}
+
 }
