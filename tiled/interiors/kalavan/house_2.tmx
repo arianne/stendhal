@@ -105,14 +105,17 @@
  <tileset name="picture" firstgid="278" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/small_2.png"/>
  </tileset>
- <layer name="0_floor" width="25" height="25">
+ <tileset name="Untitled" firstgid="282" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ew.png"/>
+ </tileset>
+ <layer name="0_floor" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgYGDgwINZqIDxmT9qx6gdtLCDGuaP2jEy7eAhgEftGLVj1I5ROwaLHQCHXqNLxAkAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UzS4DURQH8DMaRAVFh76AbxvVry12iJWIHZZYeiESXoAQ0oQ06abVTROJ1+n/pnfizJk7t7d0JBIn+S1mTuf8e6fNyRHRZIx5yFn6LtSMDFSgIJRhytJ3wWfk4RGu4Ya6tSH6qu6pvzLNsPUffpCxAIv63i3cWb5DxiOa1ma88Lwn6r4LU8YKrDqcQ9Us5mY13zM85DCDV431673HfSujAU14h1ZCGW3d/4SPhDJ69ePqGV7gLcGMKlwZZpRgE7ZgG3agaMlQf6khIcUyVF2yjDmY0HZhD/b1tR+TMQwjwijLuNBnCTL4zjuCQzim8D7rN0Od4Vy8q2DnncApnFF0n7lmvNJgfnNbhuuM/4y/lTEGaWF8wBmu9dsZwb7iioY+32fy84ElWBYz+L6SfIruswP62mcma7AuZnQAAMyxXsQJAAA=
+   H4sIAAAAAAAAAO3Uyy9DQRTH8XMJgqDKpf+Atw1VbLFDrETssMTSP0TCP0BIRUI8Nh4bjz/Id9K5MZ3OnU6jFRIn+Sx6T3t+985tTk5EulMMIufph1AzMpjHjGUOPZ5+CHPGNM5xiCMp1ZTVV3UqtZVrhq9/9o2MIQzra8c48dxDJhLp1bJR+bwLKZ2FK2MM4457uMUd7vGgr/Uxt1+LI8ePUjLSzuoRT3jGS/VxvzbjFW94x0eDMqr106qIS9w0MOMKB44Zs8hjAYtYQsGTof5STZZmI0PVvpExgC5tGStY1Z/jlIwWtFrajIw9/SxJhrnzNrCOTSnfZ7VmqGfYtc4q2Xlb2MaOVO6z0Ixrqc8792WEzvjP+FsZ7eiwdNY5I7R+OiPZV6aCo2/uM/v7iRGMWjPMfWWLpXKfrcnXPnOZwKQ14xMta5IgxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -122,7 +125,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA6UEKmOElBKBzvWYhHLIcOcRUC8mEw3bADi9WTaSwzIpZG51AKHgPgwCeqnAPFUIJ5GRTcwMjIwMAExMyP5ZlwC4st45FmAZrMCMRsFdowC3KAPiPuBeAIN7ZgIxJOAeDIN7RhM4CsQf6eznVzA/MEzmkdGwSggCwAAZxj1hMQJAAA=
+   H4sIAAAAAAAAAGNgIA6UEKmOElBKBzvWYhHLIcOcRUC8mEw3bADi9WTaSwzIpUCvFCMDgzQj1ZyCFcgAzZclwY4pQDwViKdR0Q5GoBwTEDNT4Fc5oF55PPpZgHKsQMxG4/AcqaAPiPuBeAIN7ZgIxJOAeDIN7RhM4CsQf6eznVzA/MEzmkdGwSggCwAAK/OL+sQJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">

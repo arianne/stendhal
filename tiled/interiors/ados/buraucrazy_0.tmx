@@ -79,12 +79,12 @@
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2VSUsDQRCF++pycbmoN/USNZqLJggucQ1JFPSi4IrgUS+CglFv0f/hzS2/0TekhpRFdff0TAI++OjOpKrnddNVM2qM6Q9gD+wH5qRlBAyCMTBtYRwUwBxxAA7Z716xAAbI3yRYprGgxJZMW3emIz7Pqg/wSXzRs5zwtwJWwVoX35tF0t86KIONlOstgtkAlgL9bYItsJ3SX7Sedjdsd2uG5X6DOptLfxNgiuB5Uq77l1Ny78GDMsrYHxprbM798X2XjF3X4MpCUcl9BA1l1PzF59dS/LnOrBeS/lqWmP/izxYT+5s37vqStemrvW77c/XkSEXzt/a0/YR4D/UXxe6AXVAx7To6E/E34FZ4tfWNmufdWi35/FXF/xeO3HgvnIrpnIvPXxKF1gc/X031QH/vgf7i3mmTPF+ucyLJvfKJ93DuL+6daXRJaP6qCpFs58d7uNZfjsCxSfaNl7F5WusJPIMXT7yLPPkbBn2ME3AqntmwxTbBK3jLsHbEEPgF5cHk+uALAAA=
+   H4sIAAAAAAAAAM2VSUsDQRCF++pycbmoN/USNZqLJgjuW0iioBcFVwSPehEUjHpT/4c3t/xG35AaUhZV09OTBHzw0Z1JVc/rpqtm2DnXG8Au2AvMycoQ6AcjYNJgFBTADLEPDtjvbjEH+sjfOFiksaDEllxTt64lPm9XH+CT+KJnOeFvCSyDlQ6+tx1Jf6tgDaxnXG8eTAewEOhvA2yCrYz+ovW0u2HdrSmW+w1qbC79jYEJgudJJd2/nJJ7B+6VUcb+0Fhlc+6P77vkbF2BS4OikvsA6sqo+YvPr6H4Szqzbkj6axgx/8WfFRP7m3XJ9SVr01d7nfaX1JMjFd3f2tP2E+I91F8Uuw12QNk16+hUxF+DG+HV6htVz7u1WvL5q4j/z428eB+Ssmudi89fGoXWBz9fTbVAf++B/uLeeUZIyfPlinPS3CufeA/n/mQPDdEFofmrKESyzo/3cK2/HIIjl+4bL2PztNYjeALPnvgk8uRvEPQwjsGJeGZhxb6AV/DWxtoRA+AXjBkSHuALAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGP5gExBvpqN9G+lo1ygYemD9QDuARLB9oB0wCkYBFcEBLGJZQJxNZ3eQAw4OtANGwSgYBUMGAADiAq9z4AsAAA==
+   H4sIAAAAAAAAAGNgGP5gExBvpqN9G+lo1ygYemD9QDuARLB9oB0wCkYBFcEBLGJZQJxNZ3eQAw6i0aNgFIyCUYALAAATkH1O4AsAAA==
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">
@@ -99,7 +99,7 @@
  </layer>
  <layer name="collision" width="40" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USQoAIAhFvf+lulrbCJWf8yJBEnJ4orWIaH1NVzrO2/aKVEtj6ZZoNutMLPmq+TjbwqftHxfbweeZmdQLwlcpGt/tM4FP80H3I7KfCj7PDkb8L1J8Fx93j8Zm7LK1Z4QbrY/W8/ae8XYyc6IxLzmjtaLGBN2UYJYF4AsAAA==
+   H4sIAAAAAAAAAO2USQoAIAhFvf+lulrbCJWf8yJBEnJ4orWIaH1NVzrO2/aKVEtj6ZZoNutMLPmq+TjbwqftHxfbweeZmdQLwlcpGt/tM4FP80H3I7KfCj7PDkb8L1J8Fx93n8WHiLVn5P9B66P1vL1nvJ3MnGjMS85oragxQTeCmOGN4AsAAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="19" opacity="0.18">

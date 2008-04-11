@@ -24,7 +24,7 @@ public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
 				dishwasher.addOffer("Look at blackboards on wall to see my prices.");
 				dishwasher.addQuest("You could try to help me #escape from these hoodlums. Well... maybe not.");
 				dishwasher.addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");
-				dishwasher.addReply("escape", "Yes! I want to pursue my dreams. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
+				dishwasher.addReply("escape", "Yes! I want to pursue my dream. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
 
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("shuriken", 20);
