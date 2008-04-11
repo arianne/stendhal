@@ -12,11 +12,10 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.CountedItemList;
-import games.stendhal.server.util.ItemEntry;
+import games.stendhal.server.util.ItemCollection;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * QUEST: CrownForTheWannaBeKing
@@ -117,7 +116,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
 						engine.say("I want my crown to be beautiful and shiny. I need "
-									+ Grammar.enumerateCollection(getMissingItems(player, true))
+									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
 									+ ". Do you have some of those now with you?");
 					}
 				});
@@ -157,7 +156,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed = getMissingItems(player, true);
+						List<String> needed = getMissingItems(player).toStringListWithHash();
 						engine.say("I need "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Did you bring something?");
@@ -174,13 +173,14 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		ChatAction itemsChatAction = new SpeakerNPC.ChatAction() {
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				List<String> missingItems = getMissingItems(player, false);
-				String item = sentence.getTriggerExpression().getNormalized();
-				int missingCount = getMissingCount(item, missingItems);
+                String item = sentence.getTriggerExpression().getNormalized();
+			    ItemCollection missingItems = getMissingItems(player);
+				Integer missingCount = missingItems.get(item);
 
-				if (missingCount > 0) {
+				if (missingCount != null && missingCount > 0) {
 					if (dropItems(player, item, missingCount)) {
-						missingItems = getMissingItems(player, false);
+						missingItems = getMissingItems(player);
+
 						if (missingItems.size() > 0) {
 							engine.say("Good, do you have anything else?");
 						} else {
@@ -203,9 +203,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		};
 
 		/* add triggers for the item names */
-		CountedItemList items = new CountedItemList(NEEDED_ITEMS);
-		for (ItemEntry item : items) {
-			npc.add(ConversationStates.QUESTION_1, item.itemName, null,
+		ItemCollection items = new ItemCollection(NEEDED_ITEMS);
+		for (Map.Entry<String,Integer> item : items.entrySet()) {
+			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
 		}
 
@@ -281,31 +281,16 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	}
 
 	/**
-	 * Returns a list of the names of all items that the given player still has
-	 * to bring to complete the quest.
+	 * Returns all items that the given player still has to bring to complete the quest.
 	 *
 	 * @param player The player doing the quest
 	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of item names
 	 */
-	private List<String> getMissingItems(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
-
+	private ItemCollection getMissingItems(Player player) {
 		String missingText = player.getQuest(QUEST_SLOT);
 
-		if (missingText != null && missingText.length() > 0) {
-			CountedItemList items = new CountedItemList(missingText);
-
-			for (ItemEntry item : items) {
-				if (hash) {
-					result.add(Grammar.quantityplnounWithHash(item.amount, item.itemName));
-				} else {
-					result.add(item.itemName + '=' + item.amount);
-				}
-			}
-		}
-
-		return result;
+		return new ItemCollection(missingText);
 	}
 
 	/**
@@ -321,7 +306,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		boolean result = false;
 
 		 // parse the quest state into a list of still missing items
-		CountedItemList itemsTodo = new CountedItemList(player.getQuest(QUEST_SLOT));
+		ItemCollection itemsTodo = new ItemCollection(player.getQuest(QUEST_SLOT));
 
 		if (player.drop(itemName, itemCount)) {
 			if (itemsTodo.removeItem(itemName, itemCount)) {
@@ -357,19 +342,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		 // update the quest state if some items are handed over
 		if (result) {
 			player.setQuest(QUEST_SLOT, itemsTodo.stringForQuestState());
-		}
-
-		return result;
-	}
-
-	private int getMissingCount(String text, List<String> missing) {
-		int result = 0;
-
-		for (String item : missing) {
-			if (item.startsWith(text + '=')) {
-				result = Integer.parseInt(item.substring(item.indexOf('=') + 1));
-				break;
-			}
 		}
 
 		return result;

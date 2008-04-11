@@ -162,7 +162,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, bob.hasQuest(QUEST_SLOT), is(true));
 			assertThat(playerSays, bob.getKarma(), greaterThan(oldkarma));
 			assertEquals(
-					"I want my crown to be beautiful and shiny. I need 2 #'gold bars', 4 #emeralds, 3 #sapphires, 2 #carbuncles, 2 #diamonds, and 1 #obsidian."
+					"I want my crown to be beautiful and shiny. I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', 1 #obsidian, and 3 #sapphires."
 					+ " Do you have some of those now with you?",
 					npc.getText());
 		}
@@ -222,7 +222,7 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(
 				"items",
 				npc.getText(),
-				is("I need 2 #'gold bars', 4 #emeralds, 3 #sapphires, 2 #carbuncles, 2 #diamonds, and 1 #obsidian. Did you bring something?"));
+				is("I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', 1 #obsidian, and 3 #sapphires. Did you bring something?"));
 	}
 
 	@Test
@@ -309,8 +309,8 @@ public class CrownForTheWannaBeKingTest {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.setQuest(QUEST_SLOT, CrownForTheWannaBeKing.NEEDED_ITEMS);
 
-		// is("I need 2 #gold bar, 4 #emerald, 3 #sapphire, 2 #carbuncle, 2
-		// #diamond, and 1 #obsidian. Did you bring something?"));
+		// is("I need 2 #gold bar, 4 #emerald, 3 #sapphire, 2 #carbuncle,
+		// 2 #diamond, and 1 #obsidian. Did you bring something?"));
 		String[] triggers = { "obsidian", "diamond", "diamond", "carbuncle", "carbuncle", "sapphire", "sapphire",
 				"sapphire", "emerald", "emerald", "emerald", "emerald", "gold bar" };
 		npcEngine.setCurrentState(ConversationStates.QUESTION_1);
@@ -330,11 +330,11 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(bob.getQuest(QUEST_SLOT), not((is("reward"))));
 
 		npcEngine.step(bob, "gold bar");
-		assertThat("last thing brought", npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertEquals("reward", bob.getQuest(QUEST_SLOT));
 		assertEquals(
 				"You have served me well, my crown will be the mightiest of them all! Go to see Kendra Mattori in the Wizard City to get your #reward.",
 				npc.getText());
+        assertThat("last thing brought", npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
+        assertEquals("reward", bob.getQuest(QUEST_SLOT));
 
 		double oldkarma = bob.getKarma();
 		int oldatk = bob.getATKXP();
