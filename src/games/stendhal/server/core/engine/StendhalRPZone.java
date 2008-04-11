@@ -26,6 +26,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
@@ -1117,4 +1118,55 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 	}
+
+	/**
+	 * Return whether the zone is completely empty.
+	 * @return
+	 */
+	public boolean isEmpty() {
+	    return objects.isEmpty();
+	}
+
+	/**
+	 * Return whether the zone contains one or more players.
+	 * @return
+	 */
+	public boolean containsPlayer() {
+	    for(RPObject obj: objects.values()) {
+	        if (obj instanceof Player) {
+	            return true;
+            }
+	    }
+
+	    return false;
+	}
+
+    /**
+     * Return whether the zone contains one or more animals.
+     * @return
+     */
+    public boolean containsAnimal() {
+        for(RPObject obj: objects.values()) {
+            if (obj instanceof DomesticAnimal) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return whether the zone contains any creature including players and animals.
+     * @return
+     */
+    public boolean containsCreature() {
+        for(RPObject obj: objects.values()) {
+            if (obj instanceof Creature) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
