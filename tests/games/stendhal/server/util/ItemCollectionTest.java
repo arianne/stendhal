@@ -24,10 +24,7 @@ public class ItemCollectionTest {
 	    coll.addItem("cheese", 5);
 	    assertEquals("cheese=5", coll.toStringForQuestState());
 
-        coll.addItem("cheese", 2);
-        assertEquals("cheese=7", coll.toStringForQuestState());
-
-        coll.addItem("ham", 3);
+	    coll.addFromQuestStateString("cheese=2;ham=3");
         assertEquals("cheese=7;ham=3", coll.toStringForQuestState());
 
         assertTrue(coll.removeItem("cheese", 1));

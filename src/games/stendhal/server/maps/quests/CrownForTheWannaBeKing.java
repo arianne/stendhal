@@ -203,7 +203,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		};
 
 		/* add triggers for the item names */
-		ItemCollection items = new ItemCollection(NEEDED_ITEMS);
+		ItemCollection items = new ItemCollection();
+		items.addFromQuestStateString(NEEDED_ITEMS);
 		for (Map.Entry<String,Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
@@ -288,9 +289,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * @return A list of item names
 	 */
 	private ItemCollection getMissingItems(Player player) {
-		String missingText = player.getQuest(QUEST_SLOT);
+		ItemCollection missingItems = new ItemCollection();
 
-		return new ItemCollection(missingText);
+		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
+
+		return missingItems;
 	}
 
 	/**
@@ -306,7 +309,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		boolean result = false;
 
 		 // parse the quest state into a list of still missing items
-		ItemCollection itemsTodo = new ItemCollection(player.getQuest(QUEST_SLOT));
+		ItemCollection itemsTodo = new ItemCollection();
+
+		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
 		if (player.drop(itemName, itemCount)) {
 			if (itemsTodo.removeItem(itemName, itemCount)) {
