@@ -3,6 +3,10 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -70,8 +74,8 @@ public class PlinksToyTest {
 		// -----------------------------------------------
 		
 		Item teddy = ItemTestHelper.createItem("teddy");
-		// TODO: why does this not work? player.equip(teddy);
-		player.getSlot("bag").add(teddy);
+		teddy.setEquipableSlots(Arrays.asList("bag"));
+		player.equip(teddy);
 		assertTrue(player.isEquipped("teddy"));
 
 		System.out.println(player.getSlot("!quests"));
