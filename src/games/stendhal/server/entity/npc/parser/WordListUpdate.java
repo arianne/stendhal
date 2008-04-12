@@ -61,7 +61,7 @@ public final class WordListUpdate {
             // update database entries
             wl.writeToDB();
             System.out.println("The word list has been stored into the database.");
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

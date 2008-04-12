@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class DragTransfer implements Transferable {
 
-	public final static DataFlavor standhalFlavor = new DataFlavor(IDraggable.class, "Stendhal draggable");
+	public static final DataFlavor standhalFlavor = new DataFlavor(IDraggable.class, "Stendhal draggable");
 
 	private DataFlavor[] flavors = {standhalFlavor};
 

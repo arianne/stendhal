@@ -38,7 +38,7 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public ConversationParser(final String text) {
         // initialize a new tokenizer with the given text
-        tokenizer = new StringTokenizer(text != null? text: "");
+        tokenizer = new StringTokenizer(text != null? text : "");
         originalText = text;
     }
 
@@ -229,7 +229,7 @@ public final class ConversationParser extends ErrorBuffer {
             }
 
             sentence.setError(parser.getErrorString());
-        } catch(Exception e) {
+        } catch (Exception e) {
             logger.error("ConversationParser.parse(): catched Exception while parsing '" + text + '\'');
             sentence.setError(e.getMessage());
             e.printStackTrace();

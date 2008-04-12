@@ -82,7 +82,7 @@ public class GardenerNPC implements ZoneConfigurator {
 
 					@Override
 						public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
-						if (player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).startsWith("done;")) {
+						if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							// she is eating. number of lunches is in tokens[1]
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							// delay is number of lunches * one day - eats one lunch per day
@@ -96,7 +96,7 @@ public class GardenerNPC implements ZoneConfigurator {
                                 return false;
 							}
 					    } 
-						if (amount > MAX_LUNCHES){
+						if (amount > MAX_LUNCHES) {
 							npc.say("I can't take more than a week's worth of sandwiches at once! They'll go stale!");
 							return false;
 						} else if (getMaximalAmount(player) < amount) {
@@ -130,7 +130,7 @@ public class GardenerNPC implements ZoneConfigurator {
 											+ timeNow);
 							npc.say("Thanks! Come back in "
 									+ getApproximateRemainingTime(player) + ", and I'll have got your " 
-									+ Grammar.quantityplnoun(amount,getProductName()) + " for you.");
+									+ Grammar.quantityplnoun(amount, getProductName()) + " for you.");
 							return true;
 						}
 					}
@@ -163,7 +163,7 @@ public class GardenerNPC implements ZoneConfigurator {
 						player.setQuest(QUEST_SLOT, "done" + ";" + numberOfProductItems + ";"
 										+ System.currentTimeMillis());
                         // give some XP as a little bonus for industrious workers
-                        player.addXP(15*numberOfProductItems);
+                        player.addXP(15 * numberOfProductItems);
                         player.notifyWorldAboutChanges();
 						}
 					}
@@ -175,7 +175,7 @@ public class GardenerNPC implements ZoneConfigurator {
 				addOffer("My tomatoes are doing well, I have enough that I am selling some.");
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("tomato", 30);
-                new SellerAdder().addSeller(this, new SellerBehaviour(offerings),false);
+                new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
 				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");

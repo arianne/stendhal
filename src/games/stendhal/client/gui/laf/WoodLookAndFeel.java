@@ -15,12 +15,12 @@ import data.gui.LFRessourceBase;
 public class WoodLookAndFeel extends SynthLookAndFeel {
 
 	/**
-	 * Activate the Wood look and feel
+	 * Activates the Wood look and feel.
 	 */
 	public static void activate() {
 		try {
         	UIManager.setLookAndFeel(new WoodLookAndFeel());
-        } catch(Exception e) {
+        } catch (Exception e) {
         	e.printStackTrace();
         }
 	}
@@ -29,7 +29,7 @@ public class WoodLookAndFeel extends SynthLookAndFeel {
 	public WoodLookAndFeel() {
 		try {
 	        load(WoodLookAndFeel.class.getClassLoader().getResourceAsStream("data/gui/woodskin.xml"), LFRessourceBase.class);
-        } catch(Exception e) {
+        } catch (Exception e) {
 	        e.printStackTrace();
         }
     }
@@ -49,16 +49,15 @@ public class WoodLookAndFeel extends SynthLookAndFeel {
      * for SystemColor defaults are the same as the names of
      * the public fields in SystemColor.
      */
-    protected void initSystemColorDefaults(UIDefaults table)
-    {
+    @Override
+	protected void initSystemColorDefaults(UIDefaults table) {
     	super.initSystemColorDefaults(table);
 
 //        table.put("window", WoodStyle.getInstance().getForeground());
     }
 
     @Override
-    protected void initClassDefaults(UIDefaults table)
-    {
+    protected void initClassDefaults(UIDefaults table) {
         super.initClassDefaults(table);
 
 //        table.put("ButtonUI", "games.stendhal.client.gui.laf.WoodButtonUI");

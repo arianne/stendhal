@@ -122,8 +122,7 @@ public class HttpClient {
 					System.err.println("Timeout (" + urlString + "): "
 							+ e.toString());
 				} catch (ConnectException e) {
-					System.err.println("Unable to connect (" +urlString + "): "
-							+ e.toString());
+					System.err.println("Unable to connect (" + urlString + "): " + e.toString());
 				}
 				myTimeout = myTimeout * 2;
 				if (!tryVeryHard || (retryCount > 3)) {

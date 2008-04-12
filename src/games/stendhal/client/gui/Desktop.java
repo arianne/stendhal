@@ -28,7 +28,7 @@ import marauroa.common.game.RPAction;
 @SuppressWarnings("serial")
 public class Desktop extends JDesktopPane implements IDropTarget, DragDropOwner {
 
-	final private Dimension bufferSize;
+	private final Dimension bufferSize;
 
 	private final Point offset;
 

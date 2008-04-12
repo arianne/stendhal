@@ -85,11 +85,12 @@ public class DragonLair extends AbstractQuest {
 				"Great! Enjoy your visit. I know THEY will.",
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
+							@Override
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 								player.setQuest(QUEST_SLOT, "done" + ";" + System.currentTimeMillis());
 							}
 				}
-						)) ;
+						));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.NO_MESSAGES,

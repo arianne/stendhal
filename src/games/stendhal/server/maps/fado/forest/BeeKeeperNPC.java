@@ -67,7 +67,7 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 				addHelp("Bees make honey. I can sell you some if you like. Honey that is, not bees!");
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("honey", 50);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings),false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addOffer("I sell sweet honey which I harvest myself.");
 				addGoodbye("Goodbye and be careful around the hives!");
 			}

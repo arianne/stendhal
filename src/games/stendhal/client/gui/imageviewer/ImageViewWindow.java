@@ -80,7 +80,7 @@ public final class ImageViewWindow extends ClientPanel {
 	    if (mainFrame != null) {
 	        size = mainFrame.getSize();
 	    } else {
-	        size = new Dimension(j2DClient.SCREEN_WIDTH+j2DClient.BORDER_WIDTH*2, j2DClient.SCREEN_HEIGHT);
+	        size = new Dimension(j2DClient.SCREEN_WIDTH + j2DClient.BORDER_WIDTH * 2, j2DClient.SCREEN_HEIGHT);
 	    }
 
 		int x = (size.width - getWidth()) / 2;

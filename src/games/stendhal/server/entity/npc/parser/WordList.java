@@ -118,7 +118,7 @@ public final class WordList {
         try {
             read(reader, null);
             reader.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             logger.error("error while reading resource file 'words.txt'", e);
         }
     }
@@ -149,7 +149,7 @@ public final class WordList {
 
         try {
             md = MessageDigest.getInstance("MD5");
-        } catch(NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             return false;
         }
 
@@ -239,7 +239,7 @@ public final class WordList {
 
                 if (s.charAt(0) == '=') {
                     entry.setNormalized(trimWord(s.substring(1)));
-                    s = tk.hasMoreTokens()? tk.nextToken(): null;
+                    s = tk.hasMoreTokens()? tk.nextToken() : null;
                 }
 
                 if (s != null) {
@@ -696,7 +696,7 @@ public final class WordList {
             }
 
             success = true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             success = false;
             logger.error("error emptying DB table words", e);
         }
@@ -713,14 +713,14 @@ public final class WordList {
                 } finally {
                     acc.close();
                 }
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 logger.error("error storing word list version number into DB", e);
             }
         }
 
         try {
             acc.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             logger.error("error closing DB accessor", e);
         }
     }
@@ -746,7 +746,7 @@ public final class WordList {
             if (success) {
                 trans.commit();
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             logger.error("error while inserting new word into DB", e);
             success = false;
         }
@@ -754,7 +754,7 @@ public final class WordList {
         if (!success) {
             try {
                 trans.rollback();
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 logger.error("error while rolling back transaction", e);
             }
         }
@@ -902,12 +902,12 @@ public final class WordList {
             logger.debug("read " + count + " word entries from database");
 
             return count;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             logger.error("error while reading from DB table words", e);
 
             try {
                 trans.rollback();
-            } catch(SQLException e1) {
+            } catch (SQLException e1) {
                 logger.error("error while rolling back transaction", e1);
             }
 

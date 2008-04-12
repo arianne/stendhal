@@ -175,7 +175,7 @@ public class StaticGameLayers {
 
 		User user = User.get();
 
-		if (collision != null && (user==null || !User.get().isGhostMode())) {
+		if (collision != null && (user == null || !User.get().isGhostMode())) {
 			return collision.collides(shape);
 		}
 

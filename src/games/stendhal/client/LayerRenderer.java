@@ -54,7 +54,7 @@ public abstract class LayerRenderer {
 		Point2D pos = screen.getViewPos();
 		Dimension s = screen.getViewSize();
 
-		draw(screen, (int)pos.getX(), (int)pos.getY(), s.width, s.height);
+		draw(screen, (int) pos.getX(), (int) pos.getY(), s.width, s.height);
 	}
 
 	/**

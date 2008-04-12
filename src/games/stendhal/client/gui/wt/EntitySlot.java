@@ -54,8 +54,7 @@ import marauroa.common.game.RPObject;
  * @author mtotz
  */
 @SuppressWarnings("serial")
-public class EntitySlot extends JPanel implements IDropTarget, DragDropOwner
-{
+public class EntitySlot extends JPanel implements IDropTarget, DragDropOwner {
 	/**
 	 * The background surface sprite.
 	 */
@@ -95,7 +94,7 @@ public class EntitySlot extends JPanel implements IDropTarget, DragDropOwner
 		new DragDropSource(this).associate(this);
 	}
 
-	/** called from EntityContainer */
+	/** called from EntityContainer. */
 	public static int getDefaultHeight() {
 		return background.getHeight();
 	}

@@ -205,7 +205,7 @@ public final class BuddyListPanel extends ClientPanel {
 		 */
 		@Override
 		public void onPopup(MouseEvent e) {
-			int i = (e.getY()-getClientPos().y) / 20;
+			int i = (e.getY() - getClientPos().y) / 20;
 
 			synchronized (buddies) {
 	    		if ((i < 0) || (i >= buddies.size())) {
@@ -242,7 +242,7 @@ public final class BuddyListPanel extends ClientPanel {
 	            mi.addActionListener(listener);
 	            menu.add(mi);
 
-	            menu.show(e.getComponent(), e.getX()-10, e.getY()-10);
+	            menu.show(e.getComponent(), e.getX() - 10, e.getY() - 10);
 			}
 		}
 	}

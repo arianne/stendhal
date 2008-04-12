@@ -20,8 +20,7 @@ import javax.swing.JPopupMenu;
  * @author mtotz
  */
 @SuppressWarnings("serial")
-public class CommandList extends JPopupMenu //StyledJPopupMenu
-{
+public class CommandList extends JPopupMenu {
 
 	/** the entity associated with the command list. */
 	private EntityView view;
@@ -52,7 +51,7 @@ public class CommandList extends JPopupMenu //StyledJPopupMenu
 	 * @param pt
 	 */
 	public void display(MouseEvent e) {
-    	show(e.getComponent(), e.getX()-10, e.getY()-10);
+    	show(e.getComponent(), e.getX() - 10, e.getY() - 10);
 	}
 
 	protected void populate(String[] items) {
@@ -73,7 +72,7 @@ public class CommandList extends JPopupMenu //StyledJPopupMenu
 				label = item;
 			}
 
-			JMenuItem mi = new JMenuItem(label, icon);//WtPopupMenu.createItem(label, icon);
+			JMenuItem mi = new JMenuItem(label, icon);
 			mi.setActionCommand(item);
 			mi.addActionListener(listener);
 			add(mi);

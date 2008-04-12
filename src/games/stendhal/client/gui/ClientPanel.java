@@ -102,13 +102,15 @@ public class ClientPanel extends JInternalFrame {
 	/**
 	 * Notify PropertyManager of the current window state.
 	 */
-    public void setIcon(boolean state) throws PropertyVetoException {
+    @Override
+	public void setIcon(boolean state) throws PropertyVetoException {
         PropertyManager.getInstance().setMinimized(this, state);
 
         super.setIcon(state);
     }
 
-    public void setBounds(int x, int y, int width, int height) {
+    @Override
+	public void setBounds(int x, int y, int width, int height) {
         if (x != 0 && y != 0) {
             PropertyManager.getInstance().moveTo(this, x, y);
         }
@@ -153,7 +155,7 @@ public class ClientPanel extends JInternalFrame {
 		try {
 			x = clnt.getLocationOnScreen().x - getLocationOnScreen().x;
 			y = clnt.getLocationOnScreen().y - getLocationOnScreen().y;
-		} catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			x = 0;
 			y = 0;
 		}
@@ -174,7 +176,7 @@ public class ClientPanel extends JInternalFrame {
 			int y = clnt.getLocationOnScreen().y - getLocationOnScreen().y;
 
 		    return new Rectangle(x, y, clnt.getWidth(), clnt.getHeight());
-		} catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			return new Rectangle(0, 0, clnt.getWidth(), clnt.getHeight());
 		}
     }
@@ -192,9 +194,9 @@ public class ClientPanel extends JInternalFrame {
 		try {
 	        setIcon(true);
 	        return true;
-        } catch(PropertyVetoException e) {
-	        return false;
-        }
+        } catch (PropertyVetoException e) {
+			return false;
+		}
     }
 
 	public boolean isMinimized() {
@@ -208,7 +210,8 @@ public class ClientPanel extends JInternalFrame {
      * @return the border object for this component
      * @see #setBorder
      */
-    public Border getBorder() {
+    @Override
+	public Border getBorder() {
     	return WoodStyle.getInstance().getBorder();
     }
 
@@ -219,7 +222,8 @@ public class ClientPanel extends JInternalFrame {
      * @return the value of the insets property
      * @see #setBorder
      */
-    public Insets getInsets() {
+    @Override
+	public Insets getInsets() {
     	return WoodStyle.getInstance().getBorder().getBorderInsets(this);
     }
 

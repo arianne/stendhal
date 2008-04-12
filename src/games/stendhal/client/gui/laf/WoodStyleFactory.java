@@ -19,14 +19,14 @@ import javax.swing.plaf.synth.SynthStyleFactory;
 public class WoodStyleFactory extends SynthStyleFactory {
 
 	/**
-	 * Activate the Wood look and feel
+	 * Activates the Wood look and feel.
 	 */
 	public static void activate() {
 		try {
         	UIManager.setLookAndFeel(new SynthLookAndFeel());
 
         	SynthLookAndFeel.setStyleFactory(new WoodStyleFactory());
-        } catch(Exception e) {
+        } catch (Exception e) {
         	e.printStackTrace();
         }
 	}

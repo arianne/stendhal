@@ -25,8 +25,9 @@ public class DragDropTarget {
 		dtListener = new DropTargetAdapter() {
 			public void drop(DropTargetDropEvent dtde) {
 				try {
-	                callback.onDrop(dtde, (IDraggable)dtde.getTransferable().getTransferData(DragTransfer.standhalFlavor));
-                } catch(Exception e) {
+	                callback.onDrop(dtde, (IDraggable) dtde.getTransferable().getTransferData(DragTransfer.standhalFlavor));
+                } catch (Exception e) {
+                	//TODO: handle this or comment on it
                 }
             }
 		};

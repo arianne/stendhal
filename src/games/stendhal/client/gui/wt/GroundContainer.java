@@ -44,8 +44,7 @@ import marauroa.common.game.RPSlot;
  * 
  */
 @SuppressWarnings("serial")
-public class GroundContainer extends JInternalFrame implements Inspector
-{
+public class GroundContainer extends JInternalFrame implements Inspector {
 	/** the game client. */
 	private StendhalClient client;
 

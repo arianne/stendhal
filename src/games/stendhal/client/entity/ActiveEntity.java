@@ -227,7 +227,7 @@ public abstract class ActiveEntity extends Entity {
 
 			User user = User.get();
 
-			if ((user==null || !user.isGhostMode())
+			if ((user == null || !user.isGhostMode())
 					&& GameObjects.getInstance().collides(this)) {
 				x = oldX;
 				y = oldY;

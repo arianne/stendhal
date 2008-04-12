@@ -125,7 +125,7 @@ public final class Character extends ClientPanel {
 			add(slot);
 		}
 
-		statsPanel = new ClientTextPanel("stats", 5, (SLOT_SIZE+SLOT_SPACING) * 4, 170, 100);
+		statsPanel = new ClientTextPanel("stats", 5, (SLOT_SIZE + SLOT_SPACING) * 4, 170, 100);
 		statsPanel.setFormat("HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
 		add(statsPanel);
 	}

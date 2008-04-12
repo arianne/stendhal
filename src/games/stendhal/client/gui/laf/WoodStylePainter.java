@@ -24,9 +24,9 @@ public class WoodStylePainter extends SynthPainter {
 	public WoodStylePainter(String textureName) {
 		try {
 	        img = ImageIO.read(SpriteStore.get().getResourceURL(textureName));
-        } catch(Exception e) {
-	        e.printStackTrace();
-	        img = null;
+        } catch (Exception e) {
+			e.printStackTrace();
+			img = null;
         }
 	}
 
@@ -43,15 +43,15 @@ public class WoodStylePainter extends SynthPainter {
 		int w = img.getWidth();
 		int h = img.getHeight();
 
-		for(int y = y1; y<y2; y+=h) {
-			for(int x = x1; x<x2; x+=w) {
+		for (int y = y1; y < y2; y += h) {
+			for (int x = x1; x < x2; x += w) {
 				g.drawImage(img, x, y, w, h, null, null);
 			}
 		}
-    }
+	}
 
 	private void paint(Graphics g, int x, int y, int w, int h) {
-		drawTiles(g, img, x, y, x+w, y+h);
+		drawTiles(g, img, x, y, x + w, y + h);
 	}
 
 

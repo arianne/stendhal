@@ -27,10 +27,10 @@ public class WoodButtonUI extends MetalButtonUI {
 
 	@Override
     public void update(Graphics g, JComponent c) {
-        AbstractButton button = (AbstractButton)c;
+        AbstractButton button = (AbstractButton) c;
 
-        if ((c.getBackground() instanceof UIResource) &&
-                  button.isContentAreaFilled() && c.isEnabled()) {
+        if ((c.getBackground() instanceof UIResource)
+        		&& button.isContentAreaFilled() && c.isEnabled()) {
             ButtonModel model = button.getModel();
 
             if (!(c.getParent() instanceof JToolBar)) {
@@ -39,8 +39,7 @@ public class WoodButtonUI extends MetalButtonUI {
                     paint(g, c);
                     return;
                 }
-            }
-            else if (model.isRollover()) {
+            } else if (model.isRollover()) {
             	style.getBackground().draw(g, 0, 0, 0, 0, c.getWidth(), c.getHeight());
                 paint(g, c);
                 return;

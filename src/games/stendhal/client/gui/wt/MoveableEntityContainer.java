@@ -160,7 +160,7 @@ public class MoveableEntityContainer implements IDraggable {
 				int xMax = Math.max(area.height, size.width);
 				int yMax = Math.max(area.width, size.width);
 
-				cg.scale((double)size.width/xMax, (double)size.height/yMax);
+				cg.scale((double) size.width / xMax, (double) size.height / yMax);
 			}
 
 			view.draw(cg);

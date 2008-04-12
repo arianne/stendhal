@@ -67,7 +67,7 @@ public final class WordEntry {
     }
 
     public String getTypeString() {
-        return type != null? type.getTypeString(): "";
+        return type != null? type.getTypeString() : "";
     }
 
     public String getNormalizedWithTypeString() {

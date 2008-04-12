@@ -171,7 +171,7 @@ public class PropertyManager {
 
 		try {
             panel.setIcon(config.minimized);
-        } catch(PropertyVetoException e) {
+        } catch (PropertyVetoException e) {
         }
 
 		panel.setVisible(config.visible);

@@ -20,17 +20,17 @@ package games.stendhal.common;
 public interface Debug {
 
 	/** server version. */
-	static final String VERSION = "0.67";
+	String VERSION = "0.67";
 
 	/**
 	 * This emulates perception losses. Never make this true and commit it to
 	 * CVS
 	 */
-	static final boolean EMULATE_PERCEPTION_LOSS = false;
+	boolean EMULATE_PERCEPTION_LOSS = false;
 
 	/**
 	 * Log list sizes to find the memory leak. It must be somewhere...
 	 */
-	static final boolean SHOW_LIST_SIZES = false;
+	boolean SHOW_LIST_SIZES = false;
 
 }

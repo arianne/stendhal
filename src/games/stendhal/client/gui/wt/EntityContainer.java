@@ -54,7 +54,7 @@ public class EntityContainer extends ClientPanel implements PositionChangeListen
 
 	private RPSlot shownSlot;
 
-	/** flag to enable the distance check for automatic window closing */
+	/** flag to enable the distance check for automatic window closing. */
 	private final boolean distanceCheck;
 
 	/** Creates the panel. */
@@ -257,7 +257,7 @@ public class EntityContainer extends ClientPanel implements PositionChangeListen
 		if (!orig.contains(px, py)) {
 			logger.debug("Closing " + slotName + " container because " + px
 					+ "," + py + " is too far from (" + ix + "," + iy + "):" + orig);
-			dispose();//destroy();
+			dispose(); //destroy();
 		}
 	}
 

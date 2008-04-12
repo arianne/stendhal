@@ -80,7 +80,7 @@ public class DragDropSource extends DragSourceAdapter implements DragGestureList
 			    draggedObject.drawDragged(g, size);
 			    g.dispose();
 
-				Cursor crsr = tk.createCustomCursor(image, new Point(0,0), draggedObject.toString());
+				Cursor crsr = tk.createCustomCursor(image, new Point(0, 0), draggedObject.toString());
 
 				dge.startDrag(crsr, null, pt, transferable, this);
 			} else {
@@ -90,6 +90,7 @@ public class DragDropSource extends DragSourceAdapter implements DragGestureList
 		}
 	}
 
+	@Override
 	public void dragDropEnd(DragSourceDropEvent dsde) {
 		// be sure to stop dragging operations when the left button is released
 		if (draggedObject != null) {

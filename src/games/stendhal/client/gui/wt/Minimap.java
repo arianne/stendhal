@@ -455,14 +455,14 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
 
-		int size = scale_2 + 2;
+		int tmp_size = scale_2 + 2;
 
 		x += scale_2;
 		y += scale_2;
 
 		g.setColor(color);
-		g.drawLine(x - size, y, x + size, y);
-		g.drawLine(x, y + size, x, y - size);
+		g.drawLine(x - tmp_size, y, x + tmp_size, y);
+		g.drawLine(x, y + tmp_size, x, y - tmp_size);
 	}
 
 
@@ -542,8 +542,8 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 
     				client.send(action);
 
-    				if (currentNode == 0)// We arrived at our destination.
-    				{
+    				if (currentNode == 0) {
+    					// We arrived at our destination.
     					pathfind.ClearPath();
     				}
     			} else {

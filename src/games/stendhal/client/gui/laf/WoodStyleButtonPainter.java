@@ -34,13 +34,13 @@ public class WoodStyleButtonPainter extends SynthPainter {
         	imgShifted = gc.createCompatibleImage(w, h);
 	        Graphics mg = imgShifted.createGraphics();
 
-	        mg.drawImage(img, shift, shift-h, w, h, null);
-	        mg.drawImage(img, shift, shift, w, h, null);
-	        mg.drawImage(img, shift-w, shift-h, w, h, null);
-	        mg.drawImage(img, shift-w, shift, w, h, null);
+	        mg.drawImage(img, shift, shift - h, w, h, null);
+			mg.drawImage(img, shift, shift, w, h, null);
+			mg.drawImage(img, shift - w, shift - h, w, h, null);
+			mg.drawImage(img, shift - w, shift, w, h, null);
 
-        	mg.dispose();
-        } catch(Exception e) {
+			mg.dispose();
+		} catch (Exception e) {
 	        e.printStackTrace();
 	        img = null;
         }
@@ -50,9 +50,9 @@ public class WoodStyleButtonPainter extends SynthPainter {
 	@Override
     public void paintButtonBackground(SynthContext context, Graphics g, int x, int y, int w, int h) {
 		if ((context.getComponentState() & SynthConstants.PRESSED) != 0) {
-			WoodStylePainter.drawTiles(g, imgShifted, x, y, x+w, y+h);
+			WoodStylePainter.drawTiles(g, imgShifted, x, y, x + w, y + h);
 		} else {
-			WoodStylePainter.drawTiles(g, img, x, y, x+w, y+h);
+			WoodStylePainter.drawTiles(g, img, x, y, x + w, y + h);
 		}
     }
 

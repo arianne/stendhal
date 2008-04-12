@@ -578,7 +578,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#setMaxWorldSize(double, double)
 	 */
 	public void setMaxWorldSize(double width, double height) {
-		worldSize = new Dimension((int)width, (int)height);
+		worldSize = new Dimension((int) width, (int) height);
 
 		calculateView();
 	}
@@ -1225,7 +1225,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreen(double)
 	 */
 	public int convertWorldToScreen(double d) {
-		return (int)(d * SIZE_UNIT_PIXELS);
+		return (int) (d * SIZE_UNIT_PIXELS);
 	}
 
 	/*
@@ -1234,7 +1234,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreen(double)
 	 */
 	public Dimension convertWorldToScreen(Dimension2D d) {
-		return new Dimension((int)(d.getWidth() * SIZE_UNIT_PIXELS), (int)(d.getHeight() * SIZE_UNIT_PIXELS));
+		return new Dimension((int) (d.getWidth() * SIZE_UNIT_PIXELS), (int) (d.getHeight() * SIZE_UNIT_PIXELS));
 	}
 
 	/*

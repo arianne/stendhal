@@ -63,7 +63,7 @@ import org.apache.log4j.Logger;
 
 public class j2DClient extends StendhalUI {
 
-    public final static int BORDER_WIDTH = 155;
+    public static final int BORDER_WIDTH = 155;
 
     /** Width of the game screen is calculated by substracting the border widths from 1000. */
     public static int SCREEN_WIDTH = 640; // (1000 - 2*BORDER_WIDTH) / 32 * 32;
@@ -324,7 +324,8 @@ public class j2DClient extends StendhalUI {
      * @param comp
      *            The component to add.
      */
-    public void addDialog(Component comp) {
+    @Override
+	public void addDialog(Component comp) {
         desktop.add(comp, JLayeredPane.PALETTE_LAYER);
     }
 
@@ -344,7 +345,7 @@ public class j2DClient extends StendhalUI {
     // private long avgmemc = 0L;
 
     public void gameLoop() {
-        final int frameLength = (int)(1000.0 / stendhal.FPS_LIMIT);
+        final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
         int fps = 0;
 
         // Clear the first screen
@@ -379,7 +380,7 @@ public class j2DClient extends StendhalUI {
             screen.nextFrame();
 
             long now = System.currentTimeMillis();
-            int delta = (int)(now - refreshTime);
+            int delta = (int) (now - refreshTime);
             refreshTime = now;
 
             // MEMORY DEBUGGING:
@@ -503,7 +504,8 @@ public class j2DClient extends StendhalUI {
 
                 try {
                     Thread.sleep(wait);
-                } catch(InterruptedException e) {
+                } catch (InterruptedException e) {
+                	// ignore
                 }
             }
 
@@ -521,7 +523,7 @@ public class j2DClient extends StendhalUI {
                         logger.warn("You can't logout now.");
                         gameRunning = true;
                     }
-                } catch(Exception e) {
+                } catch (Exception e) {
                     /*
                      * If we get a timeout exception we accept exit request.
                      */
@@ -889,7 +891,7 @@ public class j2DClient extends StendhalUI {
                     locclient.initialize();
                     locclient.gameLoop();
                     locclient.cleanup();
-                } catch(Exception ex) {
+                } catch (Exception ex) {
                     logger.error(ex, ex);
                 }
 

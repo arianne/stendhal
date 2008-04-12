@@ -205,7 +205,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* add triggers for the item names */
 		ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
-		for (Map.Entry<String,Integer> item : items.entrySet()) {
+		for (Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
 		}

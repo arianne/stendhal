@@ -87,15 +87,17 @@ public class Pathfind {
 			next_node_final = 0;
 		}
 		
-		if (final_path.get(next_node+1).y==final_path.get(next_node).y) {
-			for (next_node = final_path_index-2; next_node>next_node_final; next_node--) {
-				if (final_path.get(next_node+1).y!=final_path.get(next_node).y)
+		if (final_path.get(next_node + 1).y == final_path.get(next_node).y) {
+			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
+				if (final_path.get(next_node + 1).y != final_path.get(next_node).y) {
 					break;
+				}
 			}
 		} else {
-			for (next_node = final_path_index-2; next_node>next_node_final; next_node--) {
-				if (final_path.get(next_node+1).x!=final_path.get(next_node).x)
-				break;
+			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
+				if (final_path.get(next_node + 1).x != final_path.get(next_node).x) {
+					break;
+				}
 			}
 		}
 

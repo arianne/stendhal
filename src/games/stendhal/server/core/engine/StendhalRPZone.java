@@ -1132,7 +1132,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return
 	 */
 	public boolean containsPlayer() {
-	    for(RPObject obj: objects.values()) {
+	    for (RPObject obj : objects.values()) {
 	        if (obj instanceof Player) {
 	            return true;
             }
@@ -1146,7 +1146,7 @@ public class StendhalRPZone extends MarauroaRPZone {
      * @return
      */
     public boolean containsAnimal() {
-        for(RPObject obj: objects.values()) {
+        for (RPObject obj : objects.values()) {
             if (obj instanceof DomesticAnimal) {
                 return true;
             }
@@ -1160,7 +1160,7 @@ public class StendhalRPZone extends MarauroaRPZone {
      * @return
      */
     public boolean containsCreature() {
-        for(RPObject obj: objects.values()) {
+        for (RPObject obj : objects.values()) {
             if (obj instanceof Creature) {
                 return true;
             }

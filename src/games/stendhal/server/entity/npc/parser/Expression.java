@@ -75,11 +75,11 @@ public final class Expression {
             String numberString = str.replace(',', '.');
 
             // Parse as float number, then round to the next integer.
-            setAmount((int)Math.round(Double.parseDouble(numberString)));
+            setAmount((int) Math.round(Double.parseDouble(numberString)));
 
             setType(new ExpressionType(ExpressionType.NUMERAL));
             normalized = amount.toString();
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             errors.setError("illegal number format: '" + str + "'");
         }
     }
@@ -157,21 +157,21 @@ public final class Expression {
      * @return
      */
     public int getAmount() {
-        return amount != null? amount.intValue(): 1;
-    }
+		return amount != null ? amount.intValue() : 1;
+	}
+
+	/**
+	 * Return amount as long integer value, default to 1.
+	 * 
+	 * @return
+	 */
+	public long getAmountLong() {
+		return amount != null ? amount : 1;
+	}
 
     /**
-     * Return amount as long integer value, default to 1.
-     *
-     * @return
-     */
-    public long getAmountLong() {
-        return amount != null? amount: 1;
-    }
-
-    /**
-     * Set the break flag to define sentence part borders.
-     */
+	 * Set the break flag to define sentence part borders.
+	 */
     public void setBreakFlag() {
         breakFlag = true;
     }
@@ -264,14 +264,14 @@ public final class Expression {
      * @return
      */
     public String getTypeString() {
-        return type != null? type.getTypeString(): "";
-    }
+		return type != null ? type.getTypeString() : "";
+	}
 
     /**
-     * Determine if the Expression consists of verbs.
-     *
-     * @return
-     */
+	 * Determine if the Expression consists of verbs.
+	 * 
+	 * @return
+	 */
     public boolean isVerb() {
         return type != null && type.isVerb();
     }
@@ -508,7 +508,7 @@ public final class Expression {
         } else if (other == null) {
             return false;
         } else if (other.getClass() == Expression.class) {
-            Expression o = (Expression)other;
+            Expression o = (Expression) other;
 
             if (matcher != null) {
                 if (o.matcher == null || !matcher.equals(o.matcher)) {

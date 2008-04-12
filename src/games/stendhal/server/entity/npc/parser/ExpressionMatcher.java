@@ -226,7 +226,7 @@ public class ExpressionMatcher {
             try {
                 // remove the leading slash from the type string
                 typeStr = tok.nextToken(" \t\n\r\f").substring(1);
-            } catch(NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
                 typeStr = "*";
             }
 
@@ -348,7 +348,7 @@ public class ExpressionMatcher {
         } else if (other == null) {
             return false;
         } else if (other.getClass() == ExpressionMatcher.class) {
-            ExpressionMatcher o = (ExpressionMatcher)other;
+            ExpressionMatcher o = (ExpressionMatcher) other;
 
             if (typeMatching != o.typeMatching) {
                 return false;
