@@ -400,7 +400,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 					+ " and uses a weapon of " + weapon);
 		}
 
-		// TODO: docu
+		
 		int sourceAtk = getATK();
 		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
 				* sourceAtk;
@@ -415,7 +415,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
 				+ attackerComponent);
 
-		// TODO: docu
 		float armor = defender.getItemDef();
 		int targetDef = defender.getDEF();
 		double maxDefenderComponent = (0.6f * targetDef + armor)

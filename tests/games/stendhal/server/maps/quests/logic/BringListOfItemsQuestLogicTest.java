@@ -346,7 +346,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public void rewardPlayer(Player player) {
-			// TODO: implement me
+			
 		}
 
 		public boolean shouldWelcomeAfterQuestIsCompleted() {
