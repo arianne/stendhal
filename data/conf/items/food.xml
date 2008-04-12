@@ -779,7 +779,7 @@
     <description>You see what looks like a tasty hotdog on a bun.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="160"/>
-      <frequency value="20"/>
+      <frequency value="10"/>
       <quantity value="1"/>
       <regen value="16"/>
     </attributes>
@@ -796,7 +796,7 @@
     <description>You see what looks like a tasty cheesey hotdog on a bun.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="180"/>
-      <frequency value="20"/>
+      <frequency value="10"/>
       <quantity value="1"/>
       <regen value="18"/>
     </attributes>
@@ -815,7 +815,7 @@
       <amount value="100"/>
       <frequency value="10"/>
       <quantity value="1"/>
-      <regen value="10"/>
+      <regen value="20"/>
     </attributes>
     <weight value="1.0"/>
     <value value="8"/>
@@ -832,7 +832,7 @@
       <amount value="100"/>
       <frequency value="10"/>
       <quantity value="1"/>
-      <regen value="10"/>
+      <regen value="20"/>
     </attributes>
     <weight value="1.0"/>
     <value value="8"/>

@@ -87,6 +87,15 @@
  <tileset name="flames" firstgid="282" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
  </tileset>
+ <tileset name="tree" firstgid="284" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas2.png"/>
+ </tileset>
+ <tileset name="christmas2" firstgid="290" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas4.png"/>
+ </tileset>
+ <tileset name="sparkles" firstgid="296" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/xmas_lights.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNgZGBgZiAPCzAisBQDaRhZ7ygexaMYE9tQmE+I0Q8AlkUIRQAEAAA=
@@ -94,7 +103,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRQjA4M0I/E0O1APD1S/DBBLAMUkGYmnpdH0g4ATA/EAm35SwEDpFwRiSSDmxqJflJGwflEglmLADH9SwVANP1rpj4NiQgCmDlk/FwMkTtGxHA5x5PjnBWI+HFgJjxwICwAxAH8rZekABAAA
+   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRQjA4M0I/E0O1APD1S/DBBLAMUkGYmnpdH0g4ATA/EAm35SwEDpFwRiSSDmxqJflJGwflEglmLADH9SwVANP1z61YBhp05E+CkA1ShiSX9xUEwIwNQh6+digMQpOpbDIY4c/7xAzIcDK+GRA2EBIAYArl/uigAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -104,12 +113,12 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDBYgwDrQLRsFIAwAgj3sqAAQAAA==
+   H4sIAAAAAAAAAGNgGAWDBYgwDrQLBg4oAf2uTIT/ZYBqZLGoUwGKqRKhXw6oRn4EhzM6AABVUyc4AAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAAN1S0QrEIAybf9OTQ4YMKf3/DzvHJZCNbq+DBUpVTNJWl+UdsHJcbzMGzpj7zDGjlpxv4LQZn/K/7zgP2UfC/0K3Q6NDh+sKTZO6FCu0m3gE9uRkPKLJffoGtAb87/hD6tMeVJMzycB5m/TBvqvMb89rokE/F48umkNq8YTvqC/kDXUWJvrZHPim9LETh734hT+5+o/UN268n8QPjuKzMAAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
