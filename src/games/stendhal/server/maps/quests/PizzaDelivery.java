@@ -143,11 +143,11 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Balduin is a hermit who's living on a mountain between Semos and Ados.",
 				"Pizza Prosciutto",
-				7, // minutes to deliver. Tested by mort: 6:30
+				7,  // minutes to deliver. Tested by mort: 6:30
 					// min, with killing some orcs.
 				200, // tip when delivered on time. Quite
 						// high because you can't do much
-						// senseful on top of the hill and must
+						// sensefull on top of the hill and must
 						// walk down again.
 				30, // experience gain for delivery
 				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
@@ -183,7 +183,7 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Fidorea lives in Ados city. She is a makeup artist.",
 				"Pizza Napoli",
-				7, // minutes to deliver. Tested by mort: about
+				7,  // minutes to deliver. Tested by mort: about
 					// 6 min, outrunning all enemies.
 				150, // tip when delivered on time
 				20, // experience gain for delivery
@@ -194,7 +194,7 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Haizen is a magician who lives in a hut near the road to Ados.",
 				"Pizza Diavolo",
-				4, // minutes to deliver. Tested by kymara:
+				4,  // minutes to deliver. Tested by kymara:
 					// exactly 3 min.
 				80, // tip when delivered on time
 				15, // experience gain for delivery
@@ -206,7 +206,7 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Jenny owns a mill near Semos.",
 				"Pizza Margherita",
-				2, // minutes to deliver. Tested by mort: can
+				2,  // minutes to deliver. Tested by mort: can
 					// be done in 1:15 min, with no real danger.
 				20, // tip when delivered on time
 				10, // experience gain for delivery
@@ -217,7 +217,7 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Jynath is a witch who lives in a small house south of Or'ril castle.",
 				"Pizza Funghi",
-				6, // minutes to deliver. Tested by mort: 5:30
+				6,  // minutes to deliver. Tested by mort: 5:30
 					// min, leaving the slow monsters on the way
 					// behind.
 				140, // tip when delivered on time
@@ -229,7 +229,7 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Katinka takes care of the animals at the Ados Wildlife Refuge.",
 				"Pizza Vegetale",
-				4, // minutes to deliver. Tested by kymara in
+				4,  // minutes to deliver. Tested by kymara in
 					// 3:25 min, leaving behind the orcs.
 				100, // tip when delivered on time
 				20, // experience gain for delivery
@@ -252,10 +252,10 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Nishiya sells sheep. You'll find him west of here.",
 				"Pizza Pasta",
-				1, // minutes to deliver. Tested by mort: easy
+				1,  // minutes to deliver. Tested by mort: easy
 					// to do in less than 1 min.
 				10, // tip when delivered on time
-				5, // experience gain for delivery
+				5,  // experience gain for delivery
 				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
 				"Too bad. It has become cold. Thank you anyway."));
 
@@ -263,10 +263,10 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Ouchit is a weapons trader. He has currently rented a room in the tavern, just around the corner.",
 				"Pizza Quattro Stagioni",
-				1, // minutes to deliver. Tested by mort: can
+				1,  // minutes to deliver. Tested by mort: can
 					// be done in 45 sec with no danger.
 				10, // tip when delivered on time
-				5, // experience gain for delivery
+				5,  // experience gain for delivery
 				"Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!",
 				"I should have rather picked it up myself at the bakery, that would have been faster."));
 
@@ -324,7 +324,7 @@ public class PizzaDelivery extends AbstractQuest {
 	}
 
 	/**
-	 * Checks whether the player has failed to fulfil his current delivery job
+	 * Checks whether the player has failed to fulfill his current delivery job
 	 * in time.
 	 * 
 	 * @param player
@@ -362,12 +362,11 @@ public class PizzaDelivery extends AbstractQuest {
 					// quite low. TODO: For full security, we'd have to rewrite
 					// this so that the pizza flavor and baking time are stored
 					// inside the pizza item's infostring, and the quest slot
-					// containss the item ID of the pizza.
+					// contains the item ID of the pizza.
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (isDeliveryTooLate(player)) {
 							if (data.messageOnColdPizza.contains("%s")) {
-								npc.say(String.format(data.messageOnColdPizza,
-										data.flavor));
+								npc.say(String.format(data.messageOnColdPizza, data.flavor));
 							} else {
 								npc.say(data.messageOnColdPizza);
 							}
@@ -415,7 +414,6 @@ public class PizzaDelivery extends AbstractQuest {
 	}
 
 	private void prepareBaker() {
-
 		SpeakerNPC leander = npcs.get("Leander");
 
 		leander.add(ConversationStates.ATTENDING,
@@ -473,13 +471,12 @@ public class PizzaDelivery extends AbstractQuest {
 
 		for (String name : customerDB.keySet()) {
 			CustomerData data = customerDB.get(name);
-			// TODO: If there's a space in the NPC name, this won't work.
+			// TODO mf TEST: If there's a space in the NPC name, this won't work.
 			leander.addReply(name, data.npcDescription);
 		}
 	}
 
 	private void prepareCustomers() {
-
 		for (String name : customerDB.keySet()) {
 			SpeakerNPC npc = npcs.get(name);
 
