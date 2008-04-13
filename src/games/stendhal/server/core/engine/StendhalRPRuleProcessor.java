@@ -457,10 +457,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public synchronized void onTimeout(RPObject object) {
-		/*
-		 * TODO: Refactor Check new syntax of onTimeout. It is expected to
-		 * kickout the player, it can't fail.
-		 */
 		onExit(object);
 	}
 
