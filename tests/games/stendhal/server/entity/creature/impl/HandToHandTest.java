@@ -68,7 +68,7 @@ public class HandToHandTest {
 		RPEntity victim = new RPEntity() {
 		
 			@Override
-			public boolean isInvisible() {
+			public boolean isInvisibleToCreatures() {
 				return mockinvisible;
 			}
 			@Override
@@ -84,10 +84,10 @@ public class HandToHandTest {
 		victim.put("id", 1);
 		creature.setTarget(victim);
 		mockinvisible = true;
-		assertTrue(victim.isInvisible());
+		assertTrue(victim.isInvisibleToCreatures());
 		assertFalse("victim is invisible", hth.hasValidTarget(creature));
 		mockinvisible = false;
-		assertFalse(victim.isInvisible());
+		assertFalse(victim.isInvisibleToCreatures());
 		zone.add(victim);
 		assertFalse("not in same zone", hth.hasValidTarget(creature));
 		zone.add(creature);

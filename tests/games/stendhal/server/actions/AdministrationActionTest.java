@@ -484,11 +484,11 @@ public class AdministrationActionTest {
 		pl.setAdminLevel(5000);
 		RPAction action = new RPAction();
 		action.put("type", "invisible");
-		assertFalse(pl.isInvisible());
+		assertFalse(pl.isInvisibleToCreatures());
 		CommandCenter.execute(pl, action);
-		assertTrue(pl.isInvisible());
+		assertTrue(pl.isInvisibleToCreatures());
 		CommandCenter.execute(pl, action);
-		assertFalse(pl.isInvisible());
+		assertFalse(pl.isInvisibleToCreatures());
 	}
 
 	@Test

@@ -16,7 +16,7 @@ public class InvisibleAction extends AdministrationAction {
 	@Override
 	public void perform(Player player, RPAction action) {
 
-		if (player.isInvisible()) {
+		if (player.isInvisibleToCreatures()) {
 			player.setInvisible(false);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_INVISIBLE, "off");

@@ -860,7 +860,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if invisible.
 	 */
 	@Override
-	public boolean isInvisible() {
+	public boolean isInvisibleToCreatures() {
 		return has(ATTR_INVISIBLE);
 	}
 

@@ -431,7 +431,7 @@ public class Creature extends NPC {
 				continue;
 			}
 
-			if (enemy.isInvisible()) {
+			if (enemy.isInvisibleToCreatures()) {
 				continue;
 			}
 			assert (enemy.getZone() == getZone());
@@ -485,7 +485,7 @@ public class Creature extends NPC {
 				continue;
 			}
 
-			if (playerOrFriend.isInvisible()) {
+			if (playerOrFriend.isInvisibleToCreatures()) {
 				continue;
 			}
 

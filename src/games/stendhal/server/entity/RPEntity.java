@@ -1091,11 +1091,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return <code>true</code> if invisible.
 	 */
-	public boolean isInvisible() {
-		// By default entities aren't invisible
-		//
-		// TODO: Use this to let specific types not be visible (like
-		// most npc's) and replace playersAndFriends code?
+	public boolean isInvisibleToCreatures() {
 		return false;
 	}
 

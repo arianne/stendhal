@@ -59,7 +59,7 @@ public class RangeAttack implements AttackStrategy {
 		}
 
 		RPEntity victim = creature.getAttackTarget();
-		if (victim.isInvisible()) {
+		if (victim.isInvisibleToCreatures()) {
 			return false;
 		}
 		if (!victim.getZone().equals(creature.getZone())) {

@@ -163,11 +163,11 @@ public class PlayerTest {
 	@Test
 	public void testIsInvisible() {
 		Player player2 = PlayerTestHelper.createPlayer("player2");
-		assertThat(player2.isInvisible(), not(is(true)));
+		assertThat(player2.isInvisibleToCreatures(), not(is(true)));
 		player2.setInvisible(true);
-		assertThat(player2.isInvisible(), is(true));
+		assertThat(player2.isInvisibleToCreatures(), is(true));
 		player2.setInvisible(false);
-		assertThat(player2.isInvisible(), not(is(true)));
+		assertThat(player2.isInvisibleToCreatures(), not(is(true)));
 	}
 	@Ignore
 	@Test

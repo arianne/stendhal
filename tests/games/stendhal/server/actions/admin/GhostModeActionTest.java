@@ -36,12 +36,12 @@ public class GhostModeActionTest {
 		RPAction action = new RPAction();
 
 		action.put("type", "ghostmode");
-		assertFalse(hugo.isInvisible());
+		assertFalse(hugo.isInvisibleToCreatures());
 		assertFalse(hugo.isGhost());
 
 		CommandCenter.execute(hugo, action);
 
-		assertTrue(hugo.isInvisible());
+		assertTrue(hugo.isInvisibleToCreatures());
 		assertTrue(hugo.isGhost());
 
 		assertEquals(null, bob.get("online"));
@@ -54,7 +54,7 @@ public class GhostModeActionTest {
 		bob.clearEvents();
 		CommandCenter.execute(hugo, action);
 
-		assertFalse(hugo.isInvisible());
+		assertFalse(hugo.isInvisibleToCreatures());
 		assertFalse(hugo.isGhost());
 		
 		assertEquals("hugo", bob.get("online"));
