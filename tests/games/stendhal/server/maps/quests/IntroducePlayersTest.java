@@ -142,7 +142,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(tad.isTalking());
 
 		assertEquals("Tad has already asked and the quest was accepted",
-				"*sniff* *sniff* I still feel ill, please hurry", tad
+				"*sniff* *sniff* I still feel ill, please hurry with that #favour for me.", tad
 						.get("text"));
 
 		//TODO still to be finished: get the herb for Ilisa
