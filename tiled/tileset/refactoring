@@ -41,7 +41,7 @@ m*/building/decoration/pale_red.png
 m/K*./building/decoration/pool.png
 m*/building/decoration/rocks.png
 m*/building/decoration/rocks_2.png
-./building/decoration/skull_carving.png => item/statue/skull_carving.png
+k*/building/decoration/skull_carving.png => item/statue/skull_carving.png
 k*/building/decoration/skullpedestal.png    
 ./building/decoration/squares.png          deleted 
 m*/building/decoration/squares_2.png
