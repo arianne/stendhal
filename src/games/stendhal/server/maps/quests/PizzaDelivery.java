@@ -310,7 +310,7 @@ public class PizzaDelivery extends AbstractQuest {
     		npc.say("You must bring this "
     			+ data.flavor
     			+ " to "
-    			+ Grammar.quoteHash("#"+name)
+    			+ Grammar.quoteHash("#" + name)
     			+ " within "
     			+ Grammar.quantityplnoun(data.expectedMinutes, "minute")
     			+ ". Say \"pizza\" so that "
