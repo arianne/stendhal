@@ -437,7 +437,6 @@ public class StendhalClient extends ClientFramework {
 			}
 		} else {
 			RPObject template = new RPObject();
-			// TODO: Account Username can be != of Character username.
 			try {
 				createCharacter(getAccountUsername(), template);
 				// TODO: check result of createCharacter
