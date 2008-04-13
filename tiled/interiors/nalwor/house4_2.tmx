@@ -51,14 +51,17 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="154" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="155" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ew.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONgYGDgGMWjeIAwAMX8ImiAAgAA
+   H4sIAAAAAAAAAONgYGDgGMUMVkBsDcQ2g9S84YoBbInjUYACAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAI3POQqAMBQE0FzApVHTutu6NIKNy00U9P4ncFIIX8iEfHgQGGYgWikVWmSgScaYTgwdVEILEckY2SnU/3JHxs7V6WGAESbPvRMusjeL9+K5d8ND9lbYYIfDc0/+t4FSqB0Z83VSCCwSR8aYzgt/AkoWgAIAAA==
+   H4sIAAAAAAAAAI3POQ6DMBCF4blAQhqC25C1ZWlYigRyk0SC+5+A34UlI3ksj/RVT+9JY0TkGFDAKJnGdk544eZ5IlMyjd8pZX8VajRoJe0ukb0OPQa8E/d++Ef23I2JewtWZe+DCTO+iXv+vw9cPfdIpnGdMw4BeSTT2M4GXGqGEoACAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="8">
@@ -68,7 +71,7 @@
  </layer>
  <layer name="3_roof" width="20" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAWlDNQFZVQ2b6gAKyC2HmhHDAEAAB/JBIiAAgAA
+   H4sIAAAAAAAAAGNgQAWlDNQFZVQ2j1ZgLhDPG8TmDVcAAGAKt4SAAgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="8">

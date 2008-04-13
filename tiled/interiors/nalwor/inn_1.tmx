@@ -78,14 +78,17 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="174" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ns.png"/>
+ </tileset>
  <layer name="0_floor" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNhYGBgGcWjeBSP4lE8ikfxKB7FZGEAHiyZ50wJAAA=
+   H4sIAAAAAAAAAGNhYGBgGcWjeBSP4lE8iqmEiwaBG0bxKKYnBgDh5Bk4TAkAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGDgwoGFgVgEi7gxEJvQQA0PEKsAsQIaVgZibhzy5kBsQSM1cgyYQJaAPD3VjLpl1C3UdEsvlewhxhxC8v1Ucgsx5iDLKwGxPBDHA3ECECdC+Yo0UIPPLUJAzAnFGUDcCsRZSGKCVFSDzy3iDKhldiHUjGIG3PUGuWpgdQA2t2gzYNYLVUBcDcQ1WOQoUUOoDqAnICYPDIRbQOnbFojtGCDpGhemlRpYPoKlb0cgdmJApGtsmJZqQPkIAPBLmD5MCQAA
+   H4sIAAAAAAAAABNhYGDgwoGFgVgEi7gxEJvQQA0PEKsAsQIaVgZibhzy5kBsQSM1cgyYQJaAPD3VjLpl1C3UdEsvlewhxhxC8v1Ucgsx5iDLKwGxPBDHA3ECECdC+Yo0UIPPLUJAzAnFGUCcCcRZSGKCVFSDzy3iDKhldiEQFwFxMQPueoNcNbA6AJtbtBkw64UqIK4G4hoscpSoIVQH0BMQkwcGwi2g9G0LxHYMkHSNC9NKDSwfwdK3IxA7MSDSNTZMSzWgfAQARzRG3kwJAAA=
   </data>
  </layer>
  <layer name="2_object" width="35" height="17">
@@ -95,7 +98,7 @@
  </layer>
  <layer name="3_roof" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjCcSg8cMHxBUQEEuGHnLcO5B+HAWjgBogk45qcAFY2VGExqdUDTkAvezAVpaQo2YUjAJyAQAJuLpQTAkAAA==
+   H4sIAAAAAAAAAGNgGAUjCcSg8cMHxBUQEEuGHnLcO5B+HAWjgFKQAcTrgTiLDmrwAVDZUQjEm4C4mAGzLCFXDTkAvezAVpaQo2YUjAJyAQCXTZuITAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="35" height="17">
@@ -108,7 +111,7 @@
    H4sIAAAAAAAAAGNgGAX4wIKBdsAwAKsH2gEkgBVEqhtKfhoFo2CogmUD7YBRMAqIBACucAEfTAkAAA==
   </data>
  </layer>
- <layer name="collision" width="35" height="17" opacity="0.37">
+ <layer name="collision" width="35" height="17" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvLwMCwdhTjxMgAnzwyn9ZqcLkHG6CXGkLhRyhs8ZlBKB6o7VZi3UyOPDn2kOsnephBi3DDpYZa5pBiF740SQ01o24Zem7B5jZ8fErUkOMeWgBC4TeKGRgAE8CqbUwJAAA=
   </data>

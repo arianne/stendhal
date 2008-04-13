@@ -96,6 +96,9 @@
  <tileset name="pot_plant_sprout.png" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="262" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/light_red_ns_ew_details.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNiYGBgGkAsiAMPNb0mg1wvPxZMD71iQCyKhonVK4pFPyl6kbEYmfaKkWgvNsxNQ728SNgajc+NxicGB1GgdxQPLgwA0lffYtwFAAA=
@@ -113,7 +116,7 @@
  </layer>
  <layer name="3_roof" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYGiB22iYFHAHDQ9mcACIDwLxITL0HgHio0B8jJoOGgWDBhxgIJw2AJVgM/vcBQAA
+   H4sIAAAAAAAAAGNgGAWjYGiB22iYFHAHDQ9mwMHIwHAQSpMKOIF6jkLpUTD8wAEGSNo4hEcNAHVea5ncBQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="25">
@@ -126,7 +129,7 @@
    H4sIAAAAAAAAAGNgGAWjAAFeDbQD6AyYGQfaBaNgpKU5ZPCVhmYDAEXh3PvcBQAA
   </data>
  </layer>
- <layer name="collision" width="15" height="25" opacity="0.37">
+ <layer name="collision" width="15" height="25" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAN2SMQ4AIAgD+/8XOzqZEEOhEB20CRMexeoAMB6uJdbL2M5cj4XI2TNM6p0Z681QdIOt7t7xjtiub+UvKPzPrM3Hy4rlh60XSfXNdlFY1bfKnX6jrCYSjDET3AUAAA==
   </data>

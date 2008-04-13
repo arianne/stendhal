@@ -105,6 +105,9 @@
  <tileset name="logs" firstgid="307" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="310" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/light_red_ns_ew_details.png"/>
+ </tileset>
  <layer name="0_floor" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UOwqAMAyA4XglT1En6elE0HN4PXFwsDQ0j6atkOFfhMYP+ggAEDy0eeKVW7+CrHTWwuzvltjYEpNGtVjtUeqpaXlm9Ti72J3keKQWyvvwdiHfKeXWUvelhUWTW76VzpG0o9CGWGo7KJ0d/ukWvWWk82J1jzSW1p6SxcqTe1924azab7wma8sNl3ev5qwNAAA=
@@ -127,7 +130,7 @@
  </layer>
  <layer name="4_roof_add" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDDdwC4tsD7QgguIFF7DqUvkZPh4yCUTAKRsEoGAWjYBSMAKDPONAuGAX0BgBEVsgvrA0AAA==
+   H4sIAAAAAAAAAGNgGAVDDdwC4tsD7QgguIFF7DqUvkZPh4yCUTAKqAIsGFFpeunFBiwZUWl66R0Fo2AUjILBDPRHy7URBwDix2k9rA0AAA==
   </data>
  </layer>
  <layer name="objects" width="35" height="25">
