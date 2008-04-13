@@ -1062,7 +1062,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		totalDamageReceived = 0;
 
 		// Stats about dead
-		// TODO: Use getTitle() instead??
 		if (has("name")) {
 			stats.add("Killed " + get("name"), 1);
 		} else {

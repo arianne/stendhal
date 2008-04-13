@@ -1348,9 +1348,6 @@ public class Player extends RPEntity {
 		notifyWorldAboutChanges();
 	}
 
-	// TODO: use the turn notifier for consumable items to get rid of
-	// Player.consume().
-
 	@Override
 	public String describe() {
 
