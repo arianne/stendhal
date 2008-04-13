@@ -347,8 +347,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return the complete text of the sentence with unchanged case, but with trimmed white space. TODO mf - There
-     * should be only as less code places as possible to rely on this method.
+     * Return the complete text of the sentence with unchanged case, but with trimmed white space. 
+     * <p>TODO mf - There should be only as less code places as possible to rely on this method.
      *
      * @return string
      */
