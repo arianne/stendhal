@@ -419,11 +419,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	protected void createEntityAt(String clazz, int type, int x, int y) {
 		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
 
-		/*
-		 * TODO: Refactor Stinky code... hardcoded... uuuaaarrgghh! No idea how
-		 * to improve it...
-		 */
-
 		try {
 			if (clazz.contains("logic/portal")) {
 				switch (type) {
