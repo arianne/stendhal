@@ -749,9 +749,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 
-			// TODO Opponent could attack again, really remove? XXX
-			// Yes, because otherwise we would have a memory leak. When else
-			// should dead creatures be removed from the hash map? --mort
+			//remove opponent here to avoid memory leak
 			enemiesThatGiveFightXP.remove(attackTarget);
 
 			attackTarget = null;
