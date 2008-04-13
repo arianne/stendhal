@@ -448,20 +448,15 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	// Called when entity is killed by killer
+	/* 
+	 * Handles Death of entity caused by killer.
+	 * 
+	 */
 	public void onDeath(final Entity killer) {
 		if (killer != null) {
 			StendhalUI.get().addEventLine(
 					getTitle() + " has been killed by " + killer.getTitle());
 		}
-
-		/*
-		 * see
-		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
-		 * if (getID().equals(client.getPlayer().getID())) {
-		 * client.addEventLine(getTitle() + " has died. " +
-		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
-		 */
 	}
 
 	// When entity eats food
