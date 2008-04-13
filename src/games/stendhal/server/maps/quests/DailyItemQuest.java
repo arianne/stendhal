@@ -73,7 +73,7 @@ public class DailyItemQuest extends AbstractQuest {
 				"sclaria", "kekik", "elvish cloak", "elvish legs",
 				"shuriken", "coconut", "sapphire", "emerald", "carbuncle",			       
 				"cauliflower", "broccoli", "gold nugget", "gold bar",
-				"pineapple", "pina colada", "ice cream");
+				"pineapple", "pina colada", "icecream");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
