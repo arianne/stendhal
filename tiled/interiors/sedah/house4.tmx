@@ -60,6 +60,9 @@
  <tileset name="imperials2" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="161" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/light_red_ns_ew_details.png"/>
+ </tileset>
  <layer name="0_floor" width="30" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TsREAMAwCMWZL4f1H8hjcOSrUPhWTZIBTXqlht9OAH7S+Yhe4bgEsmAINEA4AAA==
@@ -82,7 +85,7 @@
  </layer>
  <layer name="4_roof_add" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+   H4sIAAAAAAAAAO3UoREAMAgEQfpvIykUjyQMIrNrzr38CIB3p3Rr45Z2TGwA/5n4tQ6fBGxKI04oCRAOAAA=
   </data>
  </layer>
  <layer name="objects" width="30" height="30">
@@ -90,7 +93,7 @@
    H4sIAAAAAAAAAO3VMQ0AMAwDwUzhPxdtMVSppQx3AH60qwBgpkPds7QFsNXL1tnF/1J/mHQBY790mhAOAAA=
   </data>
  </layer>
- <layer name="collision" width="30" height="30" visible="0" opacity="0.44">
+ <layer name="collision" width="30" height="30" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO1TQQ7AIAjD/396p10W0CIWndqEi7aUYiwiUg6vF9qZdqdpLFg6BLVZGTqGr6fHDnm96NUjux7xLzI01xfnfdHD0XgeT9Q3wovk/SNv9byz5kP/yuq+lm7XvFlA98z2tTiR/i3PrD23dsyaZ+Z7jihWX2Y9uIeJjRAOAAA=
   </data>
