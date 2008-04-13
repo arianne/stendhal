@@ -574,7 +574,6 @@ public class Creature extends NPC {
 		if (getAiProfiles().containsKey("archer")) {
 			// The creature can shoot, but only if the target is at most
 			// 7 tiles away.
-			// TODO: make the max distance configurable via creatures.xml.
 			return squaredDistance(target) <= 7 * 7;
 		}
 		return false;
