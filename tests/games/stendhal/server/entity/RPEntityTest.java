@@ -60,12 +60,12 @@ public class RPEntityTest {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
-				// TODO Auto-generated method stub
+				// do nothing
 			}
 
 			@Override
 			public void logic() {
-				// TODO Auto-generated method stub
+				// do nothing
 				
 			}
 		};
@@ -124,13 +124,13 @@ public class RPEntityTest {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
-				// TODO Auto-generated method stub
+				// do nothing
 				
 			}
 
 			@Override
 			public void logic() {
-				// TODO Auto-generated method stub
+				// do nothing
 				
 			}
 		};
@@ -154,13 +154,13 @@ public class RPEntityTest {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
-				// TODO Auto-generated method stub
+				// do nothing
 				
 			}
 
 			@Override
 			public void logic() {
-				// TODO Auto-generated method stub
+				// do nothing
 				
 			}
 		};
