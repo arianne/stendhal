@@ -541,7 +541,6 @@ public abstract class RPEntity extends ActiveEntity {
 	// Called when entity says text
 	public void onTalk(final String text) {
 		if (User.isAdmin() || (distanceToUser() < 15 * 15)) {
-			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
 			String line = text.replace("|", "");
