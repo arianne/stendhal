@@ -713,7 +713,7 @@ public abstract class RPEntity extends ActiveEntity {
 
     			/*
     			 * TODO This is probably meaningless, as create order is
-    			 * unpredictable, and the target entity may not have been added yet XXX
+    			 * unpredictable, and the target entity may not have been added yet 
     			 */
     			attackTarget = (RPEntity) gameObjects.get(targetEntityID);
 
