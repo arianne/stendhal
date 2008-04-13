@@ -290,8 +290,7 @@ public class PizzaDelivery extends AbstractQuest {
 				"Tor'Koom is an orc who lives in the dungeon below this town. Sheep are his favourite food.",
 				"Pizza Pecora", // "Pizza sheep" in Italian ;)
 				9, // minutes to deliver. Tested by kymara:
-					// done in about 8 min, with lots of
-					// monsters getting in your way.
+					// done in about 8 min, with lots of monsters getting in your way.
 				170, // tip when delivered on time
 				30, // experience gain for delivery
 				"Yummy %s! Here, take %d moneys!",
@@ -302,25 +301,23 @@ public class PizzaDelivery extends AbstractQuest {
 		String name = Rand.rand(customerDB.keySet());
 		CustomerData data = customerDB.get(name);
 
-		Item pizza = SingletonRepository.getEntityManager()
-				.getItem("pizza");
+		Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
 		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
 		pizza.setBoundTo(name);
-		
+
 		if (player.equip(pizza)) {
-		// TODO: If there's a space in the NPC name, colorization won't work.
-		npc.say("You must bring this "
-			+ data.flavor
-			+ " to #"
-			+ name
-			+ " within "
-			+ Grammar.quantityplnoun(data.expectedMinutes, "minute")
-			+ ". Say \"pizza\" so that "
-			+ name
-			+ " knows that I sent you. Oh, and please wear this uniform on your way.");
-		player.setOutfit(UNIFORM, true);
-		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
+    		npc.say("You must bring this "
+    			+ data.flavor
+    			+ " to "
+    			+ Grammar.quoteHash("#"+name)
+    			+ " within "
+    			+ Grammar.quantityplnoun(data.expectedMinutes, "minute")
+    			+ ". Say \"pizza\" so that "
+    			+ name
+    			+ " knows that I sent you. Oh, and please wear this uniform on your way.");
+    		player.setOutfit(UNIFORM, true);
+    		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
 		} else {
 			npc.say("Come back when you have space to carry the pizza!");
 		}

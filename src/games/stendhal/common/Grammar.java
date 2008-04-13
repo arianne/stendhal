@@ -699,7 +699,7 @@ public class Grammar {
 	 * @param str
 	 * @return
 	 */
-	static String quoteHash(String str) {
+	public static String quoteHash(String str) {
 		if (str != null) {
 			int idx = str.indexOf('#');
 
