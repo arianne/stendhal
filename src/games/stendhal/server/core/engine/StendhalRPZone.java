@@ -623,7 +623,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * This check is to avoid PassiveEntityRespawnPoint to make items grown
 		 * and zone to make them disappear. 
-		 * <p>FIXME: Change later to a proper event based system.
+		 * <p>TODO: Change later to a proper event based system.
 		 */
 		if ((object instanceof Item) && (player != null)) {
 			Item item = (Item) object;
