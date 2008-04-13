@@ -462,7 +462,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		double minrangeSquared = 2 * 2;
 		double maxrangeSquared = 7 * 7;
 		// FIXME: make a gaussian like result
-		// TODO: make range configurable
 		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
 				* (1.0 - (minrangeSquared / maxrangeSquared)))
 				* (1.0 - squareDistance / maxrangeSquared));
