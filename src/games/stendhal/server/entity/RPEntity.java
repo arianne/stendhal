@@ -1840,9 +1840,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Set the entity's formatted title/name.
-	 * 
-	 * TODO: Move up to Entity, with attribute
+	 * Set the entity's formatted title.
 	 * 
 	 * @param title
 	 *            The title, or <code>null</code>.
