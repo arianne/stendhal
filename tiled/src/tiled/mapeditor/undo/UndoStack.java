@@ -48,7 +48,7 @@ public class UndoStack extends UndoManager {
 		String[] list = new String[edits.size()];
 		int i = 0;
 
-		for(UndoableEdit e : edits) {
+		for (UndoableEdit e : edits) {
 			list[i++] = e.getPresentationName();
 		}
 
