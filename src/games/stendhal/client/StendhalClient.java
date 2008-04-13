@@ -140,7 +140,6 @@ public class StendhalClient extends ClientFramework {
 	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
 
-		// TODO: Move this to the UI init code
 		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
