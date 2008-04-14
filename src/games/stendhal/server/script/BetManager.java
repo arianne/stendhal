@@ -242,9 +242,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			engine.say(player.getTitle() + ", your bet "
 					+ betInfo.betToString() + " was accepted");
 
-			// TODO: put items on ground
-			// TODO: mark items on ground with: playername "betted" amount
-			// itemname "on" target.
+			// TODO: put items on ground and mark items on ground with: playername "betted" amount
+			// itemname "on" target. 
+			// dont forget to remove the items after bet is done and to remove the notfullyimplemented warning
 
 		}
 	}
@@ -313,7 +313,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			}
 
-			// TODO: remove item from ground, if it has been put there
+	
 
 			if (betInfos.isEmpty()) {
 				winner = null;
@@ -363,7 +363,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				ConversationStates.IDLE,
 				"I am not accepting any bets at the moment.", null);
 
-		// TODO: remove warning
+		
 		admin.sendPrivateText("BetManager is not fully coded yet");
 	}
 
