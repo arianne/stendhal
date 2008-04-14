@@ -19,8 +19,6 @@ import org.apache.log4j.Logger;
 /**
  * An area that only allows one play at a time to enter.
  * 
- * TODO: KNOWN BUG: If a player enters, then goes into ghost mode, the area will
- * reject other players (exposing that there is a ghost present in area).
  */
 public class OnePlayerArea extends AreaEntity implements MovementListener {
 	/**
@@ -230,6 +228,9 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			 * Check to make sure things aren't buggy
 			 */
 			if ((occupant != null) && (occupant != entity)) {
+				if (occupant.isGhost()) {
+					clearOccupant();
+				}
 				logger.error("Existing occupant: " + occupant.getName());
 			}
 
