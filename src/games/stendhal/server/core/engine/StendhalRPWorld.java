@@ -138,34 +138,8 @@ public class StendhalRPWorld extends RPWorld {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
 	}
 
-	// /**
-	// * Returns the pathfinder. The return value is undefined until onInit() is
-	// * called.
-	// *
-	// * @return the pathfinder
-	// */
-	// public PathfinderThread getPathfinder() {
-	// return pathfinderThread;
-	// }
-	//
-	// /**
-	// * checks if the pathfinder thread is still alive. If it is not, it is
-	// * restarted.
-	// */
-	// public void checkPathfinder() {
-	// if ((pathfinderThread == null) || !pathfinderThread.isAlive()) {
-	// logger.error("Pathfinderthread died");
-	// pathfinderThread = new PathfinderThread(this);
-	// pathfinderThread.start();
-	// }
-	// }
-
 	
 	protected void createRPClasses() {
-		/*
-		 * TODO: Refactor Do as Chadf proposed so the classes self initialize.
-		 * This method is prone to be forgotten on addition of new classes.
-		 */
 		Entity.generateRPClass();
 
 		// Entity sub-classes
@@ -255,26 +229,23 @@ public class StendhalRPWorld extends RPWorld {
 
 			loader.load();
 
-			/*
-			 * TODO: Refactor Extract to new method.
-			 */
-			/**
-			 * After all the zones has been loaded, check how many portals are
-			 * unpaired
-			 */
-			for (IRPZone zone : this) {
-				for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
-					validatePortal(portal);
-				}
-			}
+			validatePortals();
 
-			// TODO: make sure this is the proper place for this + way to do
-			// this
-			// make sure that it is always initialized on server startup so that
-			// its LoginListener does not miss anyone.
 			SingletonRepository.getGagManager();
 		} catch (Exception e) {
 			logger.error("Error on Init the server.", e);
+		}
+	}
+
+	/**
+	 * Checks for unpaired portals.
+	 */
+	private void validatePortals() {
+		
+		for (IRPZone zone : this) {
+			for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
+				validatePortal(portal);
+			}
 		}
 	}
 
