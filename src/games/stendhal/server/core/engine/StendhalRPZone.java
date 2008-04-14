@@ -224,9 +224,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Add a creature respawn point to the zone.
 	 * 
-	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
-	 * add().
-	 * 
 	 * @param point
 	 *            The respawn point.
 	 */
@@ -236,9 +233,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Remove a creature respawn point from the zone.
-	 * 
-	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
-	 * remove().
 	 * 
 	 * @param point
 	 *            The respawn point.
