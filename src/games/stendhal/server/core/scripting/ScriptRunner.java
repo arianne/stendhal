@@ -75,7 +75,6 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return perform(name, "load", null, null);
 	}
 
-	// TODO: document and clean this method
 	private synchronized boolean perform(String name, String mode,
 			Player player, List<String> args) {
 		boolean ret = false;
