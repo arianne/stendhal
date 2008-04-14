@@ -104,17 +104,8 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return The hitpoints.
 	 */
 	protected Direction getDirection(ConfigurableFactoryContext ctx) {
-		// TODO: improve error handling make use of valueOf
 		String s = ctx.getString("direction", "down");
-		if (s.equals("down")) {
-			return Direction.DOWN;
-		} else if (s.equals("left")) {
-			return Direction.LEFT;
-		} else if (s.equals("up")) {
-			return Direction.UP;
-		} else {
-			return Direction.RIGHT;
-		}
+		return Direction.valueOf(s.toUpperCase());
 	}
 
 	public void createDialog(final SpeakerNPC npc) {
