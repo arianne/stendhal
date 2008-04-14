@@ -80,7 +80,7 @@ public class HouseBuying extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 
-	// TODO: Do it the right way! (Clean up duplicated code)
+	// TODO: Clean up duplicated code
 
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
