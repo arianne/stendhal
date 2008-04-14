@@ -14,11 +14,6 @@ import java.util.PriorityQueue;
 /**
  * A* implementation. 
  * <p>TODO: OPTIMIZATION AND CLEANING!!!! and comment the code..
- * :p i hope durkham dont look here, i dont want hurt her with my crappy code XD
- * <p>TODO: Check if colision() method should be renamed to collision() to prevent
- * double spellings <p>TODO: Check if Reinice() method should be renamed to
- * Restart() to make its name more meaningful
- * 
  * @author Kawn
  */
 
@@ -41,7 +36,7 @@ public class Pathfind {
 	private Node current_node;
 	int final_path_index = 0;
 
-	private static int colision(CollisionDetection collisiondetection, int x1, int y1) {
+	private static int collision(CollisionDetection collisiondetection, int x1, int y1) {
 		if (x1 < search_area.getMinX()) {
 			return 1;
 		}
@@ -127,7 +122,7 @@ public class Pathfind {
 		return final_path_index == 0;
 	}
 
-	public void Reinice() {
+	public void restart() {
 		if (final_path.size() != 0) {
 			final_path_index = final_path.size() - 1;
 		}
@@ -225,7 +220,7 @@ public class Pathfind {
 						continue;
 					}
 
-					if (colision(collisiondetection, x_tmp, y_tmp) == 0) {
+					if (collision(collisiondetection, x_tmp, y_tmp) == 0) {
 						int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp - final_y));
 
 						Node node_UP;
