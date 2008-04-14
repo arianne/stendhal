@@ -3,7 +3,7 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.entity.Entity;
 
 /**
- * TODO: explain what is does and what it is used for.
+ * 
  * Abused slots of players which contain one RPObject used as hashmap.
  * 
  * @author hendrik
