@@ -306,8 +306,6 @@ public class Corpse extends PassiveEntity implements TurnListener,
 				text += ", killed by " + get(ATTR_KILLER);
 			}
 		} else {
-			// TODO: Just set name up front and use class only
-			// for client representation
 			text += Grammar.a_noun(ItemTools.itemNameToDisplayName(get("class")));
 		}
 
