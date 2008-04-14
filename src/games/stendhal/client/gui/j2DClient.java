@@ -282,7 +282,7 @@ public class j2DClient extends StendhalUI {
 
         buddies = new BuddyListPanel(this);
         addWindow(buddies);
-
+        client.addBuddyChangeListener(buddies);
         character = new Character();
         addWindow(character);
 
@@ -424,12 +424,7 @@ public class j2DClient extends StendhalUI {
             User user = User.get();
 
             if (user != null) {
-                /*
-                 * Hack! Need to update list when changes arrive
-                 */
-                if (buddies.isVisible()) {
-                    buddies.updateList();
-                }
+               
 
                 // check if the player object has changed.
                 // Note: this is an exact object reference check
