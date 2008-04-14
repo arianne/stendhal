@@ -149,9 +149,6 @@ public class OutfitChangerAdder {
 						public void fire(Player player, Sentence sentence,
 								SpeakerNPC npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {
-								// TODO: it would be cool if you could get a refund
-								// for returning the outfit, i. e. the money is
-								// only paid as a deposit.
 								npc.say("Thank you!");
 							} else {
 								npc.say("I can't remember that I gave you anything.");
