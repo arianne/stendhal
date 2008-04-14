@@ -54,7 +54,6 @@ public class Portal2DView extends InvisibleEntity2DView {
 			list.add(ActionType.USE.getRepresentation());
 
 			super.buildActions(list);
-			// TODO: Give a portal some nice text to 'look' at.
 			list.remove(ActionType.LOOK.getRepresentation());
 		}
 	}
