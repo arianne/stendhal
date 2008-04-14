@@ -267,7 +267,7 @@ public class Player extends RPEntity {
 		 * TODO: Find a better way to decouple "active" zone info from "resume"
 		 * zone info, or save just before removing from zone instead.
 		 */
-		// TODO: Create <Entity>.remove(void) ?
+
 		player.getZone().remove(player);
 
 		player.disconnected = true;
