@@ -137,8 +137,6 @@ public class StackableItem extends Item implements Stackable {
 			return false;
 		}
 
-		// TODO: look at InfoStringScroll.java
-
 		String[] importantAttributes = new String[] { "infostring", "bound",
 				"persistent", "undroppableondeath", "amount", "frequency",
 				"regen", "atk", "range" };
