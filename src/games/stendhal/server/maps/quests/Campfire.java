@@ -148,7 +148,7 @@ public class Campfire extends AbstractQuest {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("Hi! Could you do me a #favor?");
 					} else {
-						// TODO: say how many minutes are left.
+						
 						npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
 					}
 				}
