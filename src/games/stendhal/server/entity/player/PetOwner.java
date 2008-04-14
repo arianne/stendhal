@@ -102,7 +102,6 @@ class PetOwner {
 				return (Sheep) SingletonRepository.getRPWorld().get(
 						new RPObject.ID(player.getInt(ATTR_SHEEP), player.get("zoneid")));
 			} catch (Exception e) {
-				// TODO: Remove catch after DB reset
 				logger.error("Pre 1.00 Marauroa sheep bug. (player = "
 						+ player.getName() + ")", e);
 
