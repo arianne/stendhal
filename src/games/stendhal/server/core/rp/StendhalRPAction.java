@@ -37,10 +37,6 @@ import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
 
-/*
- * TODO: Refactor Remove this class. Move to a proper OOP approach. Replace RP
- * with new RP once it is agreed.
- */
 
 public class StendhalRPAction {
 
@@ -153,7 +149,6 @@ public class StendhalRPAction {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
 			if (player.canDoRangeAttack(defender)) {
-				// TODO: Should different weapons have different ranges??
 
 				// Check line of view to see if there is any obstacle.
 				if (zone.collidesOnLine(player.getX(), player.getY(),
