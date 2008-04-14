@@ -144,8 +144,8 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
-	 * onChangedAdded() from other initialize() hack. TODO: Need to fix it all
-	 * to work right, but not now.
+	 * onChangedAdded() from other initialize() hack. 
+	 * <p> TODO: remove watch variable inAdd
 	 */
 	protected boolean inAdd;
 
@@ -618,7 +618,6 @@ public class Entity implements RPObjectChangeListener {
 		 */
 		onPosition(x, y);
 
-		// TODO: BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
 		inAdd = false;
@@ -634,7 +633,6 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public boolean isObstacle(final Entity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
-		// TODO: Check is self check is needed here, or obsolete
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
