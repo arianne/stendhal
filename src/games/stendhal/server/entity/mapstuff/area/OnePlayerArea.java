@@ -65,7 +65,6 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * 
 	 * @return <code>true</code> if the entity is in this area.
 	 * 
-	 * TODO: Move up to AreaEntity
 	 */
 	protected boolean contains(final Entity entity) {
 		return ((getZone() == entity.getZone()) && getArea().intersects(
