@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.magic.clothing_boutique;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,9 +24,9 @@ import marauroa.common.Pair;
 
 public class OutfitLenderNPC implements ZoneConfigurator {
 	
-	// outfits to last for 4 hours (in turns)
+	// outfits to last for 4 hours (in seconds)
 	// TODO : change to 24 before release
-	public static final int endurance = 4 * 12000;  
+	public static final int endurance = 4 * MathHelper.SECONDS_IN_ONE_HOUR;  
 	
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
 	/**
@@ -112,7 +113,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 							// another temporary outfit.
 							SingletonRepository.getTurnNotifier().dontNotify(new OutwearClothes(player));
 							// make the costume disappear after some time
-							SingletonRepository.getTurnNotifier().notifyInTurns(endurance,
+							SingletonRepository.getTurnNotifier().notifyInSeconds(endurance,
 									new OutwearClothes(player));
 						}
 					}
