@@ -451,7 +451,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 * Draw the GameLayers from bottom to top, relies on exact naming of the
 		 * layers
 		 */
-		String set = gameLayers.getRPZoneLayerSet();
+		String set = gameLayers.getArea();
 
 		Point2D pos = getViewPos();
 		int xTemp = (int) pos.getX();

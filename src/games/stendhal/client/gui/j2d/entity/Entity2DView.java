@@ -122,7 +122,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		}
 		this.entity = entity;
 
-		// TODO: Pass this in
 		screen = GameScreen.get();
 
 		x = 0;
