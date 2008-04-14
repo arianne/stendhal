@@ -253,11 +253,6 @@ public class StaticGameLayers {
 		isValid = true;
 	}
 
-	// TODO: Rename to getAreaName()
-	public String getRPZoneLayerSet() {
-		return area;
-	}
-
 	public void draw(IGameScreen screen, String area, String layer, int x,
 			int y, int width, int height) {
 		validate();
