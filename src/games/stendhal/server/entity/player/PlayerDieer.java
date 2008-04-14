@@ -123,32 +123,7 @@ public class PlayerDieer {
 	protected void dropItemsOn(Corpse corpse) {
 		// drop at least 1 and at most 4 items
 		int maxItemsToDrop = Rand.rand(4);
-		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
-
-		for (String slotName : RPEntity.CARRYING_SLOTS) {
-			if (player.hasSlot(slotName)) {
-				RPSlot slot = player.getSlot(slotName);
-
-				// a list that will contain the objects that will
-				// be dropped.
-
-				// get a random set of items to drop
-				for (RPObject objectInSlot : slot) {
-					// don't drop special quest rewards as there is no way to
-					// get them again
-					// TODO: Assert these as Item's and use getBoundTo() and
-					// isUndroppableOnDeath()
-					if (objectInSlot.has("bound")
-							|| objectInSlot.has("undroppableondeath")) {
-						continue;
-					}
-					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
-				}
-			} else {
-				logger.error("CARRYING_SLOTS contains a slot that player "
-						+ player.getName() + " doesn't have.");
-			}
-		}
+		List<Pair<RPObject, RPSlot>> objects = retrieveAllDroppableObjects();
 		Collections.shuffle(objects);
 
 		for (int i = 0; i < maxItemsToDrop; i++) {
@@ -182,6 +157,37 @@ public class PlayerDieer {
 				}
 			}
 		}
+	}
+
+
+	private List<Pair<RPObject, RPSlot>> retrieveAllDroppableObjects() {
+		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
+
+		for (String slotName : RPEntity.CARRYING_SLOTS) {
+			if (player.hasSlot(slotName)) {
+				RPSlot slot = player.getSlot(slotName);
+
+				// a list that will contain the objects that will
+				// be dropped.
+
+				// get a random set of items to drop
+				for (RPObject objectInSlot : slot) {
+					// don't drop special quest rewards as there is no way to
+					// get them again
+					// TODO: Assert these as Item's and use getBoundTo() and
+					// isUndroppableOnDeath()
+					if (objectInSlot.has("bound")
+							|| objectInSlot.has("undroppableondeath")) {
+						continue;
+					}
+					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
+				}
+			} else {
+				logger.error("CARRYING_SLOTS contains a slot that player "
+						+ player.getName() + " doesn't have.");
+			}
+		}
+		return objects;
 	}
 
 }
