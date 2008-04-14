@@ -68,9 +68,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * position, of course). The speed will be set to the default for the
 	 * entity.
 	 * 
-	 * TODO: Change to accept just 'Path' after everything is converted to use
-	 * opaque Path's rather than Node lists.
-	 * 
 	 * @param path
 	 *            The path.
 	 */
