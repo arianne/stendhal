@@ -146,18 +146,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	/**
-	 * TODO: adapt comment to current. Set the context where the actions are
-	 * executed. Load/Run optional StendhalServerExtension(s) as defined in
-	 * marauroa.ini file example:
-	 * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
-	 * myservice=games.stendhal.server.MyService
-	 * server_extension=groovy,myservice if no server_extension property is
-	 * found, only the groovy extension is loaded to surpress loading groovy
-	 * extension use server_extension= in the properties file.
-	 * 
-	 * @param rpman
-	 */
 	public void setContext(RPServerManager rpman) {
 		try {
 			/*
