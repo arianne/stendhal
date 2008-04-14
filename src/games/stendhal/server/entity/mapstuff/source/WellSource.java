@@ -22,7 +22,7 @@ import marauroa.common.game.RPClass;
  * A well source is a spot where a player can make a wish to gain an item. He
  * needs time and luck.
  * 
- * Wishing takes 10 seconds; during this time, the player keep standing next to
+ * Wishing takes 10 seconds + randomized 4 seconds; during this time, the player keep standing next to
  * the well source. At every well are two sources next to each other, so the
  * player can actually make 2 wishes at once.
  * 
@@ -44,8 +44,7 @@ public class WellSource extends PlayerActivityEntity {
 	private static final double FINDING_PROBABILITY = 0.05;
 
 	/**
-	 * How long it takes to wish at a well (in seconds). TODO: randomize this
-	 * number a bit.
+	 * How long it takes to wish at a well (in seconds). 
 	 */
 	private static final int DURATION = 10;
 
@@ -80,7 +79,7 @@ public class WellSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected int getDuration() {
-		return DURATION;
+		return DURATION + Rand.rand(5);
 	}
 
 	/**
@@ -123,8 +122,6 @@ public class WellSource extends PlayerActivityEntity {
 			String itemName = items[Rand.rand(items.length)];
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
-			// TODO: player bind the better prizes below:
-			// horned golden helmet & dark dagger
 			if (itemName.equals("dark dagger")
 					|| itemName.equals("horned golden helmet")) {
 				/*
