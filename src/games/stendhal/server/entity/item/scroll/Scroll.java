@@ -99,10 +99,6 @@ public class Scroll extends StackableItem implements UseListener {
 	 *         otherwise.
 	 */
 	protected boolean useScroll(Player player) {
-		/*
-		 * Default behaviour TODO obsolete?? Can never really happen,
-		 * make abstract? XXX
-		 */
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;
 	}
