@@ -27,7 +27,7 @@ public class DragDropTarget {
 				try {
 	                callback.onDrop(dtde, (IDraggable) dtde.getTransferable().getTransferData(DragTransfer.standhalFlavor));
                 } catch (Exception e) {
-                	//TODO: handle this or comment on it
+                	//do nothing
                 }
             }
 		};
