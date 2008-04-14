@@ -200,20 +200,6 @@ public class ImageSprite implements Sprite {
 			 */
 			return new EmptySprite(width, height, ref);
 
-			// TODO: Figure out if this can be resurected without *horrible*
-			// performance
-			// } else if(image instanceof BufferedImage) {
-			// /*
-			// * BufferedImage allows shared sub-images
-			// */
-			// return new ImageSprite(((BufferedImage) image).getSubimage(x, y,
-			// Math.min(width, iwidth - x), Math.min(height, iheight - y)),
-			// ref);
-			// } else {
-			// /*
-			// * Virtual region
-			// */
-			// return new TileSprite(this, x, y, width, height, ref);
 		}
 
 		/*
