@@ -25,8 +25,6 @@ public class Money extends StackableItem {
 	// StackableItem money = (StackableItem)
 	// world.getRuleManager().getEntityManager().getItem("money");
 	// where world is a StendhalRPWorld.
-	// TODO: I think it's a bug; possibleSlots should be set even when this
-	// constructor is used.
 	public Money(Map<String, String> attributes) {
 		super("money", "money", "gold", attributes);
 	}

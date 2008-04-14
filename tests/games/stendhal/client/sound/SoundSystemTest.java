@@ -33,8 +33,6 @@ public class SoundSystemTest {
 	@Test
 	public final void testContains() {
 		assertFalse(SoundSystem.get().contains(""));
-		// TODO: create test for finding one
-
 	}
 
 	@Test

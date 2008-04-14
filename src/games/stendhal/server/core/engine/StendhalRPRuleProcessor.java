@@ -412,9 +412,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			getOnlinePlayers().add(player);
 
-			/*
-			 * TODO: Hide implementation
-			 */
 			if (!player.isGhost()) {
 				notifyOnlineStatus(true, player.getName());
 			}
