@@ -12,18 +12,12 @@ import org.apache.log4j.Logger;
  * Manages gags.
  */
 public class GagManager implements LoginListener {
-	/*
-	 * TODO: Don't use a quest entry for it. TODO: Why tryExpire? just expire on
-	 * turn reached.
-	 */
+	
 
 	private static final Logger logger = Logger.getLogger(GagManager.class);
 
 	/** The Singleton instance. */
 	private static GagManager instance;
-
-	// TODO: cleanup/properly-handle Notifiers in special cases: change gag
-	// time, server restart, player login.
 
 	/**
 	 * returns the GagManager object (Singleton Pattern).
