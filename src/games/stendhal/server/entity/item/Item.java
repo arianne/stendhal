@@ -100,7 +100,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("infostring", Type.STRING, Definition.HIDDEN);
 
 		// Some items have individual values
-		// TODO: Change to FLAG (on DB reset)?
 		entity.addAttribute("persistent", Type.SHORT, Definition.HIDDEN);
 
 		// Some items have lifesteal values
@@ -507,7 +506,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return possibleSlots.contains(slot) || slot.equals("content");
 	}
 
-	// TODO: Move this (in some form) up to Entity
+	
 	public void removeFromWorld() {
 		if (isContained()) {
 			// We modify the base container if the object change.

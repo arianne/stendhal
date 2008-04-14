@@ -153,7 +153,6 @@ public class GrammarTest {
 
 	@Test
 	public void testPluralItem() {
-		// TODO: decide on name and plural of money
 		testPluralisationAndSingularisation("money", "money");
 		testPluralisationAndSingularisation("sandwiches", "sandwich");
 		testPluralisationAndSingularisation("knives", "knife");
