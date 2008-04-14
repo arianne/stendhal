@@ -204,10 +204,6 @@ public class Grammar {
 				|| result.endsWith("poison") || result.equals("antidote")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
 					"bottles of ");
-		} else if (result.equals("money")) {
-			// TODO: fix this (going back to money as workaround because
-			// /drop 1 coin does not work
-			// enoun = "coin";
 		} else if (result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
