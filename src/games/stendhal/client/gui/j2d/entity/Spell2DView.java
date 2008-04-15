@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Property;
 import games.stendhal.client.entity.Spell;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -98,7 +99,7 @@ public class Spell2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {

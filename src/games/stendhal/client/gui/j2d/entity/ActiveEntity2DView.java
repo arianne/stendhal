@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Property;
 import games.stendhal.common.Direction;
 
 /**
@@ -95,7 +96,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		super.entityChanged(entity, property);
 
 		if (property == ActiveEntity.PROP_DIRECTION) {

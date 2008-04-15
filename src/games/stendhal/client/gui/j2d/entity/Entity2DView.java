@@ -18,6 +18,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.Property;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -639,7 +640,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param property
 	 *            The property identifier.
 	 */
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		changed = true;
 
 		if (property == Entity.PROP_ANIMATED) {

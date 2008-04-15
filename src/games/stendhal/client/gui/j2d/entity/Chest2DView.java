@@ -14,6 +14,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.Property;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -194,7 +195,7 @@ public class Chest2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {

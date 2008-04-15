@@ -13,6 +13,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Property;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -196,7 +197,7 @@ public class Door2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {

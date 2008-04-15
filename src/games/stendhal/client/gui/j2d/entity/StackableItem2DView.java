@@ -10,6 +10,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Property;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.sprite.Sprite;
 
@@ -168,7 +169,7 @@ public class StackableItem2DView extends Item2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final Entity entity, final Property property) {
 		super.entityChanged(entity, property);
 
 		if (property == StackableItem.PROP_QUANTITY) {
