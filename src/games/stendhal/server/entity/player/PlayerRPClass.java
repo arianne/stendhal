@@ -201,15 +201,8 @@ class PlayerRPClass {
 			}
 		}
 
-		boolean isAdmin = adminNames.contains(player.getName());
-
-		if (isAdmin) {
+		if (adminNames.contains(player.getName())) {
 			player.setAdminLevel(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
-		} else {
-			// TODO: Needed? Player should be fine without it
-			if (!player.has("adminlevel")) {
-				player.put("adminlevel", "0");
-			}
 		}
 	}
 
@@ -235,8 +228,6 @@ class PlayerRPClass {
 				}
 			}
 		} catch (RuntimeException e) {
-			// TODO: Is this catch needed?
-			//
 			// If placing the player at its last position
 			// fails, we reset to default zone
 			logger.warn(
