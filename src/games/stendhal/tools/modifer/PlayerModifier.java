@@ -30,9 +30,9 @@ public class PlayerModifier {
 				return new Player(loadCharacter);
 			}
 		} catch (SQLException e) {
-			//do nothing
+			return null;
 		} catch (IOException e) {
-			//do nothing
+			return null;
 		}
 		return null;
 	}
