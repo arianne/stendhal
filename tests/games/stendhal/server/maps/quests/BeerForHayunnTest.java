@@ -60,8 +60,7 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void quest() {
-		//TODO: check whether we have random answer / transition bug
-		
+	
 		Player player = PlayerTestHelper.createPlayer("player");
 
 		(new MockRetiredAdventurer()).createDialog(hayunn);
