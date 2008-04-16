@@ -52,8 +52,6 @@ public class CreateGuildAction implements ActionListener {
 		}
 		// done!
 
-		// TODO: Add list of guilds and make them unique.
-
 		player.update();
 		player.notifyWorldAboutChanges();
 
