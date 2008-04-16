@@ -38,8 +38,6 @@ class SoundCycle extends Thread implements Cloneable {
 	
 	private static final Logger logger = Logger.getLogger(SoundCycle.class);
 
-	private byte[] ID_Token;
-
 	Entity entityRef;
 
 	private String token;
@@ -101,7 +99,6 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 
 		if (entity != null) {
-			this.ID_Token = entity.ID_Token;
 			this.entityRef = entity;
 		}
 		this.token = token;
@@ -213,7 +210,7 @@ class SoundCycle extends Thread implements Cloneable {
 							volTop, chance);
 				} else {
 					// FIXME: could be origin for sound dont stop bug
-					SoundSystem.stopSoundCycle(ID_Token);
+					SoundSystem.stopSoundCycle(entityRef);
 					terminate();
 				}
 			} else {

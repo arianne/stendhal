@@ -71,13 +71,6 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	protected String[] moveSounds;
 
-	/**
-	 * session wide instance identifier for this class.
-	 * TODO: get rid of this only used by Soundsystem
-	 * 
-	 */
-	public final byte[] ID_Token = new byte[0];
-
 	/** The current x location of this entity. */
 	protected double x;
 
@@ -643,7 +636,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @see-also #initialize(RPObject)
 	 */
 	public void release() {
-		SoundSystem.stopSoundCycle(ID_Token);
+		SoundSystem.stopSoundCycle(this);
 	}
 
 	/**

@@ -49,13 +49,6 @@ public class EntityTest {
 	}
 
 	@Test
-	public final void testGet_IDToken() {
-		Entity en = new MockEntity();
-		assertNotNull(en.ID_Token);
-
-	}
-
-	@Test
 	public final void testGetID() {
 
 		RPObject rpo = new RPObject();

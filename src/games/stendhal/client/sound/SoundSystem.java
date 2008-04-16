@@ -107,7 +107,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static SoundSystem singleton;
 
 	/** */
-	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
+	private Map<Entity, SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<Entity, SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -210,12 +210,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						chance);
 				cycle.play();
 
-				c1 = sys.cycleMap.get(entity.ID_Token);
+				c1 = sys.cycleMap.get(entity);
 				if (c1 != null) {
 					c1.terminate();
 				}
 
-				sys.cycleMap.put(entity.ID_Token, cycle);
+				sys.cycleMap.put(entity, cycle);
 			} catch (IllegalStateException e) {
 				logger.error("*** Undefined sound sample: " + token, e);
 			}
@@ -230,15 +230,15 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param entity_ID
 	 *            byte[] identity token of the map entity
 	 */
-	public static void stopSoundCycle(byte[] entity_ID) {
+	public static void stopSoundCycle(Entity refentity) {
 		SoundCycle cycle;
 		SoundSystem sys;
 
 		sys = get();
-		cycle = sys.cycleMap.get(entity_ID);
+		cycle = sys.cycleMap.get(refentity);
 		if (cycle != null) {
 			synchronized (sys.cycleMap) {
-				sys.cycleMap.remove(entity_ID);
+				sys.cycleMap.remove(refentity);
 				cycle.terminate();
 			}
 		}
