@@ -40,10 +40,7 @@ public class Jail implements LoginListener {
 	/** The Singleton instance. */
 	private static Jail instance;
 
-	/*
-	 * TODO: Bad smell, hard coded list of points in the jail zone for where to
-	 * land.
-	 */
+
 	private static List<Point> cellEntryPoints = Arrays.asList(
 		new Point(3, 2),
 		new Point(8, 2),
