@@ -84,7 +84,6 @@ public class stendhal extends Thread {
 				+ System.getProperty("java.vm.name") + " "
 				+ System.getProperty("java.vm.version"));
 
-		// TODO: Add some kind of user visible warning for non supported java vm.
 	}
 //
 //	 /**
