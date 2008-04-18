@@ -49,14 +49,14 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Well hello there, y'all. What kin I do fer ya today?");
-				addJob("Why I'm just yer ordinary Hotdog Lady.");
-				addHelp("I buy and sell lotsa things. Just take a gander at the blackboards.");
+				addGreeting("Like, OMG!!! I sure am glad you stopped by!!! For real!!!");
+				addJob("I'm so psyched! I'm just catchin some rays and sellin things that are, like, totally radical!");
+				addHelp("Gnarly! You think I got a clue?");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellhotdogs")), false);
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buy4hotdogs")), false);
-				addOffer("Lookit the blackboards ta see my offers.");
-				addQuest("Why you can't do nuthin special fer little ole me. But thank y'all fer askin.");
-				addGoodbye("You want fries with that?");
+				addOffer("Check out the blackboards over there, like, for prices.");
+				addQuest("What-ever!");
+				addGoodbye("Later. You want fries with that?");
 			}
 		};
 
