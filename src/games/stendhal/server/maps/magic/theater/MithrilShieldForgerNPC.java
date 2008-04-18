@@ -32,12 +32,12 @@ public class MithrilShieldForgerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hoi stuff goes here.");
-				addJob("I am a wizard. I have studied long and hard to perfect the art of mithril forging.");
-				addHelp("help goes here.");
-				addOffer("offer goes here.");
-				addReply("mithril", "mithril goes here.");
-				addGoodbye();
+				addGreeting("Oh, hi. You caught me taking in some of the local culture.");
+				addJob("I am a wizard. I have studied long and hard to perfect the art of #mithril forging.");
+				addHelp("I can forge a shield for you, the likes of which you have only dreamed.");
+				addOffer("I offer you advice. Seek to gather all I require to make a shield for you. You will be eternally grateful.");
+				addReply("mithril", "Mithril was once stored by the Mithrilbourgh soldiers in a vault within their keep. Since they moved, I don't know what has become of it.");
+				addGoodbye("Farewell. Try some of the licorice Trillium has. It is to die for.");
 			} //remaining behaviour defined in quest
 		};
 
