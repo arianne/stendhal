@@ -357,7 +357,7 @@ public final class SentenceImplementation extends Sentence {
                         type = SentenceType.QUESTION;
                     }
                 } else if (first.getNormalized().equals("do")
-                        && (second == null || !second.getOriginal().equalsIgnoreCase("me"))) {
+                        && (!second.getOriginal().equalsIgnoreCase("me"))) {
                     // question begins with "do", but no "do me" sentence
                     if (type == SentenceType.UNDEFINED) {
                         type = SentenceType.QUESTION;
