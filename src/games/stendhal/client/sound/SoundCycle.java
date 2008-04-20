@@ -203,13 +203,13 @@ class SoundCycle extends Thread implements Cloneable {
 			// if object bound sound cycle
 			if (entityRef != null) {
 				o = entityRef;
-				if (o != null) {
+				if (o != null) { // FIXME: Will always return true because is checked previously, could be origin for sound dont stop bug
 					logger.debug("- start cyclic sound for entity: "
 							+ o.getType());
 					dataline = ((SoundObject) o).playSound(token, volBot,
 							volTop, chance);
 				} else {
-					// FIXME: could be origin for sound dont stop bug
+					
 					SoundSystem.stopSoundCycle(entityRef);
 					terminate();
 				}
