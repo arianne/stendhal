@@ -163,31 +163,30 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	private int updateCharStats(Connection connection, Player instance) throws SQLException {
 		String updateTemplate = "UPDATE character_stats SET "
-			+ "online=?,admin=?,sentence=?,age=?,level=?,"
+			+ "admin=?,sentence=?,age=?,level=?,"
 			+ "outfit=?,xp=?,money=?,married=?,atk=?,def=?,hp=?,karma=?,head=?,armor=?,lhand=?,rhand=?,legs=?,feet=?,cloak=? WHERE name=?";
 		PreparedStatement updateCharStatsStatement = connection.prepareStatement(updateTemplate);
-		updateCharStatsStatement.setBoolean(1, false);
-		updateCharStatsStatement.setInt(2, instance.getAdminLevel());
-		updateCharStatsStatement.setString(3, instance.getSentence());
-		updateCharStatsStatement.setInt(4, instance.getAge());
-		updateCharStatsStatement.setInt(5, instance.getLevel());
-		updateCharStatsStatement.setInt(6, instance.getOutfit().getCode());	
-		updateCharStatsStatement.setInt(7, instance.getXP());
-		updateCharStatsStatement.setInt(8, instance.getNumberOfEquipped("money"));
+		updateCharStatsStatement.setInt(1, instance.getAdminLevel());
+		updateCharStatsStatement.setString(2, instance.getSentence());
+		updateCharStatsStatement.setInt(3, instance.getAge());
+		updateCharStatsStatement.setInt(4, instance.getLevel());
+		updateCharStatsStatement.setInt(5, instance.getOutfit().getCode());	
+		updateCharStatsStatement.setInt(6, instance.getXP());
+		updateCharStatsStatement.setInt(7, instance.getNumberOfEquipped("money"));
 		//married
-		updateCharStatsStatement.setString(9, null);
-		updateCharStatsStatement.setInt(10, instance.getATK());
-		updateCharStatsStatement.setInt(11, instance.getDEF());
-		updateCharStatsStatement.setInt(12, instance.getHP());
-		updateCharStatsStatement.setDouble(13, instance.getKarma());
-		updateCharStatsStatement.setString(14, extractName(instance.getHelmet()));
-		updateCharStatsStatement.setString(15, extractName(instance.getArmor()));
-		updateCharStatsStatement.setString(16, extractName(instance.getShield()));
-		updateCharStatsStatement.setString(17, extractRhandName(instance));
-		updateCharStatsStatement.setString(18, extractName(instance.getLegs()));
-		updateCharStatsStatement.setString(19, extractName(instance.getBoots()));
-		updateCharStatsStatement.setString(20, extractName(instance.getCloak()));
-		updateCharStatsStatement.setString(21, instance.getName());
+		updateCharStatsStatement.setString(8, null);
+		updateCharStatsStatement.setInt(9, instance.getATK());
+		updateCharStatsStatement.setInt(10, instance.getDEF());
+		updateCharStatsStatement.setInt(11, instance.getHP());
+		updateCharStatsStatement.setDouble(12, instance.getKarma());
+		updateCharStatsStatement.setString(13, extractName(instance.getHelmet()));
+		updateCharStatsStatement.setString(14, extractName(instance.getArmor()));
+		updateCharStatsStatement.setString(15, extractName(instance.getShield()));
+		updateCharStatsStatement.setString(16, extractRhandName(instance));
+		updateCharStatsStatement.setString(17, extractName(instance.getLegs()));
+		updateCharStatsStatement.setString(18, extractName(instance.getBoots()));
+		updateCharStatsStatement.setString(19, extractName(instance.getCloak()));
+		updateCharStatsStatement.setString(20, instance.getName());
 		logger.debug("storeCharacter is running: " + updateCharStatsStatement.toString());
 		int count = updateCharStatsStatement.executeUpdate();
 		return count;
@@ -199,6 +198,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
 
 		insertStatement.setString(1, instance.getName());
+		/*
+		 * TODO: Check if this should be true or false.
+		 */
 		insertStatement.setBoolean(2, false);
 		insertStatement.setInt(3, instance.getAdminLevel());
 		insertStatement.setString(4, instance.getSentence());

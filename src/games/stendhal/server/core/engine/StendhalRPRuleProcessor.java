@@ -431,6 +431,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Player.destroy(player);
 			getOnlinePlayers().remove(player);
 
+			database.setOnlineStatus(player, false);
+			
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
 
