@@ -392,6 +392,15 @@ assassin dagger 8000
     <portal x="23" y="11" ref="hq1down">
     <destination zone="int_nalwor_assassinhq_0"  ref="hq0up"/>
    </portal>
+    <entity x="10" y="4">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+--- Grocery List: ---
+
+buy 100 empty scroll
+     </attribute>
+     <attribute name="class">transparent</attribute>
+    </entity> 
  </zone>
 <!-- These levels have been commented out until such time that new maps can be added  
   <zone name="int_nalwor_assassinhq_2" file="interiors/nalwor/assassinhq_2.tmx">
