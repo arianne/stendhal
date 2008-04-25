@@ -81,7 +81,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("ore", "gold ore", "gold nugget"),
 				        "I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.");
 				addReply(Arrays.asList("gold bar", "gold", "bar"),
-				        "After I've casted the gold for you keep it save. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
+				        "After I've casted the gold for you keep it safe. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
 				addReply("gold pan",
 				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
 			}
