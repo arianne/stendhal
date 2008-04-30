@@ -48,7 +48,7 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 				addGreeting("Goeden dag!");
 				addJob("My husband runs this farm. I don't know where he is now though ...");
 				addQuest("If you can write Junit tests then my daughter needs you. Just ask Diogenes how to help the project.");
-				addHelp("I can sell you a bottle of milk from out dairy cows if you like.");
+				addHelp("I can sell you a bottle of milk from our dairy cows if you like.");
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("milk", 30);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
