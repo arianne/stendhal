@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.Test;
@@ -13,12 +14,13 @@ import org.junit.Test;
 import utilities.RPClass.CreatureTestHelper;
 
 public class HealingbehaviourTest {
-	static boolean called;
+	 boolean called;
 
 	@Test
 	public void testHealNonHealer() {
 		called = false;
 		MockStendlRPWorld.get();
+		MockStendhalRPRuleProcessor.get();
 		StendhalRPZone zone = new StendhalRPZone("blabl");
 		CreatureTestHelper.generateRPClasses();
 		Creature creature = new Creature() {
