@@ -14,6 +14,12 @@ import org.junit.Test;
 public class SimilarExprMatcherTest {
 
 	@Test
+	public final void testIsSimilarOnlyOneIsNull() {
+		assertFalse(SimilarExprMatcher.isSimilar(null, "", 0.1));	
+		assertFalse(SimilarExprMatcher.isSimilar("", null, 0.1));
+	}
+	
+	@Test
 	public final void testIsSimilar() {
 		assertEquals(true, SimilarExprMatcher.isSimilar(null, null, 0.5));
 		assertEquals(true, SimilarExprMatcher.isSimilar("", "", 0.5));

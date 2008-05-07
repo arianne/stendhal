@@ -22,7 +22,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
     public static boolean isSimilar(final String str1, final String str2, final double delta) {
         // If any of the Strings is null, return only true if both are null.
         if (str1 == null || str2 == null) {
-            return str1 == str2;
+            return str1 == null &&  str2 == null;
         }
 
         int len1 = str1.length();
