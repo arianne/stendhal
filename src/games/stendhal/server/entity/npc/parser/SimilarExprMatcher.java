@@ -33,8 +33,8 @@ public class SimilarExprMatcher extends ExpressionMatcher {
             return len1 == len2;
         }
 
-        int l = Math.min(len1, len2);
-        int limit = (int) ((l * delta * l + (l - 1)) / l);
+        int shorterLength = Math.min(len1, len2);
+        int limit = (int) ((shorterLength * delta * shorterLength + (shorterLength - 1)) / shorterLength);
 
         return compareLevenshtein(str1, str2, limit);
     }
