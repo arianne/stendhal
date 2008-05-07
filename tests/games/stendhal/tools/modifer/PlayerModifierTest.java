@@ -28,6 +28,15 @@ public class PlayerModifierTest {
 	}
 	
 	@Test
+	public void testLoadPlayerNameIsNull() {
+		StendhalRPWorld.get();
+		PlayerModifier mod = new PlayerModifier();
+		mod.setDatabase(SingletonRepository.getPlayerDatabase());
+		Player player = mod.loadPlayer(null);
+		assertThat(player, nullValue());
+	}
+	
+	@Test
 	public void testmodifyPlayer() {
 		StendhalRPWorld.get();
 		String characterName = "modifyme";
@@ -51,6 +60,6 @@ public class PlayerModifierTest {
 		player = mod.loadPlayer(characterName);
 		assertThat(player, not(nullValue()));
 		assertThat(player.getName(), is(characterName));
-		assertThat(player.getAdminLevel(), is(100));
+		assertThat(player.getAdminLevel(), is(adminlevel));
 	}
 }

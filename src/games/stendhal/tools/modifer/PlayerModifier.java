@@ -21,6 +21,9 @@ public class PlayerModifier {
 		if (database == null) {
 			throw new IllegalStateException("no database");
 		}
+		if (characterName == null) {
+			return null;
+		}
 		Transaction transaction = database.getTransaction();
 
 		try {
