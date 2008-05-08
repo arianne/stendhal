@@ -270,7 +270,7 @@ public class ShopList {
 		shops.add("buy4assassins", "aventail", 25);
 		shops.add("buy4assassins", "leather boots", 30);
 		shops.add("buy4assassins", "dwarf cloak", 60);
-		shops.add("buy4assassins", "dwarvish armor", 9000);
+		shops.add("buy4assassins", "dwarvish armor", 17000);
 		shops.add("buy4assassins", "assassin dagger", 7000);
 		
 		// mountain dwarf buyer of odds and ends -3 ados abandoned keep)
@@ -323,6 +323,7 @@ public class ShopList {
 		shops.add("buy4hotdogs", "canned tuna", 15);
 		shops.add("buy4hotdogs", "ham", 15);
 		shops.add("buy4hotdogs", "cheese", 5);
+		
 		shops.add("sellhotdogs", "hotdog", 160);
 		shops.add("sellhotdogs", "cheeseydog", 180);
 		shops.add("sellhotdogs", "tuna sandwich", 130);
@@ -341,6 +342,22 @@ public class ShopList {
 		shops.add("sellmagic", "chocolate shake", 110);
 		shops.add("sellmagic", "chocolate bar", 100);
 		shops.add("sellmagic", "licorice", 100);
+		
+		// kirdneh city armor)
+		shops.add("buykirdneharmor", "blue armor", 13000);
+		shops.add("buykirdneharmor", "stone armor", 18000);
+		shops.add("buykirdneharmor", "ice armor", 19000);
+		shops.add("buykirdneharmor", "xeno armor", 21000);
+		shops.add("buykirdneharmor", "green dragon shield", 13000);
+		shops.add("buykirdneharmor", "xeno shield", 20000);
+		
+		
+		// amazon cloaks shop
+		shops.add("buyamazoncloaks", "vampire cloak", 14000);
+		shops.add("buyamazoncloaks", "xeno cloak", 18000);
+		shops.add("buyamazoncloaks", "elf cloak", 50);
+		shops.add("buyamazoncloaks", "lich cloak", 10000);
+		shops.add("buyamazoncloaks", "stone cloak", 350);
 		
 	}
 
