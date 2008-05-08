@@ -132,6 +132,9 @@
  <tileset name="sheep food" firstgid="322" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="323" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/large_front_on_darker_top_sheet.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Stw2AQBBE0S0f700/BHio4UphGliRcNIc2uDlP/hORJwxiulFqH0RxJBAStiXQQ4FlIR9FdTQQEvY10EPA4yEfcaEhv1rn30zLIqVoG+DXXFYn/V57jvhUtwEfV9g7zP/8wANrqueoA8AAA==
@@ -149,7 +152,7 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIAXQPwSipEBPcVeMZAGUokUoxagldlfgPgrFH8jQV87CWrnkeQiVPAdiH9A8U8KzMEHFlKgtwEN0wJQGn4wMBjDjx6AkvATYMTOpiYYDOGXgUcOV/hlEylGKUgnYO5gCD9qAz48aQ2f3CigL3CkQ1xshtIbgXgTmhghQA/3jYKBA6S0w8gFO6H0diDegSZGCMykvnNGFLAF5l9pJGyJlJ+zsKjHJkaMmkwcbFLMHQX0ByZQ2ozK5gIA9B/eqKAPAAA=
+   H4sIAAAAAAAAAGNgQIAXQPwSipEBPcVeMZAGUokUoxagldlfgPgrFH8jQV87CWrnkeQiVPAdiH9A8U8KzMEHFlKgtwEN0wJQGn7OjAwMLoyDM/zoASgJPwFG7GxqgsEQfhl45HCFXzaRYpSCdALmDobwozbgw5PW8MmNAvoCRzrExWYovRGIN6GJEQL0cN8oGDhASjuMXLATSm8H4h1oYoTATOo7Z0QBW2D+lUbClkj5OQuLemxixKjJxMEmxdxRQH9gAqXNqGwuAOKxunigDwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">

@@ -39,9 +39,12 @@
  <tileset name="green_stone_3" firstgid="107" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/green_stone_3.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="110" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/stone2.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Qtw0AIAzA8gq9/n8fnjNmAhRLljxb5A0CRkzG1mQsWI2tadhxGFszceE2tv/zf/7vn3+3cgB5SD4JQAYAAA==
+   H4sIAAAAAAAAAGNgGBogD4jzgbiATDY6KARiVSAuJpONDkqAWAOIy8hko4NyINYG4koy2aPhNxp+o+E3fMJvsAIAEJkOKkAGAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
