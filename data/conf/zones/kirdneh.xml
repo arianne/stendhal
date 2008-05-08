@@ -23,6 +23,22 @@
  <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC"/>
+ <entity x="65" y="94">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+I buy various armor items:
+
+ice armor  19000
+blue armor  13000
+xeno armor  21000
+stone armor  18000
+
+xeno shield  20000
+green dragon shield  13000
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
   <portal x="50" y="7" ref="diving_board">
    <destination zone="0_kirdneh_city" ref="pool"/>
    <attribute name="hidden"/>
