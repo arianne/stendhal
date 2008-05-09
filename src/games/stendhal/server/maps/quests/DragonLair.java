@@ -82,7 +82,7 @@ public class DragonLair extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Great! Enjoy your visit. I know THEY will.",
+				"Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!",
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
 							@Override
