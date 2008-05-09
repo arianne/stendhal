@@ -8959,6 +8959,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="We might be in hiding, but we are STILL mighty."/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -9359,6 +9362,10 @@
     <equips>
     </equips>
     <ai>
+          <says>
+        <noise value="You WILL show us the respect we deserve."/>
+        <noise value="Care for a game of chess?"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -9528,6 +9535,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Wipe your feet before entering our domain."/>
+        <noise value="I'll teach you to defile our sanctuary."/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -9758,7 +9769,6 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9979,7 +9989,6 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
