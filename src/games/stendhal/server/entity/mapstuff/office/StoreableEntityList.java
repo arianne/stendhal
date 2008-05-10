@@ -108,14 +108,16 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * 
      * @param identifier name of entity
      */
-    public void removeByName(String identifier) {
+    public boolean removeByName(String identifier) {
     	List<T> entities = getList();
     	for (T entity : entities) {
     		if (getName(entity).equals(identifier)) {
     			zone.remove(entity);
+    			zone.storeToDatabase();
+    			return true;
     		}
     	}
-    	zone.storeToDatabase();
+    	return false;
     }
 
 	/**
