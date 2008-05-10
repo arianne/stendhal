@@ -49,7 +49,7 @@ public class MagicBarmaidNPC implements ZoneConfigurator {
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellmagic")), false);
 				addOffer("See the blackboard for my prices.");
 				addQuest("I have no need of your help, thanks.");
-				addReply("licorice","Poor Baldemar, he is so very alergic to licorice.");
+				addReply("licorice", "Poor Baldemar, he is so very alergic to licorice.");
 				addGoodbye("Great to see you. Come again.");
 			}
 		};
