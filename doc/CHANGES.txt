@@ -5,8 +5,9 @@ Changelog
 - pizza is edible and can be made at the wofol bakery
 - ados tavern got a makeover and new staff
 - name your pet with /name <pet> <name>
-- assassins tunnel from assassins tower to ados castle
+- assassins tunnel from assassins HQ to ados castle
 - new creatures which drop new items in assassins tunnel
+- dragon lair in assassins tunnel
 - ados castle gardens in correct place now
 - -1 semos mines zones (mtn dwarf areas) decorated
 - tiled:
@@ -16,7 +17,24 @@ Changelog
   - you can launch tiled directly from Eclipse or using ANT
   - updated tiled.jar
 - ANT targets "rendermaps" and "updatemaps" now use the new tiled code
-
+- mithril nuggets can now be cast into mithril bars
+- mithril shields can now be forged
+- entwives have be discovered in ados mountains
+- gnomes have built a village west of semos
+- meat market added to ados
+- hotdog stand added to athor
+- magic theater barmaid added - typical movie watching goodies
+- buyer added to gnome village - various goods
+- buyer added to assassin HQ lobby - various goods
+- archery buyer added to Nalwor Inn basement
+- armor buyer added to Kirdneh market area
+- fish market added to Kirdneh market area
+- cloak buyer added to central Amazon area
+- odds and ends buy added to -3 abandoned keep
+- veggie and herb buyer added to assassin HQ cellar
+- scrolls now available by bartering with gardner lady in kalavan 
+- milk now available from semos farm
+- honey now availble from beekeeper in fado forest
 
 0.67
 - new players start in semos guardhouse
