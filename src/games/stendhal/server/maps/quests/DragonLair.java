@@ -37,7 +37,7 @@ import java.util.List;
  * 
  * REPETITIONS:
  * <ul>
- * <li> after 3 days.
+ * <li> after 1 week.
  * </ul>
  */
 
@@ -47,7 +47,7 @@ public class DragonLair extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Wishman");
-// TODO change delay to MILLISECONDS_IN_ONE_DAY after testing done
+// TODO change delay to 1 * MILLISECONDS_IN_ONE_WEEK after testing done
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				null,
