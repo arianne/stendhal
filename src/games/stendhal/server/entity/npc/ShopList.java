@@ -359,6 +359,16 @@ public class ShopList {
 		shops.add("buyamazoncloaks", "lich cloak", 10000);
 		shops.add("buyamazoncloaks", "stone cloak", 350);
 		
+		// kirdneh city fishy market)
+		shops.add("buyfishes", "perch", 22);
+		shops.add("buyfishes", "mackerel", 20);
+		shops.add("buyfishes", "roach", 30);
+		shops.add("buyfishes", "char", 30);
+		shops.add("buyfishes", "clownfish", 30);
+		shops.add("buyfishes", "surgeonfish", 15);
+		shops.add("buyfishes", "trout", 45);
+		shops.add("buyfishes", "cod", 10);
+		
 	}
 
 	private static ShopList instance;

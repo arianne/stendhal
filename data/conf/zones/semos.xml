@@ -98,6 +98,22 @@
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
   </entity>
+  <configurator class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC" />
+  <entity x="40" y="110">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>    
+   <attribute name="text">
+I buy many things:
+
+club  3
+cloak  25
+apple  5
+marbles  50
+wooden shield  20
+leather armor  25
+leather helmet  15
+   </attribute>
+   <attribute name="class">default</attribute>
+  </entity> 
  </zone>
 
  <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="Level 0/semos/plains_n.tmx">

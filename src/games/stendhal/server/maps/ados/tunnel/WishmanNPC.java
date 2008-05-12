@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Outside entrance to assassin headquarters in 0_nalwor_caves_e.
+ * Outside entrance to dragon lair in -1_ados_outside_w.
  */
 public class WishmanNPC implements ZoneConfigurator {
 

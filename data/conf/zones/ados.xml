@@ -8,22 +8,6 @@
 
  <!--  Ground level -->
   <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
-   <configurator class-name="games.stendhal.server.maps.ados.gnomevillage.GarbiddleNPC" />
-      <entity x="92" y="96">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-I buy many things:
-
-club  3
-cloak  25
-apple  5
-marbles  50
-wooden shield  20
-leather armor  25
-leather helmet  15
-     </attribute>
-     <attribute name="class">default</attribute>
-    </entity> 
  </zone>
  
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">

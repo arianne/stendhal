@@ -111,6 +111,7 @@ public class StendhalQuestSystem {
 		loadQuest("SevenCherubs");
 		loadQuest("Snowballs");
 		loadQuest("Soup");
+		loadQuest("StuffForBaldemar");
 		loadQuest("StuffForVulcanus");
 		loadQuest("SuntanCreamForZara");
 		loadQuest("TakeGoldforGrafindle");
