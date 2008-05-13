@@ -36,6 +36,7 @@ public class LilJohnnnnyNPC implements ZoneConfigurator {
 				addHelp("He said my mommy wears army boots.");
 				addOffer("I'm gonna make him sorry he ever said that!");
 				addGoodbye("well, if you really have to leave...");
+				addQuest("Nah, I got nothin for you right now. Maybe later.");
 			}
 		};
 
