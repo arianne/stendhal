@@ -121,6 +121,7 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "buy 0 icecreams"));
 		assertEquals("Sorry, how many icecreams do you want to buy?!", npc.get("text"));
+		assertFalse(en.step(player, "yes"));
 	}
 
 	@Test
