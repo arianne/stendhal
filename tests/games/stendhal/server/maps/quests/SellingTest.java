@@ -97,6 +97,16 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("money", 5));
         assertTrue(player.isEquipped("cheese", 2));
         assertFalse(player.isEquipped("cheese", 3));
+
+		 // test what happens when trying to sell nothing
+		assertTrue(en.step(player, "sell 0 cheese"));
+		assertEquals("Sorry, how many pieces of cheese do you want to sell?!", npc.get("text"));
+		assertFalse(en.step(player, "yes"));
+
+		 // test what happens when trying to sell even less than nothing
+		assertTrue(en.step(player, "sell -5 cheese"));
+		assertEquals("Sorry, I did not understand you. negative amount: -5", npc.get("text"));
+		assertFalse(en.step(player, "yes"));
 	}
 
 }
