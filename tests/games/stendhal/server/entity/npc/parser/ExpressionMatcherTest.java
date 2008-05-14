@@ -108,19 +108,19 @@ public class ExpressionMatcherTest {
 	public final void testExactMatching() {
 		ExpressionMatcher matcher = new ExactExprMatcher();
 
-		Expression e1 = new Expression("abc", "VER");
-		Expression e2 = new Expression("abc", "VER");
-		Expression e3 = new Expression("ab", "VER");
-		Expression e4 = new Expression("abc", "SUB");
-		Expression e5 = new Expression("X", "SUB");
-		Expression e6 = new Expression("aBc", "SUB");
+		Expression abcVER = new Expression("abc", "VER");
+		Expression abcVERCopy = new Expression("abc", "VER");
+		Expression ab = new Expression("ab", "VER");
+		Expression abcSUB = new Expression("abc", "SUB");
+		Expression X = new Expression("X", "SUB");
+		Expression aBc = new Expression("aBc", "SUB");
 
-		assertTrue(matcher.match(e1, e2));
-		assertFalse(matcher.match(e1, e3));
-		assertTrue(matcher.match(e1, e4));
-		assertFalse(matcher.match(e1, e5));
-		assertFalse(matcher.match(e4, e5));
-		assertFalse(matcher.match(e1, e6));
+		assertTrue(matcher.match(abcVER, abcVERCopy));
+		assertFalse(matcher.match(abcVER, ab));
+		assertTrue(matcher.match(abcVER, abcSUB));
+		assertFalse(matcher.match(abcVER, X));
+		assertFalse(matcher.match(abcSUB, X));
+		assertFalse(matcher.match(abcVER, aBc));
 	}
 
 	@Test
