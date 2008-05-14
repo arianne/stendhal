@@ -70,6 +70,8 @@ public class SellerAdder {
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
     							} else {
     								engine.say("Sorry, how many "+Grammar.plural(behaviour.getChosenItemName())+" do you want to buy?!");
+
+        							engine.setCurrentState(ConversationStates.ATTENDING);
     							}
     						} else {
     							if (behaviour.getChosenItemName() == null) {
