@@ -54,13 +54,19 @@ public class BuyerAdder {
 								behaviour.setAmount(1);
 							}
 
-							int price = behaviour.getCharge(engine, player);
+							if (behaviour.getAmount() > 0) {
+								int price = behaviour.getCharge(engine, player);
 
-							if (price != 0) {
-    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
-    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
-    									+ price + ". Do you want to sell "
-    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+								if (price != 0) {
+	    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
+	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
+	    									+ price + ". Do you want to sell "
+	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+								}
+							} else {
+								engine.say("Sorry, how many "+Grammar.plural(behaviour.getChosenItemName())+" do you want to sell?!");
+
+    							engine.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							if (behaviour.getChosenItemName() == null) {
