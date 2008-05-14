@@ -32,7 +32,7 @@ Changelog
 - cloak buyer added to central Amazon area
 - odds and ends buy added to -3 abandoned keep
 - veggie and herb buyer added to assassin HQ cellar
-- scrolls now available by bartering with gardner lady in kalavan 
+- scrolls now available by bartering with gardener lady in kalavan 
 - milk now available from semos farm
 - honey now availble from beekeeper in fado forest
 
