@@ -80,6 +80,11 @@ public class SellerBehaviour extends MerchantBehaviour {
 			setAmount(1);
 		}
 
+		if (amount <= 0 ) {
+			seller.say("Sorry, you must buy at least one item.");
+			return false;
+		}
+
 		if (player.isEquipped("money", getCharge(seller, player))) {
 			if (player.equip(item)) {
 				player.drop("money", getCharge(seller, player));

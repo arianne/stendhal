@@ -60,13 +60,17 @@ public class SellerAdder {
     								behaviour.setAmount(1);
     							}
 
-    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
-    									* behaviour.getAmount();
+    							if (behaviour.getAmount() > 0) {
+	    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+	    									* behaviour.getAmount();
 
-    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
-    									+ " will cost " + price
-    									+ ". Do you want to buy "
-    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+	    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
+	    									+ " will cost " + price
+	    									+ ". Do you want to buy "
+	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+    							} else {
+    								engine.say("Sorry, how many "+Grammar.plural(behaviour.getChosenItemName())+" do you want to buy?!");
+    							}
     						} else {
     							if (behaviour.getChosenItemName() == null) {
     								engine.say("Please tell me what you want to buy.");
