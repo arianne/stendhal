@@ -47,7 +47,6 @@ public class DragonLair extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Wishman");
-// TODO change delay to 1 * MILLISECONDS_IN_ONE_WEEK after testing done
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				null,
@@ -60,7 +59,7 @@ public class DragonLair extends AbstractQuest {
 							engine.say("Would you like to visit our dragon lair?");
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = 3 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+							long delay = 1 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("I think they've had enough excitement for a while.  Come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
