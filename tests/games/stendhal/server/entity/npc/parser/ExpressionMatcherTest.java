@@ -128,16 +128,18 @@ public class ExpressionMatcherTest {
 		ExpressionMatcher m1 = new ExpressionMatcher();
 		ExpressionMatcher m2 = new ExpressionMatcher();
 		assertEquals(m1, m2);
+		assertEquals(m1, m1);
 
-		assertTrue(m1.equals(m1));
 		assertFalse(m1.equals(null));
 
 		m1.setCaseInsensitive(true);
 		assertFalse(m1.equals(m2));
+		assertFalse(m2.equals(m1));
+
 		assertEquals(m1, m1);
 
 		m2.setCaseInsensitive(true);
-		assertTrue(m1.equals(m2));
+		assertEquals(m1, m2);
 	}
 
 }
