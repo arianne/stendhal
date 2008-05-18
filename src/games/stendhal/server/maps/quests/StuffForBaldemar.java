@@ -136,7 +136,7 @@ public class StuffForBaldemar extends AbstractQuest {
 						+ REQUIRED_BLACK_PEARL
 						+ " black pearls," 
 						+ REQUIRED_SHURIKEN
-						+ " shruiken, "
+						+ " shuriken, "
 						+ REQUIRED_MARBLES
 						+ " marbles and "
 						+ REQUIRED_SNOWGLOBE
@@ -441,7 +441,7 @@ public class StuffForBaldemar extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
 						if (!player.hasKilled("black giant") && !missingSomething) {
-							engine.say("This shield can only be given to those who have killed a #black giant.");
+							engine.say("This shield can only be given to those who have killed a black giant.");
 						}
 
 						player.setQuest(QUEST_SLOT,
