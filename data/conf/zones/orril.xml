@@ -185,12 +185,19 @@ East: Nalwor, Semos
   </portal>
 
   <portal x="12" y="8" ref="orb_left">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+     <parameter name="quest">learn_scrying</parameter>
+     <parameter name="rejected">You must learn to use orb first.</parameter>
+     </implementation>  
    <destination zone="-1_fado_great_cave_e3" ref="jynath_orb"/>
   </portal>
   <portal x="13" y="8" ref="orb_right">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+     <parameter name="quest">learn_scrying</parameter>
+     <parameter name="rejected">You must learn to use orb first.</parameter>
+     </implementation>
    <destination zone="-1_fado_great_cave_e3" ref="jynath_orb"/>
   </portal>
-
  </zone>
 
  <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="Level 0/orril/river_se.tmx">
