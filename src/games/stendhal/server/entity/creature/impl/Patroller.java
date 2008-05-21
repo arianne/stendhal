@@ -29,20 +29,13 @@ class Patroller implements Idlebehaviour {
 		} else {
 			Direction d;
 			if (Rand.rand(3) == 1) {
-				 d = Direction.rand();
+				d = Direction.rand();
 			} else {
 				d = creature.getDirection();
 			}
 			
 			int i=0;
-			while (weWouldLeaveArea(creature, d)) {
-				/*
-				 * BUG EXPLAINED. 
-				 */
-				if(i>Direction.values().length) {
-					logger.error("Any direction would make creature left area.");
-				}
-					
+			while (i<4 && weWouldLeaveArea(creature, d)) {
 				d = d.nextDirection();
 				i++;
 			}
