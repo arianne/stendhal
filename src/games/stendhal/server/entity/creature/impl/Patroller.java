@@ -34,6 +34,9 @@ class Patroller implements Idlebehaviour {
 				d = creature.getDirection();
 			}
 			
+			/*
+			 * We want to avoid an endless loop.
+			 */
 			int i=0;
 			while (i<4 && weWouldLeaveArea(creature, d)) {
 				d = d.nextDirection();
