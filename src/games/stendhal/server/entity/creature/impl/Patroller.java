@@ -3,8 +3,12 @@ package games.stendhal.server.entity.creature.impl;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
+import marauroa.common.Log4J;
 
 class Patroller implements Idlebehaviour {
+	/** the logger instance. */
+	private static final marauroa.common.Logger logger = Log4J.getLogger(Patroller.class);
+
 	private int minX;
 	private int maxX;
 	private int minY;
@@ -29,8 +33,18 @@ class Patroller implements Idlebehaviour {
 			} else {
 				d = creature.getDirection();
 			}
+			
+			int i=0;
 			while (weWouldLeaveArea(creature, d)) {
+				/*
+				 * BUG EXPLAINED. 
+				 */
+				if(i>Direction.values().length) {
+					logger.error("Any direction would make creature left area.");
+				}
+					
 				d = d.nextDirection();
+				i++;
 			}
 			
 			creature.setDirection(d);
