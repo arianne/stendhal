@@ -1,6 +1,5 @@
 package utilities;
 
-import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -25,8 +24,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		ItemTestHelper.generateRPClasses();
 		generateNPCRPClasses();
 
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-
+		MockStendhalRPRuleProcessor.get();
 		// load item configurations to handle money and other items
 		SingletonRepository.getEntityManager();
 
