@@ -19,7 +19,6 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 
@@ -40,32 +39,30 @@ import org.apache.log4j.Logger;
 public abstract class RPEntity extends ActiveEntity {
 	private static final Logger logger = Logger.getLogger(RPEntity.class);
 
-	
-
 	/**
 	 * Admin Level property.
 	 */
-	public static final Property PROP_ADMIN_LEVEL = new Property();
+	public static final Object PROP_ADMIN_LEVEL = new Object();
 
 	/**
-	 * ghostmode property.
+	 * Ghostmode property.
 	 */
-	public static final Property PROP_GHOSTMODE = new Property();
+	public static final Object PROP_GHOSTMODE = new Object();
 
 	/**
 	 * Indicator text property.
 	 */
-	public static final Property PROP_TEXT_INDICATORS = new Property();
+	public static final Object PROP_TEXT_INDICATORS = new Object();
 
 	/**
 	 * Outfit property.
 	 */
-	public static final Property PROP_OUTFIT = new Property();
+	public static final Object PROP_OUTFIT = new Object();
 
 	/**
 	 * Title Type property.
 	 */
-	public static final Property PROP_TITLE_TYPE = new Property();
+	public static final Object PROP_TITLE_TYPE = new Object();
 
 	/**
 	 * The value of an outfit that isn't set.
@@ -79,9 +76,19 @@ public abstract class RPEntity extends ActiveEntity {
 			"slap-1.wav", "arrow-1.wav" };
 
 	public enum Resolution {
-		HIT,
-		BLOCKED,
-		MISSED;
+		HIT(0),
+		BLOCKED(1),
+		MISSED(2);
+
+		private final int val;
+
+		Resolution(final int val) {
+			this.val = val;
+		}
+
+		public int get() {
+			return val;
+		}
 	};
 
 	private int atk;
@@ -126,7 +133,7 @@ public abstract class RPEntity extends ActiveEntity {
 	private String titleType;
 
 	/**
-	 * Entity we are attacking. (need to reconcile this with 'attacking')
+	 * Entity we are attacking. (need to reconsile this with 'attacking')
 	 */
 	protected RPEntity attackTarget;
 
@@ -307,9 +314,9 @@ public abstract class RPEntity extends ActiveEntity {
 			return name;
 		} else if (clazz != null) {
 			// replace underscores in clazz and type without calling the function UpdateConverter.transformItemName() located in server code
-			return ItemTools.itemNameToDisplayName(clazz);
+			return clazz.replace('_', ' ');
 		} else if (type != null) {
-			return ItemTools.itemNameToDisplayName(type);
+			return type.replace('_', ' ');
 		} else {
 			return null;
 		}
@@ -448,15 +455,20 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	/* 
-	 * Handles Death of entity caused by killer.
-	 * 
-	 */
+	// Called when entity is killed by killer
 	public void onDeath(final Entity killer) {
 		if (killer != null) {
 			StendhalUI.get().addEventLine(
 					getTitle() + " has been killed by " + killer.getTitle());
 		}
+
+		/*
+		 * see
+		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
+		 * if (getID().equals(client.getPlayer().getID())) {
+		 * client.addEventLine(getTitle() + " has died. " +
+		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
+		 */
 	}
 
 	// When entity eats food
@@ -541,6 +553,7 @@ public abstract class RPEntity extends ActiveEntity {
 	// Called when entity says text
 	public void onTalk(final String text) {
 		if (User.isAdmin() || (distanceToUser() < 15 * 15)) {
+			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
 			String line = text.replace("|", "");
@@ -651,6 +664,10 @@ public abstract class RPEntity extends ActiveEntity {
 				onPrivateListen(event.get("texttype"), event.get("text"));
 			}
 		}
+		// TODO: remove compatibility code after release of 0.66
+		if (object.has("private_text")) {
+			onPrivateListen("PRIVMSG", object.get("private_text"));
+		}
 
 		/*
 		 * Outfit
@@ -690,59 +707,57 @@ public abstract class RPEntity extends ActiveEntity {
 			onHealed(object.getInt("heal"));
 		}
 
-		GameObjects gameObjects = GameObjects.getInstance();
+		/*
+		 * Attack Target
+		 */
+		if (object.has("target")) {
+			int target = object.getInt("target");
 
-		synchronized (gameObjects) {
-    		/*
-    		 * Attack Target
-    		 */
-    		if (object.has("target")) {
-    			int target = object.getInt("target");
+			RPObject.ID targetEntityID = new RPObject.ID(target,
+					object.get("zoneid"));
 
-    			RPObject.ID targetEntityID = new RPObject.ID(target, object.get("zoneid"));
+			/*
+			 * TODO This is probably meaningless, as create order is
+			 * unpredictable, and the target entity may not have been added yet XXX
+			 */
+			attackTarget = (RPEntity) GameObjects.getInstance().get(
+					targetEntityID);
 
-    			/*
-    			 * TODO This is probably meaningless, as create order is
-    			 * unpredictable, and the target entity may not have been added yet 
-    			 */
-    			attackTarget = (RPEntity) gameObjects.get(targetEntityID);
+			if (attackTarget != null) {
+				onAttack(attackTarget);
+				attackTarget.onAttacked(this);
+				// attackTarget.onAttacked(this,risk,damage);
+			}
+		} else {
+			attackTarget = null;
+		}
 
-    			if (attackTarget != null) {
-    				onAttack(attackTarget);
-    				attackTarget.onAttacked(this);
-    				// attackTarget.onAttacked(this,risk,damage);
-    			}
-    		} else {
-    			attackTarget = null;
-    		}
+		if (attackTarget != null) {
+			int risk;
+			int damage;
 
-    		if (attackTarget != null) {
-    			int risk;
-    			int damage;
+			if (object.has("risk")) {
+				risk = object.getInt("risk");
+			} else {
+				risk = 0;
+			}
 
-    			if (object.has("risk")) {
-    				risk = object.getInt("risk");
-    			} else {
-    				risk = 0;
-    			}
+			if (object.has("damage")) {
+				damage = object.getInt("damage");
+			} else {
+				damage = 0;
+			}
 
-    			if (object.has("damage")) {
-    				damage = object.getInt("damage");
-    			} else {
-    				damage = 0;
-    			}
-
-    			if (risk == 0) {
-    				onAttackMissed(attackTarget);
-    				attackTarget.onMissed(this);
-    			} else if ((risk > 0) && (damage == 0)) {
-    				onAttackBlocked(attackTarget);
-    				attackTarget.onBlocked(this);
-    			} else if ((risk > 0) && (damage > 0)) {
-    				onAttackDamage(attackTarget, damage);
-    				attackTarget.onDamaged(this, damage);
-    			}
-    		}
+			if (risk == 0) {
+				onAttackMissed(attackTarget);
+				attackTarget.onMissed(this);
+			} else if ((risk > 0) && (damage == 0)) {
+				onAttackBlocked(attackTarget);
+				attackTarget.onBlocked(this);
+			} else if ((risk > 0) && (damage > 0)) {
+				onAttackDamage(attackTarget, damage);
+				attackTarget.onDamaged(this, damage);
+			}
 		}
 
 		/*
@@ -839,6 +854,10 @@ public abstract class RPEntity extends ActiveEntity {
 					onPrivateListen(event.get("texttype"), event.get("text"));
 				}
 			}
+			// TODO: remove compatibility code after release of 0.66
+			if (changes.has("private_text")) {
+				onPrivateListen("PRIVMSG", changes.get("private_text"));
+			}
 
 			/*
 			 * Outfit
@@ -914,73 +933,71 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 			}
 
-			GameObjects gameObjects = GameObjects.getInstance();
+			/*
+			 * Attack Target
+			 */
+			if (changes.has("target")) {
+				int target = changes.getInt("target");
 
-			synchronized (gameObjects) {
-    			/*
-    			 * Attack Target
-    			 */
-    			if (changes.has("target")) {
-    				int target = changes.getInt("target");
+				RPObject.ID targetEntityID = new RPObject.ID(target,
+						changes.get("zoneid"));
 
-    				RPObject.ID targetEntityID = new RPObject.ID(target, changes.get("zoneid"));
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
+						targetEntityID);
 
-    				RPEntity targetEntity = (RPEntity) gameObjects.get(targetEntityID);
+				if (targetEntity != attackTarget) {
+					onStopAttack();
 
-    				if (targetEntity != attackTarget) {
-    					onStopAttack();
+					if (attackTarget != null) {
+						attackTarget.onStopAttacked(this);
+					}
 
-    					if (attackTarget != null) {
-    						attackTarget.onStopAttacked(this);
-    					}
+					attackTarget = targetEntity;
 
-    					attackTarget = targetEntity;
+					if (attackTarget != null) {
+						onAttack(attackTarget);
+						attackTarget.onAttacked(this);
+						// attackTarget.onAttacked(this,risk,damage);
+					}
+				}
+			}
 
-    					if (attackTarget != null) {
-    						onAttack(attackTarget);
-    						attackTarget.onAttacked(this);
-    						// attackTarget.onAttacked(this,risk,damage);
-    					}
-    				}
-    			}
+			if (attackTarget != null) {
+				int risk;
+				int damage;
 
-    			if (attackTarget != null) {
-    				int risk;
-    				int damage;
+				boolean thereIsEvent = false;
 
-    				boolean thereIsEvent = false;
+				if (changes.has("risk")) {
+					risk = changes.getInt("risk");
+					thereIsEvent = true;
+				} else if (object.has("risk")) {
+					risk = object.getInt("risk");
+				} else {
+					risk = 0;
+				}
 
-    				if (changes.has("risk")) {
-    					risk = changes.getInt("risk");
-    					thereIsEvent = true;
-    				} else if (object.has("risk")) {
-    					risk = object.getInt("risk");
-    				} else {
-    					risk = 0;
-    				}
+				if (changes.has("damage")) {
+					damage = changes.getInt("damage");
+					thereIsEvent = true;
+				} else if (object.has("damage")) {
+					damage = object.getInt("damage");
+				} else {
+					damage = 0;
+				}
 
-    				if (changes.has("damage")) {
-    					damage = changes.getInt("damage");
-    					thereIsEvent = true;
-    				} else if (object.has("damage")) {
-    					damage = object.getInt("damage");
-    				} else {
-    					damage = 0;
-    				}
-
-    				if (thereIsEvent) {
-    					if (risk == 0) {
-    						onAttackMissed(attackTarget);
-    						attackTarget.onMissed(this);
-    					} else if ((risk > 0) && (damage == 0)) {
-    						onAttackBlocked(attackTarget);
-    						attackTarget.onBlocked(this);
-    					} else if ((risk > 0) && (damage > 0)) {
-    						onAttackDamage(attackTarget, damage);
-    						attackTarget.onDamaged(this, damage);
-    					}
-    				}
-    			}
+				if (thereIsEvent) {
+					if (risk == 0) {
+						onAttackMissed(attackTarget);
+						attackTarget.onMissed(this);
+					} else if ((risk > 0) && (damage == 0)) {
+						onAttackBlocked(attackTarget);
+						attackTarget.onBlocked(this);
+					} else if ((risk > 0) && (damage > 0)) {
+						onAttackDamage(attackTarget, damage);
+						attackTarget.onDamaged(this, damage);
+					}
+				}
 			}
 
 			/*

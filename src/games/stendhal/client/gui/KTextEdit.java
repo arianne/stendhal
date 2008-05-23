@@ -1,5 +1,6 @@
 package games.stendhal.client.gui;
 
+import games.stendhal.client.StendhalUI;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -60,7 +61,7 @@ public class KTextEdit extends JPanel {
 	 *            the active text component
 	 */
 	protected void initStylesForTextPane(JTextPane textPane) {
-
+		
 		Style def = StyleContext.getDefaultStyleContext().getStyle(
 				StyleContext.DEFAULT_STYLE);
 
@@ -128,23 +129,43 @@ public class KTextEdit extends JPanel {
 	}
 
 	protected void insertText(String text, NotificationType type) {
-		final Color color = type.getColor();
-		final Document doc = textPane.getDocument();
+		Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(type);
 
+		Document doc = textPane.getDocument();
 		try {
-			FormatTextParser parser =	new FormatTextParser() {
-				@Override
-				public void normalText(String txt) throws BadLocationException {
-					doc.insertString(doc.getLength(), txt, getColor(color));
+			String[] parts = text.split("#");
+
+			int i = 0;
+			for (String pieces : parts) {
+				if (i > 0) {
+					char terminator = ' ';
+
+					// color quoted compound words like "#'iron sword'"
+					if (pieces.charAt(0) == '\'') {
+						terminator = '\'';
+						pieces = pieces.substring(1);
+					}
+
+					int index = pieces.indexOf(terminator);
+					if (index == -1) {
+						index = pieces.length();
+					}
+
+					doc.insertString(doc.getLength(),
+							pieces.substring(0, index),
+							textPane.getStyle("bold"));
+
+					if (terminator == '\'') {
+						++index;
+					}
+
+					pieces = pieces.substring(index);
 				}
 
-				@Override
-				public void colorText(String txt) throws BadLocationException {
-					doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
-				}
-			};
-			parser.format(text);
-		} catch (Exception ble) { // BadLocationException
+				doc.insertString(doc.getLength(), pieces, getColor(color));
+				i++;
+			}
+		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
@@ -187,7 +208,7 @@ public class KTextEdit extends JPanel {
 
 	/**
 	 * The implemented method.
-	 *
+	 * 
 	 * @param header
 	 *            a string with the header name
 	 * @param line
@@ -236,14 +257,6 @@ public class KTextEdit extends JPanel {
 				}
 			}
 		} else {
-			if (textPane.getDocument().getLength() > 20000) {
-				try {
-					textPane.getDocument().remove(0, 100);
-				} catch (BadLocationException e) {
-					logger.info(e);
-				}
-				
-			}
 			textPane.setCaretPosition(textPane.getDocument().getLength());
 		}
 

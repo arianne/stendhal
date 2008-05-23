@@ -61,11 +61,6 @@ public class SoundMaster implements Runnable, WorldListener {
 			return null;
 		}
 
-		// Is the sound manager not initialized?
-		if (sfm == null) {
-			return null;
-		}
-
 		byte[] o;
 
 		o = sfm.get(soundName);

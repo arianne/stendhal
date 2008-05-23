@@ -24,7 +24,7 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Amount property.
 	 */
-	public static final Property PROP_AMOUNT = new Property();
+	public static final Object PROP_AMOUNT = new Object();
 
 	/**
 	 * The amount of blood.

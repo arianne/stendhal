@@ -20,12 +20,12 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Direction property.
 	 */
-	public static final Property PROP_DIRECTION = new Property();
+	public static final Object PROP_DIRECTION = new Object();
 
 	/**
 	 * Speed property.
 	 */
-	public static final Property PROP_SPEED = new Property();
+	public static final Object PROP_SPEED = new Object();
 
 	/**
 	 * The current [facing] direction.
@@ -225,9 +225,7 @@ public abstract class ActiveEntity extends Entity {
 			x += (dx * step);
 			y += (dy * step);
 
-			User user = User.get();
-
-			if ((user == null || !user.isGhostMode())
+			if (!User.get().isGhostMode()
 					&& GameObjects.getInstance().collides(this)) {
 				x = oldX;
 				y = oldY;

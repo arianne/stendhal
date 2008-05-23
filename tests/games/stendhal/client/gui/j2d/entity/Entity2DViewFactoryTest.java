@@ -32,6 +32,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
 import marauroa.common.Log4J;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,6 +45,10 @@ public class Entity2DViewFactoryTest {
 		Log4J.init();
 
 		GameScreen.setDefaultScreen(new MockScreen());
+	}
+
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -115,15 +120,16 @@ public class Entity2DViewFactoryTest {
 
 	@Test
 	public final void testCreateUser2Dview() {
+
 		assertNotNull(new User2DView(new User()));
 		assertEquals(Entity2DViewFactory.get().create(new User()).getClass(),
 				User2DView.class);
 	}
-
 	@Test
 	public final void testCreateFire2Dview() {
-    	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
-    	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
-    			AnimatedLoopEntity2DView.class);
+
+	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
+	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
+			AnimatedLoopEntity2DView.class);
 	}
 }

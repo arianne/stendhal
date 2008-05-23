@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
@@ -93,7 +92,7 @@ public class HttpClient {
 	 */
 	private void openInputStream() {
 		// try very hard to download updates from sourceforge as they have
-		// sometimes problems with the webservers being slow or not responding
+		// sometimes problems with the webservers beeing slow or not responding
 		// at all.
 		try {
 			URL url = new URL(urlString);
@@ -119,10 +118,8 @@ public class HttpClient {
 						}
 					}
 				} catch (SocketTimeoutException e) {
-					System.err.println("Timeout (" + urlString + "): "
+					System.err.println("Timeout (" + urlString + "): " + " "
 							+ e.toString());
-				} catch (ConnectException e) {
-					System.err.println("Unable to connect (" + urlString + "): " + e.toString());
 				}
 				myTimeout = myTimeout * 2;
 				if (!tryVeryHard || (retryCount > 3)) {

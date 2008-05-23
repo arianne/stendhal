@@ -9,28 +9,48 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.IGameScreen;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Debug;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * The 2D view of a creature.
  */
 public class Creature2DView extends RPEntity2DView {
-	
+	/**
+	 * The logger.
+	 */
+	private static final Logger logger = Logger.getLogger(Creature2DView.class);
+
 	/**
 	 * The entity this view is for.
 	 */
 	private Creature creature;
+
+	/**
+	 * Should the path be hidden for this creature?
+	 */
+	private boolean hidePath;
+	/**
+	 * Whether to display all debug messages for this creature in the game log.
+	 */
+	private boolean watch;
 
 	/** the patrolpath. */
 	private List<Node> patrolPath;
@@ -104,6 +124,69 @@ public class Creature2DView extends RPEntity2DView {
 		return moveToTargetPath;
 	}
 
+	protected void handleDebug(String debug) {
+		if (!Debug.CREATURES_DEBUG_CLIENT) {
+			return;
+		}
+
+		patrolPath = null;
+		targetMovedPath = null;
+		moveToTargetPath = null;
+
+		if (watch) {
+			StendhalUI.get().addEventLine(creature.getID() + " - " + debug);
+		}
+
+		String[] actions = debug.split("\\|");
+		// parse all actions
+		for (String action : actions) {
+			if (action.length() > 0) {
+				StringTokenizer tokenizer = new StringTokenizer(action, ";");
+
+				try {
+					String token = tokenizer.nextToken();
+					logger.debug("- creature action: " + token);
+					if (token.equals("sleep")) {
+						break;
+					} else if (token.equals("patrol")) {
+						patrolPath = decodePath(tokenizer.nextToken());
+					} else if (token.equals("targetmoved")) {
+						targetMovedPath = decodePath(tokenizer.nextToken());
+					} else if (token.equals("movetotarget")) {
+						moveToTargetPath = null;
+						String nextToken = tokenizer.nextToken();
+
+						if (nextToken.equals("blocked")) {
+							nextToken = tokenizer.nextToken();
+						}
+
+						if (nextToken.equals("waiting")) {
+							nextToken = tokenizer.nextToken();
+						}
+
+						if (nextToken.equals("newpath")) {
+							moveToTargetPath = null;
+							nextToken = tokenizer.nextToken();
+							if (nextToken.equals("blocked")) {
+								moveToTargetPath = null;
+							} else {
+								moveToTargetPath = decodePath(nextToken);
+							}
+						}
+					}
+				} catch (Exception e) {
+					logger.warn("error parsing debug string '" + debug
+							+ "' actions [" + Arrays.asList(actions)
+							+ "] action '" + action + "'", e);
+				}
+			}
+		}
+	}
+
+	//
+	// RPEntity2DView
+	//
+
 	/**
 	 * Populate named state sprites.
 	 * 
@@ -156,6 +239,19 @@ public class Creature2DView extends RPEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
+		if (Debug.CREATURES_DEBUG_CLIENT) {
+			if (hidePath) {
+				list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
+			} else {
+				list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
+			}
+
+			if (watch) {
+				list.add(ActionType.DEBUG_DISABLE_WATCH.getRepresentation());
+			} else {
+				list.add(ActionType.DEBUG_ENABLE_WATCH.getRepresentation());
+			}
+		}
 	}
 
 	/**
@@ -165,8 +261,29 @@ public class Creature2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g, int x, int y, int width, int height) {
-		super.draw(g, x, y, width, height);
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
+
+		super.draw(g2d, x, y, width, height);
+
+		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
+			List<Node> path;
+			path = getTargetMovedPath();
+			if (path != null) {
+				int delta = IGameScreen.SIZE_UNIT_PIXELS / 2;
+				g2d.setColor(Color.red);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2);
+			}
+			path = getPatrolPath();
+			if (path != null) {
+				g2d.setColor(Color.green);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2 + 1);
+			}
+			path = getMoveToTargetPath();
+			if (path != null) {
+				g2d.setColor(Color.blue);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2 + 2);
+			}
+		}
 	}
 
 	/**
@@ -208,11 +325,13 @@ public class Creature2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
+		} else if (property == Creature.PROP_DEBUG) {
+			handleDebug(creature.getDebug());
 		} else if (property == Creature.PROP_METAMORPHOSIS) {
 			representationChanged = true;
 		}
@@ -230,7 +349,37 @@ public class Creature2DView extends RPEntity2DView {
 		onAction(ActionType.ATTACK);
 	}
 
-	
+	/**
+	 * Perform an action.
+	 * 
+	 * @param at
+	 *            The action.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+		case DEBUG_SHOW_PATH:
+			hidePath = false;
+			break;
+
+		case DEBUG_HIDE_PATH:
+			hidePath = true;
+			break;
+
+		case DEBUG_ENABLE_WATCH:
+			watch = true;
+			break;
+
+		case DEBUG_DISABLE_WATCH:
+			watch = false;
+			break;
+
+		default:
+			super.onAction(at);
+			break;
+		}
+	}
+
 	//
 	//
 

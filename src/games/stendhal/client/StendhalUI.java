@@ -1,36 +1,34 @@
 /*
- * @(#) src/games/Stendhal/client/StendhalUI.java
+ * @(#) src/games/stendhal/client/StendhalUI.java
  *
  * $Id$
  */
 
 package games.stendhal.client;
 
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.common.NotificationType;
 
-import java.awt.Component;
-
 /**
- * A base class for the Stendhal client UI (not GUI).
- *
+ * A base class for the stendhal client UI (not GUI).
+ * 
  * This should have minimal UI-implementation dependent code. That's what
  * sub-classes are for!
  */
 public abstract class StendhalUI {
-
 	/**
 	 * A shared [singleton] copy.
 	 */
 	private static StendhalUI sharedUI;
 
 	/**
-	 * The Stendhal client.
+	 * The stendhal client.
 	 */
 	protected StendhalClient client;
 
 	/**
-	 * Create a Stendhal UI.
-	 *
+	 * Create a stendhal UI.
+	 * 
 	 * @param client
 	 *            The client.
 	 */
@@ -44,32 +42,33 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String text);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String header, String text);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String text, NotificationType type);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
-	public abstract void addEventLine(String header, String text, NotificationType type);
+	public abstract void addEventLine(String header, String text,
+			NotificationType type);
 
 	/**
 	 * Adds a Swing component to the view.
 	 */
-	public abstract void addDialog(Component dlg);
+	public abstract void addWindow(ManagedWindow imd);
 
 	/**
 	 * Initiate outfit selection by the user.
@@ -83,8 +82,8 @@ public abstract class StendhalUI {
 
 	/**
 	 * Get the default UI.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public static StendhalUI get() {
 		return sharedUI;
@@ -92,7 +91,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Get the client.
-	 *
+	 * 
 	 * @return The client.
 	 */
 	public StendhalClient getClient() {
@@ -101,21 +100,21 @@ public abstract class StendhalUI {
 
 	/**
 	 * Get the current game screen height.
-	 *
+	 * 
 	 * @return The height.
 	 */
 	public abstract int getHeight();
 
 	/**
 	 * Get the game screen.
-	 *
+	 * 
 	 * @return The game screen.
 	 */
 	public abstract IGameScreen getScreen();
 
 	/**
 	 * Get the current game screen width.
-	 *
+	 * 
 	 * @return The width.
 	 */
 	public abstract int getWidth();
@@ -127,9 +126,9 @@ public abstract class StendhalUI {
 
 	/**
 	 * Set the shared [singleton] value.
-	 *
+	 * 
 	 * @param sharedUI
-	 *            The Stendhal UI.
+	 *            The stendhal UI.
 	 */
 	public static void setDefault(StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;
@@ -137,7 +136,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Set the input chat line text.
-	 *
+	 * 
 	 * @param text
 	 *            The text.
 	 */
@@ -145,7 +144,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Set the offline indication state.
-	 *
+	 * 
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
@@ -153,7 +152,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Set the user's position.
-	 *
+	 * 
 	 * @param x
 	 *            The user's X coordinate.
 	 * @param y
@@ -161,6 +160,26 @@ public abstract class StendhalUI {
 	 */
 	public abstract void setPosition(double x, double y);
 
-	public abstract void shutdown();
+	//
+	// <StendhalGUI>
+	//
+	// These really shouldn't be here, as they are UI implementation
+	// specific. But for now this will allow more code refactoring,
+	// until this can be pushed into a sub-class.
+	//
 
+	/**
+	 * @return Returns the altDown.
+	 */
+	public abstract boolean isAltDown();
+
+	/**
+	 * @return Returns the ctrlDown.
+	 */
+	public abstract boolean isCtrlDown();
+
+	/**
+	 * @return Returns the shiftDown.
+	 */
+	public abstract boolean isShiftDown();
 }

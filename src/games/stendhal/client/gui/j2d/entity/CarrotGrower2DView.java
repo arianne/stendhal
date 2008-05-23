@@ -6,18 +6,19 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.CarrotGrower;
+//
+//
 
 import java.util.List;
 
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.CarrotGrower;
 import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a grower.
  */
 public class CarrotGrower2DView extends GrainField2DView {
-
 	/**
 	 * Create a 2D view of a grower.
 	 * 
@@ -82,5 +83,4 @@ public class CarrotGrower2DView extends GrainField2DView {
 			break;
 		}
 	}
-
 }

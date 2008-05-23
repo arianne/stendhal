@@ -16,7 +16,6 @@
  */
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -27,27 +26,20 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeListener;
-import games.stendhal.client.gui.ClientPanel;
-import games.stendhal.client.gui.MouseHandlerAdapter;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * The minimap.
@@ -55,13 +47,11 @@ import org.apache.log4j.Logger;
  * @author mtotz
  */
 
-@SuppressWarnings("serial")
-public final class Minimap extends ClientPanel implements PositionChangeListener {
-
+public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The color of the background.
 	 */
-	private static final Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
+	private static Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
 
 	/**
 	 * The color of blocked areas.
@@ -72,11 +62,6 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * The color of a general entity.
 	 */
 	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
-
-	/**
-	 * The color of the "N" text.
-	 */
-	private static final Color COLOR_NORTH = new Color(0.0f, 0.0f, 0.0f);
 
 	/** width of the minimap. */
 	private static final int MINIMAP_WIDTH = 129;
@@ -93,18 +78,31 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	/** scale of map. */
 	private int scale;
 
-	/** size of (scaled) minimap .*/
-	private Dimension size = new Dimension();
+	/** width of (scaled) minimap .*/
+	private int width;
+
+	/** height of (scaled) minimap .*/
+	private int height;
 
 	/**
-	 * The view offset.
+	 * The view X offset.
 	 */
-	private Point pan = new Point();
+	private int panx;
 
 	/**
-	 * The player coordinate.
+	 * The view Y offset.
 	 */
-	private Point2D.Double playerPos = new Point2D.Double();
+	private int pany;
+
+	/**
+	 * The player X coordinate.
+	 */
+	private double playerX;
+
+	/**
+	 * The player Y coordinate.
+	 */
+	private double playerY;
 
 	/** minimap image. */
 	private BufferedImage image;
@@ -115,9 +113,9 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * PATHFIND.
 	 */
 
-	private Pathfind pathfind = new Pathfind();
+	private int nodo_actual;
 
-	private int currentNode;
+	private Pathfind pathfind;
 
 	private CollisionDetection collisiondetection;
 
@@ -126,16 +124,24 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 
 	/** Creates a new instance of Minimap. */
 	public Minimap(StendhalClient client) {
-		// Show nothing until there is map data
-		super("Minimap", 100, 0);
+		super("minimap", 0, 0, 100, 100);
 
 		this.client = client;
 
-//		if (System.getProperty("stendhal.transparency") != null) {
-//			setTransparency(0.5f);
-//		}
+		setTitleBar(true);
+		setFrame(true);
+		setMovable(true);
+		setMinimizeable(true);
+		if (System.getProperty("stendhal.transparency") != null) {
+			COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
+			setTransparency(0.5f);
+		}
 
-		addMouseListener(new MyMouseHandlerAdapter());
+		// INIT PATHFIND
+		pathfind = new Pathfind();
+
+		// Show nothing until there is map data
+		resizeToFitClientArea(100, 0);
 	}
 
 	/**
@@ -148,13 +154,14 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
-		setTitle(zone);
+	public void update(CollisionDetection cd, GraphicsConfiguration gc,
+			String zone) {
+		setTitletext(zone);
 
 		// FOR PATHFINDING THING
 		collisiondetection = cd;
 		pathfind.ClearPath();
-		currentNode = 0;
+		nodo_actual = 0;
 
 		// calculate size and scale
 		int w = cd.getWidth();
@@ -164,12 +171,12 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 		scale = MINIMAP_MINIMUM_SCALE;
 		while ((w * (scale + 1) < MINIMAP_WIDTH)
 				&& (h * (scale + 1) < MINIMAP_HEIGHT)) {
-			++scale;
+			scale++;
 		}
 
 		// calculate size of map
-		size.width = (w * scale < MINIMAP_WIDTH) ? w * scale : MINIMAP_WIDTH;
-		size.height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
+		width = (w * scale < MINIMAP_WIDTH) ? w * scale : MINIMAP_WIDTH;
+		height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
 
 		// create the image for the minimap
 		image = gc.createCompatibleImage(w * scale, h * scale);
@@ -192,9 +199,15 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 		mapgrapics.dispose();
 
 		// now resize the panel to match the size of the map
-		setClientSize(size.width, size.height + 2);
+		resizeToFitClientArea(width, height + 2);
 
 		updateView();
+	}
+
+	/** we're using the window manager. */
+	@Override
+	protected boolean useWindowManager() {
+		return true;
 	}
 
 	/**
@@ -202,7 +215,8 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * position changes.
 	 */
 	private void updateView() {
-		pan = new Point(0, 0);
+		panx = 0;
+		pany = 0;
 
 		if (image == null) {
 			return;
@@ -211,43 +225,45 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 		int w = image.getWidth();
 		int h = image.getHeight();
 
-		int xpos = (int) ((playerPos.x * scale) + 0.5) - size.width / 2;
-		int ypos = (int) ((playerPos.y * scale) + 0.5) - size.width / 2;
+		int xpos = (int) ((playerX * scale) + 0.5) - width / 2;
+		int ypos = (int) ((playerY * scale) + 0.5) - width / 2;
 
-		if (w > size.width) {
+		if (w > width) {
 			// need to pan width
-			if ((xpos + size.width) > w) {
+			if ((xpos + width) > w) {
 				// x is at the screen border
-				pan.x = w - size.width;
+				panx = w - width;
 			} else if (xpos > 0) {
-				pan.x = xpos;
+				panx = xpos;
 			}
 		}
 
-		if (h > size.height) {
+		if (h > height) {
 			// need to pan height
-			if ((ypos + size.height) > h) {
+			if ((ypos + height) > h) {
 				// y is at the screen border
-				pan.y = h - size.height;
+				pany = h - height;
 			} else if (ypos > 0) {
-				pan.y = ypos;
+				pany = ypos;
 			}
 		}
 	}
 
 	public void update_pathfind() {
-		if (currentNode != 0) {
-			pathfind.PathJumpToNode(currentNode);
-			int manhatan = (int) ((Math.abs(playerPos.x - pathfind.NodeGetX()) + Math.abs(playerPos.y - pathfind.NodeGetY())));
+
+		if (nodo_actual != 0) {
+			pathfind.PathJumpToNode(nodo_actual);
+			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
+					- pathfind.NodeGetY())));
 
 			if (manhatan < 6) {
+
 				pathfind.PathJumpNode();
 
 				if (logger.isDebugEnabled()) {
 					logger.debug("Pathfind: To waypoint: "
 							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
 				}
-
 				RPAction action = new RPAction();
 				action.put("type", "moveto");
 				action.put("x", pathfind.NodeGetX());
@@ -255,13 +271,15 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 
 				client.send(action);
 
-				currentNode = pathfind.final_path_index;
+				nodo_actual = pathfind.final_path_index;
 
 				if (pathfind.ReachedGoal()) {
 					pathfind.ClearPath();
 				}
 			}
+
 		}
+
 	}
 
 	/**
@@ -271,88 +289,60 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 *            graphics object for the game main window
 	 */
 	@Override
-    public void paint(Graphics g) {
-		super.paint(g);
+	protected void drawContent(Graphics2D g) {
+		super.drawContent(g);
 
 		if (image == null) {
 			return;
 		}
 
 		Graphics vg = g.create();
-		Rectangle clnt = getClientRect();
-
-		vg.clipRect(clnt.x, clnt.y, clnt.width, clnt.height);
+		vg.translate(-panx, -pany);
 
 		// draw minimap
-		vg.translate(-pan.x, -pan.y);
-		vg.drawImage(image, clnt.x, clnt.y, null);
-
-		int level = User.getPlayerLevel();
-
-		// take into account the client area shift
-		vg.translate(clnt.x, clnt.y);
-
-		// display a "N" to show north direction for beginners
-		if (level < 10) {
-    		vg.setColor(COLOR_NORTH);
-    		vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
-    		FontMetrics metrics = vg.getFontMetrics();
-    		Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
-    		vg.drawString("N",
-    						pan.x + (size.width - (int) rect.getWidth()) / 2,
-    						pan.y + (int) rect.getHeight());
-		}
-
-//		pathfind.Reinice();
-//		while (!pathfind.ReachedGoal()) {
-//			pathfind.PathNextNode();
-//			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() *scale, scale, scale);
-//		}
-//		pathfind.Reinice();
-//
-//		 while (!pathfind.ReachedGoal()) {
-//			 pathfind.PathJumpNode();
-//			 vg.setColor(Color.CYAN);
-//			 vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() *scale, scale, scale);
-//		}
-//		pathfind.Reinice();
+		vg.drawImage(image, 0, 0, null);
+		/*
+		 * // PATHFIND--------------------------------------
+		 * 
+		 * pathfind.Reinice(); while (!pathfind.ReachedGoal()) {
+		 * pathfind.PathNextNode(); vg.fillRect(pathfind.NodeGetX() * scale,
+		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
+		 * 
+		 * while (!pathfind.ReachedGoal()) { pathfind.PathJumpNode();
+		 * vg.setColor(Color.CYAN); vg.fillRect(pathfind.NodeGetX() * scale,
+		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
+		 */
 
 		// --------------------------------------
 		// Draw on ground entities
-		GameObjects gameObjects = client.getGameObjects();
+		for (Entity entity : client.getGameObjects()) {
+			if (!entity.isOnGround()) {
+				continue;
+			}
 
-		//TODO remove the need for synchronization by changing getGameObjects() to return a copy of the game object list
+			if (entity instanceof Player) {
+				Player player = (Player) entity;
 
-		synchronized (gameObjects) {
-    		for (Entity entity : gameObjects) {
-    			if (!entity.isOnGround()) {
-    				continue;
-    			}
+				if (!player.isGhostMode()) {
+					drawPlayer(vg, player, Color.WHITE);
+				} else if (User.isAdmin()) {
+					drawPlayer(vg, player, Color.GRAY);
+				}
+			} else if (entity instanceof Portal) {
+				Portal portal = (Portal) entity;
 
-    			if (entity instanceof Player) {
-    				Player player = (Player) entity;
+				if (!portal.isHidden()) {
+					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
+				}
+			} else if (mininps && User.isAdmin()) {
+				// Enabled with -Dstendhal.superman=x.
 
-    				if (!player.isGhostMode()) {
-    					drawPlayer(vg, player, Color.WHITE);
-    				} else if (User.isAdmin()) {
-    					drawPlayer(vg, player, Color.GRAY);
-    				}
-    			} else if (entity instanceof Portal) {
-    				Portal portal = (Portal) entity;
-
-    				if (!portal.isHidden()) {
-    					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
-    				}
-    			} else if (mininps && User.isAdmin()) {
-    				// Enabled with -Dstendhal.superman=x.
-
-    				if (entity instanceof RPEntity) {
-    					drawRPEntity(vg, (RPEntity) entity);
-    				} else {
-    					drawEntity(vg, entity, COLOR_ENTITY);
-    				}
-    			}
-    		}
+				if (entity instanceof RPEntity) {
+					drawRPEntity(vg, (RPEntity) entity);
+				} else {
+					drawEntity(vg, entity, COLOR_ENTITY);
+				}
+			}
 		}
 
 		drawUser(vg);
@@ -402,7 +392,8 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * @param color
 	 *            the Color to be used
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity, final Color color) {
+	protected void drawEntity(final Graphics g, final Entity entity,
+			final Color color) {
 		drawEntity(g, entity, color, null);
 	}
 
@@ -419,7 +410,8 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * @param borderColor
 	 *            The (optional) border color.
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity, final Color color, final Color borderColor) {
+	protected void drawEntity(final Graphics g, final Entity entity,
+			final Color color, final Color borderColor) {
 		Rectangle2D area = entity.getArea();
 
 		int x = (int) ((area.getX() * scale) + 0.5);
@@ -446,25 +438,95 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 * @param color
 	 *            The color to draw with.
 	 */
-	protected void drawPlayer(final Graphics g, final Player player, final Color color) {
+	protected void drawPlayer(final Graphics g, final Player player,
+			final Color color) {
 		drawCross(g, (int) ((player.getX() * scale) + 0.5),
-					 (int) ((player.getY() * scale) + 0.5), color);
+				(int) ((player.getY() * scale) + 0.5), color);
 	}
 
 	/** Draws a cross at the given position. */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
 
-		int tmp_size = scale_2 + 2;
+		int size = scale_2 + 2;
 
 		x += scale_2;
 		y += scale_2;
 
 		g.setColor(color);
-		g.drawLine(x - tmp_size, y, x + tmp_size, y);
-		g.drawLine(x, y + tmp_size, x, y - tmp_size);
+		g.drawLine(x - size, y, x + size, y);
+		g.drawLine(x, y + size, x, y - size);
 	}
 
+	@Override
+	public synchronized boolean onMouseDoubleClick(Point p) {
+		// TODO: Check that titlebar height is calculated correctly.
+		// The p.y seems higher than it should after adjustment.
+
+		// If teleclickmode is disabled.
+		if (!client.getPlayer().has("teleclickmode")) {
+			/*
+			 * Move the player to the coordinates using Pathfinding
+			 */
+
+			// check if destination is walkeable.
+			if (!collisiondetection.walkable((p.x + panx - getClientX())
+					/ scale, ((p.y + pany - getClientY()) / scale) - 1)) {
+				return true;
+			}
+
+			nodo_actual = 0;
+
+			// Rectangle(int x, int y, int width, int height)
+			int width2 = width < 192 ? width : 192;
+			int height2 = height < 192 ? height : 192;
+			Rectangle search_area = new Rectangle((panx) / scale, (pany)
+					/ scale, width2 / scale, height2 / scale);
+
+			long computation_time = System.currentTimeMillis();
+
+			if (pathfind.NewPath(collisiondetection, (int) playerX,
+					(int) playerY, (p.x + panx - getClientX()) / scale, ((p.y
+							+ pany - getClientY()) / scale) - 1, search_area)) {
+
+				pathfind.PathJumpNode();
+				nodo_actual = pathfind.final_path_index;
+
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: Found, size: "
+							+ pathfind.final_path_index);
+					logger.debug("Pathfind: First waypoint: "
+							+ pathfind.NodeGetX() + "," + pathfind.NodeGetY());
+				}
+
+				RPAction action = new RPAction();
+				action.put("type", "moveto");
+				action.put("x", pathfind.NodeGetX());
+				action.put("y", pathfind.NodeGetY());
+
+				client.send(action);
+
+			} else {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: unreacheable.");
+				}
+			}
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("Pathfind: calculation time: "
+						+ (System.currentTimeMillis() - computation_time)
+						+ "ms");
+			}
+		} else { // If teleclickmode is enabled.
+			RPAction action = new RPAction();
+			action.put("type", "moveto");
+			action.put("x", (p.x + panx - getClientX()) / scale);
+			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
+
+			client.send(action);
+		}
+		return true;
+	}
 
 	//
 	// PositionChangeListener
@@ -479,86 +541,9 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 	 *            The Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
-		playerPos = new Point2D.Double(x, y);
+		playerX = x;
+		playerY = y;
 
 		updateView();
 	}
-
-
-	class MyMouseHandlerAdapter extends MouseHandlerAdapter {
-
-		@Override
-    	public void onLeftClick(MouseEvent e) {
-    		Point p = e.getPoint();
-    		Point clnt = getClientPos();
-
-    		// If teleclickmode is enabled.
-    		if (client.getPlayer().has("teleclickmode")) {
-    			RPAction action = new RPAction();
-    			action.put("type", "moveto");
-    			action.put("x", (p.x + pan.x - clnt.x) / scale);
-    			action.put("y", (p.y + pan.y - clnt.y) / scale - 1);
-
-    			client.send(action);
-    		} else {
-    			/*
-    			 * Move the player to the coordinates using Pathfinding
-    			 */
-
-    			// check if destination is walkable.
-    			if (!collisiondetection.walkable((p.x + pan.x - clnt.x)
-    					/ scale, ((p.y + pan.y - clnt.y) / scale) - 1)) {
-    				return;
-    			}
-
-    			currentNode = 0;
-
-    			int width2 = size.width < 192 ? size.width : 192;
-    			int height2 = size.height < 192 ? size.height : 192;
-
-    			Rectangle search_area = new Rectangle(
-    					pan.x / scale, pan.y / scale,
-    					width2 / scale, height2 / scale);
-
-    			long computation_time = System.currentTimeMillis();
-
-    			if (pathfind.NewPath(collisiondetection, (int) playerPos.x, (int) playerPos.y,
-    						(p.x + pan.x - clnt.x) / scale,
-    						((p.y + pan.y - clnt.y) / scale) - 1, search_area)) {
-    				pathfind.PathJumpNode();
-    				currentNode = pathfind.final_path_index;
-
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Pathfind: Found, size: "
-    							+ pathfind.final_path_index);
-    					logger.debug("Pathfind: First waypoint: "
-    							+ pathfind.NodeGetX() + "," + pathfind.NodeGetY());
-    				}
-
-    				RPAction action = new RPAction();
-    				action.put("type", "moveto");
-    				action.put("x", pathfind.NodeGetX());
-    				action.put("y", pathfind.NodeGetY());
-
-    				client.send(action);
-
-    				if (currentNode == 0) {
-    					// We arrived at our destination.
-    					pathfind.ClearPath();
-    				}
-    			} else {
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Pathfind: unreacheable.");
-    				}
-    			}
-
-    			if (logger.isDebugEnabled()) {
-    				logger.debug("Pathfind: calculation time: "
-    						+ (System.currentTimeMillis() - computation_time)
-    						+ "ms");
-    			}
-    		}
-		}
-	}
-
 }

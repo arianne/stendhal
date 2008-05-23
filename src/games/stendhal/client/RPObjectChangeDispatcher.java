@@ -23,7 +23,7 @@ import marauroa.common.game.RPSlot;
  * NOTE: The order of dispatch between contained objects and when their
  * container is very specific. Children objects are given a chance to perform
  * creation/updates before their parent is notified it happened to that specific
- * child. For cases of object removal, the parent is notified first, in case the
+ * child. For cases of object removal, the parent is notified first, incase the
  * child does destruction/cleanup.
  */
 public class RPObjectChangeDispatcher {
@@ -55,7 +55,8 @@ public class RPObjectChangeDispatcher {
 	 * @param userListener
 	 *            The user object listener.
 	 */
-	public RPObjectChangeDispatcher(final RPObjectChangeListener listener, final RPObjectChangeListener userListener) {
+	public RPObjectChangeDispatcher(final RPObjectChangeListener listener,
+			final RPObjectChangeListener userListener) {
 		this.listener = listener;
 		this.userListener = userListener;
 	}
@@ -165,7 +166,7 @@ public class RPObjectChangeDispatcher {
 	 *            to be dumped
 	 */
 	public static void dumpObject(RPObject object) {
-		StringBuilder sbuf = new StringBuilder();
+		StringBuffer sbuf = new StringBuffer();
 
 		sbuf.append(object.getRPClass().getName());
 		sbuf.append('[');
@@ -181,7 +182,7 @@ public class RPObjectChangeDispatcher {
 		System.err.println("");
 	}
 
-	protected static void buildIDPath(final StringBuilder sbuf,
+	protected static void buildIDPath(final StringBuffer sbuf,
 			final RPObject object) {
 		RPSlot slot = object.getContainerSlot();
 

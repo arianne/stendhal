@@ -1,10 +1,7 @@
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.ClientPanel;
-import games.stendhal.client.gui.MainFrame;
 import games.stendhal.client.gui.j2DClient;
-
+import games.stendhal.client.gui.wt.InternalManagedDialog;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.net.URL;
@@ -14,8 +11,7 @@ import java.net.URL;
  * 
  * @author timothyb89
  */
-@SuppressWarnings("serial")
-public final class ImageViewWindow extends ClientPanel {
+public class ImageViewWindow extends InternalManagedDialog {
 
 	/**
 	 * The padding of the window, in pixels, when generating the maximum size.
@@ -26,17 +22,16 @@ public final class ImageViewWindow extends ClientPanel {
 	private String alt;
 
 	public ImageViewWindow(URL url) {
-		super("Examine", 100, 100);
-		setName("examine");
+		super("examine", "Examine");
 
 		this.url = url;
 
 		init();
+
 	}
 
 	public ImageViewWindow(URL url, String title) {
-		super(title, 100, 100);
-		setName("examine");
+		super("examine", title);
 
 		this.url = url;
 		alt = title;
@@ -45,8 +40,7 @@ public final class ImageViewWindow extends ClientPanel {
 	}
 
 	public ImageViewWindow(URL url, String title, String alt) {
-		super(title, 100, 100);
-		setName("examine");
+		super("examine", title);
 
 		this.url = url;
 		this.alt = alt;
@@ -56,14 +50,14 @@ public final class ImageViewWindow extends ClientPanel {
 
 	public void init() {
 		ImageViewPanel ivp = new ImageViewPanel(this, url, alt);
-
-		add(ivp);
-
-		j2DClient.get().addDialog(this);
-
+		setContent(ivp);
+		j2DClient.get().addWindow(this);
 		Point center = genCenterPoint();
-		setLocation(center.x, center.y);
+		this.moveTo(center.x, center.y);
+		view();
+	}
 
+	public void view() {
 		setVisible(true);
 	}
 
@@ -74,17 +68,8 @@ public final class ImageViewWindow extends ClientPanel {
 	}
 
 	public Point genCenterPoint() {
-	    MainFrame mainFrame = StendhalClient.get().getMainFrame();
-	    Dimension size;
-
-	    if (mainFrame != null) {
-	        size = mainFrame.getSize();
-	    } else {
-	        size = new Dimension(j2DClient.SCREEN_WIDTH + j2DClient.BORDER_WIDTH * 2, j2DClient.SCREEN_HEIGHT);
-	    }
-
-		int x = (size.width - getWidth()) / 2;
-		int y = (size.height - getHeight()) / 2;
+		int x = (j2DClient.SCREEN_WIDTH - this.getDialog().getWidth()) / 2;
+		int y = (j2DClient.SCREEN_HEIGHT - this.getDialog().getHeight()) / 2;
 
 		return new Point(x, y);
 	}

@@ -9,18 +9,17 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a door.
@@ -197,13 +196,13 @@ public class Door2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == Door.PROP_OPEN) {
-			proceedChangedState();
+			stateChanged = true;
 		}
 	}
 

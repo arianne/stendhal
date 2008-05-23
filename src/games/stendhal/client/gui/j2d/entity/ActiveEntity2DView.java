@@ -11,13 +11,31 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
 import games.stendhal.common.Direction;
 
 /**
  * The 2D view of an animated entity.
  */
 public abstract class ActiveEntity2DView extends StateEntity2DView {
+	/**
+	 * The down facing state.
+	 */
+	protected static final String STATE_DOWN = "move_down";
+
+	/**
+	 * The up facing state.
+	 */
+	protected static final String STATE_UP = "move_up";
+
+	/**
+	 * The left facing state.
+	 */
+	protected static final String STATE_LEFT = "move_left";
+
+	/**
+	 * The right facing state.
+	 */
+	protected static final String STATE_RIGHT = "move_right";
 
 	/**
 	 * The active entity.
@@ -48,11 +66,23 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 * 
 	 * @return A named state.
 	 */
-	protected Direction getDirectionState(final Direction direction) {
-		if (direction == Direction.STOP) {
-			return Direction.DOWN;
+	protected String getDirectionState(final Direction direction) {
+		switch (direction) {
+		case LEFT:
+			return STATE_LEFT;
+
+		case RIGHT:
+			return STATE_RIGHT;
+
+		case UP:
+			return STATE_UP;
+
+		case DOWN:
+			return STATE_DOWN;
+
+		default:
+			return STATE_DOWN;
 		}
-		return direction;
 	}
 
 	//
@@ -65,7 +95,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 * @return The model state.
 	 */
 	@Override
-	protected Direction getState() {
+	protected Object getState() {
 		return getDirectionState(activeEntity.getDirection());
 	}
 
@@ -96,11 +126,11 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == ActiveEntity.PROP_DIRECTION) {
-			proceedChangedState();
+			stateChanged = true;
 		} else if (property == ActiveEntity.PROP_SPEED) {
 			animatedChanged = true;
 		}

@@ -6,11 +6,14 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
+//
+//
+
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -26,6 +29,16 @@ public class Corpse2DView extends Entity2DView {
 	 * The RP entity this view is for.
 	 */
 	private Corpse corpse;
+
+	/**
+	 * The corpse height.
+	 */
+	private int height;
+
+	/**
+	 * The corpse width.
+	 */
+	private int width;
 
 	/**
 	 * The slot content inspector.
@@ -47,6 +60,9 @@ public class Corpse2DView extends Entity2DView {
 		super(corpse);
 
 		this.corpse = corpse;
+
+		height = IGameScreen.SIZE_UNIT_PIXELS;
+		width = IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	//
@@ -109,12 +125,32 @@ public class Corpse2DView extends Entity2DView {
 
 		Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
 
-		int width = sprite.getWidth();
-		int height = sprite.getHeight();
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 
 		setSprite(sprite);
 
 		calculateOffset(width, height);
+	}
+
+	/**
+	 * Get the height.
+	 * 
+	 * @return The height (in pixels).
+	 */
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * Get the width.
+	 * 
+	 * @return The width (in pixels).
+	 */
+	@Override
+	public int getWidth() {
+		return width;
 	}
 
 	/**
@@ -155,7 +191,7 @@ public class Corpse2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {
@@ -187,7 +223,7 @@ public class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */
@@ -195,7 +231,8 @@ public class Corpse2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(corpse, corpse.getContent(), wtEntityContainer, 2, 2);
+			wtEntityContainer = inspector.inspectMe(corpse,
+					corpse.getContent(), wtEntityContainer);
 			break;
 
 		default:
@@ -211,7 +248,7 @@ public class Corpse2DView extends Entity2DView {
 	@Override
 	public void release() {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.dispose();
+			wtEntityContainer.destroy();
 			wtEntityContainer = null;
 		}
 

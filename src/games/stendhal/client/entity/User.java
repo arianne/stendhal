@@ -16,10 +16,19 @@ public class User extends Player {
 
 	private static User instance;
 
+	/**
+	 * Client features.
+	 */
+	/*
+	 * TODO remove unused code private FeatureList features;
+	 */
+
 	private String serverVersion = null;
 
 	public static boolean isNull() {
+
 		return instance == null;
+
 	}
 
 	public static User get() {
@@ -27,8 +36,12 @@ public class User extends Player {
 	}
 
 	public User() {
+		super();
 		instance = this;
 		modificationCount = 0;
+		/*
+		 * TODO remove unused code features = new FeatureList();
+		 */
 	}
 
 	/**
@@ -74,7 +87,6 @@ public class User extends Player {
 		if (isNull()) {
 			return false;
 		}
-
 		User me = User.get();
 		if (me.rpObject == null) {
 			return false;
@@ -82,18 +94,6 @@ public class User extends Player {
 
 		return me.rpObject.has("adminlevel")
 				&& (me.rpObject.getInt("adminlevel") >= 600);
-	}
-
-	public static int getPlayerLevel() {
-		if (!isNull()) {
-			User me = User.get();
-
-    		if (me.rpObject != null) {
-    			return me.getLevel();
-    		}
-		}
-
-		return 0;
 	}
 
 	public int getObjectID() {
@@ -145,6 +145,13 @@ public class User extends Player {
 				- HEARING_RANGE, width, width);
 	}
 
+	/*
+	 * TODO remove unused code public String getFeature(String name) { return
+	 * features.get(name); }
+	 * 
+	 * public boolean hasFeature(String name) { return features.has(name); }
+	 */
+
 	/**
 	 * Initialize this entity for an object.
 	 * 
@@ -156,6 +163,11 @@ public class User extends Player {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
+
+		/*
+		 * TODO remove unused code if (object.has("features")) {
+		 * features.decode(object.get("features")); }
+		 */
 	}
 
 	/**
@@ -170,6 +182,11 @@ public class User extends Player {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 		modificationCount++;
+
+		/*
+		 * TODO remove unused code if (changes.has("features")) {
+		 * features.decode(changes.get("features")); }
+		 */
 
 		// The first time we ignore it.
 		if (object != null) {
@@ -211,6 +228,10 @@ public class User extends Player {
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
 		super.onChangedRemoved(base, diff);
+
+		/*
+		 * TODO remove unused code if (diff.has("features")) { features.clear(); }
+		 */
 	}
 
 	/**
@@ -227,39 +248,18 @@ public class User extends Player {
 	}
 
 	/**
-	 * Resets the class to uninitialized.
+	 * resets the class to uninitialized.
 	 */
 	public static void setNull() {
 		instance = null;
 	}
 
 	/**
-	 * Query the version of the server we are currently connected to.
+	 * query the version of the server we are currently connected to.
 	 * 
 	 * @return server version string
 	 */
 	public String getServerVersion() {
 		return serverVersion;
 	}
-
-	/**
-	 * Returns the objectid for the named item.
-	 * 
-	 * @param slotName
-	 *            name of slot to search
-	 * @param itemName
-	 *            name of item
-	 * @return objectid or <code>-1</code> in case there is no such item
-	 */
-	public int findItem(String slotName, String itemName) {
-		for (RPObject item : getSlot(slotName)) {
-			if (item.get("name").equals(itemName)) {
-				int itemID = item.getID().getObjectID();
-
-				return itemID;
-			}
-		}
-
-		return -1;
-    }
 }

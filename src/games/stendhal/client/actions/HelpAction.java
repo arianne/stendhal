@@ -28,8 +28,7 @@ class HelpAction implements SlashAction {
 				"- /support <message> \tAsk an administrator for help.",
 				"- /who \t\tList all players currently online",
 				"- /where <player> \t\tShow the current location of <player>",
-				"- /sentence <text> \t\tWrites the sentence that appears on Website.",
-				"- /drop [quantity] <item>\tDrop a certain number of an item",
+				"- /drop <quantity> <item>\tDrop a certain number of an item",
 				"- /add <player> \t\tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
 				"- /ignore <player> [<minutes>|*|- [<reason...>]] \tAdd <player> to your ignore list",
@@ -40,10 +39,8 @@ class HelpAction implements SlashAction {
 				"- /grumpy \t\tRemove status grumpy",
 				"- /look  <name> \t\tLook at the named character",
 				"- /attack <name> \t\tAttack the named character",
-				"- /name <pet> <name> \t\tGive a name to your pet",
 				"- /quit \t\t\tLeave the game. You will continue where you left off upon your return",
-				"- /sound mute <on|off> \tMute or unmute the sounds"
-		};
+				"- /sound mute <on|off> \tMute or unmute the sounds" };
 
 		for (String line : lines) {
 			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);

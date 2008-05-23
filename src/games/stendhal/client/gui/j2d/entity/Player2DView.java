@@ -20,9 +20,8 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a player.
@@ -79,7 +78,7 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * Draw the entity status bar.
 	 * 
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -89,11 +88,12 @@ public class Player2DView extends RPEntity2DView {
 	 *            The drawn width.
 	 */
 	@Override
-	protected void drawStatusBar(final Graphics2D g, final int x, final int y, final int width) {
+	protected void drawStatusBar(final Graphics2D g2d, final int x,
+			final int y, final int width) {
 		/*
 		 * Shift bar slightly to avoid overlap with smaller entities
 		 */
-		super.drawStatusBar(g, x, y + 6, width);
+		super.drawStatusBar(g2d, x, y + 6, width);
 	}
 
 	/**
@@ -157,14 +157,14 @@ public class Player2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g, int x, int y, int width, int height) {
-		super.draw(g, x, y, width, height);
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (player.isAway()) {
-			awaySprite.draw(g, x + (width * 3 / 4), y - 10);
+			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
 		if (player.isGrumpy()) {
-			grumpySprite.draw(g, x - (width * 1 / 6), y - 6);
+			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
 	}
 

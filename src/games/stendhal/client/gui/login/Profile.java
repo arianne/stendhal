@@ -45,9 +45,9 @@ public class Profile {
 	 * @return A string excoded form (with newlines).
 	 */
 	public String encode() {
-		StringBuilder sbuf;
+		StringBuffer sbuf;
 
-		sbuf = new StringBuilder();
+		sbuf = new StringBuffer();
 		sbuf.append(getHost());
 		sbuf.append('\n');
 		sbuf.append(getUser());
@@ -214,9 +214,9 @@ public class Profile {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder sbuf;
+		StringBuffer sbuf;
 
-		sbuf = new StringBuilder();
+		sbuf = new StringBuffer();
 		sbuf.append(getUser());
 		sbuf.append('@');
 		sbuf.append(getHost());

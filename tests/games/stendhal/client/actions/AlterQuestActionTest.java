@@ -26,21 +26,7 @@ public class AlterQuestActionTest {
 		AlterQuestAction action = new AlterQuestAction();
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
+		assertFalse(action.execute(new String[] { "schnick", "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, null));
-
-		new MockStendhalClient("") {
-			@Override
-			public void send(RPAction action) {
-				client = null;
-				assertEquals("alterquest", action.get("type"));
-				assertEquals("schnick", action.get("target"));
-				assertEquals("schnick", action.get("name"));
-				assertEquals(null, action.get("state"));
-				
-			}
-		};
-		
-		assertTrue(action.execute(new String[] { "schnick", "schnick" }, null));
-		
 	}
 }

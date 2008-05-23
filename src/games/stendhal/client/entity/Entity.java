@@ -28,48 +28,55 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * Animated property.
 	 */
-	public static final Property PROP_ANIMATED = new Property();
+	public static final Object PROP_ANIMATED = new Object();
 
 	/**
 	 * Entity class/subclass property.
 	 */
-	public static final Property PROP_CLASS = new Property();
+	public static final Object PROP_CLASS = new Object();
 
 	/**
 	 * Name property.
 	 */
-	public static final Property PROP_NAME = new Property();
+	public static final Object PROP_NAME = new Object();
 
 	/**
 	 * Position property.
 	 */
-	public static final Property PROP_POSITION = new Property();
+	public static final Object PROP_POSITION = new Object();
 
 	/**
 	 * Size property.
 	 */
-	public static final Property PROP_SIZE = new Property();
+	public static final Object PROP_SIZE = new Object();
 
 	/**
 	 * Title property.
 	 */
-	public static final Property PROP_TITLE = new Property();
+	public static final Object PROP_TITLE = new Object();
 
 	/**
 	 * Type property.
 	 */
-	public static final Property PROP_TYPE = new Property();
+	public static final Object PROP_TYPE = new Object();
 
 	/**
 	 * Visibility property.
 	 */
-	public static final Property PROP_VISIBILITY = new Property();
+	public static final Object PROP_VISIBILITY = new Object();
 
 	/**
 	 * an array of sounds. out of these randomnly chosen sounds are played while
 	 * moving.
 	 */
 	protected String[] moveSounds;
+
+	/**
+	 * session wide instance identifier for this class.
+	 * TODO: get rid of this only used by Soundsystem
+	 * 
+	 */
+	public final byte[] ID_Token = new byte[0];
 
 	/** The current x location of this entity. */
 	protected double x;
@@ -137,8 +144,8 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
-	 * onChangedAdded() from other initialize() hack. 
-	 * <p> TODO: remove watch variable inAdd
+	 * onChangedAdded() from other initialize() hack. TODO: Need to fix it all
+	 * to work right, but not now.
 	 */
 	protected boolean inAdd;
 
@@ -220,7 +227,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @param property
 	 *            The changed property.
 	 */
-	protected void fireChange(final  Property property) {
+	protected void fireChange(final Object property) {
 		EntityChangeListener[] listeners = changeListeners;
 
 		for (EntityChangeListener l : listeners) {
@@ -611,6 +618,7 @@ public class Entity implements RPObjectChangeListener {
 		 */
 		onPosition(x, y);
 
+		// TODO: BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
 		inAdd = false;
@@ -626,6 +634,7 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public boolean isObstacle(final Entity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
+		// TODO: Check is self check is needed here, or obsolete
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
@@ -636,7 +645,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @see-also #initialize(RPObject)
 	 */
 	public void release() {
-		SoundSystem.stopSoundCycle(this);
+		SoundSystem.stopSoundCycle(ID_Token);
 	}
 
 	/**
@@ -953,7 +962,7 @@ public class Entity implements RPObjectChangeListener {
 
 	@Override
 	public String toString() {
-		StringBuilder sbuf = new StringBuilder();
+		StringBuffer sbuf = new StringBuffer();
 
 		sbuf.append(getClass().getName());
 

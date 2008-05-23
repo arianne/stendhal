@@ -17,6 +17,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
+import games.stendhal.common.Debug;
 
 import java.security.AccessControlException;
 
@@ -32,17 +33,12 @@ public class stendhal extends Thread {
 
 	public static String STENDHAL_FOLDER;
 
-	/**
-	 * Just a try to get Webstart working without additional rights.
-	 */
-	static boolean WEB_START_SANDBOX = false;
-
 	// detect web start sandbox and init STENDHAL_FOLDER otherwise
 	static {
 		try {
 			System.getProperty("user.home");
 		} catch (AccessControlException e) {
-			WEB_START_SANDBOX = true;
+			Debug.WEB_START_SANDBOX = true;
 		}
 
 		/** We set the main game folder to the game name */
@@ -52,13 +48,37 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
+	public static String SCREEN_SIZE = "640x480";
+
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
 
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
-	public static final int FPS_LIMIT = 20;
+	public static final int FPS_LIMIT = 25;
+
+	/**
+	 * Parses command line arguments.
+	 * 
+	 * @param args
+	 *            command line arguments
+	 */
+	private static void parseCommandlineArguments(String[] args) {
+		String size = null;
+		int i = 0;
+
+		while (i != args.length) {
+			if (args[i].equals("-s")) {
+				size = args[i + 1];
+			}
+			i++;
+		}
+
+		if (size != null) {
+			SCREEN_SIZE = size;
+		}
+	}
 
 	/**
 	 * Starts the LogSystem.
@@ -84,22 +104,31 @@ public class stendhal extends Thread {
 				+ System.getProperty("java.vm.name") + " "
 				+ System.getProperty("java.vm.version"));
 
+		// TODO: Add some kind of user visible warning for non suppored java
+		// vms.
 	}
-//
-//	 /**
-//	 * Try to use the system look and feel.
-//	 */
-//	 private static void startSwingLookAndFeel() {
-//    	 try {
-//        	 // only enable SystemLookAndFeelClassName for MS Windows because of bug
-//        	 // http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
-//        	 if (System.getProperty("os.name", "").toLowerCase().indexOf("windows") > -1) {
-//        		 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        	 }
-//    	 } catch (Exception e) {
-//    		 logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
-//    	 }
-//	}
+
+	// /**
+	// * Try to use the system look and feel.
+	// */
+	// private static void startSwingLookAndFeel() {
+	// try {
+	// // only enable SystemLookAndFeelClassName for MS Windows because of
+	// // bug
+	// //
+	// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
+	// /*
+	// * if (System.getProperty("os.name",
+	// * "").toLowerCase().indexOf("windows") > -1) {
+	// * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+	// */
+	// } catch (Exception e) {
+	// logger.error(
+	// "Can't change Look&Feel to match your OS. Using the Cross-Platform look &
+	// feel",
+	// e);
+	// }
+	// }
 
 	/**
 	 * Starts the client and show the first screen.
@@ -107,8 +136,6 @@ public class stendhal extends Thread {
 	 * @return StendhalClient
 	 */
 	private static StendhalClient startClient() {
-//		startSwingLookAndFeel();
-
 		StendhalClient client = StendhalClient.get();
 		new StendhalFirstScreen(client);
 		return client;
@@ -134,10 +161,8 @@ public class stendhal extends Thread {
 	 *            StendhalClient
 	 */
 	private static void startGameGUI(StendhalClient client) {
-		j2DClient locclient = new j2DClient(client);
-		locclient.initialize();
-		locclient.gameLoop();
-		locclient.cleanup();
+
+		new j2DClient(client);
 	}
 
 	/**
@@ -148,6 +173,12 @@ public class stendhal extends Thread {
 	 */
 	public static void main(String[] args) {
 		// get size string
+		if (System.getProperty("stendhal.refactoringgui") != null) {
+			SCREEN_SIZE = "1000x480";
+		} else {
+			SCREEN_SIZE = "640x480";
+		}
+		parseCommandlineArguments(args);
 		startLogSystem();
 
 		StendhalClient client = startClient();
@@ -161,5 +192,6 @@ public class stendhal extends Thread {
 		sm.init();
 		Thread th = new Thread(sm);
 		th.start();
+
 	}
 }

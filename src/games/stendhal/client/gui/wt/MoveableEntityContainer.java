@@ -14,21 +14,19 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.IDraggable;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
+import games.stendhal.client.gui.wt.core.WtDraggable;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around .*/
-public class MoveableEntityContainer implements IDraggable {
+public class MoveableEntityContainer implements WtDraggable {
 
 	/** current x-pos of the dragged item. */
 	private int x;
@@ -65,7 +63,8 @@ public class MoveableEntityContainer implements IDraggable {
 
 		if (rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
+			action.put("baseobject",
+					rpObject.getContainer().getID().getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
@@ -126,47 +125,23 @@ public class MoveableEntityContainer implements IDraggable {
 	}
 
 	/** moved. */
-	public void dragMoved(Point p) {
+	public boolean dragMoved(Point p) {
 		x = p.x;
 		y = p.y;
-	}
-
-	/**
-	 * Get the image size of the dragged object.
-	 * 
-	 * @return The image size.
-	 */
-	public Dimension getSize() {
-		if (view != null) {
-			return new Dimension(view.getWidth(), view.getHeight());
-		} else {
-			return null;
-		}
+		return true;
 	}
 
 	/**
 	 * draws the entity.
 	 * @param g the Graphic context to draw to.
 	 */
-	public void drawDragged(Graphics g, Dimension size) {
+	public void drawDragged(Graphics g) {
 		if (view != null) {
 			Graphics2D cg = (Graphics2D) g.create();
-			Rectangle area = view.getArea();
 
 			cg.translate(x, y);
-
-			if (area.height > size.width || area.height > size.height) {
-				 // scale the image down to cursor size
-				int xMax = Math.max(area.height, size.width);
-				int yMax = Math.max(area.width, size.width);
-
-				cg.scale((double) size.width / xMax, (double) size.height / yMax);
-			}
-
 			view.draw(cg);
-
 			cg.dispose();
 		}
 	}
-
 }

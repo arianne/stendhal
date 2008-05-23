@@ -6,6 +6,9 @@
 
 package games.stendhal.client.gui.styled;
 
+//
+//
+
 import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Color;
@@ -45,5 +48,4 @@ public interface Style {
 	 * @return A color.
 	 */
 	Color getForeground();
-
 }

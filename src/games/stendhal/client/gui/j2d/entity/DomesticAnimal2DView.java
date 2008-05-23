@@ -10,12 +10,10 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
+import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
 import java.util.Map;
@@ -149,16 +147,16 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map,
 			final Sprite tiles, final int width, final int height) {
 		int y = 0;
-		map.put(Direction.UP, createWalkSprite(tiles, y, width, height));
+		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(Direction.RIGHT, createWalkSprite(tiles, y, width, height));
+		map.put(STATE_RIGHT, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(Direction.DOWN, createWalkSprite(tiles, y, width, height));
+		map.put(STATE_DOWN, createWalkSprite(tiles, y, width, height));
 
 		y += height;
-		map.put(Direction.LEFT, createWalkSprite(tiles, y, width, height));
+		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
 
 		y += height;
 		map.put(STATE_BIG_UP, createWalkSprite(tiles, y, width, height));
@@ -209,11 +207,12 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g, final int x, final int y, final int width, final int height) {
-		super.draw(g, x, y, width, height);
+	protected void draw(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
-			ideaSprite.draw(g, x + width - 8, y - 8);
+			ideaSprite.draw(g2d, x + width - 8, y - 8);
 		}
 	}
 
@@ -243,13 +242,13 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == DomesticAnimal.PROP_IDEA) {
 			ideaChanged = true;
 		} else if (property == DomesticAnimal.PROP_WEIGHT) {
-			proceedChangedState();
+			stateChanged = true;
 		}
 	}
 

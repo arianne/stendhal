@@ -24,6 +24,7 @@ public class HearingAreaTest {
 		runContainTests();
 		new User();
 		runContainTests();
+
 	}
 
 	private void runContainTests() {
@@ -81,6 +82,7 @@ public class HearingAreaTest {
 				rect.getMaxX(), 0.001);
 		assertEquals(HearingArea.HEARINGDIST + User.get().getY(),
 				rect.getMaxY(), 0.001);
+
 	}
 
 	@Test

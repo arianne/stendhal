@@ -22,12 +22,12 @@ public class Chest extends Entity {
 	/**
 	 * Content property.
 	 */
-	public static final Property PROP_CONTENT = new Property();
+	public static final Object PROP_CONTENT = new Object();
 
 	/**
 	 * Open state property.
 	 */
-	public static final Property PROP_OPEN = new Property();
+	public static final Object PROP_OPEN = new Object();
 
 	/**
 	 * Whether the chest is currently open.

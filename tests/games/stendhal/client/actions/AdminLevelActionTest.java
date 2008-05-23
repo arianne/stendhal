@@ -17,17 +17,20 @@ public class AdminLevelActionTest {
 
 	@Test
 	public void testExecuteOneParam() {
+
 		new MockStendhalClient("") {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals("adminlevel", action.get("type"));
-				assertEquals("schnick", action.get("target"));
+				assertEquals(action.get("type"), "adminlevel");
+				assertEquals(action.get("target"), "schnick");
+
 			}
 		};
 		AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick" }, null));
+
 	}
 
 	@Test
@@ -37,14 +40,15 @@ public class AdminLevelActionTest {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals("adminlevel", action.get("type"));
-				assertEquals("schnick", action.get("target"));
+				assertEquals(action.get("type"), "adminlevel");
+				assertEquals(action.get("target"), "schnick");
 				assertFalse(action.has("newlevel"));
 			}
 		};
 		AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick", null }, null));
+
 	}
 
 	@Test
@@ -54,14 +58,15 @@ public class AdminLevelActionTest {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals("adminlevel", action.get("type"));
-				assertEquals("schnick", action.get("target"));
+				assertEquals(action.get("type"), "adminlevel");
+				assertEquals(action.get("target"), "schnick");
 				assertEquals("100", action.get("newlevel"));
 			}
 		};
 		AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick", "100" }, null));
+
 	}
 
 	@Test

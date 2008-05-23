@@ -32,7 +32,10 @@ public abstract class StateEntity2DView extends Entity2DView {
 	 */
 	protected Map<Object, Sprite> sprites;
 
-	
+	/**
+	 * The model state value changed.
+	 */
+	protected boolean stateChanged;
 
 	/**
 	 * Create a 2D view of an entity.
@@ -44,7 +47,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 		super(entity);
 
 		sprites = new HashMap<Object, Sprite>();
-	
+		stateChanged = false;
 	}
 
 	//
@@ -115,7 +118,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 		buildAnimations();
 
 		setSprite(getStateSprite());
-		
+		stateChanged = false;
 	}
 
 	/**
@@ -124,12 +127,10 @@ public abstract class StateEntity2DView extends Entity2DView {
 	@Override
 	protected void update() {
 		super.update();
-	
-	}
 
-
-	protected void proceedChangedState() {
+		if (stateChanged) {
 			setSprite(getStateSprite());
+			stateChanged = false;
+		}
 	}
-
 }

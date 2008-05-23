@@ -33,13 +33,11 @@ class GMHelpAction implements SlashAction {
 				"- /ghostmode \t\t\t Makes yourself invisible and intangible",
 				"- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
 				"- /altercreature <id> name/atk/def/hp/xp \tChange all the values of the creature. Useful in raids.run",
-				"- /summon <creature|item> [x] [y]\tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
-				"- /summonat <player> <slot> [amount] <item> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
+				"- /summon <x> <y> <creature|item> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
+				"- /summonat <player> <slot> <amount> <item> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
 				"- /invisible \t\t\tToggles whether or not you are invisible to creatures",
 				"- /inspect <player> \t\t\tShow complete details of <player>",
-				"- /destroy <entity> \t\t\tDestroy an entity completely",
-				"- /wrap <item>\t\tWraps the named item into a nice present.",
-		};
+				"- /destroy <entity> \t\t\tDestroy an entity completely" };
 
 		for (String line : lines) {
 			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);

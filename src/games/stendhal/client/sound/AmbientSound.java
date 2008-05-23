@@ -334,7 +334,7 @@ class AmbientSound {
 					chance);
 			cycleList.add(cycle);
 		} catch (Exception e) {
-			//do nothing
+			// TODO: handle undefined Soundsample
 		}
 	} // addCycle
 
@@ -364,14 +364,14 @@ class AmbientSound {
 		// if map-localized
 		if (soundPos != null) {
 			// adjust to player settings
-			if (User.isNull()) {
-				return;
-			} else {
+			if (!User.isNull()) {
 
 				// return if sound object is out of range
 				if (!canPlay()) {
 					return;
 				}
+			} else {
+				return;
 			}
 		}
 

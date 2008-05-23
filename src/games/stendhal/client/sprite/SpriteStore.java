@@ -152,8 +152,8 @@ public class SpriteStore {
 		Sprite sprite = cache.get(ref);
 
 		if (sprite == null) {
-			sprite = loadSprite(ref);
 
+			sprite = loadSprite(ref);
 			if (sprite != null) {
 				cache.add(ref, sprite);
 			}
@@ -187,23 +187,21 @@ public class SpriteStore {
 
 		try {
 			URL url;
-
-			if (ref.startsWith("http://")) {
+			if (!ref.startsWith("http://")) {
+				url = getResourceURL(ref);
+			} else {
 				logger.info("Loading sprite from a URL...");
 				url = new URL(ref);
-			} else {
-				url = getResourceURL(ref);
 			}
-
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 
 				// avoid infinite loop and stack overflow in case of missing
 				// failsafe icon
-				if (ref.equals(FAILSAFE_ICON_REF)) {
-					return null;
-				} else {
+				if (!ref.equals(FAILSAFE_ICON_REF)) {
 					return getFailsafe();
+				} else {
+					return null;
 				}
 			}
 

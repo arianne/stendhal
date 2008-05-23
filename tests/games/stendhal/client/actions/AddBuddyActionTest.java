@@ -17,17 +17,21 @@ public class AddBuddyActionTest {
 
 	@Test
 	public void testExecute() {
+		
 		new MockStendhalClient("") {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals("addbuddy", action.get("type"));
-				assertEquals("schnick", action.get("target"));
+				assertEquals(action.get("type"), "addbuddy");
+				assertEquals(action.get("target"), "schnick");
+				
 			}
 		};
 		AddBuddyAction action = new AddBuddyAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String []{"schnick"}, null));
+		
+		
 	}
 
 	@Test

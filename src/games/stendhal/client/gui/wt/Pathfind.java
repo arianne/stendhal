@@ -14,6 +14,11 @@ import java.util.PriorityQueue;
 /**
  * A* implementation. 
  * <p>TODO: OPTIMIZATION AND CLEANING!!!! and comment the code..
+ * :p i hope durkham dont look here, i dont want hurt her with my crappy code XD
+ * <p>TODO: Check if colision() method should be renamed to collision() to prevent
+ * double spellings <p>TODO: Check if Reinice() method should be renamed to
+ * Restart() to make its name more meaningful
+ * 
  * @author Kawn
  */
 
@@ -36,7 +41,16 @@ public class Pathfind {
 	private Node current_node;
 	int final_path_index = 0;
 
-	private static int collision(CollisionDetection collisiondetection, int x1, int y1) {
+	private static int colision(CollisionDetection collisiondetection, int x1,
+			int y1) {
+		/*
+		 * if (x1 < 0) return 1; if (y1 < 0) return 1;
+		 * 
+		 * if (x1 >= collisiondetection.getWidth()) return 1; if (y1 >=
+		 * collisiondetection.getHeight()) return 1;
+		 * 
+		 */
+
 		if (x1 < search_area.getMinX()) {
 			return 1;
 		}
@@ -59,45 +73,21 @@ public class Pathfind {
 	}
 
 	public void PathNextNode() {
-		if (final_path_index > 0) {
+
+		if (final_path_index != 0) {
 			final_path_index--;
 			current_node = final_path.get(final_path_index);
 		}
 	}
 
 	public void PathJumpNode() {
-		current_node = final_path.get(final_path_index);
-		
-		int next_node = final_path_index - 2; 
-		
-		if (next_node < 1) {
+		final_path_index = final_path_index - 20;
+
+		if (final_path_index < 0) {
 			final_path_index = 0;
-			current_node = final_path.get(final_path_index);
-			return;
 		}
 
-		int next_node_final = final_path_index - 20;
-
-		if (next_node_final < 0) {
-			next_node_final = 0;
-		}
-		
-		if (final_path.get(next_node + 1).y == final_path.get(next_node).y) {
-			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
-				if (final_path.get(next_node + 1).y != final_path.get(next_node).y) {
-					break;
-				}
-			}
-		} else {
-			for (next_node = final_path_index - 2; next_node > next_node_final; next_node--) {
-				if (final_path.get(next_node + 1).x != final_path.get(next_node).x) {
-					break;
-				}
-			}
-		}
-
-		final_path_index = next_node;
-		current_node = final_path.get(final_path_index);		
+		current_node = final_path.get(final_path_index);
 	}
 
 	public void PathJumpToNode(int destnode) {
@@ -106,7 +96,6 @@ public class Pathfind {
 		if (final_path_index < 0) {
 			final_path_index = 0;
 		}
-
 		current_node = final_path.get(destnode);
 	}
 
@@ -122,9 +111,9 @@ public class Pathfind {
 		return final_path_index == 0;
 	}
 
-	public void restart() {
-		if (final_path.size() != 0) {
-			final_path_index = final_path.size() - 1;
+	public void Reinice() {
+		if (final_path != null) {
+			final_path_index = final_path.size();
 		}
 	}
 
@@ -135,6 +124,7 @@ public class Pathfind {
 		final_path_index = 0;
 		nodeRegistry.clear();
 		nodeRegistryclose.clear();
+
 	}
 
 	public boolean NewPath(CollisionDetection collisiondetection,
@@ -149,12 +139,11 @@ public class Pathfind {
 		// System.out.println("AREA: " + search_area.getMinX() + " " +
 		// search_area.getMinY() + " " +search_area.getMaxX() + " " +
 		// search_area.getMaxY());
-
-//		if (colision(collisiondetection,final_x,final_y) != 0) {
-//			System.out.println("NON-WALKABLE DESTINATION: " + initial_x + " " + initial_y + " " +final_x + " "+ final_y + " " );
-//			return false; 
-//		}
-
+		/*
+		 * if (colision( collisiondetection,final_x,final_y)!=0){
+		 * System.out.println("NON-WALKABLE DESTINATION: " + initial_x + " " +
+		 * initial_y + " " +final_x + " "+ final_y + " " ); return false; }
+		 */
 		// long computation_time = System.currentTimeMillis();
 		Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
 
@@ -220,8 +209,9 @@ public class Pathfind {
 						continue;
 					}
 
-					if (collision(collisiondetection, x_tmp, y_tmp) == 0) {
-						int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp - final_y));
+					if (colision(collisiondetection, x_tmp, y_tmp) == 0) {
+						int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp
+								- final_y));
 
 						Node node_UP;
 						if (Math.abs(x_tmp - node_Fm.x) == 1
@@ -244,7 +234,9 @@ public class Pathfind {
 								// incy);
 							}
 
-							node_UP = new Node(x_tmp, y_tmp, node_Fm.G + 10 - potato, manhattan);
+							node_UP = new Node(x_tmp, y_tmp, node_Fm.G + 10
+									- potato, manhattan);
+
 						}
 						node_UP.parent = node_Fm;
 						// System.out.println("ADJACENT:"+x_tmp+":"+y_tmp + " G
@@ -317,7 +309,7 @@ public class Pathfind {
 			}
 		}
 
-		final_path_index = final_path.size() - 1;
+		final_path_index = final_path.size();
 
 		// computation_time = System.currentTimeMillis() - computation_time;
 
@@ -327,14 +319,13 @@ public class Pathfind {
 		return ((final_path.size() > 0) ? true : false);
 	}
 
-//	public static void main(String[] args) {
-//		Pathfind Path = new Pathfind();
-//		Path.NewPath(1,2,5,2);
-//		while (!Path.ReachedGoal()) {
-//			Path.PathNextNode();
-//			System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY());
-//		}
-//	}
+	public static void main(String[] args) {
+		/*
+		 * Pathfind Path = new Pathfind(); Path.NewPath(1,2,5,2); while
+		 * (!Path.ReachedGoal()){ Path.PathNextNode();
+		 * System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY()); }
+		 */
+	}
 
 	private class Node {
 		private int x;

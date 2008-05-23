@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+//
+//
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -19,11 +22,10 @@ import marauroa.common.game.RPSlot;
  * A corpse entity.
  */
 public class Corpse extends PassiveEntity {
-
 	/**
 	 * Content property.
 	 */
-	public static final Property PROP_CONTENT = new Property();
+	public static final Object PROP_CONTENT = new Object();
 
 	/**
 	 * The current content slot.
@@ -87,5 +89,4 @@ public class Corpse extends PassiveEntity {
 			fireChange(PROP_CONTENT);
 		}
 	}
-
 }

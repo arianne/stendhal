@@ -13,16 +13,13 @@ import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
-
 import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -86,7 +83,7 @@ public class NPC2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_CLASS) {

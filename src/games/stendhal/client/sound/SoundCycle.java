@@ -19,9 +19,8 @@ import games.stendhal.common.Rand;
 
 import javax.sound.sampled.DataLine;
 
-import marauroa.common.game.RPObject.ID;
-
 import org.apache.log4j.Logger;
+import marauroa.common.game.RPObject.ID;
 
 /**
  * A sound cycle loops on performing a library sound. After each termination of
@@ -37,6 +36,8 @@ class SoundCycle extends Thread implements Cloneable {
 
 	
 	private static final Logger logger = Logger.getLogger(SoundCycle.class);
+
+	private byte[] ID_Token;
 
 	Entity entityRef;
 
@@ -99,6 +100,7 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 
 		if (entity != null) {
+			this.ID_Token = entity.ID_Token;
 			this.entityRef = entity;
 		}
 		this.token = token;
@@ -203,14 +205,14 @@ class SoundCycle extends Thread implements Cloneable {
 			// if object bound sound cycle
 			if (entityRef != null) {
 				o = entityRef;
-				if (o != null) { // FIXME: Will always return true because is checked previously, could be origin for sound dont stop bug
+				if (o != null) {
 					logger.debug("- start cyclic sound for entity: "
 							+ o.getType());
 					dataline = ((SoundObject) o).playSound(token, volBot,
 							volTop, chance);
 				} else {
-					
-					SoundSystem.stopSoundCycle(entityRef);
+					// FIXME: could be origin for sound dont stop bug
+					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
 				}
 			} else {

@@ -21,7 +21,7 @@ public class Ring extends Item {
 	/**
 	 * Working property.
 	 */
-	public static final Property PROP_WORKING = new Property();
+	public static final Object PROP_WORKING = new Object();
 
 	/**
 	 * Whether the ring is currently working.

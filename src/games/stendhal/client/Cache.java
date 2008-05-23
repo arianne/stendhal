@@ -2,6 +2,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.common.Debug;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class Cache {
 			}
 
 			// init caching-directory
-			if (!stendhal.WEB_START_SANDBOX) {
+			if (!Debug.WEB_START_SANDBOX) {
 				// Create file object
 				File file = new File(System.getProperty("user.home") + "/"
 						+ stendhal.STENDHAL_FOLDER);
@@ -103,7 +104,7 @@ public class Cache {
 	 */
 	private void cleanCacheOnUpdate() throws IOException {
 		if (!cacheManager.has(VERSION_KEY)
-				|| !stendhal.VERSION.equals(cacheManager.get(VERSION_KEY))) {
+				|| !cacheManager.get(VERSION_KEY).equals(stendhal.VERSION)) {
 			cleanCache();
 			cacheManager.clear();
 			initCacheManager();

@@ -6,6 +6,9 @@
 
 package games.stendhal.client;
 
+//
+//
+
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.EntityHolderListener;
@@ -31,7 +34,6 @@ import org.apache.log4j.Logger;
  * directly used by other code later.
  */
 public class UserContext implements RPObjectChangeListener {
-
 	/**
 	 * The logger.
 	 */
@@ -607,22 +609,21 @@ public class UserContext implements RPObjectChangeListener {
 			final RPObject sobject) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(sobject);
-		} else if (slotName.equals("!features")) {
+		}
+		if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			synchronized (gameObjects) {
-				Entity entity = gameObjects.get(sobject);
+			Entity entity = gameObjects.get(sobject);
 
-    			if (entity != null) {
-    				Entity parent = gameObjects.get(object);
+			if (entity != null) {
+				Entity parent = gameObjects.get(object);
 
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Added: " + entity);
-    					logger.debug("   To: " + parent + "  [" + slotName + "]");
-    				}
+				if (logger.isDebugEnabled()) {
+					logger.debug("Added: " + entity);
+					logger.debug("   To: " + parent + "  [" + slotName + "]");
+				}
 
-    				entitySlotListener.entityAdded(parent, slotName, entity);
-    			}
+				entitySlotListener.entityAdded(parent, slotName, entity);
 			}
 		}
 	}
@@ -688,21 +689,18 @@ public class UserContext implements RPObjectChangeListener {
 		} else if (slotName.equals("!features")) {
 			processFeaturesRemoved(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			synchronized (gameObjects) {
-				Entity entity = gameObjects.get(sobject);
+			Entity entity = gameObjects.get(sobject);
 
-    			if (entity != null) {
-    				Entity parent = gameObjects.get(object);
+			if (entity != null) {
+				Entity parent = gameObjects.get(object);
 
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Removed: " + entity);
-    					logger.debug("   From: " + parent + "  [" + slotName + "]");
-    				}
+				if (logger.isDebugEnabled()) {
+					logger.debug("Removed: " + entity);
+					logger.debug("   From: " + parent + "  [" + slotName + "]");
+				}
 
-    				entitySlotListener.entityRemoved(parent, slotName, entity);
-    			}
+				entitySlotListener.entityRemoved(parent, slotName, entity);
 			}
 		}
 	}
-
 }

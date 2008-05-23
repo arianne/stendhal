@@ -25,10 +25,12 @@ public class WhoActionTest {
 					assertEquals("type", attrib);
 					assertEquals("who", (action.get(attrib)));
 				}
+
 			}
 		};
 		WhoAction action = new WhoAction();
 		assertTrue(action.execute(null, null));
+
 	}
 
 	@Test
