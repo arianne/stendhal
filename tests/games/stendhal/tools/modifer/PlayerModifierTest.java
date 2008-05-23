@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class PlayerModifierTest {
 
 	@Test
 	public void testLoadPlayer() {
-		StendhalRPWorld.get();
+		MockStendlRPWorld.get();
 		String characterName = "modifyme";
 		PlayerModifier mod = new PlayerModifier();
 		mod.setDatabase(SingletonRepository.getPlayerDatabase());
@@ -29,7 +30,7 @@ public class PlayerModifierTest {
 	
 	@Test
 	public void testLoadPlayerNameIsNull() {
-		StendhalRPWorld.get();
+		MockStendlRPWorld.get();
 		PlayerModifier mod = new PlayerModifier();
 		mod.setDatabase(SingletonRepository.getPlayerDatabase());
 		Player player = mod.loadPlayer(null);
@@ -38,7 +39,7 @@ public class PlayerModifierTest {
 	
 	@Test
 	public void testmodifyPlayer() {
-		StendhalRPWorld.get();
+		MockStendlRPWorld.get();
 		String characterName = "modifyme";
 		PlayerModifier mod = new PlayerModifier();
 		mod.setDatabase(SingletonRepository.getPlayerDatabase());
