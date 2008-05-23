@@ -18,6 +18,10 @@ public enum Direction {
 		public Direction nextDirection() {
 			return LEFT;
 		}
+		@Override
+		public Direction oppositeDirection() {
+			return STOP;
+		}
 
 	},
 	UP(1, 0, -1) {
@@ -25,11 +29,19 @@ public enum Direction {
 		public Direction nextDirection() {
 			return RIGHT;
 		}
+		@Override
+		public Direction oppositeDirection() {
+			return DOWN;
+		}
 	},
 	RIGHT(2, 1, 0) {
 		@Override
 		public Direction nextDirection() {
 			return DOWN;
+		}
+		@Override
+		public Direction oppositeDirection() {
+			return LEFT;
 		}
 	},
 	DOWN(3, 0, 1) {
@@ -37,11 +49,19 @@ public enum Direction {
 		public Direction nextDirection() {
 			return LEFT;
 		}
+		@Override
+		public Direction oppositeDirection() {
+			return UP;
+		}
 	},
 	LEFT(4, -1, 0) {
 		@Override
 		public Direction nextDirection() {
 			return UP;
+		}
+		@Override
+		public Direction oppositeDirection() {
+			return RIGHT;
 		}
 	};
 
@@ -91,20 +111,7 @@ public enum Direction {
 		return val;
 	}
 
-	public Direction oppositeDirection() {
-		switch (this) {
-		case UP:
-			return DOWN;
-		case RIGHT:
-			return LEFT;
-		case DOWN:
-			return UP;
-		case LEFT:
-			return RIGHT;
-		default:
-			return STOP;
-		}
-	}
+	public abstract Direction oppositeDirection();
 
 	public abstract Direction nextDirection();
 }
