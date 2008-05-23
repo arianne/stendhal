@@ -17,12 +17,6 @@ public class OutfitActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testOnActionNullNull() {
-		OutfitAction oa = new OutfitAction();
-		oa.onAction(null, null);
-	}
-
 	@Test
 	public void testOnWrongAction() {
 		OutfitAction oa = new OutfitAction();

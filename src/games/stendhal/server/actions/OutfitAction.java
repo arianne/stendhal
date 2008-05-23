@@ -26,6 +26,11 @@ public class OutfitAction implements ActionListener {
 		CommandCenter.register(_OUTFIT, new OutfitAction());
 	}
 
+	/**
+	 * Changes Player's outfit to the value provided in action. 
+	 * @param player whose outfit is to be changed. Must not be <code>null</code>.
+	 * @param action the action containing the outfit info in the attribute 'value'. Must not be <code>null</code>.
+	 */
 	public void onAction(Player player, RPAction action) {
 		if (action.has(_VALUE)) {
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
