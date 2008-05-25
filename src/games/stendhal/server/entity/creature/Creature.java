@@ -624,6 +624,8 @@ public class Creature extends NPC {
 			if (Rand.roll1D100() == 1) {
 				this.makeNoise();
 			}
+		} else {
+			this.setIdle();
 		}
 		this.notifyWorldAboutChanges();
 	}
@@ -658,7 +660,7 @@ public class Creature extends NPC {
 			clearPath();
 			stopAttack();
 			stop();
-			idler.startIdleness(this);
+		
 		} else {
 			idler.perform(this);
 			
