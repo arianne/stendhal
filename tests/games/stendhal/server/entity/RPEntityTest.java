@@ -11,6 +11,7 @@ import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.Log4J;
+import marauroa.test.MockRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,9 +23,24 @@ import utilities.RPClass.ItemTestHelper;
 
 public class RPEntityTest {
 
+	private final class MockRPentity extends RPEntity {
+		@Override
+		protected void dropItemsOn(Corpse corpse) {
+			//do Nothing
+			
+		}
+
+		@Override
+		public void logic() {
+			//do Nothing
+			
+		}
+	}
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
 		
 	}
@@ -366,5 +382,24 @@ public class RPEntityTest {
 		assertThat("no damge done " , attacker.get("damage"), is("30"));
 		}
 
+	@Test
+	public void testIsAttacking() {
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		RPEntity attacker = new MockRPentity();
+		assertFalse("attacktarget = null", attacker.isAttacking())	;
+		RPEntity defender = new MockRPentity();
+		
+		zone.add(attacker);
+		zone.add(defender);
+		attacker.setTarget(defender);
+		defender.setHP(1);
+		assertTrue(attacker.isAttacking())	;
+		defender.setHP(0);
+		assertFalse(attacker.isAttacking())	;
+		
+	}
+	
+	
+	
 	
 }

@@ -12,8 +12,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import marauroa.common.Pair;
-
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -66,6 +64,7 @@ public class HandToHandTest {
 	
 	@Test
 	public void testCanAttackNowBigCreature() {
+		StendhalRPZone zone = new StendhalRPZone("hthtest");
 		HandToHand hth = new HandToHand();
 		Creature creature = SingletonRepository.getEntityManager().getCreature("balrog");
 		assertNotNull(creature);
@@ -74,7 +73,9 @@ public class HandToHandTest {
 		creature.setPosition(10,10);
 		assertFalse("no target yet", hth.canAttackNow(creature));
 		RPEntity victim = PlayerTestHelper.createPlayer("bob");
-		victim.put("id", 1);
+		victim.setHP(1);
+		zone.add(creature);
+		zone.add(victim);
 		creature.setTarget(victim);
 		
 		for (int i = 9 ; i< 12;i++){

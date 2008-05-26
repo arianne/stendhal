@@ -9,8 +9,8 @@ class HandToHand implements AttackStrategy {
 	private static final int followRadius = 144;
 
 	public void attack(Creature creature) {
-
-		if ((SingletonRepository.getRuleProcessor().getTurn() % 5 == creature.getAttackTurn())) {
+		
+		if ((SingletonRepository.getRuleProcessor().getTurn() == creature.getAttackTurn())) {
 			creature.attack();
 			creature.tryToPoison();
 		}
@@ -19,7 +19,7 @@ class HandToHand implements AttackStrategy {
 	public boolean canAttackNow(Creature creature) {
 		if (creature.getAttackTarget() != null) {
 			
-			return creature.nextTo(creature.getAttackTarget());
+			return creature.squaredDistance(creature.getAttackTarget())==0;
 		} else {
 			return false;
 		}
