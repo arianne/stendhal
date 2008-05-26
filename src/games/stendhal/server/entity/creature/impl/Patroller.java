@@ -49,8 +49,9 @@ class Patroller implements Idlebehaviour {
 				}
 			}
 			
-			
-			creature.setSpeed(creature.getBaseSpeed());
+			if (creature.getDirection()!=Direction.STOP){
+				creature.setSpeed(creature.getBaseSpeed());
+			}
             
 		}
 		creature.applyMovement();
