@@ -6,7 +6,7 @@ import games.stendhal.server.entity.creature.Creature;
 
 class HandToHand implements AttackStrategy {
 
-	private static final int followRadius = 144;
+	private static final int followRadius = 12;
 
 	public void attack(Creature creature) {
 		
@@ -65,7 +65,7 @@ class HandToHand implements AttackStrategy {
 		if (!creature.getZone().has(victim.getID())) {
 			return false;
 		}
-		return creature.squaredDistance(victim) < followRadius;
+		return creature.squaredDistance(victim) < (followRadius + creature.getWidth())*(followRadius + creature.getWidth());
 	}
 
 }
