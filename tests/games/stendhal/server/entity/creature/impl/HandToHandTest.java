@@ -1,17 +1,24 @@
 package games.stendhal.server.entity.creature.impl;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.common.Pair;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
 public class HandToHandTest {
@@ -51,6 +58,40 @@ public class HandToHandTest {
 		assertTrue("new ones stand on same positon", hth.canAttackNow(creature));
 		victim.setPosition(10, 10);
 		assertFalse("too far away", hth.canAttackNow(creature));
+		
+		
+	}
+	
+	
+	
+	@Test
+	public void testCanAttackNowBigCreature() {
+		HandToHand hth = new HandToHand();
+		Creature creature = SingletonRepository.getEntityManager().getCreature("balrog");
+		assertNotNull(creature);
+		assertThat(creature.getWidth(), is(11.0));
+		assertThat(creature.getHeight(), is(12.0));
+		creature.setPosition(10,10);
+		assertFalse("no target yet", hth.canAttackNow(creature));
+		RPEntity victim = PlayerTestHelper.createPlayer("bob");
+		victim.put("id", 1);
+		creature.setTarget(victim);
+		
+		for (int i = 9 ; i< 12;i++){
+			for (int j = 9; j < 13 ;j++){
+				victim.setPosition(i, j);
+				assertTrue(creature.nextTo(victim));
+				assertTrue(victim.nextTo(creature));
+				assertTrue("can attack now ("+i+","+j+")", hth.canAttackNow(creature));
+			}
+		}
+		
+		
+		victim.setPosition(8, 13);
+		assertFalse(creature.nextTo(victim));
+		assertFalse(victim.nextTo(creature));
+		assertFalse("can attack now ", hth.canAttackNow(creature));
+
 		
 		
 	}
