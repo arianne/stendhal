@@ -11,7 +11,6 @@ import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.Log4J;
-import marauroa.test.MockRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
