@@ -10,11 +10,12 @@ class HandToHand implements AttackStrategy {
 
 	public void attack(Creature creature) {
 		
-		if ((SingletonRepository.getRuleProcessor().getTurn() %5 == creature.getAttackTurn())) {
+		if (creature.isAttackTurn(SingletonRepository.getRuleProcessor().getTurn())) {
 			creature.attack();
 			creature.tryToPoison();
 		}
 	}
+
 
 	public boolean canAttackNow(Creature creature) {
 		if (creature.getAttackTarget() != null) {

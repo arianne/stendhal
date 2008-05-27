@@ -127,6 +127,10 @@ public class Creature extends NPC {
 	public int getAttackTurn() {
 		return attackTurn;
 	}
+	public boolean isAttackTurn(int turn) {
+		return (turn %5 == attackTurn);
+	}
+
 
 	public static void generateRPClass() {
 		try {
