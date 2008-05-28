@@ -17,6 +17,8 @@ Changelog
   - you can launch tiled directly from Eclipse or using ANT
   - updated tiled.jar
 - ANT targets "rendermaps" and "updatemaps" now use the new tiled code
+- new gfx for soup, wine, beer
+- fado priest heals, jynath charges a bit more for healing
 - mithril nuggets can now be cast into mithril bars
 - mithril shields can now be forged
 - entwives have be discovered in ados mountains
@@ -30,11 +32,11 @@ Changelog
 - armor buyer added to Kirdneh market area
 - fish market added to Kirdneh market area
 - cloak buyer added to central Amazon area
-- odds and ends buy added to -3 abandoned keep
+- odds and ends buyer added to -3 abandoned keep
 - veggie and herb buyer added to assassin HQ cellar
 - scrolls now available by bartering with gardener lady in kalavan 
 - milk now available from semos farm
-- honey now availble from beekeeper in fado forest
+- honey now available from beekeeper in fado forest
 
 0.67
 - new players start in semos guardhouse
