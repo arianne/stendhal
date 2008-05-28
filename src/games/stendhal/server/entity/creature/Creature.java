@@ -459,8 +459,8 @@ public class Creature extends NPC {
 				}
 			}
 
-			// is there a path to this enemy?
-			// List<Path.Node> path = Path.searchPath(this, chosen, 20.0);
+			if (shortestDistance>=1){
+			
 			List<Node> path = Path.searchPath(this, chosen, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
@@ -468,6 +468,7 @@ public class Creature extends NPC {
 			} else {
 				// set the path. if not setMovement() will search a new one
 				setPath(new FixedPath(path, false));
+			}
 			}
 		}
 		// return the chosen enemy or null if we could not find one in reach
