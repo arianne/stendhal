@@ -18,13 +18,16 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.impl.AttackStrategyFactory;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -81,6 +84,13 @@ public class Sheep extends DomesticAnimal {
 
 	private int hunger;
 
+	@Override
+	public void setAttackStrategy(Map<String, String> aiProfiles) {
+		Map<String, String> sheepProfile= new HashMap<String, String>();
+		sheepProfile.put("gandhi",null);
+		super.setAttackStrategy(aiProfiles);
+	}
+
 	public static void generateRPClass() {
 		try {
 			RPClass sheep = new RPClass("sheep");
@@ -120,7 +130,7 @@ public class Sheep extends DomesticAnimal {
 			owner.getZone().add(this);
 			owner.setSheep(this);
 		}
-
+		
 		update();
 		logger.debug("Created Sheep: " + this);
 	}
