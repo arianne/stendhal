@@ -70,7 +70,7 @@ public class HandToHandTest {
 		assertNotNull(creature);
 		assertThat(creature.getWidth(), is(11.0));
 		assertThat(creature.getHeight(), is(12.0));
-		creature.setPosition(10,10);
+		creature.setPosition(10, 10);
 		assertFalse("no target yet", hth.canAttackNow(creature));
 		RPEntity victim = PlayerTestHelper.createPlayer("bob");
 		victim.setHP(1);
@@ -78,12 +78,12 @@ public class HandToHandTest {
 		zone.add(victim);
 		creature.setTarget(victim);
 		
-		for (int i = 9 ; i< 12;i++){
-			for (int j = 9; j < 13 ;j++){
+		for (int i = 9; i < 12; i++) {
+			for (int j = 9; j < 13; j++) {
 				victim.setPosition(i, j);
 				assertTrue(creature.nextTo(victim));
 				assertTrue(victim.nextTo(creature));
-				assertTrue("can attack now ("+i+","+j+")", hth.canAttackNow(creature));
+				assertTrue("can attack now (" + i + "," + j + ")", hth.canAttackNow(creature));
 			}
 		}
 		

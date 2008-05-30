@@ -128,7 +128,7 @@ public class Creature extends NPC {
 		return attackTurn;
 	}
 	public boolean isAttackTurn(int turn) {
-		return (turn %5 == attackTurn);
+		return (turn % 5 == attackTurn);
 	}
 
 
@@ -459,16 +459,15 @@ public class Creature extends NPC {
 				}
 			}
 
-			if (shortestDistance>=1){
-			
-			List<Node> path = Path.searchPath(this, chosen, 20.0);
-			if ((path == null) || (path.size() == 0)) {
-				distances.remove(chosen);
-				chosen = null;
-			} else {
-				// set the path. if not setMovement() will search a new one
-				setPath(new FixedPath(path, false));
-			}
+			if (shortestDistance >= 1) {
+				List<Node> path = Path.searchPath(this, chosen, 20.0);
+				if ((path == null) || (path.size() == 0)) {
+					distances.remove(chosen);
+					chosen = null;
+				} else {
+					// set the path. if not setMovement() will search a new one
+					setPath(new FixedPath(path, false));
+				}
 			}
 		}
 		// return the chosen enemy or null if we could not find one in reach

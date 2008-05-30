@@ -19,8 +19,7 @@ class HandToHand implements AttackStrategy {
 
 	public boolean canAttackNow(Creature creature) {
 		if (creature.getAttackTarget() != null) {
-			
-			return creature.squaredDistance(creature.getAttackTarget())<1;
+			return creature.squaredDistance(creature.getAttackTarget()) < 1;
 		} else {
 			return false;
 		}
@@ -40,7 +39,7 @@ class HandToHand implements AttackStrategy {
 			creature.setMovement(target, 0, 1, 20.0);
 		}
 		if (!creature.hasPath()) {
-			if ((int)creature.squaredDistance(target)>=1) {
+			if ((int) creature.squaredDistance(target) >= 1) {
 				creature.stopAttack();
 				return;
 			}
@@ -66,7 +65,7 @@ class HandToHand implements AttackStrategy {
 		if (!creature.getZone().has(victim.getID())) {
 			return false;
 		}
-		return creature.squaredDistance(victim) < (followRadius *followRadius );
+		return creature.squaredDistance(victim) < (followRadius * followRadius);
 	}
 
 }

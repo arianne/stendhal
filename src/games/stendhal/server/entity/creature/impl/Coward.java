@@ -6,11 +6,11 @@ public class Coward extends HandToHand {
 	@Override
 	public void getBetterAttackPosition(Creature creature) {
 		
-		if (creature.isAttacked()){
+		if (creature.isAttacked()) {
 			creature.clearPath();
-			 creature.faceToward(creature.getAttackSources().get(0));
-			 creature.setDirection(creature.getDirection().oppositeDirection());
-			 creature.setSpeed(creature.getBaseSpeed());
+			creature.faceToward(creature.getAttackSources().get(0));
+			creature.setDirection(creature.getDirection().oppositeDirection());
+			creature.setSpeed(creature.getBaseSpeed());
 		} else {
 			super.getBetterAttackPosition(creature);
 		}

@@ -99,12 +99,12 @@ public class CreatureTest {
 	public void testIsAttackTurn() {
 		Creature creature = new Creature();
 		int counter = 0;
-		for (int i = 0 ; i < 10 ;i++){
-			if (creature.isAttackTurn(i)){
-				counter ++;
+		for (int i = 0; i < 10; i++) {
+			if (creature.isAttackTurn(i)) {
+				counter++;
 			}
 		}
-		assertThat(counter,is(2));
+		assertThat(counter, is(2));
 	}
 	
 }

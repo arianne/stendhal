@@ -80,7 +80,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			setAmount(1);
 		}
 
-		if (amount <= 0 ) {
+		if (amount <= 0) {
 			seller.say("Sorry, you must buy at least one item.");
 			return false;
 		}

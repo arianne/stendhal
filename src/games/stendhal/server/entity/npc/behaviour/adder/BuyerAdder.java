@@ -64,7 +64,7 @@ public class BuyerAdder {
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
 								}
 							} else {
-								engine.say("Sorry, how many "+Grammar.plural(behaviour.getChosenItemName())+" do you want to sell?!");
+								engine.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to sell?!");
 
     							engine.setCurrentState(ConversationStates.ATTENDING);
 							}

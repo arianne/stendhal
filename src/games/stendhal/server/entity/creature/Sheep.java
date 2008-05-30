@@ -85,8 +85,8 @@ public class Sheep extends DomesticAnimal {
 
 	@Override
 	public void setAttackStrategy(Map<String, String> aiProfiles) {
-		Map<String, String> sheepProfile= new HashMap<String, String>();
-		sheepProfile.put("gandhi",null);
+		Map<String, String> sheepProfile = new HashMap<String, String>();
+		sheepProfile.put("gandhi", null);
 		super.setAttackStrategy(aiProfiles);
 	}
 
