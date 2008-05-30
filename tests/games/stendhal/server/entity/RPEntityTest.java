@@ -385,16 +385,16 @@ public class RPEntityTest {
 	public void testIsAttacking() {
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		RPEntity attacker = new MockRPentity();
-		assertFalse("attacktarget = null", attacker.isAttacking())	;
+		assertFalse("attacktarget = null", attacker.isAttacking());
 		RPEntity defender = new MockRPentity();
 		
 		zone.add(attacker);
 		zone.add(defender);
 		attacker.setTarget(defender);
 		defender.setHP(1);
-		assertTrue(attacker.isAttacking())	;
+		assertTrue(attacker.isAttacking());
 		defender.setHP(0);
-		assertFalse(attacker.isAttacking())	;
+		assertFalse(attacker.isAttacking());
 		
 	}
 	

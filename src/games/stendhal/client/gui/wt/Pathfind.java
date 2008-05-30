@@ -17,7 +17,7 @@ import java.util.PriorityQueue;
  * @author Kawn
  */
 
-public class Pathfind {
+ class Pathfind {
 
 	private HashMap<Integer, Node> nodeRegistry = new HashMap<Integer, Node>();
 	private HashMap<Integer, Node> nodeRegistryclose = new HashMap<Integer, Node>();
@@ -58,14 +58,7 @@ public class Pathfind {
 		return 0;
 	}
 
-	public void PathNextNode() {
-		if (final_path_index > 0) {
-			final_path_index--;
-			current_node = final_path.get(final_path_index);
-		}
-	}
-
-	public void PathJumpNode() {
+	void pathJumpNode() {
 		current_node = final_path.get(final_path_index);
 		
 		int next_node = final_path_index - 2; 
@@ -100,7 +93,7 @@ public class Pathfind {
 		current_node = final_path.get(final_path_index);		
 	}
 
-	public void PathJumpToNode(int destnode) {
+	void pathJumpToNode(int destnode) {
 		final_path_index = destnode;
 
 		if (final_path_index < 0) {
@@ -110,25 +103,19 @@ public class Pathfind {
 		current_node = final_path.get(destnode);
 	}
 
-	public int NodeGetX() {
+	int nodeGetX() {
 		return current_node.x;
 	}
 
-	public int NodeGetY() {
+	int nodeGetY() {
 		return current_node.y;
 	}
 
-	public boolean ReachedGoal() {
+	boolean hasReachedGoal() {
 		return final_path_index == 0;
 	}
 
-	public void restart() {
-		if (final_path.size() != 0) {
-			final_path_index = final_path.size() - 1;
-		}
-	}
-
-	public void ClearPath() {
+	void clearPath() {
 		open_list.clear();
 		closed_list.clear();
 		final_path.clear();
@@ -137,7 +124,7 @@ public class Pathfind {
 		nodeRegistryclose.clear();
 	}
 
-	public boolean NewPath(CollisionDetection collisiondetection,
+	boolean newPath(CollisionDetection collisiondetection,
 			int initial_x, int initial_y, int final_x, int final_y,
 			Rectangle search_area2) {
 
@@ -158,7 +145,7 @@ public class Pathfind {
 		// long computation_time = System.currentTimeMillis();
 		Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
 
-		ClearPath();
+		clearPath();
 
 		// 1) Add the starting square (or node) to the open list.
 		ini_node.parent = new Node();
@@ -336,7 +323,7 @@ public class Pathfind {
 //		}
 //	}
 
-	private class Node {
+	private static class Node {
 		private int x;
 		private int y;
 		private int G;
