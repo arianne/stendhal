@@ -24,7 +24,8 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
+
 		MockStendlRPWorld.get();
 
 		setupZone(ZONE_NAME, new HousewifeNPC());

@@ -42,7 +42,8 @@ public class BeerForHayunnTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 		
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
+
 		MockStendlRPWorld.reset();
 		MockStendlRPWorld.get();
 		hayunn = new SpeakerNPC("Hayunn Naratha");

@@ -31,7 +31,7 @@ public class BringListOfItemsQuestLogicTest {
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
 		PlayerTestHelper.generateNPCRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();

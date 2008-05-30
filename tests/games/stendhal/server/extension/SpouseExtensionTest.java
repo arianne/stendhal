@@ -31,7 +31,8 @@ public class SpouseExtensionTest {
 	@BeforeClass
 	public static final void setUpClass() throws Exception {
 		Log4J.init();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
+
 		MockStendlRPWorld.get();
 		new SpouseExtension();
 	}

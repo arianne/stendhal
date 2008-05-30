@@ -24,7 +24,7 @@ public class ToysCollectorTest {
 	@BeforeClass
 	public static void setupFixture() {
 		Log4J.init();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
 		PlayerTestHelper.generateNPCRPClasses();
 	}
 

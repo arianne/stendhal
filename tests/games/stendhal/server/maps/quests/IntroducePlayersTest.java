@@ -34,7 +34,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
 
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 
 		setupZone(ZONE_NAME, new BoyNPC());
