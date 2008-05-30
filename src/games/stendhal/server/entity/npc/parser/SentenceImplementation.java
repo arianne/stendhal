@@ -211,9 +211,13 @@ public final class SentenceImplementation extends Sentence {
                         // If we already found a verb, we prepend "you" as
                         // first subject and mark the sentence as imperative.
                         if (prevVerb != null) {
-                            Expression you = new Expression("you", ExpressionType.SUBJECT);
-                            expressions.add(0, you);
-                            sentenceType = SentenceType.IMPERATIVE;
+                        	//TODO The following line as an ugly hack to let Gordon recognize statements like "rent Me ...".
+                        	// It should be replaced by using sentence matching "[you] rent" in SignLessorNPC.
+                        	if (!prevVerb.getNormalized().equals("rent")) {
+	                            Expression you = new Expression("you", ExpressionType.SUBJECT);
+	                            expressions.add(0, you);
+	                            sentenceType = SentenceType.IMPERATIVE;
+                        	}
                         }
                     }
 
