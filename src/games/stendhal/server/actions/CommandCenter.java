@@ -13,6 +13,8 @@ import games.stendhal.server.actions.equip.WrapAction;
 import games.stendhal.server.actions.guild.CreateGuildAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
+import games.stendhal.server.actions.move.MoveToAction;
+import games.stendhal.server.actions.move.PushAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,21 +63,23 @@ public class CommandCenter {
 		AwayAction.register();
 		BuddyAction.register();
 		ChatAction.register();
+		CreateGuildAction.register();
 		DisplaceAction.register();
 		EquipmentAction.register();
 		FaceAction.register();
 		LookAction.register();
 		MoveAction.register();
+		MoveToAction.register();
+		NameAction.register();
 		OutfitAction.register();
 		OwnAction.register();
 		PlayersQuery.register();
+		PushAction.register();
 		QuestListAction.register();
 		SentenceAction.register();
 		StopAction.register();
 		UseAction.register();
-		CreateGuildAction.register();
 		WrapAction.register();
-		NameAction.register();
 	}
 
 	public static boolean execute(RPObject caster, RPAction action) {
