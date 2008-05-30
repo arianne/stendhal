@@ -127,6 +127,10 @@ public class Creature extends NPC {
 	public int getAttackTurn() {
 		return attackTurn;
 	}
+	public boolean isAttackTurn(int turn) {
+		return (turn %5 == attackTurn);
+	}
+
 
 	public static void generateRPClass() {
 		try {
@@ -455,8 +459,8 @@ public class Creature extends NPC {
 				}
 			}
 
-			// is there a path to this enemy?
-			// List<Path.Node> path = Path.searchPath(this, chosen, 20.0);
+			if (shortestDistance>=1){
+			
 			List<Node> path = Path.searchPath(this, chosen, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
@@ -464,6 +468,7 @@ public class Creature extends NPC {
 			} else {
 				// set the path. if not setMovement() will search a new one
 				setPath(new FixedPath(path, false));
+			}
 			}
 		}
 		// return the chosen enemy or null if we could not find one in reach
@@ -624,6 +629,8 @@ public class Creature extends NPC {
 			if (Rand.roll1D100() == 1) {
 				this.makeNoise();
 			}
+		} else {
+			this.setIdle();
 		}
 		this.notifyWorldAboutChanges();
 	}
@@ -658,7 +665,7 @@ public class Creature extends NPC {
 			clearPath();
 			stopAttack();
 			stop();
-			idler.startIdleness(this);
+		
 		} else {
 			idler.perform(this);
 			

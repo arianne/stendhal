@@ -418,7 +418,6 @@
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -522,7 +521,6 @@
         <noise value="mooooo"/>
       </says>
       <profile name="animal"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1181,7 +1179,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1241,7 +1238,6 @@
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1455,7 +1451,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1727,7 +1722,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1917,7 +1911,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2766,7 +2759,6 @@
       <profile name="lifesteal" params="0.5"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3182,7 +3174,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3449,7 +3440,6 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3571,7 +3561,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3749,7 +3738,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3833,7 +3821,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3900,7 +3887,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4141,7 +4127,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4205,7 +4190,6 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4578,7 +4562,7 @@
       <atk value="96"/>
       <def value="25"/>
       <hp value="300"/>
-      <speed value="1.0"/>
+      <speed value="0.5"/>
       <size value="1,1"/>
     </attributes>
     <level value="42"/>
@@ -4635,7 +4619,7 @@
       <atk value="145"/>
       <def value="24"/>
       <hp value="283"/>
-      <speed value="1.0"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="43"/>
@@ -5083,7 +5067,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -5181,7 +5164,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -5862,7 +5844,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -5895,7 +5876,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -6666,7 +6646,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -6759,7 +6738,6 @@
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -6818,7 +6796,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -6965,7 +6942,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7058,7 +7034,6 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7119,7 +7094,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7390,7 +7364,6 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7476,7 +7449,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7709,7 +7681,6 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7797,7 +7768,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -7890,7 +7860,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8038,7 +8007,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8322,7 +8290,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8354,7 +8321,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8386,7 +8352,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
       <profile name="heal" params="5,20"/>
     </ai>
   </creature>
@@ -8477,7 +8442,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8549,7 +8513,6 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8703,7 +8666,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -8774,7 +8736,6 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
       <profile name="heal" params="5,30"/>
       <profile name="lifesteal" params="0.1"/>
     </ai>
@@ -8836,7 +8797,6 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9030,7 +8990,6 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9065,7 +9024,6 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="10,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9199,7 +9157,6 @@
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9404,7 +9361,6 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9508,7 +9464,6 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9573,7 +9528,6 @@
       <profile name="offensive"/>
 	<profile name="heal" params="5,50"/>
 
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9606,7 +9560,6 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -9648,7 +9601,7 @@
       <atk value="283"/>
       <def value="43"/>
       <hp value="2218"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="2,2"/>
     </attributes>
     <level value="175"/>
@@ -9817,7 +9770,7 @@
       <atk value="335"/>
       <def value="45"/>
       <hp value="4300"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="2,2"/>
     </attributes>
     <level value="220"/>

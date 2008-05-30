@@ -6,20 +6,21 @@ import games.stendhal.server.entity.creature.Creature;
 
 class HandToHand implements AttackStrategy {
 
-	private static final int followRadius = 144;
+	private static final int followRadius = 12;
 
 	public void attack(Creature creature) {
-
-		if ((SingletonRepository.getRuleProcessor().getTurn() % 5 == creature.getAttackTurn())) {
+		
+		if (creature.isAttackTurn(SingletonRepository.getRuleProcessor().getTurn())) {
 			creature.attack();
 			creature.tryToPoison();
 		}
 	}
 
+
 	public boolean canAttackNow(Creature creature) {
 		if (creature.getAttackTarget() != null) {
 			
-			return creature.nextTo(creature.getAttackTarget());
+			return creature.squaredDistance(creature.getAttackTarget())<1;
 		} else {
 			return false;
 		}
@@ -39,7 +40,7 @@ class HandToHand implements AttackStrategy {
 			creature.setMovement(target, 0, 1, 20.0);
 		}
 		if (!creature.hasPath()) {
-			if (!creature.nextTo(target)) {
+			if ((int)creature.squaredDistance(target)>=1) {
 				creature.stopAttack();
 				return;
 			}
@@ -65,7 +66,7 @@ class HandToHand implements AttackStrategy {
 		if (!creature.getZone().has(victim.getID())) {
 			return false;
 		}
-		return creature.squaredDistance(victim) < followRadius;
+		return creature.squaredDistance(victim) < (followRadius *followRadius );
 	}
 
 }

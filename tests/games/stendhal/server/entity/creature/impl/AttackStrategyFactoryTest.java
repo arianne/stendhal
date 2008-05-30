@@ -30,11 +30,20 @@ public class AttackStrategyFactoryTest {
 	}
 
 	@Test
-	public void testGet() {
+	public void testGetArcher() {
 		Map<String , String> profiles = new HashMap<String, String>();
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
 		profiles.put("archer", null);
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof RangeAttack);
+		
+		
+	}
+	@Test
+	public void testGetGandhi() {
+		Map<String , String> profiles = new HashMap<String, String>();
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
+		profiles.put("gandhi", null);
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof Gandhi);
 		
 		
 	}

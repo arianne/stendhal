@@ -1127,9 +1127,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public boolean isAttacking() {
 		if (attackTarget != null) {
-		if (attackTarget.getHP() <= 0) {
-			attackTarget = null;
-		}
+			if (attackTarget.getHP() <= 0) {
+				attackTarget = null;
+			}
 		} else {
 			return false;
 		}

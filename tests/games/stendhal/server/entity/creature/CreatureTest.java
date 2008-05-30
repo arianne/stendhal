@@ -1,8 +1,10 @@
 package games.stendhal.server.entity.creature;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
@@ -91,6 +93,18 @@ public class CreatureTest {
 		attackTarget.setPosition(1, 0);
 		assertTrue(attacker.hasTargetMoved());
 		assertFalse(attacker.hasTargetMoved());
+	}
+
+	@Test
+	public void testIsAttackTurn() {
+		Creature creature = new Creature();
+		int counter = 0;
+		for (int i = 0 ; i < 10 ;i++){
+			if (creature.isAttackTurn(i)){
+				counter ++;
+			}
+		}
+		assertThat(counter,is(2));
 	}
 	
 }

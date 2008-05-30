@@ -38,7 +38,7 @@ public enum TutorialEventType {
 	TIMED_PASSWORD(
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	NEW_RELEASE(
-			"As of version 0.67, item and creature names don't have any _ (underscore) in. Just spaces. When you want to sell a studded shield, say #'sell studded shield' and not #'sell studded_shield'. Likewise, for when you want to /drop items. Use a space and not an _ character.");
+			"As of version 0.68 you will notice that creatures have become a bit more ... animal like ... some run and hide, others come and bite you!");
 	private String message;
 
 	/**

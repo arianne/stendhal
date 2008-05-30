@@ -16,9 +16,7 @@ public class IdleBehaviourFactory {
 
 	private static class DoNothingOnIdle implements Idlebehaviour {
 		
-		public void startIdleness(Creature creature) {
-			// Do nothing 
-		}
+		
 		public void perform(Creature creature) { 
 			// Do nothing 
 		}
