@@ -225,7 +225,7 @@
   </item>
 
   <item name="chaos cloak">
-    <type class="cloak" subclass="chaos_cloak" tileid="-1"/>
+    <type class="cloak" subclass="chaos" tileid="-1"/>
     <description>You see a chaos cloak. The colours look like oil shimmering on a puddle.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
