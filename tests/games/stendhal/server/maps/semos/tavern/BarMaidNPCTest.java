@@ -92,7 +92,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
 		// equip with enough money
-		assertTrue(equipWithMoney(player, 1000));
+		assertTrue(equipWithMoney(player, 2000));
 
 		assertFalse(player.isEquipped("ham"));
 		assertTrue(en.step(player, "buy 5 hams"));
@@ -108,20 +108,27 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here is your piece of ham!", npc.get("text"));
 
-		assertTrue(en.step(player, "buy .75 ham"));
-		assertEquals("1 piece of ham will cost 80. Do you want to buy it?", npc.get("text"));
-
-		assertTrue(en.step(player, "yes"));
-		assertEquals("Congratulations! Here is your piece of ham!", npc.get("text"));
-
-		assertTrue(en.step(player, "buy 3.5 ham"));
-		assertEquals("4 pieces of ham will cost 320. Do you want to buy them?", npc.get("text"));
-
+		// test handling of fractional numbers
+		assertTrue(en.step(player, "buy 2.71828 ham"));
+		assertEquals("3 pieces of ham will cost 240. Do you want to buy them?", npc.get("text"));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here are your pieces of ham!", npc.get("text"));
 
+		// now with comma instead of dot
+		assertTrue(en.step(player, "buy 3,5 ham"));
+		assertEquals("4 pieces of ham will cost 320. Do you want to buy them?", npc.get("text"));
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Congratulations! Here are your pieces of ham!", npc.get("text"));
+
+        assertTrue(en.step(player, "buy 1000 ham"));
+        assertEquals("1000 pieces of ham will cost 80000. Do you want to buy them?", npc.get("text"));
+        assertTrue(en.step(player, "no"));
+        assertEquals("Ok, how else may I help you?", npc.get("text"));
+
 		assertTrue(en.step(player, "buy 10000 ham"));
 		assertEquals("1 piece of ham will cost 80. Do you want to buy it?", npc.get("text"));
+        assertTrue(en.step(player, "no"));
+        assertEquals("Ok, how else may I help you?", npc.get("text"));
 	}
 
 	@Test
