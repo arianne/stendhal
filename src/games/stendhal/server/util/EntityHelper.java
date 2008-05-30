@@ -17,7 +17,25 @@ public class EntityHelper {
 	private static final String ATTR_BASESLOT = "baseslot";
 	private static final String ATTR_BASEOBJECT = "baseobject";
 	private static final String ATTR_BASEITEM = "baseitem";
-	
+
+	/**
+	 * Returns an entity references by an objectId in a zone.
+	 *
+	 * @param objectId objectId of this Entity
+	 * @param zone zone
+	 * @return Entity or <code>null</code>
+	 */
+	public static Entity entityFromZoneByID(int objectId, StendhalRPZone zone) {
+		RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
+		if (zone.has(targetid)) {
+			RPObject object = zone.get(targetid);
+			if (object instanceof Entity) {
+				return (Entity) object;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * Translate the "target" parameter of actions like "look" into an entity
 	 * reference. Numeric parameters are treated as object IDs, alphanumeric
