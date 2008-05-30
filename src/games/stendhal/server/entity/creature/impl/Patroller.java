@@ -18,32 +18,38 @@ class Patroller implements Idlebehaviour {
 	}
 
 	public void perform(Creature creature) {
-		
-		if (creature.hasPath()) {
-			creature.followPath();
-		} else {
-			if(weWouldLeaveArea(creature, Direction.STOP)){
-				initArea(creature);
-			}
-			assert(!weWouldLeaveArea(creature, Direction.STOP));
-			Direction currentDir = creature.getDirection();
-			if(currentDir == Direction.STOP || weWouldLeaveArea(creature, creature.getDirection()) || creature.getZone().collides(creature.getX()+currentDir.getdx(),creature.getY()+currentDir.getdy())){
-				for (int i=0;i<4;i++){
-					currentDir = currentDir.nextDirection();
-				
-					if(!weWouldLeaveArea(creature,currentDir)&& !creature.getZone().collides(creature.getX()+currentDir.getdx(),creature.getY()+currentDir.getdy())){
-						creature.setDirection(currentDir);
-						continue;
+		if (!creature.getZone().getPlayerAndFriends().isEmpty()) {
+			if (creature.hasPath()) {
+				creature.followPath();
+			} else {
+				if (weWouldLeaveArea(creature, Direction.STOP)) {
+					initArea(creature);
+				}
+				assert (!weWouldLeaveArea(creature, Direction.STOP));
+				Direction currentDir = creature.getDirection();
+				if (currentDir == Direction.STOP
+						|| weWouldLeaveArea(creature, creature.getDirection())
+						|| creature.getZone().collides(creature.getX() + currentDir.getdx(),
+								creature.getY() + currentDir.getdy())) {
+					for (int i = 0; i < 4; i++) {
+						currentDir = currentDir.nextDirection();
+
+						if (!weWouldLeaveArea(creature, currentDir)
+								&& !creature.getZone().collides(creature.getX() + currentDir.getdx(),
+										creature.getY() + currentDir.getdy())) {
+							creature.setDirection(currentDir);
+							continue;
+						}
 					}
 				}
+
+				if (creature.getDirection() != Direction.STOP) {
+					creature.setSpeed(creature.getBaseSpeed());
+				}
+
 			}
-			
-			if (creature.getDirection()!=Direction.STOP){
-				creature.setSpeed(creature.getBaseSpeed());
-			}
-            
+			creature.applyMovement();
 		}
-		creature.applyMovement();
 	}
 
 	private boolean weWouldLeaveArea(Creature creature, Direction d) {
