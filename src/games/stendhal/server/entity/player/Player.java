@@ -1418,7 +1418,7 @@ public class Player extends RPEntity {
 		return drop(name, getNumberOfEquipped(name));
 	}
 
-	private int pushCounter;
+	private int turnOfLastPush;
 
 	/**
 	 * Called when player push entity. The entity displacement is handled by the
@@ -1427,7 +1427,7 @@ public class Player extends RPEntity {
 	 * @param entity
 	 */
 	public void onPush(RPEntity entity) {
-		pushCounter = SingletonRepository.getRuleProcessor().getTurn();
+		turnOfLastPush = SingletonRepository.getRuleProcessor().getTurn();
 	}
 
 	/**
@@ -1438,7 +1438,7 @@ public class Player extends RPEntity {
 	 */
 	public boolean canPush(RPEntity entity) {
 		return ((this != entity) && (SingletonRepository.getRuleProcessor().getTurn()
-				- pushCounter > 10));
+				- turnOfLastPush > 10));
 	}
 
 	@Override
