@@ -120,7 +120,13 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here are your pieces of ham!", npc.get("text"));
 
-        assertTrue(en.step(player, "buy 1000 ham"));
+		// test illegal number formats
+		assertTrue(en.step(player, "buy 2.718.28 ham"));
+		assertEquals("Sorry, I did not understand you. illegal number format: '2.718.28'", npc.get("text"));
+		assertTrue(en.step(player, "buy 2,718,28 ham"));
+		assertEquals("Sorry, I did not understand you. illegal number format: '2,718,28'", npc.get("text"));
+
+		assertTrue(en.step(player, "buy 1000 ham"));
         assertEquals("1000 pieces of ham will cost 80000. Do you want to buy them?", npc.get("text"));
         assertTrue(en.step(player, "no"));
         assertEquals("Ok, how else may I help you?", npc.get("text"));
