@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
- * generate a nice graph.
+ * display a nice graph.
  * 
  * @author hendrik
  */
@@ -48,7 +48,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 		generateRPEvent();
 
 		if (args.size() < 1) {
-			admin.sendPrivateText("/script DumpTransitions.class <npcname>");
+			admin.sendPrivateText("/script DumpTransitionsEx.class <npcname>");
 			return;
 		}
 
@@ -108,14 +108,17 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 	private String getExtendedTransitionName(Transition transition) {
 		String transitionName = transition.getTrigger().toString();
+
 		if (transition.getCondition() != null) {
 			String key = conditions.add(transition.getCondition());
 			transitionName = "(" + key + ") " + transitionName;
 		}
+
 		if (transition.getAction() != null) {
 			String key = actions.add(transition.getAction());
 			transitionName = transitionName + " (" + key + ")";
 		}
+
 		return transitionName;
 	}
 
