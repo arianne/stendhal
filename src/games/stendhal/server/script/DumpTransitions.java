@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
- * generate a nice graph.
+ * generate a nice graph and prints the graph text to the client console.
  * 
  * @author hendrik
  */
@@ -81,19 +81,23 @@ public class DumpTransitions extends ScriptImpl {
 	}
 
 	private static String getExtendedTransitionName(Transition transition) {
-		String transitionName = transition.getTrigger().getNormalized();
+		String transitionName = transition.getTrigger().toString();
+
 		if (transition.getCondition() != null) {
 			transitionName = "~ " + transitionName;
 		}
+
 		if (transition.getAction() != null) {
 			transitionName = transitionName + " *";
 		}
+
 		return transitionName;
 	}
 
 	private static String getStateName(int number) {
 		Integer num = Integer.valueOf(number);
 		Field[] fields = ConversationStates.class.getFields();
+
 		for (Field field : fields) {
 			try {
 				if (field.get(null).equals(num)) {
@@ -105,6 +109,7 @@ public class DumpTransitions extends ScriptImpl {
 				logger.error(e, e);
 			}
 		}
+
 		return Integer.toString(number);
 	}
 
