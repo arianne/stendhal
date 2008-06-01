@@ -24,7 +24,6 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
-import games.stendhal.client.gui.laf.StendhalTheme;
 import games.stendhal.client.gui.wt.BuddyListPanel;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
@@ -124,11 +123,6 @@ public class j2DClient extends StendhalUI {
         super(client);
 
         setDefault(this);
-
-        // Setup "Wood" look and feel
-// WoodStyleFactory.activate(); // for Java 1.5
-// WoodLookAndFeel.activate(); // for Java 1.6: generic implementation using XML configuration
-        StendhalTheme.activate();
 
         mainFrame = new MainFrame();
 
