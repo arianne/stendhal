@@ -3524,7 +3524,6 @@
         <noise value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
@@ -4155,7 +4154,6 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
@@ -5455,7 +5453,6 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
