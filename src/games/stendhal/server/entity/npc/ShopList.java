@@ -268,6 +268,7 @@ public class ShopList {
 		// assassinhq principal Femme Fatale)
 		shops.add("buy4assassins", "buckler", 20);
 		shops.add("buy4assassins", "aventail", 25);
+		shops.add("buy4assassins", "robins hat", 30);		
 		shops.add("buy4assassins", "leather boots", 30);
 		shops.add("buy4assassins", "dwarf cloak", 60);
 		shops.add("buy4assassins", "dwarvish armor", 17000);

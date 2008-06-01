@@ -364,9 +364,9 @@ aventail 25
 robins hat 30
 leather boots 25
 dwarf cloak 60
-dwarvish armor 9000
+dwarvish armor 17000
 
-assassin dagger 8000
+assassin dagger 7000
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
