@@ -75,7 +75,7 @@ public class DisplaceAction implements ActionListener {
 	}
 
 	/**
-	 * Checks whether this entity may be moved around on the ground
+	 * Checks whether this entity may be moved around on the ground.
 	 *
 	 * @param player Player attempting the move
 	 * @param zone   Zone
@@ -116,7 +116,7 @@ public class DisplaceAction implements ActionListener {
 	}
 
 	/**
-	 * Moves an entity to a new location within the same zone
+	 * Moves an entity to a new location within the same zone.
 	 *
 	 * @param player the player doing the move
 	 * @param zone   the zone
