@@ -21,7 +21,7 @@ public interface Debug {
 
 	/** server version. */
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
-	String VERSION = "0.68.5";
+	String VERSION = "0.68";
 
 	/**
 	 * This emulates perception losses. Never make this true and commit it to

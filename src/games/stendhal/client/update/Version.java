@@ -11,7 +11,7 @@ public class Version {
 
 	/** Version Number. */
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
-	public static final String VERSION = "0.68.5";
+	public static final String VERSION = "0.68";
 
 	/**
 	 * Extract the specified number of parts from a version-string.
