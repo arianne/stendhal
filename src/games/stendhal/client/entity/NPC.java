@@ -40,7 +40,6 @@ public class NPC extends RPEntity {
 		String type = getType();
 
 		if (type.startsWith("npc")) {
-			setAudibleRange(3);
 			if (name.equals("Diogenes")) {
 				moveSounds = new String[2];
 				moveSounds[0] = "laugh-1.wav";

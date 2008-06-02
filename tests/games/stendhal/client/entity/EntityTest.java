@@ -107,20 +107,6 @@ public class EntityTest {
 	}
 
 	@Test
-	public final void testSetAudibleRangegetAudibleArea() {
-		Entity en;
-		en = new MockEntity();
-		assertNull(en.getAudibleArea());
-		en.setAudibleRange(5d);
-		Rectangle2D rectangle = new Rectangle2D.Double(-5d, -5d, 10d, 10d);
-		assertEquals(rectangle, en.getAudibleArea());
-		en.setAudibleRange(1d);
-		rectangle = new Rectangle2D.Double(-1d, -1d, 2d, 2d);
-		assertEquals(rectangle, en.getAudibleArea());
-
-	}
-
-	@Test
 	public final void testGetSlot() {
 		Entity en = new MockEntity();
 		assertEquals(null, en.getSlot(""));

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
-import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.HearingArea;
 

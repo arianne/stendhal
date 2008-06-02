@@ -19,7 +19,5 @@ public class PlayerTest {
 
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
-		pl.setAudibleRange(4);
-		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 	}
 }
