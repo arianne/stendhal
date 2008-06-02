@@ -20,7 +20,8 @@ package games.stendhal.common;
 public interface Debug {
 
 	/** server version. */
-	String VERSION = "0.67";
+	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
+	String VERSION = "0.68.5";
 
 	/**
 	 * This emulates perception losses. Never make this true and commit it to
