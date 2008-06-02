@@ -86,8 +86,6 @@ public class StendhalClient extends ClientFramework {
 
 	protected IGameScreen screen;
 
-	// protected PerceptionListenerMulticaster listeners;
-
 	private String userName = "";
 
 	private UserContext userContext;
