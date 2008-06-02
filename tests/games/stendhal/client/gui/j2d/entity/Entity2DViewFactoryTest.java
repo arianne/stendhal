@@ -26,7 +26,6 @@ import games.stendhal.client.entity.Ring;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
-import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
@@ -102,8 +101,6 @@ public class Entity2DViewFactoryTest {
 				SheepFood2DView.class);
 		assertEquals(Entity2DViewFactory.get().create(new Sign()).getClass(),
 				Sign2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Spell()).getClass(),
-				Spell2DView.class);
 		assertEquals(
 				Entity2DViewFactory.get().create(new StackableItem()).getClass(),
 				StackableItem2DView.class);

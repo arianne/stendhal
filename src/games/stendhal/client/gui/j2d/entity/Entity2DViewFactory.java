@@ -34,7 +34,6 @@ import games.stendhal.client.entity.Ring;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
-import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
@@ -149,7 +148,6 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		register(Sheep.class, Sheep2DView.class);
 		register(SheepFood.class, SheepFood2DView.class);
 		register(Sign.class, Sign2DView.class);
-		register(Spell.class, Spell2DView.class);
 		register(StackableItem.class, StackableItem2DView.class);
 		register(User.class, User2DView.class);
 		register(WellSource.class, WellSource2DView.class);
