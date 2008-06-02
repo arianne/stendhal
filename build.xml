@@ -100,12 +100,6 @@
 			</fileset>
 		</copy>
 
-		<!-- Update version number. -->
-		<replaceregexp file="${src}/games/stendhal/server/core/engine/StendhalRPRuleProcessor.java"
-			   match="private static final String VERSION = &quot;.*&quot;;"
-			   replace="private static final String VERSION = &quot;${version}&quot;;"
-			   byline="true"/>
-	
 		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/common/*.java"/>
 			<include name="games/stendhal/common/**/*.java"/>
