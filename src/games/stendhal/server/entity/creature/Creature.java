@@ -629,8 +629,6 @@ public class Creature extends NPC {
 			if (Rand.roll1D100() == 1) {
 				this.makeNoise();
 			}
-		} else {
-			this.setIdle();
 		}
 		this.notifyWorldAboutChanges();
 	}
