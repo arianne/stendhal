@@ -621,15 +621,13 @@ public class Creature extends NPC {
 				if (strategy.hasValidTarget(this)) {
 					this.setBusy();
 				} else {
-					this.setIdle();
+				 	this.setIdle();
 				}
 			}
 			// with a probability of 1 %, a random noise is made.
 			if (Rand.roll1D100() == 1) {
 				this.makeNoise();
 			}
-		} else {
-			this.setIdle();
 		}
 		this.notifyWorldAboutChanges();
 	}
