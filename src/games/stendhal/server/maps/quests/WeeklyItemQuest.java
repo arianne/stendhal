@@ -57,7 +57,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"steel boots", "golden boots", "shadow boots", "stone boots", "chaos boots", "golden helmet",
 				"shadow helmet", "horned golden helmet", "chaos helmet", "golden twoside axe", "drow sword",
 				"chaos legs", "chaos sword", "chaos shield", "chaos armor", "green dragon shield", "egg",
-				"golden arrow", "power arrow", "mainio legs", "mainio boots", "mainio shield", "mainio armor");
+				"golden arrow", "power arrow", "mainio legs", "mainio boots", "mainio shield", "mithril bar",
+				"mithril nugget", "mainio armor");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {

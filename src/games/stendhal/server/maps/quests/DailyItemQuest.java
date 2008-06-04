@@ -74,10 +74,9 @@ public class DailyItemQuest extends AbstractQuest {
 				"shuriken", "coconut", "sapphire", "emerald", "carbuncle",			       
 				"cauliflower", "broccoli", "gold nugget", "gold bar",
 				"pineapple", "pina colada", "icecream", "black pearl", "tea",
-				"milk", "canned tuna", "snowglobe", "tomato", "mithril bar",
-				"mithril nugget", "fairy cake", "pizza", "chocolate bar",
-				"tuna sandwich", "sausage", "cheese sausage", "hotdog",
-				"cheeseydog", "vanilla shake", "chocolate shake", "honey",
+				"milk", "canned tuna", "snowglobe", "tomato", "fairy cake", 
+				"pizza", "chocolate bar", "tuna sandwich", "sausage", "cheese sausage",
+				"hotdog", "cheeseydog", "vanilla shake", "chocolate shake", "honey",
 				"licorice");
 
 		@Override
