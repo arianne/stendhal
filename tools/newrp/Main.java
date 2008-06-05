@@ -1,4 +1,4 @@
-package newrp;
+package tools.newrp;
 
 /**
  * Main class.

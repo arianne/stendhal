@@ -1,4 +1,4 @@
-package newrp;
+package tools.newrp;
 
 import java.util.LinkedList;
 import java.util.List;

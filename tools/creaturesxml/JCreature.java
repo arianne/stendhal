@@ -1,3 +1,5 @@
+package tools.creaturesxml;
+
 /*
  * JCreature.java
  *

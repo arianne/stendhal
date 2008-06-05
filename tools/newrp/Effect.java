@@ -1,4 +1,4 @@
-package newrp;
+package tools.newrp;
 
 /**
  * Interface for effect. Mainly healing and damage.

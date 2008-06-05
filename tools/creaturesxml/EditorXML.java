@@ -1,3 +1,5 @@
+package tools.creaturesxml;
+
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;

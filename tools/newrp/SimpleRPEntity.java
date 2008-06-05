@@ -1,4 +1,4 @@
-package newrp;
+package tools.newrp;
 
 /**
  * This is a simpler, human understandable implementation of the RP.

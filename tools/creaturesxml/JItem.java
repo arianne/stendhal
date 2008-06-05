@@ -1,3 +1,5 @@
+package tools.creaturesxml;
+
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
