@@ -138,21 +138,25 @@ public class RPObjectChangeDispatcher {
 	 */
 	public void dispatchModifyRemoved(RPObject object, RPObject changes,
 			boolean user) {
-		try {
-			logger.debug("Object(" + object.getID() + ") modified in client");
-			logger.debug("Original(" + object + ") modified in client");
+		if (object != null) {
+			try {
+				logger.debug("Object(" + object.getID() + ") modified in client");
+				logger.debug("Original(" + object + ") modified in client");
 
-			fixContainers(object);
-			fixContainers(changes);
-			fireChangedRemoved(object, changes, user);
-			object.applyDifferences(null, changes);
+				fixContainers(object);
+				fixContainers(changes);
+				fireChangedRemoved(object, changes, user);
+				object.applyDifferences(null, changes);
 
-			logger.debug("Modified(" + object + ") modified in client");
-			logger.debug("Changes(" + changes + ") modified in client");
-		} catch (Exception e) {
-			logger.error("dispatchModifyRemoved failed, object is " + object
-					+ ", changes is " + changes, e);
+				logger.debug("Modified(" + object + ") modified in client");
+				logger.debug("Changes(" + changes + ") modified in client");
+			} catch (Exception e) {
+				logger.error("dispatchModifyRemoved failed, object is " + object + ", changes is " + changes, e);
+			}
+		} else {
+			logger.error("dispatchModifyRemoved failed, object is null, changes is " + changes);
 		}
+		
 	}
 
 	/**
