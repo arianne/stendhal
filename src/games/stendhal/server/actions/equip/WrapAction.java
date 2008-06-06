@@ -36,7 +36,7 @@ public class WrapAction implements ActionListener {
 		String itemName = action.get("target");
 		String args = action.get("args");
 
-		if (args.length() > 0) {
+		if (args != null && args.length() > 0) {
 			itemName += ' ';
 			itemName += args;
 		}
@@ -47,10 +47,9 @@ public class WrapAction implements ActionListener {
 
 		if (item != null) {
 			final String slot = "bag";
-    	    String type = item.get("subclass");
-
+    	  
     	    Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
-    	    present.setContent(type);
+    	    present.setContent(itemName);
     	    player.equip(slot, present);
 
     	    player.drop(itemName);
