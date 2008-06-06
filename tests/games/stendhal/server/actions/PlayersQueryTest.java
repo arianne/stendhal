@@ -135,9 +135,23 @@ public class PlayersQueryTest {
 		StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
-
 		pq.onWhere(player, action);
 		assertThat(player.getPrivateTextString(), equalTo("bob is in zone at (0,0)"));
+		player.resetPrivateTextString();
+		
+		
+		PrivateTextMockingTestPlayer ghosted = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghosted");
+		zone.add(ghosted);
+		MockStendhalRPRuleProcessor.get().addPlayer(ghosted);
+		action.put(WellKnownActionConstants.TARGET, ghosted.getName());
+		pq.onWhere(player, action);
+		assertThat(player.getPrivateTextString(), equalTo("ghosted is in zone at (0,0)"));
+		player.resetPrivateTextString();
+		
+		ghosted.setGhost(true);
+		pq.onWhere(player, action);
+		
+		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"ghosted\" is currently logged in."));
 	}
 
 	@Test
