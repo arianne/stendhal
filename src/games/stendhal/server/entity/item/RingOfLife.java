@@ -10,9 +10,11 @@ public class RingOfLife extends Ring {
 		super(name, clazz, subclass, attributes);
 	}
 
-	public RingOfLife(Ring item) {
+	public RingOfLife(RingOfLife item) {
 		super(item);
 	}
+	
+	
 	
 	public RingOfLife() {
 		super("emerald ring", "ring", "emerald-ring", null);
