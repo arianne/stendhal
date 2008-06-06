@@ -27,7 +27,7 @@ public class NameAction implements ActionListener {
 		String curName = action.get("target");
 		String newName = action.get("args");
 
-		if (newName.length() == 0) {
+		if (newName == null || newName.length() == 0) {
 			player.sendPrivateText("Please issue the old and the new name.");
 			return;
 		}
