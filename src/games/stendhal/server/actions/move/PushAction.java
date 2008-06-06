@@ -62,13 +62,17 @@ public class PushAction implements ActionListener {
 			int y = rpEntity.getY() + dir.getdy();
 
 			if (!zone.collides(rpEntity, x, y)) {
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					"push", rpEntity.getName(), rpEntity.getZone().getName(), 
-					rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
-				rpEntity.setPosition(x, y);
-				rpEntity.notifyWorldAboutChanges();
-				player.onPush(rpEntity);
+				push(player, rpEntity, x, y);
 			}
 		}
+	}
+
+	private void push(Player player, RPEntity rpEntity, int x, int y) {
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
+			"push", rpEntity.getName(), rpEntity.getZone().getName(), 
+			rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
+		rpEntity.setPosition(x, y);
+		rpEntity.notifyWorldAboutChanges();
+		player.onPush(rpEntity);
 	}
 }
