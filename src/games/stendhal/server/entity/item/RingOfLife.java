@@ -24,9 +24,6 @@ public class RingOfLife extends Ring {
 
 	@Override
 	public boolean onUsed(RPEntity user) {
-		if (!isBroken()) {
-			damage();
-		}
 		return true;
 	}
 	

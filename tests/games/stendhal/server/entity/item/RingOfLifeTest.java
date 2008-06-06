@@ -38,8 +38,8 @@ public class RingOfLifeTest {
 		assertThat(ring.describe(), is("You see the ring of life. Wear it, and you risk less from death."));
 		
 		ring.onUsed(null);
-		assertThat(ring.isBroken(), is(true));
-		assertThat(ring.describe(), is("You see the ring of life. The gleam is lost from the stone and it has no powers."));
+		assertThat(ring.isBroken(), is(false));
+		assertThat(ring.describe(), is("You see the ring of life. Wear it, and you risk less from death."));
 		
 
 	}
