@@ -1799,7 +1799,7 @@ public class Player extends RPEntity {
         				return animal;
         			}
 
-        			if (name.equals("pet")) {
+        			if ("pet".equals(name)) {
         				return animal;
         			}
     			}
