@@ -57,6 +57,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 		private String debugString;
 
 		public DailyQuestAction() {
+			refreshCreatureList();
+		}
+
+		private void refreshCreatureList() {
 			Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 			sortedcreatures = new LinkedList<Creature>();
 			sortedcreatures.addAll(creatures);
@@ -117,10 +121,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 					return;
 				}
 			}
-
+			refreshCreatureList();
 			// Creature selection magic happens here
 			Creature pickedCreature = pickIdealCreature(player.getLevel(),
-					false);
+					false, sortedcreatures);
 
 			// shouldn't happen
 			if (pickedCreature == null) {
@@ -147,7 +151,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		// Returns a random creature near the players level, returns null if
 		// there is a bug.
 		// The ability to set a different level is for testing purposes
-		public Creature pickIdealCreature(int level, boolean testMode) {
+		public Creature pickIdealCreature(int level, boolean testMode, List<Creature> creatureList) {
 			// int level = player.getLevel();
 
 			// start = lower bound, current = upper bound, for the range of
@@ -156,7 +160,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			int start = 0;
 
 			boolean lowerBoundIsSet = false;
-			for (Creature creature : sortedcreatures) {
+			for (Creature creature : creatureList) {
 				current++;
 				// Set the strongest creature
 				if (creature.getLevel() > level + 5) {
@@ -198,7 +202,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			// shouldn't happen
 			if (current < start || start < 0
-					|| current >= sortedcreatures.size()) {
+					|| current >= creatureList.size()) {
 				if (testMode) {
 					debugString += "\r\n" + level + " : ERROR start=" + start
 							+ ", current=" + current;
@@ -208,14 +212,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			// pick a random creature from the acceptable range.
 			int result = start + new Random().nextInt(current - start + 1);
-			Creature cResult = sortedcreatures.get(result);
+			Creature cResult = creatureList.get(result);
 
 			if (testMode) {
 				debugString += "\r\n" + level + " : OK start=" + start
 						+ ", current=" + current + ", result=" + result
 						+ ", cResult=" + cResult.getName() + ". OPTIONS: ";
 				for (int i = start; i <= current; i++) {
-					Creature cTemp = sortedcreatures.get(i);
+					Creature cTemp = creatureList.get(i);
 					debugString += cTemp.getName() + ":" + cTemp.getLevel()
 							+ "; ";
 				}
@@ -235,7 +239,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				max = 1100;
 			}
 			for (int i = 0; i <= max; i++) {
-				pickIdealCreature(i, true);
+				pickIdealCreature(i, true, sortedcreatures);
 			}
 		}
 	}
