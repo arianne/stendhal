@@ -1,8 +1,12 @@
 package games.stendhal.server.util;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.easymock.internal.matchers.And;
 import org.junit.Test;
 
 /**
@@ -24,11 +28,11 @@ public class WikipediaAccessTest {
 			if (access.getText() != null && access.getText().length() > 0) {
 				String result = access.getProcessedText();
 
-				// System.out.println(result);
+				 System.out.println(result);
 
-				assertTrue(
-						"There should be named the french novelist for the topic Stendhal.",
-						result.contains("Marie-Henri Beyle"));
+				assertThat("There should be named the french novelist for the topic Stendhal.", result, allOf(
+						containsString("Marie"),
+								containsString("Henri"), containsString("Beyle")));
 			} else {
 				fail("Sorry, could not find information on this topic in Wikipedia.");
 			}
