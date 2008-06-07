@@ -1,20 +1,12 @@
 package games.stendhal.server.maps.quests;
 
 import static games.stendhal.server.entity.npc.ConversationStates.ATTENDING;
-import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isOneOf;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
@@ -24,9 +16,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
-import org.easymock.internal.matchers.LessOrEqual;
-import org.hamcrest.number.IsCloseTo;
-import org.hamcrest.text.pattern.internal.ast.OneOrMore;
+import java.util.Collections;
+import java.util.LinkedList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
