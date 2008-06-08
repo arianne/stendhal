@@ -169,8 +169,8 @@ K*/ground/indoor/grey_hole.png
 m*/ground/indoor/grey_skull.png
 K*/ground/indoor/taupe_hole.png
 m*/ground/indoor/tiles.png
-./ground/ladder/horizontal_dark.png
-./ground/ladder/horizontal_pale.png
+b*/ground/ladder/horizontal_dark.png
+b*/ground/ladder/horizontal_pale.png
 F*/ground/ladder/small.png
 F*/ground/ladder/steps.png
 k*/ground/ladder/vertical_dark.png
