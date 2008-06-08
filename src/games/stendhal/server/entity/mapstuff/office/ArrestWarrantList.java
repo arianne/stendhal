@@ -22,7 +22,17 @@ public class ArrestWarrantList extends StoreableEntityList<ArrestWarrant> {
 	}
 
 	@Override
-    public String getName(ArrestWarrant arrestWarrant) {
+	public String getName(ArrestWarrant arrestWarrant) {
 		return arrestWarrant.getCriminal();
-    }
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder who = new StringBuilder();
+		for (ArrestWarrant aw : getList()) {
+			who.append(aw.getCriminal());
+			who.append("\n");
+		}
+		return who.toString();
+	}
 }

@@ -110,14 +110,15 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      */
     public boolean removeByName(String identifier) {
     	List<T> entities = getList();
+    	boolean changed = false;
     	for (T entity : entities) {
     		if (getName(entity).equals(identifier)) {
     			zone.remove(entity);
     			zone.storeToDatabase();
-    			return true;
+    			changed = true;
     		}
     	}
-    	return false;
+    	return changed;
     }
 
 	/**
@@ -126,7 +127,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * 
      * @return List of storeabe entities.
      */
-    private List<T> getList() {
+    protected List<T> getList() {
     	List<T> res = new LinkedList<T>();
     	for (RPObject object : zone) {
     		if (clazz.isInstance(object)) {
