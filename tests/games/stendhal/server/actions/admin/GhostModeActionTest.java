@@ -54,7 +54,7 @@ public class GhostModeActionTest {
 		bob.clearEvents();
 		CommandCenter.execute(hugo, action);
 
-		assertFalse(hugo.isInvisibleToCreatures());
+		assertTrue(hugo.isInvisibleToCreatures());
 		assertFalse(hugo.isGhost());
 		
 		assertEquals("hugo", bob.get("online"));

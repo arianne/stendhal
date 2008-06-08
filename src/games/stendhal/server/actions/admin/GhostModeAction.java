@@ -23,9 +23,6 @@ public class GhostModeAction extends AdministrationAction {
 			player.setGhost(false);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _GHOSTMODE, "off");
 
-			player.setInvisible(false);
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _INVISIBLE, "off");
-	
 		} else {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
