@@ -46,6 +46,11 @@ public final class PunctuationParser {
 		text = text.substring(i, text.length());
 	}
 
+	/**
+	 * Evaluates if the passed char is one of . , ! or ? .
+	 * @param c 
+	 * @return
+	 */
 	private boolean isPunctuation(char c) {
 		return (c == '.' || c == ',' || c == '!' || c == '?');
 	}
