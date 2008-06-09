@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.scripting.ChatLineParser;
 import marauroa.common.game.RPAction;
 
 import org.junit.Test;
@@ -85,4 +86,26 @@ public class SummonAtActionTest {
 		assertEquals(3, action.getMinimumParameters());
 	}
 
+	@Test
+	public void testFromChatline() throws Exception {
+		// create client UI
+		MockClientUI clientUI = new MockClientUI();
+
+		// create client
+		new MockStendhalClient("") {
+			@Override
+			public void send(RPAction action) {
+				client = null;
+				assertEquals("summonat", action.get("type"));
+				assertEquals("memem", action.get("target"));
+				assertEquals("bag", action.get("slot"));
+				assertEquals(3, action.getInt("amount"));
+				assertEquals("greater potion", action.get("item"));
+			}
+		};
+		SlashActionRepository.register();
+		ChatLineParser.parseAndHandle("/summonat memem bag 3 greater potion");
+		
+	}
+	
 }
