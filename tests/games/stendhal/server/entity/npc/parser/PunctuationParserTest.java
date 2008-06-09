@@ -23,5 +23,45 @@ public class PunctuationParserTest {
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("!", p.getTrailingPunctuation());
 	}
+	@Test
+	public final void tesNullEntry() {
+		PunctuationParser p = new PunctuationParser(null);
+		assertEquals(null, p.getText());
+		assertEquals("", p.getPrecedingPunctuation());
+		assertEquals("", p.getTrailingPunctuation());
+	
+		
+	}
+	@Test
+	public final void testOnlyPunctuation() {
+		String s = ".,?!";
+		PunctuationParser p = new PunctuationParser(s);
+		assertEquals("", p.getText());
+		assertEquals(".,?!", p.getPrecedingPunctuation());
+		assertEquals("", p.getTrailingPunctuation());
+	}
+	
+	@Test
+	public final void testEmptyString() {
+		PunctuationParser p = new PunctuationParser("");
+		assertEquals("", p.getText());
+		assertEquals("", p.getPrecedingPunctuation());
+		assertEquals("", p.getTrailingPunctuation());
+	
+		
+	}
+	@Test
+	public final void testOnlyspacePunctuation() {
+		PunctuationParser p = new PunctuationParser(".,?! ");
+		assertEquals(" ", p.getText());
+		assertEquals(".,?!", p.getPrecedingPunctuation());
+		assertEquals("", p.getTrailingPunctuation());
+		p = new PunctuationParser(" .,?!");
+		assertEquals(" ", p.getText());
+		assertEquals("", p.getPrecedingPunctuation());
+		assertEquals(".,?!", p.getTrailingPunctuation());
+	
+		
+	}
 
 }

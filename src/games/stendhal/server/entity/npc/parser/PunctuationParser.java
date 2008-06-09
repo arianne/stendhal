@@ -1,68 +1,80 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- * PunctuationParser is used to trim preceding and trailing punctuation characters from a string.
- *
- * @author Martin Fuchs
+ * PunctuationParser is used to trim preceding and trailing punctuation
+ * characters from a string.
+ * 
  */
 public final class PunctuationParser {
 
-    private String text;
+	private String text;
 
-    private String preceding = "";
-    private String trailing = "";
+	private String preceding = "";
+	private String trailing = "";
 
-    public PunctuationParser(final String s) {
-        text = s;
+	public PunctuationParser(final String s) {
+		if (s != null) {
+			parseString(s);
+		}
+	}
 
-        while (text.length() > 0) {
-            char c = text.charAt(0);
+	private void parseString(final String string) {
+		text = string;
 
-            if (c == '.' || c == ',' || c == '!' || c == '?') {
-                preceding += c;
-                text = text.substring(1);
-            } else {
-                break;
-            }
-        }
+		extractPreceedingAndTrimText();
 
-        while (text.length() > 0) {
-            char c = text.charAt(text.length() - 1);
+		extractTrailingAndTrimText();
+	}
 
-            if (c == '.' || c == ',' || c == '!' || c == '?') {
-                trailing += c;
-                text = text.substring(0, text.length() - 1);
-            } else {
-                break;
-            }
-        }
-    }
+	private void extractTrailingAndTrimText() {
+		int i = text.length() - 1;
+		while (i >= 0 && isPunctuation(text.charAt(i))) {
+			i--;
+		}
 
-    /**
-     * Return preceding punctuation characters.
-     *
-     * @return
-     */
-    public String getPrecedingPunctuation() {
-        return preceding;
-    }
+		trailing = text.substring(i + 1);
+		text = text.substring(0, i + 1);
+	}
 
-    /**
-     * Return trailing punctuation characters.
-     *
-     * @return
-     */
-    public String getTrailingPunctuation() {
-        return trailing;
-    }
+	private void extractPreceedingAndTrimText() {
+		int i = 0;
+		while (i < text.length() && isPunctuation(text.charAt(i))) {
+			i++;
+		}
 
-    /**
-     * Return remaining text.
-     *
-     * @return
-     */
-    public String getText() {
-        return text;
-    }
+		preceding = text.substring(0, i);
+		text = text.substring(i, text.length());
+	}
+
+	private boolean isPunctuation(char c) {
+		return (c == '.' || c == ',' || c == '!' || c == '?');
+	}
+
+	/**
+	 * Return preceding punctuation characters.
+	 * 
+	 * @return
+	 */
+	public String getPrecedingPunctuation() {
+		return preceding;
+	}
+
+	/**
+	 * Return trailing punctuation characters.
+	 * 
+	 * @return
+	 */
+	public String getTrailingPunctuation() {
+		return trailing;
+	}
+
+	/**
+	 * Return remaining text.
+	 * 
+	 * @return
+	 */
+	public String getText() {
+		return text;
+	}
 
 }
