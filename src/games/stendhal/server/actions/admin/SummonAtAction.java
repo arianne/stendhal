@@ -61,7 +61,7 @@ public class SummonAtAction extends AdministrationAction {
 					player.sendPrivateText("The slot is full.");
 				}
 			} else {
-				player.sendPrivateText("Not an item.");
+				player.sendPrivateText(type + "is not an item.");
 			}
 		}
 	}
