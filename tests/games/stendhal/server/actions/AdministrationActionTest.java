@@ -745,7 +745,7 @@ public class AdministrationActionTest {
 		action.put("item", "hugo");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Not an item.", pl.getPrivateTextString());
+		assertEquals("hugo is not an item.", pl.getPrivateTextString());
 		pl.resetPrivateTextString();
 
 		action = new RPAction();
