@@ -28,7 +28,7 @@ public final class BuddyListPanel extends ClientPanel implements BuddyChangeList
 	 */
 	public BuddyListPanel(StendhalUI ui) {
 		super("Buddies", 100, 100);
-		
+		this.setResizable(true);
 		setLayout(new FlowLayout());
 		ActionSelectedCB.setUI(ui);
 	
