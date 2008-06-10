@@ -61,8 +61,7 @@ public final class BuddyListPanel extends ClientPanel implements BuddyChangeList
 		if (c != null) {
 			this.remove(c);
 		}
-	
-
+		validate();
 	}
 
 	private Component findComponentByName(String name) {
