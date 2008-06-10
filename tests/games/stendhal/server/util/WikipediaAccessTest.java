@@ -5,12 +5,12 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
 /**
  * Tests the WikipediaAccess class.
  * 
- * @author Martin Fuchs
  */
 public class WikipediaAccessTest {
 
@@ -28,9 +28,8 @@ public class WikipediaAccessTest {
 
 				 System.out.println(result);
 
-				assertThat("There should be named the french novelist for the topic Stendhal.", result, allOf(
-						containsString("Marie"),
-								containsString("Henri"), containsString("Beyle")));
+				Matcher<String> henrimariebeyle = allOf(containsString("Marie"), containsString("Henri"), containsString("Beyle"));
+				assertThat("There should be named the french novelist for the topic Stendhal.", result, henrimariebeyle);
 			} else {
 				fail("Sorry, could not find information on this topic in Wikipedia.");
 			}

@@ -39,7 +39,7 @@ public class ClientTextPanel extends JPanel {
 	public static final int DEFAULT_FONT_SIZE = 12;
 
 	/** default color. */
-	public static final Color DEFAULT_COLOR = Color.gray;//for wood style: Color.WHITE;
+	public static final Color DEFAULT_COLOR = Color.gray; 
 
 	/** the text to display. */
 	private StringFormatter formatter;

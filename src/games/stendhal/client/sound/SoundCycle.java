@@ -183,7 +183,7 @@ class SoundCycle extends Thread implements Cloneable {
 			if (entityRef != null) {
 					logger.debug("- start cyclic sound for entity: "
 							+ entityRef);
-					dataline =  entityRef.playSound(token, volBot,volTop, chance);
+					dataline =  entityRef.playSound(token, volBot, volTop, chance);
 				
 			} else {
 				SoundMaster.play(token);
