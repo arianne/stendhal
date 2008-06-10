@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import utilities.RPClass.CreatureTestHelper;
 
-public class HealingbehaviourTest {
+public class HealingbehaviourfactoryTest {
 	 boolean called;
 
 	@Test
@@ -44,13 +44,13 @@ public class HealingbehaviourTest {
 
 	@Test
 	public void testGet() {
-		assertThat(Healingbehaviour.get(null), instanceOf(NonHealingBehaviour.class));
-		assertThat(Healingbehaviour.get("5,5"), instanceOf(Healer.class));
+		assertThat(Healingbehaviourfactory.get(null), instanceOf(NonHealingBehaviour.class));
+		assertThat(Healingbehaviourfactory.get("5,5"), instanceOf(Healer.class));
 	}
 
 	@Test(expected = NumberFormatException.class)
 	public void testGetEmptyString() {
-		assertThat(Healingbehaviour.get(""), instanceOf(NonHealingBehaviour.class));
+		assertThat(Healingbehaviourfactory.get(""), instanceOf(NonHealingBehaviour.class));
 	}
 
 }

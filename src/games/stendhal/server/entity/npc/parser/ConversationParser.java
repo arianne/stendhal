@@ -252,11 +252,12 @@ public final class ConversationParser extends ErrorBuffer {
     }
 
     /**
-     * Evaluate sentence type by looking at the trailing punctuation characters.
+     * Evaluates and sets sentence type by looking at the trailing punctuation characters.
+     * 
      *
-     * @param text
-     * @param sentence
-     * @return
+     * @param text	the text to evaluate
+     * @param sentence where the type is to be set
+     * @return text without trailing or leading punctuation
      */
     public static String getSentenceType(String text, final Sentence sentence) {
         PunctuationParser punct = new PunctuationParser(text);

@@ -27,7 +27,8 @@ import games.stendhal.server.entity.creature.impl.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.Attacker;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.entity.creature.impl.Healingbehaviour;
+import games.stendhal.server.entity.creature.impl.HealerBehavior;
+import games.stendhal.server.entity.creature.impl.Healingbehaviourfactory;
 import games.stendhal.server.entity.creature.impl.IdleBehaviourFactory;
 import games.stendhal.server.entity.creature.impl.Idlebehaviour;
 import games.stendhal.server.entity.creature.impl.PoisonerFactory;
@@ -67,7 +68,7 @@ import org.apache.log4j.Logger;
 public class Creature extends NPC {
 
 
-	public Healingbehaviour healer = Healingbehaviour.get(null);
+	public HealerBehavior healer = Healingbehaviourfactory.get(null);
 
 	public AttackStrategy strategy;
 
@@ -680,7 +681,7 @@ public class Creature extends NPC {
 	}
 
 	public void setHealer(String aiprofile) {
-		healer = Healingbehaviour.get(aiprofile);
+		healer = Healingbehaviourfactory.get(aiprofile);
 	}
 
 }
