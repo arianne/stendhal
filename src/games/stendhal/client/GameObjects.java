@@ -18,6 +18,7 @@ import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -83,7 +84,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public Iterator<Entity> iterator() {
-		return objects.values().iterator();
+		return Collections.unmodifiableMap(objects).values().iterator();
 	}
 
 	public Entity get(RPObject object) {

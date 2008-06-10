@@ -16,7 +16,6 @@
  */
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -319,41 +318,37 @@ public final class Minimap extends ClientPanel implements PositionChangeListener
 
 		// --------------------------------------
 		// Draw on ground entities
-		GameObjects gameObjects = client.getGameObjects();
+		Iterable<Entity> gameObjects = client.getGameObjects();
 
-		//TODO remove the need for synchronization by changing getGameObjects() to return a copy of the game object list
+		for (Entity entity : gameObjects) {
+    			if (entity.isOnGround()) {
 
-		synchronized (gameObjects) {
-    		for (Entity entity : gameObjects) {
-    			if (!entity.isOnGround()) {
-    				continue;
-    			}
+					if (entity instanceof Player) {
+						Player player = (Player) entity;
 
-    			if (entity instanceof Player) {
-    				Player player = (Player) entity;
+						if (!player.isGhostMode()) {
+							drawPlayer(vg, player, Color.WHITE);
+						} else if (User.isAdmin()) {
+							drawPlayer(vg, player, Color.GRAY);
+						}
+					} else if (entity instanceof Portal) {
+						Portal portal = (Portal) entity;
 
-    				if (!player.isGhostMode()) {
-    					drawPlayer(vg, player, Color.WHITE);
-    				} else if (User.isAdmin()) {
-    					drawPlayer(vg, player, Color.GRAY);
-    				}
-    			} else if (entity instanceof Portal) {
-    				Portal portal = (Portal) entity;
+						if (!portal.isHidden()) {
+							drawEntity(vg, entity, Color.WHITE, Color.BLACK);
+						}
+					} else if (mininps && User.isAdmin()) {
+						// Enabled with -Dstendhal.superman=x.
 
-    				if (!portal.isHidden()) {
-    					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
-    				}
-    			} else if (mininps && User.isAdmin()) {
-    				// Enabled with -Dstendhal.superman=x.
-
-    				if (entity instanceof RPEntity) {
-    					drawRPEntity(vg, (RPEntity) entity);
-    				} else {
-    					drawEntity(vg, entity, COLOR_ENTITY);
-    				}
-    			}
+						if (entity instanceof RPEntity) {
+							drawRPEntity(vg, (RPEntity) entity);
+						} else {
+							drawEntity(vg, entity, COLOR_ENTITY);
+						}
+					}
+				}
     		}
-		}
+		
 
 		drawUser(vg);
 

@@ -386,7 +386,7 @@ public class j2DClient extends StendhalUI {
             // System.err.println("mem = " + (avgmemt / avgmemc) + "k");
             // //rt.gc();
             logger.debug("Move objects");
-            client.getGameObjects().update(delta);
+            client.update(delta);
 
             /*
              * TODO: Consolidate the next 3 parts into one isInBatchUpdate()

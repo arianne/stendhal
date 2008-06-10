@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
@@ -193,10 +194,12 @@ public class StendhalClient extends ClientFramework {
 		return staticLayers;
 	}
 
-	public GameObjects getGameObjects() {
+	public Iterable<Entity> getGameObjects() {
 		return gameObjects;
 	}
 
+	
+	
 	public RPObject getPlayer() {
 		return player;
 	}
@@ -739,6 +742,11 @@ public class StendhalClient extends ClientFramework {
 	 */
 	public Cache getCache() {
 		return cache;
+	}
+
+	public void update(int delta) {
+		gameObjects.update(delta);
+		
 	}
 
 }
