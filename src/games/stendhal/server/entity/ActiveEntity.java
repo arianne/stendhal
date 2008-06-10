@@ -146,11 +146,8 @@ public abstract class ActiveEntity extends Entity {
 		setPosition(nx, ny);
 	}
 
-	private boolean handlePortal(Portal portal) {
-		if (isZoneChangeAllowed()) {
-			logger.debug("Using portal " + portal);
-			return portal.onUsed((RPEntity) this);
-		}
+	protected boolean handlePortal(Portal portal) {
+		
 		return false;
 	}
 

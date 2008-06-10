@@ -24,6 +24,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 
@@ -112,6 +113,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * turns after they have actually been damaged by the enemy. //
 	 */
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
+
+	@Override
+	protected boolean handlePortal(Portal portal) {
+		if (isZoneChangeAllowed()) {
+			logger.debug("Using portal " + portal);
+			return portal.onUsed(this);
+		}
+		return super.handlePortal(portal);
+	}
 
 	public static void generateRPClass() {
 		try {
