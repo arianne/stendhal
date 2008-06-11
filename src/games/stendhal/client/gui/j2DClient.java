@@ -24,7 +24,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
-import games.stendhal.client.gui.wt.BuddyListPanel;
+import games.stendhal.client.gui.wt.BuddyListFrame;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.KeyRing;
@@ -92,7 +92,7 @@ public class j2DClient extends StendhalUI {
     private KeyRing keyring;
 
     /** the buddy list panel. */
-    private BuddyListPanel buddies;
+    private BuddyListFrame buddies;
 
     /** the minimap panel. */
     private Minimap minimap;
@@ -274,7 +274,7 @@ public class j2DClient extends StendhalUI {
         client.addFeatureChangeListener(keyring);
         addWindow(keyring);
 
-        buddies = new BuddyListPanel(this);
+        buddies = new BuddyListFrame(this);
         addWindow(buddies);
         client.addBuddyChangeListener(buddies);
         character = new Character();
