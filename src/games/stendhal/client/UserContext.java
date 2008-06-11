@@ -40,57 +40,44 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * The currently known buddies.
 	 */
-	protected HashMap<String, Boolean> buddies;
+	private HashMap<String, Boolean> buddies;
 
 	/**
 	 * The currently enabled features.
 	 */
-	protected HashMap<String, String> features;
+	private HashMap<String, String> features;
 
 	/**
 	 * The buddy change listeners.
 	 */
-	protected BuddyChangeListener[] buddyListeners;
+	private BuddyChangeListener[] buddyListeners;
 
 	/**
 	 * The feature change listeners.
 	 */
-	protected FeatureChangeListener[] featureListeners;
+	private FeatureChangeListener[] featureListeners;
 
-	/**
-	 * The admin level.
-	 */
-	protected int adminlevel;
+//	/**
+//	 * The admin level.
+//	 */
+//	private int adminlevel;
 
 	/**
 	 * The game objects.
 	 */
-	protected GameObjects gameObjects;
+	private GameObjects gameObjects;
 
 	/**
 	 * The entity slot event multicaster.
 	 */
-	protected EntityHolderMulticaster entitySlotListener;
-
-	/**
-	 * The player character's name.
-	 */
-	protected String name;
-
-	/**
-	 * The owned sheep RPObject ID.
-	 */
-	protected int sheepID;
+	private EntityHolderMulticaster entitySlotListener;
 
 	/**
 	 * Constructor.
 	 */
 	public UserContext() {
-		adminlevel = 0;
 		entitySlotListener = new EntityHolderMulticaster();
 		gameObjects = GameObjects.getInstance();
-		name = null;
-		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
 		buddyListeners = new BuddyChangeListener[0];
@@ -147,15 +134,6 @@ public class UserContext implements RPObjectChangeListener {
 		featureListeners = newListeners;
 	}
 
-	/**
-	 * Fire admin level change event to all registered listeners.
-	 * 
-	 * @param adminLevel
-	 *            The new admin level.
-	 */
-	protected void fireAdminLevelChanged(int adminLevel) {
-		// TODO: Impl
-	}
 
 	/**
 	 * Fire buddy added to all registered listeners.
@@ -255,52 +233,6 @@ public class UserContext implements RPObjectChangeListener {
 		}
 	}
 
-	/**
-	 * Fire name change event to all registered listeners.
-	 * 
-	 * @param newName
-	 *            The new player name.
-	 */
-	protected void fireNameChanged(String newName) {
-		// TODO: Impl
-	}
-
-	/**
-	 * Get the admin level.
-	 * 
-	 * @return The admin level.
-	 */
-	public int getAdminLevel() {
-		return adminlevel;
-	}
-
-	/**
-	 * Get the player character name.
-	 * 
-	 * @return The player character name.
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Get the player's owned sheep RPObject ID.
-	 * 
-	 * @return The RPObject ID of the sheep the player owns, or <code>0</code>
-	 *         if none.
-	 */
-	public int getSheepID() {
-		return sheepID;
-	}
-
-	/**
-	 * Determine if the user is an admin.
-	 * 
-	 * @return <code>true</code> is the user is an admin.
-	 */
-	public boolean isAdmin() {
-		return (getAdminLevel() != 0);
-	}
 
 	/**
 	 * Remove a buddy change listener.
@@ -488,10 +420,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if (object.has("adminlevel")) {
-			adminlevel = object.getInt("adminlevel");
-			// fireAdminLevelChanged(adminlevel);
-		}
+		
 		dispatchEvents(object, object);
 	}
 
@@ -504,21 +433,8 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		if (changes.has("adminlevel")) {
-			adminlevel = changes.getInt("adminlevel");
-			fireAdminLevelChanged(adminlevel);
-		}
-
-		if (changes.has("name")) {
-			name = changes.get("name");
-			fireNameChanged(name);
-		}
-
-		if (changes.has("sheep")) {
-			sheepID = changes.getInt("sheep");
-			// fireOwnedSheep(sheepID);
-		}
-		dispatchEvents(object, changes);
+	
+			dispatchEvents(object, changes);
 	}
 
 	/**
@@ -560,20 +476,10 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		if (changes.has("adminlevel")) {
-			adminlevel = 0;
-			fireAdminLevelChanged(adminlevel);
-		}
+		
+	
 
-		if (changes.has("name")) {
-			name = null;
-			fireNameChanged(name);
-		}
-
-		if (changes.has("sheep")) {
-			sheepID = 0;
-			// fireOwnedSheep(sheepID);
-		}
+		
 	}
 
 	/**
@@ -583,14 +489,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		adminlevel = 0;
-		fireAdminLevelChanged(adminlevel);
-
-		name = null;
-		fireNameChanged(null);
-
-		sheepID = 0;
-		// fireSheepOwned(sheepID);
+		
 	}
 
 	/**
