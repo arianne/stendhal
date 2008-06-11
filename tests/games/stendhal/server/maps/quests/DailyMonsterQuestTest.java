@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static games.stendhal.server.entity.npc.ConversationStates.ATTENDING;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -26,6 +27,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
@@ -74,7 +76,25 @@ public class DailyMonsterQuestTest {
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertTrue(bob.hasQuest("daily"));
 	}
+	@Test
+	public void testClaimDone() {
 
+		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		en.setCurrentState(ATTENDING);
+		CreatureTestHelper.generateRPClasses();
+		SingletonRepository.getEntityManager().getCreature("rat");
+		assertThat(en.getCurrentState(), is(ATTENDING));
+		assertTrue(en.step(bob, "quest"));
+		assertThat(en.getCurrentState(), is(ATTENDING));
+		assertTrue(bob.hasQuest("daily"));
+		assertTrue(en.step(bob, "complete"));
+		assertEquals("", bob.getPrivateTextString());
+		
+	}
+	
+	
+	
+	
 	@Test
 	public void testPickIdealCreature() {
 		DailyMonsterQuest dmqp = new DailyMonsterQuest();
@@ -123,7 +143,7 @@ public class DailyMonsterQuestTest {
 		Collections.sort(creatureList, new LevelBasedComparator());
 		for (int level = 0; level < 120; level++) {
 			assertThat("1 rat in list", dmqpick.pickIdealCreature(level, false, creatureList).getLevel(),
-					lessThanOrEqualTo(level+5));
+					lessThanOrEqualTo(level + 5));
 		}
 
 	}
