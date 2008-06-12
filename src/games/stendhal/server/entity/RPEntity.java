@@ -737,6 +737,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public void setTarget(RPEntity target) {
 		put("target", target.getID().getObjectID());
+		if (attackTarget != null) {
+			attackTarget.attackSources.remove(this);
+		}
 		attackTarget = target;
 	}
 
