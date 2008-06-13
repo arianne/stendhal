@@ -18,7 +18,6 @@ import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -84,7 +83,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public Iterator<Entity> iterator() {
-		return Collections.unmodifiableMap(objects).values().iterator();
+		return objects.values().iterator();
 	}
 
 	public Entity get(RPObject object) {
@@ -98,7 +97,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/**
 	 * Removes all the object entities.
 	 */
-	public synchronized void clear() {
+	public void clear() {
 		if (!objects.isEmpty()) {
 			logger.debug("Game objects not empty!");
 
@@ -123,12 +122,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return true;
 		}
 
-		synchronized (this) {
-    		for (Entity other : objects.values()) {
-    			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
-    				return true;
-    			}
-    		}
+		for (Entity other : objects.values()) {
+			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
+				return true;
+			}
 		}
 
 		return false;
@@ -140,7 +137,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
-	public synchronized void update(int delta) {
+	public void update(int delta) {
 		for (Entity entity : objects.values()) {
 			entity.update(delta);
 		}
@@ -158,9 +155,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Entity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
-			synchronized (this) {
-				objects.put(FQID.create(object), entity);
-			}
+			objects.put(FQID.create(object), entity);
 		}
 
 		return entity;
@@ -214,11 +209,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		Entity entity;
-
-		synchronized (this) {
-			entity = objects.get(FQID.create(object));
-		}
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
@@ -234,11 +225,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		Entity entity;
-
-		synchronized (this) {
-			entity = objects.get(FQID.create(object));
-		}
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
@@ -256,11 +243,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		logger.debug("removed " + id);
 
-		Entity entity;
-		
-		synchronized (this) {
-			entity = objects.remove(FQID.create(object));
-		}
+		Entity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
 			GameScreen.get().removeEntity(entity);
@@ -297,11 +280,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity;
-
-		synchronized (this) {
-			entity = objects.get(FQID.create(object));
-		}
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onSlotChangedAdded(object, slotName, sobject, schanges);
@@ -323,11 +302,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity;
-
-		synchronized (this) {
-			entity = objects.get(FQID.create(object));
-		}
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onSlotChangedRemoved(object, slotName, sobject, schanges);

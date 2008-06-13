@@ -6,6 +6,9 @@
 
 package games.stendhal.client;
 
+//
+//
+
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.EntityHolderListener;
@@ -31,7 +34,6 @@ import org.apache.log4j.Logger;
  * directly used by other code later.
  */
 public class UserContext implements RPObjectChangeListener {
-
 	/**
 	 * The logger.
 	 */
@@ -40,44 +42,57 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * The currently known buddies.
 	 */
-	private HashMap<String, Boolean> buddies;
+	protected HashMap<String, Boolean> buddies;
 
 	/**
 	 * The currently enabled features.
 	 */
-	private HashMap<String, String> features;
+	protected HashMap<String, String> features;
 
 	/**
 	 * The buddy change listeners.
 	 */
-	private BuddyChangeListener[] buddyListeners;
+	protected BuddyChangeListener[] buddyListeners;
 
 	/**
 	 * The feature change listeners.
 	 */
-	private FeatureChangeListener[] featureListeners;
+	protected FeatureChangeListener[] featureListeners;
 
-//	/**
-//	 * The admin level.
-//	 */
-//	private int adminlevel;
+	/**
+	 * The admin level.
+	 */
+	protected int adminlevel;
 
 	/**
 	 * The game objects.
 	 */
-	private GameObjects gameObjects;
+	protected GameObjects gameObjects;
 
 	/**
 	 * The entity slot event multicaster.
 	 */
-	private EntityHolderMulticaster entitySlotListener;
+	protected EntityHolderMulticaster entitySlotListener;
+
+	/**
+	 * The player character's name.
+	 */
+	protected String name;
+
+	/**
+	 * The owned sheep RPObject ID.
+	 */
+	protected int sheepID;
 
 	/**
 	 * Constructor.
 	 */
 	public UserContext() {
+		adminlevel = 0;
 		entitySlotListener = new EntityHolderMulticaster();
 		gameObjects = GameObjects.getInstance();
+		name = null;
+		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
 		buddyListeners = new BuddyChangeListener[0];
@@ -134,6 +149,15 @@ public class UserContext implements RPObjectChangeListener {
 		featureListeners = newListeners;
 	}
 
+	/**
+	 * Fire admin level change event to all registered listeners.
+	 * 
+	 * @param adminLevel
+	 *            The new admin level.
+	 */
+	protected void fireAdminLevelChanged(int adminLevel) {
+		// TODO: Impl
+	}
 
 	/**
 	 * Fire buddy added to all registered listeners.
@@ -233,6 +257,52 @@ public class UserContext implements RPObjectChangeListener {
 		}
 	}
 
+	/**
+	 * Fire name change event to all registered listeners.
+	 * 
+	 * @param newName
+	 *            The new player name.
+	 */
+	protected void fireNameChanged(String newName) {
+		// TODO: Impl
+	}
+
+	/**
+	 * Get the admin level.
+	 * 
+	 * @return The admin level.
+	 */
+	public int getAdminLevel() {
+		return adminlevel;
+	}
+
+	/**
+	 * Get the player character name.
+	 * 
+	 * @return The player character name.
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Get the player's owned sheep RPObject ID.
+	 * 
+	 * @return The RPObject ID of the sheep the player owns, or <code>0</code>
+	 *         if none.
+	 */
+	public int getSheepID() {
+		return sheepID;
+	}
+
+	/**
+	 * Determine if the user is an admin.
+	 * 
+	 * @return <code>true</code> is the user is an admin.
+	 */
+	public boolean isAdmin() {
+		return (getAdminLevel() != 0);
+	}
 
 	/**
 	 * Remove a buddy change listener.
@@ -420,7 +490,10 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		
+		if (object.has("adminlevel")) {
+			adminlevel = object.getInt("adminlevel");
+			// fireAdminLevelChanged(adminlevel);
+		}
 		dispatchEvents(object, object);
 	}
 
@@ -433,8 +506,21 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-	
-			dispatchEvents(object, changes);
+		if (changes.has("adminlevel")) {
+			adminlevel = changes.getInt("adminlevel");
+			fireAdminLevelChanged(adminlevel);
+		}
+
+		if (changes.has("name")) {
+			name = changes.get("name");
+			fireNameChanged(name);
+		}
+
+		if (changes.has("sheep")) {
+			sheepID = changes.getInt("sheep");
+			// fireOwnedSheep(sheepID);
+		}
+		dispatchEvents(object, changes);
 	}
 
 	/**
@@ -476,10 +562,20 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		
-	
+		if (changes.has("adminlevel")) {
+			adminlevel = 0;
+			fireAdminLevelChanged(adminlevel);
+		}
 
-		
+		if (changes.has("name")) {
+			name = null;
+			fireNameChanged(name);
+		}
+
+		if (changes.has("sheep")) {
+			sheepID = 0;
+			// fireOwnedSheep(sheepID);
+		}
 	}
 
 	/**
@@ -489,7 +585,14 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		
+		adminlevel = 0;
+		fireAdminLevelChanged(adminlevel);
+
+		name = null;
+		fireNameChanged(null);
+
+		sheepID = 0;
+		// fireSheepOwned(sheepID);
 	}
 
 	/**
@@ -506,22 +609,21 @@ public class UserContext implements RPObjectChangeListener {
 			final RPObject sobject) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(sobject);
-		} else if (slotName.equals("!features")) {
+		}
+		if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			synchronized (gameObjects) {
-				Entity entity = gameObjects.get(sobject);
+			Entity entity = gameObjects.get(sobject);
 
-    			if (entity != null) {
-    				Entity parent = gameObjects.get(object);
+			if (entity != null) {
+				Entity parent = gameObjects.get(object);
 
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Added: " + entity);
-    					logger.debug("   To: " + parent + "  [" + slotName + "]");
-    				}
+				if (logger.isDebugEnabled()) {
+					logger.debug("Added: " + entity);
+					logger.debug("   To: " + parent + "  [" + slotName + "]");
+				}
 
-    				entitySlotListener.entityAdded(parent, slotName, entity);
-    			}
+				entitySlotListener.entityAdded(parent, slotName, entity);
 			}
 		}
 	}
@@ -587,21 +689,18 @@ public class UserContext implements RPObjectChangeListener {
 		} else if (slotName.equals("!features")) {
 			processFeaturesRemoved(sobject);
 		} else if (sobject.getRPClass().subclassOf("entity")) {
-			synchronized (gameObjects) {
-				Entity entity = gameObjects.get(sobject);
+			Entity entity = gameObjects.get(sobject);
 
-    			if (entity != null) {
-    				Entity parent = gameObjects.get(object);
+			if (entity != null) {
+				Entity parent = gameObjects.get(object);
 
-    				if (logger.isDebugEnabled()) {
-    					logger.debug("Removed: " + entity);
-    					logger.debug("   From: " + parent + "  [" + slotName + "]");
-    				}
+				if (logger.isDebugEnabled()) {
+					logger.debug("Removed: " + entity);
+					logger.debug("   From: " + parent + "  [" + slotName + "]");
+				}
 
-    				entitySlotListener.entityRemoved(parent, slotName, entity);
-    			}
+				entitySlotListener.entityRemoved(parent, slotName, entity);
 			}
 		}
 	}
-
 }

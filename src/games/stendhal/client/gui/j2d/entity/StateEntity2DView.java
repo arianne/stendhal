@@ -124,12 +124,17 @@ public abstract class StateEntity2DView extends Entity2DView {
 	@Override
 	protected void update() {
 		super.update();
-	
+
+		
 	}
 
 
 	protected void proceedChangedState() {
+		
+		
 			setSprite(getStateSprite());
+		
 	}
+
 
 }

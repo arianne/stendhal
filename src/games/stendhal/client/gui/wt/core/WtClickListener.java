@@ -11,24 +11,31 @@
  *                                                                         *
  ***************************************************************************/
 /*
- * DropTarget.java
+ * ClickListener.java
  *
- * Created on 19. Oktober 2005, 20:45
+ * Created on 24. Oktober 2005, 19:49
  */
 
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.wt.core;
 
-import java.awt.dnd.DropTargetDropEvent;
+import java.awt.Point;
 
 /**
- * Each Panel wanting to receive events when an object is dropped over them must
- * implement this interface.
+ * Callback for clicking on a panel.
  * 
  * @author mtotz
  */
-public interface IDropTarget {
+public interface WtClickListener {
 
-	/** called when an object is dropped. */
-	boolean onDrop(DropTargetDropEvent dsde, IDraggable droppedObject);
+	/**
+	 * the panel has been clicked.
+	 * 
+	 * @param name
+	 *            name of the panel. Note that the panels name does not need to
+	 *            be unique
+	 * @param point
+	 *            coordinate of the clicked point within the clicked panel
+	 */
+	void onClick(String name, Point point);
 
 }

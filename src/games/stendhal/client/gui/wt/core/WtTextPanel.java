@@ -16,30 +16,27 @@
  * Created on 22. Oktober 2005, 20:52
  */
 
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.common.StringFormatter;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
+import java.awt.Graphics2D;
 
 /**
  * A simple panel with text.
  * 
  * @author matthias
  */
-@SuppressWarnings("serial")
-public class ClientTextPanel extends JPanel {
+public class WtTextPanel extends WtPanel {
 
 	/** default font size. */
 	public static final int DEFAULT_FONT_SIZE = 12;
 
 	/** default color. */
-	public static final Color DEFAULT_COLOR = Color.gray; 
+	public static final Color DEFAULT_COLOR = Color.WHITE;
 
 	/** the text to display. */
 	private StringFormatter formatter;
@@ -57,12 +54,15 @@ public class ClientTextPanel extends JPanel {
 	private boolean autoLineBreaks;
 
 	/** Creates a new TextPanel. */
-	public ClientTextPanel(String name, int x, int y, int width, int height) {
-		setName(name);
+	public WtTextPanel(String name, int x, int y, int width, int height) {
+		this(name, x, y, width, height, "");
+	}
 
-		setLocation(x, y);
-		setSize(width, height);
-
+	/** Creates a new TextPanel with the given StringFormatter. */
+	public WtTextPanel(String name, int x, int y, int width, int height,
+			String formatString) {
+		super(name, x, y, width, height);
+		this.formatter = new StringFormatter(formatString);
 		this.fontSize = DEFAULT_FONT_SIZE;
 		this.color = DEFAULT_COLOR;
 		autoLineBreaks = true;
@@ -91,6 +91,14 @@ public class ClientTextPanel extends JPanel {
 		this.formatter = new StringFormatter(format);
 	}
 
+	/** sets the value of a parameter. 
+	* @Deprecated use set(String param, String value)
+	*/
+	@Deprecated
+	public void setValue(String param, String value) {
+		formatter.set(param, value);
+	}
+
 	/** sets the value of a parameter. */
 	public void set(String param, int value) {
 		formatter.set(param, value);
@@ -108,9 +116,9 @@ public class ClientTextPanel extends JPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-    public void paint(Graphics clientArea) {
-		Font font = clientArea.getFont().deriveFont((float) fontSize);
+	protected void drawContent(Graphics2D clientArea) {
 
+		Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color
 		clientArea.setFont(font);
 		clientArea.setColor(color);
@@ -161,7 +169,6 @@ public class ClientTextPanel extends JPanel {
 			} else {
 				clientArea.drawString(string, 0, pos);
 			}
-
 			// next line
 			pos += lineHeight;
 		} while (index >= 0);

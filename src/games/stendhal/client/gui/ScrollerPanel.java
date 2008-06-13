@@ -65,11 +65,11 @@ public class ScrollerPanel extends JPanel {
 	private boolean scrollingStarted;
 
 	/**
-	 * creates an ScrollerPane which scrolls the given text and using defaults
+	 * creates an ScrollerPane wich scrolls the given text and using defaults
 	 * for the other attributes.
 	 * 
 	 * @param text
-	 *            the text array which should be scrolled - one string per line
+	 *            the text araay whis should be scrolled - one string per line
 	 *            is scrolled
 	 */
 	public ScrollerPanel(String[] text) {
@@ -143,7 +143,8 @@ public class ScrollerPanel extends JPanel {
 					RenderingHints.VALUE_ANTIALIAS_ON);
 			g2d.setBackground(backgroundColor);
 			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f, this.getHeight() / 2, textColor, true);
+			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
+					this.getHeight() / 2, textColor, true);
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			FontMetrics metrics = g2d.getFontMetrics();
@@ -188,13 +189,11 @@ public class ScrollerPanel extends JPanel {
 	 */
 	private void calculateSizes() {
 		this.prefferedSize = new Dimension();
-		BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-
+		BufferedImage image = new BufferedImage(100, 100,
+				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = image.createGraphics();
 		g2d.setFont(font);
 		FontMetrics metrics = g2d.getFontMetrics();
-		g2d.dispose();
-
 		this.lineHeight = metrics.getHeight();
 		this.prefferedSize.height = this.lineHeight * 8;
 		for (int i = 0, n = text.length; i < n; i++) {
@@ -209,5 +208,4 @@ public class ScrollerPanel extends JPanel {
 	public Dimension getPreferredSize() {
 		return this.prefferedSize;
 	}
-
 }

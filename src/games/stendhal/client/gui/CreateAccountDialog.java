@@ -41,10 +41,10 @@ import javax.swing.text.PlainDocument;
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
-import marauroa.common.game.AccountResult;
-import marauroa.common.net.InvalidVersionException;
 
 import org.apache.log4j.Logger;
+import marauroa.common.game.AccountResult;
+import marauroa.common.net.InvalidVersionException;
 
 
 public class CreateAccountDialog extends JDialog {
@@ -168,7 +168,9 @@ public class CreateAccountDialog extends JDialog {
 		c.gridy = 2;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(usernameField, c);
-	
+		// TODO: put the caret into the username field, does not work?!
+		usernameField.requestFocusInWindow();
+
 		// row 3
 		c.gridx = 0;
 		c.gridy = 3;
@@ -213,8 +215,6 @@ public class CreateAccountDialog extends JDialog {
 		// required on Compiz
 		this.pack(); 
 		this.setLocationRelativeTo(owner);
-		usernameField.requestFocusInWindow();
-
 
 	}
 
@@ -311,6 +311,8 @@ public class CreateAccountDialog extends JDialog {
 						progressBar.step();
 						progressBar.finish();
 
+						// TODO: Check mental conflict bewteen username and
+						// account name.
 						// Be sure to fix all the variable names.
 						client.setAccountUsername(accountUsername);
 

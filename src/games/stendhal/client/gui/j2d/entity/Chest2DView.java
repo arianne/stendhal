@@ -14,7 +14,6 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -168,11 +167,12 @@ public class Chest2DView extends StateEntity2DView {
 			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer, 5, 6);
+					wtEntityContainer = inspector.inspectMe(chest,
+							chest.getContent(), wtEntityContainer, 5, 6);
 				}
 			} else {
 				if (wtEntityContainer != null) {
-					wtEntityContainer.dispose();
+					wtEntityContainer.destroy();
 					wtEntityContainer = null;
 				}
 			}
@@ -195,7 +195,7 @@ public class Chest2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {
@@ -218,7 +218,10 @@ public class Chest2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer, 5, 6);
+			
+			
+			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
+					wtEntityContainer, 5, 6);
 			break;
 
 		case OPEN:
@@ -251,7 +254,7 @@ public class Chest2DView extends StateEntity2DView {
 	@Override
 	public void release() {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.dispose();
+			wtEntityContainer.destroy();
 			wtEntityContainer = null;
 		}
 

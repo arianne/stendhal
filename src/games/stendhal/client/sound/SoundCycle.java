@@ -12,12 +12,15 @@
 
 package games.stendhal.client.sound;
 
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
 import javax.sound.sampled.DataLine;
 
 import org.apache.log4j.Logger;
+import marauroa.common.game.RPObject.ID;
 
 /**
  * A sound cycle loops on performing a library sound. After each termination of
@@ -34,7 +37,9 @@ class SoundCycle extends Thread implements Cloneable {
 	
 	private static final Logger logger = Logger.getLogger(SoundCycle.class);
 
-	SoundObject entityRef;
+	private byte[] ID_Token;
+
+	Entity entityRef;
 
 	private String token;
 
@@ -76,7 +81,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 * @param chance
 	 *            percent chance of performance for singular performances
 	 */
-	public SoundCycle(SoundObject entity, String token, int period, int volBot,
+	public SoundCycle(Entity entity, String token, int period, int volBot,
 			int volTop, int chance) {
 		super("Stendhal.CycleSound." + token);
 
@@ -95,6 +100,7 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 
 		if (entity != null) {
+			this.ID_Token = entity.ID_Token;
 			this.entityRef = entity;
 		}
 		this.token = token;
@@ -113,7 +119,24 @@ class SoundCycle extends Thread implements Cloneable {
 	 * Terminates the soundcycle.
 	 */
 	public void terminate() {
-		
+		Entity o;
+		ID oid;
+		String hstr;
+
+		o = null;
+		if (entityRef != null) {
+			o = entityRef;
+		}
+
+		if (o != null) {
+			oid = o.getID();
+			hstr = oid == null ? "VOID" : oid.toString();
+		} else {
+			hstr = "VOID";
+		}
+
+		hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
+		logger.debug(hstr);
 
 		if (dataline != null) {
 			dataline.stop();
@@ -162,7 +185,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 */
 	@Override
 	public void run() {
-		
+		Entity o;
 
 		while (executing) {
 			waitTime = Math.max(playMax, Rand.rand(period));
@@ -181,10 +204,17 @@ class SoundCycle extends Thread implements Cloneable {
 
 			// if object bound sound cycle
 			if (entityRef != null) {
+				o = entityRef;
+				if (o != null) {
 					logger.debug("- start cyclic sound for entity: "
-							+ entityRef);
-					dataline =  entityRef.playSound(token, volBot, volTop, chance);
-				
+							+ o.getType());
+					dataline = ((SoundObject) o).playSound(token, volBot,
+							volTop, chance);
+				} else {
+					// FIXME: could be origin for sound dont stop bug
+					SoundSystem.stopSoundCycle(ID_Token);
+					terminate();
+				}
 			} else {
 				SoundMaster.play(token);
 			}
@@ -196,7 +226,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 */
 	@Override
 	public SoundCycle clone() {
-		SoundObject entity;
+		Entity entity;
 		SoundCycle c;
 
 		entity = null;

@@ -236,14 +236,6 @@ public class KTextEdit extends JPanel {
 				}
 			}
 		} else {
-			if (textPane.getDocument().getLength() > 20000) {
-				try {
-					textPane.getDocument().remove(0, 100);
-				} catch (BadLocationException e) {
-					logger.info(e);
-				}
-				
-			}
 			textPane.setCaretPosition(textPane.getDocument().getLength());
 		}
 

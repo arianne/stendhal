@@ -107,7 +107,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static SoundSystem singleton;
 
 	/** */
-	private Map<Entity, SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<Entity, SoundCycle>());
+	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -172,7 +172,56 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 	}
 
+	/**
+	 * Starts cyclic performance of a given library sound, attributed to a
+	 * specific entity on the map. There can only be one sound cycle for an
+	 * entity at a given time. If an sound cycle is started while a previous
+	 * cycle is defined for the entity, the previous cycle is discarded and any
+	 * ongoing sound performance stopped.
+	 * 
+	 * @param entity
+	 *            the game object that makes the sound
+	 * @param token
+	 *            the library sound
+	 * @param period
+	 *            maximum time period for one sound occurrence
+	 * @param volBot
+	 *            bottom volume
+	 * @param volTop
+	 *            top volume
+	 * @param chance
+	 *            percent chance of performance
+	 * @return SoundCycle
+	 */
+	public static SoundCycle startSoundCycle(Entity entity, String token,
+			int period, int volBot, int volTop, int chance) {
+		SoundSystem sys = get();
+		SoundCycle cycle;
+		SoundCycle c1;
 
+		if (!(sys.isOperative())) {
+			return null;
+		}
+
+		cycle = null;
+		synchronized (sys.cycleMap) {
+			try {
+				cycle = new SoundCycle(entity, token, period, volBot, volTop,
+						chance);
+				cycle.play();
+
+				c1 = sys.cycleMap.get(entity.ID_Token);
+				if (c1 != null) {
+					c1.terminate();
+				}
+
+				sys.cycleMap.put(entity.ID_Token, cycle);
+			} catch (IllegalStateException e) {
+				logger.error("*** Undefined sound sample: " + token, e);
+			}
+		}
+		return cycle;
+	} // startSoundCycle
 
 	/**
 	 * Stops execution of the sound cycle for a specific map entity. This will
@@ -181,15 +230,15 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param entity_ID
 	 *            byte[] identity token of the map entity
 	 */
-	public static void stopSoundCycle(Entity refentity) {
+	public static void stopSoundCycle(byte[] entity_ID) {
 		SoundCycle cycle;
 		SoundSystem sys;
 
 		sys = get();
-		cycle = sys.cycleMap.get(refentity);
+		cycle = sys.cycleMap.get(entity_ID);
 		if (cycle != null) {
 			synchronized (sys.cycleMap) {
-				sys.cycleMap.remove(refentity);
+				sys.cycleMap.remove(entity_ID);
 				cycle.terminate();
 			}
 		}
@@ -587,7 +636,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 	} // transferData
 
-	
+	// ************* INNER CLASSES ***********************
 
 	private String actualZone = "";
 

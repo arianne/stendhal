@@ -15,9 +15,8 @@
  * Created on 17. Oktober 2005, 17:50
  */
 
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.wt.core;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -26,7 +25,7 @@ import java.awt.Point;
  * 
  * @author mtotz
  */
-public interface IDraggable {
+public interface WtDraggable {
 
 	/**
 	 * this object has been started to drag around.
@@ -40,33 +39,25 @@ public interface IDraggable {
 	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
-	 *            the drag starting point)
+	 *            the drag startpoint)
 	 * @return true when this item can be dropped on point p, false otherwise
 	 */
 	boolean dragFinished(Point p);
 
 	/**
-	 * Get the image size of the dragged object.
-	 * 
-	 * @return The image size.
-	 */
-	Dimension getSize();
-
-	/**
-	 * Draws the dragged item.
-	 */
-	void drawDragged(Graphics g, Dimension size);
-
-	/**
 	 * This object is dragged around the screen. When this method returns false
-	 * the UI should move it back to it's start point to show the user that it
+	 * the ui should move it back to it's start point to show the user that it
 	 * is not allowed to drop the object here.
 	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
-	 *            the drag starting point)
+	 *            the drag start point)
 	 * @return true when this item can be moved to this point, false otherwise
 	 */
-	void dragMoved(Point p);
+	boolean dragMoved(Point p);
 
+	/**
+	 * Draws the dragged item.
+	 */
+	void drawDragged(Graphics g);
 }

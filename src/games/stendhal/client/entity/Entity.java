@@ -71,6 +71,13 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	protected String[] moveSounds;
 
+	/**
+	 * session wide instance identifier for this class.
+	 * TODO: get rid of this only used by Soundsystem
+	 * 
+	 */
+	public final byte[] ID_Token = new byte[0];
+
 	/** The current x location of this entity. */
 	protected double x;
 
@@ -130,12 +137,15 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	protected String type;
 
-	
+	/**
+	 * Defines the distance in which the entity is heard by Player.
+	 */
+	protected double audibleRange = Double.POSITIVE_INFINITY;
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
-	 * onChangedAdded() from other initialize() hack. 
-	 * <p> TODO: remove watch variable inAdd
+	 * onChangedAdded() from other initialize() hack. TODO: Need to fix it all
+	 * to work right, but not now.
 	 */
 	protected boolean inAdd;
 
@@ -387,9 +397,34 @@ public class Entity implements RPObjectChangeListener {
 				+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}
 
+	/**
+	 * @return the absolute world area (coordinates) to which audibility of
+	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
+	 * (audible everywhere).
+	 */
+	public Rectangle2D getAudibleArea() {
+		if (audibleRange == Double.POSITIVE_INFINITY) {
+			return null;
+		}
 
+		double tempWidth = audibleRange * 2;
+		return new Rectangle2D.Double(getX() - audibleRange, getY()
+				- audibleRange, tempWidth, tempWidth);
+	}
 
-	
+	/**
+	 * Sets the audible range as radius distance from this entity's position,
+	 * expressed in coordinate units. This reflects an abstract capacity of this
+	 * unit to emit sounds and influences the result of
+	 * <code>getAudibleArea()</code>.
+	 * 
+	 * @param range
+	 *            double audibility area radius in coordinate units
+	 */
+	public void setAudibleRange(final double range) {
+		audibleRange = range;
+	}
+
 	/**
 	 * Process attribute changes that may affect positioning. This is needed
 	 * because different entities may want to process coordinate changes more
@@ -583,6 +618,7 @@ public class Entity implements RPObjectChangeListener {
 		 */
 		onPosition(x, y);
 
+		// TODO: BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
 		inAdd = false;
@@ -598,6 +634,7 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public boolean isObstacle(final Entity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
+		// TODO: Check is self check is needed here, or obsolete
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
@@ -608,7 +645,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @see-also #initialize(RPObject)
 	 */
 	public void release() {
-		SoundSystem.stopSoundCycle(this);
+		SoundSystem.stopSoundCycle(ID_Token);
 	}
 
 	/**

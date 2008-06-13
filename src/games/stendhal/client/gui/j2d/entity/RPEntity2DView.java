@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -249,7 +248,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Draw the floating text indicators (floaters).
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -258,8 +257,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawFloaters(final Graphics2D g, final int x, final int y, final int width) {
-		FontMetrics fm = g.getFontMetrics();
+	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
+			final int width) {
+		FontMetrics fm = g2d.getFontMetrics();
 
 		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
 
@@ -276,14 +276,14 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 			Color color = indicator.getType().getColor();
 
-			screen.drawOutlineString(g, color, text, tx, ty + 10);
+			screen.drawOutlineString(g2d, color, text, tx, ty + 10);
 		}
 	}
 
 	/**
 	 * Draw the entity HP bar.
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -292,7 +292,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawHPbar(final Graphics2D g, final int x, final int y, final int width) {
+	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
+			final int width) {
 		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
 
 		int bx = x + ((width - barWidth) / 2);
@@ -300,23 +301,23 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		float hpRatio = rpentity.getHPRatio();
 
-		float red = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
-		float green = Math.min(hpRatio * 2.0f, 1.0f);
+		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
+		float g = Math.min(hpRatio * 2.0f, 1.0f);
 
-		g.setColor(Color.gray);
-		g.fillRect(bx, by, barWidth, 3);
+		g2d.setColor(Color.gray);
+		g2d.fillRect(bx, by, barWidth, 3);
 
-		g.setColor(new Color(red, green, 0.0f));
-		g.fillRect(bx, by, (int) (hpRatio * barWidth), 3);
+		g2d.setColor(new Color(r, g, 0.0f));
+		g2d.fillRect(bx, by, (int) (hpRatio * barWidth), 3);
 
-		g.setColor(Color.black);
-		g.drawRect(bx, by, barWidth, 3);
+		g2d.setColor(Color.black);
+		g2d.drawRect(bx, by, barWidth, 3);
 	}
 
 	/**
 	 * Draw the entity status bar. The status bar show the title and HP bar.
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -325,15 +326,16 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawStatusBar(final Graphics2D g, final int x, final int y, final int width) {
-		drawTitle(g, x, y, width);
-		drawHPbar(g, x, y, width);
+	protected void drawStatusBar(final Graphics2D g2d, final int x,
+			final int y, final int width) {
+		drawTitle(g2d, x, y, width);
+		drawHPbar(g2d, x, y, width);
 	}
 
 	/**
 	 * Draw the entity title.
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -342,12 +344,12 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawTitle(final Graphics2D g, int x, int y, final int width) {
+	protected void drawTitle(final Graphics2D g2d, int x, int y, final int width) {
 		if (titleSprite != null) {
 			int tx = x + ((width - titleSprite.getWidth()) / 2);
 			int ty = y - 3 - titleSprite.getHeight();
 
-			titleSprite.draw(g, tx, ty);
+			titleSprite.draw(g2d, tx, ty);
 		}
 	}
 
@@ -434,7 +436,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -446,24 +448,25 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn entity height.
 	 */
 	@Override
-	protected void draw(final Graphics2D g, final int x, final int y, final int width, final int height) {
+	protected void draw(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
 		Rectangle srect = screen.convertWorldToScreenView(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
 			// Draw red box around
 
-			g.setColor(Color.red);
-			g.drawRect(srect.x, srect.y, srect.width, srect.height);
+			g2d.setColor(Color.red);
+			g2d.drawRect(srect.x, srect.y, srect.width, srect.height);
 
-			g.setColor(Color.black);
-			g.drawRect(srect.x - 1, srect.y - 1, srect.width + 2,
+			g2d.setColor(Color.black);
+			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2,
 					srect.height + 2);
 		}
 
 		if (rpentity.isAttackingUser()) {
 			// Draw orange box around
-			g.setColor(Color.orange);
-			g.drawRect(srect.x + 1, srect.y + 1, srect.width - 2,
+			g2d.setColor(Color.orange);
+			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2,
 					srect.height - 2);
 		}
 
@@ -511,7 +514,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 					sy = y + ((height - sh) / 2);
 				}
 
-				sprite.draw(g, sx, sy);
+				sprite.draw(g2d, sx, sy);
 			} else {
 				rpentity.doneStriking();
 				frameBladeStrike = 0;
@@ -520,14 +523,14 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			frameBladeStrike++;
 		}
 
-		super.draw(g, x, y, width, height);
+		super.draw(g2d, x, y, width, height);
 
 		if (rpentity.isEating()) {
-			eatingSprite.draw(g, x + 8, y + height - 8);
+			eatingSprite.draw(g2d, x + 8, y + height - 8);
 		}
 
 		if (rpentity.isPoisoned()) {
-			poisonedSprite.draw(g, x - 8, y + height - 8);
+			poisonedSprite.draw(g2d, x - 8, y + height - 8);
 		}
 
 		if (rpentity.isDefending()) {
@@ -537,33 +540,33 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 			switch (rpentity.getResolution()) {
 			case BLOCKED:
-				blockedSprite.draw(g, sx, sy);
+				blockedSprite.draw(g2d, sx, sy);
 				break;
 
 			case MISSED:
-				missedSprite.draw(g, sx, sy);
+				missedSprite.draw(g2d, sx, sy);
 				break;
 
 			case HIT:
-				hitSprite.draw(g, sx, sy);
+				hitSprite.draw(g2d, sx, sy);
 				break;
 			}
 		}
 
 		// Enable this to debug entity view area
 		if (false) {
-			g.setColor(Color.cyan);
-			g.drawRect(x, y, width, height);
+			g2d.setColor(Color.cyan);
+			g2d.drawRect(x, y, width, height);
 		}
 
-		drawFloaters(g, x, y, width);
+		drawFloaters(g2d, x, y, width);
 	}
 
 	/**
 	 * Draw the top layer parts of an entity. This will be on down after all
 	 * other game layers are rendered.
 	 *
-	 * @param g
+	 * @param g2d
 	 *            The graphics context.
 	 * @param x
 	 *            The drawn X coordinate.
@@ -575,8 +578,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn entity height.
 	 */
 	@Override
-	protected void drawTop(final Graphics2D g, final int x, final int y, final int width, final int height) {
-		drawStatusBar(g, x, y, width);
+	protected void drawTop(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
+		drawStatusBar(g2d, x, y, width);
 	}
 
 	/**
@@ -660,7 +664,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == RPEntity.PROP_ADMIN_LEVEL) {

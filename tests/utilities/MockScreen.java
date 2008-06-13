@@ -7,6 +7,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
@@ -194,6 +195,71 @@ public class MockScreen implements IGameScreen {
 
 	public Entity2DView getMovableEntityViewAt(double x, double y) {
 		return null;
+	}
+
+	public void addDialog(WtPanel panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int convertWorldXToScreenView(double wx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int convertWorldYToScreenView(double wy) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenViewHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenViewWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenViewX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenViewY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getScreenWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getViewHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getViewWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getViewX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getViewY() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

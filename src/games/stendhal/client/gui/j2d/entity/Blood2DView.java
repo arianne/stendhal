@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -51,13 +50,23 @@ public class Blood2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
+		String clazz = entity.getEntityClass();
+
+		/*
+		 * If no class (or a single character), fallback to red
+		 */
+		if ((clazz == null) || (clazz.length() == 1)) {
+			clazz = "red";
+		}
 
 		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite("data/sprites/combat/blood_red.png");
+		Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz
+				+ ".png");
 
 		int theight = tiles.getHeight();
 		int i = 0;
 
+		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += IGameScreen.SIZE_UNIT_PIXELS) {
 			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
 					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
@@ -105,7 +114,7 @@ public class Blood2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Blood.PROP_AMOUNT) {

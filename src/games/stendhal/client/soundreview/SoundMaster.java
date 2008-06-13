@@ -1,5 +1,8 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.WorldObjects;
+import games.stendhal.client.WorldObjects.WorldListener;
+
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,7 +15,7 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundMaster implements Runnable {
+public class SoundMaster implements Runnable, WorldListener {
 	private static SoundFileMap sfm;
 
 	private static Cliplistener cliplisten;
@@ -28,7 +31,7 @@ public class SoundMaster implements Runnable {
 		sfm = new SoundFileMap();
 
 		cliplisten = new Cliplistener();
-		
+		WorldObjects.addWorldListener(this);
 	}
 
 	public static AudioClip play(String soundName, double x, double y) {
@@ -123,7 +126,22 @@ public class SoundMaster implements Runnable {
 
 	}
 
+	public void playerMoved() {
 
+	}
+
+	// commented for release
+	public void zoneEntered(String zoneName) {
+		// System.out.println(zoneName);
+		// bg = new Background(zoneName);
+		// bg.run();
+	}
+
+	public void zoneLeft(String zoneName) {
+		// System.out.println(zoneName);
+		// bg.stop();
+		// bg=null;
+	}
 
 	public static void setMute(boolean on) {
 		if (on) {

@@ -21,7 +21,7 @@
  http://www.gnu.org/copyleft/gpl.html.
  */
 
-package games.stendhal.client.sound;
+package games.stendhal.client.entity;
 
 import games.stendhal.client.soundreview.Sound;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -33,7 +33,7 @@ import java.util.Map;
 
 import javax.sound.sampled.DataLine;
 
-public class SoundObject  {
+public class SoundObject extends InvisibleEntity {
 
 	private String name;
 
@@ -41,55 +41,31 @@ public class SoundObject  {
 
 	Map<String, String[]> soundArray;
 
-	private double x;
-
-	private double y;
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
 	private void soundInit() {
 		soundArray = Sound.soundArray;
 	}
 
 	public SoundObject() {
 	}
-	/**
-	 * Defines the distance in which the entity is heard by Player.
-	 */
-	protected double audibleRange = Double.POSITIVE_INFINITY;
-	/**
-	 * Sets the audible range as radius distance from this entity's position,
-	 * expressed in coordinate units. This reflects an abstract capacity of this
-	 * unit to emit sounds and influences the result of
-	 * <code>getAudibleArea()</code>.
-	 * 
-	 * @param range
-	 *            double audibility area radius in coordinate units
-	 */
-	public void setAudibleRange(final double range) {
-		audibleRange = range;
-	}
-	
-	/**
-	 * @return the absolute world area (coordinates) to which audibility of
-	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
-	 * (audible everywhere).
-	 */
-	public Rectangle2D getAudibleArea() {
-		if (audibleRange == Double.POSITIVE_INFINITY) {
-			return null;
-		}
 
-		double tempWidth = audibleRange * 2;
-		return new Rectangle2D.Double(getX() - audibleRange, getY()
-				- audibleRange, tempWidth, tempWidth);
+	public SoundObject(final int x, final int y) {
+		super();
+		this.x = x;
+		this.y = y;
+
 	}
+
+	public SoundObject(final Point2D soundPos, final int radius) {
+		x = soundPos.getX();
+		y = soundPos.getY();
+		audibleRange = radius;
+	}
+
+	@Override
+	public Rectangle2D getArea() {
+		return null;
+	}
+
 	public void setLocation(final Point2D position) {
 		x = position.getX();
 		y = position.getY();
@@ -98,6 +74,7 @@ public class SoundObject  {
 	/**
 	 * @return returns the name.
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}

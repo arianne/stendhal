@@ -12,12 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
-import games.stendhal.client.gui.Desktop;
-import games.stendhal.client.gui.MainFrame;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -75,10 +72,6 @@ public class StendhalClient extends ClientFramework {
 
 	protected static StendhalClient client;
 
-	private Desktop desktop;
-
-	private MainFrame mainFrame;
-
 	private Cache cache;
 
 	private ArrayList<Direction> directions;
@@ -86,6 +79,8 @@ public class StendhalClient extends ClientFramework {
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
 	protected IGameScreen screen;
+
+	// protected PerceptionListenerMulticaster listeners;
 
 	private String userName = "";
 
@@ -139,6 +134,7 @@ public class StendhalClient extends ClientFramework {
 	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
 
+		// TODO: Move this to the UI init code
 		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
@@ -170,36 +166,14 @@ public class StendhalClient extends ClientFramework {
 		this.screen = screen;
 	}
 
-	public IGameScreen getScreen() {
-	    return screen;
-    }
-
-	public void setDesktop(Desktop desktop) {
-	    this.desktop = desktop;
-    }
-
-	public Desktop getDesktop() {
-	    return desktop;
-    }
-
-	public void setMainframe(MainFrame frame) {
-	    mainFrame = frame;	    
-    }
-
-	public MainFrame getMainFrame() {
-	    return mainFrame;	    
-    }
-
 	public StaticGameLayers getStaticGameLayers() {
 		return staticLayers;
 	}
 
-	public Iterable<Entity> getGameObjects() {
+	public GameObjects getGameObjects() {
 		return gameObjects;
 	}
 
-	
-	
 	public RPObject getPlayer() {
 		return player;
 	}
@@ -437,6 +411,7 @@ public class StendhalClient extends ClientFramework {
 			}
 		} else {
 			RPObject template = new RPObject();
+			// TODO: Account Username can be != of Character username.
 			try {
 				createCharacter(getAccountUsername(), template);
 				// TODO: check result of createCharacter
@@ -743,10 +718,4 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
-
-	public void update(int delta) {
-		gameObjects.update(delta);
-		
-	}
-
 }

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
+import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.HearingArea;
 
@@ -333,7 +334,7 @@ class AmbientSound {
 					chance);
 			cycleList.add(cycle);
 		} catch (Exception e) {
-			//do nothing
+			// TODO: handle undefined Soundsample
 		}
 	} // addCycle
 

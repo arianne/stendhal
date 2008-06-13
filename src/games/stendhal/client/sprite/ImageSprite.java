@@ -130,12 +130,10 @@ public class ImageSprite implements Sprite {
 		BufferedImage i = getGC().createCompatibleImage(getWidth(),
 				getHeight(), Transparency.TRANSLUCENT);
 		draw(i.getGraphics(), 0, 0);
-
 		Graphics2D g = i.createGraphics();
 		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
 				(int) (alpha * 255)));
 		g.fillRect(0, 0, i.getWidth(), i.getHeight());
-		g.dispose();
 
 		return i;
 	}
@@ -200,6 +198,20 @@ public class ImageSprite implements Sprite {
 			 */
 			return new EmptySprite(width, height, ref);
 
+			// TODO: Figure out if this can be resurected without *horrible*
+			// performance
+			// } else if(image instanceof BufferedImage) {
+			// /*
+			// * BufferedImage allows shared sub-images
+			// */
+			// return new ImageSprite(((BufferedImage) image).getSubimage(x, y,
+			// Math.min(width, iwidth - x), Math.min(height, iheight - y)),
+			// ref);
+			// } else {
+			// /*
+			// * Virtual region
+			// */
+			// return new TileSprite(this, x, y, width, height, ref);
 		}
 
 		/*

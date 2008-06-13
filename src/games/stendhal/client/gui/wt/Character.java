@@ -19,15 +19,16 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.ClientPanel;
-import games.stendhal.client.gui.ClientTextPanel;
+import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.gui.wt.core.WtTextPanel;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Level;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -40,14 +41,13 @@ import marauroa.common.game.RPSlot;
  * 
  * @author mtotz
  */
-@SuppressWarnings("serial")
-public final class Character extends ClientPanel {
+public class Character extends WtPanel {
 
 	/** Panel width. */
-	private static final int PANEL_WIDTH = 150;
+	private static final int PANEL_WIDTH = 170;
 
 	/** Panel height. */
-	private static final int PANEL_HEIGHT = 260;
+	private static final int PANEL_HEIGHT = 285;
 
 	/** Height/width of slots. */
 	private static final int SLOT_SIZE = 39; // estimate
@@ -56,7 +56,8 @@ public final class Character extends ClientPanel {
 	private static final int SLOT_SPACING = 3; // estimate
 
 	/** the stats panel. */
-	private ClientTextPanel statsPanel;
+	private WtTextPanel statsPanel;
+
 	
 	private Map<String, EntitySlot> slotPanels;
 
@@ -70,11 +71,14 @@ public final class Character extends ClientPanel {
 	private long oldPlayerModificationCount;
 
 	/** Creates a new instance of Character. */
-	public Character() {
-		super("Character", PANEL_WIDTH, PANEL_HEIGHT);
+	public Character(StendhalUI ui) {
+		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
+				PANEL_HEIGHT);
 
-		// manually position the client controls
-		setLayout(null);
+		setTitleBar(true);
+		setFrame(true);
+		setMovable(true);
+		setMinimizeable(true);
 
 		slotPanels = new HashMap<String, EntitySlot>();
 
@@ -82,7 +86,7 @@ public final class Character extends ClientPanel {
 		SpriteStore st = SpriteStore.get();
 
 		// Offset to center the slot holders
-		int xoff = (getClientSize().width - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
+		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
 		slotPanels.put("head", new EntitySlot("head",
 				st.getSprite("data/gui/helmet-slot.png"),
@@ -122,12 +126,25 @@ public final class Character extends ClientPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 3)));
 
 		for (EntitySlot slot : slotPanels.values()) {
-			add(slot);
+			addChild(slot);
 		}
 
-		statsPanel = new ClientTextPanel("stats", 5, (SLOT_SIZE + SLOT_SPACING) * 4, 170, 100);
-		statsPanel.setFormat("HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
-		add(statsPanel);
+		statsPanel = new WtTextPanel(
+				"stats",
+				5,
+				((SLOT_SIZE + SLOT_SPACING) * 4),
+				170,
+				100,
+				"HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
+		statsPanel.setFrame(false);
+		statsPanel.setTitleBar(false);
+		addChild(statsPanel);
+	}
+
+	/** we're using the window manager. */
+	@Override
+	protected boolean useWindowManager() {
+		return true;
 	}
 
 	/** sets the player entity. */
@@ -149,41 +166,41 @@ public final class Character extends ClientPanel {
 
 		GameObjects gameObjects = GameObjects.getInstance();
 
-		// traverse all carrying slots
+		// taverse all carrying slots
 		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
 
 		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);
 
-			if (slot != null) {
-				EntitySlot entitySlot = slotPanels.get(slotName);
+			if (slot == null) {
+				continue;
+			}
 
-    			if (entitySlot != null) {
-    				entitySlot.setParent(playerEntity);
+			EntitySlot entitySlot = slotPanels.get(slotName);
 
-    				Iterator<RPObject> iter = slot.iterator();
+			if (entitySlot != null) {
+				entitySlot.setParent(playerEntity);
 
-    				if (iter.hasNext()) {
-    					RPObject object = iter.next();
+				Iterator<RPObject> iter = slot.iterator();
 
-    					synchronized (gameObjects) {
-    						Entity entity = gameObjects.get(object);
+				if (iter.hasNext()) {
+					RPObject object = iter.next();
 
-        					/*
-        					 * TODO: Remove once object mapping verified to work in all
-        					 * cases.
-        					 */
-        					if (entity == null) {
-        						entity = EntityFactory.createEntity(object);
-        					}
+					Entity entity = gameObjects.get(object);
 
-        					entitySlot.setEntity(entity);
-    					}
-    				} else {
-    					entitySlot.setEntity(null);
-    				}
-    			}
+					/*
+					 * TODO: Remove once object mapping verified to work in all
+					 * cases.
+					 */
+					if (entity == null) {
+						entity = EntityFactory.createEntity(object);
+					}
+
+					entitySlot.setEntity(entity);
+				} else {
+					entitySlot.setEntity(null);
+				}
 			}
 
 			// count all money
@@ -198,13 +215,14 @@ public final class Character extends ClientPanel {
 		int atkitem = playerEntity.getAtkItem();
 		int defitem = playerEntity.getDefItem();
 
-		setTitle(playerEntity.getName());
+		setTitletext(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
 		statsPanel.set("maxhp", playerEntity.getBase_hp());
 		statsPanel.set("atk", playerEntity.getAtk());
 		statsPanel.set("def", playerEntity.getDef());
 		statsPanel.set("atkitem", atkitem);
 		statsPanel.set("defitem", defitem);
+
 
 		/*
 		 * Show the amount of XP left to level up on ATK
@@ -219,7 +237,8 @@ public final class Character extends ClientPanel {
 		int defLvl = Level.getLevel(playerEntity.getDefXp());
 		int nextDefXp = Level.getXP(defLvl + 1) -  playerEntity.getDefXp();
 		statsPanel.set("defxp", Integer.toString(nextDefXp));
-
+			
+		
 		statsPanel.set("xp", playerEntity.getXp());
 		int level = Level.getLevel(playerEntity.getXp());
 		statsPanel.set("xptonextlevel", Level.getXP(level + 1) - playerEntity.getXp());
@@ -236,10 +255,9 @@ public final class Character extends ClientPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-    public void paint(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		refreshPlayerStats();
 
-		super.paint(g);
+		super.drawContent(g);
 	}
-
 }

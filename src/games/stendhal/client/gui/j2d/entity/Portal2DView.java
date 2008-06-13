@@ -9,10 +9,10 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Portal;
-
-import java.util.List;
 
 import marauroa.common.game.RPAction;
 
@@ -54,6 +54,7 @@ public class Portal2DView extends InvisibleEntity2DView {
 			list.add(ActionType.USE.getRepresentation());
 
 			super.buildActions(list);
+			// TODO: Give a portal some nice text to 'look' at.
 			list.remove(ActionType.LOOK.getRepresentation());
 		}
 	}

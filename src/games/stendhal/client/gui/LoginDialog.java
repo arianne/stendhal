@@ -44,13 +44,14 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.log4j.Logger;
+
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
+
 import marauroa.common.io.Persistence;
 import marauroa.common.net.InvalidVersionException;
-
-import org.apache.log4j.Logger;
 
 /**
  * Server login dialog.
@@ -176,7 +177,8 @@ public class LoginDialog extends JDialog {
 		contentPane.add(l, c);
 
 		usernameField = new JTextField();
-	
+		// TODO: put the caret into the username field, does not work?!
+		usernameField.requestFocusInWindow();
 		c.gridx = 1;
 		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
@@ -259,7 +261,6 @@ public class LoginDialog extends JDialog {
 
 		this.pack();
 		this.setLocationRelativeTo(owner);
-		usernameField.requestFocusInWindow();
 	}
 
 	private void loginButton_actionPerformed(ActionEvent e) {
@@ -347,15 +348,14 @@ public class LoginDialog extends JDialog {
 
 		try {
 			client.login(profile.getUser(), profile.getPassword());
-			client.setAccountUsername(profile.getUser());
 
 			progressBar.step();
 			progressBar.finish();
 
 			setVisible(false);
 			owner.setVisible(false);
-
 			stendhal.doLogin = true;
+			client.setAccountUsername(profile.getUser());
 		} catch (InvalidVersionException e) {
 			progressBar.cancel();
 			setEnabled(true);

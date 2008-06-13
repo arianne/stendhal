@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Food;
-import games.stendhal.client.entity.Property;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -65,7 +64,7 @@ public class Food2DView extends StateEntity2DView {
 		int theight = tiles.getHeight();
 		int i = 0;
 
-
+		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += IGameScreen.SIZE_UNIT_PIXELS) {
 			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
 					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
@@ -113,7 +112,7 @@ public class Food2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Property property) {
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Food.PROP_AMOUNT) {

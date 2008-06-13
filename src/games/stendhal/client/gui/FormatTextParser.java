@@ -1,7 +1,7 @@
 package games.stendhal.client.gui;
 
 /**
- * Parsing of formated text to show highlighted expressions. 
+ * Parsing of formated text. 
  *
  * @author Martin Fuchs
  */

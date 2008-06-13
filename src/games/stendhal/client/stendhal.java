@@ -52,6 +52,8 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
+	public static String SCREEN_SIZE = "640x480";
+
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
