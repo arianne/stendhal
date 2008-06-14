@@ -93,24 +93,23 @@ public class UseAction implements ActionListener {
 			return;
 		}
 
+		// Make sure nobody uses items bound to someone else.
+		if (object instanceof Item) {
+			Item item = (Item) object;
+			if (item.has("bound")
+					&& !item.get("bound").equals(player.getName())) {
+				player.sendPrivateText("This "
+						+ item.getName()
+						+ " is a special reward for " + item.get("bound")
+						+ ". You do not deserve to use it.");
+				return;
+			}
+		}
+
 		logUsage(player, object);
 
 		if (object instanceof UseListener) {
 			UseListener listener = (UseListener) object;
-
-			// Make sure nobody uses items bound to someone else.
-			if (object instanceof Item) {
-				Item item = (Item) listener;
-				if (item.has("bound")
-						&& !item.get("bound").equals(player.getName())) {
-					player.sendPrivateText("This "
-							+ ((Item) listener).getName()
-							+ " is a special reward for " + item.get("bound")
-							+ ". You do not deserve to use it.");
-					return;
-				}
-			}
-
 			listener.onUsed(player);
 		}
 	}
