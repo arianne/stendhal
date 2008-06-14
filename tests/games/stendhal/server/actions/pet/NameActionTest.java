@@ -142,7 +142,7 @@ public class NameActionTest {
 		
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("The new name of your pet must not be longer than 20."));
+		assertThat(bob.getPrivateTextString(), is("The new name of your pet must not be longer than 20 characters."));
 		
 		
 
