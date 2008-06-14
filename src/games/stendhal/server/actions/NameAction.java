@@ -55,7 +55,7 @@ public class NameAction implements ActionListener {
 							player.sendPrivateText("You own already a pet named '" + newName + "'");
 						} else if (newName.length() > 0) {
 							if (newName.length() > 20) {
-								player.sendPrivateText("The new name of your pet must not be longer than 20.");
+								player.sendPrivateText("The new name of your pet must not be longer than 20 characters.");
 							} else {
 								String oldName = animal.getTitle();
 
