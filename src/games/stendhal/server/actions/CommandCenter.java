@@ -15,6 +15,8 @@ import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
+import games.stendhal.server.actions.pet.NameAction;
+import games.stendhal.server.actions.pet.OwnAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;

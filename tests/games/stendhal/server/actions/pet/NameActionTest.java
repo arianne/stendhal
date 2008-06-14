@@ -1,4 +1,4 @@
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.pet;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

@@ -1,5 +1,7 @@
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.pet;
 
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.player.Player;
 

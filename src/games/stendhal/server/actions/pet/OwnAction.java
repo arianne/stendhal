@@ -10,9 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.pet;
 
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
