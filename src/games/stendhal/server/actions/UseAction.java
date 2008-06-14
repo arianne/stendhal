@@ -84,26 +84,8 @@ public class UseAction implements ActionListener {
 
 	private void tryUse(Player player, RPObject object) {
 
-		// HACK: No item transfer in jail (we don't want a jailed player to
-		// use items like home scroll.
-		String zonename = player.getZone().getName();
-
-		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
-			player.sendPrivateText("For security reasons items may not be used in jail.");
+		if (!canUse(player, object)) {
 			return;
-		}
-
-		// Make sure nobody uses items bound to someone else.
-		if (object instanceof Item) {
-			Item item = (Item) object;
-			if (item.has("bound")
-					&& !item.get("bound").equals(player.getName())) {
-				player.sendPrivateText("This "
-						+ item.getName()
-						+ " is a special reward for " + item.get("bound")
-						+ ". You do not deserve to use it.");
-				return;
-			}
 		}
 
 		logUsage(player, object);
@@ -112,6 +94,42 @@ public class UseAction implements ActionListener {
 			UseListener listener = (UseListener) object;
 			listener.onUsed(player);
 		}
+	}
+
+	private boolean canUse(Player player, RPObject object) {
+		return !isInJailZone(player, object) 
+			&& !isItemBoundToOtherPlayer(player, object);
+	}
+
+	private boolean isInJailZone(Player player, RPObject object) {
+		// HACK: No item transfer in jail (we don't want a jailed player to
+		// use items like home scroll.
+		String zonename = player.getZone().getName();
+
+		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
+			player.sendPrivateText("For security reasons items may not be used in jail.");
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Make sure nobody uses items bound to someone else.
+	 */
+	private boolean isItemBoundToOtherPlayer(Player player, RPObject object) {
+		if (object instanceof Item) {
+			Item item = (Item) object;
+			if (item.has("bound")
+					&& !item.get("bound").equals(player.getName())) {
+				player.sendPrivateText("This "
+						+ item.getName()
+						+ " is a special reward for " + item.get("bound")
+						+ ". You do not deserve to use it.");
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
