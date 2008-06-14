@@ -47,13 +47,7 @@ public class PushAction implements ActionListener {
 		if ((entity == null) || !(entity instanceof RPEntity)) {
 			return;
 		}
-
 		RPEntity rpEntity = (RPEntity) entity;
-
-		// If object is a NPC we ignore the push action.
-		if (rpEntity instanceof SpeakerNPC) {
-			return;
-		}
 
 		tryPush(player, rpEntity);
 	}
@@ -65,7 +59,7 @@ public class PushAction implements ActionListener {
 	 * @param rpEntity entity pushed
 	 */
 	private void tryPush(Player player, RPEntity rpEntity) {
-		if (player.canPush(rpEntity) && player.nextTo(rpEntity)) {
+		if (canPush(player, rpEntity)) {
 			Direction dir = player.getDirectionToward(rpEntity);
 
 			int x = rpEntity.getX() + dir.getdx();
@@ -76,6 +70,28 @@ public class PushAction implements ActionListener {
 				move(player, rpEntity, x, y);
 			}
 		}
+	}
+
+	/**
+	 * Can this push be done according to the rules?
+	 *
+	 * @param player   player pushing
+	 * @param rpEntity entity pushed
+	 * @return true, if the push is possible, false otherwise
+	 */
+	private boolean canPush(Player player, RPEntity rpEntity) {
+
+		// If object is a NPC we ignore the push action because
+		// NPC don't use the pathfinder and would get confused
+		// outside there fixed path. Apart from that some NPCs
+		// may block a way by intend.
+		if (rpEntity instanceof SpeakerNPC) {
+			return false;
+		}
+
+		// the number of pushes is limited per time and the player
+		// must be in range
+		return (player.canPush(rpEntity) && player.nextTo(rpEntity));
 	}
 
 	/**
