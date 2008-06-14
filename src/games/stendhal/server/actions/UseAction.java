@@ -39,65 +39,85 @@ public class UseAction implements ActionListener {
 	public void onAction(Player player, RPAction action) {
 
 		// When use is casted over something in a slot
-		if (action.has(_BASEITEM) && action.has(_BASEOBJECT)
-				&& action.has(_BASESLOT)) {
-			StendhalRPZone zone = player.getZone();
-
-			int baseObject = action.getInt(_BASEOBJECT);
-
-			RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
-			if (!zone.has(baseobjectid)) {
-				return;
-			}
-
-			RPObject base = zone.get(baseobjectid);
-			if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
-				// Only allow to use objects from players, corpses or chests
-				return;
-			}
-
-			if ((base instanceof Player)
-					&& !player.getID().equals(base.getID())) {
-				// Only allowed to use item of our own player.
-				return;
-			}
-
-			Entity baseEntity = (Entity) base;
-
-			if (baseEntity.hasSlot(action.get(_BASESLOT))) {
-				RPSlot slot = baseEntity.getSlot(action.get(_BASESLOT));
-
-				if (slot.size() == 0) {
-					return;
-				}
-
-				RPObject object = null;
-				int item = action.getInt(_BASEITEM);
-				// scan through the slot to find the requested item
-				for (RPObject rpobject : slot) {
-					if (rpobject.getID().getObjectID() == item) {
-						object = rpobject;
-						break;
-					}
-				}
-
-				// no item found...we take the first one
-				if (object == null) {
-					object = slot.iterator().next();
-				}
-
-				invokeUseListener(player, object);
-			}
+		if (isItemInSlot(action)) {
+			useItemInSlot(player, action);
 		} else if (action.has(TARGET)) {
-			// use is cast over something on the floor
-			// evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(
-					action.get(TARGET), player);
-
-			if (entity != null) {
-				invokeUseListener(player, entity);
-			}
+			useItemOnGround(player, action);
 		}
+	}
+
+	private boolean isItemInSlot(RPAction action) {
+		return action.has(_BASEITEM) && action.has(_BASEOBJECT)
+				&& action.has(_BASESLOT);
+	}
+
+	private void useItemOnGround(Player player, RPAction action) {
+		// use is cast over something on the floor
+		// evaluate the target parameter
+		Entity entity = EntityHelper.entityFromTargetName(
+				action.get(TARGET), player);
+
+		if (entity != null) {
+			invokeUseListener(player, entity);
+		}
+	}
+
+	private void useItemInSlot(Player player, RPAction action) {
+		StendhalRPZone zone = player.getZone();
+
+		int baseObject = action.getInt(_BASEOBJECT);
+
+		RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+		if (!zone.has(baseobjectid)) {
+			return;
+		}
+
+		RPObject base = zone.get(baseobjectid);
+		if (!canAccessSlot(player, base)) {
+			return;
+		}
+
+		Entity baseEntity = (Entity) base;
+
+		if (baseEntity.hasSlot(action.get(_BASESLOT))) {
+			RPSlot slot = baseEntity.getSlot(action.get(_BASESLOT));
+
+			if (slot.size() == 0) {
+				return;
+			}
+
+			RPObject object = null;
+			int item = action.getInt(_BASEITEM);
+			// scan through the slot to find the requested item
+			for (RPObject rpobject : slot) {
+				if (rpobject.getID().getObjectID() == item) {
+					object = rpobject;
+					break;
+				}
+			}
+
+			// no item found...we take the first one
+			if (object == null) {
+				object = slot.iterator().next();
+			}
+
+			invokeUseListener(player, object);
+		}
+	}
+
+	private boolean canAccessSlot(Player player, RPObject base) {
+		if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
+			// Only allow to use objects from players, corpses or chests
+			return false;
+		}
+
+		if ((base instanceof Player)
+				&& !player.getID().equals(base.getID())) {
+			// Only allowed to use item of our own player.
+			return false;
+		}
+		
+		return true;
 	}
 
 	private void invokeUseListener(Player player, RPObject object) {
