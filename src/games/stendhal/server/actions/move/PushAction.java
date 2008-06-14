@@ -25,9 +25,13 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
+/**
+ * Pushes an entity which is next to the player one field forward.
+ * This can be used to push afk-players away who are blocking a portal
+ * for instance.
+ */
 public class PushAction implements ActionListener {
 	private static final String _PUSH = "push";
-
 
 	public static void register() {
 		PushAction push = new PushAction();
@@ -35,12 +39,8 @@ public class PushAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		if (!action.has(TARGET)) {
-			return;
-		}
 
 		// evaluate the target parameter
-		StendhalRPZone zone = player.getZone();
 		Entity entity = EntityHelper.entityFromTargetName(
 			action.get(TARGET), player);
 
@@ -55,19 +55,38 @@ public class PushAction implements ActionListener {
 			return;
 		}
 
+		tryPush(player, rpEntity);
+	}
+
+	/**
+	 * Tries to push the entity.
+	 *
+	 * @param player player pushing
+	 * @param rpEntity entity pushed
+	 */
+	private void tryPush(Player player, RPEntity rpEntity) {
 		if (player.canPush(rpEntity) && player.nextTo(rpEntity)) {
 			Direction dir = player.getDirectionToward(rpEntity);
 
 			int x = rpEntity.getX() + dir.getdx();
 			int y = rpEntity.getY() + dir.getdy();
 
+			StendhalRPZone zone = player.getZone();
 			if (!zone.collides(rpEntity, x, y)) {
-				push(player, rpEntity, x, y);
+				move(player, rpEntity, x, y);
 			}
 		}
 	}
 
-	private void push(Player player, RPEntity rpEntity, int x, int y) {
+	/**
+	 * Moves the entity to the new position.
+	 *
+	 * @param player   player pusing
+	 * @param rpEntity entity pushed
+	 * @param x new x-position
+	 * @param y new y-position
+	 */
+	private void move(Player player, RPEntity rpEntity, int x, int y) {
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 			"push", rpEntity.getName(), rpEntity.getZone().getName(), 
 			rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
