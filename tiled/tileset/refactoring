@@ -318,7 +318,7 @@ b*/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
 b*/item/furniture/table/brick_base.png
-./item/gothic/coffin.png  a version of this is in mirage sets so must we replace?
+b/item/gothic/coffin.png  replaced this image to be on the safe side
 m*/item/gothic/large_gravestone.png
 m*/item/gothic/slab.png
 b+k*/item/pot/barrel.png
