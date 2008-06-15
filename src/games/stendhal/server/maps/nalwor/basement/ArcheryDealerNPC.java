@@ -23,6 +23,7 @@ public class ArcheryDealerNPC extends SpeakerNPCFactory {
 				magearcher.addGoodbye("Have a happy. Bye.");
 
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				offerings.put("crossbow", 400);
 				offerings.put("wooden arrow", 1);
 				offerings.put("steel arrow", 5);
 				offerings.put("golden arrow", 20);
