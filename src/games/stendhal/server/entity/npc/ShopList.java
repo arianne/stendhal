@@ -302,7 +302,7 @@ public class ShopList {
 		shops.add("buyveggiesandherbs", "courgette", 10);
 		shops.add("buyveggiesandherbs", "cauliflower", 30);
 		shops.add("buyveggiesandherbs", "tomato", 20);
-		shops.add("buyveggiesandherbs", "arundula", 10);
+		shops.add("buyveggiesandherbs", "arandula", 10);
 		shops.add("buyveggiesandherbs", "kokuda", 200);	
 		shops.add("buyveggiesandherbs", "kekik", 25);
 		shops.add("buyveggiesandherbs", "sclaria", 25);
