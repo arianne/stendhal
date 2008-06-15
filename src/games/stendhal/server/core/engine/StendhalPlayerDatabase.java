@@ -467,7 +467,12 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		if (count < 0) {
 			logger.error("Unexpected return value of execute method: " + count);
 		} else if (count == 0) {
-			transaction.getAccessor().execute("INSERT INTO itemid (last_id) VALUES (1);");
+			// Note: This is just a workaround in case the itemid table is empty.
+			// In case itemlog was emptied, too; this workaround does not work because
+			// there are still items with higher ids out there.
+			logger.warn("Initializing itemid table, this may take a few minutes in case this database is not empty.");
+			transaction.getAccessor().execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;");
+			logger.warn("itemid initialized.");
 		}
 
 		// read last_id from database
