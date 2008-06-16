@@ -17,6 +17,7 @@ import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rule.ActionManager;
@@ -1043,6 +1044,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			SingletonRepository.getRuleProcessor().addGameEvent(killerName, "killed",
 					getName());
 		}
+		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).logKill(this, killer);
 
 		onDead(killerName, remove);
 	}

@@ -499,7 +499,45 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		transaction.getAccessor().execute(query);
 	}
 
+	/**
+	 * Logs a kill.
+	 *
+	 * @param killed killed entity
+	 * @param killer killer
+	 */
+	public void logKill(Entity killed, Entity killer) {
+		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		try {
 
+			// try update in case we already have this combination
+			String update = "UPDATE kills SET cnt = cnt+1 WHERE "
+				+ "killed = '" + StringChecker.trimAndEscapeSQLString(getEntityName(killed), 64)
+				+ "' AND killed_type = '" + entityToType(killed)
+				+ "' AND killer = '" + StringChecker.trimAndEscapeSQLString(getEntityName(killer), 64)
+				+ "' AND killer_type = '" + entityToType(killer) + "';";
+			int rowCount = transaction.getAccessor().execute(update);
+			
+			// in case we did not have this combination yet, make an insert
+			if (rowCount == 0) {
+				String insert = "INSERT INTO kills (killed, killed_type, "
+					+ "killer, killer_type, cnt) VALUES ('" 
+					+ StringChecker.trimAndEscapeSQLString(getEntityName(killed), 64) + "', '" 
+					+ entityToType(killed) + "', '" 
+					+ StringChecker.trimAndEscapeSQLString(getEntityName(killer), 64) + "', '" 
+					+ entityToType(killer) + "', 1);";
+				transaction.getAccessor().execute(insert);
+			}
+
+			transaction.commit();
+		} catch (SQLException e) {
+			logger.error(e, e);
+			try {
+				transaction.rollback();
+			} catch (SQLException e1) {
+				logger.error(e1, e1);
+			}
+		}
+	}
 
 	/**
 	 * Creates a one letter type string based on the class of the entity.
@@ -514,6 +552,20 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			return "C";
 		} else {
 			return "E";
+		}
+	}
+
+	/**
+	 * gets the real name of an entity (not the changeable title). 
+	 *
+	 * @param entity Entity
+	 * @return name of entity
+	 */
+	private String getEntityName(Entity entity) {
+		if (entity instanceof RPEntity) {
+			return ((RPEntity) entity).getName();
+		} else {
+			return entity.getClass().getName();
 		}
 	}
 
