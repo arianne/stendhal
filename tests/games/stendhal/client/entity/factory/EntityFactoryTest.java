@@ -1,9 +1,9 @@
-package games.stendhal.client.entity;
+package games.stendhal.client.entity.factory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import games.stendhal.client.GameObjects;
-
+import games.stendhal.client.entity.*;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 

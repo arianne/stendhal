@@ -14,8 +14,8 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
 

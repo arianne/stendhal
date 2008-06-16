@@ -10,10 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.client.entity;
+package games.stendhal.client.entity.factory;
 
 import games.stendhal.client.StendhalClient;
-
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.User;
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
