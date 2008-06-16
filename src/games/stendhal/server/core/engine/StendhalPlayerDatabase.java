@@ -1,6 +1,8 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -15,9 +17,6 @@ import java.util.List;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
-
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
@@ -25,6 +24,8 @@ import marauroa.server.game.db.JDBCSQLHelper;
 import marauroa.server.game.db.NoDatabaseConfException;
 import marauroa.server.game.db.StringChecker;
 import marauroa.server.game.db.Transaction;
+
+import org.apache.log4j.Logger;
 
 public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Iterable<RPObject> {
@@ -496,6 +497,24 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			+ StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
 
 		transaction.getAccessor().execute(query);
+	}
+
+
+
+	/**
+	 * Creates a one letter type string based on the class of the entity.
+	 *
+	 * @param entity Entity
+	 * @return P for players, C for creatures, E for other entities
+	 */
+	private String entityToType(Entity entity) {
+		if (entity instanceof Player) {
+			return "P";
+		} else if (entity instanceof Creature) {
+			return "C";
+		} else {
+			return "E";
+		}
 	}
 
 }
