@@ -13,6 +13,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -33,6 +34,8 @@ import marauroa.common.game.RPAction;
  * The 2D view of an RP entity.
  */
 public abstract class RPEntity2DView extends ActiveEntity2DView {
+	private static final int ICON_OFFSET = 8;
+
 	private static Map<Object, Sprite[]> bladeStrikeSprites;
 
 	private static Sprite eatingSprite;
@@ -158,23 +161,23 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Calculate sprite image offset. Sub-classes may override this to change
 	 * alignment.
 	 *
-	 * @param swidth
+	 * @param spriteWidth
 	 *            The sprite width (in pixels).
-	 * @param sheight
+	 * @param spriteHeight
 	 *            The sprite height (in pixels).
-	 * @param ewidth
+	 * @param entityWidth
 	 *            The entity width (in pixels).
-	 * @param eheight
+	 * @param entityHeight
 	 *            The entity height (in pixels).
 	 */
 	@Override
-	protected void calculateOffset(final int swidth, final int sheight,
-			final int ewidth, final int eheight) {
+	protected void calculateOffset(final int spriteWidth, final int spriteHeight,
+			final int entityWidth, final int entityHeight) {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
-		xoffset = (ewidth - swidth) / 2;
-		yoffset = eheight - sheight;
+		xoffset = (entityWidth - spriteWidth) / 2;
+		yoffset = entityHeight - spriteHeight;
 	}
 
 	/**
@@ -424,7 +427,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (rpentity.isBeingAttackedByUser()) {
+		if (rpentity.isAttackedBy(User.get())) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());
@@ -463,7 +466,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 					srect.height + 2);
 		}
 
-		if (rpentity.isAttackingUser()) {
+		if (rpentity.isAttacking(User.get())) {
 			// Draw orange box around
 			g2d.setColor(Color.orange);
 			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2,
@@ -474,8 +477,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			if (frameBladeStrike < 3) {
 				Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
 
-				int sw = sprite.getWidth();
-				int sh = sprite.getHeight();
+				int spriteWidth = sprite.getWidth();
+				int spriteHeight = sprite.getHeight();
 
 				int sx;
 				int sy;
@@ -490,28 +493,28 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 				 */
 				switch (rpentity.getDirection()) {
 				case UP:
-					sx = x + ((width - sw) / 2) + 16;
+					sx = x + ((width - spriteWidth) / 2) + 16;
 					sy = y - 16 - 32;
 					break;
 
 				case DOWN:
-					sx = x + ((width - sw) / 2);
-					sy = y + height - sh + 16;
+					sx = x + ((width - spriteWidth) / 2);
+					sy = y + height - spriteHeight + 16;
 					break;
 
 				case LEFT:
 					sx = x - 16;
-					sy = y + ((height - sh) / 2) - 16;
+					sy = y + ((height - spriteHeight) / 2) - 16;
 					break;
 
 				case RIGHT:
-					sx = x + width - sw + 16;
-					sy = y + ((height - sh) / 2) - 8;
+					sx = x + width - spriteWidth + 16;
+					sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
 					break;
 
 				default:
-					sx = x + ((width - sw) / 2);
-					sy = y + ((height - sh) / 2);
+					sx = x + ((width - spriteWidth) / 2);
+					sy = y + ((height - spriteHeight) / 2);
 				}
 
 				sprite.draw(g2d, sx, sy);
@@ -526,17 +529,17 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (rpentity.isEating()) {
-			eatingSprite.draw(g2d, x + 8, y + height - 8);
+			eatingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
 		}
 
 		if (rpentity.isPoisoned()) {
-			poisonedSprite.draw(g2d, x - 8, y + height - 8);
+			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - ICON_OFFSET);
 		}
 
 		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
-			int sx = x + width - 8;
-			int sy = y + height - 8;
+			int sx = x + width - ICON_OFFSET;
+			int sy = y + height - ICON_OFFSET;
 
 			switch (rpentity.getResolution()) {
 			case BLOCKED:

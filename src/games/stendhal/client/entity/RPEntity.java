@@ -29,6 +29,7 @@ import java.util.List;
 
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.apache.log4j.Logger;
 
@@ -335,22 +336,17 @@ public abstract class RPEntity extends ActiveEntity {
 		return (attacking != null);
 	}
 
-	public boolean isAttackingUser() {
-		return ((attacking != null) && attacking.equals(User.get().getID()));
+	public boolean isAttacking(Entity defender) {
+		ID defenderID = defender.getID();
+		return ((attacking != null) && attacking.equals(defenderID));
 	}
 
 	public boolean isBeingAttacked() {
 		return !attackers.isEmpty();
 	}
 
-	public boolean isBeingAttackedByUser() {
-		User user = User.get();
-
-		if (user == null) {
-			return false;
-		}
-
-		return attackers.contains(user);
+	public boolean isAttackedBy(Entity attacker) {
+		return attackers.contains(attacker);
 	}
 
 	public boolean isBeingStruck() {
@@ -431,8 +427,6 @@ public abstract class RPEntity extends ActiveEntity {
 		} catch (NullPointerException e) {
 
 		}
-
-		// playSound("punch-mix", 20, 60, 80);
 
 		boolean showAttackInfoForPlayer = (!User.isNull())
 				&& (this.equals(User.get()) || attacker.equals(User.get()));
