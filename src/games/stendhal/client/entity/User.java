@@ -262,4 +262,17 @@ public class User extends Player {
 
 		return -1;
     }
+	
+	@Override
+	boolean isUser() {
+		return true;
+	}
+	
+	public static double squaredDistanceTo(double x2, double y2) {
+		if (User.isNull()) {
+			return Double.POSITIVE_INFINITY;
+		}
+		return (User.get().getX() - x2) * (User.get().getX() - x2)
+				+ (User.get().getY() - y2) * (User.get().getY() - y2);
+	}
 }

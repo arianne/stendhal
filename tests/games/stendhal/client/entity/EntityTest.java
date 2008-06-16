@@ -93,15 +93,15 @@ public class EntityTest {
 		Entity en = new MockEntity();
 		User.setNull();
 		User to = null;
-		assertEquals(Double.POSITIVE_INFINITY, en.distanceToUser(), 0.001);
+		assertEquals(Double.POSITIVE_INFINITY, User.squaredDistanceTo(en.x, en.y), 0.001);
 		to = new User();
 
 		en.x = 3;
 		en.y = 4;
 		assertEquals(3.0, en.getX(), 0.001);
 		assertEquals(4.0, en.getY(), 0.001);
-		assertEquals(25.0, en.distanceToUser(), 0.001);
-		assertEquals(0.0, to.distanceToUser(), 0.001);
+		assertEquals(25.0, User.squaredDistanceTo(en.x, en.y), 0.001);
+		assertEquals(0.0, User.squaredDistanceTo(to.x, to.y), 0.001);
 
 	}
 

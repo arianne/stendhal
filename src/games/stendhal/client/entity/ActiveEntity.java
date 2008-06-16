@@ -225,10 +225,9 @@ public abstract class ActiveEntity extends Entity {
 			x += (dx * step);
 			y += (dy * step);
 
-			User user = User.get();
+			
 
-			if (!(user!=null && user.isGhostMode())
-					&& GameObjects.getInstance().collides(this)) {
+			if (GameObjects.getInstance().collides(this)) {
 				x = oldX;
 				y = oldY;
 			} else {

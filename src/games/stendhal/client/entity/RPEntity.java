@@ -417,6 +417,8 @@ public abstract class RPEntity extends ActiveEntity {
 		resolution = Resolution.BLOCKED;
 	}
 
+	
+	
 	// When this entity is damaged by attacker with damage amount
 	public void onDamaged(final Entity attacker, final int damage) {
 		combatIconTime = System.currentTimeMillis();
@@ -428,8 +430,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		}
 
-		boolean showAttackInfoForPlayer = (!User.isNull())
-				&& (this.equals(User.get()) || attacker.equals(User.get()));
+		boolean showAttackInfoForPlayer = (this.isUser() || attacker.isUser());
 		showAttackInfoForPlayer = showAttackInfoForPlayer
 				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
@@ -473,7 +474,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity adjusts HP
 	public void onHPChange(final int amount) {
-		if (distanceToUser() < 15 * 15) {
+		if (User.squaredDistanceTo(x, y) < 15 * 15) {
 			if (amount > 0) {
 				addTextIndicator("+" + amount, NotificationType.POSITIVE);
 			} else {
@@ -495,7 +496,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity is poisoned
 	public final void onPoisoned(final int amount) {
-		if ((distanceToUser() < 15 * 15)) {
+		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
 			poisoned = true;
 
 			StendhalUI.get().addEventLine(
@@ -539,7 +540,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// Called when entity says text
 	public void onTalk(final String text) {
-		if (User.isAdmin() || (distanceToUser() < 15 * 15)) {
+		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -1054,7 +1055,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("xp") && object.has("xp")) {
-			if (distanceToUser() < 15 * 15) {
+			if (User.squaredDistanceTo(x, y) < 15 * 15) {
 				int amount = (changes.getInt("xp") - object.getInt("xp"));
 				if (amount > 0) {
 					addTextIndicator("+" + amount,
@@ -1081,7 +1082,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("level") && object.has("level")) {
-			if (distanceToUser() < 15 * 15) {
+			if (User.squaredDistanceTo(x, y) < 15 * 15) {
 				String text = getTitle() + " reaches Level " + getLevel();
 
 				StendhalUI.get().addEventLine(text,

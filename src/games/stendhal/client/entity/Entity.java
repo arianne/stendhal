@@ -202,19 +202,10 @@ public class Entity implements RPObjectChangeListener {
 			action.put("baseitem", id);
 		} else {
 			StringBuilder target;
-			User user = User.get();
-
-			String release = user != null ? User.get().getServerVersion()
-					: null;
-
-			// query the server version to see if it understands the new command
-			// syntax with leading "#"
-			if (release != null && Version.compare(release, "0.65.5") >= 0) {
-				target = new StringBuilder("#");
-			} else {
-				target = new StringBuilder();
-			}
-
+		
+				
+			target = new StringBuilder("#");
+		
 			target.append(Integer.toString(id));
 
 			action.put("target", target.toString());
@@ -234,7 +225,9 @@ public class Entity implements RPObjectChangeListener {
 			l.entityChanged(this, property);
 		}
 	}
-
+	boolean isUser() {
+		return false;
+	}
 	/**
 	 * Get the area the entity occupies.
 	 * 
@@ -383,18 +376,6 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public boolean isOnGround() {
 		return !rpObject.isContained();
-	}
-
-	/**
-	 * @return a double value representing the square of the distance in tiles
-	 *         or Double.Positiveinfinity if User is null
-	 */
-	public double distanceToUser() {
-		if (User.isNull()) {
-			return Double.POSITIVE_INFINITY;
-		}
-		return (User.get().getX() - getX()) * (User.get().getX() - getX())
-				+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}
 
 	/**
