@@ -75,6 +75,20 @@ CREATE TABLE IF NOT EXISTS itemlog (
 /*CREATE INDEX i_itemlog_event_param12 ON itemlog(event, param1, param2);*/
 /*CREATE INDEX i_itemlog_event_param34 ON itemlog(event, param3, param4);*/
 
+
+CREATE TABLE IF NOT EXISTS kills (
+  id          INTEGER AUTO_INCREMENT NOT NULL,
+  killed      VARCHAR(64),
+  killer      VARCHAR(64),
+  killed_type CHAR(1),
+  killer_type CHAR(1),
+  cnt         INTEGER,
+  PRIMARY KEY (id)
+) TYPE=MYISAM;
+
+/*CREATE INDEX i_kills_killed ON kills (killed_type, killed);*/
+/*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
+
 create table if not exists words (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   normalized VARCHAR(64) NOT NULL,
