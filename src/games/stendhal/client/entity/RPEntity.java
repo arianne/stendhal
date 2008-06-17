@@ -706,7 +706,7 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			attackTarget = (RPEntity) GameObjects.getInstance().get(
 					targetEntityID);
-
+		
 			if (attackTarget != null) {
 				onAttack(attackTarget);
 				attackTarget.onAttacked(this);
@@ -717,31 +717,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (attackTarget != null) {
-			int risk;
-			int damage;
-
-			if (object.has("risk")) {
-				risk = object.getInt("risk");
-			} else {
-				risk = 0;
-			}
-
-			if (object.has("damage")) {
-				damage = object.getInt("damage");
-			} else {
-				damage = 0;
-			}
-
-			if (risk == 0) {
-				onAttackMissed(attackTarget);
-				attackTarget.onMissed(this);
-			} else if ((risk > 0) && (damage == 0)) {
-				onAttackBlocked(attackTarget);
-				attackTarget.onBlocked(this);
-			} else if ((risk > 0) && (damage > 0)) {
-				onAttackDamage(attackTarget, damage);
-				attackTarget.onDamaged(this, damage);
-			}
+			evaluateAttack(object, attackTarget);
 		}
 
 		/*
@@ -761,6 +737,31 @@ public abstract class RPEntity extends ActiveEntity {
 		} else {
 			titleType = null;
 		}
+	}
+
+	protected void evaluateAttack(final RPObject object, RPEntity entity) {
+		int risk = 0;
+		int damage = 0;
+
+		if (object.has("risk")) {
+			risk = object.getInt("risk");
+		}
+		if (risk == 0) {
+			onAttackMissed(attackTarget);
+			entity.onMissed(this);
+		} else if (risk > 0) {
+			if (object.has("damage")) {
+				damage = object.getInt("damage");
+			}
+			if (damage == 0) {
+				onAttackBlocked(attackTarget);
+				entity.onBlocked(this);
+			} else if (damage > 0) {
+				onAttackDamage(attackTarget, damage);
+				entity.onDamaged(this, damage);
+			}
+		}
+
 	}
 
 	/**
