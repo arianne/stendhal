@@ -1637,7 +1637,10 @@ Southeast: Docks
      <destination zone="int_ados_castle_entrance" ref="entranceright"/>
    </portal>
    </zone>
-   
+
+   <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" file="Level 0/ados/ocean_e.tmx">
+   </zone>
+  
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
    </zone>
