@@ -459,12 +459,14 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 	}
 
+	
+
 	// When entity eats food
-	public void onEat(final int amount) {
+	public final void onEat() {
 		eating = true;
 	}
 
-	public void onEatEnd() {
+	public void onStopEating() {
 		eating = false;
 	}
 
@@ -666,7 +668,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Eating
 		 */
 		if (object.has("eating")) {
-			onEat(0);
+			onEat();
 		}
 
 		/*
@@ -852,7 +854,7 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Eating
 			 */
 			if (changes.has("eating")) {
-				onEat(0);
+				onEat();
 			}
 
 			/*
@@ -1127,7 +1129,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * No longer eating?
 		 */
 		if (changes.has("eating")) {
-			onEatEnd();
+			onStopEating();
 		}
 
 		if (changes.has("ghostmode")) {
