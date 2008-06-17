@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.factory.EntityMap;
 
 import org.junit.Test;
 
