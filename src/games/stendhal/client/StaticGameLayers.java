@@ -189,6 +189,7 @@ public class StaticGameLayers {
 
 	/**
 	 * Set the name of the area to be rendered.
+	 * @param area the areas name
 	 */
 	public void setAreaName(String area) {
 		logger.info("Area: " + area);
@@ -288,6 +289,8 @@ public class StaticGameLayers {
 
 	/**
 	 * Get a layer renderer.
+	 * @param area the areas name
+	 * @param layer the layer to be rendered
 	 * 
 	 * @return A layer renderer, or <code>null</code>,
 	 */
@@ -298,11 +301,17 @@ public class StaticGameLayers {
 	/**
 	 * Make a map "key" from an area/layer name.
 	 * 
-	 * 
-	 * TODO: Make the key an object with area/layer fields and replace ugly code
-	 * that uses startsWith('area.').
+	 * @param area
+	 *            the areas name
+	 * @param layer
+	 *            the layer to be rendered
+	 * @return the combined key
 	 */
 	protected String getLayerKey(final String area, final String layer) {
+//		            TODO: Make the key an object with area/layer fields and
+//		             replace ugly code that uses startsWith('area.').
+//		 
+		
 		return area + "." + layer;
 	}
 

@@ -29,6 +29,7 @@ public class UpdateManager {
 	/**
 	 * Connects to the server and loads a Property object which contains
 	 * information about the files available for update.
+	 * @param initialDownload 
 	 */
 	private void init(boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")

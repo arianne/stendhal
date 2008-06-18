@@ -78,8 +78,7 @@ public final class ConversationParser extends ErrorBuffer {
      * Create trigger expression to match the parsed user input in the FSM engine.
      *
      * @param text
-     * @param Expression
-     *            matcher
+     * @param matcher
      * @return Expression
      */
     public static Expression createTriggerExpression(final String text, ExpressionMatcher matcher) {
@@ -146,7 +145,6 @@ public final class ConversationParser extends ErrorBuffer {
      * Parse the given text sentence using an explicit Expression matcher.
      *
      * @param text
-     * @param ctx
      * @param matcher
      * @return
      */

@@ -40,33 +40,44 @@ public class WorldObjects {
 
 	public static interface WorldListener {
 
-		/** Called when a world zone has been loaded. */
+		/** Called when a world zone has been loaded. 
+		 * @param zoneName of the zone entered 
+		 */
 		void zoneEntered(String zoneName);
 
-		/** Called when a world zone has been unloaded. */
+		/** Called when a world zone has been unloaded. 
+		 * @param zoneName of the zone left 
+		 */
 		void zoneLeft(String zoneName);
 
 		/** Called when the player arrives at a map location. */
 		void playerMoved();
 	}
 
-	/** Adds a WorldListener to this event distributor. */
-	public static void addWorldListener(WorldListener a) {
+	/** Adds a WorldListener to this event distributor. 
+	 * @param listener to be added 
+	 */
+	public static void addWorldListener(WorldListener listener) {
 		synchronized (worldListeners) {
-			if (!worldListeners.contains(a)) {
-				worldListeners.add(a);
+			if (!worldListeners.contains(listener)) {
+				worldListeners.add(listener);
 			}
 		}
 	}
 
-	/** Removes a WorldListener from this event distributor. */
-	public static void removeWorldListener(WorldListener a) {
+	/** 
+	 * Removes a WorldListener from this event distributor. 
+	 * @param listener to be removed 
+	 */
+	public static void removeWorldListener(WorldListener listener) {
 		synchronized (worldListeners) {
-			worldListeners.remove(a);
+			worldListeners.remove(listener);
 		}
 	}
 
-	/** Create a zone-entered event. */
+	/** Create a zone-entered event. 
+	 * @param zoneName the name of the zone 
+	 */
 	public static void fireZoneEntered(String zoneName) {
 		synchronized (worldListeners) {
 			for (WorldListener wl : worldListeners) {
@@ -75,7 +86,10 @@ public class WorldObjects {
 		}
 	} // fireZoneEntered
 
-	/** Create a zone-left event. */
+	/** Create a zone-left event. 
+	 * @param zoneName of the zone left
+	 * 
+	 */
 	public static void fireZoneLeft(String zoneName) {
 		synchronized (worldListeners) {
 			for (WorldListener wl : worldListeners) {

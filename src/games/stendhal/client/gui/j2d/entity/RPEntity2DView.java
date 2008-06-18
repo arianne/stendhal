@@ -553,6 +553,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			case HIT:
 				hitSprite.draw(g2d, sx, sy);
 				break;
+			default: 
+				//cannot happen we are switching on enum
 			}
 		}
 

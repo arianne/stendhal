@@ -67,7 +67,6 @@ public final class Expression {
      * if we extend the column type in table 'words'
      *
      * @param str
-     * @param parser
      */
     public void parseAmount(final String str, final ErrorDrain errors) {
         try {

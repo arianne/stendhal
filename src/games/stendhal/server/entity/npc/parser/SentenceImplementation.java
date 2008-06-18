@@ -28,7 +28,7 @@ public final class SentenceImplementation extends Sentence {
     /**
      * Create a SentenceImplementation object for testing purposes.
      *
-     * @param ctx
+     * @param exprs
      */
     public SentenceImplementation(final Expression... exprs) {
         super(new ConversationContext());
@@ -391,7 +391,6 @@ public final class SentenceImplementation extends Sentence {
     /**
      * Merge words to form a simpler sentence structure.
      *
-     * @param isForMatching
      */
     void mergeWords() {
 

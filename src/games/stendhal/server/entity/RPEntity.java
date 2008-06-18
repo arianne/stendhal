@@ -390,13 +390,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Is called when the given attacker has hit the given defender. Determines
-	 * how much hitpoints the defender will lose, based on the attacker's ATK
+	 * Is called when this has hit the given defender. Determines
+	 * how much hitpoints the defender will lose, based on this's ATK
 	 * experience and weapon(s), the defender's DEF experience and defensive
 	 * items, and a random generator.
 	 * 
-	 * @param attacker
-	 *            The attacker.
 	 * @param defender
 	 *            The defender.
 	 * @return The number of hitpoints that the target should lose. 0 if the
@@ -460,10 +458,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * Calculates the damage that will be done in a distance attack (bow and
 	 * arrows, spear, etc.).
 	 * 
-	 * @param attacker
-	 *            The RPEntity that did the distance attack.
-	 * @param defender
-	 *            The RPEntity that was hit.
 	 * @param damage
 	 *            The damage that would have been done if there would be no
 	 *            modifiers for distance attacks.
@@ -942,8 +936,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
-	 * @param oldLevel
-	 *            The level that this RPEntity had before being killed.
 	 */
 	protected void rewardKillers(int oldXP) {
 		int xpReward = (int) (oldXP * 0.05);
@@ -1973,7 +1965,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * Returns the attack rate, the lower the better.
 	 * 
-	 * @param attacker
 	 * @return
 	 */
 	public int getAttackRate() {
@@ -1998,10 +1989,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * Lets the attacker attack its target.
 	 * 
-	 * @param attacker
-	 *            The attacking RPEntity.
-	 * @param defender
-	 *            The defending RPEntity.
 	 * @return true iff the attacker has done damage to the defender.
 	 * 
 	 */

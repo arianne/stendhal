@@ -56,7 +56,7 @@ public class StendhalRPAction {
 	 * 
 	 * @param player
 	 *            The player wanting to attack.
-	 * @param entity
+	 * @param victim
 	 *            The target of attack.
 	 */
 	public static void startAttack(Player player, RPEntity victim) {
@@ -120,8 +120,6 @@ public class StendhalRPAction {
 /**
 	 * Lets the attacker try to attack the defender.
 	 * 
-	 * @param attacker
-	 *            The attacking RPEntity.
 	 * @param defender
 	 *            The defending RPEntity.
 	 * @return true iff the attacker has done damage to the defender.

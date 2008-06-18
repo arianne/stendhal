@@ -47,8 +47,8 @@ public class ExpressionMatcher {
      * @param typeMatching
      *            the typeMatching to set
      */
-    public void setTypeMatching(final boolean flag) {
-        this.typeMatching = flag;
+    public void setTypeMatching(final boolean typeMatching) {
+        this.typeMatching = typeMatching;
     }
 
     /**
@@ -62,8 +62,8 @@ public class ExpressionMatcher {
      * @param exactMatching
      *            the exactMatching to set
      */
-    public void setExactMatching(final boolean flag) {
-        this.exactMatching = flag;
+    public void setExactMatching(final boolean exactMatching) {
+        this.exactMatching = exactMatching;
     }
 
     /**
@@ -77,8 +77,8 @@ public class ExpressionMatcher {
      * @param similarMatching
      *            the similarMatching to set
      */
-    public void setSimilarMatching(final boolean flag) {
-        this.similarMatching = flag;
+    public void setSimilarMatching(final boolean similarMatching) {
+        this.similarMatching = similarMatching;
     }
 
     /**
@@ -92,8 +92,8 @@ public class ExpressionMatcher {
      * @param caseInsensitive
      *            the caseInsensitive to set
      */
-    public void setCaseInsensitive(final boolean flag) {
-        this.caseInsensitive = flag;
+    public void setCaseInsensitive(final boolean caseInsensitive) {
+        this.caseInsensitive = caseInsensitive;
     }
 
     /**
@@ -114,8 +114,8 @@ public class ExpressionMatcher {
      * @param jokerMatching
      *            the jokerMatching to set
      */
-    public void setjokerMatching(final boolean flag) {
-        this.jokerMatching = flag;
+    public void setjokerMatching(final boolean jokerMatching) {
+        this.jokerMatching = jokerMatching;
     }
 
     /**
@@ -128,9 +128,9 @@ public class ExpressionMatcher {
     }
 
     /**
-     * Return true if none of the available matching flags is set.
+     * @return true if none of the available matching flags is set.
      *
-     * @return
+     * 
      */
     public boolean isEmpty() {
         return !isAnyFlagSet();
@@ -213,8 +213,7 @@ public class ExpressionMatcher {
      * Reads in the expressions from the given string in prepared form. The given text should be in the format:
      * "&lt;expression&gt;/&lt;TYPESTRING&gt; &lt;expression&gt;/&lt;TYPESTRING&gt; ..."
      *
-     * @param text:
-     *            Text to be parsed
+     * @param text to be parsed
      */
     private void readTypeMatchExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text, "/");
@@ -239,8 +238,7 @@ public class ExpressionMatcher {
     /**
      * Read in the words from the given string and create the Sentence object using this unchanged expressions.
      *
-     * @param text:
-     *            Text to be parsed
+     * @param text to be parsed
      */
     private void readSimpleExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text);
@@ -259,8 +257,7 @@ public class ExpressionMatcher {
      * Read in the words from the given string and create the sentence using the same rules as in SentenceImplementation
      * with activated 'forMatching' flag.
      *
-     * @param text:
-     *            Text to be parsed
+     * @param text to be parsed
      */
     private void readJokerExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text);

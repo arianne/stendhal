@@ -106,12 +106,7 @@ public class Stendhal2D extends StendhalGUI {
 		this(client, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
+	
 	public Stendhal2D(StendhalClient client, final int width, final int height) {
 		super(client);
 
@@ -306,6 +301,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Set the sidebar layout.
+	 * @param mode one of none , left , right or both
 	 * 
 	 * 
 	 */
@@ -330,6 +326,9 @@ public class Stendhal2D extends StendhalGUI {
 			leftSB.setVisible(true);
 			rightSB.setVisible(true);
 			break;
+		default:
+			//do nothing
+			
 		}
 
 		frame.pack();

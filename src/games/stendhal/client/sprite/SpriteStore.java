@@ -10,6 +10,7 @@ package games.stendhal.client.sprite;
 //
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.sprite.TileSprite.TSRef;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -167,7 +168,7 @@ public class SpriteStore {
 	 * 
 	 * @param ref
 	 *            the file name
-	 * @return
+	 * @return if sprite exists in store false otherwise
 	 */
 	public boolean existsSprite(String ref) {
 		URL url = getResourceURL(ref);
@@ -267,6 +268,9 @@ public class SpriteStore {
 
 	/**
 	 * Create a sprite tile (sub-region).
+	 * @param sprite 
+	 * @param x 
+	 * @param y 
 	 * 
 	 * 
 	 * 
@@ -274,11 +278,12 @@ public class SpriteStore {
 	 *            The width.
 	 * @param height
 	 *            The height.
+	 * @return tile found in cache or new one created from sprite
 	 */
 	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
 		SpriteCache cache = SpriteCache.get();
 
-		Object reference = TileSprite.createReference(sprite, x, y, width,
+		TSRef reference = TileSprite.createReference(sprite, x, y, width,
 				height);
 
 		Sprite tile = cache.get(reference);

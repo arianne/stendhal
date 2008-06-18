@@ -19,8 +19,6 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
 	 * 
-	 * @param client
-	 *            The stendhal client.
 	 */
 	public KeyRing() {
 		// Remember if you change these numbers change also a number in

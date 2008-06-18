@@ -157,6 +157,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 
 	/**
 	 * Get the shared [singleton] instance.
+	 * @return the singleton instance
 	 */
 	public static Entity2DViewFactory get() {
 		return sharedInstance;

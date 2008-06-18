@@ -114,9 +114,6 @@ public enum NotificationType {
 	/**
 	 * Get the color that is tied to a notification type.
 	 *
-	 * @param type
-	 *            The notification type.
-	 *
 	 * @return The appropriate color.
 	 */
 	public Color getColor() {

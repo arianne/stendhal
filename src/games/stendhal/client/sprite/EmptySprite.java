@@ -37,6 +37,7 @@ public class EmptySprite implements Sprite {
 	 *            The sprite width.
 	 * @param height
 	 *            The sprite height.
+	 * @param reference 
 	 */
 	public EmptySprite(final int width, final int height, Object reference) {
 		this.width = width;
@@ -50,6 +51,9 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Create an empty sprite reference.
+	 * @param width 
+	 * @param height 
+	 * @return 
 	 * 
 	 * 
 	 */

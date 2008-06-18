@@ -54,6 +54,10 @@ public class TileSprite implements Sprite {
 	 * 
 	 * @param sprite
 	 *            The source sprite.
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height 
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
@@ -72,6 +76,10 @@ public class TileSprite implements Sprite {
 	 * 
 	 * @param sprite
 	 *            The source sprite.
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height 
 	 * 
 	 * @param reference
 	 *            The sprite identifier reference.
@@ -95,10 +103,16 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile sprite reference.
+	 * @param sprite 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height 
+	 * @return object that is used as reference
 	 * 
 	 * 
 	 */
-	public static Object createReference(final Sprite sprite, int x, int y,
+	public static TSRef createReference(final Sprite sprite, int x, int y,
 			int width, int height) {
 		Object ref = sprite.getReference();
 

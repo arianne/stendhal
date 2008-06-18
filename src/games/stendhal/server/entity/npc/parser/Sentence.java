@@ -94,7 +94,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     /**
      * Return verb [i] of the sentence.
      *
-     * @param i
+     * @param idx
      * @param typePrefix
      * @return verb
      */
@@ -134,7 +134,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     /**
      * Return unknown word [i] of the sentence.
      *
-     * @param i
+     * @param idx
      * @return Expression with unknown type
      */
     public Expression getUnknownTypeExpression(final int idx) {
@@ -719,7 +719,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     /**
      * Build a string from the list of expressions following the given one.
      *
-     * @param verb
+     * @param expr
      * @return
      */
     private String stringFromExpressionsAfter(final Expression expr) {

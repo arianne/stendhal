@@ -49,7 +49,6 @@ public class SummonAction extends AdministrationAction {
 		/**
 		 * Create the named entity (creature, pet or sheep) of type 'type'.
 		 * 
-		 * @param player
 		 * @param type
 		 */
 		private void createEntity(String type) {

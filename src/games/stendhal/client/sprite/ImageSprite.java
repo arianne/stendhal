@@ -125,7 +125,11 @@ public class ImageSprite implements Sprite {
 		return image.getGraphics();
 	}
 
-	/** overlays the image with the given color and returns a new image. */
+	/** overlays the image with the given color and returns a new image. 
+	 * @param color 
+	 * @param alpha 
+	 * @return 
+	 */
 	private Image getModifiedImage(Color color, float alpha) {
 		BufferedImage i = getGC().createCompatibleImage(getWidth(),
 				getHeight(), Transparency.TRANSLUCENT);
@@ -138,7 +142,7 @@ public class ImageSprite implements Sprite {
 		return i;
 	}
 
-	/** returns a brighter version of the sprite. */
+	/** @return a brighter version of the sprite. */
 	public synchronized ImageSprite brighter() {
 		if (brighterSprite == null) {
 			brighterSprite = new ImageSprite(
@@ -148,7 +152,7 @@ public class ImageSprite implements Sprite {
 		return brighterSprite;
 	}
 
-	/** returns a darker version of the sprite. */
+	/** @return a darker version of the sprite. */
 	public synchronized ImageSprite darker() {
 		if (darkerSprite == null) {
 			darkerSprite = new ImageSprite(getModifiedImage(Color.BLACK, 0.3f));

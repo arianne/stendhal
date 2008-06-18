@@ -513,18 +513,19 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Sets the global Mute switch of this sound system. Does nothing on
 	 * duplicate call.
+	 * @param ismute false if sound is to be heard
 	 */
-	public void setMute(boolean v) {
-		if (v == muteSetting) {
+	public void setMute(boolean ismute) {
+		if (ismute == muteSetting) {
 			return;
 		}
 
-		logger.info("- sound system setting mute = " + (v ? "ON" : "OFF"));
-		muteSetting = v;
+		logger.info("- sound system setting mute = " + (ismute ? "ON" : "OFF"));
+		muteSetting = ismute;
 
 		synchronized (ambientList) {
 			for (AmbientSound ambient : ambientList) {
-				if (v) {
+				if (ismute) {
 					ambient.stop();
 				} else {
 					ambient.play();

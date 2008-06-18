@@ -31,6 +31,7 @@ public class StyledJButton extends JButton {
 
 	/**
 	 * Create a styled JButton.
+	 * @param style to be applied
 	 * 
 	 * 
 	 */
@@ -46,6 +47,8 @@ public class StyledJButton extends JButton {
 
 	/**
 	 * Apply style information to a component.
+	 * @param style to be applied
+	 * @param panel the style is to be applied to
 	 * 
 	 */
 	protected void applyStyle(Style style, JButton panel) {

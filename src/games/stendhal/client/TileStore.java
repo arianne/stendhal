@@ -205,6 +205,7 @@ public class TileStore implements Tileset {
 	 * 
 	 * Hack: Read the tileset directly from tiled/tileset if started from an
 	 * IDE.
+	 * @return the / separated url to the resource
 	 */
 	private static String getResourceBase() {
 		String path = "data/";

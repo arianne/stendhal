@@ -42,24 +42,32 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add an event line.
+	 * @param text to be printed 
 	 *
 	 */
 	public abstract void addEventLine(String text);
 
 	/**
 	 * Add an event line.
+	 * @param header 
+	 * @param text to be printed
 	 *
 	 */
 	public abstract void addEventLine(String header, String text);
 
 	/**
 	 * Add an event line.
+	 * @param text to be printed
+	 * @param type specifies if it is normal positive or negative 
 	 *
 	 */
 	public abstract void addEventLine(String text, NotificationType type);
 
 	/**
 	 * Add an event line.
+	 * @param header 
+	 * @param text to be printed
+	 * @param type specifies if it is normal positive or negative 
 	 *
 	 */
 	public abstract void addEventLine(String header, String text,
@@ -67,8 +75,9 @@ public abstract class StendhalUI {
 
 	/**
 	 * Adds a Swing component to the view.
+	 * @param window to be added
 	 */
-	public abstract void addWindow(ManagedWindow imd);
+	public abstract void addWindow(ManagedWindow window);
 
 	/**
 	 * Initiate outfit selection by the user.
@@ -82,6 +91,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Get the default UI.
+	 * @return  the instance
 	 *
 	 *
 	 */

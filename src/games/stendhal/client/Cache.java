@@ -42,7 +42,7 @@ public class Cache {
 	 * Return the client configuration instance
 	 * (content of "stendhal.cache").
 	 * 
-	 * @return
+	 * @return the singleton instance
 	 */
 	public Configuration getConfiguration() {
 		return cacheManager;
