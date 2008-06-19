@@ -1042,17 +1042,28 @@ public class ResultSetIteratorTest {
 		iter.next();
 		assertTrue(resultClosehasbeenCalled);
 		assertTrue(statementClosehasbeenCalled);
-		
+
 	}
 
-	// @Test
-	// public void testRemove() {
-	// fail("Not yet implemented");
-	// }
-	//
-	// @Test
-	// public void testIterator() {
-	// fail("Not yet implemented");
-	// }
+	@Test
+	public void testRemove() {
+		ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+				new ResultSetImplementation() {
+					@Override
+					public void deleteRow() throws SQLException {
+						throw new SQLException();
+					}
+				});
+		iter.remove();
+		assertTrue("no exception thrown", true);
+	}
+
+	@Test
+	public void testIterator() {
+		ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+																		new ResultSetImplementation());
+		assertSame(iter, iter.iterator());
+
+	}
 
 }
