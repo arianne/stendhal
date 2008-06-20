@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,10 +32,12 @@ public class testStoreableEntityListTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		MockStendlRPWorld.reset();
 	}
 
 	@Before
