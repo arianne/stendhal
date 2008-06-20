@@ -62,7 +62,7 @@ public class UseAction implements ActionListener {
 
 	private void useItemInSlot(Player player, RPAction action) {
 		Entity object = EntityHelper.entityFromSlot(player, action);
-		if ((object != null) && canAccessSlot(player, object)) {
+		if ((object != null) && canAccessSlot(player, object.getBaseContainer())) {
 			tryUse(player, object);
 		}
 	}
