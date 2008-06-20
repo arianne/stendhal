@@ -1,7 +1,10 @@
 package games.stendhal.tools.loganalyser.util;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -12,14 +15,11 @@ import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.NClob;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
-import java.sql.SQLXML;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -239,14 +239,6 @@ public class ResultSetIteratorTest {
 			return null;
 		}
 
-		public NClob getNClob(int columnIndex) throws SQLException {
-			return null;
-		}
-
-		public NClob getNClob(String columnLabel) throws SQLException {
-			return null;
-		}
-
 		public String getNString(int columnIndex) throws SQLException {
 			return null;
 		}
@@ -281,22 +273,6 @@ public class ResultSetIteratorTest {
 
 		public int getRow() throws SQLException {
 			return 0;
-		}
-
-		public RowId getRowId(int columnIndex) throws SQLException {
-			return null;
-		}
-
-		public RowId getRowId(String columnLabel) throws SQLException {
-			return null;
-		}
-
-		public SQLXML getSQLXML(int columnIndex) throws SQLException {
-			return null;
-		}
-
-		public SQLXML getSQLXML(String columnLabel) throws SQLException {
-			return null;
 		}
 
 		public short getShort(int columnIndex) throws SQLException {
@@ -662,14 +638,7 @@ public class ResultSetIteratorTest {
 
 		}
 
-		public void updateNClob(int columnIndex, NClob clob) throws SQLException {
-
-		}
-
-		public void updateNClob(String columnLabel, NClob clob) throws SQLException {
-
-		}
-
+	
 		public void updateNClob(int columnIndex, Reader reader) throws SQLException {
 
 		}
@@ -718,18 +687,6 @@ public class ResultSetIteratorTest {
 		}
 
 		public void updateRow() throws SQLException {
-		}
-
-		public void updateRowId(int columnIndex, RowId x) throws SQLException {
-		}
-
-		public void updateRowId(String columnLabel, RowId x) throws SQLException {
-		}
-
-		public void updateSQLXML(int columnIndex, SQLXML xmlObject) throws SQLException {
-		}
-
-		public void updateSQLXML(String columnLabel, SQLXML xmlObject) throws SQLException {
 		}
 
 		public void updateShort(int columnIndex, short x) throws SQLException {
