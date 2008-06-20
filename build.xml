@@ -87,8 +87,47 @@
 		<delete dir="${build_tools}"/>
 		<delete dir="${build_tiled}"/>
 		<delete dir="${buildroot}/build_stendhaltools"/>
+		<delete dir="${buildroot}/buildbot"/>
 	</target>
 
+	
+	
+	<target name = "postman">
+	                <mkdir dir="${buildroot}/buildbot"/>
+	                <javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+	                        <include name="games/stendhal/bot/postman/*.java"/>
+	                        <include name="games/stendhal/bot/package-info.java"/>
+	                        <include name="games/stendhal/bot/shouter/*.java"/>
+	
+	                        <compilerarg value="-encoding"/>
+	                        <compilerarg value="utf-8"/>
+	                        <compilerarg value="-Xlint:unchecked"/>
+	
+	                        <classpath>
+	                               <pathelement path="${build_server}"/>
+	                                <pathelement path="${marauroa_jar}"/>
+	                                <pathelement path="${log4j_jar}"/>
+	                                <pathelement path="${junit_jar}"/>
+	                        	 <pathelement path="libs/pircbot.jar"/>
+	
+	                        </classpath>
+	
+	                </javac>
+				<jar jarfile="${buildroot}/buildbot/postman.jar">
+					<fileset dir="${buildroot}/buildbot">
+						  <include name="games/stendhal/bot/postman/*"/>
+							
+	                       <include name="games/stendhal/bot/*"/>
+					
+	                       <include name="games/stendhal/bot/shouter/*"/>
+					</fileset>
+					<manifest>
+						<attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
+					</manifest>
+				</jar>
+	                <!-- ende build bot -->
+	
+	</target>
 	<target name="server_build" depends="init, checkxml" description="Build JAR file for Stendhal server">
 		<mkdir dir="${build_server}"/>
 

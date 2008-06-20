@@ -23,11 +23,11 @@ import marauroa.common.game.RPObject;
  */
 public class Postman implements Runnable {
 
+	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
 	private Properties messages = new Properties();
 	private ClientFramework clientManager;
 	private PostmanIRC postmanIRC;
-
 	private static final String greeting = "Hi, I am the postman. How can I #help you?";
 	private static final String intro = "I store messages for offline players and deliver them on login.\n";
 	private static final String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
@@ -48,10 +48,9 @@ public class Postman implements Runnable {
 		// progress. We have some trouble with server crashes.");
 
 		try {
-			this.messages.loadFromXML(new FileInputStream(
-					System.getProperty("user.home") + "/.stendhal-postman.xml"));
+			this.messages.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_XML));
 		} catch (Exception e) {
-			logger.error(e, e);
+			logger.info("no message file found will be created on first write");
 		}
 	}
 
@@ -180,13 +179,12 @@ public class Postman implements Runnable {
 					} else if (arianneCmd.equals("Players")) {
 						onWhoResponse(st);
 					} else if (arianneCmd.equalsIgnoreCase("shouts:") || arianneCmd.equalsIgnoreCase("rented")) {
-						postmanIRC.sendMessage("#arianne", text);
-						postmanIRC.sendMessage("#arianne-support", text);
+						postmanIRC.sendMessageToAllChannels(text);
 					} else if (arianneCmd.equalsIgnoreCase("asks")
 							|| arianneCmd.equalsIgnoreCase("answers")
 							|| arianneCmd.equalsIgnoreCase("answer")) {
 						// answer is a typo in old server
-						postmanIRC.sendMessage("#arianne-support", text);
+						postmanIRC.sendSupportMessage(text);
 						if (arianneCmd.equalsIgnoreCase("asks")) {
 							dumpPlayerPosition();
 						}
@@ -238,8 +236,7 @@ public class Postman implements Runnable {
 		// Save to disk
 		try {
 			messages.storeToXML(
-					new FileOutputStream(System.getProperty("user.home")
-							+ "/.stendhal-postman.xml"),
+					new FileOutputStream(STENDHAL_POSTMAN_XML),
 					"These are the messages postman should deliver.");
 		} catch (Exception e) {
 			logger.error(e, e);
@@ -266,8 +263,7 @@ public class Postman implements Runnable {
 		// Save to disk
 		try {
 			messages.storeToXML(
-					new FileOutputStream(System.getProperty("user.home")
-							+ "/.stendhal-postman.xml"),
+					new FileOutputStream(STENDHAL_POSTMAN_XML),
 					"These are the messages postman should deliver.");
 		} catch (Exception e) {
 			logger.error(e, e);

@@ -2,10 +2,11 @@ package games.stendhal.bot.postman;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.PircBot;
 
@@ -16,11 +17,22 @@ import org.jibble.pircbot.PircBot;
  */
 public class PostmanIRC extends PircBot {
 
+	private static final String STENDHAL_POSTMAN_CONF = ".stendhal-postman-conf.xml";
+
 	private static Logger logger = Logger.getLogger(PostmanIRC.class);
 
 	private Properties prop = new Properties();
 
 	private String gameServer;
+
+	private static String SUPPORT_CHANNEL;// = "#arianne-support";
+
+	private static String MAIN_CHANNEL;// = "#arianne-chat";
+
+	public static List<String> channels = new LinkedList<String>();// = {
+																	// PostmanIRC.SUPPORT_CHANNEL,
+																	// PostmanIRC.MAIN_CHANNEL
+																	// };
 
 	/**
 	 * Creates a new PostmanIRC.
@@ -30,9 +42,13 @@ public class PostmanIRC extends PircBot {
 	public PostmanIRC(String gameServer) {
 		this.gameServer = gameServer;
 		try {
-			this.prop.loadFromXML(new FileInputStream(
-					System.getProperty("user.home")
-							+ "/.stendhal-postman-conf.xml"));
+			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
+			SUPPORT_CHANNEL = prop.getProperty("support");
+			MAIN_CHANNEL = prop.getProperty("main");
+
+			channels.add(SUPPORT_CHANNEL);
+			channels.add(MAIN_CHANNEL);
+			channels.remove(null);
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
@@ -64,9 +80,9 @@ public class PostmanIRC extends PircBot {
 				Thread.sleep(5000);
 				super.changeNick(nick);
 			}
-
-			joinChannel("#arianne");
-			joinChannel("#arianne-support");
+			for (String channelName : PostmanIRC.channels) {
+						joinChannel(channelName);
+			}
 			sendMessage("NickServ", "identify " + pass);
 		}
 	}
@@ -88,6 +104,16 @@ public class PostmanIRC extends PircBot {
 		};
 		t.setDaemon(true);
 		t.start();
+	}
+
+	void sendSupportMessage(final String text) {
+		sendMessage(SUPPORT_CHANNEL, text);
+	}
+
+	void sendMessageToAllChannels(final String text) {
+		for (String channelName : channels) {
+			sendMessage(channelName, text);
+		}
 	}
 
 	/**
