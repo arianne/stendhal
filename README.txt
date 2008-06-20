@@ -62,7 +62,9 @@ How to create server
 
 You need to create the server.ini file by running 
 
-  java games.stendhal.server.GenerateINI
+  java -cp marauroa.jar:stendhal-server-X.XX.jar games.stendhal.server.core.engine.GenerateINI
+
+(Please use ; instead of : on Microsoft Windows).
   
 It will create server.ini file that will work correctly with Marauroa 2.0.  
 
