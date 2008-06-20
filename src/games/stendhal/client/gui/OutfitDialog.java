@@ -33,7 +33,6 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,8 +48,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 public class OutfitDialog extends JDialog {
 
@@ -723,49 +723,6 @@ public class OutfitDialog extends JDialog {
 		}
 	}
 
-	static class HeadFilter implements FilenameFilter {
-
-		public boolean accept(File dir, String name) {
-			if (name.startsWith("head")) {
-				return true;
-			}
-
-			return false;
-		}
-	}
-
-	static class HairFilter implements FilenameFilter {
-
-		public boolean accept(File dir, String name) {
-			if (name.startsWith("hair")) {
-				return true;
-			}
-
-			return false;
-		}
-	}
-
-	static class BodyFilter implements FilenameFilter {
-
-		public boolean accept(File dir, String name) {
-			if (name.startsWith("player_base")) {
-				return true;
-			}
-
-			return false;
-		}
-	}
-
-	static class ClothesFilter implements FilenameFilter {
-
-		public boolean accept(File dir, String name) {
-			if (name.startsWith("dress")) {
-				return true;
-			}
-
-			return false;
-		}
-	}
 
 	private void generateAllOutfits(String baseDir) {
 		/** TEST METHOD: DON'T NO USE */

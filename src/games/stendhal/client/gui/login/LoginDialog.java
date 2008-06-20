@@ -10,12 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.login.Profile;
-import games.stendhal.client.gui.login.ProfileList;
+import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Frame;

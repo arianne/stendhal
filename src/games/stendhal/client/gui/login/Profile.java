@@ -4,7 +4,7 @@ package games.stendhal.client.gui.login;
 /**
  * User login profile.
  */
-public class Profile {
+class Profile {
 
 	/** Old server names to remap. */
 	protected static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx" };

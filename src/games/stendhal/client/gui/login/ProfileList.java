@@ -1,7 +1,6 @@
 /* $Id$ */
 package games.stendhal.client.gui.login;
 
-import games.stendhal.client.gui.Encoder;
 
 import java.io.BufferedReader;
 import java.io.IOException;

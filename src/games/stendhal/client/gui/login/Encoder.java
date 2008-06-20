@@ -2,11 +2,11 @@
  *Created by L. Stevens thegeneral@users.sourceforge.net
  *This is used to serve as deterrent, to hopfully prevent someone from looking at the saved pword
  */
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.login;
 
 import java.util.BitSet;
 
-public class Encoder {
+class Encoder {
 
 	private BitSet key;
 
