@@ -9,15 +9,12 @@ package games.stendhal.client;
 //
 //
 
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.BuddyChangeListener;
-import games.stendhal.client.events.EntityHolderListener;
-import games.stendhal.client.events.EntityHolderMulticaster;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.gui.admin.TransitionDiagram;
-
 import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
+
 import java.util.HashMap;
 
 import marauroa.common.game.RPEvent;
@@ -70,11 +67,6 @@ public class UserContext implements RPObjectChangeListener {
 	protected GameObjects gameObjects;
 
 	/**
-	 * The entity slot event multicaster.
-	 */
-	protected EntityHolderMulticaster entitySlotListener;
-
-	/**
 	 * The player character's name.
 	 */
 	protected String name;
@@ -89,8 +81,7 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public UserContext() {
 		adminlevel = 0;
-		entitySlotListener = new EntityHolderMulticaster();
-		gameObjects = GameObjects.getInstance();
+	    gameObjects = GameObjects.getInstance();
 		name = null;
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
@@ -121,15 +112,7 @@ public class UserContext implements RPObjectChangeListener {
 		buddyListeners = newListeners;
 	}
 
-	/**
-	 * Add an entity slot listener.
-	 * 
-	 * @param l
-	 *            The listener.
-	 */
-	public void addEntitySlotListener(EntityHolderListener l) {
-		entitySlotListener.add(l);
-	}
+	
 
 	/**
 	 * Add a feature change listener.
@@ -333,16 +316,6 @@ public class UserContext implements RPObjectChangeListener {
 				break;
 			}
 		}
-	}
-
-	/**
-	 * Remove an entity slot listener.
-	 * 
-	 * @param l
-	 *            The listener.
-	 */
-	public void removeEntitySlotListener(EntityHolderListener l) {
-		entitySlotListener.remove(l);
 	}
 
 	/**
@@ -612,20 +585,7 @@ public class UserContext implements RPObjectChangeListener {
 		}
 		if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
-		} else if (sobject.getRPClass().subclassOf("entity")) {
-			Entity entity = gameObjects.get(sobject);
-
-			if (entity != null) {
-				Entity parent = gameObjects.get(object);
-
-				if (logger.isDebugEnabled()) {
-					logger.debug("Added: " + entity);
-					logger.debug("   To: " + parent + "  [" + slotName + "]");
-				}
-
-				entitySlotListener.entityAdded(parent, slotName, entity);
-			}
-		}
+		} 
 	}
 
 	/**
@@ -688,19 +648,6 @@ public class UserContext implements RPObjectChangeListener {
 			processBuddiesRemoved(sobject);
 		} else if (slotName.equals("!features")) {
 			processFeaturesRemoved(sobject);
-		} else if (sobject.getRPClass().subclassOf("entity")) {
-			Entity entity = gameObjects.get(sobject);
-
-			if (entity != null) {
-				Entity parent = gameObjects.get(object);
-
-				if (logger.isDebugEnabled()) {
-					logger.debug("Removed: " + entity);
-					logger.debug("   From: " + parent + "  [" + slotName + "]");
-				}
-
-				entitySlotListener.entityRemoved(parent, slotName, entity);
-			}
 		}
 	}
 }
