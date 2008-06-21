@@ -28,6 +28,7 @@ class HelpAction implements SlashAction {
 				"- /support <message> \tAsk an administrator for help.",
 				"- /who \t\tList all players currently online",
 				"- /where <player> \t\tShow the current location of <player>",
+				"- /sentence <text> \t\tWrites the sentence that appears on Website.",
 				"- /drop [quantity] <item>\tDrop a certain number of an item",
 				"- /add <player> \t\tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
