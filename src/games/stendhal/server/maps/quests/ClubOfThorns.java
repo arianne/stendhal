@@ -41,7 +41,7 @@ import java.util.List;
  * <ul>
  * <li> 1000 XP<li>
  * <li> Club of Thorns</li>
- * <li> Karma: 6<li>
+ * <li> Karma: 16<li>
  * </ul>
  * 
  * REPETITIONS:
@@ -59,13 +59,13 @@ public class ClubOfThorns extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Make revenge! Kill de Mountain Orc Chief! unnerstand?",
+			"Make revenge! Kill de Mountain Orc Chief! unnerstand? ok?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.ATTENDING, 
 			"Make revenge! #Kill Mountain Orc Chief!",
 			null);
 
@@ -108,7 +108,7 @@ public class ClubOfThorns extends AbstractQuest {
 
 		List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("club of thorns", 1, true));
-		reward.add(new IncreaseKarmaAction(3.0));
+		reward.add(new IncreaseKarmaAction(10.0));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
