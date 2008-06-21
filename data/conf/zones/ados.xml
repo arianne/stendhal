@@ -1715,13 +1715,13 @@ Southeast: Docks
    </entity>
  </zone>
  
- <!--
-     <zone name="0_ados_coast_sw" file="Level 0/ados/coast_sw.tmx">
-     </zone>
 
-     <zone name="0_ados_coast_s" file="Level 0/ados/coast_s.tmx">
-     </zone>
- -->
+ <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">
+ </zone>
+
+ <zone name="0_ados_coast_s" level="0" x="500896" y="500256" file="Level 0/ados/coast_s.tmx">
+ </zone>
+
 
 
 
