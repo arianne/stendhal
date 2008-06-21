@@ -81,7 +81,7 @@
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.56">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.56">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UW6rCQBBFUXEUzn+kfgkhdGL1I2VFVsMi4hUOZN/k9Xw8XgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwFf78y9b9Pe4skvmFuM9ruiSucVYj9b3d9uiv0fv36tu0d8j0mS0S+YW400ip/oW8SYjbapvEW9yds/33832z9oi3uSsTavBTP+sLeJNomf7++pb1Guifz2jp/oW9Zrofx+Z917n37feXltNWr+pvkWsR+t92/o8+07O3KKvy/7aarS93mGLWI+RU32Lek30rymzh/b1fO7z9nrUYkX/rC1iPUZO9S36uuyvRx1me2RuEetx9sytfCYzt1j/P/JvW8Ses1VNMrfob3L07r2i/9VbrGnSanSHLa7pdOct5pus7uId8PvWPT1mmmRuEW/S02CmS+YW65p861RxCwAAAAAAAAAAAACgujfywF2aAAABAA==
   </data>
