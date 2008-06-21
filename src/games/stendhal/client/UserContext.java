@@ -78,10 +78,11 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Constructor.
+	 * @param gameObjects TODO
 	 */
-	public UserContext() {
+	public UserContext(GameObjects gameObjects) {
 		adminlevel = 0;
-	    gameObjects = GameObjects.getInstance();
+	    this.gameObjects = gameObjects;
 		name = null;
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
@@ -516,14 +517,7 @@ public class UserContext implements RPObjectChangeListener {
 				RPEventImageViewer.viewImage(rpevent);
 			}
 		}
-
-		for (RPEvent rpevent : changes.events()) {
-			if (rpevent.getName().equals("transition_graph")) {
-				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
-			} else if (rpevent.getName().equals("examine")) {
-				RPEventImageViewer.viewImage(rpevent);
-			}
-		}
+	
 	}
 
 	/**

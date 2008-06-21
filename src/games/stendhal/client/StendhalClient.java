@@ -140,7 +140,7 @@ public class StendhalClient extends ClientFramework {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
-		userContext = new UserContext();
+		userContext = new UserContext(gameObjects);
 
 		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
 
