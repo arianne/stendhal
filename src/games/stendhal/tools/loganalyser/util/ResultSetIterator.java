@@ -92,6 +92,10 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 		closed = true;
 		try {
 			resultSet.close();
+        } catch (SQLException e) {
+        	logger.error(e, e);
+        }
+		try {
 			statement.close();
         } catch (SQLException e) {
         	logger.error(e, e);
