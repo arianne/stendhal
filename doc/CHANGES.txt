@@ -1,5 +1,14 @@
 Changelog
 ---------
+0.68+epsilon
+- sentence can be set for website
+- new raid scripts
+- map fixes
+- ados mountains has a bazaar
+- baby dragon not eating bug fixed
+- balrog home in semos mines w2 redecorated
+
+
 0.68 
 - character panel shows atk_xp needed to level up instead of total atk_xp
 - pizza is edible and can be made at the wofol bakery
