@@ -361,17 +361,17 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		try {
 			LoaderEngine engine = new LoaderEngine();
 			engine.load("file",
-					"games.stendhal.server.StendhalHttpServer$FileService");
+					"games.stendhal.server.extension.StendhalHttpServer$FileService");
 			engine.link("*", "file");
 			engine.load("data",
-					"games.stendhal.server.StendhalHttpServer$DataService");
+					"games.stendhal.server.extension.StendhalHttpServer$DataService");
 			engine.link("/data/*", "data");
 			engine.link("*.jar", "data");
 			engine.load("script",
-					"games.stendhal.server.StendhalHttpServer$GameScriptService");
+					"games.stendhal.server.extension.StendhalHttpServer$GameScriptService");
 			engine.link("/stendhal.*", "script");
 			engine.load("securescript",
-					"games.stendhal.server.StendhalHttpServer$SecureScriptService");
+					"games.stendhal.server.extension.StendhalHttpServer$SecureScriptService");
 			engine.link("*.groovy", "securescript");
 			this.handler = ProtocolHandlerFactory.getInstance(engine);
 			// ProcessQueue.getInstance().resize(1);
