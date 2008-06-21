@@ -101,7 +101,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * Returns the price of the desired amount of the chosen item.
 	 * @param player
 	 *            The player who considers buying/selling
-	 * @param seller
+	 * @param npc
 	 * 			  The merchant NPC
 	 * 
 	 * @return The price; 0 if no item was chosen or if the amount is 0.

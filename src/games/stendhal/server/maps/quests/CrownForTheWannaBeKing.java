@@ -285,7 +285,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * Returns all items that the given player still has to bring to complete the quest.
 	 *
 	 * @param player The player doing the quest
-	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of item names
 	 */
 	private ItemCollection getMissingItems(Player player) {

@@ -81,7 +81,6 @@ public abstract class PlayerTestHelper {
 	 * Register a player in rule processor and world.
 	 * 
 	 * @param player
-	 * @param zone
 	 */
 	public static void registerPlayer(Player player) {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
