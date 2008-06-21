@@ -16,7 +16,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -57,7 +56,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public final int MAX_WEIGHT = 100;
 
-	protected List<String> foodName = Arrays.asList("chicken");
+	protected List<String> foodName = getFoodNames();
 
 	protected int HP = 100;
 
@@ -71,6 +70,9 @@ public abstract class Pet extends DomesticAnimal {
 
 	protected int hunger;
 
+	
+	abstract List<String> getFoodNames();
+	
 	public static void generateRPClass() {
 		try {
 			RPClass pet = new RPClass("pet");

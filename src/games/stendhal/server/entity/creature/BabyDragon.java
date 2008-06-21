@@ -15,6 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -40,7 +41,7 @@ public class BabyDragon extends Pet {
 
 	private void setUp() {
 
-		foodName = Arrays.asList("ham", "pizza", "meat");
+		
 
 		HP = 500;
 
@@ -107,8 +108,10 @@ public class BabyDragon extends Pet {
 	 *            The player who should own the baby dragon
 	 */
 	public BabyDragon(RPObject object, Player owner) {
+		
 		super(object, owner);
-	
+		
+
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
 
@@ -127,5 +130,10 @@ public class BabyDragon extends Pet {
 		}
 
 		return (text);
+	}
+
+	@Override
+	List<String> getFoodNames() {
+		return Arrays.asList("ham", "pizza", "meat");
 	}
 }
