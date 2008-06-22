@@ -43,12 +43,12 @@ m*/building/decoration/rocks.png
 m*/building/decoration/rocks_2.png
 k*/building/decoration/skull_carving.png => item/statue/skull_carving.png
 k*/building/decoration/skullpedestal.png    
-./building/decoration/squares.png          deleted 
+del*./building/decoration/squares.png          deleted 
 m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
 m/K*./building/decoration/toolset.png
 K*/building/decoration/webs.png  were originally by Katie
-./building/decoration/wooden_banisters.png     deleted
+del*./building/decoration/wooden_banisters.png     deleted
 K*./building/decoration/wall_feature.png but 
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
@@ -73,7 +73,7 @@ d*/building/entrance/earthen_4.png
 d+k*/building/entrance/earthen_6.png
 d*/building/entrance/earthen_face.png
 d*/building/entrance/earthen_face_2.png
-./building/entrance/earthen_face_4.png 		deleted
+del*./building/entrance/earthen_face_4.png 		deleted
 k*/building/entrance/grey.png
 m*/building/entrance/int_iron_bars.png
 K*/building/entrance/light_red_ns_ew.png
@@ -147,8 +147,8 @@ k*/ground/green_paving_2.png
 k*/ground/green_paving_3.png
 k*/ground/green_paving_4.png
 k*/ground/ground.png
-b/ground/ground_2.png
-./ground/mud_2.png	deleted
+K*/ground/ground_2.png
+del*./ground/mud_2.png	deleted
 k*/ground/mud_patch.png
 k*/ground/pothole.png
 z*./ground/spikes.png
@@ -230,7 +230,7 @@ b*/item/chest/wooden_dark.png
 b*/item/chest/wooden_pale.png
 k*/item/corpse/huge_animal.png
 k*/item/corpse/skeleton.png
-./item/corpse/skull_dark.png a version of this is in mirage sets so must we replace?
+m*./item/corpse/skull_dark.png
 k*/item/corpse/skull_pale.png
 K*/item/drink/bottle_and_glass.png
 k*/item/drink/cognac.png
@@ -318,7 +318,7 @@ b*/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
 b*/item/furniture/table/brick_base.png
-b/item/gothic/coffin.png  replaced this image to be on the safe side
+b*/item/gothic/coffin.png  replaced this image to be on the safe side
 m*/item/gothic/large_gravestone.png
 m*/item/gothic/slab.png
 b+k*/item/pot/barrel.png
@@ -342,7 +342,7 @@ k*/object/castle.png
 k*/object/church.png
 J*/object/letters.png
 m*./object/mine_rails.png
-./object/stalactite.png
+del*/object/stalactite.png was 'cleared' and can be redrawn later'
 m*/object/suspension_bridge.png
 k*/object/well.png
 k*/object/witch_hut.png
@@ -350,7 +350,7 @@ K*/m*/plant/cactus.png
 k*/plant/grass_2.png
 k*/plant/grass_corners.png
 k*/plant/grass_edges.png
-./plant/grass_mud.png	deleted
+del*plant/grass_mud.png	deleted
 k*/plant/grasses.png
 k*/plant/leaves.png
 m*/plant/vine.png
@@ -366,7 +366,7 @@ m*/plant/flower/daisy_blue.png
 m*/plant/flower/daisy_red.png
 m*/plant/flower/daisy_white.png
 m*/plant/flower/daisy_yellow.png
-./plant/flower/purple.png a version of this is in mirage sets so must we replace?
+K*/plant/flower/purple.png 
 k*/plant/indoor/flower_baskets.png
 b*/plant/indoor/flower_vase.png
 b*/plant/indoor/flowering_plant.png
