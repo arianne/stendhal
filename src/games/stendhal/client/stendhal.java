@@ -60,7 +60,29 @@ public class stendhal extends Thread {
 
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
-	public static final int FPS_LIMIT = 20;
+	public static final int FPS_LIMIT = 25;
+
+	/**
+	 * Parses command line arguments.
+	 * 
+	 * @param args
+	 *            command line arguments
+	 */
+	private static void parseCommandlineArguments(String[] args) {
+		String size = null;
+		int i = 0;
+
+		while (i != args.length) {
+			if (args[i].equals("-s")) {
+				size = args[i + 1];
+			}
+			i++;
+		}
+
+		if (size != null) {
+			SCREEN_SIZE = size;
+		}
+	}
 
 	/**
 	 * Starts the LogSystem.
@@ -133,6 +155,7 @@ public class stendhal extends Thread {
 	 */
 	public static void main(String[] args) {
 		// get size string
+		parseCommandlineArguments(args);
 		startLogSystem();
 
 		StendhalClient client = startClient();
