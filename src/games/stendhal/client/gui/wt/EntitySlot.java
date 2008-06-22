@@ -193,7 +193,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
-		if (view != null) {
+		if (view != null && !this.getParent().isMinimized()) {
 			return new MoveableEntityContainer(view.getEntity());
 		}
 
