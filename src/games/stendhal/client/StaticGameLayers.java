@@ -172,7 +172,7 @@ public class StaticGameLayers {
 	public boolean collides(Rectangle2D shape) {
 		validate();
 
-		if (collision != null && !User.get().isGhostMode()) {
+		if (collision != null) {
 			return collision.collides(shape);
 		}
 

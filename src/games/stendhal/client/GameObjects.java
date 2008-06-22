@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.RPObjectChangeListener;
 
@@ -23,10 +24,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * stores the objects that exists on the World right now.
@@ -115,6 +116,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public boolean collides(Entity entity) {
+		if (entity instanceof Player) {
+			Player player = (Player) entity;
+			if (player.isGhostMode()) {
+				return false;
+			}
+		}
 		Rectangle2D area = entity.getArea();
 
 		// TODO: Ugly, use similar method that server uses
