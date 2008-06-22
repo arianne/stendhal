@@ -93,24 +93,24 @@
  <tileset name="Untitled" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
- <layer name="0_floor" width="20" height="20">
+ <layer name="0_floor" width="20" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvCwMBwZAjgQzgwurp2HBibeQeQzIGxuYGYA4g5gZiNRPOwYUrMG8zuG8WjeBSPYgCOMm37QAYAAA==
   </data>
  </layer>
- <layer name="1_terrain" width="20" height="20">
+ <layer name="1_terrain" width="20" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAK2TS04CQRCGa4UJrHgbXs7CK8A5gB2yAE5H1ETMHENdAJfgqagn8J9QE5qmurtIrORL5vHPN5V0VZ6IigFKIK/MlUEF3DiogltlrsG5DGjTsd7AO/jg+5zhS3KPIOZ3M75+4pzp65JcK7AGG7B1ZGLB1wP3QnYH9uATfFmOtM9Xwdd3/PsAvsEP+L2iv44ja9czf/9iuKaWrwayDup0Oo9QLvE1wR1oeYg458ukuWROCxSeVQ2aedZiz/McLMAyeCLnNWLs83VVly5nXZp9ra/H2M/M/sb/4LN3Sevr0+XumP6kt4ngG4AHMPS4Jd+1/Ull9jsS+vPtUQoF3pv7FtojLRH4AzdBKRdABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB1sRMPYgD6UPg7EJ4D4JBCrU2AeLlAFxNVAXAPEtSToyyTRHkIglcrmGVLZPFoCKyC2BmIbKplnC8R2QGxPJfMcgNgRiJ2oZJ4zELsAsSuauCoWtTFQPFBgExYxTSqbSUna16bEIUQCDSqbp0Vl8ygFA5n/AAmkdR5ABgAA
+   H4sIAAAAAAAAAGNgIB1sRMPYgD6UPg7EJ4D4JBCrU2AePvAFiL+SqCeTDHvwgVQqm2dIZfNoCayA2BqIbahkni0Q2wGxPZXMcwBiRyB2opJ5zkDsAsSuaOKqWNTGQPFAgU1YxDSpbCYlaV+bEocQCTSobJ4Wlc2jFAxk/gMAj6wfMEAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGPqgGohrqGjeDyD+SUXz/gDxXyqaN9zBTSC+BcS3qWTeHSC+C8T3KDDjLBCfA+LzVHHR4AExQBxLB3uCgTgEiENJ1AdyWxwW8TAgDgfiCArdRSkAhR82940UAADf2cIvQAYAAA==
+   H4sIAAAAAAAAAGNgGAXo4AcQ/6SieX+A+C8VzRvu4CYQ3wLi21Qy7w4Q3wXiexSYcRaIzwHxeaq4aPCAGCCOpYM9wUAcAsShJOoDuS0Oi3gYEIcDcQSF7qIUgMIPm/tGCgAAZYK5CEAGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
