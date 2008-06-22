@@ -38,6 +38,7 @@ import javax.swing.JOptionPane;
 import marauroa.client.ClientFramework;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
+import marauroa.common.game.CharacterResult;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -410,13 +411,17 @@ public class StendhalClient extends ClientFramework {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
 		} else {
+			logger.warn("No character available, trying to create one with the account name.");
 			RPObject template = new RPObject();
 			// TODO: Account Username can be != of Character username.
 			try {
-				createCharacter(getAccountUsername(), template);
-				// TODO: check result of createCharacter
+				CharacterResult result = createCharacter(getAccountUsername(), template);
+				if (result.getResult().failed()) {
+					logger.error(result.getResult().getText());
+					// TODO: Display error message to user
+				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e, e);
 			}
 		}
 
