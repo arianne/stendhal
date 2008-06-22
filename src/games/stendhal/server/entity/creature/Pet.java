@@ -71,7 +71,7 @@ public abstract class Pet extends DomesticAnimal {
 	protected int hunger;
 
 	
-	abstract List<String> getFoodNames();
+	protected abstract List<String> getFoodNames();
 	
 	public static void generateRPClass() {
 		try {

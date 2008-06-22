@@ -5,6 +5,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Pet;
@@ -189,6 +193,11 @@ public class PlayersQueryTest {
 						return 1;
 					}
 				});
+			}
+
+			@Override
+			protected List<String> getFoodNames() {
+				return new LinkedList<String>();
 			}
 		};
 		testPet.put("type", "pet");

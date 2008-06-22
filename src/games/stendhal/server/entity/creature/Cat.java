@@ -133,7 +133,7 @@ public class Cat extends Pet {
 	}
 
 	@Override
-	List<String> getFoodNames() {
+	protected List<String> getFoodNames() {
 		return Arrays.asList("chicken", "trout", "cod", "mackerel", "char",
 				"perch", "roach", "surgeonfish", "clownfish");
 	}
