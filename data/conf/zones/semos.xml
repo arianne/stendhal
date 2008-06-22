@@ -1667,6 +1667,20 @@ Mature sheep wanted: please speak to Sato
   <portal x="42" y="44" ref="to_balrog" replacing="true">
    <destination zone="-2_semos_mine_w2" ref="exit_balrog"/>
   </portal>
+  <portal x="17" y="66" ref="stairs bottom">
+    <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+      <parameter name="minimum-level">150</parameter>
+      <parameter name="rejected">Aenihata's barrier is strong. The balrog would kill you instantly, run away!</parameter>
+    </implementation>
+   <attribute name="hidden"/>
+   <destination zone="-2_semos_mine_w2" ref="stairs top"/>
+  </portal>
+  <portal x="17" y="68" ref="stairs top">
+   <destination zone="-2_semos_mine_w2" ref="stairs bottom"/>
+   <attribute name="hidden"/>
+  </portal>
+
+
  </zone>
 
  <zone name="-2_semos_dungeon" level="-2" x="500096" y="500032" file="Level -2/semos/dungeon.tmx">
