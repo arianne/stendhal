@@ -95,7 +95,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 		Sprite sprite = getSprite(state);
 
 		if (sprite == null) {
-			logger.error("No sprite found for: " + state);
+			logger.debug("No sprite found for: " + state);
 			return SpriteStore.get().getFailsafe();
 		}
 
