@@ -24,6 +24,7 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.awt.Rectangle;
 import java.util.Arrays;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -760,18 +761,43 @@ public class Marriage extends AbstractQuest {
 		linda.add(
 				ConversationStates.ATTENDING,
 				"honeymoon",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						return (player.hasQuest(QUEST_SLOT) && player.getQuest(
-								QUEST_SLOT).equals("just_married"));
-					}
-				},
-				ConversationStates.QUESTION_1,
-				"How lovely! Please read our catalogue here and tell me the room number that you would like.",
-				null);
+				null,
+				ConversationStates.QUESTION_1, null,
+				new SpeakerNPC.ChatAction() {
+                    @Override
+						public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+                        IRPZone fadoHotel = npc.getZone();
+                        Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
 
+                        Player husband;
+                        Player wife;
+                        String partnerName;
+                        husband = player;
+                        partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
+                        wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+                        // check person asking is just married
+						if (!(player.hasQuest(QUEST_SLOT))|| !(player.getQuest(QUEST_SLOT).equals("just_married"))) {
+							npc.say("Sorry, our honeymoon suites are only available for just married customers.");
+							npc.setCurrentState(ConversationStates.ATTENDING);						
+						} 
+						// check wife is online and check that they're still
+						// married to the current husband    
+						else if (wife == null){
+                            npc.say("Come back when " + partnerName + " is with you - you're meant to have your honeymoon together!");
+                            npc.setCurrentState(ConversationStates.IDLE);
+                        } else if (!(wife.hasQuest(QUEST_SLOT)
+                                     && wife.getQuest(SPOUSE_QUEST_SLOT).equals(husband.getName()))) {
+                            npc.say("Oh dear, this is embarassing. You seem to be married, but " + partnerName + " is not married to you.");
+                            npc.setCurrentState(ConversationStates.ATTENDING);
+                        }
+                        // check wife has bothered to come to reception desk
+						else if (!hotelReception.contains(wife)){
+                            npc.say("Could you get " + partnerName + " to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.");
+                        }  else { 
+							npc.say("How lovely! Please read our catalogue here and tell me the room number that you would like.");
+						}
+					}
+				});
 		// player says room number
 		linda.add(ConversationStates.QUESTION_1,
 				// match for all numbers as trigger expression
@@ -796,26 +822,47 @@ public class Marriage extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String room = Integer.toString(sentence.getNumeral().getAmount());
-						npc.say("Great choice! Use this scroll to return to the hotel,"
-								+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
-						player.setQuest(QUEST_SLOT, "done");
-						// yes i know it is stupid to do this here when i
-						// could use the giveInvite thing above but i don't
-						// know how to make it so that GiveInvite() has a
-						// parameter for quantity and a parameter for
-						// location so i gave up.
-						StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
-								"invitation scroll");
-						invite.setQuantity(1);
-						// interior of hotel
-						invite.setInfoString("int_fado_hotel_0 4 40");
-						player.equip(invite, true);
-						StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
-								"int_fado_lovers_room_" + room);
-						player.teleport(zone, 5, 5, Direction.DOWN, player);
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.IDLE);
+
+                        String room = Integer.toString(sentence.getNumeral().getAmount());
+                        StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+                                                                                       "int_fado_lovers_room_" + room);
+						if (zone.getPlayers().size()>0){
+							npc.say("Sorry, that room is currently occupied, would you give me your next choice please?");
+						} else {
+
+							Player husband;
+							Player wife;
+							String partnerName;
+							husband = player;
+							partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
+							wife = SingletonRepository.getRuleProcessor().getPlayer(
+                                                                                partnerName);
+							// I (kym) have to make two of these because when I only did one, the second one sometimes had quantity 0 sometimes didn't.
+							StackableItem invite1 = (StackableItem) SingletonRepository.getEntityManager().getItem(
+																												  "invitation scroll");
+							invite1.setQuantity(1);
+                            StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
+                                                                                                                  "invitation scroll");
+                            invite2.setQuantity(1);
+                            
+							invite1.setInfoString("int_fado_hotel_0 4 40");
+							invite2.setInfoString("int_fado_hotel_0 4 40");
+							if (wife.equip(invite1) &&  husband.equip(invite2)) {
+								npc.say("Great choice! I will arrange that now."); 
+								husband.setQuest(QUEST_SLOT, "done");
+								wife.setQuest(QUEST_SLOT, "done");
+								wife.teleport(zone, 5, 5, Direction.DOWN, player);
+								husband.teleport(zone, 6, 5, Direction.DOWN, player);
+								String scrollmessage = "Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!";
+								wife.sendPrivateText(scrollmessage);
+                                husband.sendPrivateText(scrollmessage);
+								wife.notifyWorldAboutChanges();
+								husband.notifyWorldAboutChanges();
+								npc.setCurrentState(ConversationStates.IDLE);
+							} else {
+								npc.say("You each need one space in your bags to take a scroll. Please make a space and then ask me again. Thank you.");
+							}
+						}
 					}
 				});
 
@@ -829,21 +876,6 @@ public class Marriage extends AbstractQuest {
 //			"Sorry, that's not a room number we have available.", null
 //		);
 
-		// say honeymoon but you aren't 'just married'
-		linda.add(
-				ConversationStates.ATTENDING,
-				"honeymoon",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						return (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
-								QUEST_SLOT).equals("just_married")));
-					}
-				},
-				ConversationStates.ATTENDING,
-				"Our honeymoon suites are only available for just married customers.",
-				null);
 	}
 
 	@Override
