@@ -93,6 +93,9 @@
  <tileset name="dress" firstgid="256" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/dress.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="257" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ns.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNhYGBgGcGYEYiZ8GBmKtjBCsRseDA7neyg1B56+IMTiLnwYG4i3EcNd4xUO3gowMTaPWrHqB2jdgx+O1ag4VE7BmecAwAVylTIxAkAAA==
@@ -110,7 +113,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB8oAeJSIC6jo52k2h9DhDn9QDyRKi6iDngExC+h+BWa3FUgvoZDXzQtHTUKhg2oAuIaJHY1Ep8QuAnEt8m0twOIO8nUiwxagLiVCubQAkTRyZ7RvE4cANURA1U/jYJRQA4AAEJEK7fECQAA
+   H4sIAAAAAAAAAGNgoB8oAeJSIC6jo52k2h9DhDn9QDyRKi6iDngExC+h+BWa3FUgvoZDXzQtHTUMASMjAwMTEDMz0s4OFqDZrEDMRkM7SAVVQFyDxK5G4hMCN4H4Npn2dgBxJ5l6kUELELdSwRxagCg62TOa14kDoDpioOqnUTAKyAEAGenEx8QJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">

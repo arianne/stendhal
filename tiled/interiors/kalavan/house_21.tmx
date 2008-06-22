@@ -182,7 +182,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGDYCsTbgHg7EO8G4r1oYshgGxp/OhDPgLJherGpowTMBOJZVDQPBCSYqGwgHcFGoNs30dj9W4HmbxvCYURtIIclLLCJjQLKgQMQtwLD1omGdjgDcQfQDlcC6vqBeAIS3wGoxxFPvP9jZGD4D8QMwyxtWDOhYmxAESheDqQroLgSKkZvMBjKxyggjqah/SxAu1mhmI1KfpWicphhq2Olh1m+oBQ4QGlKyjoAvN3rh8QJAAA=
+   H4sIAAAAAAAAAGNgYGDYCsTbgHg7EO8G4r1oYshgGxp/OhDPgLJherGpowTMBOJZVDQPBCSYqGwgFKwFmruORmbDwEag+ZtobMdWoPnbaGzHUAJyWMICm9gooBw4AHErMGydaGiHMxB3AO1wJaCuH4gnIPEdgHoc8cT7P0YGhv9AzDDM0oY1EyrGBhSB4uVAugKKK6FiyGCklI9RQBxNQ/tZgHazQjEblfwqReUww1bHSg+zfEEpcIDSlJR1AM4TzKjECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">

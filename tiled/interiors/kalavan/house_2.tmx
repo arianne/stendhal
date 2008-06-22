@@ -108,14 +108,14 @@
  <tileset name="Untitled" firstgid="282" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ew.png"/>
  </tileset>
- <layer name="0_floor" width="25" height="25" visible="0">
+ <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgYGDgwINZqIDxmT9qx6gdtLCDGuaP2jEy7eAhgEftGLVj1I5ROwaLHQCHXqNLxAkAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Uyy9DQRTH8XMJgqDKpf+Atw1VbLFDrETssMTSP0TCP0BIRUI8Nh4bjz/Id9K5MZ3OnU6jFRIn+Sx6T3t+985tTk5EulMMIufph1AzMpjHjGUOPZ5+CHPGNM5xiCMp1ZTVV3UqtZVrhq9/9o2MIQzra8c48dxDJhLp1bJR+bwLKZ2FK2MM4457uMUd7vGgr/Uxt1+LI8ePUjLSzuoRT3jGS/VxvzbjFW94x0eDMqr106qIS9w0MOMKB44Zs8hjAYtYQsGTof5STZZmI0PVvpExgC5tGStY1Z/jlIwWtFrajIw9/SxJhrnzNrCOTSnfZ7VmqGfYtc4q2Xlb2MaOVO6z0Ixrqc8792WEzvjP+FsZ7eiwdNY5I7R+OiPZV6aCo2/uM/v7iRGMWjPMfWWLpXKfrcnXPnOZwKQ14xMta5IgxAkAAA==
+   H4sIAAAAAAAAAO3Uyy4EQRTG8dMEQTAuzbyAu43LYIsdYiVihyWWXoiEFyBkREJcNi4blwfyr0x11NRU19QwLZE4yW/RfabPN9UzOXkR6UwxgLynH0LNyGEeM5Y5dHn6IcwZUzjHIY6kVJNWX9Wp1FauGb7+2Q8yBjGk7x3jxPMdcpFIt9YTlc+7kNK7cGWMYizgHKp6mdunxZHjoYAZZt3iDvd4qD7uWxmPeMIzXjLKeMUb3vGRUUa1floVcYmbDDOucOCYMYtpLGARSyh4MtRfqsHSaGSo2jcy+tGhLWMFq/o6TsloQrOlxcjY02dJMsydt4F1bEr5Pqs1Q51h13pXyc7bwjZ2pHKfhWZcS31+c19G6Iz/jL+V0Yo2S3udM0LrtzOSfWUqOPrmPrM/nxjGiDXD3Fe2WCr32Zp87TOXcUxYMz4BK88Pk8QJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -125,7 +125,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA6UEKmOElBKBzvWYhHLIcOcRUC8mEw3bADi9WTaSwzIpUCvFCMDgzQj1ZyCFcgAzZclwY4pQDwViKdR0Q5GoBwTEDNT4Fc5oF55PPpZgHKsQMxG4/AcqaAPiPuBeAIN7ZgIxJOAeDIN7RhM4CsQf6eznVzA/MEzmkdGwSggCwAAK/OL+sQJAAA=
+   H4sIAAAAAAAAAGNgIA6UEKmOElBKBzvWYhHLIcOcRUC8mEw3bADi9WTaSwzIpZG51AJSjAwM0ozEq58CxFOBeBoJdsgAzZfFYwcjUI4JiJlJcAc6kAPqlcejnwUoxwrEbBTYMQpwgz4g7gfiCTS0YyIQTwLiyTS0YzCBr0D8nc52cgHzB89oHhkFo4AsAACMB8DYxAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
