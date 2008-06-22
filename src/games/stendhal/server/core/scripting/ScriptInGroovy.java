@@ -38,7 +38,11 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	@Override
 	public boolean load(Player player, List<String> args) {
 		groovyBinding.setVariable("player", player);
-		groovyBinding.setVariable("args", args.toArray(new String[]{}));
+		if (args != null) {
+			groovyBinding.setVariable("args", args.toArray(new String[args.size()]));
+		} else {
+			groovyBinding.setVariable("args", new String[0]);
+		}
 		GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
 
