@@ -232,6 +232,7 @@ public class LoginDialog extends JDialog {
 		loginButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				loginButton.setEnabled(false);
 				loginButton_actionPerformed(e);
 			}
 		});
@@ -315,6 +316,11 @@ public class LoginDialog extends JDialog {
 		t.start();
 	}
 
+	@Override
+	public void setEnabled(boolean b) {
+		super.setEnabled(b);
+		loginButton.setEnabled(b);
+	}
 	/**
 	 * Connect to a server using a given profile.
 	 * @param profile 
