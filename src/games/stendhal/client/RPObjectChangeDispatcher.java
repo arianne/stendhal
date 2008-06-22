@@ -33,11 +33,6 @@ public class RPObjectChangeDispatcher {
 	private static final Logger logger = Logger.getLogger(RPObjectChangeDispatcher.class);
 
 	/**
-	 * The dump logger.
-	 */
-	private static final Logger dlogger = Logger.getLogger(Dump.class);
-
-	/**
 	 * The normal listener.
 	 */
 	protected RPObjectChangeListener listener;
@@ -159,32 +154,6 @@ public class RPObjectChangeDispatcher {
 		
 	}
 
-	/**
-	 * Dump an object out in an easily readable format. TEMP!! TEST METHOD -
-	 * USED FOR DEBUGING.
-	 * 
-	 * Probably should be in a common util class if useful long term.
-	 * 
-	 * @param object
-	 *            to be dumped
-	 */
-	public static void dumpObject(RPObject object) {
-		StringBuilder sbuf = new StringBuilder();
-
-		sbuf.append(object.getRPClass().getName());
-		sbuf.append('[');
-		buildIDPath(sbuf, object);
-		sbuf.append(']');
-
-		System.err.println(sbuf);
-
-		for (String name : object) {
-			System.err.println("  " + name + ": " + object.get(name));
-		}
-
-		System.err.println("");
-	}
-
 	protected static void buildIDPath(final StringBuilder sbuf,
 			final RPObject object) {
 		RPSlot slot = object.getContainerSlot();
@@ -226,11 +195,6 @@ public class RPObjectChangeDispatcher {
 	 *            If this is the private user object.
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
-		// TEST CODE:
-		if (dlogger.isDebugEnabled()) {
-			System.err.println("fireAdded()");
-			dumpObject(object);
-		}
 
 		/*
 		 * Call before children have been notified
@@ -295,11 +259,6 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireChangedAdded(RPObject object, RPObject changes,
 			boolean user) {
-		// TEST CODE:
-		if (dlogger.isDebugEnabled()) {
-			System.err.println("fireChangedAdded()");
-			dumpObject(changes);
-		}
 
 		/*
 		 * Walk each slot
@@ -384,12 +343,7 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireChangedRemoved(RPObject object, RPObject changes,
 			boolean user) {
-		// TEST CODE:
-		if (dlogger.isDebugEnabled()) {
-			System.err.println("fireChangedRemoved()");
-			dumpObject(changes);
-		}
-
+		
 		/*
 		 * Call before children have been notified
 		 */
@@ -469,12 +423,6 @@ public class RPObjectChangeDispatcher {
 	 *            If this is the private user object.
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
-		// TEST CODE:
-		if (dlogger.isDebugEnabled()) {
-			System.err.println("fireRemoved()");
-			dumpObject(object);
-		}
-
 		/*
 		 * Walk each slot
 		 */
@@ -525,12 +473,5 @@ public class RPObjectChangeDispatcher {
 		fireRemoved(sobject, user);
 	}
 
-	//
-	//
 
-	/**
-	 * Dummy class for getLogger(). This is getting hackier by the minute.
-	 */
-	protected static class Dump {
-	}
 }
