@@ -126,14 +126,14 @@
  <tileset name="note board" firstgid="361" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/note_board.png"/>
  </tileset>
- <layer name="0_floor" width="128" height="64">
+ <layer name="0_floor" width="128" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3czU4CMRSG4SO64SfuQFB2bohb74stFyGi4A3bhCGiGWxymOlp8r0kb4CEtgPPhsxMOjGzAUk2Tt2llqk5ddpT87wq1Nyx3m3jPyt4nCpNO5jjLbXN9H7F/PjX7b9LfWT6xL/K8NcOf+3w1w5/7fDXDv9jr46i7fDHvwb/feqQ6Qv/KuvCv+/wxx//GP+1c17PuLYxU/xD/TfOeT3j2sbg32/PFn8N+r/w1w5/7fDXTt3/pYeiTfHHH3/88ccff/zxxx9//PHHH3/8r/U3xzr41xn++OOPP/748/8Pf/zxxx9/FX/18NcOf+3w1w5/7fDXzutvFRw7dev/mHpoWp29vlTucfpM9HekvP8odXPW+s/7Prs39p6J9p/Y7z2BN1Z272H8Y/2jDNh7Cn/88ccf/+jfQjH8tcNfu9r8PeeJyX9+HX/d8NcOf+3w1w5/7fDXDn/t8NeuRn8q26X7v0p1Wrv0unRsYe33f5VqGLg2/Rh8A7AAJTIAgAAA
   </data>
  </layer>
- <layer name="1_terrain" width="128" height="64">
+ <layer name="1_terrain" width="128" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="2_object" width="128" height="64">
@@ -143,7 +143,7 @@
  </layer>
  <layer name="3_roof" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dOwrCQBAG4E2tpRfzAT46valgoZV6BfUgLoiQIioSycTk+2Bgq/DvDglMk00JAGiLcZHSpIhOQZRp7v2sov+XXNdS3ZqNBTRgnt/9he//W6N8Putcm+Kx7pJl3s+qY3sC4DPzX7+9mv+eynMgAAAAAAAA3zlGBwAAWuUcHYBQp+gAAAAAAAAAAC9sowMQahcdgL83KFIa+ncNAAAAAAD0zj7XIToEYfSfT+re7/SL+6HqPKMN+QGgyh03LiQfAIAAAA==
+   H4sIAAAAAAAAAO3dzWrCQBQG0MnaLvtiVcHanX3Sqq0/q7avUPsgXihCFqlBIt6o58AHWYVvcklgNplSAIC+eKpKGVbZLcgyitmPG+b/E9nV8nvZWsAFTOLdf/b9P+oxns8s8lr9Xd+Saazn5cbWBEA7+7/79t/+76C+DwQAAAAAAOA0n9kFAIBe+c4uQKqv7AIAAAAAAAAADd4i88giuQc5lpH3yEd2Ea7aoCrlwb9rAAAAAADu0iqyzi5Bmk1km12CNOZPm67nO53jfKgu9+hDfwBosge6JRpuAIAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="128" height="64">
@@ -158,7 +158,7 @@
  </layer>
  <layer name="collision" width="128" height="64" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSw7DIAwFuf/xeqIuumkkSIwxBPNmJCtphbHDkH7yKaV8CII4InoYyaude4meb2Wd1pw1L09rncU/POPxMuID/3uBf21aa3u3Lyyf560x+N+LUf+Wefn+3xeP/3LzvqfWrLxdGNn7s4lwMvt3gzVvxX+RqJqz+/L078lbWQv/8eB/DPyvq4X/eCw9jPQacW34n0eU/4g8az/ea8F/f/+WMfjHP/7xj/98/ntp9WVx483Dvy7410bdv/q+wr82+L/WqtU/GfyP95cZ/Pv6OAX8a4P/ej0V8B9D1j2D/xjwj/+M4P96LI3Xtb56xu8K/q/Huz5OBP/Xoxr4H+8vM/jP73AE/M+ZNwvq/tXBvzb41wb/2uBfG/xrg39t7tZm5toTe+xt/J8ZVvB/ZljB/5lhxZv3n98779troxBW3vDfGkOc499Tm8D/0zW9va5ZwkqE/9U9t/qona/Iz147ykGm2vAD/9rgXxv8a4N/bfCvDf61wYE23P/aZPAf/YzSw8gcO/Rvnfvu2Wzv81zinCgb9EDMiy8ZmcvmAIAAAA==
+   H4sIAAAAAAAAAO2YUY7DIAwFuf/xeqL96M9GgtSxDcG8GclKWmHsMChp82mtfQiCOCKeEMnrnXvJnm9lndGcPS+/1rqKf/iNx0vEB/73Av/ajNb2bl9Y7uejMfjfi6h/y7w8//fF47/dfO+pNStvFyJ7fzYZTmb/brDmrfgvklVzdl+e/j15K2vhPx/8x8D/ulr4z8fSQ6TXjGvD/zyy/GfkWfvxXgv+n/dvGYN//OMf//iv5/8po74sbrx5+NcF/9qo+1ffV/jXBv/XWr36J4P/eH+Vwb+vj1PAvzb479dTAf85VN0z+M8B//ivCP6vxzb43Ovryfhdwf/1eNfHieD/elQD//H+KoP/+g4j4H/OvFVQ968O/rXBvzb41wb/2uBfG/xrc7c2M9ee2GNv4//MsIL/M8MK/s8MK968//lP5317bRTCyhv+R2OIc/x7ahP4/3VNb69rlbCS4X91z6M+eucr8qvXznJQqTZ8wb82+NcG/9rgXxv8a4MDbfCvDfd/bSr4z35H6SEyxw79W+e+ezcbfb9L1I22QQ/EvPgDf37RnwCAAAA=
   </data>
  </layer>
  <layer name="protection" width="128" height="64" visible="0">

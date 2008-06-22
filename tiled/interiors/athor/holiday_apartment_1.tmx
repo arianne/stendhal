@@ -97,7 +97,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKXSuRIBQRSF4fsClgTzAnaJXSq0TYYMGTJLYkksL+6XzVw93Zhb9UWnTlVXnfZEJBkhB8+Rp9FDS+ki9WXekM/bYY8Djoa87uifcMYFV0s/j0KMfhkVQ37DHQ88He/voKm0DfkYE/iBPItEhIzKp5hhHsht+2oLLLES9/4ma2ywFff+rtP792P2Bxhi9Gf/1zPtH9xX/4e3IkoS/h+2fbUqahL+Hy/sXQthAAQAAA==
+   H4sIAAAAAAAAAKXSuRIBURCF4X4BS4J5AbvELhXaJkOGDJklsSSWF/fLZtqdezFd9UWnuqqrTnsikoyQg+fI0+ihpXSR+jJvyOfUY+Y77HHA0bKfR8GQn3DGBVfLfhkVQ37DHQ88Hfd30FTahnyMCfxAnkUiQkblU8wwD+S2frUFlliJu3+TNTbYirt/1+j++zH3Bxhi9Of+r2PqP9iv/oe3IkoS/g9bv1oVNQn/xwtyRRU3AAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -107,7 +107,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL7gIhBfGkD9l4H4CgX6R8EooDUAAM89LSgABAAA
+   H4sIAAAAAAAAAGNgGL7gPBBfoED/RSC+RIH+y0B8hQL9o2AU0BoAANeJtrQABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">

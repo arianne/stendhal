@@ -104,7 +104,7 @@
  </layer>
  <layer name="3_roof" width="20" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDCQ4C8aGBdsQoGAWjYBSMglEwCkYUAADkob7QAAoAAA==
+   H4sIAAAAAAAAAGNgGAUDCQ4C8aGBdsQwBTeQ2LeoYN5tJPZdKpg3CkbBKBgFo2AUDBQAAFaEAFEACgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="32">
@@ -117,7 +117,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMJHB/oB0wCnCC+wyUxc89HGxKwGh6GQWjYHgCACFcpZkACgAA
   </data>
  </layer>
- <layer name="collision" width="20" height="32" visible="0" opacity="0.5">
+ <layer name="collision" width="20" height="32" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAOXNUQoAIAgDUO9/yo7Sb4grpwaFwr62XkNExifJXJWlHdZD26h3crIecqs97aKeTVdvPd1bO49jvbnhoa6Dp52sh1zGs/ZRzxvmrDcZb/fHL97qoi6yfdGrulueJ+y+KhMdIw9ZAAoAAA==
   </data>

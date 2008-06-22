@@ -98,7 +98,7 @@
  </tileset>
  <layer name="0_floor" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNkYGDwHEaYgUx9rFSmB4sblIBYDQ2r0tH/l9HwYI2D4Rr/hMJ8uPt/KNg9GNww6v9R/49k/xPrPlYqmw8A6rLUJYAJAAA=
+   H4sIAAAAAAAAAPNkYGDwHEaYgUx9rFSmB4sblIBYDQ2r0tH/l9HwYI2D4Rr/hMJ8uPufXnaXI/GLR6D/R3r8j/p/aPufWPexUtl8ACu4PguACQAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="19">
@@ -113,12 +113,12 @@
  </layer>
  <layer name="3_roof" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwATWWMTIAbZUMmckAX4gFgJiASQsiEUMJi48MM4cBQTAKiBeDcVrSNRDrHp6gbUD7QAiQQgQB1JoBiV+XQzESyi0fzABSuN9oNONGZXMuUGmvntUsh8fwBfGp+lg/yigDAAA2mhvCoAJAAA=
+   H4sIAAAAAAAAAGNgwATWWMTIAbZUMmckAX4gFgJiASQsiEUMJi48MM4cBQTAKiBeDcVrSNRDrHp6gbUD7QA6Akr8uhiIl1DLIYMAUBrvA51uzKhkzg0y9d2jkv34AL4wPk0H+0cBZQAA5gTM/4AJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDCRxGYh8A4ido8g+h9AN6OGYUUAzOkKj+OE1cQRk4TFjJoAD9QDxhoB0xCoYduDXQDhgFwxYAAKcS5yCACQAA
+   H4sIAAAAAAAAAGNgGAWDCRxGYh8A4ido8g+h9AN6OGYUUAzOkKj+OE1cQRk4TFjJoACLgXjJQDtiFAw7cGugHTAKhi0AAMk/oCeACQAA
   </data>
  </layer>
  <layer name="objects" width="32" height="19">

@@ -118,7 +118,7 @@
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN1S0QrEIAybf9OTQ4YMKf3/DzvHJZCNbq+DBUpVTNJWl+UdsHJcbzMGzpj7zDGjlpxv4LQZn/K/7zgP2UfC/0K3Q6NDh+sKTZO6FCu0m3gE9uRkPKLJffoGtAb87/hD6tMeVJMzycB5m/TBvqvMb89rokE/F48umkNq8YTvqC/kDXUWJvrZHPim9LETh734hT+5+o/UN268n8QPjuKzMAAEAAA=
+   H4sIAAAAAAAAAN1R7QrEIAybb+Pk8IY3ROz7v9cUEwisu9/HFUqrNEk/tu0/LIYVLaz8HF7xx1hG7MNTuOOJm7V5+B5WfcN/l3d38C/wFnAU8DBP4IzSl9oB7iwaHW9iPBwtSz11O7gq9L/hq/SnM5DTZCeecd9R5uDcSfY34+FwUK+JRhHOt/TSHu63o4Y31F1wLnvYA2/KvZlg2FNC7ukTa+h15h/h0Fv8kl0Yb9KBAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

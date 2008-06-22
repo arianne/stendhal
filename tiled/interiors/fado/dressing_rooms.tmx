@@ -60,14 +60,17 @@
  <tileset name="doorway" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_wide.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="158" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEeejdlCerkaqHQDkkVQV3AUAAA==
+   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEeejdlCeroa6HQuhmFR9AK6/YwPcBQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXTyQrCQBAE0ImIK6IIgqeAoN5MDurRk5+gB79G477/syVEiE31GIdABt6lqaLJDPGMMQWLInh/zFmuCiXwiTJUSEab2/pdmJnvs4KOyHyONpcnTS7PHWvYQARb0hul2LGApSWzgz0c4Eh2BBl8xwnOcIEr6YUZ7LjBHR7wVLqs3yMZ7d5d3/z9Tn2R0e7ddUdAMtq9u+4ISUa797z+wTFMYlOSq0GbqIvMAIZkzrrJfgOaFq1EZh6T81/9F9iOFS3cBQAA
+   H4sIAAAAAAAAAMXTywrCQAwF0KmIWkUUQXBVENSd7UJd+hW68Gvq+63/7BUs1HAz1qHQwNmEG0Iz1DPGlCzK4P3RZzkfKhAQVaiRjNa3zfdgbr5rBV2RSUrry8qSK3JHDGvYwJbMjTPsWMDSktnBHg5wJDvCHL7jBGe4wJXMRTnsuMEdHvBUZtl8n2S0u7u++fudBiKj3d11R0gy2t1dd0Qko929qH9wAtOPGcnVoUM0RGYII9Jns+n5JrQs2qlMUrL/a/4FJiyUENwFAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="15">
@@ -90,7 +93,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEw3AAAv2wkb9wFAAA=
   </data>
  </layer>
- <layer name="collision" width="25" height="15" opacity="0.37">
+ <layer name="collision" width="25" height="15" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALNjYGCwG2YYGeBTQ0gvLjMYsKjFZQ4xegnpJ8cOdLMJqSMUluTaQYpfCQFi/EHIDmLtHgg7SE0XpLqPnPAeCH8QK0aJHcT6gxCmRC+tMQDbD4MQ3AUAAA==
   </data>
