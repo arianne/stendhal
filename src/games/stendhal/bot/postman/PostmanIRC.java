@@ -25,15 +25,12 @@ public class PostmanIRC extends PircBot {
 
 	private String gameServer;
 
-	private static String SUPPORT_CHANNEL;// = "#arianne-support";
+	private static String SUPPORT_CHANNEL;
 
-	private static String MAIN_CHANNEL;// = "#arianne-chat";
+	private static String MAIN_CHANNEL;
 
-	public static List<String> channels = new LinkedList<String>();// = {
-																	// PostmanIRC.SUPPORT_CHANNEL,
-																	// PostmanIRC.MAIN_CHANNEL
-																	// };
-
+	public static List<String> channels = new LinkedList<String>();
+	
 	/**
 	 * Creates a new PostmanIRC.
 	 * 
