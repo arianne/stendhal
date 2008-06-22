@@ -346,6 +346,7 @@ public class LoginDialog extends JDialog {
 		}
 
 		try {
+			client.setAccountUsername(profile.getUser());
 			client.login(profile.getUser(), profile.getPassword());
 
 			progressBar.step();
@@ -354,7 +355,6 @@ public class LoginDialog extends JDialog {
 			setVisible(false);
 			owner.setVisible(false);
 			stendhal.doLogin = true;
-			client.setAccountUsername(profile.getUser());
 		} catch (InvalidVersionException e) {
 			progressBar.cancel();
 			setEnabled(true);
