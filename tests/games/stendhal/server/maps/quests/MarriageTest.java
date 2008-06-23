@@ -346,7 +346,7 @@ public class MarriageTest {
 		en.step(player, "help");
 		assertEquals("When the building work on the hotel rooms is complete you will be able to #reserve one.", npc.get("text"));
 		en.step(player, "honeymoon");
-		assertEquals("How lovely! Please read our catalogue here and tell me the room number that you would like.", npc.get("text"));
+		assertEquals("Could you get player2 to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.", npc.get("text"));
 		// [14:34] You read:
 		// "0. Blue Paradise - with a flaming bed
 		// 1. Windy Love - be blown away
@@ -377,6 +377,6 @@ public class MarriageTest {
 		assertTrue(en.step(player, "two"));
 
 		assertEquals("done", player.getQuest(QUEST_SLOT));
-		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
+		assertEquals("done", player2.getQuest(QUEST_SLOT));
 	} 
 }
