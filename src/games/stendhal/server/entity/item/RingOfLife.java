@@ -56,7 +56,7 @@ public class RingOfLife extends Ring {
 			text = "You see the ring of life. Wear it, and you risk less from death.";
 		}
 		
-		if (getBoundTo() != null) {
+		if (isBound()) {
 			text = text + " It is a special quest reward for " + getBoundTo()
 					+ ", and cannot be used by others.";
 		}

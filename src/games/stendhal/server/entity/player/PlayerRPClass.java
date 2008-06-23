@@ -510,7 +510,7 @@ class PlayerRPClass {
 	private static void boundOldItemsToPlayer(Player player, Item item) {
 
 		// No special processing needed, if the item is already bound
-		if (item.getBoundTo() != null) {
+		if (item.isBound()) {
 			return;
 		}
 

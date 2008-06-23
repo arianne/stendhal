@@ -11,6 +11,7 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
 
@@ -159,7 +160,10 @@ public class PlayerDieer {
 		}
 	}
 
-
+	/**
+	 * 
+	 * @return a list of all Items in RPEntity carrying slots that can be dropped
+	 */
 	private List<Pair<RPObject, RPSlot>> retrieveAllDroppableObjects() {
 		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
@@ -167,19 +171,18 @@ public class PlayerDieer {
 			if (player.hasSlot(slotName)) {
 				RPSlot slot = player.getSlot(slotName);
 
-				// a list that will contain the objects that will
+				// a list that will contain the objects that could
 				// be dropped.
-
-				// get a random set of items to drop
 				for (RPObject objectInSlot : slot) {
 					// don't drop special quest rewards as there is no way to
 					// get them again
-					// TODO: Assert these as Item's and use getBoundTo() and
-					// isUndroppableOnDeath()
-					if (objectInSlot.has("bound")
-							|| objectInSlot.has("undroppableondeath")) {
-						continue;
+					if (objectInSlot instanceof Item) {
+						Item itemInSlot = (Item) objectInSlot;
+						if (itemInSlot.isBound() || itemInSlot.isUndroppableOnDeath()) {
+							continue;
+						} 
 					}
+						
 					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
 				}
 			} else {

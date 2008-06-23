@@ -11,8 +11,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -20,7 +22,11 @@ import utilities.RPClass.ChestTestHelper;
 
 public class UseActionTest {
 
-	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		MockStendlRPWorld.get();
+		Log4J.init();
+	}
 
 	@Test
 	public void testOnActionItemInBag() {
@@ -59,6 +65,25 @@ public class UseActionTest {
 		assertFalse(player.has("eating"));
 		ua.onAction(player, action);
 		assertTrue(player.has("eating"));
+	}
+	@Test
+	public void testIsItemBoundToOtherPlayer() {
+		UseAction ua = new UseAction();
+		Player player = PlayerTestHelper.createPlayer("bob");
+		Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
+		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
+		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
+		cheese.setBoundTo("jack");
+		
+		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
+		assertTrue(ua.isItemBoundToOtherPlayer(player, cheese));
+		
+		cheese.setBoundTo("bob");
+		
+		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
+		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
+		
+		
 	}
 
 }

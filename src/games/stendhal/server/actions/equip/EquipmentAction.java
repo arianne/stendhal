@@ -130,12 +130,15 @@ public class EquipmentAction implements ActionListener {
 		}
 
 		logger.debug("Checking if entity is bound");
-		if (entity.has("bound")
-				&& !player.getName().equals(entity.get("bound"))) {
-			player.sendPrivateText("This " + itemName
-					+ " is a special reward for " + entity.get("bound")
-					+ ". You do not deserve to use it.");
-			return;
+		if (entity instanceof Item) {
+			Item item = (Item) entity;
+			if (item.isBound() && !item.isBoundTo(player)) {
+				player.sendPrivateText("This " + itemName
+						+ " is a special reward for " + item.getBoundTo()
+						+ ". You do not deserve to use it.");
+				return;
+			}
+			
 		}
 
 		logger.debug("Checking destination");
@@ -193,11 +196,16 @@ public class EquipmentAction implements ActionListener {
 		}
 
 		if (source.moveTo(dest, player)) {
-			if (entity.has("bound")) {
-				player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
-						+ (Item.DEGRADATION_TIMEOUT / 60)
-						+ " minutes, as all items do. But in this case there is no way to restore it.");
+			if (entity instanceof Item) {
+				Item item = (Item) entity;
+				if (item.isBound()) {
+
+					player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
+							+ (Item.DEGRADATION_TIMEOUT / 60)
+							+ " minutes, as all items do. But in this case there is no way to restore it.");
+				}
 			}
+			
 			int amount = source.getQuantity();
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "drop",
 					itemName, source.getSlot(), dest.getSlot(),

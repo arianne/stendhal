@@ -1,9 +1,12 @@
 package games.stendhal.server.entity.item;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -286,5 +289,23 @@ public class ItemTest {
 		assertNotNull(mo.getZone());
 		assertFalse(zone.has(mo.getID()));
 	}
+
+	@Test
+	public void testGetBoundTo() {
+		Item mo = new Item("name1", "myClass", "mySubclass",
+				new HashMap<String, String>());
+		assertNull(mo.getBoundTo());
+		mo.setBoundTo("bob");
+		assertTrue(mo.isBound());
+		assertTrue(mo.isBoundTo(PlayerTestHelper.createPlayer("bob")));
+		assertEquals("bob", mo.getBoundTo());
+		
+		mo.setBoundTo(null);
+		assertFalse(mo.isBound());
+		assertFalse(mo.isBoundTo(PlayerTestHelper.createPlayer("bob")));
+		assertThat(mo.getBoundTo(), not(is("bob")));
+	}
+
+	
 
 }

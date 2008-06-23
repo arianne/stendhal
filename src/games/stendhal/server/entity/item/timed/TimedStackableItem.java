@@ -94,7 +94,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 
 		String boundTo = getBoundTo();
 
-		if (boundTo != null) {
+		if (isBound()) {
 			text = text + " It is a special quest reward for " + boundTo
 					+ ", and cannot be used by others.";
 		}
