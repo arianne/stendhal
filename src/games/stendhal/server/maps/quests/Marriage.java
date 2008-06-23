@@ -776,7 +776,7 @@ public class Marriage extends AbstractQuest {
                         partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
                         wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
                         // check person asking is just married
-						if (!(player.hasQuest(QUEST_SLOT))|| !(player.getQuest(QUEST_SLOT).equals("just_married"))) {
+						if (!(player.hasQuest(QUEST_SLOT)) || !("just_married".equals(player.getQuest(QUEST_SLOT)))) {
 							npc.say("Sorry, our honeymoon suites are only available for just married customers.");
 							npc.setCurrentState(ConversationStates.ATTENDING);						
 						} 
@@ -826,7 +826,7 @@ public class Marriage extends AbstractQuest {
                         String room = Integer.toString(sentence.getNumeral().getAmount());
                         StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
                                                                                        "int_fado_lovers_room_" + room);
-						if (zone.getPlayers().size()>0){
+						if (zone.getPlayers().size() > 0) {
 							npc.say("Sorry, that room is currently occupied, would you give me your next choice please?");
 						} else {
 

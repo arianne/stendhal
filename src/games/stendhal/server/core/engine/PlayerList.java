@@ -24,6 +24,9 @@ public class PlayerList {
 	 *         found
 	 */
 	Player getOnlinePlayer(String name) {
+		if (name == null) {
+			return null;
+		}
 		return players.get(name.toLowerCase());
 	}
 
