@@ -7,7 +7,15 @@ Changelog
 - ados mountains has a bazaar
 - baby dragon not eating bug fixed
 - balrog home in semos mines w2 redecorated
-
+- all tiles of unknown origin now redrawn
+- 'can drop items from bag even when closed' bug fixed
+- honeymoon logic for just married couples is smarter 
+- townhall redecorated
+- all east-west doors have much better look and feel
+- client bug Freeze on rapid Login button uses now fixed
+- ados coastline is complete
+- unused classes in client removed
+- some shop selling/buying bugs fixed
 
 0.68 
 - character panel shows atk_xp needed to level up instead of total atk_xp
