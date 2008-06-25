@@ -1639,6 +1639,7 @@ Southeast: Docks
    </zone>
 
    <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" file="Level 0/ados/ocean_e.tmx">
+     <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
    </zone>
   
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
