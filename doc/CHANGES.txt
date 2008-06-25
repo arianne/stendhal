@@ -1,6 +1,6 @@
 Changelog
 ---------
-0.68+epsilon
+0.68.1
 - sentence can be set for website
 - new raid scripts
 - map fixes

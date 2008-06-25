@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.67
+Version 0.68.1
 
 
 How to play
@@ -46,7 +46,7 @@ Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.67.jar
+  java -jar stendhal-X.XX.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -66,7 +66,7 @@ You need to create the server.ini file by running
 
 (Please use ; instead of : on Microsoft Windows).
   
-It will create server.ini file that will work correctly with Marauroa 2.0.  
+It will create server.ini file that will work correctly with Marauroa 2.0 and above  
 
 If you have run previously a Stendhal server, you will need to dump your database
  as it is incompatible with it. The fastest way would be:
@@ -74,6 +74,7 @@ If you have run previously a Stendhal server, you will need to dump your databas
    drop database stendhal;
    create database stendhal;
 
+For more details please see http://arianne.sourceforge.net/wiki/index.php?title=Host_a_Stendhal_Server
 
 How to compile Stendhal
 -----------------------
