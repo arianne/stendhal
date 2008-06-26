@@ -4,7 +4,8 @@ Changelog
 - sentence can be set for website
 - new raid scripts
 - map fixes
-- ados mountains has a bazaar
+- north of ados is a bazaar
+- ados mountains have some trees and new houses
 - baby dragon not eating bug fixed
 - balrog home in semos mines w2 redecorated
 - all tiles of unknown origin now redrawn
