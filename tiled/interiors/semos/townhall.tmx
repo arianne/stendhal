@@ -127,9 +127,9 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAAAA8GY/w/7KABgAAA==
   </data>
  </layer>
- <layer name="objects" width="32" height="48" visible="0">
+ <layer name="objects" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQkAAAgEsOvf0ia+DqwgbLAEAAAAAACoOT9bpNgYjAAYAAA=
+   H4sIAAAAAAAAAO3OMQ0AAAjAMPx75MAJLw4IoU32LwIAALggtwcAAOCJGl3WaEFnawAYAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="48" visible="0" opacity="0.43">
