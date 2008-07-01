@@ -184,4 +184,20 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+  <item name="balloon">
+    <type class="scroll" subclass="balloon" tileid="-1"/>
+    <description>You see a bright red balloon. You can use it to float high up into the clouds.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.BalloonScroll"/>    <attributes>
+      <infostring value="7_kikareukin_clouds 31 12 10800 6_kikareukin_islands -1 -1"/>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 </items>
