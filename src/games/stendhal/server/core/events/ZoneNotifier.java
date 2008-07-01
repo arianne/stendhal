@@ -71,7 +71,10 @@ public class ZoneNotifier {
 			process(player, ZoneEventType.VISIT_ADOS_CASTLE);
 		} else if (destinationZone.equals("hell")) {
 			process(player, ZoneEventType.VISIT_HELL);
-		}
+	    } else if (destinationZone.equals("7_kikareukin_clouds")) {
+            process(player, ZoneEventType.VISIT_KIKAREUKIN_CLOUDS);
+        }
+        
 	}
 
 }

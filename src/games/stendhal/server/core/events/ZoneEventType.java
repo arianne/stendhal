@@ -30,7 +30,9 @@ public enum ZoneEventType {
 	VISIT_ADOS_CASTLE(
 					  "You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away."),
 	VISIT_HELL(
-			   "You fall down a deep chasm into the fires of hell. You can hear screaming of some poor soul being tortured, and the roars of fearsome creatures.");
+			   "You fall down a deep chasm into the fires of hell. You can hear screaming of some poor soul being tortured, and the roars of fearsome creatures."),
+	VISIT_KIKAREUKIN_CLOUDS(
+							"The balloon lifts you into the air and through dark grey clouds. You land on a cloud that seems quite firm, and realise you can walk across the grey clouds ... but not for very long.");
 
 	private String message;
 
