@@ -49,6 +49,7 @@ public class StendhalQuestSystem {
 		loadQuest("AdosDeathmatch");
 		loadQuest("AmazonPrincess");
 		loadQuest("ArmorForDagobert");
+		loadQuest("Balloon");
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
 		loadQuest("Campfire");
