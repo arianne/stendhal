@@ -184,7 +184,7 @@
  
   <item name="mithril legs">
     <type class="legs" subclass="mithril_legs" tileid="-1"/>
-    <description>You see a pair of mithril legs. They will server you well.</description>
+    <description>You see a pair of mithril legs. They will serve you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
     </attributes>
