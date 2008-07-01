@@ -8090,6 +8090,7 @@
       <item value="empty scroll" quantity="[1,2]" probability="5.0"/>
       <item value="golden cloak" quantity="[1,1]" probability="2.0"/>
       <item value="liberty helmet" quantity="[1,1]" probability="0.1"/>
+      <item value="balloon" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
