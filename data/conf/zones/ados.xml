@@ -960,6 +960,21 @@ My fee:
    <destination zone="0_ados_city" ref="castle_left_entrance"/>
   </portal>
 
+<!--hallway-->
+ <portal x="15" y="24" ref="hall1">
+   <destination zone="int_ados_castle_entrance" ref="hall1a"/>
+  </portal>
+ <portal x="16" y="24" ref="hall2">
+   <destination zone="int_ados_castle_entrance" ref="hall2a"/>
+  </portal>
+ <portal x="15" y="21" ref="hall1a">
+   <destination zone="int_ados_castle_entrance" ref="hall1"/>
+  </portal>
+ <portal x="16" y="21" ref="hall2a">
+   <destination zone="int_ados_castle_entrance" ref="hall2"/>
+  </portal>
+
+
  <!-- left corridor -->
   <portal x="0" y="3" ref="left1">
    <destination zone="int_ados_castle_left" ref="bottom1"/>
@@ -1628,12 +1643,24 @@ Southeast: Docks
      <destination zone="int_ados_town_hall" ref="entrance"/>
    </portal>
   <portal x="17" y="40" ref="castle_left_entrance">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+      <parameter name="minimum-level">10</parameter>
+      <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
+    </implementation>
      <destination zone="int_ados_castle_entrance" ref="entranceleft"/>
    </portal>
   <portal x="18" y="40" ref="castle_centre_entrance">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+      <parameter name="minimum-level">10</parameter>
+      <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
+    </implementation>
      <destination zone="int_ados_castle_entrance" ref="entranceright"/>
    </portal>
     <portal x="19" y="40" ref="castle_right_entrance">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+      <parameter name="minimum-level">10</parameter>
+      <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
+    </implementation>
      <destination zone="int_ados_castle_entrance" ref="entranceright"/>
    </portal>
    </zone>
