@@ -6,11 +6,36 @@
    ** Please respect it!
    -->
 
+ <!-- Level 7 -->
+
+ <zone name="7_kikareukin_clouds" level="7" x="499616" y="499744" file="Level 7/kikareukin/clouds.tmx">
+<!--Don't allow teleporting as we don't want marked scrolls made or ring abused-->
+  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+  <portal x="29" y="6" ref="exit1">
+   <destination zone="6_kikareukin_islands" ref="cloud_exit1"/>
+  </portal>
+  <portal x="9" y="47" ref="exit2">
+   <destination zone="6_kikareukin_islands" ref="cloud_exit2"/>
+  </portal>
+  <portal x="51" y="18" ref="exit3">
+   <destination zone="6_kikareukin_islands" ref="cloud_exit3"/>
+  </portal>
+ </zone>
+
  <!-- Level 6 -->
 
  <zone name="6_kikareukin_islands" level="6" x="499616" y="499744" file="Level 6/kikareukin/islands.tmx">
   <portal x="66" y="63" ref="exit">
    <destination zone="0_semos_mountain_n_w4" ref="kikareukin_exit"/>
+  </portal>
+  <portal x="25" y="8" ref="cloud_exit1">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="6" y="110" ref="cloud_exit2">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="93" y="9" ref="cloud_exit3">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
