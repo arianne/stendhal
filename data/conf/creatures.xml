@@ -1662,7 +1662,6 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward" params="fire"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
@@ -2434,7 +2433,6 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward" params="fire"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
