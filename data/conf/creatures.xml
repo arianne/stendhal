@@ -7950,6 +7950,34 @@
     </ai>
   </creature>
 
+  <creature name="demon">
+    <type class="demon" subclass="demon" tileid="demon.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="210"/>
+      <def value="30"/>
+      <hp value="800"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="85"/>
+    <experience value="6990"/>
+    <respawn value="3050"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="demon fire sword" quantity="[1,1]" probability="0.005"/>
+      <item value="fire sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="imperial demon servant">
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
     <description></description>
@@ -9722,6 +9750,38 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+
+  <creature name="devil monk">
+    <type class="undead" subclass="devil_monk" tileid="undead.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="318"/>
+      <def value="43"/>
+      <hp value="4000"/>
+      <speed value="1.0"/>
+      <size value="2,1"/>
+    </attributes>
+    <level value="205"/>
+    <experience value="86000"/>
+    <respawn value="26000"/>
+    <drops>
+      <item value="money" quantity="[100,600]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="20.0"/>
+      <item value="mega potion" quantity="[1,1]" probability="20.0"/>
+      <item value="vulcano hammer" quantity="[1,1]" probability="0.01"/>
+      <item value="black scythe" quantity="[1,1]" probability="0.5"/>
+	  <item value="hell dagger" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+	  <profile name="lifesteal" params="0.05"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 
   <creature name="fallen angel">
     <type class="giant_human" subclass="fallen_angel" tileid="giant_human.png:7"/>
