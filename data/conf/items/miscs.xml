@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
+<item name="seed">
+    <type class="misc" subclass="seed" tileid="-1"/>
+    <description>you see seed. It can be seeded.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Seed"/>  
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="giant heart">
     <type class="misc" subclass="giant_heart" tileid="-1"/>
     <description>You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.</description>

@@ -41,6 +41,15 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	private int maxRipeness;
 
+	protected final int getMaxRipeness() {
+		return maxRipeness;
+	}
+
+	final void setMaxRipeness(int maxRipeness) {
+		this.maxRipeness = maxRipeness;
+		put("max_ripeness", maxRipeness);
+	}
+
 	public static void generateRPClass() {
 		RPClass grainFieldClass = new RPClass("growing_entity_spawner");
 		grainFieldClass.isA("plant_grower");
@@ -84,7 +93,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		}
 	}
 
-	private void setRipeness(int ripeness) {
+	protected final void setRipeness(int ripeness) {
 		this.ripeness = ripeness;
 		put("ripeness", ripeness);
 	}
