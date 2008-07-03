@@ -141,7 +141,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Balduin",
 			new CustomerData(
-				"Balduin is a hermit who's living on a mountain between Semos and Ados.",
+				"Balduin is a hermit who's living on a mountain between Semos and Ados. It's called Ados Rock. Walk east from here.",
 				"Pizza Prosciutto",
 				7,  // minutes to deliver. Tested by mort: 6:30
 					// min, with killing some orcs.
@@ -155,7 +155,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Cyk",
 			new CustomerData(
-				"Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair.",
+				"Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.",
 				"Pizza Hawaii",
 				20, // minutes to deliver. You need about 6 min
 					// to Eliza, up to 12 min to wait for the
@@ -181,7 +181,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Fidorea",
 			new CustomerData(
-				"Fidorea lives in Ados city. She is a makeup artist.",
+				"Fidorea lives in Ados city. She is a makeup artist. You'll need to walk east from here.",
 				"Pizza Napoli",
 				7,  // minutes to deliver. Tested by mort: about
 					// 6 min, outrunning all enemies.
@@ -192,7 +192,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Haizen",
 			new CustomerData(
-				"Haizen is a magician who lives in a hut near the road to Ados.",
+				"Haizen is a magician who lives in a hut near the road to Ados. You'll need to walk east and north from here.",
 				"Pizza Diavolo",
 				4,  // minutes to deliver. Tested by kymara:
 					// exactly 3 min.
@@ -204,7 +204,7 @@ public class PizzaDelivery extends AbstractQuest {
 		customerDB.put(
 			"Jenny",
 			new CustomerData(
-				"Jenny owns a mill near Semos.",
+				"Jenny owns a mill in the plains north and a little east of Semos.",
 				"Pizza Margherita",
 				2,  // minutes to deliver. Tested by mort: can
 					// be done in 1:15 min, with no real danger.
@@ -215,7 +215,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Jynath",
 			new CustomerData(
-				"Jynath is a witch who lives in a small house south of Or'ril castle.",
+				"Jynath is a witch who lives in a small house south of Or'ril castle. You'll need to walk south west from Semos, all the way through the forest, then follow the path west till you see her hut.",
 				"Pizza Funghi",
 				6,  // minutes to deliver. Tested by mort: 5:30
 					// min, leaving the slow monsters on the way
@@ -227,7 +227,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Katinka",
 			new CustomerData(
-				"Katinka takes care of the animals at the Ados Wildlife Refuge.",
+				"Katinka takes care of the animals at the Ados Wildlife Refuge. That's north east of here, on the way to Ados city.",
 				"Pizza Vegetale",
 				4,  // minutes to deliver. Tested by kymara in
 					// 3:25 min, leaving behind the orcs.
@@ -238,9 +238,8 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Marcus", 
 			new CustomerData(
-				"Marcus is a guard in the Semos jail.", "Pizza Tonno",
-				2, // minutes to deliver. Tested by mort: can be done in 90 sec
-					// with no danger.
+				"Marcus is a guard in the Semos jail. That is due west from here, beyond Semos village.", "Pizza Tonno",
+				3, // minutes to deliver. Tested by kymara: takes longer than before due to fence in village
 				25, // tip when delivered on time. A bit higher than Jenny
 					// because you can't do anything else in the jail and need
 					// to walk out again.
@@ -250,7 +249,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Nishiya",
 			new CustomerData(
-				"Nishiya sells sheep. You'll find him west of here.",
+				"Nishiya sells sheep. You'll find him west of here, in Semos village.",
 				"Pizza Pasta",
 				1,  // minutes to deliver. Tested by mort: easy
 					// to do in less than 1 min.
@@ -261,7 +260,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Ouchit",
 			new CustomerData(
-				"Ouchit is a weapons trader. He has currently rented a room in the tavern, just around the corner.",
+				"Ouchit is a weapons trader. He has currently rented a room upstairs in Semos tavern, just around the corner.",
 				"Pizza Quattro Stagioni",
 				1,  // minutes to deliver. Tested by mort: can
 					// be done in 45 sec with no danger.
@@ -272,7 +271,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Ramon",
 			new CustomerData(
-				"Ramon works as a blackjack dealer on the ferry to Athor Island.",
+				"Ramon works as a blackjack dealer on the ferry to Athor Island. The ferry terminal is south east from here - it's a long way!",
 				"Pizza Bolognese",
 				14, // minutes to deliver. You need about 6 mins
 					// to Eliza, and once you board the ferry,
@@ -287,7 +286,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Tor'Koom",
 			new CustomerData(
-				"Tor'Koom is an orc who lives in the dungeon below this town. Sheep are his favourite food.",
+				"Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favourite food. He lives at the 3rd level below ground. Be careful!",
 				"Pizza Pecora", // "Pizza sheep" in Italian ;)
 				9, // minutes to deliver. Tested by kymara:
 					// done in about 8 min, with lots of monsters getting in your way.
