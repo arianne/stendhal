@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ import java.util.List;
  * REPETITIONS:
  * <ul>
  * <li>yes tomi takes as many ice as you please</li>
+ * <li>bigger reward each time - with a square law on the XP</li>
  * </ul>
  */
 public class HelpTomi extends AbstractQuest {
@@ -63,7 +65,7 @@ public class HelpTomi extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("done")) {
+		if (questState.startsWith("done")) {
 			res.add("DONE");
 		}
 		return res;
@@ -71,7 +73,7 @@ public class HelpTomi extends AbstractQuest {
 	
 	private void step1() {
 		SpeakerNPC npc = npcs.get("tomi");
-		
+
 		// says quest or ice and doesn't have an ice sword and hasn't brought one before
 		npc.add(ConversationStates.ATTENDING,
 			questTrigger, 
@@ -93,7 +95,7 @@ public class HelpTomi extends AbstractQuest {
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("ice sword")),
 			ConversationStates.ATTENDING,
 			"my ice :)",
-			new MultipleActions(new DropItemAction("ice sword"), new IncreaseXPAction(1000), new IncreaseKarmaAction(30.0), new SetQuestAction(QUEST_SLOT, "done")));
+			new MultipleActions(new DropItemAction("ice sword"), new IncreaseXPAction(1000), new IncreaseKarmaAction(30.0), new SetQuestAction(QUEST_SLOT, "done;1")));
 		
 		// says quest or ice and has ice sword with him (second+ time)
 		// player gets a karma bonus and some xp
@@ -101,8 +103,35 @@ public class HelpTomi extends AbstractQuest {
 			questTrigger, 
 			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("ice sword")),
 			ConversationStates.ATTENDING,
-			"my ice :) :) :)",
-			new MultipleActions(new DropItemAction("ice sword"), new IncreaseXPAction(3000), new IncreaseKarmaAction(30.0), new SetQuestAction(QUEST_SLOT, "done")));
+			null,
+			new SpeakerNPC.ChatAction() {
+				// we are storing the number of times the player has done the quest in the quest slot like
+				// done;N. We reward based on this number. If the quest slot isn't split like this and only 'done' 
+				// we assume it was just done once (sorry, guys)
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					int N;
+					// compatibility with old version
+					String questState = player.getQuest(QUEST_SLOT);
+					if ("done".equals(questState)) {
+						N = 2;
+					} else {
+						String[] questparts = questState.split(";");
+						N = Integer.parseInt(questparts[1]) + 1;
+					}
+					player.drop("ice sword");
+					player.addKarma(N*15.0);
+					player.setQuest(QUEST_SLOT, "done;"+Integer.toString(N));
+					player.addXP(N*N*1000);
+					// make the number of smilies correspond to how many times you helped him
+					String say = "my ice ";
+					for (int i=0; i<N; i++){
+						say += ":) ";
+					}
+					npc.say(say);
+				}
+			});
+								
 	}
 
 	@Override
