@@ -1,5 +1,11 @@
 Changelog
 ---------
+0.69
+- 7 kikareukin clouds added
+- archangel and dark archangel new creatures
+- corrected xp of golden death
+- path between kirdneh and fado
+
 0.68.1
 - sentence can be set for website
 - new raid scripts
