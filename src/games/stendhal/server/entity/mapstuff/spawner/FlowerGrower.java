@@ -5,20 +5,18 @@ import marauroa.common.game.RPObject;
 
 public class FlowerGrower extends VegetableGrower {
 
-	private static final String ITEM_NAME = "flower";
+	private static final String ITEM_NAME = "lilia";
 	private String[] description = { "0", "1", "2", "3", "4" };
 
 	public FlowerGrower(RPObject object) {
 		super(object, ITEM_NAME);
 		setMaxRipeness(4);
-		setVegetableName("rose");
+		setVegetableName("lilia");
 
 	}
 
 	public FlowerGrower() {
-		super(ITEM_NAME);
-		setMaxRipeness(4);
-		setVegetableName("rose");
+		this(ITEM_NAME);
 	}
 
 	public FlowerGrower(String infoString) {
