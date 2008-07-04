@@ -23,7 +23,13 @@ public class PlantAction {
 		if (seed == null || user == null) {
 			return false;
 		} else if (!seed.isContained()) {
-			FlowerGrower flowerGrower = new FlowerGrower();
+			String infostring = seed.getInfoString();
+			FlowerGrower flowerGrower;
+			if (infostring == null) {
+				flowerGrower = new FlowerGrower();
+			} else {
+				flowerGrower = new FlowerGrower(seed.getInfoString());
+			}
 			user.getZone().add(flowerGrower);
 			flowerGrower.setPosition(seed.getX(), seed.getY());
 			TurnNotifier.get().notifyInTurns(3, flowerGrower);

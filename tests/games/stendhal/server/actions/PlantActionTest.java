@@ -2,9 +2,12 @@ package games.stendhal.server.actions;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Seed;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.player.Player;
@@ -98,8 +101,72 @@ public class PlantActionTest {
 		plantAction.setUser(player);
 		plantAction.setSeed(seed);
 		assertFalse(plantAction.execute());
-
-		
 	}
 
+	@Test
+	public void testExecuteNonameSeed() {
+		PlantAction plantAction = new PlantAction();
+		Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+
+		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		assertNotNull(seed);
+		zone.add(seed);
+		seed.setPosition(1, 0);
+
+		plantAction.setUser(player);
+		plantAction.setSeed(seed);
+		assertTrue(plantAction.execute());
+
+		Entity entity = player.getZone().getEntityAt(1, 0);
+		assertNotNull(entity);
+		if (entity instanceof FlowerGrower) {
+			FlowerGrower flg = (FlowerGrower) entity;
+			flg.setToFullGrowth();
+			flg.onUsed(player);
+			assertNull(player.getZone().getEntityAt(1, 0));
+			assertTrue(player.isEquipped("rose"));
+		} else {
+			fail("seed produced non flowergrower");
+		}
+		
+
+	}
+	
+	@Test
+	public void testExecuteDaisiesSeed() {
+		PlantAction plantAction = new PlantAction();
+		Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+
+		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		assertNotNull(seed);
+		seed.setInfoString("daisies");
+		zone.add(seed);
+		seed.setPosition(1, 0);
+
+		plantAction.setUser(player);
+		plantAction.setSeed(seed);
+		assertTrue(plantAction.execute());
+
+		Entity entity = player.getZone().getEntityAt(1, 0);
+		assertNotNull(entity);
+		if (entity instanceof FlowerGrower) {
+			FlowerGrower flg = (FlowerGrower) entity;
+			flg.setToFullGrowth();
+			flg.onUsed(player);
+			assertNull(player.getZone().getEntityAt(1, 0));
+			assertTrue("player has daisies", player.isEquipped("daisies"));
+		} else {
+			fail("seed produced non flowergrower");
+		}
+		
+
+	}
 }

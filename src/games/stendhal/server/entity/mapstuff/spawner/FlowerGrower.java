@@ -21,6 +21,11 @@ public class FlowerGrower extends VegetableGrower {
 		setVegetableName("rose");
 	}
 
+	public FlowerGrower(String infoString) {
+		super(infoString);
+		setMaxRipeness(4);
+	}
+
 	@Override
 	public void onFruitPicked(Item picked) {
 		getZone().remove(this);
