@@ -128,7 +128,7 @@ public class PlantActionTest {
 			flg.setToFullGrowth();
 			flg.onUsed(player);
 			assertNull(player.getZone().getEntityAt(1, 0));
-			assertTrue(player.isEquipped("rose"));
+			assertTrue(player.isEquipped("lilia"));
 		} else {
 			fail("seed produced non flowergrower");
 		}

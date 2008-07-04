@@ -62,7 +62,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		Item item = SingletonRepository.getEntityManager().getItem(chosenItemName);
+		Item item = getAskedItem(chosenItemName);
 		if (item == null) {
 			logger.error("Trying to sell an nonexistant item: " + getChosenItemName());
 			return false;
@@ -101,5 +101,10 @@ public class SellerBehaviour extends MerchantBehaviour {
 			seller.say("Sorry, you don't have enough money!");
 			return false;
 		}
+	}
+
+	protected Item getAskedItem(String askedItem) {
+		Item item = SingletonRepository.getEntityManager().getItem(askedItem);
+		return item;
 	}
 }
