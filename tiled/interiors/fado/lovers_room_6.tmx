@@ -87,19 +87,22 @@
  <tileset name="mushroom.png" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
+ <tileset name="hedge2" firstgid="268" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/bush/hedge_2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNlYGBgpQNWpiEetWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMAsNNiVcQJAAA=
+   H4sIAAAAAAAAAGNlYGBgpQNWpiEm1g5mHJiadtDDH8PFDlLCfzD7g552kBNeg9Efo3aM2jFqx6gdI8EOWmMAj91wHMQJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWUOwrCQBRF314ConYqbkLBLxY2go24B5dicA1aiYoWgr9S9+A+vAMJTh4zb+IkYuGFQz5Mct4dQgpEVPwiJVCmdwJKRl2HYGEhJHcqkaMBmppjrqHurSwEbK2e+J2xg/fgDgnuCCi5H2l7+Dj+oQefQ50vLZjWpumRF2l6ZOWXPXhss0lz8/Ae/Gh63jU3P37aw7X3Ug+VHugLDATHGmwcDrVuCmYCQ8e8rh6+ji3YMfY5Ow7gyTjl4ND3/mhw3Nk63TECE4GxoYfkoOi9usMnD8ERf3NZHWdw0biCm8XRAm1Pjymmf2IHdJk/z/9uFdS+SB28AHL5/pvECQAA
+   H4sIAAAAAAAAAOWUyw7BQBSGT2NLPEQTwQ7xEiSusbCR2Ih38ChsWbMShIXEbck7eA9noo1xMnOmxjQW/uRLtR39zj9pmgGAbIzkkDy84sN7xPkESXoAKULae94zpRA4KkhVcowlxLWFBp+slRM+M3TQHtSR0KBy+GQ/ovawcfxDDzqH+D1D5oSpZm2UHq6I0uNbftmDRjcbNzcN7UGPqv+b5qbHT3uY9p7rIdJC2gwdxrFEVgaHWDdERgxdw7ymHraONbIhbB07dsidcHDgkPd+r3BcyTrZ0UMGDH1FD84BwXNlh01ujCN85751HJGTxBm5aBw1pG7pUUX1TWwgTeJ3+d0tIqUYKSMPwrJzlsQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA78wcEmBbiTqY/eZo6CUTAKRsEoGLzgBRC/JFLtKyB+D8SfgfgTzVzEwPARSn+hkfmvGSD++IRkF7XBGyS7RgH54Csd7QIAmde75cQJAAA=
+   H4sIAAAAAAAAAGNgIA78wcEmBbjjkZuHA1Ni5igYBaNgFIyC4QdeAPFLItW+AuL3QPwZiD/RzEUMDB+h9Bcamf+aAeKPT0h2URu8QbJrFJAPvtLRLgCqKzBaxAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
@@ -117,7 +120,7 @@
    H4sIAAAAAAAAAGNgoBNgHGLm4gBsNLKPVubiBdS2cyD8QAt7B8ofwwAMq/wxCkbBKBgFgxwAABp+WrvECQAA
   </data>
  </layer>
- <layer name="collision" width="25" height="25" opacity="0.25">
+ <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPvPwMDwnw4YH6C2XlLtIcV8WgJa2jXqj8Fl16g/KLeLErupaRY+80mVoxYY7nZQI3wHIu2O2jG47KCVXfRoU8EwAPfuEanECQAA
   </data>

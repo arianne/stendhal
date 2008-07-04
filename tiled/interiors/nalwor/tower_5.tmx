@@ -33,6 +33,9 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
+ <tileset name="hedge_2" firstgid="97" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/bush/hedge_2.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGBqAjUI8at6oeaPmjZo3VM0brAAAKVAFPEAGAAA=
@@ -40,7 +43,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONkYGDghmIZJDY6xiWHLM4DxIJAbALEhhRiUyAWgJpnzEA5MKKjeS5UNg8b8EbClJpHjHspCT9s5lMaH95omJ7xS23zsIUPuv/Q4xndPELpgRL3DZR5yOGCzzxsYUVq+FEKaGmeGRAbUIjNoeaJArE4FqwGxGJ45LCJSwAxAPkF00RABgAA
+   H4sIAAAAAAAAAONkYGDghmIZJDY6xiWHLM4DxIJAbALEhhRiUyAWgJpnzEA5MKKjeS5UNg8b8EbClJpHjHspCT9s5lMaH6kMCP+nUcE8aruPFPOwhQ+y/7DFM7p5yGFBbfcNlHnI4YLPPGxhhY7Rw2Uw+heXeWZAbEAhNoeaJwrE4liwGhCL4ZHDJi4BxABaHRY0QAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -50,7 +53,7 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAW0BjZAbAvEbkDsDuWPNADzPywM8IGhGD7I/iMmnpHTw0gD6GGFDY/EcBmKAABIpqu+QAYAAA==
+   H4sIAAAAAAAAAGNgGAW0Bl5A7IaEPQfWOQMCbBkQ/ncnoNaG9s6hOkD2H8yP+OLZloG4sBiOAD2ssOGRGC5DEQAAw8HHn0AGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -63,7 +66,7 @@
    H4sIAAAAAAAAAGNgGJ4gnkbmRuORC6eRndQCpIQJtcKP2mGCL/zpDQaTW2gNIgbaAQME6OXvoRq+AKHz4D9ABgAA
   </data>
  </layer>
- <layer name="collision" width="20" height="20" opacity="0.44">
+ <layer name="collision" width="20" height="20" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANWUQQoAIAgEfaX/f0rXCHV3s4MJHkSZRorczPyTtKBmImPtfTUynuqGeMxsNK/ysrq6Cza6fhkTvZXq/Bv+2evwkB/ai90dOTF+03nqH/LKDzmgeYU1NRcbPyYdQAYAAA==
   </data>
