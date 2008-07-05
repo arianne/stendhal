@@ -284,11 +284,10 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * Returns the amount of objects.
-	 *
-	 * @return
+	 * @return  the amount of objects.
 	 */
 	public int getQuantity() {
+		
 		int temp = quantity;
 		if (quantity == 0) {
 			// everything
@@ -352,11 +351,18 @@ class SourceObject extends MoveableObject {
 	}
 
 	private static class InvalidSource extends SourceObject {
+		/**
+		 * Constructor.
+		 */
 		public InvalidSource() {
 			super(null);
 
 		}
 
+		/**
+		 * 
+		 * @return false
+		 */
 		@Override
 		public boolean isValid() {
 			return false;

@@ -120,14 +120,15 @@ public class HelpTomi extends AbstractQuest {
 						N = Integer.parseInt(questparts[1]) + 1;
 					}
 					player.drop("ice sword");
-					player.addKarma(N*15.0);
-					player.setQuest(QUEST_SLOT, "done;"+Integer.toString(N));
-					player.addXP(N*N*1000);
-					// make the number of smilies correspond to how many times you helped him
-					String say = "my ice ";
-					for (int i=0; i<N; i++){
-						say += ":) ";
-					}
+						player.addKarma(N * 15.0);
+						player.setQuest(QUEST_SLOT, "done;" + Integer.toString(N));
+						player.addXP(N * N * 1000);
+						// make the number of smilies correspond to how many
+						// times you helped him
+						String say = "my ice ";
+						for (int i = 0; i < N; i++) {
+							say += ":) ";
+						}
 					npc.say(say);
 				}
 			});

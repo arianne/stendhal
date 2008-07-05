@@ -87,6 +87,8 @@ public class Base64 {
 	 * characters (newlines and the like) rather than throwing an error. It does
 	 * this by pre-parsing the input and generating from that a count of VALID
 	 * input characters.
+	 * @param data 
+	 * @return 
 	 */
 	public static byte[] decode(char[] data) {
 		// as our input could contain non-BASE64 data (newlines,

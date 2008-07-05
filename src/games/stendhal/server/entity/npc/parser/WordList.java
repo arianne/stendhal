@@ -143,6 +143,7 @@ public final class WordList {
 
     /**
      * Updates the MD5 hash code.
+     * @return true on success
      */
     boolean calculateHash() {
         MessageDigest md;
@@ -189,6 +190,7 @@ public final class WordList {
      * Reads word list from reader object.
      *
      * @param reader
+     * @param comments 
      * @throws IOException
      */
     public void read(final BufferedReader reader, final List<String> comments) throws IOException {
@@ -226,6 +228,7 @@ public final class WordList {
 
     /**
      * Reads one line of the word list and adds the new entry.
+     * @param key 
      *
      * @param tk
      * @param entry
@@ -354,7 +357,7 @@ public final class WordList {
      * form as key in the word list.
      *
      * @param word
-     * @return
+     * @return the trimmed word
      */
     public static String trimWord(String word) {
         word = word.toLowerCase();
@@ -648,6 +651,8 @@ public final class WordList {
      * Add a new word to the list in order to remember it later.
      *
      * @param str
+     * @param persist if true word will be written to database
+     * @return the added entry
      */
     public WordEntry addNewWord(final String str, final boolean persist) {
         String key = trimWord(str);
@@ -844,6 +849,7 @@ public final class WordList {
 
     /**
      * Read word entries from the database.
+     * @return the amount read or -1 on error
      */
     private int readFromDB() {
         if (!enableDatabaseAccess) {

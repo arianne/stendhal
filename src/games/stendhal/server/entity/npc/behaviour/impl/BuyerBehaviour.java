@@ -32,13 +32,14 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	/**
 	 * Gives the money for the deal to the player. If the player can't carry the
 	 * money, puts it on the ground.
+	 * @param buyerNPC 
 	 * @param player
 	 *            The player who sells
 	 */
-	protected void payPlayer(SpeakerNPC seller, Player player) {
+	protected void payPlayer(SpeakerNPC buyerNPC, Player player) {
 		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"money");
-		money.setQuantity(getCharge(seller, player));
+		money.setQuantity(getCharge(buyerNPC, player));
 		player.equip(money, true);
 	}
 

@@ -39,7 +39,7 @@ public class DefaultActionManager implements ActionManager {
 	}
 
 	/**
-	 * returns the instance of this manager. Note: This method is synchonized.
+	 * @return the instance of this manager. Note: This method is synchonized.
 	 */
 	public static synchronized DefaultActionManager getInstance() {
 		if (manager == null) {
@@ -49,7 +49,9 @@ public class DefaultActionManager implements ActionManager {
 	}
 
 	/**
-	 * returns the name of the slot in which the entity can equip the item.
+	 * gets the name of the slot in which the entity can equip the item.
+	 * @param entity 
+	 * @param item 
 	 * 
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
@@ -90,7 +92,11 @@ public class DefaultActionManager implements ActionManager {
 		return null;
 	}
 
-	/** Equips the item in the specified slot. */
+	/** Equips the item in the specified slot. 
+	 * @param entity 
+	 * @param slotName 
+	 * @param item 
+	 * @return true if successfull*/
 	public boolean onEquip(RPEntity entity, String slotName, Item item) {
 		if (!entity.hasSlot(slotName)) {
 			return false;

@@ -24,7 +24,6 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.awt.Rectangle;
 import java.util.Arrays;
-import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -775,25 +774,25 @@ public class Marriage extends AbstractQuest {
                         husband = player;
                         partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
                         wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
-                        // check person asking is just married
+                        
 						if (!(player.hasQuest(QUEST_SLOT)) || !("just_married".equals(player.getQuest(QUEST_SLOT)))) {
+							// person is not just married
 							npc.say("Sorry, our honeymoon suites are only available for just married customers.");
 							npc.setCurrentState(ConversationStates.ATTENDING);						
-						} 
-						// check wife is online and check that they're still
-						// married to the current husband    
-						else if (wife == null){
+						} else if (wife == null) { 
+							//wife is not online
                             npc.say("Come back when " + partnerName + " is with you - you're meant to have your honeymoon together!");
                             npc.setCurrentState(ConversationStates.IDLE);
                         } else if (!(wife.hasQuest(QUEST_SLOT)
                                      && wife.getQuest(SPOUSE_QUEST_SLOT).equals(husband.getName()))) {
+                        	//wife is not married to this husband
                             npc.say("Oh dear, this is embarassing. You seem to be married, but " + partnerName + " is not married to you.");
                             npc.setCurrentState(ConversationStates.ATTENDING);
-                        }
-                        // check wife has bothered to come to reception desk
-						else if (!hotelReception.contains(wife)){
+                        } else if (!hotelReception.contains(wife)) {
+                        	//  wife has not bothered to come to reception desk
                             npc.say("Could you get " + partnerName + " to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.");
                         }  else { 
+                        	//wife and husband fulfill all conditions
 							npc.say("How lovely! Please read our catalogue here and tell me the room number that you would like.");
 						}
 					}

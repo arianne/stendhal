@@ -59,18 +59,16 @@ public final class NameSearch {
     }
 
     /**
-     * Return item name.
      *
-     * @return
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Return amount of items.
      *
-     * @return
+     * @return amount of items
      */
     public int getAmount() {
         return amount;

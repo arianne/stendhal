@@ -14,6 +14,7 @@ import org.junit.Test;
  */
 public class WikipediaAccessTest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void test() {
 		WikipediaAccess access = new WikipediaAccess("Stendhal");

@@ -130,7 +130,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Minimap.class);
 
-	/** Creates a new instance of Minimap. */
+	/** Creates a new instance of Minimap. 
+	 * @param client */
 	public Minimap(StendhalClient client) {
 		super("minimap", 0, 0, 100, 100);
 
@@ -465,7 +466,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				(int) ((player.getY() * scale) + 0.5), color);
 	}
 
-	/** Draws a cross at the given position. */
+	/** Draws a cross at the given position. 
+	 * @param g 
+	 * @param x 
+	 * @param y 
+	 * @param color */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
 

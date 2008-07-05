@@ -119,6 +119,7 @@ public class StendhalRPAction {
 
 /**
 	 * Lets the attacker try to attack the defender.
+	 * @param player 
 	 * 
 	 * @param defender
 	 *            The defending RPEntity.

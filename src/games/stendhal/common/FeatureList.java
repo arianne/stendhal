@@ -41,6 +41,7 @@ public class FeatureList implements Iterable<String> {
 	 * 
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
+	 * @param encoded 
 	 */
 	public void decode(String encoded) {
 		int len;
@@ -79,15 +80,11 @@ public class FeatureList implements Iterable<String> {
 		}
 	}
 
-	/**
-	 * Build an encoded features list.
-	 * 
-	 * Encoded features are in the form of:<br>
-	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
-	 */
+
 
 	/**
 	 * Get a feature value.
+	 * @param name 
 	 * 
 	 * @return A feature value, or <code>null</code> if not-enabled.
 	 */
@@ -95,43 +92,10 @@ public class FeatureList implements Iterable<String> {
 		return list.get(name);
 	}
 
-	/**
-	 * Determine if a feature is enabled.
-	 * 
-	 * @return <code>true</code> is a feature is enabled.
-	 */
-
-	/**
-	 * Enable/disable a feature.
-	 * 
-	 * @param name
-	 *            The feature mnemonic.
-	 * @param enabled
-	 *            Flag indicating if enabled.
-	 * 
-	 * @return <code>true</code> if the list changed,
-	 *         <code>false<code> otherwise.
-	 */
-
-	/**
-	 * Set/remove a feature. <strong>NOTE: The names and values MUST NOT contain
-	 * <code>=</code> (equals), or <code>:</code> (colon).
-	 * 
-	 * @param name
-	 *            The feature mnemonic.
-	 * @param value
-	 *            The feature value, or <code>null</code> to disable.
-	 * 
-	 * @return <code>true</code> if the list changed,
-	 *         <code>false<code> otherwise.
-	 */
-
+	
 	//
 	// Iterable
 	//
-	/**
-	 * Get the feature names.
-	 */
 	public Iterator<String> iterator() {
 		return list.keySet().iterator();
 	}

@@ -302,6 +302,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Creates a new TransferContent for the specified data and adds it to the
 	 * contents list.
+	 * @param name 
+	 * @param byteContents 
 	 */
 	private void addToContent(String name, byte[] byteContents) {
 		TransferContent content = new TransferContent();
@@ -370,6 +372,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * Populate a zone based on it's map content.
 	 * 
 	 * TODO: This should be moved to the zone loader or something.
+	 * @param objectsLayer 
 	 */
 	public void populate(LayerDefinition objectsLayer) {
 		/* We build the layer data */
@@ -856,8 +859,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
+	 * Finds an Entity at the given coordinates. 
 	 * 
-	 * @return the entity at x,y or null if there is none
+	 * @param x coordinate 
+	 * @param y coordinate
+	 * @return the first entity found if there are more than one or null if there are none
 	 */
 	public synchronized Entity getEntityAt(double x, double y) {
 		for (RPObject other : objects.values()) {
@@ -1005,9 +1011,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Returns a set of all items that are lying on the ground in this zone.
-	 * This set is currently only used for plant growers, and these might be
-	 * changed so that this set is no longer needed, so try to avoid using it.
+	 * @return a set of all items that are lying on the ground in this zone.
 	 */
 	public Set<Item> getItemsOnGround() {
 		return itemsOnGround;
@@ -1110,7 +1114,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Return whether the zone is completely empty.
-	 * @return
+	 * @return true if there are no objects in zone
 	 */
 	public boolean isEmpty() {
 	    return objects.isEmpty();
@@ -1118,7 +1122,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Return whether the zone contains one or more players.
-	 * @return
+	 * @return if there are players in zone
 	 */
 	public boolean containsPlayer() {
 	    for (RPObject obj : objects.values()) {
@@ -1132,7 +1136,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
     /**
      * Return whether the zone contains one or more animals.
-     * @return
+     * @return true if there are domesticalanimals in zone
      */
     public boolean containsAnimal() {
         for (RPObject obj : objects.values()) {
@@ -1146,7 +1150,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
     /**
      * Return whether the zone contains any creature including players and animals.
-     * @return
+     * @return true if there are creatures in zone
      */
     public boolean containsCreature() {
         for (RPObject obj : objects.values()) {

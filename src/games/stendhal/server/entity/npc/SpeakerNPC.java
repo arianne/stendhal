@@ -538,7 +538,10 @@ public class SpeakerNPC extends NPC {
 		return false;
 	}
 
-	/** This function evolves the FSM. */
+	/** This function evolves the FSM. 
+	 * @param player 
+	 * @param text 
+	 * @return true if step was successfully executed*/
 	private boolean tell(Player player, String text) {
 		// If we are not attending a player, attend this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {

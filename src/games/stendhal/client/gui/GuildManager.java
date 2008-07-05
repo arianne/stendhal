@@ -153,6 +153,7 @@ public class GuildManager extends javax.swing.JFrame {
 
 	/**
 	 * Create guild.
+	 * @param guildname 
 	 */
 	private void createGuild(String guildname) {
 		if (client == null) {
@@ -171,6 +172,8 @@ public class GuildManager extends javax.swing.JFrame {
 
 	/**
 	 * Invite to guild.
+	 * @param user 
+	 * @param guildName 
 	 */
 	private void inviteToGuild(String user, String guildName) {
 		if (client == null) {
@@ -190,6 +193,7 @@ public class GuildManager extends javax.swing.JFrame {
 
 	/**
 	 * Removes player from guild.
+	 * @param user 
 	 */
 	private void removeFromGuild(String user) { 
 		// we shouldn't seed that string, but....

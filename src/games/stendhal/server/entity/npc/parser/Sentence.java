@@ -47,9 +47,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return sentence type.
      *
-     * @return
+     * @return sentence type.
      */
     public SentenceType getType() {
         return sentenceType;

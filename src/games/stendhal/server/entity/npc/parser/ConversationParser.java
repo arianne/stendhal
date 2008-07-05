@@ -23,9 +23,7 @@ public final class ConversationParser extends ErrorBuffer {
     final String originalText;
 
     /**
-     * Return the original parsed text.
-     *
-     * @return
+     * @return the original parsed text.
      */
     public String getOriginalText() {
         return originalText;
@@ -43,10 +41,9 @@ public final class ConversationParser extends ErrorBuffer {
     }
 
     /**
-     * Return the sentence in normalized form.
      *
      * @param text
-     * @return
+     * @return the sentence in normalized form.
      */
     public static String normalize(final String text) {
         return parse(text).getNormalized();
@@ -113,13 +110,15 @@ public final class ConversationParser extends ErrorBuffer {
      * Parse function without conversation context.
      *
      * @param text
-     * @return
+     * @return the parsed text
      */
     public static Sentence parse(final String text) {
         return parse(text, new ConversationContext());
     }
 
-    /** A cache to hold pre-parsed matching Sentences. */
+    /**
+     *  A cache to hold pre-parsed matching Sentences.
+     */
     private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
     /**
@@ -146,7 +145,7 @@ public final class ConversationParser extends ErrorBuffer {
      *
      * @param text
      * @param matcher
-     * @return
+     * @return Sentence result
      */
     public static Sentence parse(final String text, final ExpressionMatcher matcher) {
         if (matcher != null) {
@@ -162,7 +161,7 @@ public final class ConversationParser extends ErrorBuffer {
      * @param text
      * @param ctx
      * @param matcher
-     * @return
+     * @return Sentence result
      */
     public static Sentence parse(final String text, final ConversationContext ctx, final ExpressionMatcher matcher) {
         if (matcher != null) {

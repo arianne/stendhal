@@ -62,6 +62,7 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Create a buddy list panel.
+	 * @param ui 
 	 */
 	public BuddyListPanel(StendhalUI ui) {
 		this.ui = ui;

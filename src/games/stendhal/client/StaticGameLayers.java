@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.User;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.tools.tiled.LayerDefinition;
 
@@ -23,8 +22,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
+
+import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings. */
 

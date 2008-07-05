@@ -93,7 +93,8 @@ public class MoveableEntityContainer implements WtDraggable {
 	// WtDraggable
 	//
 
-	/** drag started. */
+	/** drag started. 
+	 * @return true */
 	public boolean dragStarted() {
 		view = GameScreen.get().createView(entity);
 
@@ -114,7 +115,9 @@ public class MoveableEntityContainer implements WtDraggable {
 		return true;
 	}
 
-	/** drag finished. */
+	/** drag finished. 
+	 * @param p 
+	 * @return true*/
 	public boolean dragFinished(Point p) {
 		if (view != null) {
 			view.release();
@@ -124,7 +127,9 @@ public class MoveableEntityContainer implements WtDraggable {
 		return true;
 	}
 
-	/** moved. */
+	/** moved. 
+	 * @param p 
+	 * @return true*/
 	public boolean dragMoved(Point p) {
 		x = p.x;
 		y = p.y;

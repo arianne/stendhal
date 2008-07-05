@@ -138,6 +138,7 @@ public class HelpDialog extends JFrame {
 
 		/**
 		 * Update the browser window on selection change in the tree.
+		 * @param e 
 		 */
 		public void valueChanged(TreeSelectionEvent e) {
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();

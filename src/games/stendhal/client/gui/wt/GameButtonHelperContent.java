@@ -20,7 +20,10 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 
 	
 
-	/** Creates new form PurchaseHelperContent. */
+	/** Creates new form PurchaseHelperContent. 
+	 * @param sp 
+	 * @param gbh 
+	 * @param ui */
 	public GameButtonHelperContent(SettingsPanel sp, GameButtonHelper gbh,
 			StendhalUI ui) { 
 		// settings panel for the setVisable stuff

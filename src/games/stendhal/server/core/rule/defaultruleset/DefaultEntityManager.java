@@ -43,7 +43,7 @@ public class DefaultEntityManager implements EntityManager {
 	/** maps the tile ids to the classes. */
 	private Map<String, String> idToClass;
 
-	/** maps the creature tile-ids to the actual creature enums .*/
+	/** maps the creature tile-ids to the actual creature enums . */
 	private Map<String, DefaultCreature> classToCreature;
 
 	/** maps the item names to the actual item enums. */
@@ -52,7 +52,7 @@ public class DefaultEntityManager implements EntityManager {
 	/** lists all creatures that are being used at least once. */
 	private Map<String, Creature> createdCreature;
 
-	/** lists all items that are being used at least once .*/
+	/** lists all items that are being used at least once . */
 	private Map<String, Item> createdItem;
 
 	/** no public constructor. */
@@ -64,8 +64,7 @@ public class DefaultEntityManager implements EntityManager {
 		createdItem = new HashMap<String, Item>();
 
 		try {
-			ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI(
-					"/data/conf/items.xml"));
+			ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI("/data/conf/items.xml"));
 			List<DefaultItem> items = loader.load();
 
 			for (DefaultItem item : items) {
@@ -100,8 +99,7 @@ public class DefaultEntityManager implements EntityManager {
 				}
 
 				if (!creature.verifyItems(this)) {
-					logger.warn("Items dropped by creature name: " + clazz
-							+ " doesn't exists");
+					logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
 				}
 
 				classToCreature.put(clazz, creature);
@@ -136,8 +134,7 @@ public class DefaultEntityManager implements EntityManager {
 		}
 
 		if (!creature.verifyItems(this)) {
-			logger.warn("Items dropped by creature name: " + clazz
-					+ " doesn't exists");
+			logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
 		}
 
 		classToCreature.put(clazz, creature);
@@ -147,22 +144,25 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * Returns a list of all Creatures that are instantiated.
+	 * @return a list of all Creatures that are instantiated.
 	 */
 	public Collection<Creature> getCreatures() {
 		return createdCreature.values();
 	}
 
 	/**
-	 * Returns a list of all Items that are instantiated.
+	 * @return a list of all Items that are instantiated.
 	 */
 	public Collection<Item> getItems() {
 		return createdItem.values();
 	}
 
-
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown.
+	 * 
+	 * @param clazz
+	 *            RPClass
+	 * @return the new created entity or null if class not found
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -189,7 +189,9 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * Returns the creature or <code>null</code> if the id is unknown.
+	 * @param tileset 
+	 * @param id 
+	 * @return the creature or <code>null</code> if the id is unknown.
 	 */
 	public Creature getCreature(String tileset, int id) {
 		String clazz = idToClass.get(tileset + ":" + id);
@@ -201,7 +203,8 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the creature or <code>null</code> if the clazz is unknown.
+	 * @param clazz 
+	 * @return the creature or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -224,8 +227,9 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the DefaultCreature or <code>null</code> if the clazz is
-	 * unknown.
+	 * @param clazz 
+	 * @return the DefaultCreature or <code>null</code> if the clazz is
+	 *         unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -239,7 +243,9 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.get(clazz);
 	}
 
-	/** return true if the Entity is a creature. */
+	/** @param tileset 
+	 * @param id 
+	 * @return true if the Entity is a creature. */
 	public boolean isCreature(String tileset, int id) {
 		String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
@@ -249,7 +255,8 @@ public class DefaultEntityManager implements EntityManager {
 		return isCreature(clazz);
 	}
 
-	/** return true if the Entity is a creature .*/
+	/** @param clazz 
+	 * @return true if the Entity is a creature . */
 	public boolean isCreature(String clazz) {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
@@ -258,7 +265,8 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.containsKey(clazz);
 	}
 
-	/** return true if the Entity is a creature. */
+	/** @param clazz 
+	 * @return true if the Entity is a creature. */
 	public boolean isItem(String clazz) {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
@@ -268,7 +276,8 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the item or <code>null</code> if the clazz is unknown.
+	 * @param clazz 
+	 * @return the item or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>

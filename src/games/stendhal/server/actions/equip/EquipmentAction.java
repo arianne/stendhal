@@ -90,7 +90,9 @@ public class EquipmentAction implements ActionListener {
 		}
 	}
 
-	/** callback for the equip action. */
+	/** callback for the equip action. 
+	 * @param player 
+	 * @param action */
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
 		logger.debug("Checking source object conditions: " + action);

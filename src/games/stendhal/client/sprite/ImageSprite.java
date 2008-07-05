@@ -97,6 +97,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a sprite with the image flipped horizontally.
+	 * @param sprite 
 	 * 
 	 * @return A horizontally flipped sprite.
 	 */
@@ -128,7 +129,7 @@ public class ImageSprite implements Sprite {
 	/** overlays the image with the given color and returns a new image. 
 	 * @param color 
 	 * @param alpha 
-	 * @return 
+	 * @return a new overlayed Image 
 	 */
 	private Image getModifiedImage(Color color, float alpha) {
 		BufferedImage i = getGC().createCompatibleImage(getWidth(),

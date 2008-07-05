@@ -54,7 +54,10 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 	private RPSlot shownSlot;
 
-	/** Creates the panel. */
+	/** Creates the panel. 
+	 * @param name 
+	 * @param width 
+	 * @param height */
 	public EntityContainer(String name, int width,
 			int height) {
 		super(name, 0, 300, 100, 100);
@@ -185,7 +188,9 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		shownSlot = null;
 	}
 
-	/** Sets the player entity. */
+	/** Sets the player entity. 
+	 * @param parent 
+	 * @param slot */
 	public void setSlot(Entity parent, String slot) {
 		this.parent = parent;
 		this.slotName = slot;

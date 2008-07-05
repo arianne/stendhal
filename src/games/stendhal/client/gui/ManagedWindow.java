@@ -18,6 +18,7 @@ public interface ManagedWindow {
 
 	/**
 	 * Get the managed window name.
+	 * @return the name
 	 * 
 	 * 
 	 */

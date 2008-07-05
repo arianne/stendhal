@@ -119,9 +119,8 @@ public class ExpressionMatcher {
     }
 
     /**
-     * Return true if any of the available matching flags is set.
      *
-     * @return
+     * @return true if any of the available matching flags is set.
      */
     public boolean isAnyFlagSet() {
         return typeMatching || exactMatching || similarMatching || caseInsensitive || jokerMatching;
@@ -182,7 +181,7 @@ public class ExpressionMatcher {
      *
      * @param text
      * @param ctx
-     * @return
+     * @return parsed Sentence
      */
     Sentence parseSentence(String text, final ConversationContext ctx) {
         if (isEmpty()) {
@@ -214,6 +213,8 @@ public class ExpressionMatcher {
      * "&lt;expression&gt;/&lt;TYPESTRING&gt; &lt;expression&gt;/&lt;TYPESTRING&gt; ..."
      *
      * @param text to be parsed
+     * @param ctx 
+     * @param sentence 
      */
     private void readTypeMatchExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text, "/");
@@ -239,6 +240,8 @@ public class ExpressionMatcher {
      * Read in the words from the given string and create the Sentence object using this unchanged expressions.
      *
      * @param text to be parsed
+     * @param ctx 
+     * @param sentence 
      */
     private void readSimpleExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text);
@@ -258,6 +261,8 @@ public class ExpressionMatcher {
      * with activated 'forMatching' flag.
      *
      * @param text to be parsed
+     * @param ctx 
+     * @param sentence 
      */
     private void readJokerExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         StringTokenizer tok = new StringTokenizer(text);
@@ -284,7 +289,7 @@ public class ExpressionMatcher {
      *
      * @param expr1
      * @param expr2
-     * @return
+     * @return true if 2 expression match 
      */
     public boolean match(final Expression expr1, final Expression expr2) {
         // In type matching mode, the word type has to match exactly.

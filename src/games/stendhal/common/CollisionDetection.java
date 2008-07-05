@@ -102,7 +102,10 @@ public class CollisionDetection {
 		}
 	}
 
-	/** Print the area around the (x,y) useful for debugging. */
+	/** Print the area around the (x,y) useful for debugging. 
+	 * @param x 
+	 * @param y 
+	 * @param size */
 	public void printaround(int x, int y, int size) {
 		for (int j = y - size; j < y + size; j++) {
 			for (int i = x - size; i < x + size; i++) {
@@ -142,7 +145,8 @@ public class CollisionDetection {
 	}
 
 	/**
-	 * Returns true if the shape enters in any of the non trespasable areas of
+	 * @param shape 
+	 * @return true if the shape enters in any of the non trespasable areas of
 	 * the map.
 	 */
 	public boolean collides(Rectangle2D shape) {

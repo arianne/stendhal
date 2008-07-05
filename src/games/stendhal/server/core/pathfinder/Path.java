@@ -40,6 +40,7 @@ public abstract class Path {
 	 *            start x
 	 * @param y
 	 *            start y
+	 * @param destination 
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
@@ -88,6 +89,7 @@ public abstract class Path {
 	 *            the destination area
 	 * @param maxDistance
 	 *            the maximum distance (air line) a possible path may be
+	 * @param withEntities 
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity sourceEntity,
@@ -162,6 +164,7 @@ public abstract class Path {
 	 * 
 	 * @param entity
 	 *            The entity to point.
+	 * @return true if done with path
 	 */
 	static boolean followPath(final GuidedEntity entity) {
 		List<Node> path = entity.getGuide().path.getNodeList();

@@ -35,6 +35,7 @@ public class Present extends Box {
 
 	/**
 	 * Sets content.
+	 * @param type of item to be produced.
 	 */
 	public void setContent(String type) {
 		setInfoString(type);

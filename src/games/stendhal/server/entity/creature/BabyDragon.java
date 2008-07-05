@@ -83,6 +83,7 @@ public class BabyDragon extends Pet {
 
 	/**
 	 * Creates a new baby dragon that may be owned by a player.
+	 * @param owner The player who should own the baby dragon
 	 */
 	public BabyDragon(Player owner) {
 		super(owner);

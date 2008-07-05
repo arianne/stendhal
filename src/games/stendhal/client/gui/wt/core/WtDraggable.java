@@ -58,6 +58,7 @@ public interface WtDraggable {
 
 	/**
 	 * Draws the dragged item.
+	 * @param g 
 	 */
 	void drawDragged(Graphics g);
 }

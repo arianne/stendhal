@@ -176,7 +176,7 @@ public class Grammar {
 	 * prefix a noun with an expression like "piece of".
 	 * 
 	 * @param noun
-	 * @return
+	 * @return noun with prefix
 	 */
 	public static String fullForm(String noun) {
 		String result;
@@ -289,7 +289,7 @@ public class Grammar {
 	 * to fullForm().
 	 * 
 	 * @param expr
-	 * @return
+	 * @return the extracted noun
 	 */
 	public static String extractNoun(String expr) {
 		if (expr == null) {
@@ -693,7 +693,7 @@ public class Grammar {
 	 * To let the client display compound words like "#battle axe" in blue, we put the whole item name in quotes.
 	 *
 	 * @param str
-	 * @return
+	 * @return the hashed word
 	 */
 	public static String quoteHash(String str) {
 		if (str != null) {
@@ -831,7 +831,7 @@ public class Grammar {
 	 * Check the given verb for gerund form, e.g. "doing".
 	 *
 	 * @param word
-	 * @return
+	 * @return true if gerund flase otherwise
 	 */
 	public static boolean isGerund(String word) {
 		if (word.length() > 4 && word.endsWith("ing")) {
@@ -851,7 +851,7 @@ public class Grammar {
 	 * or "nomadic".
 	 *
 	 * @param word
-	 * @return
+	 * @return true if ends with "al" or "ic"
 	 */
 	public static boolean isDerivedAdjective(String word) {
 		return word.length() > 4 && word.endsWith("al") || word.endsWith("ic");

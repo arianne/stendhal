@@ -19,12 +19,12 @@ public interface EntityManager {
 	boolean addCreature(DefaultCreature creature);
 
 	/**
-	 * Returns a list of all Creatures that are used at least once.
+	 * @return a list of all Creatures that are used at least once.
 	 */
 	Collection<Creature> getCreatures();
 
 	/**
-	 * returns a list of all Items that are being used at least once.
+	 * @return a list of all Items that are being used at least once.
 	 */
 	Collection<Item> getItems();
 
@@ -40,6 +40,7 @@ public interface EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the id is unknown.
+	 * @param tileset 
 	 * 
 	 * @param id
 	 *            the tile id
@@ -73,6 +74,7 @@ public interface EntityManager {
 
 	/**
 	 * Return true if the Entity is a creature.
+	 * @param tileset 
 	 * 
 	 * @param id
 	 *            the tile id

@@ -175,7 +175,7 @@ public class CreatureInfo {
 	 * @param creatureName
 	 * @param maxNumberOfLocations
 	 *            how many (most frequent) respawn locations are listed
-	 * @return
+	 * @return a string containing the names of the zones
 	 */
 	private String getLocationInfo(String creatureName, int maxNumberOfLocations) {
 		String prefix = "";
@@ -356,7 +356,7 @@ public class CreatureInfo {
 	 * @param creature
 	 * @param maxNumberOfItems
 	 *            maximum number of items with most frequent drops first
-	 * @return
+	 * @return string of the items dropped by given creature.
 	 */
 	private String getDropItemsInfo(final DefaultCreature creature,
 			int maxNumberOfItems) {
@@ -410,7 +410,7 @@ public class CreatureInfo {
 	 *
 	 * @param texts
 	 * @param params
-	 * @return
+	 * @return string chosen
 	 */
 	private String getRandomString(String[] texts, String... params) {
 		String result = Rand.rand(texts);
@@ -425,6 +425,7 @@ public class CreatureInfo {
 	/**
 	 * utility method for turning numeric value into a literal string from a
 	 * list.
+	 * @param <T> 
 	 *
 	 * @param literals
 	 *            map of the literal strings
@@ -432,7 +433,7 @@ public class CreatureInfo {
 	 *            the numeric value
 	 * @param defValue
 	 *            numeric value if given value is out of bounds
-	 * @return
+	 * @return a literal string
 	 */
 	private <T extends Number> String getLiteral(Map<T, String> literals,
 			T val, T defValue) {

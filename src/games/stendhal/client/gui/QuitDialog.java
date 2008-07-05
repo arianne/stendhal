@@ -27,6 +27,7 @@ public class QuitDialog {
 	}
 	/**
 	 * Build the in-window quit dialog [panel].
+	 * @return the quitdialog
 	 * 
 	 * 
 	 */

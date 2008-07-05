@@ -49,7 +49,7 @@ public final class PunctuationParser {
 	/**
 	 * Evaluates if the passed char is one of . , ! or ? .
 	 * @param c 
-	 * @return
+	 * @return true if one of  . , ! or ? .
 	 */
 	private boolean isPunctuation(char c) {
 		return (c == '.' || c == ',' || c == '!' || c == '?');
@@ -58,7 +58,7 @@ public final class PunctuationParser {
 	/**
 	 * Return preceding punctuation characters.
 	 * 
-	 * @return
+	 * @return a new string containing preceding punctuation
 	 */
 	public String getPrecedingPunctuation() {
 		return preceding;
@@ -67,7 +67,7 @@ public final class PunctuationParser {
 	/**
 	 * Return trailing punctuation characters.
 	 * 
-	 * @return
+	 * @return a new String containing trailing punctuation
 	 */
 	public String getTrailingPunctuation() {
 		return trailing;
@@ -76,7 +76,7 @@ public final class PunctuationParser {
 	/**
 	 * Return remaining text.
 	 * 
-	 * @return
+	 * @return a new string containg the stripped and trimmed text
 	 */
 	public String getText() {
 		return text;

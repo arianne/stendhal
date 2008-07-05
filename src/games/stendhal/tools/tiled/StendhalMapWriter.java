@@ -149,7 +149,9 @@ public class StendhalMapWriter implements MapWriter {
 		// not implemented
 	}
 
-	/** accepts all filenames ending with .stend . */
+	/** accepts all filenames ending with .stend . 
+	 * @param pathname 
+	 * @return true if accepted false otherwise*/
 	public boolean accept(File pathname) {
 		try {
 			String path = pathname.getCanonicalPath().toLowerCase();

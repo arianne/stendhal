@@ -73,7 +73,9 @@ public class MapUpdater extends Task {
 		}
 	}
 
-	/** Converts the map files. */
+	/** Converts the map files. 
+	 * @param tmxFile 
+	 * @throws Exception */
 	public void convert(String tmxFile) throws Exception {
 		File file = new File(tmxFile);
 

@@ -45,7 +45,7 @@ public abstract class UpdateConverter {
 	 * Update old item names to the current naming.
 	 *
 	 * @param name
-	 * @return 
+	 * @return the currentName of an Item
 	 */
 	public static String updateItemName(String name) {
 		if (name != null) {
@@ -171,6 +171,7 @@ public abstract class UpdateConverter {
 
 	/**
 	 * Transform kill slot content to the new kill recording system.
+	 * @param object 
 	 */
 	static void transformKillSlot(RPObject object) {
 		RPObject kills = Player.getKeyedSlotObject(object, "!kills");

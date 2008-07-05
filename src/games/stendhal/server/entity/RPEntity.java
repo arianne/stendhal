@@ -461,6 +461,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param damage
 	 *            The damage that would have been done if there would be no
 	 *            modifiers for distance attacks.
+	 * @param squareDistance the distance
 	 * @return The damage that will be done with the distance attack.
 	 */
 	public static int applyDistanceAttackModifiers(int damage, double squareDistance) {
@@ -720,8 +721,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 **************************************************************************/
 
 	/**
-	 * Returns true if this RPEntity is attackable.
-	 * @return 
+	 * @return true if this RPEntity is attackable.
 	 */
 	public boolean isAttackable() {
 		return true;
@@ -1099,21 +1099,22 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/** Return true if this entity is attacked. 
-	 * @return */
+	 * @return true if no attack sources found 
+	 */
 	public boolean isAttacked() {
 		return !attackSources.isEmpty();
 	}
 
 	/** 
 	 * Returns the Entities that are attacking this character. 
-	 * @return 
+	 * @return list of all attacking entities
 	 */
 	public List<Entity> getAttackSources() {
 		return attackSources;
 	}
 
 	/** Returns the RPEntities that are attacking this character. 
-	 * @return 
+	 * @return  list of all attacking RPEntities
 	 */
 	public List<RPEntity> getAttackingRPEntities() {
 		List<RPEntity> list = new ArrayList<RPEntity>();
@@ -1143,7 +1144,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return attackTarget != null;
 	}
 
-	/** Return the RPEntity that this entity is attacking. */
+	/** Return the RPEntity that this entity is attacking. 
+	 * @return the attack target of this 
+	 */
 	public RPEntity getAttackTarget() {
 		return attackTarget;
 	}
@@ -1466,7 +1469,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * returns true if it is, else false.
 	 * @param slot 
 	 * @param clazz 
-	 * @return 
+	 * @return true if so false otherwise
 	 */
 	public boolean isEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1484,12 +1487,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * returns the first item of class <i>clazz</i> from the slot or
-	 * <code>null</code> if there is no item with the requested clazz returns
-	 * the item or null.
+	 * Finds the first item of class <i>clazz</i> from the slot.
+	 * 
 	 * @param slot 
 	 * @param clazz 
-	 * @return 
+	 * @return the item or <code>null</code> if there is no item with the requested clazz.
 	 */
 	public Item getEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1636,7 +1638,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 	}
 
-	/** returns true if the entity has a shield equipped. */
+	/** @return true if the entity has an item of class shield equipped. */
 	public boolean hasShield() {
 		return isEquippedItemClass("lhand", "shield")
 				|| isEquippedItemClass("rhand", "shield");
@@ -1965,7 +1967,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * Returns the attack rate, the lower the better.
 	 * 
-	 * @return
+	 * @return the attack rate
 	 */
 	public int getAttackRate() {
 		

@@ -58,11 +58,6 @@ public class Behaviour {
 	    this.chosenItemName = chosenItemName;
     }
 
-	/**
-	 * Return item amount.
-	 *
-	 * @return
-	 */
 	public int getAmount() {
 		return amount;
 	}

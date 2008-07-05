@@ -68,6 +68,10 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/**
 	 * Create an entity slot.
+	 * @param name 
+	 * @param placeholder 
+	 * @param x 
+	 * @param y 
 	 */
 	public EntitySlot(String name, Sprite placeholder,
 			int x, int y) {
@@ -87,12 +91,17 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/**
 	 * Set the parent entity.
+	 * @param parent 
 	 */
 	public void setParent(Entity parent) {
 		this.parent = parent;
 	}
 
-	/** called when an object is dropped. */
+	/** called when an object is dropped. 
+	 * @param x 
+	 * @param y 
+	 * @param droppedObject 
+	 * @return true if succefully dropped*/
 	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
 		if (parent == null) {
 			return false;

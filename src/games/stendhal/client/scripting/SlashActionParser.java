@@ -20,7 +20,7 @@ public class SlashActionParser extends CommandlineParser {
 	/**
 	 * Extract slash command from the command line start.
 	 *
-	 * @return
+	 * @return the parsed SlashActionCommand 
 	 */
 	protected SlashActionCommand extractCommand() {
 		SlashActionCommand command = new SlashActionCommand();
@@ -123,9 +123,8 @@ public class SlashActionParser extends CommandlineParser {
 	}
 
 	/**
-	 * Return remaining text.
 	 *
-	 * @return
+	 * @return remaining text.
 	 */
 	private String getRemainingText() {
 		skipWhitespace();

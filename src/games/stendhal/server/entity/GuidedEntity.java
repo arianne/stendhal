@@ -105,6 +105,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Is the path a loop.
+	 * @return true if running in circles
 	 */
 	public boolean isPathLoop() {
 		return (guide.path != null) ? guide.path.isLoop() : false;
@@ -112,6 +113,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Get the path nodes position.
+	 * @return position in path
 	 */
 	public int getPathPosition() {
 		return guide.pathPosition;
@@ -119,6 +121,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Set the path nodes position.
+	 * @param pathPos 
 	 */
 	public void setPathPosition(int pathPos) {
 		guide.pathPosition = pathPos;

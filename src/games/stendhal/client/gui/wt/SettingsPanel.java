@@ -56,7 +56,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/** map of the buttons (for faster access) ). */
 	private Map<String, Entry> entries;
 
-	/** Creates a new instance of OptionsPanel. */
+	/** Creates a new instance of OptionsPanel. 
+	 * @param frameWidth */
 	public SettingsPanel(final int frameWidth) {
 		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2);
 
@@ -106,7 +107,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		return true;
 	}
 
-	/** a button was clicked. */
+	/** a button was clicked. 
+	 * @param name 
+	 * @param point */
 	public void onClick(String name, Point point) {
 		/*
 		 * Set window visibility
@@ -118,7 +121,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		}
 	}
 
-	/** a window is closed. */
+	/** a window is closed. 
+	 * @param name */
 	public void onClose(String name) {
 		/*
 		 * Unset button

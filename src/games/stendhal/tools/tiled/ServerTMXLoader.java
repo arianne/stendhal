@@ -118,6 +118,9 @@ public class ServerTMXLoader {
 
 	/**
 	 * Loads a map layer from a layer node.
+	 * @param t 
+	 * @return the layer definition for the node
+	 * @throws Exception 
 	 */
 	private LayerDefinition readLayer(Node t) throws Exception {
 		int layerWidth = getAttribute(t, "width", stendhalMap.width);

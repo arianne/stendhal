@@ -107,6 +107,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * Removes all storeable entities for this identifier.
      * 
      * @param identifier name of entity
+	 * @return if removed successfully
      */
     public boolean removeByName(String identifier) {
     	List<T> entities = getList();
@@ -125,7 +126,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * gets a list of storeable entities from the zone storage. Note: This is only a
      * temporary snapshot, do not save it outside the scope of a method.
      * 
-     * @return List of storeabe entities.
+     * @return List of storeable entities.
      */
     protected List<T> getList() {
     	List<T> res = new LinkedList<T>();

@@ -102,6 +102,7 @@ public class KTextEdit extends JPanel {
 
 	/**
 	 * insert a header.
+	 * @param header 
 	 */
 	protected void insertHeader(String header) {
 		Document doc = textPane.getDocument();

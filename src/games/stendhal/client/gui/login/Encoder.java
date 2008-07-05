@@ -101,7 +101,8 @@ class Encoder {
 
 	/** creates a BitSet based on a string representation of binary digits. 
 	 * @param binaryString 
-	 * @return */
+	 * @return the created BitSet 
+	 * */
 	private BitSet createBitSet(String binaryString) {
 		BitSet bset = new BitSet(binaryString.length());
 		boolean bitTrue = false;

@@ -158,6 +158,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Creates a new panel. The panel is not movable or resizeable and has no
 	 * title bar or frame;
+	 * @param name 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height 
 	 */
 	public WtPanel(String name, int x, int y, int width, int height) {
 		this.name = name;
@@ -200,12 +205,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Adds a CloseListener to this panel. All registered closelistener are
 	 * notified before the panel is closed
+	 * @param listener 
 	 */
 	public void registerCloseListener(WtCloseListener listener) {
 		closeListeners.add(listener);
 	}
 
-	/** removes a (registered) closelistener. */
+	/** removes a (registered) closelistener. 
+	 * @param listener */
 	public void removeCloseListener(WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
@@ -215,12 +222,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * notified when user clicks on the panel. Note that not all panels must
 	 * support/notify this type listener. The default panel for example ignores
 	 * all click events.
+	 * @param listener 
 	 */
 	public void registerClickListener(WtClickListener listener) {
 		clickListeners.add(listener);
 	}
 
-	/** removes a (registered) ClickListener. */
+	/** removes a (registered) ClickListener. 
+	 * @param listener */
 	public void removeClickListener(WtClickListener listener) {
 		clickListeners.remove(listener);
 	}
@@ -228,37 +237,38 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Override this if you want to save your window positions in the
 	 * WindowManager. Default is not to use the WindowManager.
+	 * @return false
 	 */
 	protected boolean useWindowManager() {
 		return false;
 	}
 
-	/** Returns x-position of the panel (relative to its parent). */
+	/** @return x-position of the panel (relative to its parent). */
 	public int getX() {
 		return x;
 	}
 
-	/** Returns y-position of the panel (relative to its parent). */
+	/** @return y-position of the panel (relative to its parent). */
 	public int getY() {
 		return y;
 	}
 
-	/** Returns width of the panel. */
+	/** @return width of the panel. */
 	public int getWidth() {
 		return width;
 	}
 
-	/** Returns height of the panel. */
+	/** @return height of the panel. */
 	public int getHeight() {
 		return height;
 	}
 
-	/** Returns width of the client area.*/
+	/** @return width of the client area.*/
 	protected int getClientWidth() {
 		return (frame ? width - FRAME_SIZE * 2 : width);
 	}
 
-	/** Returns height of the panel. */
+	/** @return height of the panel. */
 	protected int getClientHeight() {
 		int clientHeight = height;
 		if (frame) {
@@ -272,12 +282,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return clientHeight;
 	}
 
-	/** Returns x-pos of the client area. */
+	/** @return x-pos of the client area. */
 	protected int getClientX() {
 		return (frame ? FRAME_SIZE : 0);
 	}
 
-	/** Returns y-pos of the client area. */
+	/** @return y-pos of the client area. */
 	protected int getClientY() {
 		int clienty = (frame ? FRAME_SIZE : 0);
 
@@ -372,29 +382,32 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** Sets the name. */
+	/** Sets the name. 
+	 * @param name */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/** Returns the name. */
+	/** @return the name. */
 	public String getName() {
 		return name;
 	}
 
-	/** Returns whether the panel has a title bar. */
+	/** @return whether the panel has a title bar. */
 	public boolean hasTitleBar() {
 		return titleBar;
 	}
 
-	/** Enables/disables the title bar. */
+	/** Enables/disables the title bar. 
+	 * @param titleBar */
 	public void setTitleBar(boolean titleBar) {
 		this.titleBar = titleBar;
 		// refresh cached panel image
 		cachedImage = null;
 	}
 
-	/** Sets the text in the titlebar. */
+	/** Sets the text in the titlebar. 
+	 * @param text */
 	public void setTitletext(String text) {
 		if (!this.titleText.equals(text)) {
 			this.titleText = text;
@@ -403,30 +416,32 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** Returns whether the panel has a frame. */
+	/** @return whether the panel has a frame. */
 	public boolean hasFrame() {
 		return frame;
 	}
 
-	/** Enables/disables the frame. */
+	/** Enables/disables the frame. 
+	 * @param frame */
 	public void setFrame(boolean frame) {
 		this.frame = frame;
 		// refresh cached panel image
 		cachedImage = null;
 	}
 
-	/** Returns whether the panel is movable .*/
+	/** @return whether the panel is movable .*/
 	public boolean isMovable() {
 		return movable;
 	}
 
-	/** Sets the embossed-state of then frame. */
+	/** Sets the embossed-state of then frame. 
+	 * @param emboss */
 	public void setEmboss(boolean emboss) {
 		this.frameEmbossed = emboss;
 		cachedImage = null;
 	}
 
-	/** Returns whether the panels frame is embossed. */
+	/** @return whether the panels frame is embossed. */
 	public boolean isEmbossed() {
 		return frameEmbossed;
 	}
@@ -434,22 +449,24 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * enables/disables moving the panel. Note: the panel must have a title bar
 	 * to be movable
+	 * @param movable 
 	 */
 	public void setMovable(boolean movable) {
 		this.movable = movable;
 	}
 
-	/** Returns whether the panel can be resized. */
+	/** @return whether the panel can be resized. */
 	public boolean isResizeable() {
 		return resizeable;
 	}
 
-	/** enables/disables resizing the panel. Note: the panel must have a frame */
+	/** enables/disables resizing the panel. Note: the panel must have a frame 
+	 * @param resizeable */
 	public void setResizeable(boolean resizeable) {
 		this.resizeable = resizeable;
 	}
 
-	/** Returns whether the panel can be minmized. */
+	/** @return whether the panel can be minmized. */
 	public boolean isMinimizeable() {
 		return minimizeable;
 	}
@@ -457,17 +474,19 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * enables/disables minimizing the panel. Note: the panel must have a title
 	 * bar
+	 * @param minimizeable 
 	 */
 	public void setMinimizeable(boolean minimizeable) {
 		this.minimizeable = minimizeable;
 	}
 
-	/** Returns whether the panel is minimized. */
+	/** @return whether the panel is minimized. */
 	public boolean isMinimized() {
 		return minimized;
 	}
 
-	/** Sets the minimized state. */
+	/** Sets the minimized state. 
+	 * @param minimized */
 	public void setMinimized(boolean minimized) {
 		this.minimized = minimized;
 		// refresh cached panel image
@@ -479,19 +498,20 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** Returns whether the panel can be closed. */
+	/** @return whether the panel can be closed. */
 	public boolean isCloseable() {
 		return closeable;
 	}
 
 	/**
 	 * enables/disables closing the panel. Note: the panel must have a title bar
+	 * @param closeable 
 	 */
 	public void setCloseable(boolean closeable) {
 		this.closeable = closeable;
 	}
 
-	/** Returns the parent of the panel. */
+	/** @return the parent of the panel. */
 	public WtPanel getParent() {
 		return parent;
 	}
@@ -499,17 +519,19 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Sets the parent of the panel. Do not use this function if you don't know
 	 * exactly what you're doing.
+	 * @param parent 
 	 */
 	protected void setParent(WtPanel parent) {
 		this.parent = parent;
 	}
 
-	/** Returns whether the panel has a parent. */
+	/** @return whether the panel has a parent. */
 	public boolean hasParent() {
 		return (parent != null);
 	}
 
-	/** Adds a child-panel to this panel. */
+	/** Adds a child-panel to this panel. 
+	 * @param panel */
 	public synchronized void addChild(WtPanel panel) {
 		if (panel.hasParent()) {
 			logger.error("Panel " + panel.name + " cannot be added to " + name
@@ -522,7 +544,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		panel.parent = this;
 	}
 
-	/** Removes a child-panel from this panel. */
+	/** Removes a child-panel from this panel. 
+	 * @param panel */
 	public synchronized void removeChild(WtPanel panel) {
 		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
 		newChildren.remove(panel);
@@ -531,7 +554,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		panel.parent = null;
 	}
 
-	/** Returns true when the window is scheduled to be closed. */
+	/** @return true when the window is scheduled to be closed. */
 	public boolean isClosed() {
 		return closed;
 	}
@@ -628,7 +651,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** notifies all registered clicklisteners that this panel has been clicked .*/
+	/** notifies all registered clicklisteners that this panel has been clicked .
+	 * @param name 
+	 * @param point */
 	protected void notifyClickListeners(String name, Point point) {
 		WtClickListener[] listeners = clickListeners.toArray(new WtClickListener[clickListeners.size()]);
 
@@ -638,7 +663,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * returns an unmodifiable list this panels children. TODO: cache this
+	 * @return an unmodifiable list this panels children. TODO: cache this
 	 */
 	protected List<WtPanel> getChildren() {
 		return Collections.unmodifiableList(children);
@@ -670,7 +695,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		cachedImage = null;
 	}
 
-	/** creates the image background as an image. */
+	/** creates the image background as an image. 
+	 * @param g 
+	 * @return the image background */
 	private BufferedImage recreatePanelImage(Graphics g) {
 		int localHeight = this.height;
 
@@ -848,7 +875,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		drawChildren(g);
 	}
 
-	/** panels draw themselves. */
+	/** panels draw themselves. 
+	 * @param g */
 	public void drawDragged(Graphics g) {
 	}
 
@@ -915,7 +943,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** return true if the point is in the title. */
+	/** @param x 
+	 * @param y 
+	 * @return true if the point is in the title. */
 	private boolean hitTitle(int x, int y) {
 		// do we have a title
 		if (!titleBar) {
@@ -931,12 +961,19 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** return a object for dragging which is at the position p or null. */
+	/**
+	 * @param p
+	 * @return a object for dragging which is at the position p or null.
+	 */
 	protected WtDraggable getDragged(Point p) {
 		return getDragged(p.x, p.y);
 	}
 
-	/** return a object for dragging which is at the position (x,y) or null. */
+	/**
+	 * @param x
+	 * @param y
+	 * @return a object for dragging which is at the position (x,y) or null.
+	 */
 	protected WtDraggable getDragged(int x, int y) {
 		if (isClosed()) {
 			return null;
@@ -1015,24 +1052,28 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** returns the rectangle for the minimize button. */
+	/** @return the rectangle for the minimize button. */
 	private Rectangle getMiminizeButton() {
 		return new Rectangle(width - (TITLEBAR_SIZE * 2) - FRAME_SIZE,
 				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
-	/** returns true when the point (x,y) is inside the minimize button. */
+	/** @param x 
+	 * @param y 
+	 * @return true when the point (x,y) is inside the minimize button. */
 	private boolean hitMinimizeButton(int x, int y) {
 		return getMiminizeButton().contains(x, y);
 	}
 
-	/** returns the rectangle for the close button. */
+	/** @return the rectangle for the close button. */
 	private Rectangle getCloseButton() {
 		return new Rectangle(width - TITLEBAR_SIZE - FRAME_SIZE,
 				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
-	/** returns true when the point (x,y) is inside the close button. */
+	/** @param x 
+	 * @param y 
+	 * @return true when the point (x,y) is inside the close button. */
 	private boolean hitCloseButton(int x, int y) {
 		return getCloseButton().contains(x, y);
 	}
@@ -1040,6 +1081,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * callback for a mouse click. returns true when the click has been
 	 * processed
+	 * @param p 
+	 * @return true if click was processed
 	 */
 	public synchronized boolean onMouseClick(Point p) {
 		if (isClosed()) {
@@ -1106,7 +1149,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	    }
     }
 
-	/** callback for a doubleclick. */
+	/**
+	 * callback for a doubleclick. 
+	 * 
+	 * @param p
+	 * 
+	 * @return true if click was processed
+	 */
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		if (isClosed()) {
 			return false;
@@ -1133,7 +1182,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** the right mouse button has been clicked (callback). */
+	/**
+	 * the right mouse button has been clicked (callback). *
+	 * @param p 
+	 * 
+	 * @return true if click was processed
+	 */
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (isClosed()) {
 			return false;
@@ -1171,17 +1225,25 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** ignored. */
+	/**
+	 * ignored.
+	 * 
+	 * @param p
+	 * @return false
+	 */
 	public boolean dragFinished(Point p) {
 		return false;
 	}
 
-	/** move the frame to the requested position .*/
+	/** move the frame to the requested position .
+	 * @param p 
+	 * @return true if done*/
 	public boolean dragMoved(Point p) {
 		return moveTo(dragPosition.x + p.x, dragPosition.y + p.y);
 	}
 
-	/** moves the child panel on top of all others. */
+	/** moves the child panel on top of all others. 
+	 * @param child */
 	private void focus(WtPanel child) {
 		if (!children.remove(child)) {
 			return;
@@ -1195,6 +1257,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * outside of it. Note: This implementation forwards the context menu to its
 	 * parent (if it has one) until someone feels responsible to handle it. This
 	 * is most times the very root of the window hierarchy.
+	 * @param contextMenu 
 	 */
 	public void setContextMenu(JPopupMenu contextMenu) {
 		if (parent != null) {

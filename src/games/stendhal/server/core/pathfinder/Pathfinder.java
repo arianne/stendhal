@@ -480,6 +480,8 @@ class Pathfinder {
 		 * the size (abs(startX - goalX) + 1) * (abs(startY - goalY) + 1) So a
 		 * tie-breaker is needed. 1% square distace seems to work fine. A* will
 		 * prefer nodes closer to the goal.
+		 * @param nodeGoal 
+		 * @return heuristic value for move
 		 */
 		public double getHeuristic(TreeNode nodeGoal) {
 			double heuristic = manhattanDistance(x, y, nodeGoal.x, nodeGoal.y);
@@ -541,6 +543,8 @@ class Pathfinder {
 		/**
 		 * Links the children to this parent node  and may also update the
 		 * parent path, if a shorter path is found.
+		 * @param x1 
+		 * @param y1 
 		 */
 		private void linkChild(int x1, int y1) {
 			if (!isValid(x1, y1)) {

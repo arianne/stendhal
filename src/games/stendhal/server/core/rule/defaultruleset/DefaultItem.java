@@ -190,7 +190,7 @@ public class DefaultItem {
 		return item;
 	}
 
-	/** returns the tile id .*/
+	/** @return the tile id .*/
 	public int getTileId() {
 		return tileid;
 	}
@@ -207,7 +207,7 @@ public class DefaultItem {
 		return value;
 	}
 
-	/** returns the class. */
+	/** @return the class. */
 	public String getItemClass() {
 		return clazz;
 	}
@@ -216,7 +216,7 @@ public class DefaultItem {
 		clazz = val;
 	}
 
-	/** returns the subclass. */
+	/** @return the subclass. */
 	public String getItemSubClass() {
 		return subclazz;
 	}

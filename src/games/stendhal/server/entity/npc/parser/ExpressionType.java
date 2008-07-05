@@ -71,18 +71,17 @@ public final class ExpressionType {
     }
 
     /**
-     * Return type string Note: There is no setTypeString to make ExpressionType objects immutable.
+     * @return type string Note: There is no setTypeString to make ExpressionType objects immutable.
      *
-     * @return
+
      */
     public String getTypeString() {
         return typeString;
     }
 
     /**
-     * Return main Expression type string (first 3 letters).
+     * @return main Expression type string (first 3 letters).
      *
-     * @return
      */
     public String getMainType() {
         if (typeString.length() >= 3) {
@@ -93,18 +92,19 @@ public final class ExpressionType {
     }
 
     /**
-     * Look for empty type strings.
-     *
-     * @return
-     */
+	 * Returns true if, and only if, length() is 0.
+	 * 
+	 * @return true if length() is 0, otherwise false
+	 */
     public boolean isEmpty() {
+    	//TODO: use string.isEmpty()
         return typeString.length() == 0;
     }
 
     /**
      * Determine if the Expression consists of verbs.
      *
-     * @return
+     * @return true if the typeString starts with the verb-constant
      */
     public boolean isVerb() {
         return typeString.startsWith(VERB);
@@ -112,26 +112,26 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression contains a verb in gerund form.
+     * @return 
      *
-     * @return
      */
     public boolean isGerund() {
         return typeString.startsWith(VERB_GERUND);
     }
 
     /**
-     * Determine if the Expression is an object (a thing, not a person).
+     * Determine if the Expression is an object. (a thing, not a person)
      *
-     * @return
+     * @return false if not an object or null, true otherwise
      */
     public boolean isObject() {
         return typeString.startsWith(OBJECT);
     }
 
     /**
-     * Determine if the Expression represents a person.
+     * Determine if the Expression is an subject. (a thing, not a person)
      *
-     * @return
+     * @return false if not a subject, true otherwise
      */
     public boolean isSubject() {
         return typeString.startsWith(SUBJECT);
@@ -140,7 +140,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression consists of numeral words.
      *
-     * @return
      */
     public boolean isNumeral() {
         return typeString.startsWith(NUMERAL);
@@ -149,7 +148,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression consists of adjectives or adverbs.
      *
-     * @return
      */
     public boolean isAdjective() {
         return typeString.startsWith(ADJECTIVE);
@@ -158,7 +156,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression consists of prepositions.
      *
-     * @return
      */
     public boolean isPreposition() {
         return typeString.startsWith(PREPOSITION);
@@ -167,7 +164,6 @@ public final class ExpressionType {
     /**
      * Determine Expressions to ignore.
      *
-     * @return
      */
     public boolean isIgnore() {
         return typeString.startsWith(IGNORE);
@@ -176,7 +172,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is in plural form.
      *
-     * @return
      */
     public boolean isPlural() {
         return typeString.contains(SUFFIX_PLURAL);
@@ -185,7 +180,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is a creature name.
      *
-     * @return
      */
     public boolean isName() {
         return typeString.contains(SUFFIX_NAME);
@@ -194,7 +188,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression consists of question words.
      *
-     * @return
      */
     public boolean isQuestion() {
         return typeString.startsWith(QUESTION);
@@ -203,7 +196,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is a or is merged with a question word.
      *
-     * @return
      */
     public boolean hasQuestion() {
         return typeString.contains(QUESTION);
@@ -212,7 +204,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression specifies a color.
      *
-     * @return
      */
     public boolean hasColor() {
         return typeString.contains(COLOR);
@@ -221,7 +212,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is a pronoun.
      *
-     * @return
      */
     public boolean isPronoun() {
         return typeString.contains(SUFFIX_PRONOUN);
@@ -230,7 +220,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is in conditional form.
      *
-     * @return
      */
     public boolean isConditional() {
         return typeString.contains(SUFFIX_CONDITIONAL);
@@ -239,7 +228,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression is negated.
      *
-     * @return
      */
     public boolean isNegated() {
         return typeString.contains(SUFFIX_NEGATED);
@@ -248,7 +236,6 @@ public final class ExpressionType {
     /**
      * Determine if the Expression contains a dynamically defined word.
      *
-     * @return
      */
     public boolean isDynamic() {
         return typeString.contains(SUFFIX_DYNAMIC);
@@ -258,8 +245,7 @@ public final class ExpressionType {
      * Check if the given String contains a type string specifier.
      *
      * @param str
-     * @return
-     */
+s     */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {
             char first = str.charAt(0);

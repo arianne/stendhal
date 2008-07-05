@@ -142,7 +142,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 	 * Checks to see if the two new passwords match.
 	 * @param pwField_One 
 	 * @param pwField_Two 
-	 * @return 
+	 * @return true if passwords are equal
 	 */
 	boolean checkPass(char[] pwField_One, char[] pwField_Two) {
 		return new String(pwField_One).equals(new String(pwField_Two));

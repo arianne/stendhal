@@ -53,7 +53,8 @@ public class Buddies extends WtPanel {
 
 	private LinkedList<String> buddies;
 
-	/** Creates a new instance of Buddies. */
+	/** Creates a new instance of Buddies. 
+	 * @param ui */
 	public Buddies(StendhalUI ui) {
 		super("buddies", ui.getWidth() - 132, 265, 132, 200);
 
@@ -133,6 +134,8 @@ public class Buddies extends WtPanel {
 
 	/**
 	 * Handle a choosen popup item.
+	 * @param command 
+	 * @param buddieName 
 	 */
 	protected void doAction(String command, String buddieName) {
 		if ("talk".equals(command)) {
@@ -220,6 +223,7 @@ public class Buddies extends WtPanel {
 
 		/**
 		 * Create a listener for action items.
+		 * @param buddy 
 		 * 
 		 * 
 		 */

@@ -113,8 +113,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	}
 
 	/**
-	 * Returns an interator over the SpeakerNPC objects.
-	 * @return 
+	 * @return  the interator over the SpeakerNPC objects.
 	 */
 	public Iterator<SpeakerNPC> iterator() {
 		return contents.values().iterator();

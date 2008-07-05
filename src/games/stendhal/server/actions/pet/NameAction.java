@@ -24,6 +24,8 @@ public class NameAction implements ActionListener {
 
 	/**
 	 * Handle the /name action.
+	 * @param player 
+	 * @param action 
 	 */
 	public void onAction(Player player, RPAction action) {
 		String curName = action.get("target");

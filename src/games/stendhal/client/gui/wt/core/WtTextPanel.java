@@ -53,12 +53,23 @@ public class WtTextPanel extends WtPanel {
 	/** enable automatic line breaks? */
 	private boolean autoLineBreaks;
 
-	/** Creates a new TextPanel. */
+	/** Creates a new TextPanel. 
+	 * @param name 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height */
 	public WtTextPanel(String name, int x, int y, int width, int height) {
 		this(name, x, y, width, height, "");
 	}
 
-	/** Creates a new TextPanel with the given StringFormatter. */
+	/** Creates a new TextPanel with the given StringFormatter. 
+	 * @param name 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height 
+	 * @param formatString */
 	public WtTextPanel(String name, int x, int y, int width, int height,
 			String formatString) {
 		super(name, x, y, width, height);
@@ -69,29 +80,34 @@ public class WtTextPanel extends WtPanel {
 	}
 
 	/**
-	 * returns the estimated height of the text in pixels. The calculation is
+	 * @return the estimated height of the text in pixels. The calculation is
 	 * based in the text and the current font size
 	 */
 	public int getLastHeight() {
 		return lastHeight;
 	}
 
-	/** sets the font size. */
+	/** sets the font size. 
+	 * @param fontSize */
 	public void setFontSize(int fontSize) {
 		this.fontSize = fontSize;
 	}
 
-	/** sets the color. */
+	/** sets the color. 
+	 * @param color */
 	public void setColor(Color color) {
 		this.color = color;
 	}
 
-	/** sets the StringFormatter. This will invalidate all values previously set */
+	/** sets the StringFormatter. This will invalidate all values previously set 
+	 * @param format */
 	public void setFormat(String format) {
 		this.formatter = new StringFormatter(format);
 	}
 
 	/** sets the value of a parameter. 
+	 * @param param 
+	 * @param value 
 	* @Deprecated use set(String param, String value)
 	*/
 	@Deprecated
@@ -99,12 +115,16 @@ public class WtTextPanel extends WtPanel {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter. */
+	/** sets the value of a parameter. 
+	 * @param param 
+	 * @param value */
 	public void set(String param, int value) {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter. */
+	/** sets the value of a parameter. 
+	 * @param param 
+	 * @param value */
 	public void set(String param, String value) {
 		formatter.set(param, value);
 	}

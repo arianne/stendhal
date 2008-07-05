@@ -82,6 +82,7 @@ public class Cat extends Pet {
 
 	/**
 	 * Creates a new Cat that may be owned by a player.
+	 * @param owner 
 	 */
 	public Cat(Player owner) {
 		// call set up before parent constructor is called as it needs those

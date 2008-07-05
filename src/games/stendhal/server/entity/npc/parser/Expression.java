@@ -67,6 +67,7 @@ public final class Expression {
      * if we extend the column type in table 'words'
      *
      * @param str
+     * @param errors 
      */
     public void parseAmount(final String str, final ErrorDrain errors) {
         try {
@@ -151,18 +152,15 @@ public final class Expression {
     }
 
     /**
-     * Return amount as integer value, default to 1.
+     * @return amount as integer value, default to 1.
      *
-     * @return
      */
     public int getAmount() {
 		return amount != null ? amount.intValue() : 1;
 	}
 
 	/**
-	 * Return amount as long integer value, default to 1.
-	 * 
-	 * @return
+	 * @return amount as long integer value, default to 1.
 	 */
 	public long getAmountLong() {
 		return amount != null ? amount : 1;
@@ -194,9 +192,8 @@ public final class Expression {
     }
 
     /**
-     * Return the original, un-normalized string expression.
      *
-     * @return
+     * @return  the original, un-normalized string expression.
      */
     public String getOriginal() {
         return original;
@@ -213,27 +210,22 @@ public final class Expression {
     }
 
     /**
-     * Return the normalized form of the Expression.
      *
-     * @return
+     * @return the normalized form of the Expression.
      */
     public String getNormalized() {
         return normalized;
     }
 
     /**
-     * Return the main word of the expression.
-     *
-     * @return
+     * @return the main word of the expression.
      */
     public String getMainWord() {
         return mainWord;
     }
 
     /**
-     * Return the break flag to check for sentence part borders.
-     *
-     * @return
+     * @return the break flag to check for sentence part borders.
      */
     public boolean getBreakFlag() {
         return breakFlag;
@@ -249,18 +241,16 @@ public final class Expression {
     }
 
     /**
-     * Return the Expression type.
      *
-     * @return
+     * @return  Expression type.
      */
     public ExpressionType getType() {
         return type;
     }
 
     /**
-     * Return type Expression type string.
      *
-     * @return
+     * @return string representation of Expression type 
      */
     public String getTypeString() {
 		return type != null ? type.getTypeString() : "";
@@ -269,7 +259,7 @@ public final class Expression {
     /**
 	 * Determine if the Expression consists of verbs.
 	 * 
-	 * @return
+	 * @return false if not a verb or null, true otherwise
 	 */
     public boolean isVerb() {
         return type != null && type.isVerb();
@@ -278,7 +268,7 @@ public final class Expression {
     /**
      * Determine if the Expression is an object. (a thing, not a person)
      *
-     * @return
+     * @return false if not an object or null, true otherwise
      */
     public boolean isObject() {
         return type != null && type.isObject();
@@ -287,7 +277,7 @@ public final class Expression {
     /**
      * Determine if the Expression represents a person.
      *
-     * @return
+   * @return false if not a subject or null, true otherwise
      */
     public boolean isSubject() {
         return type != null && type.isSubject();
@@ -296,7 +286,7 @@ public final class Expression {
     /**
      * Determine if the Expression is negated.
      *
-     * @return
+     * @return false if not negated or null, true otherwise
      */
     public boolean isNegated() {
         return type != null && type.isNegated();
@@ -305,7 +295,7 @@ public final class Expression {
     /**
      * Determine Expressions to ignore.
      *
-     * @return
+     * @return * @return false if not ignored or null, true otherwise
      */
     public boolean isIgnore() {
         return type != null && type.isIgnore();
@@ -314,7 +304,7 @@ public final class Expression {
     /**
      * Determine if the Expression consists of question words.
      *
-     * @return
+     * @return false if not a question or null, true otherwise
      */
     public boolean isQuestion() {
         return type != null && type.isQuestion();
@@ -323,7 +313,7 @@ public final class Expression {
     /**
      * Determine if the Expression consists of prepositions.
      *
-     * @return
+     * @return false if not a prepostion or null, true otherwise
      */
     public boolean isPreposition() {
         return type != null && type.isPreposition();
@@ -332,7 +322,7 @@ public final class Expression {
     /**
      * Determine if the Expression consists of numeral words.
      *
-     * @return
+    * @return false if not a numeral or null, true otherwise
      */
     public boolean isNumeral() {
         return type != null && type.isNumeral();
@@ -354,9 +344,9 @@ public final class Expression {
     }
 
     /**
-     * Return the normalized Expression with type string in the format NORMALIZED/TYPE.
+     * Return the normalized Expression with type. 
      *
-     * @return
+     * @return string in the format NORMALIZED/TYPE.
      */
     public String getNormalizedWithTypeString() {
         return normalized + "/" + getTypeString();
@@ -367,7 +357,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return
+     * @return true if 2 expression match false otherwise
      */
     public boolean matches(final Expression other) {
         if (other != null) {
@@ -398,7 +388,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return
+     * @return true if 2 expression match false otherwise
      */
     public boolean matchesNormalized(final Expression other) {
         if (other != null) {
@@ -428,7 +418,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return
+     *  @return true if 2 expression match false otherwise
      */
     public boolean matchesNormalizedSimilar(final Expression other) {
         if (other != null) {
@@ -447,14 +437,18 @@ public final class Expression {
     }
 
     /**
-     * Check if the Expression matches the given matching Expression. The matching object can contain explicit
-     * expressions, which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper
-     * case. This defines the joker matching algorithm for sentence matching, which chooses automatically between word
-     * and type matching, depending on which of word and word type string is given.
-     *
-     * @param other
-     * @return
-     */
+	 * Check if the Expression matches the given matching Expression.
+	 * 
+	 * <p>
+	 * The matching object can contain explicit expressions, which are compared
+	 * after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in
+	 * upper case. This defines the joker matching algorithm for sentence
+	 * matching, which chooses automatically between word and type matching,
+	 * depending on which of word and word type string is given.
+	 * 
+	 * @param other
+	 * @return true if 2 expression match false otherwise
+	 */
     boolean sentenceMatchExpression(final Expression other) {
         String matchString = other.getNormalized();
 
@@ -485,7 +479,7 @@ public final class Expression {
      *
      * @param str
      * @param matchString
-     * @return
+     * @return true if 2 expression match false otherwise
      */
     public static boolean matchesJokerString(final String str, final String matchString) {
         if (str.equals(JOKER)) {

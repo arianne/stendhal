@@ -396,7 +396,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Load saves profiles.
-	 * @return 
+	 * @return ProfileList
 	 */
 	private ProfileList loadProfiles() {
 		ProfileList tmpProfiles = new ProfileList();

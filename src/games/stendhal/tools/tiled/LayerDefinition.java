@@ -104,9 +104,8 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the allocated raw array so it can be modified.
-	 * 
-	 * @return
+	 * @return the allocated raw array so it can be modified.
+
 	 */
 	public byte[] exposeRaw() {
 		return raw;
@@ -148,7 +147,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * 
-	 * @return
+	 * @return the encode byte array
 	 * @throws IOException
 	 */
 	public byte[] encode() throws IOException {
@@ -186,7 +185,7 @@ public class LayerDefinition implements Serializable {
 	/**
 	 * Returns the width of the layer.
 	 * 
-	 * @return
+	 * @return the layer's width
 	 */
 	public int getWidth() {
 		return width;
@@ -195,7 +194,7 @@ public class LayerDefinition implements Serializable {
 	/**
 	 * Returns the height of the layer.
 	 * 
-	 * @return
+	 * @return the layer's height
 	 */
 	public int getHeight() {
 		return height;
@@ -238,7 +237,7 @@ public class LayerDefinition implements Serializable {
 	/**
 	 * Returns the name of the layer.
 	 * 
-	 * @return
+	 * @return the layer's name
 	 */
 	public String getName() {
 		return name;

@@ -88,7 +88,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	public void resizeToFitClientArea(int width, int height) {
 	}
 
-	/** Returns the currently dragged object or null, if there is none. */
+	/** @return the currently dragged object or null, if there is none. */
 	public synchronized WtDraggable getDraggedObject() {
 		// currently no drag operation?
 		if (!dragInProgress || (draggedObject == null)) {
@@ -140,7 +140,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		}
 	}
 
-	/** Stops the dragging operations. */
+	/** Stops the dragging operations. 
+	 * @param e */
 	private void stopDrag(MouseEvent e) {
 		// be sure to stop dragging operations when theleft button is released
 		if (dragInProgress && (draggedObject != null)) {
@@ -152,11 +153,13 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		dragInProgress = false;
 	}
 
-	/** Invoked when the mouse enters a component. This event is ignored. */
+	/** Invoked when the mouse enters a component. This event is ignored. 
+	 * @param e */
 	public synchronized void mouseEntered(MouseEvent e) {
 	}
 
-	/** Invoked when the mouse exits a component. This event is ignored. */
+	/** Invoked when the mouse exits a component. This event is ignored. 
+	 * @param e */
 	public synchronized void mouseExited(MouseEvent e) {
 	}
 
@@ -165,6 +168,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/**
 	 * Invoked when a mouse button has been pressed on a component. This event
 	 * is ignored.
+	 * @param e 
 	 */
 	public synchronized void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {
@@ -174,7 +178,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		timeOfLastMousePress = System.currentTimeMillis();
 	}
 
-	/** Invoked when a mouse button has been released on a component. */
+	/** Invoked when a mouse button has been released on a component. 
+	 * @param e */
 	public synchronized void mouseReleased(MouseEvent e) {
 		// be sure to stop dragging operations when the left button is released
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -195,6 +200,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/**
 	 * Java's official mouseClick handler; we don't use this because it doesn't
 	 * register clicks while the mouse is moving at all.
+	 * @param e 
 	 */
 	public synchronized void mouseClicked(MouseEvent e) {
 	}
@@ -259,6 +265,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * Invoked when a mouse button is pressed on a component and then dragged.
 	 * This event will find the panel just under the mouse cursor and starts to
 	 * drag (if the panel allows it)
+	 * @param e 
 	 */
 	public synchronized void mouseDragged(MouseEvent e) {
 		Point p = e.getPoint();
@@ -295,7 +302,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * Invoked when the mouse cursor has been moved onto a component but no
 	 * buttons have been pushed.
 	 * 
-	 * This event stopps all dragging operations.
+	 * This event stops all dragging operations.
+	 * @param e 
 	 */
 	public synchronized void mouseMoved(java.awt.event.MouseEvent e) {
 		// be sure to stop dragging operations

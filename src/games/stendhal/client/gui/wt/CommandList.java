@@ -68,7 +68,8 @@ public class CommandList extends WtPopupMenu {
 		}
 	}
 
-	/** an action has been chosen. */
+	/** an action has been chosen. 
+	 * @param command */
 	protected void doAction(String command) {
 		// tell the entity what happened
 		view.onAction(ActionType.getbyRep(command));

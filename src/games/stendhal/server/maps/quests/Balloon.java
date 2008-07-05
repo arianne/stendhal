@@ -2,7 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.scroll.BalloonScroll;
 import games.stendhal.server.entity.player.Player;
 

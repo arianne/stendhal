@@ -28,10 +28,11 @@ public interface Stackable {
 
 	/** Adds the quantity of the other Stackable to this .
 	 * @param other 
-	 * @return */
+	 * @return the previous quantity */
 	int add(Stackable other);
 
-	/** @return true when both stackables are of the same type and can be merged */
+	/** @param other 
+	 * @return true when both stackables are of the same type and can be merged */
 	boolean isStackable(Stackable other);
 
 }

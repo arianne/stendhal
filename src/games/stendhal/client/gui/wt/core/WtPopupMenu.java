@@ -34,6 +34,9 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Create a menu item that will redirect it's key events.
+	 * @param label 
+	 * @param icon 
+	 * @return new Menuitem
 	 * 
 	 * 
 	 */
@@ -43,6 +46,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Redirect key event to the menu's invoker.
+	 * @param ev 
 	 * 
 	 */
 	protected void redirectEvent(MenuKeyEvent ev) {
@@ -79,6 +83,8 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 					l.keyTyped(nev);
 				}
 				break;
+			default:
+				// do nothing
 			}
 
 			ev.consume();

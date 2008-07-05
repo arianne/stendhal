@@ -362,7 +362,7 @@ public class CreateAccountDialog extends JDialog {
 
 	/**
 	 * Runs field checks, to, ex. confirm the passwords correct, etc.
-	 * @return 
+	 * @return if no error found
 	 */
 	private boolean checkFields() {
 		//

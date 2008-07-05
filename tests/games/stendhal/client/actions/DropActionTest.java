@@ -27,6 +27,7 @@ public class DropActionTest {
 
 	/**
 	 * Create and initialize a User object.
+	 * @return a playerPRObject
 	 */
 	private static RPObject createPlayer() {
 		RPObject rpo = new RPObject();

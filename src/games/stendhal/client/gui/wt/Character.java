@@ -70,7 +70,8 @@ public class Character extends WtPanel {
 	/** the last player modification counter. */
 	private long oldPlayerModificationCount;
 
-	/** Creates a new instance of Character. */
+	/** Creates a new instance of Character. 
+	 * @param ui */
 	public Character(StendhalUI ui) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
 				PANEL_HEIGHT);
@@ -147,7 +148,8 @@ public class Character extends WtPanel {
 		return true;
 	}
 
-	/** sets the player entity. */
+	/** sets the player entity. 
+	 * @param userEntity */
 	public void setPlayer(User userEntity) {
 		this.playerEntity = userEntity;
 	}

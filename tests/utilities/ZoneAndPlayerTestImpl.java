@@ -47,9 +47,11 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
     }
 
 	/**
-	 * Setup zone before starting the test.
+	 * Creates zone and adds it to RPWorld.
 	 *
 	 * @param zoneName
+	 * @return the new created zone
+	 * 
 	 */
 	protected static StendhalRPZone setupZone(String zoneName) {
 		StendhalRPZone zone = new StendhalRPZone(zoneName);

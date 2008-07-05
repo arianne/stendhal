@@ -394,6 +394,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Add a setup descriptor.
+		 * @param desc 
 		 * 
 		 */
 		public void addDescriptor(SetupDescriptor desc) {
@@ -402,6 +403,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the zone file.
+		 * @return the file name
 		 * 
 		 */
 		public String getFile() {
@@ -410,6 +412,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the level.
+		 * @return the level of the zone
 		 * 
 		 */
 		public int getLevel() {
@@ -418,6 +421,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the zone name.
+		 * @return the name of the zone
 		 * 
 		 */
 		public String getName() {
@@ -426,6 +430,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get an iterator of setup descriptors.
+		 * @return an iterator over the descriptors
 		 * 
 		 */
 		public Iterator<SetupDescriptor> getDescriptors() {
@@ -441,18 +446,10 @@ public class ZonesXMLLoader {
 			return title;
 		}
 
-		/**
-		 * Get the X coordinate.
-		 * 
-		 */
 		public int getX() {
 			return x;
 		}
 
-		/**
-		 * Get the Y coordinate.
-		 * 
-		 */
 		public int getY() {
 			return y;
 		}

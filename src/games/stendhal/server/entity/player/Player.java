@@ -298,6 +298,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Add an active client direction.
+	 * @param direction 
 	 * 
 	 * 
 	 */
@@ -312,6 +313,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Remove an active client direction.
+	 * @param direction 
 	 * 
 	 * 
 	 */
@@ -733,6 +735,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Returns the single object of a "keyed slot".
+	 * @param object 
 	 * 
 	 * @param name name of key slot
 	 * @return object or <code>null</code> it does not exist
@@ -906,8 +909,9 @@ public class Player extends RPEntity {
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently so that
 	 * /answer can be used.
+	 * @param lastPrivateChatterName 
 	 */
-	public void setLastPrivateChatter(String lastPrivateChatterName) {
+	public void setLastPrivateChatter(final String lastPrivateChatterName) {
 		this.lastPrivateChatterName = lastPrivateChatterName;
 	}
 
@@ -915,6 +919,7 @@ public class Player extends RPEntity {
 	 * Gets the name of the last player who privately talked to this player
 	 * using the /tell command, or null if nobody has talked to this player
 	 * since he logged in.
+	 * @return name of last player
 	 */
 	public String getLastPrivateChatter() {
 		return lastPrivateChatterName;
@@ -1012,6 +1017,7 @@ public class Player extends RPEntity {
 	/**
 	 * Gets the number of minutes that this player has been logged in on the
 	 * server.
+	 * @return age of player in minutes
 	 */
 	public int getAge() {
 		return age;
@@ -1218,6 +1224,7 @@ public class Player extends RPEntity {
 	/**
 	 * Stores that the player has killed 'name' with help of others. Does not
 	 * overwrite solo kills of 'name'
+	 * @param name of victim
 	 * 
 	 */
 	public void setSharedKill(String name) {
@@ -1239,6 +1246,7 @@ public class Player extends RPEntity {
 	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
+	 * @return true if player still has poisons to consume
 	 */
 	public boolean isPoisoned() {
 		return !(poisonToConsume.size() == 0);
@@ -1762,7 +1770,7 @@ public class Player extends RPEntity {
 	/**
 	 * Return a list of all animals associated to this player.
 	 *
-	 * @return
+	 * @return List of DomesticalAnmial
 	 */
 	public List<DomesticAnimal> getAnimals() {
 		List<DomesticAnimal> animals = new ArrayList<DomesticAnimal>();
@@ -1781,8 +1789,9 @@ public class Player extends RPEntity {
 	/**
 	 * Search for an animal with the given name or type.
 	 *
-	 * @param name
-	 * @return
+	 * @param name 
+	 * @param exactly 
+	 * @return the found pet
 	 */
 	public DomesticAnimal searchAnimal(String name, boolean exactly) {
 		List<DomesticAnimal> animals = getAnimals();

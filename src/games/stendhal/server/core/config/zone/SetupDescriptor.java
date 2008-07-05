@@ -37,7 +37,7 @@ public abstract class SetupDescriptor {
 	/**
 	 * Get the configuration parameters.
 	 * 
-	 * @rerturn A map of parameters.
+	 * @return A map of parameters.
 	 */
 	public Map<String, String> getParameters() {
 		return parameters;

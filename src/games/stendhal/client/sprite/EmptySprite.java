@@ -53,11 +53,12 @@ public class EmptySprite implements Sprite {
 	 * Create an empty sprite reference.
 	 * @param width 
 	 * @param height 
-	 * @return 
+	 * @return an Object of the type ESRef
 	 * 
 	 * 
 	 */
 	public static Object createReference(final int width, final int height) {
+		//TODO: amke method return type ESRef
 		return new ESRef(width, height);
 	}
 

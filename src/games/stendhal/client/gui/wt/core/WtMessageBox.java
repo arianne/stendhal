@@ -50,7 +50,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	/** false when the messagebox still has to layout the buttons .*/
 	private boolean layedout;
 
-	/** Creates a new instance of MessageBox. */
+	/** Creates a new instance of MessageBox. 
+	 * @param name 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param message 
+	 * @param buttonCombination */
 	public WtMessageBox(String name, int x, int y, int width, String message,
 			ButtonCombination buttonCombination) {
 		super(name, x, y, width, MAX_HEIGHT);
@@ -108,7 +114,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		super.drawContent(clientArea);
 	}
 
-	/** clicked a button. */
+	/** clicked a button. 
+	 * @param name 
+	 * @param point */
 	public void onClick(String name, Point point) {
 		// tell our listeners that a button has been clicked
 		notifyClickListeners(name, point);
@@ -116,7 +124,8 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		destroy();
 	}
 
-	/** closed this window. */
+	/** closed this window. 
+	 * @param name */
 	public void onClose(String name) {
 		// pseudoclicked the close button
 		onClick(closeButtonName, null);
@@ -136,19 +145,23 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 		private int height;
 
-		/** private construction. */
+		/** private construction. 
+		 * @param name 
+		 * @param width 
+		 * @param height */
 		private ButtonEnum(String name, int width, int height) {
 			this.name = name;
 			this.width = width;
 			this.height = height;
 		}
 
-		/** Returns the name of this button. */
+		/** @return the name of this button. */
 		public String getName() {
 			return name;
 		}
 
-		/** Creates a new wt-button. */
+		/** Creates a new wt-button. 
+		 * @return the created button*/
 		public WtButton getButton() {
 			return new WtButton(name, width, height, name);
 		}
@@ -172,7 +185,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		/** default button when the window is closed. */
 		private ButtonEnum closeButton;
 
-		/** Contructor. */
+		/** Contructor. 
+		 * @param closeButton 
+		 * @param buttons */
 		private ButtonCombination(ButtonEnum closeButton, ButtonEnum... buttons) {
 			List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
 			this.closeButton = closeButton;
@@ -182,12 +197,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			this.buttons = Collections.unmodifiableList(buttonList);
 		}
 
-		/** Returns a list with the buttons. */
+		/** 
+		 * @return a list with the buttons. */
 		public List<ButtonEnum> getButtons() {
 			return buttons;
 		}
 
-		/** Returns a list with the buttons. */
+		/** @return a list with the buttons. */
 		public ButtonEnum getCloseButton() {
 			return closeButton;
 		}

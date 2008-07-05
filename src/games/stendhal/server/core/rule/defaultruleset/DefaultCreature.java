@@ -185,7 +185,8 @@ public class DefaultCreature {
 		this.aiProfiles = aiProfiles;
 	}
 
-	/** returns a creature-instance. */
+	/** @return a creature-instance. 
+	 */
 	public Creature getCreature() {
 		Collections.sort(dropsItems, new Comparator<DropItem>() {
 
@@ -208,7 +209,7 @@ public class DefaultCreature {
 		return creature;
 	}
 
-	/** returns the tileid. */
+	/** @return the tileid. */
 	public String getTileId() {
 		return tileid;
 	}
@@ -217,7 +218,7 @@ public class DefaultCreature {
 		tileid = val;
 	}
 
-	/** returns the class. */
+	/** @return the class. */
 	public String getCreatureClass() {
 		return clazz;
 	}

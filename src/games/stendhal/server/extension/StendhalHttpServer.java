@@ -108,7 +108,9 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** Processes a http request and add convenience headers. */
+	/** Processes a http request and add convenience headers. 
+	 * @param req 
+	 * @param resp */
 	public void handle(Request req, Response resp) {
 		resp.set("Server", "Stendhal http (Simpleweb)");
 		resp.setDate("Date", System.currentTimeMillis());
@@ -117,7 +119,10 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		handler.handle(req, resp);
 	}
 
-	/** Convenience method to copy stream contents. */
+	/** Convenience method to copy stream contents. 
+	 * @param in 
+	 * @param out 
+	 * @throws Exception */
 	public static void streamCopy(InputStream in, OutputStream out)
 			throws Exception {
 		try {
@@ -137,7 +142,12 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	}
 
 	/** Writes HTML to the response stream while filtering and replacing
-	 ssi <!--#include --> directives. */ 
+	 ssi <!--#include --> directives. 
+	 * @param s 
+	 * @param out 
+	 * @param req 
+	 * @param dir 
+	 * @throws Exception */ 
 	public static void outputHTML(StringBuilder s, PrintStream out, Request req,
 			String dir) throws Exception {
 		int left = 0;

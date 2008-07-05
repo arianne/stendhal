@@ -46,7 +46,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
 
     /**
      * Return the items as quest state string.
-     * @return
+     * @return semicolon separated states list
      */
     public String toStringForQuestState() {
         StringBuilder sb = new StringBuilder();
@@ -59,7 +59,9 @@ public class ItemCollection extends TreeMap<String, Integer> {
                 sb.append(';');
             }
 
-            sb.append(e.getKey() + "=" + e.getValue());
+            sb.append(e.getKey());
+            sb.append("=");
+            sb.append(e.getValue());
         }
 
         return sb.toString();
@@ -69,7 +71,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	 * Remove the specified amount of items from the collection.
 	 * @param itemName
 	 * @param amount
-	 * @return
+	 * @return true if amount has been updated
 	 */
 	public boolean removeItem(String itemName, int amount) {
     	Integer curAmount = get(itemName);
@@ -109,8 +111,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
     }
 
     /**
-     * Return a String list containing the items in the format "xxx=n".
-     * @return
+     * @return a String list containing the items in the format "xxx=n".
      */
     public List<String> toStringList() {
         List<String> result = new LinkedList<String>();
@@ -123,8 +124,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
     }
 
     /**
-     * Return a String list containing the items in the format "n #xxx, ...".
-     * @return
+     * @return a String list containing the items in the format "n #xxx, ...".
      */
     public List<String> toStringListWithHash() {
         List<String> result = new LinkedList<String>();

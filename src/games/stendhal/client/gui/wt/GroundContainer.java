@@ -52,7 +52,11 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	/** the game screen. */
 	private IGameScreen screen;
 
-	/** creates a new groundcontainer. */
+	/** creates a new groundcontainer. 
+	 * @param client 
+	 * @param screen 
+	 * @param width 
+	 * @param height */
 	public GroundContainer(final StendhalClient client,
 			final IGameScreen screen, final int width, final int height) {
 		super(width, height);
@@ -189,7 +193,11 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	// WtDropTarget
 	//
 
-	/** called when an object is dropped. */
+	/** called when an object is dropped. 
+	 * @param x 
+	 * @param y 
+	 * @param droppedObject 
+	 * @return true if droppedobject instance of MovableentityContainer false otherwise*/
 	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
 		// Not an entity?
 		if (!(droppedObject instanceof MoveableEntityContainer)) {

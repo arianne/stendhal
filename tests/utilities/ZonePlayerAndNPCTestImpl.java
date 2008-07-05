@@ -21,6 +21,7 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 	
 	/**
 	 * Register NPC names for cleanup in tearDown().
+	 * @param zoneName 
 	 * 
 	 * @param npcNames
 	 */

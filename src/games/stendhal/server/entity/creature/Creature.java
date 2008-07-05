@@ -342,6 +342,10 @@ public class Creature extends NPC {
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
 	 * creatures of this kind.
+	 * @param name 
+	 * @param probability 
+	 * @param min 
+	 * @param max 
 	 */
 	public void addDropItem(String name, double probability, int min, int max) {
 		dropsItems.add(new DropItem(name, probability, min, max));
@@ -351,6 +355,9 @@ public class Creature extends NPC {
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
 	 * creatures of this kind.
+	 * @param name 
+	 * @param probability 
+	 * @param amount 
 	 */
 	public void addDropItem(String name, double probability, int amount) {
 		dropsItems.add(new DropItem(name, probability, amount));
@@ -517,7 +524,6 @@ public class Creature extends NPC {
 	/**
 	 *  poisons attacktarget with the behaviour in Poisoner.
 	 * 
-	 *  @see Poisoner
 	 * 
 	 * @throws NullPointerException if attacktarget is null
 	 */

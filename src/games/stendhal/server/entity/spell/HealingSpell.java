@@ -46,6 +46,8 @@ public class HealingSpell extends Spell implements UseListener {
 
 	/**
 	 * Gets the amount the healing spell will heal you.
+	 * @param player 
+	 * @return amount of health healed
 	 * 
 	 * 
 	 */

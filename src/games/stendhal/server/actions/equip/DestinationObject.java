@@ -37,7 +37,10 @@ class DestinationObject extends MoveableObject {
 	/** y coordinate when dropped on ground.*/
 	private int y;
 
-	/** interprets the given action. */
+	/** interprets the given action. 
+	 * @param action 
+	 * @param player 
+	 */
 	public DestinationObject(RPAction action, Player player) {
 		super(player);
 		valid = false;
@@ -87,7 +90,11 @@ class DestinationObject extends MoveableObject {
 		// not valid
 	}
 
-	/** checks if it is possible to add the entity to the world. */
+	/** checks if it is possible to add the entity to the world. 
+	 * @param entity 
+	 * @param player 
+	 * @return true if can be added to the world 
+	 * */
 	public boolean preCheck(Entity entity, Player player) {
 		StendhalRPZone zone = player.getZone();
 
@@ -179,6 +186,8 @@ class DestinationObject extends MoveableObject {
 	 * add the entity to the world (specified by the action during constuction).
 	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
 	 * before adding an item to the world
+	 * @param entity 
+	 * @param player 
 	 */
 	public void addToWorld(Entity entity, Player player) {
 		if (parent != null) {
@@ -239,7 +248,9 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
+	 * Checks if RPobject is one the valid classes.
+	 * @param validClasses 
+	 * @return true if the rpobject is one of the classes in <i>validClasses</i>.
 	 */
 	public boolean checkClass(List<Class< ? >> validClasses) {
 		if (parent != null) {

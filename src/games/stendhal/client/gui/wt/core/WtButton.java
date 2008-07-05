@@ -34,7 +34,11 @@ public class WtButton extends WtPanel {
 	/** image for the button. */
 	private Sprite image;
 
-	/** Creates a new Button with text. */
+	/** Creates a new Button with text. 
+	 * @param name 
+	 * @param width 
+	 * @param height 
+	 * @param text */
 	public WtButton(String name, int width, int height, String text) {
 		super(name, 0, 0, width, height);
 		initialize();
@@ -45,7 +49,11 @@ public class WtButton extends WtPanel {
 		setTitletext(text);
 	}
 
-	/** Creates a new Button with an image. */
+	/** Creates a new Button with an image. 
+	 * @param name 
+	 * @param width 
+	 * @param height 
+	 * @param image */
 	public WtButton(String name, int width, int height, Sprite image) {
 		super(name, 0, 0, width, height);
 		initialize();
@@ -86,12 +94,13 @@ public class WtButton extends WtPanel {
 		return true;
 	}
 
-	/** Returns true when the button in pressed and false when it is released. */
+	/** @return true when the button in pressed and false when it is released. */
 	public boolean isPressed() {
 		return isEmbossed();
 	}
 
-	/** sets the state of the button. */
+	/** sets the state of the button. 
+	 * @param pressed */
 	public void setPressed(boolean pressed) {
 		setEmboss(pressed);
 	}

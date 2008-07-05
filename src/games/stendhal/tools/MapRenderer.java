@@ -51,7 +51,9 @@ public class MapRenderer extends Task {
 	/** list of *.tmx files to convert. */
 	private List<FileSet> filesets = new ArrayList<FileSet>();
 
-	/** converts the map files. */
+	/** converts the map files. 
+	 * @param tmxFile 
+	 * @throws Exception */
 	public void convert(String tmxFile) throws Exception {
 		File file = new File(tmxFile);
 
@@ -123,6 +125,7 @@ public class MapRenderer extends Task {
 
 	/**
 	 * The setter for the "stendPath" attribute.
+	 * @param imagePath 
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;

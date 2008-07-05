@@ -170,6 +170,7 @@ public class Bootstrap {
 
 	/**
 	 * Do the whole start up process in a privileged block.
+	 * @param <T> 
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
