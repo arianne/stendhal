@@ -8,20 +8,22 @@ public class FlowerGrower extends VegetableGrower {
 	private static final String ITEM_NAME = "lilia";
 	private String[] description = { "0", "1", "2", "3", "4" };
 
-	public FlowerGrower(RPObject object) {
-		super(object, ITEM_NAME);
+	public FlowerGrower(RPObject object, String itemname) {
+		super(object, itemname);
 		setMaxRipeness(4);
-		setVegetableName("lilia");
-
+		store();
 	}
 
 	public FlowerGrower() {
 		this(ITEM_NAME);
+		
+		store();
 	}
 
 	public FlowerGrower(String infoString) {
 		super(infoString);
 		setMaxRipeness(4);
+		store();
 	}
 
 	@Override

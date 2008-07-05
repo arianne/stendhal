@@ -2,6 +2,7 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
+import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.rp.RPObjectFactory;
@@ -31,6 +32,10 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 			return new ArrestWarrant(object);
 		} else if (name.equals(RentedSign.RPCLASS_NAME)) {
 			return new RentedSign(object);
+		} else if (name.equals("growing_entity_spawner")) {
+			String itemname = object.get("class");
+			itemname = itemname.substring(itemname.lastIndexOf('/') + 1, itemname.length() - "_grower".length());
+			return new FlowerGrower(object, itemname);
 		}
 
 		// fallback
