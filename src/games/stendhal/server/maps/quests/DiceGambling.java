@@ -46,7 +46,7 @@ public class DiceGambling extends AbstractQuest {
 				// a consolation prize, a coupon for a bottle of beer.
 				// Margaret will accept it."), // 7
 				new Pair<String, String>("wine",
-						"You have won this delicious bottle of wine!"), // 8
+						"You have won this delicious glass of wine!"), // 8
 				new Pair<String, String>("studded shield",
 						"Take this simple shield as a reward."), // 9
 				new Pair<String, String>("chain legs",
