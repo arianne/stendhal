@@ -41,12 +41,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	private static final int COST = 1000;
 
 	// "static" data
-	protected StendhalRPZone zone;
+	private StendhalRPZone zone;
 
-	protected SpeakerNPC npc;
-
-	// quest instance data
-	protected Player player;
+	private SpeakerNPC npc;
 
 	/**
 	 * Tells the player the remaining time and teleports him out when his time
