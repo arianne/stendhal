@@ -2,6 +2,7 @@ package games.stendhal.server.entity.creature;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
@@ -13,7 +14,7 @@ import games.stendhal.server.entity.player.Player;
 public class DeathMatchCreature extends Creature {
 
 	private int points;
-	private Player player;
+	private String playerName; // save only the name to enable GC of the player object
 
 	/**
 	 * DeathCreature.
@@ -42,11 +43,16 @@ public class DeathMatchCreature extends Creature {
 	 *            Player to reward
 	 */
 	public void setPlayerToReward(Player player) {
-		this.player = player;
+		this.playerName = player.getName();
 	}
 
 	@Override
 	protected void rewardKillers(int oldXP) {
+		Player player =  SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		if (player == null) {
+			return;
+		}
+
 		Integer damageReceivedByPlayer = damageReceived.get(player);
 		if (damageReceivedByPlayer != null) {
 			points = player.getLevel()
