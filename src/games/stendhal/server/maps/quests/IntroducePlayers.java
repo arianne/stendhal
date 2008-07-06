@@ -23,15 +23,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Introduce new players to game PARTICIPANTS: - Tad - Margaret - Ilisa
- *
- * STEPS: - Tad asks you to buy a flask to give it to Margaret. - Margaret sells
- * you a flask - Tad thanks you and asks you to take the flask to Ilisa - Ilisa
- * asks you for a few herbs. - Return the created dress potion to Tad.
- *
- * REWARD: - 170 XP - 10 gold coins
- *
- * REPETITIONS: - None.
+ * QUEST: Introduce new players to game <p>PARTICIPANTS:<ul>
+ * <li> Tad
+ * <li> Margaret
+ * <li> Ilisa
+ * </ul>
+ * 
+ * <p>
+ * STEPS:<ul>
+ * <li> Tad asks you to buy a flask to give it to Margaret.
+ * <li> Margaret sells you a flask
+ * <li>Tad thanks you and asks you to take the flask to Ilisa
+ * <li> Ilisa asks you for a few herbs.
+ * <li> Return the created dress potion to Tad.
+ * </ul>
+ * <p>
+ * REWARD:<ul>
+ * <li> 170 XP
+ * <li> 10 gold coins
+ * </ul>
+ * <p>
+ * REPETITIONS:<ul>
+ * <li> None.
+ * </ul>
  */
 public class IntroducePlayers extends AbstractQuest {
 	private static final String QUEST_SLOT = "introduce_players";
