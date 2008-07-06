@@ -126,6 +126,11 @@ public class StendhalQuestSystem {
 	}
 
 	private boolean loadQuest(String name) {
+		String regex = System.getProperty("stendhal.quest.regex", ".*");
+		if (!name.matches(regex)) {
+			return false;
+		}
+		
 		try {
 			Class< ? > questClass = Class.forName("games.stendhal.server.maps.quests."
 					+ name);
