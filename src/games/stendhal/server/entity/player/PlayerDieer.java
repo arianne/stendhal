@@ -135,7 +135,7 @@ public class PlayerDieer {
 
 					// We won't drop the full quantity, but only a
 					// percentage.
-					// Get a random percentage between 26 % and 75 % to drop
+					// Get a random percentage between 25 % and 75 % to drop
 					double percentage = (Rand.rand(50) + 25) / 100.0;
 					int quantityToDrop = (int) Math.round(item.getQuantity()
 							* percentage);
