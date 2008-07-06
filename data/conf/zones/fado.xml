@@ -57,9 +57,9 @@
            <portal x="71" y="99" ref="shepherd_house_entrance">
              <destination zone="int_fado_shepherd_house" ref="entrance"/>
            </portal>
-      <!--     <portal x="82" y="44" ref="battle_arena_entrance">
-             <destination zone="int_fado_battle_arena" ref="entrance"/>
-           </portal> -->
+          <portal x="82" y="44" ref="battle_arena_entrance">
+             <destination zone="int_fado_battle_arena" ref="entrance_right"/>
+           </portal> 
            
            <portal x="24" y="16" ref="house_entrance">
              <destination zone="int_fado_house" ref="entrance_right"/>
@@ -520,25 +520,49 @@ For example say:  11  if you want the room called Water of Love.
          </zone>
 	 
 	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx">
-         </zone>
+     </zone>
 
-<!-- Shut the fado DM  -->	 
-<!--	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.deathmatch.Deathmatch"/>
-	  <portal x="31" y="63" ref="entrance">
-             <destination zone="0_fado_city" ref="battle_arena_entrance"/>
-           </portal>
-	   <portal x="63" y="0" ref="basement_entrance">
-	     <destination zone="int_fado_battle_arena_-1" ref="basement_exit"/>
-           </portal> 
-         </zone>
-         <zone name="int_fado_battle_arena_-1" file="interiors/fado/battle_arena_-1.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.deathmatch.BattleArenaRecruiterNPC"/>
-          <portal x="63" y="0" ref="basement_exit">
-              <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
-           </portal>
-        </zone>
--->
+	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
+	  <portal x="30" y="62" ref="entrance_left">
+       <destination zone="0_fado_city" ref="battle_arena_entrance"/>
+      </portal>
+	  <portal x="31" y="62" ref="entrance_right">
+       <destination zone="0_fado_city" ref="battle_arena_entrance"/>
+      </portal>
+	  <portal x="54" y="3" ref="basement_entrance">
+       <destination zone="int_fado_battle_pit" ref="basement_exit"/>
+      </portal> 
+     </zone>
+     <zone name="int_fado_battle_pit" file="interiors/fado/battle_arena_-1.tmx">
+      <portal x="54" y="3" ref="basement_exit">
+       <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
+      </portal>
+      <portal x="30" y="5" ref="stairs1down">
+	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	    <parameter name="minimum-level">150</parameter>
+		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
+	   </implementation>
+	   <attribute name="hidden"/>
+	   <destination zone="int_fado_battle_pit" ref="stairs1up"/>
+      </portal>
+      <portal x="31" y="5" ref="stairs2down">
+	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	    <parameter name="minimum-level">150</parameter>
+		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
+	   </implementation>
+	   <attribute name="hidden"/>
+	   <destination zone="int_fado_battle_pit" ref="stairs2up"/>
+      </portal>
+      <portal x="30" y="6" ref="stairs1up">
+	   <attribute name="hidden"/>
+       <destination zone="int_fado_battle_pit" ref="stairs1down"/>
+      </portal>
+      <portal x="31" y="6" ref="stairs2up">
+	   <attribute name="hidden"/>
+       <destination zone="int_fado_battle_pit" ref="stairs2down"/>
+      </portal>
+     </zone>
+
 <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
   <entity x="63" y="82">
