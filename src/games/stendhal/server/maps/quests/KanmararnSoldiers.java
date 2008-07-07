@@ -265,7 +265,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.addGreeting("Ssshh! Silence or you will attract more #dwarves.");
 		henry.addJob("I'm a soldier in the army.");
 		henry.addGoodbye("Bye and be careful with all those dwarves around!");
-		henry.addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
+		henry.addHelp("I need help myself. I got separated from my #group. Now I'm all alone.");
 		henry.addReply(Arrays.asList("dwarf", "dwarves"),
 			"They are everywhere! Their #kingdom must be close.");
 		henry.addReply(Arrays.asList("kingdom", "Kanmararn"),
@@ -293,6 +293,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
 			null);
+
+        henry.add(
+				  ConversationStates.QUEST_OFFERED,
+				  "treasure",
+				  null,
+				  ConversationStates.QUEST_OFFERED,
+				  "A big treasure is rumored to be #somewhere in this dungeon. Will you help me find my group?",
+				  null);
 
 		henry.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
