@@ -200,10 +200,13 @@ public class Grammar {
 		} else if (result.equals("bread")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
 					"loaves of ");
-		} else if (result.equals("beer") || result.equals("wine")
-				|| result.endsWith("poison") || result.equals("antidote")) {
+		} else if (result.equals("beer") || result.endsWith("potion")
+				|| result.endsWith("poison") || result.endsWith("antidote")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
 					"bottles of ");
+        } else if (result.equals("wine")) {
+            result = addPrefixIfNotAlreadyThere(lowString, "glass of ",
+												"glasses of ");
 		} else if (result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
