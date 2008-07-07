@@ -81,8 +81,8 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy someunknownthing"));
 		assertEquals("Sorry, I don't sell someunknownthings.", npc.get("text"));
 
-		assertTrue(en.step(player, "buy a bottle of wine"));
-		assertEquals("Sorry, I don't sell bottles of wine.", npc.get("text"));
+		assertTrue(en.step(player, "buy a glass of wine"));
+		assertEquals("Sorry, I don't sell glasses of wine.", npc.get("text"));
 
 		assertTrue(en.step(player, "buy a hand full of peace"));
 		assertEquals("Sorry, I don't sell hand fulls of peace.", npc.get("text"));

@@ -104,7 +104,7 @@ public class GrammarTest {
 		assertEquals("sheaf of grain", Grammar.fullForm("grain"));
 		assertEquals("loaf of bread", Grammar.fullForm("bread"));
 		assertEquals("bottle of beer", Grammar.fullForm("beer"));
-		assertEquals("bottle of wine", Grammar.fullForm("wine"));
+		assertEquals("glass of wine", Grammar.fullForm("wine"));
 		assertEquals("bottle of poison", Grammar.fullForm("poison"));
 		assertEquals("bottle of antidote", Grammar.fullForm("antidote"));
 		assertEquals("money", Grammar.fullForm("money"));
@@ -301,10 +301,10 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("toadstools", "toadstool");
 		testPluralisationAndSingularisation("bottles of beer", "beer");
 		testPluralisationAndSingularisation("flasks of wine", "flask of wine");
-		testPluralisationAndSingularisation("minor potions", "minor potion");
+		testPluralisationAndSingularisation("bottles of minor potion", "minor potion");
 		testPluralisationAndSingularisation("bottles of antidote", "antidote");
-		testPluralisationAndSingularisation("potions", "potion");
-		testPluralisationAndSingularisation("greater potions",
+		testPluralisationAndSingularisation("bottles of potion", "potion");
+		testPluralisationAndSingularisation("bottles of greater potion",
 				"greater potion");
 		testPluralisationAndSingularisation("bottles of poison", "poison");
 		testPluralisationAndSingularisation("bottles of greater poison",

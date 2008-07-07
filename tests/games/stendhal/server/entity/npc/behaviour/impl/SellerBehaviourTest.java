@@ -1,8 +1,12 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
+
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +18,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class SellerBehaviourTest {
 
@@ -68,6 +73,31 @@ public class SellerBehaviourTest {
 		assertEquals(sb.amount, 0);
 		assertNull(sb.chosenItemName);
 
+	}
+	
+	@Test
+	public void testBottlesGlasses(){
+		Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		pricelist.put("dingo",3);
+		SellerBehaviour sb = new SellerBehaviour(pricelist);
+		SpeakerNPC npc = new SpeakerNPC("npc");
+		npc.addGreeting("blabla");
+		new SellerAdder().addSeller(npc, sb);
+	    Player player = PlayerTestHelper.createPlayer("bob");
+	    
+	    npc.getEngine().step(player, "hi");
+	    npc.getEngine().step(player, "buy 1 potion");
+		assertEquals("Sorry, I don't sell bottles of potion.", npc.getText());
+
+	    npc.getEngine().step(player, "buy wine");
+		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+
+	    npc.getEngine().step(player, "buy 1 glass of wine");
+		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+
+	    npc.getEngine().step(player, "buy 1 bottle of wine");
+		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+		
 	}
 
 }

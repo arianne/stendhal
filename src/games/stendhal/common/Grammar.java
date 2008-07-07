@@ -259,6 +259,7 @@ public class Grammar {
 		result = removePrefix(result, "sprig of ");
 		result = removePrefix(result, "suit of ");
 		result = removePrefix(result, "pair of ");
+		result = removePrefix(result, "glas of ");
 
 		return result;
 	}
@@ -282,7 +283,7 @@ public class Grammar {
 		result = removePrefix(result, "sprigs of ");
 		result = removePrefix(result, "suits of ");
 		result = removePrefix(result, "pairs of ");
-
+		result = removePrefix(result, "glasses of ");
 		return result;
 	}
 

@@ -76,8 +76,8 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy candle"));
 		assertEquals("Sorry, I don't sell candles.", npc.get("text"));
 
-		assertTrue(en.step(player, "buy a bottle of wine"));
-		assertEquals("Sorry, I don't sell bottles of wine.", npc.get("text"));
+		assertTrue(en.step(player, "buy a glass of wine"));
+		assertEquals("Sorry, I don't sell glasses of wine.", npc.get("text"));
 
 		assertTrue(en.step(player, "buy rose"));
 		assertEquals("1 rose will cost 50. Do you want to buy it?", npc.get("text"));
