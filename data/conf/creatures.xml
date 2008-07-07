@@ -570,7 +570,7 @@
         <noise value="neigghhh neigghhh"/>
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -597,7 +597,7 @@
         <noise value="naayyy"/>
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
