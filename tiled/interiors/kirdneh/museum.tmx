@@ -95,12 +95,12 @@
  </tileset>
  <layer name="0_floor" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XMQ6AMAxD0VCEhMQhOC701nRgytQio7axhz+/IYuTzWyvLIM7SmdFaLe1pZTeVrlDuJcrmrvJlRvYRTai+2dy5fZ2bxe7mz42q8t232guMrn9XbZ9xe6y/QvRXZ/c2C4yNnfmHkJLmSlwFwAA
+   H4sIAAAAAAAAAO3XMQrAIAyF4VQpFHqIHtd66zp0yqTlFWPyhn/+EBKIVUSOziq4s3V1hHZH21rpLdM14RaVN3enS9exi8yi+2d06c52b5UFd3TXke9NH1vVjTRXHl1kdOe70e6r6G60/4J3V0fXt4ssmrtyD5svHoNwFwAA
   </data>
  </layer>
  <layer name="1_terrain" width="30" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSUrEQBSGs1HaAWwVt9peRFucR5yHxuEK4sZ5Hg7gThRBQUHXiuBWF17AWUFB7+FfdAWK4lWqUqlEF/7w0dVJyEea9Ht5KfQ8L+Xlk5IQI++LQhEoBiWgxgtOjSNKQTn31mqcDZr9YY7NSN7GEOeOEtnLUsc/m0ELaE3IWy/s7wcdDjwjYJQzpvG2gXYLr39/lgrbcuCGr8cNvDbX658nI3lZrgy9Mw69t3yt8mYFr+vrvQvw+ukEXaDbkfear3XeQTAEhh15WS4VXhd1g/JOgEnOFOEVcw8eJB4tvXKCvE/gWeLFwFsGqkE6hPcIHEf0mkT2noDTmL1NhPcMnMfs9QivGFvvLJgD82CB2E9dr5hX8CbxbuBdBEtgGawojgny2mYVrIF1sGHodVE3NsEW2AY7fJtJ/2XZNViHCauT03ytq88ukxPWoreAE7f34Je8h97f+J1d3ldU3dDdVy7+R1TdSKL/2tQNMbb1maobYqj6/N9/w3upOUWO7BVj6436XGfbf4O8ewpvXM/PLPvCWvay+PO2nB7Qa+k16b9sHqNmsT4wYOn16zN7l6Cqz3F5L7z8jKvysjmQmgFdXG+Ql82B1Ayo2i6HmlN03rjeI5n8zrrnblsvSzbAS/XPD/AZwvMFvoXvJv3XpH/aRFc3dP0zSlR1MqmIXv/+T4I091aAyoSpAj+7wiVQcBcAAA==
+   H4sIAAAAAAAAAO2Yx0rFQBSGZ6NcC9hwq9fHcGPBXrE3LK8gbuy9PIA7UQQFBV0rgltd+AJ2BQV9D//BCQzDmcxkMokbf/i4c5OQj1xyz8lJLmMsw36TUZCj7otDHsgHBaCShafSE4WgRHirDM56w/4ox2YVb0OEc8eJ6uWpEZ9NoBm0pOStlfb3gXYPnmEwIhg1eFtBm4M3uD8LpW1j4Easxy28LtcbnCereHmuLL0zHr23Yq3z1kle39d7F+IN0gE6QZcn77VYm7wDYBAMefLyXGq8PuoG5Z0Ak4IpwivnHjwoPDp61YR5n8CzwouFtwhUgOII3iNwHNNrE9V7Ak4T9jYS3jNwnrCXEV45rt5ZMAfmwQKxn7peOa/gTeHdwrsIlsAyWNEcE+Z1zSpYA+tgw9Lro25sgi2wDXbENpv+y7NrsY4SXienxVqukzmg2vGctt4gqjcnBe/BH3kPmbkPJuFlBm+c+4qqG7r7yuf/iKobafRfl7ohx7U+U3VDDlWf//tvdC81p6hRvXJcvXGf61z7b5h3T+NN6vmZZ19aq16eYN5W0w16HL02/ZfPY9Qs1gv6Hb1BfebvEnT1OSnvBfudcXVePgdSM6CP6w3z8jmQmgF129VQc4rJm9R7JJvf2fTc7erlqQvxUv3zA3xG8HyBb+m7Tf+16Z8uMdUNU/+ME12dTCuyN7j/06BYeEtBWcqUgx+hQ7zacBcAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="50">
@@ -118,7 +118,7 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQhfoAAAAAAAgNcAxA3c/HAXAAA=
   </data>
  </layer>
- <layer name="objects" width="30" height="50">
+ <layer name="objects" width="30" height="50" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3NMQEAAAgDoMW1fwIrzFsoQAIAAFzMsxcAAOgsnxTbEHAXAAA=
   </data>
