@@ -230,7 +230,7 @@ public class IntroducePlayers extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("herb", "arandula", "yes", "ok"),
-				null,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING,
 				"North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",
 				new ExamineChatAction("arandula.png", "Ilisa's drawing", "Arandula"));
@@ -250,7 +250,7 @@ public class IntroducePlayers extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING, 
-				"Can you fetch those #herbs for the medicine?", null);
+				"Can you fetch those #herbs for the #medicine?", null);
 
 		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
