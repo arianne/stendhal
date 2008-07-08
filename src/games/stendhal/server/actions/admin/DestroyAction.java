@@ -7,6 +7,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -49,7 +50,7 @@ public class DestroyAction extends AdministrationAction {
 
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
-		} else if ((inspected instanceof Item) || (inspected instanceof Portal)) {
+		} else if ((inspected instanceof Item) || (inspected instanceof Portal) || (inspected instanceof FlowerGrower)) {
 			zone.remove(inspected);
 		} else {
 			player.sendPrivateText("You can't remove this type of entity");
