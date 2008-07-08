@@ -58,6 +58,7 @@ public abstract class AdministrationAction implements ActionListener {
 		GhostModeAction.register();
 		TeleClickModeAction.register();
 		JailAction.register();
+		JailReportAction.register();
 		GagAction.register();
 		AlterQuestAction.register();
 		REQUIRED_ADMIN_LEVELS.put("support", 100);

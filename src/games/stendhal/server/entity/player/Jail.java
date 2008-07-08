@@ -101,10 +101,10 @@ public class Jail implements LoginListener {
 
 	// singleton
 	private Jail() {
+		
 		arrestWarrants = new ArrestWarrantList(getJailzone());
 		SingletonRepository.getLoginNotifier().addListener(this);
 	}
-
 	/**
 	 * @param criminalName
 	 *            The name of the player who should be jailed
@@ -184,6 +184,8 @@ public class Jail implements LoginListener {
 		if (jailzone == null) {
 			StendhalRPWorld world = SingletonRepository.getRPWorld();
 			jailzone = (StendhalRPZone) world.getRPZone(DEFAULT_JAIL_ZONE);
+			
+			
 		}
 
 		return jailzone;
@@ -288,5 +290,12 @@ public class Jail implements LoginListener {
 				}
 			}
 		});
+	}
+
+	public String listJailed() {
+		if (arrestWarrants!=null){
+			return arrestWarrants.toString();
+		}
+		return "jail not inited ?";
 	}
 }
