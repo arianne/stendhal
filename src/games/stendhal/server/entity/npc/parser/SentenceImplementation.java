@@ -390,7 +390,6 @@ public final class SentenceImplementation extends Sentence {
 
     /**
      * Merge words to form a simpler sentence structure.
-     *
      */
     void mergeWords() {
 
@@ -400,19 +399,27 @@ public final class SentenceImplementation extends Sentence {
         mergeThreeWordExpressions();
 
         // now merge two word expressions from left to right
-        mergeTwoWordExpressions();
+        if (mergeTwoWordExpressions() > 0) {
+	        // retry finding three word expressions
+	        mergeThreeWordExpressions();
+        }
     }
 
-    private void mergeTwoWordExpressions() {
+    /**
+     * Merge two word expressions into single expressions.
+     * @return number of changes
+     */
+    private int mergeTwoWordExpressions() {
 
         /*
          * There are two possibilities for word merges: Left-merging means to
          * prepend the left word before the following one, removing the first
-         * one. Right-merging means to append the eight word to the preceding
+         * one. Right-merging means to append the right word to the preceding
          * one, removing the second from the word list.
          */
 
         boolean changed;
+        int changes = 0;
 
         // loop until no more simplification can be made
         do {
@@ -523,7 +530,13 @@ public final class SentenceImplementation extends Sentence {
                     }
                 }
             }
+
+            if (changed) {
+            	++changes;
+            }
         } while (changed);
+
+        return changes;
     }
 
     /**
@@ -563,8 +576,13 @@ public final class SentenceImplementation extends Sentence {
         return false;
     }
 
-    private void mergeThreeWordExpressions() {
+    /**
+     * Merge three word expressions of the form "... of ..." into single expressions.
+     * @return number of changes
+     */
+    private int mergeThreeWordExpressions() {
         boolean changed;
+        int changes = 0;
 
         // loop until no more simplification can be made
         do {
@@ -620,7 +638,13 @@ public final class SentenceImplementation extends Sentence {
                     }
                 }
             }
+
+            if (changed) {
+            	++changes;
+            }
         } while (changed);
+
+        return changes;
     }
 
 }
