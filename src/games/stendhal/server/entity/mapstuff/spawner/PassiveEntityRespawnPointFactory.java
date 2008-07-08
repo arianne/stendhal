@@ -32,16 +32,16 @@ public class PassiveEntityRespawnPointFactory {
 		if (clazz.contains("herb")) {
 			switch (type) {
 			case 0:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"arandula", 400);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"arandula");
 				break;
 			case 1:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"kekik", 800);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"kekik");
 				break;
 			case 2:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"sclaria", 800);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"sclaria");
 				break;
 			}
 		} else if (clazz.contains("corn")) {
@@ -49,16 +49,16 @@ public class PassiveEntityRespawnPointFactory {
 		} else if (clazz.contains("mushroom")) {
 			switch (type) {
 			case 0:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"button mushroom", 500);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"button mushroom");
 				break;
 			case 1:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"porcini", 1000);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"porcini");
 				break;
 			case 2:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"toadstool", 1000);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"toadstool");
 				break;
 			}
 		} else if (clazz.contains("resources")) {
@@ -136,8 +136,8 @@ public class PassiveEntityRespawnPointFactory {
 				passiveEntityrespawnPoint = new VegetableGrower("courgette");
 				break;
 			case 9:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"spinach", 1500);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"spinach");
 				break;
 			case 10:
 				passiveEntityrespawnPoint = new VegetableGrower("collard");
