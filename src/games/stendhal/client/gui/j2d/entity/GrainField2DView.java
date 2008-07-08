@@ -82,7 +82,7 @@ public class GrainField2DView extends StateEntity2DView {
 		}
 
 		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(clazz));
+		Sprite tiles = store.getSprite(translate(clazz.replace(" ","_")));
 
 		states = grainField.getMaximumRipeness() + 1;
 
