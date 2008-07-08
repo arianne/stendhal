@@ -135,12 +135,13 @@ public class Jail implements LoginListener {
 			logger.debug(text);
 		} else {
 			arrestWarrant.setStarted();
-			criminal.sendPrivateText("You have been jailed by "
-				+ policeman.getName() + " for " + minutes
-				+ " minutes. Reason: " + reason + ".");
 			imprison(criminal, policeman, minutes);
+			criminal.sendPrivateText("You have been jailed by "
+					+ policeman.getName() + " for " + minutes
+					+ " minutes. Reason: " + reason + ".");
+			
+			
 		}
-
 		arrestWarrants.add(arrestWarrant);
 	}
 
