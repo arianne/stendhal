@@ -60,7 +60,10 @@ public class FlowerGrower extends VegetableGrower {
 			List<Entity> ferts=zone.getFilteredEntities(new FilterCriteria<Entity>(){
 
 				public boolean passes(Entity o) {
-					return o instanceof FertileGround;
+					if(o instanceof FertileGround){
+						return o.getArea().contains(getX(),getY());
+					}
+					return false;
 				}});
 				
 			return !ferts.isEmpty();

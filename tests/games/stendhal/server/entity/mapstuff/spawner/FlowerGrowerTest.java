@@ -90,6 +90,17 @@ public class FlowerGrowerTest {
 		assertThat(fl.getRipeness(),is(1));
 	}
 	@Test
+	public void testGrowFertileGroundElsewhere() throws Exception {
+		FlowerGrower fl = new FlowerGrower();
+		fl.setRipeness(0);
+		StendhalRPZone zone = new StendhalRPZone("zone");
+		Entity entity = new Allotment();
+		entity.setPosition(10,10);
+		zone.add(fl);
+		zone.add(entity);
+		assertFalse(fl.isOnFertileGround());
+	}
+	@Test
 	public void testGrowOnInFertileGround() throws Exception {
 		
 		FlowerGrower fl = new FlowerGrower();
