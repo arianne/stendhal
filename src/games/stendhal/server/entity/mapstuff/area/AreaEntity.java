@@ -22,12 +22,12 @@ public abstract class AreaEntity extends Entity {
 	 */
 	protected static final String ATTR_NAME = "name";
 
-	// MAYBEDO (if Entity.RPCLASS added):
-	// /**
-	// * The RPClass.
-	// */
-	// public final static RPClass RPCLASS = createRPClass();
-
+	/**
+	 * Creates a one by one area entity.
+	 */
+	public AreaEntity() {
+		this(1,1);
+	}
 	/**
 	 * Create an area entity.
 	 * 

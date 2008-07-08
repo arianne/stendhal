@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import static org.hamcrest.Matchers.instanceOf;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
+import games.stendhal.common.filter.CollectionFilter;
+import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
@@ -49,12 +52,14 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPObject.ID;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.rp.MarauroaRPZone;
@@ -1162,4 +1167,23 @@ public class StendhalRPZone extends MarauroaRPZone {
         return false;
     }
 
+    
+	public List<Entity> getFilteredEntities(final FilterCriteria<Entity> criteria) {
+		List <Entity> result = new LinkedList<Entity>();
+		
+		for (RPObject obj : objects.values()) {
+	            if (obj instanceof Entity) {
+					Entity entity = (Entity) obj;
+					if (criteria.passes(entity)){
+						result.add(entity);
+					}
+					
+				}
+	        }
+		
+		return result;
+		
+		
+	}
+	
 }
