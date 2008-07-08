@@ -3,35 +3,73 @@ package games.stendhal.server.entity.mapstuff.spawner;
 import java.util.List;
 
 import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.core.engine.StendhalRPObjectFactory;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
 import marauroa.common.game.RPObject;
 
+/**
+ * Is an item producer that destroys itself when item is removed.
+ * <p>
+ * The standard vegetable grower would restart production cycle after removal of
+ * fruit.
+ * 
+ * Fruit is only grown when FlowerGrower is in the same place as an entity
+ * in zone that implements FertileGround
+ * 
+ */
 public class FlowerGrower extends VegetableGrower {
 
 	private static final String ITEM_NAME = "lilia";
 	private String[] description = { "0", "1", "2", "3", "4" };
 
+	
+	/**
+	 * Constructor for loading Flowergrower from the stored zone used by
+	 * StendhalRPObjectFactory.
+	 * @see StendhalRPObjectFactory
+	 * 
+	 * @param object the restored object from db
+	 * @param itemname the item to grow
+	 */
 	public FlowerGrower(RPObject object, String itemname) {
 		super(object, itemname);
 		setMaxRipeness(4);
 		store();
 	}
 
+	/**
+	 * Constructor.
+	 * 
+	 * Default Flowergrower produces lilia.
+	 */
 	public FlowerGrower() {
 		this(ITEM_NAME);
 		
 		store();
 	}
 
+	/**
+	 * Constructor of a Flowergrower growing an item with the name specified in
+	 * infostring.
+	 * 
+	 * @param infoString
+	 *            the name of the item to produce
+	 * 
+	 */
+	
 	public FlowerGrower(String infoString) {
 		super(infoString);
 		setMaxRipeness(4);
 		store();
 	}
 
+	/**
+	 * Removes this from world.
+	 * This method is called when the fruit of this grower is picked.
+	 */
 	@Override
 	public void onFruitPicked(Item picked) {
 		getZone().remove(this);
@@ -52,6 +90,12 @@ public class FlowerGrower extends VegetableGrower {
 		}
 	}
 
+	/**
+	 * Checks if this entity is on a fertile spot.
+	 * 
+	 * @return true if there is an item implementing FertileGround in the zone,
+	 * and the position of this is in its area.
+	 */
 	public boolean isOnFertileGround() {
 		if (this.getZone()== null){
 			return false;
