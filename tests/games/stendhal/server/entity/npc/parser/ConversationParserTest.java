@@ -158,6 +158,22 @@ public class ConversationParserTest {
 		assertEquals("sell", sentence.getVerbString());
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("chaos boot", sentence.getObject(0).getNormalized());
+
+		sentence = ConversationParser.parse("sell 10 bottles of poison");
+		assertFalse(sentence.hasError());
+		assertEquals("sell", sentence.getVerbString());
+		assertEquals(10, sentence.getObject(0).getAmount());
+		assertEquals("poison", sentence.getObject(0).getNormalized());
+		assertEquals("sell poison", sentence.getNormalized());
+		assertEquals("sell/VER poison/OBJ-FLU", sentence.toString());
+
+		sentence = ConversationParser.parse("sell 10 bottles of mega poison");
+		assertFalse(sentence.hasError());
+		assertEquals("sell", sentence.getVerbString());
+		assertEquals(10, sentence.getObject(0).getAmount());
+		assertEquals("mega poison", sentence.getObject(0).getNormalized());
+		assertEquals("sell mega poison", sentence.getNormalized());
+		assertEquals("sell/VER mega poison/OBJ-FLU", sentence.toString());
 	}
 
 	@Test
