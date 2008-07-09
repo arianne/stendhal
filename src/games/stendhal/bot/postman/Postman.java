@@ -23,6 +23,9 @@ import marauroa.common.game.RPObject;
  */
 public class Postman implements Runnable {
 
+	private static final String Y_COORD = "85";
+	private static final String X_COORD = "112";
+	private static final String _0_SEMOS_PLAINS_N = "0_semos_plains_n";
 	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
 	private Properties messages = new Properties();
@@ -75,6 +78,12 @@ public class Postman implements Runnable {
 			if (object == null) {
 				return;
 			}
+			int xdiff=object.getInt("x")-Integer.parseInt(X_COORD);
+			int ydiff=object.getInt("x")-Integer.parseInt(X_COORD);
+			if (xdiff*xdiff +ydiff*ydiff <36){
+				return;
+			}
+
 			if (object.getRPClass().getName().equals("player")
 					&& object.has("name")) {
 				if (object.has("text")) {
@@ -308,9 +317,9 @@ public class Postman implements Runnable {
 		RPAction teleport = new RPAction();
 		teleport.put("type", "teleport");
 		teleport.put("target", "postman");
-		teleport.put("zone", "0_semos_plains_n");
-		teleport.put("x", "112");
-		teleport.put("y", "85");
+		teleport.put("zone", _0_SEMOS_PLAINS_N);
+		teleport.put("x", X_COORD);
+		teleport.put("y", Y_COORD);
 		send(teleport);
 	}
 
