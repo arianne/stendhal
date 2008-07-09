@@ -6,7 +6,12 @@ Changelog
 - corrected xp of golden death
 - path between kirdneh and fado
 - added -Dstendhal.quest.regex analog to -Dstendhal.zone.regex to speed up restart while developing.
-
+- fado battle arena for raids - clear space and divided levels 
+- hedges, waterfall and vegetable growers redrawn
+- spinach, salad, all mushrooms and all herbs now using vegetable grower
+- can *destroy blood and corpse now, and blocked *destroy of portal
+- cleaned up /inspect of a player
+- made sally give time remaining to campfire test and reworked parts
 
 0.68.1
 - sentence can be set for website
