@@ -113,8 +113,8 @@ public class PassiveEntityRespawnPointFactory {
 				passiveEntityrespawnPoint = new VegetableGrower("carrot");
 				break;
 			case 2:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"salad", 1500);
+				passiveEntityrespawnPoint = new VegetableGrower(
+						"salad");
 				break;
 			case 3:
 				passiveEntityrespawnPoint = new VegetableGrower("broccoli");
