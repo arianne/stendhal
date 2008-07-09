@@ -39,7 +39,7 @@ public class UpdateGUIDialogs {
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		} else {
 			resCode = JOptionPane.showConfirmDialog(null,
-					"We need to download some additinal files which are "
+					"We need to download some additional files which are "
 							+ sizeString
 							+ " KB.\r\n Should Stendhal be installed?",
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION,
