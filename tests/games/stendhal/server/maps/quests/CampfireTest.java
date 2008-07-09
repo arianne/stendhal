@@ -4,52 +4,70 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.river.CampingGirlNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTestImpl;
+import utilities.PlayerTestHelper;
 
-public class CampfireTest extends ZonePlayerAndNPCTestImpl {
+public class CampfireTest {
 
 	private static final String ZONE_NAME = "testzone";
 
 	private static final String CAMPFIRE = "campfire";
 
+	private Player player;
+
+	private SpeakerNPC npc;
+
+	private StendhalRPZone zone;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
 		MockStendhalRPRuleProcessor.get();
-
 		MockStendlRPWorld.get();
-
-		setupZone(ZONE_NAME, new CampingGirlNPC());
-
-		Campfire cf = new Campfire();
-		cf.addToWorld();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	public CampfireTest() {
-		super(ZONE_NAME, "Sally");
+	
+	@Before
+	public void setUp() throws Exception {
+		 player = PlayerTestHelper.createPlayer("player");
+		 zone = new StendhalRPZone("zone");
+		new CampingGirlNPC().configureZone(zone, null);
+		npc = NPCList.get().get("Sally");
+		Campfire cf = new Campfire();
+		cf.addToWorld();
+	}
+	
+	
+	@After
+	public void tearDown() throws Exception {
+		player=null;
+		NPCList.get().clear();
 	}
 
 	@Test
 	public void testCanStartQuestNow() throws Exception {
-		SpeakerNPC npc = getNPC("Sally");
+		
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -79,7 +97,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndbye() {
-		SpeakerNPC npc = getNPC("Sally");
+		
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -92,7 +110,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testDoQuest() {
-		SpeakerNPC npc = getNPC("Sally");
+		
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -151,7 +169,6 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testJobAndOffer() {
-		SpeakerNPC npc = getNPC("Sally");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
