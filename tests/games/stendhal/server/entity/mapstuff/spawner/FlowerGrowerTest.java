@@ -10,6 +10,8 @@ import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.common.game.RPClass;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,7 +22,9 @@ public class FlowerGrowerTest {
 		@BeforeClass
 		public static void setUpBeforeClass() throws Exception {
 			MockStendlRPWorld.get();
-			AreaEntity.generateRPClass();
+			if(!RPClass.hasRPClass("area")) {
+				AreaEntity.generateRPClass();
+			}
 			GrowingPassiveEntityRespawnPointTestHelper.generateRPClasses();
 		}
 

@@ -89,7 +89,10 @@ public class CommandCenter {
 
 			Player player = (Player) caster;
 			ActionListener actionListener = getAction(action);
-
+			String type = action.get(WellKnownActionConstants.TYPE);
+			if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
+				return false;
+			}
 			actionListener.onAction(player, action);
 
 			return true;

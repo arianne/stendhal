@@ -86,12 +86,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 		// check that we know this command
 		if (required == null) {
-			logger.error("Unknown command " + command);
-			if (verbose) {
-				player.sendPrivateText("Sorry, command \"" + command
-						+ "\" is unknown.");
-			}
-			return false;
+		return true;
 		}
 
 		if (adminlevel < required.intValue()) {
@@ -122,10 +117,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 	public final void onAction(Player player, RPAction action) {
 
-		String type = action.get(WellKnownActionConstants.TYPE);
-		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
-			return;
-		}
+	
 
 		perform(player, action);
 	}

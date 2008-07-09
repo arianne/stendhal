@@ -105,9 +105,8 @@ public class AdministrationActionTest {
 	@Test
 	public final void testIsPlayerAllowedToExecuteAdminCommand() {
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
+		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
-		assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateTextString());
 		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "adminlevel", true));
 		pl.resetPrivateTextString();
