@@ -1364,7 +1364,7 @@ public class Player extends RPEntity {
 			return (getDescription());
 		}
 
-		// default description for player includes there name, level and play
+		// default description for player includes their name, level and play
 		// time
 		int hours = age / 60;
 		int minutes = age % 60;
