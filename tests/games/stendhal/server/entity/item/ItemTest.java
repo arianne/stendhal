@@ -12,7 +12,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -24,7 +23,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -233,7 +231,7 @@ public class ItemTest {
 	}
 
 	@Test
-	public void testOnTurnReached() throws SAXException, IOException {
+	public void testOnTurnReached() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
@@ -245,7 +243,7 @@ public class ItemTest {
 	}
 
 	@Test
-	public void testRemoveOne() throws SAXException, IOException {
+	public void testRemoveOne() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
