@@ -13,8 +13,10 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.List;
  * 
  * PARTICIPANTS:
  * <ul>
- * <li> Sally, a scout sitting next to a campfire near Or'rill</li>
+ * <li> Sally, a scout sitting next to a campfire near Or'ril</li>
  * </ul>
  * 
  * STEPS:
@@ -62,7 +64,7 @@ public class Campfire extends AbstractQuest {
 
 	@Override
 	public boolean isCompleted(Player player) {
-		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT));
+		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT)) && !"rejected".equals(player.getQuest(QUEST_SLOT));
 	}
 
 	@Override
@@ -92,19 +94,19 @@ public class Campfire extends AbstractQuest {
 		return res;
 	}
 
-	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
+	private void respondToQuestMessage(SpeakerNPC npc, Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
-			return true;
-		} else if ("start".equals(player.getQuest(QUEST_SLOT))) {
-			return false;
+			npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
+			return;
 		} else {
 		   long lastTime; 
 			try {
  				lastTime = Long.parseLong(player.getQuest(QUEST_SLOT));
 			} catch (NumberFormatException e) {
  				// compatibility: Old Stendhal version stored "done" on
- 				// completed quest
- 				return true;
+ 				// completed quest or state might be 'rejected'
+				npc.say("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.");
+ 				return;
  			}
 
 		   
@@ -113,10 +115,13 @@ public class Campfire extends AbstractQuest {
 		   long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
 		   
 		   if (timeRemaining < 0) {
-		   player.setQuest(QUEST_SLOT, "0");
-		   return true;
+			   player.setQuest(QUEST_SLOT, "0");
+			   npc.say("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.");
+		   return;
 		   } else {
-		   return false;
+			   npc.say("Thanks, but I think the wood you brought me already will last me " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000)) + " more.");
+			   npc.setCurrentState(ConversationStates.ATTENDING);
+		   return;
 		   }
 		}
 	}
@@ -140,24 +145,21 @@ public class Campfire extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,"Hi! I need a little #favor ... ",
+			null);
+
+		npc.add(ConversationStates.IDLE, 
+			ConversationPhrases.GREETING_MESSAGES,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
-						npc.say("Hi! Could you do me a #favor?");
-					} else {
-						
-						npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
-					}
-				}
-			});
+			ConversationStates.ATTENDING,"Hi again!",
+			null);
+		
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED,
+			ConversationStates.ATTENDING,
 			"You already promised me to bring me some wood! Ten pieces, remember?",
 			null);
 
@@ -166,14 +168,9 @@ public class Campfire extends AbstractQuest {
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
-						npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
-					} else {
-						npc.say("I don't need any more wood at the moment, but thanks for asking.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					}
+			   	@Override
+			   	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					respondToQuestMessage(npc, player);
 				}
 			});
 
