@@ -82,7 +82,7 @@
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="coward"/>
+      <profile name="stupid coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>

@@ -6,6 +6,7 @@ public class AttackStrategyFactory {
 	private static final AttackStrategy handtoHand = new HandToHand();
 	private static final AttackStrategy archer = new RangeAttack();
 	private static final AttackStrategy coward = new Coward();
+	private static final AttackStrategy stupidcoward = new StupidCoward();
 	private static final AttackStrategy gandhi = new Gandhi();
 	public static AttackStrategy getGandhi() {
 		return gandhi;
@@ -18,7 +19,9 @@ public class AttackStrategyFactory {
 			return coward;
 		} else if (aiProfiles.containsKey("gandhi")) {
 			return gandhi;
-		} 
+		} else if (aiProfiles.containsKey("stupid coward")){
+			return stupidcoward;
+		}
 
 		return handtoHand;
 	}

@@ -1,9 +1,8 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import static org.junit.Assert.*;
-
-
-import games.stendhal.server.entity.npc.ConversationStates;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.player.Player;
@@ -18,7 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 
 public class SellerBehaviourTest {
 
