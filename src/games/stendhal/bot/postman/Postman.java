@@ -79,7 +79,7 @@ public class Postman implements Runnable {
 				return;
 			}
 			int xdiff=object.getInt("x")-Integer.parseInt(X_COORD);
-			int ydiff=object.getInt("x")-Integer.parseInt(X_COORD);
+			int ydiff=object.getInt("y")-Integer.parseInt(Y_COORD);
 			if (xdiff*xdiff +ydiff*ydiff <36){
 				return;
 			}
