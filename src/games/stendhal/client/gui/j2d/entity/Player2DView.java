@@ -144,10 +144,13 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
+		if (!player.isGhostMode()){
 		super.buildActions(list);
 
 		// TODO: If practical, only add this if not already a buddy
 		list.add(ActionType.ADD_BUDDY.getRepresentation());
+		}
+		
 	}
 
 	/**
