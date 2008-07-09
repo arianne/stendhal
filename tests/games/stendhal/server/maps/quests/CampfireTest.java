@@ -53,7 +53,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("Hi! I need a little #favor ... ", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
 		player.setQuest(CampfireTest.CAMPFIRE, "start");
@@ -66,14 +66,14 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(System.currentTimeMillis()));
 		en.step(player, "hi");
 		assertEquals(
-				"Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!",
+				"Hi again!",
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
 		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
-		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi again!", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 	}
 
@@ -84,7 +84,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
-		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("Hi! I need a little #favor ... ", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
@@ -97,7 +97,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
-		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("Hi! I need a little #favor ... ", npc.get("text"));
 		assertTrue(en.step(player, "favor"));
 
 		assertEquals(
@@ -142,7 +142,10 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(CAMPFIRE, "start");
 		assertFalse(new Campfire().isCompleted(player));
 
-		player.setQuest(CAMPFIRE, "notStart");
+		player.setQuest(CAMPFIRE, "rejected");
+		assertFalse(new Campfire().isCompleted(player));
+
+		player.setQuest(CAMPFIRE, "notStartorRejected");
 		assertTrue(new Campfire().isCompleted(player));
 	}
 
@@ -153,7 +156,7 @@ public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
-		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("Hi! I need a little #favor ... ", npc.get("text"));
 		assertTrue(en.step(player, "job"));
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				npc.get("text"));
