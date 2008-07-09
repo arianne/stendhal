@@ -3,8 +3,10 @@ package games.stendhal.server.actions.admin;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
@@ -46,11 +48,18 @@ public class DestroyAction extends AdministrationAction {
 			return;
 		}
 
+        if (inspected instanceof Portal) {
+            String text = "You can't remove portals. Try blocking it with a few of /script AdminSign.class.";
+            player.sendPrivateText(text);
+            return;
+		}
+
 		StendhalRPZone zone = inspected.getZone();
 
 		if (inspected instanceof RPEntity) {
+			// TODO: override the part that makes the drops happen. Destroyed things shouldn't drop stuff.
 			((RPEntity) inspected).onDead(player);
-		} else if ((inspected instanceof Item) || (inspected instanceof Portal) || (inspected instanceof FlowerGrower)) {
+		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower)|| (inspected instanceof Corpse) || (inspected instanceof Blood)) {
 			zone.remove(inspected);
 		} else {
 			player.sendPrivateText("You can't remove this type of entity");
