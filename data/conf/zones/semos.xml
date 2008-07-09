@@ -345,6 +345,14 @@ Mature sheep wanted: please speak to Sato.
 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="Level 0/semos/city.tmx">
   <title>The City of Semos</title>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+  	 <parameter name="x">15</parameter>
+  	 <parameter name="y">25</parameter>
+  	 <parameter name="width">10</parameter>
+     <parameter name="height">10</parameter>
+     
+  </configurator>
+  
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
 	
 <![CDATA[
