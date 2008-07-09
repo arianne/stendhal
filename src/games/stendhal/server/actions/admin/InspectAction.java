@@ -61,8 +61,16 @@ public class InspectAction extends AdministrationAction {
 
 			st.append("\nequips");
 			for (RPSlot slot : inspected.slots()) {
+				// showing these is either irrelevant, private, or spams too much
+				// TODO: add !kills later by making /inspect take a parameter
 				if (slot.getName().equals("!buddy")
-						|| slot.getName().equals("!ignore")) {
+					|| slot.getName().equals("!ignore") 
+					|| slot.getName().equals("!visited")
+					|| slot.getName().equals("!tutorial")
+					|| slot.getName().equals("skills")
+					|| slot.getName().equals("spells")
+					|| slot.getName().equals("!features")
+					|| slot.getName().equals("!kills")) {
 					continue;
 				}
 				st.append("\n    Slot " + slot.getName() + ": ");
