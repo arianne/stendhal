@@ -11,6 +11,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -320,9 +323,20 @@ public class Marriage extends AbstractQuest {
 		// response to wedding ring enquiry when you're already married
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("wedding ring", "wedding"),
-				new QuestCompletedCondition(QUEST_SLOT),
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("wedding ring")),
 				ConversationStates.ATTENDING,
-				"I hope you're still happily married, else I can't see why you'd need another ring...though if you are having trouble and want a divorce, speak to the clerk in Ados Town Hall.",
+				"I hope you're still happily married! If you are having trouble and want a divorce, speak to the clerk in Ados Town Hall.",
+				null);
+
+		// response to wedding ring enquiry when you're already married and not wearing ring
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("wedding ring", "wedding"),
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("wedding ring"))),
+				ConversationStates.QUEST_ITEM_QUESTION,
+				"Uh oh! You haven't got your wedding ring on! I can forge you another for " + REQUIRED_GOLD
+									+ " gold bars and a fee of "
+									+ REQUIRED_MONEY
+									+ " money, do you want another?",
 				null);
 
 		// response to wedding ring enquiry when you're married but not taken honeymoon
@@ -337,7 +351,7 @@ public class Marriage extends AbstractQuest {
 		// ring is being made
 	 	npc.add(ConversationStates.ATTENDING, 
 				Arrays.asList("wedding ring", "wedding"),
-		 		new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+		 		new QuestStateStartsWithCondition(QUEST_SLOT, "forging"),
 				ConversationStates.IDLE, 
 		 		null, 
 				new SpeakerNPC.ChatAction() {
@@ -354,19 +368,26 @@ public class Marriage extends AbstractQuest {
 									+ ". Bye for now.");
 							return;
 						}
-						/*
-						 * ring is ready now. Bind it to person who made
-						 * it.until the wedding day comes when the rings are
-						 * exchanged Give a prompt to a little hint about
-						 * getting dressed for the wedding, if players like to.
+						/*The ring is ready now. It was either forging ready for a wedding or 
+						 * forging again because a married player lost theirs.
+						 * In each case we bind to the player. If player is engaged the rings get swapped at marriage ceremony
+						 * If this is a forgingagain we must set the infostring to spouse name so the ring works
+						 * We don't give them any XP if it is to replace a lost ring. (fools.)
+						 * If this is for an engaged player, npc gives a hitn about getting dressed for big day
 						 */
-						npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
-						player.addXP(500);
 						Item weddingRing = SingletonRepository.getEntityManager().getItem(
 								"wedding ring");
 						weddingRing.setBoundTo(player.getName());
+						if(player.getQuest(QUEST_SLOT).startsWith("forgingagain")){
+							npc.say("I've finished making your replacement wedding ring. Do try to be more careful next time!");
+							weddingRing.setInfoString(player.getQuest(SPOUSE_QUEST_SLOT));
+							player.setQuest(QUEST_SLOT, "done");
+						} else {							
+							npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
+							player.setQuest(QUEST_SLOT, "engaged_with_ring");
+							player.addXP(500);
+						}
 						player.equip(weddingRing, true);
-						player.setQuest(QUEST_SLOT, "engaged_with_ring");
 						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.INFORMATION_2);
 					}
@@ -389,8 +410,12 @@ public class Marriage extends AbstractQuest {
 							npc.say("Good, come back in "
 									+ REQUIRED_MINUTES
 									+ " minutes and it will be ready. Goodbye until then.");
-							player.setQuest(QUEST_SLOT, "forging;"
-									+ System.currentTimeMillis());
+							if(player.isQuestCompleted(QUEST_SLOT)){
+								player.setQuest(QUEST_SLOT, "forgingagain;"	+ System.currentTimeMillis());
+							} else {
+								player.setQuest(QUEST_SLOT, "forging;"
+												+ System.currentTimeMillis());
+							}
 							npc.setCurrentState(ConversationStates.IDLE);
 						} else {
 							// player said they had the money and/or gold but they lied
@@ -817,7 +842,7 @@ public class Marriage extends AbstractQuest {
 
     					return false;
                     }
-				}, ConversationStates.QUESTION_1, null,
+				}, ConversationStates.IDLE, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -827,6 +852,7 @@ public class Marriage extends AbstractQuest {
                                                                                        "int_fado_lovers_room_" + room);
 						if (zone.getPlayers().size() > 0) {
 							npc.say("Sorry, that room is currently occupied, would you give me your next choice please?");
+							npc.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
 
 							Player husband;
