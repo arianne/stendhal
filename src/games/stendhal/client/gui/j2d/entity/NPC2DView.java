@@ -94,7 +94,8 @@ public class NPC2DView extends RPEntity2DView {
 	@Override
 	protected void buildActions(List<String> list) {
 		super.buildActions(list);
-
+		// NPC can't be pushed
+		list.remove(ActionType.PUSH.getRepresentation());
 		if (User.isAdmin()) {
 			list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
 		}
