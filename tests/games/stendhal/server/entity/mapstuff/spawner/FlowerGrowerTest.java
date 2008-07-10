@@ -4,6 +4,8 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
@@ -66,6 +68,22 @@ public class FlowerGrowerTest {
 		assertThat(fl.describe(), is("You see a fully grown lilia, ready to pull from the ground."));
 		fl.setRipeness(5);
 		assertThat(fl.describe(), is("You see an unripe lilia."));
+	}
+	@Test
+	public void testGetDescriptionAnyitem() {
+		FlowerGrower fl = new FlowerGrower("someotherItem");
+		fl.setRipeness(0);
+		assertThat(fl.describe(), is("You see a seed which has just been planted."));
+		fl.setRipeness(1);
+		assertThat(fl.describe(), is("Something is sprouting from the ground."));
+		fl.setRipeness(2);
+		assertThat(fl.describe(), is("A plant is growing here, and you can already see foliage."));
+		fl.setRipeness(3);
+		assertThat(fl.describe(), is("You see a plant growing a someotheritem, it is nearly at full maturity."));
+		fl.setRipeness(4);
+		assertThat(fl.describe(), is("You see a fully grown someotheritem, ready to pull from the ground."));
+		fl.setRipeness(5);
+		assertThat(fl.describe(), is("You see an unripe someotherItem."));
 	}
 	@Test
 	public void testGrowOnFertileGround() throws Exception {
