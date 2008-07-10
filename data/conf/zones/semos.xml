@@ -117,6 +117,43 @@ leather helmet  15
  </zone>
 
  <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="Level 0/semos/plains_n.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">62</parameter>
+     <parameter name="y">45</parameter>
+     <parameter name="width">2</parameter>
+     <parameter name="height">7</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">65</parameter>
+     <parameter name="y">45</parameter>
+     <parameter name="width">11</parameter>
+     <parameter name="height">4</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">62</parameter>
+     <parameter name="y">53</parameter>
+     <parameter name="width">5</parameter>
+     <parameter name="height">5</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">71</parameter>
+     <parameter name="y">52</parameter>
+     <parameter name="width">5</parameter>
+     <parameter name="height">5</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">60</parameter>
+     <parameter name="y">59</parameter>
+     <parameter name="width">6</parameter>
+     <parameter name="height">11</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
+     <parameter name="x">71</parameter>
+     <parameter name="y">63</parameter>
+     <parameter name="width">5</parameter>
+     <parameter name="height">7</parameter>
+  </configurator>
+
   <entity x="36" y="108">
     <implementation class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC">
       <parameter name="name">Plink</parameter>
@@ -345,13 +382,6 @@ Mature sheep wanted: please speak to Sato.
 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="Level 0/semos/city.tmx">
   <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds" >
-  	 <parameter name="x">15</parameter>
-  	 <parameter name="y">25</parameter>
-  	 <parameter name="width">10</parameter>
-     <parameter name="height">10</parameter>
-     
-  </configurator>
   
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
 	
