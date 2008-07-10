@@ -55,15 +55,15 @@ public class FlowerGrowerTest {
 	public void testGetDescription() {
 		FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
-		assertThat(fl.describe(), is("0"));
+		assertThat(fl.describe(), is("You see a seed which has just been planted."));
 		fl.setRipeness(1);
-		assertThat(fl.describe(), is("1"));
+		assertThat(fl.describe(), is("Something is sprouting from the ground."));
 		fl.setRipeness(2);
-		assertThat(fl.describe(), is("2"));
+		assertThat(fl.describe(), is("A plant is growing here, and you can already see foliage."));
 		fl.setRipeness(3);
-		assertThat(fl.describe(), is("3"));
+		assertThat(fl.describe(), is("You see a plant growing a lilia, it is nearly at full maturity."));
 		fl.setRipeness(4);
-		assertThat(fl.describe(), is("4"));
+		assertThat(fl.describe(), is("You see a fully grown lilia, ready to pull from the ground."));
 		fl.setRipeness(5);
 		assertThat(fl.describe(), is("You see an unripe lilia."));
 	}
