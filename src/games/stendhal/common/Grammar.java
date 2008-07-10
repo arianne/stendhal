@@ -218,6 +218,9 @@ public class Grammar {
 		} else if (result.endsWith(" legs") || result.endsWith(" boots")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "pair of ",
 					"pairs of ");
+		} else if (result.equals("daisies")) {
+            result = addPrefixIfNotAlreadyThere(lowString, "bunch of ",
+                                                "bunches of ");
 		} else {
 			result = lowString;
 		}
