@@ -24,6 +24,7 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.UseableItem;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -257,18 +258,18 @@ public class EntityFactoryTest {
 
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a UseableItem by now",
+				UseableItem.class, en.getClass());
 		rp = new MockRPObject("item", "drink");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a UseableItem by now",
+				UseableItem.class, en.getClass());
 		rp = new MockRPObject("item", "food");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a UseableItem by now",
+				UseableItem.class, en.getClass());
 		rp = new MockRPObject("item", "herb");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -297,8 +298,8 @@ public class EntityFactoryTest {
 		rp = new MockRPObject("item", "scroll");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a UseableItem by now",
+				UseableItem.class, en.getClass());
 		rp = new MockRPObject("item", "jewellery");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
