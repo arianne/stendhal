@@ -32,6 +32,11 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		this.vegetableName = vegetableName;
 	}
 
+    protected String getVegetableName() {
+		return vegetableName;
+    }
+
+
 	public VegetableGrower(RPObject object, String name) {
 		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
 		vegetableName = name;
