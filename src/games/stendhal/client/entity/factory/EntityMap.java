@@ -37,6 +37,7 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.WellSource;
 
 import java.util.HashMap;
@@ -104,8 +105,8 @@ public final class EntityMap {
 		register("item", null, Item.class);
 		register("item", "box", Box.class);
 		register("item", "ring", Ring.class);
-		register("item", "drink", StackableItem.class);
-		register("item", "food", StackableItem.class);
+		register("item", "drink", UseableItem.class);
+		register("item", "food", UseableItem.class);
 		register("item", "herb", StackableItem.class);
 		register("item", "misc", StackableItem.class);
 		register("item", "money", StackableItem.class);
@@ -115,7 +116,7 @@ public final class EntityMap {
 
 		register("item", "resource", StackableItem.class);
 
-		register("item", "scroll", StackableItem.class);
+		register("item", "scroll", UseableItem.class);
 		register("item", "jewellery", StackableItem.class);
 
 		register("portal", null, Portal.class);

@@ -109,17 +109,19 @@ public class Ring2DView extends Item2DView {
 		return 5000;
 	}
 
-	/**
-	 * Reorder the actions list (if needed). Please use as last resort.
-	 * 
-	 * @param list
-	 *            The list to reorder.
-	 */
+    /**                                                                                                                                                      
+     * Build a list of entity specific actions. <strong>NOTE: The first entry                                                                                
+     * should be the default.</strong>                                                                                                                       
+     *                                                                                                                                                       
+     * @param list                                                                                                                                           
+     *            The list to populate.                                                                                                                      
+     */
 	@Override
-	protected void reorderActions(final List<String> list) {
-		list.remove(ActionType.LOOK.getRepresentation());
-		list.add(0, ActionType.LOOK.getRepresentation());
-	}
+		protected void buildActions(final List<String> list) {
+        list.add(ActionType.USE.getRepresentation());
+
+		super.buildActions(list);
+    }
 
 	/**
 	 * Handle updates.
