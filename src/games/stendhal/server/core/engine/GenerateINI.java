@@ -131,7 +131,7 @@ public class GenerateINI {
 		System.out.println("Using \"" + databasePassword
 				+ "\" as database user password\n");
 
-		System.out.println("In order to make efective these options please run:");
+		System.out.println("In order to make these options effective please run:");
 		System.out.println("# mysql");
 		System.out.println("  create database " + databaseName + ";");
 		System.out.println("  grant all on " + databaseName + ".* to "
