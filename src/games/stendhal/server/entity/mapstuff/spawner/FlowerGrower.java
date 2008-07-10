@@ -2,6 +2,7 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import java.util.List;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.StendhalRPObjectFactory;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,7 +24,11 @@ import marauroa.common.game.RPObject;
 public class FlowerGrower extends VegetableGrower {
 
 	private static final String ITEM_NAME = "lilia";
-	private String[] description = { "0", "1", "2", "3", "4" };
+	private String[] description = { "You see a seed which has just been planted.", 
+									 "Something is sprouting from the ground.", 
+									 "A plant is growing here, and you can already see foliage.", 
+									 "You see a plant growing a " + Grammar.fullForm(getVegetableName()) + ", it is nearly at full maturity.", 
+									 "You see a fully grown " + Grammar.fullForm(getVegetableName()) + ", ready to pull from the ground." };
 
 	
 	/**
