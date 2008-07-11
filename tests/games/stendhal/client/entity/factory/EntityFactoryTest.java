@@ -105,8 +105,18 @@ public class EntityFactoryTest {
 		RPObject rp = new MockRPObject("item", "food", "apple");
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created an item by now", "item", en
-				.getType());
+		assertEquals("we should have created an item by now", UseableItem.class, en
+				.getClass());
+
+	}
+	
+	@Test
+	public final void seed() {
+		RPObject rp = new MockRPObject("item", "misc", "seed");
+		Entity en = EntityFactory.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Useableitem by now", UseableItem.class, en
+				.getClass());
 
 	}
 

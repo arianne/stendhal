@@ -43,8 +43,31 @@ import games.stendhal.client.entity.WellSource;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Pair;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+class Triple<P,S,T> {
 
+	private P prim;
+	private S sec;
+	private T third;
+
+	public Triple(P prim, S sec, T third) {
+		this.prim=prim;
+		this.sec=sec;
+		this.third=third;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+	
+}
 /**
  * Registers the relationship between Type, eclass and java class of entity
  * Objects.
@@ -55,7 +78,7 @@ import marauroa.common.Pair;
  * 
  */
 public final class EntityMap {
-	private static Map<Pair<String, String>, Class< ? extends Entity>> entityMap = new HashMap<Pair<String, String>, Class< ? extends Entity>>();
+	private static Map<Triple<String, String,String>, Class< ? extends Entity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends Entity>>();
 
 	static {
 		register();
@@ -65,64 +88,65 @@ public final class EntityMap {
 	 * Fills EntityMap with initial values.
 	 */
 	private static void register() {
-		register("player", null, Player.class);
+		register("player", null,null, Player.class);
 
-		register("creature", "boss", BossCreature.class);
-		register("creature", null, Creature.class);
+		register("creature", "boss",null, BossCreature.class);
+		register("creature", null, null, Creature.class);
 
-		register("sheep", null, Sheep.class);
+		register("sheep", null, null, Sheep.class);
 
 		/*
 		 * Not sure whether to register individual pets from child classes, or
 		 * the whole parent class Pet. suggestions welcome.
 		 */
-		register("baby_dragon", null, Pet.class);
-		register("cat", null, Pet.class);
-		register("pet", null, Pet.class);
+		register("pet","baby_dragon", null, Pet.class);
+		register("pet","cat", null, Pet.class);
+		register("pet", null,null, Pet.class);
 
-		register("npc", null, NPC.class);
+		register("npc",null, null, NPC.class);
 
-		register("plant_grower", null, PlantGrower.class);
-		register("growing_entity_spawner", "items/grower/carrot_grower",
+		register("plant_grower", null, null, PlantGrower.class);
+		register("growing_entity_spawner", "items/grower/carrot_grower",null,
 				CarrotGrower.class);
-		register("growing_entity_spawner", null, GrainField.class);
+		register("growing_entity_spawner", null,null, GrainField.class);
 
-		register("gold_source", null, GoldSource.class);
-		register("fish_source", null, FishSource.class);
-		register("well_source", null, WellSource.class);
+		register("gold_source", null, null, GoldSource.class);
+		register("fish_source", null, null, FishSource.class);
+		register("well_source", null, null, WellSource.class);
 
-		register("area", null, InvisibleEntity.class);
+		register("area", null,null, InvisibleEntity.class);
 
-		register("food", null, SheepFood.class);
-		register("chest", null, Chest.class);
+		register("food", null, null, SheepFood.class);
+		register("chest",null, null, Chest.class);
 
-		register("corpse", null, Corpse.class);
+		register("corpse", null,null, Corpse.class);
 
-		register("blood", null, Blood.class);
-		register("sign", null, Sign.class);
-		register("blackboard", null, Sign.class);
+		register("blood", null,null, Blood.class);
+		register("sign", null, null,Sign.class);
+		register("blackboard", null,null, Sign.class);
 
-		register("item", null, Item.class);
-		register("item", "box", Box.class);
-		register("item", "ring", Ring.class);
-		register("item", "drink", UseableItem.class);
-		register("item", "food", UseableItem.class);
-		register("item", "herb", StackableItem.class);
-		register("item", "misc", StackableItem.class);
-		register("item", "money", StackableItem.class);
-		register("item", "missile", StackableItem.class);
-		register("item", "ammunition", StackableItem.class);
-		register("item", "container", StackableItem.class);
+		register("item", null, null, Item.class);
+		register("item", "box", null, Box.class);
+		register("item", "ring", null, Ring.class);
+		register("item", "drink", null, UseableItem.class);
+		register("item", "food", null, UseableItem.class);
+		register("item", "herb", null, StackableItem.class);
+		register("item", "misc", null, StackableItem.class);
+		register("item", "money", null, StackableItem.class);
+		register("item", "missile", null, StackableItem.class);
+		register("item", "ammunition", null, StackableItem.class);
+		register("item", "container", null, StackableItem.class);
+		register("item", "misc", "seed", UseableItem.class);
 
-		register("item", "resource", StackableItem.class);
+		register("item", "resource", null, StackableItem.class);
 
-		register("item", "scroll", UseableItem.class);
-		register("item", "jewellery", StackableItem.class);
+		register("item", "scroll",  null,UseableItem.class);
+		register("item", "jewellery",  null,StackableItem.class);
 
-		register("portal", null, Portal.class);
-		register("door", null, Door.class);
+		register("portal", null, null, Portal.class);
+		register("door", null,null, Door.class);
 
-		register("fire", null, Fire.class);
+		register("fire", null, null, Fire.class);
 	}
 
 	/**
@@ -134,9 +158,9 @@ public final class EntityMap {
 	 * @param entityClazz
 	 *            the java class of the Entity
 	 */
-	private static void register(final String type, final String eclass,
+	private static void register(final String type, final String eclass, final String subClass,
 			final Class< ? extends Entity> entityClazz) {
-		entityMap.put(new Pair<String, String>(type, eclass), entityClazz);
+		entityMap.put(new Triple<String, String,String>(type, eclass,subClass), entityClazz);
 	}
 
 	/**
@@ -145,11 +169,20 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
+	 * @param subClass 
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class< ? extends Entity> getClass(final String type,
-			final String eclass) {
-		return entityMap.get(new Pair<String, String>(type, eclass));
+	public static Class< ? extends Entity> getClass(final String type,final String eclass, final String subClass) {
+		//System.out.print(type+" : "+eclass +" : "+subClass +"=");
+		Class<? extends Entity> result = entityMap.get(new Triple<String, String, String>(type, eclass, subClass));
+		if(result==null) {
+			result = entityMap.get(new Triple<String, String, String>(type, eclass, null));
+		}
+		if(result==null) {
+			result = entityMap.get(new Triple<String, String, String>(type, null, null));
+		}
+		//System.out.println(result.getName());
+		return result;
 	}
 }
