@@ -21,7 +21,6 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.j2d.Text;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
@@ -172,7 +171,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		// doubleclick is outside of all windows
 		Point2D point = screen.convertScreenViewToWorld(p);
 
-		Entity2DView view = screen.getEntityViewAt(point.getX(), point.getY());
+		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 
 		if (view != null) {
 			// ... show context menu (aka command list)

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.RPObject;
 
 /**
  * This is a useable stackable item.

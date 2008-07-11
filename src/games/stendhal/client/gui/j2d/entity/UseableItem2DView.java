@@ -8,17 +8,10 @@ import games.stendhal.client.entity.UseableItem;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a useable item.
  */
 public class UseableItem2DView extends StackableItem2DView {
-	/**
-	 * Log4J.
-	 */
-	private static final Logger logger = Logger.getLogger(UseableItem2DView.class);
 
 	/**
 	 * Create a 2D view of a useable item.

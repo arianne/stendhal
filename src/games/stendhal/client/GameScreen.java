@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.FormatTextParser;
 import games.stendhal.client.gui.j2d.Text;
@@ -299,7 +300,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void removeEntity(final Entity entity) {
-		Entity2DView view = entities.remove(entity);
+		EntityView view = entities.remove(entity);
 
 		if (view != null) {
 			removeEntityView(view);
@@ -312,7 +313,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void removeEntityView(Entity2DView view) {
+	protected void removeEntityView(EntityView view) {
 		view.release();
 		views.remove(view);
 	}
@@ -784,7 +785,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
-	public Entity2DView getEntityViewAt(double x, double y) {
+	public EntityView getEntityViewAt(double x, double y) {
 		ListIterator<Entity2DView> it;
 
 		/*
@@ -793,7 +794,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			Entity2DView view = it.previous();
+			EntityView view = it.previous();
 
 			if (view.getEntity().getArea().contains(x, y)) {
 				return view;
@@ -825,7 +826,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#getMovableEntityViewAt(double,
 	 *      double)
 	 */
-	public Entity2DView getMovableEntityViewAt(final double x, final double y) {
+	public EntityView getMovableEntityViewAt(final double x, final double y) {
 		ListIterator<Entity2DView> it;
 
 		/*
@@ -834,7 +835,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			Entity2DView view = it.previous();
+			EntityView view = it.previous();
 
 			if (view.isMovable()) {
 				if (view.getEntity().getArea().contains(x, y)) {

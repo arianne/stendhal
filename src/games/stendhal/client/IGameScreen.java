@@ -1,6 +1,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -198,7 +199,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	Entity2DView getEntityViewAt(double x, double y);
+	EntityView getEntityViewAt(double x, double y);
 
 	/**
 	 * Get a movable entity view at given coordinates.
@@ -210,7 +211,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	Entity2DView getMovableEntityViewAt(final double x,
+	EntityView getMovableEntityViewAt(final double x,
 			final double y);
 
 	/**

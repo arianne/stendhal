@@ -14,6 +14,7 @@ import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -77,18 +78,25 @@ public class SummonAction extends AdministrationAction {
 					Sheep sheep = new Sheep(player);
 					found(type, sheep);
 				}
-			}
+			} 
 	    }
 	};
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
+		if("gate".equals(action.get(_CREATURE))){
+			Gate gate = new Gate();
+			gate.setPosition(action.getInt(X),action.getInt(Y));
+			player.getZone().add(gate);
+			return;
+		}
+		System.out.println(action);
 		try {
 			if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
 				final StendhalRPZone zone = player.getZone();
 				final int x = action.getInt(X);
 				final int y = action.getInt(Y);
-
+				
 				if (!zone.collides(player, x, y)) {
 					EntityFactory factory = new EntityFactory(player) {
 						@Override
@@ -116,7 +124,8 @@ public class SummonAction extends AdministrationAction {
 
 					String typeName = action.get(_CREATURE);
 					String type = typeName;
-
+					
+					
 					factory.createEntity(type);
 
 					if (factory.isSearching()) {

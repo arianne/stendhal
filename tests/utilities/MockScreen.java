@@ -5,6 +5,7 @@ package utilities;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -189,11 +190,11 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
-	public Entity2DView getEntityViewAt(double x, double y) {
+	public EntityView getEntityViewAt(double x, double y) {
 		return null;
 	}
 
-	public Entity2DView getMovableEntityViewAt(double x, double y) {
+	public EntityView getMovableEntityViewAt(double x, double y) {
 		return null;
 	}
 
