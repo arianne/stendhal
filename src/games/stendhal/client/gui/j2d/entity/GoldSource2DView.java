@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a gold source.
  */
-public class GoldSource2DView extends AnimatedLoopEntity2DView {
+class GoldSource2DView extends AnimatedLoopEntity2DView {
 	/**
 	 * Create a 2D view of a gold source.
 	 * 

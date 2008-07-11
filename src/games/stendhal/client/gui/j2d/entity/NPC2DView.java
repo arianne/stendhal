@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an NPC.
  */
-public class NPC2DView extends RPEntity2DView {
+class NPC2DView extends RPEntity2DView {
 	/**
 	 * Log4J.
 	 */

@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a grower.
  */
-public class CarrotGrower2DView extends GrainField2DView {
+class CarrotGrower2DView extends GrainField2DView {
 	/**
 	 * Create a 2D view of a grower.
 	 * 

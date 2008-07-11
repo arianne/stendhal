@@ -26,7 +26,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a chest.
  */
-public class Chest2DView extends StateEntity2DView {
+class Chest2DView extends StateEntity2DView {
 	/*
 	 * The closed state.
 	 */

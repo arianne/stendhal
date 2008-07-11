@@ -24,7 +24,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -57,7 +57,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * The entity view being held.
 	 */
-	private Entity2DView view;
+	private EntityView view;
 
 	/** The placeholder sprite. */
 	private Sprite placeholder;

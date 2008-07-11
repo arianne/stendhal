@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an animated entity.
  */
-public abstract class StateEntity2DView extends Entity2DView {
+abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */

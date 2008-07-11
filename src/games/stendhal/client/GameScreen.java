@@ -13,12 +13,12 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.FormatTextParser;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
-import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.ImageSprite;
@@ -104,12 +104,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
 	 * The entity views.
 	 */
-	protected List<Entity2DView> views;
+	protected List<EntityView> views;
 
 	/**
 	 * The entity to view map.
 	 */
-	protected Map<Entity, Entity2DView> entities;
+	protected Map<Entity, EntityView> entities;
 
 	private static Sprite offlineIcon;
 
@@ -225,8 +225,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
-		views = new LinkedList<Entity2DView>();
-		entities = new HashMap<Entity, Entity2DView>();
+		views = new LinkedList<EntityView>();
+		entities = new HashMap<Entity, EntityView>();
 
 		// create ground
 		ground = new GroundContainer(client, this, sw, sh);
@@ -274,7 +274,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void addEntity(Entity entity) {
-		Entity2DView view = createView(entity);
+		EntityView view = createView(entity);
 
 		if (view != null) {
 			entities.put(entity, view);
@@ -288,11 +288,16 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void addEntityView(Entity2DView view) {
+	protected void addEntityView(EntityView view) {
 		views.add(view);
-
-		view.setInspector(ground);
+		if (view instanceof Entity2DView) {
+			Entity2DView inspectable = (Entity2DView) view;
+			
+			inspectable.setInspector(ground);
+		}
+			
 	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -478,8 +483,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#createView(games.stendhal.client.entity.Entity)
 	 */
-	public Entity2DView createView(final Entity entity) {
-		return (Entity2DView) Entity2DViewFactory.get().create(entity);
+	public EntityView createView(final Entity entity) {
+		return  EntityViewFactory.get().create(entity);
 	}
 
 	/*
@@ -572,7 +577,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	protected void drawEntities() {
 		Graphics2D g2d = expose();
 
-		for (Entity2DView view : views) {
+		for (EntityView view : views) {
 			view.draw(g2d);
 		}
 	}
@@ -583,7 +588,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	protected void drawTopEntities() {
 		Graphics2D g2d = expose();
 
-		for (Entity2DView view : views) {
+		for (EntityView view : views) {
 			view.drawTop(g2d);
 		}
 	}
@@ -786,7 +791,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
 	public EntityView getEntityViewAt(double x, double y) {
-		ListIterator<Entity2DView> it;
+		ListIterator<EntityView> it;
 
 		/*
 		 * Try the physical entity areas first
@@ -810,7 +815,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			Entity2DView view = it.previous();
+			EntityView view = it.previous();
 
 			if (view.getArea().contains(sx, sy)) {
 				return view;
@@ -827,7 +832,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *      double)
 	 */
 	public EntityView getMovableEntityViewAt(final double x, final double y) {
-		ListIterator<Entity2DView> it;
+		ListIterator<EntityView> it;
 
 		/*
 		 * Try the physical entity areas first
@@ -853,7 +858,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			Entity2DView view = it.previous();
+			EntityView view = it.previous();
 
 			if (view.isMovable()) {
 				if (view.getArea().contains(sx, sy)) {
@@ -1401,12 +1406,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	//
 
 	public static class EntityViewComparator implements
-			Comparator<Entity2DView> {
+			Comparator<EntityView> {
 		//
 		// Comparator
 		//
 
-		public int compare(Entity2DView view1, Entity2DView view2) {
+		public int compare(EntityView view1, EntityView view2) {
 			int rv;
 
 			rv = view1.getZIndex() - view2.getZIndex();

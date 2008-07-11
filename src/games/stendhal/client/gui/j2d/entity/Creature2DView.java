@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * The 2D view of a creature.
  */
-public class Creature2DView extends RPEntity2DView {
+class Creature2DView extends RPEntity2DView {
 	
 	/**
 	 * The entity this view is for.

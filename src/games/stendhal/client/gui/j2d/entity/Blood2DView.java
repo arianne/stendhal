@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * The 2D view of blood.
  */
-public class Blood2DView extends StateEntity2DView {
+class Blood2DView extends StateEntity2DView {
 	/**
 	 * The blood entity.
 	 */

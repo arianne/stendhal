@@ -24,7 +24,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a domestic animal.
  */
-public abstract class DomesticAnimal2DView extends RPEntity2DView {
+abstract class DomesticAnimal2DView extends RPEntity2DView {
 	/**
 	 * The down facing big state.
 	 */

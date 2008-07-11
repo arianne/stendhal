@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * The 2D view of a useable item.
  */
-public class UseableItem2DView extends StackableItem2DView {
+class UseableItem2DView extends StackableItem2DView {
 
 	/**
 	 * Create a 2D view of a useable item.

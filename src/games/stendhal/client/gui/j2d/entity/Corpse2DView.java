@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * The 2D view of a corpse.
  */
-public class Corpse2DView extends Entity2DView {
+class Corpse2DView extends Entity2DView {
 
 	/**
 	 * The RP entity this view is for.

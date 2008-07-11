@@ -14,7 +14,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 
@@ -40,7 +40,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	/**
 	 * The entity view.
 	 */
-	private Entity2DView view;
+	private EntityView view;
 
 	/**
 	 * Create an entity drag container.

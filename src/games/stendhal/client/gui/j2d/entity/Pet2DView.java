@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a pet.
  */
-public class Pet2DView extends DomesticAnimal2DView {
+class Pet2DView extends DomesticAnimal2DView {
 	/**
 	 * The weight that a pet becomes fat (big).
 	 */

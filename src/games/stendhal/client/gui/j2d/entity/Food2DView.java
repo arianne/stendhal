@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * The 2D view of food.
  */
-public class Food2DView extends StateEntity2DView {
+class Food2DView extends StateEntity2DView {
 	/**
 	 * The food entity.
 	 */

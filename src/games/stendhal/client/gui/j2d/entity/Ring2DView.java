@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * The 2D view of a ring.
  */
-public class Ring2DView extends Item2DView {
+class Ring2DView extends Item2DView {
 	/**
 	 * The ring entity.
 	 */

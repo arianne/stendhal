@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a sheep.
  */
-public class Sheep2DView extends DomesticAnimal2DView {
+class Sheep2DView extends DomesticAnimal2DView {
 	/**
 	 * The weight that a sheep becomes fat (big).
 	 */

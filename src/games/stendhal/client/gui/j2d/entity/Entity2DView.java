@@ -16,7 +16,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityChangeListener;
-import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
@@ -567,6 +566,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The inspector.
 	 */
 	public void setInspector(final Inspector inspector) {
+
+	//TODO: replace by interface instpectable
 	}
 
 	/**

@@ -24,7 +24,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of an item.
  */
-public class Item2DView extends Entity2DView {
+class Item2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */

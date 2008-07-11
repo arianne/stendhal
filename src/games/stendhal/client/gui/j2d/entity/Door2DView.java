@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * The 2D view of a door.
  */
-public class Door2DView extends StateEntity2DView {
+class Door2DView extends StateEntity2DView {
 	/*
 	 * The closed state.
 	 */

@@ -46,9 +46,12 @@ import java.util.Map;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 class Triple<P,S,T> {
-
+// they are used in equals and hashcode
+	@SuppressWarnings("unused")
 	private P prim;
+	@SuppressWarnings("unused")
 	private S sec;
+	@SuppressWarnings("unused")
 	private T third;
 
 	public Triple(P prim, S sec, T third) {

@@ -16,7 +16,7 @@ import games.stendhal.common.Direction;
 /**
  * The 2D view of an animated entity.
  */
-public abstract class ActiveEntity2DView extends StateEntity2DView {
+abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * The active entity.

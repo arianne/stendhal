@@ -36,7 +36,7 @@ import org.junit.Test;
 
 import utilities.MockScreen;
 
-public class Entity2DViewFactoryTest {
+public class EntityViewFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -47,65 +47,65 @@ public class Entity2DViewFactoryTest {
 
 	@Test
 	public final void testCreate() {
-		assertEquals(Entity2DViewFactory.get().create(new Blood()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Blood()).getClass(),
 				Blood2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new BossCreature()).getClass(),
+				EntityViewFactory.get().create(new BossCreature()).getClass(),
 				BossCreature2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Box()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Box()).getClass(),
 				Box2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new CarrotGrower()).getClass(),
+				EntityViewFactory.get().create(new CarrotGrower()).getClass(),
 				CarrotGrower2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Chest()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Chest()).getClass(),
 				Chest2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Corpse()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Corpse()).getClass(),
 				Corpse2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new Creature()).getClass(),
+				EntityViewFactory.get().create(new Creature()).getClass(),
 				Creature2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Door()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Door()).getClass(),
 				Door2DView.class);
 
 		assertEquals(
-				Entity2DViewFactory.get().create(new FishSource()).getClass(),
+				EntityViewFactory.get().create(new FishSource()).getClass(),
 				FishSource2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new GoldSource()).getClass(),
+				EntityViewFactory.get().create(new GoldSource()).getClass(),
 				GoldSource2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new GrainField()).getClass(),
+				EntityViewFactory.get().create(new GrainField()).getClass(),
 				GrainField2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new InvisibleEntity()).getClass(),
+				EntityViewFactory.get().create(new InvisibleEntity()).getClass(),
 				InvisibleEntity2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Item()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Item()).getClass(),
 				Item2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new NPC()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new NPC()).getClass(),
 				NPC2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Pet()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Pet()).getClass(),
 				Pet2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new PlantGrower()).getClass(),
+				EntityViewFactory.get().create(new PlantGrower()).getClass(),
 				PlantGrower2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Player()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Player()).getClass(),
 				Player2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Portal()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Portal()).getClass(),
 				Portal2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Ring()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Ring()).getClass(),
 				Ring2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Sheep()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Sheep()).getClass(),
 				Sheep2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new SheepFood()).getClass(),
+				EntityViewFactory.get().create(new SheepFood()).getClass(),
 				SheepFood2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Sign()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new Sign()).getClass(),
 				Sign2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new StackableItem()).getClass(),
+				EntityViewFactory.get().create(new StackableItem()).getClass(),
 				StackableItem2DView.class);
 		assertEquals(
-				Entity2DViewFactory.get().create(new WellSource()).getClass(),
+				EntityViewFactory.get().create(new WellSource()).getClass(),
 				WellSource2DView.class);
 
 	}
@@ -113,14 +113,14 @@ public class Entity2DViewFactoryTest {
 	@Test
 	public final void testCreateUser2Dview() {
 		assertNotNull(new User2DView(new User()));
-		assertEquals(Entity2DViewFactory.get().create(new User()).getClass(),
+		assertEquals(EntityViewFactory.get().create(new User()).getClass(),
 				User2DView.class);
 	}
 
 	@Test
 	public final void testCreateFire2Dview() {
-    	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
-    	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
+    	assertNotNull(EntityViewFactory.get().create(new Fire()));
+    	assertEquals(EntityViewFactory.get().create(new Fire()).getClass(),
     			AnimatedLoopEntity2DView.class);
 	}
 }

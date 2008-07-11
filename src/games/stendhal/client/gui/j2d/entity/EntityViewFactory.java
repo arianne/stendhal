@@ -18,7 +18,6 @@ import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
 import games.stendhal.client.entity.GoldSource;
@@ -50,16 +49,16 @@ import org.apache.log4j.Logger;
 /**
  * 
  */
-public class Entity2DViewFactory { // implements EntityViewFactory {
+public class EntityViewFactory { // implements EntityViewFactory {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Logger.getLogger(Entity2DViewFactory.class);
+	private static final Logger logger = Logger.getLogger(EntityViewFactory.class);
 
 	/**
 	 * The shared instance.
 	 */
-	private static final Entity2DViewFactory sharedInstance = new Entity2DViewFactory();
+	private static final EntityViewFactory sharedInstance = new EntityViewFactory();
 
 	/**
 	 * The model-to-view class map.
@@ -69,7 +68,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * Create an entity view factory.
 	 */
-	public Entity2DViewFactory() {
+	public EntityViewFactory() {
 		map = new HashMap<Class< ? extends Entity>, Class< ? extends EntityView>>();
 
 		configure();
@@ -161,7 +160,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	 * Get the shared [singleton] instance.
 	 * @return the singleton instance
 	 */
-	public static Entity2DViewFactory get() {
+	public static EntityViewFactory get() {
 		return sharedInstance;
 	}
 

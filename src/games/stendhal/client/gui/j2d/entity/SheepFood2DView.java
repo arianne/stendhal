@@ -14,7 +14,7 @@ import games.stendhal.client.entity.SheepFood;
 /**
  * The 2D view of sheep food.
  */
-public class SheepFood2DView extends Food2DView {
+class SheepFood2DView extends Food2DView {
 	/**
 	 * Create a 2D view of sheep food.
 	 * 

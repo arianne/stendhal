@@ -26,7 +26,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a player.
  */
-public class Player2DView extends RPEntity2DView {
+class Player2DView extends RPEntity2DView {
 	/**
 	 * The logger.
 	 */

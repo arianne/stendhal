@@ -21,7 +21,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a sign.
  */
-public class Sign2DView extends Entity2DView {
+class Sign2DView extends Entity2DView {
 	
 
 	/**

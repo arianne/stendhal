@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a user.
  */
-public class User2DView extends Player2DView {
+class User2DView extends Player2DView {
 
 	/**
 	 * The user entity.

@@ -1,7 +1,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPopupMenu;
 
 import java.awt.Color;

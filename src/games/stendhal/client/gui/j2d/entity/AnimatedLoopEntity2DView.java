@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an entity that always loops images.
  */
-public class AnimatedLoopEntity2DView extends Entity2DView {
+class AnimatedLoopEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */

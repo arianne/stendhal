@@ -16,7 +16,7 @@ import games.stendhal.client.entity.InvisibleEntity;
 /**
  * The 2D view of an invisible entity.
  */
-public class InvisibleEntity2DView extends Entity2DView {
+class InvisibleEntity2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of an entity.
 	 * 

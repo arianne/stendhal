@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a box.
  */
-public class Box2DView extends Item2DView {
+class Box2DView extends Item2DView {
 	/**
 	 * Create a 2D view of a box.
 	 * 

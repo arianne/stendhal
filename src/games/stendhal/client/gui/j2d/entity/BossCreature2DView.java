@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * A 2D view of a boss creature. Boss creatures have 1x2 image layouts.
  */
-public class BossCreature2DView extends Creature2DView {
+class BossCreature2DView extends Creature2DView {
 	/**
 	 * Create a boss creature.
 	 * 

@@ -25,7 +25,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a grain field.
  */
-public class GrainField2DView extends StateEntity2DView {
+class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Log4J.
 	 */

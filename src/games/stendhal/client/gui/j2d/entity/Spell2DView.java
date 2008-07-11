@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * The 2D view of a spell.
  */
-public class Spell2DView extends Entity2DView {
+class Spell2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of a spell.
 	 * 

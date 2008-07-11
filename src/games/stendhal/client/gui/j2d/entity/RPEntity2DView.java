@@ -33,7 +33,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of an RP entity.
  */
-public abstract class RPEntity2DView extends ActiveEntity2DView {
+abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static final int ICON_OFFSET = 8;
 
 	private static Map<Object, Sprite[]> bladeStrikeSprites;

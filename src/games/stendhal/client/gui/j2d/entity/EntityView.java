@@ -4,7 +4,13 @@
  * $Id$
  */
 
-package games.stendhal.client.entity;
+package games.stendhal.client.gui.j2d.entity;
+
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Entity;
+
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 //
 //
@@ -52,4 +58,16 @@ public interface EntityView {
 	 * called.
 	 */
 	void release();
+
+	Rectangle getArea();
+
+	void draw(Graphics2D vg);
+
+	int getZIndex();
+
+	void drawTop(Graphics2D g2d);
+
+	void setContained(boolean b);
+
+	
 }

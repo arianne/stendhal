@@ -5,9 +5,8 @@ package utilities;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.gui.j2d.Text;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
@@ -186,7 +185,7 @@ public class MockScreen implements IGameScreen {
 	public void setOffline(boolean offline) {
 	}
 
-	public Entity2DView createView(Entity entity) {
+	public EntityView createView(Entity entity) {
 		return null;
 	}
 

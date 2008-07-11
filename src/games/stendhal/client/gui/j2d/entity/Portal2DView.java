@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a portal.
  */
-public class Portal2DView extends InvisibleEntity2DView {
+class Portal2DView extends InvisibleEntity2DView {
 	/**
 	 * The portal entity.
 	 */
