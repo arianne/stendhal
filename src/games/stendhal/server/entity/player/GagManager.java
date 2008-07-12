@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.events.LoginListener;
@@ -69,7 +70,7 @@ public class GagManager implements LoginListener {
 		}
 
 		// Set the gag
-		final long expireDate = System.currentTimeMillis() + (1000L * 60L * minutes); // Milliseconds
+		final long expireDate = System.currentTimeMillis() + (MathHelper.MILLISECONDS_IN_ONE_MINUTE * minutes);
 		criminal.setQuest("gag", "" + expireDate);
 
 		// Send messages
