@@ -68,14 +68,12 @@ public class Behaviour {
 	 * @param amount
 	 *            amount
 	 */
-	public void setAmount(int amount) {
-		if (amount < 1) {
-			amount = 1;
+	public void setAmount(final int amount) {
+		if (amount < 1 || amount > 1000) {
+			this.amount = 1;
+		} else {
+			this.amount = amount;
 		}
-		if (amount > 1000) {
-			amount = 1;
-		}
-		this.amount = amount;
 	}
 
 	/**

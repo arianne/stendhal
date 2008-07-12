@@ -3,5 +3,19 @@
     <fileset name="all" enabled="true" check-config-name="stendhal" local="false">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
+    <filter name="FilesFromPackage" enabled="false">
+        <filter-data value="src/games/stendhal/tools"/>
+        <filter-data value="src/games/stendhal/tools/loganalyser"/>
+        <filter-data value="src/games/stendhal/tools/modifer"/>
+        <filter-data value="src/games/stendhal/tools/port1_2"/>
+        <filter-data value="src/games/stendhal/tools/statistics"/>
+        <filter-data value="src/games/stendhal/tools/test"/>
+        <filter-data value="src/games/stendhal/tools/tiled"/>
+        <filter-data value="tiled/src"/>
+        <filter-data value="tools"/>
+        <filter-data value="tools/charas"/>
+        <filter-data value="tools/creaturesxml"/>
+        <filter-data value="tools/newrp"/>
+    </filter>
     <filter name="NonSrcDirs" enabled="true"/>
 </fileset-config>
