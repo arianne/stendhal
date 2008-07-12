@@ -59,6 +59,11 @@ public class FindGhosts extends AbstractQuest {
 		Arrays.asList("mary", "ben", "zak", "goran");
 
 	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
+	@Override
 	public boolean isCompleted(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return false;

@@ -40,6 +40,11 @@ import java.util.List;
 public class CleanStorageSpace extends AbstractQuest {
 	private static final String QUEST_SLOT = "clean_storage";
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Eonna");
 

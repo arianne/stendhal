@@ -46,7 +46,11 @@ public class CloakCollector2 extends AbstractQuest {
 								       "golden cloak", "black dragon cloak");
     private static final String OLD_QUEST = "cloaks_collector";
     private static final String QUEST_SLOT = "cloaks_collector_2";   
-
+    
+    @Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	/**
 	 * Returns a list of the names of all cloaks that the given player still has
 	 * to bring to fulfill the quest.

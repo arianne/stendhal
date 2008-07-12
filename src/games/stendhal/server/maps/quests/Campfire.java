@@ -59,8 +59,13 @@ public class Campfire extends AbstractQuest {
 	private static final String QUEST_SLOT = "campfire";
 
 	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
+	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
 
 	@Override

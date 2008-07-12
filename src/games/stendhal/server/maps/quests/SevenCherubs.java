@@ -31,10 +31,10 @@ public class SevenCherubs extends AbstractQuest {
 	private static final String QUEST_SLOT = "seven_cherubs";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
-
+	
 	@Override
 	public boolean isCompleted(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {

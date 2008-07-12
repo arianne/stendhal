@@ -22,7 +22,10 @@ import marauroa.common.Pair;
 public class DiceGambling extends AbstractQuest {
 
 	private static final int STAKE = 100;
-
+	@Override
+	public String getSlotName() {
+		return "dice_gambling";
+	}
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addToWorld() {

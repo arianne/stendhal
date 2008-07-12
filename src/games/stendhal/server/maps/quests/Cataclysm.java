@@ -14,7 +14,10 @@ import java.util.Arrays;
  * @author kymara
  */
 public class Cataclysm extends AbstractQuest {
-
+	@Override
+	public String getSlotName() {
+		return "cataclysm";
+	}
 	/**
 	 * Makes Carmen tell you that she can sense big changes.
 	 */

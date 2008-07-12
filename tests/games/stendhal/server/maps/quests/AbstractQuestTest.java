@@ -13,8 +13,8 @@ import utilities.PlayerTestHelper;
 
 public class AbstractQuestTest {
 	private final class Mockquest extends AbstractQuest {
-		String getSlotName() {
-			return slotName;
+		public String getSlotName() {
+			return QUESTSlotSTRING;
 		}
 	}
 
@@ -34,14 +34,6 @@ public class AbstractQuestTest {
 	public final void testInitString() {
 		final Mockquest quest = new Mockquest();
 		quest.init(QUESTNAMESTRING);
-		assertEquals("XXX", quest.getSlotName());
-		assertEquals(QUESTNAMESTRING, quest.getName());
-	}
-
-	@Test
-	public final void testInitStringString() {
-		final Mockquest quest = new Mockquest();
-		quest.init(QUESTNAMESTRING, QUESTSlotSTRING);
 		assertEquals(QUESTSlotSTRING, quest.getSlotName());
 		assertEquals(QUESTNAMESTRING, quest.getName());
 	}
@@ -51,6 +43,12 @@ public class AbstractQuestTest {
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTSlotSTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		assertTrue(quest.getHint(pl).isEmpty());
 		assertTrue(quest.getHistory(pl).isEmpty());
@@ -61,9 +59,14 @@ public class AbstractQuestTest {
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTSlotSTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				return QUESTSlotSTRING;
+			}
 		};
 
-		quest.init(QUESTNAMESTRING, QUESTSlotSTRING);
+		quest.init(QUESTNAMESTRING);
 
 		assertFalse(quest.isCompleted(pl));
 
@@ -87,6 +90,12 @@ public class AbstractQuestTest {
 	@Test
 	public final void testIsRepeatable() {
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		assertFalse("abstract quests are not repeatable by default",
 				quest.isRepeatable(null));
@@ -95,6 +104,12 @@ public class AbstractQuestTest {
 	@Test
 	public final void testIsStarted() {
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
@@ -104,6 +119,12 @@ public class AbstractQuestTest {
 	@Test(expected = NullPointerException.class)
 	public final void testIsStartedthrowsNPEwithnullArgument() {
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		assertFalse(quest.isStarted(null));
 	}
@@ -113,6 +134,12 @@ public class AbstractQuestTest {
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTNAMESTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
+
+			@Override
+			public String getSlotName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 
 		quest.init(QUESTNAMESTRING);

@@ -17,9 +17,11 @@ public abstract class AbstractQuest implements IQuest {
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name;
 
-	/** The slot-name in !quests. */
-	protected String slotName = "XXX"; // TODO init it in the quest-classes
-
+	/** The slot-name in !quests. 
+	 * 
+	 */
+	public abstract String getSlotName();
+	
 	/** NPCList. */
 	protected NPCList npcs = SingletonRepository.getNPCList();
 
@@ -37,19 +39,6 @@ public abstract class AbstractQuest implements IQuest {
 		this.name = name;
 	}
 
-	/**
-	 * Inits this quest by specifing the name and quest slot.
-	 *
-	 * @param name
-	 *            name of quest
-	 * @param slotName
-	 *            name of quest-slot
-	 */
-	protected void init(final String name, final String slotName) {
-		this.name = name;
-		this.slotName = slotName;
-	}
-
 	public void addToWorld() {
 		// sub classes can implement this method
 	}
@@ -64,10 +53,10 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public boolean isCompleted(final Player player) {
-		return player.hasQuest(slotName)
-				&& (player.isQuestCompleted(slotName)
-						|| "rejected".equals(player.getQuest(slotName)) 
-						|| "failed".equals(player.getQuest(slotName)));
+		return player.hasQuest(getSlotName())
+				&& (player.isQuestCompleted(getSlotName())
+						|| "rejected".equals(player.getQuest(getSlotName())) 
+						|| "failed".equals(player.getQuest(getSlotName())));
 	}
 
 	public boolean isRepeatable(final Player player) {
@@ -75,7 +64,7 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public boolean isStarted(final Player player) {
-		return player.hasQuest(slotName);
+		return player.hasQuest(getSlotName());
 	}
 
 	public String getName() {

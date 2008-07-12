@@ -61,8 +61,8 @@ public class StuffForVulcanus extends AbstractQuest {
 	private static final String QUEST_SLOT = "immortalsword_quest";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	private void step_1() {

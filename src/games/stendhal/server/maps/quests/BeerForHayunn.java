@@ -55,7 +55,7 @@ public class BeerForHayunn extends AbstractQuest {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
 
 	@Override
@@ -183,5 +183,10 @@ public class BeerForHayunn extends AbstractQuest {
 
 		prepareRequestingStep();
 		prepareBringingStep();
+	}
+
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 }

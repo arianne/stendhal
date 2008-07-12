@@ -249,10 +249,9 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
-
 	/**
 	 * Creates a token and adds it to the world.
 	 *

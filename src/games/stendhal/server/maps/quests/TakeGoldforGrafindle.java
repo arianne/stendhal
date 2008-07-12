@@ -40,8 +40,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	private static final String QUEST_SLOT = "grafindle_gold";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	@Override

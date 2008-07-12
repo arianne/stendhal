@@ -331,9 +331,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
-
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"),

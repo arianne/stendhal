@@ -39,8 +39,8 @@ public class SuntanCreamForZara extends AbstractQuest {
 	private static final String QUEST_SLOT = "suntan_cream_zara";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	@Override

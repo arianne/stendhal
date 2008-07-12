@@ -48,10 +48,7 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	private static final String QUEST_SLOT = "weapons_collector";
 
-	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
-	}
+
 
 	@Override
 	public void addToWorld() {

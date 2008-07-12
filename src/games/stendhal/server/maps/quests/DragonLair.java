@@ -44,7 +44,10 @@ import java.util.List;
 public class DragonLair extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "dragon_lair";
-
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Wishman");
 		npc.add(ConversationStates.ATTENDING,

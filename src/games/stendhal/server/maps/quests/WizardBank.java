@@ -121,8 +121,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	}
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	private void createNPC() {

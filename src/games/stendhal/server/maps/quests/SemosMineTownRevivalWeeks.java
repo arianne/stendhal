@@ -27,8 +27,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	private static final String QUEST_SLOT = "semos_mine_town_revival";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	private void createNPC() {

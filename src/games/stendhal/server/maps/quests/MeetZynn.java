@@ -14,7 +14,10 @@ import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
  * REPETITIONS: - As much as wanted.
  */
 public class MeetZynn extends AbstractQuest {
-
+	@Override
+	public String getSlotName() {
+		return "meetzynn";
+	}
 	private void step_1() {
 
 		final SpeakerNPC npc = npcs.get("Zynn Iwuhos");

@@ -50,6 +50,11 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_dhohr_nuggetcutter";
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Zogfang");
 

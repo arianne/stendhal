@@ -51,10 +51,16 @@ public class ElvishArmor extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "elvish_armor";
 
+	
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
 			"elvish cloak", "elvish shield");
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	/**
 	 * Returns a list of the names of all items that the given player still has
 	 * to bring to fulfill the quest.

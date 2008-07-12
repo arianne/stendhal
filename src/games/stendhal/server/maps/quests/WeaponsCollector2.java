@@ -57,11 +57,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 			"great sword" // rare from devil_queen on mountain
 	);
 
-	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
-	}
-
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}

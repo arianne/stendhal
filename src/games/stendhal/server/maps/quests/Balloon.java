@@ -17,13 +17,14 @@ import games.stendhal.server.entity.player.Player;
 public class Balloon extends AbstractQuest {
 
 
+	private static final String BALLOON = "balloon";
 	private static BalloonScroll scroll;
 
 	@Override
 	public void init(final String name) {
-		super.init(name, "balloon");
+		super.init(name);
 		if (scroll == null) {
-			scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem("balloon");
+			scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem(BALLOON);
 		}
 
 		/* login notifier to teleport away players logging into the clouds.
@@ -41,5 +42,10 @@ public class Balloon extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
+	}
+
+	@Override
+	public String getSlotName() {
+		return BALLOON;
 	}
 }

@@ -71,9 +71,12 @@ public class Marriage extends AbstractQuest {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
-
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	// The spouse's name is stored in one of the player's quest slots.
 	// This is necessary to disallow polygamy.
 	private final String SPOUSE_QUEST_SLOT = "spouse";

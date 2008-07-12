@@ -45,7 +45,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
 
 	private void setupAbstractQuest() {

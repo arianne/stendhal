@@ -22,6 +22,19 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Blackjack extends AbstractQuest {
+	// spades ♠
+	 private static final String SPADES = "\u2660";
+
+	// hearts ♥
+	private static final String HEARTS = "\u2665";
+
+	// diamonds ♦
+	private static final String DIAMONDS = "\u2666";
+
+	// clubs ♣
+	private static final String CLUBS = "\u2663";
+
+	
 	
 	// 1 min at 300 ms/turn
 	private static final int ONE_MINUTE = 180;
@@ -297,10 +310,10 @@ public class Blackjack extends AbstractQuest {
 		zone.add(ramon);
 
 		cardValues = new HashMap<String, Integer>();
-		final String[] colors = { "\u2663", // clubs ♣
-				"\u2666", // diamonds ♦
-				"\u2665", // hearts ♥
-				"\u2660" }; // spades ♠
+		final String[] colors = { CLUBS, 
+				DIAMONDS, 
+				HEARTS,
+				SPADES }; 
 		final String[] pictures = { "J", "Q", "K" };
 		for (final String color : colors) {
 			for (int i = 2; i <= 10; i++) {
@@ -381,5 +394,9 @@ public class Blackjack extends AbstractQuest {
 						}
 					}
 				});
+	}
+	@Override
+	public String getSlotName() {
+		return "blackjack";
 	}
 }

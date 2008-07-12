@@ -46,7 +46,12 @@ public class MeetHayunn extends AbstractQuest {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
+	}
+	
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	@Override

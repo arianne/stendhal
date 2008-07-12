@@ -54,9 +54,12 @@ import java.util.Arrays;
  	
  	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
-	
+ 	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("Lorenz");	
 		

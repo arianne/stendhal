@@ -43,9 +43,14 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	@SuppressWarnings("unused")
 	private SpeakerNPC createSanta() {
 		santa = new SpeakerNPC("Santa") {

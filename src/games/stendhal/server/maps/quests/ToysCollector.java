@@ -44,10 +44,7 @@ public class ToysCollector extends AbstractQuest implements
 	private static final List<String> neededToys = 
 		Arrays.asList("teddy", "dice", "dress");
 
-	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
-	}
+	
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;

@@ -77,6 +77,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 */
 	private static final int XP_REWARD = 10000;
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	/**
 	 * initialize the introduction and start of the quest.
 	 */

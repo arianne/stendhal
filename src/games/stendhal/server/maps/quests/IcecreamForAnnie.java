@@ -42,9 +42,12 @@ public class IcecreamForAnnie extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 30;
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
-
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	// TODO: move Annie Jones into map file and only add quest stuff here
 	private void createNPC() {
 		npc = new SpeakerNPC("Annie Jones") {

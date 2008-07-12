@@ -50,6 +50,11 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 	public static final String QUEST_SLOT = "fishermans_license2";
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	private static final List<String> neededFish = 
 		Arrays.asList("trout", "perch", "mackerel", "cod", "roach", "char", "clownfish", "surgeonfish");
 

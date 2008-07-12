@@ -66,8 +66,8 @@ public class VampireSword extends AbstractQuest {
 	private static final String QUEST_SLOT = "vs_quest";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	private void prepareQuestOfferingStep() {

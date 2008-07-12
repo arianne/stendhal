@@ -21,7 +21,10 @@ import games.stendhal.server.entity.player.Player;
  * TODO: make it possible to repeat the quest if the player said "no"
  */
 public class MeetMonogenes extends AbstractQuest {
-
+	@Override
+	public String getSlotName() {
+		return "meetMonogenes";
+	}
 	@Override
 	public void addToWorld() {
 		super.addToWorld();

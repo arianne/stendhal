@@ -57,7 +57,7 @@ public class AmazonPrincess extends AbstractQuest {
 
 	@Override
 	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+		super.init(name);
 	}
 
 	private void offerQuestStep() {
@@ -177,6 +177,11 @@ public class AmazonPrincess extends AbstractQuest {
 
 		offerQuestStep();
 		bringCocktailStep();
+	}
+
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 }

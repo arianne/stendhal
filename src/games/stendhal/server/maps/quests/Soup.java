@@ -53,6 +53,11 @@ public class Soup extends AbstractQuest {
 
 	private static final long REQUIRED_MINUTES_IN_MILLISECONDS = 10 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	/**
 	 * Returns a list of the names of all food that the given player still has
 	 * to bring to fulfill the quest.

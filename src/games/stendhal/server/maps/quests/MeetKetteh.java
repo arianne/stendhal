@@ -27,6 +27,11 @@ import games.stendhal.server.entity.player.Player;
 public class MeetKetteh extends AbstractQuest {
 	private static final String QUEST_SLOT = "Ketteh";
 
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	private void step1() {
 
 		final SpeakerNPC npc = npcs.get("Ketteh Wehoh");

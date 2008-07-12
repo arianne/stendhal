@@ -46,10 +46,10 @@ public class ZooFood extends AbstractQuest {
 	private static final String QUEST_SLOT = "zoo_food";
 
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
-
+	
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();

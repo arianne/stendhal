@@ -48,7 +48,10 @@ import java.util.List;
  */
 public class KillDarkElves extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_dark_elves";
-
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Maerion");
 

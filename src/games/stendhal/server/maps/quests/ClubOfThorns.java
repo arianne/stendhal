@@ -51,7 +51,12 @@ import java.util.List;
  */
 public class ClubOfThorns extends AbstractQuest {
 	private static final String QUEST_SLOT = "club_thorns";
-
+	
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
+	
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Orc Saman");
 

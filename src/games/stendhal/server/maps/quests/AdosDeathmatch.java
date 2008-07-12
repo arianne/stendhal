@@ -23,6 +23,7 @@ import java.util.Arrays;
  * Creates the Ados Deathmatch Game.
  */
 public class AdosDeathmatch extends AbstractQuest {
+	
 	private StendhalRPZone zone;
 
 	private Area arena;
@@ -31,6 +32,10 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	public AdosDeathmatch() {
 		// constructor for quest system
+	}
+	@Override
+	public String getSlotName() {
+		return "adosdeathmatch";
 	}
 
 	public AdosDeathmatch(final StendhalRPZone zone, final Area arena) {

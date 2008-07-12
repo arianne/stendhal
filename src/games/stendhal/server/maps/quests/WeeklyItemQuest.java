@@ -201,10 +201,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 			engine.say("I'm afraid I didn't send you on a #quest yet.");
 		}
 	}
-
 	@Override
-	public void init(final String name) {
-		super.init(name, QUEST_SLOT);
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	private void step_1() {
