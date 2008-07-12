@@ -38,8 +38,8 @@ public class RemoveFromGuildAction implements ActionListener {
 	protected void removeFromGuild(final Player player, final RPAction action) {
 
 		if (player.get("guild") != null) {
-			player.remove("guild"); // resets guild
-			player.remove("description"); // resets description
+			player.remove("guild"); 
+			player.remove("description"); 
 			player.sendPrivateText("You have been removed from your old guild.");
 		} else {
 			player.sendPrivateText("You are not in a guild!");
