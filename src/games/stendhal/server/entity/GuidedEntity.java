@@ -108,7 +108,11 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * @return true if running in circles
 	 */
 	public boolean isPathLoop() {
-		return (guide.path != null) ? guide.path.isLoop() : false;
+		if (guide.path == null) {
+			return false;
+		} else {
+			return guide.path.isLoop();
+		}
 	}
 
 	/**
