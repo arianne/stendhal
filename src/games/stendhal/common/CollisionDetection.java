@@ -71,10 +71,28 @@ public class CollisionDetection {
 			return;
 		}
 
-		final int startx = (int) ((x >= 0) ? x : 0);
-		final int endx = (int) ((x + w < width) ? x + w : width);
-		final int starty = (int) ((y) >= 0 ? y : 0);
-		final int endy = (int) ((y + h) < height ? y + h : height);
+		int startx = 0;
+		if ((x >= 0)) {
+			startx = (int) x;
+		} 
+		
+		final int endx;
+		if (x + w < width) {
+			endx = (int) (x + w);
+		} else {
+			endx = width;
+		}
+		int starty = 0;
+		if (y >= 0) {
+			starty = (int) y;
+		}
+		 
+		final int endy;
+		if (y + h < height) {
+			endy = (int) (y + h);
+		} else {
+			endy = height;
+		}
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
@@ -171,13 +189,33 @@ public class CollisionDetection {
 			return true;
 		}
 
-		final int startx = (int) ((x >= 0) ? x : 0);
-		final int endx = (int) ((x + w < width) ? x + w : width);
-		final int starty = (int) ((y >= 0) ? y : 0);
-		final int endy = (int) ((y + h < height) ? y + h : height);
+		final double startx;
+		if (x >= 0) {
+			startx = x;
+		} else {
+			startx = 0;
+		}
+		final double endx;
+		if (x + w < width) {
+			endx = x + w;
+		} else {
+			endx = width;
+		}
+		final double starty;
+		if (y >= 0) {
+			starty = y;
+		} else {
+			starty = 0;
+		}
+		final double endy;
+		if (y + h < height) {
+			endy = y + h;
+		} else {
+			endy = height;
+		}
 
-		for (int k = starty; k < endy; k++) {
-			for (int i = startx; i < endx; i++) {
+		for (int k = (int) starty; k < endy; k++) {
+			for (int i = (int) startx; i < endx; i++) {
 				if (blocked[k * width + i]) {
 					return true;
 				}

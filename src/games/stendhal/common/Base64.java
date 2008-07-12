@@ -67,7 +67,7 @@ public class Base64 {
 				val |= (0xFF & data[i + 2]);
 				quad = true;
 			}
-			out[index + 3] = alphabet[(quad ? (val & 0x3F) : 64)];
+			out[index + 3] = alphabet[quad ? (val & 0x3F) : 64];
 			val >>= 6;
 			out[index + 2] = alphabet[(trip ? (val & 0x3F) : 64)];
 			val >>= 6;

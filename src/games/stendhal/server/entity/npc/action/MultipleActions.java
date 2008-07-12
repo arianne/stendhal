@@ -51,9 +51,11 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	@Override
 	public int hashCode() {
 		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + ((actions == null) ? 0 : actions.hashCode());
-		return result;
+		if (actions == null) {
+			return PRIME;
+		} else {
+			return PRIME + actions.hashCode();
+		}
 	}
 
 	@Override

@@ -61,9 +61,18 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
-			seller.say("Sorry! You don't have "
-					+ (getAmount() == 1 ? "any" : "that many") + " "
-					+ Grammar.plnoun(getAmount(), getChosenItemName()) + ".");
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("Sorry! You don't have ");
+			if (getAmount() == 1) {
+				stringBuilder.append("any");
+				} else {
+				stringBuilder.append("that many");
+			}
+			
+			stringBuilder.append(" ");
+			stringBuilder.append(Grammar.plnoun(getAmount(), getChosenItemName()));
+			stringBuilder.append(".");
+			seller.say(stringBuilder.toString());
 			return false;
 		}
 	}

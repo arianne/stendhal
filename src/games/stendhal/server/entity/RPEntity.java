@@ -955,8 +955,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			}
 
 			if (logger.isDebugEnabled()) {
-				final String killName = killer.has("name") ? killer.get("name")
-						: killer.get("type");
+				final String killName;
+				if (killer.has("name")) {
+					killName = killer.get("name");
+				} else {
+					killName = killer.get("type");
+				}
 
 				logger.debug(killName + " did " + damageDone + " of "
 						+ totalDamageReceived + ". Reward was " + xpReward);

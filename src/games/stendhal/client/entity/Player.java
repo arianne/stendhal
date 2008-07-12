@@ -71,8 +71,11 @@ public class Player extends RPEntity {
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
 	protected void onAway(final String message) {
-		addTextIndicator(((message != null) ? "Away" : "Back"),
-				NotificationType.INFORMATION);
+		if (message != null) {
+			addTextIndicator("Away", NotificationType.INFORMATION);
+		} else {
+			addTextIndicator("Back", NotificationType.INFORMATION);
+		}
 	}
 
 	/**
@@ -100,8 +103,12 @@ public class Player extends RPEntity {
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
 	protected void onGrumpy(final String message) {
-		addTextIndicator(((message != null) ? "Grumpy" : "Receptive"),
-				NotificationType.INFORMATION);
+		if (message != null) {
+			addTextIndicator("Grumpy", NotificationType.INFORMATION);
+		} else {
+			addTextIndicator("Receptive", NotificationType.INFORMATION);
+
+		}
 	}
 
 	//

@@ -279,7 +279,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** @return width of the client area. */
 	protected int getClientWidth() {
-		return (frame ? width - FRAME_SIZE * 2 : width);
+		if (frame) {
+			return width - FRAME_SIZE * 2;
+		} else {
+			return width;
+		}
 	}
 
 	/** @return height of the panel. */
@@ -298,12 +302,21 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** @return x-pos of the client area. */
 	protected int getClientX() {
-		return (frame ? FRAME_SIZE : 0);
+		if (frame) {
+			return FRAME_SIZE;
+		} else {
+			return 0;
+		}
 	}
 
 	/** @return y-pos of the client area. */
 	protected int getClientY() {
-		int clienty = (frame ? FRAME_SIZE : 0);
+		int clienty;
+		if (frame) {
+			clienty = FRAME_SIZE;
+		} else {
+			clienty = 0;
+		}
 
 		if (titleBar) {
 			clienty += TITLEBAR_SIZE;
@@ -786,11 +799,21 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// draw frame
 		if (frame) {
 			for (int i = 0; i < FRAME_SIZE; i++) {
-				panelGraphics.setColor(frameEmbossed ? darkColor : lightColor);
+				if (frameEmbossed) {
+					panelGraphics.setColor(darkColor);
+				} else {
+					panelGraphics.setColor(lightColor);
+				}
 				panelGraphics.drawLine(i, i, width - i - 2, i);
 				panelGraphics.drawLine(i, i, i, localHeight - i - 2);
 
-				panelGraphics.setColor(frameEmbossed ? lightColor : darkColor);
+				if (frameEmbossed) {
+					panelGraphics.setColor(lightColor);
+					
+				} else {
+					panelGraphics.setColor(darkColor);
+					
+				}
 				panelGraphics.drawLine(width - i - 1, i, width - i - 1,
 						localHeight - i - 1);
 				panelGraphics.drawLine(i, localHeight - i - 1, width - i - 1,
@@ -996,7 +1019,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		final int widthTemp = this.width;
 
 		if (isMinimized()) {
-			heightTemp = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
+			if (frame) {
+				heightTemp = TITLEBAR_SIZE + (FRAME_SIZE * 2);
+			} else {
+				heightTemp = TITLEBAR_SIZE;
+			}
 		}
 
 		if ((x < this.x) || (y < this.y) || (x > this.x + widthTemp)

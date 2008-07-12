@@ -64,10 +64,13 @@ public class User extends Player {
 	protected void onAway(final String message) {
 		super.onAway(message);
 
-		StendhalUI.get().addEventLine(
-				(message != null) ? "You have been marked as being away."
-						: "You are no longer marked as being away.",
-				NotificationType.INFORMATION);
+		String text;
+		if (message == null) {
+			text = "You are no longer marked as being away.";
+		} else {
+			text = "You have been marked as being away.";
+		}
+		StendhalUI.get().addEventLine(text, NotificationType.INFORMATION);
 	}
 
 	public static boolean isAdmin() {

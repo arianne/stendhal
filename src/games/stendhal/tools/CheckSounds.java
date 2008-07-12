@@ -151,10 +151,17 @@ public class CheckSounds {
 			for (int i = 0; i < mixerList.length; i++) {
 				final Mixer mixer = AudioSystem.getMixer(mixerList[i]);
 				final boolean supported = mixer.isLineSupported(info);
-				System.out.print(getString((supported ? "  " : "un")
-						+ "supported (" + mixer.getMaxLines(info) + ")",
-						width[i], ' ')
-						+ " | ");
+				StringBuilder stringBuilder = new StringBuilder();
+				if (supported) {
+					stringBuilder.append("  ");
+				} else {
+					stringBuilder.append("un");
+				}
+				stringBuilder.append("supported (");
+				stringBuilder.append(mixer.getMaxLines(info));
+				stringBuilder.append(")");
+				System.out.print(getString(stringBuilder.toString(),
+						width[i], ' ') + " | ");
 			}
 
 			System.out.print(key);

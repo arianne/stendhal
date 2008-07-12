@@ -112,7 +112,11 @@ class Door2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return door.isOpen() ? STATE_OPEN : STATE_CLOSED;
+		if (door.isOpen()) {
+			return STATE_OPEN;
+		} else {
+			return STATE_CLOSED;
+		}
 	}
 
 	//

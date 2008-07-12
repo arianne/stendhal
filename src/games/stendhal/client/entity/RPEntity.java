@@ -595,7 +595,11 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	@Override
 	public int getResistance() {
-		return (isGhostMode() ? 0 : super.getResistance());
+		if (isGhostMode()) {
+			return 0;
+		} else {
+			return super.getResistance();
+		}
 	}
 
 	/**
@@ -912,7 +916,12 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 
 				if (hp == 0) {
-					onDeath(attackers.isEmpty() ? null : attackers.get(0));
+					if (attackers.isEmpty()) {
+						onDeath(null);
+					} else {
+						onDeath(attackers.get(0));
+					}
+					
 				}
 			}
 

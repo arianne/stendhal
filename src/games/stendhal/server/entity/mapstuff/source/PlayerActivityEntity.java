@@ -226,7 +226,11 @@ public abstract class PlayerActivityEntity extends Entity implements
 		public int hashCode() {
 			final Object player = getPlayer();
 
-			return (player != null) ? player.hashCode() : 0;
+			if (player != null) {
+				return player.hashCode();
+			} else {
+				return 0;
+			}
 		}
 	}
 }

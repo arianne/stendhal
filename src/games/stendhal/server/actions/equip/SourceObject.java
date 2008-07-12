@@ -230,7 +230,12 @@ class SourceObject extends MoveableObject {
 	 */
 	@Override
 	public boolean checkDistance(final Entity other, final double distance) {
-		final Entity checker = (parent != null) ? parent : item;
+		final Entity checker;
+		if (parent != null) {
+			checker = parent;
+		} else {
+			checker = item;
+		}
 		if (other.nextTo(checker, distance)) {
 			return true;
 		}

@@ -52,12 +52,12 @@ public class WtList extends WtPanel implements WtClickListener {
 		setMinimizeable(false);
 		setMovable(false);
 
-		this
-				.resizeToFitClientArea(
-						width,
-						(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
-								: maxHeight);
-
+		if (items.length * BUTTON_HEIGHT < maxHeight) {
+			this.resizeToFitClientArea(width, items.length * BUTTON_HEIGHT);
+		} else {
+			this.resizeToFitClientArea(width, maxHeight);
+		}
+		
 		final int clientWidth = getClientWidth();
 
 		for (int i = 0; i < items.length; i++) {

@@ -153,11 +153,17 @@ public class AudioClip {
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getName()
-				+ ": "
-				+ (!supported ? "(format not supported by "
-						+ mixer.getMixerInfo().getDescription() + ") " : "")
-				+ format;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(this.getClass().getName());
+		stringBuilder.append(": ");
+		if (!supported) {
+			stringBuilder.append("(format not supported by ");
+		
+			stringBuilder.append(mixer.getMixerInfo().getDescription());
+			stringBuilder.append(") ");
+			stringBuilder.append(format);
+		} 
+		return stringBuilder.toString();
 	}
 
 	public void stop() {

@@ -107,7 +107,11 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return chest.isOpen() ? STATE_OPEN : STATE_CLOSED;
+		if (chest.isOpen()) {
+			return STATE_OPEN;
+		} else {
+			return STATE_CLOSED;
+		}
 	}
 
 	//

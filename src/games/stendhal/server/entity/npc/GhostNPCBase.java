@@ -38,8 +38,18 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 			}
 			final String npcQuestText = player.getQuest("find_ghosts");
 			final String[] npcDoneText = npcQuestText.split(":");
-			final String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
-			final String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
+			final String lookStr;
+			if (npcDoneText.length > 1) {
+				lookStr = npcDoneText[0];
+			} else {
+				lookStr = "";
+			}
+			final String saidStr;
+			if (npcDoneText.length > 1) {
+				saidStr = npcDoneText[1];
+			} else {
+				saidStr = "";
+			}
 			final List<String> list = Arrays.asList(lookStr.split(";"));
 			if (list.contains(npc.getName()) || player.isQuestCompleted("find_ghosts")) {
 				npc.say("Please, let the dead rest in peace.");

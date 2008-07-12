@@ -44,7 +44,11 @@ public class ConfigurableFactoryHelper {
 
 		obj = factory.create(ctx);
 
-		return (clazz.isInstance(obj) ? obj : null);
+		if (clazz.isInstance(obj)) {
+			return obj;
+		} else {
+			return null;
+		}
 	}
 
 	/**

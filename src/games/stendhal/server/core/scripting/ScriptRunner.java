@@ -191,18 +191,35 @@ public class ScriptRunner extends StendhalServerExtension implements
 				final boolean res = perform(script, mode, player, args);
 
 				if (res) {
-					text = "Script \"" + script + "\" was successfully " + mode
-							+ (mode == "execute" ? "d" : "ed") + ".";
+					StringBuilder stringBuilder = new StringBuilder();
+					stringBuilder.append("Script \"");
+					stringBuilder.append(script);
+					stringBuilder.append("\" was successfully ");
+					stringBuilder.append(mode);
+					if (mode == "execute") {
+						stringBuilder.append("d");
+					} else {
+						stringBuilder.append("ed");
+					}
+					stringBuilder.append(".");
+					text = stringBuilder.toString();
 				} else {
 					final String msg = getMessage(script);
 					if (msg != null) {
 						text = msg;
 					} else {
-						text = "Script \""
-								+ script
-								+ "\" was either not found, or encountered an error during "
-								+ (mode == "execute" ? "execution" : mode
-										+ "ing") + ".";
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.append("Script \"");
+						stringBuilder.append(script);
+						stringBuilder.append("\" was either not found, or encountered an error during ");
+						if (mode == "execute") {
+							stringBuilder.append("execution");
+						} else {
+							stringBuilder.append(mode);
+							stringBuilder.append("ing");
+						}
+						stringBuilder.append(".");
+						text = stringBuilder.toString();
 					}
 				}
 			} else {

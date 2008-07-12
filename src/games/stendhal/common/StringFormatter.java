@@ -63,7 +63,11 @@ public class StringFormatter {
 		boolean hasStart = false;
 
 		do {
-			index = current.indexOf(hasStart ? PARAMETER_END : PARAMETER_START);
+			if (hasStart) {
+				index = current.indexOf(PARAMETER_END);
+			} else {
+				index = current.indexOf(PARAMETER_START);
+			}
 			if (index >= 0) {
 				// we found something
 				if (hasStart) {

@@ -34,8 +34,20 @@ public abstract class HearingArea {
 		if (!User.isNull()) {
 			set(User.get().getX(), User.get().getY());
 		}
-		if (left < x ? x < right : false) {
-			return (upper < y ? y < lower : false);
+		boolean xBetweenLeftAndRight;
+		if (left < x) {
+			xBetweenLeftAndRight = x < right;
+		} else {
+			xBetweenLeftAndRight = false;
+		}
+		if (xBetweenLeftAndRight) {
+			boolean yBetweenUpAndLOw;
+			if (upper < y) {
+				yBetweenUpAndLOw = y < lower;
+			} else {
+				yBetweenUpAndLOw = false;
+			}
+			return yBetweenUpAndLOw;
 		}
 		return false;
 	}

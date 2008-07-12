@@ -72,9 +72,17 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-						engine.say("You haven't seen one before? Well, it's a "
-									+ (item != null ? ItemTools.itemNameToDisplayName(item.getItemSubclass()) : itemName)
-									+ ". So, will you find them all?");
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.append("You haven't seen one before? Well, it's a ");
+						
+						if (item == null) {
+							stringBuilder.append(itemName);
+						} else {
+							stringBuilder.append(ItemTools.itemNameToDisplayName(item.getItemSubclass()));
+						}
+						
+						stringBuilder.append(". So, will you find them all?");
+						engine.say(stringBuilder.toString());
 					}
 
 					@Override

@@ -292,7 +292,12 @@ public class ServerTMXLoader {
 			for (int y = 0; y < h; y++) {
 				for (int x = 0; x < w; x++) {
 					final int gid = layer.getTileAt(x, y);
-					System.out.print(gid + ((x == w - 1) ? "" : ","));
+					if (x == w - 1) {
+						System.out.print(gid);
+					} else {
+						System.out.print(gid + ",");
+					}
+					
 				}
 				System.out.println();
 			}

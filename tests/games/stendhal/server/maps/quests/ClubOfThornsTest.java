@@ -79,7 +79,7 @@ public class ClubOfThornsTest {
 		assertEquals("Make revenge! Kill de Mountain Orc Chief! unnerstand? ok?", npc.get("text"));
 		
 		// test the stuff that should be done at the quest start
-		en.stepTest(player, ConversationPhrases.YES_MESSAGES.get(0));;
+		en.stepTest(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!", npc.get("text"));
 		assertTrue(player.isEquipped(KEY_NAME));
 		assertEquals("player", player.getFirstEquipped(KEY_NAME).getBoundTo());

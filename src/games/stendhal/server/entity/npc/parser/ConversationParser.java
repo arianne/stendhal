@@ -36,8 +36,13 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public ConversationParser(final String text) {
         // initialize a new tokenizer with the given text
-        tokenizer = new StringTokenizer(text != null ? text : "");
-        originalText = text;
+		originalText = text;
+		if (text == null) {
+			tokenizer = new StringTokenizer("");
+		} else {
+			tokenizer = new StringTokenizer(text);
+		}
+        
     }
 
     /**

@@ -488,14 +488,17 @@ public class StendhalClient extends ClientFramework {
 
 		directions.add(dir);
 
-		action = new RPAction();
-		action.put("type", face ? "face" : "move");
-		action.put("dir", dir.get());
-
-		send(action);
+	if (face) {
+		action = new FaceRPAction(dir);
+	} else {
+		action = new MoveRPAction(dir);
+	}
+		
+	send(action);
 	}
 
-	/**
+
+/**
 	 * Remove a player movement direction.
 	 * 
 	 * @param dir
@@ -522,13 +525,18 @@ public class StendhalClient extends ClientFramework {
 		directions.remove(dir);
 
 		// Existing one reusable???
-		action = new RPAction();
 		size = directions.size();
 		if (size == 0) {
+			action = new RPAction();
 			action.put("type", "stop");
 		} else {
-			action.put("type", face ? "face" : "move");
-			action.put("dir", directions.get(size - 1).get());
+			if (face) {
+				action = new FaceRPAction(directions.get(size - 1));
+
+			} else {
+				action = new MoveRPAction(directions.get(size - 1));
+
+			}
 		}
 
 		send(action);
@@ -723,4 +731,18 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
+	class MoveRPAction extends RPAction {
+		public MoveRPAction(final Direction dir) {
+			put("type", "move");
+			put("dir", dir.get());
+		}
+	}
+
+	class FaceRPAction extends RPAction {
+		public FaceRPAction(final Direction dir) {
+			put("type", "face");
+			put("dir", dir.get());
+		}
+	}
+
 }

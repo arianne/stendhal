@@ -40,10 +40,16 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		result = PRIME * result
-				+ ((questname == null) ? 0 : questname.hashCode());
-		result = PRIME * result + ((state == null) ? 0 : state.hashCode());
-		return result;
+		if (questname == null) {
+			result = PRIME;
+		} else {
+			result = PRIME	+ questname.hashCode();
+		}
+		if (state == null) {
+			return PRIME * result;
+		} else {
+			return PRIME * result + state.hashCode();
+		}
 	}
 
 	@Override

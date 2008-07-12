@@ -1034,8 +1034,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 */
 		final int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor.getBlue() * 114)) / 1000;
 
-		drawOutlineString(g, textColor, (lum >= 64) ? Color.black
-				: Color.lightGray, text, x, y);
+		Color outlineColor;
+		if (lum >= 64) {
+			outlineColor = Color.black;
+		} else {
+			outlineColor = Color.lightGray;
+		}
+		drawOutlineString(g, textColor, outlineColor, text, x, y);
 	}
 
 	/*
@@ -1196,9 +1201,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		}
 
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
-		final int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels
-				+ delta : width) + 4;
+		final int imageWidth;
+		if (lineLengthPixels + delta < width) {
+			imageWidth = (lineLengthPixels + delta) + 4;
+		} else {
+			imageWidth = width + 4;
+		}
+		
 		int imageHeight = 16 * numLines;
 
 		// Workaround for X-Windows not supporting images of height 0 pixel.
@@ -1220,17 +1229,18 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 					AlphaComposite.SRC_OVER, 0.8f);
 			g2d.setComposite(ac);
 			g2d.setColor(fillColor);
+			
 			g2d.fillRoundRect(
 					10,
 					0,
-					((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+					Math.min(width, lineLengthPixels) + 3,
 					16 * numLines - 1, 4, 4);
 			g2d.setColor(textColor);
 			if (isTalking) {
 				g2d.drawRoundRect(
 						10,
 						0,
-						((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+						Math.min(width, lineLengthPixels) + 3,
 						16 * numLines - 1, 4, 4);
 			} else {
 				final float[] dash = { 4, 2 };
@@ -1242,7 +1252,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				g2d.drawRect(
 						10,
 						0,
-						((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+						Math.min(width, lineLengthPixels) + 3,
 						16 * numLines - 1);
 				g2d.setStroke(oldStroke);
 			}
@@ -1281,10 +1291,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		return new ImageSprite(image);
 	}
-
-	//
-	// <GameScreen2D>
-	//
 
 	/*
 	 * (non-Javadoc)

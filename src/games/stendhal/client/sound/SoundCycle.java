@@ -130,7 +130,11 @@ class SoundCycle extends Thread implements Cloneable {
 
 		if (o != null) {
 			oid = o.getID();
-			hstr = oid == null ? "VOID" : oid.toString();
+			if (oid == null) {
+				hstr = "VOID";
+			} else {
+				hstr = oid.toString();
+			}
 		} else {
 			hstr = "VOID";
 		}

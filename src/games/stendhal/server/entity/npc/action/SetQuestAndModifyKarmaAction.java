@@ -49,9 +49,16 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 		long temp;
 		temp = Double.doubleToLongBits(karmaDiff);
 		result = PRIME * result + (int) (temp ^ (temp >>> 32));
-		result = PRIME * result
-				+ ((questname == null) ? 0 : questname.hashCode());
-		result = PRIME * result + ((state == null) ? 0 : state.hashCode());
+		if (questname == null) {
+			result = PRIME * result;
+		} else {
+			result = PRIME * result	+ questname.hashCode();
+		}
+		if (state == null) {
+			result = PRIME * result;
+		} else {
+			result = PRIME * result + state.hashCode();
+		}
 		return result;
 	}
 

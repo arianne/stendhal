@@ -279,11 +279,25 @@ public class BalanceRPGame {
 			}
 
 			System.out.print("BALANCED: ");
-			System.out.println(creature.getCreatureName() + "("
-					+ creature.getLevel() + ")\t" + (changed ? "*\t" : " \t")
-					+ "ATK: " + target.getATK() + "\t\tDEF: " + target.getDEF()
-					+ "\t\tHP: " + target.getBaseHP() + "\t\tXP: "
-					+ creature.getXP());
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(creature.getCreatureName());
+			stringBuilder.append("(");
+			stringBuilder.append(creature.getLevel());
+			stringBuilder.append(")\t");
+			if (changed) {
+				stringBuilder.append("*\t");
+			} else {
+				stringBuilder.append(" \t");
+			}
+			stringBuilder.append("ATK: ");
+			stringBuilder.append(target.getATK());
+			stringBuilder.append("\t\tDEF: ");
+			stringBuilder.append(target.getDEF());
+			stringBuilder.append("\t\tHP: ");
+			stringBuilder.append(target.getBaseHP());
+			stringBuilder.append("\t\tXP: ");
+			stringBuilder.append(creature.getXP());
+			System.out.println(stringBuilder.toString());
 			sb.append("BALANCED: " + creature.getCreatureName() + "("
 					+ creature.getLevel() + ")\tATK: " + target.getATK()
 					+ "\tDEF: " + target.getDEF() + "\tHP: "

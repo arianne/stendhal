@@ -41,7 +41,12 @@ public class ReadAndPrintXMLFile {
 
 		} catch (final SAXException e) {
 			final Exception x = e.getException();
-			((x == null) ? e : x).printStackTrace();
+			if (x == null) {
+				e.printStackTrace();
+
+			} else {
+				x.printStackTrace();
+			}
 
 		} catch (final Throwable t) {
 			t.printStackTrace();

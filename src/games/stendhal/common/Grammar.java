@@ -30,7 +30,11 @@ public class Grammar {
 	 * @return Either "it" or "them" as appropriate
 	 */
 	public static String itthem(final int quantity) {
-		return (quantity == 1 ? "it" : "them");
+		if (quantity == 1) {
+			return "it";
+		} else {
+			return "them";
+		}
 	}
 
 	/**
@@ -69,7 +73,11 @@ public class Grammar {
 	 * @return Either "it" or "they" as appropriate
 	 */
 	public static String itthey(final int quantity) {
-		return (quantity == 1 ? "it" : "they");
+		if (quantity == 1) {
+			return "it";
+		} else {
+			return "they";
+		}
 	}
 
 	/**
@@ -91,7 +99,11 @@ public class Grammar {
 	 * @return Either "is" or "are" as appropriate
 	 */
 	public static String isare(final int quantity) {
-		return (quantity == 1 ? "is" : "are");
+		if (quantity == 1) {
+			return "is";
+		} else {
+			return "are";
+		}
 	}
 
 	/**
@@ -134,10 +146,18 @@ public class Grammar {
 			return null;
 		}
 		final String enoun = fullForm(noun);
-		final char initial = noun.length() > 0 ? Character.toLowerCase(enoun.charAt(0))
-				: ' ';
-		final char second = noun.length() > 1 ? Character.toLowerCase(enoun.charAt(1))
-				: ' ';
+		final char initial;
+		if (noun.length() > 0) {
+			initial = Character.toLowerCase(enoun.charAt(0));
+		} else {
+			initial = ' ';
+		}
+		final char second;
+		if (noun.length() > 1) {
+			second = Character.toLowerCase(enoun.charAt(1));
+		} else {
+			second = ' ';
+		}
 		if ((initial == 'e') && (second == 'u')) {
 			return "a " + enoun;
 		}
@@ -574,7 +594,11 @@ public class Grammar {
 	 */
 	public static String plnoun(final int quantity, final String noun) {
 		final String enoun = fullForm(noun);
-		return (quantity == 1 ? enoun : plural(noun));
+		if (quantity == 1) {
+			return enoun;
+		} else {
+			return plural(noun);
+		}
 	}
 
 	/**

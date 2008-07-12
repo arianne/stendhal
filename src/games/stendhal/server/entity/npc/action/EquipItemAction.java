@@ -94,8 +94,12 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 		final int PRIME = 31;
 		int result = 1;
 		result = PRIME * result + amount;
-		result = PRIME * result
-				+ ((itemName == null) ? 0 : itemName.hashCode());
+		if (itemName == null) {
+			result = PRIME * result;
+		} else {
+			result = PRIME * result + itemName.hashCode();
+		}
+		
 		return result;
 	}
 

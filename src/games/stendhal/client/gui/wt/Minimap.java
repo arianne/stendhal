@@ -189,9 +189,16 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			scale++;
 		}
 
-		// calculate size of map
-		width = (w * scale < MINIMAP_WIDTH) ? w * scale : MINIMAP_WIDTH;
-		height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
+		if (w * scale < MINIMAP_WIDTH) {
+			width = w * scale;
+		} else {
+			width = MINIMAP_WIDTH;
+		}
+		if (h * scale < MINIMAP_HEIGHT) {
+			height = h * scale;
+		} else {
+			height = MINIMAP_HEIGHT;
+		}
 
 		// create the image for the minimap
 		image = gc.createCompatibleImage(w * scale, h * scale);
@@ -525,8 +532,18 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			nodo_actual = 0;
 
 			// Rectangle(int x, int y, int width, int height)
-			final int width2 = width < 192 ? width : 192;
-			final int height2 = height < 192 ? height : 192;
+			final int width2;
+			if (width < 192) {
+				width2 = width;
+			} else {
+				width2 = 192;
+			}
+			final int height2;
+			if (height < 192) {
+				height2 = height;
+			} else {
+				height2 = 192;
+			}
 			final Rectangle search_area = new Rectangle((panx) / scale, (pany)
 					/ scale, width2 / scale, height2 / scale);
 

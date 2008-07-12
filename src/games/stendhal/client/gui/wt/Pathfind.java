@@ -318,7 +318,7 @@ public class Pathfind {
 		// System.out.println("PATH FOUND!! " + closed_list.size());//elapsed
 		// time: " + computation_time);
 
-		return ((final_path.size() > 0) ? true : false);
+		return final_path.size() > 0;
 	}
 
 //	public static void main(String[] args) {

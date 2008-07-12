@@ -164,8 +164,18 @@ public class FindGhosts extends AbstractQuest {
 
 					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					final String[] npcDoneText = npcQuestText.split(":");
-	    			final String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
-	    			final String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
+	    			final String lookingStr;
+					if (npcDoneText.length > 1) {
+						lookingStr = npcDoneText[0];
+					} else {
+						lookingStr = "";
+					}
+	    			final String saidStr;
+					if (npcDoneText.length > 1) {
+						saidStr = npcDoneText[1];
+					} else {
+						saidStr = "";
+					}
 					final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
 					final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
 					String reply = "";

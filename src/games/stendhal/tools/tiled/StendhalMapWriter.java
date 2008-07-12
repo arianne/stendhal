@@ -102,8 +102,11 @@ public class StendhalMapWriter implements MapWriter {
 					if (tile != null) {
 						gid = tile.getGid();
 					}
-
-					writer.print(gid + ((i == layer.getWidth() - 1) ? "" : ","));
+					if (i == layer.getWidth() - 1) {
+						writer.print(gid);
+					} else {
+						writer.print(gid + ",");
+					}
 				}
 
 				writer.println();

@@ -28,8 +28,12 @@ public class Sheep extends DomesticAnimal {
 				{ "sheep-2.wav", "sheep-4.wav" } };
 		final int which = Rand.rand(2);
 		if (Rand.rand(100) < chance) {
-			final String token = getWeight() > 50 ? soundnames[0][which]
-					: soundnames[1][which];
+			final String token;
+			if (getWeight() > 50) {
+				token = soundnames[0][which];
+			} else {
+				token = soundnames[1][which];
+			}
 			SoundMaster.play(token, x, y); 
 		}
 	}

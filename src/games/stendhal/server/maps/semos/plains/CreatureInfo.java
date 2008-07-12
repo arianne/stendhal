@@ -413,7 +413,10 @@ public class CreatureInfo {
 			final String probability = getLiteral(probabilityLiterals,
 					item.probability, 0.0);
 			if (prevProbability != null && !probability.equals(prevProbability)) {
-				result.append(result.length() > 0 ? ", " : "");
+				if (result.length() > 0) {
+					result.append(", ");
+				} 
+				
 				prevProbability = prevProbability.replaceAll("%s",
 						Grammar.enumerateCollection(items));
 				prevProbability = prevProbability.replaceAll("%a",
@@ -431,7 +434,10 @@ public class CreatureInfo {
 				break;
 			}
 		}
-		result.append(result.length() > 0 ? ", " : "");
+		if (result.length() > 0) {
+			result.append(", ");
+		} 
+		
 		result.append(prevProbability.replaceAll("%s",
 				Grammar.enumerateCollection(items)));
 		return (prefix + result.toString()).replaceAll("_", " ");

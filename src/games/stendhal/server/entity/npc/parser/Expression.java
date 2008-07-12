@@ -156,14 +156,22 @@ public final class Expression {
      *
      */
     public int getAmount() {
-		return amount != null ? amount.intValue() : 1;
+		if (amount == null) {
+			return 1;
+		} else {
+			return amount.intValue();
+		}
 	}
 
 	/**
 	 * @return amount as long integer value, default to 1.
 	 */
 	public long getAmountLong() {
-		return amount != null ? amount : 1;
+		if (amount == null) {
+			return 1;
+		} else {
+			return amount;
+		}
 	}
 
     /**
@@ -253,7 +261,11 @@ public final class Expression {
      * @return string representation of Expression type 
      */
     public String getTypeString() {
-		return type != null ? type.getTypeString() : "";
+		if (type == null) {
+			return "";
+		} else {
+			return type.getTypeString();
+		}
 	}
 
     /**
