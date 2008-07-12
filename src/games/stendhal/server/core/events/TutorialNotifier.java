@@ -131,8 +131,7 @@ public class TutorialNotifier {
 				process(player, TutorialEventType.TIMED_NAKED);
 			}
 		} else if (age >= 10) {
-			// TODO: activate this after password change is implemented
-			// process(player, TutorialEventType.TIMED_PASSWORD);
+			process(player, TutorialEventType.TIMED_PASSWORD);
 		} else if (age >= 5) {
 			process(player, TutorialEventType.TIMED_HELP);
 		}
