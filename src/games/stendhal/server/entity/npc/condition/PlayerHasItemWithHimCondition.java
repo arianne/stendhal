@@ -12,8 +12,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
-	private String itemName;
-	private int amount;
+	private final String itemName;
+	private final int amount;
 
 	/**
 	 * Creates a new PlayerHasItemWithHim.
@@ -21,7 +21,7 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 	 * @param itemName
 	 *            name of item
 	 */
-	public PlayerHasItemWithHimCondition(String itemName) {
+	public PlayerHasItemWithHimCondition(final String itemName) {
 		this.itemName = itemName;
 		this.amount = 1;
 	}
@@ -34,13 +34,13 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 	 * @param amount
 	 *            for StackableItems
 	 */
-	public PlayerHasItemWithHimCondition(String itemName, int amount) {
+	public PlayerHasItemWithHimCondition(final String itemName, final int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return player.isEquipped(itemName, amount);
 	}
 
@@ -55,7 +55,7 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

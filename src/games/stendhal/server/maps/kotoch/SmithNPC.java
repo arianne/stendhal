@@ -16,12 +16,12 @@ public class SmithNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildKotochSmitherArea(zone);
 	}
 
-	private void buildKotochSmitherArea(StendhalRPZone zone) {
-		SpeakerNPC smith = new SpeakerNPC("Vulcanus") {
+	private void buildKotochSmitherArea(final StendhalRPZone zone) {
+		final SpeakerNPC smith = new SpeakerNPC("Vulcanus") {
 
 			@Override
 			// he doesn't move.

@@ -42,8 +42,8 @@ public class WtList extends WtPanel implements WtClickListener {
 	 *            max height (height is dynamically calculated from the items)
 	 * @param gameScreen
 	 */
-	public WtList(String name, String[] items, int x, int y, int width,
-			int maxHeight, IGameScreen gameScreen) {
+	public WtList(final String name, final String[] items, final int x, final int y, final int width,
+			final int maxHeight, final IGameScreen gameScreen) {
 		super(name, x, y, width, 10, gameScreen);
 
 		setTitleBar(true);
@@ -58,11 +58,11 @@ public class WtList extends WtPanel implements WtClickListener {
 						(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
 								: maxHeight);
 
-		int clientWidth = getClientWidth();
+		final int clientWidth = getClientWidth();
 
 		for (int i = 0; i < items.length; i++) {
-			String item = items[i];
-			WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT,
+			final String item = items[i];
+			final WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT,
 					item, gameScreen);
 			button.moveTo(0, i * BUTTON_HEIGHT);
 			button.registerClickListener(this);
@@ -77,7 +77,7 @@ public class WtList extends WtPanel implements WtClickListener {
 	 * @param point
 	 * @param gameScreen
 	 */
-	public void onClick(String name, Point point, IGameScreen gameScreen) {
+	public void onClick(final String name, final Point point, final IGameScreen gameScreen) {
 		// tell all listeners what happened
 		notifyClickListeners(name, point);
 		// close ourself

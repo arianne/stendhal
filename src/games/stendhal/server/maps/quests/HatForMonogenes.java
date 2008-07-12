@@ -49,13 +49,13 @@ public class HatForMonogenes extends AbstractQuest {
 	private static final String QUEST_SLOT = "hat_monogenes";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest(QUEST_SLOT)) {
 			res.add("FIRST_CHAT");
 		}
@@ -74,7 +74,7 @@ public class HatForMonogenes extends AbstractQuest {
 	}
 
 	private void createRequestingStep() {
-		SpeakerNPC monogenes = npcs.get("Monogenes");
+		final SpeakerNPC monogenes = npcs.get("Monogenes");
 
 		monogenes.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -116,7 +116,7 @@ public class HatForMonogenes extends AbstractQuest {
 	}
 
 	private void createBringingStep() {
-		SpeakerNPC monogenes = npcs.get("Monogenes");
+		final SpeakerNPC monogenes = npcs.get("Monogenes");
 
 		monogenes.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -131,7 +131,7 @@ public class HatForMonogenes extends AbstractQuest {
 			"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
 			null);
 
-		List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("leather helmet"));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new IncreaseKarmaAction(10));

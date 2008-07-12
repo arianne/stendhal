@@ -25,13 +25,13 @@ public class MeetMonogenes extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		SpeakerNPC npc = npcs.get("Monogenes");
+		final SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						// A little trick to make NPC remember if it has met the
 						// player before and react accordingly.
 						// NPC_name quest doesn't exist anywhere else neither is

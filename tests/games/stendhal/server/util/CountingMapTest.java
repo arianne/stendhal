@@ -16,19 +16,19 @@ public class CountingMapTest {
 
 	@Test
 	public void test() {
-		CountingMap<String> a = new CountingMap<String>("prefix");
+		final CountingMap<String> a = new CountingMap<String>("prefix");
 
-		String key1 = a.add("ABC 123");
+		final String key1 = a.add("ABC 123");
 		assertEquals("prefix0", key1);
 
-		String key2 = a.add("xyz");
+		final String key2 = a.add("xyz");
 		assertEquals("prefix1", key2);
 
 		assertTrue(!key1.equals(key2));
 
 		// count map entries
 		int size = 0;
-		for (Map.Entry<String, String> it : a) {
+		for (final Map.Entry<String, String> it : a) {
 			it.toString(); // System.out.println(it.toString());
 			++size;
 		}

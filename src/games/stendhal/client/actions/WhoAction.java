@@ -18,8 +18,8 @@ class WhoAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction who = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction who = new RPAction();
 
 		who.put("type", "who");
 

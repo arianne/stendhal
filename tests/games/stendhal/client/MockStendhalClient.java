@@ -2,7 +2,7 @@ package games.stendhal.client;
 
 public class MockStendhalClient extends StendhalClient {
 
-	protected MockStendhalClient(String loggingProperties) {
+	protected MockStendhalClient(final String loggingProperties) {
 		super(loggingProperties);
 		client = this;
 	}

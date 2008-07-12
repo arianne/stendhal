@@ -17,7 +17,7 @@ public class RPEventImageViewer {
 	private String title;
 	private static final Logger logger = Logger.getLogger(RPEventImageViewer.class);
 
-	private RPEventImageViewer(RPEvent e) {
+	private RPEventImageViewer(final RPEvent e) {
 		if (e.has("path")) {
 			path = e.get("path");
 		}
@@ -30,7 +30,7 @@ public class RPEventImageViewer {
 		view();
 	}
 
-	public static void viewImage(RPEvent e) {
+	public static void viewImage(final RPEvent e) {
 		new RPEventImageViewer(e);
 	}
 
@@ -43,7 +43,7 @@ public class RPEventImageViewer {
 				url = getClass().getResource(path);
 			}
 			return url;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(null, e);
 		}
 		return null;

@@ -33,7 +33,7 @@ public class StendhalMapStructure {
 	 * @param h
 	 *            the height of the map.
 	 */
-	public StendhalMapStructure(int w, int h) {
+	public StendhalMapStructure(final int w, final int h) {
 		width = w;
 		height = h;
 		tilesets = new LinkedList<TileSetDefinition>();
@@ -46,7 +46,7 @@ public class StendhalMapStructure {
 	 * @param set
 	 *            new tileset
 	 */
-	public void addTileset(TileSetDefinition set) {
+	public void addTileset(final TileSetDefinition set) {
 		tilesets.add(set);
 	}
 
@@ -56,7 +56,7 @@ public class StendhalMapStructure {
 	 * @param layer
 	 *            new layer
 	 */
-	public void addLayer(LayerDefinition layer) {
+	public void addLayer(final LayerDefinition layer) {
 		layer.setMap(this);
 		layers.add(layer);
 	}
@@ -67,7 +67,7 @@ public class StendhalMapStructure {
 	 * @param filename
 	 *            the map TMX filename
 	 */
-	public void setFilename(String filename) {
+	public void setFilename(final String filename) {
 		this.filename = filename;
 	}
 
@@ -96,7 +96,7 @@ public class StendhalMapStructure {
 	 *            the layer name
 	 * @return true if it exists.
 	 */
-	public boolean hasLayer(String layername) {
+	public boolean hasLayer(final String layername) {
 		return getLayer(layername) != null;
 	}
 
@@ -107,8 +107,8 @@ public class StendhalMapStructure {
 	 *            the layer name
 	 * @return the layer object or null if it doesnt' exists
 	 */
-	public LayerDefinition getLayer(String layername) {
-		for (LayerDefinition layer : layers) {
+	public LayerDefinition getLayer(final String layername) {
+		for (final LayerDefinition layer : layers) {
 			if (layername.equals(layer.getName())) {
 				return layer;
 			}
@@ -121,7 +121,7 @@ public class StendhalMapStructure {
 	 * Build all layers data.
 	 */
 	public void build() {
-		for (LayerDefinition layer : layers) {
+		for (final LayerDefinition layer : layers) {
 			layer.build();
 		}
 	}

@@ -38,25 +38,25 @@ public class PortalMatchTest {
 			final File directory = new File("data/conf/zones/");
 			final File[] files = directory.listFiles(new FileFilter() {
 
-				public boolean accept(File file) {
+				public boolean accept(final File file) {
 					return file.getName().endsWith("xml");
 				}
 			});
 
 			assertThat("files should not be empty", files.length, not((is(0))));
-			for (File f : files) {
+			for (final File f : files) {
 				final Document doc = docBuilder.parse(f);
 				portals.addAll(proceedDocument(doc));
 			}
 
-		} catch (SAXParseException err) {
+		} catch (final SAXParseException err) {
 		
 			fail(err.toString());
 
-		} catch (SAXException e) {
+		} catch (final SAXException e) {
 			
 			fail(e.toString());
-		} catch (Exception t) {
+		} catch (final Exception t) {
 			
 			fail(t.toString());
 		}
@@ -102,10 +102,10 @@ public class PortalMatchTest {
 	public boolean isValid(final List<PortalTestObject> testList) {
 		boolean result = true;
 
-		for (PortalTestObject x : testList) {
+		for (final PortalTestObject x : testList) {
 			if (x.hasDestination()) {
 				boolean founddestination = false;
-				for (PortalTestObject y : testList) {
+				for (final PortalTestObject y : testList) {
 					if (y.isDestinationOf(x)) {
 						founddestination = true;
 					}

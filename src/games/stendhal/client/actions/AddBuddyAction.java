@@ -18,11 +18,11 @@ class AddBuddyAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
 			return false;
 		}
-		RPAction add = new RPAction();
+		final RPAction add = new RPAction();
 
 		add.put("type", "addbuddy");
 		add.put("target", params[0]);

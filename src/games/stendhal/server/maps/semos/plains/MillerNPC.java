@@ -17,7 +17,7 @@ import java.util.TreeMap;
 public class MillerNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addJob("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.");
 		npc.addReply("grain",
 		        "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
@@ -25,10 +25,10 @@ public class MillerNPC extends SpeakerNPCFactory {
 		npc.addGoodbye();
 
 		// Jenny mills flour if you bring her grain.
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("grain", 5);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour",
+		final ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour",
 				"mill", "flour", requiredResources, 2 * 60);
 		new SellerAdder().addSeller(npc, new SeedSellerBehaviour());
 		new ProducerAdder().addProducer(npc, behaviour,

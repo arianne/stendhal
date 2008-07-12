@@ -17,7 +17,7 @@ import games.stendhal.server.entity.player.Player;
 public class GossipNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				null,
@@ -25,7 +25,7 @@ public class GossipNPC extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        // A little trick to make NPC remember if it has met
 				        // player before anc react accordingly
 				        // NPC_name quest doesn't exist anywhere else neither is

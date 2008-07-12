@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
 
 public class MainFrame {
 
-	private JFrame mainFrame = new JFrame();
+	private final JFrame mainFrame = new JFrame();
 	public MainFrame() {
 		initialize();
 	}
@@ -30,7 +30,7 @@ public class MainFrame {
 	}
 
 	private void setLayout() {
-		Container content = mainFrame.getContentPane();
+		final Container content = mainFrame.getContentPane();
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 	}
 
@@ -41,7 +41,7 @@ public class MainFrame {
 	}
 
 	private void setIcon() {
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				ClientGameConfiguration.get("GAME_ICON"));
 		getMainFrame().setIconImage(new ImageIcon(url).getImage());
 	}

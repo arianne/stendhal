@@ -15,13 +15,13 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 public class QuestCompletedPortal extends AccessCheckingPortal {
-	private String questslot;
+	private final String questslot;
 
-	public QuestCompletedPortal(String questslot) {
+	public QuestCompletedPortal(final String questslot) {
 		this(questslot, "I am not prepared to go there.");
 	}
 
-	public QuestCompletedPortal(String questslot, String rejectMessage) {
+	public QuestCompletedPortal(final String questslot, final String rejectMessage) {
 		super(rejectMessage);
 
 		this.questslot = questslot;
@@ -40,7 +40,7 @@ public class QuestCompletedPortal extends AccessCheckingPortal {
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
-	protected boolean isAllowed(RPEntity user) {
+	protected boolean isAllowed(final RPEntity user) {
 		if (user instanceof Player) {
 			return ((Player) user).isQuestCompleted(questslot);
 		} else {

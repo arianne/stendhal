@@ -17,25 +17,25 @@ public class TeleportToAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
-			String name = action.get(TARGET);
+			final String name = action.get(TARGET);
 			RPEntity teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
 				teleported = SingletonRepository.getNPCList().get(name);
 				if (teleported == null) {
 
-					String text = "Player \"" + name + "\" not found";
+					final String text = "Player \"" + name + "\" not found";
 					player.sendPrivateText(text);
 					logger.debug(text);
 					return;
 				}
 			}
 
-			StendhalRPZone zone = teleported.getZone();
-			int x = teleported.getX();
-			int y = teleported.getY();
+			final StendhalRPZone zone = teleported.getZone();
+			final int x = teleported.getX();
+			final int y = teleported.getY();
 
 			player.teleport(zone, x, y, null, player);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),

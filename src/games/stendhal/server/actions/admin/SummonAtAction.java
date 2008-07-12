@@ -21,11 +21,11 @@ public class SummonAtAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (action.has(TARGET) && action.has(_SLOT) && action.has(_ITEM)) {
-			String name = action.get(TARGET);
-			Player changed = SingletonRepository.getRuleProcessor().getPlayer(name);
+			final String name = action.get(TARGET);
+			final Player changed = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (changed == null) {
 				logger.debug("Player \"" + name + "\" not found.");
@@ -33,7 +33,7 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			String slotName = action.get(_SLOT);
+			final String slotName = action.get(_SLOT);
 			if (!changed.hasSlot(slotName)) {
 				logger.debug("Player \"" + name
 						+ "\" does not have an RPSlot named \"" + slotName
@@ -44,14 +44,14 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			EntityManager manager = SingletonRepository.getEntityManager();
-			String type = action.get(_ITEM);
+			final EntityManager manager = SingletonRepository.getEntityManager();
+			final String type = action.get(_ITEM);
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						_SUMMONAT, changed.getName(), slotName, type);
-				Item item = manager.getItem(type);
+				final Item item = manager.getItem(type);
 
 				if (action.has(_AMOUNT) && (item instanceof StackableItem)) {
 					((StackableItem) item).setQuantity(action.getInt(_AMOUNT));

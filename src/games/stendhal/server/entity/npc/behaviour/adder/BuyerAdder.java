@@ -14,9 +14,9 @@ import org.apache.log4j.Logger;
 public class BuyerAdder {
 	private static Logger logger = Logger.getLogger(BuyerAdder.class);
 
-	public void add(SpeakerNPC npc, final BuyerBehaviour behaviour,
-			boolean offer) {
-		Engine engine = npc.getEngine();
+	public void add(final SpeakerNPC npc, final BuyerBehaviour behaviour,
+			final boolean offer) {
+		final Engine engine = npc.getEngine();
 
 		if (offer) {
 			engine.add(
@@ -34,7 +34,7 @@ public class BuyerAdder {
 				new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
@@ -55,7 +55,7 @@ public class BuyerAdder {
 							}
 
 							if (behaviour.getAmount() > 0) {
-								int price = behaviour.getCharge(engine, player);
+								final int price = behaviour.getCharge(engine, player);
 
 								if (price != 0) {
 	    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
@@ -86,8 +86,8 @@ public class BuyerAdder {
 				ConversationStates.ATTENDING, "Thanks.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						logger.debug("Buying something from player "
 								+ player.getName());
 

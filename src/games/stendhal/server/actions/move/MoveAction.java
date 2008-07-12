@@ -25,13 +25,13 @@ public class MoveAction implements ActionListener {
 	private static final String _MOVE = "move";
 
 	public static void register() {
-		MoveAction move = new MoveAction();
+		final MoveAction move = new MoveAction();
 		CommandCenter.register(_MOVE, move);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(_DIR)) {
-			int dirval = action.getInt(_DIR);
+			final int dirval = action.getInt(_DIR);
 
 			if (dirval < 0) {
 				player.removeClientDirection(Direction.build(-dirval));

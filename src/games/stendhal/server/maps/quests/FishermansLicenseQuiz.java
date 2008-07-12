@@ -54,7 +54,7 @@ import marauroa.common.game.RPObjectNotFoundException;
 public class FishermansLicenseQuiz extends AbstractQuest {
 	static final String QUEST_SLOT = "fishermans_license1";
 
-	private List<String> speciesList = Arrays.asList("trout", "perch",
+	private final List<String> speciesList = Arrays.asList("trout", "perch",
 			"mackerel", "cod", "roach", "char", "clownfish", "surgeonfish");
 
 	private int currentSpeciesNo;
@@ -65,13 +65,13 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	private Item fishOnTable;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest(QUEST_SLOT)) {
 			res.add("FIRST_CHAT");
 		}
@@ -90,7 +90,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		if (fishOnTable != null) {
 			try {
 				zone.remove(fishOnTable);
-			} catch (RPObjectNotFoundException e) {
+			} catch (final RPObjectNotFoundException e) {
 				// The item timed out, or an admin destroyed it.
 				// So no need to clean up the table.
 			}
@@ -120,21 +120,21 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		zone.add(fishOnTable);
 	}
 
-	private long remainingTimeToWait(Player player) {
+	private long remainingTimeToWait(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			// The player has never tried the quiz before.
 			return 0L;
 		}
-		long timeLastFailed = Long.parseLong(player.getQuest(QUEST_SLOT));
-		long onedayInMilliseconds = 60 * 60 * 24 * 1000; 
-		long timeRemaining = timeLastFailed + onedayInMilliseconds
+		final long timeLastFailed = Long.parseLong(player.getQuest(QUEST_SLOT));
+		final long onedayInMilliseconds = 60 * 60 * 24 * 1000; 
+		final long timeRemaining = timeLastFailed + onedayInMilliseconds
 				- System.currentTimeMillis();
 
 		return timeRemaining;
 	}
 
 	private void createQuizStep() {
-		SpeakerNPC fisherman = npcs.get("Santiago");
+		final SpeakerNPC fisherman = npcs.get("Santiago");
 
 		// Don't Use condition here, because of FishermansLicenseCollector
 		fisherman.add(ConversationStates.ATTENDING,
@@ -142,7 +142,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
@@ -155,14 +155,14 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("Are you ready for the second part of your exam?");
 							npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
 						} else {
-							long timeRemaining = remainingTimeToWait(player);
+							final long timeRemaining = remainingTimeToWait(player);
 							if (timeRemaining > 0L) {
 								npc.say("You can only do the quiz once a day. Come back in "
 									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
@@ -186,7 +186,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				"Fine. The first question is: What kind of fish is this?",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						startQuiz();
 					}
 				});
@@ -196,7 +196,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(getCurrentSpecies()))) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");

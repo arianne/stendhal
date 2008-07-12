@@ -16,7 +16,7 @@ import java.util.TreeMap;
 public class ShopAssistantNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addJob("I'm the shop assistant at this bakery.");
 		npc.addReply("flour",
 		        "We usually get our #flour from a mill northeast of here, but the wolves ate their delivery boy! If you help us out by bringing some, we can #bake delicious bread for you.");
@@ -24,10 +24,10 @@ public class ShopAssistantNPC extends SpeakerNPCFactory {
 		npc.addGoodbye();
 
 		// Erna bakes bread if you bring her flour.
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("flour", 2);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread",
+		final ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread",
 				"bake", "bread", requiredResources, 10 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

@@ -45,15 +45,15 @@ public class CreditsDialog extends JDialog {
 
 	private ScrollerPanel sp;
 
-	private JPanel buttonPane = new JPanel();
+	private final JPanel buttonPane = new JPanel();
 
-	private JButton closeButton = new JButton("Close");
+	private final JButton closeButton = new JButton("Close");
 
-	private Color backgroundColor = Color.white;
+	private final Color backgroundColor = Color.white;
 
-	private Font textFont = new Font("SansSerif", Font.BOLD, 12);
+	private final Font textFont = new Font("SansSerif", Font.BOLD, 12);
 
-	private Color textColor = new Color(85, 85, 85);
+	private final Color textColor = new Color(85, 85, 85);
 
 	/**
 	 * Creates a new credits dialog.
@@ -61,7 +61,7 @@ public class CreditsDialog extends JDialog {
 	 * @param owner
 	 *            owner window
 	 */
-	public CreditsDialog(Frame owner) {
+	public CreditsDialog(final Frame owner) {
 		super(owner, true);
 		initGUI(owner);
 		logger.debug("about dialog initialized");
@@ -81,14 +81,14 @@ public class CreditsDialog extends JDialog {
 		this.setVisible(true);
 	}
 
-	private void initGUI(Frame owner) {
+	private void initGUI(final Frame owner) {
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().setBackground(backgroundColor);
 
 		// read the credits from an external file because code format gets it
 		// unreadable if inlined
-		List<String> creditsList = readCredits();
-		String[] credits = creditsList.toArray(new String[creditsList.size()]);
+		final List<String> creditsList = readCredits();
+		final String[] credits = creditsList.toArray(new String[creditsList.size()]);
 		sp = new ScrollerPanel(credits, textFont, 0, textColor,
 				backgroundColor, 20);
 
@@ -105,11 +105,11 @@ public class CreditsDialog extends JDialog {
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				"games/stendhal/client/gui/credits.txt");
-		List<String> res = new LinkedList<String>();
+		final List<String> res = new LinkedList<String>();
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
+			final BufferedReader br = new BufferedReader(new InputStreamReader(
 					url.openStream()));
 			String line = br.readLine();
 			while (line != null) {
@@ -117,7 +117,7 @@ public class CreditsDialog extends JDialog {
 				line = br.readLine();
 			}
 			br.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			res.add(0, "credits.txt not found");
 		}
 		return res;
@@ -130,13 +130,13 @@ public class CreditsDialog extends JDialog {
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void windowClosing(WindowEvent e) {
+			public void windowClosing(final WindowEvent e) {
 				exit();
 			}
 		});
 		closeButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				exit();
 			}
 		});

@@ -25,10 +25,10 @@ public class EntityHelper {
 	 * @param zone zone
 	 * @return Entity or <code>null</code>
 	 */
-	public static Entity entityFromZoneByID(int objectId, StendhalRPZone zone) {
-		RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
+	public static Entity entityFromZoneByID(final int objectId, final StendhalRPZone zone) {
+		final RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
 		if (zone.has(targetid)) {
-			RPObject object = zone.get(targetid);
+			final RPObject object = zone.get(targetid);
 			if (object instanceof Entity) {
 				return (Entity) object;
 			}
@@ -49,22 +49,22 @@ public class EntityHelper {
 	 *		   <code> null </code> if none was found or any of
 	 *		   the input parameters was <code> null </code>.
 	 */
-	public static Entity entityFromTargetName(String target, Entity player) {
-		if (target == null || player == null) {
+	public static Entity entityFromTargetName(final String target, final Entity player) {
+		if ((target == null) || (player == null)) {
 			return null;
 		}
 
-		StendhalRPZone zone = player.getZone();
+		final StendhalRPZone zone = player.getZone();
 		Entity entity = null;
 
-		if (target.length() > 1 && target.charAt(0) == '#'
+		if ((target.length() > 1) && (target.charAt(0) == '#')
 				&& Character.isDigit(target.charAt(1))) {
-			int objectId = Integer.parseInt(target.substring(1));
+			final int objectId = Integer.parseInt(target.substring(1));
 
-			RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
+			final RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
 
 			if (zone.has(targetid)) {
-				RPObject object = zone.get(targetid);
+				final RPObject object = zone.get(targetid);
 
 				if (object instanceof Entity) {
 					entity = (Entity) object;
@@ -75,7 +75,7 @@ public class EntityHelper {
 		if (entity == null) {
 			entity = SingletonRepository.getRuleProcessor().getPlayer(target);
 
-			if (entity != null && !player.isInSight(entity)) {
+			if ((entity != null) && !player.isInSight(entity)) {
 				entity = null;
 			}
 		}
@@ -83,7 +83,7 @@ public class EntityHelper {
 		if (entity == null) {
 			entity = SingletonRepository.getNPCList().get(target);
 
-			if (entity != null && !player.isInSight(entity)) {
+			if ((entity != null) && !player.isInSight(entity)) {
 				entity = null;
 			}
 		}
@@ -91,7 +91,7 @@ public class EntityHelper {
 		return entity;
 	}
 
-	public static Entity entityFromSlot(Player player, RPAction action) {
+	public static Entity entityFromSlot(final Player player, final RPAction action) {
 		// entity in a slot?
 		if (!action.has(ATTR_BASEITEM) 
 				|| !action.has(ATTR_BASEOBJECT)
@@ -99,34 +99,34 @@ public class EntityHelper {
 			return null;
 		}
 
-		StendhalRPZone zone = player.getZone();
+		final StendhalRPZone zone = player.getZone();
 
-		int baseObject = action.getInt(ATTR_BASEOBJECT);
+		final int baseObject = action.getInt(ATTR_BASEOBJECT);
 
-		RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+		final RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
 		if (!zone.has(baseobjectid)) {
 			return null;
 		}
 
-		RPObject base = zone.get(baseobjectid);
+		final RPObject base = zone.get(baseobjectid);
 		if (!(base instanceof Entity)) {
 			// Shouldn't really happen because everything is an entity
 			return null;
 		}
 
-		Entity baseEntity = (Entity) base;
+		final Entity baseEntity = (Entity) base;
 
 		if (baseEntity.hasSlot(action.get(ATTR_BASESLOT))) {
-			RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
+			final RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
 
 			if (slot.size() == 0) {
 				return null;
 			}
 
 			RPObject object = null;
-			int item = action.getInt(ATTR_BASEITEM);
+			final int item = action.getInt(ATTR_BASEITEM);
 			// scan through the slot to find the requested item
-			for (RPObject rpobject : slot) {
+			for (final RPObject rpobject : slot) {
 				if (rpobject.getID().getObjectID() == item) {
 					object = rpobject;
 					break;

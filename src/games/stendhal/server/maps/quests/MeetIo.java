@@ -29,13 +29,13 @@ public class MeetIo extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_io";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
@@ -48,7 +48,7 @@ public class MeetIo extends AbstractQuest {
 
 	private void prepareIO() {
 
-		SpeakerNPC npc = npcs.get("Io Flotto");
+		final SpeakerNPC npc = npcs.get("Io Flotto");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.HELP_MESSAGES,
@@ -121,7 +121,7 @@ public class MeetIo extends AbstractQuest {
 			null);
 
 		/** Give the reward to the patient newcomer user */
-		String answer = "*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n";
+		final String answer = "*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n";
 		npc.add(ConversationStates.INFORMATION_6,
 			ConversationPhrases.YES_MESSAGES, 
 			new QuestCompletedCondition(QUEST_SLOT),
@@ -129,7 +129,7 @@ public class MeetIo extends AbstractQuest {
 			answer + "Hey! I know what you're thinking, and I don't like it!",
 			null);
 
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new EquipItemAction("money", 10));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));		

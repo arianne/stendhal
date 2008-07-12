@@ -25,7 +25,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -33,8 +33,8 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 	// IceCreamSellerNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Sam") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Sam") {
 
 			@Override
 			protected void createPath() {
@@ -48,7 +48,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 				addHelp("I can #offer you a refreshing icecream.");
 				addQuest("Mine's a simple life, I don't need a lot.");
 
-				Map<String, Integer> offers = new HashMap<String, Integer>();
+				final Map<String, Integer> offers = new HashMap<String, Integer>();
 				offers.put("icecream", 30);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Bye, enjoy your day!");

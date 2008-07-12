@@ -33,7 +33,7 @@ public abstract class AbstractQuest implements IQuest {
 	 * @param name
 	 *            name of quest
 	 */
-	public void init(String name) {
+	public void init(final String name) {
 		this.name = name;
 	}
 
@@ -45,7 +45,7 @@ public abstract class AbstractQuest implements IQuest {
 	 * @param slotName
 	 *            name of quest-slot
 	 */
-	protected void init(String name, String slotName) {
+	protected void init(final String name, final String slotName) {
 		this.name = name;
 		this.slotName = slotName;
 	}
@@ -54,27 +54,27 @@ public abstract class AbstractQuest implements IQuest {
 		// sub classes can implement this method
 	}
 
-	public List<String> getHint(Player player) {
+	public List<String> getHint(final Player player) {
 		return EMPTY_LIST;
 	}
 
-	public List<String> getHistory(Player player) {
+	public List<String> getHistory(final Player player) {
 		// TODO this method should be abstract after all quests are converted
 		return EMPTY_LIST;
 	}
 
-	public boolean isCompleted(Player player) {
+	public boolean isCompleted(final Player player) {
 		return player.hasQuest(slotName)
 				&& (player.isQuestCompleted(slotName)
 						|| "rejected".equals(player.getQuest(slotName)) 
 						|| "failed".equals(player.getQuest(slotName)));
 	}
 
-	public boolean isRepeatable(Player player) {
+	public boolean isRepeatable(final Player player) {
 		return false;
 	}
 
-	public boolean isStarted(Player player) {
+	public boolean isStarted(final Player player) {
 		return player.hasQuest(slotName);
 	}
 

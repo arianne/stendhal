@@ -48,12 +48,12 @@ public class BarMaidNPCTest {
 	public void testConfigureZone() {
 		
 		SingletonRepository.getRPWorld();
-		BarMaidNPC barmaidConfigurator = new BarMaidNPC();
+		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
 
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		barmaidConfigurator.configureZone(zone, null);
 		assertFalse(zone.getNPCList().isEmpty());
-		NPC barMaid = zone.getNPCList().get(0);
+		final NPC barMaid = zone.getNPCList().get(0);
 		assertThat(barMaid.getName(), is("Siandra"));
 		assertThat(barMaid.getDescription(), is("You see a pretty young bar maid."));
 	}
@@ -61,12 +61,12 @@ public class BarMaidNPCTest {
 	@Test
 	public void testHiandBye() throws Exception {
 		SingletonRepository.getRPWorld();
-		BarMaidNPC barmaidConfigurator = new BarMaidNPC();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		barmaidConfigurator.configureZone(zone, null);
-		SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
+		final SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
 		assertThat(barMaid.getName(), is("Siandra"));
-		Engine engine = barMaid.getEngine();
+		final Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.IDLE);
 
 		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
@@ -83,12 +83,12 @@ public class BarMaidNPCTest {
 	@Test
 	public void testJobOfferQuest() throws Exception {
 		SingletonRepository.getRPWorld();
-		BarMaidNPC barmaidConfigurator = new BarMaidNPC();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		barmaidConfigurator.configureZone(zone, null);
-		SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
+		final SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
 		assertThat(barMaid.getName(), is("Siandra"));
-		Engine engine = barMaid.getEngine();
+		final Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 
 		Sentence sentence = new SentenceImplementation(new Expression("job", ExpressionType.VERB));
@@ -113,12 +113,12 @@ public class BarMaidNPCTest {
 	public void testBuyerBehaviour() throws Exception {
 		SingletonRepository.getRPWorld();
 
-		BarMaidNPC barmaidConfigurator = new BarMaidNPC();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		barmaidConfigurator.configureZone(zone, null);
-		SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
+		final SpeakerNPC barMaid = (SpeakerNPC) zone.getNPCList().get(0);
 		assertThat(barMaid.getName(), is("Siandra"));
-		Engine engine = barMaid.getEngine();
+		final Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 
 		Sentence sentence = new SentenceImplementation(new Expression("offer", ExpressionType.VERB));
@@ -126,7 +126,7 @@ public class BarMaidNPCTest {
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat("offer text", barMaid.getText(), is("I buy cheese, meat, spinach, ham, flour, and porcini."));
 
-		Expression sell = new Expression("sell", ExpressionType.VERB);
+		final Expression sell = new Expression("sell", ExpressionType.VERB);
 
 		sentence = new SentenceImplementation(sell);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
@@ -169,7 +169,7 @@ public class BarMaidNPCTest {
 		assertThat("offer text", barMaid.getText(), is("1 porcini is worth 30. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		Expression porcini = new Expression("porcini", ExpressionType.OBJECT);
+		final Expression porcini = new Expression("porcini", ExpressionType.OBJECT);
 		porcini.setAmount(2);
 		sentence = new SentenceImplementation(sell, porcini);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
@@ -177,7 +177,7 @@ public class BarMaidNPCTest {
 		assertThat("offer text", barMaid.getText(), is("2 porcini are worth 60. Do you want to sell them?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
-		Expression flour = new Expression("flour", ExpressionType.OBJECT);
+		final Expression flour = new Expression("flour", ExpressionType.OBJECT);
 		flour.setAmount(2);
 		sentence = new SentenceImplementation(sell, flour);
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);

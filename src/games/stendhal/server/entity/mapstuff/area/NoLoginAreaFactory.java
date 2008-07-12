@@ -17,7 +17,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) {
+	protected int getHeight(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
@@ -30,7 +30,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) {
+	protected int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
@@ -42,7 +42,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @return The message to send to the player.
 	 */
-	protected String getMessage(ConfigurableFactoryContext ctx) {
+	protected String getMessage(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("message", null);
 	}
 
@@ -57,7 +57,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is missing/invalid.
 	 */
-	protected int getNewX(ConfigurableFactoryContext ctx) {
+	protected int getNewX(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-x");
 	}
 
@@ -72,7 +72,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is missing/invalid.
 	 */
-	protected int getNewY(ConfigurableFactoryContext ctx) {
+	protected int getNewY(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-y");
 	}
 
@@ -90,7 +90,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
 	 */
-	public NoLoginArea create(ConfigurableFactoryContext ctx) {
+	public NoLoginArea create(final ConfigurableFactoryContext ctx) {
 		return new NoLoginArea(getWidth(ctx), getHeight(ctx), getNewX(ctx),
 				getNewY(ctx), getMessage(ctx));
 	}

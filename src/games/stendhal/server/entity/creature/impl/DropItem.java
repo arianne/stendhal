@@ -10,14 +10,14 @@ public class DropItem {
 
 	public int max;
 
-	public DropItem(String name, double probability, int min, int max) {
+	public DropItem(final String name, final double probability, final int min, final int max) {
 		this.name = name;
 		this.probability = probability;
 		this.min = min;
 		this.max = max;
 	}
 
-	public DropItem(String name, double probability, int amount) {
+	public DropItem(final String name, final double probability, final int amount) {
 		this.name = name;
 		this.probability = probability;
 		this.min = amount;

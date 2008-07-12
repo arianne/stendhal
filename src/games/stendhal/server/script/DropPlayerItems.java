@@ -15,7 +15,7 @@ import java.util.List;
 public class DropPlayerItems extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		if (args.size() < 2) {
@@ -23,7 +23,7 @@ public class DropPlayerItems extends ScriptImpl {
 			return;
 		}
 
-		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
+		final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
 		String itemName = null;
 		int amount = 1;
 
@@ -34,7 +34,7 @@ public class DropPlayerItems extends ScriptImpl {
 			itemName = args.get(1);
 		}
 
-		String singularItemName = Grammar.singular(itemName);
+		final String singularItemName = Grammar.singular(itemName);
 
 		boolean res = player.drop(itemName, amount);
 
@@ -42,7 +42,7 @@ public class DropPlayerItems extends ScriptImpl {
 			res = player.drop(singularItemName, amount);
 		}
 
-		String msg = "Admin " + admin.getTitle() + " removed " + amount + " "
+		final String msg = "Admin " + admin.getTitle() + " removed " + amount + " "
 				+ Grammar.plnoun(amount, singularItemName) + " from player "
 				+ player.getTitle() + ": " + res;
 

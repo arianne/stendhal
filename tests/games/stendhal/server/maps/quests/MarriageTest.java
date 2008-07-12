@@ -40,7 +40,7 @@ public class MarriageTest {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_fado_lovers_room_2")); 
 		new PriestNPC().configureZone(zone, null);
 		new VergerNPC().configureZone(zone, null);
@@ -51,7 +51,7 @@ public class MarriageTest {
 		new GreeterNPC().configureZone(zone, null);
 		new ClerkNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new Marriage();
+		final AbstractQuest quest = new Marriage();
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayerWithOutFit("player");

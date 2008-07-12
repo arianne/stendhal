@@ -89,9 +89,9 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
-		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(entity.getType()));
+			final IGameScreen gameScreen) {
+		final SpriteStore store = SpriteStore.get();
+		final Sprite tiles = store.getSprite(translate(entity.getType()));
 
 		map.put(STATE_CLOSED, store.getTile(tiles, 0, 0,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
@@ -162,7 +162,7 @@ class Chest2DView extends StateEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		super.update(gameScreen);
 
 		if (openChanged) {
@@ -235,7 +235,7 @@ class Chest2DView extends StateEntity2DView {
 			/* no break */
 
 		case CLOSE:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			chest.fillTargetInfo(rpaction);
@@ -256,7 +256,7 @@ class Chest2DView extends StateEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void release(IGameScreen gameScreen) {
+	public void release(final IGameScreen gameScreen) {
 		if (wtEntityContainer != null) {
 			wtEntityContainer.destroy(gameScreen);
 			wtEntityContainer = null;

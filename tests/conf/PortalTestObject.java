@@ -9,7 +9,7 @@ public class PortalTestObject {
 
 	private final String destName;
 
-	PortalTestObject(String zone, String name, String destZone, String destName) {
+	PortalTestObject(final String zone, final String name, final String destZone, final String destName) {
 		super();
 		this.zone = zone;
 		this.name = name;

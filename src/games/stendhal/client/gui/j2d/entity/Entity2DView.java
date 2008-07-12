@@ -138,7 +138,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/*
 	 * Handle entity changes
 	 */
-	protected void applyChanges(IGameScreen gameScreen) {
+	protected void applyChanges(final IGameScreen gameScreen) {
 		if (changed) {
 			update(gameScreen);
 			changed = false;
@@ -159,7 +159,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Rebuild the representation using the base entity.
 	 */
-	protected void buildRepresentation(IGameScreen gameScreen) {
+	protected void buildRepresentation(final IGameScreen gameScreen) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
@@ -172,8 +172,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The sprite height (in pixels).
 	 */
 	protected void calculateOffset(final int swidth, final int sheight,
-			IGameScreen screen) {
-		Rectangle2D area = entity.getArea();
+			final IGameScreen screen) {
+		final Rectangle2D area = entity.getArea();
 
 		calculateOffset(swidth, sheight, screen.convertWorldToScreen(area
 				.getWidth()), screen.convertWorldToScreen(area.getHeight()));
@@ -218,7 +218,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public void draw(final Graphics2D g2d, final IGameScreen gameScreen) {
 		applyChanges(gameScreen);
 
-		Rectangle r = getArea();
+		final Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
@@ -231,7 +231,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			}
 		}
 
-		Composite oldComposite = g2d.getComposite();
+		final Composite oldComposite = g2d.getComposite();
 
 		try {
 			g2d.setComposite(entityComposite);
@@ -258,7 +258,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity height.
 	 */
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, IGameScreen gameScreen) {
+			final int width, final int height, final IGameScreen gameScreen) {
 		drawEntity(g2d, x, y, width, height, gameScreen);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
@@ -304,7 +304,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity height.
 	 */
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, IGameScreen gameScreen) {
+			final int width, final int height, final IGameScreen gameScreen) {
 		getSprite().draw(g2d, x, y);
 	}
 
@@ -315,8 +315,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
-	public void drawTop(final Graphics2D g2d, IGameScreen gameScreen) {
-		Rectangle r = getArea();
+	public void drawTop(final Graphics2D g2d, final IGameScreen gameScreen) {
+		final Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
@@ -329,7 +329,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			}
 		}
 
-		Composite oldComposite = g2d.getComposite();
+		final Composite oldComposite = g2d.getComposite();
 
 		try {
 			g2d.setComposite(entityComposite);
@@ -378,7 +378,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		String rpath = entity.getEntityClass();
 
 		if (rpath != null) {
-			String subclass = entity.getEntitySubClass();
+			final String subclass = entity.getEntitySubClass();
 
 			if (subclass != null) {
 				rpath += "/" + subclass;
@@ -394,7 +394,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The drawing composite.
 	 */
 	protected AlphaComposite getComposite() {
-		int visibility = getVisibility();
+		final int visibility = getVisibility();
 
 		if (visibility == 100) {
 			return AlphaComposite.SrcOver;
@@ -528,7 +528,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected void setAnimation(final Sprite sprite) {
 		if (sprite instanceof AnimatedSprite) {
-			AnimatedSprite asprite = (AnimatedSprite) sprite;
+			final AnimatedSprite asprite = (AnimatedSprite) sprite;
 
 			if (isAnimating()) {
 				asprite.start();
@@ -546,7 +546,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param contained
 	 *            <code>true</code> if contained.
 	 */
-	public void setContained(boolean contained) {
+	public void setContained(final boolean contained) {
 		this.contained = contained;
 	}
 
@@ -589,7 +589,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Handle updates.
 	 */
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		if (representationChanged) {
 			buildRepresentation(gameScreen);
 			representationChanged = false;
@@ -649,7 +649,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The list of actions.
 	 */
 	public final String[] getActions() {
-		List<String> list = new ArrayList<String>();
+		final List<String> list = new ArrayList<String>();
 
 		buildActions(list);
 
@@ -706,7 +706,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			return;
 		}
 
-		int id = entity.getID().getObjectID();
+		final int id = entity.getID().getObjectID();
 		RPAction rpaction;
 
 		switch (at) {
@@ -752,7 +752,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 */
-	public void release(IGameScreen gameScreen) {
+	public void release(final IGameScreen gameScreen) {
 		entity.removeChangeListener(this);
 		entity = null;
 	}

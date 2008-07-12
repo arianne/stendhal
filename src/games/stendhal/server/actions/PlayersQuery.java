@@ -34,12 +34,12 @@ public class PlayersQuery implements ActionListener {
 	private static final String _WHO = "who";
 
 	public static void register() {
-		PlayersQuery query = new PlayersQuery();
+		final PlayersQuery query = new PlayersQuery();
 		CommandCenter.register(_WHO, query);
 		CommandCenter.register(_WHERE, query);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.get(TYPE).equals(_WHO)) {
 			onWho(player, action);
 		} else {
@@ -47,14 +47,14 @@ public class PlayersQuery implements ActionListener {
 		}
 	}
 
-	public void onWho(Player player, RPAction action) {
-		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+	public void onWho(final Player player, final RPAction action) {
+		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final TreeSet<String> treeSet = new TreeSet<String>();
 
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-				public void execute(Player p) {
-					StringBuilder text = new StringBuilder(p.getTitle());
+				public void execute(final Player p) {
+					final StringBuilder text = new StringBuilder(p.getTitle());
 
 					if (p.isGhost()) {
 						text.append("(!");
@@ -70,8 +70,8 @@ public class PlayersQuery implements ActionListener {
 			});
 		} else {
 			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task<Player>() {
-				public void execute(Player p) {
-					StringBuilder text = new StringBuilder(p.getTitle());
+				public void execute(final Player p) {
+					final StringBuilder text = new StringBuilder(p.getTitle());
 					text.append("(");
 
 					text.append(p.getLevel());
@@ -80,37 +80,37 @@ public class PlayersQuery implements ActionListener {
 				}
 			}, new FilterCriteria<Player>() {
 
-				public boolean passes(Player o) {
+				public boolean passes(final Player o) {
 					return !o.isGhost();
 				}
 			});
 		}
 
-		StringBuilder online = new StringBuilder();
+		final StringBuilder online = new StringBuilder();
 		online.append(treeSet.size() + " Players online: ");
-		for (String text : treeSet) {
+		for (final String text : treeSet) {
 			online.append(text);
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
 	}
 
-	public void onWhere(Player player, RPAction action) {
+	public void onWhere(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
-			String whoName = action.get(TARGET);
+			final String whoName = action.get(TARGET);
 
-			StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+			final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 
 			rules.addGameEvent(player.getName(), _WHERE, whoName);
 
-			Player who = rules.getPlayer(whoName);
-			DomesticAnimal animal = player.searchAnimal(whoName, false);
+			final Player who = rules.getPlayer(whoName);
+			final DomesticAnimal animal = player.searchAnimal(whoName, false);
 
 			if (who != null) {
 				if (who.isGhost()) {
 					player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
 				} else {
-					StendhalRPZone zone = who.getZone();
+					final StendhalRPZone zone = who.getZone();
 
 					if (zone != null) {
 						player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
@@ -124,7 +124,7 @@ public class PlayersQuery implements ActionListener {
 							+ " is at (" + animal.getX() + "," + animal.getY() + ")");
 			}
 
-			if (who == null && animal == null) {
+			if ((who == null) && (animal == null)) {
 				player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
 			}
 

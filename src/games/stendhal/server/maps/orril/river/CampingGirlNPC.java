@@ -17,12 +17,12 @@ public class CampingGirlNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildCampfireArea(zone);
 	}
 
-	private void buildCampfireArea(StendhalRPZone zone) {
-		SpeakerNPC sally = new SpeakerNPC("Sally") {
+	private void buildCampfireArea(final StendhalRPZone zone) {
+		final SpeakerNPC sally = new SpeakerNPC("Sally") {
 
 			@Override
 			protected void createPath() {

@@ -39,13 +39,13 @@ public class SuntanCreamForZara extends AbstractQuest {
 	private static final String QUEST_SLOT = "suntan_cream_zara";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("Zara")) {
 			res.add("FIRST_CHAT");
 		}
@@ -64,14 +64,14 @@ public class SuntanCreamForZara extends AbstractQuest {
 	}
 
 	private void createRequestingStep() {
-		SpeakerNPC zara = npcs.get("Zara");
+		final SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
@@ -125,7 +125,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 	}
 
 	private void createBringingStep() {
-		SpeakerNPC zara = npcs.get("Zara");
+		final SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -133,7 +133,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("suntan cream")) {
 						npc.say("Great! You got the suntan cream! Is it for me?");
 					} else {
@@ -153,9 +153,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("suntan cream");
-					Item zaraKey = SingletonRepository.getEntityManager()
+					final Item zaraKey = SingletonRepository.getEntityManager()
 							.getItem("small key");
 					zaraKey.setBoundTo(player.getName());
 					player.equip(zaraKey, true);

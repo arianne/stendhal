@@ -46,29 +46,29 @@ public class Snowballs extends AbstractQuest {
 	private static final String QUEST_SLOT = "snowballs";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public boolean isCompleted(Player player) {
+	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT)
 				&& !player.getQuest(QUEST_SLOT).equals("start");
 	}
 
 	@Override
-	public boolean isRepeatable(Player player) {
+	public boolean isRepeatable(final Player player) {
 		return true;
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 			return res;
@@ -83,17 +83,17 @@ public class Snowballs extends AbstractQuest {
 		return res;
 	}
 
-	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
+	private boolean canStartQuestNow(final SpeakerNPC npc, final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			String lasttime = player.getQuest(QUEST_SLOT);
+			final String lasttime = player.getQuest(QUEST_SLOT);
 		   
-		   long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+		   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		   
-		   long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		   final long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
 		   
 		   if (timeRemaining < 0) {
 		   player.setQuest(QUEST_SLOT, "0");
@@ -105,7 +105,7 @@ public class Snowballs extends AbstractQuest {
 	}
 
 	private void prepareRequestingStep() {
-		SpeakerNPC npc = npcs.get("Mr. Yeti");
+		final SpeakerNPC npc = npcs.get("Mr. Yeti");
 
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
@@ -127,7 +127,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
 					} else {
@@ -150,7 +150,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.");
 					} else {
@@ -178,14 +178,14 @@ public class Snowballs extends AbstractQuest {
 	}
 
 	private void prepareBringingStep() {
-		SpeakerNPC npc = npcs.get("Mr. Yeti");
+		final SpeakerNPC npc = npcs.get("Mr. Yeti");
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 
 			new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS),
 			ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("snowball", REQUIRED_SNOWBALLS);
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						player.addXP(500);
@@ -198,7 +198,7 @@ public class Snowballs extends AbstractQuest {
 							rewardClass = "perch";
 						}
 						npc.say("Thank you! Here, take some " + rewardClass + "! I do not like to eat them.");
-						StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+						final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 						reward.setQuantity(20);
 						player.equip(reward, true);
 						player.notifyWorldAboutChanges();

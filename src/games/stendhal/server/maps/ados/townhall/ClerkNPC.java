@@ -24,16 +24,16 @@ public class ClerkNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildClerk(zone);
 	}
 
-	private void buildClerk(StendhalRPZone zone) {
-		SpeakerNPC clerk = new SpeakerNPC("Wilfred") {
+	private void buildClerk(final StendhalRPZone zone) {
+		final SpeakerNPC clerk = new SpeakerNPC("Wilfred") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(23, 10));
 				nodes.add(new Node(27, 10));	
 				nodes.add(new Node(27, 8));	

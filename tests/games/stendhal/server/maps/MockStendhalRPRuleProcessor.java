@@ -17,7 +17,7 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	}
 
 	@Override
-	public void addGameEvent(String source, String event, String... params) {
+	public void addGameEvent(final String source, final String event, final String... params) {
 		// do not log to database during test
 	}
 
@@ -31,7 +31,7 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 *
 	 * @param player Player
 	 */
-	public void addPlayer(Player player) {
+	public void addPlayer(final Player player) {
 		this.onlinePlayers.add(player);
 	}
 

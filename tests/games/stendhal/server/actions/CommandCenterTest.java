@@ -25,14 +25,14 @@ public class CommandCenterTest {
 
 	@Test
 	public void testRegister() {
-		ActionListener listener = new ActionListener() {
+		final ActionListener listener = new ActionListener() {
 			public void onAction(final Player player, final RPAction action) {
 				player.put("success", "true");
 			};
 		};
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "action");
-		PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		CommandCenter.register("action", listener);
 		assertFalse(caster.has("success"));
 		CommandCenter.execute(caster, action);
@@ -43,13 +43,13 @@ public class CommandCenterTest {
 	public void testRegisterTwice() {
 		CommandCenter.register("this", new ActionListener() {
 
-			public void onAction(Player player, RPAction action) {
+			public void onAction(final Player player, final RPAction action) {
 
 			}
 		});
 
 		CommandCenter.register("this", new ActionListener() {
-			public void onAction(Player player, RPAction action) {
+			public void onAction(final Player player, final RPAction action) {
 
 			}
 		});
@@ -63,10 +63,10 @@ public class CommandCenterTest {
 
 	@Test
 	public void testExecuteUnknown() {
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		action.put("type", "");
-		PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command ", caster.getPrivateTextString());
 	}

@@ -46,7 +46,7 @@ public class StendhalRPAction {
 	/** server manager. */
 	private static RPServerManager rpman;
 
-	public static void initialize(RPServerManager rpman) {
+	public static void initialize(final RPServerManager rpman) {
 		StendhalRPAction.rpman = rpman;
 	}
 
@@ -59,7 +59,7 @@ public class StendhalRPAction {
 	 * @param victim
 	 *            The target of attack.
 	 */
-	public static void startAttack(Player player, RPEntity victim) {
+	public static void startAttack(final Player player, final RPEntity victim) {
 		/*
 		 * Player's can't attack themselves
 		 */
@@ -76,7 +76,7 @@ public class StendhalRPAction {
 
 		// Enabled PVP
 		if ((victim instanceof Player) || (victim instanceof DomesticAnimal)) {
-			StendhalRPZone zone = player.getZone();
+			final StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
 			// sheep) who are inside a protection area.
@@ -87,7 +87,7 @@ public class StendhalRPAction {
 				String name = victim.getTitle();
 
 				if (victim instanceof DomesticAnimal) {
-					Player owner = ((DomesticAnimal) victim).getOwner();
+					final Player owner = ((DomesticAnimal) victim).getOwner();
 
 					if (owner != null) {
 						name = Grammar.suffix_s(owner.getTitle()) + " " + name;
@@ -126,10 +126,10 @@ public class StendhalRPAction {
 	 * @return true iff the attacker has done damage to the defender.
 	 * 
 	 */
-	public static boolean playerAttack(Player player, RPEntity defender) {
+	public static boolean playerAttack(final Player player, final RPEntity defender) {
 		boolean result = false;
 
-		StendhalRPZone zone = player.getZone();
+		final StendhalRPZone zone = player.getZone();
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + player + " to " + defender
 					+ " stopped because target was lost("
@@ -176,7 +176,7 @@ public class StendhalRPAction {
 		}
 
 		// {lifesteal} uncomented following line, also changed name:
-		List<Item> weapons = player.getWeapons();
+		final List<Item> weapons = player.getWeapons();
 
 		if (!(defender instanceof SpeakerNPC)
 				&& player.getsFightXpFrom(defender)) {
@@ -185,7 +185,7 @@ public class StendhalRPAction {
 		}
 
 		// Throw dices to determine if the attacker has missed the defender
-		boolean beaten = player.canHit(defender);
+		final boolean beaten = player.canHit(defender);
 
 		if (beaten) {
 			if ((defender instanceof Player)
@@ -230,10 +230,10 @@ public class StendhalRPAction {
 	 * 
 	 * @param player
 	 */
-	public static void transferContent(Player player) {
+	public static void transferContent(final Player player) {
 
 		if (rpman != null) {
-			StendhalRPZone zone = player.getZone();
+			final StendhalRPZone zone = player.getZone();
 			rpman.transferContent(player, zone.getContents());
 
 		} else {
@@ -251,18 +251,18 @@ public class StendhalRPAction {
 	 * @param y
 	 *            The entity's old zone Y coordinate.
 	 */
-	public static void decideChangeZone(Entity entity, int x, int y) {
-		StendhalRPZone origin = entity.getZone();
+	public static void decideChangeZone(final Entity entity, final int x, final int y) {
+		final StendhalRPZone origin = entity.getZone();
 
-		int entity_x = x + origin.getX();
-		int entity_y = y + origin.getY();
+		final int entity_x = x + origin.getX();
+		final int entity_y = y + origin.getY();
 
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZoneAt(
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZoneAt(
 				origin.getLevel(), entity_x, entity_y, entity);
 
 		if (zone != null) {
-			int nx = entity_x - zone.getX();
-			int ny = entity_y - zone.getY();
+			final int nx = entity_x - zone.getX();
+			final int ny = entity_y - zone.getY();
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("Placing " + entity.getTitle() + " at "
@@ -296,8 +296,8 @@ public class StendhalRPAction {
 	 *            y
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-			int y) {
+	public static boolean placeat(final StendhalRPZone zone, final Entity entity, final int x,
+			final int y) {
 		return placeat(zone, entity, x, y, null);
 	}
 
@@ -318,13 +318,13 @@ public class StendhalRPAction {
 	 *            only search within this area for a possible new position
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-			int y, Shape allowedArea) {
+	public static boolean placeat(final StendhalRPZone zone, final Entity entity, final int x,
+			final int y, final Shape allowedArea) {
 
 		// check in case of players that that they are still in game
 		// because the entity is added to the world again otherwise.
 		if (entity instanceof Player) {
-			Player player = (Player) entity;
+			final Player player = (Player) entity;
 			if (player.isDisconnected()) {
 				return true;
 			}
@@ -382,7 +382,7 @@ public class StendhalRPAction {
 								// Or monsters to spawn on the other side of a
 								// wall.
 
-								List<Node> path = Path.searchPath(entity, zone,
+								final List<Node> path = Path.searchPath(entity, zone,
 										x, y, new Rectangle(nx, ny, 1, 1),
 										maxDestination * maxDestination, false);
 								if (!checkPath || !path.isEmpty()) {
@@ -409,11 +409,11 @@ public class StendhalRPAction {
 		// At this point the valid position [nx,ny] has been found
 		//
 
-		StendhalRPZone oldZone = entity.getZone();
-		boolean zoneChanged = (oldZone != zone);
+		final StendhalRPZone oldZone = entity.getZone();
+		final boolean zoneChanged = (oldZone != zone);
 
 		if (entity instanceof RPEntity) {
-			RPEntity rpentity = (RPEntity) entity;
+			final RPEntity rpentity = (RPEntity) entity;
 
 			rpentity.stop();
 			rpentity.stopAttack();
@@ -431,7 +431,7 @@ public class StendhalRPAction {
 			 * Player specific pre-remove handling
 			 */
 			if (entity instanceof Player) {
-				Player player = (Player) entity;
+				final Player player = (Player) entity;
 
 				/*
 				 * Remove and remember dependents
@@ -476,7 +476,7 @@ public class StendhalRPAction {
 		 * Player specific post-change handling
 		 */
 		if (entity instanceof Player) {
-			Player player = (Player) entity;
+			final Player player = (Player) entity;
 
 			/*
 			 * Move and re-add removed dependents
@@ -508,8 +508,8 @@ public class StendhalRPAction {
 				transferContent(player);
 
 				if (oldZone != null) {
-					String source = oldZone.getName();
-					String destination = zone.getName();
+					final String source = oldZone.getName();
+					final String destination = zone.getName();
 
 					SingletonRepository.getRuleProcessor().addGameEvent(
 							player.getName(), "change zone", destination);

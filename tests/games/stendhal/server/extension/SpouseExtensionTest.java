@@ -39,13 +39,13 @@ public class SpouseExtensionTest {
 
 	@Before
 	public final void setup() {
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		MockStendlRPWorld.get().addRPZone(zone);
 
-		Player pl1 = PlayerTestHelper.createPlayer("player1");
+		final Player pl1 = PlayerTestHelper.createPlayer("player1");
 		PlayerTestHelper.registerPlayer(pl1, zone);
 
-		Player pl2 = PlayerTestHelper.createPlayer("player2");
+		final Player pl2 = PlayerTestHelper.createPlayer("player2");
 		PlayerTestHelper.registerPlayer(pl2, zone);
 	}
 
@@ -58,10 +58,10 @@ public class SpouseExtensionTest {
 
 	@Test
 	public final void testMagic() {
-		StendhalRPWorld world = MockStendlRPWorld.get();
-		StendhalRPZone zone = world.getZone(ZONE_NAME);
+		final StendhalRPWorld world = MockStendlRPWorld.get();
+		final StendhalRPZone zone = world.getZone(ZONE_NAME);
 
-		PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
+		final PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
 		admin.setAdminLevel(400);
 		PlayerTestHelper.registerPlayer(admin, zone);
 

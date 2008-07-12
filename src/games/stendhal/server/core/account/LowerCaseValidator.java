@@ -8,7 +8,7 @@ import marauroa.common.game.Result;
  * @author hendrik
  */
 public class LowerCaseValidator implements AccountParameterValidator {
-	private String parameterValue;
+	private final String parameterValue;
 
 	/**
 	 * creates a LowerCaseValidator.

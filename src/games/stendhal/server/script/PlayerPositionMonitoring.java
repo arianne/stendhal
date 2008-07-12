@@ -24,7 +24,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		// 5 10 15 30 60 120, 300
 		private final int[] INTERVALS = new int[] { 5, 5, 5, 15, 30, 60, 280 };
 
-		private Player admin;
+		private final Player admin;
 
 		private int counter;
 
@@ -34,7 +34,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		 * @param admin
 		 *            the admin to notify
 		 */
-		protected PlayerPositionListener(Player admin) {
+		protected PlayerPositionListener(final Player admin) {
 			this.admin = admin;
 		}
 
@@ -47,7 +47,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 					
 				new Task<Player>() {
 
-				public void execute(Player player) {
+				public void execute(final Player player) {
 
 					if (sb.length() > 10) {
 						sb.append(", ");
@@ -56,7 +56,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 					sb.append(player.getTitle());
 					sb.append(' ');
 
-					StendhalRPZone zone = player.getZone();
+					final StendhalRPZone zone = player.getZone();
 
 					if (zone != null) {
 						sb.append(zone.getName());
@@ -78,7 +78,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			admin.sendPrivateText(sb.toString());
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			list();
 			if (counter < INTERVALS.length) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(
@@ -89,7 +89,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	}
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new PlayerPositionListener(admin));
 	}

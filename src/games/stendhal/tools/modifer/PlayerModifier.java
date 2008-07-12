@@ -13,44 +13,44 @@ public class PlayerModifier {
 
 	IDatabase database;
 
-	public void setDatabase(IDatabase database) {
+	public void setDatabase(final IDatabase database) {
 		this.database = database;
 	}
 
-	public Player loadPlayer(String characterName) {
+	public Player loadPlayer(final String characterName) {
 		if (database == null) {
 			throw new IllegalStateException("no database");
 		}
 		if (characterName == null) {
 			return null;
 		}
-		Transaction transaction = database.getTransaction();
+		final Transaction transaction = database.getTransaction();
 
 		try {
 
-			RPObject loadCharacter = database.loadCharacter(transaction, characterName, characterName);
+			final RPObject loadCharacter = database.loadCharacter(transaction, characterName, characterName);
 			if (loadCharacter != null) {
 				return new Player(loadCharacter);
 			}
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			return null;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			return null;
 		}
 		return null;
 	}
 
-	public boolean savePlayer(Player player) {
+	public boolean savePlayer(final Player player) {
 		if (database == null) {
 			throw new IllegalStateException("no database");
 		}
-		Transaction transaction = database.getTransaction();
+		final Transaction transaction = database.getTransaction();
 		try {
 			database.storeCharacter(transaction, player.getName(), player.getName(), player);
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			return false;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			return false;
 		}
 		return true;

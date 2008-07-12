@@ -60,7 +60,7 @@ public abstract class Entity extends RPObject {
 	protected Rectangle2D area = new Rectangle.Double();
 
 	public static void generateRPClass() {
-		RPClass entity = new RPClass("entity");
+		final RPClass entity = new RPClass("entity");
 
 		// Some things may have a textual description
 		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
@@ -99,7 +99,7 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 	}
 
-	public Entity(RPObject object) {
+	public Entity(final RPObject object) {
 		super(object);
 
 		if (!has("x")) {
@@ -143,8 +143,8 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void update() {
-		int oldX = x;
-		int oldY = y;
+		final int oldX = x;
+		final int oldY = y;
 		boolean moved = false;
 
 		if (has("x")) {
@@ -295,7 +295,7 @@ public abstract class Entity extends RPObject {
 	 * 
 	 * @return <code>true</code> if very high resistance.
 	 */
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		// > 95% combined resistance = obstacle
 		return (getResistance(entity) > 95);
 	}
@@ -311,14 +311,14 @@ public abstract class Entity extends RPObject {
 	 *            the entity to which the distance should be calculated
 	 * @return double representing the squared distance
 	 */
-	public final double squaredDistance(Entity other) {
-		Rectangle2D otherArea = other.getArea();
-		double otherMiddleX = otherArea.getCenterX();
-		double otherMiddleY = otherArea.getCenterY();
+	public final double squaredDistance(final Entity other) {
+		final Rectangle2D otherArea = other.getArea();
+		final double otherMiddleX = otherArea.getCenterX();
+		final double otherMiddleY = otherArea.getCenterY();
 
-		Rectangle2D thisArea = getArea();
-		double thisMiddleX = thisArea.getCenterX();
-		double thisMiddleY = thisArea.getCenterY();
+		final Rectangle2D thisArea = getArea();
+		final double thisMiddleX = thisArea.getCenterX();
+		final double thisMiddleY = thisArea.getCenterY();
 		
 		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + other.width) / 2;
 		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + other.height) / 2;
@@ -345,17 +345,17 @@ public abstract class Entity extends RPObject {
 	 *            The vertical coordinate of the point
 	 * @return double representing the squared distance
 	 */
-	public final double squaredDistance(int x, int y) {
+	public final double squaredDistance(final int x, final int y) {
 		
 		
-		double otherMiddleX = x + 0.5;
-		double otherMiddleY = y + 0.5;
+		final double otherMiddleX = x + 0.5;
+		final double otherMiddleY = y + 0.5;
 
 
-		Rectangle2D thisArea = getArea();
+		final Rectangle2D thisArea = getArea();
 		
-		double thisMiddleX = thisArea.getCenterX();
-		double thisMiddleY = thisArea.getCenterY();
+		final double thisMiddleX = thisArea.getCenterX();
+		final double thisMiddleY = thisArea.getCenterY();
 		
 		
 		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + 1) / 2;
@@ -381,8 +381,8 @@ public abstract class Entity extends RPObject {
 	 *            The maximum distance
 	 * @return true iff the point is at most <i>step</i> steps away
 	 */
-	public boolean nextTo(int x, int y, double step) {
-		Rectangle2D thisArea = getArea();
+	public boolean nextTo(final int x, final int y, final double step) {
+		final Rectangle2D thisArea = getArea();
 		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
 				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
@@ -397,7 +397,7 @@ public abstract class Entity extends RPObject {
 	 * 
 	 * @return <code>true</code> if the entity is next to this.
 	 */
-	public boolean nextTo(Entity entity) {
+	public boolean nextTo(final Entity entity) {
 		// For now call old code (just a convenience function)
 		return nextTo(entity, 0.25);
 	}
@@ -411,8 +411,8 @@ public abstract class Entity extends RPObject {
 	 *            The maximum distance
 	 * @return true iff the entity is at most <i>step</i> steps away
 	 */
-	public boolean nextTo(Entity entity, double step) {
-		Rectangle2D thisArea = getArea();
+	public boolean nextTo(final Entity entity, final double step) {
+		final Rectangle2D thisArea = getArea();
 		// To check the overlapping between 'this' and the other 'entity'
 		// we create two temporary rectangle objects and initialise them
 		// with the position of the two entities.
@@ -444,8 +444,8 @@ public abstract class Entity extends RPObject {
 	 *            y
 	 * @return rectangle for the used area
 	 */
-	public Rectangle2D getArea(double ex, double ey) {
-		Rectangle2D tempRect = new Rectangle.Double();
+	public Rectangle2D getArea(final double ex, final double ey) {
+		final Rectangle2D tempRect = new Rectangle.Double();
 		getArea(tempRect, ex, ey);
 		return tempRect;
 	}
@@ -471,7 +471,7 @@ public abstract class Entity extends RPObject {
 	 * @param zone
 	 *            The zone this was added to.
 	 */
-	public void onAdded(StendhalRPZone zone) {
+	public void onAdded(final StendhalRPZone zone) {
 		if (this.zone != null) {
 			logger.error("Entity added while in another zone: " + this);
 		}
@@ -492,7 +492,7 @@ public abstract class Entity extends RPObject {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
-	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
 		// sub classes can implement this method
 	}
 
@@ -502,7 +502,7 @@ public abstract class Entity extends RPObject {
 	 * @param zone
 	 *            The zone this will be removed from.
 	 */
-	public void onRemoved(StendhalRPZone zone) {
+	public void onRemoved(final StendhalRPZone zone) {
 		if (this.zone != zone) {
 			logger.error("Entity removed from wrong zone: " + this);
 		}
@@ -545,7 +545,7 @@ public abstract class Entity extends RPObject {
 	 * @return name 
 	 * 
 	 */
-	public String getDescriptionName(boolean definite) {
+	public String getDescriptionName(final boolean definite) {
 		if (has("subclass")) {
 			return Grammar.article_noun(ItemTools.itemNameToDisplayName(get("subclass")), definite);
 		} else if (has("class")) {
@@ -619,8 +619,8 @@ public abstract class Entity extends RPObject {
 	 *            The y position (in world units).
 	 */
 	public final void setPosition(final int x, final int y) {
-		int oldX = this.x;
-		int oldY = this.y;
+		final int oldX = this.x;
+		final int oldY = this.y;
 		boolean moved = false;
 
 		if (x != oldX) {
@@ -646,7 +646,7 @@ public abstract class Entity extends RPObject {
 	 * @param resistance
 	 *            The amount of resistance (0-100).
 	 */
-	public final void setResistance(int resistance) {
+	public final void setResistance(final int resistance) {
 		this.resistance = resistance;
 		put("resistance", resistance);
 	}
@@ -683,13 +683,13 @@ public abstract class Entity extends RPObject {
 	 * @param other
 	 * @return true if near enough
 	 */
-	public boolean isInSight(Entity other) {
+	public boolean isInSight(final Entity other) {
 		if (other != null) {
 			if (other.getZone() == getZone()) {
 				// check distance: 640x480 client screen size for 32x32 pixel tiles
 				// -> makes 20x15 tiles screen size
-				if (Math.abs(other.getX() - x) <= 20 
-						&& Math.abs(other.getY() - y) <= 15) {
+				if ((Math.abs(other.getX() - x) <= 20) 
+						&& (Math.abs(other.getY() - y) <= 15)) {
 					return true;
 				}
 			}

@@ -7,9 +7,9 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerPetManager {
-	private Player player;
+	private final Player player;
 
-	PlayerPetManager(Player player) {
+	PlayerPetManager(final Player player) {
 		this.player = player;
 	}
 
@@ -18,7 +18,7 @@ public class PlayerPetManager {
 			player.addSlot(new RPSlot("#pets"));
 		}
 
-		RPSlot slot = player.getSlot("#pets");
+		final RPSlot slot = player.getSlot("#pets");
 		slot.clear();
 
 		/*
@@ -50,10 +50,10 @@ public class PlayerPetManager {
 	 */
 	public Pet retrievePet() {
 		if (player.hasSlot("#pets")) {
-			RPSlot slot = player.getSlot("#pets");
+			final RPSlot slot = player.getSlot("#pets");
 
 			if (slot.size() > 0) {
-				RPObject object = slot.getFirst();
+				final RPObject object = slot.getFirst();
 				slot.remove(object.getID());
 
 				player.removeSlot("#pets");

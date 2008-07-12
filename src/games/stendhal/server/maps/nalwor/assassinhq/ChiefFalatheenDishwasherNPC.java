@@ -15,9 +15,9 @@ import java.util.Map;
  */
 
 public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 			@Override
-			public void createDialog(SpeakerNPC dishwasher) {
+			public void createDialog(final SpeakerNPC dishwasher) {
 				dishwasher.addGreeting("You better have a good excuse for bothering me. I'm up to my neck in dishwater!");
 				dishwasher.addJob("It is my job to wash all the dishes for all these pesty little brats.");
 				dishwasher.addHelp("I can buy your vegetables and herbs.  Please see blackboards on wall for what i need.");
@@ -26,7 +26,7 @@ public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
 				dishwasher.addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");
 				dishwasher.addReply("escape", "Yes! I want to pursue my dream. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
 
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("shuriken", 20);
 				offerings.put("amulet", 800);
 				offerings.put("black pearl", 100);

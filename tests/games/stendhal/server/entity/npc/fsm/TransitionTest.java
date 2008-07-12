@@ -37,7 +37,7 @@ public class TransitionTest {
 
 	@Test
 	public final void testMatches() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertTrue(t.matches(-2, ConversationParser.parse("trigger")));
 		assertFalse(t.matches(0, ConversationParser.parse("trigger")));
 		assertFalse(t.matches(0, ConversationParser.parse(null)));
@@ -46,7 +46,7 @@ public class TransitionTest {
 
 	@Test
 	public final void testMatchesNormalized() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertTrue(t.matchesNormalized(-2, ConversationParser.parse("trigger")));
 		assertFalse(t.matchesNormalized(0, ConversationParser.parse("trigger")));
 		assertFalse(t.matchesNormalized(0, ConversationParser.parse(null)));
@@ -55,7 +55,7 @@ public class TransitionTest {
 
 	@Test
 	public final void testMatchesSimilar() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertTrue(t.matchesSimilar(-2, ConversationParser.parse("triggerx")));
 		assertFalse(t.matchesSimilar(-2, ConversationParser.parse("xxxtriggerxxx")));
 		assertFalse(t.matchesSimilar(0, ConversationParser.parse("triggerx")));
@@ -109,9 +109,9 @@ public class TransitionTest {
 		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"),
 										null, 0, null, null);
 		assertNull(t.getAction());
-		PostTransitionAction postTransitionAction = new PostTransitionAction() {
+		final PostTransitionAction postTransitionAction = new PostTransitionAction() {
 
-			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				// do nothing
 			}
 		};
@@ -125,10 +125,10 @@ public class TransitionTest {
 		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"),
 										null, 0, null, null);
 		assertNull(t.getCondition());
-		ChatCondition cond = new ChatCondition() {
+		final ChatCondition cond = new ChatCondition() {
 
 			@Override
-			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				return false;
 			}
 		};
@@ -160,19 +160,19 @@ public class TransitionTest {
 
 	@Test
 	public final void testGetState() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertEquals(-2, t.getState());
 	}
 
 	@Test
 	public final void testGetTrigger() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertEquals("trigger", t.getTrigger().getNormalized());
 	}
 
 	@Test
 	public final void testToString() {
-		Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
+		final Transition t = new Transition(-2, ConversationParser.createTriggerExpression("trigger"), null, 0, null, null);
 		assertEquals("[-2,trigger,0,null]", t.toString());
 	}
 

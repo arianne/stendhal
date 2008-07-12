@@ -102,7 +102,7 @@ public class SoundObject extends InvisibleEntity {
 		this.volume = volume;
 	}
 
-	public DataLine playSound(String token, int volBot, int volTop, int chance) {
+	public DataLine playSound(final String token, final int volBot, final int volTop, final int chance) {
 		if (soundArray == null) {
 			soundInit();
 		}

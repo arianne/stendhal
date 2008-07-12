@@ -39,7 +39,7 @@ public class OrConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new OrCondition().equals(null));
 
-		OrCondition obj = new OrCondition();
+		final OrCondition obj = new OrCondition();
 		assertTrue(obj.equals(obj));
 		assertTrue(new OrCondition().equals(new OrCondition()));
 		assertTrue(new OrCondition((ChatCondition) null).equals(new OrCondition(
@@ -91,7 +91,7 @@ public class OrConditionTest {
 
 	@Test
 	public void testHashCode() throws Throwable {
-		OrCondition obj = new OrCondition();
+		final OrCondition obj = new OrCondition();
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new OrCondition().hashCode(), new OrCondition().hashCode());
 		assertEquals(new OrCondition((ChatCondition) null).hashCode(),

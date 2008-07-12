@@ -21,14 +21,14 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 		this(pricelist);
 	}
 
-	public SeedSellerBehaviour(Map<String, Integer> priceList) {
+	public SeedSellerBehaviour(final Map<String, Integer> priceList) {
 		super(priceList);
 	}
 
 	@Override
-	protected Item getAskedItem(String askedItem) {
-		String[] tokens = askedItem.split(" ");
-		Item item = SingletonRepository.getEntityManager().getItem("seed");
+	protected Item getAskedItem(final String askedItem) {
+		final String[] tokens = askedItem.split(" ");
+		final Item item = SingletonRepository.getEntityManager().getItem("seed");
 		item.setInfoString(tokens[0]);
 		return item;
 

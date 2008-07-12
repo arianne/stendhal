@@ -18,7 +18,7 @@ import java.util.Map;
  * Inside Gnome Village.
  */
 public class GarbiddleNPC implements ZoneConfigurator {
-    private ShopList shops = SingletonRepository.getShopList();
+    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -26,16 +26,16 @@ public class GarbiddleNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildgarbiddle(zone);
 	}
 
-	private void buildgarbiddle(StendhalRPZone zone) {
-		SpeakerNPC garbiddle = new SpeakerNPC("Garbiddle") {
+	private void buildgarbiddle(final StendhalRPZone zone) {
+		final SpeakerNPC garbiddle = new SpeakerNPC("Garbiddle") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(37, 112));
 				nodes.add(new Node(41, 112));
 				setPath(new FixedPath(nodes, true));

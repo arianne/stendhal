@@ -43,19 +43,19 @@ public abstract class NPC extends RPEntity {
 
 	public static void generateRPClass() {
 		try {
-			RPClass npc = new RPClass("npc");
+			final RPClass npc = new RPClass("npc");
 			npc.isA("rpentity");
 			npc.addAttribute("class", Type.STRING);
 			npc.addAttribute("subclass", Type.STRING);
 			npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
 			npc.addAttribute("outfit", Type.INT);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
 
-	public NPC(RPObject object) {
+	public NPC(final RPObject object) {
 		super(object);
 		setRPClass("npc");
 		update();
@@ -72,7 +72,7 @@ public abstract class NPC extends RPEntity {
 	 * @param idea
 	 *			  The idea mnemonic, or <code>null</code>.
 	 */
-	public void setIdea(String idea) {
+	public void setIdea(final String idea) {
 		if (idea != null) {
 			if (!idea.equals(this.idea)) {
 				put("idea", idea);
@@ -95,11 +95,11 @@ public abstract class NPC extends RPEntity {
 
 	// TODO NPC.setOutfit() function seems not to be used anywhere, so it could
 	// be removed.
-	public void setOutfit(String outfit) {
+	public void setOutfit(final String outfit) {
 		put("outfit", outfit);
 	}
 
-	public void say(String text) {
+	public void say(final String text) {
 		put("text", text);
 	}
 
@@ -121,8 +121,8 @@ public abstract class NPC extends RPEntity {
 	 * @param maxPathRadius
 	 *			  the maximum radius in which a path is searched
 	 */
-	public void setMovement(Entity destEntity, double min, double max,
-			double maxPathRadius) {
+	public void setMovement(final Entity destEntity, final double min, final double max,
+			final double maxPathRadius) {
 		if (nextTo(destEntity.getX(), destEntity.getY(), min)) {
 			stop();
 
@@ -136,7 +136,7 @@ public abstract class NPC extends RPEntity {
 			logger.debug("Creating path because (" + getX() + "," + getY()
 					+ ") distance(" + destEntity.getX() + ","
 					+ destEntity.getY() + ")>" + max);
-			List<Node> path = Path.searchPath(this, destEntity, maxPathRadius);
+			final List<Node> path = Path.searchPath(this, destEntity, maxPathRadius);
 			setPath(new FixedPath(path, false));
 		}
 	}
@@ -152,11 +152,11 @@ public abstract class NPC extends RPEntity {
 	 *			  The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
-		int dist2_1 = distance + distance + 1;
-		int dx = Rand.rand(dist2_1) - distance;
-		int dy = Rand.rand(dist2_1) - distance;
+		final int dist2_1 = distance + distance + 1;
+		final int dx = Rand.rand(dist2_1) - distance;
+		final int dy = Rand.rand(dist2_1) - distance;
 
-		List<Node> path = new ArrayList<Node>(1);
+		final List<Node> path = new ArrayList<Node>(1);
 		path.add(new Node(x + dx, y + dy));
 
 		setPath(new FixedPath(path, false));
@@ -175,7 +175,7 @@ public abstract class NPC extends RPEntity {
 	}
 
 	@Override
-	protected void dropItemsOn(Corpse corpse) {
+	protected void dropItemsOn(final Corpse corpse) {
 		// sub classes can implement this method
 	}
 

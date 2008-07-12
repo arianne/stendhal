@@ -7,11 +7,11 @@ import java.util.Set;
 
 public abstract class TransactionBehaviour extends Behaviour {
 
-	public TransactionBehaviour(String itemName) {
+	public TransactionBehaviour(final String itemName) {
 	    super(itemName);
     }
 
-	public TransactionBehaviour(Set<String> itemNames) {
+	public TransactionBehaviour(final Set<String> itemNames) {
 	    super(itemNames);
     }
 

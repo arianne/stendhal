@@ -52,22 +52,22 @@ public class SimilarExprMatcherTest {
 
 	@Test
 	public final void testSimilarMatching() {
-		ExpressionMatcher matcher = new SimilarExprMatcher();
+		final ExpressionMatcher matcher = new SimilarExprMatcher();
 
-		Expression e1 = new Expression("aBc", "VER");
-		Expression e2 = new Expression("abc", "VER");
-		Expression e3 = new Expression("ab", "VER");
-		Expression e4 = new Expression("abc", "SUB");
-		Expression e5 = new Expression("X", "SUB");
+		final Expression e1 = new Expression("aBc", "VER");
+		final Expression e2 = new Expression("abc", "VER");
+		final Expression e3 = new Expression("ab", "VER");
+		final Expression e4 = new Expression("abc", "SUB");
+		final Expression e5 = new Expression("X", "SUB");
 		assertTrue(matcher.match(e1, e2));
 		assertFalse(matcher.match(e1, e3));
 		assertTrue(matcher.match(e1, e4));
 		assertFalse(matcher.match(e1, e5));
 		assertFalse(matcher.match(e4, e5));
 
-		Expression e6 = new Expression("hello", "VER");
-		Expression e7 = new Expression("hallo", "VER");
-		Expression e8 = new Expression("hailo", "VER");
+		final Expression e6 = new Expression("hello", "VER");
+		final Expression e7 = new Expression("hallo", "VER");
+		final Expression e8 = new Expression("hailo", "VER");
 		assertTrue(matcher.match(e6, e7));
 		assertFalse(matcher.match(e6, e8));
 		assertTrue(matcher.match(e7, e8));
@@ -75,7 +75,7 @@ public class SimilarExprMatcherTest {
 
 	@Test
 	public final void testSentenceMatching() {
-		Sentence m1 = ConversationParser.parseForMatching("|SIMILAR|hello");
+		final Sentence m1 = ConversationParser.parseForMatching("|SIMILAR|hello");
 		assertFalse(m1.hasError());
 		assertEquals("|SIMILAR|hello", m1.toString());
 

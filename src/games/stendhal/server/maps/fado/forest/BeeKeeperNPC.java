@@ -26,16 +26,16 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Aldrin") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Aldrin") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(44, 76));
 				nodes.add(new Node(53, 76));
 				nodes.add(new Node(53, 77));
@@ -65,7 +65,7 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 				addJob("I keep bees. I expect you've seen my hives around here.");
 				addQuest("I don't think I have any job for you to do. You have to work with bees alone, really.");
 				addHelp("Bees make honey. I can sell you some if you like. Honey that is, not bees!");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("honey", 50);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addOffer("I sell sweet honey which I harvest myself.");

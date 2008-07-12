@@ -46,7 +46,7 @@ public class GoldSource extends PlayerActivityEntity {
 	/**
 	 * The name of the item to be found.
 	 */
-	private String itemName;
+	private final String itemName;
 
 	/**
 	 * Create a gold source.
@@ -61,7 +61,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 * @param itemName
 	 *            The name of the item to be prospected.
 	 */
-	public GoldSource(String itemName) {
+	public GoldSource(final String itemName) {
 		this.itemName = itemName;
 
 		setRPClass("gold_source");
@@ -75,7 +75,7 @@ public class GoldSource extends PlayerActivityEntity {
 	//
 
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass("gold_source");
+		final RPClass rpclass = new RPClass("gold_source");
 		rpclass.isA("entity");
 	}
 
@@ -115,7 +115,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
-		int random = Rand.roll1D100();
+		final int random = Rand.roll1D100();
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
@@ -130,7 +130,7 @@ public class GoldSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			Item item = SingletonRepository.getEntityManager().getItem(itemName);
+			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
     			player.equip(item, true);

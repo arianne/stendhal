@@ -31,7 +31,7 @@ public class UpdateManager {
 	 * information about the files available for update.
 	 * @param initialDownload 
 	 */
-	private void init(boolean initialDownload) {
+	private void init(final boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
 				+ "/update.properties";
 		if (bootProp != null) {
@@ -41,7 +41,7 @@ public class UpdateManager {
 			updatePropertiesFile = bootProp.getProperty("server.update-prop",
 					serverFolder + "update.properties");
 		}
-		HttpClient httpClient = new HttpClient(updatePropertiesFile,
+		final HttpClient httpClient = new HttpClient(updatePropertiesFile,
 				initialDownload);
 		updateProp = httpClient.fetchProperties();
 	}
@@ -56,8 +56,8 @@ public class UpdateManager {
 	 * @param initialDownload
 	 *            true, if only the small starter.jar is available
 	 */
-	public void process(String jarFolder, Properties bootProp,
-			Boolean initialDownload) {
+	public void process(final String jarFolder, final Properties bootProp,
+			final Boolean initialDownload) {
 		if (!Boolean.parseBoolean(ClientGameConfiguration.get("UPDATE_ENABLE_AUTO_UPDATE"))) {
 			System.out.println("Automatic Update disabled");
 			return;
@@ -78,7 +78,7 @@ public class UpdateManager {
 		if (initialDownload.booleanValue()) {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		} else {
-			String versionStateString = updateProp.getProperty("version."
+			final String versionStateString = updateProp.getProperty("version."
 					+ Version.VERSION);
 			versionState = VersionState.getFromString(versionStateString);
 		}
@@ -146,23 +146,23 @@ public class UpdateManager {
 	 * @param files
 	 *            list of files to check and clean
 	 */
-	private void removeAlreadyExistingFiles(List<String> files) {
-		Iterator<String> itr = files.iterator();
+	private void removeAlreadyExistingFiles(final List<String> files) {
+		final Iterator<String> itr = files.iterator();
 		while (itr.hasNext()) {
-			String file = itr.next();
+			final String file = itr.next();
 			if (file.trim().equals("")) {
 				itr.remove();
 				continue;
 			}
 			try {
 				// TODO: use hash of files instead of size
-				long sizeShould = Integer.parseInt(updateProp.getProperty(
+				final long sizeShould = Integer.parseInt(updateProp.getProperty(
 						"file-size." + file, ""));
-				long sizeIs = new File(jarFolder + file).length();
+				final long sizeIs = new File(jarFolder + file).length();
 				if (sizeShould == sizeIs) {
 					itr.remove();
 				}
-			} catch (RuntimeException e) {
+			} catch (final RuntimeException e) {
 				e.printStackTrace(System.err);
 			}
 		}
@@ -174,8 +174,8 @@ public class UpdateManager {
 	 * @return list of files
 	 */
 	private List<String> getFilesForFirstDownload() {
-		List<String> res = new LinkedList<String>();
-		String list = updateProp.getProperty("init.file-list");
+		final List<String> res = new LinkedList<String>();
+		final String list = updateProp.getProperty("init.file-list");
 		res.addAll(Arrays.asList(list.split(",")));
 
 		while (res.contains("")) {
@@ -191,12 +191,12 @@ public class UpdateManager {
 	 *            the version to start the path at
 	 * @return list of files
 	 */
-	private List<String> getFilesToUpdate(String startVersion) {
-		List<String> res = new LinkedList<String>();
+	private List<String> getFilesToUpdate(final String startVersion) {
+		final List<String> res = new LinkedList<String>();
 
 		String version = startVersion;
 		while (true) {
-			String list = updateProp.getProperty("update-file-list." + version);
+			final String list = updateProp.getProperty("update-file-list." + version);
 			if (list == null) {
 				break;
 			}
@@ -217,14 +217,14 @@ public class UpdateManager {
 	 *            list of files
 	 * @return total size of download
 	 */
-	private int getSizeOfFilesToUpdate(List<String> files) {
+	private int getSizeOfFilesToUpdate(final List<String> files) {
 		int res = 0;
-		for (String file : files) {
+		for (final String file : files) {
 			try {
 				res = res
 						+ Integer.parseInt(updateProp.getProperty("file-size."
 								+ file, ""));
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				e.printStackTrace(System.err);
 			}
 		}
@@ -240,12 +240,12 @@ public class UpdateManager {
 	 *            file size
 	 * @return true on success, false otherwise
 	 */
-	private boolean downloadFiles(List<String> files, int size) {
+	private boolean downloadFiles(final List<String> files, final int size) {
 		updateProgressBar = new UpdateProgressBar(size);
 		updateProgressBar.setVisible(true);
-		for (String file : files) {
+		for (final String file : files) {
 			System.out.println("Downloading " + file + " ...");
-			HttpClient httpClient = new HttpClient(serverFolder + file, true);
+			final HttpClient httpClient = new HttpClient(serverFolder + file, true);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
 				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file "
@@ -253,8 +253,8 @@ public class UpdateManager {
 				return false;
 			}
 			try {
-				File fileObj = new File(jarFolder + file);
-				int shouldSize = Integer.parseInt(updateProp.getProperty(
+				final File fileObj = new File(jarFolder + file);
+				final int shouldSize = Integer.parseInt(updateProp.getProperty(
 						"file-size." + file, ""));
 				if (fileObj.length() != shouldSize) {
 					UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
@@ -266,7 +266,7 @@ public class UpdateManager {
 					updateProgressBar.dispose();
 					return false;
 				}
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				e.printStackTrace(System.err);
 				updateProgressBar.dispose();
 				return false;
@@ -281,11 +281,11 @@ public class UpdateManager {
 	 * 
 	 * @param files
 	 */
-	private void updateClasspathConfig(List<String> files) {
+	private void updateClasspathConfig(final List<String> files) {
 		// invert order of files so that the newer ones are first on classpath
 		Collections.reverse(files);
-		StringBuilder sb = new StringBuilder();
-		for (String file : files) {
+		final StringBuilder sb = new StringBuilder();
+		for (final String file : files) {
 			sb.append(file + ",");
 		}
 

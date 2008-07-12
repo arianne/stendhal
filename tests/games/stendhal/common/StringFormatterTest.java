@@ -30,7 +30,7 @@ public class StringFormatterTest {
 
 	@Test
 	public final void testSetStringString() {
-		StringFormatter formatter = new StringFormatter(
+		final StringFormatter formatter = new StringFormatter(
 				"<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
 		assertEquals("<first></first><2nd></2nd><3rd></3rd>",
 				formatter.toString());
@@ -45,7 +45,7 @@ public class StringFormatterTest {
 
 	@Test
 	public final void testSetStringInt() {
-		StringFormatter formatter = new StringFormatter(
+		final StringFormatter formatter = new StringFormatter(
 				"<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
 		assertEquals("<first></first><2nd></2nd><3rd></3rd>",
 				formatter.toString());

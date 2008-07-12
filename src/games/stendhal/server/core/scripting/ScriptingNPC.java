@@ -12,13 +12,13 @@ import java.util.Map;
 
 public class ScriptingNPC extends SpeakerNPC {
 
-	public ScriptingNPC(String name) {
+	public ScriptingNPC(final String name) {
 		super(name);
 		initHP(100);
 	}
 
 	// TODO: use message constants from Behaviours.java
-	public void behave(String method, String reply) {
+	public void behave(final String method, final String reply) {
 		if ("greet".equalsIgnoreCase(method)) {
 			addGreeting(reply);
 		} else if ("job".equalsIgnoreCase(method)) {
@@ -34,7 +34,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void behave(String method, List<String> triggers, String reply)
+	public void behave(final String method, final List<String> triggers, final String reply)
 			throws NoSuchMethodException {
 		if ("reply".equalsIgnoreCase(method)) {
 			addReply(triggers, reply);
@@ -44,11 +44,11 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void behave(List<String> triggers, String reply) {
+	public void behave(final List<String> triggers, final String reply) {
 		addReply(triggers, reply);
 	}
 
-	public void behave(String method, Map<String, Integer> items)
+	public void behave(final String method, final Map<String, Integer> items)
 			throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
 			new BuyerAdder().add(this, new BuyerBehaviour(items), true);
@@ -60,7 +60,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void behave(String method, int cost) throws NoSuchMethodException {
+	public void behave(final String method, final int cost) throws NoSuchMethodException {
 		if ("heal".equalsIgnoreCase(method)) {
 			new HealerAdder().addHealer(this, cost);
 		} else {

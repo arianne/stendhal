@@ -46,7 +46,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		super.setUp();
 
 		npc = new SpeakerNPC("chef");
-		ChefNPC cnpc = new ChefNPC();
+		final ChefNPC cnpc = new ChefNPC();
 
 		en = npc.getEngine();
 		cnpc.createDialog(npc);
@@ -96,15 +96,15 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
-		StackableItem cheese = new StackableItem("cheese", "", "", null);
+		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(2);
 		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
-		StackableItem bread = new StackableItem("bread", "", "", null);
+		final StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(1);
 		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
-		StackableItem ham = new StackableItem("ham", "", "", null);
+		final StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
 		assertEquals(2, player.getNumberOfEquipped("cheese"));
@@ -117,8 +117,8 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 				"I need you to fetch me 1 #'loaf of bread', 1 #'piece of ham', and 2 #'pieces of cheese' for this job. Do you have it?",
 				npc.get("text"));
 		en.step(player, "yes");
-		String[] questStatus = player.getQuest(QUEST).split(";");
-		String[] expected = { "1", "sandwich", "" };
+		final String[] questStatus = player.getQuest(QUEST).split(";");
+		final String[] expected = { "1", "sandwich", "" };
 		assertEquals("amount", expected[0], questStatus[0]); 
 		assertEquals("item", expected[1], questStatus[1]); 
 
@@ -147,15 +147,15 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
-		StackableItem cheese = new StackableItem("cheese", "", "", null);
+		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(4);
 		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
-		StackableItem bread = new StackableItem("bread", "", "", null);
+		final StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(2);
 		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
-		StackableItem ham = new StackableItem("ham", "", "", null);
+		final StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(2);
 		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
@@ -169,8 +169,8 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 				"I need you to fetch me 2 #'loaves of bread', 2 #'pieces of ham', and 4 #'pieces of cheese' for this job. Do you have it?",
 				npc.get("text"));
 		en.step(player, "yes");
-		String[] questStatus = player.getQuest(QUEST).split(";");
-		String[] expected = { "2", "sandwich", "" };
+		final String[] questStatus = player.getQuest(QUEST).split(";");
+		final String[] expected = { "2", "sandwich", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
 		assertEquals("item", expected[1], questStatus[1]); 
 
@@ -199,15 +199,15 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
-		StackableItem cheese = new StackableItem("cheese", "", "", null);
+		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(6);
 		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
-		StackableItem bread = new StackableItem("bread", "", "", null);
+		final StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(3);
 		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
-		StackableItem ham = new StackableItem("ham", "", "", null);
+		final StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(10);
 		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
@@ -221,8 +221,8 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 				"I need you to fetch me 3 #'loaves of bread', 3 #'pieces of ham', and 6 #'pieces of cheese' for this job. Do you have it?",
 				npc.get("text"));
 		en.step(player, "yes");
-		String[] questStatus = player.getQuest(QUEST).split(";");
-		String[] expected = { "3", "sandwich", "" };
+		final String[] questStatus = player.getQuest(QUEST).split(";");
+		final String[] expected = { "3", "sandwich", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
 		assertEquals("item", expected[1], questStatus[1]); 
 

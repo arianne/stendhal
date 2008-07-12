@@ -131,22 +131,22 @@ public class GrammarTest {
 		assertEquals("a's", Grammar.suffix_s("a"));
 	}
 
-	private static void testPluralisationOfAGivenSingularWord(String message, String plural, String singular) {
+	private static void testPluralisationOfAGivenSingularWord(final String message, final String plural, final String singular) {
 		assertEquals(message, plural, Grammar.plural(singular));
 		assertEquals("no change expected", plural, Grammar.plural(plural));
 	}
 
-	private static void testSingularisationOfAGivenSingularWord(String message, String plural, String singular) {
+	private static void testSingularisationOfAGivenSingularWord(final String message, final String plural, final String singular) {
 		assertEquals(message, Grammar.fullForm(singular), Grammar.singular(plural));
 		assertEquals("no change expected", singular, Grammar.singular(singular));
 	}
 
-	private static void testPluralisationAndSingularisation(String plural, String singular) {
+	private static void testPluralisationAndSingularisation(final String plural, final String singular) {
 		testPluralisationOfAGivenSingularWord("building plural form", plural, singular);
 		testSingularisationOfAGivenSingularWord("building singular form", plural, singular);
 	}
 
-	private static void testPluralisationAndSingularisation(String message, String plural, String singular) {
+	private static void testPluralisationAndSingularisation(final String message, final String plural, final String singular) {
 		testPluralisationOfAGivenSingularWord(message, plural, singular);
 		testSingularisationOfAGivenSingularWord(message, plural, singular);
 	}
@@ -552,7 +552,7 @@ public class GrammarTest {
 	@Test
 	public void testEnumerateCollectionCollection() throws Exception {
 		assertEquals("", Grammar.enumerateCollection(null));
-		Collection<String> source = new LinkedList<String>();
+		final Collection<String> source = new LinkedList<String>();
 		assertEquals("", Grammar.enumerateCollection(source));
 		source.add("first");
 		assertEquals("first", Grammar.enumerateCollection(source));
@@ -563,7 +563,7 @@ public class GrammarTest {
 				Grammar.enumerateCollection(source));
 	}
 
-	private static void checkNumberString(int n, String string) {
+	private static void checkNumberString(final int n, final String string) {
 		assertEquals(string, Grammar.numberString(n));
 		assertEquals(Integer.valueOf(n), Grammar.number(string));
 	}

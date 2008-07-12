@@ -66,8 +66,8 @@ public class SoundSystemTest {
 
 	@Test
 	public final void testGet() {
-		SoundSystem ss1 = SoundSystem.get();
-		SoundSystem ss2 = SoundSystem.get();
+		final SoundSystem ss1 = SoundSystem.get();
+		final SoundSystem ss2 = SoundSystem.get();
 		assertTrue("must receive identical instance", (ss1 == ss2));
 	}
 

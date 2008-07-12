@@ -25,17 +25,17 @@ public class TaxmanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
+	private void buildNPC(final StendhalRPZone zone) {
 		// Please change the NPCOwned Chest name if you change this NPC name.
-		SpeakerNPC npc = new SpeakerNPC("Mr Taxman") {
+		final SpeakerNPC npc = new SpeakerNPC("Mr Taxman") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(2, 14));
 				nodes.add(new Node(9, 14));
 				nodes.add(new Node(9, 16));

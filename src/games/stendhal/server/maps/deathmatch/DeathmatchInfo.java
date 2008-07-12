@@ -54,7 +54,7 @@ public class DeathmatchInfo {
 		return zone;
 	}
 
-	public boolean isInArena(Player player) {
+	public boolean isInArena(final Player player) {
 		return arena.contains(player);
 	}
 
@@ -62,10 +62,10 @@ public class DeathmatchInfo {
 		return entranceSpot;
 	}
 
-	void startSession(Player player) {
-		DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
+	void startSession(final Player player) {
+		final DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
-		DeathmatchEngine dmEngine = new DeathmatchEngine(player, this);
+		final DeathmatchEngine dmEngine = new DeathmatchEngine(player, this);
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, dmEngine);
 	}
 	

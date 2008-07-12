@@ -25,7 +25,7 @@ public abstract class DoorFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
-	protected String getClass(ConfigurableFactoryContext ctx) {
+	protected String getClass(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("class");
 	}
 }

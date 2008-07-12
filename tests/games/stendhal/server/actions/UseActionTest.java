@@ -31,13 +31,13 @@ public class UseActionTest {
 	@Test
 	public void testOnActionItemInBag() {
 		MockStendlRPWorld.get();
-		UseAction ua = new UseAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
-		Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
+		final UseAction ua = new UseAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		player.equip("bag", cheese);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put(_BASEITEM, cheese.getID().getObjectID());
 		action.put(_BASEOBJECT, player.getID().getObjectID());
 		action.put(_BASESLOT, "bag");
@@ -50,15 +50,15 @@ public class UseActionTest {
 	public void testOnActionIteminChest() {
 		MockStendlRPWorld.get();
 		ChestTestHelper.generateRPClasses();
-		UseAction ua = new UseAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
-		Chest chest = new Chest();
-		Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
+		final UseAction ua = new UseAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Chest chest = new Chest();
+		final Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		chest.add(cheese);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		zone.add(chest);
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put(_BASEITEM, cheese.getID().getObjectID());
 		action.put(_BASEOBJECT, chest.getID().getObjectID());
 		action.put(_BASESLOT, "content");
@@ -68,9 +68,9 @@ public class UseActionTest {
 	}
 	@Test
 	public void testIsItemBoundToOtherPlayer() {
-		UseAction ua = new UseAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
-		Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
+		final UseAction ua = new UseAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
 		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
 		cheese.setBoundTo("jack");

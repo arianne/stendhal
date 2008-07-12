@@ -72,14 +72,14 @@ public final class Expression {
     public void parseAmount(final String str, final ErrorDrain errors) {
         try {
             // replace commas by dots to recognize numbers like "1,5"
-            String numberString = str.replace(',', '.');
+            final String numberString = str.replace(',', '.');
 
             // Parse as float number, then round to the next integer.
             setAmount((int) Math.round(Double.parseDouble(numberString)));
 
             setType(new ExpressionType(ExpressionType.NUMERAL));
             normalized = amount.toString();
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             errors.setError("illegal number format: '" + str + "'");
         }
     }
@@ -262,7 +262,7 @@ public final class Expression {
 	 * @return false if not a verb or null, true otherwise
 	 */
     public boolean isVerb() {
-        return type != null && type.isVerb();
+        return (type != null) && type.isVerb();
     }
 
     /**
@@ -271,7 +271,7 @@ public final class Expression {
      * @return false if not an object or null, true otherwise
      */
     public boolean isObject() {
-        return type != null && type.isObject();
+        return (type != null) && type.isObject();
     }
 
     /**
@@ -280,7 +280,7 @@ public final class Expression {
    * @return false if not a subject or null, true otherwise
      */
     public boolean isSubject() {
-        return type != null && type.isSubject();
+        return (type != null) && type.isSubject();
     }
 
     /**
@@ -289,7 +289,7 @@ public final class Expression {
      * @return false if not negated or null, true otherwise
      */
     public boolean isNegated() {
-        return type != null && type.isNegated();
+        return (type != null) && type.isNegated();
     }
 
     /**
@@ -298,7 +298,7 @@ public final class Expression {
      * @return * @return false if not ignored or null, true otherwise
      */
     public boolean isIgnore() {
-        return type != null && type.isIgnore();
+        return (type != null) && type.isIgnore();
     }
 
     /**
@@ -307,7 +307,7 @@ public final class Expression {
      * @return false if not a question or null, true otherwise
      */
     public boolean isQuestion() {
-        return type != null && type.isQuestion();
+        return (type != null) && type.isQuestion();
     }
 
     /**
@@ -316,7 +316,7 @@ public final class Expression {
      * @return false if not a prepostion or null, true otherwise
      */
     public boolean isPreposition() {
-        return type != null && type.isPreposition();
+        return (type != null) && type.isPreposition();
     }
 
     /**
@@ -325,7 +325,7 @@ public final class Expression {
     * @return false if not a numeral or null, true otherwise
      */
     public boolean isNumeral() {
-        return type != null && type.isNumeral();
+        return (type != null) && type.isNumeral();
     }
 
     /**
@@ -450,7 +450,7 @@ public final class Expression {
 	 * @return true if 2 expression match false otherwise
 	 */
     boolean sentenceMatchExpression(final Expression other) {
-        String matchString = other.getNormalized();
+        final String matchString = other.getNormalized();
 
         if (matchString.contains(JOKER)) {
             if (matchString.equals(JOKER)) {
@@ -501,10 +501,10 @@ public final class Expression {
         } else if (other == null) {
             return false;
         } else if (other.getClass() == Expression.class) {
-            Expression o = (Expression) other;
+            final Expression o = (Expression) other;
 
             if (matcher != null) {
-                if (o.matcher == null || !matcher.equals(o.matcher)) {
+                if ((o.matcher == null) || !matcher.equals(o.matcher)) {
                     return false;
                 }
             } else {
@@ -548,7 +548,7 @@ public final class Expression {
      */
     @Override
     public String toString() {
-        StringBuilder b = new StringBuilder();
+        final StringBuilder b = new StringBuilder();
 
         if (matcher != null) {
             b.append(matcher.toString());

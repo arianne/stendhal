@@ -10,7 +10,7 @@ public class SoundFileMapTest {
 
 	@Test
 	public void testIsNull() {
-		SoundFileMap sfm = new SoundFileMap();
+		final SoundFileMap sfm = new SoundFileMap();
 		assertTrue(sfm.isNull());
 		sfm.put("test", new byte[0]);
 		assertFalse(sfm.isNull());

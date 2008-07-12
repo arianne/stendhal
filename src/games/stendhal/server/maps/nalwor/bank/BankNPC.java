@@ -27,7 +27,7 @@ public class BankNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildoldNPC(zone, attributes);
 		buildladyNPC(zone, attributes);
 	}
@@ -36,8 +36,8 @@ public class BankNPC implements ZoneConfigurator {
 	// name inspired by a name in lotr
 	// TODO: He complains if someone steals something from his chest: they should be sent to elf jail.
 
-	private void buildoldNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
+	private void buildoldNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
 
 			@Override
 			protected void createPath() {
@@ -64,12 +64,12 @@ public class BankNPC implements ZoneConfigurator {
 	//
 	// Ariannyddion is welsh for bank, so ...
 	//
-	private void buildladyNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC ladynpc = new SpeakerNPC("Nnyddion") {
+	private void buildladyNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC ladynpc = new SpeakerNPC("Nnyddion") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(26, 30));
 				nodes.add(new Node(16, 30));
 				nodes.add(new Node(16, 31));

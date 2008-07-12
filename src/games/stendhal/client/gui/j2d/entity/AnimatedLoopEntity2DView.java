@@ -55,15 +55,15 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
-		SpriteStore store = SpriteStore.get();
+	protected void buildRepresentation(final IGameScreen gameScreen) {
+		final SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(entity.getType()));
 
 		/*
 		 * Entities are [currently] always 1x1. Extra columns are animation.
 		 * Extra rows are ignored.
 		 */
-		int width = sprite.getWidth();
+		final int width = sprite.getWidth();
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width

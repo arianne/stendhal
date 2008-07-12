@@ -17,20 +17,20 @@ import java.util.Map;
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		class SheepBuyerBehaviour extends BuyerBehaviour {
-			SheepBuyerBehaviour(Map<String, Integer> items) {
+			SheepBuyerBehaviour(final Map<String, Integer> items) {
 				super(items);
 			}
 
-			private int getValue(Sheep sheep) {
+			private int getValue(final Sheep sheep) {
 				return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 			}
 
 			@Override
-			public int getCharge(SpeakerNPC seller, Player player) {
+			public int getCharge(final SpeakerNPC seller, final Player player) {
 				if (player.hasSheep()) {
-					Sheep sheep = player.getSheep();
+					final Sheep sheep = player.getSheep();
 					return getValue(sheep);
 				} else {
 					seller.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
@@ -39,10 +39,10 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 
 			@Override
-			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+			public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 				// amount is currently ignored.
 
-				Sheep sheep = player.getSheep();
+				final Sheep sheep = player.getSheep();
 
 				if (sheep != null) {
 					if (seller.squaredDistance(sheep) > 5 * 5) {
@@ -68,7 +68,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 		}
 
-		Map<String, Integer> buyitems = new HashMap<String, Integer>();
+		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
 		buyitems.put("sheep", 150);
 
 		npc.addGreeting();

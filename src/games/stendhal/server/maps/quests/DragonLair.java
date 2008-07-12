@@ -46,7 +46,7 @@ public class DragonLair extends AbstractQuest {
 	private static final String QUEST_SLOT = "dragon_lair";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Wishman");
+		final SpeakerNPC npc = npcs.get("Wishman");
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				null,
@@ -54,13 +54,13 @@ public class DragonLair extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Would you like to visit our dragon lair?");
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("done;")) {
-							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = 1 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							final long delay = 1 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("I think they've had enough excitement for a while.  Come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 								engine.setCurrentState(ConversationStates.ATTENDING);
@@ -74,7 +74,7 @@ public class DragonLair extends AbstractQuest {
 					}
 				});
 
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -85,7 +85,7 @@ public class DragonLair extends AbstractQuest {
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
 							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+							public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 								player.setQuest(QUEST_SLOT, "done" + ";" + System.currentTimeMillis());
 							}
 				}

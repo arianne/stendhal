@@ -137,7 +137,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 	 */
 	@Override
 	public void setup(final StendhalRPZone zone) {
-		String classNameTemp = getImplementation();
+		final String classNameTemp = getImplementation();
 
 		if (classNameTemp == null) {
 			logger.error("Entity without factory at " + zone.getName() + "["
@@ -146,7 +146,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 		}
 
 		try {
-			Entity entity = EntityFactoryHelper.create(classNameTemp,
+			final Entity entity = EntityFactoryHelper.create(classNameTemp,
 					getParameters(), getAttributes());
 
 			if (entity == null) {
@@ -158,7 +158,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 			entity.setPosition(getX(), getY());
 
 			zone.add(entity);
-		} catch (IllegalArgumentException ex) {
+		} catch (final IllegalArgumentException ex) {
 			logger.error("Error with entity factory", ex);
 		}
 	}

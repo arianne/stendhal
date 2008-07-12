@@ -19,7 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author hendrik
  */
 public class KilledCondition extends ChatCondition {
-	private Set<String> toKill;
+	private final Set<String> toKill;
 
 	/**
 	 * creates a new KilledCondition.
@@ -27,7 +27,7 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill
 	 *            list of creatures which should be killed by the player
 	 */
-	public KilledCondition(List<String> toKill) {
+	public KilledCondition(final List<String> toKill) {
 		this.toKill = new TreeSet<String>(toKill);
 	}
 
@@ -37,13 +37,13 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill
 	 *            creatures which should be killed by the player
 	 */
-	public KilledCondition(String... toKill) {
+	public KilledCondition(final String... toKill) {
 		this.toKill = new TreeSet<String>(Arrays.asList(toKill));
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		for (String creature : toKill) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		for (final String creature : toKill) {
 			if (!player.hasKilled(creature)) {
 				return false;
 			}
@@ -57,7 +57,7 @@ public class KilledCondition extends ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				KilledCondition.class);
 	}

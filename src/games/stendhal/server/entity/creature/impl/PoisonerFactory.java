@@ -9,10 +9,10 @@ public class PoisonerFactory {
 	static final Attacker nonpoisonous = new NonPoisoner();
 	private static Logger logger = Logger.getLogger(PoisonerFactory.class);
 
-	public static Attacker get(String profile) {
+	public static Attacker get(final String profile) {
 		if (profile != null) {
-			String[] poisonparams = profile.split(",");
-			ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisonparams[1]);
+			final String[] poisonparams = profile.split(",");
+			final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisonparams[1]);
 
 			if (poison == null) {
 				logger .error("Cannot create poisoner with " + poisonparams[1]);

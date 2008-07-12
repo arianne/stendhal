@@ -59,23 +59,23 @@ public class StendhalClient extends ClientFramework {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalClient.class);
 
-	private Map<RPObject.ID, RPObject> world_objects;
+	private final Map<RPObject.ID, RPObject> world_objects;
 
-	private PerceptionHandler handler;
+	private final PerceptionHandler handler;
 
-	private RPObjectChangeDispatcher rpobjDispatcher;
+	private final RPObjectChangeDispatcher rpobjDispatcher;
 
 	private RPObject player;
 
-	private StaticGameLayers staticLayers;
+	private final StaticGameLayers staticLayers;
 
-	private GameObjects gameObjects;
+	private final GameObjects gameObjects;
 
 	protected static StendhalClient client;
 
-	private Cache cache;
+	private final Cache cache;
 
-	private ArrayList<Direction> directions;
+	private final ArrayList<Direction> directions;
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
@@ -85,7 +85,7 @@ public class StendhalClient extends ClientFramework {
 
 	private String userName = "";
 
-	private UserContext userContext;
+	private final UserContext userContext;
 
 	public Vector<String> whoplayers;
 
@@ -99,13 +99,13 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private boolean batchUpdate;
 
-	public void generateWhoPlayers(String text) {
+	public void generateWhoPlayers(final String text) {
 
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
 				text);
 
 		if (matcher.find()) {
-			String[] names = matcher.group(1).split("\\s+");
+			final String[] names = matcher.group(1).split("\\s+");
 
 			whoplayers.removeAllElements();
 			for (int i = 0; i < names.length; i++) {
@@ -132,7 +132,7 @@ public class StendhalClient extends ClientFramework {
 		return client;
 	}
 
-	protected StendhalClient(String loggingProperties) {
+	protected StendhalClient(final String loggingProperties) {
 		super(loggingProperties);
 
 		// TODO: Move this to the UI init code
@@ -163,7 +163,7 @@ public class StendhalClient extends ClientFramework {
 		return stendhal.VERSION;
 	}
 
-	public void setScreen(IGameScreen screen) {
+	public void setScreen(final IGameScreen screen) {
 		this.screen = screen;
 	}
 
@@ -200,7 +200,7 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Simulate object disassembly
 		 */
-		for (RPObject object : world_objects.values()) {
+		for (final RPObject object : world_objects.values()) {
 			if (object != player) {
 				rpobjDispatcher.dispatchRemoved(object, false);
 			}
@@ -229,12 +229,12 @@ public class StendhalClient extends ClientFramework {
 	 * @throws IOException
 	 */
 	@Override
-	public void connect(String host, int port) throws IOException {
+	public void connect(final String host, final int port) throws IOException {
 		super.connect(host, port);
 		// if connect was successful try if server has http service, too
-		String testServer = "http://" + host + "/";
-		HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
-		String version = httpClient.fetchFirstLine();
+		final String testServer = "http://" + host + "/";
+		final HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
+		final String version = httpClient.fetchFirstLine();
 		if (version != null) {
 			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
 				// custom title, warning icon
@@ -252,7 +252,7 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	@Override
-	protected void onPerception(MessageS2CPerception message) {
+	protected void onPerception(final MessageS2CPerception message) {
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("message: " + message);
@@ -278,14 +278,14 @@ public class StendhalClient extends ClientFramework {
 			}
 
 			handler.apply(message, world_objects);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("error processing message " + message, e);
 			System.exit(1);
 		}
 	}
 
 	@Override
-	protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+	protected List<TransferContent> onTransferREQ(final List<TransferContent> items) {
 		/*
 		 * A batch update has begun
 		 */
@@ -300,9 +300,9 @@ public class StendhalClient extends ClientFramework {
 		 * Set the new area name
 		 */
 		if (!items.isEmpty()) {
-			String name = items.get(0).name;
+			final String name = items.get(0).name;
 
-			int i = name.indexOf('.');
+			final int i = name.indexOf('.');
 
 			if (i == -1) {
 				logger.error("Old server, please upgrade");
@@ -320,8 +320,8 @@ public class StendhalClient extends ClientFramework {
 
 		contentToLoad = 0;
 
-		for (TransferContent item : items) {
-			InputStream is = cache.getItem(item);
+		for (final TransferContent item : items) {
+			final InputStream is = cache.getItem(item);
 
 			if (is != null) {
 				item.ack = false;
@@ -329,7 +329,7 @@ public class StendhalClient extends ClientFramework {
 				try {
 					contentHandling(item.name, is);
 					is.close();
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 					logger.error(e, e);
 					System.exit(1);
@@ -357,32 +357,32 @@ public class StendhalClient extends ClientFramework {
 		return (contentToLoad != 0);
 	}
 
-	private void contentHandling(String name, InputStream in)
+	private void contentHandling(final String name, final InputStream in)
 			throws IOException, ClassNotFoundException {
 		/*
 		 * TODO: Encode area name into the data sent from server, so it is
 		 * simpler to extract area/layer parts.
 		 */
-		int i = name.indexOf('.');
+		final int i = name.indexOf('.');
 
 		if (i == -1) {
 			logger.error("Old server, please upgrade");
 			return;
 		}
 
-		String area = name.substring(0, i);
-		String layer = name.substring(i + 1);
+		final String area = name.substring(0, i);
+		final String layer = name.substring(i + 1);
 
 		staticLayers.addLayer(area, layer, in);
 	}
 
 	@Override
-	protected void onTransfer(List<TransferContent> items) {
-		for (TransferContent item : items) {
+	protected void onTransfer(final List<TransferContent> items) {
+		for (final TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
 				contentHandling(item.name, new ByteArrayInputStream(item.data));
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("onTransfer", e);
 				System.exit(2);
 			}
@@ -400,27 +400,27 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	@Override
-	protected void onAvailableCharacters(String[] characters) {
+	protected void onAvailableCharacters(final String[] characters) {
 		/*
 		 * Check we have characters and if not offer us to create one.
 		 */
 		if (characters.length > 0) {
 			try {
 				chooseCharacter(characters[0]);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
 		} else {
 			logger.warn("No character available, trying to create one with the account name.");
-			RPObject template = new RPObject();
+			final RPObject template = new RPObject();
 			// TODO: Account Username can be != of Character username.
 			try {
-				CharacterResult result = createCharacter(getAccountUsername(), template);
+				final CharacterResult result = createCharacter(getAccountUsername(), template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
 					// TODO: Display error message to user
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error(e, e);
 			}
 		}
@@ -428,12 +428,12 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	@Override
-	protected void onServerInfo(String[] info) {
+	protected void onServerInfo(final String[] info) {
 		// TODO: handle this info
 	}
 
 	@Override
-	protected void onPreviousLogins(List<String> previousLogins) {
+	protected void onPreviousLogins(final List<String> previousLogins) {
 
 	}
 
@@ -445,7 +445,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param face
 	 *            If to face direction only.
 	 */
-	public void addDirection(Direction dir, boolean face) {
+	public void addDirection(final Direction dir, final boolean face) {
 		RPAction action;
 		Direction odir;
 		int idx;
@@ -503,7 +503,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param face
 	 *            If to face direction only.
 	 */
-	public void removeDirection(Direction dir, boolean face) {
+	public void removeDirection(final Direction dir, final boolean face) {
 		RPAction action;
 		int size;
 
@@ -540,7 +540,7 @@ public class StendhalClient extends ClientFramework {
 	public void stop() {
 		directions.clear();
 
-		RPAction rpaction = new RPAction();
+		final RPAction rpaction = new RPAction();
 
 		rpaction.put("type", "stop");
 		rpaction.put("attack", "");
@@ -552,7 +552,7 @@ public class StendhalClient extends ClientFramework {
 	 * Handle player changes.
 	 * @param object the player object
 	 */
-	protected void setPlayer(RPObject object) {
+	protected void setPlayer(final RPObject object) {
 		/*
 		 * Ignore no-changes
 		 */
@@ -570,23 +570,23 @@ public class StendhalClient extends ClientFramework {
 	 * public void removePlayerChangeListener(PlayerChangeListener l) { }
 	 */
 
-	public void addFeatureChangeListener(FeatureChangeListener l) {
+	public void addFeatureChangeListener(final FeatureChangeListener l) {
 		userContext.addFeatureChangeListener(l);
 	}
 
-	public void removeFeatureChangeListener(FeatureChangeListener l) {
+	public void removeFeatureChangeListener(final FeatureChangeListener l) {
 		userContext.removeFeatureChangeListener(l);
 	}
 
-	public void addBuddyChangeListener(BuddyChangeListener l) {
+	public void addBuddyChangeListener(final BuddyChangeListener l) {
 		userContext.addBuddyChangeListener(l);
 	}
 
-	public void removeBuddyChangeListener(BuddyChangeListener l) {
+	public void removeBuddyChangeListener(final BuddyChangeListener l) {
 		userContext.removeBuddyChangeListener(l);
 	}
 
-	protected void firePlayerAssignment(RPObject object) {
+	protected void firePlayerAssignment(final RPObject object) {
 	}
 
 	//
@@ -594,27 +594,27 @@ public class StendhalClient extends ClientFramework {
 
 	class StendhalPerceptionListener implements IPerceptionListener {
 
-		public boolean onAdded(RPObject object) {
+		public boolean onAdded(final RPObject object) {
 			rpobjDispatcher.dispatchAdded(object, isUser(object));
 			return false;
 		}
 
-		public boolean onModifiedAdded(RPObject object, RPObject changes) {
+		public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 			rpobjDispatcher.dispatchModifyAdded(object, changes, false);
 			return true;
 		}
 
-		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+		public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 			rpobjDispatcher.dispatchModifyRemoved(object, changes, false);
 			return true;
 		}
 
-		public boolean onDeleted(RPObject object) {
+		public boolean onDeleted(final RPObject object) {
 			rpobjDispatcher.dispatchRemoved(object, isUser(object));
 			return false;
 		}
 
-		public boolean onMyRPObject(RPObject added, RPObject deleted) {
+		public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 			try {
 				RPObject.ID id = null;
 
@@ -631,7 +631,7 @@ public class StendhalClient extends ClientFramework {
 					return true;
 				}
 
-				RPObject object = world_objects.get(id);
+				final RPObject object = world_objects.get(id);
 
 				setPlayer(object);
 
@@ -642,7 +642,7 @@ public class StendhalClient extends ClientFramework {
 				if (added != null) {
 					rpobjDispatcher.dispatchModifyAdded(object, added, true);
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("onMyRPObject failed, added=" + added
 						+ " deleted=" + deleted, e);
 			}
@@ -672,8 +672,8 @@ public class StendhalClient extends ClientFramework {
 			}
 		}
 
-		public void onException(Exception e,
-				marauroa.common.net.message.MessageS2CPerception perception) {
+		public void onException(final Exception e,
+				final marauroa.common.net.message.MessageS2CPerception perception) {
 			logger.error("perception caused an error: " + perception, e);
 			System.exit(-1);
 		}
@@ -682,14 +682,14 @@ public class StendhalClient extends ClientFramework {
 			return false;
 		}
 
-		public void onPerceptionBegin(byte type, int timestamp) {
+		public void onPerceptionBegin(final byte type, final int timestamp) {
 		}
 
-		public void onPerceptionEnd(byte type, int timestamp) {
+		public void onPerceptionEnd(final byte type, final int timestamp) {
 		}
 	}
 
-	public void setAccountUsername(String username) {
+	public void setAccountUsername(final String username) {
 		userName = username;
 	}
 

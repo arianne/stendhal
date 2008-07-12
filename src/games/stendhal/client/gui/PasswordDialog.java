@@ -46,7 +46,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 		currrentPass.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
+			public void mouseClicked(final java.awt.event.MouseEvent evt) {
 				currrentPassMouseClicked(evt);
 			}
 		});
@@ -67,7 +67,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 		newPass.addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override
-			public void keyTyped(java.awt.event.KeyEvent evt) {
+			public void keyTyped(final java.awt.event.KeyEvent evt) {
 				newPassKeyTyped(evt);
 			}
 		});
@@ -81,7 +81,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 		newPassRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override
-			public void keyTyped(java.awt.event.KeyEvent evt) {
+			public void keyTyped(final java.awt.event.KeyEvent evt) {
 				newPassRepeatKeyTyped(evt);
 			}
 		});
@@ -95,7 +95,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 		acceptButton.setText("Accept");
 		acceptButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(final java.awt.event.ActionEvent evt) {
 				acceptButtonActionPerformed(evt);
 			}
 		});
@@ -110,7 +110,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 		pack();
 	} 
 
-	private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
+	private void acceptButtonActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 			// check for server password and see if that is accepted
 			// remove this- just for testing.
@@ -121,17 +121,17 @@ public class PasswordDialog extends javax.swing.JFrame {
 		}
 	} 
 
-	private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) { 
+	private void newPassRepeatKeyTyped(final java.awt.event.KeyEvent evt) { 
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
 	} 
 
-	private void newPassKeyTyped(java.awt.event.KeyEvent evt) { 
+	private void newPassKeyTyped(final java.awt.event.KeyEvent evt) { 
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
 	} 
 
 	private boolean clear;
 
-	private void currrentPassMouseClicked(java.awt.event.MouseEvent evt) { 
+	private void currrentPassMouseClicked(final java.awt.event.MouseEvent evt) { 
 		if (!clear) {
 			currrentPass.setText("");
 			clear = true;
@@ -144,7 +144,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 	 * @param pwField_Two 
 	 * @return true if passwords are equal
 	 */
-	boolean checkPass(char[] pwField_One, char[] pwField_Two) {
+	boolean checkPass(final char[] pwField_One, final char[] pwField_Two) {
 		return new String(pwField_One).equals(new String(pwField_Two));
 	}
 
@@ -152,7 +152,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 	 * @param args
 	 *            the command line arguments
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new PasswordDialog().setVisible(true);

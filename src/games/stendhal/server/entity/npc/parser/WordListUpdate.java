@@ -24,13 +24,13 @@ public final class WordListUpdate {
         try {
             WordList.attachDatabase();
 
-            WordList wl = new WordList();
+            final WordList wl = new WordList();
 
             // read in the current word list including comment lines
-            InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+            final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
-            List<String> comments = new ArrayList<String>();
+            final List<String> comments = new ArrayList<String>();
             wl.read(reader, comments);
             reader.close();
 
@@ -40,15 +40,15 @@ public final class WordListUpdate {
             // see if we can find the word list source file in the file system
             String outputPath = "src/games/stendhal/server/entity/npc/parser/" + WordList.WORDS_FILENAME;
 
-            File file = new File(outputPath);
+            final File file = new File(outputPath);
             if (!file.exists()) {
                 // Otherwise just write the output file into the current directory.
                 outputPath = WordList.WORDS_FILENAME;
             }
 
-            PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
+            final PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
 
-            for (String c : comments) {
+            for (final String c : comments) {
                 writer.println(c);
             }
 
@@ -61,7 +61,7 @@ public final class WordListUpdate {
             // update database entries
             wl.writeToDB();
             System.out.println("The word list has been stored into the database.");
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }

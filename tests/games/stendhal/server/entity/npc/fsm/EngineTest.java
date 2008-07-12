@@ -28,7 +28,7 @@ public class EngineTest {
 
 	@Test
 	public void testGetFreeState() {
-		Engine en = new Engine(new SpeakerNPC("bob"));
+		final Engine en = new Engine(new SpeakerNPC("bob"));
 		assertEquals("creates an integer for a free state", 1, en
 				.getFreeState());
 		assertEquals("creates the next integer for a free state", 2, en
@@ -37,52 +37,52 @@ public class EngineTest {
 
 	@Test
 	public void testAddSingleStringEmptyCondition() {
-		Engine en = new Engine(new SpeakerNPC("bob"));
+		final Engine en = new Engine(new SpeakerNPC("bob"));
 		int state;
 		state = 0;
-		String triggers = "boo";
+		final String triggers = "boo";
 
-		int nextState = state + 1;
-		String reply = "huch";
-		ChatAction action = new ChatAction() {
+		final int nextState = state + 1;
+		final String reply = "huch";
+		final ChatAction action = new ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
 			}
 		};
 		en.add(state, triggers, null, nextState, reply, action);
-		Player pete = PlayerTestHelper.createPlayer("player");
+		final Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
 	}
 
 	@Test
 	public void testAddSingleStringValidCondition() {
-		SpeakerNPC bob = new SpeakerNPC("bob");
+		final SpeakerNPC bob = new SpeakerNPC("bob");
 
-		Engine en = new Engine(bob);
+		final Engine en = new Engine(bob);
 		int state;
 		state = 0;
 		final String triggers = "boo";
 
-		ChatCondition cc = new ChatCondition() {
+		final ChatCondition cc = new ChatCondition() {
 			@Override
-			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 				return true;
 			}
 		};
 
-		int nextState = state + 1;
-		String reply = "huch";
-		ChatAction action = new ChatAction() {
+		final int nextState = state + 1;
+		final String reply = "huch";
+		final ChatAction action = new ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 			}
 		};
 		en.add(state, triggers, cc, nextState, reply, action);
-		Player pete = PlayerTestHelper.createPlayer("player");
+		final Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, triggers);
 		assertEquals(nextState, en.getCurrentState());
 		assertEquals(bob.get("text"), reply);

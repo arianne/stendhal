@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 
-	private String questname;
+	private final String questname;
 
 	/**
 	 * Creates a new QuestNotCompletedCondition.
@@ -20,12 +20,12 @@ public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 	 * @param questname
 	 *            name of quest-slot
 	 */
-	public QuestNotCompletedCondition(String questname) {
+	public QuestNotCompletedCondition(final String questname) {
 		this.questname = questname;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (!player.isQuestCompleted(questname));
 	}
 
@@ -40,7 +40,7 @@ public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

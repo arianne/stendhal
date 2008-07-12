@@ -28,13 +28,13 @@ import java.util.List;
 public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		// A little trick to make NPC remember if it has met
 	    // player before and react accordingly
 		// NPC_name quest doesn't exist anywhere else neither is
 		// used for any other purpose
 
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new StartRecordingKillsAction("rat"));
 		actions.add(new SetQuestAction("meet_hayunn", "start"));
 

@@ -20,7 +20,7 @@ public class Balloon extends AbstractQuest {
 	private static BalloonScroll scroll;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, "balloon");
 		if (scroll == null) {
 			scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem("balloon");
@@ -30,7 +30,7 @@ public class Balloon extends AbstractQuest {
 		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
-			public void onLoggedIn(Player player) {
+			public void onLoggedIn(final Player player) {
 				scroll.teleportBack(player);
 			}
 

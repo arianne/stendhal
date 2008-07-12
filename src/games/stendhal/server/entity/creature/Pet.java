@@ -75,11 +75,11 @@ public abstract class Pet extends DomesticAnimal {
 	
 	public static void generateRPClass() {
 		try {
-			RPClass pet = new RPClass("pet");
+			final RPClass pet = new RPClass("pet");
 			pet.isA("creature");
 			pet.addAttribute("weight", Type.BYTE);
 			pet.addAttribute("eat", Type.FLAG);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -95,7 +95,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * Creates a new Pet that is owned by a player.
 	 * @param owner 
 	 */
-	public Pet(Player owner) {
+	public Pet(final Player owner) {
 		super(owner);
 		baseSpeed = 0.5;
 		setATK(ATK);
@@ -115,7 +115,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * @param owner
 	 *            The player who should own the pet
 	 */
-	public Pet(RPObject object, Player owner) {
+	public Pet(final RPObject object, final Player owner) {
 		super(object, owner);
 		baseSpeed = 0.5;
 		hunger = 0;
@@ -128,14 +128,14 @@ public abstract class Pet extends DomesticAnimal {
 	 *            The entity who caused the death
 	 */
 	@Override
-	public void onDead(String killername) {
+	public void onDead(final String killername) {
 		cleanUpPet();
 
 		super.onDead(killername);
 	}
 
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		cleanUpPet();
 
 		super.onDead(killer);
@@ -160,14 +160,14 @@ public abstract class Pet extends DomesticAnimal {
 	 * @return The nearest PetFood, or null if there is none within the given
 	 *         range
 	 */
-	private Item getNearestFood(double range) {
+	private Item getNearestFood(final double range) {
 
-		Set<Item> items = getZone().getItemsOnGround();
+		final Set<Item> items = getZone().getItemsOnGround();
 		// This way we save several sqrt operations
 		double squaredDistance = range * range; 
 
 		Item chosen = null;
-		for (Item i : items) {
+		for (final Item i : items) {
 			if (canEat(i)) {
 				if (this.squaredDistance(i) < squaredDistance) {
 					chosen = i;
@@ -180,13 +180,13 @@ public abstract class Pet extends DomesticAnimal {
 		return chosen;
 	}
 
-	boolean canEat(Item i) {
+	boolean canEat(final Item i) {
 
 		return foodName.contains(i.getName());
 
 	}
 
-	private void eat(Item food) {
+	private void eat(final Item food) {
 		if (weight < MAX_WEIGHT) {
 			setWeight(weight + 1);
 		}
@@ -220,7 +220,7 @@ public abstract class Pet extends DomesticAnimal {
 		setIdea(null);
 		hunger++;
 
-		Item food = getNearestFood(6);
+		final Item food = getNearestFood(6);
 		// Show 'food' idea whenever hungry
 		if (hunger > HUNGER_HUNGRY) {
 			setIdea("food");

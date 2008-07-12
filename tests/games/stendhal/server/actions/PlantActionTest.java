@@ -44,10 +44,10 @@ public class PlantActionTest {
 
 	@Test
 	public void testExecuteWithNUllValues() {
-		PlantAction plantAction = new PlantAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final PlantAction plantAction = new PlantAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		assertFalse(plantAction.execute());
 
@@ -63,14 +63,14 @@ public class PlantActionTest {
 
 	@Test
 	public void testExecute() {
-		PlantAction plantAction = new PlantAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final PlantAction plantAction = new PlantAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
 
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		zone.add(seed);
 		seed.setPosition(1, 0);
@@ -87,14 +87,14 @@ public class PlantActionTest {
 
 	@Test
 	public void testExecuteSeedInBag() {
-		PlantAction plantAction = new PlantAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final PlantAction plantAction = new PlantAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
 		
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		player.equip("bag", seed);
 		
@@ -105,14 +105,14 @@ public class PlantActionTest {
 
 	@Test
 	public void testExecuteNonameSeed() {
-		PlantAction plantAction = new PlantAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final PlantAction plantAction = new PlantAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
 
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		zone.add(seed);
 		seed.setPosition(1, 0);
@@ -121,10 +121,10 @@ public class PlantActionTest {
 		plantAction.setSeed(seed);
 		assertTrue(plantAction.execute());
 
-		Entity entity = player.getZone().getEntityAt(1, 0);
+		final Entity entity = player.getZone().getEntityAt(1, 0);
 		assertNotNull(entity);
 		if (entity instanceof FlowerGrower) {
-			FlowerGrower flg = (FlowerGrower) entity;
+			final FlowerGrower flg = (FlowerGrower) entity;
 			flg.setToFullGrowth();
 			flg.onUsed(player);
 			assertNull(player.getZone().getEntityAt(1, 0));
@@ -138,14 +138,14 @@ public class PlantActionTest {
 	
 	@Test
 	public void testExecuteDaisiesSeed() {
-		PlantAction plantAction = new PlantAction();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final PlantAction plantAction = new PlantAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
 
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		seed.setInfoString("daisies");
 		zone.add(seed);
@@ -155,10 +155,10 @@ public class PlantActionTest {
 		plantAction.setSeed(seed);
 		assertTrue(plantAction.execute());
 
-		Entity entity = player.getZone().getEntityAt(1, 0);
+		final Entity entity = player.getZone().getEntityAt(1, 0);
 		assertNotNull(entity);
 		if (entity instanceof FlowerGrower) {
-			FlowerGrower flg = (FlowerGrower) entity;
+			final FlowerGrower flg = (FlowerGrower) entity;
 			flg.setToFullGrowth();
 			flg.onUsed(player);
 			assertNull(player.getZone().getEntityAt(1, 0));

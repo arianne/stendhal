@@ -75,7 +75,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	private static final int CORPSE_REFILL_SECONDS = 60;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -86,13 +86,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 *
 	 */
 	static class CorpseRefiller implements TurnListener {
-		private Corpse corpse;
+		private final Corpse corpse;
 
-		private String itemName;
+		private final String itemName;
 
-		private String description;
+		private final String description;
 
-		public CorpseRefiller(Corpse corpse, String itemName, String description) {
+		public CorpseRefiller(final Corpse corpse, final String itemName, final String description) {
 			this.corpse = corpse;
 			this.itemName = itemName;
 			this.description = description;
@@ -102,7 +102,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
 		}
 
-		private boolean equalsExpectedItem(Item item) {
+		private boolean equalsExpectedItem(final Item item) {
 			if (!item.getName().equals(itemName)) {
 				return false;
 			}
@@ -114,13 +114,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 			return corpse.getName().equals(item.getInfoString());
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			boolean isStillFilled = false;
 			// Check if the item is still in the corpse. Note that somebody
 			// might have put other stuff into the corpse.
-			for (RPObject object : corpse.getSlot("content")) {
+			for (final RPObject object : corpse.getSlot("content")) {
 				if (object instanceof Item) {
-					Item item = (Item) object;
+					final Item item = (Item) object;
 					if (equalsExpectedItem(item)) {
 						isStillFilled = true;
 					}
@@ -129,14 +129,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 			try {
 				if (!isStillFilled) {
 					// recreate the item and fill the corpse
-					Item item = SingletonRepository.getEntityManager().getItem(
+					final Item item = SingletonRepository.getEntityManager().getItem(
 							itemName);
 					item.setInfoString(corpse.getName());
 					item.setDescription(description);
 					corpse.add(item);
 					corpse.notifyWorldAboutChanges();
 				}
-			} catch (SlotIsFullException e) {
+			} catch (final SlotIsFullException e) {
 				// ignore, just don't refill the corpse until someone removes
 				// the other items from the corpse
 				logger.warn("Quest corpse is full: " + corpse.getName());
@@ -148,7 +148,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class HenryQuestAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
 					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
 				npc.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
@@ -161,43 +161,43 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
-			List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
+			final List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
 			Item questLeatherLegs = null;
-			for (Item leatherLegs : allLeatherLegs) {
+			for (final Item leatherLegs : allLeatherLegs) {
 				if ("tom".equalsIgnoreCase(leatherLegs.getInfoString())) {
 					questLeatherLegs = leatherLegs;
 					break;
 				}
 			}
 
-			List<Item> allNotes = player.getAllEquipped("note");
+			final List<Item> allNotes = player.getAllEquipped("note");
 			Item questNote = null;
-			for (Item note : allNotes) {
+			for (final Item note : allNotes) {
 				if ("charles".equalsIgnoreCase(note.getInfoString())) {
 					questNote = note;
 					break;
 				}
 			}
 
-			List<Item> allScaleArmors = player.getAllEquipped("scale armor");
+			final List<Item> allScaleArmors = player.getAllEquipped("scale armor");
 			Item questScaleArmor = null;
-			for (Item scaleArmor : allScaleArmors) {
+			for (final Item scaleArmor : allScaleArmors) {
 				if ("peter".equalsIgnoreCase(scaleArmor.getInfoString())) {
 					questScaleArmor = scaleArmor;
 					break;
@@ -211,7 +211,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addKarma(15);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
-				Item map = SingletonRepository.getEntityManager().getItem(
+				final Item map = SingletonRepository.getEntityManager().getItem(
 						"map");
 				map.setInfoString(npc.getName());
 				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
@@ -226,11 +226,11 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
-			List<Item> allMaps = player.getAllEquipped("map");
+			final List<Item> allMaps = player.getAllEquipped("map");
 			Item questMap = null;
-			for (Item map : allMaps) {
+			for (final Item map : allMaps) {
 				if ("henry".equalsIgnoreCase(map.getInfoString())) {
 					questMap = map;
 					break;
@@ -242,7 +242,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addKarma(15);
 				player.drop(questMap);
 
-				Item item = SingletonRepository.getEntityManager().getItem(
+				final Item item = SingletonRepository.getEntityManager().getItem(
 						"steel boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
@@ -260,7 +260,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * We create NPC Henry who will get us on the quest.
 	 */
 	private void prepareCowardSoldier() {
-		SpeakerNPC henry = npcs.get("Henry");
+		final SpeakerNPC henry = npcs.get("Henry");
 
 		henry.addGreeting("Ssshh! Silence or you will attract more #dwarves.");
 		henry.addJob("I'm a soldier in the army.");
@@ -329,10 +329,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add corpses of ex-NPCs.
 	 */
 	private void prepareCorpses() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-6_kanmararn_city");
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-6_kanmararn_city");
 
 		// Now we create the corpse of the second NPC
-		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
+		final Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
 		tom.setStage(4); // he died first
 		tom.setName("Tom");
 		// TODO: Use a_noun() in Corpse?
@@ -341,12 +341,12 @@ public class KanmararnSoldiers extends AbstractQuest {
 		zone.add(tom);
 
 		// Add a refiller to automatically fill the corpse of unlucky Tom
-		CorpseRefiller tomRefiller = new CorpseRefiller(tom, "leather legs",
+		final CorpseRefiller tomRefiller = new CorpseRefiller(tom, "leather legs",
 				"You see torn leather legs that are heavily covered with blood.");
 		tomRefiller.start();
 
 		// Now we create the corpse of the third NPC
-		Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
+		final Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
 		charles.setStage(3); // he died second
 		charles.setName("Charles");
 		// TODO: Use a_noun() in Corpse?
@@ -354,12 +354,12 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add our new Ex-NPC to the game world
 		zone.add(charles);
 		// Add a refiller to automatically fill the corpse of unlucky Charles
-		CorpseRefiller charlesRefiller = new CorpseRefiller(charles, "note",
+		final CorpseRefiller charlesRefiller = new CorpseRefiller(charles, "note",
 				"You read: \"IOU 250 money. (signed) McPegleg\"");
 		charlesRefiller.start();
 
 		// Now we create the corpse of the fourth NPC
-		Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
+		final Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
 		peter.setStage(2); // he died recently
 		peter.setName("Peter");
 		// TODO: Use a_noun() in Corpse?
@@ -367,7 +367,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add our new Ex-NPC to the game world
 		zone.add(peter);
 		// Add a refiller to automatically fill the corpse of unlucky Peter
-		CorpseRefiller peterRefiller = new CorpseRefiller(
+		final CorpseRefiller peterRefiller = new CorpseRefiller(
 				peter,
 				"scale armor",
 				"You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows.");
@@ -378,7 +378,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add James.
 	 */
 	private void prepareSergeant() {
-		SpeakerNPC james = npcs.get("Sergeant James");
+		final SpeakerNPC james = npcs.get("Sergeant James");
 
 		// quest related stuff
 		james.addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");

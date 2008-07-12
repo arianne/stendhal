@@ -48,19 +48,19 @@ public class Bootstrap {
 		 * @param parent
 		 *            parent classloader
 		 */
-		ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
+		ButtomUpOrderClassLoader(final URL[] urls, final ClassLoader parent) {
 			super(urls, parent);
 		}
 
 		@Override
-		protected synchronized Class< ? > loadClass(String name, boolean resolve)
+		protected synchronized Class< ? > loadClass(final String name, final boolean resolve)
 				throws ClassNotFoundException {
-			ClassLoader parent = super.getParent();
+			final ClassLoader parent = super.getParent();
 			Class< ? > clazz = findLoadedClass(name);
 			if (clazz == null) {
 				try {
 					clazz = findClass(name);
-				} catch (ClassNotFoundException e) {
+				} catch (final ClassNotFoundException e) {
 					clazz = parent.loadClass(name);
 				}
 			}
@@ -71,8 +71,8 @@ public class Bootstrap {
 		}
 
 		@Override
-		public URL getResource(String name) {
-			ClassLoader parent = super.getParent();
+		public URL getResource(final String name) {
+			final ClassLoader parent = super.getParent();
 			URL url = findResource(name);
 			if (url == null) {
 				if (parent != null) {
@@ -94,8 +94,8 @@ public class Bootstrap {
 		// care about all the things which could go wrong unless an update
 		// was done this time.
 		if (!bootProp.equals(bootPropOrg)) {
-			String propFile = jarFolder + "jar.properties";
-			OutputStream os = new FileOutputStream(propFile);
+			final String propFile = jarFolder + "jar.properties";
+			final OutputStream os = new FileOutputStream(propFile);
 			bootProp.store(os, "Stendhal Boot Configuration");
 			os.close();
 		}
@@ -108,12 +108,12 @@ public class Bootstrap {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
 
-		String stendhal = ClientGameConfiguration.get("GAME_NAME").toLowerCase();
+		final String stendhal = ClientGameConfiguration.get("GAME_NAME").toLowerCase();
 		System.out.println("GAME: " + stendhal);
 
 		jarFolder = System.getProperty("user.home") + pathSep + stendhal
 				+ pathSep + "jar" + pathSep;
-		File folder = new File(jarFolder);
+		final File folder = new File(jarFolder);
 		if (!folder.exists()) {
 			folder.mkdirs();
 		}
@@ -129,20 +129,20 @@ public class Bootstrap {
 	 */
 	ClassLoader createClassloader() throws Exception {
 		// load jar.properties
-		String propFile = jarFolder + "jar.properties";
+		final String propFile = jarFolder + "jar.properties";
 		bootProp = new Properties();
-		List<URL> jarFiles = new LinkedList<URL>();
+		final List<URL> jarFiles = new LinkedList<URL>();
 		if (new File(propFile).canRead()) {
-			InputStream is = new FileInputStream(propFile);
+			final InputStream is = new FileInputStream(propFile);
 			bootProp.load(is);
 			bootPropOrg = (Properties) bootProp.clone();
 			is.close();
 
 			// get list of .jar-files
-			String jarNameString = bootProp.getProperty("load-0.63", "");
-			StringTokenizer st = new StringTokenizer(jarNameString, ",");
+			final String jarNameString = bootProp.getProperty("load-0.63", "");
+			final StringTokenizer st = new StringTokenizer(jarNameString, ",");
 			while (st.hasMoreTokens()) {
-				String filename = st.nextToken();
+				final String filename = st.nextToken();
 				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 			}
 			System.out.println("our classpath: " + jarNameString);
@@ -153,17 +153,17 @@ public class Bootstrap {
 		// add boot classpath at the end so that those classes
 		// are loaded by our classloader as well (otherwise the dependencies
 		// would be loaded by the system classloader as well).
-		String vmClasspath = System.getProperty("java.class.path", "");
+		final String vmClasspath = System.getProperty("java.class.path", "");
 		System.out.println("vm  classpath: " + vmClasspath);
-		StringTokenizer st = new StringTokenizer(vmClasspath, ":;");
+		final StringTokenizer st = new StringTokenizer(vmClasspath, ":;");
 		while (st.hasMoreTokens()) {
-			String filename = st.nextToken();
+			final String filename = st.nextToken();
 			jarFiles.add(new File(filename).toURI().toURL());
 		}
 
 		// Create new class loader which the list of .jar-files as classpath
-		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-		ClassLoader loader = new ButtomUpOrderClassLoader(urlArray,
+		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+		final ClassLoader loader = new ButtomUpOrderClassLoader(urlArray,
 				this.getClass().getClassLoader());
 		return loader;
 	}
@@ -174,9 +174,9 @@ public class Bootstrap {
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
-		private String className;
+		private final String className;
 
-		private String[] args;
+		private final String[] args;
 
 		/**
 		 * Creates a PrivilagedBoot object.
@@ -186,7 +186,7 @@ public class Bootstrap {
 		 * @param args
 		 *            arguments for the main-method
 		 */
-		public PrivilegedBoot(String className, String[] args) {
+		public PrivilegedBoot(final String className, final String[] args) {
 			this.className = className;
 			this.args = args;
 		}
@@ -197,7 +197,7 @@ public class Bootstrap {
 		private void handleUpdate() {
 			// invoke update handling first
 			try {
-				ClassLoader classLoader = createClassloader();
+				final ClassLoader classLoader = createClassloader();
 				// is this the initial download (or do we already have the
 				// program downloaded)?
 				boolean initialDownload = false;
@@ -209,20 +209,20 @@ public class Bootstrap {
 						throw new ClassNotFoundException(
 								ClientGameConfiguration.get("GAME_ICON"));
 					}
-				} catch (ClassNotFoundException e) {
+				} catch (final ClassNotFoundException e) {
 					initialDownload = true;
 					System.out.println("Initial Download");
 				}
 
 				// start update handling
-				Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-				Method method = clazz.getMethod("process", String.class,
+				final Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				final Method method = clazz.getMethod("process", String.class,
 						Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp,
 						initialDownload);
-			} catch (SecurityException e) {
+			} catch (final SecurityException e) {
 				throw e;
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace(System.err);
 				JOptionPane.showMessageDialog(
 						null,
@@ -237,7 +237,7 @@ public class Bootstrap {
 		private void storeBootProp() {
 			try {
 				saveBootProp();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				JOptionPane.showMessageDialog(
 						null,
 						"Sorry, an error occurred while downloading the update. Could not write bootProperties");
@@ -252,11 +252,11 @@ public class Bootstrap {
 			// .jar-files may have been added
 
 			try {
-				ClassLoader classLoader = createClassloader();
-				Class< ? > clazz = classLoader.loadClass(className);
-				Method method = clazz.getMethod("main", args.getClass());
+				final ClassLoader classLoader = createClassloader();
+				final Class< ? > clazz = classLoader.loadClass(className);
+				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
-			} catch (Throwable e) {
+			} catch (final Throwable e) {
 				unexpectedErrorHandling(e);
 			}
 
@@ -278,7 +278,7 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		URL url = Bootstrap.class.getClassLoader().getResource(
+		final URL url = Bootstrap.class.getClassLoader().getResource(
 				ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
 		return url != null;
 	}
@@ -292,10 +292,10 @@ public class Bootstrap {
 	 * @param args
 	 *            command line arguments
 	 */
-	public void boot(String className, String[] args) {
+	public void boot(final String className, final String[] args) {
 		try {
 			System.setSecurityManager(null);
-		} catch (Throwable t) {
+		} catch (final Throwable t) {
 			t.printStackTrace(System.err);
 		}
 
@@ -308,7 +308,7 @@ public class Bootstrap {
 			try {
 				AccessController.doPrivileged(new PrivilegedBoot<Object>(
 						className, args));
-			} catch (SecurityException e) {
+			} catch (final SecurityException e) {
 				// partly update
 				System.err.println("Got SecurityException most likly because singed jars files from the official distribution have been included into a self build client."
 						+ e);
@@ -320,10 +320,10 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class< ? > clazz = Class.forName(className);
-				Method method = clazz.getMethod("main", args.getClass());
+				final Class< ? > clazz = Class.forName(className);
+				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
-			} catch (Exception err) {
+			} catch (final Exception err) {
 				err.printStackTrace(System.err);
 				JOptionPane.showMessageDialog(null,
 						"Something nasty happened while trying to start your self build client: "
@@ -338,7 +338,7 @@ public class Bootstrap {
 	 * @param t
 	 *            exception
 	 */
-	void unexpectedErrorHandling(Throwable t) {
+	void unexpectedErrorHandling(final Throwable t) {
 		// unwrap chained exceptions
 		Throwable e = t;
 		while (e.getCause() != null) {
@@ -351,7 +351,7 @@ public class Bootstrap {
 			JOptionPane.showMessageDialog(null,
 					"Sorry, an OutOfMemoryError occurred. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
-			int res = JOptionPane.showConfirmDialog(
+			final int res = JOptionPane.showConfirmDialog(
 					null,
 					"Sorry an error occurred because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
@@ -361,7 +361,7 @@ public class Bootstrap {
 				bootProp.remove("load-0.63");
 				try {
 					saveBootProp();
-				} catch (IOException e1) {
+				} catch (final IOException e1) {
 					JOptionPane.showMessageDialog(null,
 							"Could not write jar.properties");
 				}

@@ -29,7 +29,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	 * @param cost
 	 *            The lump sum that is required to heal
 	 */
-	public HealerBehaviour(int cost) {
+	public HealerBehaviour(final int cost) {
 		super();
 		priceList.put("heal", cost);
 	}
@@ -41,7 +41,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	 * @param player
 	 *            The player who should be healed.
 	 */
-	public void heal(Player player) {
+	public void heal(final Player player) {
 		player.heal();
 		player.healPoison();
 		SingletonRepository.getRPWorld().modify(player);

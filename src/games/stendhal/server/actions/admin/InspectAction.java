@@ -18,31 +18,43 @@ public class InspectAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
-		Entity target = getTarget(player, action);
+		final Entity target = getTarget(player, action);
 
 		if (target == null) {
-			String text = "Entity not found";
+			final String text = "Entity not found";
 			player.sendPrivateText(text);
 			return;
 		}
 
-		StringBuilder st = new StringBuilder();
+		final StringBuilder st = new StringBuilder();
 
 		if (target instanceof RPEntity) {
-			RPEntity inspected = (RPEntity) target;
+			final RPEntity inspected = (RPEntity) target;
 
 			// display type and name/title of the entity if they are available
 
-			String type = inspected.get("type");
-			st.append("Inspected " + (type != null ? type : "entity") + " is ");
+			final String type = inspected.get("type");
+			st.append("Inspected ");
+			if (type != null) {
+				st.append(type);
+			} else {
+				st.append("entity");
+			}
+			st.append(" is ");
 
 			String name = inspected.getName();
 			if (name == null) {
 				name = inspected.getTitle();
 			}
-			st.append(name != null ? "called \"" + name + "\"" : "unnamed");
+			if (name != null) {
+				st.append("called \"");
+				st.append(name);
+				st.append("\"");
+			} else {
+				st.append("unnamed");
+			}
 
 			st.append(" and has the following attributes:");
 
@@ -60,7 +72,7 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nLevel:  " + inspected.getLevel());
 
 			st.append("\nequips");
-			for (RPSlot slot : inspected.slots()) {
+			for (final RPSlot slot : inspected.slots()) {
 				// showing these is either irrelevant, private, or spams too much
 				// TODO: add !kills later by making /inspect take a parameter
 				if (slot.getName().equals("!buddy")
@@ -76,11 +88,11 @@ public class InspectAction extends AdministrationAction {
 				st.append("\n    Slot " + slot.getName() + ": ");
 
 				if (slot.getName().startsWith("!")) {
-					for (RPObject object : slot) {
+					for (final RPObject object : slot) {
 						st.append(object);
 					}
 				} else {
-					for (RPObject object : slot) {
+					for (final RPObject object : slot) {
 						if (!(object instanceof Item)) {
 							continue;
 						}

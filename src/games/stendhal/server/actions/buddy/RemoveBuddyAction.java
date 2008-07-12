@@ -8,9 +8,9 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 class RemoveBuddyAction implements ActionListener {
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
-			String who = action.get(TARGET);
+			final String who = action.get(TARGET);
 
 			player.setKeyedSlot("!buddy", "_" + who, null);
 

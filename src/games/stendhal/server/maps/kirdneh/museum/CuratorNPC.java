@@ -17,7 +17,7 @@ import java.util.Map;
  * @author kymara
  */
 public class CuratorNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 	//
 	// ZoneConfigurator
 	//
@@ -30,13 +30,13 @@ public class CuratorNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Hazel") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Hazel") {
 
 			@Override
 			protected void createPath() {

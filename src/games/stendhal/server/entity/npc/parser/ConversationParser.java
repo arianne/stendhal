@@ -36,7 +36,7 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public ConversationParser(final String text) {
         // initialize a new tokenizer with the given text
-        tokenizer = new StringTokenizer(text != null? text : "");
+        tokenizer = new StringTokenizer(text != null ? text : "");
         originalText = text;
     }
 
@@ -80,7 +80,7 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public static Expression createTriggerExpression(final String text, ExpressionMatcher matcher) {
         // prepare context for matching
-        ConversationContext ctx = new ConvCtxForMatcher();
+        final ConversationContext ctx = new ConvCtxForMatcher();
 
         // don't ignore words with type "IGN" if specified in trigger expressions
         ctx.setIgnoreIgnorable(false);
@@ -88,14 +88,14 @@ public final class ConversationParser extends ErrorBuffer {
         if (matcher != null) {
             return matcher.parseSentence(text, ctx).getTriggerExpression();
         } else {
-            Expression expr = parse(text, ctx).getTriggerExpression();
+            final Expression expr = parse(text, ctx).getTriggerExpression();
 
-            if (expr.getMatcher() == null && !expr.getNormalized().equals(expr.getOriginal())) {
-                WordEntry norm = WordList.getInstance().find(expr.getNormalized());
+            if ((expr.getMatcher() == null) && !expr.getNormalized().equals(expr.getOriginal())) {
+                final WordEntry norm = WordList.getInstance().find(expr.getNormalized());
 
                 // If the trigger type string is not the same as that of the normalized form,
                 // associate an ExpressionMatcher in typeMatching mode.
-                if (norm != null && !expr.getTypeString().equals(norm.getTypeString())) {
+                if ((norm != null) && !expr.getTypeString().equals(norm.getTypeString())) {
                     matcher = new ExpressionMatcher();
                     matcher.setTypeMatching(true);
                     expr.setMatcher(matcher);
@@ -180,8 +180,8 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public static Sentence parse(String text, final ConversationContext ctx) {
         if (text != null) {
-            if (ctx != null && ctx.isForMatching()) {
-                ExpressionMatcher matcher = new ExpressionMatcher();
+            if ((ctx != null) && ctx.isForMatching()) {
+                final ExpressionMatcher matcher = new ExpressionMatcher();
 
                 // If the text begins with matching flags, skip normal sentence parsing and read in
                 // the expressions from the given string in prepared form.
@@ -195,21 +195,21 @@ public final class ConversationParser extends ErrorBuffer {
             text = "";
         }
 
-        SentenceImplementation sentence = new SentenceImplementation(ctx);
+        final SentenceImplementation sentence = new SentenceImplementation(ctx);
 
         try {
             // 1.) determine sentence type from trailing punctuation
             text = getSentenceType(text.trim(), sentence);
 
             // 2.) feed the separated words into the sentence object
-            ConversationParser parser = new ConversationParser(text);
+            final ConversationParser parser = new ConversationParser(text);
 
             sentence.parse(parser);
 
             // 3.) classify word types and normalize words
             sentence.classifyWords(parser);
 
-            if (ctx != null && ctx.getMergeExpressions()) {
+            if ((ctx != null) && ctx.getMergeExpressions()) {
                 // 4.) evaluate sentence type from word order
                 sentence.evaluateSentenceType();
 
@@ -226,7 +226,7 @@ public final class ConversationParser extends ErrorBuffer {
             }
 
             sentence.setError(parser.getErrorString());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             logger.error("ConversationParser.parse(): catched Exception while parsing '" + text + '\'');
             sentence.setError(e.getMessage());
             e.printStackTrace();
@@ -257,9 +257,9 @@ public final class ConversationParser extends ErrorBuffer {
      * @return text without trailing or leading punctuation
      */
     public static String getSentenceType(String text, final Sentence sentence) {
-        PunctuationParser punct = new PunctuationParser(text);
+        final PunctuationParser punct = new PunctuationParser(text);
 
-        String trailing = punct.getTrailingPunctuation();
+        final String trailing = punct.getTrailingPunctuation();
 
         if (trailing.contains("?")) {
             sentence.setType(Sentence.SentenceType.QUESTION);

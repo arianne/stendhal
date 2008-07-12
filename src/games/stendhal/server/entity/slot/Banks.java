@@ -25,7 +25,7 @@ public enum Banks {
 	 * @param slotName
 	 *            the banks name
 	 */
-	private Banks(String slotName) {
+	private Banks(final String slotName) {
 		this.slotName = slotName;
 	}
 
@@ -44,8 +44,8 @@ public enum Banks {
 	 * @param slotName name of bank slot
 	 * @return Banks enum instance or null
 	 */
-	public static Banks getBySlotName(String slotName) {
-		for (Banks bank : values()) {
+	public static Banks getBySlotName(final String slotName) {
+		for (final Banks bank : values()) {
 			if (bank.getSlotName().equals(slotName)) {
 				return bank;
 			}

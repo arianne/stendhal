@@ -27,7 +27,7 @@ public class FaceAction implements ActionListener {
 		CommandCenter.register(_FACE, new FaceAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		if (action.has(_DIR)) {
 			player.stop();

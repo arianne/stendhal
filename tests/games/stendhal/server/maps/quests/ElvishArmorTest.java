@@ -63,8 +63,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testIdleTOAttending() {
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(IDLE);
 			assertThat(player.hasQuest(QUEST_SLOT), is(false));
 
@@ -77,8 +77,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testAttendingToQuestOffered() {
-		for (String playerSays : Arrays.asList("elves")) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : Arrays.asList("elves")) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(ATTENDING);
 			assertThat(player.hasQuest(QUEST_SLOT), is(false));
 
@@ -91,8 +91,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testQuestOfferedToQuestOffered() {
-		for (String playerSays : Arrays.asList("secrets")) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : Arrays.asList("secrets")) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUEST_OFFERED);
 
 			npcEngine.step(player, playerSays);
@@ -105,12 +105,12 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testQuestOfferedToIdle() {
-		for (String playerSays : ConversationPhrases.YES_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUEST_OFFERED);
 
 			assertFalse(player.hasQuest(QUEST_SLOT));
-			double oldkarma = player.getKarma();
+			final double oldkarma = player.getKarma();
 
 			npcEngine.step(player, playerSays);
 
@@ -126,12 +126,12 @@ public class ElvishArmorTest {
      */
 	@Test
 	public void testQuestOfferedToQuestOfferes() {
-		for (String playerSays : Arrays.asList("no", "nothing")) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : Arrays.asList("no", "nothing")) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUEST_OFFERED);
 
 			assertFalse(player.hasQuest(QUEST_SLOT));
-			double oldkarma = player.getKarma();
+			final double oldkarma = player.getKarma();
 
 			npcEngine.step(player, playerSays);
 
@@ -148,8 +148,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testIdleToQuestion1() {
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(IDLE);
 			player.setQuest(QUEST_SLOT, "");
 			assertTrue(player.hasQuest(QUEST_SLOT));
@@ -169,8 +169,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToQuestion1() {
-		String playerSays = "equipment";
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final String playerSays = "equipment";
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		npcEngine.setCurrentState(QUESTION_1);
 
 		npcEngine.step(player, playerSays);
@@ -184,8 +184,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToQuestion1Yes() {
-		for (String playerSays : ConversationPhrases.YES_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUESTION_1);
 
 			npcEngine.step(player, playerSays);
@@ -200,9 +200,9 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToQuestion1NeededITems() {
-		for (String playerSays : NEEDEDITEMS) {
+		for (final String playerSays : NEEDEDITEMS) {
 
-			Player player = PlayerTestHelper.createPlayer("bob");
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUESTION_1);
 
 			npcEngine.step(player, playerSays);
@@ -219,8 +219,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToQuestion1NeededITemsGot() {
-		for (String playerSays : NEEDEDITEMS) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : NEEDEDITEMS) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 
 			PlayerTestHelper.equipWithItem(player, playerSays);
 			npcEngine.setCurrentState(QUESTION_1);
@@ -245,11 +245,11 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToAttending() {
-		Player player = PlayerTestHelper.createPlayer("bob");
-		double oldKarma = player.getKarma();
-		int oldXp = player.getXP();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final double oldKarma = player.getKarma();
+		final int oldXp = player.getXP();
 		npcEngine.setCurrentState(QUESTION_1);
-		for (String playerSays : NEEDEDITEMS) {
+		for (final String playerSays : NEEDEDITEMS) {
 			PlayerTestHelper.equipWithItem(player, playerSays);
 			npcEngine.step(player, playerSays);
 		}
@@ -264,7 +264,7 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToQuestion1NotInList() {
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		npcEngine.setCurrentState(QUESTION_1);
 		npcEngine.step(player, "NotanItem");
 
@@ -274,8 +274,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testQuestion1toIdle() {
-		for (String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(QUESTION_1);
 
 			npcEngine.step(player, playerSays);
@@ -287,8 +287,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testAttendingToAttending() {
-		for (String playerSays : Arrays.asList("no", "nothing")) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : Arrays.asList("no", "nothing")) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			npcEngine.setCurrentState(ATTENDING);
 
 			npcEngine.step(player, playerSays);
@@ -304,8 +304,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testQuestion1ToAttendingNoToAny() {
-		for (String playerSays : Arrays.asList("no")) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : Arrays.asList("no")) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(QUESTION_1);
 
@@ -319,8 +319,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testIdleToAttendingQuestCompleted() {
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "done");
 			npcEngine.setCurrentState(IDLE);
 
@@ -337,8 +337,8 @@ public class ElvishArmorTest {
      */
 	@Test
 	public void testAttendingtoAttendingOffer() {
-		for (String playerSays : ConversationPhrases.OFFER_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.OFFER_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "done");
 			npcEngine.setCurrentState(ATTENDING);
 
@@ -354,8 +354,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testAttendingtoAttendingDoneQuestmessage() {
-		for (String playerSays : ConversationPhrases.QUEST_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "done");
 			npcEngine.setCurrentState(ATTENDING);
 
@@ -372,8 +372,8 @@ public class ElvishArmorTest {
 	 */
 	@Test
 	public void testAttendingtoQuestion1NotDoneQuestmessage() {
-		for (String playerSays : ConversationPhrases.QUEST_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(ATTENDING);
 
@@ -386,8 +386,8 @@ public class ElvishArmorTest {
 
 	@Test
 	public void testAttendingtoAttendingOfferquestnotdone() {
-		for (String playerSays : ConversationPhrases.OFFER_MESSAGES) {
-			Player player = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.OFFER_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("bob");
 			player.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(ATTENDING);
 

@@ -46,10 +46,10 @@ class BossCreature2DView extends Creature2DView {
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
 			final Sprite tiles, final int width, final int height) {
-		SpriteStore store = SpriteStore.get();
+		final SpriteStore store = SpriteStore.get();
 
-		Sprite right = store.getTile(tiles, 0, 0, width, height);
-		Sprite left = store.getTile(tiles, 0, height, width, height);
+		final Sprite right = store.getTile(tiles, 0, 0, width, height);
+		final Sprite left = store.getTile(tiles, 0, height, width, height);
 
 		map.put(Direction.RIGHT, right);
 		map.put(Direction.LEFT, left);

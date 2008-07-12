@@ -11,14 +11,14 @@ public class ItemTestHelper {
 		return new Item("item", "itemclass", "subclass", null);
 	}
 
-	public static Item createItem(String name) {
+	public static Item createItem(final String name) {
 		ItemTestHelper.generateRPClasses();
 		return new Item(name, "itemclass", "subclass", null);
 	}
 	
-	public static Item createItem(String name, int quantity) {
+	public static Item createItem(final String name, final int quantity) {
 		ItemTestHelper.generateRPClasses();
-		StackableItem item = new StackableItem(name, "itemclass", "subclass", null);
+		final StackableItem item = new StackableItem(name, "itemclass", "subclass", null);
 		item.setQuantity(quantity);
 		return item;
 	}

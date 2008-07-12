@@ -76,8 +76,8 @@ public class TilesetAnimationMap {
 		}
 
 		for (int i = 0; i < frameIndexes.length; i++) {
-			int[] frames = new int[frameIndexes.length];
-			int[] delays = new int[frameIndexes.length];
+			final int[] frames = new int[frameIndexes.length];
+			final int[] delays = new int[frameIndexes.length];
 			int tidx = i;
 
 			for (int fidx = 0; fidx < frameIndexes.length; fidx++) {
@@ -104,16 +104,16 @@ public class TilesetAnimationMap {
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final Tileset tileset, final int index) {
-		Mapping mapping = animations.get(Integer.valueOf(index));
+		final Mapping mapping = animations.get(Integer.valueOf(index));
 
 		if (mapping == null) {
 			return null;
 		}
 
-		int[] frameIndexes = mapping.getIndexes();
-		int[] frameDelays = mapping.getDelays();
+		final int[] frameIndexes = mapping.getIndexes();
+		final int[] frameDelays = mapping.getDelays();
 
-		Sprite[] frames = new Sprite[frameIndexes.length];
+		final Sprite[] frames = new Sprite[frameIndexes.length];
 
 		for (int i = 0; i < frameIndexes.length; i++) {
 			frames[i] = tileset.getSprite(frameIndexes[i]);

@@ -112,7 +112,7 @@ public class SpriteStore {
 			return new Sprite[0];
 		}
 
-		Sprite[] sprites = new Sprite[count];
+		final Sprite[] sprites = new Sprite[count];
 
 		int tx = x;
 
@@ -147,8 +147,8 @@ public class SpriteStore {
 	 * @return A sprite instance containing an accelerate image of the request
 	 *         reference
 	 */
-	public Sprite getSprite(String ref) {
-		SpriteCache cache = SpriteCache.get();
+	public Sprite getSprite(final String ref) {
+		final SpriteCache cache = SpriteCache.get();
 
 		Sprite sprite = cache.get(ref);
 
@@ -170,8 +170,8 @@ public class SpriteStore {
 	 *            the file name
 	 * @return if sprite exists in store false otherwise
 	 */
-	public boolean existsSprite(String ref) {
-		URL url = getResourceURL(ref);
+	public boolean existsSprite(final String ref) {
+		final URL url = getResourceURL(ref);
 		return url != null;
 	}
 
@@ -183,7 +183,7 @@ public class SpriteStore {
 	 * 
 	 * @return A sprite, or <code>null</code> if missing/on error.
 	 */
-	protected Sprite loadSprite(String ref) {
+	protected Sprite loadSprite(final String ref) {
 		BufferedImage sourceImage = null;
 
 		try {
@@ -208,25 +208,25 @@ public class SpriteStore {
 
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to load: " + ref, e);
 			return null;
 		}
 
 		// create an accelerated image of the right size to store our sprite in
-		int mode = Transparency.BITMASK;
+		final int mode = Transparency.BITMASK;
 
 		// ALPHA channel makes it runs 30% slower.
 		// mode=Transparency.TRANSLUCENT;
 
-		Image image = gc.createCompatibleImage(sourceImage.getWidth(),
+		final Image image = gc.createCompatibleImage(sourceImage.getWidth(),
 				sourceImage.getHeight(), mode);
 
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
 
 		// create a sprite, add it the cache then return it
-		Sprite sprite = new ImageSprite(image, ref);
+		final Sprite sprite = new ImageSprite(image, ref);
 
 		return sprite;
 	}
@@ -252,9 +252,9 @@ public class SpriteStore {
 	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite(final int width, final int height) {
-		SpriteCache cache = SpriteCache.get();
+		final SpriteCache cache = SpriteCache.get();
 
-		Object reference = EmptySprite.createReference(width, height);
+		final Object reference = EmptySprite.createReference(width, height);
 
 		Sprite sprite = cache.get(reference);
 
@@ -280,10 +280,10 @@ public class SpriteStore {
 	 *            The height.
 	 * @return tile found in cache or new one created from sprite
 	 */
-	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
-		SpriteCache cache = SpriteCache.get();
+	public Sprite getTile(final Sprite sprite, final int x, final int y, final int width, final int height) {
+		final SpriteCache cache = SpriteCache.get();
 
-		TSRef reference = TileSprite.createReference(sprite, x, y, width,
+		final TSRef reference = TileSprite.createReference(sprite, x, y, width,
 				height);
 
 		Sprite tile = cache.get(reference);
@@ -311,7 +311,7 @@ public class SpriteStore {
 	 *            name of resource
 	 * @return URL to this resouce
 	 */
-	public URL getResourceURL(String ref) {
+	public URL getResourceURL(final String ref) {
 		return doOldBootstrapClassloaderWorkaround(ref);
 	}
 
@@ -324,22 +324,22 @@ public class SpriteStore {
 	 *            resource name
 	 * @return URL to that resource or null in case it was not found
 	 */
-	private URL doOldBootstrapClassloaderWorkaround(String ref) {
+	private URL doOldBootstrapClassloaderWorkaround(final String ref) {
 		URL url = null;
 		try {
-			ClassLoader classloader = this.getClass().getClassLoader();
-			Method method = ClassLoader.class.getDeclaredMethod("findResource",
+			final ClassLoader classloader = this.getClass().getClassLoader();
+			final Method method = ClassLoader.class.getDeclaredMethod("findResource",
 					String.class);
 			method.setAccessible(true);
 
 			url = (URL) method.invoke(classloader, ref);
 			if (url == null) {
-				ClassLoader parent = classloader.getParent();
+				final ClassLoader parent = classloader.getParent();
 				if (parent != null) {
 					url = parent.getResource(ref);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			if (doOldBootstrapClassloaderWorkaroundFirst) {
 				logger.error(e, e);
 				e.printStackTrace(System.err);

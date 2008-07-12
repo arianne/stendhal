@@ -112,7 +112,7 @@ public class SingletonRepository {
 	}
 
 	//TODO currently not yet used
-	static void setEntityManager(EntityManager entityManager) {
+	static void setEntityManager(final EntityManager entityManager) {
 		SingletonRepository.entityManager = entityManager;
 	}
 

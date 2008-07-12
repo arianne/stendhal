@@ -59,18 +59,18 @@ public class HungryJoshua extends AbstractQuest {
 	private static final String QUEST_SLOT = "hungry_joshua";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}
@@ -97,14 +97,14 @@ public class HungryJoshua extends AbstractQuest {
 
 	private void step_1() {
 
-		SpeakerNPC npc = npcs.get("Xoderos");
+		final SpeakerNPC npc = npcs.get("Xoderos");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						engine.say("My brother has enough food now, many thanks.");
 					} else {
@@ -166,7 +166,7 @@ public class HungryJoshua extends AbstractQuest {
 	}
 
 	private void step_2() {
-		SpeakerNPC npc = npcs.get("Joshua");
+		final SpeakerNPC npc = npcs.get("Joshua");
 
 		/** If player has quest and has brought the food, ask for it */
 		npc.add(
@@ -177,7 +177,7 @@ public class HungryJoshua extends AbstractQuest {
 			"Oh great! Did my brother Xoderos send you with those sandwiches?",
 			null);
 
-		List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("sandwich", FOOD_AMOUNT));
 		reward.add(new IncreaseXPAction(150));
 		reward.add(new SetQuestAction(QUEST_SLOT, "joshua"));
@@ -203,7 +203,7 @@ public class HungryJoshua extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Xoderos");
+		final SpeakerNPC npc = npcs.get("Xoderos");
 
 		/** Complete the quest */
 		npc.add(
@@ -213,7 +213,7 @@ public class HungryJoshua extends AbstractQuest {
 			"I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					player.addXP(50);
 					// ideally, make it so that this slot being done means
 					// you get a keyring object instead what we currently

@@ -45,8 +45,8 @@ public class Base64 {
 	 *            the array of bytes to encode
 	 * @return base64-coded character array.
 	 */
-	public static char[] encode(byte[] data) {
-		char[] out = new char[((data.length + 2) / 3) * 4];
+	public static char[] encode(final byte[] data) {
+		final char[] out = new char[((data.length + 2) / 3) * 4];
 
 		//
 		// 3 bytes encode to 4 chars. Output is always an even
@@ -90,7 +90,7 @@ public class Base64 {
 	 * @param data 
 	 * @return 
 	 */
-	public static byte[] decode(char[] data) {
+	public static byte[] decode(final char[] data) {
 		// as our input could contain non-BASE64 data (newlines,
 		// whitespace of any sort, whatever) we must first adjust
 		// our count of USABLE data so that...
@@ -100,7 +100,7 @@ public class Base64 {
 
 		int tempLen = data.length;
 		for (int ix = 0; ix < data.length; ix++) {
-			if ((data[ix] > 255) || codes[data[ix]] < 0) {
+			if ((data[ix] > 255) || (codes[data[ix]] < 0)) {
 				--tempLen; // ignore non-valid chars and padding
 			}
 		}
@@ -117,7 +117,7 @@ public class Base64 {
 			len += 1;
 		}
 
-		byte[] out = new byte[len];
+		final byte[] out = new byte[len];
 
 		int shift = 0; // # of excess bits stored in accum
 		int accum = 0; // excess bits
@@ -125,7 +125,7 @@ public class Base64 {
 
 		// we now go through the entire array (NOT using the 'tempLen' value)
 		for (int ix = 0; ix < data.length; ix++) {
-			int value = (data[ix] > 255) ? -1 : codes[data[ix]];
+			final int value = (data[ix] > 255) ? -1 : codes[data[ix]];
 
 			if (value >= 0) { // skip over non-code
 				accum <<= 6; // bits shift up by 6 each time thru

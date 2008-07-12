@@ -32,9 +32,9 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If attribute 'npc' is invalid or missing.
 	 */
-	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx) {
-		String npcName = ctx.getRequiredString("npc");
-		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
+	protected SpeakerNPC getNPC(final ConfigurableFactoryContext ctx) {
+		final String npcName = ctx.getRequiredString("npc");
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 		if (npc == null) {
 			throw new IllegalArgumentException("Unknown NPC: " + npcName);
 		}
@@ -61,7 +61,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 * 
 	 * @see NPCOwnedChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new NPCOwnedChest(getNPC(ctx));
 	}
 }

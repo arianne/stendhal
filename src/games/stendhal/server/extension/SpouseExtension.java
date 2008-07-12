@@ -63,8 +63,8 @@ public class SpouseExtension extends StendhalServerExtension implements
 		// implemented as /commands that are handled onAction
 	}
 
-	public void onAction(Player player, RPAction action) {
-		String type = action.get("type");
+	public void onAction(final Player player, final RPAction action) {
+		final String type = action.get("type");
 
 		if (type.equals("marry")) {
 			onMarry(player, action);
@@ -73,8 +73,8 @@ public class SpouseExtension extends StendhalServerExtension implements
 		}
 	}
 
-	private void onMarry(Player player, RPAction action) {
-		String usage = "Usage: #/marry #<player1> #<player2>";
+	private void onMarry(final Player player, final RPAction action) {
+		final String usage = "Usage: #/marry #<player1> #<player2>";
 		String text = "";
 
 		Player player1 = null;
@@ -152,23 +152,23 @@ public class SpouseExtension extends StendhalServerExtension implements
 		player.sendPrivateText(text.trim());
 	}
 
-	private void onSpouse(Player player, RPAction action) {
+	private void onSpouse(final Player player, final RPAction action) {
 		if (player.hasQuest(SPOUSE)) {
 			Player teleported = null;
 
-			String name = player.getQuest(SPOUSE);
+			final String name = player.getQuest(SPOUSE);
 			teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
-				String text = "Your spouse (\"" + name + "\") is not online.";
+				final String text = "Your spouse (\"" + name + "\") is not online.";
 				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
 
-			StendhalRPZone zone = teleported.getZone();
-			int x = teleported.getX();
-			int y = teleported.getY();
+			final StendhalRPZone zone = teleported.getZone();
+			final int x = teleported.getX();
+			final int y = teleported.getY();
 
 			// TODO: use Player.teleport()
 

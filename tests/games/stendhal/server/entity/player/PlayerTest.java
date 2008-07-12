@@ -66,7 +66,7 @@ public class PlayerTest {
 
 	@Test
 	public void testIsObstacle() {
-		Entity ent = new Entity() {
+		final Entity ent = new Entity() {
 		};
 		ent.setResistance(100);
 		assertTrue(player.isObstacle(ent));
@@ -102,9 +102,9 @@ public class PlayerTest {
 
 	@Test
 	public void testDescribe() {
-		int hours = player.getAge() / 60;
-		int minutes = player.getAge() % 60;
-		String time = hours + " hours and " + minutes + " minutes";
+		final int hours = player.getAge() / 60;
+		final int minutes = player.getAge() % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
 		assertThat(player.describe(), is("You see " + player.getTitle() + ".\n" + player.getTitle() + " is level "
 				+ player.getLevel() + " and has been playing " + time + "."));
 
@@ -162,7 +162,7 @@ public class PlayerTest {
 
 	@Test
 	public void testIsInvisible() {
-		Player player2 = PlayerTestHelper.createPlayer("player2");
+		final Player player2 = PlayerTestHelper.createPlayer("player2");
 		assertThat(player2.isInvisibleToCreatures(), not(is(true)));
 		player2.setInvisible(true);
 		assertThat(player2.isInvisibleToCreatures(), is(true));

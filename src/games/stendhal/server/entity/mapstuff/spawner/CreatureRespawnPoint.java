@@ -41,25 +41,25 @@ public class CreatureRespawnPoint implements TurnListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
 
-	private StendhalRPZone zone;
+	private final StendhalRPZone zone;
 
-	private int x;
+	private final int x;
 
-	private int y;
+	private final int y;
 
 	/**
 	 * The number of creatures spawned here that can exist at the same time.
 	 */
-	private int maximum;
+	private final int maximum;
 
 	/**
 	 * This is the prototype; it will be copied to create new creatures that
 	 * will be spawned here.
 	 */
-	private Creature prototypeCreature;
+	private final Creature prototypeCreature;
 
 	/** All creatures that were spawned here and that are still alive. */
-	private List<Creature> creatures;
+	private final List<Creature> creatures;
 
 	/**
 	 * Stores if this respawn point is currently waiting for a creature to
@@ -85,8 +85,8 @@ public class CreatureRespawnPoint implements TurnListener {
 	 *            The number of creatures spawned here that can exist at the
 	 *            same time
 	 */
-	public CreatureRespawnPoint(StendhalRPZone zone, int x, int y,
-			Creature creature, int maximum) {
+	public CreatureRespawnPoint(final StendhalRPZone zone, final int x, final int y,
+			final Creature creature, final int maximum) {
 		this.zone = zone;
 		this.x = x;
 		this.y = y;
@@ -113,7 +113,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * defaults to the creature's default respawn time.
 	 * @param respawnTime the middled delay between spawns 
 	 */
-	public void setRespawnTime(int respawnTime) {
+	public void setRespawnTime(final int respawnTime) {
 		this.respawnTime = respawnTime;
 	}
 
@@ -124,7 +124,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param dead
 	 *            The creature that has died
 	 */
-	public void notifyDead(Creature dead) {
+	public void notifyDead(final Creature dead) {
 
 		if (!respawning) {
 			// start respawning a new creature
@@ -141,7 +141,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * 
 	 * @see games.stendhal.server.core.events.TurnListener#onTurnReached(int)
 	 */
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		respawn();
 
 		// Is this all or should we spawn more creatures?
@@ -178,7 +178,7 @@ public class CreatureRespawnPoint implements TurnListener {
 
 		try {
 			// clone the prototype creature
-			Creature newentity = prototypeCreature.getInstance();
+			final Creature newentity = prototypeCreature.getInstance();
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
@@ -193,7 +193,7 @@ public class CreatureRespawnPoint implements TurnListener {
 			newentity.setRespawnPoint(this);
 
 			creatures.add(newentity);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
 	}

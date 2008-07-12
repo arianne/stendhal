@@ -64,7 +64,7 @@ public class DailyMonsterQuestTest {
 	public void testfire() {
 
 		assertThat(en.getCurrentState(), is(ConversationStates.IDLE));
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		assertFalse(en.step(bob, ""));
 		assertThat(en.getCurrentState(), is(ConversationStates.IDLE));
 
@@ -79,7 +79,7 @@ public class DailyMonsterQuestTest {
 	@Test
 	public void testClaimDone() {
 
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		en.setCurrentState(ATTENDING);
 		CreatureTestHelper.generateRPClasses();
 		SingletonRepository.getEntityManager().getCreature("rat");
@@ -97,11 +97,11 @@ public class DailyMonsterQuestTest {
 	
 	@Test
 	public void testPickIdealCreature() {
-		DailyMonsterQuest dmqp = new DailyMonsterQuest();
-		DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
+		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
+		final DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
 		assertNull("empty list", dmqpick.pickIdealCreature(-1, false, new LinkedList<Creature>()));
-		LinkedList<Creature> creatureList = new LinkedList<Creature>();
+		final LinkedList<Creature> creatureList = new LinkedList<Creature>();
 		creatureList.add(SingletonRepository.getEntityManager().getCreature("rat"));
 		assertThat("1 rat in list", dmqpick.pickIdealCreature(-1, false, creatureList).getName(), is("rat"));
 		assertThat("1 rat in list", dmqpick.pickIdealCreature(1000, false, creatureList).getName(), is("rat"));
@@ -112,10 +112,10 @@ public class DailyMonsterQuestTest {
 
 	@Test
 	public void testPickIdealCreatureratLONGLIST() {
-		DailyMonsterQuest dmqp = new DailyMonsterQuest();
-		DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
+		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
+		final DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
-		LinkedList<Creature> creatureList = new LinkedList<Creature>();
+		final LinkedList<Creature> creatureList = new LinkedList<Creature>();
 		Creature creat;
 		for (int i = 0; i < 3; i++) {
 			creat = new Creature();

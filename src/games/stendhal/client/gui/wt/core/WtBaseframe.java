@@ -78,7 +78,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 *            The frame height (in pixels).
 	 * @param gameScreen
 	 */
-	public WtBaseframe(int width, int height, IGameScreen gameScreen) {
+	public WtBaseframe(final int width, final int height, final IGameScreen gameScreen) {
 		super("baseframe", 0, 0, width, height, gameScreen);
 		setFrame(false);
 		setTitleBar(false);
@@ -89,7 +89,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 	/** Resizing is disabled. */
 	@Override
-	public void resizeToFitClientArea(int width, int height) {
+	public void resizeToFitClientArea(final int width, final int height) {
 	}
 
 	/** @return the currently dragged object or null, if there is none. */
@@ -113,7 +113,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * outside of it.
 	 */
 	@Override
-	public void setContextMenu(JPopupMenu jcontextMenu) {
+	public void setContextMenu(final JPopupMenu jcontextMenu) {
 		if (this.jcontextMenu != null) {
 			this.jcontextMenu.setVisible(false);
 		}
@@ -130,14 +130,14 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * @param gameScreen
 	 */
 	@Override
-	public synchronized void draw(Graphics2D g, IGameScreen gameScreen) {
+	public synchronized void draw(final Graphics2D g, final IGameScreen gameScreen) {
 		// draw the stuff
 		super.draw(g, gameScreen);
 
 		// do we have a dragged object?
 		if (dragInProgress && (draggedObject != null)) {
 			// translate graphics to local start of the dragged object
-			Graphics dragg = g.create();
+			final Graphics dragg = g.create();
 			dragg.translate(dragStartPoint.x, dragStartPoint.y);
 			// yep, draw it
 			draggedObject.drawDragged(dragg);
@@ -150,10 +150,10 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	private void stopDrag(MouseEvent e) {
+	private void stopDrag(final MouseEvent e) {
 		// be sure to stop dragging operations when theleft button is released
 		if (dragInProgress && (draggedObject != null)) {
-			Point p = e.getPoint();
+			final Point p = e.getPoint();
 			draggedObject.dragFinished(p, gameScreen);
 			// now check if there is a drop-target direct unter the mouse cursor
 			checkDropped(p.x, p.y, draggedObject);
@@ -166,7 +166,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseEntered(MouseEvent e) {
+	public synchronized void mouseEntered(final MouseEvent e) {
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseExited(MouseEvent e) {
+	public synchronized void mouseExited(final MouseEvent e) {
 	}
 
 	private boolean rightMouseButtonPressed;
@@ -185,7 +185,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mousePressed(MouseEvent e) {
+	public synchronized void mousePressed(final MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = true;
 		}
@@ -198,7 +198,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseReleased(MouseEvent e) {
+	public synchronized void mouseReleased(final MouseEvent e) {
 		// be sure to stop dragging operations when the left button is released
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			stopDrag(e);
@@ -221,7 +221,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseClicked(MouseEvent e) {
+	public synchronized void mouseClicked(final MouseEvent e) {
 	}
 
 	/**
@@ -231,13 +231,13 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * @param e
 	 *            the mouse event
 	 */
-	public void onMouseClick(MouseEvent e) {
-		Point p = e.getPoint();
+	public void onMouseClick(final MouseEvent e) {
+		final Point p = e.getPoint();
 		recreatedContextMenu = false;
 
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
 
-		int onmask = InputEvent.CTRL_DOWN_MASK;
+		final int onmask = InputEvent.CTRL_DOWN_MASK;
 		if (System.getProperty("os.name").toLowerCase().contains("os x")
 				&& ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
@@ -287,8 +287,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseDragged(MouseEvent e) {
-		Point p = e.getPoint();
+	public synchronized void mouseDragged(final MouseEvent e) {
+		final Point p = e.getPoint();
 
 		if (rightMouseButtonPressed) {
 			// Disallow dragging with right button.
@@ -326,28 +326,28 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param e
 	 */
-	public synchronized void mouseMoved(java.awt.event.MouseEvent e) {
+	public synchronized void mouseMoved(final java.awt.event.MouseEvent e) {
 		// be sure to stop dragging operations
 		stopDrag(e);
 	}
 
 	/** disabled. */
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 	}
 
 	/** disabled. */
 	@Override
-	public void setTitleBar(boolean titleBar) {
+	public void setTitleBar(final boolean titleBar) {
 	}
 
 	/** disabled. */
 	@Override
-	public void setFrame(boolean frame) {
+	public void setFrame(final boolean frame) {
 	}
 
 	/** disabled. */
 	@Override
-	public void setCloseable(boolean minimizeable) {
+	public void setCloseable(final boolean minimizeable) {
 	}
 }

@@ -30,8 +30,8 @@ public class InvitationScroll extends TeleportScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public InvitationScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public InvitationScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -41,7 +41,7 @@ public class InvitationScroll extends TeleportScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public InvitationScroll(InvitationScroll item) {
+	public InvitationScroll(final InvitationScroll item) {
 		super(item);
 	}
 
@@ -55,7 +55,7 @@ public class InvitationScroll extends TeleportScroll {
 	 * 
 	 * @return <code>true</code> if teleport was successful.
 	 */
-	protected boolean teleportTo(String where, Player player) {
+	protected boolean teleportTo(final String where, final Player player) {
 		StringTokenizer st;
 		StendhalRPZone zone;
 		int x;
@@ -75,7 +75,7 @@ public class InvitationScroll extends TeleportScroll {
 
 		try {
 			x = Integer.parseInt(st.nextToken());
-		} catch (NumberFormatException ex) {
+		} catch (final NumberFormatException ex) {
 			return false;
 		}
 
@@ -85,7 +85,7 @@ public class InvitationScroll extends TeleportScroll {
 
 		try {
 			y = Integer.parseInt(st.nextToken());
-		} catch (NumberFormatException ex) {
+		} catch (final NumberFormatException ex) {
 			return false;
 		}
 
@@ -101,8 +101,8 @@ public class InvitationScroll extends TeleportScroll {
 	 * @return <code>true</code> if teleport was successful.
 	 */
 	@Override
-	protected boolean useTeleportScroll(Player player) {
-		String dest = getInfoString();
+	protected boolean useTeleportScroll(final Player player) {
+		final String dest = getInfoString();
 
 		if (dest == null) {
 			player.sendPrivateText("This invitation has not been filled in.");

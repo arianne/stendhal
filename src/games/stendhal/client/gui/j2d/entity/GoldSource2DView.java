@@ -67,7 +67,7 @@ class GoldSource2DView extends AnimatedLoopEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case PROSPECT:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			getEntity().fillTargetInfo(rpaction);

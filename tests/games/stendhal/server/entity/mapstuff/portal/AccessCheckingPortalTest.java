@@ -56,12 +56,12 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@Test
 	public final void testOnUsed() {
-		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		Object ref = new Object();
+		final AccessCheckingPortal port = new MockAccessCheckingPortal();
+		final Object ref = new Object();
 		port.setDestination("zonename", ref);
-		Portal destPort = new Portal();
+		final Portal destPort = new Portal();
 		destPort.setIdentifier(ref);
-		StendhalRPZone zone = new StendhalRPZone("zonename");
+		final StendhalRPZone zone = new StendhalRPZone("zonename");
 		zone.add(destPort);
 		MockStendlRPWorld.get().addRPZone(zone);
 
@@ -74,7 +74,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@Test
 	public final void testIsAllowed() {
-		AccessCheckingPortal port = new MockAccessCheckingPortal();
+		final AccessCheckingPortal port = new MockAccessCheckingPortal();
 		Player player = createPlayer("player-may");
 		assertTrue(port.isAllowed(player));
 		player = createPlayer("mayNot");
@@ -83,31 +83,31 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@Test
 	public final void testRejected() {
-		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
+		final AccessCheckingPortal port = new MockAccessCheckingPortal();
+		final PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.rejected(player);
-		Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
+		final Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
 				Integer.valueOf(0));
-		TurnListener[] listenerset = new TurnListener[bla.size()];
+		final TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
-		SendMessage sm = (SendMessage) listenerset[0];
+		final SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
 		assertEquals("rejected", player.getPrivateTextString());
 	}
 
 	@Test
 	public final void testSetRejectedMessage() {
-		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
+		final AccessCheckingPortal port = new MockAccessCheckingPortal();
+		final PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
-		Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
+		final Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
 				Integer.valueOf(0));
-		TurnListener[] listenerset = new TurnListener[bla.size()];
+		final TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
-		SendMessage sm = (SendMessage) listenerset[0];
+		final SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
 		assertEquals("setRejectMessage", player.getPrivateTextString());
 	}
@@ -119,7 +119,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		}
 
 		@Override
-		protected boolean isAllowed(RPEntity user) {
+		protected boolean isAllowed(final RPEntity user) {
 			return "player-may".equals(user.getName());
 		}
 

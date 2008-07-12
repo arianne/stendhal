@@ -15,7 +15,7 @@ public class WordListTest {
 
 	@Test
 	public final void testNouns() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		WordEntry w = wl.find("house");
 		assertNotNull(w);
@@ -56,7 +56,7 @@ public class WordListTest {
 
 	@Test
 	public final void testVerbs() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		WordEntry w = wl.find("say");
 		assertNotNull(w);
@@ -76,7 +76,7 @@ public class WordListTest {
 
 	@Test
 	public final void testAdjectives() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		WordEntry w = wl.find("white");
 		assertNotNull(w);
@@ -96,7 +96,7 @@ public class WordListTest {
 
 	@Test
 	public final void testPrepositions() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		WordEntry w = wl.find("with");
 		assertNotNull(w);
@@ -111,7 +111,7 @@ public class WordListTest {
 
 	@Test
 	public final void testPlural() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		assertEquals("houses", wl.plural("house"));
 		assertEquals("cookies", wl.plural("cookie"));
@@ -120,7 +120,7 @@ public class WordListTest {
 
 	@Test
 	public final void testSingular() {
-		WordList wl = WordList.getInstance();
+		final WordList wl = WordList.getInstance();
 
 		assertEquals("house", wl.singular("houses"));
 		assertEquals("cookie", wl.singular("cookies"));

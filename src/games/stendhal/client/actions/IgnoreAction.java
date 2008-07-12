@@ -18,9 +18,9 @@ class IgnoreAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		String duration = params[1];
-		RPAction action = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final String duration = params[1];
+		final RPAction action = new RPAction();
 
 		action.put("type", "ignore");
 		action.put("target", params[0]);
@@ -35,7 +35,7 @@ class IgnoreAction implements SlashAction {
 				 */
 				try {
 					Integer.parseInt(duration);
-				} catch (NumberFormatException ex) {
+				} catch (final NumberFormatException ex) {
 					return false;
 				}
 

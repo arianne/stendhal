@@ -24,7 +24,7 @@ public class RPEntityTest {
 
 	private final class MockRPentity extends RPEntity {
 		@Override
-		protected void dropItemsOn(Corpse corpse) {
+		protected void dropItemsOn(final Corpse corpse) {
 			//do Nothing
 			
 		}
@@ -58,7 +58,7 @@ public class RPEntityTest {
 	@Test
 	public void testApplydistanceattackModifiers() {
 		
-		int damage = 100;
+		final int damage = 100;
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0), is(108));
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1), is(105));
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4), is(99));
@@ -71,10 +71,10 @@ public class RPEntityTest {
 	}
 	@Test
 	public void testCalculateRiskForCanHit() {
-		RPEntity entity = new RPEntity() {
+		final RPEntity entity = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 			}
 
@@ -133,12 +133,12 @@ public class RPEntityTest {
 	}
 	@Test
 	public void testGetItemAtkforsimpleweapon() {
-		float magicFour = 4.0f;
+		final float magicFour = 4.0f;
 		
-		RPEntity entity = new RPEntity() {
+		final RPEntity entity = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
@@ -153,7 +153,7 @@ public class RPEntityTest {
 		entity.addSlot(new PlayerSlot("rhand"));
 		
 		assertThat(entity.getItemAtk(), is(0f));
-		Item item = SingletonRepository.getEntityManager().getItem("dagger");
+		final Item item = SingletonRepository.getEntityManager().getItem("dagger");
 		entity.getSlot("lhand").add(item);
 		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));		
 		entity.getSlot("rhand").add(item);
@@ -165,10 +165,10 @@ public class RPEntityTest {
 	@Test
 	public void testGetItemAtkforcheese() {
 			
-		RPEntity entity = new RPEntity() {
+		final RPEntity entity = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
@@ -183,7 +183,7 @@ public class RPEntityTest {
 		entity.addSlot(new PlayerSlot("rhand"));
 		
 		assertThat(entity.getItemAtk(), is(0f));
-		Item item = SingletonRepository.getEntityManager().getItem("cheese");
+		final Item item = SingletonRepository.getEntityManager().getItem("cheese");
 		entity.getSlot("lhand").add(item);
 		assertThat(entity.getItemAtk(), is(0f));		
 		entity.getSlot("rhand").add(item);
@@ -194,13 +194,13 @@ public class RPEntityTest {
 	
 	@Test
 	public void testGetItemAtkforLeftandRightweaponCorrectlyWorn() {
-		float magicFour = 4.0f;
+		final float magicFour = 4.0f;
 		
 		ItemTestHelper.generateRPClasses();
-		RPEntity entity = new RPEntity() {
+		final RPEntity entity = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
@@ -215,11 +215,11 @@ public class RPEntityTest {
 		entity.addSlot(new PlayerSlot("rhand"));
 		
 		assertThat(entity.getItemAtk(), is(0f));
-		Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
+		final Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
 		entity.getSlot("lhand").add(lefthanditem);
 		assertThat(entity.getItemAtk(), is(0f));	
 
-		Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
+		final Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
 		entity.getSlot("rhand").add(righthanditem);
 		assertThat(entity.getItemAtk(), is(magicFour * (lefthanditem.getAttack() + righthanditem.getAttack())));
 	}
@@ -228,10 +228,10 @@ public class RPEntityTest {
 	public void testGetItemAtkforLeftandRightweaponIncorrectlyWorn() {
 				
 		ItemTestHelper.generateRPClasses();
-		RPEntity entity = new RPEntity() {
+		final RPEntity entity = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
@@ -247,11 +247,11 @@ public class RPEntityTest {
 		
 		assertThat(entity.getItemAtk(), is(0f));
 
-		Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
+		final Item lefthanditem = SingletonRepository.getEntityManager().getItem("l hand sword");
 		entity.getSlot("rhand").add(lefthanditem);
 		assertThat(entity.getItemAtk(), is(0f));		
 
-		Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
+		final Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
 		entity.getSlot("lhand").add(righthanditem);
 		assertThat(entity.getItemAtk(), is(0f));
 		
@@ -260,21 +260,21 @@ public class RPEntityTest {
 	@Test
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
-		RPEntity attacker = new RPEntity() {
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
+		final RPEntity attacker = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 
 			}
 
 			@Override
-			public boolean canHit(RPEntity defender) {
+			public boolean canHit(final RPEntity defender) {
 				return true;
 			}
 			@Override
-			public int damageDone(RPEntity defender) {
+			public int damageDone(final RPEntity defender) {
 				return 0;
 			}
 
@@ -284,10 +284,10 @@ public class RPEntityTest {
 
 			}
 		};
-		RPEntity defender = new RPEntity() {
+		final RPEntity defender = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
@@ -320,21 +320,21 @@ public class RPEntityTest {
 	@Test
 	public void testAttackCanHitreturnTruedamage30() {
 		MockStendlRPWorld.get();
-		StendhalRPZone zone = new StendhalRPZone("testzone");
-		RPEntity attacker = new RPEntity() {
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
+		final RPEntity attacker = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 
 			}
 
 			@Override
-			public boolean canHit(RPEntity defender) {
+			public boolean canHit(final RPEntity defender) {
 				return true;
 			}
 			@Override
-			public int damageDone(RPEntity defender) {
+			public int damageDone(final RPEntity defender) {
 				return 30;
 			}
 
@@ -344,16 +344,16 @@ public class RPEntityTest {
 
 			}
 		};
-		RPEntity defender = new RPEntity() {
+		final RPEntity defender = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
 				
 			}
 
 			@Override
-			public void onDamaged(Entity attacker, int damage) {
+			public void onDamaged(final Entity attacker, final int damage) {
 				assertEquals(30, damage);
 			}
 			@Override
@@ -383,10 +383,10 @@ public class RPEntityTest {
 
 	@Test
 	public void testIsAttacking() {
-		StendhalRPZone zone = new StendhalRPZone("testzone");
-		RPEntity attacker = new MockRPentity();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
+		final RPEntity attacker = new MockRPentity();
 		assertFalse("attacktarget = null", attacker.isAttacking());
-		RPEntity defender = new MockRPentity();
+		final RPEntity defender = new MockRPentity();
 		
 		zone.add(attacker);
 		zone.add(defender);

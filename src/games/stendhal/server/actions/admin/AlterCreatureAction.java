@@ -18,10 +18,10 @@ public class AlterCreatureAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (action.has(_TARGET) && action.has(_TEXT)) {
-			Entity changed = getTarget(player, action);
+			final Entity changed = getTarget(player, action);
 
 			if (changed == null) {
 				logger.debug("Entity not found");
@@ -32,12 +32,12 @@ public class AlterCreatureAction extends AdministrationAction {
 			/*
 			 * It will contain a string like: name/atk/def/hp/xp
 			 */
-			String stat = action.get(_TEXT);
+			final String stat = action.get(_TEXT);
 
-			String[] parts = stat.split("/");
+			final String[] parts = stat.split("/");
 
-			if (changed instanceof Creature && parts.length == 5) {
-				Creature creature = (Creature) changed;
+			if ((changed instanceof Creature) && (parts.length == 5)) {
+				final Creature creature = (Creature) changed;
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						"alter", action.get(_TARGET), stat);
 

@@ -31,11 +31,11 @@ public class MeetHackimTest {
 	public void setUp() {
 		npc = new SpeakerNPC("Hackim Easso");
 		SingletonRepository.getNPCList().add(npc);
-		SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
+		final SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
 		npcConf.createDialog(npc);
 		en = npc.getEngine();
 
-		AbstractQuest quest = new MeetHackim();
+		final AbstractQuest quest = new MeetHackim();
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("player");

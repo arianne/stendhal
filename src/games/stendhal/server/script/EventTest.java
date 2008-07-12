@@ -19,16 +19,16 @@ import marauroa.common.game.Definition.DefinitionClass;
 public class EventTest extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		if (args.size() < 1) {
 			admin.sendPrivateText("Usage: /script EventTest.class {some-text}");
 			return;
 		}
 
-		RPClass rpclass = new RPClass("testevent");
+		final RPClass rpclass = new RPClass("testevent");
 		rpclass.add(DefinitionClass.RPEVENT, "testevent", Definition.STANDARD);
 
-		RPEvent event = new RPEvent("testevent");
+		final RPEvent event = new RPEvent("testevent");
 		event.put("arg", args.get(0));
 		admin.addEvent(event);
 	}

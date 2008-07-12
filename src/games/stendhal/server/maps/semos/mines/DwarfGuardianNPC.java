@@ -18,14 +18,14 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildMineArea(zone, attributes);
 	}
 
-	private void buildMineArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Phalk") {
+	private void buildMineArea(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Phalk") {
 
 			@Override
 			protected void createPath() {
@@ -36,7 +36,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
 							reply += "You are too weak to enter there.";
@@ -52,7 +52,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");
 					player.addXP(500);

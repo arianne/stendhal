@@ -42,10 +42,10 @@ public class PlinksToyTest {
 
 		npc = new SpeakerNPC("Plink");
 		SingletonRepository.getNPCList().add(npc);
-		LittleBoyNPC npcConf = new LittleBoyNPC();
+		final LittleBoyNPC npcConf = new LittleBoyNPC();
 		npcConf.createDialog(npc);
 
-		PlinksToy quest = new PlinksToy();
+		final PlinksToy quest = new PlinksToy();
 		quest.addToWorld();
 		en = npc.getEngine();
 
@@ -72,7 +72,7 @@ public class PlinksToyTest {
 
 		// -----------------------------------------------
 		
-		Item teddy = ItemTestHelper.createItem("teddy");
+		final Item teddy = ItemTestHelper.createItem("teddy");
 		teddy.setEquipableSlots(Arrays.asList("bag"));
 		player.equip(teddy);
 		assertTrue(player.isEquipped("teddy"));

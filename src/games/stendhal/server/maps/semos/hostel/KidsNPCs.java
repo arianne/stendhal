@@ -21,16 +21,16 @@ public class KidsNPCs implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPCs(zone);
 	}
 
-	private void buildNPCs(StendhalRPZone zone) {
-		String[] names = {"Taylor", "Covester", "Mick", "Richard"};
-		String[] classes = { "kid2npc", "kid1npc", "kid9npc", "kid8npc" };
-		int[][] start = { {3, 3}, {9, 3}, {15, 3}, {21, 3} };
+	private void buildNPCs(final StendhalRPZone zone) {
+		final String[] names = {"Taylor", "Covester", "Mick", "Richard"};
+		final String[] classes = { "kid2npc", "kid1npc", "kid9npc", "kid8npc" };
+		final int[][] start = { {3, 3}, {9, 3}, {15, 3}, {21, 3} };
 		for (int i = 0; i < 4; i++) {
-			SpeakerNPC npc = new SpeakerNPC(names[i]) {
+			final SpeakerNPC npc = new SpeakerNPC(names[i]) {
 				@Override
 				protected void createPath() {
 					// they sleeping!

@@ -56,7 +56,7 @@ public class CRC {
 	 * 
 	 * @return 16-bit CRC, signed
 	 */
-	public static short cmpCRC(byte[] b) {
+	public static short cmpCRC(final byte[] b) {
 		// loop, calculating CRC for each byte of the string
 		int work = 0xffff;
 		for (int i = 0; i < b.length; i++) {

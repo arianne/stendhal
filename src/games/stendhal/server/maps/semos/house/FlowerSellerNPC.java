@@ -14,14 +14,14 @@ import java.util.Map;
  * @author kymara
  */
 public class FlowerSellerNPC implements ZoneConfigurator {
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 
         	new TeleporterBehaviour(buildSemosHouseArea(), "Flowers! Get your fresh flowers here!");
 	}
 
 	private SpeakerNPC buildSemosHouseArea() {
 
-	    SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
+	    final SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
 	                @Override
 			protected void createPath() {
 				// npc does not move
@@ -39,7 +39,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		rose.initHP(100);
 
 		// start in int_semos_house
-		StendhalRPZone	zone = SingletonRepository.getRPWorld().getZone("int_semos_house");
+		final StendhalRPZone	zone = SingletonRepository.getRPWorld().getZone("int_semos_house");
 		rose.setPosition(5, 6);
 		zone.add(rose);
 

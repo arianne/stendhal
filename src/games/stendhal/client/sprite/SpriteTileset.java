@@ -70,10 +70,10 @@ public class SpriteTileset implements Tileset {
 	 */
 	protected Sprite[] extractTiles(final SpriteStore store,
 			final Sprite sprite, final int size) {
-		int rows = sprite.getHeight() / size;
-		int cols = sprite.getWidth() / size;
+		final int rows = sprite.getHeight() / size;
+		final int cols = sprite.getWidth() / size;
 
-		Sprite[] sprites = new Sprite[rows * cols];
+		final Sprite[] sprites = new Sprite[rows * cols];
 		int idx = 0;
 
 		int y = 0;

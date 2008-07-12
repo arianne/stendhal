@@ -24,13 +24,13 @@ public class BalanceRPGame {
 
 	private static int ROUNDS = 100;
 
-	public static Pair<Integer, Integer> combat(Player player, Creature target,
-			int rounds) {
+	public static Pair<Integer, Integer> combat(final Player player, final Creature target,
+			final int rounds) {
 		int meanTurns = 0;
 		int meanLeftHP = 0;
 
 		for (int i = 0; i < rounds; i++) {
-			Pair<Integer, Integer> results = combat(player, target);
+			final Pair<Integer, Integer> results = combat(player, target);
 			meanTurns += results.first();
 			meanLeftHP += results.second();
 		}
@@ -41,7 +41,7 @@ public class BalanceRPGame {
 		return new Pair<Integer, Integer>(meanTurns, meanLeftHP);
 	}
 
-	public static Pair<Integer, Integer> combat(Player player, Creature target) {
+	public static Pair<Integer, Integer> combat(final Player player, final Creature target) {
 		target.setHP(target.getBaseHP());
 		player.setHP(player.getBaseHP());
 
@@ -82,23 +82,23 @@ public class BalanceRPGame {
 		return new Pair<Integer, Integer>(turns, player.getHP());
 	}
 
-	public static void main(String[] args) throws Exception {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		StendhalRPZone area = new StendhalRPZone("test");
+	public static void main(final String[] args) throws Exception {
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPZone area = new StendhalRPZone("test");
 		world.addRPZone(area);
 
-		List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
+		final List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
 				"data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
 
-			public int compare(DefaultCreature o1, DefaultCreature o2) {
+			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
 		});
 
-		int[] atkLevels = new int[110];
-		int[] defLevels = new int[110];
+		final int[] atkLevels = new int[110];
+		final int[] defLevels = new int[110];
 
 		for (int i = 0; i < atkLevels.length; i++) {
 			atkLevels[i] = 10 + (int) Math.round(Math.log(i + 1) / Math.log(10)
@@ -107,26 +107,26 @@ public class BalanceRPGame {
 					* 14);
 		}
 
-		EntityManager em = SingletonRepository.getEntityManager();
-		Item weapon = em.getItem("club");
+		final EntityManager em = SingletonRepository.getEntityManager();
+		final Item weapon = em.getItem("club");
 		area.assignRPObjectID(weapon);
 
-		Item shield = em.getItem("wooden shield");
+		final Item shield = em.getItem("wooden shield");
 		area.assignRPObjectID(shield);
 
-		Item armor = em.getItem("dress");
+		final Item armor = em.getItem("dress");
 		area.assignRPObjectID(armor);
 
-		Item helmet = em.getItem("leather helmet");
+		final Item helmet = em.getItem("leather helmet");
 		area.assignRPObjectID(helmet);
 
-		Item legs = em.getItem("leather legs");
+		final Item legs = em.getItem("leather legs");
 		area.assignRPObjectID(legs);
 
-		Item boots = em.getItem("leather boots");
+		final Item boots = em.getItem("leather boots");
 		area.assignRPObjectID(boots);
 
-		Player player = new Player(new RPObject());
+		final Player player = new Player(new RPObject());
 		player.addSlot(new EntitySlot("lhand"));
 		player.addSlot(new EntitySlot("rhand"));
 		player.addSlot(new EntitySlot("armor"));
@@ -159,11 +159,11 @@ public class BalanceRPGame {
 		//
 		// System.exit(0);
 
-		StringBuilder sb = new StringBuilder("Creatures done: \n");
+		final StringBuilder sb = new StringBuilder("Creatures done: \n");
 
-		boolean found = false;
+		final boolean found = false;
 
-		for (DefaultCreature creature : creatures) {
+		for (final DefaultCreature creature : creatures) {
 			if (args.length > 0) {
 				if (!args[0].equals(creature.getCreatureName()) && !found) {
 					continue;
@@ -184,7 +184,7 @@ public class BalanceRPGame {
 				minlevel = 0;
 			}
 
-			int maxlevel = creature.getLevel() + 2;
+			final int maxlevel = creature.getLevel() + 2;
 
 			for (int level = minlevel; level < maxlevel; level++) {
 				boolean balanced = false;
@@ -199,11 +199,11 @@ public class BalanceRPGame {
 
 					Pair<Integer, Integer> results = combat(player, target,
 							ROUNDS);
-					int meanTurns = results.first();
-					int meanLeftHP = results.second();
+					final int meanTurns = results.first();
+					final int meanLeftHP = results.second();
 
 					if (level == creature.getLevel()) {
-						int proposedXPValue = 1 * (int) ((creature.getLevel() + 1) * (meanTurns / 2.0));
+						final int proposedXPValue = 1 * (int) ((creature.getLevel() + 1) * (meanTurns / 2.0));
 						// OUTPUT: System.out.println ("Proposed XP:
 						// "+proposedXPValue+"\t Actual XP: "+creature.getXP());
 						creature.setLevel(creature.getLevel(), proposedXPValue);
@@ -226,13 +226,13 @@ public class BalanceRPGame {
 						double best = Double.MAX_VALUE;
 						Creature bestCreature = null;
 
-						for (Creature child : children(target)) {
+						for (final Creature child : children(target)) {
 							results = combat(player, child, ROUNDS);
 
-							int turns = results.first();
-							int leftHP = results.second();
+							final int turns = results.first();
+							final int leftHP = results.second();
 
-							double childScore = score(turns, leftHP
+							final double childScore = score(turns, leftHP
 									/ (1.0 * player.getBaseHP()), level, child);
 							System.out.println("Child ATK: "
 									+ child.getATK()
@@ -293,11 +293,11 @@ public class BalanceRPGame {
 		// OUTPUT: System.out.println (sb);
 	}
 
-	private static double score(int turns, double leftHP, int level,
-			Creature creature) {
+	private static double score(final int turns, final double leftHP, final int level,
+			final Creature creature) {
 		double score = 0;
 
-		int creatureLevel = creature.getLevel();
+		final int creatureLevel = creature.getLevel();
 
 		if (level - creatureLevel < 0) {
 			// Weaker than creature.
@@ -324,8 +324,8 @@ public class BalanceRPGame {
 		return score;
 	}
 
-	private static Creature[] children(Creature creature) {
-		Creature[] creatures = new Creature[9];
+	private static Creature[] children(final Creature creature) {
+		final Creature[] creatures = new Creature[9];
 
 		for (int i = 0; i < 9; i++) {
 			creatures[i] = new Creature(creature);
@@ -337,8 +337,8 @@ public class BalanceRPGame {
 		return creatures;
 	}
 
-	private static boolean isCorrectResult(int level, int levelDiff,
-			int meanTurns, double meanLeftHP) {
+	private static boolean isCorrectResult(final int level, final int levelDiff,
+			final int meanTurns, final double meanLeftHP) {
 		if ((levelDiff > 0) && (meanTurns > 100 + level / 10.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes too much time
 			// to kill");
@@ -372,7 +372,7 @@ public class BalanceRPGame {
 		return true;
 	}
 
-	static void equip(Player p, int level) {
+	static void equip(final Player p, final int level) {
 		p.getWeapons().get(0).put("atk", 7 + level * 2 / 6);
 		if (level == 0) {
 			p.getShield().put("def", 0);

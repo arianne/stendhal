@@ -58,7 +58,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	private int stage;
 
 	public static void generateRPClass() {
-		RPClass entity = new RPClass("corpse");
+		final RPClass entity = new RPClass("corpse");
 		entity.isA("entity");
 		entity.addAttribute("class", Type.STRING);
 		entity.addAttribute("stage", Type.BYTE);
@@ -69,7 +69,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		entity.addRPSlot("content", 4);
 	}
 
-	private void decideSize(String clazz) {
+	private void decideSize(final String clazz) {
 		//TODO: this should be part of the creatures.xml 
 		
 		
@@ -96,7 +96,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 * @param x
 	 * @param y
 	 */
-	public Corpse(String clazz, int x, int y) {
+	public Corpse(final String clazz, final int x, final int y) {
 		setRPClass("corpse");
 		put("type", "corpse");
 
@@ -108,7 +108,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		stage = 0;
 		put("stage", stage);
 
-		RPSlot slot = new LootableSlot(this);
+		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
 
@@ -122,7 +122,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 * 
 	 * 
 	 */
-	public Corpse(RPEntity victim, Entity killer) {
+	public Corpse(final RPEntity victim, final Entity killer) {
 		this(victim, killer.getTitle());
 	}
 
@@ -136,7 +136,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 * 
 	 * 
 	 */
-	public Corpse(RPEntity victim, String killerName) {
+	public Corpse(final RPEntity victim, final String killerName) {
 		setRPClass("corpse");
 		put("type", "corpse");
 
@@ -157,7 +157,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			remove(ATTR_KILLER);
 		}
 
-		Rectangle2D rect = victim.getArea();
+		final Rectangle2D rect = victim.getArea();
 
 		setPosition(
 				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
@@ -167,7 +167,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		stage = 0;
 		put("stage", stage);
 
-		RPSlot slot = new LootableSlot(this);
+		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
 
@@ -240,7 +240,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		return stage >= MAX_STAGE;
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		if (isCompletelyRotten()) {
 			if (isContained()) {
 				// We modify the base container if the object change.
@@ -263,7 +263,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 * 
 	 * @param newStage
 	 */
-	public void setStage(int newStage) {
+	public void setStage(final int newStage) {
 		if ((newStage >= 0) && (newStage <= MAX_STAGE)) {
 			stage = newStage;
 			put("stage", stage);
@@ -271,8 +271,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		}
 	}
 
-	public void add(PassiveEntity entity) {
-		RPSlot content = getSlot("content");
+	public void add(final PassiveEntity entity) {
+		final RPSlot content = getSlot("content");
 		content.add(entity);
 	}
 
@@ -286,13 +286,13 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	}
 
 	public Iterator<RPObject> getContent() {
-		RPSlot content = getSlot("content");
+		final RPSlot content = getSlot("content");
 		return content.iterator();
 	}
 
 	@Override
 	public String describe() {
-		String[] stageText = { "new", "fresh", "cold", "slightly rotten",
+		final String[] stageText = { "new", "fresh", "cold", "slightly rotten",
 				"rotten", "very rotten" };
 
 		String text = "You see the " + stageText[stage] + " corpse of ";
@@ -314,7 +314,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		return (text);
 	}
 
-	public boolean canBeEquippedIn(String slot) {
+	public boolean canBeEquippedIn(final String slot) {
 		return false;
 	}
 
@@ -334,7 +334,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;
@@ -350,7 +350,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 */
 	@Override
 	public String getTitle() {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;

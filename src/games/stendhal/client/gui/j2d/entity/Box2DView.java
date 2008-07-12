@@ -70,7 +70,7 @@ class Box2DView extends Item2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case OPEN:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			getEntity().fillTargetInfo(rpaction);

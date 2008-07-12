@@ -18,20 +18,20 @@ public class JailAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (action.has(TARGET) && action.has(MINUTES)) {
-			String target = action.get(TARGET);
+			final String target = action.get(TARGET);
 			String reason = "";
 			if (action.has("reason")) {
 				reason = action.get("reason");
 			}
 			try {
-				int minutes = action.getInt(MINUTES);
+				final int minutes = action.getInt(MINUTES);
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						_JAIL, target, Integer.toString(minutes), reason);
 				SingletonRepository.getJail().imprison(target, player, minutes, reason);
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				player.sendPrivateText(USAGE_JAIL_NAME_MINUTES_REASON);
 			}
 		} else {

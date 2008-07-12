@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class BankAccessorManager {
 	private static BankAccessorManager instance;
-	private HashMap<Banks, List<Entity>> accessors;
+	private final HashMap<Banks, List<Entity>> accessors;
 
 	private BankAccessorManager() {
 		// hide constructor; Singleton patern
@@ -40,8 +40,8 @@ public class BankAccessorManager {
 	 * @param entity
 	 *            Accessor
 	 */
-	public void add(Banks bank, Entity entity) {
-		List<Entity> bankAccess = getListAddingUnkownBanks(bank);
+	public void add(final Banks bank, final Entity entity) {
+		final List<Entity> bankAccess = getListAddingUnkownBanks(bank);
 		if (!bankAccess.contains(entity)) {
 			bankAccess.add(entity);
 		}
@@ -55,7 +55,7 @@ public class BankAccessorManager {
 	 *            Banks
 	 * @return list of accessors
 	 */
-	private List<Entity> getListAddingUnkownBanks(Banks bank) {
+	private List<Entity> getListAddingUnkownBanks(final Banks bank) {
 		List<Entity> bankAccess = accessors.get(bank);
 		if (bankAccess == null) {
 			bankAccess = new LinkedList<Entity>();
@@ -71,7 +71,7 @@ public class BankAccessorManager {
 	 *            Banks
 	 * @return list of accessors or an empty list if this bank is unkown
 	 */
-	protected List<Entity> get(Banks bank) {
+	protected List<Entity> get(final Banks bank) {
 
 		// If the visibilty of this method should be raised,
 		// please return only a copy of this list

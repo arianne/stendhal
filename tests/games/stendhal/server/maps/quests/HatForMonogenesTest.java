@@ -49,11 +49,11 @@ public class HatForMonogenesTest {
 	public void setUp() {
 		npc = new SpeakerNPC("Monogenes");
 		SingletonRepository.getNPCList().add(npc);
-		SpeakerNPCFactory npcConf = new GreeterNPC();
+		final SpeakerNPCFactory npcConf = new GreeterNPC();
 		npcConf.createDialog(npc);
 		en = npc.getEngine();
 
-		ZoneConfigurator zoneConf = new TraderNPC();
+		final ZoneConfigurator zoneConf = new TraderNPC();
 		zoneConf.configureZone(new StendhalRPZone("int_semos_tavern"), null);
 		npcXin = SingletonRepository.getNPCList().get("Xin Blanca");
 		enXin = npcXin.getEngine();
@@ -67,7 +67,7 @@ public class HatForMonogenesTest {
 
 	@Test
 	public void testQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		en.step(player, "hi");
 		assertEquals(
 				"Hello there, stranger! Don't be too intimidated if people are quiet and reserved... the fear of Blordrough and his forces has spread all over the country, and we're all a bit concerned. I can offer a few tips on socializing though, would you like to hear them?",
@@ -115,7 +115,7 @@ public class HatForMonogenesTest {
 
 		// -----------------------------------------------
 
-		Item item = ItemTestHelper.createItem("money", 25);
+		final Item item = ItemTestHelper.createItem("money", 25);
 		player.getSlot("bag").add(item);
 		enXin.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", npcXin.get("text"));
@@ -172,8 +172,8 @@ public class HatForMonogenesTest {
 
 	@Test
 	public void testGetHistory() {
-		Player player = PlayerTestHelper.createPlayer("bob");
-		List<String> history = new ArrayList<String>();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final List<String> history = new ArrayList<String>();
 		assertEquals(history, quest.getHistory(player));
 
 		player.setQuest("hat_monogenes", "");

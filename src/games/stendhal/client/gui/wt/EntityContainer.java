@@ -48,7 +48,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	private static final int MAX_DISTANCE = 4;
 
 	/** the panels for each item. */
-	private List<EntitySlot> slotPanels;
+	private final List<EntitySlot> slotPanels;
 
 	/** the object which has the slot. */
 	private Entity parent;
@@ -65,8 +65,8 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * @param height
 	 * @param gameScreen
 	 */
-	public EntityContainer(String name, int width, int height,
-			IGameScreen gameScreen) {
+	public EntityContainer(final String name, final int width, final int height,
+			final IGameScreen gameScreen) {
 		super(name, 0, 300, 100, 100, gameScreen);
 
 		setTitletext(name);
@@ -76,15 +76,15 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		setCloseable(true);
 		shownSlot = null;
 
-		int spriteWidth = EntitySlot.getDefaultWidth();
-		int spriteHeight = EntitySlot.getDefaultHeight();
+		final int spriteWidth = EntitySlot.getDefaultWidth();
+		final int spriteHeight = EntitySlot.getDefaultHeight();
 
 		slotPanels = new ArrayList<EntitySlot>(width * height);
 
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(name, null, x
+				final EntitySlot entitySlot = new EntitySlot(name, null, x
 						* spriteWidth + x, y * spriteHeight + y, gameScreen);
 				slotPanels.add(entitySlot);
 				addChild(entitySlot);
@@ -107,12 +107,12 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * 
 	 * @param gameScreen
 	 */
-	private void rescanSlotContent(IGameScreen gameScreen) {
+	private void rescanSlotContent(final IGameScreen gameScreen) {
 		if ((parent == null) || (slotName == null)) {
 			return;
 		}
 
-		RPSlot rpslot = parent.getSlot(slotName);
+		final RPSlot rpslot = parent.getSlot(slotName);
 
 		// Skip if not changed
 		if ((shownSlot != null) && shownSlot.equals(rpslot)) {
@@ -125,9 +125,9 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			logger.debug("ORIGINAL: " + rpslot);
 		}
 
-		GameObjects gameObjects = GameObjects.getInstance();
+		final GameObjects gameObjects = GameObjects.getInstance();
 
-		Iterator<EntitySlot> iter = slotPanels.iterator();
+		final Iterator<EntitySlot> iter = slotPanels.iterator();
 
 		/*
 		 * Fill from contents
@@ -135,7 +135,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		if (rpslot != null) {
 			shownSlot = (RPSlot) rpslot.clone();
 
-			for (RPObject object : shownSlot) {
+			for (final RPObject object : shownSlot) {
 				if (!iter.hasNext()) {
 					logger.error("More objects than slots: " + slotName);
 					break;
@@ -172,10 +172,10 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * 
 	 * @param gameScreen
 	 */
-	private void checkDistance(IGameScreen gameScreen) {
-		User user = User.get();
+	private void checkDistance(final IGameScreen gameScreen) {
+		final User user = User.get();
 
-		if (user != null && parent != null) {
+		if ((user != null) && (parent != null)) {
 			// null checks are fixes for Bug 1825678:
 			// NullPointerException happened
 			// after double clicking one
@@ -194,8 +194,8 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/*
 	 * Clear all holders.
 	 */
-	protected void clear(IGameScreen gameScreen) {
-		for (EntitySlot entitySlot : slotPanels) {
+	protected void clear(final IGameScreen gameScreen) {
+		for (final EntitySlot entitySlot : slotPanels) {
 			entitySlot.setEntity(null, gameScreen);
 		}
 
@@ -209,14 +209,14 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * @param slot
 	 * @param gameScreen
 	 */
-	public void setSlot(Entity parent, String slot, IGameScreen gameScreen) {
+	public void setSlot(final Entity parent, final String slot, final IGameScreen gameScreen) {
 		this.parent = parent;
 		this.slotName = slot;
 
 		/*
 		 * Reset the container info for all holders
 		 */
-		for (EntitySlot entitySlot : slotPanels) {
+		for (final EntitySlot entitySlot : slotPanels) {
 			entitySlot.setParent(parent);
 			entitySlot.setName(slot);
 		}
@@ -233,7 +233,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
 		rescanSlotContent(gameScreen);
 		super.drawContent(g, gameScreen);
 
@@ -245,7 +245,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * Close the panel.
 	 */
 	@Override
-	public void close(IGameScreen gameScreen) {
+	public void close(final IGameScreen gameScreen) {
 		clear(gameScreen);
 		super.close(gameScreen);
 	}
@@ -256,7 +256,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * @param gameScreen
 	 */
 	@Override
-	public void destroy(IGameScreen gameScreen) {
+	public void destroy(final IGameScreen gameScreen) {
 		clear(gameScreen);
 		parent = null;
 
@@ -280,13 +280,13 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		/*
 		 * Check if the user has moved too far away
 		 */
-		int px = (int) x;
-		int py = (int) y;
+		final int px = (int) x;
+		final int py = (int) y;
 
-		int ix = (int) parent.getX();
-		int iy = (int) parent.getY();
+		final int ix = (int) parent.getX();
+		final int iy = (int) parent.getY();
 
-		Rectangle2D orig = parent.getArea();
+		final Rectangle2D orig = parent.getArea();
 		orig.setRect(orig.getX() - MAX_DISTANCE, orig.getY() - MAX_DISTANCE,
 				orig.getWidth() + MAX_DISTANCE * 2, orig.getHeight()
 						+ MAX_DISTANCE * 2);

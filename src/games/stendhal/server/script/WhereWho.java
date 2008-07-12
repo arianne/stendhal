@@ -17,7 +17,7 @@ import java.util.TreeMap;
  */
 public class WhereWho extends ScriptImpl {
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		final Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
@@ -25,8 +25,8 @@ public class WhereWho extends ScriptImpl {
 				
 			new Task<Player>() {
 
-			public void execute(Player player) {
-				StendhalRPZone zone = player.getZone();
+			public void execute(final Player player) {
+				final StendhalRPZone zone = player.getZone();
 				String zoneid;
 
 				if (zone != null) {
@@ -57,8 +57,8 @@ public class WhereWho extends ScriptImpl {
 	
 
 		// create response
-		StringBuilder sb = new StringBuilder();
-		for (StringBuilder mapString : maps.values()) {
+		final StringBuilder sb = new StringBuilder();
+		for (final StringBuilder mapString : maps.values()) {
 			sb.append(mapString);
 			sb.append('\n');
 		}

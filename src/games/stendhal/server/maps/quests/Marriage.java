@@ -70,13 +70,13 @@ public class Marriage extends AbstractQuest {
 	private static final String QUEST_SLOT = "marriage";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	// The spouse's name is stored in one of the player's quest slots.
 	// This is necessary to disallow polygamy.
-	private String SPOUSE_QUEST_SLOT = "spouse";
+	private final String SPOUSE_QUEST_SLOT = "spouse";
 
 	private static final int REQUIRED_GOLD = 10;
 
@@ -84,7 +84,7 @@ public class Marriage extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES = 10;
 
-	private NPCList npcs = SingletonRepository.getNPCList();
+	private final NPCList npcs = SingletonRepository.getNPCList();
 
 	private Player groom;
 
@@ -105,8 +105,8 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("The great quest of all life is to be #married.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -138,10 +138,10 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-						String brideName = sentence.getSubjectName();
+						final String brideName = sentence.getSubjectName();
 
 						if (brideName == null) {
 							npc.say("You have to tell me who you want to marry.");
@@ -158,8 +158,8 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						askBrideE();
 					}
 				});
@@ -178,8 +178,8 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						finishEngagement();
 					}
 				});
@@ -192,10 +192,10 @@ public class Marriage extends AbstractQuest {
 				null);
 	}
 
-	private void startEngagement(SpeakerNPC nun, Player player,
-			String partnerName) {
-		IRPZone outsideChurchZone = nun.getZone();
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52, 6, 5));
+	private void startEngagement(final SpeakerNPC nun, final Player player,
+			final String partnerName) {
+		final IRPZone outsideChurchZone = nun.getZone();
+		final Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52, 6, 5));
 		groom = player;
 		bride = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 
@@ -205,7 +205,7 @@ public class Marriage extends AbstractQuest {
 			nun.say("You are married already, " 
 					+ groom.getName()
 					+ "! You can't marry again.");
-		} else if (bride == null || !inFrontOfNun.contains(bride)) {
+		} else if ((bride == null) || !inFrontOfNun.contains(bride)) {
 			nun.say("My hearing is not so good, please both come close to tell me who you want to get engaged to.");
 		} else if (bride.getName().equals(groom.getName())) {
 			nun.say("You can't marry yourself!");
@@ -232,8 +232,8 @@ public class Marriage extends AbstractQuest {
 		nun.setAttending(bride);
 	}
 
-	private void giveInvite(Player player) {
-		StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
+	private void giveInvite(final Player player) {
+		final StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"invitation scroll");
 		invite.setQuantity(4);
 		// location of church
@@ -277,16 +277,16 @@ public class Marriage extends AbstractQuest {
 		bride = null;
 	}
 
-	private boolean isMarried(Player player) {
+	private boolean isMarried(final Player player) {
 		return player.hasQuest(SPOUSE_QUEST_SLOT);
 	} 
 	
-    private boolean isEngaged(Player player) {
+    private boolean isEngaged(final Player player) {
         return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("engaged"));
     }
 
 	private void makeRingsStep() {
-		SpeakerNPC npc = npcs.get("Ognir");
+		final SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("wedding ring", "wedding"),
@@ -295,7 +295,7 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.isQuestInState(QUEST_SLOT, "engaged_with_ring")) {
 							// player has wedding ring already. just remind to
 							// get spouse to get one and hint to get dressed.
@@ -356,10 +356,10 @@ public class Marriage extends AbstractQuest {
 		 		null, 
 				new SpeakerNPC.ChatAction() {
 	 				@Override
-	 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-	 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
+	 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
 								- System.currentTimeMillis();
 						// ring is not ready yet
 						if (timeRemaining > 0L) {
@@ -375,10 +375,10 @@ public class Marriage extends AbstractQuest {
 						 * We don't give them any XP if it is to replace a lost ring. (fools.)
 						 * If this is for an engaged player, npc gives a hitn about getting dressed for big day
 						 */
-						Item weddingRing = SingletonRepository.getEntityManager().getItem(
+						final Item weddingRing = SingletonRepository.getEntityManager().getItem(
 								"wedding ring");
 						weddingRing.setBoundTo(player.getName());
-						if(player.getQuest(QUEST_SLOT).startsWith("forgingagain")){
+						if (player.getQuest(QUEST_SLOT).startsWith("forgingagain")) {
 							npc.say("I've finished making your replacement wedding ring. Do try to be more careful next time!");
 							weddingRing.setInfoString(player.getQuest(SPOUSE_QUEST_SLOT));
 							player.setQuest(QUEST_SLOT, "done");
@@ -402,7 +402,7 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 								&& (player.isEquipped("money", REQUIRED_MONEY))) {
 							player.drop("gold bar", REQUIRED_GOLD);
@@ -410,7 +410,7 @@ public class Marriage extends AbstractQuest {
 							npc.say("Good, come back in "
 									+ REQUIRED_MINUTES
 									+ " minutes and it will be ready. Goodbye until then.");
-							if(player.isQuestCompleted(QUEST_SLOT)){
+							if (player.isQuestCompleted(QUEST_SLOT)) {
 								player.setQuest(QUEST_SLOT, "forgingagain;"	+ System.currentTimeMillis());
 							} else {
 								player.setQuest(QUEST_SLOT, "forging;"
@@ -467,8 +467,8 @@ public class Marriage extends AbstractQuest {
 					"marry",
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public boolean fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							return player.hasQuest(QUEST_SLOT)
 									&& player.getQuest(QUEST_SLOT).startsWith(
 											"engaged")
@@ -482,10 +482,10 @@ public class Marriage extends AbstractQuest {
 					new SpeakerNPC.ChatAction() {
 	
 						@Override
-						public void fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							// find out whom the player wants to marry.
-							String brideName = sentence.getSubjectName();
+							final String brideName = sentence.getSubjectName();
 	
 							if (brideName == null) {
 								npc.say("You have to tell me who you want to marry.");
@@ -502,8 +502,8 @@ public class Marriage extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							askBride();
 						}
 					});
@@ -523,8 +523,8 @@ public class Marriage extends AbstractQuest {
 					new SpeakerNPC.ChatAction() {
 	
 						@Override
-						public void fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							finishMarriage();
 						}
 					});
@@ -542,8 +542,8 @@ public class Marriage extends AbstractQuest {
 					"marry",
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public boolean fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							return (!player.hasQuest(QUEST_SLOT) 
 									|| (player.hasQuest(QUEST_SLOT)	&& player.getQuest(QUEST_SLOT).startsWith("engaged") && !player.isEquipped("wedding ring")));
 						}
@@ -557,8 +557,8 @@ public class Marriage extends AbstractQuest {
 				"marry",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						return (player.isQuestCompleted(QUEST_SLOT));
 					}
 				}, 
@@ -588,7 +588,7 @@ public class Marriage extends AbstractQuest {
 				"divorce",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return (player.isQuestCompleted(QUEST_SLOT))
 								&& player.isEquipped("wedding ring");
 					}
@@ -601,8 +601,8 @@ public class Marriage extends AbstractQuest {
 					"divorce",
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public boolean fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							return (player.hasQuest(QUEST_SLOT) && player.getQuest(
 									QUEST_SLOT).equals("just_married"))
 									&& player.isEquipped("wedding ring");
@@ -616,7 +616,7 @@ public class Marriage extends AbstractQuest {
 				"divorce",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return !(player.isQuestCompleted(QUEST_SLOT) || (player.hasQuest(QUEST_SLOT) && player.getQuest(
 								QUEST_SLOT).equals("just_married")));
 					}
@@ -628,8 +628,8 @@ public class Marriage extends AbstractQuest {
 				"divorce",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						return !player.isEquipped("wedding ring");
 					}
 				},
@@ -653,7 +653,7 @@ public class Marriage extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						Player husband;
 						Player wife;
 						String partnerName;
@@ -663,14 +663,14 @@ public class Marriage extends AbstractQuest {
 								partnerName);
 						// check wife is online and check that they're still
 						// married to the current husband
-						if (wife != null
+						if ((wife != null)
 								&& wife.hasQuest(QUEST_SLOT)
 								&& wife.getQuest(SPOUSE_QUEST_SLOT).equals(
 										husband.getName())) {
 							if (wife.isEquipped("wedding ring")) {
 								wife.drop("wedding ring");
 							}
-							int xp = (int) (wife.getXP() * 0.03);
+							final int xp = (int) (wife.getXP() * 0.03);
 							wife.subXP(xp);
 							wife.removeQuest(QUEST_SLOT);
 							wife.removeQuest(SPOUSE_QUEST_SLOT);
@@ -678,7 +678,7 @@ public class Marriage extends AbstractQuest {
 									+ " has divorced from you.");
 							npc.say("What a pity...what a pity...and you two were married so happily, too...");
 						} else {
-							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 							if (postman != null) {
 								postman.sendPrivateText("Wilfred tells you: msg "
@@ -688,7 +688,7 @@ public class Marriage extends AbstractQuest {
 										+ " has divorced from you!");
 							}
 						}
-						int xp = (int) (husband.getXP() * 0.03);
+						final int xp = (int) (husband.getXP() * 0.03);
 						husband.subXP(xp);
 						husband.drop("wedding ring");
 						husband.removeQuest(QUEST_SLOT);
@@ -699,10 +699,10 @@ public class Marriage extends AbstractQuest {
 
 	}
 
-	private void startMarriage(SpeakerNPC priest, Player player,
-			String partnerName) {
-		IRPZone churchZone = priest.getZone();
-		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
+	private void startMarriage(final SpeakerNPC priest, final Player player,
+			final String partnerName) {
+		final IRPZone churchZone = priest.getZone();
+		final Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
 
 		groom = player;
 		bride = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
@@ -712,7 +712,7 @@ public class Marriage extends AbstractQuest {
 		} else if (isMarried(groom)) {
 			priest.say("You are married already, " + groom.getName()
 					+ "! You can't marry again.");
-		} else if (bride == null || !inFrontOfAltar.contains(bride)) {
+		} else if ((bride == null) || !inFrontOfAltar.contains(bride)) {
 			priest.say("You must bring your partner to the altar if you want to marry.");
 		} else if (bride.getName().equals(groom.getName())) {
 			priest.say("You can't marry yourself!");
@@ -764,10 +764,10 @@ public class Marriage extends AbstractQuest {
 		bride = null;
 	}
 
-	private void giveRing(Player player, Player partner) {
+	private void giveRing(final Player player, final Player partner) {
 		// players bring their own golden rings
 		player.drop("wedding ring");
-		Item ring = SingletonRepository.getEntityManager().getItem(
+		final Item ring = SingletonRepository.getEntityManager().getItem(
 				"wedding ring");
 		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
@@ -780,7 +780,7 @@ public class Marriage extends AbstractQuest {
 	}
 
 	private void honeymoonStep() {
-		SpeakerNPC linda = npcs.get("Linda");
+		final SpeakerNPC linda = npcs.get("Linda");
 		// tell her you want a honeymoon
 		linda.add(
 				ConversationStates.ATTENDING,
@@ -789,9 +789,9 @@ public class Marriage extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
                     @Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-                        IRPZone fadoHotel = npc.getZone();
-                        Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+                        final IRPZone fadoHotel = npc.getZone();
+                        final Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
 
                         Player husband;
                         Player wife;
@@ -828,14 +828,14 @@ public class Marriage extends AbstractQuest {
 				"NUM", new JokerExprMatcher(),
 				new ChatCondition() {
 					@Override
-                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						Expression number = sentence.getNumeral();
+                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final Expression number = sentence.getNumeral();
 
 						if (number != null) {
-    						int roomNr = number.getAmount();
+    						final int roomNr = number.getAmount();
 
     						// check for correct room numbers
-    						if (roomNr >= 1 && roomNr <= 15) {
+    						if ((roomNr >= 1) && (roomNr <= 15)) {
     							return true;
     						}
 						}
@@ -845,10 +845,10 @@ public class Marriage extends AbstractQuest {
 				}, ConversationStates.IDLE, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
-                        String room = Integer.toString(sentence.getNumeral().getAmount());
-                        StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+                        final String room = Integer.toString(sentence.getNumeral().getAmount());
+                        final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
                                                                                        "int_fado_lovers_room_" + room);
 						if (zone.getPlayers().size() > 0) {
 							npc.say("Sorry, that room is currently occupied, would you give me your next choice please?");
@@ -863,10 +863,10 @@ public class Marriage extends AbstractQuest {
 							wife = SingletonRepository.getRuleProcessor().getPlayer(
                                                                                 partnerName);
 							// I (kym) have to make two of these because when I only did one, the second one sometimes had quantity 0 sometimes didn't.
-							StackableItem invite1 = (StackableItem) SingletonRepository.getEntityManager().getItem(
+							final StackableItem invite1 = (StackableItem) SingletonRepository.getEntityManager().getItem(
 																												  "invitation scroll");
 							invite1.setQuantity(1);
-                            StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
+                            final StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
                                                                                                                   "invitation scroll");
                             invite2.setQuantity(1);
                             
@@ -878,7 +878,7 @@ public class Marriage extends AbstractQuest {
 								wife.setQuest(QUEST_SLOT, "done");
 								wife.teleport(zone, 5, 5, Direction.DOWN, player);
 								husband.teleport(zone, 6, 5, Direction.DOWN, player);
-								String scrollmessage = "Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!";
+								final String scrollmessage = "Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!";
 								wife.sendPrivateText(scrollmessage);
                                 husband.sendPrivateText(scrollmessage);
 								wife.notifyWorldAboutChanges();

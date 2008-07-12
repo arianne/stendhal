@@ -35,7 +35,7 @@ public class HelpDialog extends JFrame {
 	private static final long serialVersionUID = 41013220176906825L;
 	private static Logger logger = Logger.getLogger(HelpDialog.class);
 
-	private HelpDialogPanel panel;
+	private final HelpDialogPanel panel;
 
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
@@ -44,7 +44,7 @@ public class HelpDialog extends JFrame {
 	public HelpDialog() {
 		// Create and set up the window.
 		super(ClientGameConfiguration.get("GAME_NAME") + " - Help");
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 
@@ -71,7 +71,7 @@ public class HelpDialog extends JFrame {
 	 * @param bookInfo
 	 *            page to display
 	 */
-	public void display(HelpDocument bookInfo) {
+	public void display(final HelpDocument bookInfo) {
 		panel.displayNode(bookInfo);
 		super.pack();
 		super.setVisible(true);
@@ -83,8 +83,8 @@ public class HelpDialog extends JFrame {
 	private static class HelpDialogPanel extends JPanel implements
 			TreeSelectionListener {
 		private static final long serialVersionUID = -290672385299793246L;
-		private JTree tree;
-		private JEditorPane htmlPane;
+		private final JTree tree;
+		private final JEditorPane htmlPane;
 
 		/**
 		 * Creates a new HelpDialogPanel.
@@ -93,7 +93,7 @@ public class HelpDialog extends JFrame {
 			super(new GridLayout(1, 0));
 
 			// Create the nodes.
-			DefaultMutableTreeNode top = new DefaultMutableTreeNode(
+			final DefaultMutableTreeNode top = new DefaultMutableTreeNode(
 					"Stendhal Manual");
 			createNodes(top);
 
@@ -111,22 +111,22 @@ public class HelpDialog extends JFrame {
 			tree.addTreeSelectionListener(this);
 
 			// Create the scroll pane and add the tree to it.
-			JScrollPane treeView = new JScrollPane(tree);
+			final JScrollPane treeView = new JScrollPane(tree);
 
 			// Create the HTML viewing pane.
 			htmlPane = new JEditorPane();
 			htmlPane.setEditable(false);
 			htmlPane.setContentType("text/html");
-			StyleSheet css = ((HTMLEditorKit) htmlPane.getEditorKit()).getStyleSheet();
+			final StyleSheet css = ((HTMLEditorKit) htmlPane.getEditorKit()).getStyleSheet();
 			css.addRule("body { font-family: arial, helvetica, sans-serif; }");
-			JScrollPane htmlView = new JScrollPane(htmlPane);
+			final JScrollPane htmlView = new JScrollPane(htmlPane);
 
 			// Add the scroll panes to a split pane.
-			JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+			final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 			splitPane.setTopComponent(treeView);
 			splitPane.setBottomComponent(htmlView);
 
-			Dimension minimumSize = new Dimension(50, 50);
+			final Dimension minimumSize = new Dimension(50, 50);
 			htmlView.setMinimumSize(minimumSize);
 			treeView.setMinimumSize(minimumSize);
 			splitPane.setDividerLocation(250);
@@ -140,21 +140,21 @@ public class HelpDialog extends JFrame {
 		 * Update the browser window on selection change in the tree.
 		 * @param e 
 		 */
-		public void valueChanged(TreeSelectionEvent e) {
-			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+		public void valueChanged(final TreeSelectionEvent e) {
+			final DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 
 			if (node == null) {
 				return;
 			}
 
-			Object nodeInfo = node.getUserObject();
+			final Object nodeInfo = node.getUserObject();
 			if (node.isLeaf()) {
-				HelpDocument book = (HelpDocument) nodeInfo;
+				final HelpDocument book = (HelpDocument) nodeInfo;
 				displayNode(book);
 			}
 		}
 
-		private void displayNode(HelpDocument bookInfo) {
+		private void displayNode(final HelpDocument bookInfo) {
 			URL url = null;
 			try {
 				if (bookInfo != null) {
@@ -165,12 +165,12 @@ public class HelpDialog extends JFrame {
 				} else { 
 					htmlPane.setText("File Not Found");
 				}
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error("Attempted to read a bad URL: " + url, e);
 			}
 		}
 
-		private void createNodes(DefaultMutableTreeNode top) {
+		private void createNodes(final DefaultMutableTreeNode top) {
 			top.add(new DefaultMutableTreeNode(HelpDocument.Introduction));
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(
 					HelpDocument.Setting);
@@ -210,7 +210,7 @@ public class HelpDialog extends JFrame {
 		private String bookName;
 		private URL bookURL;
 
-		private HelpDocument(String title, String filename) {
+		private HelpDocument(final String title, final String filename) {
 			bookName = title;
 			bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
 			if (bookURL == null) {

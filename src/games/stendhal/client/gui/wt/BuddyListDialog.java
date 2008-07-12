@@ -22,7 +22,7 @@ public class BuddyListDialog extends InternalManagedDialog {
 
 	/** Creates a new instance of Buddies. 
 	 * @param ui */
-	public BuddyListDialog(StendhalUI ui) {
+	public BuddyListDialog(final StendhalUI ui) {
 		super("buddies", "Buddies");
 
 		content = new BuddyListPanel(ui);

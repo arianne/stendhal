@@ -23,7 +23,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * @param gameScreen
 	 * 
 	 */
-	public KeyRing(IGameScreen gameScreen) {
+	public KeyRing(final IGameScreen gameScreen) {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
 		super("keyring", 2, 4, gameScreen);
@@ -56,7 +56,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * @param name
 	 *            The name of the feature.
 	 */
-	public void featureDisabled(String name) {
+	public void featureDisabled(final String name) {
 		if (name.equals("keyring")) {
 			disable();
 		}
@@ -70,7 +70,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * @param value
 	 *            Optional feature specific data.
 	 */
-	public void featureEnabled(String name, String value) {
+	public void featureEnabled(final String name, final String value) {
 		if (name.equals("keyring")) {
 			if (!isMinimizeable()) {
 				setMinimizeable(true);
@@ -89,7 +89,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * @param gameScreen
 	 */
 	@Override
-	public void destroy(IGameScreen gameScreen) {
+	public void destroy(final IGameScreen gameScreen) {
 		// TODO: Could be cleaner reference
 		StendhalClient.get().removeFeatureChangeListener(this);
 

@@ -34,7 +34,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	protected static final String ATTR_NAME = "name";
 
 	/** list of possible slots for this item. */
-	private List<String> possibleSlots = Arrays.asList("spells");
+	private final List<String> possibleSlots = Arrays.asList("spells");
 
 	/**
 	 * The plant grower where this item was grown, until it has been picked.
@@ -42,7 +42,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	 * picked.
 	 */
 	public static void generateRPClass() {
-		RPClass entity = new RPClass("spell");
+		final RPClass entity = new RPClass("spell");
 		entity.isA("entity");
 
 		// the spell class (other purposes, just to code old code for now)
@@ -61,14 +61,14 @@ public class Spell extends PassiveEntity implements EquipListener {
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Spell(String name, Map<String, String> attributes) {
+	public Spell(final String name, final Map<String, String> attributes) {
 		this();
 
 		put(ATTR_NAME, name);
 
 		if (attributes != null) {
 			// store all attributes
-			for (String key : attributes.keySet()) {
+			for (final String key : attributes.keySet()) {
 				put(key, attributes.get(key));
 			}
 		}
@@ -88,7 +88,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 
 	@Override
 	public String describe() {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return "You see " + Grammar.a_noun(name) + ".";
@@ -97,7 +97,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
-	public boolean canBeEquippedIn(String slot) {
+	public boolean canBeEquippedIn(final String slot) {
 		return possibleSlots.contains(slot);
 	}
 
@@ -130,7 +130,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;
@@ -146,7 +146,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	 */
 	@Override
 	public String getTitle() {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;

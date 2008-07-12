@@ -17,7 +17,7 @@ import java.util.Map;
  * In Amazon Island ne .
  */
 public class AmazonMermaidArmorNPC implements ZoneConfigurator {
-    private ShopList shops = SingletonRepository.getShopList();
+    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -25,16 +25,16 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildmermaid(zone);
 	}
 
-	private void buildmermaid(StendhalRPZone zone) {
-		SpeakerNPC mermaid = new SpeakerNPC("Nicklesworth") {
+	private void buildmermaid(final StendhalRPZone zone) {
+		final SpeakerNPC mermaid = new SpeakerNPC("Nicklesworth") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(8, 92));
 				nodes.add(new Node(9, 92));				
 				nodes.add(new Node(9, 93));

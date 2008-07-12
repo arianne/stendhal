@@ -20,14 +20,14 @@ public class SupportAnswerAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		if (action.has(TARGET) && action.has(_TEXT)) {
 			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + action.get(_TEXT);
 
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUPPORTANSWER, action.get(TARGET),
 					action.get(_TEXT));
-			Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
+			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
 				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT) + " If you wish to reply, use /support.");

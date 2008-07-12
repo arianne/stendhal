@@ -34,15 +34,15 @@ public class ConsumableItem extends StackableItem implements UseListener,
 		Comparable<ConsumableItem> {
 	/** How much of this item has not yet been consumed. */
 	private int left;
-	private Feeder feeder;
+	private final Feeder feeder;
 
 	@Override
-	public void put(String attribute, double value) {
+	public void put(final String attribute, final double value) {
 		super.put(attribute, value);
 		checkAmount(attribute, value);
 	}
 
-	private void checkAmount(String attribute, double value) {
+	private void checkAmount(final String attribute, final double value) {
 	
 		if ("amount".equals(attribute)) {
 			left = (int) value;
@@ -51,13 +51,13 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	}
 
 	@Override
-	public void put(String attribute, int value) {
+	public void put(final String attribute, final int value) {
 		super.put(attribute, value);
 		checkAmount(attribute, value);
 	}
 
 	@Override
-	public void put(String attribute, String value) {
+	public void put(final String attribute, final String value) {
 		if ("amount".equals(attribute)) {
 			left = Integer.parseInt(value);
 		}
@@ -65,8 +65,8 @@ public class ConsumableItem extends StackableItem implements UseListener,
 		
 	}
 
-	public ConsumableItem(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public ConsumableItem(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 
 		left = getAmount();
@@ -79,7 +79,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	 * @param item
 	 *            item to copy
 	 */
-	public ConsumableItem(ConsumableItem item) {
+	public ConsumableItem(final ConsumableItem item) {
 		super(item);
 		this.left = item.left;
 		this.feeder = item.feeder;
@@ -133,8 +133,8 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	 * @return true if consumption can be started
 	 * 
 	 */
-	public boolean onUsed(RPEntity user) {
-		Player player = (Player) user;
+	public boolean onUsed(final RPEntity user) {
+		final Player player = (Player) user;
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -163,9 +163,9 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(ConsumableItem other) {
+	public int compareTo(final ConsumableItem other) {
 
-		float result = (float) other.getRegen() / (float) other.getFrecuency()
+		final float result = (float) other.getRegen() / (float) other.getFrecuency()
 				- (float) getRegen() / (float) getFrecuency();
 		return (int) Math.signum(result);
 	}

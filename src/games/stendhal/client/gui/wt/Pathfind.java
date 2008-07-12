@@ -24,13 +24,13 @@ import java.util.PriorityQueue;
 
 public class Pathfind {
 
-	private HashMap<Integer, Node> nodeRegistry = new HashMap<Integer, Node>();
-	private HashMap<Integer, Node> nodeRegistryclose = new HashMap<Integer, Node>();
+	private final HashMap<Integer, Node> nodeRegistry = new HashMap<Integer, Node>();
+	private final HashMap<Integer, Node> nodeRegistryclose = new HashMap<Integer, Node>();
 
-	private PriorityQueue<Node> open_list = new PriorityQueue<Node>(16,
+	private final PriorityQueue<Node> open_list = new PriorityQueue<Node>(16,
 			new Comparator<Node>() {
 
-				public int compare(Node o1, Node o2) {
+				public int compare(final Node o1, final Node o2) {
 					return (int) Math.signum(o1.F - o2.F);
 				}
 			});
@@ -41,7 +41,7 @@ public class Pathfind {
 	private Node current_node;
 	int final_path_index = 0;
 
-	private static int colision(CollisionDetection collisiondetection, int x1, int y1) {
+	private static int colision(final CollisionDetection collisiondetection, final int x1, final int y1) {
 //		if (x1 < 0)
 //			return 1;
 //		if (y1 < 0)
@@ -91,7 +91,7 @@ public class Pathfind {
 		current_node = final_path.get(final_path_index);
 	}
 
-	public void PathJumpToNode(int destnode) {
+	public void PathJumpToNode(final int destnode) {
 		final_path_index = destnode;
 
 		if (final_path_index < 0) {
@@ -128,9 +128,9 @@ public class Pathfind {
 
 	}
 
-	public boolean NewPath(CollisionDetection collisiondetection,
-			int initial_x, int initial_y, int final_x, int final_y,
-			Rectangle search_area2) {
+	public boolean NewPath(final CollisionDetection collisiondetection,
+			final int initial_x, final int initial_y, final int final_x, final int final_y,
+			final Rectangle search_area2) {
 
 		// System.out.println("PATHFIND: " + initial_x + " " + initial_y + " "
 		// +final_x + " "+ final_y + " " +collisiondetection.toString());
@@ -147,7 +147,7 @@ public class Pathfind {
 //		}
 
 		// long computation_time = System.currentTimeMillis();
-		Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
+		final Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
 
 		ClearPath();
 
@@ -174,7 +174,7 @@ public class Pathfind {
 			 */
 
 			// b) Switch it to the closed list.
-			Node node_Fm = open_list.poll();
+			final Node node_Fm = open_list.poll();
 			closed_list.add(node_Fm);
 			nodeRegistryclose.put(node_Fm.x + node_Fm.y
 					* collisiondetection.getWidth(), node_Fm);
@@ -212,23 +212,23 @@ public class Pathfind {
 					}
 
 					if (colision(collisiondetection, x_tmp, y_tmp) == 0) {
-						int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp
+						final int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp
 								- final_y));
 
 						Node node_UP;
-						if (Math.abs(x_tmp - node_Fm.x) == 1
-								&& Math.abs(y_tmp - node_Fm.y) == 1) {
+						if ((Math.abs(x_tmp - node_Fm.x) == 1)
+								&& (Math.abs(y_tmp - node_Fm.y) == 1)) {
 							node_UP = new Node(x_tmp, y_tmp, node_Fm.G + 14,
 									manhattan);
 						} else {
 							int potato = 0;
 
 							// --- Bonus if it doesn't change the direction
-							int incx = (node_Fm.parent.x - node_Fm.x);
-							int incy = (node_Fm.parent.y - node_Fm.y);
+							final int incx = (node_Fm.parent.x - node_Fm.x);
+							final int incy = (node_Fm.parent.y - node_Fm.y);
 
-							int incx2 = (node_Fm.x - x_tmp);
-							int incy2 = (node_Fm.y - y_tmp);
+							final int incx2 = (node_Fm.x - x_tmp);
+							final int incy2 = (node_Fm.y - y_tmp);
 
 							if ((incx == incx2) && (incy == incy2)) {
 								potato = 1;
@@ -245,7 +245,7 @@ public class Pathfind {
 						// " +node_UP.G + " H " + node_UP.H + " H " +
 						// node_UP.F);
 
-						Node temp = nodeRegistry.get(node_UP.x + node_UP.y
+						final Node temp = nodeRegistry.get(node_UP.x + node_UP.y
 								* collisiondetection.getWidth());
 
 						if (temp != null) {
@@ -285,7 +285,7 @@ public class Pathfind {
 		} while (true);
 
 		// System.out.println("-----------------");
-		ListIterator<Node> i = closed_list.listIterator();
+		final ListIterator<Node> i = closed_list.listIterator();
 		Node temp;
 		while (i.hasNext()) {
 			temp =  i.next();
@@ -331,14 +331,14 @@ public class Pathfind {
 //	}
 
 	private class Node {
-		private int x;
-		private int y;
+		private final int x;
+		private final int y;
 		private int G;
 		private int H;
 		private int F;
 		private Node parent;
 
-		public Node(int x, int y, int g, int h) {
+		public Node(final int x, final int y, final int g, final int h) {
 			super();
 			this.x = x;
 			this.y = y;

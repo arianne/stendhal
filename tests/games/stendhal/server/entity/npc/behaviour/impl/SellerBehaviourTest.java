@@ -41,7 +41,7 @@ public class SellerBehaviourTest {
 	
 	@Test
 	public void testSellerBehaviour() {
-		SellerBehaviour sb = new SellerBehaviour();
+		final SellerBehaviour sb = new SellerBehaviour();
 		assertTrue(sb.dealtItems().isEmpty());
 		assertEquals(sb.amount, 0);
 		assertNull(sb.chosenItemName);
@@ -53,7 +53,7 @@ public class SellerBehaviourTest {
 	@Test
 	public void testSellerBehaviourMapOfStringInteger() {
 
-		Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		SellerBehaviour sb = new SellerBehaviour(pricelist);
 		assertTrue(sb.dealtItems().isEmpty());
 		assertEquals(sb.amount, 0);
@@ -74,14 +74,14 @@ public class SellerBehaviourTest {
 	}
 	
 	@Test
-	public void testBottlesGlasses(){
-		Map<String, Integer> pricelist = new HashMap<String, Integer>();
-		pricelist.put("dingo",3);
-		SellerBehaviour sb = new SellerBehaviour(pricelist);
-		SpeakerNPC npc = new SpeakerNPC("npc");
+	public void testBottlesGlasses() {
+		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		pricelist.put("dingo", 3);
+		final SellerBehaviour sb = new SellerBehaviour(pricelist);
+		final SpeakerNPC npc = new SpeakerNPC("npc");
 		npc.addGreeting("blabla");
 		new SellerAdder().addSeller(npc, sb);
-	    Player player = PlayerTestHelper.createPlayer("bob");
+	    final Player player = PlayerTestHelper.createPlayer("bob");
 	    
 	    npc.getEngine().step(player, "hi");
 	    npc.getEngine().step(player, "buy 1 potion");

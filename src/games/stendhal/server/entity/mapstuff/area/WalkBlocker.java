@@ -37,7 +37,7 @@ public class WalkBlocker extends AreaEntity {
 	 *         the default.
 	 */
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		if (entity instanceof RPEntity) {
 			return true;
 		}

@@ -14,7 +14,7 @@ public class EntityTest {
 
 	@Test
 	public final void testEntity() {
-		Entity en = new MockEntity();
+		final Entity en = new MockEntity();
 
 		assertEquals(0.0, en.getX(), 0.001);
 		assertEquals(0.0, en.getY(), 0.001);
@@ -36,11 +36,11 @@ public class EntityTest {
 
 	@Test
 	public final void testEntityRPObject() {
-		RPObject rpo = new RPObject();
+		final RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "bob");
 
-		Entity en = new MockEntity();
+		final Entity en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("bob", en.getName());
@@ -50,10 +50,10 @@ public class EntityTest {
 	@Test
 	public final void testGetID() {
 
-		RPObject rpo = new RPObject();
+		final RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
-		Entity en = new MockEntity();
+		final Entity en = new MockEntity();
 		en.initialize(rpo);
 		assertNotNull("id must not be null", en.getID());
 		assertEquals(1, en.getID().getObjectID());
@@ -90,7 +90,7 @@ public class EntityTest {
 
 	@Test
 	public final void testDistance() {
-		Entity en = new MockEntity();
+		final Entity en = new MockEntity();
 		User.setNull();
 		User to = null;
 		assertEquals(Double.POSITIVE_INFINITY, User.squaredDistanceTo(en.x, en.y), 0.001);
@@ -107,7 +107,7 @@ public class EntityTest {
 
 	@Test
 	public final void testGetSlot() {
-		Entity en = new MockEntity();
+		final Entity en = new MockEntity();
 		assertEquals(null, en.getSlot(""));
 
 	}
@@ -126,7 +126,7 @@ public class EntityTest {
 		}
 
 		@Override
-		protected void onPosition(double x, double y) {
+		protected void onPosition(final double x, final double y) {
 			count++;
 			super.onPosition(x, y);
 

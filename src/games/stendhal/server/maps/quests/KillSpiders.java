@@ -50,7 +50,7 @@ public class KillSpiders extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_all_spiders";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Morgrin");
+		final SpeakerNPC npc = npcs.get("Morgrin");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -59,16 +59,16 @@ public class KillSpiders extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
 						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("I already asked you to kill all creatures in the basement!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
-							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
-							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");
 								return;
@@ -82,7 +82,7 @@ public class KillSpiders extends AbstractQuest {
 					}
 				});
 
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new StartRecordingKillsAction("spider", "poisonous spider", "giant spider"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -108,7 +108,7 @@ public class KillSpiders extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Morgrin");
+		final SpeakerNPC npc = npcs.get("Morgrin");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -116,12 +116,12 @@ public class KillSpiders extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.hasKilled("spider")
 								&& player.hasKilled("poisonous spider")
 								&& player.hasKilled("giant spider")) {
 							engine.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
-							Item mythegg = SingletonRepository.getEntityManager()
+							final Item mythegg = SingletonRepository.getEntityManager()
 									.getItem("mythical egg");
 							mythegg.setBoundTo(player.getName());
 							player.equip(mythegg, true);

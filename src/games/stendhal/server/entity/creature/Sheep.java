@@ -79,23 +79,23 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * Random timing offset to give sheep non-synchronized reactions.
 	 */
-	private int timingAdjust;
+	private final int timingAdjust;
 
 	private int hunger;
 
 	@Override
-	public void setAttackStrategy(Map<String, String> aiProfiles) {
-		Map<String, String> sheepProfile = new HashMap<String, String>();
+	public void setAttackStrategy(final Map<String, String> aiProfiles) {
+		final Map<String, String> sheepProfile = new HashMap<String, String>();
 		sheepProfile.put("gandhi", null);
 		super.setAttackStrategy(aiProfiles);
 	}
 
 	public static void generateRPClass() {
 		try {
-			RPClass sheep = new RPClass("sheep");
+			final RPClass sheep = new RPClass("sheep");
 			sheep.isA("creature");
 			sheep.addAttribute("weight", Type.BYTE);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -111,7 +111,7 @@ public class Sheep extends DomesticAnimal {
 	 * Creates a new Sheep that is owned by a player.
 	 * @param owner
 	 */
-	public Sheep(Player owner) {
+	public Sheep(final Player owner) {
 		super(owner);
 		setRPClass("sheep");
 		put("type", "sheep");
@@ -142,7 +142,7 @@ public class Sheep extends DomesticAnimal {
 	 * @param owner
 	 *            The player who should own the sheep
 	 */
-	public Sheep(RPObject object, Player owner) {
+	public Sheep(final RPObject object, final Player owner) {
 		super(object, owner);
 
 		setRPClass("sheep");
@@ -168,14 +168,14 @@ public class Sheep extends DomesticAnimal {
 	 *            The entity who caused the death
 	 */
 	@Override
-	public void onDead(String killername) {
+	public void onDead(final String killername) {
 		cleanUpSheep();
 
 		super.onDead(killername);
 	}
 
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		cleanUpSheep();
 
 		super.onDead(killer);
@@ -201,11 +201,11 @@ public class Sheep extends DomesticAnimal {
 	 * @return a list of SheepFood or emptyList if none is found in the given
 	 *         range
 	 */
-	protected List<SheepFood> getFoodinRange(double range) {
+	protected List<SheepFood> getFoodinRange(final double range) {
 
-		List<SheepFood> resultList = new LinkedList<SheepFood>();
+		final List<SheepFood> resultList = new LinkedList<SheepFood>();
 
-		for (SheepFood food : getZone().getSheepFoodList()) {
+		for (final SheepFood food : getZone().getSheepFoodList()) {
 
 			if ((food.getAmount() > 0) && (squaredDistance(food) < range * range)) {
 				resultList.add(food);
@@ -213,7 +213,7 @@ public class Sheep extends DomesticAnimal {
 		}
 		Collections.sort(resultList, new Comparator<SheepFood>() {
 
-			public int compare(SheepFood o1, SheepFood o2) {
+			public int compare(final SheepFood o1, final SheepFood o2) {
 				return Double.compare(squaredDistance(o1), squaredDistance(o2));
 
 			}
@@ -250,9 +250,9 @@ public class Sheep extends DomesticAnimal {
 
 	protected boolean searchForFood() {
 
-		List<SheepFood> list = getFoodinRange(6);
+		final List<SheepFood> list = getFoodinRange(6);
 
-		for (SheepFood food : list) {
+		for (final SheepFood food : list) {
 			if (food.nextTo(this)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
@@ -262,7 +262,7 @@ public class Sheep extends DomesticAnimal {
 				return true;
 			} else {
 
-				List<Node> path = Path.searchPath(this, food, 6 * 6);
+				final List<Node> path = Path.searchPath(this, food, 6 * 6);
 				if (path.size() != 0) {
 
 					logger.debug("Sheep moves to food");
@@ -283,7 +283,7 @@ public class Sheep extends DomesticAnimal {
 	 * Called when the sheep is idle.
 	 */
 	protected void onIdle() {
-		int turn = SingletonRepository.getRuleProcessor().getTurn() + timingAdjust;
+		final int turn = SingletonRepository.getRuleProcessor().getTurn() + timingAdjust;
 
 		if (owner == null) {
 			/*
@@ -336,8 +336,8 @@ public class Sheep extends DomesticAnimal {
 	 * @param food
 	 *            The food to eat.
 	 */
-	protected void eat(SheepFood food) {
-		int amount = food.getAmount();
+	protected void eat(final SheepFood food) {
+		final int amount = food.getAmount();
 
 		if (amount > 0) {
 			food.onFruitPicked(null);

@@ -63,16 +63,16 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	 *            If true, sets a # character in front of every name
 	 * @return A list of fish names
 	 */
-	private List<String> missingFish(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
+	private List<String> missingFish(final Player player, final boolean hash) {
+		final List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(QUEST_SLOT);
 		if (doneText == null) {
 			doneText = "";
 		}
 
-		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String fish : neededFish) {
+		final List<String> done = Arrays.asList(doneText.split(";"));
+		for (final String fish : neededFish) {
 			if (!done.contains(fish)) {
 				if (hash) {
 					result.add("#" + fish);
@@ -85,7 +85,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Santiago");
+		final SpeakerNPC npc = npcs.get("Santiago");
 
 		// player says hi before starting the quest
 		npc.add(
@@ -116,8 +116,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationStates.QUESTION_2, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					List<String> needed = missingFish(player, true);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final List<String> needed = missingFish(player, true);
 					engine.say("There " + Grammar.isare(needed.size())
 							+ " "
 							+ Grammar.quantityplnoun(needed.size(), "fish")
@@ -131,8 +131,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					List<String> missing = missingFish(player, false);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final List<String> missing = missingFish(player, false);
 					engine.say("Let me know as soon as you find "
 							+ Grammar.itthem(missing.size()) + ". Goodbye.");
 				}
@@ -148,18 +148,18 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationStates.QUESTION_2, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					Expression item = sentence.getTriggerExpression();
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final Expression item = sentence.getTriggerExpression();
 
 					TriggerList missing = new TriggerList(missingFish(player, false));
 
-					Expression found = missing.find(item);
+					final Expression found = missing.find(item);
 					if (found != null) {
-						String itemName = found.getOriginal();
+						final String itemName = found.getOriginal();
 
 						if (player.drop(itemName)) {
 							// register fish as done
-							String doneText = player.getQuest(QUEST_SLOT);
+							final String doneText = player.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 							// check if the player has brought all fish
@@ -194,7 +194,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Santiago");
+		final SpeakerNPC npc = npcs.get("Santiago");
 
 		// player returns while quest is still active
 		npc.add(

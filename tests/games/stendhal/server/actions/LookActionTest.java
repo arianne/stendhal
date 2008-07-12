@@ -36,30 +36,30 @@ public class LookActionTest {
 
 	@Before
 	public void setup() {
-		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor
+		final MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor
 				.get();
 
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 
-		PrivateTextMockingTestPlayer player1 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player1");
+		final PrivateTextMockingTestPlayer player1 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player1");
 		processor.addPlayer(player1);
 		zone.add(player1);
 
-		PrivateTextMockingTestPlayer player2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player2");
+		final PrivateTextMockingTestPlayer player2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player2");
 		processor.addPlayer(player2);
 		zone.add(player2);
 
-		NPC npc = new SpeakerNPC("npc");
+		final NPC npc = new SpeakerNPC("npc");
 		zone.add(npc);
 	}
 
 	@Test
 	public void testLook() {
-		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		final PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		final PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		// test "/look <name>" syntax
@@ -97,10 +97,10 @@ public class LookActionTest {
 	@Test
 	// Test for 1847043 - out-of-screen commands
 	public void testLookOutOfScreen() {
-		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		final PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		final PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		player1.setPosition(20, 20);
@@ -151,10 +151,10 @@ public class LookActionTest {
 	@Test
 	// Test for 1864205 - /look adminname shows admin in ghostmode
 	public void testLookAdmin() {
-		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		final PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		final PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		player1.setAdminLevel(0);

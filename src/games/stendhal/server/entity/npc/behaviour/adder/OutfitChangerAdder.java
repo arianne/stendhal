@@ -26,8 +26,8 @@ public class OutfitChangerAdder {
 	 * @param command
 	 *            The action needed to get the outfit, e.g. "buy", "lend".
 	 */
-	public void addOutfitChanger(SpeakerNPC npc,
-			OutfitChangerBehaviour behaviour, String command) {
+	public void addOutfitChanger(final SpeakerNPC npc,
+			final OutfitChangerBehaviour behaviour, final String command) {
 		addOutfitChanger(npc, behaviour, command, true, true);
 	}
 
@@ -49,9 +49,9 @@ public class OutfitChangerAdder {
 	 */
 	public void addOutfitChanger(final SpeakerNPC npc,
 			final OutfitChangerBehaviour behaviour, final String command,
-			boolean offer, final boolean canReturn) {
+			final boolean offer, final boolean canReturn) {
 
-		Engine engine = npc.getEngine();
+		final Engine engine = npc.getEngine();
 		if (offer) {
 			engine.add(
 					ConversationStates.ATTENDING,
@@ -70,8 +70,8 @@ public class OutfitChangerAdder {
 				new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
@@ -82,7 +82,7 @@ public class OutfitChangerAdder {
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
-						if (!found && behaviour.dealtItems().size() == 1) {
+						if (!found && (behaviour.dealtItems().size() == 1)) {
                 			// The NPC only offers one type of outfit, so
                 			// it's clear what the player wants.
 							behaviour.setChosenItemName(behaviour.dealtItems().iterator().next());
@@ -93,7 +93,7 @@ public class OutfitChangerAdder {
 							// We ignore any amounts.
 							behaviour.setAmount(1);
 
-							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 									* behaviour.getAmount();
 
 							engine.say("To " + command + " a "  + behaviour.getChosenItemName() + " will cost " + price
@@ -116,9 +116,9 @@ public class OutfitChangerAdder {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						String itemName = behaviour.getChosenItemName();
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
+						final String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 
@@ -146,8 +146,8 @@ public class OutfitChangerAdder {
 					ConversationStates.ATTENDING, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence,
-								SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence,
+								final SpeakerNPC npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {
 								npc.say("Thank you!");
 							} else {

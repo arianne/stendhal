@@ -19,26 +19,26 @@ public class AddBuddyActionTest {
 	public void testExecute() {
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("addbuddy", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 			}
 		};
-		AddBuddyAction action = new AddBuddyAction();
+		final AddBuddyAction action = new AddBuddyAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String []{"schnick"}, null));
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		AddBuddyAction action = new AddBuddyAction();
+		final AddBuddyAction action = new AddBuddyAction();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		AddBuddyAction action = new AddBuddyAction();
+		final AddBuddyAction action = new AddBuddyAction();
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

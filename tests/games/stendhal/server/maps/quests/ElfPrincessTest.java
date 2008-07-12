@@ -39,14 +39,14 @@ public class ElfPrincessTest {
 		npc = SingletonRepository.getNPCList().get("Tywysoga");
 		en = npc.getEngine();
 
-		StendhalRPZone zone = new StendhalRPZone("int_semos_house");
+		final StendhalRPZone zone = new StendhalRPZone("int_semos_house");
 		MockStendlRPWorld.get().addRPZone(zone);
 		zoneConf = new FlowerSellerNPC();
 		zoneConf.configureZone(zone, null);
 		npcRose = SingletonRepository.getNPCList().get("Rose Leigh");
 		enRose = npcRose.getEngine();
 
-		AbstractQuest quest = new ElfPrincess();
+		final AbstractQuest quest = new ElfPrincess();
 		quest.addToWorld();
 		en = npc.getEngine();
 
@@ -82,7 +82,7 @@ public class ElfPrincessTest {
 		// -----------------------------------------------
 		// Find Rose Leigh and get the flower from her
 
-		assertTrue("Flowers! Get your fresh flowers here!".equals(npcRose.get("text")) || npcRose.get("text") == null);
+		assertTrue("Flowers! Get your fresh flowers here!".equals(npcRose.get("text")) || (npcRose.get("text") == null));
 		enRose.step(player, "hi");
 		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.", npcRose.get("text"));
 		enRose.step(player, "bye");

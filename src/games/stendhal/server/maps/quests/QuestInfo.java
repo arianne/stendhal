@@ -28,7 +28,7 @@ public class QuestInfo {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -36,7 +36,7 @@ public class QuestInfo {
 		return descriptionGM;
 	}
 
-	public void setDescriptionGM(String descriptionGM) {
+	public void setDescriptionGM(final String descriptionGM) {
 		this.descriptionGM = descriptionGM;
 	}
 
@@ -44,7 +44,7 @@ public class QuestInfo {
 		return hints;
 	}
 
-	public void setHints(Map<String, String> hints) {
+	public void setHints(final Map<String, String> hints) {
 		this.hints = hints;
 	}
 
@@ -52,7 +52,7 @@ public class QuestInfo {
 		return history;
 	}
 
-	public void setHistory(Map<String, String> history) {
+	public void setHistory(final Map<String, String> history) {
 		this.history = history;
 	}
 
@@ -60,7 +60,7 @@ public class QuestInfo {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -68,7 +68,7 @@ public class QuestInfo {
 		return repeatable;
 	}
 
-	public void setRepeatable(boolean[] repeatable) {
+	public void setRepeatable(final boolean[] repeatable) {
 		this.repeatable = repeatable;
 	}
 
@@ -76,7 +76,7 @@ public class QuestInfo {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 }

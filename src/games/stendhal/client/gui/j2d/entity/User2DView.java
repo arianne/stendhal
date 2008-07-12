@@ -24,7 +24,7 @@ class User2DView extends Player2DView {
 	/**
 	 * The user entity.
 	 */
-	private User user;
+	private final User user;
 
 	/**
 	 * Create a 2D view of a user.

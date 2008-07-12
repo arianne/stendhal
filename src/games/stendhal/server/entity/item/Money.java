@@ -25,11 +25,11 @@ public class Money extends StackableItem {
 	// StackableItem money = (StackableItem)
 	// world.getRuleManager().getEntityManager().getItem("money");
 	// where world is a StendhalRPWorld.
-	public Money(Map<String, String> attributes) {
+	public Money(final Map<String, String> attributes) {
 		super("money", "money", "gold", attributes);
 	}
 
-	public Money(int quantity) {
+	public Money(final int quantity) {
 		super("money", "money", "gold", null);
 		setQuantity(quantity);
 	}
@@ -40,12 +40,12 @@ public class Money extends StackableItem {
 	 * @param item
 	 *            item to copy
 	 */
-	public Money(Money item) {
+	public Money(final Money item) {
 		super(item);
 	}
 
 	@Override
-	public boolean isStackable(Stackable other) {
+	public boolean isStackable(final Stackable other) {
 		return (other.getClass() == Money.class);
 	}
 

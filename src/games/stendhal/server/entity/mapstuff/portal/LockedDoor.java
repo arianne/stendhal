@@ -39,7 +39,7 @@ public class LockedDoor extends Door {
 	 * @param clazz
 	 *            The class. Responsible for how this door looks like.
 	 */
-	public LockedDoor(String key, String clazz) {
+	public LockedDoor(final String key, final String clazz) {
 		this(key, clazz, 1);
 	}
 
@@ -53,14 +53,14 @@ public class LockedDoor extends Door {
 	 * @param requiredAmount
 	 *            The number of key items that are needed
 	 */
-	public LockedDoor(String key, String clazz, int requiredAmount) {
+	public LockedDoor(final String key, final String clazz, final int requiredAmount) {
 		super(clazz);
 		put("locked", key);
 		this.requiredAmount = requiredAmount;
 	}
 
 	@Override
-	protected boolean isAllowed(RPEntity user) {
+	protected boolean isAllowed(final RPEntity user) {
 		return (has("locked") && user.isEquipped(get("locked"), requiredAmount));
 	}
 

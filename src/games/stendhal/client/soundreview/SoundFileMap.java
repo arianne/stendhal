@@ -22,11 +22,11 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	}
 
-	public boolean containsKey(Object key) {
+	public boolean containsKey(final Object key) {
 		return fileMap.containsKey(key);
 	}
 
-	public boolean containsValue(Object value) {
+	public boolean containsValue(final Object value) {
 		return fileMap.containsValue(value);
 	}
 
@@ -35,7 +35,7 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	}
 
-	public byte[] get(Object key) {
+	public byte[] get(final Object key) {
 		byte[] byteArray = fileMap.get(key);
 		if (byteArray == null) {
 
@@ -57,29 +57,29 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 		return fileMap.keySet();
 	}
 
-	public byte[] put(String key, byte[] value) {
+	public byte[] put(final String key, final byte[] value) {
 		if (value == null) {
 			throw new NullPointerException();
 		}
 		try {
 			return fileMap.put(key, value);
-		} catch (IllegalStateException e) {
+		} catch (final IllegalStateException e) {
 			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
 			return fileMap.put(key, value);
 		}
 	}
 
-	public void putAll(Map<? extends String, ? extends byte[]> t) {
+	public void putAll(final Map<? extends String, ? extends byte[]> t) {
 		try {
 			fileMap.putAll(t);
-		} catch (IllegalStateException e) {
+		} catch (final IllegalStateException e) {
 			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
 			fileMap.putAll(t);
 		}
 
 	}
 
-	public byte[] remove(Object key) {
+	public byte[] remove(final Object key) {
 
 		return fileMap.remove(key);
 	}

@@ -18,7 +18,7 @@ import java.util.Map;
  * Inside Nalwor Assassin Headquarters - Level 0 .
  */
 public class PrincipalNPC implements ZoneConfigurator {
-    private ShopList shops = SingletonRepository.getShopList();
+    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -26,16 +26,16 @@ public class PrincipalNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildprincipal(zone);
 	}
 
-	private void buildprincipal(StendhalRPZone zone) {
-		SpeakerNPC principal = new SpeakerNPC("Femme Fatale") {
+	private void buildprincipal(final StendhalRPZone zone) {
+		final SpeakerNPC principal = new SpeakerNPC("Femme Fatale") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(2, 18));
 				nodes.add(new Node(2, 14));
 				nodes.add(new Node(3, 14));

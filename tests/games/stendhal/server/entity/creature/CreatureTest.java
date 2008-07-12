@@ -46,11 +46,11 @@ public class CreatureTest {
 	@Test
 	public void testGetNearestEnemy() {
 		
-		Player onebyone = PlayerTestHelper.createPlayer("bob");
+		final Player onebyone = PlayerTestHelper.createPlayer("bob");
 		onebyone.setPosition(6, 0);
-		MockCreature sevenbyseven = new MockCreature();
+		final MockCreature sevenbyseven = new MockCreature();
 	
-		StendhalRPZone zone = new StendhalRPZone("test", 20 , 20);
+		final StendhalRPZone zone = new StendhalRPZone("test", 20 , 20);
 		zone.add(sevenbyseven);
 		zone.add(onebyone);
 		enemies.add(onebyone);
@@ -81,10 +81,10 @@ public class CreatureTest {
 
 	@Test
 	public void testhasTargetMoved() {
-		StendhalRPZone zone = new StendhalRPZone("testzone");
-		Creature attacker = new Creature();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
+		final Creature attacker = new Creature();
 
-		Creature attackTarget = new Creature();
+		final Creature attackTarget = new Creature();
 		zone.add(attacker);
 		zone.add(attackTarget);
 		attacker.setTarget(attackTarget);
@@ -97,7 +97,7 @@ public class CreatureTest {
 
 	@Test
 	public void testIsAttackTurn() {
-		Creature creature = new Creature();
+		final Creature creature = new Creature();
 		int counter = 0;
 		for (int i = 0; i < 10; i++) {
 			if (creature.isAttackTurn(i)) {

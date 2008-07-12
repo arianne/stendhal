@@ -37,26 +37,26 @@ public class GuildList {
     
     private void loadGuilds() {
         guilds = new LinkedList<Guild>();
-        for (RPObject o : guildsZone) {
+        for (final RPObject o : guildsZone) {
             if (o instanceof Guild) {
                 guilds.add((Guild) o);
             }
         }
     }
     
-    public void addGuild(Guild g) {
+    public void addGuild(final Guild g) {
         guilds.add(g);
         guildsZone.add(g);
         guildsZone.storeToDatabase();
     }
     
-    public void removeGuild(Guild g) {
+    public void removeGuild(final Guild g) {
         guildsZone.remove(g);
         guildsZone.storeToDatabase();
     }
     
-    public void removeGuild(String identifier) {
-        for (Guild g : guilds) {
+    public void removeGuild(final String identifier) {
+        for (final Guild g : guilds) {
             if (g.getIdentifier().equals(identifier)) {
                 guildsZone.remove(g);
                 break;
@@ -65,8 +65,8 @@ public class GuildList {
         guildsZone.storeToDatabase();
     }
     
-    public Guild getGuild(String name) {
-        for (Guild g : guilds) {
+    public Guild getGuild(final String name) {
+        for (final Guild g : guilds) {
             if (g.getName().equals(name)) {
                 return g;
             }

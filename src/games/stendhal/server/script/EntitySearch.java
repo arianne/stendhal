@@ -34,13 +34,13 @@ import marauroa.common.game.RPObject;
 
 public class EntitySearch extends ScriptImpl {
 
-	public void findByCreatureName(Player player, String targetName) {
-		StringBuilder res = new StringBuilder();
-		Map<String, Integer> zoneCount = new HashMap<String, Integer>();
+	public void findByCreatureName(final Player player, String targetName) {
+		final StringBuilder res = new StringBuilder();
+		final Map<String, Integer> zoneCount = new HashMap<String, Integer>();
 
 		// check targetName
 
-		Creature tempc = SingletonRepository.getEntityManager().getCreature(targetName);
+		final Creature tempc = SingletonRepository.getEntityManager().getCreature(targetName);
 		if (tempc != null) {
 			// get the proper case of the characters in the string
 			targetName = tempc.getName();
@@ -50,15 +50,15 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		// count for each zone
-		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
-			StendhalRPZone zone = (StendhalRPZone) irpzone;
+		for (final IRPZone irpzone : SingletonRepository.getRPWorld()) {
+			final StendhalRPZone zone = (StendhalRPZone) irpzone;
 
-			for (CreatureRespawnPoint p : zone.getRespawnPointList()) {
-				Creature c = p.getPrototypeCreature();
+			for (final CreatureRespawnPoint p : zone.getRespawnPointList()) {
+				final Creature c = p.getPrototypeCreature();
 				if (targetName.equals(c.getName())) {
-					String zoneName = zone.getName();
+					final String zoneName = zone.getName();
 					if (zoneCount.containsKey(zoneName)) {
-						int tempi = zoneCount.get(zoneName) + 1;
+						final int tempi = zoneCount.get(zoneName) + 1;
 						zoneCount.put(zoneName, tempi);
 					} else {
 						zoneCount.put(zoneName, 1);
@@ -69,7 +69,7 @@ public class EntitySearch extends ScriptImpl {
 
 		// make string
 		res.append("\r\nRespawn points for " + targetName + " : ");
-		for (Map.Entry<String, Integer> e : zoneCount.entrySet()) {
+		for (final Map.Entry<String, Integer> e : zoneCount.entrySet()) {
 			res.append("\r\n[" + e.getValue() + "]\t" + e.getKey());
 		}
 
@@ -77,19 +77,19 @@ public class EntitySearch extends ScriptImpl {
 
 	}
 
-	public void findNonRespawn(Player player) {
-		StringBuilder res = new StringBuilder();
+	public void findNonRespawn(final Player player) {
+		final StringBuilder res = new StringBuilder();
 
 		res.append("\r\nNon-Respawn creatures (minus domestic animals):");
 
-		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
-			StendhalRPZone zone = (StendhalRPZone) irpzone;
+		for (final IRPZone irpzone : SingletonRepository.getRPWorld()) {
+			final StendhalRPZone zone = (StendhalRPZone) irpzone;
 
-			for (RPObject rpObj : zone) {
+			for (final RPObject rpObj : zone) {
 				if (isACreatureButNoPet(rpObj)) { 
-					Creature c = (Creature) rpObj;
+					final Creature c = (Creature) rpObj;
 					if (!c.isSpawned()) {
-						String zoneName = zone.getName();
+						final String zoneName = zone.getName();
 						res.append("\r\n" + c.getName() + " (" + c.getLevel()
 								+ ")");
 						res.append("\t" + zoneName + " " + c.getX() + " "
@@ -103,28 +103,28 @@ public class EntitySearch extends ScriptImpl {
 		sandbox.privateText(player, res.toString());
 	}
 
-	private boolean isACreatureButNoPet(RPObject rpObj) {
+	private boolean isACreatureButNoPet(final RPObject rpObj) {
 		return (rpObj instanceof Creature) && !(rpObj instanceof DomesticAnimal);
 	}
 
-	public void findByZoneName(Player player, String targetName) {
-		StringBuilder res = new StringBuilder();
+	public void findByZoneName(final Player player, final String targetName) {
+		final StringBuilder res = new StringBuilder();
 
 		res.append("\r\nRespawn points for zone names containing: "
 				+ targetName);
-		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
-			StendhalRPZone zone = (StendhalRPZone) irpzone;
+		for (final IRPZone irpzone : SingletonRepository.getRPWorld()) {
+			final StendhalRPZone zone = (StendhalRPZone) irpzone;
 
-			String zoneName = zone.getName();
+			final String zoneName = zone.getName();
 			if (zoneName.contains(targetName)) {
 				// Count one zone
-				Map<String, Integer> creatureCount = new HashMap<String, Integer>();
-				for (CreatureRespawnPoint p : zone.getRespawnPointList()) {
-					Creature c = p.getPrototypeCreature();
-					String cn = c.getName() + "(" + c.getLevel() + ")";
+				final Map<String, Integer> creatureCount = new HashMap<String, Integer>();
+				for (final CreatureRespawnPoint p : zone.getRespawnPointList()) {
+					final Creature c = p.getPrototypeCreature();
+					final String cn = c.getName() + "(" + c.getLevel() + ")";
 
 					if (creatureCount.containsKey(cn)) {
-						int tempi = creatureCount.get(cn) + 1;
+						final int tempi = creatureCount.get(cn) + 1;
 						creatureCount.put(cn, tempi);
 					} else {
 						creatureCount.put(cn, 1);
@@ -135,7 +135,7 @@ public class EntitySearch extends ScriptImpl {
 				if (!creatureCount.isEmpty()) {
 					res.append("\r\nRespawn points for " + zoneName);
 				}
-				for (Map.Entry<String, Integer> e : creatureCount.entrySet()) {
+				for (final Map.Entry<String, Integer> e : creatureCount.entrySet()) {
 					res.append("\r\n[" + e.getValue() + "]\t" + e.getKey());
 				}
 			}
@@ -145,14 +145,14 @@ public class EntitySearch extends ScriptImpl {
 	}
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
-		if (args.size() == 2 && args.get(0).equals("cname")) {
+		if ((args.size() == 2) && args.get(0).equals("cname")) {
 			findByCreatureName(admin, args.get(1));
-		} else if (args.size() == 1 && args.get(0).equals("nonrespawn")) {
+		} else if ((args.size() == 1) && args.get(0).equals("nonrespawn")) {
 			findNonRespawn(admin);
-		} else if (args.size() == 2 && args.get(0).equals("zname")) {
+		} else if ((args.size() == 2) && args.get(0).equals("zname")) {
 			findByZoneName(admin, args.get(1));
 		} else {
 			admin.sendPrivateText(

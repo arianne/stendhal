@@ -39,13 +39,13 @@ public class PlinksToy extends AbstractQuest {
 	private static final String QUEST_SLOT = "plinks_toy";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			if (player.isEquipped("teddy")) {
 				res.add("FOUND_ITEM_WITHOUT_QUEST");
@@ -53,7 +53,7 @@ public class PlinksToy extends AbstractQuest {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 			return res;
@@ -69,7 +69,7 @@ public class PlinksToy extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Plink");
+		final SpeakerNPC npc = npcs.get("Plink");
 
 		npc.add(
 			ConversationStates.IDLE,
@@ -111,8 +111,8 @@ public class PlinksToy extends AbstractQuest {
 	}
 
 	private void step_2() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_plains_n");
-		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_plains_n");
+		final PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
 		teddyRespawner.setPosition(107, 84);
 		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");
 		zone.add(teddyRespawner);
@@ -121,14 +121,14 @@ public class PlinksToy extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Plink");
+		final SpeakerNPC npc = npcs.get("Plink");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)), new PlayerHasItemWithHimCondition("teddy")),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("teddy");
 					npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
 					player.addXP(10);

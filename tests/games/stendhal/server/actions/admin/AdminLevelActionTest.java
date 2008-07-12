@@ -30,14 +30,14 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelAction0() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 	
 		pl.put("adminlevel", 5000);
 	
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		action.put("newlevel", "0");
@@ -50,12 +50,12 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 4999);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 	
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		action.put("newlevel", "0");
@@ -67,15 +67,15 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionOverSuper() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 	
 		pl.put("adminlevel", 5000);
 	
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		action.put("newlevel", "5001");
@@ -90,12 +90,12 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionPlayerFound() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 	
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
@@ -103,15 +103,15 @@ public class AdminLevelActionTest {
 	}
 	@Test 
 	public final void testAdminLevelActionPlayerGhosted() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 		pl.setGhost(true);
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
-		PrivateTextMockingTestPlayer nonAdmin = PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin");
-		PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
+		final PrivateTextMockingTestPlayer nonAdmin = PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin");
+		final PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
 		admin.setAdminLevel(5000);
 		
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		
@@ -126,12 +126,12 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionPlayerFoundNoInteger() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 	
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		action.put("newlevel", "1.3");
@@ -142,9 +142,9 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionPlayerNotFound() {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		pl.put("adminlevel", 5000);
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);

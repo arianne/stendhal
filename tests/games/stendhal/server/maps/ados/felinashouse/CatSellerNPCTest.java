@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CatTestHelper;
 
@@ -27,7 +28,7 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		MockStendlRPWorld.get();
 		
 		CatTestHelper.generateRPClasses();
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 	}
@@ -42,8 +43,8 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Felina");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Felina");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Felina"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -54,8 +55,8 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyCat() {
-		SpeakerNPC npc = getNPC("Felina");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Felina");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -120,8 +121,8 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSellCat() {
-		SpeakerNPC npc = getNPC("Felina");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Felina");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));

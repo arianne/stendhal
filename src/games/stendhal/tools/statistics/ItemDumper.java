@@ -31,7 +31,7 @@ public class ItemDumper {
 	 * @param db
 	 *            JDBCPlayerDatabase
 	 */
-	private ItemDumper(StendhalPlayerDatabase db) {
+	private ItemDumper(final StendhalPlayerDatabase db) {
 		this.db = db;
 		this.trans = db.getTransaction();
 	}
@@ -43,18 +43,18 @@ public class ItemDumper {
 	 *             in case of an unexpected Exception
 	 */
 	private void dump() throws Exception {
-		String query = "insert into items(datewhen, charname, slotname, itemname, amount) values(?, ?, ?, ?, ?)";
+		final String query = "insert into items(datewhen, charname, slotname, itemname, amount) values(?, ?, ?, ?, ?)";
 		date = new java.sql.Date(new java.util.Date().getTime());
-		Connection connection =  trans.getConnection();
+		final Connection connection =  trans.getConnection();
 		ps = connection.prepareStatement(query);
 
-		for (RPObject object : db) {
-			String name = object.get("name");
-			int id = object.getInt("id");
+		for (final RPObject object : db) {
+			final String name = object.get("name");
+			final int id = object.getInt("id");
 			System.out.println(id + " " + name);
-			for (RPSlot slot : object.slots()) {
-				String slotName = slot.getName();
-				for (RPObject item : slot) {
+			for (final RPSlot slot : object.slots()) {
+				final String slotName = slot.getName();
+				for (final RPObject item : slot) {
 					if (item.has("type") && item.get("type").equals("item")) {
 						logItem(name, slotName, item);
 					}
@@ -78,9 +78,9 @@ public class ItemDumper {
 	 * @throws SQLException
 	 *             in case of a database error
 	 */
-	private void logItem(String name, String slotName, RPObject item)
+	private void logItem(final String name, final String slotName, final RPObject item)
 			throws SQLException {
-		String itemName = item.get("name");
+		final String itemName = item.get("name");
 		int quantity = 1;
 		if (item.has("quantity")) {
 			quantity = item.getInt("quantity");
@@ -101,11 +101,11 @@ public class ItemDumper {
 	 * @throws Exception
 	 *             in case of an unexpected item
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		SingletonRepository.getRPWorld();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
-		StendhalPlayerDatabase db = (StendhalPlayerDatabase) StendhalPlayerDatabase.newConnection();
-		ItemDumper itemDumper = new ItemDumper(db);
+		final StendhalPlayerDatabase db = (StendhalPlayerDatabase) StendhalPlayerDatabase.newConnection();
+		final ItemDumper itemDumper = new ItemDumper(db);
 		itemDumper.dump();
 	}
 }

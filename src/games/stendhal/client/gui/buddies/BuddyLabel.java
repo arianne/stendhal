@@ -19,7 +19,7 @@ class BuddyLabel extends JLabel {
 	 */
 	private static ImageIcon offlineIcon = new ImageIcon("data/gui/buddy_offline.png");
 
-	void setOnline(boolean online) {
+	void setOnline(final boolean online) {
 			this.setEnabled(online);
 	}
 
@@ -29,12 +29,12 @@ class BuddyLabel extends JLabel {
 		this.setText("bobbele");
 	}
 
-	public BuddyLabel(String name) {
+	public BuddyLabel(final String name) {
 		this();
 		setText(name);
 	}
 
-	public BuddyLabel(String name, boolean isOnline) {
+	public BuddyLabel(final String name, final boolean isOnline) {
 		this();
 		setOnline(isOnline);
 		setText(name);

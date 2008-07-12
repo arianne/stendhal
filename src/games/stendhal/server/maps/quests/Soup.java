@@ -63,14 +63,14 @@ public class Soup extends AbstractQuest {
 	 *            If true, sets a # character in front of every name
 	 * @return A list of food item names
 	 */
-	private List<String> missingFood(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
+	private List<String> missingFood(final Player player, final boolean hash) {
+		final List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(QUEST_SLOT);
 		if (doneText == null) {
 			doneText = "";
 		}
-		List<String> done = Arrays.asList(doneText.split(";"));
+		final List<String> done = Arrays.asList(doneText.split(";"));
 		for (String ingredient : NEEDED_FOOD) {
 			if (!done.contains(ingredient)) {
 				if (hash) {
@@ -86,10 +86,10 @@ public class Soup extends AbstractQuest {
 	 * Serves the soup as a reward for the given player.
 	 * @param player to be rewarded
 	 */
-	private void placeSoupFor(Player player) {
-		Item soup = SingletonRepository.getEntityManager()
+	private void placeSoupFor(final Player player) {
+		final Item soup = SingletonRepository.getEntityManager()
 				.getItem("soup");
-		IRPZone zone = SingletonRepository.getRPWorld().getZone("int_fado_tavern");
+		final IRPZone zone = SingletonRepository.getRPWorld().getZone("int_fado_tavern");
 		// place on table (for effect only :) )
 		soup.setPosition(17, 23);
 		// only allow player who made soup to eat the soup
@@ -101,7 +101,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Old Mother Helena");
+		final SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player says hi before starting the quest
 		npc.add(
@@ -119,15 +119,15 @@ public class Soup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
 						return false; // we haven't done the quest yet
 					}
 
-					String[] tokens = player.getQuest(QUEST_SLOT)
+					final String[] tokens = player.getQuest(QUEST_SLOT)
 							.split(";");
-					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
+					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					return (timeRemaining <= 0L);
 				}
@@ -142,23 +142,23 @@ public class Soup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
 						return false; // we haven't done the quest yet
 					}
 
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
-					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
+					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					return (timeRemaining > 0L);
 				}
 			}, ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					npc.say("I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in "
 						+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
@@ -173,7 +173,7 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
 						// to be honest i don't understand when this
 								// would be implemented. i put the text i
@@ -192,8 +192,8 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					List<String> needed = missingFood(player, true);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final List<String> needed = missingFood(player, true);
 					npc.say("I need "
 							+ Grammar.quantityplnoun(needed.size(),
 									"ingredient")
@@ -246,7 +246,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Old Mother Helena");
+		final SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player returns while quest is still active
 		npc.add(
@@ -263,8 +263,8 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					List<String> needed = missingFood(player, true);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final List<String> needed = missingFood(player, true);
 					npc.say("I still need "
 							+ Grammar.quantityplnoun(needed.size(),
 									"ingredient") + ": "
@@ -282,18 +282,18 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Expression item = sentence.getTriggerExpression();
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final Expression item = sentence.getTriggerExpression();
 
 					TriggerList missing = new TriggerList(missingFood(player, false));
 
-					Expression found = missing.find(item);
+					final Expression found = missing.find(item);
 					if (found != null) {
-						String itemName = found.getOriginal();
+						final String itemName = found.getOriginal();
 
 						if (player.drop(itemName)) {
 							// register ingredient as done
-							String doneText = player.getQuest(QUEST_SLOT);
+							final String doneText = player.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 							// check if the player has brought all Food
@@ -344,8 +344,8 @@ public class Soup extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 			    @Override
-			    public void fire(Player player, Sentence sentence,
-					   SpeakerNPC npc) {
+			    public void fire(final Player player, final Sentence sentence,
+					   final SpeakerNPC npc) {
 			    	checkForAllIngredients(player, npc);
 			}
 		});
@@ -374,12 +374,12 @@ public class Soup extends AbstractQuest {
 
 	// if we're checking all at once it's a bit different method
 	// also player is rewarded less xp and no karma (don't get karma for being lazy)
-	private void checkForAllIngredients(Player player, SpeakerNPC npc) {
+	private void checkForAllIngredients(final Player player, final SpeakerNPC npc) {
 		List<String> missing = missingFood(player, false);
-		for (String food : missing) {
+		for (final String food : missing) {
 		if (player.drop(food)) {							
 			// register ingredient as done
-			String doneText = player.getQuest(QUEST_SLOT);
+			final String doneText = player.getQuest(QUEST_SLOT);
 			player.setQuest(QUEST_SLOT, doneText + ";"
 			+ food);
 			}

@@ -21,7 +21,7 @@ public class PrivateTextEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TEXT_TYPE, Type.STRING);
 		rpclass.add(DefinitionClass.ATTRIBUTE, CHANNEL, Type.STRING);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TEXT, Type.LONG_STRING);
@@ -33,7 +33,7 @@ public class PrivateTextEvent extends RPEvent {
 	 * @param type NotificationType
 	 * @param text Text
 	 */
-	public PrivateTextEvent(NotificationType type, String text) {
+	public PrivateTextEvent(final NotificationType type, final String text) {
 		super(RPCLASS_NAME);		
 		put(TEXT_TYPE, type.name());
 		put(TEXT, text);

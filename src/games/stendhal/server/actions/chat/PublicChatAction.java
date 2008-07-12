@@ -12,13 +12,13 @@ import games.stendhal.server.entity.player.Player;
  */
 public class PublicChatAction implements ActionListener {
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
 			return;
 		}
 
 		if (action.has(TEXT)) {
-			String text = action.get(TEXT);
+			final String text = action.get(TEXT);
 			player.put("text", text);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "chat",
 					null, Integer.toString(text.length()),

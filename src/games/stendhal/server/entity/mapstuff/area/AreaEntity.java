@@ -26,7 +26,7 @@ public abstract class AreaEntity extends Entity {
 	 * Creates a one by one area entity.
 	 */
 	public AreaEntity() {
-		this(1,1);
+		this(1, 1);
 	}
 	/**
 	 * Create an area entity.
@@ -36,7 +36,7 @@ public abstract class AreaEntity extends Entity {
 	 * @param height
 	 *            Height of this area
 	 */
-	public AreaEntity(int width, int height) {
+	public AreaEntity(final int width, final int height) {
 		setRPClass("area");
 		put("type", "area");
 
@@ -54,7 +54,7 @@ public abstract class AreaEntity extends Entity {
 	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
-		RPClass rpclass = new RPClass("area");
+		final RPClass rpclass = new RPClass("area");
 
 		// MAYBEDO: rpclass.isA(Entity.RPCLASS)
 		rpclass.isA("entity");
@@ -111,7 +111,7 @@ public abstract class AreaEntity extends Entity {
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;
@@ -127,7 +127,7 @@ public abstract class AreaEntity extends Entity {
 	 */
 	@Override
 	public String getTitle() {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;

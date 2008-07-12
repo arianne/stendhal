@@ -27,16 +27,16 @@ public class GoldsmithNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildGoldsmith(zone, attributes);
 	}
 
-	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC goldsmith = new SpeakerNPC("Joshua") {
+	private void buildGoldsmith(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC goldsmith = new SpeakerNPC("Joshua") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				// to the oven
 				nodes.add(new Node(5, 3));
 				// to a water
@@ -67,11 +67,11 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold nugget and wood
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("wood", 2);
 				requiredResources.put("gold nugget", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold",
 						"cast", "gold bar", requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

@@ -37,9 +37,9 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 *            The listener.
 	 */
 	public void add(final PositionChangeListener l) {
-		int len = listeners.length;
+		final int len = listeners.length;
 
-		PositionChangeListener[] newListeners = new PositionChangeListener[len + 1];
+		final PositionChangeListener[] newListeners = new PositionChangeListener[len + 1];
 		System.arraycopy(listeners, 0, newListeners, 0, len);
 		newListeners[len] = l;
 
@@ -57,7 +57,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 
 		while (idx-- != 0) {
 			if (listeners[idx] == listener) {
-				PositionChangeListener[] newListeners = new PositionChangeListener[listeners.length - 1];
+				final PositionChangeListener[] newListeners = new PositionChangeListener[listeners.length - 1];
 
 				if (idx != 0) {
 					System.arraycopy(listeners, 0, newListeners, 0, idx);
@@ -88,9 +88,9 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 * @param gameScreen 
 	 */
 	public void positionChanged(final double x, final double y) {
-		PositionChangeListener[] list = listeners;
+		final PositionChangeListener[] list = listeners;
 
-		for (PositionChangeListener l : list) {
+		for (final PositionChangeListener l : list) {
 			l.positionChanged(x, y);
 		}
 	}

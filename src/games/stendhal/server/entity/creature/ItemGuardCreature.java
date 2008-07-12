@@ -30,7 +30,7 @@ public class ItemGuardCreature extends Creature {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ItemGuardCreature.class);
 
-	private String itemType;
+	private final String itemType;
 
 	/**
 	 * Creates an ItemGuardCreature.
@@ -40,7 +40,7 @@ public class ItemGuardCreature extends Creature {
 	 * @param itemType
 	 *            the quest item to drop on death
 	 */
-	public ItemGuardCreature(Creature copy, String itemType) {
+	public ItemGuardCreature(final Creature copy, final String itemType) {
 		super(copy);
 
 		this.itemType = itemType;
@@ -60,11 +60,11 @@ public class ItemGuardCreature extends Creature {
 	}
 
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		if (killer instanceof RPEntity) {
-			RPEntity killerRPEntity = (RPEntity) killer;
+			final RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.isEquipped(itemType)) {
-				Item item = SingletonRepository.getEntityManager().getItem(
+				final Item item = SingletonRepository.getEntityManager().getItem(
 						itemType);
 				item.setBoundTo(killerRPEntity.getName());
 				killerRPEntity.equip(item, true);

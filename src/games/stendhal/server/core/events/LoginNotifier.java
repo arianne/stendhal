@@ -21,7 +21,7 @@ public final class LoginNotifier {
 	/**
 	 * Holds a list of all registered listeners.
 	 */
-	private List<LoginListener> listeners;
+	private final List<LoginListener> listeners;
 
 	// singleton
 	private LoginNotifier() {
@@ -46,7 +46,7 @@ public final class LoginNotifier {
 	 * @param listener
 	 *            LoginListener to add
 	 */
-	public void addListener(LoginListener listener) {
+	public void addListener(final LoginListener listener) {
 		listeners.add(listener);
 	}
 
@@ -56,7 +56,7 @@ public final class LoginNotifier {
 	 * @param listener
 	 *            LoginListener to remove
 	 */
-	public void removeListener(LoginListener listener) {
+	public void removeListener(final LoginListener listener) {
 		listeners.remove(listener);
 	}
 
@@ -66,8 +66,8 @@ public final class LoginNotifier {
 	 * @param player
 	 *            the player who logged in
 	 */
-	public void onPlayerLoggedIn(Player player) {
-		for (LoginListener listener : listeners) {
+	public void onPlayerLoggedIn(final Player player) {
+		for (final LoginListener listener : listeners) {
 			listener.onLoggedIn(player);
 		}
 	}

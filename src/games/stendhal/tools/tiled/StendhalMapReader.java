@@ -37,7 +37,7 @@ public class StendhalMapReader implements MapReader {
 	 * @throws Exception
 	 * @return null
 	 */
-	public Map readMap(String filename) throws Exception {
+	public Map readMap(final String filename) throws Exception {
 		return null;
 	}
 
@@ -48,7 +48,7 @@ public class StendhalMapReader implements MapReader {
 	 * @throws Exception
 	 * @return null
 	 */
-	public TileSet readTileset(String filename) throws Exception {
+	public TileSet readTileset(final String filename) throws Exception {
 		return null;
 	}
 
@@ -59,7 +59,7 @@ public class StendhalMapReader implements MapReader {
 	 * @throws Exception
 	 * @return null
 	 */
-	public Map readMap(InputStream in) throws Exception {
+	public Map readMap(final InputStream in) throws Exception {
 		return null;
 	}
 
@@ -70,17 +70,17 @@ public class StendhalMapReader implements MapReader {
 	 * @throws Exception
 	 * @return null
 	 */
-	public TileSet readTileset(InputStream in) throws Exception {
+	public TileSet readTileset(final InputStream in) throws Exception {
 		return null;
 	}
 
-	public boolean accept(File pathname) {
+	public boolean accept(final File pathname) {
 		try {
-			String path = pathname.getCanonicalPath().toLowerCase();
+			final String path = pathname.getCanonicalPath().toLowerCase();
 			if (path.endsWith(".stend")) {
 				return true;
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 //			pluginLogger.error(e);
 		}
 		return false;
@@ -111,7 +111,7 @@ public class StendhalMapReader implements MapReader {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack<String> es) {
+	public void setErrorStack(final Stack<String> es) {
 		// not implemented
 	}
 

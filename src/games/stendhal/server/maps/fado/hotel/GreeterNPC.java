@@ -26,7 +26,7 @@ public class GreeterNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -34,12 +34,12 @@ public class GreeterNPC implements ZoneConfigurator {
 	// IL0_GreeterNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC greeterNPC = new SpeakerNPC("Linda") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC greeterNPC = new SpeakerNPC("Linda") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(16, 50));
 				nodes.add(new Node(27, 50));
 				setPath(new FixedPath(nodes, true));

@@ -18,20 +18,20 @@ public class AdminLevelAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (action.has(_TARGET)) {
 
-			String name = action.get(_TARGET);
-			Player target = SingletonRepository.getRuleProcessor().getPlayer(name);
+			final String name = action.get(_TARGET);
+			final Player target = SingletonRepository.getRuleProcessor().getPlayer(name);
 
-			if (target == null || (target.isGhost() && !isAllowedtoSeeGhosts(player))) {
+			if ((target == null) || (target.isGhost() && !isAllowedtoSeeGhosts(player))) {
 				logger.debug("Player \"" + name + "\" not found");
 				player.sendPrivateText("Player \"" + name + "\" not found");
 				return;
 			}
 
-			int oldlevel = target.getAdminLevel();
+			final int oldlevel = target.getAdminLevel();
 			String response = target.getTitle() + " has adminlevel " + oldlevel;
 
 			if (action.has(_NEWLEVEL)) {
@@ -39,7 +39,7 @@ public class AdminLevelAction extends AdministrationAction {
 				int newlevel;
 				try {
 					newlevel = Integer.parseInt(action.get(_NEWLEVEL));
-				} catch (NumberFormatException e) {
+				} catch (final NumberFormatException e) {
 					player.sendPrivateText("The new adminlevel needs to be an Integer");
 
 					return;
@@ -50,7 +50,7 @@ public class AdminLevelAction extends AdministrationAction {
 					newlevel = REQUIRED_ADMIN_LEVEL_FOR_SUPER;
 				}
 
-				int mylevel = player.getAdminLevel();
+				final int mylevel = player.getAdminLevel();
 				if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
 					response = "Sorry, but you need an adminlevel of "
 							+ REQUIRED_ADMIN_LEVEL_FOR_SUPER
@@ -77,7 +77,7 @@ public class AdminLevelAction extends AdministrationAction {
 		}
 	}
 
-	boolean isAllowedtoSeeGhosts(Player player) {
+	boolean isAllowedtoSeeGhosts(final Player player) {
 		return AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "ghostmode", false);
 	}
 

@@ -22,13 +22,13 @@ public class UpdateGUIDialogs {
 	 *            true, if it is an update, false on first install
 	 * @return true if the update should be performed, false otherwise
 	 */
-	public static boolean askForDownload(int updateSize, boolean update) {
+	public static boolean askForDownload(final int updateSize, final boolean update) {
 		// format number, only provide decimal digits on very small sizes
 		float size = (float) updateSize / 1024;
 		if (size > 10) {
 			size = (int) size;
 		}
-		String sizeString = NumberFormat.getInstance().format(size);
+		final String sizeString = NumberFormat.getInstance().format(size);
 
 		// ask user
 		int resCode;
@@ -55,7 +55,7 @@ public class UpdateGUIDialogs {
 	 * @param message
 	 *            message to display
 	 */
-	public static void messageBox(String message) {
+	public static void messageBox(final String message) {
 		JOptionPane.showMessageDialog(null, message, DIALOG_TITLE,
 				JOptionPane.INFORMATION_MESSAGE);
 	}

@@ -36,7 +36,7 @@ public class Debuggera extends ScriptImpl {
 
 	class AdminCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return (player.getAdminLevel() >= 5000);
 		}
 	}
@@ -44,12 +44,12 @@ public class Debuggera extends ScriptImpl {
 	class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
 		boolean enabled;
 
-		public DebuggeraEnablerAction(boolean enable) {
+		public DebuggeraEnablerAction(final boolean enable) {
 			this.enabled = enable;
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			// TODO debuggeraEnabled = enabled;
 			if (enabled) {
 				engine.say("Thanks.");
@@ -62,16 +62,16 @@ public class Debuggera extends ScriptImpl {
 	class QuestsAction extends SpeakerNPC.ChatAction {
 		ScriptingSandbox sandbox;
 
-		public QuestsAction(ScriptingSandbox sandbox) {
+		public QuestsAction(final ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			// list quest
-			StringBuilder sb = new StringBuilder("Your quest states are:");
-			List<String> quests = player.getQuests();
-			for (String quest : quests) {
+			final StringBuilder sb = new StringBuilder("Your quest states are:");
+			final List<String> quests = player.getQuests();
+			for (final String quest : quests) {
 				sb.append("\r\n" + quest + " = " + player.getQuest(quest));
 			}
 
@@ -84,7 +84,7 @@ public class Debuggera extends ScriptImpl {
 				pos = quest.indexOf("=");
 			}
 			if (pos > -1) {
-				String value = quest.substring(pos + 1);
+				final String value = quest.substring(pos + 1);
 				quest = quest.substring(0, pos);
 				sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
 				sandbox.addGameEvent(player.getName(), "alter_quest",
@@ -98,23 +98,23 @@ public class Debuggera extends ScriptImpl {
 	class TeleportNPCAction extends SpeakerNPC.ChatAction {
 		ScriptingSandbox sandbox;
 
-		public TeleportNPCAction(ScriptingSandbox sandbox) {
+		public TeleportNPCAction(final ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(0,
 					new TeleportScriptAction(player, engine, sentence, sandbox));
 		}
 	}
 
 	static class TeleportScriptAction implements TurnListener {
-		private ScriptingSandbox sandbox;
+		private final ScriptingSandbox sandbox;
 
-		private Player player;
+		private final Player player;
 
-		private SpeakerNPC engine;
+		private final SpeakerNPC engine;
 
 		// private Sentence sentence;
 		//
@@ -131,15 +131,15 @@ public class Debuggera extends ScriptImpl {
 		// syntax-error: private final String[] MAGIC_PHRASE = {"Across the
 		// land,", "Across the sea.", "Friends forever,", "We will always be."};
 
-		public TeleportScriptAction(Player player, SpeakerNPC engine,
-				Sentence sentence, ScriptingSandbox sandbox) {
+		public TeleportScriptAction(final Player player, final SpeakerNPC engine,
+				final Sentence sentence, final ScriptingSandbox sandbox) {
 			this.player = player;
 			this.engine = engine;
 			// this.sentence = sentence;
 			this.sandbox = sandbox;
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			boolean keepRunning = true;
 			counter++;
 			if (beamed) {
@@ -182,15 +182,15 @@ public class Debuggera extends ScriptImpl {
 						default:
 							// Teleport to a near by spot
 
-							StendhalRPZone zone = sandbox.getZone(player);
-							int x = player.getX();
-							int y = player.getY();
-							int[][] tele_offsets = { { 7, 7 }, { 7, -7 },
+							final StendhalRPZone zone = sandbox.getZone(player);
+							final int x = player.getX();
+							final int y = player.getY();
+							final int[][] tele_offsets = { { 7, 7 }, { 7, -7 },
 									{ -7, 7 }, { -7, -7 } };
-							Random random = new Random();
+							final Random random = new Random();
 
 							for (int i = 0; i < 3; i++) {
-								int r = random.nextInt(tele_offsets.length);
+								final int r = random.nextInt(tele_offsets.length);
 								if (player.teleport(zone, x
 										+ tele_offsets[r][0], y
 										+ tele_offsets[r][1], null, null)) {
@@ -218,35 +218,35 @@ public class Debuggera extends ScriptImpl {
 
 		private Player player;
 
-		private List<String> zones;
+		private final List<String> zones;
 
 		private int counter;
 
-		public SightseeingAction(ScriptingSandbox sandbox, StendhalRPWorld world) {
+		public SightseeingAction(final ScriptingSandbox sandbox, final StendhalRPWorld world) {
 			// this.sandbox = sandbox;
 
 			zones = new ArrayList<String>();
 
-			for (IRPZone irpZone : world) {
-				StendhalRPZone zone = (StendhalRPZone) irpZone;
+			for (final IRPZone irpZone : world) {
+				final StendhalRPZone zone = (StendhalRPZone) irpZone;
 				zones.add(zone.getName());
 			}
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			this.player = player;
 			counter = 0;
 			player.sendPrivateText("Let's start");
 			SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			try {
-				String zoneName = zones.get(counter);
-				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
+				final String zoneName = zones.get(counter);
+				final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 
-				int[][] tele_xy = { { 5, 5 }, { 50, 50 }, { 20, 20 },
+				final int[][] tele_xy = { { 5, 5 }, { 50, 50 }, { 20, 20 },
 						{ 100, 100 }, { 100, 5 } };
 				boolean foundSpot = false;
 
@@ -263,7 +263,7 @@ public class Debuggera extends ScriptImpl {
 					player.sendPrivateText("Sorry, did not find a free spot in "
 							+ zoneName);
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				Logger.getLogger(SightseeingAction.class).error(e, e);
 			}
 
@@ -276,15 +276,15 @@ public class Debuggera extends ScriptImpl {
 	}
 
 	@Override
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		super.load(admin, args, sandbox);
 
 		// Create NPC
-		ScriptingNPC npc = new ScriptingNPC("Debuggera");
+		final ScriptingNPC npc = new ScriptingNPC("Debuggera");
 		npc.setEntityClass("girlnpc");
 
 		// Place NPC in int_admin_playground on server start
-		String myZone = "int_admin_playground";
+		final String myZone = "int_admin_playground";
 		sandbox.setZone(myZone);
 		int x = 4;
 		int y = 11;
@@ -384,7 +384,7 @@ public class Debuggera extends ScriptImpl {
 				"teleportme"), new AdminCondition(), ConversationStates.IDLE,
 				null, new TeleportNPCAction(sandbox));
 
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing",
 				"memory", "memoryhole"), new AdminCondition(),
 				ConversationStates.IDLE, null, new SightseeingAction(sandbox,

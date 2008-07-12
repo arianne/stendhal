@@ -9,7 +9,7 @@ import org.junit.Test;
 public class GateTest {
 	@Test
 	public void testOpenCloseGate() throws Exception {
-		Gate gate = new Gate();
+		final Gate gate = new Gate();
 		gate.open();
 		assertTrue(gate.isOpen());
 		gate.close();
@@ -18,7 +18,7 @@ public class GateTest {
 
 	@Test
 	public void testCloseOpenGate() throws Exception {
-		Gate gate = new Gate();
+		final Gate gate = new Gate();
 		gate.close();
 		assertFalse(gate.isOpen());
 		gate.open();
@@ -27,13 +27,13 @@ public class GateTest {
 
 	@Test
 	public void testUseGateNotNExtTo() throws Exception {
-		Gate gate = new Gate();
+		final Gate gate = new Gate();
 		gate.setPosition(5, 5);
 		assertFalse(gate.isOpen());
-		RPEntity user = new RPEntity() {
+		final RPEntity user = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 
 			}
 
@@ -53,12 +53,12 @@ public class GateTest {
 
 	@Test
 	public void testUseGateNextTo() throws Exception {
-		Gate gate = new Gate();
+		final Gate gate = new Gate();
 
-		RPEntity user = new RPEntity() {
+		final RPEntity user = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 
 			}
 
@@ -80,12 +80,12 @@ public class GateTest {
 	
 	@Test
 	public void testIsObstacle() throws Exception {
-		Gate gate = new Gate();
+		final Gate gate = new Gate();
 
-		RPEntity user = new RPEntity() {
+		final RPEntity user = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 
 			}
 

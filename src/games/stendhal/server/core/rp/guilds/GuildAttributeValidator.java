@@ -14,21 +14,21 @@ public class GuildAttributeValidator {
     private static String guildNameRegex = "[\\w!& ]{4,30}+";
     private static String guildSloganRegex = "[\\w!-&() ]{4, 150}+";
     
-    public static boolean validateGuildID(String id) {
+    public static boolean validateGuildID(final String id) {
         return matches(guildIDRegex, id);
     }
     
-    public static boolean validateGuildName(String name) {
+    public static boolean validateGuildName(final String name) {
         return matches(guildNameRegex, name);
     }
     
-    public static boolean validateGuildSlogan(String slogan) {
+    public static boolean validateGuildSlogan(final String slogan) {
         return matches(guildSloganRegex, slogan);
     }
     
-    public static boolean matches(String regex, String context) {
-        Pattern pat = Pattern.compile(regex);
-        Matcher mat = pat.matcher(context);
+    public static boolean matches(final String regex, final String context) {
+        final Pattern pat = Pattern.compile(regex);
+        final Matcher mat = pat.matcher(context);
         return mat.matches();
     }
     

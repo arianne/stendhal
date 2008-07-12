@@ -48,7 +48,7 @@ class Door2DView extends StateEntity2DView {
 	/**
 	 * The door entity.
 	 */
-	private Door door;
+	private final Door door;
 
 	/**
 	 * Create a 2D view of a door.
@@ -78,21 +78,21 @@ class Door2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
-		String name = door.getEntityClass();
+			final IGameScreen gameScreen) {
+		final String name = door.getEntityClass();
 
-		SpriteStore store = SpriteStore.get();
+		final SpriteStore store = SpriteStore.get();
 
 		if (name == null) {
 			width = IGameScreen.SIZE_UNIT_PIXELS;
 			height = IGameScreen.SIZE_UNIT_PIXELS;
 
-			Sprite emptySprite = store.getEmptySprite(width, height);
+			final Sprite emptySprite = store.getEmptySprite(width, height);
 
 			map.put(STATE_OPEN, emptySprite);
 			map.put(STATE_CLOSED, emptySprite);
 		} else {
-			Sprite tiles = store.getSprite(translate(name));
+			final Sprite tiles = store.getSprite(translate(name));
 
 			width = tiles.getWidth();
 			height = tiles.getHeight() / 2;
@@ -224,7 +224,7 @@ class Door2DView extends StateEntity2DView {
 		switch (at) {
 		case OPEN:
 		case CLOSE:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			door.fillTargetInfo(rpaction);

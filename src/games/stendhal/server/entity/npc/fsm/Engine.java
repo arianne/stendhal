@@ -27,12 +27,12 @@ public class Engine {
 
 	// TODO remove this dependency cycle, this is just here to simplify refactoring
 	// TODO later: remove dependency on games.stendhal.server.entity.npc.* and Player
-	private SpeakerNPC speakerNPC;
+	private final SpeakerNPC speakerNPC;
 
 	private int maxState;
 
 	// FSM state transition table
-	private List<Transition> stateTransitionTable = new LinkedList<Transition>();
+	private final List<Transition> stateTransitionTable = new LinkedList<Transition>();
 
 	// current FSM state
 	private int currentState = ConversationStates.IDLE;
@@ -43,7 +43,7 @@ public class Engine {
 	 * @param speakerNPC
 	 *            the speaker NPC for which this FSM is created must not be null
 	 */
-	public Engine(SpeakerNPC speakerNPC) {
+	public Engine(final SpeakerNPC speakerNPC) {
 		if (speakerNPC == null) {
 			throw new IllegalArgumentException("speakerNpc must not be null");
 		}
@@ -59,8 +59,8 @@ public class Engine {
 	 * @param condition
 	 * @return previous transition entry
 	 */
-	private Transition get(int state, Expression trigger, ChatCondition condition) {
-		for (Transition transition : stateTransitionTable) {
+	private Transition get(final int state, final Expression trigger, final ChatCondition condition) {
+		for (final Transition transition : stateTransitionTable) {
 			if (transition.matchesWithCondition(state, trigger, condition)) {
 				return transition;
 			}
@@ -95,8 +95,8 @@ public class Engine {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public void add(int state, String triggerString, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final String triggerString, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
 		add(state, triggerString, null, condition, nextState, reply, action);
 	}
 
@@ -111,34 +111,34 @@ public class Engine {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(int state, String triggerString, ExpressionMatcher matcher, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
+			final int nextState, String reply, final ChatAction action) {
 		// normalize trigger expressions using the conversation parser
-		Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
+		final Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
 
 		if (state > maxState) {
 			maxState = state;
 		}
 
 		// look for already existing rule with identical input parameters
-		Transition existing = get(state, triggerExpression, condition);
+		final Transition existing = get(state, triggerExpression, condition);
 
 		if (existing != null) {
-			String existingReply = existing.getReply();
-			PostTransitionAction existingAction = existing.getAction();
+			final String existingReply = existing.getReply();
+			final PostTransitionAction existingAction = existing.getAction();
 
 			// Concatenate the previous and the new reply texts if the new one is not there already.
-			if (existingReply != null && reply != null && !existingReply.contains(reply)) {
+			if ((existingReply != null) && (reply != null) && !existingReply.contains(reply)) {
 				reply = existingReply + " " + reply;
 			}
 
 			existing.setReply(reply);
 
-			if (action == null && existingAction == null) {
+			if ((action == null) && (existingAction == null)) {
 				// There is no action associated with the previous and with the new rule, we
 				// can silently ignore the new transition, as it is already handled completely.
 				return;
-			} else if (action != null && action.equals(existingAction)) {
+			} else if ((action != null) && action.equals(existingAction)) {
 				// The previous and the new action are identical, we can silently ignore the
 				// new transition, as it is already handled.
 				return;
@@ -168,12 +168,12 @@ public class Engine {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final List<String> triggers, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
 		if (triggers == null) {
 			throw new IllegalArgumentException("triggers list must not be null");
 		}
-		for (String trigger : triggers) {
+		for (final String trigger : triggers) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
 	}
@@ -193,7 +193,7 @@ public class Engine {
 	 * @param currentState
 	 *            new state
 	 */
-	public void setCurrentState(int currentState) {
+	public void setCurrentState(final int currentState) {
 		this.currentState = currentState;
 	}
 
@@ -206,8 +206,8 @@ public class Engine {
 	 *            input
 	 * @return true if a transition was made, false otherwise
 	 */
-	public boolean step(Player player, String text) {
-		Sentence sentence = ConversationParser.parse(text);
+	public boolean step(final Player player, final String text) {
+		final Sentence sentence = ConversationParser.parse(text);
 
 		if (sentence.hasError()) {
 			logger.warn("problem parsing the sentence '" + text + "': "
@@ -226,7 +226,7 @@ public class Engine {
 	 *            input
 	 * @return true if a transition was made, false otherwise
 	 */
-	public boolean step(Player player, Sentence sentence) {
+	public boolean step(final Player player, final Sentence sentence) {
 		if (sentence.isEmpty()) {
 			logger.debug("empty input sentence: " + getCurrentState());
 			return false;
@@ -262,18 +262,18 @@ public class Engine {
 	 *            input
 	 * @return true if a transition was made, false otherwise
 	 */
-	public boolean stepTest(Player player, String text) {
+	public boolean stepTest(final Player player, final String text) {
 		logger.debug(">>> " + text);
 		speakerNPC.remove("text");
 
-		Sentence sentence = ConversationParser.parse(text);
+		final Sentence sentence = ConversationParser.parse(text);
 
 		if (sentence.hasError()) {
 			logger.warn("problem parsing the sentence '" + text + "': "
 					+ sentence.getErrorString());
 		}
 
-		boolean res = step(player, sentence);
+		final boolean res = step(player, sentence);
 
 		logger.debug("<<< " + speakerNPC.get("text"));
 		return res;
@@ -287,8 +287,8 @@ public class Engine {
         private static final long serialVersionUID = 1L;
 
 		@Override
-		public boolean add(Transition otherTrans) {
-			for (Transition transition : this) {
+		public boolean add(final Transition otherTrans) {
+			for (final Transition transition : this) {
 				if (transition.matchesNormalizedWithCondition(otherTrans.getState(),
 						otherTrans.getTrigger(), otherTrans.getCondition())) {
 					return false;
@@ -299,21 +299,21 @@ public class Engine {
 			return super.add(otherTrans);
 		}
 
-		public static void advance(Iterator<Transition> it, int i) {
+		public static void advance(final Iterator<Transition> it, int i) {
 			for (; i > 0; --i) {
 				it.next();
 			}
 		}
 	}
 
-	private boolean matchTransition(MatchType type, Player player,
-			Sentence sentence) {
+	private boolean matchTransition(final MatchType type, final Player player,
+			final Sentence sentence) {
 		// We are using sets instead of lists to merge identical transitions.
-		TransitionList conditionTransitions = new TransitionList();
-		TransitionList conditionlessTransitions = new TransitionList();
+		final TransitionList conditionTransitions = new TransitionList();
+		final TransitionList conditionlessTransitions = new TransitionList();
 
 		// match with all the registered transitions
-		for (Transition transition : stateTransitionTable) {
+		for (final Transition transition : stateTransitionTable) {
 			if (matchesTransition(type, sentence, transition)) {
 				if (transition.isConditionFulfilled(player, sentence, speakerNPC)) {
 					if (transition.getCondition() == null) {
@@ -341,7 +341,7 @@ public class Engine {
 		}
 
 		// Then look for transitions without conditions.
-		if (it == null && conditionlessTransitions.size() > 0) {
+		if ((it == null) && (conditionlessTransitions.size() > 0)) {
 			it = conditionlessTransitions.iterator();
 
 			if (conditionlessTransitions.size() > 1) {
@@ -354,7 +354,7 @@ public class Engine {
 		}
 
 		if (it != null) {
-			Transition transition = it.next();
+			final Transition transition = it.next();
 
 			executeTransition(player, sentence, transition);
 
@@ -373,7 +373,7 @@ public class Engine {
 	 * @param transition
 	 * @return true if transition has been found
 	 */
-	private boolean matchesTransition(MatchType type, Sentence sentence, Transition transition) {
+	private boolean matchesTransition(final MatchType type, final Sentence sentence, final Transition transition) {
 		switch(type) {
 			case EXACT_MATCH:
 				return transition.matches(currentState, sentence);
@@ -401,8 +401,8 @@ public class Engine {
 		}
 	}
 
-	private void executeTransition(Player player, Sentence sentence, Transition trans) {
-		int nextState = trans.getNextState();
+	private void executeTransition(final Player player, final Sentence sentence, final Transition trans) {
+		final int nextState = trans.getNextState();
 		if (trans.getReply() != null) {
 			speakerNPC.say(trans.getReply());
 		}

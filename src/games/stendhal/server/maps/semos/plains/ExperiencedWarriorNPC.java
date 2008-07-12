@@ -143,13 +143,13 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 			LOCATION_UNKNOWN_TEXTS);
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		class StateInfo {
 			private String creatureName;
 
 			private int informationCost;
 
-			void setCreatureName(String creatureName) {
+			void setCreatureName(final String creatureName) {
 				this.creatureName = creatureName;
 			}
 
@@ -157,7 +157,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				return creatureName;
 			}
 
-			void setInformationCost(int informationCost) {
+			void setInformationCost(final int informationCost) {
 				this.informationCost = informationCost;
 			}
 
@@ -187,16 +187,16 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
-						String creatureName = sentence.getTriggerExpression().getNormalized();
-						DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
+						final String creatureName = sentence.getTriggerExpression().getNormalized();
+						final DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 						if (creature == null) {
 							speakerNPC.say("I have never heard of such a creature! Please tell the name again.");
 							speakerNPC.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
 							stateInfo.setCreatureName(creatureName);
 							if (INFORMATION_BASE_COST > 0) {
-								int informationCost = getCost(player, creature);
+								final int informationCost = getCost(player, creature);
 								stateInfo.setInformationCost(informationCost);
 								speakerNPC.say("This information costs "
 										+ informationCost
@@ -211,7 +211,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 						}
 					}
 
-					private int getCost(Player player, DefaultCreature creature) {
+					private int getCost(final Player player, final DefaultCreature creature) {
 						return (int) (INFORMATION_BASE_COST + INFORMATION_COST_LEVEL_FACTOR
 								* creature.getLevel());
 					}
@@ -222,7 +222,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {
@@ -246,7 +246,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 	private static String getCreatureInfo(final Player player, final String creatureName) {
 		String result;
-		DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
+		final DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 		if (creature != null) {
 			result = creatureInfo.getCreatureInfo(player, creature, 3, 8, true);
 		} else {

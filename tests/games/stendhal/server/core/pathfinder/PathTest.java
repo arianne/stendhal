@@ -49,9 +49,9 @@ public class PathTest {
 
 	@Test
 	public void testSearchPathEntityIntInt() {
-		Entity entity = new Entity() {
+		final Entity entity = new Entity() {
 		};
-		StendhalRPZone zone = new StendhalRPZone("test", 10, 10);
+		final StendhalRPZone zone = new StendhalRPZone("test", 10, 10);
 		zone.add(entity);
 		assertArrayEquals(expected.toArray(), Path.searchPath(entity, 6, 6).toArray());
 	}

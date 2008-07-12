@@ -52,7 +52,7 @@ public class Outfit {
 	 * @param base
 	 *            The index of the base style, or null
 	 */
-	public Outfit(Integer hair, Integer head, Integer dress, Integer base) {
+	public Outfit(final Integer hair, final Integer head, final Integer dress, final Integer base) {
 		this.hair = hair;
 		this.head = head;
 		this.dress = dress;
@@ -67,7 +67,7 @@ public class Outfit {
 	 *            of digits stand for hair, the second pair for head, the third
 	 *            pair for dress, and the fourth pair for base.
 	 */
-	public Outfit(int code) {
+	public Outfit(final int code) {
 		int remainder = code;
 		this.base = remainder % 100;
 		remainder /= 100;
@@ -93,7 +93,7 @@ public class Outfit {
 	 * @param base
 	 *            The index, or null if this outfit shouldn't contain a base.
 	 */
-	public void setBase(Integer base) {
+	public void setBase(final Integer base) {
 		this.base = base;
 	}
 
@@ -112,7 +112,7 @@ public class Outfit {
 	 * @param dress
 	 *            The index, or null if this outfit shouldn't contain a dress.
 	 */
-	public void setDress(Integer dress) {
+	public void setDress(final Integer dress) {
 		this.dress = dress;
 	}
 
@@ -131,7 +131,7 @@ public class Outfit {
 	 * @param hair
 	 *            The index, or null if this outfit shouldn't contain hair.
 	 */
-	public void setHair(Integer hair) {
+	public void setHair(final Integer hair) {
 		this.hair = hair;
 	}
 
@@ -150,7 +150,7 @@ public class Outfit {
 	 * @param head
 	 *            The index, or null if this outfit shouldn't contain a head.
 	 */
-	public void setHead(Integer head) {
+	public void setHead(final Integer head) {
 		this.head = head;
 	}
 
@@ -174,7 +174,7 @@ public class Outfit {
 	 *            the outfit that should be worn 'under' the current one
 	 * @return the combined outfit
 	 */
-	public Outfit putOver(Outfit other) {
+	public Outfit putOver(final Outfit other) {
 		int newHair;
 		int newHead;
 		int newDress;
@@ -211,11 +211,11 @@ public class Outfit {
 	 *            Another outfit.
 	 * @return true iff this outfit is part of the given outfit.
 	 */
-	public boolean isPartOf(Outfit other) {
-		return (hair == null || hair.equals(other.hair))
-				&& (head == null || head.equals(other.head))
-				&& (dress == null || dress.equals(other.dress))
-				&& (base == null || base.equals(other.base));
+	public boolean isPartOf(final Outfit other) {
+		return ((hair == null) || hair.equals(other.hair))
+				&& ((head == null) || head.equals(other.head))
+				&& ((dress == null) || dress.equals(other.dress))
+				&& ((base == null) || base.equals(other.base));
 	}
 
 	/**

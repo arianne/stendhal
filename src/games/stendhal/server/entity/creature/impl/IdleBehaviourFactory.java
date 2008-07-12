@@ -7,7 +7,7 @@ import java.util.Map;
 public class IdleBehaviourFactory {
 	private static final Idlebehaviour nothing = new DoNothingOnIdle();
 	
-	public static Idlebehaviour get(Map<String, String> aiProfiles) {
+	public static Idlebehaviour get(final Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();
 		}
@@ -17,7 +17,7 @@ public class IdleBehaviourFactory {
 	private static class DoNothingOnIdle implements Idlebehaviour {
 		
 		
-		public void perform(Creature creature) { 
+		public void perform(final Creature creature) { 
 			// Do nothing 
 		}
 		

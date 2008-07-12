@@ -19,7 +19,7 @@ public class OnePlayerRoomDoor extends Door {
 	 */
 	class PeriodicOpener implements TurnListener {
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			if (!isOpen()) {
 				if (isAllowed(null)) {
 					open();
@@ -36,15 +36,15 @@ public class OnePlayerRoomDoor extends Door {
 	 * @param clazz
 	 *            clazz
 	 */
-	public OnePlayerRoomDoor(String clazz) {
+	public OnePlayerRoomDoor(final String clazz) {
 		super(clazz);
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, new PeriodicOpener());
 	}
 
 	@Override
-	protected boolean isAllowed(RPEntity user) {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		StendhalRPZone zone = world.getZone(super.getDestinationZone());
+	protected boolean isAllowed(final RPEntity user) {
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPZone zone = world.getZone(super.getDestinationZone());
 		return (zone.getPlayerAndFriends().size() == 0);
 	}
 }

@@ -11,9 +11,9 @@ import games.stendhal.server.entity.player.Player;
 
 public class HealerAdder {
 
-	public void addHealer(SpeakerNPC npc, int cost) {
+	public void addHealer(final SpeakerNPC npc, final int cost) {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
-		Engine engine = npc.getEngine();
+		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES, null,
@@ -23,21 +23,21 @@ public class HealerAdder {
 				ConversationStates.HEAL_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
-						int cost = healerBehaviour.getCharge(engine, player);
+						final int cost = healerBehaviour.getCharge(engine, player);
 
 						if (cost > 0) {
 							engine.say("Healing costs " + cost
 									+ ". Do you have that much?");
 						} else {
-							if (player.getATK() > 35 || player.getDEF() > 35) {
+							if ((player.getATK() > 35) || (player.getDEF() > 35)) {
 								engine.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
 							} else if (!player.isNew()
-									&& player.getLastPVPActionTime() > System.currentTimeMillis()
-											- 2 * MathHelper.MILLISECONDS_IN_ONE_HOUR) {
+									&& (player.getLastPVPActionTime() > System.currentTimeMillis()
+											- 2 * MathHelper.MILLISECONDS_IN_ONE_HOUR)) {
 								// ignore the PVP flag for very young characters
 								// (low atk, low def AND low level)
 								engine.say("Sorry, but you have a bad aura, so that I am unable to heal you right now.");
@@ -55,8 +55,8 @@ public class HealerAdder {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						if (player.drop("money",
 								healerBehaviour.getCharge(engine, player))) {
 							healerBehaviour.heal(player);

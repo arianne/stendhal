@@ -31,11 +31,11 @@ public class CloaksForBarioTest {
 
 	@Before
 	public void setUp() {
-		ZoneConfigurator zoneConf = new CloaksCollectorNPC();
+		final ZoneConfigurator zoneConf = new CloaksCollectorNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
 		npc = SingletonRepository.getNPCList().get("Bario");
 
-		AbstractQuest quest = new CloaksForBario();
+		final AbstractQuest quest = new CloaksForBario();
 		quest.addToWorld();
 		en = npc.getEngine();
 
@@ -117,9 +117,9 @@ public class CloaksForBarioTest {
 		assertEquals("Bye.", npc.get("text"));
 	}
 
-	private void equipCloaks(int quantity) {
+	private void equipCloaks(final int quantity) {
 		for (int i = 0; i < quantity; i++) {
-			Item item = ItemTestHelper.createItem("blue elf cloak");
+			final Item item = ItemTestHelper.createItem("blue elf cloak");
 			player.getSlot("bag").add(item);
 		}
 	}

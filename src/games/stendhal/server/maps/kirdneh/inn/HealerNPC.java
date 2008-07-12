@@ -27,12 +27,12 @@ public class HealerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Katerina") {
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Katerina") {
 
 			@Override
 			protected void createPath() {
@@ -61,9 +61,9 @@ public class HealerNPC implements ZoneConfigurator {
 		zone.add(npc);
 	}
     // Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
-    private void addHealer(final SpeakerNPC npc, int cost) {
+    private void addHealer(final SpeakerNPC npc, final int cost) {
     final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
-		Engine engine = npc.getEngine();
+		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.OFFER_MESSAGES, 
@@ -79,10 +79,10 @@ public class HealerNPC implements ZoneConfigurator {
 				null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
                         healerBehaviour.setChosenItemName("heal");
                         healerBehaviour.setAmount(1);
-                        int cost = healerBehaviour.getCharge(npc, player);
+                        final int cost = healerBehaviour.getCharge(npc, player);
 
                         if (cost != 0) {
                         	engine.say("For " + cost + " cash, ok?");
@@ -97,7 +97,7 @@ public class HealerNPC implements ZoneConfigurator {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				        if (player.drop("money", healerBehaviour.getCharge(npc, player))) {
 					        healerBehaviour.heal(player);
 					        engine.say("All better now, everyone better. I love you, I do.");

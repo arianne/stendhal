@@ -28,8 +28,9 @@ public class FertileGroundsTest {
 		MockStendlRPWorld.get();
 		Log4J.init();
 		EntityTestHelper.generateRPClasses();
-		if (!RPClass.hasRPClass("area"))
-		AreaEntity.generateRPClass();
+		if (!RPClass.hasRPClass("area")) {
+			AreaEntity.generateRPClass();
+		}
 	}
 
 	@AfterClass
@@ -46,39 +47,41 @@ public class FertileGroundsTest {
 
 	@Test
 	public void testConfigureZoneNullNull() {
-		FertileGrounds fg = new FertileGrounds();
+		final FertileGrounds fg = new FertileGrounds();
 		fg.configureZone(null, null);
 	}
 
 	@Test
 	public void testConfigureZoneNullvalues() {
-		FertileGrounds fg = new FertileGrounds();
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final FertileGrounds fg = new FertileGrounds();
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		
-		Map<String, String> attribs = new HashMap<String, String>();
+		final Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("x", null);
 		attribs.put("y", null);
 		attribs.put("width", null);
 		attribs.put("height", null);
 		
-		fg.configureZone(zone, attribs );
+		fg.configureZone(zone, attribs);
 	}
 	@Test
 	public void testConfigureZone() {
-		FertileGrounds fg = new FertileGrounds();
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final FertileGrounds fg = new FertileGrounds();
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		
-		Map<String, String> attribs = new HashMap<String, String>();
+		final Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("x", "1");
 		attribs.put("y", "1");
 		attribs.put("width", "3");
 		attribs.put("height", "3");
 		
-		fg.configureZone(zone, attribs );
-		assertFalse(0+":"+0,zone.getEntityAt(0,0) instanceof FertileGround);	
+		fg.configureZone(zone, attribs);
+		assertFalse(0 + ":" + 0,
+				zone.getEntityAt(0, 0) instanceof FertileGround);
 		for (int x = 1; x < 4; x++) {
-			for (int y = 1; y < 4;y++) {
-				assertTrue(x+":"+y,zone.getEntityAt(x,y) instanceof FertileGround);		
+			for (int y = 1; y < 4; y++) {
+				assertTrue(x + ":" + y,
+						zone.getEntityAt(x, y) instanceof FertileGround);
 			}
 		} 
 		

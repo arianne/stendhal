@@ -9,7 +9,7 @@ class Poisoner implements Attacker {
 	ConsumableItem poison;
 	private int probability;
 
-	public Poisoner(int probability, ConsumableItem poison) {
+	public Poisoner(final int probability, final ConsumableItem poison) {
 		this.probability = probability;
 		this.poison = poison;
 	}
@@ -18,11 +18,11 @@ class Poisoner implements Attacker {
 
 	}
 
-	public boolean attack(RPEntity victim) {
-		int roll = Rand.roll1D100();
+	public boolean attack(final RPEntity victim) {
+		final int roll = Rand.roll1D100();
 		if (roll <= probability) {
 			if (victim instanceof Player) {
-				Player player = (Player) victim;
+				final Player player = (Player) victim;
 				if (player.poison(new ConsumableItem(poison))) {
 					return true;
 				}

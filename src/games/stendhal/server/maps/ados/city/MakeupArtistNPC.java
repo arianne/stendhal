@@ -22,12 +22,12 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildFidorea(zone);
 	}
 
-	private void buildFidorea(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Fidorea") {
+	private void buildFidorea(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Fidorea") {
 
 			@Override
 			protected void createPath() {
@@ -47,11 +47,11 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				//addReply("offer", "Normally I sell masks. But I ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
 				addGoodbye("Bye, come back soon.");
 
-				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 20);
 				// wears off in 12000 turns = 60 minutes
 				// if you change it change her Help message too please
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 12000, "Your mask has worn off.");
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 12000, "Your mask has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 		};

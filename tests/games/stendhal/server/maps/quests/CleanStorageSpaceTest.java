@@ -30,7 +30,7 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME, new HousewifeNPC());
 
-		CleanStorageSpace cf = new CleanStorageSpace();
+		final CleanStorageSpace cf = new CleanStorageSpace();
 		cf.addToWorld();
 	}
 
@@ -46,8 +46,8 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 	public void testHiAndbye() {
 		assertTrue(!player.hasKilled("rat"));
 
-		SpeakerNPC npc = getNPC("Eonna");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Eonna");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
@@ -66,8 +66,8 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void doQuest() {
-		SpeakerNPC npc = getNPC("Eonna");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Eonna");
+		final Engine en = npc.getEngine();
 		assertFalse(npc.isTalking());
 
 		assertTrue(en.step(player, "hi"));

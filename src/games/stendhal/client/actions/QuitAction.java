@@ -17,7 +17,7 @@ class QuitAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		StendhalUI.get().requestQuit();
 
 		return true;

@@ -63,14 +63,14 @@ public class DefaultItem {
 
 	private int value;
 
-	public DefaultItem(String clazz, String subclazz, String name, int tileid) {
+	public DefaultItem(final String clazz, final String subclazz, final String name, final int tileid) {
 		this.clazz = clazz;
 		this.subclazz = subclazz;
 		this.name = name;
 		this.tileid = tileid;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(final double weight) {
 		this.weight = weight;
 	}
 
@@ -82,11 +82,11 @@ public class DefaultItem {
 		return attributes;
 	}
 
-	public void setAttributes(Map<String, String> attributes) {
+	public void setAttributes(final Map<String, String> attributes) {
 		this.attributes = attributes;
 	}
 
-	public void setEquipableSlots(List<String> slots) {
+	public void setEquipableSlots(final List<String> slots) {
 		this.slots = slots;
 	}
 
@@ -94,7 +94,7 @@ public class DefaultItem {
 		return slots;
 	}
 
-	public void setDescription(String text) {
+	public void setDescription(final String text) {
 		this.description = text;
 	}
 
@@ -102,7 +102,7 @@ public class DefaultItem {
 		return description;
 	}
 
-	public void setImplementation(Class< ? > implementation) {
+	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
 	}
@@ -127,7 +127,7 @@ public class DefaultItem {
 	 * 
 	 * @return A creator, or <code>null</code> if none found.
 	 */
-	protected Creator buildCreator(Class< ? > implementation) {
+	protected Creator buildCreator(final Class< ? > implementation) {
 		Constructor< ? > construct;
 
 		/*
@@ -138,7 +138,7 @@ public class DefaultItem {
 					String.class, String.class, String.class, Map.class });
 
 			return new FullCreator(construct);
-		} catch (NoSuchMethodException ex) {
+		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
 
@@ -149,7 +149,7 @@ public class DefaultItem {
 			construct = implementation.getConstructor(new Class[] { Map.class });
 
 			return new AttributesCreator(construct);
-		} catch (NoSuchMethodException ex) {
+		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
 
@@ -160,7 +160,7 @@ public class DefaultItem {
 			construct = implementation.getConstructor(new Class[] {});
 
 			return new DefaultCreator(construct);
-		} catch (NoSuchMethodException ex) {
+		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
 
@@ -181,7 +181,7 @@ public class DefaultItem {
 		if (creator == null) {
 			return null;
 		}
-		Item item = creator.createItem();
+		final Item item = creator.createItem();
 		if (item != null) {
 			item.setEquipableSlots(slots);
 			item.setDescription(description);
@@ -195,11 +195,11 @@ public class DefaultItem {
 		return tileid;
 	}
 
-	public void setTileId(int val) {
+	public void setTileId(final int val) {
 		tileid = val;
 	}
 
-	public void setValue(int val) {
+	public void setValue(final int val) {
 		value = val;
 	}
 
@@ -212,7 +212,7 @@ public class DefaultItem {
 		return clazz;
 	}
 
-	public void setItemClass(String val) {
+	public void setItemClass(final String val) {
 		clazz = val;
 	}
 
@@ -221,7 +221,7 @@ public class DefaultItem {
 		return subclazz;
 	}
 
-	public void setItemSubClass(String val) {
+	public void setItemSubClass(final String val) {
 		subclazz = val;
 	}
 
@@ -229,12 +229,12 @@ public class DefaultItem {
 		return name;
 	}
 
-	public void setItemName(String val) {
+	public void setItemName(final String val) {
 		name = val;
 	}
 
 	public String toXML() {
-		StringBuilder os = new StringBuilder();
+		final StringBuilder os = new StringBuilder();
 		os.append("  <item name=\"" + name + "\">\n");
 		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclazz
 				+ "\" tileid=\"" + tileid + "\"/>\n");
@@ -244,7 +244,7 @@ public class DefaultItem {
 		os.append("    <implementation class-name=\""
 				+ implementation.getCanonicalName() + "\"/>");
 		os.append("    <attributes>\n");
-		for (Map.Entry<String, String> entry : attributes.entrySet()) {
+		for (final Map.Entry<String, String> entry : attributes.entrySet()) {
 			os.append("      <" + entry.getKey() + " value=\""
 					+ entry.getValue() + "\"/>\n");
 		}
@@ -253,7 +253,7 @@ public class DefaultItem {
 		os.append("    <weight value=\"" + weight + "\"/>\n");
 		os.append("    <value value=\"" + value + "\"/>\n");
 		os.append("    <equipable>\n");
-		for (String slot : slots) {
+		for (final String slot : slots) {
 			os.append("      <slot name=\"" + slot + "\"/>\n");
 		}
 		os.append("    </equipable>\n");
@@ -271,7 +271,7 @@ public class DefaultItem {
 
 		protected Constructor< ? > construct;
 
-		public Creator(Constructor< ? > construct) {
+		public Creator(final Constructor< ? > construct) {
 			this.construct = construct;
 		}
 
@@ -281,13 +281,13 @@ public class DefaultItem {
 		public Item createItem() {
 			try {
 				return (Item) create();
-			} catch (IllegalAccessException ex) {
+			} catch (final IllegalAccessException ex) {
 				logger.error("Error creating item: " + name, ex);
-			} catch (InstantiationException ex) {
+			} catch (final InstantiationException ex) {
 				logger.error("Error creating item: " + name, ex);
-			} catch (InvocationTargetException ex) {
+			} catch (final InvocationTargetException ex) {
 				logger.error("Error creating item: " + name, ex);
-			} catch (ClassCastException ex) {
+			} catch (final ClassCastException ex) {
 				/*
 				 * Wrong type (i.e. not [subclass of] Item)
 				 */
@@ -304,7 +304,7 @@ public class DefaultItem {
 	 */
 	protected class AttributesCreator extends Creator {
 
-		public AttributesCreator(Constructor< ? > construct) {
+		public AttributesCreator(final Constructor< ? > construct) {
 			super(construct);
 		}
 
@@ -320,7 +320,7 @@ public class DefaultItem {
 	 */
 	protected class DefaultCreator extends Creator {
 
-		public DefaultCreator(Constructor< ? > construct) {
+		public DefaultCreator(final Constructor< ? > construct) {
 			super(construct);
 		}
 
@@ -338,7 +338,7 @@ public class DefaultItem {
 	 */
 	protected class FullCreator extends Creator {
 
-		public FullCreator(Constructor< ? > construct) {
+		public FullCreator(final Constructor< ? > construct) {
 			super(construct);
 		}
 

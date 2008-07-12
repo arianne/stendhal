@@ -26,7 +26,7 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 * @param clazz
 	 *            The class. Responsible for how this door looks like.
 	 */
-	public KeyDestroyingDoor(String key, String clazz) {
+	public KeyDestroyingDoor(final String key, final String clazz) {
 		this(key, clazz, 1);
 	}
 
@@ -41,13 +41,13 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 *            The number of key items that are destroyed while passing
 	 *            through the door
 	 */
-	public KeyDestroyingDoor(String key, String clazz, int requiredAmount) {
+	public KeyDestroyingDoor(final String key, final String clazz, final int requiredAmount) {
 		super(key, clazz, requiredAmount);
 	}
 
 	@Override
-	public boolean onUsed(RPEntity user) {
-		boolean result = super.onUsed(user);
+	public boolean onUsed(final RPEntity user) {
+		final boolean result = super.onUsed(user);
 		if (result) {
 			user.drop(get("locked"), requiredAmount);
 		}

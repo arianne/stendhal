@@ -15,7 +15,7 @@ public class GrumpyAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(_REASON)) {
 			player.setGrumpyMessage(action.get(_REASON));
 		} else {

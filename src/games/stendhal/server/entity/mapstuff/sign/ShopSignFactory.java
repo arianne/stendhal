@@ -28,7 +28,7 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * 
 	 * @return The shop name.
 	 */
-	protected String getShop(ConfigurableFactoryContext ctx) {
+	protected String getShop(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("shop");
 	}
 
@@ -40,7 +40,7 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * 
 	 * @return The sign title.
 	 */
-	protected String getTitle(ConfigurableFactoryContext ctx) {
+	protected String getTitle(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("title");
 	}
 
@@ -58,7 +58,7 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * 
 	 * @see ShopSign
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new ShopSign(getShop(ctx), getTitle(ctx));
 	}
 }

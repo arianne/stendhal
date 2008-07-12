@@ -7,9 +7,9 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 class UnignoreAction implements ActionListener {
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
-			String who = action.get(TARGET);
+			final String who = action.get(TARGET);
 
 			if (player.removeIgnore(who)) {
 				player.sendPrivateText(who

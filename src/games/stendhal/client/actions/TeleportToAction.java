@@ -18,8 +18,8 @@ class TeleportToAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction teleport = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction teleport = new RPAction();
 
 		teleport.put("type", "teleportto");
 		teleport.put("target", remainder);

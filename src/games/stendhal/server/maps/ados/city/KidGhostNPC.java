@@ -31,14 +31,14 @@ public class KidGhostNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC ghost = new SpeakerNPC("Ben") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC ghost = new SpeakerNPC("Ben") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(34, 121));
 				nodes.add(new Node(24, 121));
 				nodes.add(new Node(24, 112));
@@ -62,15 +62,15 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    	null,
 			    	new SpeakerNPC.ChatAction() {
 			    		@Override
-			    		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			    		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			    			if (!player.hasQuest("find_ghosts")) {
 			    				player.setQuest("find_ghosts", "looking:said");
 			    			}
-			    			String npcQuestText = player.getQuest("find_ghosts");
-			    			String[] npcDoneText = npcQuestText.split(":");
-			    			String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
-			    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
-			    			List<String> list = Arrays.asList(lookStr.split(";"));
+			    			final String npcQuestText = player.getQuest("find_ghosts");
+			    			final String[] npcDoneText = npcQuestText.split(":");
+			    			final String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
+			    			final String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
+			    			final List<String> list = Arrays.asList(lookStr.split(";"));
 						    if (list.contains(npc.getName()) || player.isQuestCompleted("find_ghosts")) {
 							    npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
 							} else {

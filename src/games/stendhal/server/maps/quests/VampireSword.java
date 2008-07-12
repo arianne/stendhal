@@ -66,19 +66,19 @@ public class VampireSword extends AbstractQuest {
 	private static final String QUEST_SLOT = "vs_quest";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void prepareQuestOfferingStep() {
-		SpeakerNPC npc = npcs.get("Hogart");
+		final SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -94,9 +94,9 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
-					Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
+					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5);
@@ -118,7 +118,7 @@ public class VampireSword extends AbstractQuest {
 
 	private void prepareGobletFillingStep() {
 
-		SpeakerNPC npc = npcs.get("Markovich");
+		final SpeakerNPC npc = npcs.get("Markovich");
 
 		npc.addGoodbye("*cough* ... farewell ... *cough*");
 		npc.addReply(
@@ -132,12 +132,12 @@ public class VampireSword extends AbstractQuest {
 			Arrays.asList("empty goblet", "goblet"),
 			"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 		requiredResources.put("vampirette entrails", 7);
 		requiredResources.put("bat entrails", 7);
 		requiredResources.put("skull ring", 1);
 		requiredResources.put("empty goblet", 1);
-		ProducerBehaviour behaviour = new ProducerBehaviour(
+		final ProducerBehaviour behaviour = new ProducerBehaviour(
 				"sicky_fill_goblet", "fill", "goblet", requiredResources,
 				5 * 60, true);
 		new ProducerAdder().addProducer(npc, behaviour,
@@ -147,12 +147,12 @@ public class VampireSword extends AbstractQuest {
 
 	private void prepareForgingStep() {
 
-		SpeakerNPC npc = npcs.get("Hogart");
+		final SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& player.isEquipped("goblet");
@@ -160,7 +160,7 @@ public class VampireSword extends AbstractQuest {
 			}, ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("iron", REQUIRED_IRON)) {
 						player.drop("goblet");
 						player.drop("iron", REQUIRED_IRON);
@@ -179,7 +179,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
@@ -187,7 +187,7 @@ public class VampireSword extends AbstractQuest {
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
 				}
 			});
@@ -195,7 +195,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
@@ -208,9 +208,9 @@ public class VampireSword extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
-					Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
+					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 				}
 			});
@@ -227,11 +227,11 @@ public class VampireSword extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
-					long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {
 						npc.say("I haven't finished forging the sword. Please check back in "
@@ -241,7 +241,7 @@ public class VampireSword extends AbstractQuest {
 					npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
 					player.addXP(5000);
 					player.addKarma(15);
-					Item vampireSword = SingletonRepository.getEntityManager().getItem(
+					final Item vampireSword = SingletonRepository.getEntityManager().getItem(
 									"vampire sword");
 					vampireSword.setBoundTo(player.getName());
 					player.equip(vampireSword, true);
@@ -279,13 +279,13 @@ public class VampireSword extends AbstractQuest {
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}

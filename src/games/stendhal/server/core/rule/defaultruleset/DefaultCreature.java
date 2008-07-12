@@ -79,8 +79,8 @@ public class DefaultCreature {
 	/** speed relative to player [0.0 ... 1.0] */
 	private double speed;
 
-	public DefaultCreature(String clazz, String subclass, String name,
-			String tileid) {
+	public DefaultCreature(final String clazz, final String subclass, final String name,
+			final String tileid) {
 		this.clazz = clazz;
 		this.subclass = subclass;
 		this.name = name;
@@ -92,7 +92,7 @@ public class DefaultCreature {
 		aiProfiles = new LinkedHashMap<String, String>();
 	}
 
-	public void setDescription(String text) {
+	public void setDescription(final String text) {
 		this.description = text;
 	}
 
@@ -100,7 +100,7 @@ public class DefaultCreature {
 		return description;
 	}
 
-	public void setRPStats(int hp, int atk, int def, double speed) {
+	public void setRPStats(final int hp, final int atk, final int def, final double speed) {
 		this.hp = hp;
 		this.atk = atk;
 		this.def = def;
@@ -123,12 +123,12 @@ public class DefaultCreature {
 		return speed;
 	}
 
-	public void setLevel(int level, int xp) {
+	public void setLevel(final int level, final int xp) {
 		this.level = level;
 		this.xp = xp;
 	}
 
-	public void setRespawnTime(int respawn) {
+	public void setRespawnTime(final int respawn) {
 		this.respawn = respawn;
 	}
 
@@ -144,7 +144,7 @@ public class DefaultCreature {
 		return xp;
 	}
 
-	public void setSize(int width, int height) {
+	public void setSize(final int width, final int height) {
 		this.width = width;
 		this.height = height;
 	}
@@ -157,7 +157,7 @@ public class DefaultCreature {
 		return height;
 	}
 
-	public void setNoiseLines(List<String> creatureSays) {
+	public void setNoiseLines(final List<String> creatureSays) {
 		this.creatureSays = creatureSays;
 	}
 
@@ -165,7 +165,7 @@ public class DefaultCreature {
 		return creatureSays;
 	}
 
-	public void setEquipedItems(List<EquipItem> equipsItems) {
+	public void setEquipedItems(final List<EquipItem> equipsItems) {
 		this.equipsItems = equipsItems;
 	}
 
@@ -173,7 +173,7 @@ public class DefaultCreature {
 		return equipsItems;
 	}
 
-	public void setDropItems(List<DropItem> dropsItems) {
+	public void setDropItems(final List<DropItem> dropsItems) {
 		this.dropsItems = dropsItems;
 	}
 
@@ -181,7 +181,7 @@ public class DefaultCreature {
 		return dropsItems;
 	}
 
-	public void setAIProfiles(Map<String, String> aiProfiles) {
+	public void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 	}
 
@@ -190,7 +190,7 @@ public class DefaultCreature {
 	public Creature getCreature() {
 		Collections.sort(dropsItems, new Comparator<DropItem>() {
 
-			public int compare(DropItem o1, DropItem o2) {
+			public int compare(final DropItem o1, final DropItem o2) {
 				if (o1.probability < o2.probability) {
 					return -1;
 				} else if (o1.probability > o2.probability) {
@@ -202,7 +202,7 @@ public class DefaultCreature {
 
 		});
 
-		Creature creature = new Creature(clazz, subclass, name, hp, atk, def,
+		final Creature creature = new Creature(clazz, subclass, name, hp, atk, def,
 				level, xp, width, height, speed, dropsItems, aiProfiles,
 				creatureSays, respawn, description);
 		creature.equip(equipsItems);
@@ -214,7 +214,7 @@ public class DefaultCreature {
 		return tileid;
 	}
 
-	public void setTileId(String val) {
+	public void setTileId(final String val) {
 		tileid = val;
 	}
 
@@ -231,27 +231,27 @@ public class DefaultCreature {
 		return name;
 	}
 
-	public void setCreatureClass(String val) {
+	public void setCreatureClass(final String val) {
 		clazz = val;
 	}
 
-	public void setCreatureSubClass(String val) {
+	public void setCreatureSubClass(final String val) {
 		subclass = val;
 	}
 
-	public void setCreatureName(String val) {
+	public void setCreatureName(final String val) {
 		name = val;
 	}
 
-	public boolean verifyItems(EntityManager defaultEntityManager) {
-		for (DropItem item : dropsItems) {
+	public boolean verifyItems(final EntityManager defaultEntityManager) {
+		for (final DropItem item : dropsItems) {
 			if (!defaultEntityManager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;
 			}
 		}
 
-		for (EquipItem item : equipsItems) {
+		for (final EquipItem item : equipsItems) {
 			if (!defaultEntityManager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;
@@ -262,7 +262,7 @@ public class DefaultCreature {
 	}
 
 	public String toXML() {
-		StringBuilder os = new StringBuilder();
+		final StringBuilder os = new StringBuilder();
 		os.append("  <creature name=\"" + name + "\">\n");
 		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclass
 				+ "\" tileid=\""
@@ -282,14 +282,14 @@ public class DefaultCreature {
 		os.append("    <experience value=\"" + (xp / 20) + "\"/>\n");
 		os.append("    <respawn value=\"" + respawn + "\"/>\n");
 		os.append("    <drops>\n");
-		for (DropItem item : dropsItems) {
+		for (final DropItem item : dropsItems) {
 			os.append("      <item value=\"" + item.name + "\" quantity=\"["
 					+ item.min + "," + item.max + "]\" probability=\""
 					+ item.probability + "\"/>\n");
 		}
 		os.append("    </drops>\n");
 		os.append("    <equips>\n");
-		for (EquipItem item : equipsItems) {
+		for (final EquipItem item : equipsItems) {
 			os.append("      <slot name=\"" + item.slot + "\" item=\""
 					+ item.name + "\" quantity=\"" + item.quantity + "\"/>\n");
 		}
@@ -297,12 +297,12 @@ public class DefaultCreature {
 		os.append("    <ai>\n");
 		if (!creatureSays.isEmpty()) {
 			os.append("      <says>\n");
-			for (String say : creatureSays) {
+			for (final String say : creatureSays) {
 				os.append("        <noise value=\"" + say + "\"/>\n");
 			}
 			os.append("      </says>\n");
 		}
-		for (Map.Entry<String, String> entry : aiProfiles.entrySet()) {
+		for (final Map.Entry<String, String> entry : aiProfiles.entrySet()) {
 			os.append("      <profile name=\"" + entry.getKey() + "\"");
 			if (entry.getValue() != null) {
 				os.append(" params=\"" + entry.getValue() + "\"");

@@ -24,7 +24,7 @@ import java.util.TreeMap;
 public class BlacksmithNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addReply("wood",
 		        "I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
 
@@ -43,11 +43,11 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("selltools")));
 
 		// Xoderos casts iron if you bring him wood and iron ore.
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 		requiredResources.put("wood", 1);
 		requiredResources.put("iron ore", 1);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron",
+		final ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron",
 				"cast", "iron", requiredResources, 5 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

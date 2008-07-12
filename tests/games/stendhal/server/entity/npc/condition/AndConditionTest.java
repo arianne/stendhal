@@ -50,7 +50,7 @@ public class AndConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new AndCondition().equals(null));
 
-		AndCondition obj = new AndCondition();
+		final AndCondition obj = new AndCondition();
 		assertTrue(obj.equals(obj));
 		assertTrue(new AndCondition().equals(new AndCondition()));
 		assertTrue(new AndCondition((ChatCondition) null).equals(new AndCondition(
@@ -68,11 +68,11 @@ public class AndConditionTest {
 
 	@Test
 	public void testEqualsthisandsingle() throws Exception {
-		String QUEST_SLOT = "quest";
-		ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
+		final String QUEST_SLOT = "quest";
+		final ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
 		   , new KilledCondition("dark elf archer", "dark elf captain", "thing"));
 
-		ChatCondition instate = new QuestInStateCondition(QUEST_SLOT, "start");
+		final ChatCondition instate = new QuestInStateCondition(QUEST_SLOT, "start");
 		  assertFalse(andcon.equals(instate));
 		  assertFalse(instate.equals(andcon));
 	}
@@ -109,7 +109,7 @@ public class AndConditionTest {
 
 	@Test
 	public void testHashCode() throws Throwable {
-		AndCondition obj = new AndCondition();
+		final AndCondition obj = new AndCondition();
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new AndCondition().hashCode(),
 				new AndCondition().hashCode());

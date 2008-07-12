@@ -107,7 +107,7 @@ public class Stendhal2D extends StendhalGUI {
 	}
 
 	
-	public Stendhal2D(StendhalClient client, final int width, final int height) {
+	public Stendhal2D(final StendhalClient client, final int width, final int height) {
 		super(client);
 
 		this.width = width;
@@ -115,7 +115,7 @@ public class Stendhal2D extends StendhalGUI {
 
 		frame = new JFrame();
 
-		JMenuBar mb = new JMenuBar();
+		final JMenuBar mb = new JMenuBar();
 		frame.setJMenuBar(mb);
 
 		JMenu m;
@@ -162,7 +162,7 @@ public class Stendhal2D extends StendhalGUI {
 		smi = new JMenu("Layout");
 		m.add(smi);
 
-		ButtonGroup bgroup = new ButtonGroup();
+		final ButtonGroup bgroup = new ButtonGroup();
 
 		mi = new JRadioButtonMenuItem("SB - None");
 		mi.addActionListener(new SideBarLayoutCB(SIDEBAR_NONE));
@@ -234,16 +234,16 @@ public class Stendhal2D extends StendhalGUI {
 		mi = new JMenuItem("Credits...");
 		m.add(mi);
 
-		Container root = frame.getContentPane();
+		final Container root = frame.getContentPane();
 		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
 
 		// pane = new JLayeredPane();
 		// root.add(pane);
 
-		JPanel gameArea = new JPanel(new BorderLayout());
+		final JPanel gameArea = new JPanel(new BorderLayout());
 		root.add(gameArea);
 
-		WoodStyle style = new WoodStyle();
+		final WoodStyle style = new WoodStyle();
 
 		/*
 		 * Left side area
@@ -262,8 +262,8 @@ public class Stendhal2D extends StendhalGUI {
 		/*
 		 * Wrap canvas in panel that can has setPreferredSize()
 		 */
-		JPanel panel = new JPanel(null);
-		Dimension size = new Dimension(width, height);
+		final JPanel panel = new JPanel(null);
+		final Dimension size = new Dimension(width, height);
 		panel.setMinimumSize(size);
 		panel.setMaximumSize(size);
 		panel.setPreferredSize(size);
@@ -305,7 +305,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * 
 	 * 
 	 */
-	public void setSideBar(int mode) {
+	public void setSideBar(final int mode) {
 		switch (mode) {
 		case SIDEBAR_NONE:
 			leftSB.setVisible(false);
@@ -382,7 +382,7 @@ public class Stendhal2D extends StendhalGUI {
 	 *            The component to add as an internal window.
 	 */
 	@Override
-	public void addWindow(ManagedWindow c) {
+	public void addWindow(final ManagedWindow c) {
 		// do nothing in this implementation.
 	}
 
@@ -447,7 +447,7 @@ public class Stendhal2D extends StendhalGUI {
 	 *            The text.
 	 */
 	@Override
-	public void setChatLine(String text) {
+	public void setChatLine(final String text) {
 
 	}
 
@@ -458,7 +458,7 @@ public class Stendhal2D extends StendhalGUI {
 	 *            <code>true</code> if offline.
 	 */
 	@Override
-	public void setOffline(boolean offline) {
+	public void setOffline(final boolean offline) {
 	}
 
 	/**
@@ -470,7 +470,7 @@ public class Stendhal2D extends StendhalGUI {
 	 *            The user's Y coordinate.
 	 */
 	@Override
-	public void setPosition(double x, double y,IGameScreen gameScreen) {
+	public void setPosition(final double x, final double y, final IGameScreen gameScreen) {
 	}
 
 	/**
@@ -500,7 +500,7 @@ public class Stendhal2D extends StendhalGUI {
 		int height = DEFAULT_HEIGHT;
 
 		for (int i = 0; i < args.length; i++) {
-			String arg = args[i];
+			final String arg = args[i];
 
 			if (arg.equals("-u")) {
 				username = args[++i];
@@ -511,7 +511,7 @@ public class Stendhal2D extends StendhalGUI {
 			} else if (arg.equals("-port")) {
 				port = Integer.parseInt(args[++i]);
 			} else if (arg.equals("-s")) {
-				String[] size = args[++i].split("x");
+				final String[] size = args[++i].split("x");
 
 				if (size.length != 2) {
 					System.err.println("Invalid size: " + arg);
@@ -531,24 +531,24 @@ public class Stendhal2D extends StendhalGUI {
 			}
 		}
 
-		StendhalClient client = StendhalClient.get();
+		final StendhalClient client = StendhalClient.get();
 
 		if ((username != null) && (password != null) && (host != null)
 				&& (port != 0)) {
 			try {
 				client.connect(host, port);
 				client.login(username, password);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				logger.error("Error connecting to server", ex);
 				System.exit(2);
 			}
 		}
 
-		Stendhal2D ui = new Stendhal2D(client, width, height);
+		final Stendhal2D ui = new Stendhal2D(client, width, height);
 
 		try {
 			ui.run();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			logger.error("Error running client", ex);
 			System.exit(3);
 		}
@@ -565,7 +565,7 @@ public class Stendhal2D extends StendhalGUI {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			chooseOutfit();
 		}
 	}
@@ -578,7 +578,7 @@ public class Stendhal2D extends StendhalGUI {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			requestQuit();
 		}
 	}
@@ -589,7 +589,7 @@ public class Stendhal2D extends StendhalGUI {
 	protected class SideBarLayoutCB implements ActionListener {
 		protected int mode;
 
-		public SideBarLayoutCB(int mode) {
+		public SideBarLayoutCB(final int mode) {
 			this.mode = mode;
 		}
 
@@ -597,7 +597,7 @@ public class Stendhal2D extends StendhalGUI {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			setSideBar(mode);
 		}
 	}

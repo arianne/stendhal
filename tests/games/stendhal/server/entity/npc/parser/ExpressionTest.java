@@ -15,9 +15,9 @@ public class ExpressionTest {
 
 	@Test
 	public final void testMatch() {
-		Expression expr1 = ConversationParser.createTriggerExpression("cloak");
-		Expression expr2 = ConversationParser.createTriggerExpression("cloaks");
-		Expression expr3 = ConversationParser.createTriggerExpression("trousers");
+		final Expression expr1 = ConversationParser.createTriggerExpression("cloak");
+		final Expression expr2 = ConversationParser.createTriggerExpression("cloaks");
+		final Expression expr3 = ConversationParser.createTriggerExpression("trousers");
 
 		assertEquals("cloak", expr1.toString());
 		assertEquals("|TYPE|cloak", expr2.toString());
@@ -40,7 +40,7 @@ public class ExpressionTest {
 
 	@Test
 	public final void testEquals() {
-		Expression exp = new Expression("blabla");
+		final Expression exp = new Expression("blabla");
 
 		// compare with the same object
 		assertTrue(exp.equals(exp));
@@ -67,10 +67,10 @@ public class ExpressionTest {
 
 	@Test
 	public final void testTriggerMatching() {
-		Sentence s1 = ConversationParser.parse("spade");
-		Expression e1 = s1.getTriggerExpression();
-		Sentence s2 = ConversationParser.parse("a spade");
-		Expression e2 = s2.getTriggerExpression();
+		final Sentence s1 = ConversationParser.parse("spade");
+		final Expression e1 = s1.getTriggerExpression();
+		final Sentence s2 = ConversationParser.parse("a spade");
+		final Expression e2 = s2.getTriggerExpression();
 		assertFalse(s1.hasError());
 		assertFalse(s2.hasError());
 		assertTrue(e1.matchesNormalized(e2));

@@ -9,7 +9,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 
-	private double karmaDiff;
+	private final double karmaDiff;
 
 	/**
 	 * Creates a new IncreaseKarmaAction.
@@ -17,12 +17,12 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 	 * @param karmaDiff
 	 *            amount of karma to add
 	 */
-	public IncreaseKarmaAction(double karmaDiff) {
+	public IncreaseKarmaAction(final double karmaDiff) {
 		this.karmaDiff = karmaDiff;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.addKarma(karmaDiff);
 	}
 
@@ -42,7 +42,7 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

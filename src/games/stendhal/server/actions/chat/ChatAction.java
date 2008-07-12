@@ -42,7 +42,7 @@ public class ChatAction {
 	public void onAction(final Player player, final RPAction action) {
 
 		if (GagManager.isGagged(player)) {
-			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
+			final long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
 			player.sendPrivateText("You are gagged, it will expire in "
 					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
 			return;

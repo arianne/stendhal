@@ -27,7 +27,7 @@ public enum DeathmatchLifecycle {
 
 	private String questString;
 
-	private DeathmatchLifecycle(String questString) {
+	private DeathmatchLifecycle(final String questString) {
 		this.questString = questString;
 	}
 
@@ -46,10 +46,10 @@ public enum DeathmatchLifecycle {
 	 * @param questState quest state string
 	 * @return DeathmatchLifecycle
 	 */
-	static DeathmatchLifecycle getFromQuestStateString(String questState) {
+	static DeathmatchLifecycle getFromQuestStateString(final String questState) {
 		try {
 			return DeathmatchLifecycle.valueOf(questState.toUpperCase());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Unknown DeathmatchLifecycle " + questState);
 			return DeathmatchLifecycle.DONE;
 		}

@@ -81,19 +81,19 @@ public class StuffForBaldemar extends AbstractQuest {
 	private static final String QUEST_SLOT = "mithrilshield_quest";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Baldemar");
+		final SpeakerNPC npc = npcs.get("Baldemar");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						engine.say("I can forge a shield made from mithril along with several other items. Would you like me to do that?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -111,7 +111,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					engine.say("I will need many, many things: "
 						+ REQUIRED_MITHRIL_BAR
 						+ " mithril bars, "
@@ -165,15 +165,15 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Baldemar");
+		final SpeakerNPC npc = npcs.get("Baldemar");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					int neededMithrilBar = REQUIRED_MITHRIL_BAR
 							- Integer.parseInt(tokens[1]);
@@ -205,12 +205,12 @@ public class StuffForBaldemar extends AbstractQuest {
 							- Integer.parseInt(tokens[14]);
 					boolean missingSomething = false;
 
-					if (!missingSomething && neededMithrilBar > 0) {
+					if (!missingSomething && (neededMithrilBar > 0)) {
 						if (player.isEquipped("mithril bar", neededMithrilBar)) {
 							player.drop("mithril bar", neededMithrilBar);
 							neededMithrilBar = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("mithril bar");
+							final int amount = player.getNumberOfEquipped("mithril bar");
 							if (amount > 0) {
 								player.drop("mithril bar", amount);
 								neededMithrilBar -= amount;
@@ -224,12 +224,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededObsidian > 0) {
+					if (!missingSomething && (neededObsidian > 0)) {
 						if (player.isEquipped("obsidian", neededObsidian)) {
 							player.drop("obsidian", neededObsidian);
 							neededObsidian = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("obsidian");
+							final int amount = player.getNumberOfEquipped("obsidian");
 							if (amount > 0) {
 								player.drop("obsidian", amount);
 								neededObsidian -= amount;
@@ -242,12 +242,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededDiamond > 0) {
+					if (!missingSomething && (neededDiamond > 0)) {
 						if (player.isEquipped("diamond", neededDiamond)) {
 							player.drop("diamond", neededDiamond);
 							neededDiamond = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("diamond");
+							final int amount = player.getNumberOfEquipped("diamond");
 							if (amount > 0) {
 								player.drop("diamond", amount);
 								neededDiamond -= amount;
@@ -258,12 +258,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededEmerald > 0) {
+					if (!missingSomething && (neededEmerald > 0)) {
 						if (player.isEquipped("emerald", neededEmerald)) {
 							player.drop("emerald", neededEmerald);
 							neededEmerald = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("emerald");
+							final int amount = player.getNumberOfEquipped("emerald");
 							if (amount > 0) {
 								player.drop("emerald", amount);
 								neededEmerald -= amount;
@@ -274,12 +274,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededCarbuncle > 0) {
+					if (!missingSomething && (neededCarbuncle > 0)) {
 						if (player.isEquipped("carbuncle", neededCarbuncle)) {
 							player.drop("carbuncle", neededCarbuncle);
 							neededCarbuncle = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("carbuncle");
+							final int amount = player.getNumberOfEquipped("carbuncle");
 							if (amount > 0) {
 								player.drop("carbuncle", amount);
 								neededCarbuncle -= amount;
@@ -290,12 +290,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededSapphire > 0) {
+					if (!missingSomething && (neededSapphire > 0)) {
 						if (player.isEquipped("sapphire", neededSapphire)) {
 							player.drop("sapphire", neededSapphire);
 							neededSapphire = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("sapphire");
+							final int amount = player.getNumberOfEquipped("sapphire");
 							if (amount > 0) {
 								player.drop("sapphire", amount);
 								neededSapphire -= amount;
@@ -306,12 +306,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededBlackShield > 0) {
+					if (!missingSomething && (neededBlackShield > 0)) {
 						if (player.isEquipped("black shield", neededBlackShield)) {
 							player.drop("black shield", neededBlackShield);
 							neededBlackShield = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("black shield");
+							final int amount = player.getNumberOfEquipped("black shield");
 							if (amount > 0) {
 								player.drop("black shield", amount);
 								neededBlackShield -= amount;
@@ -322,12 +322,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededMagicPlateShield > 0) {
+					if (!missingSomething && (neededMagicPlateShield > 0)) {
 						if (player.isEquipped("magic plate shield", neededMagicPlateShield)) {
 							player.drop("magic plate shield", neededMagicPlateShield);
 							neededMagicPlateShield = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("magic plate shield");
+							final int amount = player.getNumberOfEquipped("magic plate shield");
 							if (amount > 0) {
 								player.drop("magic plate shield", amount);
 								neededMagicPlateShield -= amount;
@@ -338,12 +338,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededGoldBars > 0) {
+					if (!missingSomething && (neededGoldBars > 0)) {
 						if (player.isEquipped("gold bar", neededGoldBars)) {
 							player.drop("gold bar", neededGoldBars);
 							neededGoldBars = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("gold bar");
+							final int amount = player.getNumberOfEquipped("gold bar");
 							if (amount > 0) {
 								player.drop("gold bar", amount);
 								neededGoldBars -= amount;
@@ -354,12 +354,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededIron > 0) {
+					if (!missingSomething && (neededIron > 0)) {
 						if (player.isEquipped("iron", neededIron)) {
 							player.drop("iron", neededIron);
 							neededIron = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("iron");
+							final int amount = player.getNumberOfEquipped("iron");
 							if (amount > 0) {
 								player.drop("iron", amount);
 								neededIron -= amount;
@@ -370,12 +370,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}						
 
-					if (!missingSomething && neededBlackPearl > 0) {
+					if (!missingSomething && (neededBlackPearl > 0)) {
 						if (player.isEquipped("black pearl", neededBlackPearl)) {
 							player.drop("black pearl", neededBlackPearl);
 							neededBlackPearl = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("black pearl");
+							final int amount = player.getNumberOfEquipped("black pearl");
 							if (amount > 0) {
 								player.drop("black pearl", amount);
 								neededBlackPearl -= amount;
@@ -386,12 +386,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededShuriken > 0) {
+					if (!missingSomething && (neededShuriken > 0)) {
 						if (player.isEquipped("shuriken", neededShuriken)) {
 							player.drop("shuriken", neededShuriken);
 							neededShuriken = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("shuriken");
+							final int amount = player.getNumberOfEquipped("shuriken");
 							if (amount > 0) {
 								player.drop("shuriken", amount);
 								neededShuriken -= amount;
@@ -402,12 +402,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}					
 
-					if (!missingSomething && neededMarbles > 0) {
+					if (!missingSomething && (neededMarbles > 0)) {
 						if (player.isEquipped("marbles", neededMarbles)) {
 							player.drop("marbles", neededMarbles);
 							neededMarbles = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("marbles");
+							final int amount = player.getNumberOfEquipped("marbles");
 							if (amount > 0) {
 								player.drop("marbles", amount);
 								neededMarbles -= amount;
@@ -418,12 +418,12 @@ public class StuffForBaldemar extends AbstractQuest {
 						}
 					}						
 
-					if (!missingSomething && neededSnowglobe > 0) {
+					if (!missingSomething && (neededSnowglobe > 0)) {
 						if (player.isEquipped("snowglobe", neededSnowglobe)) {
 							player.drop("snowglobe", neededSnowglobe);
 							neededSnowglobe = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("snowglobe");
+							final int amount = player.getNumberOfEquipped("snowglobe");
 							if (amount > 0) {
 								player.drop("snowglobe", amount);
 								neededSnowglobe -= amount;
@@ -480,19 +480,19 @@ public class StuffForBaldemar extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"forging;");
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
-					long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining > 0L) {
@@ -505,7 +505,7 @@ public class StuffForBaldemar extends AbstractQuest {
 					engine.say("I have finished forging your new mithril shield. Enjoy. Now I will see what Trillium has stored behind the counter for me. ;)");
 					player.addXP(95000);
 					player.addKarma(25);
-					Item mithrilshield = SingletonRepository.getEntityManager().getItem("mithril shield");
+					final Item mithrilshield = SingletonRepository.getEntityManager().getItem("mithril shield");
 					mithrilshield.setBoundTo(player.getName());
 					player.equip(mithrilshield, true);
 					player.notifyWorldAboutChanges();
@@ -520,36 +520,36 @@ public class StuffForBaldemar extends AbstractQuest {
 			null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-					int neededMithrilBar = REQUIRED_MITHRIL_BAR
+					final int neededMithrilBar = REQUIRED_MITHRIL_BAR
 							- Integer.parseInt(tokens[1]);
-					int neededObsidian = REQUIRED_OBSIDIAN
+					final int neededObsidian = REQUIRED_OBSIDIAN
 							- Integer.parseInt(tokens[2]);
-					int neededDiamond = REQUIRED_DIAMOND
+					final int neededDiamond = REQUIRED_DIAMOND
 							- Integer.parseInt(tokens[3]);
-					int neededEmerald = REQUIRED_EMERALD
+					final int neededEmerald = REQUIRED_EMERALD
 							- Integer.parseInt(tokens[4]);
-					int neededCarbuncle = REQUIRED_CARBUNCLE
+					final int neededCarbuncle = REQUIRED_CARBUNCLE
 							- Integer.parseInt(tokens[5]);
-					int neededSapphire = REQUIRED_SAPPHIRE
+					final int neededSapphire = REQUIRED_SAPPHIRE
 							- Integer.parseInt(tokens[6]);
-					int neededBlackShield = REQUIRED_BLACK_SHIELD
+					final int neededBlackShield = REQUIRED_BLACK_SHIELD
 							- Integer.parseInt(tokens[7]);
-					int neededMagicPlateShield = REQUIRED_MAGIC_PLATE_SHIELD
+					final int neededMagicPlateShield = REQUIRED_MAGIC_PLATE_SHIELD
 							- Integer.parseInt(tokens[8]);
-					int neededGoldBars = REQUIRED_GOLD_BAR
+					final int neededGoldBars = REQUIRED_GOLD_BAR
 							- Integer.parseInt(tokens[9]);
-					int neededIron = REQUIRED_IRON
+					final int neededIron = REQUIRED_IRON
 							- Integer.parseInt(tokens[10]);
-					int neededBlackPearl = REQUIRED_BLACK_PEARL
+					final int neededBlackPearl = REQUIRED_BLACK_PEARL
 							- Integer.parseInt(tokens[11]);
-					int neededShuriken = REQUIRED_SHURIKEN
+					final int neededShuriken = REQUIRED_SHURIKEN
 							- Integer.parseInt(tokens[12]);
-					int neededMarbles = REQUIRED_MARBLES
+					final int neededMarbles = REQUIRED_MARBLES
 							- Integer.parseInt(tokens[13]);
-					int neededSnowglobe = REQUIRED_SNOWGLOBE
+					final int neededSnowglobe = REQUIRED_SNOWGLOBE
 							- Integer.parseInt(tokens[14]);
 
 					
@@ -582,13 +582,13 @@ public class StuffForBaldemar extends AbstractQuest {
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}

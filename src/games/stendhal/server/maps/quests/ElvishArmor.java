@@ -65,16 +65,16 @@ public class ElvishArmor extends AbstractQuest {
 	 *            If true, sets a # character in front of every name
 	 * @return A list of item names
 	 */
-	private List<String> missingitems(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
+	private List<String> missingitems(final Player player, final boolean hash) {
+		final List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(QUEST_SLOT);
 		if (doneText == null) {
 			doneText = "";
 		}
 
-		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String itemName : NEEDEDITEMS) {
+		final List<String> done = Arrays.asList(doneText.split(";"));
+		for (final String itemName : NEEDEDITEMS) {
 			if (!done.contains(itemName)) {
 				if (hash) {
 					result.add("#" + itemName);
@@ -88,7 +88,7 @@ public class ElvishArmor extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Lupos");
+		final SpeakerNPC npc = npcs.get("Lupos");
 
 		// player says hi before starting the quest
 		npc.add(
@@ -96,7 +96,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -109,7 +109,7 @@ public class ElvishArmor extends AbstractQuest {
 				"elves",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -150,7 +150,7 @@ public class ElvishArmor extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Lupos");
+		final SpeakerNPC npc = npcs.get("Lupos");
 
 		// player returns while quest is still active
 		npc.add(
@@ -166,8 +166,8 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed = missingitems(player, true);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> needed = missingitems(player, true);
 						engine.say("I have heard descriptions of "
 								+ Grammar.quantityplnoun(needed.size(), "item")
 								+ " in all. They are: "
@@ -185,18 +185,18 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						Expression item = sentence.getTriggerExpression();
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final Expression item = sentence.getTriggerExpression();
 
 						TriggerList missing = new TriggerList(missingitems(player, false));
 
-						Expression found = missing.find(item);
+						final Expression found = missing.find(item);
 						if (found != null) {
-							String itemName = found.getOriginal();
+							final String itemName = found.getOriginal();
 
 							if (player.drop(itemName)) {
 								// register item as done
-								String doneText = player.getQuest(QUEST_SLOT);
+								final String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 								// check if the player has brought all items

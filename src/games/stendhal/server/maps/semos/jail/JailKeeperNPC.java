@@ -22,17 +22,17 @@ public class JailKeeperNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildJailKeeper(zone);
 		disabledMagicScrolls(zone);
 	}
 
-	private void buildJailKeeper(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
+	private void buildJailKeeper(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(4, 17));
 				nodes.add(new Node(27, 17));
 				nodes.add(new Node(27, 18));
@@ -55,7 +55,7 @@ public class JailKeeperNPC implements ZoneConfigurator {
 		zone.add(npc);
 	}
 
-	private void disabledMagicScrolls(StendhalRPZone zone) {
+	private void disabledMagicScrolls(final StendhalRPZone zone) {
 		zone.setTeleportAllowed(false);
 	}
 }

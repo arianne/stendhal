@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class SergeantNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Good day, adventurer!");
 		npc.addJob("I'm a Sergeant in the army.");
 		npc.addGoodbye("Good luck and better watch your back with all those dwarves around!");

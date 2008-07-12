@@ -89,9 +89,9 @@ public class Player extends RPEntity {
 	 */
 	private static final Random KARMA_RANDOMIZER = new Random();
 
-	private PlayerQuests quests = new PlayerQuests(this);
-	private PlayerDieer  dieer  = new PlayerDieer(this);
-	private KillRecording killRec = new KillRecording(this);
+	private final PlayerQuests quests = new PlayerQuests(this);
+	private final PlayerDieer  dieer  = new PlayerDieer(this);
+	private final KillRecording killRec = new KillRecording(this);
 	PetOwner petOwner = new PetOwner(this);
 
 	/**
@@ -147,18 +147,18 @@ public class Player extends RPEntity {
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
 	
 
-	public static Player create(RPObject object) {
+	public static Player create(final RPObject object) {
 
 		// add attributes and slots
 		UpdateConverter.updatePlayerRPObject(object);
 
-		Player player = new Player(object);
+		final Player player = new Player(object);
 		player.stop();
 		player.stopAttack();
 
@@ -176,11 +176,11 @@ public class Player extends RPEntity {
 		PlayerRPClass.loadItemsIntoSlots(player);
 
 		if (player.getSlot("!buddy").size() > 0) {
-			RPObject buddies = player.getSlot("!buddy").iterator().next();
-			for (String buddyName : buddies) {
+			final RPObject buddies = player.getSlot("!buddy").iterator().next();
+			for (final String buddyName : buddies) {
 				// TODO: Remove '_' prefix if ID is made completely virtual
 				if (buddyName.charAt(0) == '_') {
-					Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
+					final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
 							buddyName.substring(1));
 					if ((buddy != null) && !buddy.isGhost()) {
 						buddies.put(buddyName, 1);
@@ -203,11 +203,11 @@ public class Player extends RPEntity {
 		return player;
 	}
 
-	public static Player createEmptyZeroLevelPlayer(String characterName) {
+	public static Player createEmptyZeroLevelPlayer(final String characterName) {
 		/*
 		 * TODO: Update to use Player and RPEntity methods.
 		 */
-		Player object = new Player(new RPObject());
+		final Player object = new Player(new RPObject());
 		object.setID(RPObject.INVALID_ID);
 
 		object.put("type", "player");
@@ -221,7 +221,7 @@ public class Player extends RPEntity {
 		object.put("def_xp", 0);
 		object.put("xp", 0);
 
-		for (String slot : RPEntity.CARRYING_SLOTS) {
+		for (final String slot : RPEntity.CARRYING_SLOTS) {
 			object.addSlot(slot);
 		}
 
@@ -238,15 +238,15 @@ public class Player extends RPEntity {
 		return object;
 	}
 
-	private static void convertOldfeaturesList(Player player) {
+	private static void convertOldfeaturesList(final Player player) {
 		if (player.has("features")) {
 			logger.info("Converting features for " + player.getName() + ": "
 					+ player.get("features"));
 
-			FeatureList features = new FeatureList();
+			final FeatureList features = new FeatureList();
 			features.decode(player.get("features"));
 
-			for (String name : features) {
+			for (final String name : features) {
 				player.setFeature(name, features.get(name));
 			}
 
@@ -254,7 +254,7 @@ public class Player extends RPEntity {
 		}
 	}
 
-	public static void destroy(Player player) {
+	public static void destroy(final Player player) {
 		player.petOwner.destroy();
 		player.stop();
 		player.stopAttack();
@@ -273,7 +273,7 @@ public class Player extends RPEntity {
 		player.disconnected = true;
 	}
 
-	public Player(RPObject object) {
+	public Player(final RPObject object) {
 		super(object);
 
 		setRPClass("player");
@@ -302,7 +302,7 @@ public class Player extends RPEntity {
 	 * 
 	 * 
 	 */
-	public void addClientDirection(Direction direction) {
+	public void addClientDirection(final Direction direction) {
 		if (hasPath()) {
 			clearPath();
 		}
@@ -317,7 +317,7 @@ public class Player extends RPEntity {
 	 * 
 	 * 
 	 */
-	public void removeClientDirection(Direction direction) {
+	public void removeClientDirection(final Direction direction) {
 		directions.remove(direction);
 	}
 
@@ -328,7 +328,7 @@ public class Player extends RPEntity {
 	 *            Stop movement if no (valid) directions are active if
 	 *            <code>true</code>.
 	 */
-	public void applyClientDirection(boolean stopOnNone) {
+	public void applyClientDirection(final boolean stopOnNone) {
 		int size;
 		Direction direction;
 
@@ -356,7 +356,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		if (entity instanceof Player) {
 			if (getZone().getName().equals(PlayerDieer.DEFAULT_DEAD_AREA)) {
 				return false;
@@ -381,7 +381,11 @@ public class Player extends RPEntity {
 	 * @return The away message, or <code>null</code> if unset.
 	 */
 	public String getAwayMessage() {
-		return has(ATTR_AWAY) ? get(ATTR_AWAY) : null;
+		if (has(ATTR_AWAY)) {
+			return get(ATTR_AWAY);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -410,9 +414,9 @@ public class Player extends RPEntity {
 	 * 
 	 * @return <code>true</code> if the player should be notified.
 	 */
-	public boolean isAwayNotifyNeeded(String name) {
-		long now = System.currentTimeMillis();
-		Long lObj = awayReplies.get(name);
+	public boolean isAwayNotifyNeeded(final String name) {
+		final long now = System.currentTimeMillis();
+		final Long lObj = awayReplies.get(name);
 
 		if (lObj != null) {
 			/*
@@ -440,7 +444,11 @@ public class Player extends RPEntity {
 	 * @return The grumpy message, or <code>null</code> if unset.
 	 */
 	public String getGrumpyMessage() {
-		return has(ATTR_GRUMPY) ? get(ATTR_GRUMPY) : null;
+		if (has(ATTR_GRUMPY)) {
+			return get(ATTR_GRUMPY);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -465,7 +473,7 @@ public class Player extends RPEntity {
 	 *            An amount of karma to add/subtract.
 	 */
 	@Override
-	public void addKarma(double karma) {
+	public void addKarma(final double karma) {
 		this.karma += karma;
 
 		put("karma", karma);
@@ -494,7 +502,7 @@ public class Player extends RPEntity {
 	 * @return A number between -scale and scale.
 	 */
 	@Override
-	public double useKarma(double scale) {
+	public double useKarma(final double scale) {
 		return useKarma(-scale, scale);
 	}
 
@@ -512,7 +520,7 @@ public class Player extends RPEntity {
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	@Override
-	public double useKarma(double negLimit, double posLimit) {
+	public double useKarma(final double negLimit, final double posLimit) {
 		return useKarma(negLimit, posLimit, 0.01);
 	}
 
@@ -531,7 +539,7 @@ public class Player extends RPEntity {
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	@Override
-	public double useKarma(double negLimit, double posLimit, double granularity) {
+	public double useKarma(final double negLimit, final double posLimit, final double granularity) {
 		double limit;
 		double score;
 
@@ -630,8 +638,8 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
-	public boolean addIgnore(String name, int duration, String reply) {
-		StringBuilder sbuf = new StringBuilder();
+	public boolean addIgnore(final String name, final int duration, final String reply) {
+		final StringBuilder sbuf = new StringBuilder();
 
 		if (duration != 0) {
 			sbuf.append(System.currentTimeMillis() + (duration * 60000L));
@@ -656,7 +664,7 @@ public class Player extends RPEntity {
 	 * @return The custom reply message (including an empty string), or
 	 *         <code>null</code> if not ignoring.
 	 */
-	public String getIgnore(String name) {
+	public String getIgnore(final String name) {
 		String info = getKeyedSlot("!ignore", "_" + name);
 		int i;
 		long expiration;
@@ -702,7 +710,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
-	public boolean removeIgnore(String name) {
+	public boolean removeIgnore(final String name) {
 		return setKeyedSlot("!ignore", "_" + name, null);
 	}
 
@@ -714,7 +722,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @return The skill value, or <code>null</code> if not set.
 	 */
-	public String getSkill(String key) {
+	public String getSkill(final String key) {
 		return getKeyedSlot("skills", key);
 	}
 
@@ -729,7 +737,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
-	public boolean setSkill(String key, String value) {
+	public boolean setSkill(final String key, final String value) {
 		return setKeyedSlot("skills", key, value);
 	}
 
@@ -740,13 +748,13 @@ public class Player extends RPEntity {
 	 * @param name name of key slot
 	 * @return object or <code>null</code> it does not exist
 	 */
-	static RPObject getKeyedSlotObject(RPObject object, String name) {
+	static RPObject getKeyedSlotObject(final RPObject object, final String name) {
 		if (!object.hasSlot(name)) {
 			logger.error("Expected to find " + name + " slot");
 			return null;
 		}
 
-		RPSlot slot = object.getSlot(name);
+		final RPSlot slot = object.getSlot(name);
 
 		if (slot.size() == 0) {
 			logger.error("Found empty " + name + " slot");
@@ -766,13 +774,17 @@ public class Player extends RPEntity {
 	 * 
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
-	public String getKeyedSlot(String name, String key) {
-		RPObject object = Player.getKeyedSlotObject(this, name);
+	public String getKeyedSlot(final String name, final String key) {
+		final RPObject object = Player.getKeyedSlotObject(this, name);
 		if (object == null) {
 			return null;
 		}
 
-		return object.has(key) ? object.get(key) : null;
+		if (object.has(key)) {
+			return object.get(key);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -788,8 +800,8 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
-	public boolean setKeyedSlot(String name, String key, String value) {
-		RPObject object = Player.getKeyedSlotObject(this, name);
+	public boolean setKeyedSlot(final String name, final String key, final String value) {
+		final RPObject object = Player.getKeyedSlotObject(this, name);
 		if (object == null) {
 			return false;
 		}
@@ -811,7 +823,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @return The feature value, or <code>null</code> is not-enabled.
 	 */
-	public String getFeature(String name) {
+	public String getFeature(final String name) {
 		return getKeyedSlot("!features", name);
 	}
 
@@ -823,7 +835,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @return <code>true</code> if the feature is enabled.
 	 */
-	public boolean hasFeature(String name) {
+	public boolean hasFeature(final String name) {
 		return (getKeyedSlot("!features", name) != null);
 	}
 
@@ -835,7 +847,7 @@ public class Player extends RPEntity {
 	 * @param enabled
 	 *            Flag indicating if enabled.
 	 */
-	public void setFeature(String name, boolean enabled) {
+	public void setFeature(final String name, final boolean enabled) {
 		if (enabled) {
 			setFeature(name, "");
 		} else {
@@ -853,7 +865,7 @@ public class Player extends RPEntity {
 	 * @param value
 	 *            The feature value, or <code>null</code> to disable.
 	 */
-	public void setFeature(String name, String value) {
+	public void setFeature(final String name, final String value) {
 		setKeyedSlot("!features", name, value);
 	}
 
@@ -888,7 +900,7 @@ public class Player extends RPEntity {
 	 *            the message.
 	 */
 	@Override
-	public void sendPrivateText(String text) {
+	public void sendPrivateText(final String text) {
 		sendPrivateText(NotificationType.PRIVMSG, text);
 	}
 
@@ -900,7 +912,7 @@ public class Player extends RPEntity {
 	 * @param text
 	 *            the message.
 	 */
-	public void sendPrivateText(NotificationType type, String text) {
+	public void sendPrivateText(final NotificationType type, final String text) {
 		addEvent(new PrivateTextEvent(type, text));
 		this.notifyWorldAboutChanges();
 	}
@@ -950,26 +962,26 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void rememberAttacker(Entity attacker) {
+	public void rememberAttacker(final Entity attacker) {
 		TutorialNotifier.attacked(this);
 		super.rememberAttacker(attacker);
 	}
 	
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		dieer.onDead(killer);
 	}
 
 	@Override
-	protected void dropItemsOn(Corpse corpse) {
+	protected void dropItemsOn(final Corpse corpse) {
 		dieer.dropItemsOn(corpse);
 	}
 
-	public void removeSheep(Sheep sheep) {
+	public void removeSheep(final Sheep sheep) {
 		petOwner.removeSheep(sheep);
 	}
 
-	public void removePet(Pet pet) {
+	public void removePet(final Pet pet) {
 		petOwner.removePet(pet);
 	}
 
@@ -987,7 +999,7 @@ public class Player extends RPEntity {
 	 * @param pet
 	 *            The pet.
 	 */
-	public void setPet(Pet pet) {
+	public void setPet(final Pet pet) {
 		petOwner.setPet(pet);
 	}
 
@@ -997,7 +1009,7 @@ public class Player extends RPEntity {
 	 * @param sheep
 	 *            The sheep.
 	 */
-	public void setSheep(Sheep sheep) {
+	public void setSheep(final Sheep sheep) {
 		petOwner.setSheep(sheep);
 	}
 
@@ -1040,7 +1052,7 @@ public class Player extends RPEntity {
 	 * @param age
 	 *            minutes
 	 */
-	public void setAge(int age) {
+	public void setAge(final int age) {
 		this.age = age;
 		put("age", age);
 		TutorialNotifier.aged(this, age);
@@ -1071,14 +1083,14 @@ public class Player extends RPEntity {
 	 * @param who
 	 *            The name of the player who has logged in.
 	 */
-	public void notifyOnline(String who) {
-		String playerOnline = "_" + who;
+	public void notifyOnline(final String who) {
+		final String playerOnline = "_" + who;
 
 		boolean found = false;
-		RPSlot slot = getSlot("!buddy");
+		final RPSlot slot = getSlot("!buddy");
 		if (slot.size() > 0) {
-			RPObject buddies = slot.iterator().next();
-			for (String name : buddies) {
+			final RPObject buddies = slot.iterator().next();
+			for (final String name : buddies) {
 				if (playerOnline.equals(name)) {
 					buddies.put(playerOnline, 1);
 					notifyWorldAboutChanges();
@@ -1102,14 +1114,14 @@ public class Player extends RPEntity {
 	 * @param who
 	 *            The name of the player who has logged out.
 	 */
-	public void notifyOffline(String who) {
-		String playerOffline = "_" + who;
+	public void notifyOffline(final String who) {
+		final String playerOffline = "_" + who;
 
 		boolean found = false;
-		RPSlot slot = getSlot("!buddy");
+		final RPSlot slot = getSlot("!buddy");
 		if (slot.size() > 0) {
-			RPObject buddies = slot.iterator().next();
-			for (String name : buddies) {
+			final RPObject buddies = slot.iterator().next();
+			for (final String name : buddies) {
 				if (playerOffline.equals(name)) {
 					buddies.put(playerOffline, 0);
 					notifyWorldAboutChanges();
@@ -1134,7 +1146,7 @@ public class Player extends RPEntity {
 	 *            The quest's name
 	 * @return true iff the quest has been completed by the player
 	 */
-	public boolean isQuestCompleted(String name) {
+	public boolean isQuestCompleted(final String name) {
 		return quests.isQuestCompleted(name);
 	}
 
@@ -1147,7 +1159,7 @@ public class Player extends RPEntity {
 	 *            The quest's name
 	 * @return true iff the player has made any progress in the quest
 	 */
-	public boolean hasQuest(String name) {
+	public boolean hasQuest(final String name) {
 		return quests.hasQuest(name);
 	}
 
@@ -1158,7 +1170,7 @@ public class Player extends RPEntity {
 	 *            The quest's name
 	 * @return the player's status in the quest
 	 */
-	public String getQuest(String name) {
+	public String getQuest(final String name) {
 		return quests.getQuest(name);
 	}
 
@@ -1175,7 +1187,7 @@ public class Player extends RPEntity {
 	 *            the player's status in the quest. Set it to null to completely
 	 *            reset the player's status for the quest.
 	 */
-	public void setQuest(String name, String status) {
+	public void setQuest(final String name, final String status) {
 		quests.setQuest(name, status);
 	}
 
@@ -1183,7 +1195,7 @@ public class Player extends RPEntity {
 		return quests.getQuests();
 	}
 
-	public void removeQuest(String name) {
+	public void removeQuest(final String name) {
 		quests.removeQuest(name);
 	}
 
@@ -1196,7 +1208,7 @@ public class Player extends RPEntity {
 	 *            valid states
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
-	public boolean isQuestInState(String name, String... states) {
+	public boolean isQuestInState(final String name, final String... states) {
 		return quests.isQuestInState(name, states);
 	}
 
@@ -1207,7 +1219,7 @@ public class Player extends RPEntity {
 	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
-	public boolean hasKilled(String name) {
+	public boolean hasKilled(final String name) {
 		return killRec.hasKilled(name);
 	}
 
@@ -1217,7 +1229,7 @@ public class Player extends RPEntity {
 	 * 'name'
 	 * @param name of the victim
 	 */
-	public void setSoloKill(String name) {
+	public void setSoloKill(final String name) {
 		killRec.setSoloKill(name);
 	}
 
@@ -1227,7 +1239,7 @@ public class Player extends RPEntity {
 	 * @param name of victim
 	 * 
 	 */
-	public void setSharedKill(String name) {
+	public void setSharedKill(final String name) {
 		killRec.setSharedKill(name);
 	}
 
@@ -1239,7 +1251,7 @@ public class Player extends RPEntity {
 	 * @param name
 	 *            The name of the creature.
 	 */
-	public void removeKill(String name) {
+	public void removeKill(final String name) {
 		killRec.removeKill(name);
 	}
 
@@ -1269,7 +1281,7 @@ public class Player extends RPEntity {
 	 * @return true iff the poisoning was effective, i.e. iff the player is not
 	 *         immune
 	 */
-	public boolean poison(ConsumableItem item) {
+	public boolean poison(final ConsumableItem item) {
 		if (isImmune) {
 			return false;
 		} else {
@@ -1284,7 +1296,7 @@ public class Player extends RPEntity {
 		return itemsToConsume.size() > 5;
 	}
 
-	public void eat(ConsumableItem item) {
+	public void eat(final ConsumableItem item) {
 		put("eating", 0);
 		itemsToConsume.add(item);
 	}
@@ -1304,16 +1316,16 @@ public class Player extends RPEntity {
 		sendPrivateText("You are not immune from poison anymore.");
 	}
 
-	public void consume(int turn) {
+	public void consume(final int turn) {
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size() > 0) {
-			ConsumableItem food = itemsToConsume.get(0);
+			final ConsumableItem food = itemsToConsume.get(0);
 			if (food.consumed()) {
 				itemsToConsume.remove(0);
 			} else {
 				if (turn % food.getFrecuency() == 0) {
 					logger.debug("Consumed item: " + food);
-					int amount = food.consume();
+					final int amount = food.consume();
 					put("eating", amount);
 					if (heal(amount, true) == 0) {
 						itemsToConsume.clear();
@@ -1331,10 +1343,10 @@ public class Player extends RPEntity {
 				remove("poisoned");
 			}
 		} else {
-			List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
+			final List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
 			int sum = 0;
 			int amount = 0;
-			for (ConsumableItem poison : new LinkedList<ConsumableItem>(
+			for (final ConsumableItem poison : new LinkedList<ConsumableItem>(
 					poisonToConsume)) {
 				if (turn % poison.getFrecuency() == 0) {
 					if (poison.consumed()) {
@@ -1348,7 +1360,7 @@ public class Player extends RPEntity {
 				}
 
 			}
-			for (ConsumableItem poison : poisonstoRemove) {
+			for (final ConsumableItem poison : poisonstoRemove) {
 				poisonToConsume.remove(poison);
 			}
 		}
@@ -1366,10 +1378,10 @@ public class Player extends RPEntity {
 
 		// default description for player includes their name, level and play
 		// time
-		int hours = age / 60;
-		int minutes = age % 60;
-		String time = hours + " hours and " + minutes + " minutes";
-		String text = "You see " + getTitle() + ".\n" + getTitle()
+		final int hours = age / 60;
+		final int minutes = age % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
+		final String text = "You see " + getTitle() + ".\n" + getTitle()
 				+ " is level " + getLevel() + " and has been playing " + time
 				+ ".";
 		return (text);
@@ -1393,8 +1405,8 @@ public class Player extends RPEntity {
 	 *            goes wrong. If no feedback is wanted, use null.
 	 * @return true iff teleporting was successful
 	 */
-	public boolean teleport(StendhalRPZone zone, int x, int y, Direction dir,
-			Player teleporter) {
+	public boolean teleport(final StendhalRPZone zone, final int x, final int y, final Direction dir,
+			final Player teleporter) {
 		if (StendhalRPAction.placeat(zone, this, x, y)) {
 			if (dir != null) {
 				this.setDirection(dir);
@@ -1402,7 +1414,7 @@ public class Player extends RPEntity {
 			notifyWorldAboutChanges();
 			return true;
 		} else {
-			String text = "Position [" + x + "," + y + "] is occupied";
+			final String text = "Position [" + x + "," + y + "] is occupied";
 			if (teleporter != null) {
 				teleporter.sendPrivateText(text);
 			} else {
@@ -1422,7 +1434,7 @@ public class Player extends RPEntity {
 	 *            The name of the item
 	 * @return true iff dropping the item was successful.
 	 */
-	public boolean dropAll(String name) {
+	public boolean dropAll(final String name) {
 		return drop(name, getNumberOfEquipped(name));
 	}
 
@@ -1434,7 +1446,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @param entity
 	 */
-	public void onPush(RPEntity entity) {
+	public void onPush(final RPEntity entity) {
 		turnOfLastPush = SingletonRepository.getRuleProcessor().getTurn();
 	}
 
@@ -1444,13 +1456,13 @@ public class Player extends RPEntity {
 	 * @param entity
 	 * @return true iff pushing is possible
 	 */
-	public boolean canPush(RPEntity entity) {
+	public boolean canPush(final RPEntity entity) {
 		return ((this != entity) && (SingletonRepository.getRuleProcessor().getTurn()
 				- turnOfLastPush > 10));
 	}
 
 	@Override
-	public void setOutfit(Outfit outfit) {
+	public void setOutfit(final Outfit outfit) {
 		setOutfit(outfit, false);
 	}
 
@@ -1464,7 +1476,7 @@ public class Player extends RPEntity {
 	 *            If true, the original outfit will be stored so that it can be
 	 *            restored later.
 	 */
-	public void setOutfit(Outfit outfit, boolean temporary) {
+	public void setOutfit(final Outfit outfit, final boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a
 		// second slot so that we can return to it later.
@@ -1479,7 +1491,7 @@ public class Player extends RPEntity {
 
 		// combine the old outfit with the new one, as the new one might
 		// contain null parts.
-		Outfit newOutfit = outfit.putOver(getOutfit());
+		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
@@ -1499,7 +1511,7 @@ public class Player extends RPEntity {
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit() {
-		Outfit originalOutfit = getOriginalOutfit();
+		final Outfit originalOutfit = getOriginalOutfit();
 		if (originalOutfit != null) {
 			remove("outfit_org");
 			setOutfit(originalOutfit, false);
@@ -1523,7 +1535,7 @@ public class Player extends RPEntity {
 		/*
 		 * If we are too far from dependents, then disallow zone change
 		 */
-		Sheep sheep = getSheep();
+		final Sheep sheep = getSheep();
 
 		if (sheep != null) {
 			if (squaredDistance(sheep) > (7 * 7)) {
@@ -1531,7 +1543,7 @@ public class Player extends RPEntity {
 			}
 		}
 
-		Pet pet = getPet();
+		final Pet pet = getPet();
 
 		if (pet != null) {
 			if (squaredDistance(pet) > (7 * 7)) {
@@ -1586,7 +1598,7 @@ public class Player extends RPEntity {
 
 		applyMovement();
 
-		int turn = SingletonRepository.getRuleProcessor().getTurn();
+		final int turn = SingletonRepository.getRuleProcessor().getTurn();
 
 		if (isAttacking()
 				&& ((turn % getAttackRate()) == 0)) {
@@ -1598,7 +1610,7 @@ public class Player extends RPEntity {
 		consume(turn);
 	}
 
-	private void agePlayer(int turn) {
+	private void agePlayer(final int turn) {
 		/*
 		 * 180 means 60 seconds x 3 turns per second.
 		 */
@@ -1662,10 +1674,10 @@ public class Player extends RPEntity {
 	 *            The zone this was added to.
 	 */
 	@Override
-	public void onAdded(StendhalRPZone zone) {
+	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
 
-		String zoneName = zone.getID().getID();
+		final String zoneName = zone.getID().getID();
 
 		/*
 		 * If player enters afterlife, make them partially transparent
@@ -1688,7 +1700,7 @@ public class Player extends RPEntity {
 	 *            The zone this will be removed from.
 	 */
 	@Override
-	public void onRemoved(StendhalRPZone zone) {
+	public void onRemoved(final StendhalRPZone zone) {
 		/*
 		 * If player leaves afterlife, make them normal
 		 */
@@ -1709,12 +1721,12 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj instanceof Player) {
-			Player other = (Player) obj;
+			final Player other = (Player) obj;
 			return this.getName().equals(other.getName());
 		}
 		return false;
@@ -1728,7 +1740,7 @@ public class Player extends RPEntity {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
 
-	public void setSentence(String arg) {
+	public void setSentence(final String arg) {
 		put("sentence", arg);		
 	}
 	
@@ -1748,14 +1760,14 @@ public class Player extends RPEntity {
 	}
 
 	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
-		List<RingOfLife> result = new LinkedList<RingOfLife>();
+		final List<RingOfLife> result = new LinkedList<RingOfLife>();
 
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			for (RPObject object : slot) {
+			for (final RPObject object : slot) {
 				if (object instanceof RingOfLife) {
-					RingOfLife ring =  (RingOfLife) object;
+					final RingOfLife ring =  (RingOfLife) object;
 					if (!ring.isBroken()) {
 						result.add(ring);
 					}
@@ -1773,7 +1785,7 @@ public class Player extends RPEntity {
 	 * @return List of DomesticalAnmial
 	 */
 	public List<DomesticAnimal> getAnimals() {
-		List<DomesticAnimal> animals = new ArrayList<DomesticAnimal>();
+		final List<DomesticAnimal> animals = new ArrayList<DomesticAnimal>();
 
 		if (hasPet()) {
 			animals.add(getPet());
@@ -1793,18 +1805,18 @@ public class Player extends RPEntity {
 	 * @param exactly 
 	 * @return the found pet
 	 */
-	public DomesticAnimal searchAnimal(String name, boolean exactly) {
-		List<DomesticAnimal> animals = getAnimals();
+	public DomesticAnimal searchAnimal(final String name, final boolean exactly) {
+		final List<DomesticAnimal> animals = getAnimals();
 
-		for (DomesticAnimal animal : animals) {
+		for (final DomesticAnimal animal : animals) {
 			if (animal != null) {
     			if (animal.getTitle().equalsIgnoreCase(name)) {
     				return animal;
     			}
 
     			if (!exactly) {
-        			String type = animal.get("type");
-        			if (type != null && ItemTools.itemNameToDisplayName(type).equals(name)) {
+        			final String type = animal.get("type");
+        			if ((type != null) && ItemTools.itemNameToDisplayName(type).equals(name)) {
         				return animal;
         			}
 
@@ -1819,7 +1831,7 @@ public class Player extends RPEntity {
 	}
 	
 	@Override
-	protected void applyDefXP(RPEntity entity) {
+	protected void applyDefXP(final RPEntity entity) {
 		if (getsFightXpFrom(entity)) {
 			incDEFXP();
 		}
@@ -1830,7 +1842,7 @@ public class Player extends RPEntity {
 	}
 
 
-	public void setDamage(int damage) {
+	public void setDamage(final int damage) {
 		put("damage", damage);
 		
 	}

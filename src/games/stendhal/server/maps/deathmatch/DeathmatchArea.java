@@ -7,11 +7,11 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
 public class DeathmatchArea implements LoginListener {
-	private Area area;
+	private final Area area;
 
 	private Spot cowardSpot;
 
-	DeathmatchArea(Area area) {
+	DeathmatchArea(final Area area) {
 		super();
 		this.area = area;
 		initialize();
@@ -23,7 +23,7 @@ public class DeathmatchArea implements LoginListener {
 
 	}
 
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 
 		if (area.contains(player)) {
 			teleportToCowardPlace(player);
@@ -31,7 +31,7 @@ public class DeathmatchArea implements LoginListener {
 
 	}
 
-	private void teleportToCowardPlace(Player player) {
+	private void teleportToCowardPlace(final Player player) {
 		
 		if (cowardSpot == null) {
 			cowardSpot = new Spot(SingletonRepository.getRPWorld().getZone(
@@ -46,7 +46,7 @@ public class DeathmatchArea implements LoginListener {
 		return area;
 	}
 
-	public boolean contains(Player player) {
+	public boolean contains(final Player player) {
 
 		return area.contains(player);
 	}

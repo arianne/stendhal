@@ -24,10 +24,10 @@ public class FeederFactoryTest {
 	@Test
 	public final void testGetEaterForSoup() {
 		ItemTestHelper.generateRPClasses();
-		String name = "soup";
-		String clazz = "drink";
-		String subclass = "soup";
-		Map<String, String> map = new HashMap<String, String>();
+		final String name = "soup";
+		final String clazz = "drink";
+		final String subclass = "soup";
+		final Map<String, String> map = new HashMap<String, String>();
 		map.put("description",
 				"You see a bowl of soup. Its contents fill you up.");
 		map.put("amount", "2500");
@@ -35,7 +35,7 @@ public class FeederFactoryTest {
 		map.put("quantity", "1");
 		map.put("regen", "25");
 
-		Drink soup = new Drink(name, clazz, subclass, map);
+		final Drink soup = new Drink(name, clazz, subclass, map);
 		assertEquals(Eater.class, FeederFactory.get(soup).getClass());
 	}
 }

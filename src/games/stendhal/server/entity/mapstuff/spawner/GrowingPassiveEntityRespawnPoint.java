@@ -45,21 +45,21 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		return maxRipeness;
 	}
 
-	final void setMaxRipeness(int maxRipeness) {
+	final void setMaxRipeness(final int maxRipeness) {
 		this.maxRipeness = maxRipeness;
 		put("max_ripeness", maxRipeness);
 	}
 
 	public static void generateRPClass() {
-		RPClass grainFieldClass = new RPClass("growing_entity_spawner");
+		final RPClass grainFieldClass = new RPClass("growing_entity_spawner");
 		grainFieldClass.isA("plant_grower");
 		grainFieldClass.addAttribute("action_name", Type.STRING);
 		grainFieldClass.addAttribute("max_ripeness", Type.BYTE);
 		grainFieldClass.addAttribute("ripeness", Type.BYTE);
 	}
 
-	private void init(String clazz, String actionName, int maxRipeness,
-			int width, int height) {
+	private void init(final String clazz, final String actionName, final int maxRipeness,
+			final int width, final int height) {
 		this.maxRipeness = maxRipeness;
 		setRPClass("growing_entity_spawner");
 		put("type", "growing_entity_spawner");
@@ -70,16 +70,16 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		setSize(width, height);
 	}
 
-	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String itemName,
-			String actionName, int maxRipeness, int width, int height) {
+	public GrowingPassiveEntityRespawnPoint(final RPObject object, final String type, final String itemName,
+			final String actionName, final int maxRipeness, final int width, final int height) {
 		super(object, itemName, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 		update();
 	}
 
-	public GrowingPassiveEntityRespawnPoint(String type, String itemName, String actionName,
-			int maxRipeness, int width, int height) {
+	public GrowingPassiveEntityRespawnPoint(final String type, final String itemName, final String actionName,
+			final int maxRipeness, final int width, final int height) {
 		super(itemName, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
@@ -93,7 +93,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		}
 	}
 
-	protected final void setRipeness(int ripeness) {
+	protected final void setRipeness(final int ripeness) {
 		this.ripeness = ripeness;
 		put("ripeness", ripeness);
 	}
@@ -115,12 +115,12 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 	}
 
 	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
+	public void getArea(final Rectangle2D rect, final double x, final double y) {
 		rect.setRect(x, y + getHeight() - 1.0, 1.0, 1.0);
 	}
 
 	@Override
-	public void onFruitPicked(Item picked) {
+	public void onFruitPicked(final Item picked) {
 		super.onFruitPicked(picked);
 		setRipeness(0);
 		notifyWorldAboutChanges();

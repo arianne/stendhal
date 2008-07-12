@@ -25,19 +25,19 @@ public class ElementalsNPCs implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPCs(zone);
 	}
 
-	private void buildNPCs(StendhalRPZone zone) {
-		String[] names = {"Savanka", "Xeoilia", "Azira"};
-		Node[] start = new Node[] { new Node(115, 6), new Node(124, 10), new Node(116, 18) };
+	private void buildNPCs(final StendhalRPZone zone) {
+		final String[] names = {"Savanka", "Xeoilia", "Azira"};
+		final Node[] start = new Node[] { new Node(115, 6), new Node(124, 10), new Node(116, 18) };
 		for (int i = 0; i < 3; i++) {
-			SpeakerNPC npc = new SpeakerNPC(names[i]) {
+			final SpeakerNPC npc = new SpeakerNPC(names[i]) {
 
 				@Override
 				protected void createPath() {
-					List<Node> nodes = new LinkedList<Node>();
+					final List<Node> nodes = new LinkedList<Node>();
 					nodes.add(new Node(115, 6));
                     nodes.add(new Node(119, 6));
 					nodes.add(new Node(119, 5));

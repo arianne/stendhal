@@ -15,13 +15,13 @@ public class JokerExprMatcherTest {
 
 	@Test
 	public final void testJokerMatching() {
-		ExpressionMatcher matcher = new JokerExprMatcher();
+		final ExpressionMatcher matcher = new JokerExprMatcher();
 
-		Expression e1 = new Expression("abc", "VER");
-		Expression e2 = new Expression("a*c", "VER");
-		Expression e3 = new Expression("ab", "VER");
-		Expression e4 = new Expression("ab*", "SUB");
-		Expression e5 = new Expression("X", "SUB");
+		final Expression e1 = new Expression("abc", "VER");
+		final Expression e2 = new Expression("a*c", "VER");
+		final Expression e3 = new Expression("ab", "VER");
+		final Expression e4 = new Expression("ab*", "SUB");
+		final Expression e5 = new Expression("X", "SUB");
 
 		assertTrue(matcher.match(e1, e2));
 		assertFalse(matcher.match(e1, e3));
@@ -32,7 +32,7 @@ public class JokerExprMatcherTest {
 
 	@Test
 	public final void testSentenceMatching() {
-		Sentence m1 = ConversationParser.parseForMatching("|JOKER|h*llo");
+		final Sentence m1 = ConversationParser.parseForMatching("|JOKER|h*llo");
 		assertFalse(m1.hasError());
 		assertEquals("|JOKER|h*llo", m1.toString());
 

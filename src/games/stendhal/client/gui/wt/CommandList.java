@@ -22,7 +22,7 @@ public class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	/** the entity associated with the command list. */
-	private EntityView view;
+	private final EntityView view;
 
 	/**
 	 * Create an entity view command list.
@@ -43,7 +43,7 @@ public class CommandList extends WtPopupMenu {
 		populate(items);
 	}
 
-	protected void populate(String[] items) {
+	protected void populate(final String[] items) {
 		ActionListener listener;
 		Icon adminIcon;
 		Icon icon;
@@ -52,7 +52,7 @@ public class CommandList extends WtPopupMenu {
 		listener = new ActionSelectedCB();
 		adminIcon = new AdminIcon();
 
-		for (String item : items) {
+		for (final String item : items) {
 			if (item.startsWith("(*)")) {
 				icon = adminIcon;
 				label = item.substring(3);
@@ -61,7 +61,7 @@ public class CommandList extends WtPopupMenu {
 				label = item;
 			}
 
-			JMenuItem mi = createItem(label, icon);
+			final JMenuItem mi = createItem(label, icon);
 			mi.setActionCommand(item);
 			mi.addActionListener(listener);
 			add(mi);
@@ -70,7 +70,7 @@ public class CommandList extends WtPopupMenu {
 
 	/** an action has been chosen. 
 	 * @param command */
-	protected void doAction(String command) {
+	protected void doAction(final String command) {
 		// tell the entity what happened
 		view.onAction(ActionType.getbyRep(command));
 	}
@@ -87,7 +87,7 @@ public class CommandList extends WtPopupMenu {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			doAction(ev.getActionCommand());
 		}
 	}
@@ -118,7 +118,7 @@ public class CommandList extends WtPopupMenu {
 			return 7;
 		}
 
-		public void paintIcon(Component c, Graphics g, int x, int y) {
+		public void paintIcon(final Component c, final Graphics g, final int x, final int y) {
 			Color oldColor;
 
 			oldColor = g.getColor();

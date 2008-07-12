@@ -28,7 +28,7 @@ public final class PunctuationParser {
 
 	private void extractTrailingAndTrimText() {
 		int i = text.length() - 1;
-		while (i >= 0 && isPunctuation(text.charAt(i))) {
+		while ((i >= 0) && isPunctuation(text.charAt(i))) {
 			i--;
 		}
 
@@ -38,7 +38,7 @@ public final class PunctuationParser {
 
 	private void extractPreceedingAndTrimText() {
 		int i = 0;
-		while (i < text.length() && isPunctuation(text.charAt(i))) {
+		while ((i < text.length()) && isPunctuation(text.charAt(i))) {
 			i++;
 		}
 
@@ -51,8 +51,8 @@ public final class PunctuationParser {
 	 * @param c 
 	 * @return true if one of  . , ! or ? .
 	 */
-	private boolean isPunctuation(char c) {
-		return (c == '.' || c == ',' || c == '!' || c == '?');
+	private boolean isPunctuation(final char c) {
+		return ((c == '.') || (c == ',') || (c == '!') || (c == '?'));
 	}
 
 	/**

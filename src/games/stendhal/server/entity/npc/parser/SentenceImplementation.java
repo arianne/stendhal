@@ -33,7 +33,7 @@ public final class SentenceImplementation extends Sentence {
     public SentenceImplementation(final Expression... exprs) {
         super(new ConversationContext());
 
-        for (Expression e : exprs) {
+        for (final Expression e : exprs) {
             expressions.add(e);
         }
     }
@@ -55,13 +55,13 @@ public final class SentenceImplementation extends Sentence {
                     prevWord.setBreakFlag();
                 }
             } else {
-                PunctuationParser punct = new PunctuationParser(ws);
+                final PunctuationParser punct = new PunctuationParser(ws);
 
-                String precedingPunct = punct.getPrecedingPunctuation();
+                final String precedingPunct = punct.getPrecedingPunctuation();
                 String text = punct.getText();
 
                 // avoid to trim leading decimal points from numbers
-                if (precedingPunct.length() > 0 && text.matches("[0-9.,]+")) {
+                if ((precedingPunct.length() > 0) && text.matches("[0-9.,]+")) {
                     text = ws;
                 }
 
@@ -73,7 +73,7 @@ public final class SentenceImplementation extends Sentence {
                     }
                 }
 
-                Expression word = new Expression(text);
+                final Expression word = new Expression(text);
                 expressions.add(word);
 
                 // handle trailing comma characters
@@ -93,10 +93,10 @@ public final class SentenceImplementation extends Sentence {
      * @param errors
      */
     void classifyWords(final ErrorDrain errors) {
-        WordList wl = WordList.getInstance();
+        final WordList wl = WordList.getInstance();
 
-        for (Expression w : expressions) {
-            String original = w.getOriginal();
+        for (final Expression w : expressions) {
+            final String original = w.getOriginal();
             WordEntry entry = null;
 
             // If the parsed Sentence will be used for matching, look for ExpressionType specifiers.
@@ -111,7 +111,7 @@ public final class SentenceImplementation extends Sentence {
                 entry = wl.find(original);
             }
 
-            if (entry != null && entry.getType() != null) {
+            if ((entry != null) && (entry.getType() != null)) {
                 w.setType(entry.getType());
 
                 if (entry.getType().isNumeral()) {
@@ -133,7 +133,7 @@ public final class SentenceImplementation extends Sentence {
                 // handle numeric expressions
                 if (original.matches("^[+-]?[0-9.,]+")) {
                     w.parseAmount(original, errors);
-                    int amount = w.getAmount();
+                    final int amount = w.getAmount();
 
                     if (amount < 0) {
                         errors.setError("negative amount: " + amount);
@@ -144,7 +144,7 @@ public final class SentenceImplementation extends Sentence {
             // handle unknown words
             if (w.getType() == null) {
                 // recognize declined verbs, e.g. "swimming"
-                WordEntry verb = wl.normalizeVerb(original);
+                final WordEntry verb = wl.normalizeVerb(original);
 
                 if (verb != null) {
                     if (Grammar.isGerund(original)) {
@@ -156,7 +156,7 @@ public final class SentenceImplementation extends Sentence {
                     w.setNormalized(verb.getNormalized());
                 } else {
                     // recognize derived adjectives, e.g. "magical" or "nomadic"
-                    WordEntry adjective = wl.normalizeAdjective(original);
+                    final WordEntry adjective = wl.normalizeAdjective(original);
 
                     if (adjective != null) {
                         if (Grammar.isDerivedAdjective(original)) {
@@ -175,7 +175,7 @@ public final class SentenceImplementation extends Sentence {
 
                         if (entry == null) {
                             // Don't persist expressions used for joker matching.
-                            boolean persist = context.getPersistNewWords()
+                            final boolean persist = context.getPersistNewWords()
                                     && (!context.isForMatching() || !original.contains(Expression.JOKER));
 
                             // Add the unknown word to the word list.
@@ -194,7 +194,7 @@ public final class SentenceImplementation extends Sentence {
         // Look for a "me" without any preceding other subject.
         Expression prevVerb = null;
 
-        for (Expression w : expressions) {
+        for (final Expression w : expressions) {
             if (w.getBreakFlag()) {
                 break;
             }
@@ -214,7 +214,7 @@ public final class SentenceImplementation extends Sentence {
                         	//TODO The following line as an ugly hack to let Gordon recognize statements like "rent Me ...".
                         	// It should be replaced by using sentence matching "[you] rent" in SignLessorNPC.
                         	if (!prevVerb.getNormalized().equals("rent")) {
-	                            Expression you = new Expression("you", ExpressionType.SUBJECT);
+	                            final Expression you = new Expression("you", ExpressionType.SUBJECT);
 	                            expressions.add(0, you);
 	                            sentenceType = SentenceType.IMPERATIVE;
                         	}
@@ -233,10 +233,10 @@ public final class SentenceImplementation extends Sentence {
      * integrated with the FSM engine so that quest writers can specify the conversation syntax on their own.
      */
     void performaAliasing() {
-        Expression verb1 = getVerb(0);
-        Expression verb2 = getVerb(1);
-        Expression subject1 = getSubject(0);
-        Expression subject2 = getSubject(1);
+        final Expression verb1 = getVerb(0);
+        final Expression verb2 = getVerb(1);
+        final Expression subject1 = getSubject(0);
+        final Expression subject2 = getSubject(1);
 
         // Does the Sentence start with a "will/would SUBJECT VERB" construct?
         if (matchesNormalizedStart("will SUB VER")) {
@@ -286,7 +286,7 @@ public final class SentenceImplementation extends Sentence {
      * @return true for match
      */
     private static boolean isYouGiveMe(final Expression subject1, final Expression verb, final Expression subject2) {
-        if (verb != null && subject1 != null && subject2 != null) {
+        if ((verb != null) && (subject1 != null) && (subject2 != null)) {
             // Note: The second subject "me" is replaced by "i" in the WordList normalization.
             if (subject1.getNormalized().equals("you") && verb.getNormalized().equals("give")
                     && subject2.getNormalized().equals("i")) {
@@ -303,21 +303,21 @@ public final class SentenceImplementation extends Sentence {
      * @return true for match
      */
     private boolean isLikeToHave() {
-        Expression verb = getVerb();
+        final Expression verb = getVerb();
 
         if (verb != null) {
             if (verb.getNormalized().equals("have") && verb.getOriginal().contains("like")) {
-                Expression subject1 = getSubject(0);
-                Expression firstExpression = expressions.get(0);
-                Expression secondExpression = expressions.get(1);
+                final Expression subject1 = getSubject(0);
+                final Expression firstExpression = expressions.get(0);
+                final Expression secondExpression = expressions.get(1);
 
                 // "(would like to have)" ?
-                if (subject1 == null && verb == firstExpression) {
+                if ((subject1 == null) && (verb == firstExpression)) {
                     return true;
                 }
 
                 // "SUBJECT (would like to have)" ?
-                if (subject1 == firstExpression && verb == secondExpression) {
+                if ((subject1 == firstExpression) && (verb == secondExpression)) {
                     return true;
                 }
             }
@@ -332,7 +332,7 @@ public final class SentenceImplementation extends Sentence {
      * @return SentenceType
      */
     SentenceType evaluateSentenceType() {
-        Iterator<Expression> it = expressions.iterator();
+        final Iterator<Expression> it = expressions.iterator();
         SentenceType type = SentenceType.UNDEFINED;
 
         // As words are not yet merged together at this stage, we have to use Expression.nextValid()
@@ -340,7 +340,7 @@ public final class SentenceImplementation extends Sentence {
         Expression first = nextValid(it);
 
         if (first != null) {
-            while (first != null && first.isQuestion() && it.hasNext()) {
+            while ((first != null) && first.isQuestion() && it.hasNext()) {
                 if (type == SentenceType.UNDEFINED) {
                     type = SentenceType.QUESTION;
                 }
@@ -369,7 +369,7 @@ public final class SentenceImplementation extends Sentence {
 
                     expressions.remove(first);
                 } else if (first.getNormalized().equals("it") && second.getNormalized().equals("is")
-                        && (third != null && third.getType() != null && third.getType().isGerund())) {
+                        && ((third != null) && (third.getType() != null) && third.getType().isGerund())) {
                     // statement begins with "it is <VER-GER>"
                     if (type == SentenceType.UNDEFINED) {
                         type = SentenceType.STATEMENT;
@@ -381,7 +381,7 @@ public final class SentenceImplementation extends Sentence {
             }
         }
 
-        if (type != SentenceType.UNDEFINED && sentenceType == SentenceType.UNDEFINED) {
+        if ((type != SentenceType.UNDEFINED) && (sentenceType == SentenceType.UNDEFINED)) {
             sentenceType = type;
         }
 
@@ -425,7 +425,7 @@ public final class SentenceImplementation extends Sentence {
         do {
             changed = false;
 
-            Iterator<Expression> it = expressions.iterator();
+            final Iterator<Expression> it = expressions.iterator();
 
             boolean prevConditional = false;
             boolean precedingVerb = false;
@@ -436,7 +436,7 @@ public final class SentenceImplementation extends Sentence {
                 // loop over all words of the sentence starting from left
                 while (it.hasNext()) {
                     // Now look at two consecutive words.
-                    Expression curr = next;
+                    final Expression curr = next;
                     next = it.next();
 
                     // don't merge if the break flag is set
@@ -452,14 +452,14 @@ public final class SentenceImplementation extends Sentence {
                         }
                     }
 
-                    ExpressionType curType = curr.getType();
-                    ExpressionType nextType = next.getType();
+                    final ExpressionType curType = curr.getType();
+                    final ExpressionType nextType = next.getType();
 
-                    if (curType != null && curType.isConditional()) {
+                    if ((curType != null) && curType.isConditional()) {
                         prevConditional = true;
                     }
 
-                    if (curType != null && nextType != null) {
+                    if ((curType != null) && (nextType != null)) {
                         // left-merge composite nouns and nouns with preceding adjectives or verbs
                         if (isCompoundNoun(curType, nextType, precedingVerb)) {
                             // special case for "ice cream" -> "ice"
@@ -510,7 +510,7 @@ public final class SentenceImplementation extends Sentence {
 
                     // left-merge words to ignore
                     if (context.getIgnoreIgnorable()) {
-                        if (curType != null && isIgnorable(curr)) {
+                        if ((curType != null) && isIgnorable(curr)) {
                             next.mergeLeft(curr, false);
                             expressions.remove(curr);
                             changed = true;
@@ -550,12 +550,12 @@ public final class SentenceImplementation extends Sentence {
     private static boolean isCompoundNoun(final ExpressionType curType, final ExpressionType nextType,
             final boolean precedingVerb) {
         // check the next expression type for concrete subject or object names (no pronouns)
-        boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
+        final boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
 
         // left-merge composite nouns and nouns with preceding adjectives or verbs
         if (nextIsName) {
             // check the current expression type for concrete subject or object names (no pronouns)
-            boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
+            final boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
 
             // handle compound words like "fire sword"
             if (currIsName) {
@@ -586,7 +586,7 @@ public final class SentenceImplementation extends Sentence {
 
         // loop until no more simplification can be made
         do {
-            Iterator<Expression> it = expressions.iterator();
+            final Iterator<Expression> it = expressions.iterator();
 
             changed = false;
 
@@ -622,8 +622,8 @@ public final class SentenceImplementation extends Sentence {
                         // merge "... of ..." expressions into one expression, preserving
                         // only the main word as merged normalized expression
                         if (first.isObject() && second.getNormalized().equals("of") && third.isObject()) {
-                            String expr = first.getNormalized() + " of " + third.getNormalized();
-                            String normalizedExpr = Grammar.extractNoun(expr);
+                            final String expr = first.getNormalized() + " of " + third.getNormalized();
+                            final String normalizedExpr = Grammar.extractNoun(expr);
 
                             // see if the expression has been normalized
                             if (normalizedExpr != expr) {

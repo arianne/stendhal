@@ -44,16 +44,16 @@ public class MagicExtn extends StendhalServerExtension implements
 		// implemented as /commands that are handled onAction
 	}
 
-	public void onAction(Player player, RPAction action) {
-		String type = action.get("type");
+	public void onAction(final Player player, final RPAction action) {
+		final String type = action.get("type");
 
 		if (type.equals("spell")) {
 			onSpell(player, action);
 		}
 	}
 
-	private void onSpell(Player player, RPAction action) {
-		String usage = "Usage: #/spell <spellname>";
+	private void onSpell(final Player player, final RPAction action) {
+		final String usage = "Usage: #/spell <spellname>";
 		String text = "";
 
 		boolean canCastSpell = false;
@@ -77,7 +77,7 @@ public class MagicExtn extends StendhalServerExtension implements
 		// the list of spells
 		// TODO: Is this getQuest("spells") correct, shouldn't it be s.th. like
 		// player.getSlot("spells")... ?
-		String availableSpells = player.getQuest("spells");
+		final String availableSpells = player.getQuest("spells");
 		
 		if (availableSpells == null) {
 			player.sendPrivateText("You can not cast this spell.");
@@ -98,9 +98,9 @@ public class MagicExtn extends StendhalServerExtension implements
 				if (player.getMana() > 15) {
 					player.heal();
 
-					String mana = player.get("mana");
-					int mana_a = Integer.parseInt(mana);
-					int newmana = mana_a - 15;
+					final String mana = player.get("mana");
+					final int mana_a = Integer.parseInt(mana);
+					final int newmana = mana_a - 15;
 					player.put("mana", newmana);
 					player.sendPrivateText("You have been healed.");
 					player.update();
@@ -117,19 +117,19 @@ public class MagicExtn extends StendhalServerExtension implements
 
 					// gets old stats
 					int oldLevel = player.getLevel();
-					int oldXP = player.getXP();
-					int oldDefXP = player.getDEFXP();
+					final int oldXP = player.getXP();
+					final int oldDefXP = player.getDEFXP();
 					int oldDef = player.getDEF();
 					int oldAtk = player.getATK();
-					int oldAtkXP = player.getATKXP();
+					final int oldAtkXP = player.getATKXP();
 
 					// gets new stats
-					int newLevel = oldLevel++;
-					int newXP = oldXP + 44900;
-					int newDefXP = oldDefXP + 24700;
-					int newDef = oldDef++;
-					int newAtkXP = oldAtkXP + 24700;
-					int newAtk = oldAtk++;
+					final int newLevel = oldLevel++;
+					final int newXP = oldXP + 44900;
+					final int newDefXP = oldDefXP + 24700;
+					final int newDef = oldDef++;
+					final int newAtkXP = oldAtkXP + 24700;
+					final int newAtk = oldAtk++;
 
 					// sets new stats
 					player.setXP(newXP);
@@ -145,9 +145,9 @@ public class MagicExtn extends StendhalServerExtension implements
 
 					// takes away mana
 					// player.put("mana", player.getMana() - 110);
-					String mana = player.get("mana");
-					int mana_a = Integer.parseInt(mana);
-					int newmana = mana_a - 110;
+					final String mana = player.get("mana");
+					final int mana_a = Integer.parseInt(mana);
+					final int newmana = mana_a - 110;
 					player.put("mana", newmana);
 
 					player.sendPrivateText("Your stats have been raised.");

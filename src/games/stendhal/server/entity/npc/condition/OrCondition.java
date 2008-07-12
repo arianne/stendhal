@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class OrCondition extends SpeakerNPC.ChatCondition {
 
-	private List<SpeakerNPC.ChatCondition> conditions;
+	private final List<SpeakerNPC.ChatCondition> conditions;
 
 	/**
 	 * Creates a new "or"-condition.
@@ -23,14 +23,14 @@ public class OrCondition extends SpeakerNPC.ChatCondition {
 	 * @param condition
 	 *            condition which should be or-ed.
 	 */
-	public OrCondition(SpeakerNPC.ChatCondition... condition) {
+	public OrCondition(final SpeakerNPC.ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		for (SpeakerNPC.ChatCondition condition : conditions) {
-			boolean res = condition.fire(player, sentence, engine);
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		for (final SpeakerNPC.ChatCondition condition : conditions) {
+			final boolean res = condition.fire(player, sentence, engine);
 			if (res) {
 				return true;
 			}
@@ -49,7 +49,7 @@ public class OrCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

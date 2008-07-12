@@ -20,8 +20,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 * @param player Player object
 	 * @return Helmet
 	 */
-	private Item createTrophyHelmet(Player player) {
-		Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
+	private Item createTrophyHelmet(final Player player) {
+		final Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
 		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
 		helmet.setInfoString(player.getName());
@@ -38,25 +38,25 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 * @param player Player
 	 * @return new amount of points
 	 */
-	private int updatePoints(Player player) {
-		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
-		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+	private int updatePoints(final Player player) {
+		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getQuestLevel());
 		return rules.getHallOfFamePoints(player.getName(), "D");
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {
 			engine.say("C'm on, don't lie to me! All you can do now is #bail or win.");
 			return;
 		}
 
-		int points = updatePoints(player);
+		final int points = updatePoints(player);
 
 		// We assume that the player only carries one trophy helmet.
-		Item helmet = player.getFirstEquipped("trophy helmet");
+		final Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet == null) {
 			createTrophyHelmet(player);
 			engine.say("Congratulations, your score is now " + points
@@ -67,7 +67,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 				defense = helmet.getInt("def");
 			}
 			defense++;
-			int maxdefense = 5 + (player.getLevel() / 5);
+			final int maxdefense = 5 + (player.getLevel() / 5);
 			if (defense > maxdefense) {
 				helmet.put("def", maxdefense);
 				engine.say("Congratulations, your score is now "

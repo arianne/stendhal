@@ -38,8 +38,8 @@ public abstract class TimedStackableItem extends StackableItem implements
 	 * @param subclass
 	 * @param attributes
 	 */
-	public TimedStackableItem(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public TimedStackableItem(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -49,11 +49,11 @@ public abstract class TimedStackableItem extends StackableItem implements
 	 * @param item
 	 *            item to copy
 	 */
-	public TimedStackableItem(TimedStackableItem item) {
+	public TimedStackableItem(final TimedStackableItem item) {
 		super(item);
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		RPObject base = this;
 		boolean result = false;
 
@@ -65,7 +65,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 		if (user.nextTo((Entity) base)) {
 			if (useItem((Player) user)) {
 				/* set the timer for the duration */
-				TurnNotifier notifier = SingletonRepository.getTurnNotifier();
+				final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
 				notifier.notifyInTurns(getAmount(), this);
 				player = new WeakReference<Player>((Player) user);
 				this.removeOne();
@@ -81,7 +81,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 	}
 
 	@Override
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		itemFinished(player.get());
 	}
 
@@ -92,7 +92,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 			text = getDescription();
 		}
 
-		String boundTo = getBoundTo();
+		final String boundTo = getBoundTo();
 
 		if (isBound()) {
 			text = text + " It is a special quest reward for " + boundTo
@@ -103,7 +103,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 	}
 
 	@Override
-	public boolean isStackable(Stackable other) {
+	public boolean isStackable(final Stackable other) {
 		return (other.getClass() == this.getClass());
 	}
 

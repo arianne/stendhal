@@ -26,19 +26,20 @@ public class PlayerListTest {
 	@Test
 	public void testPlayerList() {
 		@SuppressWarnings("unused")
+		final
 		PlayerList list = new PlayerList();
 		
 	}
 
 	@Test
 	public void testGetOnlinePlayer() {
-		PlayerList list = new PlayerList();
+		final PlayerList list = new PlayerList();
 		assertThat(list.size(), is(0));
-		Player jack = PlayerTestHelper.createPlayer("jack");
+		final Player jack = PlayerTestHelper.createPlayer("jack");
 		list.add(jack);
 		assertThat(list.size(), is(1));
 		assertSame(jack, list.getOnlinePlayer("jack"));
-		Player jack2 = PlayerTestHelper.createPlayer("jack");
+		final Player jack2 = PlayerTestHelper.createPlayer("jack");
 		list.add(jack2);
 		assertThat(list.size(), is(1));
 		assertThat(jack2, sameInstance(list.getOnlinePlayer("jack")));
@@ -49,17 +50,17 @@ public class PlayerListTest {
 
 	@Test
 	public void testAllPlayersModify() {
-		Player jack = PlayerTestHelper.createPlayer("jack");
-		Player bob = PlayerTestHelper.createPlayer("bob");
-		Player ghost = PlayerTestHelper.createPlayer("ghost");
+		final Player jack = PlayerTestHelper.createPlayer("jack");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player ghost = PlayerTestHelper.createPlayer("ghost");
 		ghost.setGhost(true);
-		PlayerList list = new PlayerList();
+		final PlayerList list = new PlayerList();
 		list.add(jack);
 		list.add(bob);
 		list.add(ghost);
 		final String testString = "testString";
 		list.forAllPlayersExecute(new Task<Player>() {
-			public void execute(Player player) {
+			public void execute(final Player player) {
 				player.put(testString, testString);
 			}
 		});
@@ -69,11 +70,11 @@ public class PlayerListTest {
 		assertEquals(testString, ghost.get(testString));
 
 		list.forFilteredPlayersExecute(new Task<Player>() {
-			public void execute(Player player) {
+			public void execute(final Player player) {
 				player.put(testString, "");
 			}
 		}, new FilterCriteria<Player>() {
-			public boolean passes(Player o) {
+			public boolean passes(final Player o) {
 				return o.isGhost();
 			}
 		});
@@ -84,9 +85,9 @@ public class PlayerListTest {
 
 	@Test
 	public void testAllPlayersRemove() {
-		Player jack = PlayerTestHelper.createPlayer("jack");
-		Player bob = PlayerTestHelper.createPlayer("bob");
-		Player ghost = PlayerTestHelper.createPlayer("ghost");
+		final Player jack = PlayerTestHelper.createPlayer("jack");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player ghost = PlayerTestHelper.createPlayer("ghost");
 		ghost.setGhost(true);
 		final PlayerList list = new PlayerList();
 		list.add(jack);
@@ -94,7 +95,7 @@ public class PlayerListTest {
 		list.add(ghost);
 		list.forAllPlayersExecute(new Task<Player>() {
 
-			public void execute(Player player) {
+			public void execute(final Player player) {
 				list.remove(player);
 			}
 
@@ -104,9 +105,9 @@ public class PlayerListTest {
 
 	@Test
 	public void testGetOnlineCaseInsensitivePlayer() {
-		PlayerList list = new PlayerList();
+		final PlayerList list = new PlayerList();
 		assertThat(list.size(), is(0));
-		Player jack = PlayerTestHelper.createPlayer("jack");
+		final Player jack = PlayerTestHelper.createPlayer("jack");
 		list.add(jack);
 		assertThat(list.size(), is(1));
 		assertSame(jack, list.getOnlinePlayer("jack"));
@@ -116,8 +117,8 @@ public class PlayerListTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddPlayerWithEqualName() {
-		PlayerList list = new PlayerList();
-		Player jack = new Player(new RPObject()) {
+		final PlayerList list = new PlayerList();
+		final Player jack = new Player(new RPObject()) {
 		};
 		list.add(jack);
 

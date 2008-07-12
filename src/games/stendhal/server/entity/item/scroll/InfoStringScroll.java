@@ -30,8 +30,8 @@ public class InfoStringScroll extends Scroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public InfoStringScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public InfoStringScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -41,14 +41,14 @@ public class InfoStringScroll extends Scroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public InfoStringScroll(InfoStringScroll item) {
+	public InfoStringScroll(final InfoStringScroll item) {
 		super(item);
 	}
 
 	// TODO: Move up to stackable item?
 	@Override
-	public boolean isStackable(Stackable other) {
-		StackableItem otheri = (StackableItem) other;
+	public boolean isStackable(final Stackable other) {
+		final StackableItem otheri = (StackableItem) other;
 
 		// Same types?
 		if (!super.isStackable(other)) {
@@ -56,8 +56,8 @@ public class InfoStringScroll extends Scroll {
 		}
 
 		// scroll can be stacked if they have the same infostring
-		String infostring = getInfoString();
-		String oinfostring = otheri.getInfoString();
+		final String infostring = getInfoString();
+		final String oinfostring = otheri.getInfoString();
 
 		if (infostring != null) {
 			return infostring.equals(oinfostring);

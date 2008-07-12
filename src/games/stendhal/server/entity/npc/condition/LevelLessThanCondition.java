@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
-	private int level;
+	private final int level;
 
 	/**
 	 * Creates a new LevelGreaterThanCondition.
@@ -20,12 +20,12 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 	 * @param level
 	 *            level '
 	 */
-	public LevelLessThanCondition(int level) {
+	public LevelLessThanCondition(final int level) {
 		this.level = level;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (player.getLevel() < level);
 	}
 
@@ -40,7 +40,7 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				LevelLessThanCondition.class);
 	}

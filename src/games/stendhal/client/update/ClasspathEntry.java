@@ -7,7 +7,7 @@ package games.stendhal.client.update;
  */
 public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
-	private String filename;
+	private final String filename;
 
 	private String type;
 
@@ -18,7 +18,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 	 * 
 	 * @param filename
 	 */
-	public ClasspathEntry(String filename) {
+	public ClasspathEntry(final String filename) {
 		this.filename = filename;
 		String temp = filename;
 		if (temp.toLowerCase().endsWith(".jar")) {
@@ -64,7 +64,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		return version;
 	}
 
-	public int compareTo(ClasspathEntry other) {
+	public int compareTo(final ClasspathEntry other) {
 
 		// 1. step: put entries without version to the end
 		if (this.version == null) {
@@ -78,7 +78,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		}
 
 		// 2. compare versions
-		int versionDiff = Version.compare(this.version, other.version);
+		final int versionDiff = Version.compare(this.version, other.version);
 		if (versionDiff != 0) {
 			return versionDiff;
 		}

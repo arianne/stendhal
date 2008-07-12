@@ -25,20 +25,20 @@ import java.text.AttributedString;
 
 public class MockScreen implements IGameScreen {
 
-	public void addEntity(Entity entity) {
+	public void addEntity(final Entity entity) {
 	}
 
-	public void addText(double x, double y, String text,
-			NotificationType type, boolean isTalking) {
+	public void addText(final double x, final double y, final String text,
+			final NotificationType type, final boolean isTalking) {
 	}
 
-	public void addText(double x, double y, String text, Color color, boolean talking) {
+	public void addText(final double x, final double y, final String text, final Color color, final boolean talking) {
 	}
 
-	public void addText(int sx, int sy, String text, NotificationType type, boolean talking) {
+	public void addText(final int sx, final int sy, final String text, final NotificationType type, final boolean talking) {
 	}
 
-	public void addText(int sx, int sy, String text, Color color, boolean isTalking) {
+	public void addText(final int sx, final int sy, final String text, final Color color, final boolean isTalking) {
 	}
 
 	public void center() {
@@ -50,52 +50,52 @@ public class MockScreen implements IGameScreen {
 	public void clearTexts() {
 	}
 
-	public Point2D convertScreenToWorld(int x, int y) {
+	public Point2D convertScreenToWorld(final int x, final int y) {
 		return null;
 	}
 
-	public Point2D convertScreenViewToWorld(Point p) {
+	public Point2D convertScreenViewToWorld(final Point p) {
 		return null;
 	}
 
-	public Point2D convertScreenViewToWorld(int x, int y) {
+	public Point2D convertScreenViewToWorld(final int x, final int y) {
 		return null;
 	}
 
-	public int convertWorldToScreen(double w) {
+	public int convertWorldToScreen(final double w) {
 		return 0;
 	}
 
-	public Point convertWorldToScreenView(double wx, double wy) {
+	public Point convertWorldToScreenView(final double wx, final double wy) {
 		return null;
 	}
 
-	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
+	public Rectangle convertWorldToScreenView(final Rectangle2D wrect) {
 		return null;
 	}
 
-	public Rectangle convertWorldToScreenView(double wx, double wy,
-			double wwidth, double wheight) {
-
-		return null;
-	}
-
-	public Point convertWorldToScreenView(Point2D pos) {
-		return null;
-	}
-
-	public Sprite createString(String text, NotificationType type) {
+	public Rectangle convertWorldToScreenView(final double wx, final double wy,
+			final double wwidth, final double wheight) {
 
 		return null;
 	}
 
-	public Sprite createString(String text, Color textColor) {
+	public Point convertWorldToScreenView(final Point2D pos) {
+		return null;
+	}
+
+	public Sprite createString(final String text, final NotificationType type) {
 
 		return null;
 	}
 
-	public Sprite createTextBox(String text, int width, Color textColor,
-			Color fillColor, boolean isTalking) {
+	public Sprite createString(final String text, final Color textColor) {
+
+		return null;
+	}
+
+	public Sprite createTextBox(final String text, final int width, final Color textColor,
+			final Color fillColor, final boolean isTalking) {
 
 		return null;
 	}
@@ -103,32 +103,32 @@ public class MockScreen implements IGameScreen {
 	public void draw() {
 	}
 
-	public void draw(Sprite sprite, double wx, double wy) {
+	public void draw(final Sprite sprite, final double wx, final double wy) {
 	}
 
-	public void drawInScreen(Sprite sprite, int sx, int sy) {
+	public void drawInScreen(final Sprite sprite, final int sx, final int sy) {
 	}
 
-	public void drawOutlineString(Graphics g, Color textColor, String text, int x, int y) {
+	public void drawOutlineString(final Graphics g, final Color textColor, final String text, final int x, final int y) {
 	}
 
-	public void drawOutlineString(Graphics g, Color textColor,
-			Color outlineColor, String text, int x, int y) {
+	public void drawOutlineString(final Graphics g, final Color textColor,
+			final Color outlineColor, final String text, final int x, final int y) {
 	}
 
 	public Graphics2D expose() {
 		return null;
 	}
 
-	public AttributedString formatLine(String line, Font fontNormal, Color colorNormal) {
+	public AttributedString formatLine(final String line, final Font fontNormal, final Color colorNormal) {
 		return null;
 	}
 
-	public Dimension convertWorldToScreen(Dimension2D d) {
+	public Dimension convertWorldToScreen(final Dimension2D d) {
 	    return null;
     }
 
-	public Dimension convertWorldXToScreenView(Dimension s) {
+	public Dimension convertWorldXToScreenView(final Dimension s) {
 	    return null;
     }
 
@@ -152,62 +152,62 @@ public class MockScreen implements IGameScreen {
 	    return null;
     }
 
-	public Text getTextAt(double x, double y) {
+	public Text getTextAt(final double x, final double y) {
 		return null;
 	}
 
-	public boolean isInScreen(Rectangle srect) {
+	public boolean isInScreen(final Rectangle srect) {
 		return false;
 	}
 
-	public boolean isInScreen(int sx, int sy, int swidth, int sheight) {
+	public boolean isInScreen(final int sx, final int sy, final int swidth, final int sheight) {
 		return false;
 	}
 
 	public void nextFrame() {
 	}
 
-	public void positionChanged(double x, double y) {
+	public void positionChanged(final double x, final double y) {
 	}
 
 	public void removeAll() {
 	}
 
-	public void removeEntity(Entity entity) {
+	public void removeEntity(final Entity entity) {
 	}
 
-	public void removeText(Text entity) {
+	public void removeText(final Text entity) {
 	}
 
-	public void setMaxWorldSize(double width, double height) {
+	public void setMaxWorldSize(final double width, final double height) {
 	}
 
-	public void setOffline(boolean offline) {
+	public void setOffline(final boolean offline) {
 	}
 
-	public EntityView createView(Entity entity) {
+	public EntityView createView(final Entity entity) {
 		return null;
 	}
 
-	public EntityView getEntityViewAt(double x, double y) {
+	public EntityView getEntityViewAt(final double x, final double y) {
 		return null;
 	}
 
-	public EntityView getMovableEntityViewAt(double x, double y) {
+	public EntityView getMovableEntityViewAt(final double x, final double y) {
 		return null;
 	}
 
-	public void addDialog(WtPanel panel) {
+	public void addDialog(final WtPanel panel) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public int convertWorldXToScreenView(double wx) {
+	public int convertWorldXToScreenView(final double wx) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int convertWorldYToScreenView(double wy) {
+	public int convertWorldYToScreenView(final double wy) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

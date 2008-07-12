@@ -21,7 +21,7 @@ import java.util.Map;
  * Configure Orril Jynath House (Inside/Level 0).
  */
 public class WitchNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 	/**
 	 * Configure a zone.
 	 *
@@ -30,18 +30,18 @@ public class WitchNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildJynathHouse(zone, attributes);
 	}
 
-	private void buildJynathHouse(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Jynath") {
+	private void buildJynathHouse(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Jynath") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(24, 7));
 				nodes.add(new Node(21, 7));
 				nodes.add(new Node(21, 9));

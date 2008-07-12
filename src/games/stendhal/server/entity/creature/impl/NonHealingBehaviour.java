@@ -5,11 +5,11 @@ import games.stendhal.server.entity.creature.Creature;
 final class NonHealingBehaviour implements HealerBehavior {
 
 	
-	public void heal(Creature creature) {
+	public void heal(final Creature creature) {
 		// does not heal;
 	}
 
-	public void init(String healingProfile) {
+	public void init(final String healingProfile) {
 		// does not need init
 		
 	}

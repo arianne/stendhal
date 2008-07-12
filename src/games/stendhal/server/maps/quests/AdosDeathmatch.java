@@ -33,10 +33,10 @@ public class AdosDeathmatch extends AbstractQuest {
 		// constructor for quest system
 	}
 
-	public AdosDeathmatch(StendhalRPZone zone, Area arena) {
+	public AdosDeathmatch(final StendhalRPZone zone, final Area arena) {
 		this.zone = zone;
 		this.arena = arena;
-		Spot entrance = new Spot(zone, 96, 75);
+		final Spot entrance = new Spot(zone, 96, 75);
 
 		deathmatchInfo = new DeathmatchInfo(arena, zone, entrance);
 		zone.setTeleportAllowed(false);
@@ -50,8 +50,8 @@ public class AdosDeathmatch extends AbstractQuest {
 	 * @param y
 	 *            y-position of helmet
 	 */
-	public void createHelmet(int x, int y) {
-		Item helmet = SingletonRepository.getEntityManager()
+	public void createHelmet(final int x, final int y) {
+		final Item helmet = SingletonRepository.getEntityManager()
 				.getItem("trophy helmet");
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
@@ -60,10 +60,10 @@ public class AdosDeathmatch extends AbstractQuest {
 		zone.add(helmet);
 	}
 
-	public void createNPC(String name, int x, int y) {
+	public void createNPC(final String name, final int x, final int y) {
 
 		// We create an NPC
-		SpeakerNPC npc = new SpeakerNPC(name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 
 			@Override
 			protected void createPath() {

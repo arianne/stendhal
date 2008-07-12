@@ -15,7 +15,7 @@ public class ExpressionMatcherTest {
 
 	@Test
 	public final void testInit() {
-		ExpressionMatcher matcher = new ExpressionMatcher();
+		final ExpressionMatcher matcher = new ExpressionMatcher();
 
 		assertTrue(matcher.isEmpty());
 		assertFalse(matcher.isAnyFlagSet());
@@ -23,7 +23,7 @@ public class ExpressionMatcherTest {
 
 	@Test
 	public final void testParsing() {
-		ExpressionMatcher matcher = new ExpressionMatcher();
+		final ExpressionMatcher matcher = new ExpressionMatcher();
 
 		Sentence sentence = matcher.parseSentence("", new ConversationContext());
 		assertFalse(sentence.hasError());
@@ -63,13 +63,13 @@ public class ExpressionMatcherTest {
 
 	@Test
 	public final void testTypeMatching() {
-		ExpressionMatcher matcher = new ExpressionMatcher();
+		final ExpressionMatcher matcher = new ExpressionMatcher();
 
-		Expression e1 = new Expression("abc", "VER");
-		Expression e2 = new Expression("abc", "VER");
-		Expression e3 = new Expression("ab", "VER");
-		Expression e4 = new Expression("abc", "SUB");
-		Expression e5 = new Expression("X", "SUB");
+		final Expression e1 = new Expression("abc", "VER");
+		final Expression e2 = new Expression("abc", "VER");
+		final Expression e3 = new Expression("ab", "VER");
+		final Expression e4 = new Expression("abc", "SUB");
+		final Expression e5 = new Expression("X", "SUB");
 
 		matcher.setTypeMatching(false);
 		matcher.setExactMatching(false);
@@ -106,14 +106,14 @@ public class ExpressionMatcherTest {
 
 	@Test
 	public final void testExactMatching() {
-		ExpressionMatcher matcher = new ExactExprMatcher();
+		final ExpressionMatcher matcher = new ExactExprMatcher();
 
-		Expression abcVER = new Expression("abc", "VER");
-		Expression abcVERCopy = new Expression("abc", "VER");
-		Expression ab = new Expression("ab", "VER");
-		Expression abcSUB = new Expression("abc", "SUB");
-		Expression X = new Expression("X", "SUB");
-		Expression aBc = new Expression("aBc", "SUB");
+		final Expression abcVER = new Expression("abc", "VER");
+		final Expression abcVERCopy = new Expression("abc", "VER");
+		final Expression ab = new Expression("ab", "VER");
+		final Expression abcSUB = new Expression("abc", "SUB");
+		final Expression X = new Expression("X", "SUB");
+		final Expression aBc = new Expression("aBc", "SUB");
 
 		assertTrue(matcher.match(abcVER, abcVERCopy));
 		assertFalse(matcher.match(abcVER, ab));
@@ -125,8 +125,8 @@ public class ExpressionMatcherTest {
 
 	@Test
 	public final void testEquals() {
-		ExpressionMatcher m1 = new ExpressionMatcher();
-		ExpressionMatcher m2 = new ExpressionMatcher();
+		final ExpressionMatcher m1 = new ExpressionMatcher();
+		final ExpressionMatcher m2 = new ExpressionMatcher();
 		assertEquals(m1, m2);
 		assertEquals(m1, m1);
 

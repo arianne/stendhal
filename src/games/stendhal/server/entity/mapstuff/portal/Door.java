@@ -41,7 +41,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	private boolean open;
 
 	public static void generateRPClass() {
-		RPClass door = new RPClass("door");
+		final RPClass door = new RPClass("door");
 		door.isA("entity");
 		door.addAttribute("class", Type.STRING);
 		door.addAttribute("locked", Type.STRING, Definition.HIDDEN);
@@ -54,7 +54,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	 * @param clazz
 	 *            The class. Responsible for how this door looks like.
 	 */
-	public Door(String clazz) {
+	public Door(final String clazz) {
 		this(clazz, "This door is closed");
 	}
 
@@ -67,7 +67,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
-	public Door(String clazz, String rejectMessage) {
+	public Door(final String clazz, final String rejectMessage) {
 		super(rejectMessage);
 		setRPClass("door");
 		put("type", "door");
@@ -115,13 +115,13 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	 * teleport (if the door is now open).
 	 */
 	@Override
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		// check first could player use the door
-		boolean couldUse = super.onUsed(user);
+		final boolean couldUse = super.onUsed(user);
 
 		if (couldUse) {
 			// open door, or stop door from closing
-			TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+			final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 			if (isOpen()) {
 				// The door is still open because another player just used it.
 				// Thus, it is scheduled to auto-close soon. We delay this
@@ -145,7 +145,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	}
 
 	@Override
-	public void onUsedBackwards(RPEntity user) {
+	public void onUsedBackwards(final RPEntity user) {
 		open();
 		notifyWorldAboutChanges();
 	}
@@ -165,7 +165,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		return (text);
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		close();
 		notifyWorldAboutChanges();
 	}

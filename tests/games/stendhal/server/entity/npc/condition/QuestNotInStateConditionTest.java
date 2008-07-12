@@ -33,12 +33,12 @@ public class QuestNotInStateConditionTest {
 
 	@Test
 	public final void testFire() {
-		String validState = "valid";
+		final String validState = "valid";
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest(QUESTNAME, "valid");
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, validState).fire(
@@ -80,10 +80,10 @@ public class QuestNotInStateConditionTest {
 
 	@Test
 	public void testEquals() throws Throwable {
-		String state = "state";
+		final String state = "state";
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(null));
 
-		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
+		final QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
 				state);
 		assertTrue(obj.equals(obj));
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
@@ -116,8 +116,8 @@ public class QuestNotInStateConditionTest {
 
 	@Test
 	public void testhashcode() throws Throwable {
-		String state = "state";
-		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
+		final String state = "state";
+		final QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
 				state);
 
 		assertEquals(obj.hashCode(), obj.hashCode());

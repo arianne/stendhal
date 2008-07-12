@@ -376,7 +376,7 @@ public abstract class StendhalGUI extends StendhalUI {
 				return false;
 			}
 
-			long now = System.currentTimeMillis();
+			final long now = System.currentTimeMillis();
 
 			if (now >= expiration) {
 				return false;

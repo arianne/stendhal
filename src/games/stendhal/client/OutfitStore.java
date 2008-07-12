@@ -37,7 +37,7 @@ public class OutfitStore {
 	 * @param store
 	 *            The sprite store to use.
 	 */
-	public OutfitStore(SpriteStore store) {
+	public OutfitStore(final SpriteStore store) {
 		this.store = store;
 	}
 
@@ -72,8 +72,8 @@ public class OutfitStore {
 					"No base image found for outfit: " + code);
 		}
 		code /= 100;
-		ImageSprite sprite = new ImageSprite(layer);
-		Graphics g = sprite.getGraphics();
+		final ImageSprite sprite = new ImageSprite(layer);
+		final Graphics g = sprite.getGraphics();
 
 		/*
 		 * Dress layer
@@ -121,8 +121,8 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getBaseSprite(int index) {
-		String ref = "data/sprites/outfit/player_base_" + index + ".png";
+	public Sprite getBaseSprite(final int index) {
+		final String ref = "data/sprites/outfit/player_base_" + index + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
@@ -139,12 +139,12 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getDressSprite(int index) {
+	public Sprite getDressSprite(final int index) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
 
-		String ref = "data/sprites/outfit/dress_" + index + ".png";
+		final String ref = "data/sprites/outfit/dress_" + index + ".png";
 		return store.getSprite(ref);
 	}
 
@@ -175,12 +175,12 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getHairSprite(int index) {
+	public Sprite getHairSprite(final int index) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
 
-		String ref = "data/sprites/outfit/hair_" + index + ".png";
+		final String ref = "data/sprites/outfit/hair_" + index + ".png";
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
@@ -196,8 +196,8 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getHeadSprite(int index) {
-		String ref = "data/sprites/outfit/head_" + index + ".png";
+	public Sprite getHeadSprite(final int index) {
+		final String ref = "data/sprites/outfit/head_" + index + ".png";
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
@@ -217,10 +217,10 @@ public class OutfitStore {
 	 * 
 	 * @return An walking state tileset.
 	 */
-	public Sprite getOutfit(int code) {
-		SpriteCache cache = SpriteCache.get();
+	public Sprite getOutfit(final int code) {
+		final SpriteCache cache = SpriteCache.get();
 
-		OutfitRef reference = new OutfitRef(code);
+		final OutfitRef reference = new OutfitRef(code);
 
 		Sprite sprite = cache.get(reference);
 
@@ -250,7 +250,7 @@ public class OutfitStore {
 		 * @param code
 		 *            The outfit code.
 		 */
-		public OutfitRef(int code) {
+		public OutfitRef(final int code) {
 			this.code = code;
 		}
 
@@ -281,7 +281,7 @@ public class OutfitStore {
 		 *         same code.
 		 */
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj instanceof OutfitRef) {
 				return (getCode() == ((OutfitRef) obj).getCode());
 			}

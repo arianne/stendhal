@@ -30,10 +30,10 @@ public class PlayerInAreaConditionTest {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testHashCode() {
-		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 		});
 
-		PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
+		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
 
 		assertEquals(cond.hashCode(), cond.hashCode());
 		assertEquals((new PlayerInAreaCondition(null)).hashCode(),
@@ -45,11 +45,11 @@ public class PlayerInAreaConditionTest {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testFire() {
-		StendhalRPZone zone = new StendhalRPZone("test");
-		Area ar = new Area(zone, new Rectangle(-2, -2, 4, 4) {
+		final StendhalRPZone zone = new StendhalRPZone("test");
+		final Area ar = new Area(zone, new Rectangle(-2, -2, 4, 4) {
 		});
-		PlayerInAreaCondition cond = new PlayerInAreaCondition(ar);
-		Player player = PlayerTestHelper.createPlayer("player");
+		final PlayerInAreaCondition cond = new PlayerInAreaCondition(ar);
+		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(cond.fire(player, null, null));
 		zone.add(player);
 		assertTrue(ar.contains(player));
@@ -59,8 +59,8 @@ public class PlayerInAreaConditionTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testFireNPE() throws Exception {
-		PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
-		Player player = PlayerTestHelper.createPlayer("player");
+		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
+		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(cond.fire(player, null, null));
 	}
 
@@ -76,7 +76,7 @@ public class PlayerInAreaConditionTest {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testToString() {
-		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 		});
 		assertEquals("player in <null>",
 				new PlayerInAreaCondition(null).toString());
@@ -87,11 +87,11 @@ public class PlayerInAreaConditionTest {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testEqualsObject() {
-		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 		});
-		Area ar2 = new Area(new StendhalRPZone("test2"), new Rectangle() {
+		final Area ar2 = new Area(new StendhalRPZone("test2"), new Rectangle() {
 		});
-		PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
+		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
 
 		assertTrue(cond.equals(cond));
 		assertTrue((new PlayerInAreaCondition(null)).equals(new PlayerInAreaCondition(

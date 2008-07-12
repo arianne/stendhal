@@ -28,16 +28,16 @@ public class BakerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBakery(zone, attributes);
 	}
 
-	private void buildBakery(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC baker = new SpeakerNPC("Arlindo") {
+	private void buildBakery(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC baker = new SpeakerNPC("Arlindo") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				// to the well
 				nodes.add(new Node(15, 3));
 				// to a barrel
@@ -78,13 +78,13 @@ public class BakerNPC implements ZoneConfigurator {
 
 				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
 				// (uses sorted TreeMap instead of HashMap)
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", Integer.valueOf(2));
 				requiredResources.put("meat", Integer.valueOf(2));
 				requiredResources.put("carrot", Integer.valueOf(1));
 				requiredResources.put("button mushroom", Integer.valueOf(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
 				        requiredResources, 7 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

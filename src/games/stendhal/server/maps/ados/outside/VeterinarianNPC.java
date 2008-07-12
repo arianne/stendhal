@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class VeterinarianNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 		/**
 	 * Configure a zone.
@@ -23,16 +23,16 @@ public class VeterinarianNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZooArea(zone, attributes);
 	}
 
-	private void buildZooArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Dr. Feelgood") {
+	private void buildZooArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Dr. Feelgood") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(53, 28));
 				nodes.add(new Node(53, 40));
 				nodes.add(new Node(62, 40));
@@ -56,7 +56,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
 
 					@Override
-					public int getUnitPrice(String item) {
+					public int getUnitPrice(final String item) {
 						// Player gets 20 % rebate
 						return (int) (0.8f * priceList.get(item));
 					}

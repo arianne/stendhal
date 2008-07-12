@@ -30,10 +30,10 @@ public class LearnAboutKarmaTest {
 	public void setUp() {
 		npc = new SpeakerNPC("Sarzina");
 		SingletonRepository.getNPCList().add(npc);
-		SpeakerNPCFactory npcConf = new SellerNPC();
+		final SpeakerNPCFactory npcConf = new SellerNPC();
 		npcConf.createDialog(npc);
 
-		AbstractQuest quest = new LearnAboutKarma();
+		final AbstractQuest quest = new LearnAboutKarma();
 		quest.addToWorld();
 		en = npc.getEngine();
 

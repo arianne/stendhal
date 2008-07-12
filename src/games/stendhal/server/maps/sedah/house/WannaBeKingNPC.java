@@ -23,7 +23,7 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -33,11 +33,11 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 	 * @param zone
 	 * @param attributes
 	 */
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Ivan Abe") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Ivan Abe") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 7));
 				nodes.add(new Node(12, 7));
 				nodes.add(new Node(12, 3));

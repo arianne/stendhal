@@ -46,18 +46,18 @@ public class LearnAboutKarma extends AbstractQuest {
 	private static final String QUEST_SLOT = "learn_karma";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("done")) {
 			res.add("DONE");
 		}
@@ -65,7 +65,7 @@ public class LearnAboutKarma extends AbstractQuest {
 	}
 
 	private void step1() {
-		SpeakerNPC npc = npcs.get("Sarzina");
+		final SpeakerNPC npc = npcs.get("Sarzina");
 		
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
@@ -110,8 +110,8 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					long roundedkarma = Math.round(player.getKarma());
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final long roundedkarma = Math.round(player.getKarma());
 					npc.say("Your karma is roughly " + roundedkarma + ".");
 					// TODO: make her say different things if it's big and
 					// potisive, small and negative etc. need idea of ranges

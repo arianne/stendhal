@@ -32,22 +32,22 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 */
 	private List<Pair<String, String>> prizes;
 
-	public CroupierNPC(String name) {
+	public CroupierNPC(final String name) {
 		super(name);
 	}
 
-	public void setPrizes(List<Pair<String, String>> prizes) {
+	public void setPrizes(final List<Pair<String, String>> prizes) {
 		this.prizes = prizes;
 	}
 
-	public void onThrown(Dice dice, Player player) {
+	public void onThrown(final Dice dice, final Player player) {
 		if (playingArea.contains(dice)) {
-			int sum = dice.getSum();
-			Pair<String, String> prizeAndText = prizes.get(sum);
+			final int sum = dice.getSum();
+			final Pair<String, String> prizeAndText = prizes.get(sum);
 			if (prizeAndText != null) {
-				String prizeName = prizeAndText.first();
-				String text = prizeAndText.second();
-				Item prize = SingletonRepository.getEntityManager().getItem(
+				final String prizeName = prizeAndText.first();
+				final String text = prizeAndText.second();
+				final Item prize = SingletonRepository.getEntityManager().getItem(
 						prizeName);
 				if (prizeName.equals("golden legs")) {
 					prize.setBoundTo(player.getName());
@@ -76,7 +76,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 * @param playingArea
 	 *            shape of the playing area (in the same zone as the NPC)
 	 */
-	public void setTableArea(Rectangle playingArea) {
+	public void setTableArea(final Rectangle playingArea) {
 		this.playingArea = new Area(getZone(), playingArea);
 	}
 }

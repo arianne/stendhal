@@ -15,11 +15,11 @@ public class SentenceTest {
 
 	@Test
 	public final void testGrammar() {
-		ConversationContext ctx = new ConversationContext();
+		final ConversationContext ctx = new ConversationContext();
 		ctx.setPersistNewWords(false);
 
 		SentenceImplementation sentence = new SentenceImplementation(ctx);
-		String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
+		final String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
@@ -73,7 +73,7 @@ public class SentenceTest {
 
 	@Test
 	public final void testEnumerations() {
-		Sentence sentence = ConversationParser.parse("it is raining cats and dogs");
+		final Sentence sentence = ConversationParser.parse("it is raining cats and dogs");
 		assertFalse(sentence.hasError());
 		assertEquals("rain/VER-GER cat/SUB-ANI-PLU, dog/SUB-ANI-PLU.", sentence.toString());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
@@ -84,9 +84,9 @@ public class SentenceTest {
 
 	@Test
 	public final void testComparison() {
-		Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
-		Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
-		Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
+		final Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
+		final Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
+		final Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
 		assertFalse(s1.hasError());
 		assertFalse(s2.hasError());
 		assertFalse(s3.hasError());
@@ -196,7 +196,7 @@ public class SentenceTest {
 
 	@Test
 	public final void testDiff() {
-		Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
+		final Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
 		Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
 		Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
 		assertFalse(s1.hasError());
@@ -231,8 +231,8 @@ public class SentenceTest {
 
 	@Test
 	public final void testWithoutParser() {
-		Expression expr = new Expression("hello", "VER");
-		Sentence sentence = new SentenceImplementation(expr);
+		final Expression expr = new Expression("hello", "VER");
+		final Sentence sentence = new SentenceImplementation(expr);
 
 		assertTrue(sentence.matchesFull(sentence));
 	}

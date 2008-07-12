@@ -25,8 +25,8 @@ class DeathmatchState {
 	 * @param level
 	 * @return start state
 	 */
-	public static DeathmatchState createStartState(int level) {
-		DeathmatchState deathmatchState = new DeathmatchState();
+	public static DeathmatchState createStartState(final int level) {
+		final DeathmatchState deathmatchState = new DeathmatchState();
 		deathmatchState.lifecycleState = DeathmatchLifecycle.START;
 		deathmatchState.date = new Date().getTime();
 		deathmatchState.level = level - 2;
@@ -43,10 +43,10 @@ class DeathmatchState {
 	 *            quest string
 	 * @return start state
 	 */
-	public static DeathmatchState createFromQuestString(String questString) {
-		DeathmatchState deathmatchState = new DeathmatchState();
+	public static DeathmatchState createFromQuestString(final String questString) {
+		final DeathmatchState deathmatchState = new DeathmatchState();
 		//place an elephant in Cairo
-		String[] tokens = (questString + ";0;0").split(";");
+		final String[] tokens = (questString + ";0;0").split(";");
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
 		deathmatchState.date = Long.parseLong(tokens[2]);
@@ -68,7 +68,7 @@ class DeathmatchState {
 	 * @param level
 	 *            quest level
 	 */
-	void setQuestLevel(int level) {
+	void setQuestLevel(final int level) {
 		this.level = level;
 	}
 
@@ -92,7 +92,7 @@ class DeathmatchState {
 	 * @param lifecycleState
 	 *            DeathmatchLifecycle
 	 */
-	void setLifecycleState(DeathmatchLifecycle lifecycleState) {
+	void setLifecycleState(final DeathmatchLifecycle lifecycleState) {
 		this.lifecycleState = lifecycleState;
 		date = new Date().getTime();
 	}

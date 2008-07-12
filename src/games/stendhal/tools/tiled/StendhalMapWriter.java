@@ -44,15 +44,15 @@ public class StendhalMapWriter implements MapWriter {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-    public void writeMap(Map map, String filename) throws Exception {
+    public void writeMap(final Map map, String filename) throws Exception {
 		String level = null;
 		String area = null;
 
-		File file = new File(map.getFilename());
+		final File file = new File(map.getFilename());
 
 		area = file.getParentFile().getName();
 
-		String fileContainer = file.getParentFile().getParent();
+		final String fileContainer = file.getParentFile().getParent();
 
 		if (fileContainer.contains("Level ")) {
 			level = fileContainer.split("Level ")[1];
@@ -60,8 +60,8 @@ public class StendhalMapWriter implements MapWriter {
 			level = "int";
 		}
 
-		String destination = new File(filename).getParent();
-		String mapName = file.getName().split(".tmx")[0];
+		final String destination = new File(filename).getParent();
+		final String mapName = file.getName().split(".tmx")[0];
 
 		if (level.equals("int") && area.equals("abstract")) {
 			filename = destination + File.separator + level.replace("-", "sub_") + "_" + mapName.replace("-", "sub_")
@@ -71,14 +71,14 @@ public class StendhalMapWriter implements MapWriter {
 			        + mapName.replace("-", "sub_") + ".xstend";
 		}
 
-		FileOutputStream os = new FileOutputStream(filename);
-		PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
+		final FileOutputStream os = new FileOutputStream(filename);
+		final PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
 
 		writer.println("<map name=\"" + mapName + "\">");
 
-		Properties prop = map.getProperties();
-		String x = (String) prop.get("x");
-		String y = (String) prop.get("y");
+		final Properties prop = map.getProperties();
+		final String x = (String) prop.get("x");
+		final String y = (String) prop.get("y");
 
 		if (level.equals("int")) {
 			writer.println("  <location level=\"int\"/>");
@@ -87,7 +87,7 @@ public class StendhalMapWriter implements MapWriter {
 		}
 
 		boolean firstTime = true;
-		for (MapLayer layer : map.getLayerList()) {
+		for (final MapLayer layer : map.getLayerList()) {
 			if (firstTime) {
 				firstTime = false;
 				writer.println("  <size width=\"" + layer.getWidth() + "\" height=\"" + layer.getHeight() + "\"/>");
@@ -96,7 +96,7 @@ public class StendhalMapWriter implements MapWriter {
 			writer.println("  <layer name=\"" + layer.getName() + "\">");
 			for (int j = 0; j < layer.getHeight(); j++) {
 				for (int i = 0; i < layer.getWidth(); i++) {
-					Tile tile = ((TileLayer) layer).getTileAt(i, j);
+					final Tile tile = ((TileLayer) layer).getTileAt(i, j);
 					int gid = 0;
 
 					if (tile != null) {
@@ -123,7 +123,7 @@ public class StendhalMapWriter implements MapWriter {
 	 * @param filename
 	 * @throws Exception
 	 */
-	public void writeTileset(TileSet set, String filename) throws Exception {
+	public void writeTileset(final TileSet set, final String filename) throws Exception {
 		// no implemented
 	}
 
@@ -134,7 +134,7 @@ public class StendhalMapWriter implements MapWriter {
 	 * @param out
 	 * @throws Exception
 	 */
-	public void writeMap(Map map, OutputStream out) throws Exception {
+	public void writeMap(final Map map, final OutputStream out) throws Exception {
 		// not implemented
 	}
 
@@ -145,20 +145,20 @@ public class StendhalMapWriter implements MapWriter {
 	 * @param out
 	 * @throws Exception
 	 */
-	public void writeTileset(TileSet set, OutputStream out) throws Exception {
+	public void writeTileset(final TileSet set, final OutputStream out) throws Exception {
 		// not implemented
 	}
 
 	/** accepts all filenames ending with .stend . 
 	 * @param pathname 
 	 * @return true if accepted false otherwise*/
-	public boolean accept(File pathname) {
+	public boolean accept(final File pathname) {
 		try {
-			String path = pathname.getCanonicalPath().toLowerCase();
+			final String path = pathname.getCanonicalPath().toLowerCase();
 			if (path.endsWith(".xstend")) {
 				return true;
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 //			pluginLogger.error(e);
 		}
 		return false;
@@ -185,7 +185,7 @@ public class StendhalMapWriter implements MapWriter {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack<String> es) {
+	public void setErrorStack(final Stack<String> es) {
 		// not implemented
 	}
 

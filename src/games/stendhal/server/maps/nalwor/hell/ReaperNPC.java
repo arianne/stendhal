@@ -24,13 +24,13 @@ public class ReaperNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Grim Reaper") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Grim Reaper") {
 
 			@Override
 			protected void createPath() {

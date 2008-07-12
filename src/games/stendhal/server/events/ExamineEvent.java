@@ -22,7 +22,7 @@ public class ExamineEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, PATH, Type.STRING, Definition.PRIVATE);
 		rpclass.add(DefinitionClass.ATTRIBUTE, ALT, Type.STRING, Definition.PRIVATE);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TITLE, Type.STRING, Definition.PRIVATE);
@@ -35,7 +35,7 @@ public class ExamineEvent extends RPEvent {
 	 * @param title title of image viewer
 	 * @param alt alternative text
 	 */
-	public ExamineEvent(String image, String title, String alt) {
+	public ExamineEvent(final String image, final String title, final String alt) {
 		super(RPCLASS_NAME);
 		super.put(PATH, "/data/sprites/examine/" + image);
 		super.put(TITLE, title);

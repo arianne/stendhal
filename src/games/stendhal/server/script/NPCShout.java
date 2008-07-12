@@ -14,17 +14,17 @@ import java.util.List;
 public class NPCShout extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		if (args.size() < 2) {
 			admin.sendPrivateText("Usage: /script NPCShout.class npc text");
 		} else {
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 			sb.append(args.get(0));
 			sb.append(" shouts: ");
 			boolean first = true;
-			for (String word : args) {
+			for (final String word : args) {
 				if (first) {
 					first = false;
 				} else {
@@ -32,7 +32,7 @@ public class NPCShout extends ScriptImpl {
 					sb.append(" ");
 				}
 			}
-			String text = sb.toString();
+			final String text = sb.toString();
 
 			SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 		}

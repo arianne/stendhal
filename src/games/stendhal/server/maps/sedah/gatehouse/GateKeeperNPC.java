@@ -29,13 +29,13 @@ public class GateKeeperNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Revi Borak") {
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Revi Borak") {
 
 			@Override
 			protected void createPath() {
@@ -47,7 +47,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isEquipped("sedah gate key")) {
 							// toss a coin to see if he notices player still has
 							// the gate key
@@ -71,14 +71,14 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				        if (sentence.hasError()) {
 				        	engine.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
 				        } else {
-				        	Behaviour behaviour = new Behaviour("money");
+				        	final Behaviour behaviour = new Behaviour("money");
 
-				        	if (behaviour.parseRequest(sentence) || behaviour.getChosenItemName() == null) {
-					        	int amount = behaviour.getAmount();
+				        	if (behaviour.parseRequest(sentence) || (behaviour.getChosenItemName() == null)) {
+					        	final int amount = behaviour.getAmount();
 
 					        	if (sentence.getExpressions().size() == 1) {
             						// player only said 'bribe'
@@ -91,7 +91,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
     									if (player.isEquipped("money", amount)) {
     										player.drop("money", amount);
     										engine.say("Ok, I got your money, here's the key.");
-    										Item key = SingletonRepository.getEntityManager().getItem(
+    										final Item key = SingletonRepository.getEntityManager().getItem(
     												"sedah gate key");
     										player.equip(key, true);
     									} else {

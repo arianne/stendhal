@@ -10,7 +10,7 @@ public class Log4JAppender extends AppenderSkeleton {
 	public static final Log4JAppender instance = new Log4JAppender();
 
 	@Override
-	protected void append(LoggingEvent event) {
+	protected void append(final LoggingEvent event) {
 		messages.add(event.getRenderedMessage());
 	}
 

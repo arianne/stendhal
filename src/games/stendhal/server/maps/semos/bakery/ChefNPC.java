@@ -36,12 +36,12 @@ public class ChefNPC extends SpeakerNPCFactory {
 		npc.addGoodbye();
 
 		// Leander makes sandwiches if you bring him bread, cheese, and ham.
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("bread", 1);
 		requiredResources.put("cheese", 2);
 		requiredResources.put("ham", 1);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour(
+		final ProducerBehaviour behaviour = new ProducerBehaviour(
 				"leander_make_sandwiches", "make", "sandwich",
 				requiredResources, 3 * 60);
 

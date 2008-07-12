@@ -20,24 +20,24 @@ import java.util.TreeMap;
 public class LifeguardNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
 		npc.addHelp("Just tell me if you want to #borrow #trunks!");
 		npc.addGoodbye("Have fun!");
 
-		Map<String, Integer> priceList = new HashMap<String, Integer>();
+		final Map<String, Integer> priceList = new HashMap<String, Integer>();
 		priceList.put("trunks", 5);
-		OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
+		final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
 		new OutfitChangerAdder().addOutfitChanger(npc, behaviour, "borrow");
 
 		// stuff needed for the SuntanCreamForZara quest
 		// (uses sorted TreeMap instead of HashMap)
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("arandula", 1);
 		requiredResources.put("kokuda", 1);
 		requiredResources.put("minor potion", 1);
 
-		ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
+		final ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
 				"mix", "suntan cream", requiredResources, 10 * 60);
 
 		new ProducerAdder().addProducer(npc, mixerBehaviour, "Hallo!");

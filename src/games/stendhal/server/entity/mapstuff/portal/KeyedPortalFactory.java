@@ -28,7 +28,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
-	protected String getKey(ConfigurableFactoryContext ctx) {
+	protected String getKey(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("key");
 	}
 
@@ -41,7 +41,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
-	protected int getQuantity(ConfigurableFactoryContext ctx) {
+	protected int getQuantity(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("quantity", 1);
 	}
 
@@ -61,7 +61,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 	 *             If the class attribute is missing.
 	 */
 	@Override
-	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) {
+	protected AccessCheckingPortal createPortal(final ConfigurableFactoryContext ctx) {
 		return new KeyedPortal(getKey(ctx), getQuantity(ctx));
 	}
 }

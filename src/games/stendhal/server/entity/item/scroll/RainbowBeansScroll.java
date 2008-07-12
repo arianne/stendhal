@@ -19,8 +19,8 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public RainbowBeansScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public RainbowBeansScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -30,7 +30,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public RainbowBeansScroll(RainbowBeansScroll item) {
+	public RainbowBeansScroll(final RainbowBeansScroll item) {
 		super(item);
 	}
 

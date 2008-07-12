@@ -10,7 +10,7 @@ public class DrowAttackRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("dark elf", 30);
 		attackArmy.put("dark elf archer", 10);
 		attackArmy.put("dark elf elite archer", 5);

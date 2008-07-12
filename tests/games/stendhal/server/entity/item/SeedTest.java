@@ -23,11 +23,11 @@ public class SeedTest {
 
 	@Test
 	public void testOnUsed() {
-		Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
 		assertFalse(seed.onUsed(null));
-		Player player = PlayerTestHelper.createPlayer("bob");
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		zone.add(seed);
 		assertTrue(seed.onUsed(player));

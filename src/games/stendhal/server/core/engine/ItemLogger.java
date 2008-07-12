@@ -18,7 +18,7 @@ public class ItemLogger {
 
 	private static final String ATTR_ITEM_LOGID = "logid";
 
-	private static String getQuantity(RPObject item) {
+	private static String getQuantity(final RPObject item) {
 		int quantity = 1;
 		if (item.has("quantity")) {
 			quantity = item.getInt("quantity");
@@ -26,66 +26,66 @@ public class ItemLogger {
 		return Integer.toString(quantity);
 	}
 
-	public static void loadOnLogin(Player player, RPSlot slot, Item item) {
+	public static void loadOnLogin(final Player player, final RPSlot slot, final Item item) {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
 		itemLog(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
 	}
 
-	public static void destroyOnLogin(Player player, RPSlot slot, RPObject item) {
+	public static void destroyOnLogin(final Player player, final RPSlot slot, final RPObject item) {
 		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
-	public static void destroy(RPEntity entity, RPSlot slot, RPObject item) {
+	public static void destroy(final RPEntity entity, final RPSlot slot, final RPObject item) {
 		itemLog(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
     }
 
-	public static void dropQuest(Player player, Item item) {
+	public static void dropQuest(final Player player, final Item item) {
 		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
     }
 
-	public static void timeout(Item item) {
+	public static void timeout(final Item item) {
 		itemLog(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
     }
 
-	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
+	public static void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int x, final int y) {
 		itemLog(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
-	public static void equipAction(Player player, Entity entity, String[] sourceInfo, String[] destInfo) {
+	public static void equipAction(final Player player, final Entity entity, final String[] sourceInfo, final String[] destInfo) {
 	    itemLog(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
-	public static void merge(RPEntity entity, Item oldItem, Item outlivingItem) {
+	public static void merge(final RPEntity entity, final Item oldItem, final Item outlivingItem) {
 		if (!(entity instanceof Player)) {
 			return;
 		}
-		Player player = (Player) entity;
+		final Player player = (Player) entity;
 
 		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
-		String oldQuantity = getQuantity(oldItem);
-		String oldOutlivingQuantity = getQuantity(outlivingItem);
-		String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
+		final String oldQuantity = getQuantity(oldItem);
+		final String oldOutlivingQuantity = getQuantity(outlivingItem);
+		final String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
 	    itemLog(oldItem, player, "merge in", outlivingItem.get(ATTR_ITEM_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
 	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
     }
 
-	public static void splitOff(RPEntity player, Item item, int quantity) {
-		String oldQuantity = getQuantity(item);
-		String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
+	public static void splitOff(final RPEntity player, final Item item, final int quantity) {
+		final String oldQuantity = getQuantity(item);
+		final String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
 	    itemLog(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
     }
 
-	private static void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
+	private static void itemLog(final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) {
 		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLog(item, player, event, param1, param2, param3, param4);
 	}
 
-	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
+	public static void splitOff(final Player player, final Item item, final StackableItem newItem, final int quantity) {
 		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLogAssignIDIfNotPresent(item, newItem);
-		String outlivingQuantity = getQuantity(item);
-		String newQuantity = getQuantity(newItem);
-		String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
+		final String outlivingQuantity = getQuantity(item);
+		final String newQuantity = getQuantity(newItem);
+		final String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
 	    itemLog(item, player, "split out", newItem.get(ATTR_ITEM_LOGID), oldQuantity, outlivingQuantity, newQuantity);
 	    itemLog(newItem, player, "splitted out", item.get(ATTR_ITEM_LOGID), oldQuantity, newQuantity, outlivingQuantity);
     }

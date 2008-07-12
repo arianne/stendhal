@@ -26,16 +26,16 @@ public class BarMaidNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildTavern(zone, attributes);
 	}
 
-	private void buildTavern(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC tavernMaid = new SpeakerNPC("Coralia") {
+	private void buildTavern(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC tavernMaid = new SpeakerNPC("Coralia") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(13, 9));
 				nodes.add(new Node(13, 7));
 				nodes.add(new Node(6, 7));
@@ -55,7 +55,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("beer", 15);
 				offerings.put("pie", 160);
 				offerings.put("bread", 50);

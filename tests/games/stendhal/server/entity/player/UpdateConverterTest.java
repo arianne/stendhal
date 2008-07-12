@@ -43,7 +43,7 @@ public class UpdateConverterTest {
 	 */
 	@Test
 	public void testTransformKillSlot() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 
 		RPSlot killSlot = player.getSlot("!kills");
 		RPObject killStore = killSlot.getFirst();
@@ -52,14 +52,14 @@ public class UpdateConverterTest {
 		killStore.put("monster", "shared");
 		killStore.put("cave_rat", "solo");
 
-		String oldID = killStore.get("id");
+		final String oldID = killStore.get("id");
 
 		UpdateConverter.updatePlayerRPObject(player);
 
 		killSlot = player.getSlot("!kills");
 		killStore = killSlot.getFirst();
 
-		String idDot = killStore.get(oldID + ".id");
+		final String idDot = killStore.get(oldID + ".id");
 		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));
@@ -73,7 +73,7 @@ public class UpdateConverterTest {
 	 */ 
 	@Test
 	public void testKillingRecords() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 
 		player.setSoloKill("name");
 		player.setSharedKill("monster");
@@ -81,14 +81,14 @@ public class UpdateConverterTest {
 
 		RPSlot killSlot = player.getSlot("!kills");
 		RPObject killStore = killSlot.getFirst();
-		String oldID = killStore.get("id");
+		final String oldID = killStore.get("id");
 
 		UpdateConverter.updatePlayerRPObject(player);
 
 		killSlot = player.getSlot("!kills");
 		killStore = killSlot.getFirst();
 
-		String idDot = killStore.get(oldID + ".id");
+		final String idDot = killStore.get(oldID + ".id");
 		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));
@@ -98,7 +98,7 @@ public class UpdateConverterTest {
 
 	@Test
 	public void testRenameQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 
 		// First we use only the old quest slot name.
 		player.setQuest("Valo_concoct_potion", "3;mega potion;1200000000000");

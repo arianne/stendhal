@@ -24,16 +24,16 @@ public class BlacksheepJoeNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildblacksheepjoe(zone);
 	}
 
-	private void buildblacksheepjoe(StendhalRPZone zone) {
-		SpeakerNPC blacksheepjoe = new SpeakerNPC("Blacksheep Joe") {
+	private void buildblacksheepjoe(final StendhalRPZone zone) {
+		final SpeakerNPC blacksheepjoe = new SpeakerNPC("Blacksheep Joe") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(13, 13));
 				nodes.add(new Node(13, 9));
 				setPath(new FixedPath(nodes, true));
@@ -50,14 +50,14 @@ public class BlacksheepJoeNPC implements ZoneConfigurator {
 
 			// Blacksheep Joe creates you some cheese sausages
 			// (uses sorted TreeMap instead of HashMap)
-			Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+			final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 			requiredResources.put("vampirette entrails", Integer.valueOf(1));
 			requiredResources.put("bat entrails", Integer.valueOf(1));
 			requiredResources.put("chicken", Integer.valueOf(1));
 			requiredResources.put("black pearl", Integer.valueOf(1));
 			requiredResources.put("cheese", Integer.valueOf(1));
 
-			ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepjoe_make_cheese_sausage", "make", "cheese sausage",
+			final ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepjoe_make_cheese_sausage", "make", "cheese sausage",
 			        requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,

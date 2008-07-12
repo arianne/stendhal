@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HealerNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -24,16 +24,16 @@ public class HealerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTempleArea(zone, attributes);
 	}
 
-	private void buildSemosTempleArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Ilisa") {
+	private void buildSemosTempleArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Ilisa") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(9, 6));
 				nodes.add(new Node(14, 6));
 				setPath(new FixedPath(nodes, true));

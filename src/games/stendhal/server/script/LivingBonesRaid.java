@@ -10,7 +10,7 @@ public class LivingBonesRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("skeleton", 7);
 		attackArmy.put("tiny skelly", 5);
 		attackArmy.put("warrior skeleton", 7);

@@ -13,7 +13,7 @@ import java.util.Comparator;
 public class LevelBasedComparator implements Comparator<RPEntity>, Serializable {
 	private static final long serialVersionUID = -8923421203006949207L;
 
-	public int compare(RPEntity o1, RPEntity o2) {
+	public int compare(final RPEntity o1, final RPEntity o2) {
 		return o1.getLevel() - o2.getLevel();
 	}
 

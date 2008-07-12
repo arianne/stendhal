@@ -29,7 +29,7 @@ public class MeetKetteh extends AbstractQuest {
 
 	private void step1() {
 
-		SpeakerNPC npc = npcs.get("Ketteh Wehoh");
+		final SpeakerNPC npc = npcs.get("Ketteh Wehoh");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new NakedCondition(), ConversationStates.ATTENDING,
@@ -42,7 +42,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							// OK, player is NOT naked this time, but was last
 							// time.
 							engine.say("Hi again, " + player.getTitle()	+ ". How can I #shout at you this time?");
@@ -55,7 +55,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.hasQuest("Ketteh")) {
 							// We have met the player before and he was NOT
 							// naked last time nor is he now

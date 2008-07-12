@@ -20,13 +20,13 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildGoldSourceArea(zone);
 	}
 
-	private void buildGoldSourceArea(StendhalRPZone zone) {
+	private void buildGoldSourceArea(final StendhalRPZone zone) {
 
-		SpeakerNPC bill = new SpeakerNPC("Bill") {
+		final SpeakerNPC bill = new SpeakerNPC("Bill") {
 
 			@Override
 			protected void createPath() {

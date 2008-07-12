@@ -22,7 +22,7 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is missing.
 	 */
-	protected int getDamage(ConfigurableFactoryContext ctx) {
+	protected int getDamage(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("damage");
 	}
 
@@ -37,7 +37,7 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected double getProbability(ConfigurableFactoryContext ctx) {
+	protected double getProbability(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("probability", 0) / 100.0;
 	}
 
@@ -55,7 +55,7 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 	 *             in case of an invalid configuration
 	 */
 	@Override
-	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
+	protected OccupantArea createArea(final ConfigurableFactoryContext ctx) {
 		return new DamagingArea(getWidth(ctx), getHeight(ctx),
 				getInterval(ctx), getDamage(ctx), getProbability(ctx));
 	}

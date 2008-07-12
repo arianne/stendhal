@@ -41,7 +41,7 @@ class DestinationObject extends MoveableObject {
 	 * @param action 
 	 * @param player 
 	 */
-	public DestinationObject(RPAction action, Player player) {
+	public DestinationObject(final RPAction action, final Player player) {
 		super(player);
 		valid = false;
 		// dropped into another item
@@ -95,11 +95,11 @@ class DestinationObject extends MoveableObject {
 	 * @param player 
 	 * @return true if can be added to the world 
 	 * */
-	public boolean preCheck(Entity entity, Player player) {
-		StendhalRPZone zone = player.getZone();
+	public boolean preCheck(final Entity entity, final Player player) {
+		final StendhalRPZone zone = player.getZone();
 
 		if (parent != null) {
-			RPSlot rpslot = parent.getSlot(slot);
+			final RPSlot rpslot = parent.getSlot(slot);
 			if (!(rpslot instanceof EntitySlot)
 					|| (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
@@ -110,14 +110,14 @@ class DestinationObject extends MoveableObject {
 				boolean isStackable = false;
 				// is the entity stackable
 				if (entity instanceof Stackable) {
-					Stackable stackEntity = (Stackable) entity;
+					final Stackable stackEntity = (Stackable) entity;
 					// now check if it can be stacked on top of another item
-					Iterator<RPObject> it = rpslot.iterator();
+					final Iterator<RPObject> it = rpslot.iterator();
 					while (it.hasNext()) {
-						RPObject object = it.next();
+						final RPObject object = it.next();
 						if (object instanceof Stackable) {
 							// found another stackable
-							Stackable other = (Stackable) object;
+							final Stackable other = (Stackable) object;
 							if (other.isStackable(stackEntity)) {
 								// other is the same type...merge them
 								isStackable = true;
@@ -173,7 +173,7 @@ class DestinationObject extends MoveableObject {
 	 * returns true when this entity and the other is within the given distance.
 	 */
 	@Override
-	public boolean checkDistance(Entity other, double distance) {
+	public boolean checkDistance(final Entity other, final double distance) {
 		if (parent != null) {
 			return (other.nextTo(parent, distance));
 		}
@@ -189,22 +189,22 @@ class DestinationObject extends MoveableObject {
 	 * @param entity 
 	 * @param player 
 	 */
-	public void addToWorld(Entity entity, Player player) {
+	public void addToWorld(Entity entity, final Player player) {
 		if (parent != null) {
 			// drop the entity into a slot
-			RPSlot rpslot = ((EntitySlot) parent.getSlot(slot)).getWriteableSlot();
+			final RPSlot rpslot = ((EntitySlot) parent.getSlot(slot)).getWriteableSlot();
 
 
 			// check if the item can be merged with one already in the slot
 			if (entity instanceof StackableItem) {
-				StackableItem stackEntity = (StackableItem) entity;
+				final StackableItem stackEntity = (StackableItem) entity;
 				// find a stackable item of the same type
-				Iterator<RPObject> it = rpslot.iterator();
+				final Iterator<RPObject> it = rpslot.iterator();
 				while (it.hasNext()) {
-					RPObject object = it.next();
+					final RPObject object = it.next();
 					if (object instanceof StackableItem) {
 						// found another stackable
-						StackableItem other = (StackableItem) object;
+						final StackableItem other = (StackableItem) object;
 						if (other.isStackable(stackEntity)) {
 							ItemLogger.merge(player, stackEntity, other);
 
@@ -231,7 +231,7 @@ class DestinationObject extends MoveableObject {
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.
-			StendhalRPZone zone = player.getZone();
+			final StendhalRPZone zone = player.getZone();
 			logger.debug("adding " + entity.get("name") + " to " + zone);
 
 			// HACK: Avoid a problem on database
@@ -252,7 +252,7 @@ class DestinationObject extends MoveableObject {
 	 * @param validClasses 
 	 * @return true if the rpobject is one of the classes in <i>validClasses</i>.
 	 */
-	public boolean checkClass(List<Class< ? >> validClasses) {
+	public boolean checkClass(final List<Class< ? >> validClasses) {
 		if (parent != null) {
 			return EquipUtil.isCorrectClass(validClasses, parent);
 		}
@@ -261,7 +261,7 @@ class DestinationObject extends MoveableObject {
 
 	@Override
     public String[] getLogInfo() {
-	    String[] res = new String[3];
+	    final String[] res = new String[3];
 	    if (parent != null) {
 	    	res[0] = "slot";
 	    	if (parent.has("name")) {

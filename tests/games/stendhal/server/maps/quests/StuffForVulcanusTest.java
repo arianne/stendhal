@@ -34,11 +34,11 @@ public class StuffForVulcanusTest {
 
 	@Before
 	public void setUp() {
-		ZoneConfigurator zoneConf = new SmithNPC();
+		final ZoneConfigurator zoneConf = new SmithNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
 		npc = SingletonRepository.getNPCList().get("Vulcanus");
 
-		AbstractQuest quest = new StuffForVulcanus();
+		final AbstractQuest quest = new StuffForVulcanus();
 		quest.addToWorld();
 		en = npc.getEngine();
 

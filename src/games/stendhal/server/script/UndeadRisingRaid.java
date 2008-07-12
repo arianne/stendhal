@@ -10,7 +10,7 @@ public class UndeadRisingRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("zombie rat", 4);
 		attackArmy.put("bloody zombie", 5);
 		attackArmy.put("zombie", 10);

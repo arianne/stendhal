@@ -24,7 +24,7 @@ import javax.swing.event.MenuKeyEvent;
  */
 public abstract class WtPopupMenu extends StyledJPopupMenu {
 
-	public WtPopupMenu(String name) {
+	public WtPopupMenu(final String name) {
 		super(WoodStyle.getInstance(), name);
 	}
 
@@ -41,7 +41,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	 * 
 	 * 
 	 */
-	protected JMenuItem createItem(String label, Icon icon) {
+	protected JMenuItem createItem(final String label, final Icon icon) {
 		return new RedirectingMenuItem(label, icon);
 	}
 
@@ -51,7 +51,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	 * @param ev
 	 * 
 	 */
-	protected void redirectEvent(MenuKeyEvent ev) {
+	protected void redirectEvent(final MenuKeyEvent ev) {
 		Component invoker;
 		invoker = getInvoker();
 		if (invoker != null) {
@@ -69,19 +69,19 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 			switch (nev.getID()) {
 			case KeyEvent.KEY_PRESSED:
-				for (KeyListener l : listeners) {
+				for (final KeyListener l : listeners) {
 					l.keyPressed(nev);
 				}
 				break;
 
 			case KeyEvent.KEY_RELEASED:
-				for (KeyListener l : listeners) {
+				for (final KeyListener l : listeners) {
 					l.keyReleased(nev);
 				}
 				break;
 
 			case KeyEvent.KEY_TYPED:
-				for (KeyListener l : listeners) {
+				for (final KeyListener l : listeners) {
 					l.keyTyped(nev);
 				}
 				break;
@@ -99,7 +99,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	protected class RedirectingMenuItem extends JMenuItem {
 		private static final long serialVersionUID = -1607102841664745919L;
 
-		public RedirectingMenuItem(String label, Icon icon) {
+		public RedirectingMenuItem(final String label, final Icon icon) {
 			super(label, icon);
 		}
 
@@ -108,7 +108,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 		//
 
 		@Override
-		public void processMenuKeyEvent(MenuKeyEvent ev) {
+		public void processMenuKeyEvent(final MenuKeyEvent ev) {
 			switch (ev.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
 				break;

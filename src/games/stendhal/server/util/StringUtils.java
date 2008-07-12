@@ -13,9 +13,9 @@ public class StringUtils {
 	 * @param text text to count
 	 * @return number of upper case characters
 	 */
-	public static int countUpperCase(String text) {
+	public static int countUpperCase(final String text) {
 		int count = 0;
-		for (char chr : text.toCharArray()) {
+		for (final char chr : text.toCharArray()) {
 			if (Character.isUpperCase(chr)) {
 				count++;
 			}
@@ -30,9 +30,9 @@ public class StringUtils {
 	 * @param text text to count
 	 * @return number of lower case characters
 	 */
-	public static int countLowerCase(String text) {
+	public static int countLowerCase(final String text) {
 		int count = 0;
-		for (char chr : text.toCharArray()) {
+		for (final char chr : text.toCharArray()) {
 			if (Character.isLowerCase(chr)) {
 				count++;
 			}

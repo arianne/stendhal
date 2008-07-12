@@ -47,15 +47,15 @@ public class TeleportSendExtension extends StendhalServerExtension implements
 		// implemented as /commands that are handled onAction
 	}
 
-	public void onAction(Player player, RPAction action) {
-		String type = action.get("type");
+	public void onAction(final Player player, final RPAction action) {
+		final String type = action.get("type");
 
 		if (type.equals(CMD_NAME)) {
 			onTeleportSend(player, action);
 		}
 	}
 
-	private void onTeleportSend(Player admin, RPAction action) {
+	private void onTeleportSend(final Player admin, final RPAction action) {
 
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin,
 				CMD_NAME, true)) {
@@ -64,32 +64,32 @@ public class TeleportSendExtension extends StendhalServerExtension implements
 
 		if (action.has("target") && action.has("args")) {
 			// Parse Player1
-			String name1 = action.get("target");
-			Player player1 = SingletonRepository.getRuleProcessor().getPlayer(name1);
+			final String name1 = action.get("target");
+			final Player player1 = SingletonRepository.getRuleProcessor().getPlayer(name1);
 			if (player1 == null) {
-				String text = "Player \"" + name1 + "\" not found";
+				final String text = "Player \"" + name1 + "\" not found";
 				admin.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
 
 			// Parse Player2 (player/npc)
-			String name2 = action.get("args");
+			final String name2 = action.get("args");
 			RPEntity player2 = SingletonRepository.getRuleProcessor().getPlayer(name2);
 			if (player2 == null) {
 				player2 = SingletonRepository.getNPCList().get(name2);
 				if (player2 == null) {
 
-					String text = "Player \"" + name2 + "\" not found";
+					final String text = "Player \"" + name2 + "\" not found";
 					admin.sendPrivateText(text);
 					logger.debug(text);
 					return;
 				}
 			}
 
-			StendhalRPZone zone = player2.getZone();
-			int x = player2.getX();
-			int y = player2.getY();
+			final StendhalRPZone zone = player2.getZone();
+			final int x = player2.getX();
+			final int y = player2.getY();
 
 			player1.teleport(zone, x, y, null, admin);
 

@@ -37,7 +37,7 @@ public class TablesToBlob {
 	 * @param oldbDBName
 	 *            the name of the old database
 	 */
-	public TablesToBlob(String oldbDBName) {
+	public TablesToBlob(final String oldbDBName) {
 		this.oldDBName = oldbDBName;
 	}
 
@@ -53,10 +53,10 @@ public class TablesToBlob {
 	 * @throws SQLException
 	 *             in case of an database exception
 	 */
-	private void loadRPObject(Transaction trans, RPObject object, int object_id)
+	private void loadRPObject(final Transaction trans, final RPObject object, final int object_id)
 			throws SQLException {
-		Connection connection = trans.getConnection();
-		Statement stmt = connection.createStatement();
+		final Connection connection = trans.getConnection();
+		final Statement stmt = connection.createStatement();
 		String query = "select name,value from " + oldDBName
 				+ ".rpattribute where object_id=" + object_id + ";";
 		logger.debug("loadRPObject is executing query " + query);
@@ -64,8 +64,8 @@ public class TablesToBlob {
 		ResultSet result = stmt.executeQuery(query);
 
 		while (result.next()) {
-			String name = result.getString("name").trim();
-			String value = result.getString("value").trim();
+			final String name = result.getString("name").trim();
+			final String value = result.getString("value").trim();
 			object.put(name, value);
 		}
 
@@ -76,20 +76,20 @@ public class TablesToBlob {
 		logger.debug("loadRPObject is executing query " + query);
 		result = stmt.executeQuery(query);
 		while (result.next()) {
-			RPSlot slot = new RPSlot(result.getString("name"));
+			final RPSlot slot = new RPSlot(result.getString("name"));
 
 			object.addSlot(slot);
 
-			int slot_id = result.getInt("slot_id");
+			final int slot_id = result.getInt("slot_id");
 
 			query = "select object_id from " + oldDBName
 					+ ".rpobject where slot_id=" + slot_id + ";";
 			logger.debug("loadRPObject is executing query " + query);
-			ResultSet resultSlot = connection.createStatement().executeQuery(
+			final ResultSet resultSlot = connection.createStatement().executeQuery(
 					query);
 
 			while (resultSlot.next()) {
-				RPObject slotObject = new RPObject();
+				final RPObject slotObject = new RPObject();
 
 				loadRPObject(trans, slotObject, resultSlot.getInt("object_id"));
 				slot.add(slotObject);
@@ -113,9 +113,9 @@ public class TablesToBlob {
 	 * @throws SQLException
 	 *             in case of an database exception
 	 */
-	private RPObject loadRPObject(Transaction trans, int id)
+	private RPObject loadRPObject(final Transaction trans, final int id)
 			throws SQLException {
-		RPObject object = new RPObject();
+		final RPObject object = new RPObject();
 
 		loadRPObject(trans, object, id);
 
@@ -128,16 +128,16 @@ public class TablesToBlob {
 	 * @author hendrik
 	 */
 	public static class RPObjectIterator {
-		private ResultSet set;
+		private final ResultSet set;
 
-		public RPObjectIterator(ResultSet set) {
+		public RPObjectIterator(final ResultSet set) {
 			this.set = set;
 		}
 
 		public boolean hasNext() {
 			try {
 				return set.next();
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				return false;
 			}
 		}
@@ -150,7 +150,7 @@ public class TablesToBlob {
 		public void finalize() {
 			try {
 				set.close();
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				logger.error("Finalize RPObjectIterator: ", e);
 			}
 		}
@@ -163,17 +163,17 @@ public class TablesToBlob {
 	 *            Transaction
 	 * @return iterator over all old players
 	 */
-	public RPObjectIterator listOldPlayers(Transaction trans) {
+	public RPObjectIterator listOldPlayers(final Transaction trans) {
 		try {
-			Connection connection =  trans.getConnection();
-			Statement stmt = connection.createStatement();
-			String query = "select object_id from " + oldDBName
+			final Connection connection =  trans.getConnection();
+			final Statement stmt = connection.createStatement();
+			final String query = "select object_id from " + oldDBName
 					+ ".rpobject where slot_id=0";
 
 			logger.debug("iterator is executing query " + query);
-			ResultSet result = stmt.executeQuery(query);
+			final ResultSet result = stmt.executeQuery(query);
 			return new RPObjectIterator(result);
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.warn("error executing query", e);
 			return null;
 		}
@@ -187,9 +187,9 @@ public class TablesToBlob {
 	 * @throws Exception
 	 *             in case of an unexpected error
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		System.err.println("WARNING: THIS IS JUST A DIRTY, UNFINISHED, UNDOCUMENTED HACK");
-		TablesToBlob t2b = new TablesToBlob(args[0]);
+		final TablesToBlob t2b = new TablesToBlob(args[0]);
 		t2b.transformation();
 	}
 
@@ -206,23 +206,23 @@ public class TablesToBlob {
 		Configuration.setConfigurationFile("server.ini");
 		SingletonRepository.getRPWorld();
 
-		PortJDBCDatabase db = new PortJDBCDatabase();
+		final PortJDBCDatabase db = new PortJDBCDatabase();
 
-		Transaction trans = db.getTransaction();
+		final Transaction trans = db.getTransaction();
 
-		RPObjectIterator it = listOldPlayers(trans);
+		final RPObjectIterator it = listOldPlayers(trans);
 
 		while (it.hasNext()) {
-			int id = it.next();
+			final int id = it.next();
 
-			long p1 = System.currentTimeMillis();
-			RPObject object = this.loadRPObject(trans, id);
+			final long p1 = System.currentTimeMillis();
+			final RPObject object = this.loadRPObject(trans, id);
 			System.out.println("Porting: " + object.get("name"));
 
-			long p2 = System.currentTimeMillis();
+			final long p2 = System.currentTimeMillis();
 			db.storeRPObject(trans, object);
 			trans.commit();
-			long p3 = System.currentTimeMillis();
+			final long p3 = System.currentTimeMillis();
 
 			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE("
 					+ (p3 - p2) / 1000.0 + ")");
@@ -249,7 +249,7 @@ public class TablesToBlob {
 		}
 
 		@Override
-		public int storeRPObject(Transaction transaction, RPObject object)
+		public int storeRPObject(final Transaction transaction, final RPObject object)
 				throws IOException, SQLException {
 			return super.storeRPObject(transaction, object);
 		}

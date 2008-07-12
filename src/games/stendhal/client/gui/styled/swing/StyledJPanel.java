@@ -27,7 +27,7 @@ public class StyledJPanel extends JPanel {
 	/*
 	 * Style used.
 	 */
-	private Style style;
+	private final Style style;
 
 	/**
 	 * Create a styled JPanel.
@@ -35,7 +35,7 @@ public class StyledJPanel extends JPanel {
 	 * 
 	 * 
 	 */
-	public StyledJPanel(Style style) {
+	public StyledJPanel(final Style style) {
 		this.style = style;
 
 		applyStyle(style, this);
@@ -51,9 +51,9 @@ public class StyledJPanel extends JPanel {
 	 * @param panel the style is to be applied to
 	 * 
 	 */
-	protected void applyStyle(Style style, JPanel panel) {
-		Border border = style.getBorder();
-		Font font = style.getFont();
+	protected void applyStyle(final Style style, final JPanel panel) {
+		final Border border = style.getBorder();
+		final Font font = style.getFont();
 
 		if (border != null) {
 			panel.setBorder(border);
@@ -74,8 +74,8 @@ public class StyledJPanel extends JPanel {
 	 * 
 	 */
 	@Override
-	protected void paintComponent(Graphics g) {
-		Sprite texture = style.getBackground();
+	protected void paintComponent(final Graphics g) {
+		final Sprite texture = style.getBackground();
 
 		if (texture != null) {
 			int twidth;

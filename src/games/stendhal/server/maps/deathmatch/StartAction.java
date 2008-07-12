@@ -11,19 +11,19 @@ import games.stendhal.server.entity.player.Player;
  */
 public class StartAction extends SpeakerNPC.ChatAction {
 
-	private DeathmatchInfo deathmatchInfo;
+	private final DeathmatchInfo deathmatchInfo;
 
 	/**
 	 * Creates a new StartAction for the specified deathmatch.
 	 
 	 * @param deathmatchInfo deathmatch to start
 	 */
-	public StartAction(DeathmatchInfo deathmatchInfo) {
+	public StartAction(final DeathmatchInfo deathmatchInfo) {
 		this.deathmatchInfo = deathmatchInfo;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		engine.say("Have fun!");
 		deathmatchInfo.startSession(player);
 	}

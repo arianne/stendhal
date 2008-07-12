@@ -18,16 +18,16 @@ class AdminLevelAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
 			return false;
 		}
-		RPAction adminlevel = new RPAction();
+		final RPAction adminlevel = new RPAction();
 
 		adminlevel.put("type", "adminlevel");
 		adminlevel.put("target", params[0]);
 
-		if (params.length > 1 && params[1] != null) {
+		if ((params.length > 1) && (params[1] != null)) {
 			adminlevel.put("newlevel", params[1]);
 		}
 

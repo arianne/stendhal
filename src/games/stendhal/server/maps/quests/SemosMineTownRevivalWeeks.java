@@ -27,17 +27,17 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	private static final String QUEST_SLOT = "semos_mine_town_revival";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void createNPC() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 				"0_semos_mountain_n2");
-		SpeakerNPC npc = new SpeakerNPC("Susi") {
+		final SpeakerNPC npc = new SpeakerNPC("Susi") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(95, 120));
 				nodes.add(new Node(95, 113));
 				nodes.add(new Node(101, 113));
@@ -81,7 +81,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							return !player.has("outfit_org");
 						}
 					},
@@ -93,7 +93,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							return player.has("outfit_org");
 						}
 					},
@@ -158,9 +158,9 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	}
 
 	private void createSignToCloseTower() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 				"0_semos_mountain_n2");
-		Sign sign = new Sign();
+		final Sign sign = new Sign();
 		sign.setPosition(105, 114);
 		sign.setText("Because of the missing guard rail it is too dangerous to enter the tower.");
 		zone.add(sign);

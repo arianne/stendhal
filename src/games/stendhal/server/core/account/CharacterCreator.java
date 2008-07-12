@@ -18,11 +18,11 @@ import org.apache.log4j.Logger;
  */
 public class CharacterCreator {
 	private static Logger logger = Logger.getLogger(CharacterCreator.class);
-	private ValidatorList validators = new ValidatorList();
+	private final ValidatorList validators = new ValidatorList();
 
-	private String username;
-	private String character;
-	private RPObject template;
+	private final String username;
+	private final String character;
+	private final RPObject template;
 
 	/**
 	 * create a CharacterCreator.
@@ -34,7 +34,7 @@ public class CharacterCreator {
 	 * @param template
 	 *            template to base this character on
 	 */
-	public CharacterCreator(String username, String character, RPObject template) {
+	public CharacterCreator(final String username, final String character, final RPObject template) {
 		this.username = username;
 		this.character = character;
 		this.template = template;
@@ -57,13 +57,13 @@ public class CharacterCreator {
 	 * @return CharacterResult
 	 */
 	public CharacterResult create() {
-		Result result = validators.runValidators();
+		final Result result = validators.runValidators();
 		if (result != null) {
 			return new CharacterResult(result, character, template);
 		}
 
-		IDatabase database = SingletonRepository.getPlayerDatabase();
-		Transaction trans = database.getTransaction();
+		final IDatabase database = SingletonRepository.getPlayerDatabase();
+		final Transaction trans = database.getTransaction();
 
 		try {
 			if (database.hasCharacter(trans, username, character)) {
@@ -72,7 +72,7 @@ public class CharacterCreator {
 						character, template);
 			}
 
-			Player object = Player.createEmptyZeroLevelPlayer(character);
+			final Player object = Player.createEmptyZeroLevelPlayer(character);
 
 			/*
 			 * Finally we add it to database.
@@ -81,10 +81,10 @@ public class CharacterCreator {
 			trans.commit();
 
 			return new CharacterResult(Result.OK_CREATED, character, object);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			try {
 				trans.rollback();
-			} catch (SQLException e1) {
+			} catch (final SQLException e1) {
 				e1.printStackTrace();
 			}
 			logger.error("Can't create character", e);

@@ -21,7 +21,7 @@ public class PlayerTestHelperTest {
 	@Test
 	public final void testAddEmptySlots() {
 		PlayerTestHelper.generatePlayerRPClasses();
-		Player bob = new Player(new RPObject());
+		final Player bob = new Player(new RPObject());
 		PlayerTestHelper.addEmptySlots(bob);
 		
 		assertTrue(bob.hasSlot("bag"));

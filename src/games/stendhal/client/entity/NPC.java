@@ -37,7 +37,7 @@ public class NPC extends RPEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		String type = getType();
+		final String type = getType();
 
 		if (type.startsWith("npc")) {
 			setAudibleRange(3);
@@ -92,7 +92,7 @@ public class NPC extends RPEntity {
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
 
-		if (soundWait < System.currentTimeMillis() && Rand.rand(1000) < 5) {
+		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(1000) < 5)) {
 
 			if (moveSounds != null) {
 				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);

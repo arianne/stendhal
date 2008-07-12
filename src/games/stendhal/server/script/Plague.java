@@ -16,7 +16,7 @@ public class Plague extends ScriptImpl {
 	private static final int MAX_RING_COUNT = 2;
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
 		// help
 		if (args.size() == 0) {
@@ -26,8 +26,8 @@ public class Plague extends ScriptImpl {
 
 		// extract position of admin
 
-		int x = admin.getX();
-		int y = admin.getY();
+		final int x = admin.getX();
+		final int y = admin.getY();
 		sandbox.setZone(admin.getZone());
 
 		int ringcount = MathHelper.parseIntDefault(args.get(0), -1);
@@ -40,21 +40,21 @@ public class Plague extends ScriptImpl {
 		// concatenate torn words into one
 		
 		String creatureClass = "";
-		List <String>  templist = args.subList(startArgIndex, args.size());
-		for (String part : templist) {
+		final List <String>  templist = args.subList(startArgIndex, args.size());
+		for (final String part : templist) {
 			creatureClass = creatureClass + part + " "; 
 		}
 		
 		creatureClass  = creatureClass.trim();
 
-		Creature tempCreature = sandbox.getCreature(creatureClass);
+		final Creature tempCreature = sandbox.getCreature(creatureClass);
 		
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
 		} else {
-			Creature creature = new RaidCreature(tempCreature);
+			final Creature creature = new RaidCreature(tempCreature);
 
-			int k = MathHelper.parseIntDefault(args.get(0), 1);
+			final int k = MathHelper.parseIntDefault(args.get(0), 1);
 			if (k <= MAX_RING_COUNT) {
 				for (int dx = -k; dx <= k; dx++) {
 					for (int dy = -k; dy <= k; dy++) {

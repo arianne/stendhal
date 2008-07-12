@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class NPCOwnedChest extends Chest {
 
-	private SpeakerNPC npc;
+	private final SpeakerNPC npc;
 
 	/**
 	 * Creates a new NPCOwnedChest.
@@ -20,13 +20,13 @@ public class NPCOwnedChest extends Chest {
 	 * @param npc
 	 *            SpeakerNPC
 	 */
-	public NPCOwnedChest(SpeakerNPC npc) {
+	public NPCOwnedChest(final SpeakerNPC npc) {
 		this.npc = npc;
 	}
 
 	@Override
-	public boolean onUsed(RPEntity user) {
-		Player player = (Player) user;
+	public boolean onUsed(final RPEntity user) {
+		final Player player = (Player) user;
 
 		if (player.nextTo(this)) {
 			npc.say("Hey " + user.getTitle() + ", that is my chest.");

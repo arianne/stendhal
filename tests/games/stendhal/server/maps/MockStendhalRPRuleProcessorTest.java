@@ -1,6 +1,7 @@
 package games.stendhal.server.maps;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 import static org.hamcrest.core.Is.*;
@@ -29,16 +30,16 @@ public class MockStendhalRPRuleProcessorTest {
 
 	@Test
 	public void testAddPlayer() {
-		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
-		assertThat(MockStendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(0));
+		final MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
+		assertThat(StendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(0));
 
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		processor.addPlayer(bob);
-		assertThat(MockStendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(1));
+		assertThat(StendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(1));
 		assertSame(bob, processor.getPlayer("bob"));
-		Player bob2 = PlayerTestHelper.createPlayer("bob");
+		final Player bob2 = PlayerTestHelper.createPlayer("bob");
 		processor.addPlayer(bob2);
-		assertThat(MockStendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(1));
+		assertThat(StendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(1));
 		assertSame(bob2, processor.getPlayer("bob"));
 		assertNotSame(bob, processor.getPlayer("bob"));
 	}

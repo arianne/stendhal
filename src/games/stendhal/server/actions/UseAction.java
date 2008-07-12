@@ -34,7 +34,7 @@ public class UseAction implements ActionListener {
 		CommandCenter.register(_USE, new UseAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		// When use is casted over something in a slot
 		if (isItemInSlot(action)) {
@@ -44,15 +44,15 @@ public class UseAction implements ActionListener {
 		}
 	}
 
-	private boolean isItemInSlot(RPAction action) {
+	private boolean isItemInSlot(final RPAction action) {
 		return action.has(_BASEITEM) && action.has(_BASEOBJECT)
 				&& action.has(_BASESLOT);
 	}
 
-	private void useItemOnGround(Player player, RPAction action) {
+	private void useItemOnGround(final Player player, final RPAction action) {
 		// use is cast over something on the floor
 		// evaluate the target parameter
-		Entity entity = EntityHelper.entityFromTargetName(
+		final Entity entity = EntityHelper.entityFromTargetName(
 				action.get(TARGET), player);
 
 		if (entity != null) {
@@ -60,14 +60,14 @@ public class UseAction implements ActionListener {
 		}
 	}
 
-	private void useItemInSlot(Player player, RPAction action) {
-		Entity object = EntityHelper.entityFromSlot(player, action);
+	private void useItemInSlot(final Player player, final RPAction action) {
+		final Entity object = EntityHelper.entityFromSlot(player, action);
 		if ((object != null) && canAccessSlot(player, object.getBaseContainer())) {
 			tryUse(player, object);
 		}
 	}
 
-	private boolean canAccessSlot(Player player, RPObject base) {
+	private boolean canAccessSlot(final Player player, final RPObject base) {
 		if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
 			// Only allow to use objects from players, corpses or chests
 			return false;
@@ -82,7 +82,7 @@ public class UseAction implements ActionListener {
 		return true;
 	}
 
-	private void tryUse(Player player, RPObject object) {
+	private void tryUse(final Player player, final RPObject object) {
 
 		if (!canUse(player, object)) {
 			return;
@@ -91,20 +91,20 @@ public class UseAction implements ActionListener {
 		logUsage(player, object);
 
 		if (object instanceof UseListener) {
-			UseListener listener = (UseListener) object;
+			final UseListener listener = (UseListener) object;
 			listener.onUsed(player);
 		}
 	}
 
-	private boolean canUse(Player player, RPObject object) {
+	private boolean canUse(final Player player, final RPObject object) {
 		return !isInJailZone(player, object) 
 			&& !isItemBoundToOtherPlayer(player, object);
 	}
 
-	private boolean isInJailZone(Player player, RPObject object) {
+	private boolean isInJailZone(final Player player, final RPObject object) {
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		// use items like home scroll.
-		String zonename = player.getZone().getName();
+		final String zonename = player.getZone().getName();
 
 		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
 			player.sendPrivateText("For security reasons items may not be used in jail.");
@@ -120,9 +120,9 @@ public class UseAction implements ActionListener {
 	 * @param object 
 	 * @return true if item is bound flase otherwise
 	 */
-	protected boolean isItemBoundToOtherPlayer(Player player, RPObject object) {
+	protected boolean isItemBoundToOtherPlayer(final Player player, final RPObject object) {
 		if (object instanceof Item) {
-			Item item = (Item) object;
+			final Item item = (Item) object;
 			if (item.isBound() && !item.isBoundTo(player)) {
 				player.sendPrivateText("This "
 						+ item.getName()
@@ -140,7 +140,7 @@ public class UseAction implements ActionListener {
 	 * @param player player using the entity
 	 * @param object entity being used
 	 */
-	private void logUsage(Player player, RPObject object) {
+	private void logUsage(final Player player, final RPObject object) {
 		String name = object.get("type");
 		if (object.has("name")) {
 			name = object.get("name");

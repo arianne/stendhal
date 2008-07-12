@@ -92,12 +92,12 @@ public class CreatureInfo {
 	 * @param locationUnknownTexts
 	 *            templates for unknown location. %1 = name of the creature
 	 */
-	public CreatureInfo(Map<Double, String> probabilityLiterals,
-			Map<Integer, String> amountLiterals,
-			Map<Double, String> dangerLiterals, String[] lineStartTexts,
-			String[] respawnTexts, String[] carryTexts,
-			String[] carryNothingTexts, String[] locationTexts,
-			String[] locationUnknownTexts) {
+	public CreatureInfo(final Map<Double, String> probabilityLiterals,
+			final Map<Integer, String> amountLiterals,
+			final Map<Double, String> dangerLiterals, final String[] lineStartTexts,
+			final String[] respawnTexts, final String[] carryTexts,
+			final String[] carryNothingTexts, final String[] locationTexts,
+			final String[] locationUnknownTexts) {
 		this.probabilityLiterals = probabilityLiterals;
 		this.amountLiterals = amountLiterals;
 		this.dangerLiterals = dangerLiterals;
@@ -121,19 +121,34 @@ public class CreatureInfo {
 	 * @return string containing creature information
 	 */
 	public String getCreatureInfo(final Player player,
-			final DefaultCreature creature, int maxLocations, int maxDrops,
-			boolean respawn) {
+			final DefaultCreature creature, final int maxLocations, final int maxDrops,
+			final boolean respawn) {
 		if (player == null) {
 			throw new IllegalArgumentException("player is null");
 		}
 		if (creature == null) {
 			throw new IllegalArgumentException("creature is null");
 		}
-		String dropInfo = maxDrops <= 0 ? "" : getDropItemsInfo(creature,
-				maxDrops);
-		String locationInfo = maxLocations <= 0 ? "" : getLocationInfo(
-				creature.getCreatureName(), maxLocations);
-		String respawnInfo = !respawn ? "" : getRespawnInfo(creature);
+		String dropInfo;
+		if (maxDrops <= 0) {
+			dropInfo = "";
+		} else {
+			dropInfo = getDropItemsInfo(creature,
+					maxDrops);
+		}
+		String locationInfo;
+		if (maxLocations <= 0) {
+			locationInfo = "";
+		} else {
+			locationInfo = getLocationInfo(
+					creature.getCreatureName(), maxLocations);
+		}
+		String respawnInfo;
+		if (!respawn) {
+			respawnInfo = "";
+		} else {
+			respawnInfo = getRespawnInfo(creature);
+		}
 		String result = getCreatureBasicInfo(player, creature);
 		if (respawn) {
 			if (respawnInfo != null && respawnInfo.length() > 0) {
@@ -165,7 +180,7 @@ public class CreatureInfo {
 	 * @param creature
 	 * @return a string representing the next respawntime of a creature
 	 */
-	private String getRespawnInfo(DefaultCreature creature) {
+	private String getRespawnInfo(final DefaultCreature creature) {
 		return TimeUtil.approxTimeUntil((int) (creature.getRespawnTime() * 0.3));
 	}
 
@@ -177,14 +192,14 @@ public class CreatureInfo {
 	 *            how many (most frequent) respawn locations are listed
 	 * @return a string containing the names of the zones
 	 */
-	private String getLocationInfo(String creatureName, int maxNumberOfLocations) {
+	private String getLocationInfo(final String creatureName, final int maxNumberOfLocations) {
 		String prefix = "";
-		Map<String, Integer> zoneCounts = getCreatureZoneCounts(creatureName);
-		Set<String> places = new HashSet<String>();
+		final Map<String, Integer> zoneCounts = getCreatureZoneCounts(creatureName);
+		final Set<String> places = new HashSet<String>();
 		int counter = 0;
-		for (Map.Entry<String, Integer> entry : zoneCounts.entrySet()) {
+		for (final Map.Entry<String, Integer> entry : zoneCounts.entrySet()) {
 			if (!skippedZoneNames.contains(entry.getKey())) {
-				String placeName = translateZoneName(entry.getKey());
+				final String placeName = translateZoneName(entry.getKey());
 				if (placeName != null && placeName.length() > 0) {
 					places.add(placeName);
 				}
@@ -194,8 +209,12 @@ public class CreatureInfo {
 				}
 			}
 		}
-		return places.size() == 0 ? "" : prefix + "at "
-				+ Grammar.enumerateCollection(places);
+		if (places.size() == 0) {
+			return "";
+		} else {
+			return prefix + "at "
+					+ Grammar.enumerateCollection(places);
+		}
 	}
 
 	/**
@@ -204,15 +223,15 @@ public class CreatureInfo {
 	 * @param creatureName
 	 * @return map of zonenames with creature counts
 	 */
-	public Map<String, Integer> getCreatureZoneCounts(String creatureName) {
-		Map<String, Integer> zoneCounts = new HashMap<String, Integer>();
+	public Map<String, Integer> getCreatureZoneCounts(final String creatureName) {
+		final Map<String, Integer> zoneCounts = new HashMap<String, Integer>();
 
 		/* count creatures for each zone */
-		for (IRPZone zone : SingletonRepository.getRPWorld()) {
-			for (CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
-				Creature c = p.getPrototypeCreature();
+		for (final IRPZone zone : SingletonRepository.getRPWorld()) {
+			for (final CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
+				final Creature c = p.getPrototypeCreature();
 				if (creatureName.equals(c.getName())) {
-					String zoneName = zone.getID().getID();
+					final String zoneName = zone.getID().getID();
 					if (zoneCounts.containsKey(zoneName)) {
 						zoneCounts.put(zoneName, zoneCounts.get(zoneName) + 1);
 					} else {
@@ -254,15 +273,15 @@ public class CreatureInfo {
 	 * @param zoneName
 	 * @return translated zone name
 	 */
-	private static String translateZoneName(String zoneName) {
+	private static String translateZoneName(final String zoneName) {
 		if (zoneNameMappings.get(zoneName) != null) {
 			return zoneNameMappings.get(zoneName);
 		}
 		String result = "";
-		Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
-		Matcher m = p.matcher(zoneName);
+		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
+		final Matcher m = p.matcher(zoneName);
 		if (m.matches()) {
-			String level = m.group(1);
+			final String level = m.group(1);
 			String remainder = m.group(2);
 			if ("int".equals(level)) {
 				return "inside a building in " + getInteriorName(zoneName);
@@ -270,25 +289,31 @@ public class CreatureInfo {
 				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
-				} catch (NumberFormatException e) {
+				} catch (final NumberFormatException e) {
 					levelValue = 0;
 				}
-				result = levelValue < -2 ? "deep below ground level at "
-						: "below ground level at ";
+				if (levelValue < -2) {
+					result = "deep below ground level at ";
+				} else {
+					result = "below ground level at ";
+				}
 			} else if (level.matches("^\\d")) { /* positive floor */
 				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
-				} catch (NumberFormatException e) {
+				} catch (final NumberFormatException e) {
 					levelValue = 0; 
 				}
 				if (levelValue != 0) {
-					result = levelValue > 1 ? "high above the ground level at "
-							: "above the ground level at ";
+					if (levelValue > 1) {
+						result = "high above the ground level at ";
+					} else {
+						result = "above the ground level at ";
+					}
 				}
 			}
 			String direction = "";
-			String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
+			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
 					"north east ", "_n\\d?e\\d?($|_)", "_",
 					".+_n\\d?w\\d?($|_).*", "north west ", "_n\\d?w\\d?($|_)",
 					"_", ".+_s\\d?e\\d?($|_).*", "south east ",
@@ -312,20 +337,27 @@ public class CreatureInfo {
 		} else {
 			System.err.println("no match: " + zoneName);
 		}
-		return "".equals(result) ? zoneName : result.trim();
+		if ("".equals(result)) {
+			return zoneName;
+		} else {
+			return result.trim();
+		}
 	}
 
-	private static String getInteriorName(String zoneName) {
+	private static String getInteriorName(final String zoneName) {
 		if (zoneName == null) {
 			throw new IllegalArgumentException("zoneName is null");
 		}
-		int start = zoneName.indexOf('_') + 1;
+		final int start = zoneName.indexOf('_') + 1;
 		int end = zoneName.indexOf('_', start);
 		if (end < 0) {
 			end = zoneName.length();
 		}
-		return start > 0 && end > start ? zoneName.substring(start, end)
-				: zoneName;
+		if (start > 0 && end > start) {
+			return zoneName.substring(start, end);
+		} else {
+			return zoneName;
+		}
 	}
 
 	/**
@@ -340,8 +372,8 @@ public class CreatureInfo {
 	 *            creature name.
 	 * @return verbal presentation of how dangerous the creature is to player.
 	 */
-	public String getHowDangerous(Player player, DefaultCreature creature,
-			Map<Double, String> dangerLiterals) {
+	public String getHowDangerous(final Player player, final DefaultCreature creature,
+			final Map<Double, String> dangerLiterals) {
 		String s = getLiteral(dangerLiterals,
 				(double) ((double) creature.getLevel())
 						/ ((double) player.getLevel()), 0.0);
@@ -359,11 +391,11 @@ public class CreatureInfo {
 	 * @return string of the items dropped by given creature.
 	 */
 	private String getDropItemsInfo(final DefaultCreature creature,
-			int maxNumberOfItems) {
-		StringBuilder result = new StringBuilder();
-		List<DropItem> dropItems = creature.getDropItems();
+			final int maxNumberOfItems) {
+		final StringBuilder result = new StringBuilder();
+		final List<DropItem> dropItems = creature.getDropItems();
 		Collections.sort(dropItems, new Comparator<DropItem>() {
-			public int compare(DropItem o1, DropItem o2) {
+			public int compare(final DropItem o1, final DropItem o2) {
 				if (o1.probability < o2.probability) {
 					return 1;
 				} else if (o1.probability > o2.probability) {
@@ -377,8 +409,8 @@ public class CreatureInfo {
 		String prevProbability = null;
 		int counter = 0;
 		String prefix = "";
-		for (DropItem item : dropItems) {
-			String probability = getLiteral(probabilityLiterals,
+		for (final DropItem item : dropItems) {
+			final String probability = getLiteral(probabilityLiterals,
 					item.probability, 0.0);
 			if (prevProbability != null && !probability.equals(prevProbability)) {
 				result.append(result.length() > 0 ? ", " : "");
@@ -412,7 +444,7 @@ public class CreatureInfo {
 	 * @param params
 	 * @return string chosen
 	 */
-	private String getRandomString(String[] texts, String... params) {
+	private String getRandomString(final String[] texts, final String... params) {
 		String result = Rand.rand(texts);
 		if (params != null) {
 			for (int i = 0; i < params.length; i++) {
@@ -435,10 +467,10 @@ public class CreatureInfo {
 	 *            numeric value if given value is out of bounds
 	 * @return a literal string
 	 */
-	private <T extends Number> String getLiteral(Map<T, String> literals,
-			T val, T defValue) {
+	private <T extends Number> String getLiteral(final Map<T, String> literals,
+			final T val, final T defValue) {
 		String result = literals.get(defValue);
-		for (Entry<T, String> entry  : literals.entrySet()) {
+		for (final Entry<T, String> entry  : literals.entrySet()) {
 			if (entry.getKey().doubleValue() <= val.doubleValue()) {
 				result = entry.getValue();
 				break;

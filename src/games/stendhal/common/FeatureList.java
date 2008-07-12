@@ -43,7 +43,7 @@ public class FeatureList implements Iterable<String> {
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 * @param encoded 
 	 */
-	public void decode(String encoded) {
+	public void decode(final String encoded) {
 		int len;
 		int pos;
 		int epos;
@@ -88,7 +88,7 @@ public class FeatureList implements Iterable<String> {
 	 * 
 	 * @return A feature value, or <code>null</code> if not-enabled.
 	 */
-	public String get(String name) {
+	public String get(final String name) {
 		return list.get(name);
 	}
 

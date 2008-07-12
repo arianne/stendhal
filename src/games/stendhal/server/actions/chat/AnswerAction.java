@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class AnswerAction implements ActionListener {
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TEXT)) {
 			if (player.getLastPrivateChatter() != null) {
 				// convert the action to a /tell action

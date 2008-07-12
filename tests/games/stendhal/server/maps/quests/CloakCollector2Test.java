@@ -31,25 +31,25 @@ public class CloakCollector2Test {
 		"shadow cloak", "xeno cloak",  "elvish cloak", "chaos cloak", 
 		"mainio cloak", "golden cloak", "black dragon cloak");
 	
-	private static final List<String> missingCloaks(Player player) {
+	private static final List<String> missingCloaks(final Player player) {
 		String done = player.getQuest(QUEST_NAME);
-		List<String> needed = new LinkedList<String>(CLOAKS);
-		List<String> colored = new LinkedList<String>();
+		final List<String> needed = new LinkedList<String>(CLOAKS);
+		final List<String> colored = new LinkedList<String>();
 
 		if (done == null) {
 			done = "";
 		}
 		
 		needed.removeAll(Arrays.asList(done.split(";")));
-		for (String cloak : needed) {
+		for (final String cloak : needed) {
 			colored.add("#" + cloak);
 		}
 		
 		return colored;
 	}
 	
-	private static final String initiallyWantedMessage(Player player) {
-		List<String> needed = missingCloaks(player);
+	private static final String initiallyWantedMessage(final Player player) {
+		final List<String> needed = missingCloaks(player);
 		
 		return "It's missing "
 			+ Grammar.quantityplnoun(needed.size(), "cloak")
@@ -57,8 +57,8 @@ public class CloakCollector2Test {
 			+ ". Will you find them?";
 	}
 	
-	private static final String stillWantedMessage(Player player) {
-		List<String> needed = missingCloaks(player);
+	private static final String stillWantedMessage(final Player player) {
+		final List<String> needed = missingCloaks(player);
 		
 		return ("I want " + Grammar.quantityplnoun(needed.size(), "cloak")
 			+ ". That's " + Grammar.enumerateCollection(needed)
@@ -82,11 +82,11 @@ public class CloakCollector2Test {
 	@Test
 	public final void missingPreviousQuest() {		
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		CloakCollector2 cc = new CloakCollector2();
+		final CloakCollector2 cc = new CloakCollector2();
 		cc.addToWorld();
-		SpeakerNPC npc = cc.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = cc.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		
 		/* 
 		 * Josephine should have nothing to say to us, unless we have completed
@@ -100,12 +100,12 @@ public class CloakCollector2Test {
 	@Test
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		CloakCollector2 cc = new CloakCollector2();
+		final CloakCollector2 cc = new CloakCollector2();
 		cc.addToWorld();
-		SpeakerNPC npc = cc.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
-		double karma = player.getKarma();
+		final SpeakerNPC npc = cc.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final double karma = player.getKarma();
 		
 		// CloakCollector needs to be done to start this quest
 		player.setQuest(OLD_QUEST, "done");
@@ -121,12 +121,12 @@ public class CloakCollector2Test {
 	public final void doQuest() {
 		
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		CloakCollector2 cc = new CloakCollector2();
+		final CloakCollector2 cc = new CloakCollector2();
 		cc.addToWorld();
-		SpeakerNPC npc = cc.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
-		double karma = player.getKarma();
+		final SpeakerNPC npc = cc.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final double karma = player.getKarma();
 		
 		player.setQuest(OLD_QUEST, "done");
 
@@ -137,9 +137,9 @@ public class CloakCollector2Test {
 		assertEquals("Answer to 'collection'", 
 				initiallyWantedMessage(player), npc.get("text"));
 		
-		for (String item : CLOAKS) {
+		for (final String item : CLOAKS) {
 			en.stepTest(player, item);
-			String expected = "You haven't seen one before? Well, it's a "
+			final String expected = "You haven't seen one before? Well, it's a "
 				+ item 
 				+ ". Sorry if that's not much help, it's all I know! So, will you find them all?";
 			assertEquals(expected, npc.get("text"));
@@ -174,12 +174,12 @@ public class CloakCollector2Test {
 		assertEquals("Woo! What #cloaks did you bring?", npc.get("text"));
 		
 		// Give her all but the last - Thrice to test the possible answers  
-		for (String itemName : CLOAKS.subList(1, CLOAKS.size())) {
+		for (final String itemName : CLOAKS.subList(1, CLOAKS.size())) {
 			en.stepTest(player, itemName);
 			assertEquals("Oh, I'm disappointed. You don't really have "
 					+ Grammar.a_noun(itemName) + " with you.", npc.get("text"));
 			
-			Item cloak = new Item(itemName, "", "", null);
+			final Item cloak = new Item(itemName, "", "", null);
 			player.getSlot("bag").add(cloak);
 			en.stepTest(player, itemName);
 			assertEquals("Wow, thank you! What else did you bring?", npc.get("text"));
@@ -193,11 +193,11 @@ public class CloakCollector2Test {
 		assertEquals(stillWantedMessage(player), npc.get("text"));
 		
 		// Give the last one too. Try lying first again just to be sure
-		String lastCloak = CLOAKS.get(0);
+		final String lastCloak = CLOAKS.get(0);
 		en.stepTest(player, lastCloak);
 		assertEquals("Oh, I'm disappointed. You don't really have "
 				+ Grammar.a_noun(lastCloak) + " with you.", npc.get("text"));
-		Item cloak = new Item(lastCloak, "", "", null);
+		final Item cloak = new Item(lastCloak, "", "", null);
 		player.getSlot("bag").add(cloak);
 		en.stepTest(player, lastCloak);
 		assertEquals("Answer to last brought cloak", "Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!", npc.get("text"));
@@ -208,18 +208,18 @@ public class CloakCollector2Test {
 		assertEquals("done;rewarded", player.getQuest(QUEST_NAME));
 		assertEquals(true, player.isEquipped("killer boots"));
 		
-		Item boots = player.getFirstEquipped("killer boots");
+		final Item boots = player.getFirstEquipped("killer boots");
 		assertEquals("player", boots.getBoundTo());
 	}
 	
 	@Test
 	public final void compatibility() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		CloakCollector2 cc = new CloakCollector2();
+		final CloakCollector2 cc = new CloakCollector2();
 		cc.addToWorld();
-		SpeakerNPC npc = cc.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = cc.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		
 		player.setQuest(OLD_QUEST, "done");
 		player.setQuest(QUEST_NAME, "done");
@@ -229,8 +229,7 @@ public class CloakCollector2Test {
 		assertEquals("done;rewarded", player.getQuest(QUEST_NAME));
 		assertTrue("The player got the boots", player.isEquipped("killer boots"));
 		
-		Item boots = player.getFirstEquipped("killer boots");
+		final Item boots = player.getFirstEquipped("killer boots");
 		assertEquals("player", boots.getBoundTo());
 	}
 }
-	

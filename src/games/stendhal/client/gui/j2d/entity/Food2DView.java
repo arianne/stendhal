@@ -39,7 +39,7 @@ class Food2DView extends StateEntity2DView {
 	 * @param states
 	 *            The number of states.
 	 */
-	public Food2DView(final Food food, int states) {
+	public Food2DView(final Food food, final int states) {
 		super(food);
 
 		this.food = food;
@@ -58,11 +58,11 @@ class Food2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
-		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(entity.getType()));
+			final IGameScreen gameScreen) {
+		final SpriteStore store = SpriteStore.get();
+		final Sprite tiles = store.getSprite(translate(entity.getType()));
 
-		int theight = tiles.getHeight();
+		final int theight = tiles.getHeight();
 		int i = 0;
 
 		// TODO: Allow animated frames

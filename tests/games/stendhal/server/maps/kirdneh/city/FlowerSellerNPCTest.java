@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -25,7 +26,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FlowerSellerNPC());
 	}
@@ -40,8 +41,8 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Fleur");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Fleur");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Fleur"));
 		assertEquals("Hi! Are you here to #trade?", npc.get("text"));
@@ -52,8 +53,8 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyFlower() {
-		SpeakerNPC npc = getNPC("Fleur");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Fleur");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Are you here to #trade?", npc.get("text"));

@@ -29,18 +29,18 @@ public class NewsFromHackim extends AbstractQuest {
 	private static final String QUEST_SLOT = "campfire";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 			return res;
@@ -53,7 +53,7 @@ public class NewsFromHackim extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Hackim Easso");
+		final SpeakerNPC npc = npcs.get("Hackim Easso");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
@@ -96,14 +96,14 @@ public class NewsFromHackim extends AbstractQuest {
 
 	private void step_2() {
 
-		SpeakerNPC npc = npcs.get("Xin Blanca");
+		final SpeakerNPC npc = npcs.get("Xin Blanca");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					String answer;
 					if (player.isEquipped("leather legs")) {
 						answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
@@ -117,7 +117,7 @@ public class NewsFromHackim extends AbstractQuest {
 									+ answer);
 					player.setQuest(QUEST_SLOT, "done");
 
-					Item item = SingletonRepository.getEntityManager().getItem("leather legs");
+					final Item item = SingletonRepository.getEntityManager().getItem("leather legs");
 					player.equip(item, true);
 					player.addXP(10);
 

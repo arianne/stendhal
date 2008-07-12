@@ -11,12 +11,12 @@ class IgnoreAction implements ActionListener {
 	// TODO: make this minutes
 	private static final String _DURATION = "duration";
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		int duration;
 		String reason;
 
 		if (action.has(TARGET)) {
-			String who = action.get(TARGET);
+			final String who = action.get(TARGET);
 
 			if (action.has(_DURATION)) {
 				duration = action.getInt(_DURATION);

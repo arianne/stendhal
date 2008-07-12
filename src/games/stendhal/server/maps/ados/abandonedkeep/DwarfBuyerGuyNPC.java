@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class DwarfBuyerGuyNPC extends SpeakerNPCFactory {
 			@Override
-			public void createDialog(SpeakerNPC dwarfguy) {
+			public void createDialog(final SpeakerNPC dwarfguy) {
 				dwarfguy.addGreeting("What do you want?");
 				dwarfguy.addJob("I buy odds and ends. Somebody has to do it.");
 				dwarfguy.addHelp("Look at me! I am reduced to buying trinkets! How can I help YOU?");
@@ -24,7 +24,7 @@ public class DwarfBuyerGuyNPC extends SpeakerNPCFactory {
 			    dwarfguy.addReply("buy", "What? Why you couldn't even begin to come up with enough money for that!");
 			    dwarfguy.addReply("YOU", "Yes, I am talking to YOU! Who else would I be talking to!");
 
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("shuriken", 20);
 				offerings.put("amulet", 800);
 				offerings.put("black pearl", 100);

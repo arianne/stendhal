@@ -25,8 +25,8 @@ public class StackableItem extends Item implements Stackable {
 
 	private static Logger logger = Logger.getLogger(StackableItem.class);
 
-	public StackableItem(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public StackableItem(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		update();
 	}
@@ -37,7 +37,7 @@ public class StackableItem extends Item implements Stackable {
 	 * @param item
 	 *            item to copy
 	 */
-	public StackableItem(StackableItem item) {
+	public StackableItem(final StackableItem item) {
 		super(item);
 		this.quantity = item.quantity;
 		update();
@@ -66,31 +66,31 @@ public class StackableItem extends Item implements Stackable {
 		put("quantity", quantity);
 	}
 
-	public int sub(int amount) {
+	public int sub(final int amount) {
 		setQuantity(quantity - amount);
 		return quantity;
 	}
 
-	public int add(Stackable other) {
+	public int add(final Stackable other) {
 		setQuantity(other.getQuantity() + quantity);
 		return quantity;
 	}
 
-	public StackableItem splitOff(int amountToSplitOff) {
+	public StackableItem splitOff(final int amountToSplitOff) {
 		if ((quantity <= 0) || (amountToSplitOff <= 0)) {
 			return null;
 		}
 
 		if (quantity >= amountToSplitOff) {
-			StackableItem newItem = (StackableItem) SingletonRepository.getEntityManager().getItem(
+			final StackableItem newItem = (StackableItem) SingletonRepository.getEntityManager().getItem(
 					getName());
 
 			newItem.setQuantity(amountToSplitOff);
 
-			String[] attributesToCopyOnSplit = new String[] { "infostring",
+			final String[] attributesToCopyOnSplit = new String[] { "infostring",
 					"description", "bound", "persistent", "undroppableondeath",
 					"amount", "frequency", "regen", "atk", "range" };
-			for (String attribute : attributesToCopyOnSplit) {
+			for (final String attribute : attributesToCopyOnSplit) {
 				if (has(attribute)) {
 					newItem.put(attribute, get(attribute));
 				}
@@ -109,7 +109,7 @@ public class StackableItem extends Item implements Stackable {
 				} else {
 					try {
 						notifyWorldAboutChanges();
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						logger.warn("isContained() returned false on contained object (bank chest bug): "
 								+ e);
 					}
@@ -129,18 +129,18 @@ public class StackableItem extends Item implements Stackable {
 		splitOff(1);
 	}
 
-	public boolean isStackable(Stackable other) {
-		StackableItem otheri = (StackableItem) other;
+	public boolean isStackable(final Stackable other) {
+		final StackableItem otheri = (StackableItem) other;
 
 		if (!getItemClass().equals(otheri.getItemClass())
 				|| !getItemSubclass().equals(otheri.getItemSubclass())) {
 			return false;
 		}
 
-		String[] importantAttributes = new String[] { "infostring", "bound",
+		final String[] importantAttributes = new String[] { "infostring", "bound",
 				"persistent", "undroppableondeath", "amount", "frequency",
 				"regen", "atk", "range" };
-		for (String iAtt : importantAttributes) {
+		for (final String iAtt : importantAttributes) {
 			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;
 			}

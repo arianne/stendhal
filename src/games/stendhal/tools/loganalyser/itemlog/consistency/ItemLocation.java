@@ -16,7 +16,7 @@ public class ItemLocation {
 	 * @param event name of event
 	 * @return source
 	 */
-	private String getSourceFromEventName(String event) {
+	private String getSourceFromEventName(final String event) {
 		if (event.indexOf("-to-") < 0) {
 			return null;
 		}
@@ -29,7 +29,7 @@ public class ItemLocation {
 	 * @param event name of event
 	 * @return destination
 	 */
-	private String getDestFromEventName(String event) {
+	private String getDestFromEventName(final String event) {
 		if (event.indexOf("-to-") < 0) {
 			return null;
 		}
@@ -45,8 +45,8 @@ public class ItemLocation {
 	 * @param param2 param2 from database
 	 * @return true in case the location is consistent or unknown
 	 */
-	public boolean check(String event, String param1, String param2) {
-		String source = getSourceFromEventName(event);
+	public boolean check(final String event, final String param1, final String param2) {
+		final String source = getSourceFromEventName(event);
 		if (source == null) {
 			return true;
 		}
@@ -67,8 +67,8 @@ public class ItemLocation {
 	 * @param param3 param3 from database
 	 * @param param4 param4 from database
 	 */
-	public void update(String event, String param3, String param4) {
-		String dest = getDestFromEventName(event);
+	public void update(final String event, final String param3, final String param4) {
+		final String dest = getDestFromEventName(event);
 		if (dest == null) {
 			return;
 		}

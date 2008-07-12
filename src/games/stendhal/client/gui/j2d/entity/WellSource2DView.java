@@ -70,7 +70,7 @@ class WellSource2DView extends AnimatedLoopEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case WISH:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			getEntity().fillTargetInfo(rpaction);

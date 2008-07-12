@@ -32,12 +32,12 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	private static final int GROWING_RATE = 1200;
 
 	public static void generateRPClass() {
-		RPClass food = new RPClass("food");
+		final RPClass food = new RPClass("food");
 		food.isA("plant_grower");
 		food.addAttribute("amount", Type.BYTE);
 	}
 
-	public SheepFood(RPObject object) {
+	public SheepFood(final RPObject object) {
 		super(object, "aeryberry", GROWING_RATE);
 		setRPClass("food");
 		put("type", "food");
@@ -59,13 +59,13 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	}
 
 	@Override
-	public void onFruitPicked(Item picked) {
+	public void onFruitPicked(final Item picked) {
 		super.onFruitPicked(picked);
 		setAmount(amount - 1);
 		notifyWorldAboutChanges();
 	}
 
-	private void setAmount(int amount) {
+	private void setAmount(final int amount) {
 		this.amount = amount;
 		put("amount", amount);
 	}
@@ -87,7 +87,7 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 
 	@Override
 	public String describe() {
-		String text = "You see an aeryberry bush, with "
+		final String text = "You see an aeryberry bush, with "
 				+ Grammar.quantityplnoun(getAmount(), "berry")
 				+ " on it. Only sheep can eat aeryberries.";
 		return (text);

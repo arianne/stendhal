@@ -37,7 +37,7 @@ public class FishSource extends PlayerActivityEntity {
 	/**
 	 * The name of the item to be caught.
 	 */
-	private String itemName;
+	private final String itemName;
 
 	/**
 	 * Create a fish source.
@@ -45,7 +45,7 @@ public class FishSource extends PlayerActivityEntity {
 	 * @param itemName
 	 *            The name of the item to be caught.
 	 */
-	public FishSource(String itemName) {
+	public FishSource(final String itemName) {
 		this.itemName = itemName;
 
 		setRPClass("fish_source");
@@ -59,7 +59,7 @@ public class FishSource extends PlayerActivityEntity {
 	//
 
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass("fish_source");
+		final RPClass rpclass = new RPClass("fish_source");
 		rpclass.isA("entity");
 	}
 
@@ -73,10 +73,10 @@ public class FishSource extends PlayerActivityEntity {
 	 * 
 	 * @return The probability of success.
 	 */
-	private double getSuccessProbability(Player player) {
+	private double getSuccessProbability(final Player player) {
 		double probability = 0.05;
 
-		String skill = player.getSkill("fishing");
+		final String skill = player.getSkill("fishing");
 
 		if (skill != null) {
 			probability = Math.max(probability, Double.parseDouble(skill));
@@ -121,7 +121,7 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
-		int random = Rand.roll1D100();
+		final int random = Rand.roll1D100();
 		return (random <= (getSuccessProbability(player) * 100));
 	}
 
@@ -136,7 +136,7 @@ public class FishSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			Item item = SingletonRepository.getEntityManager().getItem(
+			final Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
 
 			player.equip(item, true);

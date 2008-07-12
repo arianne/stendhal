@@ -33,7 +33,7 @@ public class KeyedPortal extends AccessCheckingPortal {
 	 * @param key
 	 *            The name of the required key.
 	 */
-	public KeyedPortal(String key) {
+	public KeyedPortal(final String key) {
 		this(key, 1);
 	}
 
@@ -45,7 +45,7 @@ public class KeyedPortal extends AccessCheckingPortal {
 	 * @param quantity
 	 *            The key quantity required.
 	 */
-	public KeyedPortal(String key, int quantity) {
+	public KeyedPortal(final String key, final int quantity) {
 		this(key, quantity, null);
 	}
 
@@ -59,7 +59,7 @@ public class KeyedPortal extends AccessCheckingPortal {
 	 * @param rejectMessage
 	 *            The message given when rejected.
 	 */
-	public KeyedPortal(String key, int quantity, String rejectMessage) {
+	public KeyedPortal(final String key, final int quantity, final String rejectMessage) {
 		super(rejectMessage);
 
 		this.key = key;
@@ -79,7 +79,7 @@ public class KeyedPortal extends AccessCheckingPortal {
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
-	protected boolean isAllowed(RPEntity user) {
+	protected boolean isAllowed(final RPEntity user) {
 		return user.isEquipped(key, quantity);
 	}
 }

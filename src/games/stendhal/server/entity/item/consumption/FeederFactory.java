@@ -8,7 +8,7 @@ public final class FeederFactory {
 	private static Poisoner poisoner = new Poisoner();
 	private static Eater eater = new Eater();
 
-	public static Feeder get(ConsumableItem item) {
+	public static Feeder get(final ConsumableItem item) {
 		if (item.getName().contains("potion")) {
 			return stuffer;
 		}

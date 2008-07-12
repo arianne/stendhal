@@ -41,21 +41,21 @@ class SoundCycle extends Thread implements Cloneable {
 
 	Entity entityRef;
 
-	private String token;
+	private final String token;
 
-	private int period;
+	private final int period;
 
-	private int volBot;
+	private final int volBot;
 
-	private int volTop;
+	private final int volTop;
 
-	private int chance;
+	private final int chance;
 
 	private DataLine dataline;
 
 	private long waitTime;
 
-	private int playMax;
+	private final int playMax;
 
 	private boolean executing;
 
@@ -81,8 +81,8 @@ class SoundCycle extends Thread implements Cloneable {
 	 * @param chance
 	 *            percent chance of performance for singular performances
 	 */
-	public SoundCycle(Entity entity, String token, int period, int volBot,
-			int volTop, int chance) {
+	public SoundCycle(final Entity entity, final String token, final int period, final int volBot,
+			final int volTop, final int chance) {
 		super("Stendhal.CycleSound." + token);
 
 		ClipRunner clip;
@@ -167,7 +167,7 @@ class SoundCycle extends Thread implements Cloneable {
 			executing = true;
 			try {
 				start();
-			} catch (OutOfMemoryError e) {
+			} catch (final OutOfMemoryError e) {
 				// If the number of threads is limmited a OutOfMemoryError is
 				// thrown.
 				// The soundsystem can create a huge amount of threads, so we
@@ -191,7 +191,7 @@ class SoundCycle extends Thread implements Cloneable {
 			waitTime = Math.max(playMax, Rand.rand(period));
 			try {
 				sleep(waitTime);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 			}
 
 			if (!executing) {

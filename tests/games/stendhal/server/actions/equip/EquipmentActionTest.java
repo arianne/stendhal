@@ -41,8 +41,8 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	 * @param name
 	 * @return a Player where the  privateTexts are captured
 	 */
-	private PrivateTextMockingTestPlayer createTestPlayer(String name) {
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
+	private PrivateTextMockingTestPlayer createTestPlayer(final String name) {
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
 
 		player.setPosition(10, 5);
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).assignRPObjectID(player);
@@ -53,24 +53,24 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 
 	@Test
 	public void testDropInvalidSourceSlot() {
-		PrivateTextMockingTestPlayer player = createTestPlayer("george");
+		final PrivateTextMockingTestPlayer player = createTestPlayer("george");
 
-		RPAction drop = new RPAction();
+		final RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "nonExistingSlotXXXXXX");
 		drop.put("baseitem", -1);
 
-		EquipmentAction action = new EquipmentAction();
+		final EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.getPrivateTextString());
 	}
 
 	@Test
 	public void testDrop() {
-		PrivateTextMockingTestPlayer player = createTestPlayer("bob");
+		final PrivateTextMockingTestPlayer player = createTestPlayer("bob");
 
-		RPAction drop = new RPAction();
+		final RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "bag");
@@ -79,7 +79,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		drop.put("quantity", "1");
 		drop.put("baseitem", -1);
 
-		EquipmentAction action = new EquipmentAction();
+		final EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		Assert.assertEquals("There is no such item in the bag of bob", player.getPrivateTextString());
 	}

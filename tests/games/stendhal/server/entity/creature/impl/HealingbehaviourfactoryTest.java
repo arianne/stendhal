@@ -21,11 +21,11 @@ public class HealingbehaviourfactoryTest {
 		called = false;
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get();
-		StendhalRPZone zone = new StendhalRPZone("blabl");
+		final StendhalRPZone zone = new StendhalRPZone("blabl");
 		CreatureTestHelper.generateRPClasses();
-		Creature creature = new Creature() {
+		final Creature creature = new Creature() {
 			@Override
-			public int heal(int amount) {
+			public int heal(final int amount) {
 				called = true;
 				return amount;
 			}

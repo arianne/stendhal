@@ -50,7 +50,7 @@ public class KillDarkElves extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_dark_elves";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Maerion");
+		final SpeakerNPC npc = npcs.get("Maerion");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -74,7 +74,7 @@ public class KillDarkElves extends AbstractQuest {
 				"I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.",
 				null);
 
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new StartRecordingKillsAction("dark elf archer", "dark elf captain", "thing"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -109,7 +109,7 @@ public class KillDarkElves extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Maerion");
+		final SpeakerNPC npc = npcs.get("Maerion");
 
 		// the player returns to Maerion after having started the quest.
 		// Maerion checks if the player has killed one of enough dark elf types

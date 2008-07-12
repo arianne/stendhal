@@ -46,8 +46,8 @@ public class WeddingRing extends Ring {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public WeddingRing(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public WeddingRing(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -57,12 +57,12 @@ public class WeddingRing extends Ring {
 	 * @param item
 	 *            item to copy
 	 */
-	public WeddingRing(WeddingRing item) {
+	public WeddingRing(final WeddingRing item) {
 		super(item);
 	}
 
 	@Override
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		RPObject base = this;
 		// Find the top container
 		while (base.isContained()) {
@@ -83,8 +83,8 @@ public class WeddingRing extends Ring {
 	 * @param player
 	 *            The ring's owner.
 	 */
-	private void teleportToSpouse(Player player) {
-		String spouseName = getInfoString();
+	private void teleportToSpouse(final Player player) {
+		final String spouseName = getInfoString();
 
 		if (spouseName == null) {
 			player.sendPrivateText("This wedding ring hasn't been engraved yet.");
@@ -93,7 +93,7 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
-		Player spouse = SingletonRepository.getRuleProcessor().getPlayer(spouseName);
+		final Player spouse = SingletonRepository.getRuleProcessor().getPlayer(spouseName);
 		if (spouse == null) {
 			player.sendPrivateText(spouseName + " is not online.");
 			return;
@@ -102,7 +102,7 @@ public class WeddingRing extends Ring {
 		if (spouse.isEquipped("wedding ring")) { // spouse is equipped with ring but could be divorced and
 			// have another
 
-			Item weddingRing = spouse.getFirstEquipped("wedding ring");
+			final Item weddingRing = spouse.getFirstEquipped("wedding ring");
 
 			if (weddingRing.getInfoString() == null) { // divorced with ring
 				// and engaged again
@@ -126,28 +126,28 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
-		StendhalRPZone sourceZone = player.getZone();
+		final StendhalRPZone sourceZone = player.getZone();
 		if (!sourceZone.isTeleportAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the wedding ring from working!");
 			return;
 		}
 
-		StendhalRPZone destinationZone = spouse.getZone();
+		final StendhalRPZone destinationZone = spouse.getZone();
 		if (!destinationZone.isTeleportAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in the destination area prevents the wedding ring from working!");
 			return;
 		}
 
-		int x = spouse.getX();
-		int y = spouse.getY();
-		Direction dir = spouse.getDirection();
+		final int x = spouse.getX();
+		final int y = spouse.getY();
+		final Direction dir = spouse.getDirection();
 
 		player.teleport(destinationZone, x, y, dir, player);
 	}
 
 	@Override
 	public String describe() {
-		String spouseName = getInfoString();
+		final String spouseName = getInfoString();
 
 		if (spouseName != null) {
 			return "You see a wedding ring. Its engraving says: \"In eternal love to "

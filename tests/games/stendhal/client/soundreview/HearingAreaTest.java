@@ -63,8 +63,8 @@ public class HearingAreaTest {
 
 	@Test
 	public void getAsRect() {
-		int centerX = 1;
-		int centerY = 5;
+		final int centerX = 1;
+		final int centerY = 5;
 		HearingArea.set(centerX, centerY);
 		Rectangle2D rect = HearingArea.getAsRect();
 		assertEquals(-HearingArea.HEARINGDIST + centerX, (int) rect.getMinX());
@@ -85,11 +85,11 @@ public class HearingAreaTest {
 
 	@Test
 	public void getAsRectSetDouble() {
-		double centerX = 1;
-		double centerY = 5;
+		final double centerX = 1;
+		final double centerY = 5;
 		HearingArea.set(centerX, centerY);
 
-		Rectangle2D rect = HearingArea.getAsRect();
+		final Rectangle2D rect = HearingArea.getAsRect();
 		assertEquals(-HearingArea.HEARINGDIST + centerX, rect.getMinX(), 0.001);
 		assertEquals(-HearingArea.HEARINGDIST + centerY, rect.getMinY(), 0.001);
 		assertEquals(HearingArea.HEARINGDIST + centerX, rect.getMaxX(), 0.001);

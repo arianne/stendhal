@@ -40,31 +40,31 @@ public class EntityFactoryHelper {
 	 * 
 	 * @see-also ConfigurableFactory
 	 */
-	public static Entity create(String className,
-			Map<String, String> parameters, Map<String, String> attributes) {
+	public static Entity create(final String className,
+			final Map<String, String> parameters, final Map<String, String> attributes) {
 
-		ConfigurableFactory factory = ConfigurableFactoryHelper.getFactory(className);
+		final ConfigurableFactory factory = ConfigurableFactoryHelper.getFactory(className);
 		if (factory == null) {
 			return null;
 		}
 
-		Object obj = factory.create(new ConfigurableFactoryContext(parameters));
+		final Object obj = factory.create(new ConfigurableFactoryContext(parameters));
 
 		if (!(obj instanceof Entity)) {
 			throw new IllegalArgumentException(obj.getClass().getName()
 					+ " is not an instance of Entity");
 		}
 
-		Entity entity = (Entity) obj;
+		final Entity entity = (Entity) obj;
 
 		/*
 		 * Apply optional attributes
 		 */
 		if (attributes != null) {
-			for (String name : attributes.keySet()) {
+			for (final String name : attributes.keySet()) {
 				try {
 					entity.put(name, attributes.get(name));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					throw new IllegalArgumentException(
 							"Unable to set attribute '" + name + "' on "
 									+ entity.getClass().getName());

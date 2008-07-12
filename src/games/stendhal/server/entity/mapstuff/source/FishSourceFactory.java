@@ -17,7 +17,7 @@ public class FishSourceFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected String getSpecies(ConfigurableFactoryContext ctx) {
+	protected String getSpecies(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("species");
 	}
 
@@ -35,7 +35,7 @@ public class FishSourceFactory implements ConfigurableFactory {
 	 * 
 	 * @see FishSource
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new FishSource(getSpecies(ctx));
 	}
 }

@@ -45,20 +45,20 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnAction() {
-		ActionListener al = new PlayersQuery() {
+		final ActionListener al = new PlayersQuery() {
 			@Override
-			public void onWhere(Player player, RPAction action) {
+			public void onWhere(final Player player, final RPAction action) {
 				whereWasExecuted = true;
 			}
 
 			@Override
-			public void onWho(Player player, RPAction action) {
+			public void onWho(final Player player, final RPAction action) {
 				whoWasExecuted = true;
 			}
 		};
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		assertFalse(whoWasExecuted);
 		al.onAction(player, action);
 		assertTrue(whoWasExecuted);
@@ -72,10 +72,10 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnWho() {
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		pq.onWho(player, action);
 		assertThat(player.getPrivateTextString(), equalTo("0 Players online: "));
 		player.resetPrivateTextString();
@@ -104,10 +104,10 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnWhereNoTarget() {
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -116,12 +116,12 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnWhereNotThere() {
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "NotThere");
 
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -130,13 +130,13 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnWhere() {
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "bob");
 
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
-		StendhalRPZone zone = new StendhalRPZone("zone");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		pq.onWhere(player, action);
@@ -144,7 +144,7 @@ public class PlayersQueryTest {
 		player.resetPrivateTextString();
 		
 		
-		PrivateTextMockingTestPlayer ghosted = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghosted");
+		final PrivateTextMockingTestPlayer ghosted = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghosted");
 		zone.add(ghosted);
 		MockStendhalRPRuleProcessor.get().addPlayer(ghosted);
 		action.put(WellKnownActionConstants.TARGET, ghosted.getName());
@@ -160,12 +160,12 @@ public class PlayersQueryTest {
 
 	@Test
 	public void testOnWhereSheep() {
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "sheep");
 
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -175,8 +175,8 @@ public class PlayersQueryTest {
 	@Test
 	public void testOnWherePetSheep() {
 		SheepTestHelper.generateRPClasses();
-		PlayersQuery pq = new PlayersQuery();
-		RPAction action = new RPAction();
+		final PlayersQuery pq = new PlayersQuery();
+		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "pet");
 
@@ -189,7 +189,7 @@ public class PlayersQueryTest {
 			public ID getID() {
 				return new ID(new RPObject() {
 					@Override
-					public int getInt(String attribute) {
+					public int getInt(final String attribute) {
 						return 1;
 					}
 				});
@@ -207,7 +207,7 @@ public class PlayersQueryTest {
 			public ID getID() {
 				return new ID(new RPObject() {
 					@Override
-					public int getInt(String attribute) {
+					public int getInt(final String attribute) {
 						return 1;
 					}
 				});

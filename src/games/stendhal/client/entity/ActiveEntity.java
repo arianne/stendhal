@@ -127,8 +127,8 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public static double calcDeltaMovement(final double clientPos,
 			final double serverPos, final double delta) {
-		double moveErr = clientPos - serverPos;
-		double moveCorrection = (delta - moveErr) / delta;
+		final double moveErr = clientPos - serverPos;
+		final double moveCorrection = (delta - moveErr) / delta;
 		return (delta + delta * moveCorrection) / 2;
 	}
 
@@ -216,10 +216,10 @@ public abstract class ActiveEntity extends Entity {
 		super.update(delta);
 
 		if (!stopped()) {
-			double step = (delta / 300.0);
+			final double step = (delta / 300.0);
 
-			double oldX = x;
-			double oldY = y;
+			final double oldX = x;
+			final double oldY = y;
 
 			// update the location of the entity based on speeds
 			x += (dx * step);
@@ -249,8 +249,8 @@ public abstract class ActiveEntity extends Entity {
 	@Override
 	protected void processPositioning(final RPObject base, final RPObject diff) {
 		// Real movement case
-		int oldx = base.getInt("x");
-		int oldy = base.getInt("y");
+		final int oldx = base.getInt("x");
+		final int oldy = base.getInt("y");
 
 		int newX = oldx;
 		int newY = oldy;

@@ -57,9 +57,9 @@ public class Character extends WtPanel {
 	private static final int SLOT_SPACING = 3; // estimate
 
 	/** the stats panel. */
-	private WtTextPanel statsPanel;
+	private final WtTextPanel statsPanel;
 
-	private Map<String, EntitySlot> slotPanels;
+	private final Map<String, EntitySlot> slotPanels;
 
 	/** cached player entity. */
 	private User playerEntity;
@@ -75,7 +75,7 @@ public class Character extends WtPanel {
 	 * 
 	 * @param ui
 	 */
-	public Character(StendhalUI ui, IGameScreen gameScreen) {
+	public Character(final StendhalUI ui, final IGameScreen gameScreen) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
 				PANEL_HEIGHT, gameScreen);
 
@@ -87,10 +87,10 @@ public class Character extends WtPanel {
 		slotPanels = new HashMap<String, EntitySlot>();
 
 		// now add the slots
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 
 		// Offset to center the slot holders
-		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
+		final int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
 		slotPanels.put("head", new EntitySlot("head", st
 				.getSprite("data/gui/helmet-slot.png"),
@@ -129,7 +129,7 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 3), gameScreen));
 
-		for (EntitySlot slot : slotPanels.values()) {
+		for (final EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
 		}
 
@@ -157,7 +157,7 @@ public class Character extends WtPanel {
 	 * 
 	 * @param userEntity
 	 */
-	public void setPlayer(User userEntity) {
+	public void setPlayer(final User userEntity) {
 		this.playerEntity = userEntity;
 	}
 
@@ -166,7 +166,7 @@ public class Character extends WtPanel {
 	 * 
 	 * @param gameScreen
 	 */
-	private void refreshPlayerStats(IGameScreen gameScreen) {
+	private void refreshPlayerStats(final IGameScreen gameScreen) {
 		if (playerEntity == null) {
 			return;
 		}
@@ -177,28 +177,28 @@ public class Character extends WtPanel {
 
 		money = 0;
 
-		GameObjects gameObjects = GameObjects.getInstance();
+		final GameObjects gameObjects = GameObjects.getInstance();
 
 		// taverse all carrying slots
-		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
+		final String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
 
-		for (String slotName : slotsCarrying) {
-			RPSlot slot = playerEntity.getSlot(slotName);
+		for (final String slotName : slotsCarrying) {
+			final RPSlot slot = playerEntity.getSlot(slotName);
 
 			if (slot == null) {
 				continue;
 			}
 
-			EntitySlot entitySlot = slotPanels.get(slotName);
+			final EntitySlot entitySlot = slotPanels.get(slotName);
 
 			if (entitySlot != null) {
 				entitySlot.setParent(playerEntity);
 
-				Iterator<RPObject> iter = slot.iterator();
+				final Iterator<RPObject> iter = slot.iterator();
 
 				if (iter.hasNext()) {
-					RPObject object = iter.next();
+					final RPObject object = iter.next();
 
 					Entity entity = gameObjects.get(object);
 
@@ -217,7 +217,7 @@ public class Character extends WtPanel {
 			}
 
 			// count all money
-			for (RPObject content : slot) {
+			for (final RPObject content : slot) {
 				if (content.get("class").equals("money")
 						&& content.has("quantity")) {
 					money += content.getInt("quantity");
@@ -225,8 +225,8 @@ public class Character extends WtPanel {
 			}
 		}
 
-		int atkitem = playerEntity.getAtkItem();
-		int defitem = playerEntity.getDefItem();
+		final int atkitem = playerEntity.getAtkItem();
+		final int defitem = playerEntity.getDefItem();
 
 		setTitletext(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
@@ -239,19 +239,19 @@ public class Character extends WtPanel {
 		/*
 		 * Show the amount of XP left to level up on ATK
 		 */
-		int atkLvl = Level.getLevel(playerEntity.getAtkXp());
-		int nextAtkXp = Level.getXP(atkLvl + 1) - playerEntity.getAtkXp();
+		final int atkLvl = Level.getLevel(playerEntity.getAtkXp());
+		final int nextAtkXp = Level.getXP(atkLvl + 1) - playerEntity.getAtkXp();
 		statsPanel.set("atkxp", Integer.toString(nextAtkXp));
 
 		/*
 		 * Show the amount of XP left to level up on DEF
 		 */
-		int defLvl = Level.getLevel(playerEntity.getDefXp());
-		int nextDefXp = Level.getXP(defLvl + 1) - playerEntity.getDefXp();
+		final int defLvl = Level.getLevel(playerEntity.getDefXp());
+		final int nextDefXp = Level.getXP(defLvl + 1) - playerEntity.getDefXp();
 		statsPanel.set("defxp", Integer.toString(nextDefXp));
 
 		statsPanel.set("xp", playerEntity.getXp());
-		int level = Level.getLevel(playerEntity.getXp());
+		final int level = Level.getLevel(playerEntity.getXp());
 		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
 				- playerEntity.getXp());
 		statsPanel.set("money", money);
@@ -267,7 +267,7 @@ public class Character extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
 		refreshPlayerStats(gameScreen);
 
 		super.drawContent(g, gameScreen);

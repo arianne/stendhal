@@ -52,7 +52,7 @@ public class KHtmlEdit extends KTextEdit {
 	 */
 	protected void activateLink(final HyperlinkEvent ev) {
 		String text;
-		URL url = ev.getURL();
+		final URL url = ev.getURL();
 
 		if (url != null) {
 			if (url.getProtocol().equals("say")) {
@@ -60,7 +60,7 @@ public class KHtmlEdit extends KTextEdit {
 
 				try {
 					text = URLDecoder.decode(text, "UTF-8");
-				} catch (UnsupportedEncodingException ex) {
+				} catch (final UnsupportedEncodingException ex) {
 					// Leave text as-is and hope for best
 				}
 			} else {
@@ -76,7 +76,7 @@ public class KHtmlEdit extends KTextEdit {
 
 				try {
 					text = URLDecoder.decode(text, "UTF-8");
-				} catch (UnsupportedEncodingException ex) {
+				} catch (final UnsupportedEncodingException ex) {
 					// Leave text as-is and hope for best
 				}
 			}
@@ -85,7 +85,7 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Chat link
 		 */
-		RPAction rpaction = new RPAction();
+		final RPAction rpaction = new RPAction();
 
 		rpaction.put("type", "chat");
 		rpaction.put("text", text);
@@ -101,14 +101,14 @@ public class KHtmlEdit extends KTextEdit {
 	 *            The HTML text to add.
 	 */
 	protected void appendString(final String text) {
-		HTMLDocument doc = (HTMLDocument) textPane.getDocument();
+		final HTMLDocument doc = (HTMLDocument) textPane.getDocument();
 
 		try {
-			Element root = doc.getParagraphElement(0);
+			final Element root = doc.getParagraphElement(0);
 			doc.insertBeforeEnd(root, text);
-		} catch (BadLocationException ex) {
+		} catch (final BadLocationException ex) {
 			ex.printStackTrace();
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			ex.printStackTrace();
 		}
 	}
@@ -149,7 +149,7 @@ public class KHtmlEdit extends KTextEdit {
 	 *
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final String text) {
-		StringCharacterIterator ci = new StringCharacterIterator(text);
+		final StringCharacterIterator ci = new StringCharacterIterator(text);
 		char ch = ci.current();
 
 		while (ch != CharacterIterator.DONE) {
@@ -182,7 +182,7 @@ public class KHtmlEdit extends KTextEdit {
 //			System.err.println("Couldn't insert initial text.");
 //		}
 
-		StringCharacterIterator ci = new StringCharacterIterator(text);
+		final StringCharacterIterator ci = new StringCharacterIterator(text);
 		char ch = ci.current();
 
 		while (ch != CharacterIterator.DONE) {
@@ -197,7 +197,7 @@ public class KHtmlEdit extends KTextEdit {
 					appendHTML(sbuf, ch);
 					ch = ci.next();
 				} else {
-					String link = extractLink(ci);
+					final String link = extractLink(ci);
 
 					/*
 					 * Emit link (if any)
@@ -228,7 +228,7 @@ public class KHtmlEdit extends KTextEdit {
 	 * @return Link text (or an empty string).
 	 */
 	protected String extractLink(final CharacterIterator ci) {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 		char ch = ci.current();
 		char terminator = ' ';
 
@@ -295,7 +295,7 @@ public class KHtmlEdit extends KTextEdit {
 	 *
 	 * @return <code>true</code> if a word delimiter.
 	 */
-	protected boolean isWordDelim(char ch) {
+	protected boolean isWordDelim(final char ch) {
 		switch (ch) {
 		case '.':
 		case ',':
@@ -318,7 +318,7 @@ public class KHtmlEdit extends KTextEdit {
 	 * @param text
 	 *            The text to convert.
 	 */
-	protected void buildLink(StringBuilder sbuf, String text) {
+	protected void buildLink(final StringBuilder sbuf, final String text) {
 		sbuf.append("<a href='");
 
 		if (text.startsWith("http://") || text.startsWith("https://")
@@ -329,7 +329,7 @@ public class KHtmlEdit extends KTextEdit {
 
 			try {
 				sbuf.append(URLEncoder.encode(text, "UTF-8"));
-			} catch (UnsupportedEncodingException ex) {
+			} catch (final UnsupportedEncodingException ex) {
 				// Nothing left to try
 				sbuf.append(text);
 			}
@@ -377,8 +377,8 @@ public class KHtmlEdit extends KTextEdit {
 	protected void initStylesForTextPane(final JTextPane textPane) {
 		textPane.setContentType("text/html");
 
-		HTMLDocument doc = (HTMLDocument) textPane.getDocument();
-		StyleSheet css = doc.getStyleSheet();
+		final HTMLDocument doc = (HTMLDocument) textPane.getDocument();
+		final StyleSheet css = doc.getStyleSheet();
 
 		/*
 		 * Configure standard styles
@@ -395,8 +395,8 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Configure notification types
 		 */
-		for (NotificationType type : NotificationType.values()) {
-			Color color = type.getColor();
+		for (final NotificationType type : NotificationType.values()) {
+			final Color color = type.getColor();
 
 			if (color != null) {
 				css.addRule("." + type.getMnemonic() + " { color: "
@@ -408,7 +408,7 @@ public class KHtmlEdit extends KTextEdit {
 	@Override
 	protected void insertHeader(final String text) {
 		if ((text != null) && (text.length() != 0)) {
-			StringBuilder sbuf = new StringBuilder();
+			final StringBuilder sbuf = new StringBuilder();
 
 			sbuf.append("<span class='_header'>");
 			sbuf.append("&lt;");
@@ -436,7 +436,7 @@ public class KHtmlEdit extends KTextEdit {
 	 */
 	@Override
 	protected void insertText(final String text, final NotificationType type) {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append("<span class='");
 		sbuf.append(type.getMnemonic());
@@ -449,7 +449,7 @@ public class KHtmlEdit extends KTextEdit {
 
 	@Override
 	protected void insertTimestamp(final String text) {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append("<span class='_timestamp'>");
 		appendHTML(sbuf, text);
@@ -465,7 +465,7 @@ public class KHtmlEdit extends KTextEdit {
 	 * A hyperlink listener for link activation.
 	 */
 	protected class ActivateLinkCB implements HyperlinkListener {
-		public void hyperlinkUpdate(HyperlinkEvent ev) {
+		public void hyperlinkUpdate(final HyperlinkEvent ev) {
 			if (ev.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 				activateLink(ev);
 			}

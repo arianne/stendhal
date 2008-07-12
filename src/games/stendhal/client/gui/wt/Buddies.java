@@ -44,15 +44,15 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Buddies extends WtPanel {
-	private StendhalUI ui;
+	private final StendhalUI ui;
 
 	// private StendhalClient client;
 
-	private Sprite online;
+	private final Sprite online;
 
-	private Sprite offline;
+	private final Sprite offline;
 
-	private LinkedList<String> buddies;
+	private final LinkedList<String> buddies;
 
 	/** Creates a new instance of Buddies. 
 	 * @param ui */
@@ -65,7 +65,7 @@ public class Buddies extends WtPanel {
 		setFrame(true);
 		setMovable(true);
 		setMinimizeable(true);
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 		online = st.getSprite("data/gui/buddy_online.png");
 		offline = st.getSprite("data/gui/buddy_offline.png");
 
@@ -79,8 +79,8 @@ public class Buddies extends WtPanel {
 	}
 
 	@Override
-	public synchronized boolean onMouseRightClick(Point p) {
-		int i = ((int) p.getY() - 2) / 20 - 1;
+	public synchronized boolean onMouseRightClick(final Point p) {
+		final int i = ((int) p.getY() - 2) / 20 - 1;
 		if ((i < buddies.size()) && (i >= 0)) {
 
 			/**
@@ -88,21 +88,21 @@ public class Buddies extends WtPanel {
 			 * online, but it works :)
 			 */
 			boolean isOnline = false;
-			RPObject object = ui.getClient().getPlayer();
+			final RPObject object = ui.getClient().getPlayer();
 			if (object != null) {
-				RPSlot slot = object.getSlot("!buddy");
-				RPObject buddy = slot.getFirst();
-				String buddyName = buddies.get(i);
+				final RPSlot slot = object.getSlot("!buddy");
+				final RPObject buddy = slot.getFirst();
+				final String buddyName = buddies.get(i);
 				if (buddy.has("_" + buddyName)
 						&& (buddy.getInt("_" + buddyName) != 0)) {
 					isOnline = true;
 				}
 			}
 
-			StyledJPopupMenu menu = new StyledJPopupMenu(
+			final StyledJPopupMenu menu = new StyledJPopupMenu(
 					WoodStyle.getInstance(), buddies.get(i));
 
-			ActionListener listener = new ActionSelectedCB(buddies.get(i));
+			final ActionListener listener = new ActionSelectedCB(buddies.get(i));
 
 			JMenuItem mi;
 
@@ -156,12 +156,12 @@ public class Buddies extends WtPanel {
 
 			ui.setChatLine("/msg postman tell " + buddieName + " ");
 		} else if ("where".equals(command)) {
-			RPAction where = new RPAction();
+			final RPAction where = new RPAction();
 			where.put("type", "where");
 			where.put("target", buddieName);
 			ui.getClient().send(where);
 		} else if ("remove".equals(command)) {
-			RPAction where = new RPAction();
+			final RPAction where = new RPAction();
 			where.put("type", "removebuddy");
 			where.put("target", buddieName);
 			ui.getClient().send(where);
@@ -180,14 +180,14 @@ public class Buddies extends WtPanel {
 		super.drawContent(g, gameScreen);
 
 		int i = 0;
-		RPObject object = ui.getClient().getPlayer();
+		final RPObject object = ui.getClient().getPlayer();
 
 		if (object != null) {
-			RPSlot slot = object.getSlot("!buddy");
-			RPObject buddy = slot.getFirst();
+			final RPSlot slot = object.getSlot("!buddy");
+			final RPObject buddy = slot.getFirst();
 			buddies.clear();
 
-			for (String key : buddy) {
+			for (final String key : buddy) {
 				if (key.startsWith("_")) {
 					buddies.add(key.substring(1));
 
@@ -228,7 +228,7 @@ public class Buddies extends WtPanel {
 		 * 
 		 * 
 		 */
-		public ActionSelectedCB(String buddy) {
+		public ActionSelectedCB(final String buddy) {
 			this.buddy = buddy;
 		}
 
@@ -236,7 +236,7 @@ public class Buddies extends WtPanel {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			doAction(ev.getActionCommand(), buddy);
 		}
 	};

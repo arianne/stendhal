@@ -17,12 +17,12 @@ public class WishmanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildWishman(zone);
 	}
 
-	private void buildWishman(StendhalRPZone zone) {
-		SpeakerNPC wishman = new SpeakerNPC("Wishman") {
+	private void buildWishman(final StendhalRPZone zone) {
+		final SpeakerNPC wishman = new SpeakerNPC("Wishman") {
 
 			@Override
 			protected void createPath() {

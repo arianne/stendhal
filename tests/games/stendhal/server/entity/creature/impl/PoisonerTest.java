@@ -36,22 +36,22 @@ public class PoisonerTest {
 
 	@Test
 	public void testPoisoner() {
-		String poisontype = "greater poison";
-		ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
+		final String poisontype = "greater poison";
+		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
-		Poisoner poisoner = new Poisoner(100, poison);
-		Player victim = PlayerTestHelper.createPlayer("bob");
+		final Poisoner poisoner = new Poisoner(100, poison);
+		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attack(victim);
 		assertTrue(victim.isPoisoned());
 	}
 
 	@Test
 	public void testPoisonerProbabilityZero() {
-		String poisontype = "greater poison";
-		ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
+		final String poisontype = "greater poison";
+		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
-		Poisoner poisoner = new Poisoner(0, poison);
-		Player victim = PlayerTestHelper.createPlayer("bob");
+		final Poisoner poisoner = new Poisoner(0, poison);
+		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attack(victim);
 		assertFalse(victim.isPoisoned());
 	}

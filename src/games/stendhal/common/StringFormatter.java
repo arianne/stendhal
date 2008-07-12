@@ -44,17 +44,17 @@ public class StringFormatter {
 	private String cachedString;
 
 	/** The static parts of the control-string. */
-	private List<String> staticParts;
+	private final List<String> staticParts;
 
 	/** Names of the parameter in the correct order. */
-	private List<String> parameterPositions;
+	private final List<String> parameterPositions;
 
 	/** Names/values of the parameter. */
-	private Map<String, String> parameter;
+	private final Map<String, String> parameter;
 
 	/** Creates a new instance of StringFormatter. 
 	 * @param formatString */
-	public StringFormatter(String formatString) {
+	public StringFormatter(final String formatString) {
 		staticParts = new ArrayList<String>();
 		parameterPositions = new ArrayList<String>();
 		parameter = new HashMap<String, String>();
@@ -68,14 +68,14 @@ public class StringFormatter {
 				// we found something
 				if (hasStart) {
 					// found the end of the parameter definition
-					String param = current.substring(PARAMETER_START.length(),
+					final String param = current.substring(PARAMETER_START.length(),
 							index);
 					current = current.substring(index + PARAMETER_END.length());
 					parameter.put(param, "");
 					parameterPositions.add(param);
 				} else {
 					// found start
-					String s = current.substring(0, index);
+					final String s = current.substring(0, index);
 					current = current.substring(index);
 					staticParts.add(s);
 				}
@@ -89,7 +89,7 @@ public class StringFormatter {
 	/** Sets the value of a parameter. 
 	 * @param param 
 	 * @param value */
-	public void set(String param, String value) {
+	public void set(final String param, final String value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, value);
 			refreshCache = true;
@@ -99,7 +99,7 @@ public class StringFormatter {
 	/** Sets the value of a parameter. 
 	 * @param param 
 	 * @param value */
-	public void set(String param, int value) {
+	public void set(final String param, final int value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, Integer.toString(value));
 			refreshCache = true;
@@ -111,9 +111,9 @@ public class StringFormatter {
 	public String toString() {
 		if ((cachedString == null) || refreshCache) {
 			// recalculate the string
-			StringBuilder buf = new StringBuilder();
-			Iterator<String> staticIt = staticParts.iterator();
-			Iterator<String> paramIt = parameterPositions.iterator();
+			final StringBuilder buf = new StringBuilder();
+			final Iterator<String> staticIt = staticParts.iterator();
+			final Iterator<String> paramIt = parameterPositions.iterator();
 			while (staticIt.hasNext()) {
 				buf.append(staticIt.next());
 				if (paramIt.hasNext()) {

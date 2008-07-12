@@ -38,13 +38,13 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 	public static void generateRPEvent() {
 		if (!RPClass.hasRPClass("transition_graph")) {
-    		RPClass rpclass = new RPClass("transition_graph");
+    		final RPClass rpclass = new RPClass("transition_graph");
     		rpclass.add(DefinitionClass.RPEVENT, "transition_graph", Definition.STANDARD);
 		}
 	}
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		generateRPEvent();
 
 		if (args.size() < 1) {
@@ -52,18 +52,18 @@ public class DumpTransitionsEx extends ScriptImpl {
 			return;
 		}
 
-		StringBuilder npcName = new StringBuilder();
-		for (String arg : args) {
+		final StringBuilder npcName = new StringBuilder();
+		for (final String arg : args) {
 			npcName.append(arg + " ");
 		}
-		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName.toString().trim());
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName.toString().trim());
 		if (npc == null) {
 			admin.sendPrivateText("There is no NPC called " + npcName);
 			return;
 		}
 		dump(npc);
 
-		RPEvent event = new RPEvent("transition_graph");
+		final RPEvent event = new RPEvent("transition_graph");
 		event.put("data", dumpedTable.toString());
 		admin.addEvent(event);
 	}
@@ -75,12 +75,12 @@ public class DumpTransitionsEx extends ScriptImpl {
 	 *            SpeakerNPC
 	 * @return transition diagram
 	 */
-	public String getDump(SpeakerNPC npc) {
+	public String getDump(final SpeakerNPC npc) {
 		dump(npc);
 		return dumpedTable.toString();
 	}
 
-	private void dump(SpeakerNPC npc) {
+	private void dump(final SpeakerNPC npc) {
 		dumpedTable = new StringBuilder();
 		conditions = new CountingMap<PreTransitionCondition>("C");
 		actions = new CountingMap<PostTransitionAction>("A");
@@ -96,43 +96,43 @@ public class DumpTransitionsEx extends ScriptImpl {
 		dumpedTable.append("rankdir=LR\r\n");
 	}
 
-	private void dumpNPC(SpeakerNPC npc) {
-		List<Transition> transitions = npc.getTransitions();
-		for (Transition transition : transitions) {
+	private void dumpNPC(final SpeakerNPC npc) {
+		final List<Transition> transitions = npc.getTransitions();
+		for (final Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> "
 					+ getStateName(transition.getNextState()));
-			String transitionName = getExtendedTransitionName(transition);
+			final String transitionName = getExtendedTransitionName(transition);
 			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
 	}
 
-	private String getExtendedTransitionName(Transition transition) {
+	private String getExtendedTransitionName(final Transition transition) {
 		String transitionName = transition.getTrigger().toString();
 
 		if (transition.getCondition() != null) {
-			String key = conditions.add(transition.getCondition());
+			final String key = conditions.add(transition.getCondition());
 			transitionName = "(" + key + ") " + transitionName;
 		}
 
 		if (transition.getAction() != null) {
-			String key = actions.add(transition.getAction());
+			final String key = actions.add(transition.getAction());
 			transitionName = transitionName + " (" + key + ")";
 		}
 
 		return transitionName;
 	}
 
-	private static String getStateName(int number) {
-		Integer num = Integer.valueOf(number);
-		Field[] fields = ConversationStates.class.getFields();
-		for (Field field : fields) {
+	private static String getStateName(final int number) {
+		final Integer num = Integer.valueOf(number);
+		final Field[] fields = ConversationStates.class.getFields();
+		for (final Field field : fields) {
 			try {
 				if (field.get(null).equals(num)) {
 					return field.getName();
 				}
-			} catch (IllegalArgumentException e) {
+			} catch (final IllegalArgumentException e) {
 				logger.error(e, e);
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				logger.error(e, e);
 			}
 		}
@@ -148,11 +148,11 @@ public class DumpTransitionsEx extends ScriptImpl {
 		dumpedTable.append("\"caption\" [\r\n");
 		dumpedTable.append("label = \"");
 		dumpedTable.append("Caption");
-		for (Map.Entry<String, PreTransitionCondition> entry : conditions) {
+		for (final Map.Entry<String, PreTransitionCondition> entry : conditions) {
 			dumpedTable.append(" | " + entry.getKey() + "\t"
 					+ captionEntryToString(entry.getValue().toString()));
 		}
-		for (Map.Entry<String, PostTransitionAction> entry : actions) {
+		for (final Map.Entry<String, PostTransitionAction> entry : actions) {
 			dumpedTable.append(" | " + entry.getKey() + "\t"
 					+ captionEntryToString(entry.getValue()));
 		}
@@ -161,8 +161,8 @@ public class DumpTransitionsEx extends ScriptImpl {
 		dumpedTable.append("];\r\n");
 	}
 
-	private String captionEntryToString(Object entry) {
-		String prefix = "games.stendhal.server.";
+	private String captionEntryToString(final Object entry) {
+		final String prefix = "games.stendhal.server.";
 		String entryName = entry.toString();
 		entryName = StringEscapeUtils.escapeHtml(entryName);
 		if (entryName.startsWith(prefix)) {

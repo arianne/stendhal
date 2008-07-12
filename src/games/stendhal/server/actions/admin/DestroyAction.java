@@ -25,41 +25,41 @@ public class DestroyAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
-		Entity inspected = getTarget(player, action);
+		final Entity inspected = getTarget(player, action);
 
 		if (inspected == null) {
-			String text = "Entity not found";
+			final String text = "Entity not found";
 
 			player.sendPrivateText(text);
 			return;
 		}
 
 		if (inspected instanceof Player) {
-			String text = "You can't remove players";
+			final String text = "You can't remove players";
 			player.sendPrivateText(text);
 			return;
 		}
 
 		if (inspected instanceof SpeakerNPC) {
-			String text = "You can't remove SpeakerNPCs";
+			final String text = "You can't remove SpeakerNPCs";
 			player.sendPrivateText(text);
 			return;
 		}
 
         if (inspected instanceof Portal) {
-            String text = "You can't remove portals. Try blocking it with a few of /script AdminSign.class.";
+            final String text = "You can't remove portals. Try blocking it with a few of /script AdminSign.class.";
             player.sendPrivateText(text);
             return;
 		}
 
-		StendhalRPZone zone = inspected.getZone();
+		final StendhalRPZone zone = inspected.getZone();
 
 		if (inspected instanceof RPEntity) {
 			// TODO: override the part that makes the drops happen. Destroyed things shouldn't drop stuff.
 			((RPEntity) inspected).onDead(player);
-		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower)|| (inspected instanceof Corpse) || (inspected instanceof Blood)) {
+		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Corpse) || (inspected instanceof Blood)) {
 			zone.remove(inspected);
 		} else {
 			player.sendPrivateText("You can't remove this type of entity");

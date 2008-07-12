@@ -37,19 +37,19 @@ public class AudioClip {
 	private static final Logger logger = Logger.getLogger(AudioClip.class);
 
 	/** the data stream. */
-	private byte[] audioData;
+	private final byte[] audioData;
 
 	/** length of the clip. */
 	private int length;
 
 	/** volume for this clip. */
-	private int volume;
+	private final int volume;
 
 	/** the mixer. */
-	private Mixer mixer;
+	private final Mixer mixer;
 
 	/** need this for a nice toString(). */
-	private AudioFormat format;
+	private final AudioFormat format;
 
 	/** is the data supported. */
 	private boolean supported;
@@ -68,7 +68,7 @@ public class AudioClip {
 	 * @throws IOException
 	 * @throws UnsupportedAudioFileException
 	 */
-	public AudioClip(Mixer mixer, byte[] audioData, int volume)
+	public AudioClip(final Mixer mixer, final byte[] audioData, final int volume)
 			throws UnsupportedAudioFileException, IOException {
 		this.volume = volume;
 		this.mixer = mixer;
@@ -90,8 +90,8 @@ public class AudioClip {
 
 		supported = true;
 
-		float frameRate = audioInputStream.getFormat().getFrameRate();
-		long frames = audioInputStream.getFrameLength();
+		final float frameRate = audioInputStream.getFormat().getFrameRate();
+		final long frames = audioInputStream.getFrameLength();
 
 		if ((frameRate != AudioSystem.NOT_SPECIFIED)
 				&& (frames != AudioSystem.NOT_SPECIFIED)) {
@@ -127,10 +127,10 @@ public class AudioClip {
 	public Clip openLine() throws UnsupportedAudioFileException, IOException,
 			LineUnavailableException {
 		if (supported) {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(
+			final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(
 					audioData));
 
-			DataLine.Info info = new DataLine.Info(Clip.class,
+			final DataLine.Info info = new DataLine.Info(Clip.class,
 					audioInputStream.getFormat());
 			if (!mixer.isLineSupported(info)) {
 				return null;
@@ -139,7 +139,7 @@ public class AudioClip {
 			try {
 				line.open(audioInputStream);
 				return line;
-			} catch (LineUnavailableException e) {
+			} catch (final LineUnavailableException e) {
 				logger.debug("audioclip cannot be played, no free lines available");
 			}
 		}

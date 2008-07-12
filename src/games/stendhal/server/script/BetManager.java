@@ -123,7 +123,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		 * @return String
 		 */
 		public String betToString() {
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 			sb.append(amount);
 			sb.append(" ");
 			sb.append(itemName);
@@ -158,7 +158,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class BetCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
 		}
 	}
@@ -169,7 +169,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return state != State.ACCEPTING_BETS;
 		}
 	}
@@ -180,8 +180,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class BetAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			BetInfo betInfo = new BetInfo();
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();
 
 			// parse the command
@@ -190,11 +190,11 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			if (sentence.hasError()) {
 				errorMsg = sentence.getErrorString();
 			} else {
-				Expression object1 = sentence.getObject(0);
-				Expression preposition = sentence.getPreposition(0);
-				Expression object2 = sentence.getObject(1);
+				final Expression object1 = sentence.getObject(0);
+				final Expression preposition = sentence.getPreposition(0);
+				final Expression object2 = sentence.getObject(1);
 
-				if (object1 != null && object2 != null && preposition != null) {
+				if ((object1 != null) && (object2 != null) && (preposition != null)) {
     				if (preposition.getNormalized().equals("on")) {
         				betInfo.amount = object1.getAmount();
         				betInfo.itemName = object1.getNormalized(); // cheese
@@ -215,7 +215,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			}
 
 			// check that item is a ConsumableItem
-			Item item = SingletonRepository.getEntityManager().getItem(
+			final Item item = SingletonRepository.getEntityManager().getItem(
 					betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
 				engine.say("Sorry " + player.getTitle()
@@ -249,7 +249,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		if (state != State.PAYING_BETS) {
 			logger.error("onTurnReached invoked but state is not PAYING_BETS: "
 					+ state);
@@ -257,9 +257,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 
 		if (!betInfos.isEmpty()) {
-			BetInfo betInfo = betInfos.remove(0);
+			final BetInfo betInfo = betInfos.remove(0);
 
-			Player player = SingletonRepository.getRuleProcessor().getPlayer(
+			final Player player = SingletonRepository.getRuleProcessor().getPlayer(
 					betInfo.playerName);
 			if (player == null) {
 				// player logged out
@@ -274,7 +274,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			} else {
 
 				// create announcement
-				StringBuilder sb = new StringBuilder();
+				final StringBuilder sb = new StringBuilder();
 				sb.append(betInfo.playerName);
 				sb.append(" bet on ");
 				sb.append(betInfo.target);
@@ -297,14 +297,14 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 				// return the bet and the win to the player
 				if (winner.equals(betInfo.target)) {
-					Item item = sandbox.getItem(betInfo.itemName);
+					final Item item = sandbox.getItem(betInfo.itemName);
 
 					// it should always be a stackable items as we checked for
 					// ConsumableItem when accepting the bet. But just in case
 					// something is changed in the future, we will check it
 					// again:
 					if (item instanceof StackableItem) {
-						StackableItem stackableItem = (StackableItem) item;
+						final StackableItem stackableItem = (StackableItem) item;
 						stackableItem.setQuantity(2 * betInfo.amount); // bet +
 						// win
 					}
@@ -331,7 +331,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	// ------------------------------------------------------------------------
 
 	@Override
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		super.load(admin, args, sandbox);
 
 		// Do not load on server startup
@@ -345,8 +345,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 		// place NPC next to admin
 		sandbox.setZone(sandbox.getZone(admin));
-		int x = admin.getX() + 1;
-		int y = admin.getY();
+		final int x = admin.getX() + 1;
+		final int y = admin.getY();
 		npc.setPosition(x, y);
 		sandbox.add(npc);
 
@@ -368,10 +368,10 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	}
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
 		// Help
-		List<String> commands = Arrays.asList("accept", "action", "winner");
+		final List<String> commands = Arrays.asList("accept", "action", "winner");
 		if ((args.size() == 0) || (!commands.contains(args.get(0)))) {
 			admin.sendPrivateText("Syntax: /script BetManager.class accept #fire #water\n"
 					+ "/script BetManager.class action\n"
@@ -379,7 +379,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			return;
 		}
 
-		int idx = commands.indexOf(args.get(0));
+		final int idx = commands.indexOf(args.get(0));
 		switch (idx) {
 		case 0: // accept #fire #water
 

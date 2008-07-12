@@ -47,9 +47,9 @@ public class StendhalFirstScreen extends JFrame {
 
 	private static final long serialVersionUID = -7825572598938892220L;
 
-	private StendhalClient client;
+	private final StendhalClient client;
 
-	private Image background;
+	private final Image background;
 
 	/**
 	 * Creates the first screen.
@@ -57,13 +57,13 @@ public class StendhalFirstScreen extends JFrame {
 	 * @param client
 	 *            StendhalClient
 	 */
-	public StendhalFirstScreen(StendhalClient client) {
+	public StendhalFirstScreen(final StendhalClient client) {
 		super();
 		this.client = client;
 
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
-		ImageIcon imageIcon = new ImageIcon(url);
+		final ImageIcon imageIcon = new ImageIcon(url);
 		background = imageIcon.getImage();
 
 		initializeComponent();
@@ -90,7 +90,7 @@ public class StendhalFirstScreen extends JFrame {
 			}
 
 			@Override
-			public void paint(Graphics g) {
+			public void paint(final Graphics g) {
 				g.drawImage(background, 0, 0, this);
 				super.paint(g);
 			}
@@ -99,7 +99,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// loginButton
 		//
-		JButton loginButton = new JButton();
+		final JButton loginButton = new JButton();
 		loginButton.setText("Login to "
 				+ ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -107,14 +107,14 @@ public class StendhalFirstScreen extends JFrame {
 				+ ClientGameConfiguration.get("GAME_NAME") + " server");
 		loginButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				login();
 			}
 		});
 		//
 		// createAccountButton
 		//
-		JButton createAccountButton = new JButton();
+		final JButton createAccountButton = new JButton();
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
 		createAccountButton.setToolTipText("Press this button to create an account on a "
@@ -122,31 +122,31 @@ public class StendhalFirstScreen extends JFrame {
 		createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				createAccount();
 			}
 		});
 		//
 		// creaditButton
 		//
-		JButton helpButton = new JButton();
+		final JButton helpButton = new JButton();
 		helpButton.setText("Help");
 		helpButton.setMnemonic(KeyEvent.VK_H);
 		helpButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				showHelp();
 			}
 		});
 		//
 		// creaditButton
 		//
-		JButton creditButton = new JButton();
+		final JButton creditButton = new JButton();
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
 		creditButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				showCredits();
 			}
 		});
@@ -154,7 +154,7 @@ public class StendhalFirstScreen extends JFrame {
 		addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void windowClosing(WindowEvent e) {
+			public void windowClosing(final WindowEvent e) {
 				System.exit(0);
 			}
 		});
@@ -162,7 +162,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// contentPane
 		//
-		Container contentPane = this.getContentPane();
+		final Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
 
 		addComponent(contentPane, loginButton, 220, 300, 200, 32);
@@ -181,7 +181,7 @@ public class StendhalFirstScreen extends JFrame {
 		this.setLocation(new Point(100, 100));
 		this.setResizable(false);
 
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
@@ -201,9 +201,9 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void checkVersion() {
-		HttpClient httpClient = new HttpClient(
+		final HttpClient httpClient = new HttpClient(
 				ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
-		String version = httpClient.fetchFirstLine();
+		final String version = httpClient.fetchFirstLine();
 		if (version != null) {
 			if (Version.compare(version, stendhal.VERSION) > 0) {
 				// custom title, warning icon
@@ -235,8 +235,8 @@ public class StendhalFirstScreen extends JFrame {
 	 * @param y 
 	 * @param width 
 	 * @param height */
-	private void addComponent(Container container, Component c, int x, int y,
-			int width, int height) {
+	private void addComponent(final Container container, final Component c, final int x, final int y,
+			final int width, final int height) {
 		c.setBounds(x, y, width, height);
 		container.add(c);
 	}

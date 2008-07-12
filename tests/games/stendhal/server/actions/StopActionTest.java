@@ -21,9 +21,9 @@ public class StopActionTest {
 	@Test
 	public void testOnAction() {
 
-		StopAction sa = new StopAction();
+		final StopAction sa = new StopAction();
 		PlayerTestHelper.generatePlayerRPClasses();
-		Player player = new Player(new RPObject()) {
+		final Player player = new Player(new RPObject()) {
 			@Override
 			public void stopAttack() {
 				stopattack = true;
@@ -37,7 +37,7 @@ public class StopActionTest {
 			}
 
 		};
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		sa.onAction(player, action);
 
 		assertTrue(notify);

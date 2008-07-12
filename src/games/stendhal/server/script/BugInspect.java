@@ -23,34 +23,34 @@ import org.apache.log4j.Logger;
  */
 public class BugInspect extends ScriptImpl implements TurnListener {
 	private static Logger logger = Logger.getLogger(BugInspect.class);
-	private HashSet<String> seen = new HashSet<String>();
+	private final HashSet<String> seen = new HashSet<String>();
 	private boolean keepRunning = true;
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 		SingletonRepository.getTurnNotifier().notifyInTurns(6, this);
 		keepRunning = true;
 		seen.clear();
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
 				
 			new Task<Player>() {
 
-			public void execute(Player player) {
+			public void execute(final Player player) {
 				if (!seen.contains(player.getName())) {
 
 					seen.add(player.getName());
 
-					StringBuilder sb = new StringBuilder();
+					final StringBuilder sb = new StringBuilder();
 					sb.append("Inspecting " + player.getName() + "\n");
 					boolean caught = false;
 					boolean warn = false;
 
 					// inspect slots
-					for (RPSlot slot : player.slots()) {
+					for (final RPSlot slot : player.slots()) {
 						if ("!buddy".equals(slot.getName()) 
 							|| "!ignore".equals(slot.getName())
 							|| "!kills".equals(slot.getName()) 
@@ -60,19 +60,19 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 						sb.append("\nSlot " + slot.getName() + ": \n");
 
 						// list objects
-						for (RPObject object : slot) {
+						for (final RPObject object : slot) {
 							if (object instanceof StackableItem) {
-								StackableItem item = (StackableItem) object;
-								if (!"money".equals(item.getName()) && item.getQuantity() > 10000) {
+								final StackableItem item = (StackableItem) object;
+								if (!"money".equals(item.getName()) && (item.getQuantity() > 10000)) {
 									caught = true;
 								}
-								if ("money".equals(item.getName()) && item.getQuantity() > 10000000) {
+								if ("money".equals(item.getName()) && (item.getQuantity() > 10000000)) {
 									caught = true;
 								}
-								if (!"money".equals(item.getName()) && item.getQuantity() > 1000) {
+								if (!"money".equals(item.getName()) && (item.getQuantity() > 1000)) {
 									warn = true;
 								}
-								if ("money".equals(item.getName()) && item.getQuantity() > 100000) {
+								if ("money".equals(item.getName()) && (item.getQuantity() > 100000)) {
 									warn = true;
 								}
 							}
@@ -108,7 +108,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	}
 
 	@Override
-	public void unload(Player admin, List<String> args) {
+	public void unload(final Player admin, final List<String> args) {
 		super.unload(admin, args);
 		keepRunning = false;
 	}

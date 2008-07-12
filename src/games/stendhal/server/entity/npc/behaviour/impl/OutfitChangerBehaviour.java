@@ -37,7 +37,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
     // TODO: review scope (see OutfitChangerAdder)
 	public int endurance;
 
-	private String wearOffMessage;
+	private final String wearOffMessage;
 
 	// TODO: make this persistent, e.g. by replacing this list with one
 	// quest slot reserved for each OutfitChangerBehaviour.
@@ -81,7 +81,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 * @param priceList
 	 *            list of outfit types and their prices
 	 */
-	public OutfitChangerBehaviour(Map<String, Integer> priceList) {
+	public OutfitChangerBehaviour(final Map<String, Integer> priceList) {
 		this(priceList, NEVER_WEARS_OFF, null);
 	}
 
@@ -98,8 +98,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *            the message that the player should receive after the outfit
 	 *            has worn off, or null if no message should be sent.
 	 */
-	public OutfitChangerBehaviour(Map<String, Integer> priceList,
-			int endurance, String wearOffMessage) {
+	public OutfitChangerBehaviour(final Map<String, Integer> priceList,
+			final int endurance, final String wearOffMessage) {
 		super(priceList);
 		this.endurance = endurance;
 		this.wearOffMessage = wearOffMessage;
@@ -121,8 +121,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		String outfitType = chosenItemName;
+	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+		final String outfitType = chosenItemName;
 		if (player.isEquipped("money", getCharge(seller, player))) {
 			player.drop("money", getCharge(seller, player));
 			putOnOutfit(player, outfitType);
@@ -137,15 +137,15 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		WeakReference<Player> ref;
 		String name;
 
-		public OutwearClothes(Player player) {
+		public OutwearClothes(final Player player) {
 			ref = new WeakReference<Player>(player);
 			name = player.getName();
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj instanceof OutwearClothes) {
-				OutwearClothes newName = (OutwearClothes) obj;
+				final OutwearClothes newName = (OutwearClothes) obj;
 				return ref.get() == newName.ref.get();
 			} else {
 				return false;
@@ -155,7 +155,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 
 		@Override
 		public int hashCode() {
-			Player player = ref.get();
+			final Player player = ref.get();
 
 			if (player != null) {
 				return player.hashCode();
@@ -164,8 +164,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 			}
 		}
 
-		public void onTurnReached(int currentTurn) {
-			Player player = ref.get();
+		public void onTurnReached(final int currentTurn) {
+			final Player player = ref.get();
 
 			if (player != null) {
 				onWornOff(player);
@@ -187,9 +187,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *            The player.
 	 * @param outfitType the outfit to wear
 	 */
-	public void putOnOutfit(Player player, String outfitType) {
-		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
-		Outfit newOutfit = Rand.rand(possibleNewOutfits);
+	public void putOnOutfit(final Player player, final String outfitType) {
+		final List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
+		final Outfit newOutfit = Rand.rand(possibleNewOutfits);
 		player.setOutfit(newOutfit.putOver(player.getOutfit()), true);
 
 		if (endurance != NEVER_WEARS_OFF) {
@@ -210,12 +210,12 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *            The player.
 	 * @return true iff the player wears an outfit from here.
 	 */
-	public boolean wearsOutfitFromHere(Player player) {
-		Outfit currentOutfit = player.getOutfit();
+	public boolean wearsOutfitFromHere(final Player player) {
+		final Outfit currentOutfit = player.getOutfit();
 
-		for (String outfitType : priceList.keySet()) {
-			List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
-			for (Outfit possibleOutfit : possibleOutfits) {
+		for (final String outfitType : priceList.keySet()) {
+			final List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
+			for (final Outfit possibleOutfit : possibleOutfits) {
 				if (possibleOutfit.isPartOf(currentOutfit)) {
 					return true;
 				}
@@ -233,7 +233,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *            The player.
 	 * @return true iff returning was successful.
 	 */
-	public boolean returnToOriginalOutfit(Player player) {
+	public boolean returnToOriginalOutfit(final Player player) {
 		if (wearsOutfitFromHere(player)) {
 			return player.returnToOriginalOutfit();
 		}
@@ -245,14 +245,14 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 * already.
 	 * @param player who wears the outfit
 	 */
-	protected void onWornOff(Player player) {
+	protected void onWornOff(final Player player) {
 		if (wearsOutfitFromHere(player)) {
 			player.sendPrivateText(wearOffMessage);
 			returnToOriginalOutfit(player);
 		}
 	}
 
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {
 			onWornOff(player);
 			namesOfPlayersWithWornOffOutfits.remove(player.getName());

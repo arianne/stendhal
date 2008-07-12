@@ -39,7 +39,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 	private String entryName;
 
-	public static void main(String[] argv) {
+	public static void main(final String[] argv) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
 			System.exit(1);
@@ -47,7 +47,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 		try {
 			System.out.println(new QuestsXMLLoader().load(argv[0]).size());
-		} catch (Throwable e) {
+		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
 		System.exit(0);
@@ -62,14 +62,14 @@ public class QuestsXMLLoader extends DefaultHandler {
 			instance = new QuestsXMLLoader();
 			try {
 				instance.load("data/conf/quests.xml");
-			} catch (SAXException e) {
+			} catch (final SAXException e) {
 				logger.error(e, e);
 			}
 		}
 		return instance;
 	}
 
-	public QuestInfo get(String name) {
+	public QuestInfo get(final String name) {
 		QuestInfo questInfo = questInfos.get(name);
 		if (questInfo == null) {
 			questInfo = new QuestInfo();
@@ -80,24 +80,24 @@ public class QuestsXMLLoader extends DefaultHandler {
 		return questInfo;
 	}
 
-	public Map<String, QuestInfo> load(String ref) throws SAXException {
+	public Map<String, QuestInfo> load(final String ref) throws SAXException {
 		questInfos = new HashMap<String, QuestInfo>();
 		// Use the default (non-validating) parser
-		SAXParserFactory factory = SAXParserFactory.newInstance();
+		final SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			// Parse the input
-			SAXParser saxParser = factory.newSAXParser();
+			final SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
+			final InputStream is = getClass().getClassLoader().getResourceAsStream(
 					ref);
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref
 						+ "' in classpath");
 			}
 			saxParser.parse(is, this);
-		} catch (ParserConfigurationException t) {
+		} catch (final ParserConfigurationException t) {
 			logger.error(t);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error(e);
 			throw new SAXException(e);
 		}
@@ -115,8 +115,8 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(final String namespaceURI, final String lName, final String qName,
+			final Attributes attrs) {
 		text = new StringBuilder();
 
 		if (qName.equals("quest")) {
@@ -136,7 +136,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void endElement(String namespaceURI, String sName, String qName) {
+	public void endElement(final String namespaceURI, final String sName, final String qName) {
 
 		if (qName.equals("quest")) {
 			questInfos.put(name, currentQuestInfo);
@@ -156,7 +156,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char[] buf, int offset, int len) {
+	public void characters(final char[] buf, final int offset, final int len) {
 		text.append((new String(buf, offset, len)).trim() + " ");
 	}
 }

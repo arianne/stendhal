@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class AdminSign extends ScriptImpl {
 
-	private Map<Integer, Sign> storage = new HashMap<Integer, Sign>();
+	private final Map<Integer, Sign> storage = new HashMap<Integer, Sign>();
 
 	private int signcounter;
 
@@ -29,11 +29,11 @@ public class AdminSign extends ScriptImpl {
 	 * @param args
 	 *            zone x y text
 	 */
-	public void add(Player player, List<String> args) {
+	public void add(final Player player, final List<String> args) {
 		if (args.size() >= 3) {
 
 			// read zone and x,y. Use player's data as default on "-".
-			String myZone = args.get(0);
+			final String myZone = args.get(0);
 			if ("-".equals(myZone)) {
 				sandbox.setZone(sandbox.getZone(player));
 			} else {
@@ -55,11 +55,11 @@ public class AdminSign extends ScriptImpl {
 				y = MathHelper.parseInt(args.get(2));
 			}
 
-			games.stendhal.server.entity.mapstuff.sign.Sign sign = new games.stendhal.server.entity.mapstuff.sign.Sign();
+			final games.stendhal.server.entity.mapstuff.sign.Sign sign = new games.stendhal.server.entity.mapstuff.sign.Sign();
 			sign.setPosition(x, y);
 
 			// concat text ignoring first 3 args
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 			for (int i = 3; i < args.size(); i++) {
 				sb.append(args.get(i) + " ");
 			}
@@ -87,19 +87,19 @@ public class AdminSign extends ScriptImpl {
 	 * @param args
 	 *            sign number at index 1
 	 */
-	public void delete(Player player, List<String> args) {
+	public void delete(final Player player, final List<String> args) {
 		int i;
 		try {
 			i = Integer.parseInt(args.get(1));
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			sandbox.privateText(player, "Please specify a number");
 			return;
 		}
-		Sign sign = storage.get(Integer.valueOf(i));
+		final Sign sign = storage.get(Integer.valueOf(i));
 		if (sign != null) {
 			storage.remove(Integer.valueOf(i));
 			sandbox.remove(sign);
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 			sb.append("Removed sign ");
 			signToString(sb, sign);
 			sandbox.privateText(player, sb.toString());
@@ -108,7 +108,7 @@ public class AdminSign extends ScriptImpl {
 		}
 	}
 
-	private void signToString(StringBuilder sb, Sign sign) {
+	private void signToString(final StringBuilder sb, final Sign sign) {
 		sb.append(sign.getZone().getName());
 		sb.append(" ");
 		sb.append(sign.getX());
@@ -124,13 +124,13 @@ public class AdminSign extends ScriptImpl {
 	 * @param player
 	 *            admin invoking this script
 	 */
-	public void list(Player player) {
-		StringBuilder sb = new StringBuilder();
+	public void list(final Player player) {
+		final StringBuilder sb = new StringBuilder();
 		sb.append("Listing signs:");
 
 		int i = 1;
 		while (i <= signcounter) {
-			Sign sign = storage.get(Integer.valueOf(i));
+			final Sign sign = storage.get(Integer.valueOf(i));
 			if (sign != null) {
 				sb.append("\r\n");
 				sb.append(i);
@@ -143,13 +143,13 @@ public class AdminSign extends ScriptImpl {
 	}
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		if (args.size() == 0) {
 			admin.sendPrivateText("/script AdminSign.class zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
 			return;
 		}
 
-		String temp = args.get(0);
+		final String temp = args.get(0);
 		if ("list".equals(temp)) {
 			list(admin);
 		} else if ("del".equals(temp) || "delete".equals(temp) || "remove".equals(temp)) {

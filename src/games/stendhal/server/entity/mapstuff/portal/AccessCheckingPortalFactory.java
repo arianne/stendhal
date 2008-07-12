@@ -44,7 +44,7 @@ public abstract class AccessCheckingPortalFactory implements
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
-	protected String getRejectedMessage(ConfigurableFactoryContext ctx) {
+	protected String getRejectedMessage(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("rejected", null);
 	}
 
@@ -67,10 +67,10 @@ public abstract class AccessCheckingPortalFactory implements
 	 * 
 	 * @see KeyedPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
-		AccessCheckingPortal portal = createPortal(ctx);
+	public Object create(final ConfigurableFactoryContext ctx) {
+		final AccessCheckingPortal portal = createPortal(ctx);
 
-		String message = getRejectedMessage(ctx);
+		final String message = getRejectedMessage(ctx);
 
 		if (message != null) {
 			portal.setRejectedMessage(message);

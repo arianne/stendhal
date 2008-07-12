@@ -8,9 +8,9 @@ import games.stendhal.server.entity.player.Player;
  * around problems like zone changes).
  */
 class DelayedPlayerTextSender implements TurnListener {
-	private Player player;
-	private String message;
-	private NotificationType type;
+	private final Player player;
+	private final String message;
+	private final NotificationType type;
 	
 	/**
 	 * Creates a new private message type DelayedPlayerTextSender. 
@@ -20,7 +20,7 @@ class DelayedPlayerTextSender implements TurnListener {
 	 * @param message
 	 *            message
 	 */
-	DelayedPlayerTextSender(Player player, String message) {
+	DelayedPlayerTextSender(final Player player, final String message) {
 		this.player = player;
 		this.message = message;
 		this.type = NotificationType.PRIVMSG;
@@ -35,14 +35,14 @@ class DelayedPlayerTextSender implements TurnListener {
 	 * @param type
 	 *            logical notificationType
 	 */
-	DelayedPlayerTextSender(Player player, String message, NotificationType type) {
+	DelayedPlayerTextSender(final Player player, final String message, final NotificationType type) {
 		this.player = player;
 		this.message = message;
 		this.type = type;
 	}
 	
 	
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		player.sendPrivateText(type, message);
 	}
 

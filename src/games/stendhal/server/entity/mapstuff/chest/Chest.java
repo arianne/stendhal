@@ -38,7 +38,7 @@ public class Chest extends Entity implements UseListener {
 	private boolean open;
 
 	public static void generateRPClass() {
-		RPClass chest = new RPClass("chest");
+		final RPClass chest = new RPClass("chest");
 		chest.isA("entity");
 		chest.addAttribute("open", Type.FLAG);
 		chest.addRPSlot("content", 30);
@@ -50,13 +50,13 @@ public class Chest extends Entity implements UseListener {
 	 * @param object
 	 *            RPObject
 	 */
-	public Chest(RPObject object) {
+	public Chest(final RPObject object) {
 		super(object);
 		setRPClass("chest");
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
-			RPSlot slot = new ChestSlot(this);
+			final RPSlot slot = new ChestSlot(this);
 			addSlot(slot);
 		}
 
@@ -71,7 +71,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 		open = false;
 
-		RPSlot slot = new ChestSlot(this);
+		final RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
 	
@@ -81,7 +81,7 @@ public class Chest extends Entity implements UseListener {
 	//
 
 	@Override
-    public String getDescriptionName(boolean definite) {
+    public String getDescriptionName(final boolean definite) {
 	    return Grammar.article_noun("chest", definite);
     }
 
@@ -128,8 +128,8 @@ public class Chest extends Entity implements UseListener {
 	 * @param entity
 	 *            entity to add
 	 */
-	public void add(PassiveEntity entity) {
-		RPSlot content = getSlot("content");
+	public void add(final PassiveEntity entity) {
+		final RPSlot content = getSlot("content");
 		content.add(entity);
 	}
 
@@ -144,7 +144,7 @@ public class Chest extends Entity implements UseListener {
 	 * @return iterator for the content
 	 */
 	public Iterator<RPObject> getContent() {
-		RPSlot content = getSlot("content");
+		final RPSlot content = getSlot("content");
 		return content.iterator();
 	}
 
@@ -152,7 +152,7 @@ public class Chest extends Entity implements UseListener {
 	// UseListener
 	//
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		if (user.nextTo(this)) {
 			if (isOpen()) {
 				close();

@@ -17,7 +17,7 @@ public class GhostModeAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (player.isGhost()) {
 			player.setGhost(false);
@@ -36,7 +36,7 @@ public class GhostModeAction extends AdministrationAction {
 			
 		}
 		/* Notify database that the player is in Ghost mode */
-		StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();		
+		final StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();		
 		database.setOnlineStatus(player, !player.isGhost());
 		
 		/* Notify players about admin going into ghost mode. */

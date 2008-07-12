@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -23,12 +24,12 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
-		SpeakerNPC npc = new SpeakerNPC("Jenny");
+		final SpeakerNPC npc = new SpeakerNPC("Jenny");
 		SingletonRepository.getNPCList().add(npc);
 
-		MillerNPC npcConf = new MillerNPC();
+		final MillerNPC npcConf = new MillerNPC();
 		npcConf.createDialog(npc);
 
 		setupZone(ZONE_NAME);
@@ -44,8 +45,8 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Jenny");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Jenny");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Jenny"));
 		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
@@ -56,8 +57,8 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testQuest() {
-		SpeakerNPC npc = getNPC("Jenny");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Jenny");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));

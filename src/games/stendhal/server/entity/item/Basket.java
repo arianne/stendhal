@@ -27,8 +27,8 @@ public class Basket extends Box {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Basket(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Basket(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -38,16 +38,16 @@ public class Basket extends Box {
 	 * @param item
 	 *            item to copy
 	 */
-	public Basket(Basket item) {
+	public Basket(final Basket item) {
 		super(item);
 	}
 
 	@Override
-	protected boolean useMe(Player player) {
+	protected boolean useMe(final Player player) {
 		this.removeOne();
 		String itemName;
 		itemName = ITEMS[Rand.rand(ITEMS.length)];
-		Item item = SingletonRepository.getEntityManager().getItem(
+		final Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
 		if ("easter egg".equals(itemName)) {
 			item.setBoundTo(player.getName());

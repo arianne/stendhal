@@ -34,7 +34,7 @@ class GrainField2DView extends StateEntity2DView {
 	/**
 	 * The grain field entity.
 	 */
-	private GrainField grainField;
+	private final GrainField grainField;
 
 	/**
 	 * The number of states.
@@ -67,7 +67,7 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
+			final IGameScreen gameScreen) {
 		int height;
 		int width;
 		String clazz;
@@ -82,13 +82,13 @@ class GrainField2DView extends StateEntity2DView {
 			clazz = "grain_field";
 		}
 
-		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(clazz.replace(" ", "_")));
+		final SpriteStore store = SpriteStore.get();
+		final Sprite tiles = store.getSprite(translate(clazz.replace(" ", "_")));
 
 		states = grainField.getMaximumRipeness() + 1;
 
-		int theight = tiles.getHeight();
-		int imageStates = theight / height;
+		final int theight = tiles.getHeight();
+		final int imageStates = theight / height;
 
 		if (imageStates != states) {
 			logger.warn("State count mismatch: " + imageStates + " != "
@@ -216,7 +216,7 @@ class GrainField2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case HARVEST:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			grainField.fillTargetInfo(rpaction);

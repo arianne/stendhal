@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 public class GuardNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Greetings! How may I #help you?");
 		
 		npc.add(ConversationStates.ATTENDING,
@@ -56,7 +56,7 @@ public class GuardNPC extends SpeakerNPCFactory {
 	public static class InJailCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return Jail.isInJail(player);
 		}
 	}
@@ -67,7 +67,7 @@ public class GuardNPC extends SpeakerNPCFactory {
 	public static class NotInJailCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return !Jail.isInJail(player);
 		}
 	}

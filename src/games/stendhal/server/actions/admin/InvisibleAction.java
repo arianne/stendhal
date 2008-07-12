@@ -14,7 +14,7 @@ public class InvisibleAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (player.isInvisibleToCreatures()) {
 			player.setInvisible(false);

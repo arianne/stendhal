@@ -24,7 +24,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 *            The configuration context.
 	 * @return The height, 1 if unspecified.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) {
+	protected int getHeight(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
@@ -35,7 +35,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 *            The configuration context.
 	 * @return The width, 1 if unspecified.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) {
+	protected int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
@@ -49,7 +49,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @see OnePlayerArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new OnePlayerArea(getWidth(ctx), getHeight(ctx));
 	}
 }

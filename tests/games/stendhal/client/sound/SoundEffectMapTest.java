@@ -56,13 +56,13 @@ public class SoundEffectMapTest {
 
 	@Test
 	public final void testGetByName() {
-		String key1 = "testGetByNameStringvalue";
-		String value = "testGetByName";
+		final String key1 = "testGetByNameStringvalue";
+		final String value = "testGetByName";
 		SoundEffectMap.getInstance().put(key1, value);
 		assertEquals("stringValue", value, SoundEffectMap.getInstance()
 				.getByName(key1));
-		String key = "testPutStringClipRunner";
-		ClipRunner cvalue = new ClipRunner("value");
+		final String key = "testPutStringClipRunner";
+		final ClipRunner cvalue = new ClipRunner("value");
 		SoundEffectMap.getInstance().put(key, cvalue);
 		assertEquals("ClipRunnerValue", cvalue, SoundEffectMap.getInstance()
 				.getByName(key));
@@ -70,8 +70,8 @@ public class SoundEffectMapTest {
 
 	@Test
 	public final void testPutStringString() {
-		String key1 = "testPutStringString";
-		String value = "value";
+		final String key1 = "testPutStringString";
+		final String value = "value";
 		SoundEffectMap.getInstance().put(key1, value);
 		assertTrue(SoundEffectMap.getInstance().containsKey(key1));
 
@@ -79,15 +79,15 @@ public class SoundEffectMapTest {
 
 	@Test
 	public final void testPutStringClipRunner() {
-		String key = "testPutStringClipRunner";
-		ClipRunner value = new ClipRunner("value");
+		final String key = "testPutStringClipRunner";
+		final ClipRunner value = new ClipRunner("value");
 		SoundEffectMap.getInstance().put(key, value);
 		assertTrue(SoundEffectMap.getInstance().containsKey(key));
 	}
 
 	@Test
 	public final void testSize() {
-		int size = SoundEffectMap.getInstance().size();
+		final int size = SoundEffectMap.getInstance().size();
 		SoundEffectMap.getInstance().put("empty", "");
 		assertEquals("should be grown by own after adding a new one", size + 1,
 				SoundEffectMap.getInstance().size());

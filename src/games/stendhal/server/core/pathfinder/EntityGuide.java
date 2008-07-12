@@ -14,7 +14,7 @@ import games.stendhal.server.entity.GuidedEntity;
  */
 public class EntityGuide {
 
-	public void guideMe(GuidedEntity ge) {
+	public void guideMe(final GuidedEntity ge) {
 		// empty default implememntation
 	}
 
@@ -27,7 +27,7 @@ public class EntityGuide {
 	 */
 	public int pathPosition;
 
-	public boolean followPath(GuidedEntity entity) {
+	public boolean followPath(final GuidedEntity entity) {
 		return Path.followPath(entity);
 	}
 

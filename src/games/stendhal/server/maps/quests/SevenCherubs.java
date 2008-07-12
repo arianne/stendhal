@@ -31,29 +31,29 @@ public class SevenCherubs extends AbstractQuest {
 	private static final String QUEST_SLOT = "seven_cherubs";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public boolean isCompleted(Player player) {
+	public boolean isCompleted(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return false;
 		}
-		String npcDoneText = player.getQuest(QUEST_SLOT);
-		String[] done = npcDoneText.split(";");
-		int left = 7 - done.length;
+		final String npcDoneText = player.getQuest(QUEST_SLOT);
+		final String[] done = npcDoneText.split(";");
+		final int left = 7 - done.length;
 		return left < 0;
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest(QUEST_SLOT)) {
-			String npcDoneText = player.getQuest(QUEST_SLOT);
-			String[] done = npcDoneText.split(";");
+			final String npcDoneText = player.getQuest(QUEST_SLOT);
+			final String[] done = npcDoneText.split(";");
 			boolean first = true;
-			for (String cherub : done) {
+			for (final String cherub : done) {
 				if (!cherub.trim().equals("")) {
 					res.add(cherub.toUpperCase());
 					if (first) {
@@ -70,14 +70,14 @@ public class SevenCherubs extends AbstractQuest {
 	}
 
 	static class CherubNPC extends SpeakerNPC {
-		public CherubNPC(String name, int x, int y) {
+		public CherubNPC(final String name, final int x, final int y) {
 			super(name);
 
 			setEntityClass("angelnpc");
 			setPosition(x, y);
 			initHP(100);
 
-			List<Node> nodes = new LinkedList<Node>();
+			final List<Node> nodes = new LinkedList<Node>();
 			nodes.add(new Node(x, y));
 			nodes.add(new Node(x - 2, y));
 			nodes.add(new Node(x - 2, y - 2));
@@ -96,7 +96,7 @@ public class SevenCherubs extends AbstractQuest {
 				null, ConversationStates.IDLE, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							player.setQuest(QUEST_SLOT, "");
 						}
@@ -105,10 +105,10 @@ public class SevenCherubs extends AbstractQuest {
 						// QUEST_SLOT.
 						// Please note that there is an additional empty
 						// entry in the beginning.
-						String npcDoneText = player.getQuest(QUEST_SLOT);
-						String[] done = npcDoneText.split(";");
-						List<String> list = Arrays.asList(done);
-						int left = 7 - list.size();
+						final String npcDoneText = player.getQuest(QUEST_SLOT);
+						final String[] done = npcDoneText.split(";");
+						final List<String> list = Arrays.asList(done);
+						final int left = 7 - list.size();
 
 						if (list.contains(engine.getName())) {
 							if (left > -1) {
@@ -156,8 +156,8 @@ public class SevenCherubs extends AbstractQuest {
 								 * it).
 								 *
 								 */
-								String[] items = { "golden boots", "golden armor", "golden helmet" };
-								Item item = SingletonRepository.getEntityManager()
+								final String[] items = { "golden boots", "golden armor", "golden helmet" };
+								final Item item = SingletonRepository.getEntityManager()
 									.getItem(items[Rand.rand(items.length)]);
 								item.setBoundTo(player.getName());
 								player.equip(item, true);
@@ -173,7 +173,7 @@ public class SevenCherubs extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		super.addToWorld();
 
 		StendhalRPZone zone;

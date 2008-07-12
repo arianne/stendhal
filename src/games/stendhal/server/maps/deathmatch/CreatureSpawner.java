@@ -25,10 +25,10 @@ public class CreatureSpawner implements TurnListener {
 static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 	static final long NUMBER_OF_CREATURES = 10;
-	private List<Creature> sortedCreatures = new LinkedList<Creature>();
-	private List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
+	private final List<Creature> sortedCreatures = new LinkedList<Creature>();
+	private final List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
 	CreatureSpawner() {
-		Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
+		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
@@ -36,8 +36,8 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	 * Removes the critters that the player was supposed to kill.
 	 */
 	public void removePlayersMonsters() {
-		for (Creature creature : spawnedCreatures) {
-			StendhalRPZone monsterZone = creature.getZone();
+		for (final Creature creature : spawnedCreatures) {
+			final StendhalRPZone monsterZone = creature.getZone();
 
 			if (monsterZone != null) {
 				monsterZone.remove(creature);
@@ -50,7 +50,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	 * @return true if all are dead, false otherwise
 	 */
 	boolean areAllCreaturesDead() {
-		for (Creature creature : spawnedCreatures) {
+		for (final Creature creature : spawnedCreatures) {
 			if (creature.getHP() > 0) {
 				return false;
 			}
@@ -65,14 +65,14 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	 * @param player the player taking the Deathmatch
 	 * @param dmInfo the Deathmatch's Info
 	 */
-	void spawnDailyMonster(Player player, DeathmatchInfo dmInfo) {
-		String dailyInfo = player.getQuest("daily");
+	void spawnDailyMonster(final Player player, final DeathmatchInfo dmInfo) {
+		final String dailyInfo = player.getQuest("daily");
 		if (dailyInfo != null) {
-			String[] dTokens = dailyInfo.split(";");
-			String daily = dTokens[0];
+			final String[] dTokens = dailyInfo.split(";");
+			final String daily = dTokens[0];
 
 			if (!player.hasKilled(daily)) {
-				for (Creature creature : sortedCreatures) {
+				for (final Creature creature : sortedCreatures) {
 					if (creature.getName().equals(daily)) {
 						spawnNewCreature(creature, player, dmInfo);
 						break;
@@ -87,11 +87,11 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
 	 */
-	private Creature calculateNextCreature(int questLevel) {
-		List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
+	private Creature calculateNextCreature(final int questLevel) {
+		final List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
 		int lastLevel = 0;
 
-		for (Creature creature : sortedCreatures) {
+		for (final Creature creature : sortedCreatures) {
 			if (creature.getLevel() > questLevel) {
 				break;
 			}
@@ -124,7 +124,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	 * @param deathmatchInfo the deatchmatch's info
 	 * @return Creature or <code>null</code> in case it cannot be created
 	 */
-	DeathMatchCreature spawnNewCreature(Creature template, Player player, DeathmatchInfo deathmatchInfo) {
+	DeathMatchCreature spawnNewCreature(final Creature template, final Player player, final DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
 		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
 
@@ -142,20 +142,20 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 		return creature;
 	}
 
-	DeathMatchCreature spawnNewCreature(int questLevel , Player player, DeathmatchInfo deathmatchInfo) {
+	DeathMatchCreature spawnNewCreature(final int questLevel , final Player player, final DeathmatchInfo deathmatchInfo) {
 		return spawnNewCreature(calculateNextCreature(questLevel), player,  deathmatchInfo);
 	}
 
 	int calculatePoints() {
 		int sum = 0;
 
-		for (DeathMatchCreature creature : spawnedCreatures) {
+		for (final DeathMatchCreature creature : spawnedCreatures) {
 			sum += creature.getDMPoints();
 		}
 
 		return sum;
 	}
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		// TODO Auto-generated method stub
 
 	}

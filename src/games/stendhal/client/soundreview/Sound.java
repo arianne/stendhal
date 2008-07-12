@@ -7,21 +7,21 @@ import java.util.HashMap;
 public class Sound {
 	public static HashMap<String, String[]> soundArray;
 
-	private int x;
+	private final int x;
 
-	private int y;
+	private final int y;
 
-	private String name;
+	private final String name;
 
 	// private boolean loop=false;
-	Sound(String name, int x, int y) {
+	Sound(final String name, final int x, final int y) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.name = name;
 	}
 
-	public Sound(String name, int x, int y, boolean shallLoop) {
+	public Sound(final String name, final int x, final int y, final boolean shallLoop) {
 		this(name, x, y);
 		// loop = shallLoop;
 	}

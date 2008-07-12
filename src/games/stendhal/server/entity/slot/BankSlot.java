@@ -11,7 +11,7 @@ import java.util.List;
  * @author hendrik
  */
 public class BankSlot extends PlayerSlot {
-	private Banks bank;
+	private final Banks bank;
 
 	/**
 	 * Creates a new keyed slot.
@@ -19,18 +19,18 @@ public class BankSlot extends PlayerSlot {
 	 * @param bank
 	 *            Bank
 	 */
-	public BankSlot(Banks bank) {
+	public BankSlot(final Banks bank) {
 		super(bank.getSlotName());
 		this.bank = bank;
 	}
 
 	@Override
-	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		// Check if we are next to a chest which acts as an interface
 		// to this bank slot
-		List<Entity> accessors = SingletonRepository.getBankAccessorManager().get(bank);
+		final List<Entity> accessors = SingletonRepository.getBankAccessorManager().get(bank);
 		boolean found = false;
-		for (Entity accessor : accessors) {
+		for (final Entity accessor : accessors) {
 			if (entity.nextTo(accessor)) {
 				found = true;
 				break;

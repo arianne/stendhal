@@ -25,16 +25,16 @@ public class BlacksheepHarryNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildblacksheepharry(zone);
 	}
 
-	private void buildblacksheepharry(StendhalRPZone zone) {
-		SpeakerNPC blacksheepharry = new SpeakerNPC("Blacksheep Harry") {
+	private void buildblacksheepharry(final StendhalRPZone zone) {
+		final SpeakerNPC blacksheepharry = new SpeakerNPC("Blacksheep Harry") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(5, 2));
 				nodes.add(new Node(10, 2));
 				setPath(new FixedPath(nodes, true));
@@ -51,12 +51,12 @@ public class BlacksheepHarryNPC implements ZoneConfigurator {
 
 			// Blacksheep Harry makes you some tuna if you bring him a mackerel and a perch
 			// (uses sorted TreeMap instead of HashMap)
-			Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+			final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 			requiredResources.put("mackerel", Integer.valueOf(1));
 			requiredResources.put("perch", Integer.valueOf(1));
 			requiredResources.put("marbles", Integer.valueOf(2));
 
-			ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepharry_make_tuna", "make", "canned tuna",
+			final ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepharry_make_tuna", "make", "canned tuna",
 			        requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,

@@ -25,7 +25,7 @@ public class StopAction implements ActionListener {
 		CommandCenter.register("stop", new StopAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		player.stop();
 

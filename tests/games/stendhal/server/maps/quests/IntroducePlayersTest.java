@@ -50,8 +50,8 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndbye() {
-		SpeakerNPC npc = getNPC("Tad");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Tad");
+		final Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
 		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, npc
@@ -72,8 +72,8 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiNoAndHiAgain() {
-		SpeakerNPC npc = getNPC("Tad");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Tad");
+		final Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
 
@@ -97,8 +97,8 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testQuest() {
-		SpeakerNPC tad = getNPC("Tad");
-		Engine engineTad = tad.getEngine();
+		final SpeakerNPC tad = getNPC("Tad");
+		final Engine engineTad = tad.getEngine();
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
 		assertEquals("Ssshh! Come here, player! I have a #task for you.", tad
@@ -114,7 +114,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", tad.get("text"));
 
-		StackableItem flask = new StackableItem("flask", "", "", null);
+		final StackableItem flask = new StackableItem("flask", "", "", null);
 		flask.setQuantity(1);
 		flask.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(flask);
@@ -128,8 +128,8 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("ilisa", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
-		SpeakerNPC ilisa = getNPC("Ilisa");
-		Engine engineIlisa = ilisa.getEngine();
+		final SpeakerNPC ilisa = getNPC("Ilisa");
+		final Engine engineIlisa = ilisa.getEngine();
 		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(
 				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",

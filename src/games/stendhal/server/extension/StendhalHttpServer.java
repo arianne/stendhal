@@ -89,7 +89,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 			logger.info("StendhalHttpServer starting...");
 			scriptContext = new FileContext(new File("web/script/"));
 			fileContext = new CacheContext(new File("web/html/"));
-			String[] roots = new String[2];
+			final String[] roots = new String[2];
 			roots[0] = scriptContext.getRealPath("/");
 			roots[1] = fileContext.getRealPath("/");
 			scriptEngine = new GroovyScriptEngine(roots);
@@ -103,7 +103,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				// default http-port
 				PORT = 80; 
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
@@ -111,7 +111,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** Processes a http request and add convenience headers. 
 	 * @param req 
 	 * @param resp */
-	public void handle(Request req, Response resp) {
+	public void handle(final Request req, final Response resp) {
 		resp.set("Server", "Stendhal http (Simpleweb)");
 		resp.setDate("Date", System.currentTimeMillis());
 		resp.setDate("Expires", System.currentTimeMillis() + EXPIRES);
@@ -123,12 +123,12 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	 * @param in 
 	 * @param out 
 	 * @throws Exception */
-	public static void streamCopy(InputStream in, OutputStream out)
+	public static void streamCopy(InputStream in, final OutputStream out)
 			throws Exception {
 		try {
 			in = new BufferedInputStream(in);
 			while (true) {
-				int data = in.read();
+				final int data = in.read();
 				if (data == -1) {
 					break;
 				}
@@ -148,17 +148,17 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	 * @param req 
 	 * @param dir 
 	 * @throws Exception */ 
-	public static void outputHTML(StringBuilder s, PrintStream out, Request req,
-			String dir) throws Exception {
+	public static void outputHTML(final StringBuilder s, final PrintStream out, final Request req,
+			final String dir) throws Exception {
 		int left = 0;
 		int right;
 		while ((left = s.indexOf("<!--#include", left)) >= 0) {
 			right = s.indexOf("-->", left + 13);
-			String[] result = s.substring(left + 13, right).trim().split(
+			final String[] result = s.substring(left + 13, right).trim().split(
 					"[=\"]");
 			s.delete(left, right + 3);
 			if (result.length > 0) {
-				String modeInclude = result[0].trim();
+				final String modeInclude = result[0].trim();
 				String fileInclude = null;
 				for (int x = 1; x < result.length; x++) {
 					if (result[x].length() > 0) {
@@ -167,10 +167,10 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 					}
 				}
 				try {
-					ByteArrayOutputStream outStream = new ByteArrayOutputStream(
+					final ByteArrayOutputStream outStream = new ByteArrayOutputStream(
 							2048);
 					if ("file".equals(modeInclude)) {
-						InputStream in = new FileInputStream(new File(
+						final InputStream in = new FileInputStream(new File(
 								fileInclude));
 						streamCopy(in, outStream);
 						in.close();
@@ -193,7 +193,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 								new PrintStream(outStream));
 					}
 					s.insert(left, new StringBuilder(outStream.toString()));
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					s.insert(left, "<!-- " + e.getMessage() + " -->");
 					logger.error(e, e);
 				}
@@ -204,12 +204,12 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 
 	public abstract static class IncludableView extends View {
 
-		public IncludableView(Context context) {
+		public IncludableView(final Context context) {
 			super(context);
 		}
 
 		@Override
-		public void process(Request req, Response resp) throws Exception {
+		public void process(final Request req, final Response resp) throws Exception {
 			process(req, resp, req.getPath().getPath(),
 					resp.getPrintStream(1024));
 		}
@@ -221,7 +221,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** Serves Groovy scripts that don't have access to game objects. */
 	public static class SecureScriptService extends IncludableView {
 
-		public SecureScriptService(Context context) {
+		public SecureScriptService(final Context context) {
 			super(context); 
 			// this context will be ignored
 		}
@@ -230,20 +230,20 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 			return (new Binding());
 		}
 
-		public String getScriptName(Request req) {
+		public String getScriptName(final Request req) {
 			return ("." + req.getPath().getPath());
 		}
 
 		@Override
-		public void process(Request req, Response resp) throws Exception {
+		public void process(final Request req, final Response resp) throws Exception {
 			process(req, resp, getScriptName(req), resp.getPrintStream(1024));
 		}
 
 		@Override
-		public void process(Request req, Response resp, String resource,
-				PrintStream outStream) throws Exception {
-			ByteArrayOutputStream out = new ByteArrayOutputStream(2048);
-			Binding binding = getBinding();
+		public void process(final Request req, final Response resp, final String resource,
+				final PrintStream outStream) throws Exception {
+			final ByteArrayOutputStream out = new ByteArrayOutputStream(2048);
+			final Binding binding = getBinding();
 			if (resp != null) {
 				// default content-type, can be overwritten in script if
 				// the script isn't included (response == null)
@@ -268,7 +268,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** Serves Groovy scripts that have access to game objects. * */
 	public static class GameScriptService extends SecureScriptService {
 
-		public GameScriptService(Context context) {
+		public GameScriptService(final Context context) {
 			super(context); 
 			// this context will be ignored
 		}
@@ -279,7 +279,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 
 		@Override
-		public String getScriptName(Request req) {
+		public String getScriptName(final Request req) {
 			return ("./" + req.getPath().getExtension() + ".groovy");
 		}
 	}
@@ -287,19 +287,19 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** Serves normal files from the document root (fileContext). * */
 	public static class FileService extends IncludableView {
 
-		public FileService(Context context) {
+		public FileService(final Context context) {
 			super(fileContext);
 		}
 
 		@Override
-		public void process(Request req, Response resp) throws Exception {
+		public void process(final Request req, final Response resp) throws Exception {
 			process(req, resp, req.getPath().getPath(),
 					resp.getPrintStream(1024));
 		}
 
 		@Override
-		public void process(Request req, Response resp, String resource,
-				PrintStream outStream) throws Exception {
+		public void process(final Request req, final Response resp, String resource,
+				final PrintStream outStream) throws Exception {
 			File file = new File(context.getRealPath(resource));
 
 			if (file.exists()
@@ -313,8 +313,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				file = context.getFile(resource);
 			}
 			if (!file.isDirectory() && (file.length() > 0)) {
-				Content content = context.getContent(resource);
-				boolean isHTML = "text/html".equals(content.getContentType());
+				final Content content = context.getContent(resource);
+				final boolean isHTML = "text/html".equals(content.getContentType());
 				OutputStream out;
 				if (isHTML) {
 					out = new ByteArrayOutputStream(2048);
@@ -328,7 +328,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				content.write(out);
 				out.close();
 				if (isHTML) {
-					PrintStream rOut = outStream;
+					final PrintStream rOut = outStream;
 					outputHTML(new StringBuilder(out.toString()), rOut, req,
 							context.getPath(resource).getDirectory());
 					rOut.close();
@@ -342,16 +342,16 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** Serves resources from the classpath. * */
 	public static class DataService extends View {
 
-		public DataService(Context context) {
+		public DataService(final Context context) {
 			super(context);
 		}
 
 		@Override
-		public void process(Request req, Response resp) throws Exception {
-			PrintStream out = resp.getPrintStream(1024);
-			String resource = req.getPath().getPath().substring(1);
+		public void process(final Request req, final Response resp) throws Exception {
+			final PrintStream out = resp.getPrintStream(1024);
+			final String resource = req.getPath().getPath().substring(1);
 			if (getClass().getClassLoader().getResource(resource) != null) {
-				InputStream in = getClass().getClassLoader().getResourceAsStream(
+				final InputStream in = getClass().getClassLoader().getResourceAsStream(
 						resource);
 				resp.set("Content-Type", context.getContentType(resource));
 				resp.set("Cache-Control", "public");
@@ -369,7 +369,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	@Override
 	public void init() {
 		try {
-			LoaderEngine engine = new LoaderEngine();
+			final LoaderEngine engine = new LoaderEngine();
 			engine.load("file",
 					"games.stendhal.server.extension.StendhalHttpServer$FileService");
 			engine.link("*", "file");
@@ -386,13 +386,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 			this.handler = ProtocolHandlerFactory.getInstance(engine);
 			// ProcessQueue.getInstance().resize(1);
 
-			PipelineHandler piplelineHandler = PipelineHandlerFactory.getInstance(
+			final PipelineHandler piplelineHandler = PipelineHandlerFactory.getInstance(
 					this, 1, 1000);
 
-			Connection connection = ConnectionFactory.getConnection(piplelineHandler);
+			final Connection connection = ConnectionFactory.getConnection(piplelineHandler);
 			connection.connect(new ServerSocket(PORT));
 			logger.info("Started http server on port " + PORT);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}

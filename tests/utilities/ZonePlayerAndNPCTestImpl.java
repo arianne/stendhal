@@ -17,7 +17,7 @@ import org.junit.After;
  */
 public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 
-	private List<String> npcNames = new Vector<String>();
+	private final List<String> npcNames = new Vector<String>();
 	
 	/**
 	 * Register NPC names for cleanup in tearDown().
@@ -25,12 +25,12 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 	 * 
 	 * @param npcNames
 	 */
-	protected ZonePlayerAndNPCTestImpl(String zoneName, String... npcNames) {
+	protected ZonePlayerAndNPCTestImpl(final String zoneName, final String... npcNames) {
 		super(zoneName);
 		
 		assertTrue(npcNames.length > 0);
 
-		for (String npcName : npcNames) {
+		for (final String npcName : npcNames) {
 			this.npcNames.add(npcName);
 		}
     }
@@ -43,7 +43,7 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 	@Override
 	@After
 	public void tearDown() throws Exception {
-		for (String npcName : npcNames) {
+		for (final String npcName : npcNames) {
 			resetNPC(npcName);
 		}
 		
@@ -56,8 +56,8 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 	 * @param npcName
 	 * @return SpeakerNPC
 	 */
-	protected SpeakerNPC getNPC(String npcName) {
-		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
+	protected SpeakerNPC getNPC(final String npcName) {
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 
 		assertNotNull(npc);
 

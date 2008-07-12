@@ -51,24 +51,24 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	protected Class< ? > implementation;
 
-	public List<DefaultItem> load(URI uri) throws SAXException {
+	public List<DefaultItem> load(final URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
 		// Use the default (non-validating) parser
-		SAXParserFactory factory = SAXParserFactory.newInstance();
+		final SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			// Parse the input
-			SAXParser saxParser = factory.newSAXParser();
+			final SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getResourceAsStream(uri.getPath());
+			final InputStream is = getClass().getResourceAsStream(uri.getPath());
 
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + uri
 						+ "' in classpath");
 			}
 			saxParser.parse(is, this);
-		} catch (ParserConfigurationException t) {
+		} catch (final ParserConfigurationException t) {
 			logger.error(t);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error(e);
 			throw new SAXException(e);
 		}
@@ -87,8 +87,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(final String namespaceURI, final String lName, final String qName,
+			final Attributes attrs) {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
@@ -101,11 +101,11 @@ public class ItemsXMLLoader extends DefaultHandler {
 			subclass = attrs.getValue("subclass");
 		} else if (qName.equals("implementation")) {
 
-			String className = attrs.getValue("class-name");
+			final String className = attrs.getValue("class-name");
 
 			try {
 				implementation = Class.forName(className);
-			} catch (ClassNotFoundException ex) {
+			} catch (final ClassNotFoundException ex) {
 				logger.error("Unable to load class: " + className);
 			}
 		} else if (qName.equals("weight")) {
@@ -122,9 +122,9 @@ public class ItemsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void endElement(String namespaceURI, String sName, String qName) {
+	public void endElement(final String namespaceURI, final String sName, final String qName) {
 		if (qName.equals("item")) {
-			DefaultItem item = new DefaultItem(clazz, subclass, name, -1);
+			final DefaultItem item = new DefaultItem(clazz, subclass, name, -1);
 			item.setWeight(weight);
 			item.setEquipableSlots(slots);
 			item.setAttributes(attributes);
@@ -151,7 +151,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char[] buf, int offset, int len) {
+	public void characters(final char[] buf, final int offset, final int len) {
 		text = text + (new String(buf, offset, len)).trim();
 	}
 }

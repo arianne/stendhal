@@ -22,7 +22,7 @@ import java.util.Map;
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -30,16 +30,16 @@ public class BuyerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Diehelm Brui") {
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Diehelm Brui") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(10, 4));
 				nodes.add(new Node(10, 8));
 				nodes.add(new Node(15, 8));
@@ -70,14 +70,14 @@ public class BuyerNPC implements ZoneConfigurator {
 		zone.add(npc);
 
 		// Add a book with the shop offers
-		Sign book = new Sign();
+		final Sign book = new Sign();
 		book.setPosition(12, 3);
 		book.setText(" -- Buying -- \n steel boots\t 1000\n golden boots\t 1500\n shadow boots\t 2000\n stone boots\t 2500\n chaos boots\t 4000");
 		book.setEntityClass("book_blue");
 		book.setResistance(10);
 		zone.add(book);
 
-		Sign book2 = new Sign();
+		final Sign book2 = new Sign();
 		book2.setPosition(13, 4);
 		book2.setText(" -- Buying -- \n golden helmet\t 3000\n shadow helmet\t 4000\n horned golden helmet 5000\n chaos helmet\t 6000\n magic chain helmet\t 8000\n black helmet\t 10000");
 		book2.setEntityClass("book_red");

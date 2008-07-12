@@ -49,7 +49,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	/**
 	 * The entity this view is for.
 	 */
-	private DomesticAnimal animal;
+	private final DomesticAnimal animal;
 
 	/**
 	 * The current idea sprite.
@@ -80,7 +80,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	//
 
 	@Override
-	protected Sprite getSprite(Object state) {
+	protected Sprite getSprite(final Object state) {
 		if (animal.getWeight() < getBigWeight()) {
 			return super.getSprite(state);
 		}
@@ -119,7 +119,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * @return The sprite representing the current idea, or null.
 	 */
 	protected Sprite getIdeaSprite() {
-		String idea = animal.getIdea();
+		final String idea = animal.getIdea();
 
 		if (idea == null) {
 			return null;
@@ -209,7 +209,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, IGameScreen gameScreen) {
+			final int width, final int height, final IGameScreen gameScreen) {
 		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (ideaSprite != null) {
@@ -221,7 +221,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		super.update(gameScreen);
 
 		if (ideaChanged) {
@@ -267,7 +267,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case OWN:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			animal.fillTargetInfo(rpaction);

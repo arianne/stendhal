@@ -57,20 +57,20 @@ public class RingMaker extends AbstractQuest {
 	private static final String QUEST_SLOT = "fix_emerald_ring";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void FixRingStep() {
-		SpeakerNPC npc = npcs.get("Ognir");
+		final SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
 			new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;")),
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Item emeraldRing = player.getFirstEquipped("emerald ring");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final Item emeraldRing = player.getFirstEquipped("emerald ring");
 					if (emeraldRing != null) {
 						if (emeraldRing.getInt("amount") > 0) {
 							// ring is not broken so he just lets player know
@@ -93,11 +93,11 @@ public class RingMaker extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
-					long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {
 						npc.say("I haven't finished fixing your ring of life. Please check back in "
@@ -107,7 +107,7 @@ public class RingMaker extends AbstractQuest {
 					}
 					npc.say("I'm pleased to say, your ring of life is fixed! It's good as new now.");
 					player.addXP(500);
-					Item emeraldRing = SingletonRepository.getEntityManager().getItem(
+					final Item emeraldRing = SingletonRepository.getEntityManager().getItem(
 									"emerald ring");
 					emeraldRing.setBoundTo(player.getName());
 					player.equip(emeraldRing, true);
@@ -130,7 +130,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 							&& (player.isEquipped("money", REQUIRED_MONEY))
 							&& (player.isEquipped("emerald", REQUIRED_GEM))) {
@@ -164,13 +164,13 @@ public class RingMaker extends AbstractQuest {
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith("forging;")) {
 			res.add("FORGING");
 		}

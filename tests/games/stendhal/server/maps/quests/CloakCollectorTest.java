@@ -36,11 +36,11 @@ public class CloakCollectorTest {
 	@Test
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
-		CloakCollector cc = new CloakCollector();
+		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
-		SpeakerNPC npc = cc.getNPC();
-		Engine en = npc.getEngine();
-		Player monica = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = cc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player monica = PlayerTestHelper.createPlayer("player");
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -58,12 +58,12 @@ public class CloakCollectorTest {
 	@Test
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
-		CloakCollector cc = new CloakCollector();
+		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
 		cc.init("CloaksCollector");
-		SpeakerNPC npc = cc.getNPC();
-		Engine en = npc.getEngine();
-		Player monica = PlayerTestHelper.createPlayer("monica");
+		final SpeakerNPC npc = cc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player monica = PlayerTestHelper.createPlayer("monica");
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -105,7 +105,7 @@ public class CloakCollectorTest {
 		cloak = new Item("stone cloak", "", "", null);
 		monica.getSlot("bag").add(cloak);
 
-		for (String cloakName : cc.getNeededItems()) {
+		for (final String cloakName : cc.getNeededItems()) {
 			cloak = new Item(cloakName, "", "", null);
 			monica.getSlot("bag").add(cloak);
 			en.step(monica, cloakName);
@@ -118,21 +118,21 @@ public class CloakCollectorTest {
 
 	@Test
 	public final void testGetSlotName() {
-		CloakCollector cc = new CloakCollector();
+		final CloakCollector cc = new CloakCollector();
 		assertEquals("cloaks_collector", cc.getSlotName());
 	}
 
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
-		CloakCollector cc = new CloakCollector();
+		final CloakCollector cc = new CloakCollector();
 		assertFalse(cc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
 	@Test
 	public final void testRewardPlayer() {
-		CloakCollector cc = new CloakCollector();
-		Player player = PlayerTestHelper.createPlayer("player");
-		double oldKarma = player.getKarma();
+		final CloakCollector cc = new CloakCollector();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final double oldKarma = player.getKarma();
 		cc.rewardPlayer(player);
 		assertTrue(player.isEquipped("black cloak"));
 		assertEquals(oldKarma + 5.0, player.getKarma(), 0.01);

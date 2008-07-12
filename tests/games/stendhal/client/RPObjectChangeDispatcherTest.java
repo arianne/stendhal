@@ -11,41 +11,41 @@ public class RPObjectChangeDispatcherTest {
 
 	@Test
 	public void testDispatchModifyRemoved() {
-		RPObjectChangeListener listener = new RPObjectChangeListener() {
+		final RPObjectChangeListener listener = new RPObjectChangeListener() {
 
-			public void onAdded(RPObject object) {
-
-			}
-
-			public void onChangedAdded(RPObject object, RPObject changes) {
+			public void onAdded(final RPObject object) {
 
 			}
 
-			public void onChangedRemoved(RPObject object, RPObject changes) {
+			public void onChangedAdded(final RPObject object, final RPObject changes) {
 
 			}
 
-			public void onRemoved(RPObject object) {
+			public void onChangedRemoved(final RPObject object, final RPObject changes) {
 
 			}
 
-			public void onSlotAdded(RPObject object, String slotName, RPObject sobject) {
+			public void onRemoved(final RPObject object) {
 
 			}
 
-			public void onSlotChangedAdded(RPObject object, String slotName, RPObject sobject, RPObject schanges) {
+			public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
 
 			}
 
-			public void onSlotChangedRemoved(RPObject object, String slotName, RPObject sobject, RPObject schanges) {
+			public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
 
 			}
 
-			public void onSlotRemoved(RPObject object, String slotName, RPObject sobject) {
+			public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+
+			}
+
+			public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
 
 			}
 		};
-		RPObjectChangeDispatcher dispatcher = new RPObjectChangeDispatcher(listener, listener);
+		final RPObjectChangeDispatcher dispatcher = new RPObjectChangeDispatcher(listener, listener);
 		dispatcher.dispatchModifyRemoved(null, null, false);
 		dispatcher.dispatchModifyRemoved(null, null, true);
 		assertTrue("make sure we have no NPE", true);

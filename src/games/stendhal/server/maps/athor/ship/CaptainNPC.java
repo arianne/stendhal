@@ -14,14 +14,14 @@ public class CaptainNPC extends SpeakerNPCFactory {
 
 private Status ferrystate;
 	@Override
-	protected SpeakerNPC instantiate(String name) {
+	protected SpeakerNPC instantiate(final String name) {
 		// The NPC is defined as a ferry announcer because he notifies
 		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new SpeakerNPC(name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 
 
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(final Player player) {
 				// Turn back to the wheel
 				setDirection(Direction.DOWN);
 			}
@@ -45,7 +45,7 @@ private Status ferrystate;
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 								//.getCurrentDescription());
 					}
@@ -54,7 +54,7 @@ private Status ferrystate;
 		new AthorFerry.FerryListener() {
 
 			
-			public void onNewFerryState(Status status) {
+			public void onNewFerryState(final Status status) {
 				ferrystate = status;
 					switch (status) {
 					case ANCHORED_AT_MAINLAND:

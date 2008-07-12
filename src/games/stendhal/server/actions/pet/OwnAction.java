@@ -41,13 +41,13 @@ public class OwnAction implements ActionListener {
 		CommandCenter.register(_OWN, new OwnAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (!action.has(TARGET)) {
 			return;
 		}
 
 		// evaluate the target parameter
-		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
+		final Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)
@@ -56,14 +56,14 @@ public class OwnAction implements ActionListener {
 				return;
 			}
 
-			DomesticAnimal animal = (DomesticAnimal) entity;
-			Player owner = animal.getOwner();
+			final DomesticAnimal animal = (DomesticAnimal) entity;
+			final Player owner = animal.getOwner();
 
 			if (owner != null) {
 				player.sendPrivateText("This animal is already owned by "
 						+ owner.getTitle());
 			} else {
-				List<Node> path = Path.searchPath(player, player.getX(),
+				final List<Node> path = Path.searchPath(player, player.getX(),
 						player.getY(), animal.getArea(), 7);
 
 				if (path.isEmpty()) {
@@ -85,17 +85,17 @@ public class OwnAction implements ActionListener {
 				}
 			}
 		} else {
-			String targetString = action.get(TARGET);
+			final String targetString = action.get(TARGET);
 
 			// TODO: BUG: This features is potentially abusable right now.
 			// Consider removing it...
-			if (targetString != null && targetString.equals("-1")) {
+			if ((targetString != null) && targetString.equals("-1")) {
 				// Disown
 				if (action.has(_SPECIES)) {
-					String species = action.get(_SPECIES);
+					final String species = action.get(_SPECIES);
 
 					if (species.equals("sheep")) {
-						Sheep sheep = player.getSheep();
+						final Sheep sheep = player.getSheep();
 
 						if (sheep != null) {
 							player.removeSheep(sheep);
@@ -108,7 +108,7 @@ public class OwnAction implements ActionListener {
     						logger.error("sheep not found in disown action: " + action.toString());
     					}
 					} else if (species.equals("pet")) {
-						Pet pet = player.getPet();
+						final Pet pet = player.getPet();
 
 						if (pet != null) {
 							player.removePet(pet);

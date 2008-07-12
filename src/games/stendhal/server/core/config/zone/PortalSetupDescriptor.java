@@ -151,7 +151,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 		}
 
 		try {
-			Portal portal = (Portal) EntityFactoryHelper.create(className,
+			final Portal portal = (Portal) EntityFactoryHelper.create(className,
 					getParameters(), getAttributes());
 			if (portal == null) {
 				logger.warn("Unable to create portal: " + className);
@@ -162,14 +162,14 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			portal.setPosition(getX(), getY());
 			portal.setIdentifier(getIdentifier());
 
-			Object destIdentifier = getDestinationIdentifier();
+			final Object destIdentifier = getDestinationIdentifier();
 
 			if (destIdentifier != null) {
 				portal.setDestination(getDestinationZone(), destIdentifier);
 			}
 
 			if (isReplacing()) {
-				Portal oportal = zone.getPortal(getX(), getY());
+				final Portal oportal = zone.getPortal(getX(), getY());
 
 				if (oportal != null) {
 					logger.debug("Replacing portal: " + oportal);
@@ -179,7 +179,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			}
 
 			zone.add(portal);
-		} catch (IllegalArgumentException ex) {
+		} catch (final IllegalArgumentException ex) {
 			logger.error("Error with portal factory", ex);
 		}
 	}

@@ -18,8 +18,8 @@ public class SummonAtActionTest {
 
 	@Test
 	public void testInvalidAmount() {
-		MockClientUI clientUI = new MockClientUI();
-		SummonAtAction action = new SummonAtAction();
+		final MockClientUI clientUI = new MockClientUI();
+		final SummonAtAction action = new SummonAtAction();
 
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
@@ -29,12 +29,12 @@ public class SummonAtActionTest {
 	@Test
 	public void testExecute() {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("player", action.get("target"));
@@ -45,7 +45,7 @@ public class SummonAtActionTest {
 		};
 
 		// issue "/summonat bag 5 money"
-		SummonAtAction action = new SummonAtAction();
+		final SummonAtAction action = new SummonAtAction();
 		assertTrue(action.execute(new String[]{"player", "bag", "5"}, "money"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -53,12 +53,12 @@ public class SummonAtActionTest {
 	@Test
 	public void testSpaceHandling() {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("player", action.get("target"));
@@ -69,32 +69,32 @@ public class SummonAtActionTest {
 		};
 
 		// issue "/summonat bag silver sword"
-		SummonAtAction action = new SummonAtAction();
+		final SummonAtAction action = new SummonAtAction();
 		assertTrue(action.execute(new String[]{"player", "bag", "silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		SummonAtAction action = new SummonAtAction();
+		final SummonAtAction action = new SummonAtAction();
 		assertEquals(3, action.getMaximumParameters());
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		SummonAtAction action = new SummonAtAction();
+		final SummonAtAction action = new SummonAtAction();
 		assertEquals(3, action.getMinimumParameters());
 	}
 
 	@Test
 	public void testFromChatline() throws Exception {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("memem", action.get("target"));

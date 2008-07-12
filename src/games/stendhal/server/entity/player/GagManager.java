@@ -45,13 +45,13 @@ public class GagManager implements LoginListener {
 	 *            The duration of the sentence
 	 * @param reason why criminal was gagged
 	 */
-	public void gag(final String criminalName, Player policeman, int minutes,
-			String reason) {
+	public void gag(final String criminalName, final Player policeman, final int minutes,
+			final String reason) {
 		final Player criminal = SingletonRepository.getRuleProcessor().getPlayer(
 				criminalName);
 
 		if (criminal == null) {
-			String text = "Player " + criminalName + " not found";
+			final String text = "Player " + criminalName + " not found";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
 			return;
@@ -60,8 +60,8 @@ public class GagManager implements LoginListener {
 		gag(criminal, policeman, minutes, reason, criminalName);
 	}
 
-	void gag(final Player criminal, Player policeman, int minutes,
-			String reason, final String criminalName) {
+	void gag(final Player criminal, final Player policeman, final int minutes,
+			final String reason, final String criminalName) {
 		// no -1
 		if (minutes < 0) {
 			policeman.sendPrivateText("Infinity (negative numbers) is not supported.");
@@ -69,7 +69,7 @@ public class GagManager implements LoginListener {
 		}
 
 		// Set the gag
-		long expireDate = System.currentTimeMillis() + (1000L * 60L * minutes); // Milliseconds
+		final long expireDate = System.currentTimeMillis() + (1000L * 60L * minutes); // Milliseconds
 		criminal.setQuest("gag", "" + expireDate);
 
 		// Send messages
@@ -91,7 +91,7 @@ public class GagManager implements LoginListener {
 	 * @param inmate
 	 *            player who should be released
 	 */
-	public void release(Player inmate) {
+	public void release(final Player inmate) {
 
 		if (isGagged(inmate)) {
 			inmate.removeQuest("gag");
@@ -106,7 +106,7 @@ public class GagManager implements LoginListener {
 	 * @param player player to check
 	 * @return true, if it is gagged, false otherwise.
 	 */
-	public static boolean isGagged(Player player) {
+	public static boolean isGagged(final Player player) {
 		if (player.hasQuest("gag")) {
 			return true;
 		}
@@ -119,10 +119,10 @@ public class GagManager implements LoginListener {
 	 * @param player player to check
 	 * @return true, if it is gagged, false otherwise.
 	 */
-	public static boolean checkIsGaggedAndInformPlayer(Player player) {
-		boolean res = GagManager.isGagged(player);
+	public static boolean checkIsGaggedAndInformPlayer(final Player player) {
+		final boolean res = GagManager.isGagged(player);
 		if (res) {
-			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
+			final long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
 			player.sendPrivateText("You are gagged, it will expire in "
 					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
 		}
@@ -138,7 +138,7 @@ public class GagManager implements LoginListener {
 	 * @return true, if the gag expired and was removed or was already removed.
 	 *         false, if the player still has time to serve.
 	 */
-	private boolean tryExpire(Player player) {
+	private boolean tryExpire(final Player player) {
 		if (!isGagged(player)) {
 			return true;
 		}
@@ -152,7 +152,7 @@ public class GagManager implements LoginListener {
 		return false;
 	}
 
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 		if (!isGagged(player)) {
 			return;
 		}
@@ -162,7 +162,7 @@ public class GagManager implements LoginListener {
 		}
 	}
 
-	private void setupNotifier(Player criminal) {
+	private void setupNotifier(final Player criminal) {
 
 		final String criminalName = criminal.getName();
 
@@ -170,9 +170,9 @@ public class GagManager implements LoginListener {
 		// serving his sentence. We're using the TurnNotifier; we use
 		SingletonRepository.getTurnNotifier().notifyInSeconds(
 				(int) (getTimeRemaining(criminal) / 1000), new TurnListener() {
-					public void onTurnReached(int currentTurn) {
+					public void onTurnReached(final int currentTurn) {
 
-						Player criminal2 = SingletonRepository.getRuleProcessor().getPlayer(
+						final Player criminal2 = SingletonRepository.getRuleProcessor().getPlayer(
 								criminalName);
 						if (criminal2 == null) {
 							logger.debug("Gagged player " + criminalName
@@ -193,12 +193,12 @@ public class GagManager implements LoginListener {
 	 *            player to check
 	 * @return time remaining in milliseconds
 	 */
-	public long getTimeRemaining(Player criminal) {
+	public long getTimeRemaining(final Player criminal) {
 		if (!isGagged(criminal)) {
 			return 0L;
 		}
-		long expireDate = Long.parseLong(criminal.getQuest("gag"));
-		long timeRemaining = expireDate - System.currentTimeMillis();
+		final long expireDate = Long.parseLong(criminal.getQuest("gag"));
+		final long timeRemaining = expireDate - System.currentTimeMillis();
 		return timeRemaining;
 	}
 }

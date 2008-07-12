@@ -14,15 +14,15 @@ public class ScriptImpl implements Script {
 	/** all modifications must be done using this object to be undoable on unload. */
 	protected ScriptingSandbox sandbox;
 
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		// do nothing
 	}
 
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		this.sandbox = sandbox;
 	}
 
-	public void unload(Player admin, List<String> args) {
+	public void unload(final Player admin, final List<String> args) {
 		// do nothing
 	}
 

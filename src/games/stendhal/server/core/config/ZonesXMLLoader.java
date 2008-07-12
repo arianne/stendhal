@@ -69,7 +69,7 @@ public class ZonesXMLLoader {
 	 * Create an xml based loader of zones.
 	 * @param uri the zone group file
 	 */
-	public ZonesXMLLoader(URI uri) {
+	public ZonesXMLLoader(final URI uri) {
 		this.uri = uri;
 	}
 
@@ -88,7 +88,7 @@ public class ZonesXMLLoader {
 	 *             If the resource was not found.
 	 */
 	public void load() throws SAXException, IOException {
-		InputStream in = getClass().getResourceAsStream(uri.getPath());
+		final InputStream in = getClass().getResourceAsStream(uri.getPath());
 
 		if (in == null) {
 			throw new FileNotFoundException("Cannot find resource: " + uri);
@@ -112,41 +112,41 @@ public class ZonesXMLLoader {
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 */
-	protected void load(InputStream in) throws SAXException, IOException {
-		Document doc = XMLUtil.parse(in);
+	protected void load(final InputStream in) throws SAXException, IOException {
+		final Document doc = XMLUtil.parse(in);
 
 		/*
 		 * Load each zone
 		 */
-		for (Element element : XMLUtil.getElements(doc.getDocumentElement(),
+		for (final Element element : XMLUtil.getElements(doc.getDocumentElement(),
 				"zone")) {
-			ZoneDesc zdesc = readZone(element);
+			final ZoneDesc zdesc = readZone(element);
 
 			if (zdesc == null) {
 				continue;
 			}
 
-			String name = zdesc.getName();
+			final String name = zdesc.getName();
 
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
+				final StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
 						+ zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
-					StendhalRPZone zone = load(zdesc, zonedata);
+					final StendhalRPZone zone = load(zdesc, zonedata);
 
 					/*
 					 * Setup Descriptors
 					 */
-					Iterator<SetupDescriptor> diter = zdesc.getDescriptors();
+					final Iterator<SetupDescriptor> diter = zdesc.getDescriptors();
 
 					while (diter.hasNext()) {
 						diter.next().setup(zone);
 					}
 				}
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				logger.error("Error loading zone: " + name, ex);
 			}
 		}
@@ -155,8 +155,8 @@ public class ZonesXMLLoader {
 	private static final String[] REQUIRED_LAYERS = { "0_floor", "1_terrain",
 			"2_object", "3_roof", "objects", "collision", "protection" };
 
-	private boolean verifyMap(ZoneDesc zdesc, StendhalMapStructure zonedata) {
-		for (String layer : REQUIRED_LAYERS) {
+	private boolean verifyMap(final ZoneDesc zdesc, final StendhalMapStructure zonedata) {
+		for (final String layer : REQUIRED_LAYERS) {
 			if (!zonedata.hasLayer(layer)) {
 				logger.error("Required layer " + layer + " missing in zone "
 						+ zdesc.getFile());
@@ -177,10 +177,10 @@ public class ZonesXMLLoader {
 	 * 
 	 * 
 	 */
-	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata)
+	protected StendhalRPZone load(final ZoneDesc desc, final StendhalMapStructure zonedata)
 			throws SAXException, IOException {
-		String name = desc.getName();
-		StendhalRPZone zone = new StendhalRPZone(name);
+		final String name = desc.getName();
+		final StendhalRPZone zone = new StendhalRPZone(name);
 
 		zone.addTilesets(name + ".tilesets", zonedata.getTilesets());
 		zone.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
@@ -188,7 +188,7 @@ public class ZonesXMLLoader {
 		zone.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
 		zone.addLayer(name + ".3_roof", zonedata.getLayer("3_roof"));
 
-		LayerDefinition layer = zonedata.getLayer("4_roof_add");
+		final LayerDefinition layer = zonedata.getLayer("4_roof_add");
 
 		if (layer != null) {
 			zone.addLayer(name + ".4_roof_add", layer);
@@ -209,7 +209,7 @@ public class ZonesXMLLoader {
 
 		try {
 			zone.onInit();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 		
@@ -224,14 +224,14 @@ public class ZonesXMLLoader {
 			return null;
 		}
 
-		String name = element.getAttribute("name");
+		final String name = element.getAttribute("name");
 
 		if (!element.hasAttribute("file")) {
 			logger.error("Zone [" + name + "] without 'file' attribute");
 			return null;
 		}
 
-		String file = element.getAttribute("file");
+		final String file = element.getAttribute("file");
 
 		int level;
 		int x;
@@ -245,7 +245,7 @@ public class ZonesXMLLoader {
 
 			try {
 				level = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Zone [" + name + "] has invalid level: " + s);
 				return null;
 			}
@@ -258,7 +258,7 @@ public class ZonesXMLLoader {
 
 				try {
 					x = Integer.parseInt(s);
-				} catch (NumberFormatException ex) {
+				} catch (final NumberFormatException ex) {
 					logger.error("Zone [" + name
 							+ "] has invalid x coordinate: " + s);
 					return null;
@@ -273,7 +273,7 @@ public class ZonesXMLLoader {
 
 				try {
 					y = Integer.parseInt(s);
-				} catch (NumberFormatException ex) {
+				} catch (final NumberFormatException ex) {
 					logger.error("Zone [" + name
 							+ "] has invalid y coordinate: " + s);
 					return null;
@@ -285,12 +285,12 @@ public class ZonesXMLLoader {
 			y = ZoneDesc.UNSET;
 		}
 
-		ZoneDesc desc = new ZoneDesc(name, file, level, x, y);
+		final ZoneDesc desc = new ZoneDesc(name, file, level, x, y);
 
 		/*
 		 * Title element
 		 */
-		List<Element> list = XMLUtil.getElements(element, "title");
+		final List<Element> list = XMLUtil.getElements(element, "title");
 
 		if (!list.isEmpty()) {
 			if (list.size() > 1) {
@@ -303,8 +303,8 @@ public class ZonesXMLLoader {
 		/*
 		 * Setup elements
 		 */
-		for (Element child : XMLUtil.getElements(element)) {
-			String tag = child.getTagName();
+		for (final Element child : XMLUtil.getElements(element)) {
+			final String tag = child.getTagName();
 
 			SetupDescriptor setupDesc;
 
@@ -336,18 +336,18 @@ public class ZonesXMLLoader {
 	/*
 	 * TODO THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini) XXX
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		if (args.length != 1) {
 			System.err.println("Usage: java " + ZonesXMLLoader.class.getName()
 					+ " <filename>");
 			System.exit(1);
 		}
 
-		ZonesXMLLoader loader = new ZonesXMLLoader(new URI(args[0]));
+		final ZonesXMLLoader loader = new ZonesXMLLoader(new URI(args[0]));
 
 		try {
 			loader.load();
-		} catch (org.xml.sax.SAXParseException ex) {
+		} catch (final org.xml.sax.SAXParseException ex) {
 			System.err.print("Source " + args[0] + ":" + ex.getLineNumber()
 					+ "<" + ex.getColumnNumber() + ">");
 
@@ -378,7 +378,7 @@ public class ZonesXMLLoader {
 
 		protected ArrayList<SetupDescriptor> descriptors;
 
-		public ZoneDesc(String name, String file, int level, int x, int y) {
+		public ZoneDesc(final String name, final String file, final int level, final int x, final int y) {
 			this.name = name;
 			this.file = file;
 			this.level = level;
@@ -397,7 +397,7 @@ public class ZonesXMLLoader {
 		 * @param desc 
 		 * 
 		 */
-		public void addDescriptor(SetupDescriptor desc) {
+		public void addDescriptor(final SetupDescriptor desc) {
 			descriptors.add(desc);
 		}
 
@@ -463,7 +463,7 @@ public class ZonesXMLLoader {
 		 * @param title of the zone
 		 * 
 		 */
-		public void setTitle(String title) {
+		public void setTitle(final String title) {
 			this.title = title;
 		}
 	}

@@ -17,7 +17,7 @@ import marauroa.common.game.RPSlot;
 public class ResetTutorial extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		// admin help
@@ -27,11 +27,11 @@ public class ResetTutorial extends ScriptImpl {
 		}
 
 		// find the player and slot
-		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
-		RPSlot slot = player.getSlot("!tutorial");
+		final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
+		final RPSlot slot = player.getSlot("!tutorial");
 
 		// remove old store object
-		RPObject rpObject = slot.iterator().next();
+		final RPObject rpObject = slot.iterator().next();
 		slot.remove(rpObject.getID());
 
 		// create new store object

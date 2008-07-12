@@ -28,8 +28,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagAbsentPlayer() {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		SingletonRepository.getGagManager().gag("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.getPrivateTextString());
 		assertFalse(GagManager.isGagged(bob));
@@ -37,8 +37,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagPlayer() {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		SingletonRepository.getGagManager().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",
 				policeman.getPrivateTextString());
@@ -49,8 +49,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testnegativ() {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		assertEquals("", policeman.getPrivateTextString());
 		SingletonRepository.getGagManager().gag(bob, policeman, -1, "test", bob.getName());
 		assertEquals("Infinity (negative numbers) is not supported.", policeman
@@ -60,8 +60,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testOnLoggedIn() {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		SingletonRepository.getGagManager().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",
@@ -76,7 +76,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testOnLoggedInAfterExpiry() {
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 
 		bob.setQuest("gag", "" + (System.currentTimeMillis() - 5));
 		assertTrue(GagManager.isGagged(bob));
@@ -86,7 +86,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testgetTimeremaining() {
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 		assertEquals(0L, SingletonRepository.getGagManager().getTimeRemaining(bob));
 		bob.setQuest("gag", "" + (System.currentTimeMillis() - 1000));
 		assertTrue(SingletonRepository.getGagManager().getTimeRemaining(bob) <= -1000);

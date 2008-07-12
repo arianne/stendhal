@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public class ConfigurableFactoryContext {
 
-	private Map<String, String> attributes;
+	private final Map<String, String> attributes;
 
 	/**
 	 * Create a configuration context using an attribute map. NOTE: The
@@ -16,7 +16,7 @@ public class ConfigurableFactoryContext {
 	 * @param attributes
 	 *            The attributes.
 	 */
-	public ConfigurableFactoryContext(Map<String, String> attributes) {
+	public ConfigurableFactoryContext(final Map<String, String> attributes) {
 		this.attributes = attributes;
 	}
 
@@ -30,7 +30,7 @@ public class ConfigurableFactoryContext {
 	 * @deprecated use type safe methods
 	 */
 	@Deprecated
-	public String getAttribute(String name) {
+	public String getAttribute(final String name) {
 		return attributes.get(name);
 	}
 
@@ -45,7 +45,7 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid boolean
 	 */
-	private static boolean extractBooleanFromString(String name, String value) {
+	private static boolean extractBooleanFromString(final String name, final String value) {
 		if ("true".equals(value)) {
 			return true;
 		}
@@ -69,8 +69,8 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid integer
 	 */
-	public boolean getBoolean(String name, boolean defaultValue) {
-		String value = attributes.get(name);
+	public boolean getBoolean(final String name, final boolean defaultValue) {
+		final String value = attributes.get(name);
 		if (value == null) {
 			return defaultValue;
 		}
@@ -87,8 +87,8 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid integer or is missing
 	 */
-	public boolean getRequiredBoolean(String name) {
-		String value = this.getRequiredString(name);
+	public boolean getRequiredBoolean(final String name) {
+		final String value = this.getRequiredString(name);
 		return extractBooleanFromString(name, value);
 	}
 
@@ -103,15 +103,15 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid integer
 	 */
-	public int getInt(String name, int defaultValue) {
-		String value = attributes.get(name);
+	public int getInt(final String name, final int defaultValue) {
+		final String value = attributes.get(name);
 		if (value == null) {
 			return defaultValue;
 		}
 
 		try {
 			return Integer.parseInt(value);
-		} catch (NumberFormatException ex) {
+		} catch (final NumberFormatException ex) {
 			throw new IllegalArgumentException("Invalid '" + name
 					+ "' attribute value: " + value
 					+ " is not a valid integer.");
@@ -127,11 +127,11 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid integer or is missing
 	 */
-	public int getRequiredInt(String name) {
-		String value = this.getRequiredString(name);
+	public int getRequiredInt(final String name) {
+		final String value = this.getRequiredString(name);
 		try {
 			return Integer.parseInt(value);
-		} catch (NumberFormatException ex) {
+		} catch (final NumberFormatException ex) {
 			throw new IllegalArgumentException("Invalid '" + name
 					+ "' attribute value: " + value
 					+ " is not a valid integer.");
@@ -147,8 +147,8 @@ public class ConfigurableFactoryContext {
 	 *            the default value it case it is not defined
 	 * @return the value of the attribute
 	 */
-	public String getString(String name, String defaultValue) {
-		String value = attributes.get(name);
+	public String getString(final String name, final String defaultValue) {
+		final String value = attributes.get(name);
 		if (value == null) {
 			return defaultValue;
 		}
@@ -164,8 +164,8 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case is missing
 	 */
-	public String getRequiredString(String name) {
-		String value = attributes.get(name);
+	public String getRequiredString(final String name) {
+		final String value = attributes.get(name);
 		if (value == null) {
 			throw new IllegalArgumentException("Missing required attribute "
 					+ name);

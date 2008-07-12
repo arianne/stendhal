@@ -37,15 +37,15 @@ import marauroa.common.net.message.TransferContent;
  */
 public class ShouterMain {
 
-	private String host;
+	private final String host;
 
-	private String username;
+	private final String username;
 
-	private String password;
+	private final String password;
 
 	protected String character;
 
-	private String port;
+	private final String port;
 
 	protected long lastPerceptionTimestamp;
 
@@ -71,7 +71,7 @@ public class ShouterMain {
 	 * @throws SocketException
 	 *             on an network error
 	 */
-	public ShouterMain(String h, String u, String p, String c, String P)
+	public ShouterMain(final String h, final String u, final String p, final String c, final String P)
 			throws SocketException {
 		host = h;
 		username = u;
@@ -82,7 +82,7 @@ public class ShouterMain {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
 		handler = new PerceptionHandler(new IPerceptionListener() {
-			public boolean onAdded(RPObject object) {
+			public boolean onAdded(final RPObject object) {
 				return false;
 			}
 
@@ -90,33 +90,33 @@ public class ShouterMain {
 				return false;
 			}
 
-			public boolean onDeleted(RPObject object) {
+			public boolean onDeleted(final RPObject object) {
 				return false;
 			}
 
-			public void onException(Exception exception,
-					MessageS2CPerception perception) {
+			public void onException(final Exception exception,
+					final MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				exception.printStackTrace();
 			}
 
-			public boolean onModifiedAdded(RPObject object, RPObject changes) {
+			public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
-			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+			public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
-			public boolean onMyRPObject(RPObject added, RPObject deleted) {
+			public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 				return false;
 			}
 
-			public void onPerceptionBegin(byte type, int timestamp) {
+			public void onPerceptionBegin(final byte type, final int timestamp) {
 			}
 
-			public void onPerceptionEnd(byte type, int timestamp) {
+			public void onPerceptionEnd(final byte type, final int timestamp) {
 			}
 
 			public void onSynced() {
@@ -140,19 +140,19 @@ public class ShouterMain {
 			}
 
 			@Override
-			protected void onPerception(MessageS2CPerception message) {
+			protected void onPerception(final MessageS2CPerception message) {
 				lastPerceptionTimestamp = System.currentTimeMillis();
 				try {
 					handler.apply(message, world_objects);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 			}
 
 			@Override
 			protected List<TransferContent> onTransferREQ(
-					List<TransferContent> items) {
-				for (TransferContent item : items) {
+					final List<TransferContent> items) {
+				for (final TransferContent item : items) {
 					item.ack = true;
 				}
 
@@ -160,26 +160,26 @@ public class ShouterMain {
 			}
 
 			@Override
-			protected void onServerInfo(String[] info) {
+			protected void onServerInfo(final String[] info) {
 				// do nothing
 			}
 
 			@Override
-			protected void onAvailableCharacters(String[] characters) {
+			protected void onAvailableCharacters(final String[] characters) {
 				try {
 					chooseCharacter(character);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 			}
 
 			@Override
-			protected void onTransfer(List<TransferContent> items) {
+			protected void onTransfer(final List<TransferContent> items) {
 				// do nothing
 			}
 
 			@Override
-			protected void onPreviousLogins(List<String> previousLogins) {
+			protected void onPreviousLogins(final List<String> previousLogins) {
 				// do nothing
 			}
 		};
@@ -194,13 +194,13 @@ public class ShouterMain {
 			System.exit(0);
 
 			// exit with an exit code of 1 on error
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			System.err.println("Socket Exception");
 			Runtime.getRuntime().halt(1);
-		} catch (TimeoutException e) {
+		} catch (final TimeoutException e) {
 			System.err.println("Cannot connect to Stendhal server. Server is down?");
 			Runtime.getRuntime().halt(1);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e);
 			e.printStackTrace(System.err);
 			Runtime.getRuntime().halt(1);
@@ -210,7 +210,7 @@ public class ShouterMain {
 
 	private void readMessagesAndShoutThem() throws IOException,
 			InterruptedException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = br.readLine();
 		while (line != null) {
 			if (line.trim().length() > 0) {
@@ -222,8 +222,8 @@ public class ShouterMain {
 		br.close();
 	}
 
-	private void shout(String message) {
-		RPAction chat = new RPAction();
+	private void shout(final String message) {
+		final RPAction chat = new RPAction();
 		chat.put("type", "tellall");
 		chat.put("text", message);
 		clientManager.send(chat);
@@ -235,7 +235,7 @@ public class ShouterMain {
 	 * @param args
 	 *            see help
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		try {
 			if (args.length > 0) {
 				int i = 0;
@@ -263,7 +263,7 @@ public class ShouterMain {
 				if ((username != null) && (password != null)
 						&& (character != null) && (host != null)
 						&& (port != null)) {
-					ShouterMain shouter = new ShouterMain(host, username,
+					final ShouterMain shouter = new ShouterMain(host, username,
 							password, character, port);
 					shouter.script();
 					return;
@@ -280,7 +280,7 @@ public class ShouterMain {
 			System.out.println("* -u\tUsername to log into Marauroa server");
 			System.out.println("* -p\tPassword to log into Marauroa server");
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}

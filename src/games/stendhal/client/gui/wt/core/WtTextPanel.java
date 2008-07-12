@@ -52,7 +52,7 @@ public class WtTextPanel extends WtPanel {
 	private int lastHeight;
 
 	/** enable automatic line breaks? */
-	private boolean autoLineBreaks;
+	private final boolean autoLineBreaks;
 
 	/**
 	 * Creates a new TextPanel.
@@ -64,8 +64,8 @@ public class WtTextPanel extends WtPanel {
 	 * @param height
 	 * @param gameScreen
 	 */
-	public WtTextPanel(String name, int x, int y, int width, int height,
-			IGameScreen gameScreen) {
+	public WtTextPanel(final String name, final int x, final int y, final int width, final int height,
+			final IGameScreen gameScreen) {
 		this(name, x, y, width, height, "", gameScreen);
 	}
 
@@ -80,8 +80,8 @@ public class WtTextPanel extends WtPanel {
 	 * @param formatString
 	 * @param gameScreen
 	 */
-	public WtTextPanel(String name, int x, int y, int width, int height,
-			String formatString, IGameScreen gameScreen) {
+	public WtTextPanel(final String name, final int x, final int y, final int width, final int height,
+			final String formatString, final IGameScreen gameScreen) {
 		super(name, x, y, width, height, gameScreen);
 		this.formatter = new StringFormatter(formatString);
 		this.fontSize = DEFAULT_FONT_SIZE;
@@ -102,7 +102,7 @@ public class WtTextPanel extends WtPanel {
 	 * 
 	 * @param fontSize
 	 */
-	public void setFontSize(int fontSize) {
+	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
 	}
 
@@ -111,7 +111,7 @@ public class WtTextPanel extends WtPanel {
 	 * 
 	 * @param color
 	 */
-	public void setColor(Color color) {
+	public void setColor(final Color color) {
 		this.color = color;
 	}
 
@@ -120,7 +120,7 @@ public class WtTextPanel extends WtPanel {
 	 * 
 	 * @param format
 	 */
-	public void setFormat(String format) {
+	public void setFormat(final String format) {
 		this.formatter = new StringFormatter(format);
 	}
 
@@ -132,7 +132,7 @@ public class WtTextPanel extends WtPanel {
 	 * @Deprecated use set(String param, String value)
 	 */
 	@Deprecated
-	public void setValue(String param, String value) {
+	public void setValue(final String param, final String value) {
 		formatter.set(param, value);
 	}
 
@@ -142,7 +142,7 @@ public class WtTextPanel extends WtPanel {
 	 * @param param
 	 * @param value
 	 */
-	public void set(String param, int value) {
+	public void set(final String param, final int value) {
 		formatter.set(param, value);
 	}
 
@@ -152,7 +152,7 @@ public class WtTextPanel extends WtPanel {
 	 * @param param
 	 * @param value
 	 */
-	public void set(String param, String value) {
+	public void set(final String param, final String value) {
 		formatter.set(param, value);
 	}
 
@@ -163,21 +163,21 @@ public class WtTextPanel extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D clientArea, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D clientArea, final IGameScreen gameScreen) {
 
-		Font font = clientArea.getFont().deriveFont((float) fontSize);
+		final Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color
 		clientArea.setFont(font);
 		clientArea.setColor(color);
 
-		String text = formatter.toString();
+		final String text = formatter.toString();
 
-		FontMetrics metrics = (clientArea).getFontMetrics();
+		final FontMetrics metrics = (clientArea).getFontMetrics();
 
 		int index;
 		int oldIndex = 0;
 		int pos = fontSize;
-		int lineHeight = (int) (fontSize * 1.2f);
+		final int lineHeight = (int) (fontSize * 1.2f);
 
 		do {
 			String string;
@@ -192,11 +192,11 @@ public class WtTextPanel extends WtPanel {
 
 			// now check if the string fits in te window.
 			if (autoLineBreaks && (metrics.stringWidth(text) > getWidth())) {
-				StringBuilder buf = new StringBuilder();
+				final StringBuilder buf = new StringBuilder();
 				int currentWidth = 0;
 				for (int i = 0; i < string.length(); i++) {
-					char theChar = string.charAt(i);
-					int charWidth = metrics.charWidth(theChar);
+					final char theChar = string.charAt(i);
+					final int charWidth = metrics.charWidth(theChar);
 					// is the current string longer than the width of the panel?
 					if (currentWidth + charWidth > getWidth()) {
 						// yep, end this line and start in the next one

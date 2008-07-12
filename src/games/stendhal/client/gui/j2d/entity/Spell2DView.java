@@ -55,7 +55,7 @@ class Spell2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
+	protected void buildRepresentation(final IGameScreen gameScreen) {
 		setSprite(SpriteStore.get()
 				.getSprite(translate(getClassResourcePath())));
 	}
@@ -142,7 +142,7 @@ class Spell2DView extends Entity2DView {
 		switch (at) {
 		// TODO: Use 'Cast' instead??
 		case USE:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			getEntity().fillTargetInfo(rpaction);

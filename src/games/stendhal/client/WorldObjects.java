@@ -57,7 +57,7 @@ public class WorldObjects {
 	/** Adds a WorldListener to this event distributor. 
 	 * @param listener to be added 
 	 */
-	public static void addWorldListener(WorldListener listener) {
+	public static void addWorldListener(final WorldListener listener) {
 		synchronized (worldListeners) {
 			if (!worldListeners.contains(listener)) {
 				worldListeners.add(listener);
@@ -69,7 +69,7 @@ public class WorldObjects {
 	 * Removes a WorldListener from this event distributor. 
 	 * @param listener to be removed 
 	 */
-	public static void removeWorldListener(WorldListener listener) {
+	public static void removeWorldListener(final WorldListener listener) {
 		synchronized (worldListeners) {
 			worldListeners.remove(listener);
 		}
@@ -78,9 +78,9 @@ public class WorldObjects {
 	/** Create a zone-entered event. 
 	 * @param zoneName the name of the zone 
 	 */
-	public static void fireZoneEntered(String zoneName) {
+	public static void fireZoneEntered(final String zoneName) {
 		synchronized (worldListeners) {
-			for (WorldListener wl : worldListeners) {
+			for (final WorldListener wl : worldListeners) {
 				wl.zoneEntered(zoneName);
 			}
 		}
@@ -90,9 +90,9 @@ public class WorldObjects {
 	 * @param zoneName of the zone left
 	 * 
 	 */
-	public static void fireZoneLeft(String zoneName) {
+	public static void fireZoneLeft(final String zoneName) {
 		synchronized (worldListeners) {
-			for (WorldListener wl : worldListeners) {
+			for (final WorldListener wl : worldListeners) {
 				wl.zoneLeft(zoneName);
 			}
 		}
@@ -102,7 +102,7 @@ public class WorldObjects {
 	public static void firePlayerMoved() {
 
 		synchronized (worldListeners) {
-			for (WorldListener wl : worldListeners) {
+			for (final WorldListener wl : worldListeners) {
 				wl.playerMoved();
 			}
 		}

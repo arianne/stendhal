@@ -21,20 +21,20 @@ public class SimilarExprMatcher extends ExpressionMatcher {
      */
     public static boolean isSimilar(final String str1, final String str2, final double delta) {
         // If any of the Strings is null, return only true if both are null.
-        if (str1 == null || str2 == null) {
-            return str1 == null &&  str2 == null;
+        if ((str1 == null) || (str2 == null)) {
+            return (str1 == null) &&  (str2 == null);
         }
 
-        int len1 = str1.length();
-        int len2 = str2.length();
+        final int len1 = str1.length();
+        final int len2 = str2.length();
 
         // If any of the Strings is empty, return only true if both are empty.
-        if (len1 == 0 || len2 == 0) {
+        if ((len1 == 0) || (len2 == 0)) {
             return len1 == len2;
         }
 
-        int shorterLength = Math.min(len1, len2);
-        int limit = (int) ((shorterLength * delta * shorterLength + (shorterLength - 1)) / shorterLength);
+        final int shorterLength = Math.min(len1, len2);
+        final int limit = (int) ((shorterLength * delta * shorterLength + (shorterLength - 1)) / shorterLength);
 
         return compareLevenshtein(str1, str2, limit);
     }
@@ -55,7 +55,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
         } else if (limit < 1) {
             return false;
         } else {
-            int dist = limitedLevenshtein(str1.toLowerCase(), str2.toLowerCase(), 0, 0, limit);
+            final int dist = limitedLevenshtein(str1.toLowerCase(), str2.toLowerCase(), 0, 0, limit);
 
             return dist <= limit;
         }
@@ -109,7 +109,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
      */
     private static int bestLimLev(final String str1, final String str2, final int idx1, final int idx2, final int limit) {
         // check for a replaced character
-        int d1 = limitedLevenshtein(str1, str2, idx1 + 1, idx2 + 1, limit);
+        final int d1 = limitedLevenshtein(str1, str2, idx1 + 1, idx2 + 1, limit);
 
         // Shortcut, no other result can be better than 0.
         if (d1 == 0) {
@@ -117,7 +117,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
         }
 
         // check for an inserted character
-        int d2 = limitedLevenshtein(str1, str2, idx1 + 1, idx2, limit);
+        final int d2 = limitedLevenshtein(str1, str2, idx1 + 1, idx2, limit);
 
         // Shortcut, no result can be better than 0.
         if (d2 == 0) {
@@ -125,7 +125,7 @@ public class SimilarExprMatcher extends ExpressionMatcher {
         }
 
         // check for a removed character
-        int d3 = limitedLevenshtein(str1, str2, idx1, idx2 + 1, limit);
+        final int d3 = limitedLevenshtein(str1, str2, idx1, idx2 + 1, limit);
 
         // Return the best of the three results.
         return min(d1, d2, d3);

@@ -248,12 +248,12 @@ public final class ExpressionType {
 s     */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {
-            char first = str.charAt(0);
+            final char first = str.charAt(0);
 
             // All type strings must start with an upper case letter,
             // even the SUFFIX character '-' is not allowed.
             if (Character.isUpperCase(first)) {
-                for (String ts : TYPESTRINGS) {
+                for (final String ts : TYPESTRINGS) {
                     if (str.contains(ts)) {
                         return true;
                     }

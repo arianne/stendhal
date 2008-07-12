@@ -8,7 +8,7 @@ class HandToHand implements AttackStrategy {
 
 	private static final int followRadius = 12;
 
-	public void attack(Creature creature) {
+	public void attack(final Creature creature) {
 		
 		if (creature.isAttackTurn(SingletonRepository.getRuleProcessor().getTurn())) {
 			creature.attack();
@@ -17,7 +17,7 @@ class HandToHand implements AttackStrategy {
 	}
 
 
-	public boolean canAttackNow(Creature creature) {
+	public boolean canAttackNow(final Creature creature) {
 		if (creature.getAttackTarget() != null) {
 			return creature.squaredDistance(creature.getAttackTarget()) < 1;
 		} else {
@@ -25,16 +25,16 @@ class HandToHand implements AttackStrategy {
 		}
 	}
 
-	public void findNewTarget(Creature creature) {
-		RPEntity enemy = creature.getNearestEnemy(7);
+	public void findNewTarget(final Creature creature) {
+		final RPEntity enemy = creature.getNearestEnemy(7);
 		if (enemy != null) {
 			creature.setTarget(enemy);
 		}
 	}
 
-	public void getBetterAttackPosition(Creature creature) {
+	public void getBetterAttackPosition(final Creature creature) {
 
-		games.stendhal.server.entity.Entity target = creature.getAttackTarget();
+		final games.stendhal.server.entity.Entity target = creature.getAttackTarget();
 		if (creature.hasTargetMoved()) {
 			creature.setMovement(target, 0, 1, 20.0);
 		}
@@ -49,12 +49,12 @@ class HandToHand implements AttackStrategy {
 
 	}
 
-	public boolean hasValidTarget(Creature creature) {
+	public boolean hasValidTarget(final Creature creature) {
 		if (!creature.isAttacking()) {
 			return false;
 		}
 
-		RPEntity victim = creature.getAttackTarget();
+		final RPEntity victim = creature.getAttackTarget();
 		if (victim.isInvisibleToCreatures()) {
 			return false;
 		}

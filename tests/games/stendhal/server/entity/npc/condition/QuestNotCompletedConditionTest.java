@@ -35,7 +35,7 @@ public class QuestNotCompletedConditionTest {
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testQuestNotCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertTrue(new QuestNotCompletedCondition("questname").fire(bob,
@@ -69,7 +69,7 @@ public class QuestNotCompletedConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestNotCompletedCondition("questname").equals(null));
 
-		QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
+		final QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
 				"questname");
 		assertTrue(obj.equals(obj));
 		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
@@ -90,7 +90,7 @@ public class QuestNotCompletedConditionTest {
 
 	@Test
 	public void testHashCode() throws Exception {
-		QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
+		final QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
 				"questname");
 
 		assertEquals(obj.hashCode(), obj.hashCode());

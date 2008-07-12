@@ -10,7 +10,7 @@ public class GreenFloodRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("orc warrior", 7);
 		attackArmy.put("orc hunter", 5);
 		attackArmy.put("orc chief", 3);

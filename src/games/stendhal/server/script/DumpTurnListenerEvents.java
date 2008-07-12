@@ -20,15 +20,15 @@ import java.util.Set;
 public class DumpTurnListenerEvents extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		int outdated = 0;
-		ObjectCounter<Class< ? >> counter = new ObjectCounter<Class< ? >>();
+		final ObjectCounter<Class< ? >> counter = new ObjectCounter<Class< ? >>();
 
-		TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
-		int currentTurn = turnNotifier.getCurrentTurnForDebugging();
-		Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
+		final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+		final int currentTurn = turnNotifier.getCurrentTurnForDebugging();
+		final Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
 
-		for (Integer turn : events.keySet()) {
+		for (final Integer turn : events.keySet()) {
 
 			// count outdated
 			if (turn.intValue() < currentTurn) {
@@ -36,7 +36,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 			}
 
 			// count classes
-			for (TurnListener event : events.get(turn)) {
+			for (final TurnListener event : events.get(turn)) {
 				counter.add(event.getClass());
 			}
 		}

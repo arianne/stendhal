@@ -90,7 +90,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 			// sort the tokens according to their position
 			Collections.sort(tokens, new Comparator<Token>() {
-				public int compare(Token t1, Token t2) {
+				public int compare(final Token t1, final Token t2) {
 					int d = t1.getY() - t2.getY();
 					if (d == 0) {
 						d = t1.getX() - t2.getX();
@@ -103,12 +103,12 @@ public class ReverseArrow extends AbstractQuest implements
 			// 4 5 6 7 8
 
 			// get the position of the topmost token
-			int topX = tokens.get(0).getX();
-			int topY = tokens.get(0).getY();
+			final int topX = tokens.get(0).getX();
+			final int topY = tokens.get(0).getY();
 
 			// check first row
 			for (int i = 1; i <= 3; i++) {
-				Token token = tokens.get(i);
+				final Token token = tokens.get(i);
 				if ((token.getX() != topX - 1 + (i - 1))
 						|| (token.getY() != topY + 1)) {
 					return false;
@@ -117,7 +117,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 			// check second row
 			for (int i = 4; i <= 8; i++) {
-				Token token = tokens.get(i);
+				final Token token = tokens.get(i);
 				if ((token.getX() != topX - 2 + (i - 4))
 						|| (token.getY() != topY + 2)) {
 					return false;
@@ -131,13 +131,13 @@ public class ReverseArrow extends AbstractQuest implements
 		 * invoked shortly after the player did his/her third move.
 		 * @param currentTurn on which it is invoked
 		 */
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz again. But unfortunately I don't have any further rewards for you.");
 				} else {
 					npc.say("Congratulations, you solved the quiz.");
-					StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
+					final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 									"money");
 					money.setQuantity(50);
 					player.equip(money);
@@ -161,11 +161,11 @@ public class ReverseArrow extends AbstractQuest implements
 	 * Teleports the player out.
 	 */
 	protected class FinishNotifier implements TurnListener {
-		private boolean reset;
+		private final boolean reset;
 
-		private Player player;
+		private final Player player;
 
-		public FinishNotifier(boolean reset, Player player) {
+		public FinishNotifier(final boolean reset, final Player player) {
 			this.player = player;
 			this.reset = reset;
 		}
@@ -174,7 +174,7 @@ public class ReverseArrow extends AbstractQuest implements
 		 * invoked shortly after the player did his job.
 		 * @param currentTurn on which it is invoked
 		 */
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			finish(reset, player);
 		}
 	}
@@ -184,7 +184,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 * not completed in time.
 	 */
 	class Timer implements TurnListener {
-		private Player timerPlayer;
+		private final Player timerPlayer;
 
 		/**
 		 * Starts a teleport-out-timer.
@@ -192,20 +192,20 @@ public class ReverseArrow extends AbstractQuest implements
 		 * @param player
 		 *            the player who started the timer
 		 */
-		protected Timer(Player player) {
+		protected Timer(final Player player) {
 			timerPlayer = player;
 		}
 
 		private int counter = TIME;
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
 			// Note that "player" always refers to the current player
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
 			if ((player == timerPlayer) && (player != null)) {
-				IRPZone playerZone = player.getZone();
+				final IRPZone playerZone = player.getZone();
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
@@ -229,12 +229,12 @@ public class ReverseArrow extends AbstractQuest implements
 	 * this script on sucessful usage.
 	 */
 	class NotifyingDoor extends OnePlayerRoomDoor {
-		NotifyingDoor(String clazz) {
+		NotifyingDoor(final String clazz) {
 			super(clazz);
 		}
 
 		@Override
-		public boolean onUsed(RPEntity user) {
+		public boolean onUsed(final RPEntity user) {
 			boolean success;
 			success = super.onUsed(user);
 			start((Player) user);
@@ -242,14 +242,14 @@ public class ReverseArrow extends AbstractQuest implements
 		}
 
 		@Override
-		public void onUsedBackwards(RPEntity user) {
+		public void onUsedBackwards(final RPEntity user) {
 			super.onUsedBackwards(user);
 			finish(true, (Player) user);
 		}
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -261,8 +261,8 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param y
 	 *            y-position
 	 */
-	private void addTokenToWorld(int x, int y) {
-		Token token = (Token) SingletonRepository.getEntityManager().getItem("token");
+	private void addTokenToWorld(final int x, final int y) {
+		final Token token = (Token) SingletonRepository.getEntityManager().getItem("token");
 		token.setPosition(x, y);
 		token.setPersistent(true);
 		token.setTokenMoveListener(this);
@@ -292,7 +292,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 */
 	private void removeAllTokens() {
 		if (tokens != null) {
-			for (Token token : tokens) {
+			for (final Token token : tokens) {
 				if (token != null) {
 					zone.remove(token.getID());
 				}
@@ -319,7 +319,7 @@ public class ReverseArrow extends AbstractQuest implements
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi again "
 								+ player.getTitle()
@@ -346,7 +346,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
-		String entranceZoneName = "0_semos_mountain_n2";
+		final String entranceZoneName = "0_semos_mountain_n2";
 		entranceZone = SingletonRepository.getRPWorld().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		door.setPosition(95, 101);
@@ -356,19 +356,19 @@ public class ReverseArrow extends AbstractQuest implements
 
 		door.open();
 
-		Portal exit = new Portal();
+		final Portal exit = new Portal();
 		exit.setPosition(17, 20);
 		exit.setIdentifier(Integer.valueOf(0));
 		exit.setDestination(entranceZoneName, Integer.valueOf(0));
 		zone.add(exit);
 
-		Sign sign = new Sign();
+		final Sign sign = new Sign();
 		sign.setPosition(96, 102);
 		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
 		entranceZone.add(sign);
 	}
 
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 		// need to do this on the next turn
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new FinishNotifier(false, player));
 	}
@@ -379,7 +379,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param player
 	 *            Player
 	 */
-	public void onTokenMoved(Player player) {
+	public void onTokenMoved(final Player player) {
 		//TODO only count if the token really changed its position
 		moveCount++;
 
@@ -404,8 +404,8 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param player
 	 *            Player
 	 */
-	public void start(Player player) {
-		IRPZone playerZone = player.getZone();
+	public void start(final Player player) {
+		final IRPZone playerZone = player.getZone();
 
 		if (playerZone.equals(zone)) {
 			this.player = player;
@@ -425,9 +425,9 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param player
 	 *            the player to teleport out
 	 */
-	protected void finish(boolean reset, Player player) {
+	protected void finish(final boolean reset, Player player) {
 		if (player != null) {
-			IRPZone playerZone = player.getZone();
+			final IRPZone playerZone = player.getZone();
 
 			if (playerZone.equals(zone)) {
 				player.teleport(entranceZone, door.getX(), door.getY() + 1,

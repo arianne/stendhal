@@ -17,7 +17,7 @@ public class OneWayPortalDestinationTest {
 
 	@Test (expected = IllegalArgumentException.class)
 	public final void testSetDestination() {
-		OneWayPortalDestination owp = new OneWayPortalDestination();
+		final OneWayPortalDestination owp = new OneWayPortalDestination();
 		owp.setDestination("bla", new Object());
 
 	}

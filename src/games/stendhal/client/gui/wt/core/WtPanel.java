@@ -154,7 +154,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	private int texture;
 
 	/** list of textures . */
-	private List<Sprite> textureSprites;
+	private final List<Sprite> textureSprites;
 
 	protected IGameScreen gameScreen;
 
@@ -168,8 +168,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param width
 	 * @param height
 	 */
-	public WtPanel(String name, int x, int y, int width, int height,
-			IGameScreen gameScreen) {
+	public WtPanel(final String name, final int x, final int y, final int width, final int height,
+			final IGameScreen gameScreen) {
 		this.name = name;
 		this.titleText = name;
 		this.x = x;
@@ -194,7 +194,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// get texture sprite
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 
 		textureSprites.add(st.getSprite("data/gui/panelwood003.jpg"));
 		if (Debug.CYCLE_PANEL_TEXTURES) {
@@ -213,7 +213,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param listener
 	 */
-	public void registerCloseListener(WtCloseListener listener) {
+	public void registerCloseListener(final WtCloseListener listener) {
 		closeListeners.add(listener);
 	}
 
@@ -222,7 +222,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param listener
 	 */
-	public void removeCloseListener(WtCloseListener listener) {
+	public void removeCloseListener(final WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
 
@@ -234,7 +234,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param listener
 	 */
-	public void registerClickListener(WtClickListener listener) {
+	public void registerClickListener(final WtClickListener listener) {
 		clickListeners.add(listener);
 	}
 
@@ -243,7 +243,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param listener
 	 */
-	public void removeClickListener(WtClickListener listener) {
+	public void removeClickListener(final WtClickListener listener) {
 		clickListeners.remove(listener);
 	}
 
@@ -323,7 +323,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the operation is allowed (panel is moved) or false if
 	 *         not (panel is not moved)
 	 */
-	public boolean move(int dx, int dy) {
+	public boolean move(final int dx, final int dy) {
 		return moveTo(x + dx, y + dy);
 	}
 
@@ -337,7 +337,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the operation is allowed (panel is moved) or false if
 	 *         not (panel is not moved)
 	 */
-	public boolean moveTo(int x, int y) {
+	public boolean moveTo(final int x, final int y) {
 		return moveTo(x, y, false);
 	}
 
@@ -353,7 +353,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the operation is allowed (panel is moved) or false if
 	 *         not (panel is not moved)
 	 */
-	public boolean moveTo(int x, int y, boolean checkHeight) {
+	public boolean moveTo(final int x, final int y, final boolean checkHeight) {
 		this.x = x;
 		this.y = y;
 
@@ -401,7 +401,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param name
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -420,7 +420,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param titleBar
 	 */
-	public void setTitleBar(boolean titleBar) {
+	public void setTitleBar(final boolean titleBar) {
 		this.titleBar = titleBar;
 		// refresh cached panel image
 		cachedImage = null;
@@ -431,7 +431,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param text
 	 */
-	public void setTitletext(String text) {
+	public void setTitletext(final String text) {
 		if (!this.titleText.equals(text)) {
 			this.titleText = text;
 			// refresh cached panel image
@@ -449,7 +449,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param frame
 	 */
-	public void setFrame(boolean frame) {
+	public void setFrame(final boolean frame) {
 		this.frame = frame;
 		// refresh cached panel image
 		cachedImage = null;
@@ -465,7 +465,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param emboss
 	 */
-	public void setEmboss(boolean emboss) {
+	public void setEmboss(final boolean emboss) {
 		this.frameEmbossed = emboss;
 		cachedImage = null;
 	}
@@ -481,7 +481,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param movable
 	 */
-	public void setMovable(boolean movable) {
+	public void setMovable(final boolean movable) {
 		this.movable = movable;
 	}
 
@@ -495,7 +495,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param resizeable
 	 */
-	public void setResizeable(boolean resizeable) {
+	public void setResizeable(final boolean resizeable) {
 		this.resizeable = resizeable;
 	}
 
@@ -510,7 +510,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param minimizeable
 	 */
-	public void setMinimizeable(boolean minimizeable) {
+	public void setMinimizeable(final boolean minimizeable) {
 		this.minimizeable = minimizeable;
 	}
 
@@ -524,7 +524,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param minimized
 	 */
-	public void setMinimized(boolean minimized) {
+	public void setMinimized(final boolean minimized) {
 		this.minimized = minimized;
 		// refresh cached panel image
 		cachedImage = null;
@@ -545,7 +545,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param closeable
 	 */
-	public void setCloseable(boolean closeable) {
+	public void setCloseable(final boolean closeable) {
 		this.closeable = closeable;
 	}
 
@@ -560,7 +560,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param parent
 	 */
-	protected void setParent(WtPanel parent) {
+	protected void setParent(final WtPanel parent) {
 		this.parent = parent;
 	}
 
@@ -574,13 +574,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param panel
 	 */
-	public synchronized void addChild(WtPanel panel) {
+	public synchronized void addChild(final WtPanel panel) {
 		if (panel.hasParent()) {
 			logger.error("Panel " + panel.name + " cannot be added to " + name
 					+ " because it already is a child of " + panel.parent.name);
 			return;
 		}
-		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
+		final LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
 		newChildren.addFirst(panel);
 		this.children = newChildren;
 		panel.parent = this;
@@ -591,8 +591,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param panel
 	 */
-	public synchronized void removeChild(WtPanel panel) {
-		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
+	public synchronized void removeChild(final WtPanel panel) {
+		final LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
 		newChildren.remove(panel);
 		this.children = newChildren;
 		// be sure to remove ourself from the other panel
@@ -605,7 +605,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** Tells this panel (and all subpanels) to close. */
-	public void close(IGameScreen gameScreen) {
+	public void close(final IGameScreen gameScreen) {
 		if (isCloseable()) {
 			setVisible(false);
 		}
@@ -614,14 +614,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Destroy the panel.
 	 */
-	public void destroy(IGameScreen gameScreen) {
+	public void destroy(final IGameScreen gameScreen) {
 		setVisible(false);
 
 		// destroy/remove all children
-		Iterator<WtPanel> iter = children.iterator();
+		final Iterator<WtPanel> iter = children.iterator();
 
 		while (iter.hasNext()) {
-			WtPanel child = iter.next();
+			final WtPanel child = iter.next();
 
 			child.destroy(gameScreen);
 			iter.remove();
@@ -637,10 +637,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 */
 	protected void checkDisowned() {
 		// remove un/reparented children
-		Iterator<WtPanel> iter = children.iterator();
+		final Iterator<WtPanel> iter = children.iterator();
 
 		while (iter.hasNext()) {
-			WtPanel child = iter.next();
+			final WtPanel child = iter.next();
 
 			if (child.getParent() != this) {
 				iter.remove();
@@ -664,7 +664,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param visible
 	 *            Whether the window should be visible.
 	 */
-	public void setVisible(boolean visible) {
+	public void setVisible(final boolean visible) {
 		/*
 		 * No change?
 		 */
@@ -675,7 +675,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		/*
 		 * Apply to children
 		 */
-		for (WtPanel child : children) {
+		for (final WtPanel child : children) {
 			child.setVisible(visible);
 		}
 
@@ -683,10 +683,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 		if (closed) {
 			// inform all listeners we're closed
-			WtCloseListener[] listeners = closeListeners
+			final WtCloseListener[] listeners = closeListeners
 					.toArray(new WtCloseListener[closeListeners.size()]);
 
-			for (WtCloseListener listener : listeners) {
+			for (final WtCloseListener listener : listeners) {
 				listener.onClose(name);
 			}
 		}
@@ -703,11 +703,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param name
 	 * @param point
 	 */
-	protected void notifyClickListeners(String name, Point point) {
-		WtClickListener[] listeners = clickListeners
+	protected void notifyClickListeners(final String name, final Point point) {
+		final WtClickListener[] listeners = clickListeners
 				.toArray(new WtClickListener[clickListeners.size()]);
 
-		for (WtClickListener listener : listeners) {
+		for (final WtClickListener listener : listeners) {
 			listener.onClick(name, point, gameScreen);
 		}
 	}
@@ -727,7 +727,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param height
 	 *            height of client area
 	 */
-	public void resizeToFitClientArea(int width, int height) {
+	public void resizeToFitClientArea(final int width, final int height) {
 		this.width = width;
 		this.height = height;
 
@@ -751,13 +751,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param g
 	 * @return the image background
 	 */
-	private BufferedImage recreatePanelImage(Graphics g) {
+	private BufferedImage recreatePanelImage(final Graphics g) {
 		int localHeight = this.height;
 
-		GraphicsConfiguration gc = GraphicsEnvironment
+		final GraphicsConfiguration gc = GraphicsEnvironment
 				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration();
-		BufferedImage tempImage = gc.createCompatibleImage(width, height,
+		final BufferedImage tempImage = gc.createCompatibleImage(width, height,
 				Transparency.TRANSLUCENT);
 		Graphics panelGraphics = tempImage.createGraphics();
 
@@ -768,10 +768,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// get texture sprite
-		Sprite woodTexture = textureSprites.get(texture);
+		final Sprite woodTexture = textureSprites.get(texture);
 
-		int repeatx = width / woodTexture.getWidth() + 1;
-		int repeaty = height / woodTexture.getHeight() + 1;
+		final int repeatx = width / woodTexture.getWidth() + 1;
+		final int repeaty = height / woodTexture.getHeight() + 1;
 
 		for (int xTemp = 0; xTemp < repeatx; xTemp++) {
 			for (int yTemp = 0; yTemp < repeaty; yTemp++) {
@@ -780,8 +780,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			}
 		}
 
-		Color darkColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
-		Color lightColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+		final Color darkColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+		final Color lightColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
 
 		// draw frame
 		if (frame) {
@@ -806,7 +806,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			if (isMinimizeable()) {
 				// minimize button
 				panelGraphics.setColor(lightColor);
-				Rectangle rect = getMiminizeButton();
+				final Rectangle rect = getMiminizeButton();
 				panelGraphics.fillRect(rect.x - FRAME_SIZE,
 						rect.y - FRAME_SIZE, rect.width, rect.height);
 
@@ -818,7 +818,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			if (isCloseable()) {
 				// minimize button
 				panelGraphics.setColor(lightColor);
-				Rectangle rect = getCloseButton();
+				final Rectangle rect = getCloseButton();
 				panelGraphics.fillRect(rect.x - FRAME_SIZE,
 						rect.y - FRAME_SIZE, rect.width, rect.height);
 
@@ -853,7 +853,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 			// panels title text
 			panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
-			Font font = panelGraphics.getFont();
+			final Font font = panelGraphics.getFont();
 			panelGraphics.setFont(font
 					.deriveFont(Font.BOLD, TITLEBAR_FONT_SIZE));
 			panelGraphics.drawString(titleText, 3, TITLEBAR_FONT_SIZE);
@@ -864,7 +864,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 					- TITLEBAR_SIZE - 2);
 		}
 
-		BufferedImage image = gc.createCompatibleImage(width, localHeight);
+		final BufferedImage image = gc.createCompatibleImage(width, localHeight);
 		image.createGraphics().drawImage(tempImage, 0, 0, null);
 
 		return image;
@@ -877,7 +877,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            graphics where to render to
 	 * @param gameScreen
 	 */
-	public void draw(Graphics2D g, IGameScreen gameScreen) {
+	public void draw(Graphics2D g, final IGameScreen gameScreen) {
 		// are we closed? then don't draw anything
 		if (isClosed()) {
 			return;
@@ -930,7 +930,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            The graphics context to draw with.
 	 * @param gameScreen
 	 */
-	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
 		drawChildren(g, gameScreen);
 	}
 
@@ -939,7 +939,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param g
 	 */
-	public void drawDragged(Graphics g) {
+	public void drawDragged(final Graphics g) {
 	}
 
 	/**
@@ -949,14 +949,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            Graphics object clipped to the client region.
 	 * @param gameScreen
 	 */
-	protected void drawChildren(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawChildren(final Graphics2D g, final IGameScreen gameScreen) {
 		int i = children.size();
 
 		while (i-- != 0) {
-			WtPanel child = children.get(i);
+			final WtPanel child = children.get(i);
 
 			// get correct clipped graphics
-			Graphics2D cg = (Graphics2D) g.create(child.getX(), child.getY(),
+			final Graphics2D cg = (Graphics2D) g.create(child.getX(), child.getY(),
 					child.getWidth(), child.getHeight());
 
 			child.draw(cg, gameScreen);
@@ -973,7 +973,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            point to check (in parents coordinate space)
 	 * @return true when the point is in this panel, false otherwise
 	 */
-	public boolean isHit(Point p) {
+	public boolean isHit(final Point p) {
 		return isHit(p.x, p.y);
 	}
 
@@ -987,13 +987,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            y-coordinate to check (in parents coordinate space)
 	 * @return true when the point is in this panel, false otherwise
 	 */
-	public boolean isHit(int x, int y) {
+	public boolean isHit(final int x, final int y) {
 		if (isClosed()) {
 			return false;
 		}
 
 		int heightTemp = this.height;
-		int widthTemp = this.width;
+		final int widthTemp = this.width;
 
 		if (isMinimized()) {
 			heightTemp = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
@@ -1011,7 +1011,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param y
 	 * @return true if the point is in the title.
 	 */
-	private boolean hitTitle(int x, int y) {
+	private boolean hitTitle(final int x, final int y) {
 		// do we have a title
 		if (!titleBar) {
 			return false;
@@ -1030,7 +1030,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param p
 	 * @return a object for dragging which is at the position p or null.
 	 */
-	protected WtDraggable getDragged(Point p) {
+	protected WtDraggable getDragged(final Point p) {
 		return getDragged(p.x, p.y);
 	}
 
@@ -1054,10 +1054,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		y -= getClientY();
 
 		// check all children
-		for (WtPanel panel : children) {
+		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
-				WtDraggable draggedObject = panel.getDragged(x - panel.getX(),
+				final WtDraggable draggedObject = panel.getDragged(x - panel.getX(),
 						y - panel.getY());
 
 				// did we get an object
@@ -1090,13 +1090,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when this panel or a child panel is a droptarget and has
 	 *         received the object, false when there is no droptarget found
 	 */
-	protected boolean checkDropped(int x, int y, WtDraggable droppedObject) {
+	protected boolean checkDropped(int x, int y, final WtDraggable droppedObject) {
 		// translate point to client coordinates
 		x -= getClientX();
 		y -= getClientY();
 
 		// now ask each child
-		for (WtPanel panel : children) {
+		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
 				// the child checks itself
@@ -1109,7 +1109,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 		// are we ourself a drop target
 		if (this instanceof WtDropTarget) {
-			WtDropTarget target = (WtDropTarget) this;
+			final WtDropTarget target = (WtDropTarget) this;
 			return target.onDrop(x, y, droppedObject);
 		}
 
@@ -1128,7 +1128,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param y
 	 * @return true when the point (x,y) is inside the minimize button.
 	 */
-	private boolean hitMinimizeButton(int x, int y) {
+	private boolean hitMinimizeButton(final int x, final int y) {
 		return getMiminizeButton().contains(x, y);
 	}
 
@@ -1143,7 +1143,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param y
 	 * @return true when the point (x,y) is inside the close button.
 	 */
-	private boolean hitCloseButton(int x, int y) {
+	private boolean hitCloseButton(final int x, final int y) {
 		return getCloseButton().contains(x, y);
 	}
 
@@ -1155,7 +1155,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param gameScreen
 	 * @return true if click was processed
 	 */
-	public synchronized boolean onMouseClick(Point p) {
+	public synchronized boolean onMouseClick(final Point p) {
 		if (isClosed()) {
 			return false;
 		}
@@ -1163,7 +1163,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// check if the minimize button has been clicked
 		if (titleBar && minimizeable && hitMinimizeButton(p.x, p.y)) {
 			// change minimized state
-			boolean state = !isMinimized();
+			final boolean state = !isMinimized();
 
 			setMinimized(state);
 			clickSound(state);
@@ -1184,15 +1184,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// translate point to client coordinates
-		Point p2 = p.getLocation();
+		final Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all children of the mouse click
-		for (WtPanel panel : children) {
+		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
 				focus(panel);
-				Point point = p2.getLocation();
+				final Point point = p2.getLocation();
 				point.translate(-panel.getX(), -panel.getY());
 				// click the child
 				return panel.onMouseClick(point);
@@ -1203,7 +1203,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	private void clickSound(boolean state) {
+	private void clickSound(final boolean state) {
 		if (state) {
 			if (name.equals("bag")) {
 				SoundMaster.play("click-8.wav");
@@ -1226,20 +1226,20 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @return true if click was processed
 	 */
-	public synchronized boolean onMouseDoubleClick(Point p) {
+	public synchronized boolean onMouseDoubleClick(final Point p) {
 		if (isClosed()) {
 			return false;
 		}
 
 		// translate point to client coordinates
-		Point p2 = p.getLocation();
+		final Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all children of the mouse click
-		for (WtPanel panel : children) {
+		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
-				Point point = p2.getLocation();
+				final Point point = p2.getLocation();
 				point.translate(-panel.getX(), -panel.getY());
 				// right-click the child
 				panel.onMouseDoubleClick(point);
@@ -1259,7 +1259,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @return true if click was processed
 	 */
-	public synchronized boolean onMouseRightClick(Point p) {
+	public synchronized boolean onMouseRightClick(final Point p) {
 		if (isClosed()) {
 			return false;
 		}
@@ -1267,14 +1267,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			return false;
 		}
 		// translate point to client coordinates
-		Point p2 = p.getLocation();
+		final Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all children of the mouse click
-		for (WtPanel panel : children) {
+		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
-				Point point = p2.getLocation();
+				final Point point = p2.getLocation();
 				point.translate(-panel.getX(), -panel.getY());
 				// right-click the child
 				panel.onMouseRightClick(point);
@@ -1286,7 +1286,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	public boolean dragStarted(IGameScreen gameScreen) {
+	public boolean dragStarted(final IGameScreen gameScreen) {
 		if (isClosed()) {
 			return false;
 		}
@@ -1301,7 +1301,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param p
 	 * @return false
 	 */
-	public boolean dragFinished(Point p, IGameScreen gameScreen) {
+	public boolean dragFinished(final Point p, final IGameScreen gameScreen) {
 		return false;
 	}
 
@@ -1311,7 +1311,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param p
 	 * @return true if done
 	 */
-	public boolean dragMoved(Point p) {
+	public boolean dragMoved(final Point p) {
 		return moveTo(dragPosition.x + p.x, dragPosition.y + p.y);
 	}
 
@@ -1320,7 +1320,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param child
 	 */
-	private void focus(WtPanel child) {
+	private void focus(final WtPanel child) {
 		if (!children.remove(child)) {
 			return;
 		}
@@ -1336,14 +1336,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param contextMenu
 	 */
-	public void setContextMenu(JPopupMenu contextMenu) {
+	public void setContextMenu(final JPopupMenu contextMenu) {
 		if (parent != null) {
 			// moves the context-menu to match the position of this panel
 			parent.setContextMenu(contextMenu);
 		}
 	}
 
-	public void setTransparency(float t) {
+	public void setTransparency(final float t) {
 		this.transparency = t;
 	}
 

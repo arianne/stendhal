@@ -20,15 +20,15 @@ import marauroa.server.game.db.Transaction;
 public class ListUnknownWords extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
-		IDatabase db = SingletonRepository.getPlayerDatabase();
-		Transaction trans = db.getTransaction();
-		Accessor acc = trans.getAccessor();
+	public void execute(final Player admin, final List<String> args) {
+		final IDatabase db = SingletonRepository.getPlayerDatabase();
+		final Transaction trans = db.getTransaction();
+		final Accessor acc = trans.getAccessor();
 
-		StringBuilder sb = new StringBuilder("Currently unknown words:\n");
+		final StringBuilder sb = new StringBuilder("Currently unknown words:\n");
 
 		try {
-	        ResultSet res = acc.query(
+	        final ResultSet res = acc.query(
         		"select normalized\n"
 	        		+ "from	words w\n"
 	        		+ "where type = ''\n"
@@ -41,12 +41,12 @@ public class ListUnknownWords extends ScriptImpl {
 	        }
 
 			trans.commit();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
         	sb.append("error while reading from DB table words: " + e.getMessage());
 
 	        try {
 	            trans.rollback();
-            } catch (SQLException e1) {
+            } catch (final SQLException e1) {
     	        sb.append("error while rolling back transaction: " + e.getMessage());
             }
         }

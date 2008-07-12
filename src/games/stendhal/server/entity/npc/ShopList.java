@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 public class ShopList {
 
 	static {
-		ShopList shops = SingletonRepository.getShopList();
+		final ShopList shops = SingletonRepository.getShopList();
 
 		shops.add("food&drinks", "beer", 10);
 		shops.add("food&drinks", "wine", 15);
@@ -386,29 +386,29 @@ public class ShopList {
 		return instance;
 	}
 
-	private Map<String, Map<String, Integer>> contents;
+	private final Map<String, Map<String, Integer>> contents;
 
 	private ShopList() {
 		contents = new HashMap<String, Map<String, Integer>>();
 	}
 
-	public Map<String, Integer> get(String name) {
+	public Map<String, Integer> get(final String name) {
 		return contents.get(name);
 	}
 
-	public String toString(String name, String header) {
-		Map<String, Integer> items = contents.get(name);
+	public String toString(final String name, final String header) {
+		final Map<String, Integer> items = contents.get(name);
 
-		StringBuilder sb = new StringBuilder(header + "\n");
+		final StringBuilder sb = new StringBuilder(header + "\n");
 
-		for (Entry<String, Integer> entry : items.entrySet()) {
+		for (final Entry<String, Integer> entry : items.entrySet()) {
 			sb.append(entry.getKey() + " \t" + entry.getValue() + "\n");
 		}
 
 		return sb.toString();
 	}
 
-	public void add(String name, String item, int price) {
+	public void add(final String name, final String item, final int price) {
 		Map<String, Integer> shop;
 
 		if (contents.containsKey(name)) {

@@ -28,9 +28,9 @@ public class WrapActionTest {
 
 	@Test
 	public void testOnActionnotAtplayer() {
-		WrapAction wrap = new WrapAction();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
-		RPAction action = new RPAction();
+		final WrapAction wrap = new WrapAction();
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final RPAction action = new RPAction();
 		action.put("type", "wrap");
 		action.put("args", "");
 		wrap.onAction(player, action);
@@ -51,17 +51,17 @@ public class WrapActionTest {
 
 	@Test
 	public void testOnActionPotion() {
-		WrapAction wrap = new WrapAction();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final WrapAction wrap = new WrapAction();
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "potion");
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "wrap");
 		action.put("target", "potion");
 		wrap.onAction(player, action);
 		assertTrue(player.isEquipped("present"));
-		Present present = (Present) player.getFirstEquipped("present");
+		final Present present = (Present) player.getFirstEquipped("present");
 		assertNotNull(present);
 		assertThat(present.getInfoString(), is("potion"));
 		present.onUsed(player);
@@ -72,18 +72,18 @@ public class WrapActionTest {
 	@Test
 	public void testOnActionGreaterPotion() {
 		
-		WrapAction wrap = new WrapAction();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final WrapAction wrap = new WrapAction();
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "greater potion");
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "wrap");
 		action.put("target", "greater");
 		action.put("args", "potion");
 		wrap.onAction(player, action);
 		assertTrue(player.isEquipped("present"));
-		Present present = (Present) player.getFirstEquipped("present");
+		final Present present = (Present) player.getFirstEquipped("present");
 		assertNotNull(present);
 		assertThat(present.getInfoString(), is("greater potion"));
 		present.onUsed(player);
@@ -94,18 +94,18 @@ public class WrapActionTest {
 
 	@Test
 	public void testOnActionMithrilshield() {
-		WrapAction wrap = new WrapAction();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final WrapAction wrap = new WrapAction();
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "mithril shield");
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "wrap");
 		action.put("target", "mithril");
 		action.put("args", "shield");
 		wrap.onAction(player, action);
 		assertTrue(player.isEquipped("present"));
-		Present present = (Present) player.getFirstEquipped("present");
+		final Present present = (Present) player.getFirstEquipped("present");
 		assertNotNull(present);
 		assertThat(present.getInfoString(), is("mithril shield"));
 		present.onUsed(player);

@@ -60,15 +60,15 @@ class Item2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
-		SpriteStore store = SpriteStore.get();
+	protected void buildRepresentation(final IGameScreen gameScreen) {
+		final SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
 
 		/*
 		 * Items are always 1x1 (they need to fit in entity slots). Extra
 		 * columns are animation. Extra rows are ignored.
 		 */
-		int width = sprite.getWidth();
+		final int width = sprite.getWidth();
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width
@@ -165,8 +165,8 @@ class Item2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			RPAction rpaction = new RPAction();
-			Entity entity = getEntity();
+			final RPAction rpaction = new RPAction();
+			final Entity entity = getEntity();
 
 			rpaction.put("type", at.toString());
 

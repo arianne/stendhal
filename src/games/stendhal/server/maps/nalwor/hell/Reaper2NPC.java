@@ -35,13 +35,13 @@ public class Reaper2NPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("repaeR mirG") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("repaeR mirG") {
 
 			@Override
 			protected void createPath() {
@@ -53,12 +53,12 @@ public class Reaper2NPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("#elddir a evlos tsum uoy ecalp siht #evael ot kees uoy fI");
 				add(ConversationStates.ATTENDING, "evael", null, ConversationStates.QUESTION_1, "?erus uoy erA .truh lliw tI", null);
-				List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+				final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 				processStep.add(new TeleportAction("int_afterlife", 31, 23, Direction.UP));
 				processStep.add(new DecreaseKarmaAction(100.0));
 				processStep.add(new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.subXP(10000);
 						player.sendPrivateText(NotificationType.NEGATIVE, "The Reaper took 10000 XP and gave you bad karma.");
 					}

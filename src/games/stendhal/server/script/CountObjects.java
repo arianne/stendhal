@@ -21,12 +21,12 @@ import marauroa.common.game.RPObject;
 public class CountObjects extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		int count = 0;
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		for (IRPZone irpZone : world) {
-			StendhalRPZone zone = (StendhalRPZone) irpZone;
-			Iterator<RPObject> itr2 = zone.iterator();
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		for (final IRPZone irpZone : world) {
+			final StendhalRPZone zone = (StendhalRPZone) irpZone;
+			final Iterator<RPObject> itr2 = zone.iterator();
 			while (itr2.hasNext()) {
 				itr2.next();
 				count++;

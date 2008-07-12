@@ -13,15 +13,15 @@ public abstract class CreateRaid extends ScriptImpl {
 	protected abstract Map<String, Integer> createArmy();
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		// extract position of admin
-		StendhalRPZone myZone = sandbox.getZone(admin);
-		int x = admin.getX();
-		int y = admin.getY();
+		final StendhalRPZone myZone = sandbox.getZone(admin);
+		final int x = admin.getX();
+		final int y = admin.getY();
 		sandbox.setZone(myZone);
 
-		for (Map.Entry<String, Integer> entry : createArmy().entrySet()) {
-			Creature creature = sandbox.getCreature(entry.getKey());
+		for (final Map.Entry<String, Integer> entry : createArmy().entrySet()) {
+			final Creature creature = sandbox.getCreature(entry.getKey());
 
 			for (int i = 0; i < entry.getValue(); i++) {
 				sandbox.add(creature, x

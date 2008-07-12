@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ArenaCreature extends Creature {
 
-	private Shape arena;
+	private final Shape arena;
 
 	/**
 	 * ArenaCreature.
@@ -23,7 +23,7 @@ public class ArenaCreature extends Creature {
 	 * @param arena
 	 *            arena
 	 */
-	public ArenaCreature(Creature copy, Shape arena) {
+	public ArenaCreature(final Creature copy, final Shape arena) {
 		super(copy);
 		this.arena = arena;
 	}
@@ -31,10 +31,10 @@ public class ArenaCreature extends Creature {
 	@Override
 	protected List<RPEntity> getEnemyList() {
 		// only return those enemies which are in the arena
-		List<RPEntity> standardEnemyList = super.getEnemyList();
-		List<RPEntity> resultList = new LinkedList<RPEntity>();
+		final List<RPEntity> standardEnemyList = super.getEnemyList();
+		final List<RPEntity> resultList = new LinkedList<RPEntity>();
 
-		for (RPEntity enemy : standardEnemyList) {
+		for (final RPEntity enemy : standardEnemyList) {
 			if (arena.contains(enemy.getX(), enemy.getY())) {
 				resultList.add(enemy);
 			}

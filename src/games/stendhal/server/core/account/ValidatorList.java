@@ -19,7 +19,7 @@ public class ValidatorList extends LinkedList<AccountParameterValidator> {
 	 */
 	public Result runValidators() {
 		Result result = null;
-		for (AccountParameterValidator validator : this) {
+		for (final AccountParameterValidator validator : this) {
 			result = validator.validate();
 			if (result != null) {
 				break;

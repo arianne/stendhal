@@ -13,28 +13,28 @@ import games.stendhal.server.entity.player.Player;
 public class Transition {
 
 	/** The state where this transition starts at .*/
-	private int state;
+	private final int state;
 
 	/** The state where this transition leads to. */
-	private int nextState;
+	private final int nextState;
 
 	/**
 	 * The Word a player's text must either start with or equal to in order to trigger
 	 * this transition. The trigger string is normalized by Sentence.getTriggerWord().
 	 */
-	private Expression trigger;
+	private final Expression trigger;
 
 	/**
 	 * The condition that has to be fulfilled so that the transition can be
 	 * triggered.
 	 */
-	private PreTransitionCondition condition;
+	private final PreTransitionCondition condition;
 
 	/** The text that the NPC will say when the transition is triggered.*/
 	private String reply;
 
 	/** The action that will take place when the transition is triggered. */
-	private PostTransitionAction action;
+	private final PostTransitionAction action;
 
 	/**
 	 * Creates a new transition.
@@ -52,9 +52,9 @@ public class Transition {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public Transition(int currentState, Expression triggerExpr,
-			PreTransitionCondition condition, int nextState, String reply,
-			PostTransitionAction action) {
+	public Transition(final int currentState, final Expression triggerExpr,
+			final PreTransitionCondition condition, final int nextState, final String reply,
+			final PostTransitionAction action) {
 		this.state = currentState;
 		this.condition = condition;
 		this.nextState = nextState;
@@ -72,7 +72,7 @@ public class Transition {
 	 * @return true iff this is a wildcard transition and the triggering text
 	 *         has been said
 	 */
-	public boolean matchesWild(Sentence sentence) {
+	public boolean matchesWild(final Sentence sentence) {
 		return (state == ConversationStates.ANY)
 				&& sentence.getTriggerExpression().matches(trigger);
 	}
@@ -85,7 +85,7 @@ public class Transition {
 	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
 	 */
-	public boolean matchesWildNormalized(Sentence sentence) {
+	public boolean matchesWildNormalized(final Sentence sentence) {
 		return (state == ConversationStates.ANY)
 				&& sentence.getTriggerExpression().matchesNormalized(trigger);
 	}
@@ -98,7 +98,7 @@ public class Transition {
 	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
 	 */
-	public boolean matchesWildSimilar(Sentence sentence) {
+	public boolean matchesWildSimilar(final Sentence sentence) {
 		if (state == ConversationStates.ANY) {
 			// If the trigger is an empty string, match any text.
 			//TODO find a better way to handle unconditional matching
@@ -123,7 +123,7 @@ public class Transition {
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matches(int state, Sentence sentence) {
+	public boolean matches(final int state, final Sentence sentence) {
 		return matches(state, sentence.getTriggerExpression());
 	}
 
@@ -136,7 +136,7 @@ public class Transition {
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matches(int state, Expression trigger) {
+	public boolean matches(final int state, final Expression trigger) {
 		return (state == this.state) && trigger.matches(this.trigger);
 	}
 
@@ -150,7 +150,7 @@ public class Transition {
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matchesNormalized(int state, Sentence sentence) {
+	public boolean matchesNormalized(final int state, final Sentence sentence) {
 		return matchesNormalized(state, sentence.getTriggerExpression());
 	}
 
@@ -164,7 +164,7 @@ public class Transition {
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matchesNormalized(int state, Expression trigger) {
+	public boolean matchesNormalized(final int state, final Expression trigger) {
 		return (state == this.state) && trigger.matchesNormalized(this.trigger);
 	}
 
@@ -178,7 +178,7 @@ public class Transition {
 	 *            trigger, parsed user input
 	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matchesSimilar(int state, Sentence sentence) {
+	public boolean matchesSimilar(final int state, final Sentence sentence) {
 		if (state == this.state) {
 			// If the trigger is an empty string, match any text.
 			//TODO find a better way to handle unconditional matching
@@ -202,11 +202,11 @@ public class Transition {
 	 * @param condition
 	 * @return true if condition has been found
 	 */
-	public boolean matchesWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
+	public boolean matchesWithCondition(final int state, final Expression trigger, final PreTransitionCondition condition) {
 		if (matches(state, trigger)) {
 			if (this.condition == condition) {
 				return true;
-			} else if (this.condition != null && this.condition.equals(condition)) {
+			} else if ((this.condition != null) && this.condition.equals(condition)) {
 				return true;
 			}
 		}
@@ -223,11 +223,11 @@ public class Transition {
 	 * @param condition
 	 * @return true if condition has been found
 	 */
-	public boolean matchesNormalizedWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
+	public boolean matchesNormalizedWithCondition(final int state, final Expression trigger, final PreTransitionCondition condition) {
 		if (matchesNormalized(state, trigger)) {
 			if (this.condition == condition) {
 				return true;
-			} else if (this.condition != null && this.condition.equals(condition)) {
+			} else if ((this.condition != null) && this.condition.equals(condition)) {
 				return true;
 			}
 		}
@@ -246,8 +246,8 @@ public class Transition {
 	 * @return true iff there is no condition or if there is one which is
 	 *         fulfilled
 	 */
-	public boolean isConditionFulfilled(Player player, Sentence sentence,
-			SpeakerNPC npc) {
+	public boolean isConditionFulfilled(final Player player, final Sentence sentence,
+			final SpeakerNPC npc) {
 		if (condition != null) {
 			return condition.fire(player, sentence, npc);
 		} else {
@@ -290,7 +290,7 @@ public class Transition {
 	 * @param reply
 	 *            output
 	 */
-	public void setReply(String reply) {
+	public void setReply(final String reply) {
 		this.reply = reply;
 	}
 

@@ -89,10 +89,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * You only get ATK and DEF experience by fighting against a creature that
 	 * is in this list.
 	 */
-	private Map<RPEntity, Integer> enemiesThatGiveFightXP;
+	private final Map<RPEntity, Integer> enemiesThatGiveFightXP;
 
 	/** List of all enemies that are currently attacking this entity. */
-	private List<Entity> attackSources;
+	private final List<Entity> attackSources;
 
 	/** the enemy that is currently attacked by this entity. */
 	private RPEntity attackTarget;
@@ -116,7 +116,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
 
 	@Override
-	protected boolean handlePortal(Portal portal) {
+	protected boolean handlePortal(final Portal portal) {
 		if (isZoneChangeAllowed()) {
 			logger.debug("Using portal " + portal);
 			return portal.onUsed(this);
@@ -127,7 +127,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public static void generateRPClass() {
 		try {
 			stats = Statistics.getStatistics();
-			RPClass entity = new RPClass("rpentity");
+			final RPClass entity = new RPClass("rpentity");
 			entity.isA("active_entity");
 			entity.addAttribute("name", Type.STRING);
 			entity.addAttribute(ATTR_TITLE, Type.STRING);
@@ -164,7 +164,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			entity.addRPSlot("feet", 1, Definition.PRIVATE);
 			entity.addRPSlot("bag", 12, Definition.PRIVATE);
 			entity.addRPSlot("keyring", 8, Definition.PRIVATE);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
@@ -177,7 +177,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 	}
 
-	public RPEntity(RPObject object) {
+	public RPEntity(final RPObject object) {
 		super(object);
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new WeakHashMap<Entity, Integer>();
@@ -201,7 +201,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param karma
 	 *            An amount of karma to add/subtract.
 	 */
-	public void addKarma(double karma) {
+	public void addKarma(final double karma) {
 		// No nothing
 	}
 
@@ -227,7 +227,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return A number between -scale and scale.
 	 */
-	public double useKarma(double scale) {
+	public double useKarma(final double scale) {
 		// No impact
 		return 0.0;
 	}
@@ -244,7 +244,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
-	public double useKarma(double negLimit, double posLimit) {
+	public double useKarma(final double negLimit, final double posLimit) {
 		// No impact
 		return 0.0;
 	}
@@ -263,7 +263,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
-	public double useKarma(double negLimit, double posLimit, double granularity) {
+	public double useKarma(final double negLimit, final double posLimit, final double granularity) {
 		// No impact
 		return 0.0;
 	}
@@ -274,8 +274,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The amount actually healed.
 	 */
 	public int heal() {
-		int baseHP = getBaseHP();
-		int given = baseHP - getHP();
+		final int baseHP = getBaseHP();
+		final int given = baseHP - getHP();
 
 		if (given != 0) {
 			put("heal", given);
@@ -293,7 +293,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return The amount actually healed.
 	 */
-	public int heal(int amount) {
+	public int heal(final int amount) {
 		return heal(amount, false);
 	}
 
@@ -307,9 +307,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return The amount actually healed.
 	 */
-	public int heal(int amount, boolean tell) {
+	public int heal(final int amount, final boolean tell) {
 		int tempHp = getHP();
-		int given = Math.min(amount, getBaseHP() - tempHp);
+		final int given = Math.min(amount, getBaseHP() - tempHp);
 
 		if (given != 0) {
 			tempHp += given;
@@ -329,7 +329,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		super.update();
 
 		if (has("name")) {
-			String newName = get("name");
+			final String newName = get("name");
 
 			registerNewName(newName, name);
 
@@ -379,12 +379,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param newName
 	 * @param oldName
 	 */
-	private static void registerNewName(String newName, String oldName) {
-		if (oldName != null && !oldName.equals(newName)) {
+	private static void registerNewName(final String newName, final String oldName) {
+		if ((oldName != null) && !oldName.equals(newName)) {
 			WordList.getInstance().unregisterSubjectName(oldName);
 		}
 
-		if (oldName == null || !oldName.equals(newName)) {
+		if ((oldName == null) || !oldName.equals(newName)) {
 			WordList.getInstance().registerSubjectName(newName);
 		}
 	}
@@ -400,9 +400,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
-	public int damageDone(RPEntity defender) {
+	public int damageDone(final RPEntity defender) {
 
-		float weapon = getItemAtk();
+		final float weapon = getItemAtk();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + getATK()
@@ -410,8 +410,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 
 		
-		int sourceAtk = getATK();
-		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
+		final int sourceAtk = getATK();
+		final float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
 				* sourceAtk;
 		float attackerComponent = (Rand.roll1D100() / 100.0f)
 				* maxAttackerComponent;
@@ -424,9 +424,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
 				+ attackerComponent);
 
-		float armor = defender.getItemDef();
-		int targetDef = defender.getDEF();
-		double maxDefenderComponent = (0.6f * targetDef + armor)
+		final float armor = defender.getItemDef();
+		final int targetDef = defender.getDEF();
+		final double maxDefenderComponent = (0.6f * targetDef + armor)
 				* (10 + 0.5f * defender.getLevel());
 
 		double defenderComponent = (Rand.roll1D100() / 100.0f)
@@ -464,9 +464,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param squareDistance the distance
 	 * @return The damage that will be done with the distance attack.
 	 */
-	public static int applyDistanceAttackModifiers(int damage, double squareDistance) {
-		double minrangeSquared = 2 * 2;
-		double maxrangeSquared = 7 * 7;
+	public static int applyDistanceAttackModifiers(final int damage, final double squareDistance) {
+		final double minrangeSquared = 2 * 2;
+		final double maxrangeSquared = 7 * 7;
 		// FIXME: make a gaussian like result
 		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
 				* (1.0 - (minrangeSquared / maxrangeSquared)))
@@ -480,7 +480,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param name
 	 *            The new name.
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		registerNewName(name, this.name);
 
 		this.name = name;
@@ -496,7 +496,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return name;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(final int level) {
 		this.level = level;
 		put("level", level);
 	}
@@ -505,7 +505,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return level;
 	}
 
-	public void setATK(int atk) {
+	public void setATK(final int atk) {
 		this.atk = atk;
 		put("atk", atk);
 	}
@@ -514,7 +514,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return atk;
 	}
 
-	public void setATKXP(int atk) {
+	public void setATKXP(final int atk) {
 		this.atk_xp = atk;
 		put("atk_xp", atk_xp);
 		incATKXP();
@@ -528,8 +528,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.atk_xp++;
 		put("atk_xp", atk_xp);
 
-		int newLevel = Level.getLevel(atk_xp);
-		int levels = newLevel - (getATK() - 10);
+		final int newLevel = Level.getLevel(atk_xp);
+		final int levels = newLevel - (getATK() - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
@@ -541,7 +541,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return atk_xp;
 	}
 
-	public void setDEF(int def) {
+	public void setDEF(final int def) {
 		this.def = def;
 		put("def", def);
 	}
@@ -550,7 +550,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return def;
 	}
 
-	public void setDEFXP(int def) {
+	public void setDEFXP(final int def) {
 		this.def_xp = def;
 		put("def_xp", def_xp);
 		incDEFXP();
@@ -564,8 +564,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.def_xp++;
 		put("def_xp", def_xp);
 
-		int newLevel = Level.getLevel(def_xp);
-		int levels = newLevel - (getDEF() - 10);
+		final int newLevel = Level.getLevel(def_xp);
+		final int levels = newLevel - (getDEF() - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
@@ -583,7 +583,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param hp
 	 *            The HP to set.
 	 */
-	public void initHP(int hp) {
+	public void initHP(final int hp) {
 		setBaseHP(hp);
 		setHP(hp);
 	}
@@ -594,7 +594,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param newhp
 	 *            The base HP to set.
 	 */
-	public void setBaseHP(int newhp) {
+	public void setBaseHP(final int newhp) {
 		this.base_hp = newhp;
 		put("base_hp", newhp);
 	}
@@ -614,7 +614,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param hp
 	 *            The HP to set.
 	 */
-	public void setHP(int hp) {
+	public void setHP(final int hp) {
 		this.hp = hp;
 		put("hp", hp);
 	}
@@ -652,7 +652,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param newMana
 	 *            new amount of mana
 	 */
-	public void setMana(int newMana) {
+	public void setMana(final int newMana) {
 		mana = newMana;
 		put("mana", newMana);
 	}
@@ -663,7 +663,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param newBaseMana
 	 *            new amount of base mana
 	 */
-	public void setBaseMana(int newBaseMana) {
+	public void setBaseMana(final int newBaseMana) {
 		base_mana = newBaseMana;
 		put("base_mana", newBaseMana);
 	}
@@ -674,21 +674,21 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param newBaseMana
 	 *            amount of base mana to be added
 	 */
-	public void addBaseMana(int newBaseMana) {
+	public void addBaseMana(final int newBaseMana) {
 		base_mana += newBaseMana;
 		put("base_mana", base_mana);
 	}
 
-	public void setXP(int newxp) {
+	public void setXP(final int newxp) {
 		this.xp = newxp;
 		put("xp", xp);
 	}
 
-	public void subXP(int newxp) {
+	public void subXP(final int newxp) {
 		addXP(-newxp);
 	}
 
-	public void addXP(int newxp) {
+	public void addXP(final int newxp) {
 		// Increment experience points
 		this.xp += newxp;
 		put("xp", xp);
@@ -698,8 +698,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "xp",
 				Integer.toString(xp));
 
-		int newLevel = Level.getLevel(getXP());
-		int levels = newLevel - getLevel();
+		final int newLevel = Level.getLevel(getXP());
+		final int levels = newLevel - getLevel();
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
@@ -730,7 +730,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/** Modify the entity to order to attack the target entity. 
 	 * @param target 
 	 */
-	public void setTarget(RPEntity target) {
+	public void setTarget(final RPEntity target) {
 		put("target", target.getID().getObjectID());
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
@@ -763,12 +763,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 	}
 
-	public boolean getsFightXpFrom(RPEntity enemy) {
-		Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(enemy);
+	public boolean getsFightXpFrom(final RPEntity enemy) {
+		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(enemy);
 		if (turnWhenLastDamaged == null) {
 			return false;
 		}
-		int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
+		final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (currentTurn - turnWhenLastDamaged > TURNS_WHILE_FIGHT_XP_INCREASES) {
 			enemiesThatGiveFightXP.remove(enemy);
 			return false;
@@ -777,13 +777,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 
-	public void stopAttacking(Entity attacker) {
+	public void stopAttacking(final Entity attacker) {
 		if (attacker.has("target")) {
 			attacker.remove("target");
 		}
 	}
 
-	public void rememberAttacker(Entity attacker) {
+	public void rememberAttacker(final Entity attacker) {
 		if (!attackSources.contains(attacker)) {
 			attackSources.add(attacker);
 		}
@@ -794,13 +794,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * isn't a blood pool at that position already.
 	 */
 	private void bleedOnGround() {
-		Rectangle2D rect = getArea();
-		int bx = (int) rect.getX();
-		int by = (int) rect.getY();
-		StendhalRPZone zone = getZone();
+		final Rectangle2D rect = getArea();
+		final int bx = (int) rect.getX();
+		final int by = (int) rect.getY();
+		final StendhalRPZone zone = getZone();
 
 		if (zone.getBlood(bx, by) == null) {
-			Blood blood = new Blood();
+			final Blood blood = new Blood();
 			blood.setPosition(bx, by);
 
 			zone.add(blood);
@@ -813,7 +813,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param attacker 
 	 * @param damage 
 	 */
-	public void onDamaged(Entity attacker, int damage) {
+	public void onDamaged(final Entity attacker, final int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
 
 		SingletonRepository.getRuleProcessor().addGameEvent(attacker.getTitle(),
@@ -821,17 +821,17 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
-			int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
+			final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
 			enemiesThatGiveFightXP.put((RPEntity) attacker, currentTurn);
 		}
 
-		int leftHP = getHP() - damage;
+		final int leftHP = getHP() - damage;
 
 		totalDamageReceived += damage;
 
 		// remember the damage done so that the attacker can later be rewarded
 		// XP etc.
-		Integer oldDamage = damageReceived.get(attacker);
+		final Integer oldDamage = damageReceived.get(attacker);
 		if (oldDamage != null) {
 			damageReceived.put(attacker, damage + oldDamage);
 		} else {
@@ -854,7 +854,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param player
 	 *            Player
 	 */
-	protected void addPlayersToReward(Entity player) {
+	protected void addPlayersToReward(final Entity player) {
 		if (player instanceof Player) {
 			playersToReward.add(((Player) player).getName());
 		}
@@ -871,7 +871,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	protected int damage(final int amount) {
 		int tempHp = getHP();
-		int taken = Math.min(amount, tempHp);
+		final int taken = Math.min(amount, tempHp);
 
 		tempHp -= taken;
 		setHP(tempHp);
@@ -890,7 +890,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public int damage(final int amount, final Entity attacker) {
-		int taken = damage(amount);
+		final int taken = damage(amount);
 
 		if (hp <= 0) {
 			onDead(attacker);
@@ -911,7 +911,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public int damage(final int amount, final String attackerName) {
-		int taken = damage(amount);
+		final int taken = damage(amount);
 
 		if (hp == 0) {
 			onDead(attackerName);
@@ -926,7 +926,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param killer
 	 *            The killer
 	 */
-	protected void kill(Entity killer) {
+	protected void kill(final Entity killer) {
 		setHP(0);
 		SingletonRepository.getRuleProcessor().killRPEntity(this, killer);
 	}
@@ -937,11 +937,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
 	 */
-	protected void rewardKillers(int oldXP) {
-		int xpReward = (int) (oldXP * 0.05);
+	protected void rewardKillers(final int oldXP) {
+		final int xpReward = (int) (oldXP * 0.05);
 
-		for (String killerName : playersToReward) {
-			Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
+		for (final String killerName : playersToReward) {
+			final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
 			// check logout
 			if (killer == null) {
 				continue;
@@ -949,20 +949,20 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 			TutorialNotifier.killedSomething(killer);
 
-			Integer damageDone = damageReceived.get(killer);
+			final Integer damageDone = damageReceived.get(killer);
 			if (damageDone == null) {
 				continue;
 			}
 
 			if (logger.isDebugEnabled()) {
-				String killName = killer.has("name") ? killer.get("name")
+				final String killName = killer.has("name") ? killer.get("name")
 						: killer.get("type");
 
 				logger.debug(killName + " did " + damageDone + " of "
 						+ totalDamageReceived + ". Reward was " + xpReward);
 			}
 
-			int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
+			final int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
 			
 
@@ -982,7 +982,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
-			String killedName = getName();
+			final String killedName = getName();
 
 			if (killedName == null) {
 				logger.warn("This entity returns null as name: " + this);
@@ -1004,7 +1004,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param killer
 	 *            The entity who caused the death
 	 */
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		onDead(killer, true);
 	}
 
@@ -1015,7 +1015,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
 	 */
-	public void onDead(String killerName) {
+	public void onDead(final String killerName) {
 		onDead(killerName, true);
 	}
 
@@ -1029,8 +1029,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            almost everything remove is true, but not for the players, who
 	 *            are instead moved to afterlife ("reborn").
 	 */
-	public void onDead(Entity killer, boolean remove) {
-		String killerName = killer.getTitle();
+	public void onDead(final Entity killer, final boolean remove) {
+		final String killerName = killer.getTitle();
 
 		if (killer instanceof RPEntity) {
 			SingletonRepository.getRuleProcessor().addGameEvent(killerName, "killed",
@@ -1050,10 +1050,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param remove
 	 *            <code>true</code> to remove entity from world.
 	 */
-	protected void onDead(String killerName, boolean remove) {
+	protected void onDead(final String killerName, final boolean remove) {
 		stopAttack();
 		
-		int oldXP = this.getXP();
+		final int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
 		if (oldXP > 0) {
@@ -1073,13 +1073,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 
 		// Add a corpse
-		Corpse corpse = new Corpse(this, killerName);
+		final Corpse corpse = new Corpse(this, killerName);
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
 		updateItemAtkDef();
 
-		StendhalRPZone zone = getZone();
+		final StendhalRPZone zone = getZone();
 		zone.add(corpse);
 
 		if (remove) {
@@ -1117,9 +1117,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return  list of all attacking RPEntities
 	 */
 	public List<RPEntity> getAttackingRPEntities() {
-		List<RPEntity> list = new ArrayList<RPEntity>();
+		final List<RPEntity> list = new ArrayList<RPEntity>();
 
-		for (Entity entity : getAttackSources()) {
+		for (final Entity entity : getAttackSources()) {
 			if (entity instanceof RPEntity) {
 				list.add((RPEntity) entity);
 			}
@@ -1162,7 +1162,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the item
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(Item item) {
+	public boolean equip(final Item item) {
 		return equip(item, false);
 	}
 
@@ -1175,16 +1175,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            put it on ground if it cannot equipped.
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
-		ActionManager manager = SingletonRepository.getActionManager();
+	public boolean equip(final Item item, final boolean putOnGroundIfItCannotEquiped) {
+		final ActionManager manager = SingletonRepository.getActionManager();
 
-		String slot = manager.getSlotNameToEquip(this, item);
+		final String slot = manager.getSlotNameToEquip(this, item);
 		if (slot != null) {
 			return manager.onEquip(this, slot, item);
 		}
 
 		if (putOnGroundIfItCannotEquiped) {
-			StendhalRPZone zone = getZone();
+			final StendhalRPZone zone = getZone();
 			item.setPosition(getX(), getY());
 			zone.add(item);
 			return true;
@@ -1205,9 +1205,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the item
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(String slotName, Item item) {
+	public boolean equip(final String slotName, final Item item) {
 		if (hasSlot(slotName)) {
-			ActionManager manager = SingletonRepository.getActionManager();
+			final ActionManager manager = SingletonRepository.getActionManager();
 			if (manager.onEquip(this, slotName, item)) {
 				updateItemAtkDef();
 				return true;
@@ -1228,7 +1228,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The number of units that should be dropped
 	 * @return true iff dropping the desired amount was successful.
 	 */
-	public boolean drop(String name, int amount) {
+	public boolean drop(final String name, final int amount) {
 		// first of all we check that this RPEntity has enough of the 
 		// specified item. We need to do this to ensure an atomic transaction
 		// semantic later on because the required amount may be distributed
@@ -1239,17 +1239,17 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		int toDrop = amount;
 
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
-				RPObject object = objectsIterator.next();
+				final RPObject object = objectsIterator.next();
 				if (!(object instanceof Item)) {
 					continue;
 				}
 
-				Item item = (Item) object;
+				final Item item = (Item) object;
 
 				if (!item.getName().equals(name)) {
 					continue;
@@ -1258,7 +1258,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				if (item instanceof StackableItem) {
 					// The item is stackable, we try to remove
 					// multiple ones.
-					int quantity = item.getQuantity();
+					final int quantity = item.getQuantity();
 					if (toDrop >= quantity) {
 						ItemLogger.destroy(this, slot, item);
 						slot.remove(item.getID());
@@ -1302,7 +1302,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The name of the item
 	 * @return true iff dropping the item was successful.
 	 */
-	public boolean drop(String name) {
+	public boolean drop(final String name) {
 		return drop(name, 1);
 	}
 
@@ -1315,13 +1315,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the item that should be removed
 	 * @return true iff dropping the item was successful.
 	 */
-	public boolean drop(Item item) {
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+	public boolean drop(final Item item) {
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			Iterator<RPObject> objectsIterator = slot.iterator();
+			final Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
-				RPObject object = objectsIterator.next();
+				final RPObject object = objectsIterator.next();
 				if (object instanceof Item) {
 					if (object == item) {
 						slot.remove(object.getID());
@@ -1345,21 +1345,21 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return <code>true</code> if the item is equipped with the minimum
 	 *         number.
 	 */
-	public boolean isEquipped(String name, int amount) {
+	public boolean isEquipped(final String name, final int amount) {
 		if (amount <= 0) {
 			return false;
 		}
 		int found = 0;
 
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			for (RPObject object : slot) {
+			for (final RPObject object : slot) {
 				if (!(object instanceof Item)) {
 					continue;
 				}
 
-				Item item = (Item) object;
+				final Item item = (Item) object;
 
 				if (item.getName().equals(name)) {
 					found += item.getQuantity();
@@ -1381,7 +1381,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return <code>true</code> if the item is equipped.
 	 */
-	public boolean isEquipped(String name) {
+	public boolean isEquipped(final String name) {
 		return isEquipped(name, 1);
 	}
 
@@ -1393,15 +1393,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The item's name
 	 * @return The number of carried items
 	 */
-	public int getNumberOfEquipped(String name) {
+	public int getNumberOfEquipped(final String name) {
 		int result = 0;
 
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			for (RPObject object : slot) {
+			for (final RPObject object : slot) {
 				if (object instanceof Item) {
-					Item item = (Item) object;
+					final Item item = (Item) object;
 					if (item.getName().equals(name)) {
 						result += item.getQuantity();
 					}
@@ -1420,13 +1420,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The item, or a stack of stackable items, or null if nothing was
 	 *         found
 	 */
-	public Item getFirstEquipped(String name) {
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+	public Item getFirstEquipped(final String name) {
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			for (RPObject object : slot) {
+			for (final RPObject object : slot) {
 				if (object instanceof Item) {
-					Item item = (Item) object;
+					final Item item = (Item) object;
 					if (item.getName().equals(name)) {
 						return item;
 					}
@@ -1446,15 +1446,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The item, or a stack of stackable items, or null if nothing was
 	 *         found
 	 */
-	public List<Item> getAllEquipped(String name) {
-		List<Item> result = new LinkedList<Item>();
+	public List<Item> getAllEquipped(final String name) {
+		final List<Item> result = new LinkedList<Item>();
 
-		for (String slotName : CARRYING_SLOTS) {
-			RPSlot slot = getSlot(slotName);
+		for (final String slotName : CARRYING_SLOTS) {
+			final RPSlot slot = getSlot(slotName);
 
-			for (RPObject object : slot) {
+			for (final RPObject object : slot) {
 				if (object instanceof Item) {
-					Item item = (Item) object;
+					final Item item = (Item) object;
 					if (item.getName().equals(name)) {
 						result.add(item);
 					}
@@ -1471,12 +1471,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param clazz 
 	 * @return true if so false otherwise
 	 */
-	public boolean isEquippedItemClass(String slot, String clazz) {
+	public boolean isEquippedItemClass(final String slot, final String clazz) {
 		if (hasSlot(slot)) {
 			// get slot if the this entity has one
-			RPSlot rpslot = getSlot(slot);
+			final RPSlot rpslot = getSlot(slot);
 			// traverse all slot items
-			for (RPObject item : rpslot) {
+			for (final RPObject item : rpslot) {
 				if ((item instanceof Item) && ((Item) item).isOfClass(clazz)) {
 					return true;
 				}
@@ -1493,15 +1493,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param clazz 
 	 * @return the item or <code>null</code> if there is no item with the requested clazz.
 	 */
-	public Item getEquippedItemClass(String slot, String clazz) {
+	public Item getEquippedItemClass(final String slot, final String clazz) {
 		if (hasSlot(slot)) {
 			// get slot if the this entity has one
-			RPSlot rpslot = getSlot(slot);
+			final RPSlot rpslot = getSlot(slot);
 			// traverse all slot items
-			for (RPObject object : rpslot) {
+			for (final RPObject object : rpslot) {
 				// is it the right type
 				if (object instanceof Item) {
-					Item item = (Item) object;
+					final Item item = (Item) object;
 					if (item.isOfClass(clazz)) {
 						return item;
 					}
@@ -1521,12 +1521,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	private Item getWeapon() {
 		
-		String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
+		final String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
 
-		for (String weaponClass : weaponsClasses) {
-			String[] slots = { "lhand", "rhand" };
-			for (String slot : slots) {
-				Item item = getEquippedItemClass(slot, weaponClass);
+		for (final String weaponClass : weaponsClasses) {
+			final String[] slots = { "lhand", "rhand" };
+			for (final String slot : slots) {
+				final Item item = getEquippedItemClass(slot, weaponClass);
 				if (item != null) {
 					return item;
 				}
@@ -1538,7 +1538,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public List<Item> getWeapons() {
 		
 		
-		List<Item> weapons = new ArrayList<Item>();
+		final List<Item> weapons = new ArrayList<Item>();
 		Item weaponItem = getWeapon();
 		if (weaponItem != null) {
 			weapons.add(weaponItem);
@@ -1547,7 +1547,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			if (weaponItem.getName().startsWith("l hand ")) {
 				// check if there is a matching right-hand weapon in
 				// the other hand.
-				String rpclass = weaponItem.getItemClass();
+				final String rpclass = weaponItem.getItemClass();
 				weaponItem = getEquippedItemClass("rhand", rpclass);
 				if ((weaponItem != null)
 						&& (weaponItem.getName().startsWith("r hand "))) {
@@ -1577,7 +1577,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         one in its left hand.
 	 */
 	public Item getRangeWeapon() {
-		for (Item weapon : getWeapons()) {
+		for (final Item weapon : getWeapons()) {
 			if (weapon.isOfClass("ranged")) {
 				return weapon;
 			}
@@ -1594,10 +1594,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         in its left hand.
 	 */
 	public StackableItem getAmmunition() {
-		String[] slots = { "lhand", "rhand" };
+		final String[] slots = { "lhand", "rhand" };
 
-		for (String slot : slots) {
-			StackableItem item = (StackableItem) getEquippedItemClass(slot,
+		for (final String slot : slots) {
+			final StackableItem item = (StackableItem) getEquippedItemClass(slot,
 					"ammunition");
 			if (item != null) {
 				return item;
@@ -1624,7 +1624,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		StackableItem missileWeaponItem = null;
 		boolean holdsOtherWeapon = false;
 
-		for (Item weaponItem : getWeapons()) {
+		for (final Item weaponItem : getWeapons()) {
 			if (weaponItem.isOfClass("missile")) {
 				missileWeaponItem = (StackableItem) weaponItem;
 			} else {
@@ -1645,7 +1645,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	public Item getShield() {
-		Item item = getEquippedItemClass("lhand", "shield");
+		final Item item = getEquippedItemClass("lhand", "shield");
 		if (item != null) {
 			return item;
 		} else {
@@ -1710,14 +1710,14 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param text
 	 *            The message.
 	 */
-	public void sendPrivateText(String text) {
+	public void sendPrivateText(final String text) {
 		// does nothing in this implementation.
 	}
 
 	public float getItemAtk() {
 		int weapon = 0;
-		List<Item> weapons = getWeapons();
-		for (Item weaponItem : weapons) {
+		final List<Item> weapons = getWeapons();
+		for (final Item weaponItem : weapons) {
 			weapon += weaponItem.getAttack();
 		}
 
@@ -1771,8 +1771,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			cloak = getCloak().getDefense();
 		}
 
-		List<Item> targetWeapons = getWeapons();
-		for (Item weaponItem : targetWeapons) {
+		final List<Item> targetWeapons = getWeapons();
+		for (final Item weaponItem : targetWeapons) {
 			weapon += weaponItem.getDefense();
 		}
 
@@ -1796,16 +1796,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
 	 */
-	public boolean canDoRangeAttack(RPEntity target) {
-		int maxRange = getMaxRangeForArcher();
+	public boolean canDoRangeAttack(final RPEntity target) {
+		final int maxRange = getMaxRangeForArcher();
 		return (squaredDistance(target) >= 2 * 2)
 				&& (squaredDistance(target) <= maxRange * maxRange);
 	}
 
 	private int getMaxRangeForArcher() {
-		Item rangeWeapon = getRangeWeapon();
-		StackableItem ammunition = getAmmunition();
-		StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
+		final Item rangeWeapon = getRangeWeapon();
+		final StackableItem ammunition = getAmmunition();
+		final StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
 		int maxRange;
 		if ((rangeWeapon != null) && (ammunition != null)
 				&& (ammunition.getQuantity() > 0)) {
@@ -1844,7 +1844,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param outfit
 	 *            The new outfit.
 	 */
-	public void setOutfit(Outfit outfit) {
+	public void setOutfit(final Outfit outfit) {
 		put("outfit", outfit.getCode());
 	}
 
@@ -1917,20 +1917,20 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return true if the attacker has hit the defender (the defender may still
 	 *         block this); false if the attacker has missed the defender.
 	 */
-	public boolean canHit(RPEntity defender) {
+	public boolean canHit(final RPEntity defender) {
 		boolean result = false;
 		
-		int roll = Rand.roll1D20();
+		final int roll = Rand.roll1D20();
 		
-		int defenderDEF = defender.getDEF();
+		final int defenderDEF = defender.getDEF();
 		
-		int attackerATK = this.getATK();
+		final int attackerATK = this.getATK();
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 	
 		/*
 		 * Apply some karma
 		 */
-		double karma = this.useKarma(0.3) - defender.useKarma(0.3);
+		final double karma = this.useKarma(0.3) - defender.useKarma(0.3);
 	
 		if (karma > 0.2) {
 			risk += 4;
@@ -1960,7 +1960,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return result;
 	}
 
-	int calculateRiskForCanHit(int roll, int defenderDEF, int attackerATK) {
+	int calculateRiskForCanHit(final int roll, final int defenderDEF, final int attackerATK) {
 		return 2 * attackerATK - defenderDEF + roll - 10;
 	}
 
@@ -1972,14 +1972,14 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public int getAttackRate() {
 		
 		
-		List<Item> weapons = getWeapons();
+		final List<Item> weapons = getWeapons();
 	
 		if (weapons.isEmpty()) {
 			return 5;
 		}
 		int best = weapons.get(0).getAttackRate();
-		for (Item weapon : weapons) {
-			int res = weapon.getAttackRate();
+		for (final Item weapon : weapons) {
+			final int res = weapon.getAttackRate();
 			if (res < best) {
 				best = res;
 			}
@@ -1996,7 +1996,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public boolean attack() {
 		boolean result = false;
-		 RPEntity defender = this.getAttackTarget();
+		 final RPEntity defender = this.getAttackTarget();
 //		isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
@@ -2036,7 +2036,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return result;
 	}
 
-	protected void applyDefXP(RPEntity entity) {
+	protected void applyDefXP(final RPEntity entity) {
 	
 	}
 	/**
@@ -2050,8 +2050,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the damage done by this hit.
 	 * @return damage (may be altered inside this method)
 	 */
-	public int handleLifesteal(RPEntity attacker,
-			List<Item> attackerWeapons, int damage) {
+	public int handleLifesteal(final RPEntity attacker,
+			final List<Item> attackerWeapons, int damage) {
 
 		// Calculate the lifesteal value based on the configured factor
 		// In case of a lifesteal weapon used together with a non-lifesteal
@@ -2063,7 +2063,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// Creature with lifesteal profile?
 		if (attacker instanceof Creature) {
 			sumAll = 1;
-			String value = ((Creature) attacker).getAIProfile("lifesteal");
+			final String value = ((Creature) attacker).getAIProfile("lifesteal");
 			if (value == null) {
 				// The creature doesn't steal life.
 				return damage;
@@ -2071,7 +2071,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			sumLifesteal = Float.parseFloat(value);
 		} else {
 			// weapons with lifesteal attribute for players
-			for (Item weaponItem : attackerWeapons) {
+			for (final Item weaponItem : attackerWeapons) {
 				sumAll += weaponItem.getAttack();
 				if (weaponItem.has("lifesteal")) {
 					sumLifesteal += weaponItem.getAttack()
@@ -2083,7 +2083,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// process the lifesteal
 		if (sumLifesteal != 0) {
 			// 0.5f is used for rounding
-			int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
+			final int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
 
 			if (lifesteal >= 0) {
 				if (attacker.heal(lifesteal, true) == 0) {

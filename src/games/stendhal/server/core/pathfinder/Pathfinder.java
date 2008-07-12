@@ -76,25 +76,25 @@ class Pathfinder {
 	/**
 	 * The open list.
 	 */
-	private PriorityQueue<TreeNode> listOpen = new PriorityQueue<TreeNode>(16,
+	private final PriorityQueue<TreeNode> listOpen = new PriorityQueue<TreeNode>(16,
 			new Comparator<TreeNode>() {
 
-				public int compare(TreeNode o1, TreeNode o2) {
+				public int compare(final TreeNode o1, final TreeNode o2) {
 					return (int) Math.signum(o1.weight - o2.weight);
 				}
 			});
 
-	private HashMap<Integer, TreeNode> nodeRegistry = new HashMap<Integer, TreeNode>();
+	private final HashMap<Integer, TreeNode> nodeRegistry = new HashMap<Integer, TreeNode>();
 
 	/**
 	 * The goal node.
 	 */
-	private TreeNode nodeGoal;
+	private final TreeNode nodeGoal;
 
 	/**
 	 * The start node.
 	 */
-	private TreeNode nodeStart;
+	private final TreeNode nodeStart;
 
 	/**
 	 * The current best node. The best node is taken from the open list after
@@ -105,19 +105,19 @@ class Pathfinder {
 	/**
 	 * The entity searching a path.
 	 */
-	private Entity entity;
+	private final Entity entity;
 
 	/**
 	 * The zone a path is searched.
 	 */
-	private StendhalRPZone zone;
+	private final StendhalRPZone zone;
 
 	/**
 	 * The goal.
 	 */
-	private Rectangle2D goalArea;
+	private final Rectangle2D goalArea;
 
-	private boolean checkEntities;
+	private final boolean checkEntities;
 
 	/**
 	 * Contains the collision data for entities.
@@ -129,11 +129,11 @@ class Pathfinder {
 	 * node The default is 40 The minimum for working pathfinding is
 	 * heuristicFromStartNode + 1
 	 */
-	private double maxDistance;
+	private final double maxDistance;
 
 	// private Rectangle maxBoundary;
-	Pathfinder(Entity entity, StendhalRPZone zone, int startX, int startY,
-			Rectangle2D destination, double maxDist, boolean checkEntities) {
+	Pathfinder(final Entity entity, final StendhalRPZone zone, final int startX, final int startY,
+			final Rectangle2D destination, final double maxDist, final boolean checkEntities) {
 		this.entity = entity;
 		this.zone = zone;
 		this.goalArea = destination;
@@ -143,7 +143,7 @@ class Pathfinder {
 				(int) (destination.getCenterY()));
 
 		// calculate shortest distance and allow a variance of X percent
-		double startF = 1.1 * nodeStart.getHeuristic(nodeGoal) + 1;
+		final double startF = 1.1 * nodeStart.getHeuristic(nodeGoal) + 1;
 		this.maxDistance = Math.max(maxDist, startF);
 
 		/*
@@ -194,7 +194,7 @@ class Pathfinder {
 	}
 
 	public final List<Node> getPath() {
-		List<Node> list = new LinkedList<Node>();
+		final List<Node> list = new LinkedList<Node>();
 		/* */
 		if (unrechableGoal()) {
 			return list;
@@ -244,7 +244,7 @@ class Pathfinder {
 			return null;
 		}
 
-		TreeNode first = listOpen.poll();
+		final TreeNode first = listOpen.poll();
 		first.setOpen(false);
 
 		return first;
@@ -259,14 +259,14 @@ class Pathfinder {
 	private void createEntityCollisionMap() {
 		collisionMap = new CollisionDetection();
 		collisionMap.init(zone.getWidth(), zone.getHeight());
-		for (RPObject obj : zone) {
-			Entity otherEntity = (Entity) obj;
+		for (final RPObject obj : zone) {
+			final Entity otherEntity = (Entity) obj;
 			if (!entity.getID().equals(otherEntity.getID())
 					&& otherEntity.isObstacle(entity)
 					&& (otherEntity.stopped() || otherEntity.nextTo(
 							nodeStart.getX(), nodeStart.getY(), 0.25))) {
 
-				Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
+				final Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
 						otherEntity.getY());
 				collisionMap.setCollide(area, true);
 			}
@@ -280,7 +280,7 @@ class Pathfinder {
 	 *            the currently best node
 	 * @return true if the goal is reached
 	 */
-	private boolean reachedGoal(TreeNode nodeBest) {
+	private boolean reachedGoal(final TreeNode nodeBest) {
 		return goalArea.contains(nodeBest.getX(), nodeBest.getY());
 	}
 
@@ -291,10 +291,10 @@ class Pathfinder {
 	 * @return true checks if the goal is unreachable
 	 */
 	protected boolean unrechableGoal() {
-		int w = (int) goalArea.getWidth() - 1;
-		int h = (int) goalArea.getHeight() - 1;
-		int x = (int) goalArea.getX();
-		int y = (int) goalArea.getY();
+		final int w = (int) goalArea.getWidth() - 1;
+		final int h = (int) goalArea.getHeight() - 1;
+		final int x = (int) goalArea.getX();
+		final int y = (int) goalArea.getY();
 
 		for (int i = 0; i <= w; i++) {
 			for (int j = 0; j <= h; j++) {
@@ -322,7 +322,7 @@ class Pathfinder {
 	 *            y value for position 2
 	 * @return manhattan distance between to positions
 	 */
-	private static int manhattanDistance(int x1, int y1, int x2, int y2) {
+	private static int manhattanDistance(final int x1, final int y1, final int x2, final int y2) {
 		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 	}
 
@@ -339,7 +339,7 @@ class Pathfinder {
 	 *            y value for position 2
 	 * @return square distance between to positions
 	 */
-	private static int squareDistance(int x1, int y1, int x2, int y2) {
+	private static int squareDistance(final int x1, final int y1, final int x2, final int y2) {
 		return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 	}
 
@@ -361,12 +361,12 @@ class Pathfinder {
 		/**
 		 * The x-position of the node.
 		 */
-		private int x;
+		private final int x;
 
 		/**
 		 * The y-position of the node.
 		 */
-		private int y;
+		private final int y;
 
 		/**
 		 * The number of children the node has.
@@ -376,14 +376,14 @@ class Pathfinder {
 		/**
 		 * The node identifier.
 		 */
-		private Integer nodeNumber;
+		private final Integer nodeNumber;
 
 		/**
 		 * The parent of the node.
 		 */
 		private TreeNode parent;
 
-		private TreeNode[] children = new TreeNode[4];
+		private final TreeNode[] children = new TreeNode[4];
 
 		private boolean open = true;
 
@@ -395,7 +395,7 @@ class Pathfinder {
 		 * @param yy
 		 *            the y-position of the node.
 		 */
-		public TreeNode(int xx, int yy) {
+		public TreeNode(final int xx, final int yy) {
 			this.x = xx;
 			this.y = yy;
 
@@ -425,7 +425,7 @@ class Pathfinder {
 		 * @param child
 		 *            the child node.
 		 */
-		private void addChild(TreeNode child) {
+		private void addChild(final TreeNode child) {
 			this.children[numChildren++] = child;
 
 			updateChild(child);
@@ -437,7 +437,7 @@ class Pathfinder {
 		 * @param child
 		 *            the child node.
 		 */
-		private void updateChild(TreeNode child) {
+		private void updateChild(final TreeNode child) {
 			child.parent = this;
 			child.g = this.g + 1;
 			child.weight = child.g + child.getHeuristic(nodeGoal);
@@ -483,9 +483,9 @@ class Pathfinder {
 		 * @param nodeGoal 
 		 * @return heuristic value for move
 		 */
-		public double getHeuristic(TreeNode nodeGoal) {
-			double heuristic = manhattanDistance(x, y, nodeGoal.x, nodeGoal.y);
-			double tieBreaking = 0.01 * squareDistance(x, y, nodeGoal.x,
+		public double getHeuristic(final TreeNode nodeGoal) {
+			final double heuristic = manhattanDistance(x, y, nodeGoal.x, nodeGoal.y);
+			final double tieBreaking = 0.01 * squareDistance(x, y, nodeGoal.x,
 					nodeGoal.y);
 
 			return heuristic + tieBreaking;
@@ -511,10 +511,10 @@ class Pathfinder {
 		 * 
 		 * @return true if the the entity could stand on the position
 		 */
-		public boolean isValid(int x1, int y1) {
+		public boolean isValid(final int x1, final int y1) {
 			boolean result = !zone.simpleCollides(entity, x1, y1);
 			if (checkEntities && result) {
-				Rectangle2D entityArea = entity.getArea(x1, y1);
+				final Rectangle2D entityArea = entity.getArea(x1, y1);
 				result = !collisionMap.collides(entityArea);
 			}
 
@@ -546,7 +546,7 @@ class Pathfinder {
 		 * @param x1 
 		 * @param y1 
 		 */
-		private void linkChild(int x1, int y1) {
+		private void linkChild(final int x1, final int y1) {
 			if (!isValid(x1, y1)) {
 				return;
 			}
@@ -585,9 +585,9 @@ class Pathfinder {
 		 * @param node
 		 *            the root node.
 		 */
-		private void updateSubTree(TreeNode node) {
+		private void updateSubTree(final TreeNode node) {
 			int c = node.numChildren;
-			Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+			final Stack<TreeNode> nodeStack = new Stack<TreeNode>();
 
 			nodeStack.push(node);
 
@@ -615,7 +615,7 @@ class Pathfinder {
 		 * 
 		 * @return the id of the node
 		 */
-		private int createNodeID(int x, int y) {
+		private int createNodeID(final int x, final int y) {
 			return x + y * zone.getWidth();
 		}
 
@@ -623,14 +623,14 @@ class Pathfinder {
 			return open;
 		}
 
-		public final void setOpen(boolean open) {
+		public final void setOpen(final boolean open) {
 			this.open = open;
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj instanceof TreeNode) {
-				TreeNode treeN = (TreeNode) obj;
+				final TreeNode treeN = (TreeNode) obj;
 				return this.nodeNumber.intValue() == treeN.nodeNumber.intValue();
 			}
 			return false;

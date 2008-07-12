@@ -56,7 +56,7 @@ public class AbsentFileMapTest {
 
 	@Test
 	public void testEntrySet() {
-		Set<Entry<String, byte[]>> afmset = afm.entrySet();
+		final Set<Entry<String, byte[]>> afmset = afm.entrySet();
 		assertNull(afmset);
 	}
 

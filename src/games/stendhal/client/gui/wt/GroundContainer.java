@@ -41,15 +41,15 @@ import marauroa.common.game.RPSlot;
 public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		Inspector {
 	/** the game client. */
-	private StendhalClient client;
+	private final StendhalClient client;
 
 	/**
 	 * The UI.
 	 */
-	private StendhalUI ui;
+	private final StendhalUI ui;
 
 	/** the game screen. */
-	private IGameScreen screen;
+	private final IGameScreen screen;
 
 	/**
 	 * creates a new groundcontainer.
@@ -71,15 +71,15 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 
 	/** drags an item from the ground . */
 	@Override
-	protected WtDraggable getDragged(int x, int y) {
-		WtDraggable other = super.getDragged(x, y);
+	protected WtDraggable getDragged(final int x, final int y) {
+		final WtDraggable other = super.getDragged(x, y);
 
 		if (other != null) {
 			return other;
 		}
 
-		Point2D point = screen.convertScreenViewToWorld(x, y);
-		EntityView view = screen.getMovableEntityViewAt(point.getX(), point
+		final Point2D point = screen.convertScreenViewToWorld(x, y);
+		final EntityView view = screen.getMovableEntityViewAt(point.getX(), point
 				.getY());
 
 		// only Items can be dragged
@@ -96,7 +96,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	 * 
 	 */
 	@Override
-	public synchronized boolean onMouseClick(Point p) {
+	public synchronized boolean onMouseClick(final Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseClick(p)) {
 			// yes, click already processed
@@ -104,17 +104,17 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		}
 
 		// get clicked entity
-		Point2D point = screen.convertScreenViewToWorld(p);
+		final Point2D point = screen.convertScreenViewToWorld(p);
 
 		// for the text pop up....
-		Text text = screen.getTextAt(point.getX(), point.getY());
+		final Text text = screen.getTextAt(point.getX(), point.getY());
 		if (text != null) {
 			screen.removeText(text);
 			return true;
 		}
 
 		// for the clicked entity....
-		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 		if (view != null) {
 			if (ui.isCtrlDown()) {
 				view.onAction();
@@ -129,23 +129,23 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	}
 
 	@Override
-	public synchronized boolean onMouseDoubleClick(Point p) {
+	public synchronized boolean onMouseDoubleClick(final Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseDoubleClick(p)) {
 			// yes, click already processed
 			return true;
 		}
 		// doubleclick is outside of all windows
-		Point2D point = screen.convertScreenViewToWorld(p);
+		final Point2D point = screen.convertScreenViewToWorld(p);
 
 		// for the text pop up....
-		Text text = screen.getTextAt(point.getX(), point.getY());
+		final Text text = screen.getTextAt(point.getX(), point.getY());
 		if (text != null) {
 			screen.removeText(text);
 			return true;
 		}
 
-		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 
 		if (view != null) {
 			// ... do the default action
@@ -153,7 +153,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			return true;
 		} else {
 			// moveto action
-			RPAction action = new RPAction();
+			final RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (int) point.getX());
 			action.put("y", (int) point.getY());
@@ -165,23 +165,23 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 
 	/** Processes right click. */
 	@Override
-	public synchronized boolean onMouseRightClick(Point p) {
+	public synchronized boolean onMouseRightClick(final Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseRightClick(p)) {
 			// yes, click already processed
 			return true;
 		}
 		// doubleclick is outside of all windows
-		Point2D point = screen.convertScreenViewToWorld(p);
+		final Point2D point = screen.convertScreenViewToWorld(p);
 
-		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 
 		if (view != null) {
 			// ... show context menu (aka command list)
-			String[] actions = view.getActions();
+			final String[] actions = view.getActions();
 
 			if (actions.length > 0) {
-				Entity entity = view.getEntity();
+				final Entity entity = view.getEntity();
 
 				setContextMenu(new CommandList(entity.getType(), actions, view));
 			}
@@ -204,15 +204,15 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	 * @return true if droppedobject instance of MovableentityContainer false
 	 *         otherwise
 	 */
-	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
+	public boolean onDrop(final int x, final int y, final WtDraggable droppedObject) {
 		// Not an entity?
 		if (!(droppedObject instanceof MoveableEntityContainer)) {
 			return false;
 		}
 
-		MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+		final MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		if (container.isContained()) {
 			// looks like an drop
@@ -231,7 +231,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		container.fillRPAction(action);
 
 		// 'move to'
-		Point2D point = screen.convertScreenViewToWorld(x, y);
+		final Point2D point = screen.convertScreenViewToWorld(x, y);
 		action.put("x", (int) point.getX());
 		action.put("y", (int) point.getY());
 
@@ -243,9 +243,9 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	// Inspector
 	//
 
-	public EntityContainer inspectMe(Entity suspect, RPSlot content,
-			EntityContainer container, int width, int height,
-			IGameScreen gameScreen) {
+	public EntityContainer inspectMe(final Entity suspect, final RPSlot content,
+			EntityContainer container, final int width, final int height,
+			final IGameScreen gameScreen) {
 		if ((container == null) || !container.isVisible()) {
 			container = new EntityContainer(suspect.getType(), width, height,
 					gameScreen);

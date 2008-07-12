@@ -81,7 +81,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * initialize the introduction and start of the quest.
 	 */
 	private void step_1() {
-		SpeakerNPC npc = npcs.get(NPC_NAME);
+		final SpeakerNPC npc = npcs.get(NPC_NAME);
 		npc.addOffer("I don't sell anything!");
 		npc.addGoodbye();
 		npc.addJob("My current job is unimportant, I will be the king of Kalavan!");
@@ -112,7 +112,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
 						engine.say("I want my crown to be beautiful and shiny. I need "
@@ -133,14 +133,14 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * Initializes the main part of the quest.
 	 */
 	private void step_2() {
-		SpeakerNPC npc = npcs.get(NPC_NAME);
+		final SpeakerNPC npc = npcs.get(NPC_NAME);
 
 		/* player returns while quest is still active */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,	SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence,	final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
@@ -155,8 +155,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed = getMissingItems(player).toStringListWithHash();
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> needed = getMissingItems(player).toStringListWithHash();
 						engine.say("I need "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Did you bring something?");
@@ -170,14 +170,14 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				null);
 
 		/* create the ChatAction used for item triggers */
-		ChatAction itemsChatAction = new SpeakerNPC.ChatAction() {
+		final ChatAction itemsChatAction = new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-                String item = sentence.getTriggerExpression().getNormalized();
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+                final String item = sentence.getTriggerExpression().getNormalized();
 			    ItemCollection missingItems = getMissingItems(player);
-				Integer missingCount = missingItems.get(item);
+				final Integer missingCount = missingItems.get(item);
 
-				if (missingCount != null && missingCount > 0) {
+				if ((missingCount != null) && (missingCount > 0)) {
 					if (dropItems(player, item, missingCount)) {
 						missingItems = getMissingItems(player);
 
@@ -203,9 +203,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		};
 
 		/* add triggers for the item names */
-		ItemCollection items = new ItemCollection();
+		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
-		for (Map.Entry<String, Integer> item : items.entrySet()) {
+		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
 		}
@@ -214,7 +214,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player
@@ -227,7 +227,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -250,7 +250,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT)
 								|| "reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -264,14 +264,14 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * initialize the rewarding NPC.
 	 */
 	private void step_3() {
-		SpeakerNPC npc = npcs.get(REWARD_NPC_NAME);
+		final SpeakerNPC npc = npcs.get(REWARD_NPC_NAME);
 
 		npc.add(ConversationStates.ATTENDING, "reward",
 				new QuestInStateCondition(QUEST_SLOT, "reward"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Oh yes, "
 									+ NPC_NAME
 									+ " told me to reward you well! I hope you enjoy your increased combat abilities!");
@@ -287,8 +287,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * @param player The player doing the quest
 	 * @return A list of item names
 	 */
-	private ItemCollection getMissingItems(Player player) {
-		ItemCollection missingItems = new ItemCollection();
+	private ItemCollection getMissingItems(final Player player) {
+		final ItemCollection missingItems = new ItemCollection();
 
 		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
@@ -304,11 +304,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * @param itemCount
 	 * @return true if something was dropped
 	 */
-	private boolean dropItems(Player player, String itemName, int itemCount) {
+	private boolean dropItems(final Player player, final String itemName, int itemCount) {
 		boolean result = false;
 
 		 // parse the quest state into a list of still missing items
-		ItemCollection itemsTodo = new ItemCollection();
+		final ItemCollection itemsTodo = new ItemCollection();
 
 		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
@@ -321,11 +321,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 			 * handle the cases the player has part of the items or all divided
 			 * in different slots
 			 */
-			List<Item> items = player.getAllEquipped(itemName);
+			final List<Item> items = player.getAllEquipped(itemName);
 			if (items != null) {
-				for (Item item : items) {
-					int quantity = item.getQuantity();
-					int n = Math.min(itemCount, quantity);
+				for (final Item item : items) {
+					final int quantity = item.getQuantity();
+					final int n = Math.min(itemCount, quantity);
 
 					if (player.drop(itemName, n)) {
 						itemCount -= n;
@@ -356,7 +356,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 *
 	 * @param player
 	 */
-	protected void rewardPlayer(Player player) {
+	protected void rewardPlayer(final Player player) {
 		player.addKarma(10.0);
 		player.setATKXP(player.getATKXP() + (int) (player.getXP() * ATK_REWARD_RATE));
 		player.incATKXP();

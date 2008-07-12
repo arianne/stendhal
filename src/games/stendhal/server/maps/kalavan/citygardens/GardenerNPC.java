@@ -47,17 +47,17 @@ public class GardenerNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Sue") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Sue") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(100, 123));
 				nodes.add(new Node(110, 123));
 				nodes.add(new Node(110, 110));
@@ -73,21 +73,21 @@ public class GardenerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				class SpecialProducerBehaviour extends ProducerBehaviour { 
-					SpecialProducerBehaviour(String productionActivity,
-                        String productName, Map<String, Integer> requiredResourcesPerItem,
-											 int productionTimePerItem) {
+					SpecialProducerBehaviour(final String productionActivity,
+                        final String productName, final Map<String, Integer> requiredResourcesPerItem,
+											 final int productionTimePerItem) {
 						super(QUEST_SLOT, productionActivity, productName,
 							  requiredResourcesPerItem, productionTimePerItem, false);
 					}
 
 					@Override
-						public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
+						public boolean askForResources(final SpeakerNPC npc, final Player player, final int amount) {
 						if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							// she is eating. number of lunches is in tokens[1]
-							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							// delay is number of lunches * one day - eats one lunch per day
-							long delay = (Long.parseLong(tokens[1])) * MathHelper.MILLISECONDS_IN_ONE_DAY;
-							long timeRemaining = (Long.parseLong(tokens[2]) + delay)
+							final long delay = (Long.parseLong(tokens[1])) * MathHelper.MILLISECONDS_IN_ONE_DAY;
+							final long timeRemaining = (Long.parseLong(tokens[2]) + delay)
 								- System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								npc.say("I'm still eating the lunch you brought me last time. It's enough to last me for another "
@@ -114,18 +114,18 @@ public class GardenerNPC implements ZoneConfigurator {
 						}
 					}
 					@Override
-						public boolean transactAgreedDeal(SpeakerNPC npc, Player player) {
+						public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
 						if (getMaximalAmount(player) < amount) {
 							// The player tried to cheat us by placing the resource
 							// onto the ground after saying "yes"
 							npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 							return false;
 						} else {
-							for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-                                int amountToDrop = amount * entry.getValue();
+							for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+                                final int amountToDrop = amount * entry.getValue();
                                 player.drop(entry.getKey(), amountToDrop);
 							}
-							long timeNow = new Date().getTime();
+							final long timeNow = new Date().getTime();
 							player.setQuest(QUEST_SLOT, amount + ";" + getProductName() + ";"
 											+ timeNow);
 							npc.say("Thanks! Come back in "
@@ -135,18 +135,18 @@ public class GardenerNPC implements ZoneConfigurator {
 						}
 					}
 					@Override
-						public void giveProduct(SpeakerNPC npc, Player player) {
-						String orderString = player.getQuest(QUEST_SLOT);
-						String[] order = orderString.split(";");
-						int numberOfProductItems = Integer.parseInt(order[0]);
+						public void giveProduct(final SpeakerNPC npc, final Player player) {
+						final String orderString = player.getQuest(QUEST_SLOT);
+						final String[] order = orderString.split(";");
+						final int numberOfProductItems = Integer.parseInt(order[0]);
 						// String productName = order[1];
-						long orderTime = Long.parseLong(order[2]);
-						long timeNow = new Date().getTime();
+						final long orderTime = Long.parseLong(order[2]);
+						final long timeNow = new Date().getTime();
 						if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
 							npc.say("Hello again! Oops, I still don't have your scrolls! Come back in "
 									+ getApproximateRemainingTime(player) + " to get them.");
 						} else {
-                        StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
+                        final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
                                         getProductName());
 
                         products.setQuantity(numberOfProductItems);
@@ -173,17 +173,17 @@ public class GardenerNPC implements ZoneConfigurator {
 				addJob("I am the gardener. I hope you like the flowerbeds.");
 				addHelp("If you bring me some #lunch I'll #swap you for a magic scroll.");
 				addOffer("My tomatoes are doing well, I have enough that I am selling some.");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("tomato", 30);
                 new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
 				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("tea", 1);
 				requiredResources.put("sandwich", 1);
 
-				ProducerBehaviour behaviour = new SpecialProducerBehaviour("swap", "kalavan city scroll", requiredResources, 1 * 60);
+				final ProducerBehaviour behaviour = new SpecialProducerBehaviour("swap", "kalavan city scroll", requiredResources, 1 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Fine day, isn't it?");

@@ -36,7 +36,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	private int y;
 
 	/** The moved object. */
-	private Entity entity;
+	private final Entity entity;
 
 	/**
 	 * The entity view.
@@ -63,8 +63,8 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @param action
 	 *            to be filled
 	 */
-	public void fillRPAction(RPAction action) {
-		RPObject rpObject = entity.getRPObject();
+	public void fillRPAction(final RPAction action) {
+		final RPObject rpObject = entity.getRPObject();
 
 		if (rpObject.isContained()) {
 			// the item is inside a container
@@ -103,7 +103,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * 
 	 * @return true
 	 */
-	public boolean dragStarted(IGameScreen gameScreen) {
+	public boolean dragStarted(final IGameScreen gameScreen) {
 
 		view = gameScreen.createView(entity);
 
@@ -131,7 +131,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @param gameScreen
 	 * @return true
 	 */
-	public boolean dragFinished(Point p, IGameScreen gameScreen) {
+	public boolean dragFinished(final Point p, final IGameScreen gameScreen) {
 		if (view != null) {
 			view.release(gameScreen);
 			view = null;
@@ -146,7 +146,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @param p
 	 * @return true
 	 */
-	public boolean dragMoved(Point p) {
+	public boolean dragMoved(final Point p) {
 		x = p.x;
 		y = p.y;
 		return true;
@@ -158,9 +158,9 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @param g
 	 *            the Graphic context to draw to.
 	 */
-	public void drawDragged(Graphics g) {
+	public void drawDragged(final Graphics g) {
 		if (view != null) {
-			Graphics2D cg = (Graphics2D) g.create();
+			final Graphics2D cg = (Graphics2D) g.create();
 
 			cg.translate(x, y);
 			view.draw(cg, GameScreen.get());

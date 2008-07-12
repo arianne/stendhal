@@ -35,7 +35,7 @@ public class AdminMaker extends ScriptImpl {
 
 	protected class UpgradeAction extends SpeakerNPC.ChatAction {
 
-		private void xpGain(Player player) {
+		private void xpGain(final Player player) {
 			final int level = player.getLevel();
 
 			// increase level by xlevel per execution
@@ -55,7 +55,7 @@ public class AdminMaker extends ScriptImpl {
 			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
 
 			// set the atk and def to half the level (is a good rule of thumb)
-			int skills = ((Level.getXP(level) + xlevel) / 2);
+			final int skills = ((Level.getXP(level) + xlevel) / 2);
 			player.setATKXP(skills);
 			player.setDEFXP(skills);	
 			player.incATKXP();
@@ -71,22 +71,22 @@ public class AdminMaker extends ScriptImpl {
 				"greater potion", "greater antidote", "power arrow",
 				"deadly poison");
 
-		private void equip(Player player) {
+		private void equip(final Player player) {
 
 			// Give player all single items from list he/she doesn't have
-			for (String itemName : itemsSingle) {
+			for (final String itemName : itemsSingle) {
 				if (!player.isEquipped(itemName)) {
-					Item itemObj = sandbox.getItem(itemName);
+					final Item itemObj = sandbox.getItem(itemName);
 					player.equip(itemObj, true);
 				}
 			}
 
 			// Give 5000 of each stack in list, regardless of how many are
 			// already there
-			for (String itemName : itemsStack) {
-				Item item = sandbox.getItem(itemName);
+			for (final String itemName : itemsStack) {
+				final Item item = sandbox.getItem(itemName);
 				if (item instanceof StackableItem) {
-					StackableItem stackableItem = (StackableItem) item;
+					final StackableItem stackableItem = (StackableItem) item;
 					stackableItem.setQuantity(5000);
 					player.equip(stackableItem);
 				}
@@ -95,7 +95,7 @@ public class AdminMaker extends ScriptImpl {
 			player.setFeature("keyring", true);
 		}
 
-		private void admin(Player player) {
+		private void admin(final Player player) {
 			if (player.getAdminLevel() == 0) {
 				// can't use destroy/summon/alter/script
 				player.setAdminLevel(600);
@@ -105,7 +105,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			engine.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
 			xpGain(player);
 			equip(player);
@@ -144,7 +144,7 @@ public class AdminMaker extends ScriptImpl {
 
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
 
-		private boolean randomTeleport(Player player) {
+		private boolean randomTeleport(final Player player) {
 			// Destination selection: random for first, then go in order
 			// todo: maybe mix in a second kind of random like bunny/santa?
 
@@ -160,10 +160,10 @@ public class AdminMaker extends ScriptImpl {
 				i = 0;
 			}
 			player.setQuest(TELE_QUEST_SLOT, "" + i);
-			Destination picked = DESTINATIONS.get(i);
+			final Destination picked = DESTINATIONS.get(i);
 
 			// Teleport
-			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(picked.zone);
+			final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(picked.zone);
 			if (!player.teleport(zone, picked.x, picked.y, null, player)) {
 				logger.error("AdminMaker random teleport failed, "
 						+ picked.zone + " " + picked.x + " " + picked.y);
@@ -173,11 +173,11 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		private class Destination {
-			private String zone;
-			private int x;
-			private int y;
+			private final String zone;
+			private final int x;
+			private final int y;
 
-			Destination(String zone, int x, int y) {
+			Destination(final String zone, final int x, final int y) {
 				this.zone = zone;
 				this.x = x;
 				this.y = y;
@@ -185,11 +185,11 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// before we send the player off into the unknown give a marked
 			// scroll
-			Item markedScroll = sandbox.getItem("marked scroll");
+			final Item markedScroll = sandbox.getItem("marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());
 			markedScroll.setBoundTo(player.getName());
@@ -211,12 +211,12 @@ public class AdminMaker extends ScriptImpl {
 	}
 
 	@Override
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		super.load(admin, args, sandbox);
 
 		// Require parameter -Dstendhal.testserver=junk
 		if (System.getProperty("stendhal.testserver") == null) {
-			String msg = "Server must be started with this vm parameter: -Dstendhal.testserver=junk";
+			final String msg = "Server must be started with this vm parameter: -Dstendhal.testserver=junk";
 			if (admin != null) {
 				admin.sendPrivateText(msg);
 				logger.warn("AdminMaker - " + msg + " . Executed by "
@@ -231,7 +231,7 @@ public class AdminMaker extends ScriptImpl {
 		npc.setEntityClass("tavernbarmaidnpc");
 
 		// Place NPC in int_admin_playground on server start
-		String myZone = "0_semos_city";
+		final String myZone = "0_semos_city";
 		sandbox.setZone(myZone);
 		int x = 32;
 		int y = 16;

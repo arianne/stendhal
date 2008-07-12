@@ -134,7 +134,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * 
 	 * @return The number of turns.
 	 */
-	public int getTurnsInSeconds(int seconds) {
+	public int getTurnsInSeconds(final int seconds) {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
 	}
 
@@ -224,7 +224,7 @@ public class StendhalRPWorld extends RPWorld {
 			// pathfinderThread = new PathfinderThread(this);
 			// pathfinderThread.start();
 
-			ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI(
+			final ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI(
 					"/data/conf/zones.xml"));
 
 			loader.load();
@@ -232,7 +232,7 @@ public class StendhalRPWorld extends RPWorld {
 			validatePortals();
 
 			SingletonRepository.getGagManager();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Error on Init the server.", e);
 		}
 	}
@@ -242,8 +242,8 @@ public class StendhalRPWorld extends RPWorld {
 	 */
 	private void validatePortals() {
 		
-		for (IRPZone zone : this) {
-			for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
+		for (final IRPZone zone : this) {
+			for (final Portal portal : ((StendhalRPZone) zone).getPortals()) {
 				validatePortal(portal);
 			}
 		}
@@ -255,7 +255,7 @@ public class StendhalRPWorld extends RPWorld {
 		SingletonRepository.getRuleProcessor().addGameEvent("server system", "shutdown");
 	}
 
-	protected void validatePortal(Portal portal) {
+	protected void validatePortal(final Portal portal) {
 		if (!portal.loaded()) {
 			logger.warn(portal + " has no destination");
 			return;
@@ -265,21 +265,21 @@ public class StendhalRPWorld extends RPWorld {
 			return;
 		}
 
-		String id = portal.getDestinationZone();
+		final String id = portal.getDestinationZone();
 
 		if (id == null) {
 			logger.warn(portal + " has no destination zone");
 			return;
 		}
 
-		StendhalRPZone zone = getZone(id);
+		final StendhalRPZone zone = getZone(id);
 
 		if (zone == null) {
 			logger.warn(portal + " has an invalid destination zone: " + id);
 			return;
 		}
 
-		Object ref = portal.getDestinationReference();
+		final Object ref = portal.getDestinationReference();
 
 		if (ref == null) {
 			logger.warn(portal + " has no destination reference");
@@ -292,7 +292,7 @@ public class StendhalRPWorld extends RPWorld {
 		}
 	}
 
-	public IRPZone getRPZone(String zone) {
+	public IRPZone getRPZone(final String zone) {
 		return getRPZone(new IRPZone.ID(zone));
 	}
 
@@ -325,9 +325,9 @@ public class StendhalRPWorld extends RPWorld {
 	 * 
 	 * @return The matching zone, or <code>null</code> if not found.
 	 */
-	public StendhalRPZone getZoneAt(int level, int wx, int wy, Entity entity) {
-		for (IRPZone izone : this) {
-			StendhalRPZone zone = (StendhalRPZone) izone;
+	public StendhalRPZone getZoneAt(final int level, final int wx, final int wy, final Entity entity) {
+		for (final IRPZone izone : this) {
+			final StendhalRPZone zone = (StendhalRPZone) izone;
 
 			if (zone.isInterior()) {
 				continue;

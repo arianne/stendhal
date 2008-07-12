@@ -67,12 +67,12 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	public void dispatchAdded(RPObject object, boolean user) {
+	public void dispatchAdded(final RPObject object, final boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") added to client");
 			fixContainers(object);
 			fireAdded(object, user);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("dispatchAdded failed, object is " + object, e);
 		}
 	}
@@ -85,12 +85,12 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	public void dispatchRemoved(RPObject object, boolean user) {
+	public void dispatchRemoved(final RPObject object, final boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from client");
 			fixContainers(object);
 			fireRemoved(object, user);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(
 					"dispatchRemovedonDeleted failed, object is " + object, e);
 		}
@@ -114,7 +114,7 @@ public class RPObjectChangeDispatcher {
 			fixContainers(changes);
 			fireChangedAdded(object, changes, user);
 			object.applyDifferences(changes, null);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.debug("dispatchModifyAdded failed, object is " + object
 					+ ", changes is " + changes, e);
 		}
@@ -131,8 +131,8 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	public void dispatchModifyRemoved(RPObject object, RPObject changes,
-			boolean user) {
+	public void dispatchModifyRemoved(final RPObject object, final RPObject changes,
+			final boolean user) {
 		if (object != null) {
 			try {
 				logger.debug("Object(" + object.getID() + ") modified in client");
@@ -145,7 +145,7 @@ public class RPObjectChangeDispatcher {
 
 				logger.debug("Modified(" + object + ") modified in client");
 				logger.debug("Changes(" + changes + ") modified in client");
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("dispatchModifyRemoved failed, object is " + object + ", changes is " + changes, e);
 			}
 		} else {
@@ -156,7 +156,7 @@ public class RPObjectChangeDispatcher {
 
 	protected static void buildIDPath(final StringBuilder sbuf,
 			final RPObject object) {
-		RPSlot slot = object.getContainerSlot();
+		final RPSlot slot = object.getContainerSlot();
 
 		if (slot != null) {
 			buildIDPath(sbuf, object.getContainer());
@@ -174,8 +174,8 @@ public class RPObjectChangeDispatcher {
 	 * @param object whose slots shall be fixed.
 	 */
 	protected void fixContainers(final RPObject object) {
-		for (RPSlot slot : object.slots()) {
-			for (RPObject sobject : slot) {
+		for (final RPSlot slot : object.slots()) {
+			for (final RPObject sobject : slot) {
 				if (!sobject.isContained()) {
 					logger.debug("Fixing container: " + slot);
 					sobject.setContainer(object, slot);
@@ -194,7 +194,7 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireAdded(RPObject object, boolean user) {
+	protected void fireAdded(final RPObject object, final boolean user) {
 
 		/*
 		 * Call before children have been notified
@@ -208,10 +208,10 @@ public class RPObjectChangeDispatcher {
 		/*
 		 * Walk each slot
 		 */
-		for (RPSlot slot : object.slots()) {
-			String slotName = slot.getName();
+		for (final RPSlot slot : object.slots()) {
+			final String slotName = slot.getName();
 
-			for (RPObject sobject : slot) {
+			for (final RPObject sobject : slot) {
 				fireAdded(object, slotName, sobject, user);
 			}
 		}
@@ -257,13 +257,13 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireChangedAdded(RPObject object, RPObject changes,
-			boolean user) {
+	protected void fireChangedAdded(final RPObject object, final RPObject changes,
+			final boolean user) {
 
 		/*
 		 * Walk each slot
 		 */
-		for (RPSlot cslot : changes.slots()) {
+		for (final RPSlot cslot : changes.slots()) {
 			if (cslot.size() != 0) {
 				fireChangedAdded(object, cslot, user);
 			}
@@ -290,8 +290,8 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireChangedAdded(RPObject object, RPSlot cslot, boolean user) {
-		String slotName = cslot.getName();
+	protected void fireChangedAdded(final RPObject object, final RPSlot cslot, final boolean user) {
+		final String slotName = cslot.getName();
 		RPSlot slot;
 
 		/*
@@ -306,11 +306,11 @@ public class RPObjectChangeDispatcher {
 		/*
 		 * Walk the changes
 		 */
-		for (RPObject schanges : cslot) {
-			RPObject.ID id = schanges.getID();
+		for (final RPObject schanges : cslot) {
+			final RPObject.ID id = schanges.getID();
 
 			if ((slot != null) && slot.has(id)) {
-				RPObject sobject = slot.get(id);
+				final RPObject sobject = slot.get(id);
 
 				listener.onSlotChangedAdded(object, slotName, sobject, schanges);
 
@@ -341,8 +341,8 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPObject changes,
-			boolean user) {
+	protected void fireChangedRemoved(final RPObject object, final RPObject changes,
+			final boolean user) {
 		
 		/*
 		 * Call before children have been notified
@@ -356,7 +356,7 @@ public class RPObjectChangeDispatcher {
 		/*
 		 * Walk each slot
 		 */
-		for (RPSlot cslot : changes.slots()) {
+		for (final RPSlot cslot : changes.slots()) {
 			if (cslot.size() != 0) {
 				fireChangedRemoved(object, cslot, user);
 			}
@@ -374,20 +374,20 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPSlot cslot,
-			boolean user) {
-		String slotName = cslot.getName();
+	protected void fireChangedRemoved(final RPObject object, final RPSlot cslot,
+			final boolean user) {
+		final String slotName = cslot.getName();
 
 		/*
 		 * Find the original slot entry
 		 */
-		RPSlot slot = object.getSlot(slotName);
+		final RPSlot slot = object.getSlot(slotName);
 
 		/*
 		 * Walk the changes
 		 */
-		for (RPObject schanges : cslot) {
-			RPObject sobject = slot.get(schanges.getID());
+		for (final RPObject schanges : cslot) {
+			final RPObject sobject = slot.get(schanges.getID());
 
 			// TODO: Find out why this happens with bank contents
 			if (sobject == null) {
@@ -422,14 +422,14 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	protected void fireRemoved(RPObject object, boolean user) {
+	protected void fireRemoved(final RPObject object, final boolean user) {
 		/*
 		 * Walk each slot
 		 */
-		for (RPSlot slot : object.slots()) {
-			String slotName = slot.getName();
+		for (final RPSlot slot : object.slots()) {
+			final String slotName = slot.getName();
 
-			for (RPObject sobject : slot) {
+			for (final RPObject sobject : slot) {
 				fireRemoved(object, slotName, sobject, user);
 			}
 		}

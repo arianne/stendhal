@@ -50,7 +50,7 @@ public class WtWindowManager {
 	private static WtWindowManager instance;
 
 	/** maps the window names to their configs. */
-	private Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
+	private final Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
 
 	/** no public constructor. */
 	private WtWindowManager() {
@@ -75,10 +75,10 @@ public class WtWindowManager {
 	 * @param x
 	 * @param y
 	 */
-	public void setDefaultProperties(String name, boolean minimized, int x,
-			int y) {
+	public void setDefaultProperties(final String name, final boolean minimized, final int x,
+			final int y) {
 		if (!configs.containsKey(name)) {
-			WindowConfiguration config = new WindowConfiguration(name);
+			final WindowConfiguration config = new WindowConfiguration(name);
 			config.readFromProperties(properties, minimized, x, y, true);
 			configs.put(name, config);
 		}
@@ -86,23 +86,23 @@ public class WtWindowManager {
 
 	/** saves the current settings to a file. */
 	public void save() {
-		StringBuilder buf = new StringBuilder();
-		for (WindowConfiguration config : configs.values()) {
+		final StringBuilder buf = new StringBuilder();
+		for (final WindowConfiguration config : configs.values()) {
 			buf.append(config.writeToPropertyString());
 		}
-		for (Object key : properties.keySet()) {
+		for (final Object key : properties.keySet()) {
 			if (key.toString().startsWith("config.")) {
 				buf.append(key.toString() + "=" + properties.get(key) + "\n");
 			}
 		}
 
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true,
+			final OutputStream os = Persistence.get().getOutputStream(true,
 					"stendhal", FILE_NAME);
-			OutputStreamWriter writer = new OutputStreamWriter(os);
+			final OutputStreamWriter writer = new OutputStreamWriter(os);
 			writer.append(buf.toString());
 			writer.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			// ignore exception
 			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,
 					e);
@@ -113,11 +113,11 @@ public class WtWindowManager {
 	public void read() {
 		properties = new Properties();
 		try {
-			InputStream is = Persistence.get().getInputStream(true, "stendhal",
+			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
 					FILE_NAME);
 			properties.load(is);
 			is.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			// ignore exception
 		}
 	}
@@ -126,8 +126,8 @@ public class WtWindowManager {
 	 * @param panel
 	 * @return the config. If it does not exist yet, a new one is created.
 	 */
-	private WindowConfiguration getConfig(ManagedWindow panel) {
-		String name = panel.getName();
+	private WindowConfiguration getConfig(final ManagedWindow panel) {
+		final String name = panel.getName();
 		WindowConfiguration winC = configs.get(name);
 		if (winC == null) {
 			winC = new WindowConfiguration(name);
@@ -149,7 +149,7 @@ public class WtWindowManager {
 	 */
 	// Hack: enables other parts of the program to read from this configuration
 	// file
-	public String getProperty(String key, String defaultValue) {
+	public String getProperty(final String key, final String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
 
@@ -165,7 +165,7 @@ public class WtWindowManager {
 	 */
 	// Hack: enables other parts of the program to read from this configuration
 	// file
-	public String setProperty(String key, String defaultValue) {
+	public String setProperty(final String key, final String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
 
@@ -175,8 +175,8 @@ public class WtWindowManager {
 	 * 
 	 * @param panel
 	 */
-	public void formatWindow(ManagedWindow panel) {
-		WindowConfiguration config = getConfig(panel);
+	public void formatWindow(final ManagedWindow panel) {
+		final WindowConfiguration config = getConfig(panel);
 		if (config == null) {
 			// window not supervised
 			return;
@@ -194,8 +194,8 @@ public class WtWindowManager {
 	 * @param x
 	 * @param y
 	 */
-	public void moveTo(ManagedWindow panel, int x, int y) {
-		WindowConfiguration config = getConfig(panel);
+	public void moveTo(final ManagedWindow panel, final int x, final int y) {
+		final WindowConfiguration config = getConfig(panel);
 		config.x = x;
 		config.y = y;
 	}
@@ -206,14 +206,14 @@ public class WtWindowManager {
 	 * @param panel
 	 * @param state
 	 */
-	public void setMinimized(ManagedWindow panel, boolean state) {
-		WindowConfiguration config = getConfig(panel);
+	public void setMinimized(final ManagedWindow panel, final boolean state) {
+		final WindowConfiguration config = getConfig(panel);
 
 		config.minimized = state;
 	}
 
-	public void setVisible(ManagedWindow panel, boolean state) {
-		WindowConfiguration config = getConfig(panel);
+	public void setVisible(final ManagedWindow panel, final boolean state) {
+		final WindowConfiguration config = getConfig(panel);
 
 		config.visible = state;
 	}
@@ -236,7 +236,7 @@ public class WtWindowManager {
 		/** y-pos. */
 		public int y;
 
-		public WindowConfiguration(String name) {
+		public WindowConfiguration(final String name) {
 			this.name = name;
 		}
 
@@ -261,7 +261,7 @@ public class WtWindowManager {
 		 * 
 		 * @param props
 		 */
-		public void writeToProperties(Properties props) {
+		public void writeToProperties(final Properties props) {
 			props.put("window." + name + ".minimized", minimized);
 			props.put("window." + name + ".visible", visible);
 			props.put("window." + name + ".x", x);
@@ -277,9 +277,9 @@ public class WtWindowManager {
 		 * @param defaultY
 		 * @param defaultVisible
 		 */
-		public void readFromProperties(Properties props,
-				boolean defaultMinimized, int defaultX, int defaultY,
-				boolean defaultVisible) {
+		public void readFromProperties(final Properties props,
+				final boolean defaultMinimized, final int defaultX, final int defaultY,
+				final boolean defaultVisible) {
 			minimized = Boolean.parseBoolean(props.getProperty("window." + name
 					+ ".minimized", Boolean.toString(minimized)));
 			visible = Boolean.parseBoolean(props.getProperty("window." + name
@@ -296,7 +296,7 @@ public class WtWindowManager {
 		 * @param props
 		 * @param defaults
 		 */
-		public void readFromProperties(Properties props, ManagedWindow defaults) {
+		public void readFromProperties(final Properties props, final ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY(), defaults.isVisible());
 		}

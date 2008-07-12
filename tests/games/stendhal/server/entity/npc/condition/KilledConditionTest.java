@@ -66,7 +66,7 @@ public class KilledConditionTest {
 
 	@Test
 	public final void testToString() {
-		KilledCondition kc = new KilledCondition("rat");
+		final KilledCondition kc = new KilledCondition("rat");
 		assertEquals("KilledCondition <[rat]>", kc.toString());
 	}
 

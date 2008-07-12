@@ -23,7 +23,7 @@ class DropAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		int quantity;
 		String itemName;
 
@@ -31,7 +31,7 @@ class DropAction implements SlashAction {
 		if (params[0].matches("[0-9].*")) {
     		try {
     			quantity = Integer.parseInt(params[0]);
-    		} catch (NumberFormatException ex) {
+    		} catch (final NumberFormatException ex) {
     			StendhalUI.get().addEventLine("Invalid quantity: " + params[0]);
     			return true;
     		}
@@ -42,18 +42,18 @@ class DropAction implements SlashAction {
 			itemName = (params[0] + " " + remainder).trim();
 		}
 
-		String singularItemName = Grammar.singular(itemName);
+		final String singularItemName = Grammar.singular(itemName);
 
-		for (String slotName : Constants.CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			int itemID = User.get().findItem(slotName, itemName);
 
 			// search again using the singular, in case it was a plural item name
-			if (itemID == -1 && !itemName.equals(singularItemName)) {
+			if ((itemID == -1) && !itemName.equals(singularItemName)) {
 				itemID = User.get().findItem(slotName, singularItemName);
 			}
 
 			if (itemID != -1) {
-				RPAction drop = new RPAction();
+				final RPAction drop = new RPAction();
 
 				drop.put(EquipActionConsts.TYPE, "drop");
 				drop.put(EquipActionConsts.BASE_OBJECT, User.get().getObjectID());

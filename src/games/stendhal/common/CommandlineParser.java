@@ -14,7 +14,7 @@ public class CommandlineParser {
 
 	protected final CharacterIterator ci;
 
-	public CommandlineParser(String text) {
+	public CommandlineParser(final String text) {
 		ci = new StringCharacterIterator(text);
 	}
 
@@ -33,7 +33,7 @@ public class CommandlineParser {
 	 * @param errors
 	 * @return parameter
 	 */
-	public String getNextParameter(ErrorDrain errors) {
+	public String getNextParameter(final ErrorDrain errors) {
 		skipWhitespace();
 
 		char ch = ci.current();
@@ -86,13 +86,13 @@ public class CommandlineParser {
 	 * @param errors
 	 * @return parameter list
 	 */
-	public List<String> readAllParameters(ErrorDrain errors) {
-		List<String> params = new Vector<String>();
+	public List<String> readAllParameters(final ErrorDrain errors) {
+		final List<String> params = new Vector<String>();
 
 		do {
 			skipWhitespace();
 
-			String param = getNextParameter(errors);
+			final String param = getNextParameter(errors);
 
 			if (param == null) {
 				break;

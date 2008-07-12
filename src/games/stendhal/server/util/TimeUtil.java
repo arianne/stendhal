@@ -31,8 +31,8 @@ public class TimeUtil {
 	 * 
 	 * @return A text representation.
 	 */
-	public static String approxTimeUntil(int seconds) {
-		StringBuilder sbuf = new StringBuilder();
+	public static String approxTimeUntil(final int seconds) {
+		final StringBuilder sbuf = new StringBuilder();
 		approxTimeUntil(sbuf, seconds);
 
 		return sbuf.toString();
@@ -46,7 +46,7 @@ public class TimeUtil {
 	 * @param seconds
 	 *            The number of seconds till/past (in positive values).
 	 */
-	public static void approxTimeUntil(StringBuilder sbuf, int seconds) {
+	public static void approxTimeUntil(final StringBuilder sbuf, final int seconds) {
 		if (approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
 			return;
 		}
@@ -81,8 +81,8 @@ public class TimeUtil {
 	 * @return <code>true</code> if unit used, <code>false</code> if the
 	 *         amount was too small to apply.
 	 */
-	protected static boolean approxUnit(StringBuilder sbuf, int amount,
-			int size, String name) {
+	protected static boolean approxUnit(final StringBuilder sbuf, final int amount,
+			final int size, final String name) {
 		int count = amount / size;
 		int remainder;
 
@@ -128,7 +128,7 @@ public class TimeUtil {
 	 * 
 	 * @return A text representation.
 	 */
-	public static String timeUntil(int seconds) {
+	public static String timeUntil(final int seconds) {
 		return timeUntil(seconds, false);
 	}
 
@@ -142,8 +142,8 @@ public class TimeUtil {
 	 * 
 	 * @return A text representation.
 	 */
-	public static String timeUntil(int seconds, boolean forceSeconds) {
-		StringBuilder sbuf = new StringBuilder();
+	public static String timeUntil(final int seconds, final boolean forceSeconds) {
+		final StringBuilder sbuf = new StringBuilder();
 		timeUntil(sbuf, seconds, forceSeconds);
 
 		return sbuf.toString();
@@ -157,7 +157,7 @@ public class TimeUtil {
 	 * @param seconds
 	 *            The number of seconds till/past (in positive values).
 	 */
-	public static void timeUntil(StringBuilder sbuf, int seconds) {
+	public static void timeUntil(final StringBuilder sbuf, final int seconds) {
 		timeUntil(sbuf, seconds, false);
 	}
 
@@ -171,8 +171,8 @@ public class TimeUtil {
 	 * @param forceSeconds
 	 *            Show seconds even if over a minute.
 	 */
-	public static void timeUntil(StringBuilder sbuf, int seconds,
-			boolean forceSeconds) {
+	public static void timeUntil(final StringBuilder sbuf, int seconds,
+			final boolean forceSeconds) {
 		boolean appended = false;
 		int count = seconds / SECONDS_IN_WEEK;
 

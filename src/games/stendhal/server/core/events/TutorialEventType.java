@@ -47,7 +47,7 @@ public enum TutorialEventType {
 	 * @param message
 	 *            human readable message
 	 */
-	private TutorialEventType(String message) {
+	private TutorialEventType(final String message) {
 		this.message = message;
 	}
 

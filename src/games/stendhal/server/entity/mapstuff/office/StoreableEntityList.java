@@ -33,12 +33,12 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 	 */
 	// the class object is needed, because generic type variables (T)
 	// cannot be used in instanceof.
-	StoreableEntityList(StendhalRPZone zone, Class<T> clazz) {
+	StoreableEntityList(final StendhalRPZone zone, final Class<T> clazz) {
 		this.zone = zone;
 		this.clazz = clazz;
 	}
 
-	public StoreableEntityList(StendhalRPZone zone, Shape shape, Class<T> clazz) {
+	public StoreableEntityList(final StendhalRPZone zone, final Shape shape, final Class<T> clazz) {
 	    this(zone, clazz);
 	    this.shape = shape;
     }
@@ -50,8 +50,8 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * @return true in case the entity was added successfully; 
      * 				false in case no free spot for it was found
      */
-	public boolean add(T entity) {
-		boolean success = calculatePosition(entity);
+	public boolean add(final T entity) {
+		final boolean success = calculatePosition(entity);
 		if (!success) {
 			return false;
 		}
@@ -67,12 +67,12 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 	 * @return true, in case a spot was found or this entity should 
 	 * 				not be place in the zone; false otherwise
 	 */
-	private boolean calculatePosition(T entity) {
+	private boolean calculatePosition(final T entity) {
 		if (shape == null) {
 			return true;
 		}
 
-		Rectangle rect = shape.getBounds();
+		final Rectangle rect = shape.getBounds();
 		for (int x = rect.x; x < rect.x + rect.width; x++) {
 			for (int y = rect.y; y < rect.y + rect.height; y++) {
 				if (shape.contains(x, y)) {
@@ -93,9 +93,9 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * @param identifier name of entity
      * @return storeable entity or <code>null</code> in case there is none
      */
-    public T getByName(String identifier) {
-    	List<T> entities = getList();
-    	for (T entity : entities) {
+    public T getByName(final String identifier) {
+    	final List<T> entities = getList();
+    	for (final T entity : entities) {
     		if (getName(entity).equals(identifier)) {
     			return entity;
     		}
@@ -109,10 +109,10 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * @param identifier name of entity
 	 * @return if removed successfully
      */
-    public boolean removeByName(String identifier) {
-    	List<T> entities = getList();
+    public boolean removeByName(final String identifier) {
+    	final List<T> entities = getList();
     	boolean changed = false;
-    	for (T entity : entities) {
+    	for (final T entity : entities) {
     		if (getName(entity).equals(identifier)) {
     			zone.remove(entity);
     			zone.storeToDatabase();
@@ -129,25 +129,25 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
      * @return List of storeable entities.
      */
     protected List<T> getList() {
-    	List<T> res = new LinkedList<T>();
-    	for (RPObject object : zone) {
+    	final List<T> res = new LinkedList<T>();
+    	for (final RPObject object : zone) {
     		if (clazz.isInstance(object)) {
-    			T entity = clazz.cast(object);
+    			final T entity = clazz.cast(object);
     			res.add(entity);
     		}
     	}
     	return res;
     }
 
-	protected void setupTurnNotifier(int notifyDelta) {
+	protected void setupTurnNotifier(final int notifyDelta) {
 		this.notifyDelta = notifyDelta;
 		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
 	}
 
-    public void onTurnReached(int currentTurn) {
+    public void onTurnReached(final int currentTurn) {
 		boolean modified = false;
-    	List<T> entities = getList();
-    	for (T entity : entities) {
+    	final List<T> entities = getList();
+    	for (final T entity : entities) {
     		if (shouldExpire(entity)) {
     			zone.remove(entity);
     			modified = true;
@@ -163,7 +163,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 
 	protected abstract String getName(T entity);
 
-	protected boolean shouldExpire(T entity) {
+	protected boolean shouldExpire(final T entity) {
 		return false;
 	}
 

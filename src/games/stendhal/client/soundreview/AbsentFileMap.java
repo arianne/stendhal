@@ -14,12 +14,12 @@ public class AbsentFileMap implements Map<String, byte[]>, Nullable {
 
 	}
 
-	public boolean containsKey(Object key) {
+	public boolean containsKey(final Object key) {
 
 		return false;
 	}
 
-	public boolean containsValue(Object value) {
+	public boolean containsValue(final Object value) {
 
 		return false;
 	}
@@ -29,7 +29,7 @@ public class AbsentFileMap implements Map<String, byte[]>, Nullable {
 		return null;
 	}
 
-	public byte[] get(Object key) {
+	public byte[] get(final Object key) {
 
 		return null;
 	}
@@ -44,16 +44,16 @@ public class AbsentFileMap implements Map<String, byte[]>, Nullable {
 		return null;
 	}
 
-	public byte[] put(String key, byte[] value) {
+	public byte[] put(final String key, final byte[] value) {
 		throw new IllegalStateException("not yet created");
 	}
 
-	public void putAll(Map<? extends String, ? extends byte[]> t) {
+	public void putAll(final Map<? extends String, ? extends byte[]> t) {
 		throw new IllegalStateException("not yet created");
 
 	}
 
-	public byte[] remove(Object key) {
+	public byte[] remove(final Object key) {
 
 		return null;
 	}

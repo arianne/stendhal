@@ -11,23 +11,23 @@ public class AlterQuestAction extends AdministrationAction {
 	private static final int REQUIREDLEVEL = 900;
 
 	@Override
-	protected void perform(Player player, RPAction action) {
+	protected void perform(final Player player, final RPAction action) {
 		
 
 		// find player
-		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
-		Player target = rules.getPlayer(action.get("target"));
+		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+		final Player target = rules.getPlayer(action.get("target"));
 		if (target != null) {
 
 			// old state
-			String questName = action.get("name");
+			final String questName = action.get("name");
 			String oldQuestState = null;
 			if (target.hasQuest(questName)) {
 				oldQuestState = target.getQuest(questName);
 			}
 
 			// new state (or null to remove the quest)
-			String newQuestState = action.get("state");
+			final String newQuestState = action.get("state");
 			
 
 			// set the quest

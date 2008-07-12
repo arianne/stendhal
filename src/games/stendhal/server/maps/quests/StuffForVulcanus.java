@@ -61,19 +61,19 @@ public class StuffForVulcanus extends AbstractQuest {
 	private static final String QUEST_SLOT = "immortalsword_quest";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Vulcanus");
+		final SpeakerNPC npc = npcs.get("Vulcanus");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -91,7 +91,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					engine.say("I will need several things: "
 						+ REQUIRED_IRON
 						+ " iron, "
@@ -125,15 +125,15 @@ public class StuffForVulcanus extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Vulcanus");
+		final SpeakerNPC npc = npcs.get("Vulcanus");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					int neededIron = REQUIRED_IRON
 							- Integer.parseInt(tokens[1]);
@@ -145,12 +145,12 @@ public class StuffForVulcanus extends AbstractQuest {
 							- Integer.parseInt(tokens[4]);
 					boolean missingSomething = false;
 
-					if (!missingSomething && neededIron > 0) {
+					if (!missingSomething && (neededIron > 0)) {
 						if (player.isEquipped("iron", neededIron)) {
 							player.drop("iron", neededIron);
 							neededIron = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("iron");
+							final int amount = player.getNumberOfEquipped("iron");
 							if (amount > 0) {
 								player.drop("iron", amount);
 								neededIron -= amount;
@@ -164,12 +164,12 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededWoodLogs > 0) {
+					if (!missingSomething && (neededWoodLogs > 0)) {
 						if (player.isEquipped("wood", neededWoodLogs)) {
 							player.drop("wood", neededWoodLogs);
 							neededWoodLogs = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("wood");
+							final int amount = player.getNumberOfEquipped("wood");
 							if (amount > 0) {
 								player.drop("wood", amount);
 								neededWoodLogs -= amount;
@@ -182,12 +182,12 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededGoldBars > 0) {
+					if (!missingSomething && (neededGoldBars > 0)) {
 						if (player.isEquipped("gold bar", neededGoldBars)) {
 							player.drop("gold bar", neededGoldBars);
 							neededGoldBars = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("gold bar");
+							final int amount = player.getNumberOfEquipped("gold bar");
 							if (amount > 0) {
 								player.drop("gold bar", amount);
 								neededGoldBars -= amount;
@@ -198,12 +198,12 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && neededGiantHearts > 0) {
+					if (!missingSomething && (neededGiantHearts > 0)) {
 						if (player.isEquipped("giant heart", neededGiantHearts)) {
 							player.drop("giant heart", neededGiantHearts);
 							neededGiantHearts = 0;
 						} else {
-							int amount = player.getNumberOfEquipped("giant heart");
+							final int amount = player.getNumberOfEquipped("giant heart");
 							if (amount > 0) {
 								player.drop("giant heart", amount);
 								neededGiantHearts -= amount;
@@ -240,19 +240,19 @@ public class StuffForVulcanus extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"forging;");
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
-					long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining > 0L) {
@@ -265,7 +265,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 					player.addXP(15000);
 					player.addKarma(25);
-					Item magicSword = SingletonRepository.getEntityManager().getItem("immortal sword");
+					final Item magicSword = SingletonRepository.getEntityManager().getItem("immortal sword");
 					magicSword.setBoundTo(player.getName());
 					player.equip(magicSword, true);
 					player.notifyWorldAboutChanges();
@@ -280,16 +280,16 @@ public class StuffForVulcanus extends AbstractQuest {
 			null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-					int neededIron = REQUIRED_IRON
+					final int neededIron = REQUIRED_IRON
 							- Integer.parseInt(tokens[1]);
-					int neededWoodLogs = REQUIRED_WOOD
+					final int neededWoodLogs = REQUIRED_WOOD
 							- Integer.parseInt(tokens[2]);
-					int neededGoldBars = REQUIRED_GOLD_BAR
+					final int neededGoldBars = REQUIRED_GOLD_BAR
 							- Integer.parseInt(tokens[3]);
-					int neededGiantHearts = REQUIRED_GIANT_HEART
+					final int neededGiantHearts = REQUIRED_GIANT_HEART
 							- Integer.parseInt(tokens[4]);
 
 					engine.say("I will need " + neededIron + " #iron, "
@@ -333,13 +333,13 @@ public class StuffForVulcanus extends AbstractQuest {
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}

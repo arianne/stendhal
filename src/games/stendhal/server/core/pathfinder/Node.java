@@ -5,9 +5,9 @@ package games.stendhal.server.core.pathfinder;
 
 public class Node {
 
-	private int x;
+	private final int x;
 
-	private int y;
+	private final int y;
 
 	@Override
 	public int hashCode() {
@@ -19,7 +19,7 @@ public class Node {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -39,7 +39,7 @@ public class Node {
 		return true;
 	}
 
-	public Node(int x, int y) {
+	public Node(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 	}

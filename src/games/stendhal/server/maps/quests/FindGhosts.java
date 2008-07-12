@@ -59,7 +59,7 @@ public class FindGhosts extends AbstractQuest {
 		Arrays.asList("mary", "ben", "zak", "goran");
 
 	@Override
-	public boolean isCompleted(Player player) {
+	public boolean isCompleted(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return false;
 		}
@@ -67,7 +67,7 @@ public class FindGhosts extends AbstractQuest {
 		return missingNames(player).size() == 0;
 	}
 
-	private List<String> missingNames(Player player) {
+	private List<String> missingNames(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return NEEDED_SPIRITS;
 		}
@@ -75,13 +75,13 @@ public class FindGhosts extends AbstractQuest {
 		 * the format of the list quest slot is
 		 * "looking;name;name;...:said;name;name;..."
 		 */
-		String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
-		String[] doneAndFound = npcDoneText.split(":");
-		String[] done = doneAndFound[1].split(";");
+		final String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
+		final String[] doneAndFound = npcDoneText.split(":");
+		final String[] done = doneAndFound[1].split(";");
 
-		List<String> doneList = Arrays.asList(done);
-		List<String> result = new LinkedList<String>();
-		for (String name : NEEDED_SPIRITS) {
+		final List<String> doneList = Arrays.asList(done);
+		final List<String> result = new LinkedList<String>();
+		for (final String name : NEEDED_SPIRITS) {
 			if (!doneList.contains(name)) {
 				result.add(name);
 			}
@@ -91,7 +91,7 @@ public class FindGhosts extends AbstractQuest {
 	}
 
 	private void askingStep() {
-		SpeakerNPC npc = npcs.get("Carena");
+		final SpeakerNPC npc = npcs.get("Carena");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -145,7 +145,7 @@ public class FindGhosts extends AbstractQuest {
 
 	private void tellingStep() {
 
-		SpeakerNPC npc = npcs.get("Carena");
+		final SpeakerNPC npc = npcs.get("Carena");
 
 		// the player returns to Carena after having started the quest, or found
 		// some ghosts.
@@ -158,25 +158,25 @@ public class FindGhosts extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Expression item = sentence.getTriggerExpression();
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final Expression item = sentence.getTriggerExpression();
 					TriggerList missing = new TriggerList(missingNames(player));
 
-					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
-					String[] npcDoneText = npcQuestText.split(":");
-	    			String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
-	    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
-					TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
-					TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
+					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
+					final String[] npcDoneText = npcQuestText.split(":");
+	    			final String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
+	    			final String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
+					final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
+					final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
 					String reply = "";
 					String itemName = item.getOriginal();
 
-					Expression found = missing.find(item);
+					final Expression found = missing.find(item);
 					if (found != null) {
 						itemName = found.getOriginal();
 					}
 
-					if (found != null && looking.contains(item) && !said.contains(item)) {
+					if ((found != null) && looking.contains(item) && !said.contains(item)) {
 						// we haven't said the name yet so we add it to the list
 						player.setQuest(QUEST_SLOT, lookingStr
 								+ ":" + saidStr + ";" + itemName);
@@ -184,7 +184,7 @@ public class FindGhosts extends AbstractQuest {
 					} else if (!looking.contains(item)) {
 						// we have said it was a valid name but haven't met them
 						reply = "I don't believe you've spoken with any spirit of that name.";
-					} else if (found == null && said.contains(item)) {
+					} else if ((found == null) && said.contains(item)) {
 						// we have said the name so we are stupid!
 						reply = "You've told me that name already, thanks.";
 					}
@@ -209,7 +209,7 @@ public class FindGhosts extends AbstractQuest {
 				}
 			});
 
-		List<String> triggers = new ArrayList<String>();
+		final List<String> triggers = new ArrayList<String>();
 		triggers.add(ConversationPhrases.NO_EXPRESSION);
 		triggers.addAll(ConversationPhrases.GOODBYE_MESSAGES);
 		npc.add(ConversationStates.QUESTION_1, triggers, null,

@@ -21,7 +21,7 @@ public class FileTree extends JTree {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public FileTree(String path) throws FileNotFoundException {
+	public FileTree(final String path) throws FileNotFoundException {
 		// Create the JTree itself
 		super((TreeModel) null);
 
@@ -29,7 +29,7 @@ public class FileTree extends JTree {
 		putClientProperty("JTree.lineStyle", "Angled");
 
 		// Create the first node
-		FileTreeNode rootNode = new FileTreeNode(null, path);
+		final FileTreeNode rootNode = new FileTreeNode(null, path);
 
 		// Populate the root node with its subdirectories
 		rootNode.populateDirectories(true);
@@ -41,8 +41,8 @@ public class FileTree extends JTree {
 
 	// Returns the full pathname for a path, or null
 	// if not a known path
-	public String getPathName(TreePath path) {
-		Object o = path.getLastPathComponent();
+	public String getPathName(final TreePath path) {
+		final Object o = path.getLastPathComponent();
 		if (o instanceof FileTreeNode) {
 			return ((FileTreeNode) o).file.getAbsolutePath();
 		}
@@ -50,8 +50,8 @@ public class FileTree extends JTree {
 	}
 
 	// Returns the File for a path, or null if not a known path
-	public File getFile(TreePath path) {
-		Object o = path.getLastPathComponent();
+	public File getFile(final TreePath path) {
+		final Object o = path.getLastPathComponent();
 		if (o instanceof FileTreeNode) {
 			return ((FileTreeNode) o).file;
 		}
@@ -66,7 +66,7 @@ public class FileTree extends JTree {
 		 */
 		private static final long serialVersionUID = 3223106240309250204L;
 
-		public FileTreeNode(File parent, String name) throws FileNotFoundException {
+		public FileTreeNode(final File parent, final String name) throws FileNotFoundException {
 			this.name = name;
 
 			// See if this node exists and whether it
@@ -103,7 +103,7 @@ public class FileTree extends JTree {
 		// if the "descend" flag is true. We only descend once,
 		// to avoid recursing the whole subtree.
 		// Returns true if some nodes were added
-		boolean populateDirectories(boolean descend) {
+		boolean populateDirectories(final boolean descend) {
 			boolean addedNodes = false;
 			// Do this only once
 			if (!populated) {
@@ -114,14 +114,14 @@ public class FileTree extends JTree {
 					interim = false;
 				}
 				// Get list of contents
-				String[] names = file.list();
+				final String[] names = file.list();
 
 				// Process the directories
 				for (int i = 0; i < names.length; i++) {
-					String nameTemp = names[i];
+					final String nameTemp = names[i];
 					try {
 						// if (d.isDirectory()) {
-						FileTreeNode node = new FileTreeNode(file, nameTemp);
+						final FileTreeNode node = new FileTreeNode(file, nameTemp);
 						this.add(node);
 						if (descend) {
 							node.populateDirectories(false);
@@ -135,7 +135,7 @@ public class FileTree extends JTree {
 						// else{
 
 						// }
-					} catch (Throwable t) {
+					} catch (final Throwable t) {
 						// Ignore phantoms or access problems
 					}
 				}
@@ -182,21 +182,21 @@ public class FileTree extends JTree {
 
 	// Inner class that handles Tree Expansion Events
 	protected static class TreeExpansionHandler implements TreeExpansionListener {
-		public void treeExpanded(TreeExpansionEvent evt) {
+		public void treeExpanded(final TreeExpansionEvent evt) {
 			// The expanded path
-			TreePath path = evt.getPath();
+			final TreePath path = evt.getPath();
 			// The tree
-			JTree tree = (JTree) evt.getSource();
+			final JTree tree = (JTree) evt.getSource();
 
 			// Get the last component of the path and
 			// arrange to have it fully populated.
-			FileTreeNode node = (FileTreeNode) path.getLastPathComponent();
+			final FileTreeNode node = (FileTreeNode) path.getLastPathComponent();
 			if (node.populateDirectories(true)) {
 				((DefaultTreeModel) tree.getModel()).nodeStructureChanged(node);
 			}
 		}
 
-		public void treeCollapsed(TreeExpansionEvent evt) {
+		public void treeCollapsed(final TreeExpansionEvent evt) {
 			// Nothing to do
 		}
 	}

@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Was one of theses trigger phrases said? (Use with a ""-trigger in npc.add)
  */
 public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
-	private TriggerList triggers;
+	private final TriggerList triggers;
 
 	/**
 	 * Creates a new TriggerInListCondition.
@@ -23,7 +23,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	 * @param trigger
 	 *            list of trigger
 	 */
-	public TriggerInListCondition(String... trigger) {
+	public TriggerInListCondition(final String... trigger) {
 		this(Arrays.asList(trigger));
 	}
 
@@ -33,12 +33,12 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	 * @param trigger
 	 *            list of trigger
 	 */
-	public TriggerInListCondition(List<String> trigger) {
+	public TriggerInListCondition(final List<String> trigger) {
 		triggers = new TriggerList(trigger);
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return triggers.contains(sentence.getTriggerExpression());
 	}
 
@@ -53,7 +53,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

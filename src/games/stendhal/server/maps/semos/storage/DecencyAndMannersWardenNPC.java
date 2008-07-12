@@ -19,16 +19,16 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosStorageArea(zone, attributes);
 	}
 
-	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Ketteh Wehoh") {
+	private void buildSemosStorageArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Ketteh Wehoh") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(21, 6));
 				nodes.add(new Node(29, 6));
 				nodes.add(new Node(29, 10));

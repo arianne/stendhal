@@ -25,7 +25,7 @@ public class PunctuationParserTest {
 	}
 	@Test
 	public final void tesNullEntry() {
-		PunctuationParser p = new PunctuationParser(null);
+		final PunctuationParser p = new PunctuationParser(null);
 		assertEquals(null, p.getText());
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());
@@ -34,8 +34,8 @@ public class PunctuationParserTest {
 	}
 	@Test
 	public final void testOnlyPunctuation() {
-		String s = ".,?!";
-		PunctuationParser p = new PunctuationParser(s);
+		final String s = ".,?!";
+		final PunctuationParser p = new PunctuationParser(s);
 		assertEquals("", p.getText());
 		assertEquals(".,?!", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());
@@ -43,7 +43,7 @@ public class PunctuationParserTest {
 	
 	@Test
 	public final void testEmptyString() {
-		PunctuationParser p = new PunctuationParser("");
+		final PunctuationParser p = new PunctuationParser("");
 		assertEquals("", p.getText());
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());

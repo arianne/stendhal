@@ -46,7 +46,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 					}
 				});
@@ -58,7 +58,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (ferrystate == Status.ANCHORED_AT_MAINLAND) {
 							npc.say("In order to board the ferry, you have to pay " + AthorFerry.PRICE
 						+ " gold. Do you want to pay?");
@@ -76,7 +76,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
 
@@ -94,7 +94,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				null);
 
 				new AthorFerry.FerryListener() {
-					public void onNewFerryState(Status status) {
+					public void onNewFerryState(final Status status) {
 						ferrystate = status;
 						switch (status) {
 						case ANCHORED_AT_MAINLAND:

@@ -20,14 +20,14 @@ import java.util.Iterator;
 
 public class CollectionFilter<T> {
 
-	private ArrayList<FilterCriteria<T>> allFilterCriteria = new ArrayList<FilterCriteria<T>>();
+	private final ArrayList<FilterCriteria<T>> allFilterCriteria = new ArrayList<FilterCriteria<T>>();
 
 	/**
 	 * Adds a FilterCriteria to be used by the filter.
 	 * 
 	 * @param filterCriteria
 	 */
-	public void addFilterCriteria(FilterCriteria<T> filterCriteria) {
+	public void addFilterCriteria(final FilterCriteria<T> filterCriteria) {
 		allFilterCriteria.add(filterCriteria);
 	}
 
@@ -38,12 +38,12 @@ public class CollectionFilter<T> {
 	 * 
 	 * @param collection
 	 */
-	public void filter(Collection<T> collection) {
+	public void filter(final Collection<T> collection) {
 
 		if (collection != null) {
-			Iterator<T> iter = collection.iterator();
+			final Iterator<T> iter = collection.iterator();
 			while (iter.hasNext()) {
-				T o = iter.next();
+				final T o = iter.next();
 				if (!passesAllCriteria(o)) {
 					iter.remove();
 				}
@@ -61,7 +61,7 @@ public class CollectionFilter<T> {
 	 * @return a filtered copy of the input collection
 	 */
 	@SuppressWarnings("unchecked")
-    public Collection< ? extends T> filterCopy(Collection< ? extends T> inputCollection) {
+    public Collection< ? extends T> filterCopy(final Collection< ? extends T> inputCollection) {
 
 		Collection<T> outputCollection = null;
 
@@ -69,9 +69,9 @@ public class CollectionFilter<T> {
 
 			outputCollection = (Collection<T>) createObjectSameClass(inputCollection);
 
-			Iterator< ? extends T> iter = inputCollection.iterator();
+			final Iterator< ? extends T> iter = inputCollection.iterator();
 			while (iter.hasNext()) {
-				T o = iter.next();
+				final T o = iter.next();
 				if (passesAllCriteria(o)) {
 					outputCollection.add(o);
 				}
@@ -87,9 +87,9 @@ public class CollectionFilter<T> {
 	 * @param o
 	 * @return true if all criteria are passed
 	 */
-	private boolean passesAllCriteria(T o) {
+	private boolean passesAllCriteria(final T o) {
 		for (int i = 0; i < allFilterCriteria.size(); i++) {
-			FilterCriteria<T> filterCriteria = allFilterCriteria.get(i);
+			final FilterCriteria<T> filterCriteria = allFilterCriteria.get(i);
 			if (!filterCriteria.passes(o)) {
 				return false;
 			}
@@ -104,22 +104,22 @@ public class CollectionFilter<T> {
 	 * @return a new Instance of the same type as object passed
 	 */
 	@SuppressWarnings("unchecked")
-	public Object createObjectSameClass(Object object) {
+	public Object createObjectSameClass(final Object object) {
 
-		Class[] NO_ARGS = new Class[0];
+		final Class[] NO_ARGS = new Class[0];
 		Object sameClassObject = null;
 		try {
 			if (object != null) {
-				Constructor constructor = object.getClass().getConstructor(NO_ARGS);
+				final Constructor constructor = object.getClass().getConstructor(NO_ARGS);
 				sameClassObject = constructor.newInstance();
 			}
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 			
-		} catch (InstantiationException e) {
+		} catch (final InstantiationException e) {
 			
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			
 		}
 		return sameClassObject;

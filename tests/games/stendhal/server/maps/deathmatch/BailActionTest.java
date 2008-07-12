@@ -47,12 +47,12 @@ public class BailActionTest {
 
 	@Test
 	public void testBailNoDM() {
-		AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
 		adm.createNPC("th", 0, 0);
-		SpeakerNPC th = NPCList.get().get("th");
+		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
-		Engine en = th.getEngine();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Engine en = th.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
 		en.step(player, "bail");
 		assertEquals("Coward, you haven't even #started!", th.get("text"));
@@ -61,12 +61,12 @@ public class BailActionTest {
 
 	@Test
 	public void testBailDoneDM() {
-		AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
 		adm.createNPC("th", 0, 0);
-		SpeakerNPC th = NPCList.get().get("th");
+		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
-		Engine en = th.getEngine();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Engine en = th.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest("deathmatch", "done");
 		en.step(player, "bail");
@@ -77,12 +77,12 @@ public class BailActionTest {
 
 	@Test
 	public void testBailStartedDMNOhelmet() {
-		AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
 		adm.createNPC("th", 0, 0);
-		SpeakerNPC th = NPCList.get().get("th");
+		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
-		Engine en = th.getEngine();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Engine en = th.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest("deathmatch", "start");
 		en.step(player, "bail");
@@ -92,14 +92,14 @@ public class BailActionTest {
 
 	@Test
 	public void testFire() {
-		AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
 		adm.createNPC("th", 0, 0);
-		SpeakerNPC th = NPCList.get().get("th");
+		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
-		Engine en = th.getEngine();
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Engine en = th.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
-		Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
+		final Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
 		player.equip(helmet);
 		assertTrue(player.isEquipped("trophy helmet"));
 		helmet.put("def", 2);

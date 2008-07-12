@@ -17,7 +17,7 @@ import java.util.Map;
  * In Kirdneh open market .
  */
 public class KirdnehArmorGuyNPC implements ZoneConfigurator {
-    private ShopList shops = SingletonRepository.getShopList();
+    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -25,16 +25,16 @@ public class KirdnehArmorGuyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildlawrence(zone);
 	}
 
-	private void buildlawrence(StendhalRPZone zone) {
-		SpeakerNPC lawrence = new SpeakerNPC("Lawrence") {
+	private void buildlawrence(final StendhalRPZone zone) {
+		final SpeakerNPC lawrence = new SpeakerNPC("Lawrence") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(63, 95));
 				nodes.add(new Node(64, 95));				
 				nodes.add(new Node(64, 93));

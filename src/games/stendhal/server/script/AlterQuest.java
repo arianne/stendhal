@@ -15,7 +15,7 @@ import java.util.List;
 public class AlterQuest extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
 		// help text
 		if (args.size() < 2) {
@@ -24,12 +24,12 @@ public class AlterQuest extends ScriptImpl {
 		}
 
 		// find player
-		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
-		Player target = rules.getPlayer(args.get(0));
+		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+		final Player target = rules.getPlayer(args.get(0));
 		if (target != null) {
 
 			// old state
-			String questName = args.get(1);
+			final String questName = args.get(1);
 			String oldQuestState = null;
 			if (target.hasQuest(questName)) {
 				oldQuestState = target.getQuest(questName);

@@ -53,18 +53,18 @@ public class HelpTomi extends AbstractQuest {
 	private List<String> questTrigger;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith("done")) {
 			res.add("DONE");
 		}
@@ -72,7 +72,7 @@ public class HelpTomi extends AbstractQuest {
 	}
 	
 	private void step1() {
-		SpeakerNPC npc = npcs.get("tomi");
+		final SpeakerNPC npc = npcs.get("tomi");
 
 		// says quest or ice and doesn't have an ice sword and hasn't brought one before
 		npc.add(ConversationStates.ATTENDING,
@@ -109,14 +109,14 @@ public class HelpTomi extends AbstractQuest {
 				// done;N. We reward based on this number. If the quest slot isn't split like this and only 'done' 
 				// we assume it was just done once (sorry, guys)
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					int N;
 					// compatibility with old version
-					String questState = player.getQuest(QUEST_SLOT);
+					final String questState = player.getQuest(QUEST_SLOT);
 					if ("done".equals(questState)) {
 						N = 2;
 					} else {
-						String[] questparts = questState.split(";");
+						final String[] questparts = questState.split(";");
 						N = Integer.parseInt(questparts[1]) + 1;
 					}
 					player.drop("ice sword");

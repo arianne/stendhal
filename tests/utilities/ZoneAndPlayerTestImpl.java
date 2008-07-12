@@ -27,7 +27,7 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 	 *
 	 * @param zoneName
 	 */
-	protected ZoneAndPlayerTestImpl(String zoneName) {
+	protected ZoneAndPlayerTestImpl(final String zoneName) {
 		zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		assertNotNull(zone);
 	}
@@ -38,10 +38,10 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 	 * @param zoneName
 	 * @param zoneConfigurators
 	 */
-	protected static void setupZone(String zoneName, ZoneConfigurator... zoneConfigurators) {
-		StendhalRPZone zone = setupZone(zoneName);
+	protected static void setupZone(final String zoneName, final ZoneConfigurator... zoneConfigurators) {
+		final StendhalRPZone zone = setupZone(zoneName);
 
-		for (ZoneConfigurator zoneConfigurator : zoneConfigurators) {
+		for (final ZoneConfigurator zoneConfigurator : zoneConfigurators) {
 			zoneConfigurator.configureZone(zone, null);
 		}
     }
@@ -53,8 +53,8 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 	 * @return the new created zone
 	 * 
 	 */
-	protected static StendhalRPZone setupZone(String zoneName) {
-		StendhalRPZone zone = new StendhalRPZone(zoneName);
+	protected static StendhalRPZone setupZone(final String zoneName) {
+		final StendhalRPZone zone = new StendhalRPZone(zoneName);
 		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		return zone;

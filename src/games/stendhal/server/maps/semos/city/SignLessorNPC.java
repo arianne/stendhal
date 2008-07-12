@@ -39,13 +39,13 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 	protected RentedSignList rentedSignList;
 
 	public SignLessorNPC() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
-		Shape shape = new Rectangle(21, 48, 17, 1);
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
+		final Shape shape = new Rectangle(21, 48, 17, 1);
 		rentedSignList = new RentedSignList(zone, shape);
 	}
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Hi, I #rent signs and #remove outdated ones.");
 		npc.addJob("I #rent signs for a day.");
 		npc.addHelp("If you want to #rent a sign, just tell me what I should write on it.");
@@ -69,7 +69,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					text = sentence.getOriginalText().trim().substring(5).trim();
 
 					String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
@@ -99,7 +99,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (text.length() > 1000) {
 						text = text.substring(1000);
 					}
@@ -111,8 +111,8 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 					// put the sign up
 					rentedSignList.removeByName(player.getName());
-					RentedSign sign = new RentedSign(player, text);
-					boolean success = rentedSignList.add(sign);
+					final RentedSign sign = new RentedSign(player, text);
+					final boolean success = rentedSignList.add(sign);
 
 					// confirm, log, tell postman
 					if (success) {
@@ -120,7 +120,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 						npc.say("OK, let me put your sign up.");
 
 						// inform IRC using postman
-						Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+						final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 						if (postman != null) {
 							postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
 						}
@@ -158,14 +158,14 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (sentence.getExpressions().size() < 2) {
 						npc.say("Syntax: delete <nameofplayer>");
 						return;
 					}
-					String playerName = sentence.getExpressionStringAfterVerb();
+					final String playerName = sentence.getExpressionStringAfterVerb();
 					if (rentedSignList.removeByName(playerName)) {
-						String message = player.getName() + " deleted sign from " + playerName;
+						final String message = player.getName() + " deleted sign from " + playerName;
 						StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
 						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "deleted", playerName);
 					} else {

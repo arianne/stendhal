@@ -8,7 +8,7 @@ import java.util.BitSet;
 
 class Encoder {
 
-	private BitSet key;
+	private final BitSet key;
 
 	public Encoder() {
 		// BitSet key =
@@ -16,15 +16,15 @@ class Encoder {
 		key = createBitSet("KLGFJoiU)(#%lKJT#)(I@(_)*)({%T:KLGJEJ*%)(Y*EKLJHROY*");
 	}
 
-	public String decode(String str) {
+	public String decode(final String str) {
 		try {
 			// create a BitSet based on the binary representation
-			BitSet nameSet = createBitSet(str); 
+			final BitSet nameSet = createBitSet(str); 
 			 // xor the BitSet with the key
 			nameSet.xor(key);
 
 			// turn the xor'd BitSet back into a String
-			StringBuilder strBuff = new StringBuilder(str.length() * 7);
+			final StringBuilder strBuff = new StringBuilder(str.length() * 7);
 			for (int i = 0; i < nameSet.size(); i++) {
 				if (nameSet.get(i)) {
 					strBuff.append('1');
@@ -36,16 +36,16 @@ class Encoder {
 
 			// read in the first two numbers of the stream and cut the string
 			// down to the size specified by these numbers
-			String decodedString = binaryToString(strBuff.toString());
-			String stringLen = decodedString.substring(0, 2);
-			int len = Integer.parseInt(stringLen);
+			final String decodedString = binaryToString(strBuff.toString());
+			final String stringLen = decodedString.substring(0, 2);
+			final int len = Integer.parseInt(stringLen);
 			return decodedString.substring(2, len + 2);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			return "";
 		}
 	}
 
-	public String encode(String str) {
+	public String encode(final String str) {
 		// create binary representationn of input string
 		String binaryString = stringToBinary(str); 
 
@@ -66,12 +66,12 @@ class Encoder {
 			binaryString = stringSizeBinary.concat(binaryString);
 		}
 		// create a BitSet based on the binary representation
-		BitSet nameSet = createBitSet(binaryString);
+		final BitSet nameSet = createBitSet(binaryString);
 		// xor the BitSet with the key
 		nameSet.xor(key); 
 
 		// turn the xor'd BitSet back into a String so it can be written to file
-		StringBuilder strBuff = new StringBuilder(str.length() * 7);
+		final StringBuilder strBuff = new StringBuilder(str.length() * 7);
 		for (int i = 0; i < nameSet.size(); i++) {
 			if (nameSet.get(i)) {
 				strBuff.append('1');
@@ -84,9 +84,9 @@ class Encoder {
 		return strBuff.toString();
 	}
 
-	private String binaryToString(String binaryString) {
+	private String binaryToString(final String binaryString) {
 		char letter;
-		StringBuilder strBuff = new StringBuilder(binaryString.length() / 7);
+		final StringBuilder strBuff = new StringBuilder(binaryString.length() / 7);
 		for (int i = 0, k = 0; i <= binaryString.length() - 1; i++, k++) {
 			// break down into groups of seven
 			if (k == 7) {
@@ -103,8 +103,8 @@ class Encoder {
 	 * @param binaryString 
 	 * @return the created BitSet 
 	 * */
-	private BitSet createBitSet(String binaryString) {
-		BitSet bset = new BitSet(binaryString.length());
+	private BitSet createBitSet(final String binaryString) {
+		final BitSet bset = new BitSet(binaryString.length());
 		boolean bitTrue = false;
 		for (int i = 0; i < binaryString.length(); i++) {
 			if (binaryString.charAt(i) == '1') {
@@ -117,8 +117,8 @@ class Encoder {
 		return bset;
 	}
 
-	private String stringToBinary(String theString) {
-		StringBuilder strBuff = new StringBuilder();
+	private String stringToBinary(final String theString) {
+		final StringBuilder strBuff = new StringBuilder();
 		String binary = "";
 		String padding = "";
 		int paddingNeededSize = 0;

@@ -88,7 +88,7 @@ public abstract class Food extends Entity {
 		super.onChangedAdded(object, changes);
 
 		if (changes.has("amount")) {
-			int oldAmount = amount;
+			final int oldAmount = amount;
 			amount = changes.getInt("amount");
 
 			// TODO this causes problems because of unidentified content refresh

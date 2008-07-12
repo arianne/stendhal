@@ -19,14 +19,14 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 	private static RPObjectFactory singleton;
 	
 	@Override
-	public RPObject transform(RPObject object) {
-		RPClass clazz = object.getRPClass();
+	public RPObject transform(final RPObject object) {
+		final RPClass clazz = object.getRPClass();
 		if (clazz == null) {
 			logger.error("Cannot create concrete object for " + object + " because it does not have an RPClass.");
 			return super.transform(object);
 		}
 
-		String name = clazz.getName();
+		final String name = clazz.getName();
 
 		if (name.equals(ArrestWarrant.RPCLASS_NAME)) {
 			return new ArrestWarrant(object);

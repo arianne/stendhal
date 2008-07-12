@@ -8,17 +8,17 @@ class Healer implements HealerBehavior {
 	private int amount;
 	private int frequency;
 
-	public Healer(String healingProfile) {
+	public Healer(final String healingProfile) {
 		init(healingProfile);
 	}
 
-	public void init(String healingProfile) {
-		String[] healingAttributes = healingProfile.split(",");
+	public void init(final String healingProfile) {
+		final String[] healingAttributes = healingProfile.split(",");
 		amount = Integer.parseInt(healingAttributes[0]);
 		frequency = Integer.parseInt(healingAttributes[1]);
 	}
 
-	public void heal(Creature creature) {
+	public void heal(final Creature creature) {
 		if ((SingletonRepository.getRuleProcessor().getTurn() % frequency == 0)
 				&& (creature.getHP() > 0)) {
 			creature.heal(amount);

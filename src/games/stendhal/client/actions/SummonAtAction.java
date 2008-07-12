@@ -20,8 +20,8 @@ class SummonAtAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction summon = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction summon = new RPAction();
 
 		summon.put("type", "summonat");
 		summon.put("target", params[0]);
@@ -35,7 +35,7 @@ class SummonAtAction implements SlashAction {
 		if (params[2].matches("[0-9].*")) {
     		try {
     			amount = Integer.parseInt(params[2]);
-    		} catch (NumberFormatException ex) {
+    		} catch (final NumberFormatException ex) {
     			StendhalUI.get().addEventLine("Invalid amount: " + params[2]);
     			return true;
     		}
@@ -46,7 +46,7 @@ class SummonAtAction implements SlashAction {
 			itemName = (params[2] + " " + remainder).trim();
 		}
 
-		String singularName = Grammar.singular(itemName);
+		final String singularName = Grammar.singular(itemName);
 
 		summon.put("amount", amount);
 		summon.put("item", singularName);

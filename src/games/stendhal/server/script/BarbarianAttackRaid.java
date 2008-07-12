@@ -7,7 +7,7 @@ public class BarbarianAttackRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("barbarian", 30);
 		attackArmy.put("barbarian wolf", 15);
 		attackArmy.put("barbarian elite", 12);

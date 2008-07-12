@@ -35,7 +35,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	protected void removeFromGuild(Player player, RPAction action) {
+	protected void removeFromGuild(final Player player, final RPAction action) {
 
 		if (player.get("guild") != null) {
 			player.remove("guild"); // resets guild
@@ -58,7 +58,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.get(_TYPE).equals(_REMOVE_FROM_GUILD)) {
 			removeFromGuild(player, action);
 		}

@@ -12,18 +12,18 @@ public class AwayActionTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testPlayerIsNull() {
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "away");
-		AwayAction aa = new AwayAction();
+		final AwayAction aa = new AwayAction();
 		aa.onAction(null, action);
 	}
 
 	@Test
 	public void testOnAction() {
-		Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
-		RPAction action = new RPAction();
+		final Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final RPAction action = new RPAction();
 		action.put("type", "away");
-		AwayAction aa = new AwayAction();
+		final AwayAction aa = new AwayAction();
 		aa.onAction(bob, action);
 		assertEquals(null, bob.getAwayMessage());
 		action.put("message", "bla");
@@ -33,12 +33,12 @@ public class AwayActionTest {
 
 	@Test
 	public void testOnInvalidAction() {
-		Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		bob.clearEvents();
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "bla");
 		action.put("message", "bla");
-		AwayAction aa = new AwayAction();
+		final AwayAction aa = new AwayAction();
 		aa.onAction(bob, action);
 		assertEquals(null, bob.getAwayMessage());
 	}

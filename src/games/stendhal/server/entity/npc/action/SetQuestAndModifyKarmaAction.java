@@ -9,9 +9,9 @@ import games.stendhal.server.entity.player.Player;
  */
 public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 
-	private String questname;
-	private String state;
-	private double karmaDiff;
+	private final String questname;
+	private final String state;
+	private final double karmaDiff;
 
 	/**
 	 * Creates a new SetQuestAction.
@@ -23,15 +23,15 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 	 * @param karmaDiff
 	 *            amount of karma to add (negative numbers allowed)
 	 */
-	public SetQuestAndModifyKarmaAction(String questname, String state,
-			double karmaDiff) {
+	public SetQuestAndModifyKarmaAction(final String questname, final String state,
+			final double karmaDiff) {
 		this.questname = questname;
 		this.state = state;
 		this.karmaDiff = karmaDiff;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.setQuest(questname, state);
 		player.addKarma(karmaDiff);
 	}
@@ -56,7 +56,7 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

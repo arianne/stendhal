@@ -29,24 +29,24 @@ public class BabyDragonTest {
 
 	@Test
 	public void testBabyDragon() {
-		BabyDragon drako = new BabyDragon();
+		final BabyDragon drako = new BabyDragon();
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 
 	@Test
 	public void testBabyDragonPlayer() {
 
-		StendhalRPZone zone = new StendhalRPZone("zone");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		zone.add(bob);
-		BabyDragon drako = new BabyDragon(bob);
+		final BabyDragon drako = new BabyDragon(bob);
 
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 
 	@Test
 	public void testBabyDragonRPObjectPlayer() {
-		BabyDragon drako = new BabyDragon(new RPObject(), PlayerTestHelper.createPlayer("bob"));
+		final BabyDragon drako = new BabyDragon(new RPObject(), PlayerTestHelper.createPlayer("bob"));
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 

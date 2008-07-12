@@ -20,7 +20,7 @@ public class DamagedEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, AMOUNT, Type.INT);
 		// TODO: check whether we should use an rplink instead
 		rpclass.add(DefinitionClass.ATTRIBUTE, BY, Type.INT);
@@ -31,7 +31,7 @@ public class DamagedEvent extends RPEvent {
 	 *
 	 * @param amount amount of hp healed
 	 */
-	public DamagedEvent(int amount) {
+	public DamagedEvent(final int amount) {
 		super(RPCLASS_NAME);		
 		put(AMOUNT, amount);
 	}
@@ -42,7 +42,7 @@ public class DamagedEvent extends RPEvent {
 	 * @param amount amount of hp healed
 	 * @param damager The entity which caused the damager
 	 */
-	public DamagedEvent(int amount, Entity damager) {
+	public DamagedEvent(final int amount, final Entity damager) {
 		super(RPCLASS_NAME);		
 		put(AMOUNT, amount);
 		put(BY, damager.getID().getObjectID());

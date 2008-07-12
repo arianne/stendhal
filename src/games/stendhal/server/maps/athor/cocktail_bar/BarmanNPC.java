@@ -26,16 +26,16 @@ public class BarmanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBar(zone, attributes);
 	}
 
-	private void buildBar(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC barman = new SpeakerNPC("Pedro") {
+	private void buildBar(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC barman = new SpeakerNPC("Pedro") {
 
 			@Override
 			protected void createPath() {
-			        List<Node> nodes = new LinkedList<Node>();
+			        final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(8, 5));
 				nodes.add(new Node(11, 5));
 				setPath(new FixedPath(nodes, true));
@@ -50,10 +50,10 @@ public class BarmanNPC implements ZoneConfigurator {
 
 				// make cocktail!
 				// (uses sorted TreeMap instead of HashMap)
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("coconut", 1);
 				requiredResources.put("pineapple", 1);
-				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",
+				final ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",
 						"mix", "pina colada", requiredResources, 2 * 60);
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Aloha!");
 			}

@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class DuergarKingCreature implements ZoneConfigurator {
 
-	private EntityManager manager = SingletonRepository.getEntityManager();
+	private final EntityManager manager = SingletonRepository.getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -24,13 +24,13 @@ public class DuergarKingCreature implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildPrisonArea(zone, attributes);
 	}
 
-	private void buildPrisonArea(StendhalRPZone zone, Map<String, String> attributes) {
-		Creature creature = new ItemGuardCreature(manager.getCreature("duergar king"), "kanmararn prison key");
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 50, 15, creature, 1);
+	private void buildPrisonArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final Creature creature = new ItemGuardCreature(manager.getCreature("duergar king"), "kanmararn prison key");
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 50, 15, creature, 1);
 		zone.add(point);
 	}
 }

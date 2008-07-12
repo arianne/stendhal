@@ -10,7 +10,7 @@ public class UserTest {
 
 	@Test
 	public final void testUser() {
-		User user = new User();
+		final User user = new User();
 
 		assertEquals(0, (int) user.getModificationCount());
 		assertFalse(User.isAdmin()); 

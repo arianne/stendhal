@@ -55,7 +55,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	private static final int WIDTH = BUTTON_WIDTH + SPACING + SPACING;
 
 	/** map of the buttons (for faster access) ). */
-	private Map<String, Entry> entries;
+	private final Map<String, Entry> entries;
 
 	/**
 	 * Creates a new instance of OptionsPanel.
@@ -63,7 +63,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param frameWidth
 	 * @param gameScreen
 	 */
-	public SettingsPanel(final int frameWidth, IGameScreen gameScreen) {
+	public SettingsPanel(final int frameWidth, final IGameScreen gameScreen) {
 		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2,
 				gameScreen);
 
@@ -88,14 +88,14 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param gameScreen
 	 */
 	public void add(final ManagedWindow window, final String label,
-			IGameScreen gameScreen) {
+			final IGameScreen gameScreen) {
 		window.registerCloseListener(this);
 
-		String mnemonic = window.getName();
+		final String mnemonic = window.getName();
 
-		int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
+		final int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 
-		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
+		final WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
 				label, gameScreen);
 
 		button.moveTo(SPACING, y);
@@ -121,11 +121,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param name
 	 * @param point
 	 */
-	public void onClick(String name, Point point, IGameScreen gameScreen) {
+	public void onClick(final String name, final Point point, final IGameScreen gameScreen) {
 		/*
 		 * Set window visibility
 		 */
-		Entry entry = entries.get(name);
+		final Entry entry = entries.get(name);
 
 		if (entry != null) {
 			entry.setVisible(entry.isPressed());
@@ -137,11 +137,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * 
 	 * @param name
 	 */
-	public void onClose(String name) {
+	public void onClose(final String name) {
 		/*
 		 * Unset button
 		 */
-		Entry entry = entries.get(name);
+		final Entry entry = entries.get(name);
 
 		if (entry != null) {
 			entry.setPressed(false);

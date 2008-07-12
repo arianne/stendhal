@@ -75,13 +75,13 @@ public abstract class UpdateConverter {
      * @param object
      *            RPObject representing a player
      */
-    static void updatePlayerRPObject(RPObject object) {
-    	String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
+    static void updatePlayerRPObject(final RPObject object) {
+    	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
     			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
     			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
     			"keyring" };
     
-    	String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
+    	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
     			"!visited", "skills", "!tutorial", "!features" };
     
     	// Port from 0.03 to 0.10
@@ -101,7 +101,7 @@ public abstract class UpdateConverter {
     	// Port from 0.44 to 0.50: cloak, bank
     	// Port from 0.57 to 0.58: bank_ados, bank_fado
     	// Port from 0.58 to ?: bank_nalwor, keyring, finger
-    	for (String slotName : slotsNormal) {
+    	for (final String slotName : slotsNormal) {
     		if (!object.hasSlot(slotName)) {
     			object.addSlot(new EntitySlot(slotName));
     		}
@@ -110,13 +110,13 @@ public abstract class UpdateConverter {
     	// Port from 0.44 to 0.50: !buddy
     	// Port from 0.56 to 0.56.1: !ignore
     	// Port from 0.57 to 0.58: skills
-    	for (String slotName : slotsSpecial) {
+    	for (final String slotName : slotsSpecial) {
     		if (!object.hasSlot(slotName)) {
     			object.addSlot(new KeyedSlot(slotName));
     		}
-    		RPSlot slot = object.getSlot(slotName);
+    		final RPSlot slot = object.getSlot(slotName);
     		if (slot.size() == 0) {
-    			RPObject singleObject = new RPObject();
+    			final RPObject singleObject = new RPObject();
     			slot.add(singleObject);
     		}
     	}
@@ -173,12 +173,12 @@ public abstract class UpdateConverter {
 	 * Transform kill slot content to the new kill recording system.
 	 * @param object 
 	 */
-	static void transformKillSlot(RPObject object) {
-		RPObject kills = Player.getKeyedSlotObject(object, "!kills");
+	static void transformKillSlot(final RPObject object) {
+		final RPObject kills = Player.getKeyedSlotObject(object, "!kills");
 
 		if (kills != null) {
-    		RPObject newKills = new RPObject();
-    		for (String attr : kills) {
+    		final RPObject newKills = new RPObject();
+    		for (final String attr : kills) {
     			// skip "id" entries
     			if (!attr.equals("id")) {
         			String newAttr = attr;
@@ -195,7 +195,7 @@ public abstract class UpdateConverter {
     			}
     		}
 
-    		RPSlot slot = object.getSlot("!kills");
+    		final RPSlot slot = object.getSlot("!kills");
     		slot.remove(kills.getID());
     		slot.add(newKills);
 		}
@@ -205,8 +205,8 @@ public abstract class UpdateConverter {
 	 * Update the quest slot to the current version.
 	 * @param player
 	 */
-	public static void updateQuests(Player player) {
-		EntityManager entityMgr = SingletonRepository.getEntityManager();
+	public static void updateQuests(final Player player) {
+		final EntityManager entityMgr = SingletonRepository.getEntityManager();
 
 		// rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
 		// We avoid to lose potion in case there is an entry with the old and the new name at the same
@@ -216,17 +216,17 @@ public abstract class UpdateConverter {
 		// From 0.66 to 0.67
 		// update quest slot content, 
 		// replace "_" with " ", for item/creature names
-		for (String questSlot : player.getQuests()) {
+		for (final String questSlot : player.getQuests()) {
 			if (player.hasQuest(questSlot)) {
-				String itemString = player.getQuest(questSlot);
+				final String itemString = player.getQuest(questSlot);
 
-				String[] parts = itemString.split(";");
+				final String[] parts = itemString.split(";");
 
-				StringBuilder buffer = new StringBuilder();
+				final StringBuilder buffer = new StringBuilder();
 				boolean first = true;
 
 				for (int i = 0; i < parts.length; ++i) {
-					String oldName = parts[i];
+					final String oldName = parts[i];
 
 					// Convert old item names to their new representation with correct grammar
 					// and without underscores.
@@ -264,24 +264,24 @@ public abstract class UpdateConverter {
 //	}
 
 	 // update the name of a quest to the new spelling and accumulate the content
-	private static void migrateSumTimedQuestSlot(Player player, String oldName, String newName) {
-		String oldState = player.getQuest(oldName);
+	private static void migrateSumTimedQuestSlot(final Player player, final String oldName, final String newName) {
+		final String oldState = player.getQuest(oldName);
 
 		if (oldState != null) {
 			String questState = oldState;
-			String newState = player.getQuest(newName);
+			final String newState = player.getQuest(newName);
 
 			if (newState != null) {
-				String[] oldParts = oldState.split(";");
-				String[] newParts = newState.split(";");
+				final String[] oldParts = oldState.split(";");
+				final String[] newParts = newState.split(";");
 
-				if (oldParts.length == 3 && newParts.length == 3) {
+				if ((oldParts.length == 3) && (newParts.length == 3)) {
 					try {
-        				int oldAmount = Integer.parseInt(oldParts[0]);
+        				final int oldAmount = Integer.parseInt(oldParts[0]);
         				int newAmount = Integer.parseInt(newParts[0]);
-        				String oldItem = oldParts[1];
-        				String newItem = newParts[1];
-        				long oldTime = Long.parseLong(oldParts[2]);
+        				final String oldItem = oldParts[1];
+        				final String newItem = newParts[1];
+        				final long oldTime = Long.parseLong(oldParts[2]);
         				long newTime = Long.parseLong(newParts[2]);
 
         				if (oldItem.equals(newItem)) {
@@ -293,7 +293,7 @@ public abstract class UpdateConverter {
 
         					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
         				}
-        			} catch (NumberFormatException e) {
+        			} catch (final NumberFormatException e) {
         				e.printStackTrace();
         			}
 				}

@@ -41,7 +41,7 @@ public class CleanStorageSpace extends AbstractQuest {
 	private static final String QUEST_SLOT = "clean_storage";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Eonna");
+		final SpeakerNPC npc = npcs.get("Eonna");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -56,7 +56,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Thanks again! I think it's still clear down there.", null);
 
-		List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
 		start.add(new StartRecordingKillsAction("rat", "caverat", "snake"));
 		start.add(new IncreaseKarmaAction(2.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -89,9 +89,9 @@ public class CleanStorageSpace extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Eonna");
+		final SpeakerNPC npc = npcs.get("Eonna");
 		
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new IncreaseKarmaAction(3.0));
 		reward.add(new IncreaseXPAction(25));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));

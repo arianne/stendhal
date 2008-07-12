@@ -13,14 +13,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * of the current player as identifier? 
  */
 public class PlayerHasStoreableEntityCondition extends SpeakerNPC.ChatCondition {
-	private StoreableEntityList< ? > storeableEntityList;
+	private final StoreableEntityList< ? > storeableEntityList;
 	
-	public PlayerHasStoreableEntityCondition(StoreableEntityList< ? > storeableEntityList) {
+	public PlayerHasStoreableEntityCondition(final StoreableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return storeableEntityList.getByName(player.getName()) != null;
 	}
 
@@ -35,7 +35,7 @@ public class PlayerHasStoreableEntityCondition extends SpeakerNPC.ChatCondition 
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 			PlayerHasStoreableEntityCondition.class);
 	}

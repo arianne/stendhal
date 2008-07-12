@@ -38,17 +38,17 @@ class AmbientSound {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(AmbientSound.class);
 
-	private List<LoopSoundInfo> loopSounds = new ArrayList<LoopSoundInfo>();
+	private final List<LoopSoundInfo> loopSounds = new ArrayList<LoopSoundInfo>();
 
-	private List<SoundCycle> cycleList = new ArrayList<SoundCycle>();
+	private final List<SoundCycle> cycleList = new ArrayList<SoundCycle>();
 
-	private String name;
+	private final String name;
 
 	private SoundObject soundObject;
 
-	private Point2D soundPos;
+	private final Point2D soundPos;
 
-	private float loudnessDB;
+	private final float loudnessDB;
 
 	/**
 	 * true if AmbientSound is playing.
@@ -68,14 +68,14 @@ class AmbientSound {
 		/**
 		 * String representing the LoopSoundInfo.
 		 */
-		private String name;
+		private final String name;
 
 		/**
 		 * the loudness.
 		 */
-		private float loudnessDB;
+		private final float loudnessDB;
 
-		private int delay;
+		private final int delay;
 
 		private Clip clip;
 
@@ -108,7 +108,7 @@ class AmbientSound {
 			try {
 				si = (LoopSoundInfo) super.clone();
 				si.clip = null;
-			} catch (CloneNotSupportedException e) {
+			} catch (final CloneNotSupportedException e) {
 				logger.warn("#### bad clone");
 				return null;
 			}
@@ -135,9 +135,9 @@ class AmbientSound {
 	 */
 	private class SoundStarter extends Thread {
 
-		private LoopSoundInfo soundInfo;
+		private final LoopSoundInfo soundInfo;
 
-		private float correctionDB;
+		private final float correctionDB;
 
 		/**
 		 * Starts a looping sound.
@@ -145,7 +145,7 @@ class AmbientSound {
 		 * @param loopInfo
 		 * @param correctionDB
 		 */
-		public SoundStarter(LoopSoundInfo loopInfo, float correctionDB) {
+		public SoundStarter(final LoopSoundInfo loopInfo, final float correctionDB) {
 			this.soundInfo = loopInfo;
 			this.correctionDB = correctionDB;
 		}
@@ -203,7 +203,7 @@ class AmbientSound {
 	 *            int 0..100 loudness of ambient sound in total
 	 * 
 	 */
-	public AmbientSound(String name, int volume) {
+	public AmbientSound(final String name, final int volume) {
 		this(name, null, 0, volume);
 	}
 
@@ -221,7 +221,7 @@ class AmbientSound {
 	 * @param volume
 	 *            int 0..100 loudness of ambient sound in total
 	 */
-	public AmbientSound(String name, Point2D point, int radius, int volume) {
+	public AmbientSound(final String name, final Point2D point, final int radius, final int volume) {
 		String hstr;
 
 		if (name == null) {
@@ -271,16 +271,16 @@ class AmbientSound {
 	 * @param volume
 	 *            int 0..100 loudness of ambient sound in total
 	 */
-	public AmbientSound(AmbientSound sound, String name, Point2D point,
-			int radius, int volume) {
+	public AmbientSound(final AmbientSound sound, final String name, final Point2D point,
+			final int radius, final int volume) {
 		this(name, point, radius, volume);
 
-		for (LoopSoundInfo c : sound.loopSounds) {
+		for (final LoopSoundInfo c : sound.loopSounds) {
 			loopSounds.add(c.clone());
 		}
 
-		for (SoundCycle c : sound.cycleList) {
-			SoundCycle cycle = c.clone();
+		for (final SoundCycle c : sound.cycleList) {
+			final SoundCycle cycle = c.clone();
 			if (soundObject != null) {
 				cycle.entityRef = soundObject;
 			} else {
@@ -289,7 +289,7 @@ class AmbientSound {
 			cycleList.add(cycle);
 		}
 
-		String hstr = "-- content supplied to " + name + ": "
+		final String hstr = "-- content supplied to " + name + ": "
 				+ loopSounds.size() + " loops, " + cycleList.size() + " cycles";
 		logger.debug(hstr);
 	} // constructor
@@ -304,7 +304,7 @@ class AmbientSound {
 	 * @param delay
 	 *            milliseconds of start delay for playing the sound
 	 */
-	public void addLoop(String sound, int volume, int delay) {
+	public void addLoop(final String sound, final int volume, final int delay) {
 		SoundSystem sys;
 		LoopSoundInfo info;
 
@@ -333,7 +333,7 @@ class AmbientSound {
 			cycle = new SoundCycle(soundObject, token, period, volBot, volTop,
 					chance);
 			cycleList.add(cycle);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// TODO: handle undefined Soundsample
 		}
 	} // addCycle
@@ -378,18 +378,18 @@ class AmbientSound {
 		// create and start loop sounds
 		synchronized (loopSounds) {
 			fogDB = getPlayerVolume();
-			for (LoopSoundInfo info : loopSounds) {
+			for (final LoopSoundInfo info : loopSounds) {
 				new SoundStarter(info, fogDB).start();
 			}
 		}
 
 		// start cycle sounds
-		for (SoundCycle c : cycleList) {
+		for (final SoundCycle c : cycleList) {
 			c.play();
 		}
 
 		isPlaying = true;
-		String hstr = "- playing ambient: " + name;
+		final String hstr = "- playing ambient: " + name;
 		logger.debug(hstr);
 
 	} // play
@@ -402,18 +402,18 @@ class AmbientSound {
 
 		// terminate loop sounds
 		synchronized (loopSounds) {
-			for (LoopSoundInfo info : loopSounds) {
+			for (final LoopSoundInfo info : loopSounds) {
 				info.stopClip();
 			}
 		}
 
 		// stop cycle sounds
-		for (SoundCycle c : cycleList) {
+		for (final SoundCycle c : cycleList) {
 			c.stopPlaying();
 		}
 
 		isPlaying = false;
-		String hstr = "- stopped ambient: " + name;
+		final String hstr = "- stopped ambient: " + name;
 		logger.debug(hstr);
 
 	} // stop
@@ -423,7 +423,7 @@ class AmbientSound {
 		stop();
 
 		// terminate cycle sounds
-		for (SoundCycle c : cycleList) {
+		for (final SoundCycle c : cycleList) {
 			c.terminate();
 		}
 
@@ -434,7 +434,7 @@ class AmbientSound {
 		// remove this object from sound system
 		SoundSystem.stopAmbientSound(this);
 
-		String hstr = "- terminated ambient: " + name;
+		final String hstr = "- terminated ambient: " + name;
 		logger.debug(hstr);
 
 	} // terminate
@@ -510,7 +510,7 @@ class AmbientSound {
 
 		// set corrected volume to all running clips
 		synchronized (loopSounds) {
-			for (LoopSoundInfo info : loopSounds) {
+			for (final LoopSoundInfo info : loopSounds) {
 				if (info.clip != null) {
 					volCtrl = (FloatControl) info.clip.getControl(FloatControl.Type.MASTER_GAIN);
 					volCtrl.setValue(SoundSystem.get().getVolumeDelta()

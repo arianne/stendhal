@@ -51,25 +51,25 @@ public class DisplaceAction implements ActionListener {
 	 * @param player 
 	 * @param action 
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		if (!action.has(_BASEITEM) || !action.has(_X) || !action.has(_Y)) {
 			logger.error("Incomplete DisplaceAction: " + action);
 			return;
 		}
 
-		int targetObject = action.getInt(_BASEITEM);
-		StendhalRPZone zone = player.getZone();
+		final int targetObject = action.getInt(_BASEITEM);
+		final StendhalRPZone zone = player.getZone();
 
-		Entity object = EntityHelper.entityFromZoneByID(targetObject, zone);
+		final Entity object = EntityHelper.entityFromZoneByID(targetObject, zone);
 		if (!(object instanceof PassiveEntity)) {
 			return;
 		}
 
-		int x = action.getInt(_X);
-		int y = action.getInt(_Y);
+		final int x = action.getInt(_X);
+		final int y = action.getInt(_Y);
 
-		PassiveEntity entity = (PassiveEntity) object;
+		final PassiveEntity entity = (PassiveEntity) object;
 
 		if (mayDisplace(player, zone, x, y, entity)) {
 			displace(player, zone, x, y, entity);
@@ -86,7 +86,7 @@ public class DisplaceAction implements ActionListener {
 	 * @param entity entity to move
 	 * @return true, iff allowed
 	 */
-	private boolean mayDisplace(Player player, StendhalRPZone zone, int x, int y, PassiveEntity entity) {
+	private boolean mayDisplace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
 		return player.nextTo(entity)
 				&& (!isItemBelowOtherPlayer(player, entity))
 				&& (player.squaredDistance(x, y) < 8 * 8)
@@ -102,10 +102,10 @@ public class DisplaceAction implements ActionListener {
 	 *            the entity beeing displaced
 	 * @return true, if it cannot be take; false otherwise
 	 */
-	private boolean isItemBelowOtherPlayer(Player player, Entity entity) {
+	private boolean isItemBelowOtherPlayer(final Player player, final Entity entity) {
 		// prevent taking of items which are below other players
-		List<Player> players = player.getZone().getPlayers();
-		for (Player otherPlayer : players) {
+		final List<Player> players = player.getZone().getPlayers();
+		for (final Player otherPlayer : players) {
 			if (player.equals(otherPlayer)) {
 				continue;
 			}
@@ -126,7 +126,7 @@ public class DisplaceAction implements ActionListener {
 	 * @param y      new y-position
 	 * @param entity entity to move
 	 */
-	private void displace(Player player, StendhalRPZone zone, int x, int y, PassiveEntity entity) {
+	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
 		SingletonRepository.getRuleProcessor().addGameEvent(
 				player.getName(), "displace",
 				entity.get("type"));
@@ -134,7 +134,7 @@ public class DisplaceAction implements ActionListener {
 		entity.setPosition(x, y);
 		entity.notifyWorldAboutChanges();
 		if (entity instanceof Item) {
-			Item item = (Item) entity;
+			final Item item = (Item) entity;
 			item.onRemoveFromGround();
 			item.onPutOnGround(player);
 			ItemLogger.displace(player, entity, zone, x, y);

@@ -19,8 +19,8 @@ public class ZoneNotifier {
 	 * @param type
 	 *            EventType
 	 */
-	private static void process(Player player, ZoneEventType type) {
-		String key = type.name().toLowerCase();
+	private static void process(final Player player, final ZoneEventType type) {
+		final String key = type.name().toLowerCase();
 		// Use tutorial slot
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
@@ -29,7 +29,7 @@ public class ZoneNotifier {
 			// change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
-			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
+			final DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
 					type.getMessage());
 			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
 		}
@@ -45,8 +45,8 @@ public class ZoneNotifier {
 	 * @param destinationZone
 	 *            destination zone
 	 */
-	public static void zoneChange(Player player, String sourceZone,
-			String destinationZone) {
+	public static void zoneChange(final Player player, final String sourceZone,
+			final String destinationZone) {
 		if (destinationZone.equals("-1_semos_catacombs_se")) {
 			process(player, ZoneEventType.VISIT_SUB1_SEMOS_CATACOMBS);
 		} else if (destinationZone.equals("-2_semos_catacombs")) {

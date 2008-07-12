@@ -47,31 +47,31 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			}
 
 			return database;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("cannot get database connection", e);
 			throw new NoDatabaseConfException(e);
 		}
 	}
 	
-	protected StendhalPlayerDatabase(Properties connInfo) {
+	protected StendhalPlayerDatabase(final Properties connInfo) {
 		super(connInfo);
 		try {
 			configureDatabase();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			throw new NoDatabaseConfException(e);
 		}
 	}
 
 	protected void configureDatabase() throws SQLException {
-		Transaction trans = getTransaction();
+		final Transaction trans = getTransaction();
 		JDBCSQLHelper.get().runDBScript(trans,
 				"games/stendhal/server/stendhal_init.sql");
 		trans.commit();
 	}
 
 	public static IDatabase newConnection() throws IOException {
-		Configuration conf = Configuration.getConfiguration();
-		Properties props = new Properties();
+		final Configuration conf = Configuration.getConfiguration();
+		final Properties props = new Properties();
 
 		props.put("jdbc_url", conf.get("jdbc_url"));
 		props.put("jdbc_class", conf.get("jdbc_class"));
@@ -83,50 +83,50 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	public void clearOnlineStatus() {
 		try {
-			Transaction transaction = getTransaction();
-			Connection connection = transaction.getConnection();
-			Statement stmt = connection.createStatement();
-			String query = "UPDATE character_stats SET online=0";
+			final Transaction transaction = getTransaction();
+			final Connection connection = transaction.getConnection();
+			final Statement stmt = connection.createStatement();
+			final String query = "UPDATE character_stats SET online=0";
 
 			logger.debug("clearOnlineStatus is running: " + query);
 			stmt.executeUpdate(query);
 			stmt.close();
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			logger.info("error storing character", sqle);
 		}
 	}
 
-	public void setOnlineStatus(Player player, boolean online) {
+	public void setOnlineStatus(final Player player, final boolean online) {
 		try {
-			Transaction transaction =  getTransaction();
-			Connection connection = transaction.getConnection();
-			Statement stmt = connection.createStatement();
+			final Transaction transaction =  getTransaction();
+			final Connection connection = transaction.getConnection();
+			final Statement stmt = connection.createStatement();
 
 			// first try an update
-			String query = "UPDATE character_stats SET online="
+			final String query = "UPDATE character_stats SET online="
 					+ (online ? 1 : 0) + " WHERE name='"
 					+ StringChecker.escapeSQLString(player.get("name")) + "'";
 			logger.debug("setOnlineStatus is running: " + query);
 			stmt.executeUpdate(query);
 			stmt.close();
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			logger.info("error storing character", sqle);
 		}
 	}
 
 	@Override
-	public void addCharacter(Transaction transaction, String username,
-			String character, RPObject player) throws SQLException, IOException {
+	public void addCharacter(final Transaction transaction, final String username,
+			final String character, final RPObject player) throws SQLException, IOException {
 		super.addCharacter(transaction, username, character, player);
 
 		/*
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Player instance = (Player) player;
-			Connection connection =  transaction.getConnection();
+			final Player instance = (Player) player;
+			final Connection connection =  transaction.getConnection();
 			insertIntoCharStats(instance, connection);
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			logger.warn("error storing character", sqle);
 			throw sqle;
 		}
@@ -134,39 +134,39 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	
 	@Override
-	public void storeCharacter(Transaction transaction, String username,
-			String character, RPObject player) throws SQLException, IOException {
+	public void storeCharacter(final Transaction transaction, final String username,
+			final String character, final RPObject player) throws SQLException, IOException {
 		super.storeCharacter(transaction, username, character, player);
 
 		/*
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection = transaction.getConnection();
-			Statement stmt = connection.createStatement();
+			final Connection connection = transaction.getConnection();
+			final Statement stmt = connection.createStatement();
 
 			Player instance = (Player) player;
 
 		
 
 			
-			int count = updateCharStats(connection, instance);
+			final int count = updateCharStats(connection, instance);
 			if (count == 0) {
 				instance = (Player) player;
 				insertIntoCharStats(instance, connection);
 			}
 			stmt.close();
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			logger.warn("error storing character", sqle);
 			throw sqle;
 		}
 	}
 
-	private int updateCharStats(Connection connection, Player instance) throws SQLException {
-		String updateTemplate = "UPDATE character_stats SET "
+	private int updateCharStats(final Connection connection, final Player instance) throws SQLException {
+		final String updateTemplate = "UPDATE character_stats SET "
 			+ "admin=?,sentence=?,age=?,level=?,"
 			+ "outfit=?,xp=?,money=?,married=?,atk=?,def=?,hp=?,karma=?,head=?,armor=?,lhand=?,rhand=?,legs=?,feet=?,cloak=? WHERE name=?";
-		PreparedStatement updateCharStatsStatement = connection.prepareStatement(updateTemplate);
+		final PreparedStatement updateCharStatsStatement = connection.prepareStatement(updateTemplate);
 		updateCharStatsStatement.setInt(1, instance.getAdminLevel());
 		updateCharStatsStatement.setString(2, instance.getSentence());
 		updateCharStatsStatement.setInt(3, instance.getAge());
@@ -189,14 +189,14 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		updateCharStatsStatement.setString(19, extractName(instance.getCloak()));
 		updateCharStatsStatement.setString(20, instance.getName());
 		logger.debug("storeCharacter is running: " + updateCharStatsStatement.toString());
-		int count = updateCharStatsStatement.executeUpdate();
+		final int count = updateCharStatsStatement.executeUpdate();
 		return count;
 	}
 
-	private void insertIntoCharStats(Player instance, Connection connection) throws SQLException {
-		String insertTemplate = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
+	private void insertIntoCharStats(final Player instance, final Connection connection) throws SQLException {
+		final String insertTemplate = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
 			+ "head, armor, lhand, rhand, legs, feet, cloak) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
+		final PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
 
 		insertStatement.setString(1, instance.getName());
 		/*
@@ -229,16 +229,16 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		insertStatement.close();
 	}
 
-	private String extractRhandName(Player instance) {
+	private String extractRhandName(final Player instance) {
 		String rhand = null;
-		List<Item> items = instance.getWeapons();
+		final List<Item> items = instance.getWeapons();
 		if (items.size() > 0) {
 			rhand = items.get(0).getName();
 		}
 		return rhand;
 	}
 
-	private String extractName(Item item) {
+	private String extractName(final Item item) {
 		if (item != null) {
 			return item.getName();
 		}
@@ -261,21 +261,21 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			}
 
 			database = null;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("cannot close database connection", e);
 		}
 	}
 
 	class PlayerIterator implements Iterator<RPObject> {
-		private ResultSet result;
+		private final ResultSet result;
 
-		private Transaction trans;
+		private final Transaction trans;
 
 		public PlayerIterator() throws SQLException {
 			trans = getTransaction();
-			Connection connection = trans.getConnection();
-			Statement stmt = connection.createStatement();
-			String query = "select object_id from characters";
+			final Connection connection = trans.getConnection();
+			final Statement stmt = connection.createStatement();
+			final String query = "select object_id from characters";
 
 			logger.debug("iterator is executing query " + query);
 			result = stmt.executeQuery(query);
@@ -284,7 +284,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		public boolean hasNext() {
 			try {
 				return result.next();
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				logger.error(e, e);
 				return false;
 			}
@@ -292,9 +292,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 		public RPObject next() {
 			try {
-				int objectid = result.getInt("object_id");
+				final int objectid = result.getInt("object_id");
 				return loadRPObject(trans, objectid);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.warn(e, e);
 				return null;
 			}
@@ -309,7 +309,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	public Iterator<RPObject> iterator() {
 		try {
 			return new PlayerIterator();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.warn(e, e);
 			return null;
 		}
@@ -326,24 +326,24 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 *            type of the hall of fame
 	 * @return points or 0 in case there is no entry
 	 */
-	public int getHallOfFamePoints(Transaction trans, String playername,
-			String fametype) {
+	public int getHallOfFamePoints(final Transaction trans, final String playername,
+			final String fametype) {
 		int res = 0;
 		try {
-			Connection connection =  trans.getConnection();
-			Statement stmt = connection.createStatement();
+			final Connection connection =  trans.getConnection();
+			final Statement stmt = connection.createStatement();
 
-			String query = "SELECT points FROM halloffame WHERE charname='"
+			final String query = "SELECT points FROM halloffame WHERE charname='"
 					+ StringChecker.escapeSQLString(playername)
 					+ "' AND fametype='"
 					+ StringChecker.escapeSQLString(fametype) + "'";
-			ResultSet result = stmt.executeQuery(query);
+			final ResultSet result = stmt.executeQuery(query);
 			if (result.next()) {
 				res = result.getInt("points");
 			}
 			result.close();
 			stmt.close();
-		} catch (Exception sqle) {
+		} catch (final Exception sqle) {
 			logger.warn("Error reading hall of fame", sqle);
 		}
 
@@ -364,11 +364,11 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @throws SQLException
 	 *             in case of an database error
 	 */
-	public void setHallOfFamePoints(Transaction trans, String playername,
-			String fametype, int points) throws SQLException {
+	public void setHallOfFamePoints(final Transaction trans, final String playername,
+			final String fametype, final int points) throws SQLException {
 		try {
-			Connection connection = trans.getConnection();
-			Statement stmt = connection.createStatement();
+			final Connection connection = trans.getConnection();
+			final Statement stmt = connection.createStatement();
 
 			// first try an update
 			String query = "UPDATE halloffame SET points='"
@@ -377,7 +377,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 					+ StringChecker.escapeSQLString(playername)
 					+ "' AND fametype='"
 					+ StringChecker.escapeSQLString(fametype) + "';";
-			int count = stmt.executeUpdate(query);
+			final int count = stmt.executeUpdate(query);
 
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
@@ -391,36 +391,36 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 				stmt.executeUpdate(query);
 			}
 			stmt.close();
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			logger.warn("error adding game event", sqle);
 			throw sqle;
 		}
 	}
 
-	public void addGameEvent(String source, String event, String[] params)
+	public void addGameEvent(final String source, final String event, final String[] params)
 			throws SQLException {
-		Transaction transaction = getTransaction();
+		final Transaction transaction = getTransaction();
 		addGameEvent(transaction, source, event, params);
 		transaction.commit();
 	}
 
-	public void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
+	public void itemLog(final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) {
 		if (!item.getRPClass().subclassOf("item")) {
 			return;
 		}
 
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 
 			itemLogAssignIDIfNotPresent(transaction, item);
 			itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
 
 			transaction.commit();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			try {
 				transaction.rollback();
-			} catch (SQLException e1) {
+			} catch (final SQLException e1) {
 				logger.error(e1, e1);
 			}
 		}
@@ -431,21 +431,21 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 *
 	 * @param items item
 	 */
-	public void itemLogAssignIDIfNotPresent(RPObject... items) {
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+	public void itemLogAssignIDIfNotPresent(final RPObject... items) {
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
-			for (RPObject item : items) {
+			for (final RPObject item : items) {
 				if (item.getRPClass().subclassOf("item")) {
 					itemLogAssignIDIfNotPresent(transaction, item);
 				}
 			}
 
 			transaction.commit();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			try {
 				transaction.rollback();
-			} catch (SQLException e1) {
+			} catch (final SQLException e1) {
 				logger.error(e1, e1);
 			}
 		}
@@ -458,13 +458,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private void itemLogAssignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
+	private void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
 
 		// increment the last_id value (or initialize it in case that table has 0 rows).
-		int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
+		final int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
 		if (count < 0) {
 			logger.error("Unexpected return value of execute method: " + count);
 		} else if (count == 0) {
@@ -477,16 +477,16 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 
 		// read last_id from database
-		int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
+		final int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
 		item.put(ATTR_ITEM_LOGID, id);
 	}
 
-	private void itemLogWriteEntry(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+	private void itemLogWriteEntry(final Transaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
 		}
-		String query = "INSERT INTO itemlog (itemid, source, event, " 
+		final String query = "INSERT INTO itemlog (itemid, source, event, " 
 			+ "param1, param2, param3, param4) VALUES (" 
 			+ item.getInt(ATTR_ITEM_LOGID) + ", '" 
 			+ StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" 
@@ -505,21 +505,21 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param killed killed entity
 	 * @param killer killer
 	 */
-	public void logKill(Entity killed, Entity killer) {
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+	public void logKill(final Entity killed, final Entity killer) {
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 
 			// try update in case we already have this combination
-			String update = "UPDATE kills SET cnt = cnt+1 WHERE "
+			final String update = "UPDATE kills SET cnt = cnt+1 WHERE "
 				+ "killed = '" + StringChecker.trimAndEscapeSQLString(getEntityName(killed), 64)
 				+ "' AND killed_type = '" + entityToType(killed)
 				+ "' AND killer = '" + StringChecker.trimAndEscapeSQLString(getEntityName(killer), 64)
 				+ "' AND killer_type = '" + entityToType(killer) + "';";
-			int rowCount = transaction.getAccessor().execute(update);
+			final int rowCount = transaction.getAccessor().execute(update);
 			
 			// in case we did not have this combination yet, make an insert
 			if (rowCount == 0) {
-				String insert = "INSERT INTO kills (killed, killed_type, "
+				final String insert = "INSERT INTO kills (killed, killed_type, "
 					+ "killer, killer_type, cnt) VALUES ('" 
 					+ StringChecker.trimAndEscapeSQLString(getEntityName(killed), 64) + "', '" 
 					+ entityToType(killed) + "', '" 
@@ -529,11 +529,11 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			}
 
 			transaction.commit();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			try {
 				transaction.rollback();
-			} catch (SQLException e1) {
+			} catch (final SQLException e1) {
 				logger.error(e1, e1);
 			}
 		}
@@ -545,7 +545,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param entity Entity
 	 * @return P for players, C for creatures, E for other entities
 	 */
-	private String entityToType(Entity entity) {
+	private String entityToType(final Entity entity) {
 		if (entity instanceof Player) {
 			return "P";
 		} else if (entity instanceof Creature) {
@@ -561,7 +561,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param entity Entity
 	 * @return name of entity
 	 */
-	private String getEntityName(Entity entity) {
+	private String getEntityName(final Entity entity) {
 		if (entity instanceof RPEntity) {
 			return ((RPEntity) entity).getName();
 		} else {

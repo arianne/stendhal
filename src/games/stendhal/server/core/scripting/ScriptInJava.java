@@ -23,14 +23,14 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	private Script script;
 
-	private String classname;
+	private final String classname;
 
 	/**
 	 * Creates a new script written in Java.
 	 *
 	 * @param scriptname Name of the script
 	 */
-	public ScriptInJava(String scriptname) {
+	public ScriptInJava(final String scriptname) {
 		super(scriptname);
 		this.classname = "games.stendhal.server.script." + scriptname.substring(0, scriptname.length() - 6);
 	}
@@ -52,27 +52,27 @@ public class ScriptInJava extends ScriptingSandbox {
 	        InstantiationException {
 		// Create new class loader
 		// with current dir as CLASSPATH
-		File file = new File("./data/script");
-		ClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
+		final File file = new File("./data/script");
+		final ClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
 		// load class through new loader
-		Class< ? > aClass = loader.loadClass(classname);
+		final Class< ? > aClass = loader.loadClass(classname);
 		script = (Script) aClass.newInstance();
 	}
 
 	@Override
-	public boolean load(Player admin, List<String> args) {
-		Class< ? >[] signature = new Class< ? >[] { Player.class, List.class, ScriptingSandbox.class };
-		Object[] params = new Object[] { admin, args, this };
+	public boolean load(final Player admin, final List<String> args) {
+		final Class< ? >[] signature = new Class< ? >[] { Player.class, List.class, ScriptingSandbox.class };
+		final Object[] params = new Object[] { admin, args, this };
 
 		try {
 			newInstance();
-			Method[] methods = Script.class.getMethods();
-			for (Method method : methods) {
+			final Method[] methods = Script.class.getMethods();
+			for (final Method method : methods) {
 				logger.debug(method);
 			}
-			Method theMethod = Script.class.getMethod("load", signature);
+			final Method theMethod = Script.class.getMethod("load", signature);
 			theMethod.invoke(script, params);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 			setMessage(e.toString());
 			return false;
@@ -81,14 +81,14 @@ public class ScriptInJava extends ScriptingSandbox {
 	}
 
 	@Override
-	public boolean execute(Player admin, List<String> args) {
-		Class< ? >[] signature = new Class[] { Player.class, List.class };
-		Object[] params = new Object[] { admin, args };
+	public boolean execute(final Player admin, final List<String> args) {
+		final Class< ? >[] signature = new Class[] { Player.class, List.class };
+		final Object[] params = new Object[] { admin, args };
 
 		try {
-			Method theMethod = script.getClass().getMethod("execute", signature);
+			final Method theMethod = script.getClass().getMethod("execute", signature);
 			theMethod.invoke(script, params);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 			setMessage(e.getMessage());
 			return false;
@@ -97,14 +97,14 @@ public class ScriptInJava extends ScriptingSandbox {
 	}
 
 	@Override
-	public void unload(Player admin, List<String> args) {
-		Class< ? >[] signature = new Class< ? >[] { Player.class, List.class };
-		Object[] params = new Object[] { admin, args };
+	public void unload(final Player admin, final List<String> args) {
+		final Class< ? >[] signature = new Class< ? >[] { Player.class, List.class };
+		final Object[] params = new Object[] { admin, args };
 
 		try {
-			Method theMethod = script.getClass().getMethod("unload", signature);
+			final Method theMethod = script.getClass().getMethod("unload", signature);
 			theMethod.invoke(script, params);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 			setMessage(e.getMessage());
 		}

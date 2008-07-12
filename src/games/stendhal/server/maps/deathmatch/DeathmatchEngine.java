@@ -20,7 +20,7 @@ class DeathmatchEngine implements TurnListener {
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
 	private final Player player;
-	private DeathmatchInfo dmInfo;
+	private final DeathmatchInfo dmInfo;
 
 	private CreatureSpawner spawner;
 
@@ -34,7 +34,7 @@ class DeathmatchEngine implements TurnListener {
 	 * @param deathmatchInfo
 	 *            Information about the place of the deathmatch
 	 */
-	public DeathmatchEngine(Player player, DeathmatchInfo deathmatchInfo) {
+	public DeathmatchEngine(final Player player, final DeathmatchInfo deathmatchInfo) {
 		this.dmInfo = deathmatchInfo;
 		this.player = player;
 
@@ -61,7 +61,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		if (condition()) {
 			action();
 		}
@@ -72,7 +72,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private void action() {
 
-		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 		switch (deathmatchState.getLifecycleState()) {
 
@@ -117,7 +117,7 @@ class DeathmatchEngine implements TurnListener {
 
 		// spawn new monster
 		if (((new Date()).getTime() - deathmatchState.getStateTime() > CreatureSpawner.SPAWN_DELAY)) {
-			DeathMatchCreature mycreature = spawner.spawnNewCreature(
+			final DeathMatchCreature mycreature = spawner.spawnNewCreature(
 					deathmatchState.getQuestLevel(), player, dmInfo);
 
 			// in case there is not enough space to place the creature,
@@ -135,7 +135,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private void handleBail() {
 		player.setQuest("deathmatch", "cancel");
-		Item helmet = player.getFirstEquipped("trophy helmet");
+		final Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet != null) {
 			int defense = 1;
 			if (helmet.has("def")) {

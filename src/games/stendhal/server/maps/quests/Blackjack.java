@@ -40,9 +40,9 @@ public class Blackjack extends AbstractQuest {
 
 	private Stack<String> deck;
 
-	private List<String> playerCards = new LinkedList<String>();
+	private final List<String> playerCards = new LinkedList<String>();
 
-	private List<String> bankCards = new LinkedList<String>();
+	private final List<String> bankCards = new LinkedList<String>();
 
 	private StackableItem playerCardsItem;
 
@@ -51,10 +51,10 @@ public class Blackjack extends AbstractQuest {
 	private SpeakerNPC ramon;
 
 	// TODO: Resolve when requested (incase reloadable zones support added)
-	private StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+	private final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 			"-1_athor_ship_w2");
 
-	private void startNewGame(Player player) {
+	private void startNewGame(final Player player) {
 		cleanUpTable();
 		playerCards.clear();
 		bankCards.clear();
@@ -72,7 +72,7 @@ public class Blackjack extends AbstractQuest {
 		// We could change that later so that the player can
 		// try to remember what's still on the deck
 		deck = new Stack<String>();
-		for (String card : cardValues.keySet()) {
+		for (final String card : cardValues.keySet()) {
 			deck.add(card);
 		}
 		Collections.shuffle(deck);
@@ -91,9 +91,9 @@ public class Blackjack extends AbstractQuest {
 		}
 	}
 
-	private int countAces(List<String> cards) {
+	private int countAces(final List<String> cards) {
 		int count = 0;
-		for (String card : cards) {
+		for (final String card : cards) {
 			if (card.startsWith("A")) {
 				count++;
 			}
@@ -101,9 +101,9 @@ public class Blackjack extends AbstractQuest {
 		return count;
 	}
 
-	private int sumValues(List<String> cards) {
+	private int sumValues(final List<String> cards) {
 		int sum = 0;
-		for (String card : cards) {
+		for (final String card : cards) {
 			sum += cardValues.get(card).intValue();
 		}
 		int numberOfAces = countAces(cards);
@@ -114,7 +114,7 @@ public class Blackjack extends AbstractQuest {
 		return sum;
 	}
 
-	private boolean isBlackjack(List<String> cards) {
+	private boolean isBlackjack(final List<String> cards) {
 		return (sumValues(cards) == 21) && (cards.size() == 2);
 	}
 
@@ -126,13 +126,13 @@ public class Blackjack extends AbstractQuest {
 	 * @param number
 	 *            The number of cards that each player should draw.
 	 */
-	private void dealCards(Player player, int number) {
+	private void dealCards(final Player player, final int number) {
 		String message = "\n";
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		for (int i = 0; i < number; i++) {
 			if (!playerStands) {
-				String playerCard = deck.pop();
+				final String playerCard = deck.pop();
 				playerCards.add(playerCard);
 				message += "You got a " + playerCard + ".\n";
 			}
@@ -142,7 +142,7 @@ public class Blackjack extends AbstractQuest {
 				bankStands = true;
 			}
 			if (!bankStands) {
-				String bankCard = deck.pop();
+				final String bankCard = deck.pop();
 				bankCards.add(bankCard);
 				message += "The bank got a " + bankCard + ".\n";
 			}
@@ -170,7 +170,7 @@ public class Blackjack extends AbstractQuest {
 				message += "The bank stands.\n";
 			}
 		}
-		String message2 = analyze(player);
+		final String message2 = analyze(player);
 		if (message2 != null) {
 			message += message2;
 		}
@@ -182,9 +182,9 @@ public class Blackjack extends AbstractQuest {
 	 * @return The text that the dealer should say, or null if he shouldn't say
 	 *         anything.
 	 */
-	private String analyze(Player player) {
-		int playerSum = sumValues(playerCards);
-		int bankSum = sumValues(bankCards);
+	private String analyze(final Player player) {
+		final int playerSum = sumValues(playerCards);
+		final int bankSum = sumValues(bankCards);
 		String message = null;
 		if (isBlackjack(bankCards) && isBlackjack(playerCards)) {
 			message = "You have a blackjack, but the bank has one too. It's a push. ";
@@ -225,9 +225,9 @@ public class Blackjack extends AbstractQuest {
 
 	private void letBankDrawAfterPause(final String playerName) {
 		SingletonRepository.getTurnNotifier().notifyInSeconds(1, new TurnListener() {
-			private String name = playerName;
+			private final String name = playerName;
 
-			public void onTurnReached(int currentTurn) {
+			public void onTurnReached(final int currentTurn) {
 				if (name.equals(ramon.getAttending().getName())) {
 					dealCards(ramon.getAttending(), 1);
 				}
@@ -247,8 +247,8 @@ public class Blackjack extends AbstractQuest {
 	 *            blackjack.
 	 * @return A message that the NPC should say to inform the player.
 	 */
-	private String payOff(Player player, int factor) {
-		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+	private String payOff(final Player player, final int factor) {
+		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(factor * stake);
 		player.equip(money, true);
 		if (factor == 1) {
@@ -284,7 +284,7 @@ public class Blackjack extends AbstractQuest {
 			}
 
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(final Player player) {
 				// remove the cards when the player stops playing.
 				cleanUpTable();
 			}
@@ -297,16 +297,16 @@ public class Blackjack extends AbstractQuest {
 		zone.add(ramon);
 
 		cardValues = new HashMap<String, Integer>();
-		String[] colors = { "\u2663", // clubs ♣
+		final String[] colors = { "\u2663", // clubs ♣
 				"\u2666", // diamonds ♦
 				"\u2665", // hearts ♥
 				"\u2660" }; // spades ♠
-		String[] pictures = { "J", "Q", "K" };
-		for (String color : colors) {
+		final String[] pictures = { "J", "Q", "K" };
+		for (final String color : colors) {
 			for (int i = 2; i <= 10; i++) {
 				cardValues.put(i + color, Integer.valueOf(i));
 			}
-			for (String picture : pictures) {
+			for (final String picture : pictures) {
 				cardValues.put(picture + color, Integer.valueOf(10));
 			}
 			// ace values can change to 1 during the game
@@ -327,11 +327,11 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
 				        } else {
-				        	Behaviour behaviour = new Behaviour();
+				        	final Behaviour behaviour = new Behaviour();
 
 							behaviour.parseRequest(sentence);
 
@@ -357,7 +357,7 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						dealCards(player, 1);
 					}
 				});
@@ -368,11 +368,11 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						playerStands = true;
 						if (bankStands) {
 							// Both stand. Let the dealer tell the final resul
-							String message = analyze(player);
+							final String message = analyze(player);
 							if (message != null) {
 								ramon.say(message);
 							}

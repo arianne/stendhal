@@ -20,11 +20,11 @@ import java.awt.Rectangle;
 public class Text {
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;
 
-	private int x;
+	private final int x;
 
-	private int y;
+	private final int y;
 
-	private Sprite sprite;
+	private final Sprite sprite;
 
 	private long removeTime;
 

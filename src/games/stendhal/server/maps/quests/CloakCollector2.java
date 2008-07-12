@@ -57,19 +57,19 @@ public class CloakCollector2 extends AbstractQuest {
 	 *            If true, sets a # character in front of every name
 	 * @return A list of cloak names
 	 */
-	private List<String> missingcloaks2(Player player, boolean hash) {
+	private List<String> missingcloaks2(final Player player, final boolean hash) {
 
 		String doneText2 = player.getQuest(QUEST_SLOT);
-		List<String> neededCopy2 = new LinkedList<String>(NEEDEDCLOAKS2);
+		final List<String> neededCopy2 = new LinkedList<String>(NEEDEDCLOAKS2);
 
 		if (doneText2 == null) {
 			doneText2 = "";
 		}
-		List<String> done2 = Arrays.asList(doneText2.split(";"));
+		final List<String> done2 = Arrays.asList(doneText2.split(";"));
 		neededCopy2.removeAll(done2);
 		if (hash) {
-			List<String> result2 = new LinkedList<String>();
-			for (String cloak : neededCopy2) {
+			final List<String> result2 = new LinkedList<String>();
+			for (final String cloak : neededCopy2) {
 				result2.add("#" + cloak);
 			}
 			return result2;
@@ -79,14 +79,14 @@ public class CloakCollector2 extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Josephine");
+		final SpeakerNPC npc = npcs.get("Josephine");
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
 					}
 				},
@@ -102,8 +102,8 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed2 = missingcloaks2(player, true);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> needed2 = missingcloaks2(player, true);
 						engine.say("It's missing "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
 								+ ". That's "
@@ -124,7 +124,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
@@ -144,7 +144,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
 					}
@@ -169,9 +169,9 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						String itemName = sentence.getTriggerExpression().getNormalized();
-						Item item = SingletonRepository.getEntityManager().getItem(itemName);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final String itemName = sentence.getTriggerExpression().getNormalized();
+						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
 									+ (item != null ? ItemTools.itemNameToDisplayName(item.getItemSubclass()) : itemName)
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
@@ -189,7 +189,7 @@ public class CloakCollector2 extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Josephine");
+		final SpeakerNPC npc = npcs.get("Josephine");
 
 		// player returns while quest is still active
 		npc.add(
@@ -197,7 +197,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT);
 					}
@@ -211,8 +211,8 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed2 = missingcloaks2(player, true);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> needed2 = missingcloaks2(player, true);
 						engine.say("I want "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
 								+ ". That's "
@@ -240,17 +240,17 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						TriggerList missing = new TriggerList(missingcloaks2(player, false));
-						Expression item = sentence.getTriggerExpression();
+						final Expression item = sentence.getTriggerExpression();
 
-						Expression found = missing.find(item);
+						final Expression found = missing.find(item);
 						if (found != null) {
-							String itemName = found.getOriginal();
+							final String itemName = found.getOriginal();
 
 							if (player.drop(itemName)) {
 								// register cloak as done
-								String doneText = player.getQuest(QUEST_SLOT);
+								final String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 								// check if the player has brought all cloaks
@@ -261,7 +261,7 @@ public class CloakCollector2 extends AbstractQuest {
 									// TODO: Make speech mention scent reward if applicable.
 									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
 									player.setQuest(QUEST_SLOT, "done;rewarded");
-									Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
+									final Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
 									boots.setBoundTo(player.getName());
 									player.equip(boots, true);
 									player.notifyWorldAboutChanges();
@@ -289,7 +289,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, 
@@ -302,7 +302,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING, "Okay then. Come back later.",
@@ -332,7 +332,7 @@ public class CloakCollector2 extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-	private static void rewardPlayer(Player player) {
+	private static void rewardPlayer(final Player player) {
 	    //  TODO: Once scent is done, add this as reward. Note it might be stackable, so check! 
 	    //	Item scent = StendhalRPWorld.get()
 	    //			.getRuleManager()

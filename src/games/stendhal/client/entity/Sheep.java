@@ -24,11 +24,11 @@ public class Sheep extends DomesticAnimal {
 	@Override
 	protected void probableChat(final int chance) {
 
-		String[][] soundnames = { { "sheep-1.wav", "sheep-3.wav" },
+		final String[][] soundnames = { { "sheep-1.wav", "sheep-3.wav" },
 				{ "sheep-2.wav", "sheep-4.wav" } };
-		int which = Rand.rand(2);
+		final int which = Rand.rand(2);
 		if (Rand.rand(100) < chance) {
-			String token = getWeight() > 50 ? soundnames[0][which]
+			final String token = getWeight() > 50 ? soundnames[0][which]
 					: soundnames[1][which];
 			SoundMaster.play(token, x, y); 
 		}

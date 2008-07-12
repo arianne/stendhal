@@ -40,7 +40,7 @@ public class XMLUtil {
 	 * @return A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent) {
-		LinkedList<Element> list = new LinkedList<Element>();
+		final LinkedList<Element> list = new LinkedList<Element>();
 
 		Node node = parent.getFirstChild();
 
@@ -68,13 +68,13 @@ public class XMLUtil {
 	 */
 	public static List<Element> getElements(final Element parent,
 			final String name) {
-		LinkedList<Element> list = new LinkedList<Element>();
+		final LinkedList<Element> list = new LinkedList<Element>();
 
 		Node node = parent.getFirstChild();
 
 		while (node != null) {
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element element = (Element) node;
+				final Element element = (Element) node;
 
 				if (element.getTagName().equals(name)) {
 					list.add(element);
@@ -96,7 +96,7 @@ public class XMLUtil {
 	 * @return The contained text.
 	 */
 	public static String getText(final Element element) {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 
 		getText(element, sbuf, false);
 
@@ -150,7 +150,7 @@ public class XMLUtil {
 	 * @throws IllegalArgumentException
 	 *             If there is a parser configuration error.
 	 */
-	public static Document parse(InputStream in) throws SAXException,
+	public static Document parse(final InputStream in) throws SAXException,
 			IOException {
 		return parse(new InputSource(in));
 	}
@@ -170,13 +170,13 @@ public class XMLUtil {
 	 * @throws IllegalArgumentException
 	 *             If there is a parser configuration error.
 	 */
-	public static Document parse(InputSource is) throws SAXException,
+	public static Document parse(final InputSource is) throws SAXException,
 			IOException {
 		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			final DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 			return builder.parse(is);
-		} catch (ParserConfigurationException ex) {
+		} catch (final ParserConfigurationException ex) {
 			throw new IllegalArgumentException(
 					"DOM parser configuration error: " + ex.getMessage());
 		}

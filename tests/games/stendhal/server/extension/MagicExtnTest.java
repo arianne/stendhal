@@ -35,9 +35,9 @@ public class MagicExtnTest {
 
 	@Test
 	public final void testMagic() {
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "spell");
 		action.put("target", "player");
 		assertTrue(CommandCenter.execute(pl, action));

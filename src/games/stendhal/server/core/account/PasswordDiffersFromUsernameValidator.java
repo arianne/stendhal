@@ -13,8 +13,8 @@ public class PasswordDiffersFromUsernameValidator implements
 		AccountParameterValidator {
 	private static Logger logger = Logger.getLogger(PasswordDiffersFromUsernameValidator.class);
 
-	private String username;
-	private String password;
+	private final String username;
+	private final String password;
 
 	/**
 	 * Creates a new PasswordDiffersFromUsernameValidator validator.
@@ -24,7 +24,7 @@ public class PasswordDiffersFromUsernameValidator implements
 	 * @param password
 	 *            password
 	 */
-	public PasswordDiffersFromUsernameValidator(String username, String password) {
+	public PasswordDiffersFromUsernameValidator(final String username, final String password) {
 		this.username = username;
 		this.password = password;
 	}
@@ -40,9 +40,9 @@ public class PasswordDiffersFromUsernameValidator implements
 			// now we'll do some more checks to see if the password
 			// contains more than three letters of the username
 			logger.debug("Checking is password contains a derivitive of the username, trimming from the back...");
-			int min_user_length = 3;
+			final int min_user_length = 3;
 			for (int i = 1; i < username.length(); i++) {
-				String subuser = username.substring(0, username.length() - i);
+				final String subuser = username.substring(0, username.length() - i);
 				logger.debug("\tchecking for \"" + subuser + "\"...");
 				if (subuser.length() <= min_user_length) {
 					break;
@@ -59,7 +59,7 @@ public class PasswordDiffersFromUsernameValidator implements
 				// now from the end of the password..
 				logger.debug("Checking is password contains a derivitive of the username, trimming from the front...");
 				for (int i = 0; i < username.length(); i++) {
-					String subuser = username.substring(i);
+					final String subuser = username.substring(i);
 					logger.debug("\tchecking for \"" + subuser + "\"...");
 					if (subuser.length() <= min_user_length) {
 						break;

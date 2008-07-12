@@ -7,14 +7,14 @@ package games.stendhal.tools.loganalyser.itemlog.consistency;
  * @author hendrik
  */
 public class LogEntry {
-	private String timestamp;
-	private String itemid;
-	private String source;
-	private String event;
-	private String param1;
-	private String param2;
-	private String param3;
-	private String param4;
+	private final String timestamp;
+	private final String itemid;
+	private final String source;
+	private final String event;
+	private final String param1;
+	private final String param2;
+	private final String param3;
+	private final String param4;
 
 	/**
 	 * Creates a new LogEntry.
@@ -28,7 +28,7 @@ public class LogEntry {
 	 * @param param3 additional param3
 	 * @param param4 additional param4
 	 */
-	public LogEntry(String timestamp, String itemid, String source, String event, String param1, String param2, String param3, String param4) {
+	public LogEntry(final String timestamp, final String itemid, final String source, final String event, final String param1, final String param2, final String param3, final String param4) {
 	    this.timestamp = timestamp;
 	    this.itemid = itemid;
 	    this.source = source;
@@ -73,7 +73,7 @@ public class LogEntry {
 
     @Override
     public String toString() {
-    	StringBuilder sb = new StringBuilder();
+    	final StringBuilder sb = new StringBuilder();
     	sb.append(timestamp);
     	sb.append('\t');
     	sb.append(itemid);

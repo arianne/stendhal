@@ -20,7 +20,7 @@ import java.util.Map;
  * @author kymara
  */
 public class GreeterNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -28,16 +28,16 @@ public class GreeterNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Orchiwald") {
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Orchiwald") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 12));
 				nodes.add(new Node(40, 12));
 				nodes.add(new Node(40, 28));
@@ -61,7 +61,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")) {
 
 					@Override
-					public int getUnitPrice(String item) {
+					public int getUnitPrice(final String item) {
 						// Player gets 20 % rebate
 						return (int) (0.80f * priceList.get(item));
 					}

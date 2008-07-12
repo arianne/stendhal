@@ -17,19 +17,19 @@ public class ArrestWarrantList extends StoreableEntityList<ArrestWarrant> {
 	 * @param zone
 	 *            zone to store the ArrestWarrants in
 	 */
-	public ArrestWarrantList(StendhalRPZone zone) {
+	public ArrestWarrantList(final StendhalRPZone zone) {
 		super(zone, ArrestWarrant.class);
 	}
 
 	@Override
-	public String getName(ArrestWarrant arrestWarrant) {
+	public String getName(final ArrestWarrant arrestWarrant) {
 		return arrestWarrant.getCriminal();
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder who = new StringBuilder();
-		for (ArrestWarrant aw : getList()) {
+		final StringBuilder who = new StringBuilder();
+		for (final ArrestWarrant aw : getList()) {
 			who.append(aw.getCriminal());
 			who.append(": ");
 			who.append(aw.getMinutes());

@@ -37,25 +37,25 @@ public class GuildPermissionList {
     
     private void loadPermissions() {
         perms = new LinkedList<GuildPermission>();
-        for (RPObject o : zone) {
+        for (final RPObject o : zone) {
             if (o instanceof GuildPermission) {
                 perms.add((GuildPermission) o);
             }
         }
     }
     
-    public void addPermission(GuildPermission g) {
+    public void addPermission(final GuildPermission g) {
         zone.add(g);
         zone.storeToDatabase();
     }
     
-    public void removePermission(GuildPermission p) {
+    public void removePermission(final GuildPermission p) {
         zone.remove(p);
         zone.storeToDatabase();
     }
     
-    public void removePermission(String identifier) {
-        for (GuildPermission g : perms) {
+    public void removePermission(final String identifier) {
+        for (final GuildPermission g : perms) {
             if (g.getIdentifier().equals(identifier)) {
                 zone.remove(g);
                 break;
@@ -64,9 +64,9 @@ public class GuildPermissionList {
         zone.storeToDatabase();
     }
     
-    public List<GuildPermission> getPermissionsForGuild(Guild guild) {
-        List<GuildPermission> gps = new LinkedList<GuildPermission>();
-        for (GuildPermission g : perms) {
+    public List<GuildPermission> getPermissionsForGuild(final Guild guild) {
+        final List<GuildPermission> gps = new LinkedList<GuildPermission>();
+        for (final GuildPermission g : perms) {
             if (g.getGuild().equals(guild.getIdentifier())) {
                 gps.add(g);
             }

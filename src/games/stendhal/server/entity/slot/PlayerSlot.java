@@ -15,12 +15,12 @@ public class PlayerSlot extends EntitySlot {
 	 * @param name
 	 *            name of slot
 	 */
-	public PlayerSlot(String name) {
+	public PlayerSlot(final String name) {
 		super(name);
 	}
 
 	@Override
-	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		return super.hasAsAncestor(entity);
 	}
 }

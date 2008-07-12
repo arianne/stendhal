@@ -27,7 +27,7 @@ public class SoundFileReader {
 
 	}
 
-	private void init(String propertyfile) {
+	private void init(final String propertyfile) {
 
 		soundprops = loadSoundProperties(soundprops, propertyfile);
 
@@ -45,8 +45,8 @@ public class SoundFileReader {
 	 * @return InputStream
 	 * @throws IOException
 	 */
-	public static InputStream getResourceStream(String name) throws IOException {
-		URL url = SpriteStore.get().getResourceURL(name);
+	public static InputStream getResourceStream(final String name) throws IOException {
+		final URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
 			return null;
 		}
@@ -60,7 +60,7 @@ public class SoundFileReader {
 	 *            the Propertyfile
 	 * @return Properties with name of the sound files
 	 */
-	public static Properties loadSoundProperties(Properties prop, String url) {
+	public static Properties loadSoundProperties(Properties prop, final String url) {
 		InputStream in1;
 		if (prop == null) {
 			prop = new Properties();
@@ -70,13 +70,13 @@ public class SoundFileReader {
 
 			prop.load(in1);
 			in1.close();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// logger.error(e, e);
 		}
 		return prop;
 	}
 
-	byte[] getData(String soundname) {
+	byte[] getData(final String soundname) {
 		byte[] data;
 
 		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
@@ -86,7 +86,7 @@ public class SoundFileReader {
 		if (!soundbase.endsWith("/")) {
 			soundbase = soundbase + "/";
 		}
-		String filename = soundbase + soundname;
+		final String filename = soundbase + soundname;
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
@@ -98,7 +98,7 @@ public class SoundFileReader {
 
 			transferData(in, bout, 4096);
 			in.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			Logger.getLogger(SoundFileReader.class).error(
 					"could not open soundfile " + filename);
 			return null;
@@ -117,9 +117,9 @@ public class SoundFileReader {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	static void transferData(InputStream input, OutputStream output,
-			int bufferSize) throws java.io.IOException {
-		byte[] buffer = new byte[bufferSize];
+	static void transferData(final InputStream input, final OutputStream output,
+			final int bufferSize) throws java.io.IOException {
+		final byte[] buffer = new byte[bufferSize];
 		int len;
 
 		while ((len = input.read(buffer)) > 0) {

@@ -17,13 +17,13 @@ import java.util.List;
 public class ListNPCs extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
-		StringBuilder res = new StringBuilder();
-		NPCList npcs = SingletonRepository.getNPCList();
-		for (String name : npcs.getNPCs()) {
-			SpeakerNPC npc = npcs.get(name);
+		final StringBuilder res = new StringBuilder();
+		final NPCList npcs = SingletonRepository.getNPCList();
+		for (final String name : npcs.getNPCs()) {
+			final SpeakerNPC npc = npcs.get(name);
 			res.append("\r\n" + name + "\t is in ");
 			res.append(npc.getZone().getName() + " at (");
 			res.append(npc.getX() + ", " + npc.getY() + ")");

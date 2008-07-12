@@ -30,7 +30,7 @@ public class BakerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -38,12 +38,12 @@ public class BakerNPC implements ZoneConfigurator {
 	// BakerNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC baker = new SpeakerNPC("Kroip") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC baker = new SpeakerNPC("Kroip") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(15, 3));
 				nodes.add(new Node(15, 8));
 				nodes.add(new Node(13, 8));
@@ -80,7 +80,7 @@ public class BakerNPC implements ZoneConfigurator {
 
 				// makes a pizza if you bring flour cheese mushroom porcini and ham
 				// (uses sorted TreeMap instead of HashMap)
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 2);
 				requiredResources.put("cheese", 1);
 				requiredResources.put("tomato", 1);
@@ -88,7 +88,7 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("porcini", 1);
 				requiredResources.put("ham", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("kroip_make_pizza", "make", "pizza",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("kroip_make_pizza", "make", "pizza",
 				        requiredResources, 5 * 60, true);
 
 				new ProducerAdder().addProducer(this, behaviour,

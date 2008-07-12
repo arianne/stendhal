@@ -31,13 +31,13 @@ public class MeetHackim extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_hackim";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
@@ -50,7 +50,7 @@ public class MeetHackim extends AbstractQuest {
 
 	private void prepareHackim() {
 
-		SpeakerNPC npc = npcs.get("Hackim Easso");
+		final SpeakerNPC npc = npcs.get("Hackim Easso");
 
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -76,9 +76,9 @@ public class MeetHackim extends AbstractQuest {
 			"Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #'sell studded shield'.",
 			null);
 
-		String answer = "Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n";
+		final String answer = "Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n";
 
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new EquipItemAction("money", 5));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));

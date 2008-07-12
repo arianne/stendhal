@@ -49,7 +49,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	private static final String QUEST_SLOT = "weapons_collector";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -60,8 +60,8 @@ public class WeaponsCollector extends AbstractQuest implements
 	}
 
 	private void setupAbstractQuest() {
-		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		final BringListOfItemsQuest concreteQuest = this;
+		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 
@@ -126,7 +126,7 @@ public class WeaponsCollector extends AbstractQuest implements
 		return "Well, maybe someone else will happen by and help me. Bye";
 	}
 
-	public String askForMissingItems(List<String> missingItems) {
+	public String askForMissingItems(final List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
 				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
 				+ " still missing from my collection: "
@@ -134,7 +134,7 @@ public class WeaponsCollector extends AbstractQuest implements
 				+ ". Do you have anything of that nature with you?";
 	}
 
-	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Let me know as soon as you find "
 				+ Grammar.itthem(missingItems.size()) + ". Farewell.";
 	}
@@ -152,14 +152,14 @@ public class WeaponsCollector extends AbstractQuest implements
 				+ "here, take this #'ice sword' in exchange!";
 	}
 
-	public void rewardPlayer(Player player) {
-		Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
+	public void rewardPlayer(final Player player) {
+		final Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
 		player.equip(iceSword, true);
 		player.addXP(1000);
 	}
 
-	public String respondToOfferOfNotExistingItem(String itemName) {
+	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "I may be old, but I'm not senile, and you clearly don't have "
 				+ Grammar.a_noun(itemName)
 				+ ". What do you really have for me?";

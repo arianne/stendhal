@@ -34,20 +34,20 @@ public class PushAction implements ActionListener {
 	private static final String _PUSH = "push";
 
 	public static void register() {
-		PushAction push = new PushAction();
+		final PushAction push = new PushAction();
 		CommandCenter.register(_PUSH, push);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		// evaluate the target parameter
-		Entity entity = EntityHelper.entityFromTargetName(
+		final Entity entity = EntityHelper.entityFromTargetName(
 			action.get(TARGET), player);
 
 		if ((entity == null) || !(entity instanceof RPEntity)) {
 			return;
 		}
-		RPEntity rpEntity = (RPEntity) entity;
+		final RPEntity rpEntity = (RPEntity) entity;
 
 		tryPush(player, rpEntity);
 	}
@@ -58,14 +58,14 @@ public class PushAction implements ActionListener {
 	 * @param player player pushing
 	 * @param rpEntity entity pushed
 	 */
-	private void tryPush(Player player, RPEntity rpEntity) {
+	private void tryPush(final Player player, final RPEntity rpEntity) {
 		if (canPush(player, rpEntity)) {
-			Direction dir = player.getDirectionToward(rpEntity);
+			final Direction dir = player.getDirectionToward(rpEntity);
 
-			int x = rpEntity.getX() + dir.getdx();
-			int y = rpEntity.getY() + dir.getdy();
+			final int x = rpEntity.getX() + dir.getdx();
+			final int y = rpEntity.getY() + dir.getdy();
 
-			StendhalRPZone zone = player.getZone();
+			final StendhalRPZone zone = player.getZone();
 			if (!zone.collides(rpEntity, x, y)) {
 				move(player, rpEntity, x, y);
 			}
@@ -79,7 +79,7 @@ public class PushAction implements ActionListener {
 	 * @param rpEntity entity pushed
 	 * @return true, if the push is possible, false otherwise
 	 */
-	private boolean canPush(Player player, RPEntity rpEntity) {
+	private boolean canPush(final Player player, final RPEntity rpEntity) {
 
 		// If object is a NPC we ignore the push action because
 		// NPC don't use the pathfinder and would get confused
@@ -102,7 +102,7 @@ public class PushAction implements ActionListener {
 	 * @param x new x-position
 	 * @param y new y-position
 	 */
-	private void move(Player player, RPEntity rpEntity, int x, int y) {
+	private void move(final Player player, final RPEntity rpEntity, final int x, final int y) {
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 			"push", rpEntity.getName(), rpEntity.getZone().getName(), 
 			rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);

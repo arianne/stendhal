@@ -22,7 +22,7 @@ public class SoldierNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildAdosGreetingSoldier(zone);
 	}
 
@@ -31,13 +31,13 @@ public class SoldierNPC implements ZoneConfigurator {
 	 *
 	 * @param zone StendhalRPZone
 	 */
-	private void buildAdosGreetingSoldier(StendhalRPZone zone) {
+	private void buildAdosGreetingSoldier(final StendhalRPZone zone) {
 
-		SpeakerNPC npc = new SpeakerNPC("Julius") {
+		final SpeakerNPC npc = new SpeakerNPC("Julius") {
 
 			@Override
 			protected void createPath() {
-				List<Node> path = new LinkedList<Node>();
+				final List<Node> path = new LinkedList<Node>();
 				path.add(new Node(84, 109));
 				path.add(new Node(84, 116));
 				setPath(new FixedPath(path, true));

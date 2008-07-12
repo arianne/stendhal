@@ -68,7 +68,7 @@ public enum ActionType {
 	 * @return the Action Element or null if not found
 	 */
 	public static ActionType getbyRep(final String representation) {
-		for (ActionType at : ActionType.values()) {
+		for (final ActionType at : ActionType.values()) {
 			if (at.actionRepresentation.equals(representation)) {
 				return at;
 			}

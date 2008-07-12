@@ -37,9 +37,9 @@ public class ServerTMXLoader {
 
 	private String xmlPath;
 
-	private static String makeUrl(String filename) throws MalformedURLException {
+	private static String makeUrl(final String filename) throws MalformedURLException {
 		final String url;
-		if (filename.indexOf("://") > 0 || filename.startsWith("file:")) {
+		if ((filename.indexOf("://") > 0) || filename.startsWith("file:")) {
 			url = filename;
 		} else {
 			url = (new File(filename)).toURI().toURL().toString();
@@ -47,11 +47,11 @@ public class ServerTMXLoader {
 		return url;
 	}
 
-	private static String getAttributeValue(Node node, String attribname) {
-		NamedNodeMap attributes = node.getAttributes();
+	private static String getAttributeValue(final Node node, final String attribname) {
+		final NamedNodeMap attributes = node.getAttributes();
 		String att = null;
 		if (attributes != null) {
-			Node attribute = attributes.getNamedItem(attribname);
+			final Node attribute = attributes.getNamedItem(attribname);
 			if (attribute != null) {
 				att = attribute.getNodeValue();
 			}
@@ -59,8 +59,8 @@ public class ServerTMXLoader {
 		return att;
 	}
 
-	private static int getAttribute(Node node, String attribname, int def) {
-		String attr = getAttributeValue(node, attribname);
+	private static int getAttribute(final Node node, final String attribname, final int def) {
+		final String attr = getAttributeValue(node, attribname);
 		if (attr != null) {
 			return Integer.parseInt(attr);
 		} else {
@@ -68,17 +68,17 @@ public class ServerTMXLoader {
 		}
 	}
 
-	private TileSetDefinition unmarshalTileset(Node t) throws Exception {
-		String name = getAttributeValue(t, "name");
-		int firstGid = getAttribute(t, "firstgid", 1);
+	private TileSetDefinition unmarshalTileset(final Node t) throws Exception {
+		final String name = getAttributeValue(t, "name");
+		final int firstGid = getAttribute(t, "firstgid", 1);
 
-		TileSetDefinition set = new TileSetDefinition(name, firstGid);
+		final TileSetDefinition set = new TileSetDefinition(name, firstGid);
 
-		boolean hasTilesetImage = false;
-		NodeList children = t.getChildNodes();
+		final boolean hasTilesetImage = false;
+		final NodeList children = t.getChildNodes();
 
 		for (int i = 0; i < children.getLength(); i++) {
-			Node child = children.item(i);
+			final Node child = children.item(i);
 
 			if (child.getNodeName().equalsIgnoreCase("image")) {
 				if (hasTilesetImage) {
@@ -104,9 +104,9 @@ public class ServerTMXLoader {
 	 *            the properties object to set the properties of
 	 */
 	@SuppressWarnings("unused")
-	private static void readProperties(NodeList children, Properties props) {
+	private static void readProperties(final NodeList children, final Properties props) {
 		for (int i = 0; i < children.getLength(); i++) {
-			Node child = children.item(i);
+			final Node child = children.item(i);
 			if ("property".equalsIgnoreCase(child.getNodeName())) {
 				props.setProperty(getAttributeValue(child, "name"),
 						getAttributeValue(child, "value"));
@@ -122,16 +122,16 @@ public class ServerTMXLoader {
 	 * @return the layer definition for the node
 	 * @throws Exception 
 	 */
-	private LayerDefinition readLayer(Node t) throws Exception {
-		int layerWidth = getAttribute(t, "width", stendhalMap.width);
-		int layerHeight = getAttribute(t, "height", stendhalMap.height);
+	private LayerDefinition readLayer(final Node t) throws Exception {
+		final int layerWidth = getAttribute(t, "width", stendhalMap.width);
+		final int layerHeight = getAttribute(t, "height", stendhalMap.height);
 
-		LayerDefinition layer = new LayerDefinition(layerWidth, layerHeight);
+		final LayerDefinition layer = new LayerDefinition(layerWidth, layerHeight);
 
-		int offsetX = getAttribute(t, "x", 0);
-		int offsetY = getAttribute(t, "y", 0);
+		final int offsetX = getAttribute(t, "x", 0);
+		final int offsetY = getAttribute(t, "y", 0);
 
-		if (offsetX != 0 || offsetY != 0) {
+		if ((offsetX != 0) || (offsetY != 0)) {
 			System.err.println("Severe error: maps has offset displacement");
 		}
 
@@ -142,26 +142,26 @@ public class ServerTMXLoader {
 
 		for (Node child = t.getFirstChild(); child != null; child = child.getNextSibling()) {
 			if ("data".equalsIgnoreCase(child.getNodeName())) {
-				String encoding = getAttributeValue(child, "encoding");
+				final String encoding = getAttributeValue(child, "encoding");
 
-				if (encoding != null && "base64".equalsIgnoreCase(encoding)) {
-					Node cdata = child.getFirstChild();
+				if ((encoding != null) && "base64".equalsIgnoreCase(encoding)) {
+					final Node cdata = child.getFirstChild();
 					if (cdata != null) {
-						char[] enc = cdata.getNodeValue().trim().toCharArray();
-						byte[] dec = Base64.decode(enc);
-						ByteArrayInputStream bais = new ByteArrayInputStream(
+						final char[] enc = cdata.getNodeValue().trim().toCharArray();
+						final byte[] dec = Base64.decode(enc);
+						final ByteArrayInputStream bais = new ByteArrayInputStream(
 								dec);
 						InputStream is;
 
-						String comp = getAttributeValue(child, "compression");
+						final String comp = getAttributeValue(child, "compression");
 
-						if (comp != null && "gzip".equalsIgnoreCase(comp)) {
+						if ((comp != null) && "gzip".equalsIgnoreCase(comp)) {
 							is = new GZIPInputStream(bais);
 						} else {
 							is = bais;
 						}
 
-						byte[] raw = layer.exposeRaw();
+						final byte[] raw = layer.exposeRaw();
 						int offset = 0;
 
 						while (offset != raw.length) {
@@ -175,7 +175,7 @@ public class ServerTMXLoader {
 		return layer;
 	}
 
-	private void buildMap(Document doc) throws Exception {
+	private void buildMap(final Document doc) throws Exception {
 		Node mapNode;
 
 		mapNode = doc.getDocumentElement();
@@ -185,10 +185,10 @@ public class ServerTMXLoader {
 		}
 
 		// Get the map dimensions and create the map
-		int mapWidth = getAttribute(mapNode, "width", 0);
-		int mapHeight = getAttribute(mapNode, "height", 0);
+		final int mapWidth = getAttribute(mapNode, "width", 0);
+		final int mapHeight = getAttribute(mapNode, "height", 0);
 
-		if (mapWidth > 0 && mapHeight > 0) {
+		if ((mapWidth > 0) && (mapHeight > 0)) {
 			stendhalMap = new StendhalMapStructure(mapWidth, mapHeight);
 		}
 
@@ -206,16 +206,16 @@ public class ServerTMXLoader {
 		}
 	}
 
-	private StendhalMapStructure unmarshal(InputStream in) throws Exception {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private StendhalMapStructure unmarshal(final InputStream in) throws Exception {
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document doc;
 		try {
 			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);
 			factory.setExpandEntityReferences(false);
-			DocumentBuilder builder = factory.newDocumentBuilder();
+			final DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(in, xmlPath);
-		} catch (SAXException e) {
+		} catch (final SAXException e) {
 			e.printStackTrace();
 			throw new Exception("Error while parsing map file: " + e.toString());
 		}
@@ -224,7 +224,7 @@ public class ServerTMXLoader {
 		return stendhalMap;
 	}
 
-	public StendhalMapStructure readMap(String filename) throws Exception {
+	public StendhalMapStructure readMap(final String filename) throws Exception {
 		xmlPath = filename.substring(0,
 				filename.lastIndexOf(File.separatorChar) + 1);
 
@@ -232,10 +232,10 @@ public class ServerTMXLoader {
 				filename);
 
 		if (is == null) {
-			String xmlFile = makeUrl(filename);
+			final String xmlFile = makeUrl(filename);
 			// xmlPath = makeUrl(xmlPath);
 
-			URL url = new URL(xmlFile);
+			final URL url = new URL(xmlFile);
 			is = url.openStream();
 		}
 
@@ -248,13 +248,13 @@ public class ServerTMXLoader {
 			is = new GZIPInputStream(is);
 		}
 
-		StendhalMapStructure unmarshalledMap = unmarshal(is);
+		final StendhalMapStructure unmarshalledMap = unmarshal(is);
 		unmarshalledMap.setFilename(filename);
 
 		return unmarshalledMap;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		System.out.println("Test: loading map");
 
 		StendhalMapStructure map = null;
@@ -277,21 +277,21 @@ public class ServerTMXLoader {
 		map = new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/village_w.tmx");
 		map.build();
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
-		List<TileSetDefinition> tilesets = map.getTilesets();
-		for (TileSetDefinition set : tilesets) {
+		final List<TileSetDefinition> tilesets = map.getTilesets();
+		for (final TileSetDefinition set : tilesets) {
 			System.out.printf("TILESET firstGID: '%d' name: '%s'\n",
 					set.getFirstGid(), set.getSource());
 		}
 
-		List<LayerDefinition> layers = map.getLayers();
-		for (LayerDefinition layer : layers) {
+		final List<LayerDefinition> layers = map.getLayers();
+		for (final LayerDefinition layer : layers) {
 			System.out.printf("LAYER name: %s\n", layer.getName());
-			int w = layer.getWidth();
-			int h = layer.getHeight();
+			final int w = layer.getWidth();
+			final int h = layer.getHeight();
 
 			for (int y = 0; y < h; y++) {
 				for (int x = 0; x < w; x++) {
-					int gid = layer.getTileAt(x, y);
+					final int gid = layer.getTileAt(x, y);
 					System.out.print(gid + ((x == w - 1) ? "" : ","));
 				}
 				System.out.println();
@@ -300,7 +300,7 @@ public class ServerTMXLoader {
 
 	}
 
-	public static StendhalMapStructure load(String filename) throws Exception {
+	public static StendhalMapStructure load(final String filename) throws Exception {
 		return new ServerTMXLoader().readMap(filename);
 	}
 }

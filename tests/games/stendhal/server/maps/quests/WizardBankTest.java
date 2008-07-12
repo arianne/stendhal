@@ -28,7 +28,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME);
 
-		WizardBank wb = new WizardBank();
+		final WizardBank wb = new WizardBank();
 		wb.addToWorld();
 	}
 
@@ -42,8 +42,8 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Javier X");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Javier X");
+		final Engine en = npc.getEngine();
 
 		 // Test trusted access to the bank.
 		assertTrue(en.step(player, "hi Javier"));
@@ -119,10 +119,10 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 	@Test
 	public void testReplies() {
 		 // A named player name needed to create the name based hash code.
-		Player player = createPlayer("player1");
+		final Player player = createPlayer("player1");
 
-		SpeakerNPC npc = getNPC("Javier X");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Javier X");
+		final Engine en = npc.getEngine();
 
 		 // set requirements to access the bank
 		player.setQuest(GRAFINDLE_QUEST_SLOT, "done");
@@ -155,11 +155,11 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 	@Test
 	public void testDoQuest() {
 		 // A named player name needed to create the name based hash code.
-		Player player = createPlayer("player2");
+		final Player player = createPlayer("player2");
 		registerPlayer(player, ZONE_NAME);
 
-		SpeakerNPC npc = getNPC("Javier X");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Javier X");
+		final Engine en = npc.getEngine();
 
 		 // set requirements to access the bank
 		player.setQuest(GRAFINDLE_QUEST_SLOT, "done");

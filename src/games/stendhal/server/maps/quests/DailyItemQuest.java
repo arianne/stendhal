@@ -80,28 +80,28 @@ public class DailyItemQuest extends AbstractQuest {
 				"licorice");
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("daily_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
 			
-			long delay = MathHelper.MILLISECONDS_IN_ONE_DAY; 
+			final long delay = MathHelper.MILLISECONDS_IN_ONE_DAY; 
 
-			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
+			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
 			if ((questKill != null) && !"done".equals(questKill)) {
-				String sayText = "You're already on a quest to fetch "
+				final String sayText = "You're already on a quest to fetch "
 						+ Grammar.a_noun(questKill)
 						+ ". Say #complete if you brought it!";
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
@@ -115,7 +115,7 @@ public class DailyItemQuest extends AbstractQuest {
 			}
 
 			if (questLast != null) {
-				long timeRemaining = (Long.parseLong(questLast) + delay)
+				final long timeRemaining = (Long.parseLong(questLast) + delay)
 						- System.currentTimeMillis();
 
 				if (timeRemaining > 0L) {
@@ -125,7 +125,7 @@ public class DailyItemQuest extends AbstractQuest {
 					return;
 				}
 			}
-			String itemName = Rand.rand(listeditems);
+			final String itemName = Rand.rand(listeditems);
 			engine.say("Ados is in need of supplies. Go fetch "
 					+ Grammar.a_noun(itemName)
 					+ " and say #complete, once you've brought it.");
@@ -137,8 +137,8 @@ public class DailyItemQuest extends AbstractQuest {
 
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("daily_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
@@ -147,7 +147,7 @@ public class DailyItemQuest extends AbstractQuest {
 				engine.say("I'm afraid I didn't send you on a #quest yet.");
 				return;
 			}
-			String[] tokens = (questInfo + ";0;0").split(";");
+			final String[] tokens = (questInfo + ";0;0").split(";");
 			questKill = tokens[0];
 			questLast = tokens[1];
 			questCount = tokens[2];
@@ -159,8 +159,8 @@ public class DailyItemQuest extends AbstractQuest {
 				return;
 			}
 			if (player.drop(questKill)) {
-				int start = Level.getXP(player.getLevel());
-				int next = Level.getXP(player.getLevel() + 1);
+				final int start = Level.getXP(player.getLevel());
+				final int next = Level.getXP(player.getLevel() + 1);
 				int reward = (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
@@ -182,16 +182,16 @@ public class DailyItemQuest extends AbstractQuest {
 	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("daily_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
 			// Milliseconds in a week
-			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
+			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
@@ -199,7 +199,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 			if ((questKill != null) && !"done".equals(questKill)) {
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
@@ -221,12 +221,12 @@ public class DailyItemQuest extends AbstractQuest {
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"),
 				null, ConversationStates.ATTENDING, null,
 				new DailyQuestAction());
@@ -237,7 +237,7 @@ public class DailyItemQuest extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("complete", "done"), null,
@@ -246,7 +246,7 @@ public class DailyItemQuest extends AbstractQuest {
 	}
 
 	private void step_4() {
-		SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("another", "abort"), null,
 				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());

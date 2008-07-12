@@ -58,35 +58,35 @@ public class PizzaDelivery extends AbstractQuest {
 	 */
 	static class CustomerData {
 		/** A hint where to find the customer. */
-		private String npcDescription;
+		private final String npcDescription;
 
 		/** The pizza style the customer likes. */
-		private String flavor;
+		private final String flavor;
 
 		/** The time until the pizza should be delivered. */
-		private int expectedMinutes;
+		private final int expectedMinutes;
 
 		/** The money the player should get on fast delivery. */
-		private int tip;
+		private final int tip;
 
 		/**
 		 * The experience the player should gain for delivery. When the pizza
 		 * has already become cold, the player will gain half of this amount.
 		 */
-		private int xp;
+		private final int xp;
 
 		/**
 		 * The text that the customer should say upon quick delivery. It should
 		 * contain %d as a placeholder for the tip, and can optionally contain
 		 * %s as a placeholder for the pizza flavor.
 		 */
-		private String messageOnHotPizza;
+		private final String messageOnHotPizza;
 
 		/**
 		 * The text that the customer should say upon quick delivery. It can
 		 * optionally contain %s as a placeholder for the pizza flavor.
 		 */
-		private String messageOnColdPizza;
+		private final String messageOnColdPizza;
 
 		/**
 		 * Creates a CustomerData object.
@@ -99,9 +99,9 @@ public class PizzaDelivery extends AbstractQuest {
 		 * @param messageHot
 		 * @param messageCold
 		 */
-		CustomerData(String npcDescription, String flavor,
-				int expectedTime, int tip, int xp, String messageHot,
-				String messageCold) {
+		CustomerData(final String npcDescription, final String flavor,
+				final int expectedTime, final int tip, final int xp, final String messageHot,
+				final String messageCold) {
 			this.npcDescription = npcDescription;
 			this.flavor = flavor;
 			this.expectedMinutes = expectedTime;
@@ -117,14 +117,14 @@ public class PizzaDelivery extends AbstractQuest {
 	private static Map<String, CustomerData> customerDB;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	// This could maybe be more precise.
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
@@ -296,11 +296,11 @@ public class PizzaDelivery extends AbstractQuest {
 				"Grrr. Pizza cold. You walking slow like sheep."));
 	}
 
-	private void startDelivery(Player player, SpeakerNPC npc) {
-		String name = Rand.rand(customerDB.keySet());
-		CustomerData data = customerDB.get(name);
+	private void startDelivery(final Player player, final SpeakerNPC npc) {
+		final String name = Rand.rand(customerDB.keySet());
+		final CustomerData data = customerDB.get(name);
 
-		Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
+		final Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
 		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
 		pizza.setBoundTo(name);
@@ -331,13 +331,13 @@ public class PizzaDelivery extends AbstractQuest {
 	 * @return true if the player is too late. false if the player still has
 	 *         time, or if he doesn't have a delivery to do currently.
 	 */
-	private boolean isDeliveryTooLate(Player player) {
+	private boolean isDeliveryTooLate(final Player player) {
 		if (player.hasQuest(QUEST_SLOT)) {
-			String[] questData = player.getQuest(QUEST_SLOT).split(";");
-			String customerName = questData[0];
-			CustomerData customerData = customerDB.get(customerName);
-			long bakeTime = Long.parseLong(questData[1]);
-			long expectedTimeOfDelivery = bakeTime 
+			final String[] questData = player.getQuest(QUEST_SLOT).split(";");
+			final String customerName = questData[0];
+			final CustomerData customerData = customerDB.get(customerName);
+			final long bakeTime = Long.parseLong(questData[1]);
+			final long expectedTimeOfDelivery = bakeTime 
 				+ (long) 60 * 1000 * customerData.expectedMinutes;
 			if (System.currentTimeMillis() > expectedTimeOfDelivery) {
 				return true;
@@ -347,11 +347,11 @@ public class PizzaDelivery extends AbstractQuest {
 
 	}
 
-	private void handOverPizza(Player player, SpeakerNPC npc) {
+	private void handOverPizza(final Player player, final SpeakerNPC npc) {
 		if (player.isEquipped("pizza")) {
-			CustomerData data = customerDB.get(npc.getName());
-			for (Item pizza : player.getAllEquipped("pizza")) {
-				String flavor = pizza.getInfoString();
+			final CustomerData data = customerDB.get(npc.getName());
+			for (final Item pizza : player.getAllEquipped("pizza")) {
+				final String flavor = pizza.getInfoString();
 				if (data.flavor.equals(flavor)) {
 					player.drop(pizza);
 					// Check whether the player was supposed to deliver the
@@ -378,7 +378,7 @@ public class PizzaDelivery extends AbstractQuest {
 								npc.say(String.format(data.messageOnHotPizza,
 										data.tip));
 							}
-							StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
+							final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 									.getItem("money");
 							money.setQuantity(data.tip);
 							player.equip(money, true);
@@ -406,25 +406,25 @@ public class PizzaDelivery extends AbstractQuest {
 
 	/** Takes away the player's uniform, if the he is wearing it. 
 	 * @param player to remove uniform from*/
-	private void putOffUniform(Player player) {
+	private void putOffUniform(final Player player) {
 		if (UNIFORM.isPartOf(player.getOutfit())) {
 			player.returnToOriginalOutfit();
 		}
 	}
 
 	private void prepareBaker() {
-		SpeakerNPC leander = npcs.get("Leander");
+		final SpeakerNPC leander = npcs.get("Leander");
 
 		leander.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
-						String[] questData = player.getQuest(QUEST_SLOT)
+						final String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
-						String customerName = questData[0];
+						final String customerName = questData[0];
 						if (isDeliveryTooLate(player)) {
 							// If the player still carries the pizza,
 							// take it away because the baker is angry,
@@ -450,7 +450,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					startDelivery(player, npc);
 				}
 			});
@@ -463,27 +463,27 @@ public class PizzaDelivery extends AbstractQuest {
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					putOffUniform(player);
 				}
 			});
 
-		for (String name : customerDB.keySet()) {
-			CustomerData data = customerDB.get(name);
+		for (final String name : customerDB.keySet()) {
+			final CustomerData data = customerDB.get(name);
 			// TODO mf TEST: If there's a space in the NPC name, this won't work.
 			leander.addReply(name, data.npcDescription);
 		}
 	}
 
 	private void prepareCustomers() {
-		for (String name : customerDB.keySet()) {
-			SpeakerNPC npc = npcs.get(name);
+		for (final String name : customerDB.keySet()) {
+			final SpeakerNPC npc = npcs.get(name);
 
 			npc.add(ConversationStates.ATTENDING, "pizza", null,
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						handOverPizza(player, npc);
 					}
 				});

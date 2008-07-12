@@ -24,7 +24,7 @@ public abstract class MoveableObject {
 	 *            Player to notify about problems
 	 */
 
-	public MoveableObject(Player player) {
+	public MoveableObject(final Player player) {
 		this.player = player;
 	}
 

@@ -23,16 +23,16 @@ public class FishermanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildFisherman(zone, attributes);
 	}
 
-	private void buildFisherman(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC fisherman = new SpeakerNPC("Pequod") {
+	private void buildFisherman(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC fisherman = new SpeakerNPC("Pequod") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				// from left
 				nodes.add(new Node(3, 3));
 				// to right

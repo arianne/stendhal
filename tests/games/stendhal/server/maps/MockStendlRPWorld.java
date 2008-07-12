@@ -19,7 +19,7 @@ import marauroa.common.game.RPObject;
 public class MockStendlRPWorld extends StendhalRPWorld {
 
 	@Override
-	public void modify(RPObject object) {
+	public void modify(final RPObject object) {
 	}
 
 	

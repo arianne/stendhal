@@ -54,7 +54,7 @@ public final class SentenceBuilder {
         int count = 0;
 
         while (it.hasNext()) {
-            Expression expr = it.next();
+            final Expression expr = it.next();
 
             append(expr.getNormalized());
             ++count;

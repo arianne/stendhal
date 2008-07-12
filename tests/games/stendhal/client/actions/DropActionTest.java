@@ -30,24 +30,24 @@ public class DropActionTest {
 	 * @return a playerPRObject
 	 */
 	private static RPObject createPlayer() {
-		RPObject rpo = new RPObject();
+		final RPObject rpo = new RPObject();
 
 		rpo.put("type", "player");
 		rpo.put("name", "player");
 		rpo.setID(new ID(USER_ID, ZONE_NAME));
 
-		User pl = new User();
+		final User pl = new User();
 		pl.initialize(rpo);
 
-		for (String slotName : Constants.CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			rpo.addSlot(slotName);
 		}
 
 		return rpo;
 	}
 
-	private static RPObject createItem(String itemName, int id, int amount) {
-		RPObject rpo = new RPObject();
+	private static RPObject createItem(final String itemName, final int id, final int amount) {
+		final RPObject rpo = new RPObject();
 		rpo.put("type", "item");
 		rpo.put("name", itemName);
 		rpo.put("quantity", amount);
@@ -58,8 +58,8 @@ public class DropActionTest {
 
 	@Test
 	public void testNoMoney() {
-		MockClientUI clientUI = new MockClientUI();
-		DropAction action = new DropAction();
+		final MockClientUI clientUI = new MockClientUI();
+		final DropAction action = new DropAction();
 
 		createPlayer();
 
@@ -70,8 +70,8 @@ public class DropActionTest {
 
 	@Test
 	public void testInvalidAmount() {
-		MockClientUI clientUI = new MockClientUI();
-		DropAction action = new DropAction();
+		final MockClientUI clientUI = new MockClientUI();
+		final DropAction action = new DropAction();
 
 		createPlayer();
 
@@ -83,12 +83,12 @@ public class DropActionTest {
 	@Test
 	public void testDropSingle() {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
@@ -101,11 +101,11 @@ public class DropActionTest {
 		};
 
 		// create a player and give him some money
-		RPObject player = createPlayer();
+		final RPObject player = createPlayer();
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop money"
-		DropAction action = new DropAction();
+		final DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -113,12 +113,12 @@ public class DropActionTest {
 	@Test
 	public void testDropMultiple() {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
@@ -131,11 +131,11 @@ public class DropActionTest {
 		};
 
 		// create a player and give him some money
-		RPObject player = createPlayer();
+		final RPObject player = createPlayer();
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop 50 money"
-		DropAction action = new DropAction();
+		final DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"50"}, "money"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -143,12 +143,12 @@ public class DropActionTest {
 	@Test
 	public void testSpaceHandling() {
 		// create client UI
-		MockClientUI clientUI = new MockClientUI();
+		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
@@ -161,24 +161,24 @@ public class DropActionTest {
 		};
 
 		// create a player and give him some money
-		RPObject player = createPlayer();
+		final RPObject player = createPlayer();
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
 		// issue "/drop money"
-		DropAction action = new DropAction();
+		final DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		DropAction action = new DropAction();
+		final DropAction action = new DropAction();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		DropAction action = new DropAction();
+		final DropAction action = new DropAction();
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

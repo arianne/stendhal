@@ -86,17 +86,17 @@ public abstract class ActiveEntity extends Entity {
 			return;
 		}
 
-		int x = getX();
-		int y = getY();
-		int nx = x + direction.getdx();
-		int ny = y + direction.getdy();
+		final int x = getX();
+		final int y = getY();
+		final int nx = x + direction.getdx();
+		final int ny = y + direction.getdy();
 
-		StendhalRPZone zone = getZone();
+		final StendhalRPZone zone = getZone();
 		if (zone.simpleCollides(this, nx, ny)) {
 			handleSimpleCollision(nx, ny);
 			return;
 		}
-		Portal p = zone.getPortal(nx, ny);
+		final Portal p = zone.getPortal(nx, ny);
 		if (p != null) {
 			if (handlePortal(p)) {
 				return;
@@ -110,7 +110,7 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 
-		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
+		final boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
 
 		if (collision) {
 			/* Collision */
@@ -142,11 +142,11 @@ public abstract class ActiveEntity extends Entity {
 		
 	}
 
-	private void move(int x, int y, int nx, int ny) {
+	private void move(final int x, final int y, final int nx, final int ny) {
 		setPosition(nx, ny);
 	}
 
-	protected boolean handlePortal(Portal portal) {
+	protected boolean handlePortal(final Portal portal) {
 		
 		return false;
 	}
@@ -158,7 +158,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param nx
 	 * 
 	 */
-	protected void handleSimpleCollision(int nx, int ny) {
+	protected void handleSimpleCollision(final int nx, final int ny) {
 		if (isZoneChangeAllowed()) {
 			if (getZone().leavesZone(this, nx, ny)) {
 				handleLeaveZone(nx, ny);
@@ -170,7 +170,7 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
-	protected void handleLeaveZone(int nx, int ny) {
+	protected void handleLeaveZone(final int nx, final int ny) {
 		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("
 				+ nx + "," + ny + ")");
 		StendhalRPAction.decideChangeZone(this, nx, ny);
@@ -184,7 +184,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
-		RPClass rpclass = new RPClass("active_entity");
+		final RPClass rpclass = new RPClass("active_entity");
 
 		rpclass.isA("entity");
 		rpclass.addAttribute("dir", Type.BYTE, Definition.VOLATILE);
@@ -233,12 +233,12 @@ public abstract class ActiveEntity extends Entity {
 		return getDirectionToward(entity.getArea());
 	}
 
-	final Direction getDirectionToward(Rectangle2D area) {
+	final Direction getDirectionToward(final Rectangle2D area) {
 
-		double rx = getArea().getCenterX();
-		double ry = getArea().getCenterY();
-		double x = area.getCenterX();
-		double y = area.getCenterY();
+		final double rx = getArea().getCenterX();
+		final double ry = getArea().getCenterY();
+		final double x = area.getCenterX();
+		final double y = area.getCenterY();
 		if (Math.abs(x - rx) > Math.abs(y - ry)) {
 			if (x - rx > 0) {
 				return Direction.RIGHT;
@@ -314,7 +314,7 @@ public abstract class ActiveEntity extends Entity {
 	 *            The new Y coordinate.
 	 */
 	@Override
-	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
 		getZone().notifyMovement(this, oldX, oldY, newX, newY);
 	}
 
@@ -367,7 +367,7 @@ public abstract class ActiveEntity extends Entity {
 	 *            The zone this was added to.
 	 */
 	@Override
-	public void onAdded(StendhalRPZone zone) {
+	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
 
 		zone.notifyEntered(this, getX(), getY());
@@ -380,7 +380,7 @@ public abstract class ActiveEntity extends Entity {
 	 *            The zone this was removed from.
 	 */
 	@Override
-	public void onRemoved(StendhalRPZone zone) {
+	public void onRemoved(final StendhalRPZone zone) {
 		zone.notifyExited(this, getX(), getY());
 
 		super.onRemoved(zone);
@@ -413,9 +413,9 @@ public abstract class ActiveEntity extends Entity {
 		return (speed == 0.0);
 	}
 
-	public final void faceto(int x, int y) {
-		int rndx = x - getX();
-		int rndy = y - getY();
+	public final void faceto(final int x, final int y) {
+		final int rndx = x - getX();
+		final int rndy = y - getY();
 
 		if (Math.abs(rndx) > Math.abs(rndy)) {
 			if (rndx < 0.0) {

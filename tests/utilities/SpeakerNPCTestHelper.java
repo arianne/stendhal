@@ -15,7 +15,7 @@ public abstract class SpeakerNPCTestHelper {
 		return createSpeakerNPC("bob");
 	}
 
-	public static SpeakerNPC createSpeakerNPC(String name) {
+	public static SpeakerNPC createSpeakerNPC(final String name) {
 		PlayerTestHelper.generateNPCRPClasses();
 		return new SpeakerNPC(name);
 	}

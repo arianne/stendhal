@@ -32,7 +32,7 @@ public class TileSetDefinition implements Serializable {
 	 * @param firstGid
 	 *            the id where this tileset begins to number tiles.
 	 */
-	public TileSetDefinition(String name, int firstGid) {
+	public TileSetDefinition(final String name, final int firstGid) {
 		this.name = name;
 		this.gid = firstGid;
 	}
@@ -52,7 +52,7 @@ public class TileSetDefinition implements Serializable {
 	 * @param attributeValue
 	 *            the filename
 	 */
-	public void setSource(String attributeValue) {
+	public void setSource(final String attributeValue) {
 		this.source = attributeValue;
 	}
 
@@ -66,33 +66,33 @@ public class TileSetDefinition implements Serializable {
 	}
 
 	public byte[] encode() throws IOException {
-		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		OutputSerializer out = new OutputSerializer(array);
+		final ByteArrayOutputStream array = new ByteArrayOutputStream();
+		final OutputSerializer out = new OutputSerializer(array);
 
 		writeObject(out);
 
 		return array.toByteArray();
 	}
 
-	public void readObject(InputSerializer in) throws IOException {
+	public void readObject(final InputSerializer in) throws IOException {
 		name = in.readString();
 		source = in.readString();
 		gid = in.readInt();
 	}
 
-	public void writeObject(OutputSerializer out) throws IOException {
+	public void writeObject(final OutputSerializer out) throws IOException {
 		out.write(name);
 		out.write(source);
 		out.write(gid);
 	}
 
 	@Override
-	public boolean equals(Object object) {
+	public boolean equals(final Object object) {
 		if (object instanceof TileSetDefinition) {
 
-			TileSetDefinition set = (TileSetDefinition) object;
+			final TileSetDefinition set = (TileSetDefinition) object;
 			return set.name.equals(name) && set.source.equals(source)
-					&& set.gid == gid;
+					&& (set.gid == gid);
 		} else {
 			return false;
 		}

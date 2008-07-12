@@ -22,11 +22,11 @@ public class ServerReset extends ScriptImpl {
 	public void execute(final Player admin, final List<String> args) {
 
 		try {
-			String text = admin.getTitle()
+			final String text = admin.getTitle()
 					+ " started emergency shutdown of the server.";
 			SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 
-		} catch (Throwable e) {
+		} catch (final Throwable e) {
 			// Yes, i know that you are not supposed to catch Throwable
 			// because of ThreadDeath. But we are here because of an
 			// emergency situation and don't know what went wrong. So we

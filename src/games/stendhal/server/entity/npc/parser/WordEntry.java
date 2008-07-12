@@ -67,7 +67,11 @@ public final class WordEntry {
     }
 
     public String getTypeString() {
-        return type != null? type.getTypeString() : "";
+        if (type != null) {
+			return type.getTypeString();
+		} else {
+			return "";
+		}
     }
 
     public String getNormalizedWithTypeString() {
@@ -83,7 +87,7 @@ public final class WordEntry {
     }
 
     public boolean isPlural() {
-        return type != null && type.isPlural();
+        return (type != null) && type.isPlural();
     }
 
     void setValue(final Integer value) {

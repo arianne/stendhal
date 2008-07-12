@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class YanNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Hello stranger!");
 		npc.addQuest("I don't have a task for you.");
 		npc.addJob("Sorry, but on holiday I don't want to talk about work.");

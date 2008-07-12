@@ -30,7 +30,7 @@ public class AlwaysTrueConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new AlwaysTrueCondition().equals(null));
 
-		AlwaysTrueCondition obj = new AlwaysTrueCondition();
+		final AlwaysTrueCondition obj = new AlwaysTrueCondition();
 		assertTrue(obj.equals(obj));
 
 		assertFalse(new AlwaysTrueCondition().equals(Integer.valueOf(100)));

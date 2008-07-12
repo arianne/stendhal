@@ -28,11 +28,11 @@ public class Behaviour {
 	    this.itemNames = new HashSet<String>();
     }
 
-	public Behaviour(Set<String> itemNames) {
+	public Behaviour(final Set<String> itemNames) {
 	    this.itemNames = itemNames;
     }
 
-	public Behaviour(String itemName) {
+	public Behaviour(final String itemName) {
 	    itemNames = new HashSet<String>();
 	    itemNames.add(itemName);
     }
@@ -54,7 +54,7 @@ public class Behaviour {
 	/**
      * @param chosenItemName the chosenItemName to set
      */
-    public void setChosenItemName(String chosenItemName) {
+    public void setChosenItemName(final String chosenItemName) {
 	    this.chosenItemName = chosenItemName;
     }
 
@@ -84,8 +84,8 @@ public class Behaviour {
 	 * @param sentence
 	 * @return true if found match
 	 */
-	public boolean parseRequest(Sentence sentence) {
-		NameSearch search = sentence.findMatchingName(itemNames);
+	public boolean parseRequest(final Sentence sentence) {
+		final NameSearch search = sentence.findMatchingName(itemNames);
 
 		if (search.found()) {
 			// Store found item.
@@ -94,10 +94,10 @@ public class Behaviour {
 
     		return true;
 		} else {
-			if (sentence.getNumeralCount() == 1
-					&& sentence.getUnknownTypeCount() == 0
-					&& sentence.getObjectCount() == 0) {
-				Expression number = sentence.getNumeral();
+			if ((sentence.getNumeralCount() == 1)
+					&& (sentence.getUnknownTypeCount() == 0)
+					&& (sentence.getObjectCount() == 0)) {
+				final Expression number = sentence.getNumeral();
 
     			// If there is given only a number, return this as amount.
         		chosenItemName = null;

@@ -36,7 +36,7 @@ public class SummonAction extends AdministrationAction {
 
 		protected boolean searching = true;
 
-		public EntityFactory(Player player) {
+		public EntityFactory(final Player player) {
 			this.player = player;
 		}
 
@@ -52,8 +52,8 @@ public class SummonAction extends AdministrationAction {
 		 * 
 		 * @param type
 		 */
-		private void createEntity(String type) {
-		    Entity entity = manager.getEntity(type);
+		private void createEntity(final String type) {
+		    final Entity entity = manager.getEntity(type);
 
 		    if (entity != null) {
 				found(type, entity);
@@ -61,21 +61,21 @@ public class SummonAction extends AdministrationAction {
 				if (player.hasPet()) {
 					error("You already own a pet!");
 				} else {
-					Cat cat = new Cat(player);
+					final Cat cat = new Cat(player);
 					found(type, cat);
 				}
 			} else if ("baby dragon".equals(type)) {
 				if (player.hasPet()) {
 					error("You already own a pet!");
 				} else {
-					BabyDragon dragon = new BabyDragon(player);
+					final BabyDragon dragon = new BabyDragon(player);
 					found(type, dragon);
 				}
 			} else if ("sheep".equals(type)) {
 				if (player.hasSheep()) {
 					error("You already own a sheep!");
 				} else {
-					Sheep sheep = new Sheep(player);
+					final Sheep sheep = new Sheep(player);
 					found(type, sheep);
 				}
 			} 
@@ -84,9 +84,9 @@ public class SummonAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-		if("gate".equals(action.get(_CREATURE))){
-			Gate gate = new Gate();
-			gate.setPosition(action.getInt(X),action.getInt(Y));
+		if ("gate".equals(action.get(_CREATURE))) {
+			final Gate gate = new Gate();
+			gate.setPosition(action.getInt(X), action.getInt(Y));
 			player.getZone().add(gate);
 			return;
 		}
@@ -98,9 +98,9 @@ public class SummonAction extends AdministrationAction {
 				final int y = action.getInt(Y);
 				
 				if (!zone.collides(player, x, y)) {
-					EntityFactory factory = new EntityFactory(player) {
+					final EntityFactory factory = new EntityFactory(player) {
 						@Override
-						void found(String type, Entity entity) {
+						void found(final String type, Entity entity) {
 							StendhalRPAction.placeat(zone, entity, x, y);
 
     						if (manager.isCreature(type)) {
@@ -114,7 +114,7 @@ public class SummonAction extends AdministrationAction {
 						}
 
 						@Override
-						void error(String message) {
+						void error(final String message) {
 							player.sendPrivateText(message);
 
 							// Stop searching because of an error.
@@ -122,7 +122,7 @@ public class SummonAction extends AdministrationAction {
 						}
 					};
 
-					String typeName = action.get(_CREATURE);
+					final String typeName = action.get(_CREATURE);
 					String type = typeName;
 					
 					
@@ -142,7 +142,7 @@ public class SummonAction extends AdministrationAction {
 					}
 				}
 			}
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			player.sendPrivateText(USAGE);
 		}
 	}

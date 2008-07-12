@@ -33,14 +33,14 @@ public class UpdateProgressBar extends JFrame implements
 	 * @param max
 	 *            max file size
 	 */
-	public UpdateProgressBar(int max) {
+	public UpdateProgressBar(final int max) {
 		super("Downloading...");
 		this.max = max;
 		try {
-			URL url = this.getClass().getClassLoader().getResource(
+			final URL url = this.getClass().getClassLoader().getResource(
 					ClientGameConfiguration.get("GAME_ICON"));
 			setIconImage(new ImageIcon(url).getImage());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// in case that resource is not available
 		}
 
@@ -49,7 +49,7 @@ public class UpdateProgressBar extends JFrame implements
 		this.pack();
 		try {
 			this.setAlwaysOnTop(true);
-		} catch (AccessControlException e) {
+		} catch (final AccessControlException e) {
 			// ignore it
 		}
 	}
@@ -69,11 +69,11 @@ public class UpdateProgressBar extends JFrame implements
 		contentPane.add(progressBar);
 	}
 
-	public void onDownloading(int downloadedBytes) {
+	public void onDownloading(final int downloadedBytes) {
 		progressBar.setValue(sizeOfLastFiles + downloadedBytes);
 	}
 
-	public void onDownloadCompleted(int byteCounter) {
+	public void onDownloadCompleted(final int byteCounter) {
 		sizeOfLastFiles = sizeOfLastFiles + byteCounter;
 		progressBar.setValue(sizeOfLastFiles);
 	}

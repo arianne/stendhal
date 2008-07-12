@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
-	private Statement statement;
+	private final Statement statement;
 	protected ResultSet resultSet;
 	private boolean hasNext;
 	private boolean nextCalled;
@@ -29,7 +29,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	 * @param statement statement
 	 * @param resultSet resultSet
 	 */
-	public ResultSetIterator(Statement statement, ResultSet resultSet) {
+	public ResultSetIterator(final Statement statement, final ResultSet resultSet) {
 		this.statement = statement;
 		this.resultSet = resultSet;
 	}
@@ -57,7 +57,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	private void resultSetNext() {
 		try {
 	        hasNext = resultSet.next();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
         	hasNext = false;
         	logger.error(e, e);
         }
@@ -77,7 +77,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	public void remove() {
 		try {
 	        resultSet.deleteRow();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
         	logger.error(e, e);
         }
 	}
@@ -92,12 +92,12 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 		closed = true;
 		try {
 			resultSet.close();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
         	logger.error(e, e);
         }
 		try {
 			statement.close();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
         	logger.error(e, e);
         }
 	}

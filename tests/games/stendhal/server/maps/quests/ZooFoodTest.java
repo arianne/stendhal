@@ -17,6 +17,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
@@ -25,11 +26,11 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new AnimalKeeperNPC(), new VeterinarianNPC());
 
-		ZooFood zf = new ZooFood();
+		final ZooFood zf = new ZooFood();
 		zf.addToWorld();
 	}
 
@@ -43,11 +44,11 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		Player player = createPlayer("player");
+		final Player player = createPlayer("player");
 
 		SpeakerNPC npc = SingletonRepository.getNPCList().get("Katinka");
 		assertNotNull(npc);
-		Engine en1 = npc.getEngine();
+		final Engine en1 = npc.getEngine();
 		assertTrue("test text recognition with additional text after 'hi'",
 				en1.step(player, "hi Katinka"));
 		assertTrue(npc.isTalking());
@@ -61,7 +62,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 		npc = SingletonRepository.getNPCList().get("Dr. Feelgood");
 		assertNotNull(npc);
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
 		assertFalse(npc.isTalking());
 		assertEquals(
@@ -77,14 +78,14 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testDoQuest() {
-		Player player = createPlayer("player");
+		final Player player = createPlayer("player");
 
-		SpeakerNPC katinkaNpc = SingletonRepository.getNPCList().get("Katinka");
+		final SpeakerNPC katinkaNpc = SingletonRepository.getNPCList().get("Katinka");
 		assertNotNull(katinkaNpc);
-		Engine enKatinka = katinkaNpc.getEngine();
-		SpeakerNPC feelgoodNpc = SingletonRepository.getNPCList().get("Dr. Feelgood");
+		final Engine enKatinka = katinkaNpc.getEngine();
+		final SpeakerNPC feelgoodNpc = SingletonRepository.getNPCList().get("Dr. Feelgood");
 		assertNotNull(feelgoodNpc);
-		Engine enFeelgood = feelgoodNpc.getEngine();
+		final Engine enFeelgood = feelgoodNpc.getEngine();
 		assertTrue("test saying 'Hallo' instead of 'hi'", enKatinka.step(
 				player, "Hallo"));
 		assertEquals(
@@ -128,7 +129,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(enKatinka.step(player, "bye"));
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		// equip player with to less needed stuff
-		StackableItem ham = new StackableItem("ham", "", "", null);
+		final StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(5);
 		ham.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(ham);
@@ -145,7 +146,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(enKatinka.step(player, "bye"));
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		// equip player with to needed stuff
-		StackableItem ham2 = new StackableItem("ham", "", "", null);
+		final StackableItem ham2 = new StackableItem("ham", "", "", null);
 		ham2.setQuantity(5);
 		ham2.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham2);

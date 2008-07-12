@@ -24,18 +24,18 @@ public class JailedDwarf extends AbstractQuest {
 	private static final String QUEST_SLOT = "jailed_dwarf";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Hunel");
+		final SpeakerNPC npc = npcs.get("Hunel");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi. As you see, I am still to nervous to leave ...");
 						} else {

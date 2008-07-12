@@ -45,7 +45,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 * @param priceList
 	 *            list of item names and their prices
 	 */
-	public SellerBehaviour(Map<String, Integer> priceList) {
+	public SellerBehaviour(final Map<String, Integer> priceList) {
 		super(priceList);
 	}
 
@@ -61,8 +61,8 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		Item item = getAskedItem(chosenItemName);
+	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+		final Item item = getAskedItem(chosenItemName);
 		if (item == null) {
 			logger.error("Trying to sell an nonexistant item: " + getChosenItemName());
 			return false;
@@ -103,8 +103,8 @@ public class SellerBehaviour extends MerchantBehaviour {
 		}
 	}
 
-	protected Item getAskedItem(String askedItem) {
-		Item item = SingletonRepository.getEntityManager().getItem(askedItem);
+	protected Item getAskedItem(final String askedItem) {
+		final Item item = SingletonRepository.getEntityManager().getItem(askedItem);
 		return item;
 	}
 }

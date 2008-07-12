@@ -15,7 +15,7 @@ public class GuildPermissionComparator implements Comparator<GuildPermission> {
      * @param p2 the second permission
      * @return -1 if p1 > p2, 0 if equal, or 1 if p1 < p2
      */
-    public int compare(GuildPermission p1, GuildPermission p2) {
+    public int compare(final GuildPermission p1, final GuildPermission p2) {
         if (p1.getRank() > p2.getRank()) {
             return 1;
         } else if (p1.getRank() == p2.getRank()) {

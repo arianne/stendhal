@@ -29,7 +29,7 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 	 * @see KeyDestroyingDoor
 	 */
 	@Override
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new KeyDestroyingDoor(getKey(ctx), getClass(ctx));
 	}
 

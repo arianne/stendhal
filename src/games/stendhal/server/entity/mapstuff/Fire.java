@@ -11,7 +11,7 @@ import marauroa.common.game.RPClass;
  */
 public class Fire extends Entity implements UseListener {
 	public static void generateRPClass() {
-		RPClass fire = new RPClass("fire");
+		final RPClass fire = new RPClass("fire");
 		fire.isA("entity");
 	}
 
@@ -23,7 +23,7 @@ public class Fire extends Entity implements UseListener {
 	 * @param height
 	 *            height in grid units
 	 */
-	public Fire(int width, int height) {
+	public Fire(final int width, final int height) {
 		setDescription("You see a flickering light. You are tempted to touch it.");
 		setRPClass("fire");
 		put("type", "fire");
@@ -32,7 +32,7 @@ public class Fire extends Entity implements UseListener {
 		setResistance(100);
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		user.sendPrivateText("Not a good idea!");
 		return true;
 	}

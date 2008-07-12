@@ -43,12 +43,12 @@ public abstract class Path {
 	 * @param destination 
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, int x, int y,
-			Rectangle2D destination) {
+	public static List<Node> searchPath(final Entity entity, final int x, final int y,
+			final Rectangle2D destination) {
 		return searchPath(entity, x, y, destination, -1.0);
 	}
 
-	public static List<Node> searchPath(Entity entity, int ex, int ey) {
+	public static List<Node> searchPath(final Entity entity, final int ex, final int ey) {
 		return searchPath(entity, entity.getX(), entity.getY(), entity.getArea(
 				ex, ey), -1.0);
 	}
@@ -69,8 +69,8 @@ public abstract class Path {
 	 *            be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, int x, int y,
-			Rectangle2D destination, double maxDistance) {
+	public static List<Node> searchPath(final Entity entity, final int x, final int y,
+			final Rectangle2D destination, final double maxDistance) {
 		return searchPath(entity, null, x, y, destination, maxDistance, true);
 	}
 
@@ -92,9 +92,9 @@ public abstract class Path {
 	 * @param withEntities 
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity sourceEntity,
-			StendhalRPZone zone, int x, int y, Rectangle2D destination,
-			double maxDistance, boolean withEntities) {
+	public static List<Node> searchPath(final Entity sourceEntity,
+			StendhalRPZone zone, final int x, final int y, final Rectangle2D destination,
+			final double maxDistance, final boolean withEntities) {
 
 		if (zone == null) {
 			zone = sourceEntity.getZone();
@@ -102,14 +102,14 @@ public abstract class Path {
 
 		//
 		// long startTimeNano = System.nanoTime();
-		long startTime = System.currentTimeMillis();
+		final long startTime = System.currentTimeMillis();
 
-		Pathfinder pathfinder = new Pathfinder(sourceEntity, zone, x, y,
+		final Pathfinder pathfinder = new Pathfinder(sourceEntity, zone, x, y,
 				destination, maxDistance, withEntities);
 
-		List<Node> resultPath = pathfinder.getPath();
+		final List<Node> resultPath = pathfinder.getPath();
 		if (logger.isDebugEnabled()
-				&& pathfinder.getStatus() == Pathfinder.PATH_NOT_FOUND) {
+				&& (pathfinder.getStatus() == Pathfinder.PATH_NOT_FOUND)) {
 			logger.debug("Pathfinding aborted: " + zone.getID() + " "
 					+ sourceEntity.getTitle() + " (" + x + ", " + y + ") "
 					+ destination + " Pathfinding time: "
@@ -129,7 +129,7 @@ public abstract class Path {
 	 *            the destination Entity
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	static List<Node> searchPath(Entity entity, Entity dest) {
+	static List<Node> searchPath(final Entity entity, final Entity dest) {
 		return searchPath(entity, dest, -1.0);
 	}
 
@@ -145,9 +145,9 @@ public abstract class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, Entity dest,
-			double maxDistance) {
-		Rectangle2D area = dest.getArea(dest.getX(), dest.getY());
+	public static List<Node> searchPath(final Entity entity, final Entity dest,
+			final double maxDistance) {
+		final Rectangle2D area = dest.getArea(dest.getX(), dest.getY());
 
 		/*
 		 * Expand area by surounding tiles.
@@ -167,7 +167,7 @@ public abstract class Path {
 	 * @return true if done with path
 	 */
 	static boolean followPath(final GuidedEntity entity) {
-		List<Node> path = entity.getGuide().path.getNodeList();
+		final List<Node> path = entity.getGuide().path.getNodeList();
 
 		if (path == null) {
 			return true;

@@ -3,9 +3,9 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 public class Spot {
-	private StendhalRPZone zone;
-	private int x;
-	private int y;
+	private final StendhalRPZone zone;
+	private final int x;
+	private final int y;
 
 	/**
 	 * is a defined place in a zone.
@@ -16,7 +16,7 @@ public class Spot {
 	 * @param x
 	 * @param y
 	 */
-	public Spot(StendhalRPZone zone, int x, int y) {
+	public Spot(final StendhalRPZone zone, final int x, final int y) {
 		super();
 		assert (zone != null); //todo: remove this
 		this.zone = zone;

@@ -62,7 +62,7 @@ public class TileSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
-	public TileSprite(final Sprite sprite, int x, int y, int width, int height) {
+	public TileSprite(final Sprite sprite, final int x, final int y, final int width, final int height) {
 		this(sprite, x, y, width, height, createReference(sprite, x, y, width,
 				height));
 	}
@@ -87,8 +87,8 @@ public class TileSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
-	public TileSprite(final Sprite sprite, int x, int y, int width, int height,
-			Object reference) {
+	public TileSprite(final Sprite sprite, final int x, final int y, final int width, final int height,
+			final Object reference) {
 		this.sprite = sprite;
 		this.x = x;
 		this.y = y;
@@ -112,9 +112,9 @@ public class TileSprite implements Sprite {
 	 * 
 	 * 
 	 */
-	public static TSRef createReference(final Sprite sprite, int x, int y,
-			int width, int height) {
-		Object ref = sprite.getReference();
+	public static TSRef createReference(final Sprite sprite, final int x, final int y,
+			final int width, final int height) {
+		final Object ref = sprite.getReference();
 
 		if (ref == null) {
 			return null;
@@ -254,7 +254,7 @@ public class TileSprite implements Sprite {
 
 		protected int height;
 
-		public TSRef(Object parent, int x, int y, int width, int height) {
+		public TSRef(final Object parent, final int x, final int y, final int width, final int height) {
 			this.parent = parent;
 			this.x = x;
 			this.y = y;
@@ -267,13 +267,13 @@ public class TileSprite implements Sprite {
 		//
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (this == obj) {
 				return true;
 			}
 
 			if (obj instanceof TSRef) {
-				TSRef tsref = (TSRef) obj;
+				final TSRef tsref = (TSRef) obj;
 
 				if (!parent.equals(tsref.parent)) {
 					return false;

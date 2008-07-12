@@ -48,7 +48,7 @@ public class WoodStyle implements Style {
 		/*
 		 * Load the texture
 		 */
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
 		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f,

@@ -20,24 +20,24 @@ import marauroa.common.game.IRPZone;
 import org.xml.sax.SAXException;
 
 public class GenerateMonsterUsage {
-	public static void main(String[] args) throws URISyntaxException,
+	public static void main(final String[] args) throws URISyntaxException,
 			SAXException, IOException {
-		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI(
+		final ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI(
 				"/data/conf/zones.xml"));
 		loader.load();
 
-		Map<String, Integer> count = new HashMap<String, Integer>();
+		final Map<String, Integer> count = new HashMap<String, Integer>();
 
-		CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
-		List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
+		final CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
+		final List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
 
-		for (DefaultCreature c : creatures) {
+		for (final DefaultCreature c : creatures) {
 			count.put(c.getCreatureName(), 0);
 		}
 
-		for (IRPZone zone : SingletonRepository.getRPWorld()) {
-			for (CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
-				Creature c = p.getPrototypeCreature();
+		for (final IRPZone zone : SingletonRepository.getRPWorld()) {
+			for (final CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
+				final Creature c = p.getPrototypeCreature();
 				int creatureCount = 1;
 				if (count.containsKey(c.getName())) {
 					creatureCount = count.get(c.getName()) + 1;
@@ -47,7 +47,7 @@ public class GenerateMonsterUsage {
 			}
 		}
 
-		for (Map.Entry<String, Integer> e : count.entrySet()) {
+		for (final Map.Entry<String, Integer> e : count.entrySet()) {
 			if (e.getValue() == 0) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}

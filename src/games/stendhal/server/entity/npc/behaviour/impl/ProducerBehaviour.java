@@ -41,36 +41,36 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * allows one type of product at the moment. We store it to make the system
 	 * extensible.
 	 */
-	private String questSlot;
+	private final String questSlot;
 
 	/**
 	 * The name of the activity, e.g. "build", "forge", "bake"
 	 */
-	private String productionActivity;
+	private final String productionActivity;
 
 	/**
 	 * The unit in which the product is counted, e.g. "bags", "pieces", "pounds"
 	 */
 	// private String productUnit;
 
-	private String productName;
+	private final String productName;
 
 	/**
 	 * Whether the produced item should be player bound.
 	 */
-	private boolean productBound;
+	private final boolean productBound;
 
 	/**
 	 * A mapping which maps the name of each required resource (e.g. "iron ore")
 	 * to the amount of this resource that is required for one unit of the
 	 * product.
 	 */
-	private Map<String, Integer> requiredResourcesPerItem;
+	private final Map<String, Integer> requiredResourcesPerItem;
 
 	/**
 	 * The number of seconds required to produce one unit of the product.
 	 */
-	private int productionTimePerItem;
+	private final int productionTimePerItem;
 
 	/**
 	 * Creates a new ProducerBehaviour.
@@ -90,9 +90,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            the number of seconds required to produce one unit of the
 	 *            product.
 	 */
-	public ProducerBehaviour(String questSlot, String productionActivity,
-			String productName, Map<String, Integer> requiredResourcesPerItem,
-			int productionTimePerItem) {
+	public ProducerBehaviour(final String questSlot, final String productionActivity,
+			final String productName, final Map<String, Integer> requiredResourcesPerItem,
+			final int productionTimePerItem) {
 		this(questSlot, productionActivity, productName,
 				requiredResourcesPerItem, productionTimePerItem, false);
 	}
@@ -118,9 +118,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            Whether the produced item should be player bound. Use only for
 	 *            special one-time items.
 	 */
-	public ProducerBehaviour(String questSlot, String productionActivity,
-			String productName, Map<String, Integer> requiredResourcesPerItem,
-			int productionTimePerItem, boolean productBound) {
+	public ProducerBehaviour(final String questSlot, final String productionActivity,
+			final String productName, final Map<String, Integer> requiredResourcesPerItem,
+			final int productionTimePerItem, final boolean productBound) {
 		super(productName);
 
 		this.questSlot = questSlot;
@@ -134,7 +134,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		// add the activity word as verb to the word list in case it is still missing there
 		WordList.getInstance().registerName(productionActivity, ExpressionType.VERB);
 
-		for (String itemName : requiredResourcesPerItem.keySet()) {
+		for (final String itemName : requiredResourcesPerItem.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
 	}
@@ -164,7 +164,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		return productName;
 	}
 
-	public int getProductionTime(int amount) {
+	public int getProductionTime(final int amount) {
 		return productionTimePerItem * amount;
 	}
 
@@ -187,34 +187,34 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            The amount of products that were requested
 	 * @return A string describing the required resources.
 	 */
-	protected String getRequiredResourceNamesWithHashes(int amount) {
+	protected String getRequiredResourceNamesWithHashes(final int amount) {
 		// use sorted TreeSet instead of HashSet
-		Set<String> requiredResourcesWithHashes = new TreeSet<String>();
-		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+		final Set<String> requiredResourcesWithHashes = new TreeSet<String>();
+		for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 			requiredResourcesWithHashes.add(Grammar.quantityplnounWithHash(amount
 					* entry.getValue(), entry.getKey()));
 		}
 		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
 
-	public String getApproximateRemainingTime(Player player) {
-		String orderString = player.getQuest(questSlot);
-		String[] order = orderString.split(";");
-		long orderTime = Long.parseLong(order[2]);
-		long timeNow = new Date().getTime();
-		int numberOfProductItems = Integer.parseInt(order[0]);
+	public String getApproximateRemainingTime(final Player player) {
+		final String orderString = player.getQuest(questSlot);
+		final String[] order = orderString.split(";");
+		final long orderTime = Long.parseLong(order[2]);
+		final long timeNow = new Date().getTime();
+		final int numberOfProductItems = Integer.parseInt(order[0]);
 		// String productName = order[1];
 
-		long finishTime = orderTime
+		final long finishTime = orderTime
 				+ (getProductionTime(numberOfProductItems) * 1000);
-		int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
+		final int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
 		return TimeUtil.approxTimeUntil(remainingSeconds);
 	}
 
-	protected int getMaximalAmount(Player player) {
+	protected int getMaximalAmount(final Player player) {
 		int maxAmount = Integer.MAX_VALUE;
-		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey())
+		for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+			final int limitationByThisResource = player.getNumberOfEquipped(entry.getKey())
 					/ entry.getValue();
 			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
@@ -231,7 +231,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param amount
 	 * @return 
 	 */
-	public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
+	public boolean askForResources(final SpeakerNPC npc, final Player player, final int amount) {
 		if (getMaximalAmount(player) < amount) {
 			npc.say("I can only " + getProductionActivity() + " "
 					+ Grammar.quantityplnoun(amount, getProductName())
@@ -257,18 +257,18 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            the involved player
 	 */
 	@Override
-	public boolean transactAgreedDeal(SpeakerNPC npc, Player player) {
+	public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
 		if (getMaximalAmount(player) < amount) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
 			npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 			return false;
 		} else {
-			for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-				int amountToDrop = amount * entry.getValue();
+			for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+				final int amountToDrop = amount * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
 			}
-			long timeNow = new Date().getTime();
+			final long timeNow = new Date().getTime();
 			player.setQuest(questSlot, amount + ";" + getProductName() + ";"
 					+ timeNow);
 			npc.say("OK, I will "
@@ -294,20 +294,20 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param player
 	 *            The player who wants to fetch the product
 	 */
-	public void giveProduct(SpeakerNPC npc, Player player) {
-		String orderString = player.getQuest(questSlot);
-		String[] order = orderString.split(";");
-		int numberOfProductItems = Integer.parseInt(order[0]);
+	public void giveProduct(final SpeakerNPC npc, final Player player) {
+		final String orderString = player.getQuest(questSlot);
+		final String[] order = orderString.split(";");
+		final int numberOfProductItems = Integer.parseInt(order[0]);
 		// String productName = order[1];
-		long orderTime = Long.parseLong(order[2]);
-		long timeNow = new Date().getTime();
+		final long orderTime = Long.parseLong(order[2]);
+		final long timeNow = new Date().getTime();
 		if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
 			npc.say("Welcome back! I'm still busy with your order to "
 					+ getProductionActivity() + " " + getProductName()
 					+ " for you. Come back in "
 					+ getApproximateRemainingTime(player) + " to get it.");
 		} else {
-			StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
+			final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
 					getProductName());
 
 			products.setQuantity(numberOfProductItems);

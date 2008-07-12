@@ -11,26 +11,28 @@ public class EntityMapTest {
 
 	@Test
 	public final void testGetClassStringString() {
-		Class< ? extends Entity> entClass = EntityMap.getClass("player",null, null);
+		Class< ? extends Entity> entClass = EntityMap.getClass("player", null,
+				null);
 		assertEquals(Player.class, entClass);
-		entClass = EntityMap.getClass(null, null,null);
+		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}
 
 	@Test
 	public final void testGetClassGoldsource() {
-		Class< ? extends Entity> entClass = EntityMap.getClass("gold_source",null,
-				null);
+		Class< ? extends Entity> entClass = EntityMap.getClass("gold_source",
+				null, null);
 		assertEquals(GoldSource.class, entClass);
-		entClass = EntityMap.getClass(null, null, null );
+		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}
+
 	@Test
 	public final void testGetSeed() {
 		Class< ? extends Entity> entClass = EntityMap.getClass("gold_source",
-				null,null);
+				null, null);
 		assertEquals(GoldSource.class, entClass);
-		entClass = EntityMap.getClass(null, null, null );
+		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}
 }

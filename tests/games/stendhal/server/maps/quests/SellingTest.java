@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -24,7 +25,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new BarMaidNPC());
 	}
@@ -39,8 +40,8 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Siandra");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Siandra");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Siandra"));
 		assertEquals("Hi!", npc.get("text"));
@@ -51,8 +52,8 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSelling() {
-		SpeakerNPC npc = getNPC("Siandra");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Siandra");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi!", npc.get("text"));

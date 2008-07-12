@@ -35,12 +35,12 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 		this(new HashMap<String, Integer>());
 	}
 
-	public MerchantBehaviour(Map<String, Integer> priceList) {
+	public MerchantBehaviour(final Map<String, Integer> priceList) {
 		super(priceList.keySet());
 
 		this.priceList = priceList;
 
-		for (String itemName : priceList.keySet()) {
+		for (final String itemName : priceList.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
 	}
@@ -61,7 +61,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 *            the name of the item
 	 * @return true iff the NPC deals with the item
 	 */
-	public boolean hasItem(String item) {
+	public boolean hasItem(final String item) {
 		return priceList.containsKey(item);
 	}
 
@@ -72,7 +72,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 *            the name of the item
 	 * @return the unit price
 	 */
-	public int getUnitPrice(String item) {
+	public int getUnitPrice(final String item) {
 		return priceList.get(item);
 	}
 
@@ -106,7 +106,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * 
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
-	public int getCharge(SpeakerNPC npc, Player player) {
+	public int getCharge(final SpeakerNPC npc, final Player player) {
 		if (chosenItemName == null) {
 			return 0;
 		} else {

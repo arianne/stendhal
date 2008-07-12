@@ -24,41 +24,41 @@ public abstract class ScriptingSandbox {
 	// loadedNPCs and loadedRPObject are Sets. They are implemented using
 	// maps because there are no WeakSets in Java. (In current Sun
 	// Java HashSet is implemented using HashMap anyway).
-	private Map<NPC, Object> loadedNPCs = new WeakHashMap<NPC, Object>();
-	private Map<RPObject, Object> loadedRPObjects = new WeakHashMap<RPObject, Object>();
+	private final Map<NPC, Object> loadedNPCs = new WeakHashMap<NPC, Object>();
+	private final Map<RPObject, Object> loadedRPObjects = new WeakHashMap<RPObject, Object>();
 
 	private String exceptionMessage;
 
 	private StendhalRPZone zone;
 
-	private String filename;
+	private final String filename;
 
 	private static final Logger logger = Logger.getLogger(ScriptingSandbox.class);
 
-	public ScriptingSandbox(String filename) {
+	public ScriptingSandbox(final String filename) {
 		this.filename = filename;
 	}
 
-	public StendhalRPZone getZone(RPObject rpobject) {
+	public StendhalRPZone getZone(final RPObject rpobject) {
 		return (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 				rpobject.getID());
 	}
 
-	public boolean setZone(String name) {
+	public boolean setZone(final String name) {
 		zone = SingletonRepository.getRPWorld().getZone(name);
 		return (zone != null);
 	}
 
-	public boolean setZone(StendhalRPZone zone) {
+	public boolean setZone(final StendhalRPZone zone) {
 		this.zone = zone;
 		return (zone != null);
 	}
 
-	public boolean playerIsInZone(Player player, String zoneName) {
+	public boolean playerIsInZone(final Player player, final String zoneName) {
 		return player.getZone().getName().equals(zoneName);
 	}
 
-	public void add(NPC npc) {
+	public void add(final NPC npc) {
 		if (zone != null) {
 			zone.add(npc);
 			loadedNPCs.put(npc, null);
@@ -66,7 +66,7 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	public void add(RPObject object) {
+	public void add(final RPObject object) {
 		if (zone != null) {
 			zone.add(object);
 			loadedRPObjects.put(object, null);
@@ -78,7 +78,7 @@ public abstract class ScriptingSandbox {
 		return (SingletonRepository.getEntityManager().getCreatures().toArray(new Creature[1]));
 	}
 
-	public Creature getCreature(String clazz) {
+	public Creature getCreature(final String clazz) {
 		return SingletonRepository.getEntityManager().getCreature(
 				clazz);
 	}
@@ -87,12 +87,12 @@ public abstract class ScriptingSandbox {
 		return (SingletonRepository.getEntityManager().getItems().toArray(new Item[1]));
 	}
 
-	public Item getItem(String name) {
+	public Item getItem(final String name) {
 		return SingletonRepository.getEntityManager().getItem(
 				name);
 	}
 
-	public Creature add(Creature template, int x, int y) {
+	public Creature add(final Creature template, final int x, final int y) {
 		Creature creature = template.getInstance();
 		if (zone != null) {
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
@@ -106,16 +106,16 @@ public abstract class ScriptingSandbox {
 		return (creature);
 	}
 
-	public void addGameEvent(String source, String event, List<String> params) {
+	public void addGameEvent(final String source, final String event, final List<String> params) {
 		SingletonRepository.getRuleProcessor().addGameEvent(source, event,
 				params.toArray(new String[params.size()]));
 	}
 
-	public void modify(RPEntity entity) {
+	public void modify(final RPEntity entity) {
 		entity.notifyWorldAboutChanges();
 	}
 
-	public void privateText(Player player, String text) {
+	public void privateText(final Player player, final String text) {
 		player.sendPrivateText(text);
 	}
 
@@ -127,11 +127,11 @@ public abstract class ScriptingSandbox {
 		return exceptionMessage;
 	}
 
-	protected void setMessage(String message) {
+	protected void setMessage(final String message) {
 		this.exceptionMessage = message;
 	}
 
-	public void remove(NPC npc) {
+	public void remove(final NPC npc) {
 		logger.info("Removing " + filename + " added NPC: " + npc);
 		try {
 			SingletonRepository.getNPCList().remove(npc.getName());
@@ -139,41 +139,41 @@ public abstract class ScriptingSandbox {
 			zone = npc.getZone();
 			zone.remove(npc);
 			loadedNPCs.remove(npc);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.warn("Exception while removing " + filename + " added NPC: "
 					+ e);
 		}
 	}
 
-	public void remove(RPObject object) {
+	public void remove(final RPObject object) {
 		try {
 			logger.info("Removing script added object: " + object);
-			String id = object.getID().getZoneID();
+			final String id = object.getID().getZoneID();
 			zone = SingletonRepository.getRPWorld().getZone(id);
 			zone.remove(object);
 			loadedRPObjects.remove(object);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.warn("Exception while removing " + filename
 					+ " added object: " + e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public void unload(Player player, List<String> args) {
-		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
+	public void unload(final Player player, final List<String> args) {
+		final Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 
-		for (NPC npc : setNPC) {
+		for (final NPC npc : setNPC) {
 			remove(npc);
 		}
 
-		Set<RPObject> setRPObject = new HashSet<RPObject>(
+		final Set<RPObject> setRPObject = new HashSet<RPObject>(
 				loadedRPObjects.keySet());
-		for (RPObject object : setRPObject) {
+		for (final RPObject object : setRPObject) {
 			remove(object);
 		}
 	}
 
-	public boolean execute(Player player, List<String> args) {
+	public boolean execute(final Player player, final List<String> args) {
 		// do nothing
 		return true;
 	}

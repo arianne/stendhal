@@ -59,12 +59,12 @@ public class ElfPrincess extends AbstractQuest {
 	private static final String QUEST_SLOT = "elf_princess";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void offerQuestStep() {
-		SpeakerNPC npc = npcs.get("Tywysoga");
+		final SpeakerNPC npc = npcs.get("Tywysoga");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -108,7 +108,7 @@ public class ElfPrincess extends AbstractQuest {
 	}
 
 	private void getFlowerStep() {
-		SpeakerNPC rose = npcs.get("Rose Leigh");
+		final SpeakerNPC rose = npcs.get("Rose Leigh");
 
 		rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -126,18 +126,18 @@ public class ElfPrincess extends AbstractQuest {
 	}
 
 	private void bringFlowerStep() {
-		SpeakerNPC npc = npcs.get("Tywysoga");
+		final SpeakerNPC npc = npcs.get("Tywysoga");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flower", "Rhosyd"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_flower"), new PlayerHasItemWithHimCondition("rhosyd")),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("rhosyd");
 						player.addXP(5000);
 						player.addKarma(15);
-						StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager()
+						final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("gold bar");
 						int goldamount;
 						goldamount = 5 * Rand.roll1D6();

@@ -92,7 +92,7 @@ public class TileStore implements Tileset {
 	 */
 	private void add(final TileSetDefinition tsdef) {
 		String ref = tsdef.getSource();
-		int baseindex = tsdef.getFirstGid();
+		final int baseindex = tsdef.getFirstGid();
 
 		/*
 		 * Strip off leading path info TODO: Remove this earlier in the stage
@@ -105,7 +105,7 @@ public class TileStore implements Tileset {
 		/*
 		 * Make sure we are the right size
 		 */
-		int mapsize = tiles.size();
+		final int mapsize = tiles.size();
 
 		if (mapsize > baseindex) {
 			logger.error("Tileset base index mismatch (" + mapsize + " > "
@@ -128,7 +128,7 @@ public class TileStore implements Tileset {
 			tilesetsLoaded.put(ref, tileset);
 		}
 
-		int size = tileset.getSize();
+		final int size = tileset.getSize();
 
 		tiles.ensureCapacity(baseindex + size);
 
@@ -139,11 +139,11 @@ public class TileStore implements Tileset {
 		/*
 		 * Override the animated tiles (if any)
 		 */
-		TilesetAnimationMap tsam = animationMap.get(ref);
+		final TilesetAnimationMap tsam = animationMap.get(ref);
 
 		if (tsam != null) {
 			for (int i = 0; i < size; i++) {
-				Sprite sprite = tsam.getSprite(tileset, i);
+				final Sprite sprite = tsam.getSprite(tileset, i);
 
 				if (sprite != null) {
 					tiles.set(baseindex + i, sprite);
@@ -161,12 +161,12 @@ public class TileStore implements Tileset {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void addTilesets(InputSerializer in) throws IOException,
+	public void addTilesets(final InputSerializer in) throws IOException,
 			ClassNotFoundException {
-		int amount = in.readInt();
+		final int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
-			TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
+			final TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
 					null, -1));
 			add(tileset);
 		}
@@ -178,21 +178,21 @@ public class TileStore implements Tileset {
 	 * @return A tileset animation map.
 	 */
 	protected static TilesetGroupAnimationMap createAnimationMap() {
-		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
+		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				baseFolder + "tileset/animation.seq");
 
 		if (url != null) {
 			try {
-				InputStream in = url.openStream();
+				final InputStream in = url.openStream();
 
 				try {
 					map.load(in);
 				} finally {
 					in.close();
 				}
-			} catch (IOException ex) {
+			} catch (final IOException ex) {
 				logger.error("Error loading tileset animation map", ex);
 			}
 		}
@@ -245,7 +245,7 @@ public class TileStore implements Tileset {
 			return store.getEmptySprite();
 		}
 
-		Sprite sprite = tiles.get(index);
+		final Sprite sprite = tiles.get(index);
 
 		if (sprite == null) {
 			logger.error("Accessing unassigned sprite at: " + index);

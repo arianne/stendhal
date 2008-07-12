@@ -48,28 +48,28 @@ public class BuddyListPanel extends JPanel {
 	/**
 	 * The online icon image.
 	 */
-	private Sprite online;
+	private final Sprite online;
 
 	/**
 	 * The offline icon image.
 	 */
-	private Sprite offline;
+	private final Sprite offline;
 
 	/**
 	 * A list of buddies.
 	 */
-	private List<Entry> buddies;
+	private final List<Entry> buddies;
 
 	/**
 	 * Create a buddy list panel.
 	 * @param ui 
 	 */
-	public BuddyListPanel(StendhalUI ui) {
+	public BuddyListPanel(final StendhalUI ui) {
 		this.ui = ui;
 
 		setOpaque(false);
 
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 		online = st.getSprite("data/gui/buddy_online.png");
 		offline = st.getSprite("data/gui/buddy_offline.png");
 
@@ -84,10 +84,10 @@ public class BuddyListPanel extends JPanel {
 	 * [possibly] needed.
 	 */
 	public void updateList() {
-		RPObject object = StendhalClient.get().getPlayer();
+		final RPObject object = StendhalClient.get().getPlayer();
 
 		if (object != null) {
-			RPSlot slot = object.getSlot("!buddy");
+			final RPSlot slot = object.getSlot("!buddy");
 			updateList(slot.getFirst());
 		}
 	}
@@ -98,17 +98,17 @@ public class BuddyListPanel extends JPanel {
 	 * @param buddy
 	 *            The buddy list object.
 	 */
-	protected void updateList(RPObject buddy) {
+	protected void updateList(final RPObject buddy) {
 		buddies.clear();
 
-		for (String key : buddy) {
+		for (final String key : buddy) {
 			if (!key.startsWith("_")) {
 				continue;
 			}
 			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
 		}
 
-		int height = buddies.size() * 20 + 3;
+		final int height = buddies.size() * 20 + 3;
 
 		if (height != getHeight()) {
 			setPreferredSize(new Dimension(132, height));
@@ -133,21 +133,21 @@ public class BuddyListPanel extends JPanel {
 	 * @param y
 	 *            The X coordinate of the mouse click.
 	 */
-	protected void doPopup(Component comp, int x, int y) {
+	protected void doPopup(final Component comp, final int x, final int y) {
 		JMenuItem mi;
 
-		int i = y / 20;
+		final int i = y / 20;
 
 		if ((i < 0) || (i >= buddies.size())) {
 			return;
 		}
 
-		Entry entry = buddies.get(i);
+		final Entry entry = buddies.get(i);
 
-		StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(),
+		final StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(),
 				entry.getName());
 
-		ActionListener listener = new ActionSelectedCB(entry.getName());
+		final ActionListener listener = new ActionSelectedCB(entry.getName());
 
 		if (entry.isOnline()) {
 			mi = new JMenuItem("Talk");
@@ -182,8 +182,8 @@ public class BuddyListPanel extends JPanel {
 	 * @param buddieName
 	 *            The buddy name to act on.
 	 */
-	protected void doAction(String command, String buddieName) {
-		StendhalClient client = ui.getClient();
+	protected void doAction(final String command, String buddieName) {
+		final StendhalClient client = ui.getClient();
 
 		if ("talk".equals(command)) {
 			/*
@@ -206,12 +206,12 @@ public class BuddyListPanel extends JPanel {
 
 			ui.setChatLine("/msg postman tell " + buddieName + " ");
 		} else if ("where".equals(command)) {
-			RPAction where = new RPAction();
+			final RPAction where = new RPAction();
 			where.put("type", "where");
 			where.put("target", buddieName);
 			client.send(where);
 		} else if ("remove".equals(command)) {
-			RPAction where = new RPAction();
+			final RPAction where = new RPAction();
 			where.put("type", "removebuddy");
 			where.put("target", buddieName);
 			client.send(where);
@@ -230,12 +230,12 @@ public class BuddyListPanel extends JPanel {
 	 *            The graphics context.
 	 */
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 
 		int y = 0;
 
-		for (Entry entry : buddies) {
+		for (final Entry entry : buddies) {
 			if (entry.isOnline()) {
 				g.setColor(Color.GREEN);
 				online.draw(g, 3, 2 + y);
@@ -276,7 +276,7 @@ public class BuddyListPanel extends JPanel {
 		 * @param online
 		 *            Whether the buddy is online.
 		 */
-		public Entry(String name, boolean online) {
+		public Entry(final String name, final boolean online) {
 			this.name = name;
 			this.online = online;
 		}
@@ -320,7 +320,7 @@ public class BuddyListPanel extends JPanel {
 		 * @param buddy
 		 *            The buddy to act on.
 		 */
-		public ActionSelectedCB(String buddy) {
+		public ActionSelectedCB(final String buddy) {
 			this.buddy = buddy;
 		}
 
@@ -328,7 +328,7 @@ public class BuddyListPanel extends JPanel {
 		// ActionListener
 		//
 
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			doAction(ev.getActionCommand(), buddy);
 		}
 	}
@@ -346,7 +346,7 @@ public class BuddyListPanel extends JPanel {
 		 * Track mouse presses.
 		 */
 		@Override
-		public void mousePressed(MouseEvent ev) {
+		public void mousePressed(final MouseEvent ev) {
 			if (ev.isPopupTrigger()) {
 				doPopup(ev.getComponent(), ev.getX(), ev.getY());
 			}
@@ -356,7 +356,7 @@ public class BuddyListPanel extends JPanel {
 		 * Track mouse releases.
 		 */
 		@Override
-		public void mouseReleased(MouseEvent ev) {
+		public void mouseReleased(final MouseEvent ev) {
 			if (ev.isPopupTrigger()) {
 				doPopup(ev.getComponent(), ev.getX(), ev.getY());
 			}

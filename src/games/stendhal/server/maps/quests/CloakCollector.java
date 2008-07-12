@@ -44,13 +44,13 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	private static final String QUEST_SLOT = "cloaks_collector";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void setupAbstractQuest() {
-		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		final BringListOfItemsQuest concreteQuest = this;
+		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 
@@ -62,16 +62,16 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Josephine");
+		final SpeakerNPC npc = npcs.get("Josephine");
 
 		// player asks about an individual cloak before accepting the quest
 		npc.add(ConversationStates.QUEST_OFFERED, NEEDED_CLOAKS, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						String itemName = sentence.getTriggerExpression().getNormalized();
-						Item item = SingletonRepository.getEntityManager().getItem(itemName);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final String itemName = sentence.getTriggerExpression().getNormalized();
+						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
 									+ (item != null ? ItemTools.itemNameToDisplayName(item.getItemSubclass()) : itemName)
 									+ ". So, will you find them all?");
@@ -146,7 +146,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return "Great! What #cloaks did you bring?";
 	}
 
-	public String askForMissingItems(List<String> missingItems) {
+	public String askForMissingItems(final List<String> missingItems) {
 		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak")
 				+ ". That's " + Grammar.enumerateCollection(missingItems)
 				+ ". Did you bring any?";
@@ -160,7 +160,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return "Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.";
 	}
 
-	public String respondToOfferOfNotExistingItem(String itemName) {
+	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Oh, I'm disappointed. You don't really have " + Grammar.a_noun(itemName) + " with you.";
 	}
 
@@ -172,12 +172,12 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return "That's not a real cloak...";
 	}
 
-	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Okay then. Come back later.";
 	}
 
-	public void rewardPlayer(Player player) {
-		Item blackcloak = SingletonRepository.getEntityManager().getItem("black cloak");
+	public void rewardPlayer(final Player player) {
+		final Item blackcloak = SingletonRepository.getEntityManager().getItem("black cloak");
 		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);

@@ -24,12 +24,12 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 	/**
 	 * The new player X coordinate.
 	 */
-	private int newX;
+	private final int newX;
 
 	/**
 	 * The new player Y coordinate.
 	 */
-	private int newY;
+	private final int newY;
 
 	/**
 	 * The message to send to the user when repositioned.
@@ -48,7 +48,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 	 * @param newY
 	 *            y position to place the player at
 	 */
-	public NoLoginArea(int width, int height, int newX, int newY) {
+	public NoLoginArea(final int width, final int height, final int newX, final int newY) {
 		this(width, height, newX, newY, null);
 	}
 
@@ -89,7 +89,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 		this.message = message;
 	}
 
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 		if (player.getZone().equals(this.getZone())) {
 			if (this.getArea().contains(player.getX(), player.getY())) {
 				logger.warn("Login in NoLoginArea, moving player to new location");

@@ -17,12 +17,12 @@ public class LilJohnnnnyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildLilJohnnnny(zone);
 	}
 
-	private void buildLilJohnnnny(StendhalRPZone zone) {
-		SpeakerNPC liljohnnnny = new SpeakerNPC("lil johnnnny") {
+	private void buildLilJohnnnny(final StendhalRPZone zone) {
+		final SpeakerNPC liljohnnnny = new SpeakerNPC("lil johnnnny") {
 
 			@Override
 			protected void createPath() {

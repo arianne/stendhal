@@ -12,11 +12,11 @@ public class QuestListAction implements ActionListener {
 		CommandCenter.register(_LISTQUESTS, new QuestListAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
-		StringBuilder st = new StringBuilder();
+		final StringBuilder st = new StringBuilder();
 		if (action.has(TARGET)) {
-			String which = action.get(TARGET);
+			final String which = action.get(TARGET);
 			st.append(SingletonRepository.getStendhalQuestSystem().listQuest(player, which));
 
 		} else {

@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 public class EasyRPAction extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		if ((args.size() == 0) || (args.size() % 2 != 0)) {
@@ -26,7 +26,7 @@ public class EasyRPAction extends ScriptImpl {
 			return;
 		}
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		for (int i = 0; i < (args.size() / 2); i++) {
 			action.put(args.get(i * 2), args.get(i * 2 + 1));

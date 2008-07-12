@@ -19,7 +19,7 @@ public class BuddyLoginEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, NAME, Type.STRING);
 	}
 
@@ -28,7 +28,7 @@ public class BuddyLoginEvent extends RPEvent {
 	 *
 	 * @param player Player who just logged in
 	 */
-	public BuddyLoginEvent(Player player) {
+	public BuddyLoginEvent(final Player player) {
 		super(RPCLASS_NAME);		
 		put(NAME, player.getName());
 	}

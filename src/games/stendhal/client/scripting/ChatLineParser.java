@@ -19,17 +19,17 @@ public abstract class ChatLineParser {
 	 * @return <code>true</code> if command was valid enough to process,
 	 *         <code>false</code> otherwise.
 	 */
-	public static boolean parseAndHandle(String input) {
+	public static boolean parseAndHandle(final String input) {
 		// get line
-		String text = input.trim();
+		final String text = input.trim();
 
 		if (text.length() == 0) {
 			return false;
 		}
 
 		if (text.charAt(0) == '/') {
-			SlashActionCommand command = SlashActionParser.parse(text.substring(1));
-			String[] params = command.getParams();
+			final SlashActionCommand command = SlashActionParser.parse(text.substring(1));
+			final String[] params = command.getParams();
 
 			if (command.hasError()) {
 				StendhalUI.get().addEventLine(command.getErrorString(),
@@ -46,11 +46,11 @@ public abstract class ChatLineParser {
 				/*
 				 * Server extension
 				 */
-				RPAction extension = new RPAction();
+				final RPAction extension = new RPAction();
 
 				extension.put("type", command.getName());
 
-				if (params.length > 0 && params[0] != null) {
+				if ((params.length > 0) && (params[0] != null)) {
 					extension.put("target", params[0]);
 					extension.put("args", command.getRemainder());
 				}
@@ -61,7 +61,7 @@ public abstract class ChatLineParser {
 			}
 		} else {
 			// Chat command. The most frequent one.
-			RPAction chat = new RPAction();
+			final RPAction chat = new RPAction();
 
 			chat.put("type", "chat");
 			chat.put("text", text);

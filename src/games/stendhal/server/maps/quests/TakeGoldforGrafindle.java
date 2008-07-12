@@ -40,18 +40,18 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	private static final String QUEST_SLOT = "grafindle_gold";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}
@@ -75,14 +75,14 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 
 	private void step_1() {
 
-		SpeakerNPC npc = npcs.get("Grafindle");
+		final SpeakerNPC npc = npcs.get("Grafindle");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						engine.say("I ask only that you are honest.");
 					} else {
@@ -114,7 +114,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5.0);
 				}
@@ -149,7 +149,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	}
 
 	private void step_2() {
-		SpeakerNPC npc = npcs.get("Lorithien");
+		final SpeakerNPC npc = npcs.get("Lorithien");
 
 		/**
 		 * If player has quest and is in the correct state, just give him the
@@ -163,10 +163,10 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "lorithien");
 
-					StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
+					final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					goldbars.setQuantity(GOLD_AMOUNT);
 					goldbars.setBoundTo(player.getName());
 					player.equip(goldbars, true);
@@ -198,7 +198,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Grafindle");
+		final SpeakerNPC npc = npcs.get("Grafindle");
 
 		/** Complete the quest */
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -206,10 +206,10 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (player.drop("gold bar", GOLD_AMOUNT)) {
 						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
-						Item nalworkey = SingletonRepository.getEntityManager()
+						final Item nalworkey = SingletonRepository.getEntityManager()
 								.getItem("nalwor bank key");
 						nalworkey.setBoundTo(player.getName());
 						player.equip(nalworkey);

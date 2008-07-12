@@ -53,16 +53,16 @@ public class ItemTest {
 
 	@Test
 	public void testGetName() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		assertEquals("name1", mo.getName());
 	}
 
 	@Test
 	public void testGetAreaRectangle2DDoubleDouble() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
-		Rectangle2D rect = new Rectangle2D.Double();
+		final Rectangle2D rect = new Rectangle2D.Double();
 		assertEquals(rect.getCenterX(), 0.0, 0.001);
 		assertEquals(rect.getCenterY(), 0.0, 0.001);
 
@@ -76,17 +76,17 @@ public class ItemTest {
 
 	@Test
 	public void testDescribe() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		assertEquals("", mo.getDescription());
 	}
 
 	@Test
 	public void testItemStringStringStringMapOfStringString() {
-		Map<String, String> attribs = new HashMap<String, String>();
+		final Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("att_1", "val_1");
 		attribs.put("att_2", "val_2");
-		Item mo = new Item("name1", "class", "subclass", attribs);
+		final Item mo = new Item("name1", "class", "subclass", attribs);
 		assertEquals("val_1", mo.get("att_1"));
 		assertEquals("val_2", mo.get("att_2"));
 		assertNull(mo.get("Noexistant"));
@@ -94,14 +94,14 @@ public class ItemTest {
 
 	@Test
 	public void testItemItemwithAttributes() {
-		Map<String, String> attribs = new HashMap<String, String>();
+		final Map<String, String> attribs = new HashMap<String, String>();
 
 		attribs.put("att_1", "val_1");
 		attribs.put("att_2", "val_2");
-		Item mo = new Item("name1", "class", "subclass", attribs);
+		final Item mo = new Item("name1", "class", "subclass", attribs);
 		assertEquals("val_1", mo.get("att_1"));
 		assertEquals("val_2", mo.get("att_2"));
-		Item itemcopy = new Item(mo);
+		final Item itemcopy = new Item(mo);
 		assertEquals("val_1", itemcopy.get("att_1"));
 		assertEquals("val_2", itemcopy.get("att_2"));
 	}
@@ -109,10 +109,10 @@ public class ItemTest {
 	@Test
 	// slots are copied by copy constructor
 	public void testItemItem() {
-		LinkedList<String> slots = new LinkedList<String>();
+		final LinkedList<String> slots = new LinkedList<String>();
 		slots.add("slot_1");
 		slots.add("slot_2");
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		mo.setEquipableSlots(slots);
 		assertEquals(slots, mo.getPossibleSlots());
@@ -120,9 +120,9 @@ public class ItemTest {
 
 	@Test
 	public void testSetEquipableSlots() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
-		LinkedList<String> slots = new LinkedList<String>();
+		final LinkedList<String> slots = new LinkedList<String>();
 		slots.add("one");
 		slots.add("two");
 		slots.add("three");
@@ -138,7 +138,7 @@ public class ItemTest {
 
 	@Test
 	public void testGetAttack() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		assertEquals(0, mo.getAttack());
 		mo.put("atk", 3);
@@ -149,7 +149,7 @@ public class ItemTest {
 
 	@Test
 	public void testGetDefense() {
-		Item mo = new Item("name1", "class", "subclass",
+		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		assertEquals(0, mo.getDefense());
 		mo.put("def", 3);
@@ -160,7 +160,7 @@ public class ItemTest {
 
 	@Test
 	public void testIsPersistent() {
-		Item mo = new Item("name1", "myClass", "subclass",
+		final Item mo = new Item("name1", "myClass", "subclass",
 				new HashMap<String, String>());
 		assertFalse(mo.isPersistent());
 		mo.put("persistent", 1);
@@ -171,14 +171,14 @@ public class ItemTest {
 
 	@Test
 	public void testIsOfClass() {
-		Item mo = new Item("name1", "myClass", "subclass",
+		final Item mo = new Item("name1", "myClass", "subclass",
 				new HashMap<String, String>());
 		assertTrue(mo.isOfClass("myClass"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetItemClass() {
-		Item mo = new Item("name1", "myClass", "subclass",
+		final Item mo = new Item("name1", "myClass", "subclass",
 				new HashMap<String, String>());
 		assertEquals("myClass", mo.getItemClass());
 		new Item("name1", null, "subclass", new HashMap<String, String>());
@@ -187,7 +187,7 @@ public class ItemTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetItemSubclass() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertEquals("mySubclass", mo.getItemSubclass());
 		new Item("name1", "myClass", null, new HashMap<String, String>());
@@ -195,21 +195,21 @@ public class ItemTest {
 
 	@Test
 	public void testGetQuantity() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertEquals("defaultquantity", 1, mo.getQuantity());
 	}
 
 	@Test
 	public void testGetPossibleSlots() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertTrue(mo.getPossibleSlots().isEmpty());
 	}
 
 	@Test
 	public void testToString() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		// ignore attribute listing because their sort order is not reliable
 		assertTrue(mo.toString().matches(
@@ -218,23 +218,23 @@ public class ItemTest {
 
 	@Test
 	public void testOnPutOnGround() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		mo.onPutOnGround(PlayerTestHelper.createPrivateTextMockingTestPlayer("player"));
 	}
 
 	@Test
 	public void testOnRemoveFromGround() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		mo.onRemoveFromGround();
 	}
 
 	@Test
 	public void testOnTurnReached() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		zone.add(mo);
 		assertTrue(zone.has(mo.getID()));
 		mo.onTurnReached(1);
@@ -244,9 +244,9 @@ public class ItemTest {
 
 	@Test
 	public void testRemoveOne() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		MockStendlRPWorld.get().addRPZone(zone);
 		zone.add(mo);
 		assertTrue(zone.has(mo.getID()));
@@ -259,10 +259,10 @@ public class ItemTest {
 
 	@Test
 	public void testCanBeEquippedIn() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertTrue("ground is null", mo.canBeEquippedIn(null));  
-		LinkedList<String> slots = new LinkedList<String>();
+		final LinkedList<String> slots = new LinkedList<String>();
 		slots.add("one");
 		slots.add("two");
 		slots.add("three");
@@ -276,9 +276,9 @@ public class ItemTest {
 
 	@Test
 	public void testRemoveFromWorld() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		MockStendlRPWorld.get().addRPZone(zone);
 		zone.add(mo);
 		assertTrue(zone.has(mo.getID()));
@@ -290,7 +290,7 @@ public class ItemTest {
 
 	@Test
 	public void testGetBoundTo() {
-		Item mo = new Item("name1", "myClass", "mySubclass",
+		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertNull(mo.getBoundTo());
 		mo.setBoundTo("bob");

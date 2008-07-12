@@ -48,7 +48,7 @@ public class AbstractQuestTest {
 
 	@Test
 	public final void testGetHintGetHistory() {
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTSlotSTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
 		};
@@ -58,7 +58,7 @@ public class AbstractQuestTest {
 
 	@Test
 	public final void testIsCompleted() {
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTSlotSTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
 		};
@@ -96,7 +96,7 @@ public class AbstractQuestTest {
 	public final void testIsStarted() {
 		final AbstractQuest quest = new AbstractQuest() {
 		};
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
 		pl.setQuest(QUESTSlotSTRING, "whatever");
 	}
@@ -110,7 +110,7 @@ public class AbstractQuestTest {
 
 	@Test
 	public final void testGetName() {
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		pl.setQuest(QUESTNAMESTRING, null);
 		final AbstractQuest quest = new AbstractQuest() {
 		};

@@ -25,15 +25,15 @@ public class SheepSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosVillageArea(zone);
 	}
 
-	private void buildSemosVillageArea(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
+	private void buildSemosVillageArea(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Nishiya") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(33, 45));
 				nodes.add(new Node(33, 43));
 				nodes.add(new Node(23, 43));
@@ -44,12 +44,12 @@ public class SheepSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				class SheepSellerBehaviour extends SellerBehaviour {
-					SheepSellerBehaviour(Map<String, Integer> items) {
+					SheepSellerBehaviour(final Map<String, Integer> items) {
 						super(items);
 					}
 
 					@Override
-					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+					public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;
@@ -60,7 +60,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 							}
 							seller.say("Here you go, a nice fluffy little sheep! Take good care of it, now...");
 
-							Sheep sheep = new Sheep(player);
+							final Sheep sheep = new Sheep(player);
 
 							sheep.setPosition(seller.getX(), seller.getY() + 1);
 
@@ -74,7 +74,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 					}
 				}
 
-				Map<String, Integer> items = new HashMap<String, Integer>();
+				final Map<String, Integer> items = new HashMap<String, Integer>();
 				items.put("sheep", BUYING_PRICE);
 
 				addGreeting();

@@ -25,8 +25,8 @@ public class PassiveEntityRespawnPointFactory {
 	 *            y
 	 * @return PassiveEntityRespawnPoint or null in case some error occured
 	 */
-	public static PassiveEntityRespawnPoint create(String clazz, int type,
-			ID id, int x, int y) {
+	public static PassiveEntityRespawnPoint create(final String clazz, final int type,
+			final ID id, final int x, final int y) {
 		PassiveEntityRespawnPoint passiveEntityrespawnPoint = null;
 
 		if (clazz.contains("herb")) {

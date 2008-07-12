@@ -44,12 +44,12 @@ public class WtButton extends WtPanel {
 	 * @param text
 	 * @param gameScreen
 	 */
-	public WtButton(String name, int width, int height, String text,
-			IGameScreen gameScreen) {
+	public WtButton(final String name, final int width, final int height, final String text,
+			final IGameScreen gameScreen) {
 		super(name, 0, 0, width, height, gameScreen);
 		initialize();
-		int clientHeight = (getClientHeight() - WtTextPanel.DEFAULT_FONT_SIZE) / 2;
-		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight,
+		final int clientHeight = (getClientHeight() - WtTextPanel.DEFAULT_FONT_SIZE) / 2;
+		final WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight,
 				width, height, text, gameScreen);
 		addChild(textPanel);
 		setTitletext(text);
@@ -64,8 +64,8 @@ public class WtButton extends WtPanel {
 	 * @param image
 	 * @param gameScreen
 	 */
-	public WtButton(String name, int width, int height, Sprite image,
-			IGameScreen gameScreen) {
+	public WtButton(final String name, final int width, final int height, final Sprite image,
+			final IGameScreen gameScreen) {
 		super(name, 0, 0, width, height, gameScreen);
 		initialize();
 		this.image = image;
@@ -87,7 +87,7 @@ public class WtButton extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
 		super.drawContent(g, gameScreen);
 
 		// draw the image if we have one
@@ -98,7 +98,7 @@ public class WtButton extends WtPanel {
 
 	/** button has been clicked. */
 	@Override
-	public boolean onMouseClick(Point point) {
+	public boolean onMouseClick(final Point point) {
 		setEmboss(!isEmbossed());
 		// tell all registered listeners that we're clicked
 		notifyClickListeners(getName(), point);
@@ -115,7 +115,7 @@ public class WtButton extends WtPanel {
 	 * 
 	 * @param pressed
 	 */
-	public void setPressed(boolean pressed) {
+	public void setPressed(final boolean pressed) {
 		setEmboss(pressed);
 	}
 }

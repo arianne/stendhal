@@ -14,19 +14,19 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
 
-	private StoreableEntityList< ? > storeableEntityList;
+	private final StoreableEntityList< ? > storeableEntityList;
 
 	/**
 	 * Creates a new RemoveStoreableEntity.
 	 *
 	 * @param storeableEntityList the list to removed entities from
 	 */
-	public RemoveStoreableEntityAction(StoreableEntityList< ? > storeableEntityList) {
+	public RemoveStoreableEntityAction(final StoreableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		storeableEntityList.removeByName(player.getName());
 	}
 
@@ -41,7 +41,7 @@ public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false, 
 			RemoveStoreableEntityAction.class);
 	}

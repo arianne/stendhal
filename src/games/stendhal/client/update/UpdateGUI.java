@@ -99,11 +99,11 @@ public class UpdateGUI extends JFrame {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			public void run() {
-				UpdateGUI thisClass = new UpdateGUI();
+				final UpdateGUI thisClass = new UpdateGUI();
 				thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				thisClass.setVisible(true);
 			}

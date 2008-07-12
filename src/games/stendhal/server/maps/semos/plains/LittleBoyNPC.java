@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class LittleBoyNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		// NOTE: These texts are only available after finishing the quest.
 		npc.addGreeting();
 		npc.addJob("I play all day.");

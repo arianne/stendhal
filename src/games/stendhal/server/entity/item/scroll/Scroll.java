@@ -39,8 +39,8 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Scroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Scroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -50,7 +50,7 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @param item
 	 *            item to copy
 	 */
-	public Scroll(Scroll item) {
+	public Scroll(final Scroll item) {
 		super(item);
 	}
 
@@ -61,15 +61,15 @@ public class Scroll extends StackableItem implements UseListener {
 	 *         subclass.
 	 */
 	@Override
-	public boolean isStackable(Stackable other) {
-		StackableItem otheri = (StackableItem) other;
+	public boolean isStackable(final Stackable other) {
+		final StackableItem otheri = (StackableItem) other;
 
 		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(
 				otheri.getItemSubclass()));
 	}
 
 	// TODO: Move up to Item, use useItem() for real impl's
-	public final boolean onUsed(RPEntity user) {
+	public final boolean onUsed(final RPEntity user) {
 		RPObject base = this;
 
 		// Find the top container
@@ -98,7 +98,7 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return <code>true</code> if successful, <code>false</code>
 	 *         otherwise.
 	 */
-	protected boolean useScroll(Player player) {
+	protected boolean useScroll(final Player player) {
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;
 	}
@@ -107,7 +107,7 @@ public class Scroll extends StackableItem implements UseListener {
 	public String describe() {
 		String text = super.describe();
 
-		String infostring = getInfoString();
+		final String infostring = getInfoString();
 
 		if (infostring != null) {
 			text += " Upon it is written: " + infostring;

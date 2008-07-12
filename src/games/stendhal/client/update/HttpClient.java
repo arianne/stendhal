@@ -19,7 +19,7 @@ import java.util.Properties;
  */
 public class HttpClient {
 
-	private String urlString;
+	private final String urlString;
 
 	private HttpURLConnection connection;
 
@@ -27,7 +27,7 @@ public class HttpClient {
 
 	private ProgressListener progressListener;
 
-	private int timeout = 1500; // 1.5 seconds
+	private final int timeout = 1500; // 1.5 seconds
 
 	private boolean tryVeryHard;
 
@@ -60,7 +60,7 @@ public class HttpClient {
 	 * @param url
 	 *            URL to connect to
 	 */
-	public HttpClient(String url) {
+	public HttpClient(final String url) {
 		this.urlString = url;
 	}
 
@@ -72,7 +72,7 @@ public class HttpClient {
 	 * @param tryVeryHard
 	 *            true, to do several attempts.
 	 */
-	public HttpClient(String url, boolean tryVeryHard) {
+	public HttpClient(final String url, final boolean tryVeryHard) {
 		this.urlString = url;
 		this.tryVeryHard = tryVeryHard;
 	}
@@ -83,7 +83,7 @@ public class HttpClient {
 	 * @param progressListener
 	 *            ProgressListener
 	 */
-	public void setProgressListener(ProgressListener progressListener) {
+	public void setProgressListener(final ProgressListener progressListener) {
 		this.progressListener = progressListener;
 	}
 
@@ -95,7 +95,7 @@ public class HttpClient {
 		// sometimes problems with the webservers beeing slow or not responding
 		// at all.
 		try {
-			URL url = new URL(urlString);
+			final URL url = new URL(urlString);
 			int retryCount = 0;
 			int myTimeout = timeout;
 			while (is == null) {
@@ -117,7 +117,7 @@ public class HttpClient {
 							System.err.println("Retry successful");
 						}
 					}
-				} catch (SocketTimeoutException e) {
+				} catch (final SocketTimeoutException e) {
 					System.err.println("Timeout (" + urlString + "): " + " "
 							+ e.toString());
 				}
@@ -126,7 +126,7 @@ public class HttpClient {
 					break;
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.err.println("Error connecting to http-Server (" + urlString
 					+ "): ");
 			e.printStackTrace(System.err);
@@ -153,7 +153,7 @@ public class HttpClient {
 	public void close() {
 		try {
 			is.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			System.err.println(e);
 			e.printStackTrace(System.err);
 		}
@@ -173,11 +173,11 @@ public class HttpClient {
 			if (is == null) {
 				return null;
 			}
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			final BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			line = br.readLine();
 			br.close();
 			connection.disconnect();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.err.println("Error connecting to http-Server: ");
 			e.printStackTrace(System.err);
 		}
@@ -199,7 +199,7 @@ public class HttpClient {
 		try {
 			prop = new Properties();
 			prop.load(is);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			System.err.println(e);
 			e.printStackTrace(System.err);
 		}
@@ -214,7 +214,7 @@ public class HttpClient {
 	 *            name of the file to write
 	 * @return true on success, false otherwise
 	 */
-	public boolean fetchFile(String filename) {
+	public boolean fetchFile(final String filename) {
 		boolean res = false;
 
 		openInputStream();
@@ -223,12 +223,12 @@ public class HttpClient {
 		}
 
 		try {
-			BufferedOutputStream os = new BufferedOutputStream(
+			final BufferedOutputStream os = new BufferedOutputStream(
 					new FileOutputStream(filename));
 			copyStream(is, os);
 			connection.disconnect();
 			res = true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			res = true;
 			System.err.println(e);
 			e.printStackTrace(System.err);
@@ -247,9 +247,9 @@ public class HttpClient {
 	 * @throws IOException
 	 *             on an input/output error
 	 */
-	private void copyStream(InputStream inputStream, OutputStream outputStream)
+	private void copyStream(final InputStream inputStream, final OutputStream outputStream)
 			throws IOException {
-		byte[] buffer = new byte[10240];
+		final byte[] buffer = new byte[10240];
 		int length = inputStream.read(buffer);
 		int byteCounter = length;
 		while (length > -1) {

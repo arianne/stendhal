@@ -47,7 +47,7 @@ public class GuildMember extends Entity {
     private Guild guild;
     private GuildPermission permission;
 
-    public GuildMember(Player player, Guild guild, GuildPermission permission) {
+    public GuildMember(final Player player, final Guild guild, final GuildPermission permission) {
         this.player = player;
         this.guild = guild;
         this.permission = permission;
@@ -61,7 +61,7 @@ public class GuildMember extends Entity {
         put(ATTR_PERMISSION_ID, permission.getIdentifier());
     }
     
-    public GuildMember(RPObject obj) {
+    public GuildMember(final RPObject obj) {
         super(obj);
         store();
         
@@ -69,7 +69,7 @@ public class GuildMember extends Entity {
     }
 
     public static void generateRPClass() {
-        RPClass clazz = new RPClass(RPCLASS);
+        final RPClass clazz = new RPClass(RPCLASS);
         clazz.isA("entity");
         clazz.addAttribute(ATTR_PLAYER, Type.STRING, Definition.HIDDEN);
         clazz.addAttribute(ATTR_RANK, Type.INT, Definition.HIDDEN);
@@ -87,7 +87,7 @@ public class GuildMember extends Entity {
         return guild;
     }
 
-    public void setGuild(Guild guild) {
+    public void setGuild(final Guild guild) {
         this.guild = guild;
     }
 
@@ -95,7 +95,7 @@ public class GuildMember extends Entity {
         return permission;
     }
 
-    public void setPermission(GuildPermission permission) {
+    public void setPermission(final GuildPermission permission) {
         this.permission = permission;
     }
 
@@ -103,7 +103,7 @@ public class GuildMember extends Entity {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(final Player player) {
         this.player = player;
     }
 }

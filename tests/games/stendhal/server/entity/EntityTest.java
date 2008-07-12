@@ -73,7 +73,7 @@ public class EntityTest {
 
 	@Test
 	public void testSquaredDistanceonebyone() {
-		Entity en = new Entity() {
+		final Entity en = new Entity() {
 		};
 
 		en.setPosition(4, 4);
@@ -110,7 +110,7 @@ public class EntityTest {
 	}
 	@Test
 	public void testSquaredDistanceonebytwo() {
-		Entity en = new Entity() { };
+		final Entity en = new Entity() { };
 		en.setPosition(4, 4);
 		en.setSize(2, 1);
 		
@@ -150,7 +150,7 @@ public class EntityTest {
 	}
 	@Test
 	public void testSquaredDistanceelevenbytwelve() {
-		Entity en = new Entity() { };
+		final Entity en = new Entity() { };
 		en.setPosition(4, 4);
 		en.setSize(11, 12);
 		

@@ -25,31 +25,31 @@ public class Analyser {
 		+ " WHERE timedate > '%0$s'"
 		+ " ORDER BY itemid, timedate";
 	
-	private LogEntryIterator queryDatabase(String timedate) {
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+	private LogEntryIterator queryDatabase(final String timedate) {
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
-			Connection connection = transaction.getConnection();
-			Statement stmt = connection.createStatement();
-			ResultSet resultSet = stmt.executeQuery(String.format(SQL, StringChecker.escapeSQLString(timedate)));
+			final Connection connection = transaction.getConnection();
+			final Statement stmt = connection.createStatement();
+			final ResultSet resultSet = stmt.executeQuery(String.format(SQL, StringChecker.escapeSQLString(timedate)));
 			return new LogEntryIterator(stmt, resultSet);
 		
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			try {
 				transaction.rollback();
-			} catch (SQLException e1) {
+			} catch (final SQLException e1) {
 				logger.error(e1, e1);
 			}
 		}
 		return null;
 	}
 	
-	public void analyse(String timedate) {
-		Iterator<LogEntry> itr = queryDatabase(timedate);
+	public void analyse(final String timedate) {
+		final Iterator<LogEntry> itr = queryDatabase(timedate);
 		String itemid = "-1";
 		ItemLocation itemLocation = null;
 		while (itr.hasNext()) {
-			LogEntry entry = itr.next();
+			final LogEntry entry = itr.next();
 
 			// detect group change (next item)
 			if (!entry.getItemid().equals(itemid)) {
@@ -58,7 +58,7 @@ public class Analyser {
 			}
 
 			// check consistency
-			boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
+			final boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
 			if (!res) {
 				logger.error("Inconsistency: exspected location \t" + itemLocation + "\t but log entry said \t" + entry);
 			}
@@ -73,13 +73,13 @@ public class Analyser {
 	 *
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		Log4J.init();
 		String timedate = "1900-01-01";
 		if (args.length > 0) {
 			timedate = args[0];
 		}
-		Analyser analyser = new Analyser();
+		final Analyser analyser = new Analyser();
 		analyser.analyse(timedate);
 	}
 

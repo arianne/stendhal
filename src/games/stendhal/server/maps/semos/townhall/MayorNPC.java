@@ -17,7 +17,7 @@ public class MayorNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTownhallAreaMayor(zone);
 	}
 
@@ -25,13 +25,13 @@ public class MayorNPC implements ZoneConfigurator {
 	 * Adds a Mayor to the townhall who gives out daily quests.
 	 * @param zone zone to be consigured with this
 	 */
-	private void buildSemosTownhallAreaMayor(StendhalRPZone zone) {
+	private void buildSemosTownhallAreaMayor(final StendhalRPZone zone) {
 		// We create an NPC
-		SpeakerNPC npc = new SpeakerNPC("Mayor Sakhs") {
+		final SpeakerNPC npc = new SpeakerNPC("Mayor Sakhs") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(13, 3));
 				nodes.add(new Node(19, 3));
 				setPath(new FixedPath(nodes, true));

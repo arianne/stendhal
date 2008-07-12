@@ -13,7 +13,7 @@ import games.stendhal.server.entity.creature.Creature;
 public class StupidCoward extends HandToHand {
 
 	@Override
-	public void getBetterAttackPosition(Creature creature) {
+	public void getBetterAttackPosition(final Creature creature) {
 
 		if (creature.isAttacked()) {
 			creature.clearPath();

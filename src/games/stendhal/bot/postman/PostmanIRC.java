@@ -21,9 +21,9 @@ public class PostmanIRC extends PircBot {
 
 	private static Logger logger = Logger.getLogger(PostmanIRC.class);
 
-	private Properties prop = new Properties();
+	private final Properties prop = new Properties();
 
-	private String gameServer;
+	private final String gameServer;
 
 	private static String SUPPORT_CHANNEL;
 
@@ -36,7 +36,7 @@ public class PostmanIRC extends PircBot {
 	 * 
 	 * @param gameServer
 	 */
-	public PostmanIRC(String gameServer) {
+	public PostmanIRC(final String gameServer) {
 		this.gameServer = gameServer;
 		try {
 			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
@@ -46,7 +46,7 @@ public class PostmanIRC extends PircBot {
 			channels.add(SUPPORT_CHANNEL);
 			channels.add(MAIN_CHANNEL);
 			channels.remove(null);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
@@ -61,8 +61,8 @@ public class PostmanIRC extends PircBot {
 	public void connect() throws IOException, IrcException,
 			InterruptedException {
 		if (Boolean.parseBoolean(prop.getProperty("irc"))) {
-			String nick = prop.getProperty("name");
-			String pass = prop.getProperty("pass");
+			final String nick = prop.getProperty("name");
+			final String pass = prop.getProperty("pass");
 
 			setName(nick);
 			setLogin(prop.getProperty("login"));
@@ -77,7 +77,7 @@ public class PostmanIRC extends PircBot {
 				Thread.sleep(5000);
 				super.changeNick(nick);
 			}
-			for (String channelName : PostmanIRC.channels) {
+			for (final String channelName : PostmanIRC.channels) {
 						joinChannel(channelName);
 			}
 			sendMessage("NickServ", "identify " + pass);
@@ -87,14 +87,14 @@ public class PostmanIRC extends PircBot {
 	@Override
 	protected void onDisconnect() {
 		super.onDisconnect();
-		Thread t = new Thread("wait for reconnect") {
+		final Thread t = new Thread("wait for reconnect") {
 
 			@Override
 			public void run() {
 				try {
 					Thread.sleep(60 * 1000);
 					connect();
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					logger.error(e, e);
 				}
 			}
@@ -108,7 +108,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	void sendMessageToAllChannels(final String text) {
-		for (String channelName : channels) {
+		for (final String channelName : channels) {
 			sendMessage(channelName, text);
 		}
 	}
@@ -125,10 +125,10 @@ public class PostmanIRC extends PircBot {
 	 * @throws InterruptedException
 	 *             InterruptedException
 	 */
-	public static void main(String[] args) throws IOException, IrcException,
+	public static void main(final String[] args) throws IOException, IrcException,
 			InterruptedException {
 		// Now start our bot up.
-		PostmanIRC bot = new PostmanIRC(null);
+		final PostmanIRC bot = new PostmanIRC(null);
 		bot.connect();
 	}
 }

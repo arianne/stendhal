@@ -10,8 +10,8 @@ import games.stendhal.server.entity.player.Player;
 public class TextHasParameterCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		String text = sentence.getOriginalText().trim();
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		final String text = sentence.getOriginalText().trim();
 		return text.indexOf(' ') > -1;
 	}
 
@@ -26,7 +26,7 @@ public class TextHasParameterCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return obj instanceof TextHasParameterCondition;
 	}
 }

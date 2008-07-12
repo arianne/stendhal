@@ -45,7 +45,7 @@ public class TileSetDefinitionTest {
 		final OutputSerializer out = new OutputSerializer(array);
 
 		out.write(tilesets.size());
-		for (TileSetDefinition set : tilesets) {
+		for (final TileSetDefinition set : tilesets) {
 			set.writeObject(out);
 		}
 

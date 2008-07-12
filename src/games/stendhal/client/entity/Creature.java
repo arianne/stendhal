@@ -94,10 +94,10 @@ public class Creature extends RPEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		String type = getType();
+		final String type = getType();
 
 		if (object.has("name")) {
-			String name = object.get("name");
+			final String name = object.get("name");
 
 			if (type.startsWith("creature")) {
 				if (name.equals("wolf")) {
@@ -210,7 +210,7 @@ public class Creature extends RPEntity {
 	 *            The new Y coordinate.
 	 */
 	@Override
-	protected void onPosition(double x, double y) {
+	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
 
 		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(100) < 5)) {

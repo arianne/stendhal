@@ -59,28 +59,28 @@ public class Campfire extends AbstractQuest {
 	private static final String QUEST_SLOT = "campfire";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public boolean isCompleted(Player player) {
+	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT)) && !"rejected".equals(player.getQuest(QUEST_SLOT));
 	}
 
 	@Override
-	public boolean isRepeatable(Player player) {
+	public boolean isRepeatable(final Player player) {
 		return true;
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("QUEST_REJECTED");
 			return res;
@@ -95,7 +95,7 @@ public class Campfire extends AbstractQuest {
 		return res;
 	}
 
-	private void respondToQuestMessage(SpeakerNPC npc, Player player) {
+	private void respondToQuestMessage(final SpeakerNPC npc, final Player player) {
 		// first time player asks 
 		if (!player.hasQuest(QUEST_SLOT)) {
 			npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
@@ -105,7 +105,7 @@ public class Campfire extends AbstractQuest {
 		   long lastTime; 
 			try {
  				lastTime = Long.parseLong(player.getQuest(QUEST_SLOT));
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				// it wasn't a number.
  				// compatibility: Old Stendhal version stored "done" on
  				// completed quest or state might be 'rejected'
@@ -114,9 +114,9 @@ public class Campfire extends AbstractQuest {
  			}
 
 		   
-		   long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+		   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		   
-		   long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
+		   final long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
 		   
 		   if (timeRemaining < 0) {
 			   // it's been at least 5 minutes and sally wants wood again
@@ -132,7 +132,7 @@ public class Campfire extends AbstractQuest {
 	}
 
 	private void prepareRequestingStep() {
-		SpeakerNPC npc = npcs.get("Sally");
+		final SpeakerNPC npc = npcs.get("Sally");
 
 		// player returns with the promised wood
 		npc.add(ConversationStates.IDLE, 
@@ -154,14 +154,15 @@ public class Campfire extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,"Hi! I need a little #favor ... ",
+			ConversationStates.ATTENDING, "Hi! I need a little #favor ... ",
 			null);
 
 		// player who is rejected or 'done' but waiting to start again, returns
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT)),
-			ConversationStates.ATTENDING,"Hi again!",
+			ConversationStates.ATTENDING,
+			"Hi again!", 
 			null);
 		
 		// if they ask for quest while on it, remind them
@@ -179,7 +180,7 @@ public class Campfire extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 			   	@Override
-			   	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			   	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					respondToQuestMessage(npc, player);
 				}
 			});
@@ -202,7 +203,7 @@ public class Campfire extends AbstractQuest {
 	}
 
 	private void prepareBringingStep() {
-		SpeakerNPC npc = npcs.get("Sally");
+		final SpeakerNPC npc = npcs.get("Sally");
 		// player has wood and tells sally, yes, it is for her
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 
@@ -210,7 +211,7 @@ public class Campfire extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("wood", REQUIRED_WOOD);
 						player.setQuest(QUEST_SLOT,  "" + System.currentTimeMillis());
 						player.addXP(50);
@@ -222,7 +223,7 @@ public class Campfire extends AbstractQuest {
 							rewardClass = "ham";
 						}
 						npc.say("Thank you! Here, take some " + rewardClass + "!");
-						StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+						final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 						reward.setQuantity(REQUIRED_WOOD);
 						player.equip(reward, true);
 						player.addKarma(10);

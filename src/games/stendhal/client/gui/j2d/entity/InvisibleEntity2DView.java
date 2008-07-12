@@ -36,7 +36,7 @@ class InvisibleEntity2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
+	protected void buildRepresentation(final IGameScreen gameScreen) {
 	}
 
 	/**

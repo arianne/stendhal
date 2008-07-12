@@ -112,7 +112,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private long combatIconTime;
 
-	private List<TextIndicator> textIndicators;
+	private final List<TextIndicator> textIndicators;
 
 	private RPObject.ID attacking;
 
@@ -336,8 +336,8 @@ public abstract class RPEntity extends ActiveEntity {
 		return (attacking != null);
 	}
 
-	public boolean isAttacking(Entity defender) {
-		ID defenderID = defender.getID();
+	public boolean isAttacking(final Entity defender) {
+		final ID defenderID = defender.getID();
 		return ((attacking != null) && attacking.equals(defenderID));
 	}
 
@@ -345,7 +345,7 @@ public abstract class RPEntity extends ActiveEntity {
 		return !attackers.isEmpty();
 	}
 
-	public boolean isAttackedBy(Entity attacker) {
+	public boolean isAttackedBy(final Entity attacker) {
 		return attackers.contains(attacker);
 	}
 
@@ -426,7 +426,7 @@ public abstract class RPEntity extends ActiveEntity {
 		try {
 
 			SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
-		} catch (NullPointerException e) {
+		} catch (final NullPointerException e) {
 
 		}
 
@@ -513,11 +513,11 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// Called when entity listen to text from talker
-	public void onPrivateListen(String texttype, String text) {
+	public void onPrivateListen(final String texttype, final String text) {
 		NotificationType type;
 		try {
 			type = NotificationType.valueOf(texttype);
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			logger.error("Unkown texttype: ", e);
 			type = NotificationType.PRIVMSG;
 		}
@@ -649,7 +649,7 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Private message
 		 */
-		for (RPEvent event : object.events()) {
+		for (final RPEvent event : object.events()) {
 			if (event.getName().equals("private_text")) {
 				onPrivateListen(event.get("texttype"), event.get("text"));
 			}
@@ -697,9 +697,9 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Attack Target
 		 */
 		if (object.has("target")) {
-			int target = object.getInt("target");
+			final int target = object.getInt("target");
 
-			RPObject.ID targetEntityID = new RPObject.ID(target,
+			final RPObject.ID targetEntityID = new RPObject.ID(target,
 					object.get("zoneid"));
 
 			/*
@@ -741,7 +741,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	protected void evaluateAttack(final RPObject object, RPEntity entity) {
+	protected void evaluateAttack(final RPObject object, final RPEntity entity) {
 		int risk = 0;
 		int damage = 0;
 
@@ -795,10 +795,10 @@ public abstract class RPEntity extends ActiveEntity {
 		super.update(delta);
 
 		if (!textIndicators.isEmpty()) {
-			Iterator<TextIndicator> iter = textIndicators.iterator();
+			final Iterator<TextIndicator> iter = textIndicators.iterator();
 
 			while (iter.hasNext()) {
-				TextIndicator textIndicator = iter.next();
+				final TextIndicator textIndicator = iter.next();
 
 				if (textIndicator.addAge(delta) > 2000L) {
 					iter.remove();
@@ -836,7 +836,7 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Private message
 			 */
-			for (RPEvent event : changes.events()) {
+			for (final RPEvent event : changes.events()) {
 				if (event.getName().equals("private_text")) {
 					onPrivateListen(event.get("texttype"), event.get("text"));
 				}
@@ -886,8 +886,8 @@ public abstract class RPEntity extends ActiveEntity {
 			 * HP
 			 */
 			if (changes.has("hp")) {
-				int newHP = changes.getInt("hp");
-				int change = newHP - hp;
+				final int newHP = changes.getInt("hp");
+				final int change = newHP - hp;
 
 				hp = newHP;
 
@@ -920,12 +920,12 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Attack Target
 			 */
 			if (changes.has("target")) {
-				int target = changes.getInt("target");
+				final int target = changes.getInt("target");
 
-				RPObject.ID targetEntityID = new RPObject.ID(target,
+				final RPObject.ID targetEntityID = new RPObject.ID(target,
 						changes.get("zoneid"));
 
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
+				final RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
 						targetEntityID);
 
 				if (targetEntity != attackTarget) {
@@ -1059,7 +1059,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (changes.has("xp") && object.has("xp")) {
 			if (User.squaredDistanceTo(x, y) < 15 * 15) {
-				int amount = (changes.getInt("xp") - object.getInt("xp"));
+				final int amount = (changes.getInt("xp") - object.getInt("xp"));
 				if (amount > 0) {
 					addTextIndicator("+" + amount,
 							NotificationType.SIGNIFICANT_POSITIVE);
@@ -1086,7 +1086,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (changes.has("level") && object.has("level")) {
 			if (User.squaredDistanceTo(x, y) < 15 * 15) {
-				String text = getTitle() + " reaches Level " + getLevel();
+				final String text = getTitle() + " reaches Level " + getLevel();
 
 				StendhalUI.get().addEventLine(text,
 						NotificationType.SIGNIFICANT_POSITIVE);

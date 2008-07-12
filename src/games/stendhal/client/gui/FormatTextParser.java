@@ -6,8 +6,8 @@ package games.stendhal.client.gui;
  * @author Martin Fuchs
  */
 public abstract class FormatTextParser {
-	public void format(String text) throws Exception {
-		String[] parts = text.split("#");
+	public void format(final String text) throws Exception {
+		final String[] parts = text.split("#");
 
 		int i = 0;
 		for (String pieces : parts) {
@@ -27,7 +27,7 @@ public abstract class FormatTextParser {
 
 				colorText(pieces.substring(0, index));
 
-				if (terminator == '\'' && index < pieces.length()) {
+				if ((terminator == '\'') && (index < pieces.length())) {
 					++index;
 				}
 

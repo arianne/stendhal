@@ -19,7 +19,7 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	 *            The configuration context.
 	 * @return The damage ratio (or 10% is unset).
 	 */
-	protected double getDamageRatio(ConfigurableFactoryContext ctx) {
+	protected double getDamageRatio(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("damage-ratio", 10) / 100.0;
 	}
 
@@ -30,7 +30,7 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	 *            The configuration context.
 	 * @return The minimum damage amount (or 10 is unset).
 	 */
-	protected int getMimimumDamage(ConfigurableFactoryContext ctx) {
+	protected int getMimimumDamage(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("minimum-damage", 10);
 	}
 
@@ -48,7 +48,7 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	 *             in case of an invalid configuration
 	 */
 	@Override
-	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
+	protected OccupantArea createArea(final ConfigurableFactoryContext ctx) {
 		return new LifeDrainArea(getWidth(ctx), getHeight(ctx),
 				getInterval(ctx), getDamageRatio(ctx), getMimimumDamage(ctx));
 	}

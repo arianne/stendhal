@@ -15,9 +15,9 @@ import org.apache.log4j.Logger;
 public class EquipItemAction extends SpeakerNPC.ChatAction {
 	private static Logger logger = Logger.getLogger(EquipItemAction.class);
 
-	private String itemName;
-	private int amount;
-	private boolean bind;
+	private final String itemName;
+	private final int amount;
+	private final boolean bind;
 
 	/**
 	 * Creates a new EquipItemAction.
@@ -25,7 +25,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	 * @param itemName
 	 *            name of item
 	 */
-	public EquipItemAction(String itemName) {
+	public EquipItemAction(final String itemName) {
 		this(itemName, 1, false);
 	}
 
@@ -37,7 +37,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	 * @param amount
 	 *            for StackableItems
 	 */
-	public EquipItemAction(String itemName, int amount) {
+	public EquipItemAction(final String itemName, final int amount) {
 		this(itemName, amount, false);
 	}
 
@@ -51,18 +51,18 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	 * @param bind
 	 *            bind to player
 	 */
-	public EquipItemAction(String itemName, int amount, boolean bind) {
+	public EquipItemAction(final String itemName, final int amount, final boolean bind) {
 		this.itemName = itemName;
 		this.amount = amount;
 		this.bind = bind;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		Item item = SingletonRepository.getEntityManager().getItem(itemName);
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {
     		if (item instanceof StackableItem) {
-    			StackableItem stackableItem = (StackableItem) item;
+    			final StackableItem stackableItem = (StackableItem) item;
     			stackableItem.setQuantity(amount);
     		}
     		if (bind) {
@@ -77,7 +77,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("equip item <");
 		sb.append(amount);
 		sb.append(" ");
@@ -100,7 +100,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

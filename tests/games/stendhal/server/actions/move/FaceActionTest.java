@@ -26,10 +26,10 @@ public class FaceActionTest {
 
 	@Test
 	public void testOnAction() {
-		FaceAction fa = new FaceAction();
-		RPAction action = new RPAction();
+		final FaceAction fa = new FaceAction();
+		final RPAction action = new RPAction();
 		PlayerTestHelper.generatePlayerRPClasses();
-		Player player = new Player(new RPObject()) {
+		final Player player = new Player(new RPObject()) {
 			@Override
 			public void stop() {
 				stopCalled = true;

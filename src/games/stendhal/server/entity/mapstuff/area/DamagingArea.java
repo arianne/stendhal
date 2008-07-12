@@ -78,13 +78,13 @@ public class DamagingArea extends OccupantArea {
 	 * @param entity 
 	 * @return defense value
 	 */
-	protected float calculateDefense(RPEntity entity) {
+	protected float calculateDefense(final RPEntity entity) {
 		float potential;
 		float min;
 		float score;
 
-		float armor = entity.getItemDef() + 1.0f;
-		int def = entity.getDEF();
+		final float armor = entity.getItemDef() + 1.0f;
+		final int def = entity.getDEF();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("defender has " + def + " and uses a armor of "
@@ -124,7 +124,7 @@ public class DamagingArea extends OccupantArea {
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
-	protected boolean doDamage(RPEntity entity) {
+	protected boolean doDamage(final RPEntity entity) {
 		float attack;
 		float defense;
 
@@ -177,7 +177,7 @@ public class DamagingArea extends OccupantArea {
 	 *         <code>true</code> otherwise.
 	 */
 	@Override
-	protected boolean handleAdded(RPEntity entity) {
+	protected boolean handleAdded(final RPEntity entity) {
 		if (!super.handleAdded(entity)) {
 			return false;
 		}
@@ -196,7 +196,7 @@ public class DamagingArea extends OccupantArea {
 	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
-	protected boolean handleInterval(RPEntity entity) {
+	protected boolean handleInterval(final RPEntity entity) {
 		return doDamage(entity);
 	}
 
@@ -210,7 +210,7 @@ public class DamagingArea extends OccupantArea {
 	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
-	protected boolean handleMovement(RPEntity entity) {
+	protected boolean handleMovement(final RPEntity entity) {
 		if (rand.nextDouble() < probability) {
 			doDamage(entity);
 		}
@@ -226,7 +226,7 @@ public class DamagingArea extends OccupantArea {
 	 *            The RPEntity that was added.
 	 */
 	@Override
-	protected void handleRemoved(RPEntity entity) {
+	protected void handleRemoved(final RPEntity entity) {
 		entity.stopAttacking(this);
 		super.handleRemoved(entity);
 	}

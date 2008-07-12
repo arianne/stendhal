@@ -65,12 +65,12 @@ public abstract class AdministrationAction implements ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
 
-	public static void registerCommandLevel(String command, int minLevel) {
+	public static void registerCommandLevel(final String command, final int minLevel) {
 		REQUIRED_ADMIN_LEVELS.put(command, minLevel);
 	}
 
-	public static Integer getLevelForCommand(String command) {
-		Integer val = REQUIRED_ADMIN_LEVELS.get(command);
+	public static Integer getLevelForCommand(final String command) {
+		final Integer val = REQUIRED_ADMIN_LEVELS.get(command);
 		if (val == null) {
 			return -1;
 		}
@@ -78,11 +78,11 @@ public abstract class AdministrationAction implements ActionListener {
 		return val;
 	}
 
-	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player,
-			String command, boolean verbose) {
+	public static boolean isPlayerAllowedToExecuteAdminCommand(final Player player,
+			final String command, final boolean verbose) {
 		// get adminlevel of player and required adminlevel for this command
-		int adminlevel = player.getAdminLevel();
-		Integer required = REQUIRED_ADMIN_LEVELS.get(command);
+		final int adminlevel = player.getAdminLevel();
+		final Integer required = REQUIRED_ADMIN_LEVELS.get(command);
 
 		// check that we know this command
 		if (required == null) {
@@ -115,7 +115,7 @@ public abstract class AdministrationAction implements ActionListener {
 		return true;
 	}
 
-	public final void onAction(Player player, RPAction action) {
+	public final void onAction(final Player player, final RPAction action) {
 
 	
 
@@ -132,7 +132,7 @@ public abstract class AdministrationAction implements ActionListener {
 	 * @return the Entity or null if it does not exist TODO merge with
 	 *         EntityHelper.entityFromTargetName()
 	 */
-	protected final Entity getTarget(Player player, RPAction action) {
+	protected final Entity getTarget(final Player player, final RPAction action) {
 
 		String id = null;
 		Entity target = null;
@@ -157,12 +157,12 @@ public abstract class AdministrationAction implements ActionListener {
 
 		// go for the id
 		if (id != null) {
-			StendhalRPZone zone = player.getZone();
+			final StendhalRPZone zone = player.getZone();
 
-			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id),
+			final RPObject.ID oid = new RPObject.ID(Integer.parseInt(id),
 					zone.getName());
 			if (zone.has(oid)) {
-				RPObject object = zone.get(oid);
+				final RPObject object = zone.get(oid);
 				if (object instanceof Entity) {
 					target = (Entity) object;
 				}

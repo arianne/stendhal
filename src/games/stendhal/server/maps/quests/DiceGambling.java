@@ -27,9 +27,9 @@ public class DiceGambling extends AbstractQuest {
 	@SuppressWarnings("unchecked")
 	public void addToWorld() {
 
-		CroupierNPC ricardo = (CroupierNPC) SingletonRepository.getNPCList().get("Ricardo");
+		final CroupierNPC ricardo = (CroupierNPC) SingletonRepository.getNPCList().get("Ricardo");
 
-		List<Pair<String, String>> prizes = Arrays.asList(
+		final List<Pair<String, String>> prizes = Arrays.asList(
 				null, // 0 - can't happen
 				null, // 1 - can't happen
 				null, // 2 - can't happen
@@ -72,7 +72,7 @@ public class DiceGambling extends AbstractQuest {
 
 		ricardo.setPrizes(prizes);
 
-		StendhalRPZone zone = ricardo.getZone();
+		final StendhalRPZone zone = ricardo.getZone();
 
 		Sign blackboard = new Sign();
 		blackboard.setPosition(25, 0);
@@ -106,9 +106,9 @@ public class DiceGambling extends AbstractQuest {
 			"OK, here are the dice. Just throw them when you're ready. Good luck!",
 			new ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("money", STAKE);
-					Dice dice = (Dice) SingletonRepository.getEntityManager()
+					final Dice dice = (Dice) SingletonRepository.getEntityManager()
 							.getItem("dice");
 					dice.setCroupierNPC((CroupierNPC) npc);
 					player.equip(dice, true);

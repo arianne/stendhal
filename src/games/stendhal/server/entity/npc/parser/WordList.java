@@ -87,11 +87,11 @@ public final class WordList {
         enableDatabaseAccess = true;
 
         // read word list from database
-        WordList dbWordList = new WordList();
+        final WordList dbWordList = new WordList();
 
-        int ret = dbWordList.readFromDB();
+        final int ret = dbWordList.readFromDB();
 
-        String dbHash = dbWordList.hash;
+        final String dbHash = dbWordList.hash;
 
         // At this point instance already contains the word list of "words.txt",
         // so let's use this to compare the version number against the database content.
@@ -99,7 +99,7 @@ public final class WordList {
         // If the database is still empty, store the default entries into it.
         // If not, check the version number of the word list between database
         // and "words.txt". If not equal, re-initialize the DB word list.
-        if (ret == 0 || !instance.hash.equals(dbHash)) {
+        if ((ret == 0) || !instance.hash.equals(dbHash)) {
             // store the new word list into the DB
             instance.writeToDB();
         } else {
@@ -112,13 +112,13 @@ public final class WordList {
      * Reads the word list from the resource file "words.txt".
      */
     private void readFromResources() {
-        InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+        final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
         try {
             read(reader, null);
             reader.close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             logger.error("error while reading resource file 'words.txt'", e);
         }
     }
@@ -150,11 +150,11 @@ public final class WordList {
 
         try {
             md = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
+        } catch (final NoSuchAlgorithmException e) {
             return false;
         }
 
-        for (WordEntry e : words.values()) {
+        for (final WordEntry e : words.values()) {
             String s = e.getNormalized();
             if (s != null) {
                 md.update(s.getBytes());
@@ -173,11 +173,11 @@ public final class WordList {
             // md.update(e.getValue().getBytes());
         }
 
-        byte[] buffer = md.digest();
+        final byte[] buffer = md.digest();
 
-        StringBuffer sb = new StringBuffer();
+        final StringBuffer sb = new StringBuffer();
 
-        for (byte b : buffer) {
+        for (final byte b : buffer) {
             sb.append(Integer.toHexString(b & 0xFF).toUpperCase());
         }
 
@@ -195,7 +195,7 @@ public final class WordList {
      */
     public void read(final BufferedReader reader, final List<String> comments) throws IOException {
         while (true) {
-            String line = reader.readLine();
+            final String line = reader.readLine();
             if (line == null) {
                 break;
             }
@@ -205,7 +205,7 @@ public final class WordList {
                     comments.add(line);
                 }
             } else {
-                StringTokenizer tk = new StringTokenizer(line);
+                final StringTokenizer tk = new StringTokenizer(line);
 
                 if (!tk.hasMoreTokens()) {
                     continue;
@@ -214,7 +214,7 @@ public final class WordList {
                 String key = tk.nextToken();
 
                 key = trimWord(key);
-                WordEntry entry = new WordEntry();
+                final WordEntry entry = new WordEntry();
                 entry.setNormalized(key);
 
                 readEntryLine(key, tk, entry);
@@ -242,7 +242,11 @@ public final class WordList {
 
                 if (s.charAt(0) == '=') {
                     entry.setNormalized(trimWord(s.substring(1)));
-                    s = tk.hasMoreTokens()? tk.nextToken() : null;
+                    if (tk.hasMoreTokens()) {
+						s = tk.nextToken();
+					} else {
+						s = null;
+					}
                 }
 
                 if (s != null) {
@@ -254,7 +258,7 @@ public final class WordList {
                 }
             }
 
-            String normalized = entry.getNormalized();
+            final String normalized = entry.getNormalized();
 
             // Type identifiers are always upper case, so a word in lower case
             // must be a plural.
@@ -264,8 +268,8 @@ public final class WordList {
             }
             // complete missing plural expressions using the Grammar.plural()
             // function
-            else if (entry.getPlurSing() == null && entry.getType().isObject()) {
-                String plural = Grammar.plural(normalized);
+            else if ((entry.getPlurSing() == null) && entry.getType().isObject()) {
+                final String plural = Grammar.plural(normalized);
 
                 // only store single word plurals
                 if (plural.indexOf(' ') == -1) {
@@ -277,11 +281,11 @@ public final class WordList {
                 if (!entry.getType().isPronoun() && !normalized.equals("is")) {
                     String plural = Grammar.plural(key);
 
-                    if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())) {
+                    if ((plural.indexOf(' ') == -1) && !plural.equals(entry.getPlurSing())) {
                         // retry with normalized in case it differs from key
                         plural = Grammar.plural(normalized);
 
-                        if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())) {
+                        if ((plural.indexOf(' ') == -1) && !plural.equals(entry.getPlurSing())) {
                             logger.warn(String.format("suspicious plural: %s -> %s (%s?)", key, entry.getPlurSing(),
                                     plural));
                         }
@@ -305,15 +309,15 @@ public final class WordList {
         words.put(trimWord(key), entry);
 
         // store plural and associate with singular form
-        if (entry.getPlurSing() != null && !entry.getPlurSing().equals(entry.getNormalized())) {
-            WordEntry pluralEntry = new WordEntry();
+        if ((entry.getPlurSing() != null) && !entry.getPlurSing().equals(entry.getNormalized())) {
+            final WordEntry pluralEntry = new WordEntry();
 
             pluralEntry.setNormalized(entry.getPlurSing());
             pluralEntry.setType(new ExpressionType(entry.getTypeString() + ExpressionType.SUFFIX_PLURAL));
             pluralEntry.setPlurSing(entry.getNormalized());
             pluralEntry.setValue(entry.getValue());
 
-            WordEntry prev = words.put(entry.getPlurSing(), pluralEntry);
+            final WordEntry prev = words.put(entry.getPlurSing(), pluralEntry);
 
             if (prev != null) {
                 logger.debug(String.format("ambiguous plural: %s/%s -> %s", pluralEntry.getPlurSing(), prev
@@ -332,8 +336,8 @@ public final class WordList {
      * @param type
      */
     void printWordType(final PrintWriter writer, final String type) {
-        for (String key : words.keySet()) {
-            WordEntry entry = words.get(key);
+        for (final String key : words.keySet()) {
+            final WordEntry entry = words.get(key);
             boolean matches;
 
             if (type == null) {
@@ -364,7 +368,7 @@ public final class WordList {
 
         // Currently we only need to trim "'" characters.
         while (word.length() > 0) {
-            char c = word.charAt(0);
+            final char c = word.charAt(0);
 
             if (c == '\'') {
                 word = word.substring(1);
@@ -374,7 +378,7 @@ public final class WordList {
         }
 
         while (word.length() > 0) {
-            char c = word.charAt(word.length() - 1);
+            final char c = word.charAt(word.length() - 1);
 
             if (c == '\'') {
                 word = word.substring(0, word.length() - 1);
@@ -393,7 +397,7 @@ public final class WordList {
      * @return WordEntry
      */
     public WordEntry find(final String str) {
-        WordEntry entry = words.get(trimWord(str));
+        final WordEntry entry = words.get(trimWord(str));
 
         return entry;
     }
@@ -405,10 +409,10 @@ public final class WordList {
      * @return plural string
      */
     public String plural(final String word) {
-        WordEntry entry = words.get(trimWord(word));
+        final WordEntry entry = words.get(trimWord(word));
 
         if (entry != null) {
-            if (entry.getType() != null && !entry.getType().isPlural()) {
+            if ((entry.getType() != null) && !entry.getType().isPlural()) {
                 // return the associated singular from the word list
                 return entry.getPlurSing();
             } else {
@@ -428,10 +432,10 @@ public final class WordList {
      * @return singular string
      */
     public String singular(final String word) {
-        WordEntry entry = words.get(trimWord(word));
+        final WordEntry entry = words.get(trimWord(word));
 
         if (entry != null) {
-            if (entry.getType() != null && entry.getType().isPlural()) {
+            if ((entry.getType() != null) && entry.getType().isPlural()) {
                 // return the associated singular from the word list
                 return entry.getPlurSing();
             } else {
@@ -453,14 +457,14 @@ public final class WordList {
     WordEntry normalizeVerb(String word) {
         word = trimWord(word);
 
-        String normalized = Grammar.normalizeRegularVerb(word);
+        final String normalized = Grammar.normalizeRegularVerb(word);
 
         if (normalized != null) {
             WordEntry entry = words.get(normalized);
 
             // try and re-append "e" if it was removed by
             // normalizeRegularVerb()
-            if (entry == null && word.endsWith("e") && !normalized.endsWith("e")) {
+            if ((entry == null) && word.endsWith("e") && !normalized.endsWith("e")) {
                 entry = words.get(normalized + "e");
             }
 
@@ -479,10 +483,10 @@ public final class WordList {
     WordEntry normalizeAdjective(String word) {
         word = trimWord(word);
 
-        String normalized = Grammar.normalizeDerivedAdjective(word);
+        final String normalized = Grammar.normalizeDerivedAdjective(word);
 
         if (normalized != null) {
-            WordEntry entry = words.get(normalized);
+            final WordEntry entry = words.get(normalized);
 
             return entry;
         } else {
@@ -499,20 +503,20 @@ public final class WordList {
      * @param name
      */
     public void registerSubjectName(final String name) {
-        String key = trimWord(name);
+        final String key = trimWord(name);
 
         Integer usageCount = subjectRefCount.get(key);
-        if (usageCount != null && usageCount > 0) {
+        if ((usageCount != null) && (usageCount > 0)) {
             // For already known names, we have only to increment the usage counter.
             subjectRefCount.put(key, ++usageCount);
             return;
         }
 
         // register the new subject name
-        WordEntry entry = words.get(key);
+        final WordEntry entry = words.get(key);
 
-        if (entry == null || entry.getType() == null || entry.getType().isEmpty()) {
-            WordEntry newEntry = new WordEntry();
+        if ((entry == null) || (entry.getType() == null) || entry.getType().isEmpty()) {
+            final WordEntry newEntry = new WordEntry();
 
             newEntry.setNormalized(key);
             newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
@@ -531,10 +535,10 @@ public final class WordList {
      * @param name
      */
     public void unregisterSubjectName(final String name) {
-        String key = trimWord(name);
-        WordEntry entry = words.get(key);
+        final String key = trimWord(name);
+        final WordEntry entry = words.get(key);
 
-        if (entry != null && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+        if ((entry != null) && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
             Integer usageCount = subjectRefCount.get(key);
 
             if (usageCount != null) {
@@ -557,20 +561,20 @@ public final class WordList {
      */
     public void registerName(final String name, final String typeString) {
         // parse item name without merging Expression entries
-        ConversationContext ctx = new ConversationContext();
+        final ConversationContext ctx = new ConversationContext();
         ctx.setMergeExpressions(false);
-        Sentence item = ConversationParser.parse(name, ctx);
+        final Sentence item = ConversationParser.parse(name, ctx);
 
         Expression lastExpr = null;
         boolean prepositionSeen = false;
 
-        for (Expression expr : item) {
-            if (expr.getType() == null || expr.getType().isEmpty()) {
+        for (final Expression expr : item) {
+            if ((expr.getType() == null) || expr.getType().isEmpty()) {
                 // register the unknown word as new object entry
-                WordEntry entry = words.get(expr.getNormalized());
+                final WordEntry entry = words.get(expr.getNormalized());
 
                 // set the type to the given one with added "DYN" suffix
-                ExpressionType type = new ExpressionType(typeString + ExpressionType.SUFFIX_DYNAMIC);
+                final ExpressionType type = new ExpressionType(typeString + ExpressionType.SUFFIX_DYNAMIC);
                 entry.setType(type);
                 expr.setType(type);
             } else if (expr.isQuestion()) {
@@ -586,7 +590,7 @@ public final class WordList {
         }
 
         if (lastExpr != null) {
-            ExpressionType lastType = lastExpr.getType();
+            final ExpressionType lastType = lastExpr.getType();
 
             if (!checkNameCompatibleLastType(lastType, typeString)) {
                 logger.warn("last word of name '" + name + "' has unexpected type: "
@@ -631,11 +635,11 @@ public final class WordList {
      * @param verb
      */
     public void registerVerb(final String verb) {
-        String key = trimWord(verb);
-        WordEntry entry = words.get(key);
+        final String key = trimWord(verb);
+        final WordEntry entry = words.get(key);
 
-        if (entry == null || entry.getType() == null || entry.getType().isEmpty()) {
-            WordEntry newEntry = new WordEntry();
+        if ((entry == null) || (entry.getType() == null) || entry.getType().isEmpty()) {
+            final WordEntry newEntry = new WordEntry();
 
             newEntry.setNormalized(key);
             newEntry.setType(new ExpressionType(VERB_DYNAMIC));
@@ -655,7 +659,7 @@ public final class WordList {
      * @return the added entry
      */
     public WordEntry addNewWord(final String str, final boolean persist) {
-        String key = trimWord(str);
+        final String key = trimWord(str);
         WordEntry entry = words.get(key);
 
         if (entry == null) {
@@ -667,7 +671,7 @@ public final class WordList {
 
             if (persist && enableDatabaseAccess) {
                 // save the new word into the database
-                Set<String> keys = new HashSet<String>();
+                final Set<String> keys = new HashSet<String>();
                 keys.add(key);
                 insertIntoDB(keys);
             }
@@ -686,8 +690,8 @@ public final class WordList {
             return;
         }
 
-        IDatabase db = SingletonRepository.getPlayerDatabase();
-        Transaction trans = db.getTransaction();
+        final IDatabase db = SingletonRepository.getPlayerDatabase();
+        final Transaction trans = db.getTransaction();
         boolean success;
 
         // empty table "words"
@@ -701,7 +705,7 @@ public final class WordList {
             }
 
             success = true;
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
             success = false;
             logger.error("error emptying DB table words", e);
         }
@@ -718,14 +722,14 @@ public final class WordList {
                 } finally {
                     acc.close();
                 }
-            } catch (SQLException e) {
+            } catch (final SQLException e) {
                 logger.error("error storing word list version number into DB", e);
             }
         }
 
         try {
             acc.close();
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
             logger.error("error closing DB accessor", e);
         }
     }
@@ -741,8 +745,8 @@ public final class WordList {
             return false;
         }
 
-        IDatabase db = SingletonRepository.getPlayerDatabase();
-        Transaction trans = db.getTransaction();
+        final IDatabase db = SingletonRepository.getPlayerDatabase();
+        final Transaction trans = db.getTransaction();
         boolean success;
 
         try {
@@ -751,7 +755,7 @@ public final class WordList {
             if (success) {
                 trans.commit();
             }
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
             logger.error("error while inserting new word into DB", e);
             success = false;
         }
@@ -759,7 +763,7 @@ public final class WordList {
         if (!success) {
             try {
                 trans.rollback();
-            } catch (SQLException e) {
+            } catch (final SQLException e) {
                 logger.error("error while rolling back transaction", e);
             }
         }
@@ -776,7 +780,7 @@ public final class WordList {
      * @throws SQLException
      */
     private boolean insertIntoDB(final Transaction trans, final Set<String> keys) throws SQLException {
-        Connection conn = trans.getConnection();
+        final Connection conn = trans.getConnection();
 
         PreparedStatement stmt = conn.prepareStatement("insert into words(normalized, type, plural, value)\n"
                 + "values(?, ?, ?, ?)");
@@ -784,16 +788,16 @@ public final class WordList {
         int count = 0;
 
         try {
-            for (String key : keys) {
-                WordEntry entry = words.get(key);
+            for (final String key : keys) {
+                final WordEntry entry = words.get(key);
 
                 // We ignore all plural entries, they are already present as attribute of the singular form.
-                if (entry.getType() == null || !entry.getType().isPlural()) {
+                if ((entry.getType() == null) || !entry.getType().isPlural()) {
                     stmt.setString(1, key);
                     stmt.setString(2, entry.getTypeString());
                     stmt.setString(3, entry.getPlurSing());
 
-                    Integer value = entry.getValue();
+                    final Integer value = entry.getValue();
                     if (value != null) {
                         stmt.setInt(4, value);
                     } else {
@@ -802,7 +806,7 @@ public final class WordList {
 
                     stmt.execute();
 
-                    ResultSet idRes = stmt.getGeneratedKeys();
+                    final ResultSet idRes = stmt.getGeneratedKeys();
                     if (idRes.next()) {
                         entry.setId(idRes.getInt(1));
                         ++count;
@@ -819,13 +823,13 @@ public final class WordList {
         stmt = conn.prepareStatement("update	words\n" + "set	alias_id = ?\n" + "where	id = ?");
 
         try {
-            for (String key : keys) {
-                WordEntry entry = words.get(key);
-                String normalized = entry.getNormalized();
+            for (final String key : keys) {
+                final WordEntry entry = words.get(key);
+                final String normalized = entry.getNormalized();
 
                 // Now we store the alias_id for alias entries.
                 if (!normalized.equals(key)) {
-                    WordEntry alias = words.get(normalized);
+                    final WordEntry alias = words.get(normalized);
 
                     if (alias != null) {
                         stmt.setInt(1, alias.getId());
@@ -856,35 +860,35 @@ public final class WordList {
             return 0;
         }
 
-        IDatabase db = SingletonRepository.getPlayerDatabase();
+        final IDatabase db = SingletonRepository.getPlayerDatabase();
 
-        Transaction trans = db.getTransaction();
-        Accessor acc = trans.getAccessor();
+        final Transaction trans = db.getTransaction();
+        final Accessor acc = trans.getAccessor();
 
         try {
-            ResultSet res = acc.query("select	w.id, w.normalized, w.type, w.plural, w.value,\n" + "	s.normalized\n"
+            final ResultSet res = acc.query("select	w.id, w.normalized, w.type, w.plural, w.value,\n" + "	s.normalized\n"
                     + "from	words w\n" + "left outer join words s on s.id = w.alias_id");
 
             int count = 0;
 
             while (res.next()) {
-                WordEntry entry = new WordEntry();
+                final WordEntry entry = new WordEntry();
 
                 entry.setId(res.getInt(1));
 
-                String key = res.getString(2);
+                final String key = res.getString(2);
                 entry.setNormalized(key);
 
                 entry.setType(new ExpressionType(res.getString(3)));
 
                 entry.setPlurSing(res.getString(4));
 
-                int value = res.getInt(5);
+                final int value = res.getInt(5);
                 if (!res.wasNull()) {
                     entry.setValue(value);
                 }
 
-                String singular = res.getString(6);
+                final String singular = res.getString(6);
                 if (singular != null) {
                     entry.setNormalized(singular);
                 }
@@ -895,7 +899,7 @@ public final class WordList {
 
             trans.commit();
 
-            WordEntry versionEntry = find(HASH_KEYWORD);
+            final WordEntry versionEntry = find(HASH_KEYWORD);
 
             if (versionEntry != null) {
                 hash = versionEntry.getPlurSing();
@@ -908,12 +912,12 @@ public final class WordList {
             logger.debug("read " + count + " word entries from database");
 
             return count;
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
             logger.error("error while reading from DB table words", e);
 
             try {
                 trans.rollback();
-            } catch (SQLException e1) {
+            } catch (final SQLException e1) {
                 logger.error("error while rolling back transaction", e1);
             }
 

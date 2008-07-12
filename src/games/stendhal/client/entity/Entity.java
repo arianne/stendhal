@@ -172,7 +172,7 @@ public class Entity implements RPObjectChangeListener {
 	public void addChangeListener(final EntityChangeListener listener) {
 		EntityChangeListener[] newListeners;
 
-		int len = changeListeners.length;
+		final int len = changeListeners.length;
 
 		newListeners = new EntityChangeListener[len + 1];
 		System.arraycopy(changeListeners, 0, newListeners, 0, len);
@@ -190,8 +190,8 @@ public class Entity implements RPObjectChangeListener {
 	 * @param action
 	 *            The RP action.
 	 */
-	public void fillTargetInfo(RPAction action) {
-		int id = rpObject.getID().getObjectID();
+	public void fillTargetInfo(final RPAction action) {
+		final int id = rpObject.getID().getObjectID();
 
 		if (rpObject.isContained()) {
 			action.put("baseobject",
@@ -217,9 +217,9 @@ public class Entity implements RPObjectChangeListener {
 	 *            The changed property.
 	 */
 	protected void fireChange(final  Property property) {
-		EntityChangeListener[] listeners = changeListeners;
+		final EntityChangeListener[] listeners = changeListeners;
 		
-		for (EntityChangeListener l : listeners) {
+		for (final EntityChangeListener l : listeners) {
 			l.entityChanged(this, property);
 		}
 	}
@@ -363,7 +363,7 @@ public class Entity implements RPObjectChangeListener {
 	 * @return <code>true</code> if the entity represents that class, or a
 	 *         subclass.
 	 */
-	public boolean isInstanceOf(String clazz) {
+	public boolean isInstanceOf(final String clazz) {
 		return rpObject.getRPClass().subclassOf(clazz);
 	}
 
@@ -386,7 +386,7 @@ public class Entity implements RPObjectChangeListener {
 			return null;
 		}
 
-		double tempWidth = audibleRange * 2;
+		final double tempWidth = audibleRange * 2;
 		return new Rectangle2D.Double(getX() - audibleRange, getY()
 				- audibleRange, tempWidth, tempWidth);
 	}
@@ -418,7 +418,7 @@ public class Entity implements RPObjectChangeListener {
 		boolean moved = false;
 
 		if (diff.has("x")) {
-			int nx = diff.getInt("x");
+			final int nx = diff.getInt("x");
 
 			if (nx != x) {
 				x = nx;
@@ -427,7 +427,7 @@ public class Entity implements RPObjectChangeListener {
 		}
 
 		if (diff.has("y")) {
-			int ny = diff.getInt("y");
+			final int ny = diff.getInt("y");
 
 			if (ny != y) {
 				y = ny;
@@ -941,7 +941,7 @@ public class Entity implements RPObjectChangeListener {
 
 	@Override
 	public String toString() {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append(getClass().getName());
 

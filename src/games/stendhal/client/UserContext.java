@@ -80,7 +80,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * Constructor.
 	 * @param gameObjects TODO
 	 */
-	public UserContext(GameObjects gameObjects) {
+	public UserContext(final GameObjects gameObjects) {
 		adminlevel = 0;
 	    this.gameObjects = gameObjects;
 		name = null;
@@ -101,10 +101,10 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param l
 	 *            The listener.
 	 */
-	public void addBuddyChangeListener(BuddyChangeListener l) {
+	public void addBuddyChangeListener(final BuddyChangeListener l) {
 		BuddyChangeListener[] newListeners;
 
-		int len = buddyListeners.length;
+		final int len = buddyListeners.length;
 
 		newListeners = new BuddyChangeListener[len + 1];
 		System.arraycopy(buddyListeners, 0, newListeners, 0, len);
@@ -121,10 +121,10 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param l
 	 *            The listener.
 	 */
-	public void addFeatureChangeListener(FeatureChangeListener l) {
+	public void addFeatureChangeListener(final FeatureChangeListener l) {
 		FeatureChangeListener[] newListeners;
 
-		int len = featureListeners.length;
+		final int len = featureListeners.length;
 
 		newListeners = new FeatureChangeListener[len + 1];
 		System.arraycopy(featureListeners, 0, newListeners, 0, len);
@@ -139,7 +139,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param adminLevel
 	 *            The new admin level.
 	 */
-	protected void fireAdminLevelChanged(int adminLevel) {
+	protected void fireAdminLevelChanged(final int adminLevel) {
 		// TODO: Impl
 	}
 
@@ -149,12 +149,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
-	protected void fireBuddyAdded(String buddyName) {
-		BuddyChangeListener[] listeners = buddyListeners;
+	protected void fireBuddyAdded(final String buddyName) {
+		final BuddyChangeListener[] listeners = buddyListeners;
 
 		logger.debug("Buddy added = " + buddyName);
 
-		for (BuddyChangeListener l : listeners) {
+		for (final BuddyChangeListener l : listeners) {
 			l.buddyAdded(buddyName);
 		}
 	}
@@ -165,12 +165,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
-	protected void fireBuddyOffline(String buddyName) {
-		BuddyChangeListener[] listeners = buddyListeners;
+	protected void fireBuddyOffline(final String buddyName) {
+		final BuddyChangeListener[] listeners = buddyListeners;
 
 		logger.debug("Buddy offline = " + buddyName);
 
-		for (BuddyChangeListener l : listeners) {
+		for (final BuddyChangeListener l : listeners) {
 			l.buddyOffline(buddyName);
 		}
 	}
@@ -181,12 +181,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
-	protected void fireBuddyOnline(String buddyName) {
-		BuddyChangeListener[] listeners = buddyListeners;
+	protected void fireBuddyOnline(final String buddyName) {
+		final BuddyChangeListener[] listeners = buddyListeners;
 
 		logger.debug("Buddy online = " + buddyName);
 
-		for (BuddyChangeListener l : listeners) {
+		for (final BuddyChangeListener l : listeners) {
 			l.buddyOnline(buddyName);
 		}
 	}
@@ -197,12 +197,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
-	protected void fireBuddyRemoved(String buddyName) {
-		BuddyChangeListener[] listeners = buddyListeners;
+	protected void fireBuddyRemoved(final String buddyName) {
+		final BuddyChangeListener[] listeners = buddyListeners;
 
 		logger.debug("Buddy removed = " + buddyName);
 
-		for (BuddyChangeListener l : listeners) {
+		for (final BuddyChangeListener l : listeners) {
 			l.buddyRemoved(buddyName);
 		}
 	}
@@ -213,12 +213,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param name
 	 *            The name of the feature.
 	 */
-	protected void fireFeatureDisabled(String name) {
-		FeatureChangeListener[] listeners = featureListeners;
+	protected void fireFeatureDisabled(final String name) {
+		final FeatureChangeListener[] listeners = featureListeners;
 
 		logger.debug("Feature disabled: " + name);
 
-		for (FeatureChangeListener l : listeners) {
+		for (final FeatureChangeListener l : listeners) {
 			l.featureDisabled(name);
 		}
 	}
@@ -231,12 +231,12 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param value
 	 *            The optional feature value.
 	 */
-	protected void fireFeatureEnabled(String name, String value) {
-		FeatureChangeListener[] listeners = featureListeners;
+	protected void fireFeatureEnabled(final String name, final String value) {
+		final FeatureChangeListener[] listeners = featureListeners;
 
 		logger.debug("Feature enabled: " + name + " = " + value);
 
-		for (FeatureChangeListener l : listeners) {
+		for (final FeatureChangeListener l : listeners) {
 			l.featureEnabled(name, value);
 		}
 	}
@@ -247,7 +247,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param newName
 	 *            The new player name.
 	 */
-	protected void fireNameChanged(String newName) {
+	protected void fireNameChanged(final String newName) {
 		// TODO: Impl
 	}
 
@@ -294,7 +294,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param listener
 	 *            The listener.
 	 */
-	public void removeBuddyChangeListener(BuddyChangeListener listener) {
+	public void removeBuddyChangeListener(final BuddyChangeListener listener) {
 		BuddyChangeListener[] newListeners;
 		int idx;
 
@@ -325,7 +325,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param listener
 	 *            The listener.
 	 */
-	public void removeFeatureChangeListener(FeatureChangeListener listener) {
+	public void removeFeatureChangeListener(final FeatureChangeListener listener) {
 		FeatureChangeListener[] newListeners;
 		int idx;
 
@@ -357,7 +357,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object changes.
 	 */
 	protected void processBuddiesAdded(final RPObject changes) {
-		for (String key : changes) {
+		for (final String key : changes) {
 			/*
 			 * TODO: Drop underscore prefix when 'id' is not forced into the
 			 * RPObject attributes
@@ -366,9 +366,9 @@ public class UserContext implements RPObjectChangeListener {
 				continue;
 			}
 
-			String buddyName = key.substring(1);
+			final String buddyName = key.substring(1);
 
-			boolean online = (changes.getInt(key) != 0);
+			final boolean online = (changes.getInt(key) != 0);
 
 			if (!buddies.containsKey(buddyName)) {
 				buddies.put(buddyName, Boolean.valueOf(online));
@@ -394,7 +394,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object changes.
 	 */
 	protected void processBuddiesRemoved(final RPObject changes) {
-		for (String key : changes) {
+		for (final String key : changes) {
 			/*
 			 * TODO: Drop underscore prefix when 'id' is not forced into the
 			 * RPObject attributes
@@ -403,7 +403,7 @@ public class UserContext implements RPObjectChangeListener {
 				continue;
 			}
 
-			String buddyName = key.substring(1);
+			final String buddyName = key.substring(1);
 
 			if (buddies.remove(buddyName) != null) {
 				fireBuddyRemoved(buddyName);
@@ -418,14 +418,14 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object changes.
 	 */
 	protected void processFeaturesAdded(final RPObject changes) {
-		for (String featureName : changes) {
+		for (final String featureName : changes) {
 			// Skip internal ID field
 			if (featureName.equals("id")) {
 				continue;
 			}
 
 			if (!features.containsKey(featureName)) {
-				String value = changes.get(featureName);
+				final String value = changes.get(featureName);
 
 				features.put(featureName, value);
 				fireFeatureEnabled(featureName, value);
@@ -440,7 +440,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object changes.
 	 */
 	protected void processFeaturesRemoved(final RPObject changes) {
-		for (String featureName : changes) {
+		for (final String featureName : changes) {
 			// Skip internal ID field
 			if (featureName.equals("id")) {
 				continue;
@@ -510,7 +510,7 @@ public class UserContext implements RPObjectChangeListener {
 		// way RPEvents should be used
 		// TODO: We probably need a registry/factory to dispatch the different
 		// events to.
-		for (RPEvent rpevent : object.events()) {
+		for (final RPEvent rpevent : object.events()) {
 			if (rpevent.getName().equals("transition_graph")) {
 				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
 			} else if (rpevent.getName().equals("examine")) {

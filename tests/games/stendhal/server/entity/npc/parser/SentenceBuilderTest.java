@@ -15,7 +15,7 @@ public class SentenceBuilderTest {
 
 	@Test
 	public final void testSentenceBuilder() {
-		SentenceBuilder b = new SentenceBuilder();
+		final SentenceBuilder b = new SentenceBuilder();
 
 		assertTrue(b.isEmpty());
 		assertEquals("", b.toString());

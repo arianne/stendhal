@@ -18,7 +18,7 @@ import java.util.Map;
  * Configure Orril Dwarf Mine (Underground/Level -2).
  */
 public class IronBuyerNPC implements ZoneConfigurator {
-	private ShopList shops;
+	private final ShopList shops;
 
 	public IronBuyerNPC() {
 		this.shops = SingletonRepository.getShopList();
@@ -30,17 +30,17 @@ public class IronBuyerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDwarfMineArea(zone);
 	}
 
-	private void buildDwarfMineArea(StendhalRPZone zone) {
+	private void buildDwarfMineArea(final StendhalRPZone zone) {
 		// NOTE: This is a female character ;)
-		SpeakerNPC loretta = new SpeakerNPC("Loretta") {
+		final SpeakerNPC loretta = new SpeakerNPC("Loretta") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(49, 68));
 				nodes.add(new Node(45, 68));
 				nodes.add(new Node(45, 72));

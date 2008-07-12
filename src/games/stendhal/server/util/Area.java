@@ -15,9 +15,9 @@ import marauroa.common.game.IRPZone;
  */
 public class Area {
 
-	private IRPZone zone;
+	private final IRPZone zone;
 
-	private Shape shape;
+	private final Shape shape;
 
 	/**
 	 * Creates a new Area.
@@ -27,7 +27,7 @@ public class Area {
 	 * @param shape
 	 *            shape on that map
 	 */
-	public Area(IRPZone zone, Rectangle2D shape) {
+	public Area(final IRPZone zone, final Rectangle2D shape) {
 		this.zone = zone;
 		this.shape = shape;
 	}
@@ -40,8 +40,8 @@ public class Area {
 	 *            An entity to check
 	 * @return true, if and only if the entity is in this area.
 	 */
-	public boolean contains(Entity entity) {
-		IRPZone entityZone = entity.getZone();
+	public boolean contains(final Entity entity) {
+		final IRPZone entityZone = entity.getZone();
 
 		// We have ask the zone whether it knows about the entity because
 		// player-objects stay alive some time after logout.

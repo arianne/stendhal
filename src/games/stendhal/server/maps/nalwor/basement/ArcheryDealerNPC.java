@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ArcheryDealerNPC extends SpeakerNPCFactory {
 			@Override
-			public void createDialog(SpeakerNPC magearcher) {
+			public void createDialog(final SpeakerNPC magearcher) {
 				magearcher.addGreeting("Well met, kind stranger.");
 				magearcher.addJob("I buy archery equipment for our village.");
 				magearcher.addHelp("I can offer you no help. Sorry.");
@@ -22,7 +22,7 @@ public class ArcheryDealerNPC extends SpeakerNPCFactory {
 				magearcher.addQuest("I have no quest for you.");
 				magearcher.addGoodbye("Have a happy. Bye.");
 
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("crossbow", 400);
 				offerings.put("wooden arrow", 1);
 				offerings.put("steel arrow", 5);

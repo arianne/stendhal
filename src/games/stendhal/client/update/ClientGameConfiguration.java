@@ -18,7 +18,7 @@ public class ClientGameConfiguration {
 	private ClientGameConfiguration() {
 		// Singleton pattern, hide constructor
 		try {
-			Properties temp = new Properties();
+			final Properties temp = new Properties();
 			InputStream is = ClientGameConfiguration.class.getResourceAsStream("game-default.properties");
 			temp.load(is);
 			is.close();
@@ -29,7 +29,7 @@ public class ClientGameConfiguration {
 				gameConfig.load(is);
 				is.close();
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -49,7 +49,7 @@ public class ClientGameConfiguration {
 	 *            key
 	 * @return configured value
 	 */
-	public static String get(String key) {
+	public static String get(final String key) {
 		init();
 		return instance.gameConfig.getProperty(key);
 	}

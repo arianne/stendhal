@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Welcome to the bank of Semos! Do you need #help on your personal chest?");
 		npc.addHelp("Follow the corridor to the right, and you will find the magic chests. You can store your belongings in any of them, and nobody else will be able to touch them! A number of spells have been cast on the chest areas to ensure #safety, please ask me about this if you want to know more.");
 		npc.addReply("safety", "When you are standing at a chest to organise your items, any other people or animals will not be able to come near you. A magical aura stops others from using scrolls to arrive near you, although unfortunately this also means you cannot use scrolls to exit the bank. You will need to walk out. Lastly let me tell you about safe #trading.");

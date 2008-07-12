@@ -10,18 +10,18 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class ExamineChatAction extends ChatAction {
-	private String image;
-	private String title;
-	private String alt;
+	private final String image;
+	private final String title;
+	private final String alt;
 
-	public ExamineChatAction(String image, String title, String alt) {
+	public ExamineChatAction(final String image, final String title, final String alt) {
 		this.image = image;
 		this.title = title;
 		this.alt = alt;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		player.addEvent(new ExamineEvent(image, title, alt));
 	}
 
@@ -31,7 +31,7 @@ public class ExamineChatAction extends ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				StartRecordingKillsAction.class);
 	}

@@ -31,7 +31,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
-	public ZoneGroupsXMLLoader(URI uri) {
+	public ZoneGroupsXMLLoader(final URI uri) {
 		this.uri = uri;
 	}
 
@@ -44,24 +44,24 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 *             If an I/O error occurred.
 	 */
 	public void load() throws SAXException, IOException {
-		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
-		List<URI> zoneGroups = groupsLoader.load();
+		final GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
+		final List<URI> zoneGroups = groupsLoader.load();
 
 		// just to speed up starting of the server in while developing
-		String regex = System.getProperty("stendhal.zone.regex", ".*");
+		final String regex = System.getProperty("stendhal.zone.regex", ".*");
 
 		// Load each group
-		for (URI tempUri : zoneGroups) {
+		for (final URI tempUri : zoneGroups) {
 			if (tempUri.toString().matches(regex)) {
 				logger.debug("Loading zone group [" + tempUri + "]");
 	
-				ZonesXMLLoader loader = new ZonesXMLLoader(tempUri);
+				final ZonesXMLLoader loader = new ZonesXMLLoader(tempUri);
 	
 				try {
 					loader.load();
-				} catch (SAXException ex) {
+				} catch (final SAXException ex) {
 					logger.error("Error loading zone group: " + tempUri, ex);
-				} catch (IOException ex) {
+				} catch (final IOException ex) {
 					logger.error("Error loading zone group: " + tempUri, ex);
 				}
 			}

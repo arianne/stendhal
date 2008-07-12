@@ -12,21 +12,21 @@ import org.xml.sax.SAXParseException;
 
 public class ReadAndPrintXMLFile {
 
-	public static void main(String[] argv) {
+	public static void main(final String[] argv) {
 		try {
 
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("data/sounds/sounds.xml"));
+			final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+			final Document doc = docBuilder.parse(new File("data/sounds/sounds.xml"));
 
 			// normalize text representation
 			doc.getDocumentElement().normalize();
 			System.out.println("Root element of the doc is "
 					+ doc.getDocumentElement().getNodeName());
 
-			NodeList listOfPersons = doc.getElementsByTagName("entry");
+			final NodeList listOfPersons = doc.getElementsByTagName("entry");
 			listOfPersons.item(0).getAttributes().item(0).toString();
-			int totalPersons = listOfPersons.getLength();
+			final int totalPersons = listOfPersons.getLength();
 			System.out.println("Total no of people : " + totalPersons);
 
 			for (int s = 0; s < listOfPersons.getLength(); s++) {
@@ -34,16 +34,16 @@ public class ReadAndPrintXMLFile {
 				System.out.println(listOfPersons.item(s).getTextContent());
 			} // end of for loop with s var
 
-		} catch (SAXParseException err) {
+		} catch (final SAXParseException err) {
 			System.out.println("** Parsing error" + ", line "
 					+ err.getLineNumber() + ", uri " + err.getSystemId());
 			System.out.println(" " + err.getMessage());
 
-		} catch (SAXException e) {
-			Exception x = e.getException();
+		} catch (final SAXException e) {
+			final Exception x = e.getException();
 			((x == null) ? e : x).printStackTrace();
 
-		} catch (Throwable t) {
+		} catch (final Throwable t) {
 			t.printStackTrace();
 		}
 		// System.exit (0);

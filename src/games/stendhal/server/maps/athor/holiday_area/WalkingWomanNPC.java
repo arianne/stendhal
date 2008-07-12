@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class WalkingWomanNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Hi!");
 		npc.addQuest("I have no jobs for you, my friend");
 		npc.addJob("I'm just walking along the coast!");

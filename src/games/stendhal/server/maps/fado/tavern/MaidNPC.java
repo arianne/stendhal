@@ -33,7 +33,7 @@ public class MaidNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -41,12 +41,12 @@ public class MaidNPC implements ZoneConfigurator {
 	// MaidNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC tavernMaid = new SpeakerNPC("Old Mother Helena") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC tavernMaid = new SpeakerNPC("Old Mother Helena") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(28, 15));
 				nodes.add(new Node(10, 15));
 				nodes.add(new Node(10, 27));
@@ -66,7 +66,7 @@ public class MaidNPC implements ZoneConfigurator {
 				addHelp("Why not gather some friends and take a break together, you can put your food down and eat from that long table.");
 				addQuest("Oh, I don't have time for anything like that.");
 
-				Map<String, Integer> offers = new HashMap<String, Integer>();
+				final Map<String, Integer> offers = new HashMap<String, Integer>();
 				offers.put("beer", 10);
 				offers.put("wine", 15);
 				offers.put("cherry", 20);

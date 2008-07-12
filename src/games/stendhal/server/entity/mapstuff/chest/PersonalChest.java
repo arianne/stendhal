@@ -35,7 +35,7 @@ public class PersonalChest extends Chest {
 
 	private RPEntity attending;
 
-	private String bankName;
+	private final String bankName;
 
 	/**
 	 * Create a personal chest using the default bank slot.
@@ -50,7 +50,7 @@ public class PersonalChest extends Chest {
 	 * @param bankName
 	 *            The name of the bank slot.
 	 */
-	public PersonalChest(String bankName) {
+	public PersonalChest(final String bankName) {
 		this.bankName = bankName;
 		attending = null;
 
@@ -83,12 +83,12 @@ public class PersonalChest extends Chest {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	private RPObject cloneItem(RPObject item) throws NoSuchMethodException,
+	private RPObject cloneItem(final RPObject item) throws NoSuchMethodException,
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Class< ? > clazz = item.getClass();
-		Constructor< ? > ctor = clazz.getConstructor(clazz);
-		Item clone = (Item) ctor.newInstance(item);
+		final Class< ? > clazz = item.getClass();
+		final Constructor< ? > ctor = clazz.getConstructor(clazz);
+		final Item clone = (Item) ctor.newInstance(item);
 		return clone;
 	}
 
@@ -114,14 +114,14 @@ public class PersonalChest extends Chest {
 		if (attending != null) {
 			/* Can be replaced when we add Equip event */
 			/* Mirror chest content into player's bank slot */
-			RPSlot bank = getBankSlot();
+			final RPSlot bank = getBankSlot();
 			bank.clear();
 
-			for (RPObject item : getSlot("content")) {
+			for (final RPObject item : getSlot("content")) {
 				bank.addPreservingId(item);
 			}
 
-			RPSlot content = getSlot("content");
+			final RPSlot content = getSlot("content");
 			content.clear();
 
 			// Verify the user is next to the chest
@@ -130,10 +130,10 @@ public class PersonalChest extends Chest {
 				// chest...
 				// by clearing the chest and copying the items
 				// back to it from the player's bank slot
-				for (RPObject item : getBankSlot()) {
+				for (final RPObject item : getBankSlot()) {
 					try {
 						content.addPreservingId(cloneItem(item));
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						logger.error("Cannot clone item " + item, e);
 					}
 				}
@@ -155,18 +155,18 @@ public class PersonalChest extends Chest {
 	 * @param user
 	 *            The attending user.
 	 */
-	public void open(RPEntity user) {
+	public void open(final RPEntity user) {
 		attending = user;
 
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SyncContent());
 
-		RPSlot content = getSlot("content");
+		final RPSlot content = getSlot("content");
 		content.clear();
 
-		for (RPObject item : getBankSlot()) {
+		for (final RPObject item : getBankSlot()) {
 			try {
 				content.addPreservingId(cloneItem(item));
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("Cannot clone item " + item, e);
 			}
 		}
@@ -194,7 +194,7 @@ public class PersonalChest extends Chest {
 	}
 
 	@Override
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		if (user.nextTo(this)) {
 			if (isOpen()) {
 				close();
@@ -210,7 +210,7 @@ public class PersonalChest extends Chest {
 	}
 
 	@Override
-    public String getDescriptionName(boolean definite) {
+    public String getDescriptionName(final boolean definite) {
 	    return Grammar.article_noun(bankName + " chest", definite);
     }
 
@@ -224,7 +224,7 @@ public class PersonalChest extends Chest {
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			if (syncContent()) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 			}

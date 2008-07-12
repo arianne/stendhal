@@ -18,8 +18,8 @@ class GrumpyAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction action = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction action = new RPAction();
 
 		action.put("type", "grumpy");
 

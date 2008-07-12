@@ -56,9 +56,9 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 */
 	protected void readAttributes(final EntitySetupDescriptor desc,
 			final Element element) {
-		List<Element> list = XMLUtil.getElements(element, "attribute");
+		final List<Element> list = XMLUtil.getElements(element, "attribute");
 
-		for (Element attr : list) {
+		for (final Element attr : list) {
 			if (attr.hasAttribute("name")) {
 				desc.setAttribute(attr.getAttribute("name"), XMLUtil.getText(
 						attr).trim());
@@ -105,11 +105,11 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		int y;
 
 		if (element.hasAttribute("x")) {
-			String s = element.getAttribute("x");
+			final String s = element.getAttribute("x");
 
 			try {
 				x = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Invalid entity 'x' coordinate: " + s);
 				return null;
 			}
@@ -119,11 +119,11 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		}
 
 		if (element.hasAttribute("y")) {
-			String s = element.getAttribute("y");
+			final String s = element.getAttribute("y");
 
 			try {
 				y = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Invalid entity 'y' coordinate: " + s);
 				return null;
 			}
@@ -132,9 +132,9 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 			return null;
 		}
 
-		EntitySetupDescriptor desc = read(element, x, y);
+		final EntitySetupDescriptor desc = read(element, x, y);
 
-		List<Element> list = XMLUtil.getElements(element, "implementation");
+		final List<Element> list = XMLUtil.getElements(element, "implementation");
 
 		if (!list.isEmpty()) {
 			if (list.size() > 1) {

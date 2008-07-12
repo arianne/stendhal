@@ -23,7 +23,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	 * @param statement statement
 	 * @param resultSet resultSet
 	 */
-	public LogEntryIterator(Statement statement, ResultSet resultSet) {
+	public LogEntryIterator(final Statement statement, final ResultSet resultSet) {
 	    super(statement, resultSet);
     }
 
@@ -39,7 +39,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	    		resultSet.getString("param2"),
 	    		resultSet.getString("param3"),
 	    		resultSet.getString("param4"));
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			return null;
 		}

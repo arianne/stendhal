@@ -1,12 +1,12 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.Constants;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
@@ -35,14 +35,14 @@ public class PlayerDieer {
 	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
 	private static final Logger logger = Logger.getLogger(PlayerDieer.class);
-	private Player player;
+	private final Player player;
 	
-	public PlayerDieer(Player player) {
+	public PlayerDieer(final Player player) {
 		this.player = player;
 	}
 
 
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		player.put("dead", "");
 		logger.info("ondeadstart");
 		abondonPetsAndSheep();
@@ -52,7 +52,7 @@ public class PlayerDieer {
 
 		if (!(killer instanceof RaidCreature)) {
 			logger.info("noraidcreature");
-			List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
+			final List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
 			
 			logger.info("ringlist " + ringList);
 			double penaltyFactor;
@@ -87,7 +87,7 @@ public class PlayerDieer {
 
 
 	private void respawnInAfterLife() {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(DEFAULT_DEAD_AREA);
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(DEFAULT_DEAD_AREA);
 
 		if (zone == null) {
 			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA
@@ -108,40 +108,40 @@ public class PlayerDieer {
 
 
 	private void abondonPetsAndSheep() {
-		Sheep sheep = player.getSheep();
+		final Sheep sheep = player.getSheep();
 
 		if (sheep != null) {
 			player.removeSheep(sheep);
 		}
 
-		Pet pet = player.getPet();
+		final Pet pet = player.getPet();
 
 		if (pet != null) {
 			player.removePet(pet);
 		}
 	}
 
-	protected void dropItemsOn(Corpse corpse) {
+	protected void dropItemsOn(final Corpse corpse) {
 		// drop at least 1 and at most 4 items
-		int maxItemsToDrop = Rand.rand(4);
-		List<Pair<RPObject, RPSlot>> objects = retrieveAllDroppableObjects();
+		final int maxItemsToDrop = Rand.rand(4);
+		final List<Pair<RPObject, RPSlot>> objects = retrieveAllDroppableObjects();
 		Collections.shuffle(objects);
 
 		for (int i = 0; i < maxItemsToDrop; i++) {
 			if (!objects.isEmpty()) {
-				Pair<RPObject, RPSlot> object = objects.remove(0);
+				final Pair<RPObject, RPSlot> object = objects.remove(0);
 				if (object.first() instanceof StackableItem) {
-					StackableItem item = (StackableItem) object.first();
+					final StackableItem item = (StackableItem) object.first();
 
 					// We won't drop the full quantity, but only a
 					// percentage.
 					// Get a random percentage between 25 % and 75 % to drop
-					double percentage = (Rand.rand(50) + 25) / 100.0;
-					int quantityToDrop = (int) Math.round(item.getQuantity()
+					final double percentage = (Rand.rand(50) + 25) / 100.0;
+					final int quantityToDrop = (int) Math.round(item.getQuantity()
 							* percentage);
 
 					if (quantityToDrop > 0) {
-						StackableItem itemToDrop = item.splitOff(quantityToDrop);
+						final StackableItem itemToDrop = item.splitOff(quantityToDrop);
 						ItemLogger.splitOff(player, item, itemToDrop, quantityToDrop);
 						ItemLogger.equipAction(player, itemToDrop, 
 							new String[]{"slot", player.getName(), object.second().getName()}, 
@@ -165,19 +165,19 @@ public class PlayerDieer {
 	 * @return a list of all Items in RPEntity carrying slots that can be dropped
 	 */
 	private List<Pair<RPObject, RPSlot>> retrieveAllDroppableObjects() {
-		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
+		final List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
-		for (String slotName : RPEntity.CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			if (player.hasSlot(slotName)) {
-				RPSlot slot = player.getSlot(slotName);
+				final RPSlot slot = player.getSlot(slotName);
 
 				// a list that will contain the objects that could
 				// be dropped.
-				for (RPObject objectInSlot : slot) {
+				for (final RPObject objectInSlot : slot) {
 					// don't drop special quest rewards as there is no way to
 					// get them again
 					if (objectInSlot instanceof Item) {
-						Item itemInSlot = (Item) objectInSlot;
+						final Item itemInSlot = (Item) objectInSlot;
 						if (itemInSlot.isBound() || itemInSlot.isUndroppableOnDeath()) {
 							continue;
 						} 

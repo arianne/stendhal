@@ -25,7 +25,7 @@ public class PlayerHasItemWithHimConditionTest {
 
 	@Test
 	public final void testHashCode() {
-		PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
+		final PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
 				"itemname");
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new PlayerHasItemWithHimCondition(null).hashCode(),
@@ -40,7 +40,7 @@ public class PlayerHasItemWithHimConditionTest {
 
 	@Test
 	public final void testFire() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		PlayerHasItemWithHimCondition cond = new PlayerHasItemWithHimCondition(
 				"itemname");
 		assertFalse(cond.fire(player, null, null));
@@ -78,10 +78,10 @@ public class PlayerHasItemWithHimConditionTest {
 
 	@Test
 	public final void testEqualsObject() {
-		String itemName = "itemname";
+		final String itemName = "itemname";
 		assertFalse(new PlayerHasItemWithHimCondition(itemName).equals(null));
 
-		PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
+		final PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
 				itemName);
 		assertTrue(obj.equals(obj));
 		assertTrue(new PlayerHasItemWithHimCondition(null).equals(new PlayerHasItemWithHimCondition(

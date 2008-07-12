@@ -29,7 +29,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "it" or "them" as appropriate
 	 */
-	public static String itthem(int quantity) {
+	public static String itthem(final int quantity) {
 		return (quantity == 1 ? "it" : "them");
 	}
 
@@ -39,8 +39,8 @@ public class Grammar {
 	 * @param word
 	 * @return word with first letter in upper case
 	 */
-	public static String makeUpperCaseWord(String word) {
-		StringBuilder res = new StringBuilder();
+	public static String makeUpperCaseWord(final String word) {
+		final StringBuilder res = new StringBuilder();
 		if (word.length() > 0) {
 			res.append(Character.toUpperCase(word.charAt(0)));
 			if (word.length() > 1) {
@@ -57,7 +57,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "It" or "Them" as appropriate
 	 */
-	public static String ItThem(int quantity) {
+	public static String ItThem(final int quantity) {
 		return makeUpperCaseWord(itthem(quantity));
 	}
 
@@ -68,7 +68,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "it" or "they" as appropriate
 	 */
-	public static String itthey(int quantity) {
+	public static String itthey(final int quantity) {
 		return (quantity == 1 ? "it" : "they");
 	}
 
@@ -79,7 +79,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "It" or "They" as appropriate
 	 */
-	public static String ItThey(int quantity) {
+	public static String ItThey(final int quantity) {
 		return makeUpperCaseWord(itthey(quantity));
 	}
 
@@ -90,7 +90,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "is" or "are" as appropriate
 	 */
-	public static String isare(int quantity) {
+	public static String isare(final int quantity) {
 		return (quantity == 1 ? "is" : "are");
 	}
 
@@ -101,7 +101,7 @@ public class Grammar {
 	 *            The quantity to examine
 	 * @return Either "Is" or "Are" as appropriate
 	 */
-	public static String IsAre(int quantity) {
+	public static String IsAre(final int quantity) {
 		return makeUpperCaseWord(isare(quantity));
 	}
 
@@ -114,7 +114,7 @@ public class Grammar {
 	 *            true for "the", false for a/an
 	 * @return noun with article
 	 */
-	public static String article_noun(String noun, boolean definite) {
+	public static String article_noun(final String noun, final boolean definite) {
 		if (definite) {
 			return "the " + noun;
 		} else {
@@ -129,14 +129,14 @@ public class Grammar {
 	 *            The noun to examine
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
 	 */
-	public static String a_noun(String noun) {
+	public static String a_noun(final String noun) {
 		if (noun == null) {
 			return null;
 		}
-		String enoun = fullForm(noun);
-		char initial = noun.length() > 0 ? Character.toLowerCase(enoun.charAt(0))
+		final String enoun = fullForm(noun);
+		final char initial = noun.length() > 0 ? Character.toLowerCase(enoun.charAt(0))
 				: ' ';
-		char second = noun.length() > 1 ? Character.toLowerCase(enoun.charAt(1))
+		final char second = noun.length() > 1 ? Character.toLowerCase(enoun.charAt(1))
 				: ' ';
 		if ((initial == 'e') && (second == 'u')) {
 			return "a " + enoun;
@@ -161,8 +161,8 @@ public class Grammar {
 	 *            prefix, that may be present in plural form
 	 * @return noun starting with prefix
 	 */
-	private static String addPrefixIfNotAlreadyThere(String noun,
-			String prefixSingular, String prefixPlural) {
+	private static String addPrefixIfNotAlreadyThere(final String noun,
+			final String prefixSingular, final String prefixPlural) {
 		if (noun.startsWith(prefixSingular)) {
 			return noun;
 		} else if (noun.startsWith(prefixPlural)) {
@@ -178,9 +178,9 @@ public class Grammar {
 	 * @param noun
 	 * @return noun with prefix
 	 */
-	public static String fullForm(String noun) {
+	public static String fullForm(final String noun) {
 		String result;
-		String lowString = noun.toLowerCase();
+		final String lowString = noun.toLowerCase();
 		result = lowString.replace("#", "");
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
@@ -235,7 +235,7 @@ public class Grammar {
 	 * @param noun
 	 * @return object name without prefix, or same object as given if the prefix was not found
 	 */
-	private static String removePrefix(String noun, String prefix) {
+	private static String removePrefix(final String noun, final String prefix) {
 		if (noun.startsWith(prefix)) {
 			return noun.substring(prefix.length());
 		} else {
@@ -250,7 +250,7 @@ public class Grammar {
 	 * @param expr
 	 * @return extracted noun, or same object as given if no matching prefix was found
 	 */
-	private static String extractNounSingular(String expr) {
+	private static String extractNounSingular(final String expr) {
 		String result;
 
 		result = removePrefix(expr, "piece of ");
@@ -274,7 +274,7 @@ public class Grammar {
 	 * @param expr
 	 * @return extracted noun, or same object as given if no matching prefix was found
 	 */
-	private static String extractNounPlural(String expr) {
+	private static String extractNounPlural(final String expr) {
 		String result;
 
 		result = removePrefix(expr, "pieces of ");
@@ -298,7 +298,7 @@ public class Grammar {
 	 * @param expr
 	 * @return the extracted noun
 	 */
-	public static String extractNoun(String expr) {
+	public static String extractNoun(final String expr) {
 		if (expr == null) {
 			return expr;
 		}
@@ -328,7 +328,7 @@ public class Grammar {
 	 *            The noun to examine
 	 * @return Either "A [noun]" or "An [noun]" as appropriate
 	 */
-	public static String A_noun(String noun) {
+	public static String A_noun(final String noun) {
 		return makeUpperCaseWord(a_noun(noun));
 	}
 
@@ -339,8 +339,8 @@ public class Grammar {
 	 *            The noun to examine
 	 * @return Either "[noun]'s" or "[noun]'" as appropriate
 	 */
-	public static String suffix_s(String noun) {
-		char last = Character.toLowerCase(noun.charAt(noun.length() - 1));
+	public static String suffix_s(final String noun) {
+		final char last = Character.toLowerCase(noun.charAt(noun.length() - 1));
 		if (last == 's') {
 			return noun + "'";
 		}
@@ -355,7 +355,7 @@ public class Grammar {
 	 *            The noun to examine
 	 * @return An appropriate plural form
 	 */
-	public static String plural(String noun) {
+	public static String plural(final String noun) {
 		if (noun == null) {
 			return null;
 		}
@@ -363,7 +363,7 @@ public class Grammar {
 		String enoun = fullForm(noun);
 		String postfix = "";
 
-		int position = enoun.indexOf('+');
+		final int position = enoun.indexOf('+');
 		if (position != -1) {
 			if (enoun.charAt(position - 1) == ' ') {
 				postfix = enoun.substring(position - 1);
@@ -388,12 +388,12 @@ public class Grammar {
 			// ok and now all the special cases
 		} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 			return enoun + "s" + postfix;
-		} else if (enoun.length() > 2 && enoun.endsWith("f")
+		} else if ((enoun.length() > 2) && enoun.endsWith("f")
 				&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
 			return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 		} else if (enoun.endsWith("fe")) {
 			return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
-		} else if (enoun.length() >= 4 && enoun.endsWith("ouse")
+		} else if ((enoun.length() >= 4) && enoun.endsWith("ouse")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 			return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
 		} else if (enoun.endsWith("oose") && !enoun.endsWith("caboose")
@@ -434,7 +434,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
 		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
 			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
-		} else if (enoun.length() > 2 && enoun.endsWith("y")
+		} else if ((enoun.length() > 2) && enoun.endsWith("y")
 				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 
@@ -446,7 +446,7 @@ public class Grammar {
 			// oder "z"?
 		} else if (enoun.endsWith("ch")
 				|| enoun.endsWith("sh")
-				|| (enoun.length() > 1 && "sxz".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
+				|| ((enoun.length() > 1) && ("sxz".indexOf(enoun.charAt(enoun.length() - 1)) > -1))) {
 			return enoun + "es" + postfix;
 		} else {
 			// no special case matched, so use the boring default plural rule
@@ -469,7 +469,7 @@ public class Grammar {
 
 		String postfix = "";
 
-		int position = enoun.indexOf('+');
+		final int position = enoun.indexOf('+');
 		if (position != -1) {
 			postfix = enoun.substring(position - 1);
 			enoun = enoun.substring(0, position - 1);
@@ -489,7 +489,7 @@ public class Grammar {
 			// now all the special cases
 		} else if (enoun.endsWith("staffs") || enoun.endsWith("chiefs")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
-		} else if (enoun.length() > 4 && enoun.endsWith("ves")
+		} else if ((enoun.length() > 4) && enoun.endsWith("ves")
 				&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 4)) > -1)
 				&& !enoun.endsWith("knives")) {
 			return enoun.substring(0, enoun.length() - 3) + "f" + postfix;
@@ -497,7 +497,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 3) + "fe" + postfix;
 		} else if (enoun.endsWith("houses")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
-		} else if (enoun.length() > 3 && enoun.endsWith("ice")
+		} else if ((enoun.length() > 3) && enoun.endsWith("ice")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 4)) > -1)) {
 			return enoun.substring(0, enoun.length() - 3) + "ouse" + postfix;
 		} else if (enoun.endsWith("eese") 
@@ -544,13 +544,13 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
 		} else if (enoun.endsWith("yses") || enoun.endsWith("ysis")) {
 			return enoun.substring(0, enoun.length() - 2) + "is" + postfix;
-		} else if (enoun.length() > 3
+		} else if ((enoun.length() > 3)
 				&& enoun.endsWith("es")
 				&& (("zxs".indexOf(enoun.charAt(enoun.length() - 3)) > -1) || (enoun.endsWith("ches") || enoun.endsWith("shes")))
 				&& !enoun.endsWith("axes") && !enoun.endsWith("bardiches")
 				&& !enoun.endsWith("nooses")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
-		} else if (enoun.length() > 4 && enoun.endsWith("ies")
+		} else if ((enoun.length() > 4) && enoun.endsWith("ies")
 				&& consonant_p(enoun.charAt(enoun.length() - 4))
 				&& !enoun.endsWith("zombies")) {
 			return enoun.substring(0, enoun.length() - 3) + "y" + postfix;
@@ -572,8 +572,8 @@ public class Grammar {
 	 *            The noun to examine
 	 * @return Either "[noun]" or plural("[noun]") as appropriate
 	 */
-	public static String plnoun(int quantity, String noun) {
-		String enoun = fullForm(noun);
+	public static String plnoun(final int quantity, final String noun) {
+		final String enoun = fullForm(noun);
 		return (quantity == 1 ? enoun : plural(noun));
 	}
 
@@ -588,7 +588,7 @@ public class Grammar {
 	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
 	 *         appropriate
 	 */
-	public static String quantityplnoun(int quantity, String noun) {
+	public static String quantityplnoun(final int quantity, final String noun) {
 		return "" + quantity + " " + plnoun(quantity, noun);
 	}
 
@@ -603,8 +603,8 @@ public class Grammar {
 	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
 	 *         appropriate
 	 */
-	public static String quantityplnounWithHash(int quantity, String noun) {
-		StringBuilder sb = new StringBuilder(Integer.toString(quantity));
+	public static String quantityplnounWithHash(final int quantity, String noun) {
+		final StringBuilder sb = new StringBuilder(Integer.toString(quantity));
 
 		noun = plnoun(quantity, noun);
 
@@ -625,8 +625,8 @@ public class Grammar {
 	 *            The character to examine
 	 * @return true if c is a vowel, false otherwise
 	 */
-	protected static boolean vowel_p(char c) {
-		char l = Character.toLowerCase(c);
+	protected static boolean vowel_p(final char c) {
+		final char l = Character.toLowerCase(c);
 		return ((l == 'a') || (l == 'e') || (l == 'i') || (l == 'o') || (l == 'u'));
 	}
 
@@ -637,7 +637,7 @@ public class Grammar {
 	 *            The character to examine
 	 * @return true if c is a consonant, false otherwise
 	 */
-	protected static boolean consonant_p(char c) {
+	protected static boolean consonant_p(final char c) {
 		return !vowel_p(c);
 	}
 
@@ -648,7 +648,7 @@ public class Grammar {
 	 *            a number
 	 * @return first, second, third, ...
 	 */
-	public static String ordered(int n) {
+	public static String ordered(final int n) {
 		switch (n) {
 		case 1:
 			return "first";
@@ -672,12 +672,12 @@ public class Grammar {
 	 *            The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection
 	 */
-	public static String enumerateCollection(Collection<String> collection) {
+	public static String enumerateCollection(final Collection<String> collection) {
 		if (collection == null) {
 			return "";
 		}
 
-		String[] elements = collection.toArray(new String[collection.size()]);
+		final String[] elements = collection.toArray(new String[collection.size()]);
 		if (elements.length == 0) {
 			return "";
 		} else if (elements.length == 1) {
@@ -685,7 +685,7 @@ public class Grammar {
 		} else if (elements.length == 2) {
 			return quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
 		} else {
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 
 			for (int i = 0; i < elements.length - 1; i++) {
 				sb.append(quoteHash(elements[i]) + ", ");
@@ -702,11 +702,11 @@ public class Grammar {
 	 * @param str
 	 * @return the hashed word
 	 */
-	public static String quoteHash(String str) {
+	public static String quoteHash(final String str) {
 		if (str != null) {
-			int idx = str.indexOf('#');
+			final int idx = str.indexOf('#');
 
-			if (idx != -1 && str.indexOf(' ', idx) != -1 && str.charAt(idx + 1) != '\'') {
+			if ((idx != -1) && (str.indexOf(' ', idx) != -1) && (str.charAt(idx + 1) != '\'')) {
 				return str.substring(0, idx) + "#'" + str.substring(idx + 1) + '\'';
 			}
 		}
@@ -721,7 +721,7 @@ public class Grammar {
 	 *            a number
 	 * @return one, two, three, ...
 	 */
-	public static String numberString(int n) {
+	public static String numberString(final int n) {
 		switch (n) {
 		case 0:
 			return "no";
@@ -762,7 +762,7 @@ public class Grammar {
 	 *            a number
 	 * @return one, two, three, ...
 	 */
-	public static Integer number(String text) {
+	public static Integer number(final String text) {
 		if (text.equals("no") || text.equals("zero")) {
 			return 0;
 		}
@@ -818,14 +818,14 @@ public class Grammar {
 	 * @param word
 	 * @return normalized string
 	 */
-	public static String normalizeRegularVerb(String word) {
-		if (word.length() > 4 && (word.endsWith("ed") || word.endsWith("es"))) {
+	public static String normalizeRegularVerb(final String word) {
+		if ((word.length() > 4) && (word.endsWith("ed") || word.endsWith("es"))) {
 			if (word.charAt(word.length() - 4) == word.charAt(word.length() - 3)) {
 				return word.substring(0, word.length() - 3);
 			} else {
 				return word.substring(0, word.length() - 2);
 			}
-		} else if (word.length() > 3 && word.endsWith("s")) {
+		} else if ((word.length() > 3) && word.endsWith("s")) {
 			return word.substring(0, word.length() - 1);
 		} else if (isGerund(word)) {
 			return word.substring(0, word.length() - 3);
@@ -840,8 +840,8 @@ public class Grammar {
 	 * @param word
 	 * @return true if gerund flase otherwise
 	 */
-	public static boolean isGerund(String word) {
-		if (word.length() > 4 && word.endsWith("ing")) {
+	public static boolean isGerund(final String word) {
+		if ((word.length() > 4) && word.endsWith("ing")) {
 			// Is there a vowel in the preceding characters?
 			for (int i = word.length() - 3; --i >= 0;) {
 				if (vowel_p(word.charAt(i))) {
@@ -860,8 +860,8 @@ public class Grammar {
 	 * @param word
 	 * @return true if ends with "al" or "ic"
 	 */
-	public static boolean isDerivedAdjective(String word) {
-		return word.length() > 4 && word.endsWith("al") || word.endsWith("ic");
+	public static boolean isDerivedAdjective(final String word) {
+		return ((word.length() > 4) && word.endsWith("al")) || word.endsWith("ic");
 	}
 
 	/**
@@ -870,8 +870,8 @@ public class Grammar {
 	 * @param word
 	 * @return normalized string
 	 */
-	public static String normalizeDerivedAdjective(String word) {
-		if (word.length() > 4 && (word.endsWith("al") || word.endsWith("ic"))) {
+	public static String normalizeDerivedAdjective(final String word) {
+		if ((word.length() > 4) && (word.endsWith("al") || word.endsWith("ic"))) {
 			return word.substring(0, word.length() - 2);
 		} else {
 			return null;

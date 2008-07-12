@@ -70,7 +70,7 @@ public class GuildPermission extends Entity {
 	private static final String ATTR_RANK = "rank";
 	private static final String ATTR_GUILD = "guild";
 
-	public GuildPermission(String id, int rank) {
+	public GuildPermission(final String id, final int rank) {
 		this.id = id;
 		this.rank = rank;
 
@@ -90,13 +90,13 @@ public class GuildPermission extends Entity {
 	 * @param guild the identifier of the guild this permission is for
 	 * @param rank The rank the permission gets.
 	 */
-	public GuildPermission(String id, String guild, int rank) {
+	public GuildPermission(final String id, final String guild, final int rank) {
 		this(id, rank);
 		this.guild = guild;
 		put(ATTR_GUILD, guild);
 	}
 
-	public GuildPermission(RPObject obj) {
+	public GuildPermission(final RPObject obj) {
 		super(obj);
 		store();
 
@@ -105,7 +105,7 @@ public class GuildPermission extends Entity {
 
 	public static void generateRPClass() {
 		if (!RPCLASS_GENERATED) {
-			RPClass clazz = new RPClass(RPCLASS);
+			final RPClass clazz = new RPClass(RPCLASS);
 			clazz.isA("entity");
 			clazz.addAttribute(ATTR_ID, Type.STRING, Definition.HIDDEN);
 			clazz.addAttribute(ATTR_RANK, Type.INT, Definition.HIDDEN);
@@ -132,11 +132,11 @@ public class GuildPermission extends Entity {
 		return guild;
 	}
 
-	public static GuildPermission getPermission(int rank, List<GuildPermission> possible) {
+	public static GuildPermission getPermission(final int rank, final List<GuildPermission> possible) {
 		//sort by rank
 		Collections.sort(possible, new GuildPermissionComparator()); 
 
-		for (GuildPermission gp : possible) {
+		for (final GuildPermission gp : possible) {
 			if (rank < gp.getRank()) {
 				continue;
 			} else {

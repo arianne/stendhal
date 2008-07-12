@@ -25,16 +25,16 @@ public class CatSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildHouseArea(zone);
 	}
 
-	private void buildHouseArea(StendhalRPZone zone) {
+	private void buildHouseArea(final StendhalRPZone zone) {
 
-		SpeakerNPC npc = new SpeakerNPC("Felina") {
+		final SpeakerNPC npc = new SpeakerNPC("Felina") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(6, 8));
 				nodes.add(new Node(11, 8));
 				nodes.add(new Node(11, 17));
@@ -51,12 +51,12 @@ public class CatSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				class CatSellerBehaviour extends SellerBehaviour {
-					CatSellerBehaviour(Map<String, Integer> items) {
+					CatSellerBehaviour(final Map<String, Integer> items) {
 						super(items);
 					}
 
 					@Override
-					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+					public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
@@ -70,7 +70,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 							}
 							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
 
-							Cat cat = new Cat(player);
+							final Cat cat = new Cat(player);
 
 							cat.setPosition(seller.getX(), seller.getY() + 1);
 
@@ -82,7 +82,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 					}
 				}
 
-				Map<String, Integer> items = new HashMap<String, Integer>();
+				final Map<String, Integer> items = new HashMap<String, Integer>();
 				items.put("cat", BUYING_PRICE);
 
 				addGreeting();
@@ -107,7 +107,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 		zone.add(npc);
 		
 		// Also put a cat in her bedroom (people can't Own it as it is behind a fence)
-		Cat hercat = new Cat();
+		final Cat hercat = new Cat();
                 hercat.setPosition(19, 3);
                 zone.add(hercat);
 

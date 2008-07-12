@@ -7,7 +7,7 @@ public abstract class Healingbehaviourfactory {
 
 	public abstract void heal(Creature creature);
 
-	public static HealerBehavior get(String healingProfile) {
+	public static HealerBehavior get(final String healingProfile) {
 		if (healingProfile == null) {
 			return nb;
 		}

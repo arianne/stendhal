@@ -18,20 +18,20 @@ import java.util.Map;
 
 public class FeaturesTestArea implements ZoneConfigurator {
 
-	private EntityManager manager;
+	private final EntityManager manager;
 
 	static class QuestRat extends Creature {
 
-		public QuestRat(Creature copy) {
+		public QuestRat(final Creature copy) {
 			super(copy);
 		}
 
 		@Override
-		public void onDead(Entity killer) {
+		public void onDead(final Entity killer) {
 			if (killer instanceof RPEntity) {
-				RPEntity killerRPEntity = (RPEntity) killer;
+				final RPEntity killerRPEntity = (RPEntity) killer;
 				if (!killerRPEntity.isEquipped("golden key")) {
-					Item item = SingletonRepository.getEntityManager().getItem("golden key");
+					final Item item = SingletonRepository.getEntityManager().getItem("golden key");
 					killerRPEntity.equip(item, true);
 				}
 			}
@@ -45,7 +45,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 	}
 
 	public FeaturesTestArea() {
-		manager = (EntityManager) SingletonRepository.getEntityManager();
+		manager = SingletonRepository.getEntityManager();
 	}
 
 	/**
@@ -54,13 +54,13 @@ public class FeaturesTestArea implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		createDoorAndKey(zone, attributes);
 		attackableAnimal(zone, attributes);
 	}
 
-	private void createDoorAndKey(StendhalRPZone zone, Map<String, String> attributes) {
-		List<String> slots = new LinkedList<String>();
+	private void createDoorAndKey(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final List<String> slots = new LinkedList<String>();
 		slots.add("bag");
 
 		DefaultItem item = new DefaultItem("key", "gold", "golden key", -1);
@@ -75,12 +75,12 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		item.setEquipableSlots(slots);
 		manager.addItem(item);
 
-		Creature creature = new QuestRat(manager.getCreature("rat"));
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
+		final Creature creature = new QuestRat(manager.getCreature("rat"));
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
 		zone.add(point);
 	}
 
-	private void attackableAnimal(StendhalRPZone zone, Map<String, String> attributes) {
+	private void attackableAnimal(final StendhalRPZone zone, final Map<String, String> attributes) {
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60 * 60 * 3);

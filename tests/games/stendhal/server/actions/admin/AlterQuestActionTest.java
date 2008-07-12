@@ -25,15 +25,15 @@ public class AlterQuestActionTest {
 
 	@Test
 	public void alterQuestActionPerform() throws Exception {
-		Player bob = PlayerTestHelper.createPlayer("bob");
-		MockStendhalRPRuleProcessor rules = MockStendhalRPRuleProcessor.get();
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final MockStendhalRPRuleProcessor rules = MockStendhalRPRuleProcessor.get();
 		rules.addPlayer(bob);
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "alterquest");
 		action.put("target", "bob");
 		action.put("name", "questname");
 		action.put("state", "queststate");
-		AlterQuestAction aq = new AlterQuestAction();
+		final AlterQuestAction aq = new AlterQuestAction();
 		aq.perform(bob, action);
 		assertTrue(bob.hasQuest("questname"));
 		assertEquals("queststate", bob.getQuest("questname"));
@@ -43,16 +43,16 @@ public class AlterQuestActionTest {
 	@Test
 	public void alterQuestActionPerformTarget() throws Exception {
 
-		Player bob = PlayerTestHelper.createPlayer("bob");
-		Player james = PlayerTestHelper.createPlayer("james");
-		MockStendhalRPRuleProcessor rules = MockStendhalRPRuleProcessor.get();
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player james = PlayerTestHelper.createPlayer("james");
+		final MockStendhalRPRuleProcessor rules = MockStendhalRPRuleProcessor.get();
 		rules.addPlayer(james);
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "alterquest");
 		action.put("target", "james");
 		action.put("name", "questname");
 		action.put("state", "queststate");
-		AlterQuestAction aq = new AlterQuestAction();
+		final AlterQuestAction aq = new AlterQuestAction();
 		aq.perform(bob, action);
 		assertTrue(james.hasQuest("questname"));
 		assertEquals("queststate", james.getQuest("questname"));
@@ -60,8 +60,8 @@ public class AlterQuestActionTest {
 
 	@Test
 	public void alterQuestActionPerformthroughCommandcenter() throws Exception {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
@@ -86,14 +86,14 @@ public class AlterQuestActionTest {
 	}
 	@Test
 	public void alterQuestActionCastersLeveltoLow() throws Exception {
-		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
 		pl.put("adminlevel", 0);
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "alterquest");
 		action.put("target", "bob");
 		action.put("name", "questname");

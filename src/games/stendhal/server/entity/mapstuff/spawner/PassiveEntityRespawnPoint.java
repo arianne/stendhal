@@ -50,7 +50,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	/**
 	 * The name of the fruit (Item) that is grown by the PlantGrower.
 	 */
-	private String growingItemName;
+	private final String growingItemName;
 
 	/**
 	 * Remember which turn we were called last to compute the ripeness
@@ -61,8 +61,8 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 */
 	protected int meanTurnsForRegrow;
 
-	public PassiveEntityRespawnPoint(RPObject object, String growingItemName,
-			int meanTurnsForRegrow) {
+	public PassiveEntityRespawnPoint(final RPObject object, final String growingItemName,
+			final int meanTurnsForRegrow) {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
@@ -76,8 +76,8 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		// update();
 	}
 
-	public PassiveEntityRespawnPoint(String growingItemName,
-			int meanTurnsForRegrow) {
+	public PassiveEntityRespawnPoint(final String growingItemName,
+			final int meanTurnsForRegrow) {
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
 		setDescription("It looks like there's "
@@ -90,7 +90,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	}
 
 	public static void generateRPClass() {
-		RPClass grower = new RPClass("plant_grower");
+		final RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");
 		grower.addAttribute("class", Type.STRING);
 	}
@@ -102,7 +102,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 *            The fruit that has been picked. Use null for subclasses of
 	 *            PlantGrower that don't use items as fruits.
 	 */
-	public void onFruitPicked(Item picked) {
+	public void onFruitPicked(final Item picked) {
 		hasPickableFruit = false;
 		if (picked != null) {
 			picked.setPlantGrower(null);
@@ -121,11 +121,11 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		if (!hasPickableFruit) {
 			logger.debug("Growing " + growingItemName);
 
-			StendhalRPWorld world = SingletonRepository.getRPWorld();
-			StendhalRPZone zone = world.getZone(getID().getZoneID());
+			final StendhalRPWorld world = SingletonRepository.getRPWorld();
+			final StendhalRPZone zone = world.getZone(getID().getZoneID());
 
 			// create a new grown item
-			Item grownItem = SingletonRepository.getEntityManager().getItem(
+			final Item grownItem = SingletonRepository.getEntityManager().getItem(
 					growingItemName);
 			grownItem.setPlantGrower(this);
 			grownItem.setPosition(getX(), getY());
@@ -143,7 +143,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		growNewFruit();
 	}
 

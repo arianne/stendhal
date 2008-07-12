@@ -43,7 +43,7 @@ public class KillDarkElvesTest {
 		npc = new SpeakerNPC("maerion");
 		npcEngine = npc.getEngine();
 		SingletonRepository.getNPCList().add(npc);
-		KillDarkElves quest = new KillDarkElves();
+		final KillDarkElves quest = new KillDarkElves();
 		quest.addToWorld();
 
 	}
@@ -66,9 +66,9 @@ public class KillDarkElvesTest {
 	@Test
 	public void testIdleToAttending() throws Exception {
 
-		for (String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 
-			Player bob = PlayerTestHelper.createPlayer("bob");
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(false));
 			npcEngine.setCurrentState(ConversationStates.ATTENDING);
 
@@ -84,9 +84,9 @@ public class KillDarkElvesTest {
 	@Test
 	public void testQuestOfferedToQuestOffered() throws Exception {
 
-		for (String playerSays : Arrays.asList("secret", "room")) {
+		for (final String playerSays : Arrays.asList("secret", "room")) {
 
-			Player bob = PlayerTestHelper.createPlayer("bob");
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(false));
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
 
@@ -102,9 +102,9 @@ public class KillDarkElvesTest {
 	@Test
 	public void testQuestStartedTOAttending() throws Exception {
 
-		for (String playerSays : Arrays.asList("secret", "room")) {
+		for (final String playerSays : Arrays.asList("secret", "room")) {
 
-			Player bob = PlayerTestHelper.createPlayer("bob");
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(false));
 			npcEngine.setCurrentState(ConversationStates.QUEST_STARTED);
 
@@ -120,8 +120,8 @@ public class KillDarkElvesTest {
 	@Test
 	public void testIdleToQuestStarted() throws Exception {
 
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "start");
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
@@ -137,8 +137,8 @@ public class KillDarkElvesTest {
 	@Test
 	public void testAttendingToQuestOffered() throws Exception {
 
-		for (String playerSays : ConversationPhrases.QUEST_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "start");
 			npcEngine.setCurrentState(ConversationStates.ATTENDING);
 			npcEngine.step(bob, playerSays);
@@ -154,8 +154,8 @@ public class KillDarkElvesTest {
 	@Test
 	public void testAttendingToAttending() throws Exception {
 
-		for (String playerSays : ConversationPhrases.QUEST_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "done");
 			npcEngine.setCurrentState(ConversationStates.ATTENDING);
 			npcEngine.step(bob, playerSays);
@@ -167,8 +167,8 @@ public class KillDarkElvesTest {
 
 	@Test
 	public void testAttendingToAttendingallKilledNoRing() throws Exception {
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 
 			bob.setSharedKill(DARK_ELF_ARCHER);
 			bob.setSharedKill(DARK_ELF_CAPTAIN);
@@ -187,8 +187,8 @@ public class KillDarkElvesTest {
 
 	@Test
 	public void testAttendingToAttendingallKilledRing() throws Exception {
-		for (String playerSays : ConversationPhrases.GREETING_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 
 			bob.setSharedKill(DARK_ELF_ARCHER);
 			bob.setSharedKill(DARK_ELF_CAPTAIN);
@@ -203,8 +203,8 @@ public class KillDarkElvesTest {
 			assertTrue(bob.hasKilled(THING));
 			assertTrue(bob.isEquipped("amulet"));
 
-			double karma = bob.getKarma();
-			int xp = bob.getXP();
+			final double karma = bob.getKarma();
+			final int xp = bob.getXP();
 
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
@@ -225,9 +225,9 @@ public class KillDarkElvesTest {
 	@Test
 	public void testQuestOfferedToAttendingYes() throws Exception {
 
-		for (String playerSays : ConversationPhrases.YES_MESSAGES) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
-			double oldKarma = bob.getKarma();
+		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+			final double oldKarma = bob.getKarma();
 
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
 
@@ -250,10 +250,10 @@ public class KillDarkElvesTest {
 	public void testQuestOfferedToAttendingNo() throws Exception {
 
 		
-		String[] triggers = { "no", "nothing" };
-		for (String playerSays : triggers) {
-			Player bob = PlayerTestHelper.createPlayer("bob");
-			double oldKarma = bob.getKarma();
+		final String[] triggers = { "no", "nothing" };
+		for (final String playerSays : triggers) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+			final double oldKarma = bob.getKarma();
 
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
 

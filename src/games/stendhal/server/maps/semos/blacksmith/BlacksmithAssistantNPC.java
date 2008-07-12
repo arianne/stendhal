@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				null,
@@ -24,7 +24,7 @@ public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (player.hasQuest("meet_hackim")) {
 					        npc.say("Hi again, " + player.getTitle()
 					                + ". How can I #help you this time?");

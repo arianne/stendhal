@@ -32,7 +32,7 @@ class AmbientStore {
 	 *         <p>
 	 *         <b> null </b> if name is not found
 	 */
-	public static AmbientSound getAmbient(String name) {
+	public static AmbientSound getAmbient(final String name) {
 		AmbientSound ambient = null;
 
 		if ("wind-tree-1".equals(name)) {

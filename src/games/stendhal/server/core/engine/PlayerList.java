@@ -13,7 +13,7 @@ public class PlayerList {
 		players = new ConcurrentHashMap<String, Player>();
 	}
 
-	private Map<String, Player> players;
+	private final Map<String, Player> players;
 
 	/**
 	 * Retrieve from this list a player specified by its name.
@@ -23,7 +23,7 @@ public class PlayerList {
 	 * @return the Player specified by the name or <code> null </code> if not
 	 *         found
 	 */
-	Player getOnlinePlayer(String name) {
+	Player getOnlinePlayer(final String name) {
 		if (name == null) {
 			return null;
 		}
@@ -37,7 +37,7 @@ public class PlayerList {
 	 */
 	void tellAllOnlinePlayers(final String message) {
 		forAllPlayersExecute(new Task<Player>() {
-			public void execute(Player player) {
+			public void execute(final Player player) {
 				player.sendPrivateText(message);
 				player.notifyWorldAboutChanges();
 			}
@@ -50,8 +50,8 @@ public class PlayerList {
 	 * @param task
 	 *            the task to execute
 	 */
-	public void forAllPlayersExecute(Task<Player> task) {
-		Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
+	public void forAllPlayersExecute(final Task<Player> task) {
+		final Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
 		while (it.hasNext()) {
 			task.execute(it.next().getValue());
 		}
@@ -66,12 +66,12 @@ public class PlayerList {
 	 * @param filter
 	 *            the FilterCriteria to pass
 	 */
-	public void forFilteredPlayersExecute(Task<Player> task, FilterCriteria<Player> filter) {
-		Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
+	public void forFilteredPlayersExecute(final Task<Player> task, final FilterCriteria<Player> filter) {
+		final Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
 
 		while (it.hasNext()) {
 
-			Player player = it.next().getValue();
+			final Player player = it.next().getValue();
 
 			if (filter.passes(player)) {
 				task.execute(player);
@@ -88,8 +88,8 @@ public class PlayerList {
 		return players.size();
 	}
 
-	public void add(Player player) {
-		String playerName = player.getName();
+	public void add(final Player player) {
+		final String playerName = player.getName();
 
 		if (playerName != null) {
 			players.put(playerName.toLowerCase(), player);
@@ -98,8 +98,8 @@ public class PlayerList {
 		}
 	}
 
-	public boolean remove(Player player) {
-		String playerName = player.getName();
+	public boolean remove(final Player player) {
+		final String playerName = player.getName();
 
 		if (playerName != null) {
 			return players.remove(playerName.toLowerCase()) != null;

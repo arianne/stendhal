@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author hendrik
  */
 public class StartRecordingKillsAction extends ChatAction {
-	private List<String> toKill;
+	private final List<String> toKill;
 
 	/**
 	 * Creates a new StartRecodingKillsAction.
@@ -25,7 +25,7 @@ public class StartRecordingKillsAction extends ChatAction {
 	 * @param toKill
 	 *            list of creatures which should be killed by the player
 	 */
-	public StartRecordingKillsAction(List<String> toKill) {
+	public StartRecordingKillsAction(final List<String> toKill) {
 		this.toKill = toKill;
 	}
 
@@ -35,13 +35,13 @@ public class StartRecordingKillsAction extends ChatAction {
 	 * @param toKill
 	 *            creatures which should be killed by the player
 	 */
-	public StartRecordingKillsAction(String... toKill) {
+	public StartRecordingKillsAction(final String... toKill) {
 		this.toKill = Arrays.asList(toKill);
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		for (String creature : toKill) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		for (final String creature : toKill) {
 			player.removeKill(creature);
 		}
 	}
@@ -52,7 +52,7 @@ public class StartRecordingKillsAction extends ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				StartRecordingKillsAction.class);
 	}

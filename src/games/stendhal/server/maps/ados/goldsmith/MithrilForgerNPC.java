@@ -23,12 +23,12 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildForger(zone, attributes);
 	}
 
-	private void buildForger(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC forger = new SpeakerNPC("Pedinghaus") {
+	private void buildForger(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC forger = new SpeakerNPC("Pedinghaus") {
 
 			@Override
 			protected void createPath() {
@@ -43,11 +43,11 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 
 				// Pedinghaus makes mithril if you bring him mithril nugget and wood
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("wood", 20);
 				requiredResources.put("mithril nugget", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("Pedinghaus_cast_mithril",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("Pedinghaus_cast_mithril",
 						"cast", "mithril bar", requiredResources, 18 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

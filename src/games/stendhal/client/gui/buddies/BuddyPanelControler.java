@@ -14,22 +14,22 @@ public class BuddyPanelControler implements BuddyChangeListener {
 		buddyPanel.setSize(100, 200);
 	}
 
-	public void buddyAdded(String buddyName) {
+	public void buddyAdded(final String buddyName) {
 
 		buddyPanel.addBuddy(buddyName, false);
 
 	}
 
-	public void buddyOffline(String buddyName) {
+	public void buddyOffline(final String buddyName) {
 		buddyPanel.setOffline(buddyName);
 
 	}
 
-	public void buddyOnline(String buddyName) {
+	public void buddyOnline(final String buddyName) {
 		buddyPanel.setOnline(buddyName);
 	}
 
-	public void buddyRemoved(String buddyName) {
+	public void buddyRemoved(final String buddyName) {
 		buddyPanel.remove(buddyName);
 
 	}

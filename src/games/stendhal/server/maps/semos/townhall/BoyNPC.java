@@ -16,12 +16,12 @@ public class BoyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTownhallArea(zone, attributes);
 	}
 
-	private void buildSemosTownhallArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Tad") {
+	private void buildSemosTownhallArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Tad") {
 
 			@Override
 			protected void createPath() {
@@ -33,7 +33,7 @@ public class BoyNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 						if (player.hasQuest("introduce_players")) {
 							if (player.isQuestCompleted("introduce_players")) {
@@ -52,7 +52,7 @@ public class BoyNPC implements ZoneConfigurator {
 
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				if (!player.hasQuest("TadFirstChat")) {
 					player.setQuest("TadFirstChat", "done");
 					engine.listenTo(player, "hi");

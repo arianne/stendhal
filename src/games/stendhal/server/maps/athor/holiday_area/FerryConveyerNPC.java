@@ -48,7 +48,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "status", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 					}
 				});
@@ -56,7 +56,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "board", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 						if (ferrystate == Status.ANCHORED_AT_ISLAND) {
 							npc.say("In order to board the ferry, you have to pay "
@@ -74,7 +74,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
 
@@ -92,7 +92,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		new AthorFerry.FerryListener() {
 
 		
-			public void onNewFerryState(Status status) {
+			public void onNewFerryState(final Status status) {
 				ferrystate = status;
 				switch (status) {
 				case ANCHORED_AT_ISLAND:

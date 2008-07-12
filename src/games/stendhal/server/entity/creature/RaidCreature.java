@@ -14,7 +14,7 @@ public class RaidCreature extends Creature {
 	 * @param copy
 	 *            creature to wrap
 	 */
-	public RaidCreature(Creature copy) {
+	public RaidCreature(final Creature copy) {
 		super(copy);
 	}
 

@@ -42,7 +42,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testVerboseAmount() {
-		Sentence sentence = ConversationParser.parse("eat four cookies");
+		final Sentence sentence = ConversationParser.parse("eat four cookies");
 		assertFalse(sentence.hasError());
 
 		assertEquals("eat", sentence.getVerbString());
@@ -52,7 +52,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testCase() {
-		Sentence sentence = ConversationParser.parse("buy No Bread");
+		final Sentence sentence = ConversationParser.parse("buy No Bread");
 		assertFalse(sentence.hasError());
 
 		assertEquals("buy", sentence.getVerbString());
@@ -90,7 +90,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testItemName() {
-		Sentence sentence = ConversationParser.parse("buy fresh fish");
+		final Sentence sentence = ConversationParser.parse("buy fresh fish");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fresh fish", sentence.getObjectName());
@@ -123,7 +123,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testPrepositions() {
-		Sentence sentence = ConversationParser.parse("put dish on table");
+		final Sentence sentence = ConversationParser.parse("put dish on table");
 		assertFalse(sentence.hasError());
 
 		assertEquals("put", sentence.getVerbString());
@@ -195,7 +195,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testMe() {
-		Sentence sentence = ConversationParser.parse("me");
+		final Sentence sentence = ConversationParser.parse("me");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertNull(sentence.getVerbString());
@@ -242,7 +242,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testPunctuation() {
-		Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
+		final Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
@@ -330,7 +330,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testNullPointer() {
-		Sentence sentence = ConversationParser.parse(null);
+		final Sentence sentence = ConversationParser.parse(null);
 		assertNotNull(sentence);
 		assertEquals(0, sentence.getSubjectCount());
 		assertNull(sentence.getSubject(0));
@@ -344,7 +344,7 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testNumber() {
-		Sentence sentence = ConversationParser.parse(Integer.valueOf(30).toString());
+		final Sentence sentence = ConversationParser.parse(Integer.valueOf(30).toString());
 		assertNotNull(sentence);
 		assertEquals(30, sentence.getExpressions().get(0).getAmount());
 

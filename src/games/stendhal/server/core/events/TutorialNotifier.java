@@ -21,8 +21,8 @@ public class TutorialNotifier {
 	 * @param type
 	 *            EventType
 	 */
-	private static void process(Player player, TutorialEventType type) {
-		String key = type.name().toLowerCase();
+	private static void process(final Player player, final TutorialEventType type) {
+		final String key = type.name().toLowerCase();
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
 
@@ -30,7 +30,7 @@ public class TutorialNotifier {
 			// change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
-			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL);
+			final DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL);
 			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
 		}
 	}
@@ -41,7 +41,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void login(Player player) {
+	public static void login(final Player player) {
 		process(player, TutorialEventType.FIRST_LOGIN);
 	}
 
@@ -51,8 +51,8 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void move(Player player) {
-		StendhalRPZone zone = player.getZone();
+	public static void move(final Player player) {
+		final StendhalRPZone zone = player.getZone();
 		if (zone != null) {
 			if (zone.getName().equals("int_semos_guard_house")) {
 				process(player, TutorialEventType.FIRST_MOVE);
@@ -70,8 +70,8 @@ public class TutorialNotifier {
 	 * @param destinationZone
 	 *            destination zone
 	 */
-	public static void zoneChange(Player player, String sourceZone,
-			String destinationZone) {
+	public static void zoneChange(final Player player, final String sourceZone,
+			final String destinationZone) {
 		if (sourceZone.equals("0_semos_village_w") && destinationZone.equals("int_semos_guard_house")) {
 			process(player, TutorialEventType.RETURN_GUARDHOUSE);
 		} else if (destinationZone.equals("0_semos_city")) {
@@ -93,7 +93,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void attacked(Player player) {
+	public static void attacked(final Player player) {
 		process(player, TutorialEventType.FIRST_ATTACKED);
 	}
 
@@ -103,7 +103,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void killedSomething(Player player) {
+	public static void killedSomething(final Player player) {
 		process(player, TutorialEventType.FIRST_KILL);
 	}
 
@@ -113,7 +113,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void poisoned(Player player) {
+	public static void poisoned(final Player player) {
 		process(player, TutorialEventType.FIRST_POISONED);
 	}
 
@@ -125,7 +125,7 @@ public class TutorialNotifier {
 	 * @param age
 	 *            playing time
 	 */
-	public static void aged(Player player, int age) {
+	public static void aged(final Player player, final int age) {
 		if (age >= 15) {
 			if (player.getOutfit().isNaked()) {
 				process(player, TutorialEventType.TIMED_NAKED);
@@ -143,7 +143,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void newrelease(Player player) {
+	public static void newrelease(final Player player) {
 		process(player, TutorialEventType.NEW_RELEASE);
 	}
 }

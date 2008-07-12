@@ -12,7 +12,7 @@ public class ItemTestHelperTest {
 	@org.junit.Test
 	public void testcreateItem() throws Exception {
 		ItemTestHelper.createItem();
-		Item item = ItemTestHelper.createItem("blabla");
+		final Item item = ItemTestHelper.createItem("blabla");
 		assertEquals("blabla", item.getName());
 
 	}

@@ -13,7 +13,7 @@ public class WordEntryTest {
 
 	@Test
 	public final void testWordEntry() {
-		WordEntry w = new WordEntry();
+		final WordEntry w = new WordEntry();
 		assertEquals("/", w.getNormalizedWithTypeString());
 
 		w.setNormalized("norm");

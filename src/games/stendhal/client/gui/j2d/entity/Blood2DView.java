@@ -50,7 +50,7 @@ class Blood2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
+			final IGameScreen gameScreen) {
 		String clazz = entity.getEntityClass();
 
 		/*
@@ -60,11 +60,11 @@ class Blood2DView extends StateEntity2DView {
 			clazz = "red";
 		}
 
-		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz
+		final SpriteStore store = SpriteStore.get();
+		final Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz
 				+ ".png");
 
-		int theight = tiles.getHeight();
+		final int theight = tiles.getHeight();
 		int i = 0;
 
 		// TODO: Allow animated frames

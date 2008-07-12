@@ -83,7 +83,7 @@ class Portal2DView extends InvisibleEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			portal.fillTargetInfo(rpaction);

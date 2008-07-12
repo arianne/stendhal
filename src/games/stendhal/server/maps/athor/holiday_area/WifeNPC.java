@@ -6,10 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class WifeNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected SpeakerNPC instantiate(String name) {
-		SpeakerNPC npc = new SpeakerNPC(name) {
+	protected SpeakerNPC instantiate(final String name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 			@Override
-			public void say(String text) {
+			public void say(final String text) {
 				// She doesn't move around because she's "lying" on her towel.
 				say(text, false);
 			}
@@ -18,7 +18,7 @@ public class WifeNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Hi!");
 		npc.addGoodbye("Bye!");
 	}

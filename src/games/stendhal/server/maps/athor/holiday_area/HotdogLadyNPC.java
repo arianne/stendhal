@@ -20,7 +20,7 @@ import java.util.Map;
  * Outside holiday area on Athor Island)
  */
 public class HotdogLadyNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -28,16 +28,16 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildhotdoglady(zone);
 	}
 
 	private void buildhotdoglady(final StendhalRPZone zone) {
-		SpeakerNPC hotdoglady = new SpeakerNPC("Sara Beth") {
+		final SpeakerNPC hotdoglady = new SpeakerNPC("Sara Beth") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(34, 67));
 				nodes.add(new Node(34, 68));
 				nodes.add(new Node(39, 68));

@@ -13,13 +13,13 @@ import org.apache.log4j.Logger;
 
 public class ScriptInGroovy extends ScriptingSandbox {
 
-	private String groovyScript;
+	private final String groovyScript;
 
-	private Binding groovyBinding;
+	private final Binding groovyBinding;
 
 	private static final Logger logger = Logger.getLogger(ScriptInGroovy.class);
 
-	public ScriptInGroovy(String filename) {
+	public ScriptInGroovy(final String filename) {
 		super(filename);
 		groovyScript = filename;
 		groovyBinding = new Binding();
@@ -36,24 +36,24 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	// ------------------------------------------------------------------------
 
 	@Override
-	public boolean load(Player player, List<String> args) {
+	public boolean load(final Player player, final List<String> args) {
 		groovyBinding.setVariable("player", player);
 		if (args != null) {
 			groovyBinding.setVariable("args", args.toArray(new String[args.size()]));
 		} else {
 			groovyBinding.setVariable("args", new String[0]);
 		}
-		GroovyShell interp = new GroovyShell(groovyBinding);
+		final GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
 
 		try {
-			File f = new File(groovyScript);
+			final File f = new File(groovyScript);
 			interp.evaluate(f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Exception while sourcing file " + groovyScript, e);
 			setMessage(e.getMessage());
 			ret = false;
-		} catch (Error e) {
+		} catch (final Error e) {
 			logger.error("Exception while sourcing file " + groovyScript, e);
 			setMessage(e.getMessage());
 			ret = false;
@@ -63,7 +63,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	}
 
 	@Override
-	public boolean execute(Player player, List<String> args) {
+	public boolean execute(final Player player, final List<String> args) {
 		return load(player, args);
 	}
 }

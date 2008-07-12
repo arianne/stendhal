@@ -25,25 +25,25 @@ public class PlayerDieerTest {
 
 	@Test
 	public void testPlayerDieer() {
-		Player hasRing = PlayerTestHelper.createPlayer("bob");
+		final Player hasRing = PlayerTestHelper.createPlayer("bob");
 		hasRing.setXP(10000);
 		
-		Player hasNoRing = PlayerTestHelper.createPlayer("bob");
+		final Player hasNoRing = PlayerTestHelper.createPlayer("bob");
 		hasNoRing.setXP(10000);
 		
-		StendhalRPZone zone = new StendhalRPZone("testzone");
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		zone.add(hasRing);
 		zone.add(hasNoRing);
 		
-		RingOfLife ring = new RingOfLife();
+		final RingOfLife ring = new RingOfLife();
 		hasRing.equip("bag", ring);
 		
 		assertFalse(ring.isBroken());
-		PlayerDieer dierWithRing = new PlayerDieer(hasRing);
+		final PlayerDieer dierWithRing = new PlayerDieer(hasRing);
 		dierWithRing.onDead(new Entity() {
 		});
 		
-		PlayerDieer dierWithoutRing1 = new PlayerDieer(hasNoRing);
+		final PlayerDieer dierWithoutRing1 = new PlayerDieer(hasNoRing);
 		dierWithoutRing1.onDead(new Entity() {
 		});
 		assertTrue(ring.isBroken());

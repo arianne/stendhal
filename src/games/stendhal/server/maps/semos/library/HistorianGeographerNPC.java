@@ -22,16 +22,16 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosLibraryArea(zone, attributes);
 	}
 
-	private void buildSemosLibraryArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Zynn Iwuhos") {
+	private void buildSemosLibraryArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Zynn Iwuhos") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(15, 3));
 				nodes.add(new Node(12, 3));
 				nodes.add(new Node(12, 6));
@@ -53,7 +53,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 				        null, new SpeakerNPC.ChatAction() {
 
 					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						        // A little trick to make NPC remember if it has met
 						        // player before anc react accordingly
 						        // NPC_name quest doesn't exist anywhere else neither is

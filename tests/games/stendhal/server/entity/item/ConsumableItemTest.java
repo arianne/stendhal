@@ -30,7 +30,7 @@ public class ConsumableItemTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ItemTestHelper.generateRPClasses();
-		Map<String, String> attributes = new HashMap<String, String>();
+		final Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put("amount", "1");
 		attributes.put("regen", "200");
 		attributes.put("frequency", "1");
@@ -64,7 +64,7 @@ public class ConsumableItemTest {
 
 	@Test
 	public void testlistsort() {
-		LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
+		final LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
 		items.add(c4_6);
 		items.add(c50_1);
 		items.add(c200_1);
@@ -82,7 +82,7 @@ public class ConsumableItemTest {
 
 	@Test
 	public void testlistsort2() {
-		LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
+		final LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
 		items.add(c50_1);
 		items.add(c200_1);
 		items.add(c100_1);

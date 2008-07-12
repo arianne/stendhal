@@ -69,7 +69,7 @@ public enum Direction {
 	private final int dx;
 	private final int dy;
 
-	public static Direction build(int val) {
+	public static Direction build(final int val) {
 		switch (val) {
 		case 1:
 			return UP;
@@ -101,7 +101,7 @@ public enum Direction {
 		return Direction.values()[Rand.rand(4) + 1];
 	}
 
-	Direction(int val, int dx, int dy) {
+	Direction(final int val, final int dx, final int dy) {
 		this.val = val;
 		this.dx = dx;
 		this.dy = dy;

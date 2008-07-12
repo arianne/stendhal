@@ -29,29 +29,29 @@ public class CreateAccountDialogTest {
     @Test
     public void testInValidPass() {
 
-        CreateAccountDialog cad = new CreateAccountDialog();
+        final CreateAccountDialog cad = new CreateAccountDialog();
         assertFalse(cad.validatePassword("", ""));
 
-        String user1 = "qwerty";
-        String pass1 = "qwerty";
+        final String user1 = "qwerty";
+        final String pass1 = "qwerty";
         assertFalse(cad.validatePassword(user1, pass1));
 
-        String user2 = "qwertyuiop";
-        String pass2 = "qwerty";
+        final String user2 = "qwertyuiop";
+        final String pass2 = "qwerty";
         assertFalse(cad.validatePassword(user2, pass2));
 
-        String pass3 = "qwertyu";
+        final String pass3 = "qwertyu";
         assertFalse(cad.validatePassword(user2, pass3));
 
-        String pass4 = "tyuiop";
+        final String pass4 = "tyuiop";
         assertFalse(cad.validatePassword(user2, pass4));
 
-        String pass5 = "rtyuiop";
+        final String pass5 = "rtyuiop";
         assertFalse(cad.validatePassword(user2, pass5));
     }
     @Test
     public void testValidPass() {
-    	 CreateAccountDialog cad = new CreateAccountDialog();
+    	 final CreateAccountDialog cad = new CreateAccountDialog();
     	 assertTrue(cad.validatePassword("timothy", "verygood"));
     }
 }

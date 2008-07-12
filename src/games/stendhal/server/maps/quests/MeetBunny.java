@@ -37,7 +37,7 @@ public class MeetBunny extends AbstractQuest {
 	private StendhalRPZone zone;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -57,7 +57,7 @@ public class MeetBunny extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"Hi again!", null);
 
-				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+				final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 

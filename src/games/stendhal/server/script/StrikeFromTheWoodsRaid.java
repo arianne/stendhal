@@ -10,7 +10,7 @@ public class StrikeFromTheWoodsRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("elf", 7);
 		attackArmy.put("soldier elf", 7);
 		attackArmy.put("commander elf", 4);

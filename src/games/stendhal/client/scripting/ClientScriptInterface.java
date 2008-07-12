@@ -17,7 +17,7 @@ public class ClientScriptInterface {
 	 * @param input
 	 *            String to parse and handle
 	 */
-	public void invoke(String input) {
+	public void invoke(final String input) {
 		ChatLineParser.parseAndHandle(input);
 		sleepMillis(300);
 	}
@@ -28,10 +28,10 @@ public class ClientScriptInterface {
 	 * @param millis
 	 *            milliseconds to wait
 	 */
-	public void sleepMillis(long millis) {
+	public void sleepMillis(final long millis) {
 		try {
 			Thread.sleep(millis);
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			logger.error(e, e);
 		}
 	}
@@ -42,7 +42,7 @@ public class ClientScriptInterface {
 	 * @param seconds
 	 *            seconds to wait
 	 */
-	public void sleepSeconds(long seconds) {
+	public void sleepSeconds(final long seconds) {
 		sleepMillis(seconds * 1000);
 	}
 
@@ -52,7 +52,7 @@ public class ClientScriptInterface {
 	 * @param turns
 	 *            turns to wait
 	 */
-	public void sleepTurns(long turns) {
+	public void sleepTurns(final long turns) {
 		sleepMillis(turns * 300);
 	}
 }

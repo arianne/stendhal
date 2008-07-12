@@ -32,7 +32,7 @@ public final class TeleporterBehaviour implements TurnListener {
 
 	private ArrayList<StendhalRPZone> zones;
 
-	private SpeakerNPC speakerNPC;
+	private final SpeakerNPC speakerNPC;
 
 	/**
 	 * Creates a new TeleporterBehaviour.
@@ -50,7 +50,7 @@ public final class TeleporterBehaviour implements TurnListener {
 		// say something every minute so that can be noticed more easily
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, new TurnListener() {
 
-			public void onTurnReached(int currentTurn) {
+			public void onTurnReached(final int currentTurn) {
 				speakerNPC.say(repeatedText);
 				SingletonRepository.getTurnNotifier().notifyInTurns(60 * 3, this);
 			}
@@ -68,7 +68,7 @@ public final class TeleporterBehaviour implements TurnListener {
 	 *            true to make teleportation to a hand 
 	 *            selected list of zone more likly
 	 */
-	public TeleporterBehaviour(SpeakerNPC speakerNPC, String repeatedText, boolean useHighProbabiltyZones) {
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText, final boolean useHighProbabiltyZones) {
 		this(speakerNPC, repeatedText);
 		if (useHighProbabiltyZones) {
 			addHighProbability();
@@ -76,7 +76,7 @@ public final class TeleporterBehaviour implements TurnListener {
 	}
 
 	private void addHighProbability() {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (int i = 0; i < 10; i++) {
 			zones.add(world.getZone("0_semos_city"));
 			zones.add(world.getZone("0_semos_village_w"));
@@ -91,24 +91,24 @@ public final class TeleporterBehaviour implements TurnListener {
 	 * Creates an ArrayList of "outside" zones for NPC.
 	 */
 	private void listZones() {
-		Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();
+		final Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();
 		zones = new ArrayList<StendhalRPZone>();
-		List<String> badZones = new ArrayList<String>();
+		final List<String> badZones = new ArrayList<String>();
 		badZones.add("0_nalwor_city");
 		badZones.add("0_orril_castle");
 		badZones.add("0_ados_swamp");
 		badZones.add("0_ados_outside_w");
 		badZones.add("0_ados_wall_n");
 		while (itr.hasNext()) {
-			StendhalRPZone aZone = (StendhalRPZone) itr.next();
-			String zoneName = aZone.getName();
+			final StendhalRPZone aZone = (StendhalRPZone) itr.next();
+			final String zoneName = aZone.getName();
 			if (zoneName.startsWith("0") && !badZones.contains(zoneName)) {
 				zones.add(aZone);
 			}
 		}
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		// Say bye
 		speakerNPC.say("Bye.");
 
@@ -143,9 +143,9 @@ public final class TeleporterBehaviour implements TurnListener {
 
 		// try to build a path (but give up after 10 successless tries)
 		for (int i = 0; i < 10; i++) {
-			int tx = Rand.rand(zone.getWidth() - 4) + 2;
-			int ty = Rand.rand(zone.getHeight() - 5) + 2;
-			List<Node> path = Path.searchPath(speakerNPC, tx, ty);
+			final int tx = Rand.rand(zone.getWidth() - 4) + 2;
+			final int ty = Rand.rand(zone.getHeight() - 5) + 2;
+			final List<Node> path = Path.searchPath(speakerNPC, tx, ty);
 			if ((path != null) && (path.size() > 1)) {
 				// create path back
 				for (int j = path.size() - 1; j > 0; j--) {

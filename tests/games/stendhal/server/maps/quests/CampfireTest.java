@@ -54,21 +54,21 @@ public class CampfireTest {
 		 zone = new StendhalRPZone("zone");
 		new CampingGirlNPC().configureZone(zone, null);
 		npc = NPCList.get().get("Sally");
-		Campfire cf = new Campfire();
+		final Campfire cf = new Campfire();
 		cf.addToWorld();
 	}
 	
 	
 	@After
 	public void tearDown() throws Exception {
-		player=null;
+		player = null;
 		NPCList.get().clear();
 	}
 
 	@Test
 	public void testCanStartQuestNow() throws Exception {
 		
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! I need a little #favor ... ", npc.get("text"));
@@ -88,7 +88,7 @@ public class CampfireTest {
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
-		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+		final long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
 		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi again!", npc.get("text"));
@@ -98,7 +98,7 @@ public class CampfireTest {
 	@Test
 	public void testHiAndbye() {
 		
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
@@ -111,7 +111,7 @@ public class CampfireTest {
 	@Test
 	public void testDoQuest() {
 		
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
@@ -127,7 +127,7 @@ public class CampfireTest {
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye.", npc.get("text"));
-		StackableItem wood = new StackableItem("wood", "", "", null);
+		final StackableItem wood = new StackableItem("wood", "", "", null);
 		wood.setQuantity(10);
 		wood.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(wood);
@@ -169,7 +169,7 @@ public class CampfireTest {
 
 	@Test
 	public void testJobAndOffer() {
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());

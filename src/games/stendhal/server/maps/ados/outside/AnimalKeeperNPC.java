@@ -32,16 +32,16 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		 *
 		 * @param copy template creature
 		 */
-		public AdosAttackableCreature(Creature copy) {
+		public AdosAttackableCreature(final Creature copy) {
 			super(copy);
 		}
 
 		@Override
-		public void onDead(Entity killer) {
+		public void onDead(final Entity killer) {
 			super.onDead(killer);
 
 			if (!(killer instanceof Player)) {
-				long currentTime = System.currentTimeMillis();
+				final long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
 					lastShoutTime = currentTime;
 					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getTitle()) + " is eating our "
@@ -57,7 +57,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			return new AdosAttackableCreature(this);
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
 			SingletonRepository.getRuleProcessor().tellAllPlayers(cryForHelp);
@@ -70,16 +70,16 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZooArea(zone, attributes);
 	}
 
-	private void buildZooArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Katinka") {
+	private void buildZooArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Katinka") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(41, 40));
 				nodes.add(new Node(51, 40));
 				nodes.add(new Node(51, 46));
@@ -107,7 +107,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		// put special RespawnPoints
 		// 65, 34 bear
-		EntityManager manager = (EntityManager) SingletonRepository.getEntityManager();
+		final EntityManager manager = SingletonRepository.getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
 		zone.add(point);

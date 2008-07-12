@@ -13,7 +13,7 @@ import java.text.CharacterIterator;
  */
 public class SlashActionParser extends CommandlineParser {
 
-	SlashActionParser(String text) {
+	SlashActionParser(final String text) {
 		super(text);
 	}
 
@@ -23,7 +23,7 @@ public class SlashActionParser extends CommandlineParser {
 	 * @return the parsed SlashActionCommand 
 	 */
 	protected SlashActionCommand extractCommand() {
-		SlashActionCommand command = new SlashActionCommand();
+		final SlashActionCommand command = new SlashActionCommand();
 
 		char ch = ci.current();
 
@@ -44,7 +44,7 @@ public class SlashActionParser extends CommandlineParser {
 		 * Extract command name
 		 */
 		if (Character.isLetterOrDigit(ch)) {
-			StringBuilder buf = new StringBuilder();
+			final StringBuilder buf = new StringBuilder();
 
 			/*
 			 * Word command
@@ -81,9 +81,9 @@ public class SlashActionParser extends CommandlineParser {
 		/*
 		 * Parse command
 		 */
-		SlashActionParser parser = new SlashActionParser(text);
+		final SlashActionParser parser = new SlashActionParser(text);
 
-		SlashActionCommand command = parser.extractCommand();
+		final SlashActionCommand command = parser.extractCommand();
 		if (command.hasError()) {
 			return command;
 		}
@@ -129,7 +129,7 @@ public class SlashActionParser extends CommandlineParser {
 	private String getRemainingText() {
 		skipWhitespace();
 
-		StringBuilder sbuf = new StringBuilder(ci.getEndIndex() - ci.getIndex() + 1);
+		final StringBuilder sbuf = new StringBuilder(ci.getEndIndex() - ci.getIndex() + 1);
 
 		while (ci.current() != CharacterIterator.DONE) {
 			sbuf.append(ci.current());
@@ -147,7 +147,7 @@ public class SlashActionParser extends CommandlineParser {
 	 * @param maximum
 	 * @return success flag
 	 */
-	private boolean extractParameters(SlashActionCommand command, int minimum, int maximum) {
+	private boolean extractParameters(final SlashActionCommand command, final int minimum, final int maximum) {
 		for (int i = 0; i < maximum; i++) {
 			skipWhitespace();
 

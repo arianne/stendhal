@@ -29,14 +29,14 @@ public class FishSourceTest {
 	@Test
 	public void testOnUsed() {
 		FishSourceTestHelper.generateRPClasses();
-		FishSource fs = new FishSource("somefish");
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final FishSource fs = new FishSource("somefish");
+		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		fs.onUsed(player);
 		assertEquals("You need a fishing rod for fishing.",
 				player.getPrivateTextString());
 		player.resetPrivateTextString();
-		StackableItem fishingRod = new StackableItem("fishing rod", "", "",
+		final StackableItem fishingRod = new StackableItem("fishing rod", "", "",
 				null);
 		fishingRod.setQuantity(1);
 		fishingRod.setID(new ID(2, "testzone"));
@@ -47,7 +47,7 @@ public class FishSourceTest {
 		player.resetPrivateTextString();
 		fs.onUsed(player);
 		assertFalse(player.has("private_text"));
-		PrivateTextMockingTestPlayer player2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final PrivateTextMockingTestPlayer player2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 
 		player2.getSlot("bag").add(fishingRod);
 		fs.onUsed(player2);

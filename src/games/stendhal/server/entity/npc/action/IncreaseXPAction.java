@@ -9,7 +9,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 
-	private int xpDiff;
+	private final int xpDiff;
 
 	/**
 	 * Creates a new IncreaseKarmaAction.
@@ -17,12 +17,12 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 	 * @param xpDiff
 	 *            amount of karma to add
 	 */
-	public IncreaseXPAction(int xpDiff) {
+	public IncreaseXPAction(final int xpDiff) {
 		this.xpDiff = xpDiff;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.setXP(player.getXP() + xpDiff);
 		player.notifyWorldAboutChanges();
 	}
@@ -41,7 +41,7 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

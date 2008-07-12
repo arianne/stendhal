@@ -20,7 +20,7 @@ public class NotConditionTest {
 
 	private final class AlwaysFalseCondition extends ChatCondition {
 		@Override
-		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return false;
 		}
 
@@ -59,7 +59,7 @@ public class NotConditionTest {
 
 	@Test
 	public final void testHashCode() {
-		NotCondition obj = new NotCondition(trueCondition);
+		final NotCondition obj = new NotCondition(trueCondition);
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new NotCondition(null).hashCode(),
 				new NotCondition(null).hashCode());
@@ -94,7 +94,7 @@ public class NotConditionTest {
 
 		assertFalse(new NotCondition(trueCondition).equals(null));
 
-		NotCondition obj = new NotCondition(trueCondition);
+		final NotCondition obj = new NotCondition(trueCondition);
 		assertTrue(obj.equals(obj));
 		assertTrue(new NotCondition(null).equals(new NotCondition(null)));
 		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(

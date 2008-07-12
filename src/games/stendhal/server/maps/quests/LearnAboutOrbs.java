@@ -47,18 +47,18 @@ public class LearnAboutOrbs extends AbstractQuest {
 	private static final String QUEST_SLOT = "learn_scrying";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("done")) {
 			res.add("DONE");
 		}
@@ -66,7 +66,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 	}
 
 	private void step1() {
-		SpeakerNPC npc = npcs.get("Ilisa");
+		final SpeakerNPC npc = npcs.get("Ilisa");
 		
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 

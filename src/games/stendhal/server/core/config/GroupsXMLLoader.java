@@ -38,7 +38,7 @@ class GroupsXMLLoader extends DefaultHandler {
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
-	public GroupsXMLLoader(URI uri) {
+	public GroupsXMLLoader(final URI uri) {
 		this.uri = uri;
 	}
 
@@ -54,7 +54,7 @@ class GroupsXMLLoader extends DefaultHandler {
 	 *             If the resource was not found.
 	 */
 	public List<URI> load() throws SAXException, IOException {
-		InputStream in = getClass().getResourceAsStream(uri.getPath());
+		final InputStream in = getClass().getResourceAsStream(uri.getPath());
 
 		if (in == null) {
 			throw new FileNotFoundException("Cannot find resource: "
@@ -80,14 +80,14 @@ class GroupsXMLLoader extends DefaultHandler {
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 */
-	protected List<URI> load(InputStream in) throws SAXException, IOException {
+	protected List<URI> load(final InputStream in) throws SAXException, IOException {
 		SAXParser saxParser;
 
 		// Use the default (non-validating) parser
-		SAXParserFactory factory = SAXParserFactory.newInstance();
+		final SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			saxParser = factory.newSAXParser();
-		} catch (ParserConfigurationException ex) {
+		} catch (final ParserConfigurationException ex) {
 			throw new SAXException(ex);
 		}
 
@@ -107,15 +107,15 @@ class GroupsXMLLoader extends DefaultHandler {
 	 * 
 	 */
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(final String namespaceURI, final String lName, final String qName, final Attributes attrs) {
 		 if (qName.equals("group")) {
-			String uriValue = attrs.getValue("uri");
+			final String uriValue = attrs.getValue("uri");
 			if (uriValue == null) {
 				logger.warn("group without 'uri'");
 			} else {
 				try {
 					groups.add(uri.resolve(uriValue));
-				} catch (IllegalArgumentException ex) {
+				} catch (final IllegalArgumentException ex) {
 					logger.error("Invalid group reference: " + uriValue + " ["
 							+ ex.getMessage() + "]");
 				}

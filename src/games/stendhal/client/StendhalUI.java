@@ -32,7 +32,7 @@ public abstract class StendhalUI {
 	 * @param client
 	 *            The client.
 	 */
-	public StendhalUI(StendhalClient client) {
+	public StendhalUI(final StendhalClient client) {
 		this.client = client;
 	}
 
@@ -140,7 +140,7 @@ public abstract class StendhalUI {
 	 * @param sharedUI
 	 *            The stendhal UI.
 	 */
-	public static void setDefault(StendhalUI sharedUI) {
+	public static void setDefault(final StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;
 	}
 
@@ -168,7 +168,7 @@ public abstract class StendhalUI {
 	 * @param y
 	 *            The user's Y coordinate.
 	 */
-	public abstract void setPosition(double x, double y,IGameScreen gameScreen);
+	public abstract void setPosition(double x, double y, IGameScreen gameScreen);
 
 	//
 	// <StendhalGUI>

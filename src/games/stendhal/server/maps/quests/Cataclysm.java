@@ -19,7 +19,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Carmen tell you that she can sense big changes.
 	 */
 	private void carmen() {
-		SpeakerNPC npc = npcs.get("Carmen");
+		final SpeakerNPC npc = npcs.get("Carmen");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AlwaysTrueCondition(),
@@ -36,7 +36,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Diogenes tell you to ask Carmen what's happening.
 	 */
 	private void diogenes() {
-		SpeakerNPC npc = npcs.get("Diogenes");
+		final SpeakerNPC npc = npcs.get("Diogenes");
 
 		npc.add(
 			ConversationStates.IDLE,
@@ -56,7 +56,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Hayunn Naratha refer to the Cataclysm.
 	 */
 	private void hayunn() {
-		SpeakerNPC npc = npcs.get("Hayunn Naratha");
+		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -74,7 +74,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Monogenes speak of the fire and Cataclysm.
 	 */
 	private void monogenes() {
-		SpeakerNPC npc = npcs.get("Monogenes");
+		final SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(
 			ConversationStates.IDLE,
@@ -97,7 +97,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Nomyr Ahba tell you rumours of the Cataclysm.
 	 */
 	private void nomyr() {
-		SpeakerNPC npc = npcs.get("Nomyr Ahba");
+		final SpeakerNPC npc = npcs.get("Nomyr Ahba");
 
 		npc.add(
 			ConversationStates.IDLE,
@@ -120,7 +120,7 @@ public class Cataclysm extends AbstractQuest {
 	 * Makes Sato tell you that Carmen can sense big changes.
 	 */
 	private void sato() {
-		SpeakerNPC npc = npcs.get("Sato");
+		final SpeakerNPC npc = npcs.get("Sato");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AlwaysTrueCondition(),

@@ -21,7 +21,7 @@ import marauroa.common.game.RPObject;
 public abstract class GuidedEntity extends ActiveEntity {
 	protected double baseSpeed;
 
-	private EntityGuide guide = new EntityGuide();
+	private final EntityGuide guide = new EntityGuide();
 
 	/**
 	 * Create a guided entity.
@@ -123,7 +123,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Set the path nodes position.
 	 * @param pathPos 
 	 */
-	public void setPathPosition(int pathPos) {
+	public void setPathPosition(final int pathPos) {
 		guide.pathPosition = pathPos;
 	}
 

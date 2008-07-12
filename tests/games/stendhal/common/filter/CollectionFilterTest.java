@@ -21,7 +21,7 @@ public class CollectionFilterTest {
 
 	@Test
 	public final void testFilter() {
-		Collection<Player> list = new LinkedList<Player>();
+		final Collection<Player> list = new LinkedList<Player>();
 
 		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin1"));
 		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin2"));
@@ -34,7 +34,7 @@ public class CollectionFilterTest {
 		list.add(player);
 		assertThat(list.size(), is(5));
 
-		CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
+		final CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
 
 		cf1.addFilterCriteria(new Adminfilter());
 		List< ? extends Player> result = (List< ? extends Player>) cf1.filterCopy(list);
@@ -43,7 +43,7 @@ public class CollectionFilterTest {
 		assertThat(result.size(), is(2));
 		assertThat(list.size(), is(5));
 
-		CollectionFilter<Player> cf2 = new CollectionFilter<Player>();
+		final CollectionFilter<Player> cf2 = new CollectionFilter<Player>();
 
 		cf2.addFilterCriteria(new NoAdminfilter());
 		result = (List< ? extends Player>) cf2.filterCopy(list);
@@ -55,7 +55,7 @@ public class CollectionFilterTest {
 
 	class Adminfilter implements FilterCriteria<Player> {
 
-		public boolean passes(Player o) {
+		public boolean passes(final Player o) {
 			return o.getAdminLevel() == 0;
 		}
 
@@ -63,7 +63,7 @@ public class CollectionFilterTest {
 
 	class NoAdminfilter implements FilterCriteria<Player> {
 
-		public boolean passes(Player o) {
+		public boolean passes(final Player o) {
 			return o.getAdminLevel() > 0;
 		}
 

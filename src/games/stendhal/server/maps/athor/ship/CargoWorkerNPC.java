@@ -21,7 +21,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		npc.addReply(Arrays.asList("rat", "rats"),
 		        "These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
 		//prices are equal to the absolute value of their HP amount.
-		Map<String, Integer> offerings = new HashMap<String, Integer>();
+		final Map<String, Integer> offerings = new HashMap<String, Integer>();
 		offerings.put("poison", 40);
 		offerings.put("toadstool", 60);
 		offerings.put("greater poison", 60);
@@ -34,7 +34,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		new AthorFerry.FerryListener() {
 
 			
-			public void onNewFerryState(Status status) {
+			public void onNewFerryState(final Status status) {
 				switch (status) {
 				case ANCHORED_AT_MAINLAND:
 				case ANCHORED_AT_ISLAND:

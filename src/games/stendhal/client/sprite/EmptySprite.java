@@ -39,7 +39,7 @@ public class EmptySprite implements Sprite {
 	 *            The sprite height.
 	 * @param reference 
 	 */
-	public EmptySprite(final int width, final int height, Object reference) {
+	public EmptySprite(final int width, final int height, final Object reference) {
 		this.width = width;
 		this.height = height;
 		this.reference = reference;
@@ -107,7 +107,7 @@ public class EmptySprite implements Sprite {
 	 * @param y
 	 *            The y location at which to draw the sprite
 	 */
-	public void draw(Graphics g, int x, int y) {
+	public void draw(final Graphics g, final int x, final int y) {
 	}
 
 	/**
@@ -128,8 +128,8 @@ public class EmptySprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
-	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
-			int h) {
+	public void draw(final Graphics g, final int destx, final int desty, final int x, final int y, final int w,
+			final int h) {
 	}
 
 	/**
@@ -182,13 +182,13 @@ public class EmptySprite implements Sprite {
 		//
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (this == obj) {
 				return true;
 			}
 
 			if (obj instanceof ESRef) {
-				ESRef esref = (ESRef) obj;
+				final ESRef esref = (ESRef) obj;
 
 				if (width != esref.width) {
 					return false;

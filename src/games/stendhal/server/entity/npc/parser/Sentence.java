@@ -342,7 +342,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return empty flag
      */
     public boolean isEmpty() {
-        return sentenceType == SentenceType.UNDEFINED && expressions.isEmpty();
+        return (sentenceType == SentenceType.UNDEFINED) && expressions.isEmpty();
     }
 
     /**
@@ -382,7 +382,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         final SentenceBuilder builder = new SentenceBuilder();
 
         for (final Expression w : expressions) {
-            if (w.getType() == null || !isIgnorable(w)) {
+            if ((w.getType() == null) || !isIgnorable(w)) {
                 builder.append(w.getNormalized());
             }
         }
@@ -508,9 +508,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             final Expression e1 = nextValid(it1);
             final Expression e2 = nextValid(it2);
 
-            if (e1 == null && e2 == null) {
+            if ((e1 == null) && (e2 == null)) {
                 break;
-            } else if (e1 != null && e2 != null) {
+            } else if ((e1 != null) && (e2 != null)) {
                 if (!e1.matchesNormalized(e2)) {
                     ret.append("-[" + e1.getNormalized() + "]");
                     ret.append("+[" + e2.getNormalized() + "]");
@@ -610,7 +610,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             e1 = nextValid(it1);
             e2 = nextValid(it2);
 
-            if (e1 == null || e2 == null) {
+            if ((e1 == null) || (e2 == null)) {
                 break;
             }
 
@@ -624,12 +624,12 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         }
 
         // If we look for a full match, there should be no more expressions at both sides.
-        if (e1 == null && e2 == null) {
+        if ((e1 == null) && (e2 == null)) {
             return true;
         }
         // If we look for a match at Sentence start, there must be no more expressions at the right side.
         else {
-            return (matchStart && e2 == null);
+            return (matchStart && (e2 == null));
         }
 
     }
@@ -694,12 +694,12 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         }
 
         // If we could not find an object, look for the expressions following the single verb.
-        if (ret == null && verbCount == 1) {
+        if ((ret == null) && (verbCount == 1)) {
             ret = stringFromExpressionsAfter(getVerb());
         }
 
         // If we didn't find anything usable until now, take the first unknown word.
-        if (ret == null && unkownCount > 0) {
+        if ((ret == null) && (unkownCount > 0)) {
             final Expression unknown = getUnknownTypeExpression(0);
 
             if (unknown != null) {
@@ -708,7 +708,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         }
 
         // If this still didn't work, look for the expressions following the first verb.
-        if (ret == null && verbCount > 1) {
+        if ((ret == null) && (verbCount > 1)) {
             ret = stringFromExpressionsAfter(getVerb(0));
         }
 

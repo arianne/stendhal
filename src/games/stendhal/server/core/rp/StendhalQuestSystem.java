@@ -20,7 +20,7 @@ public class StendhalQuestSystem {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalQuestSystem.class);
 
-	private List<IQuest> quests = new LinkedList<IQuest>();
+	private final List<IQuest> quests = new LinkedList<IQuest>();
 
 	private QuestsXMLLoader questInfos;
 
@@ -125,14 +125,14 @@ public class StendhalQuestSystem {
 		loadQuest("ZooFood");
 	}
 
-	private boolean loadQuest(String name) {
-		String regex = System.getProperty("stendhal.quest.regex", ".*");
+	private boolean loadQuest(final String name) {
+		final String regex = System.getProperty("stendhal.quest.regex", ".*");
 		if (!name.matches(regex)) {
 			return false;
 		}
 		
 		try {
-			Class< ? > questClass = Class.forName("games.stendhal.server.maps.quests."
+			final Class< ? > questClass = Class.forName("games.stendhal.server.maps.quests."
 					+ name);
 
 			if (!IQuest.class.isAssignableFrom(questClass)) {
@@ -143,8 +143,8 @@ public class StendhalQuestSystem {
 
 			// Create a new instance.
 			logger.info("Loading Quest: " + name);
-			Constructor< ? > constr = questClass.getConstructor();
-			IQuest quest = (IQuest) constr.newInstance();
+			final Constructor< ? > constr = questClass.getConstructor();
+			final IQuest quest = (IQuest) constr.newInstance();
 
 			// init and add to world
 			quest.init(name);
@@ -152,17 +152,17 @@ public class StendhalQuestSystem {
 
 			quests.add(quest);
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.warn("Quest(" + name + ") loading failed.", e);
 			return false;
 		}
 	}
 
-	private void dumpQuest(StringBuilder sb, IQuest quest, Player player) {
-		QuestInfo questInfo = questInfos.get(quest.getName());
+	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {
+		final QuestInfo questInfo = questInfos.get(quest.getName());
 		sb.append("\t" + questInfo.getTitle() + "\r\n");
-		List<String> history = quest.getHistory(player);
-		for (String entry : history) {
+		final List<String> history = quest.getHistory(player);
+		for (final String entry : history) {
 			String text = questInfo.getHistory().get(entry);
 			if (text == null) {
 				text = entry;
@@ -172,14 +172,14 @@ public class StendhalQuestSystem {
 		sb.append("\r\n");
 	}
 
-	public String listQuests(Player player) {
-		StringBuilder sb = new StringBuilder();
+	public String listQuests(final Player player) {
+		final StringBuilder sb = new StringBuilder();
 
 		// Open quests
 		sb.append("\r\n\r\n");
 		sb.append("Open Quests\r\n");
 		sb.append("========\r\n");
-		for (IQuest quest : quests) {
+		for (final IQuest quest : quests) {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
 				dumpQuest(sb, quest, player);
 			}
@@ -189,7 +189,7 @@ public class StendhalQuestSystem {
 		sb.append("\r\n\r\n");
 		sb.append("Completed Quests\r\n");
 		sb.append("============\r\n");
-		for (IQuest quest : quests) {
+		for (final IQuest quest : quests) {
 			if (quest.isCompleted(player)) {
 				dumpQuest(sb, quest, player);
 			}
@@ -198,9 +198,9 @@ public class StendhalQuestSystem {
 		return sb.toString();
 	}
 
-	public String listQuest(Player player, String questName) {
-		StringBuilder sb = new StringBuilder();
-		for (IQuest quest : quests) {
+	public String listQuest(final Player player, final String questName) {
+		final StringBuilder sb = new StringBuilder();
+		for (final IQuest quest : quests) {
 			if (quest.getName().equals(questName)) {
 				dumpQuest(sb, quest, player);
 			}

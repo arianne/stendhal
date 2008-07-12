@@ -13,9 +13,9 @@ import marauroa.common.game.RPSlot;
  * @author hendrik
  */
 class PlayerQuests {
-	private Player player;
+	private final Player player;
 	
-	public PlayerQuests(Player player) {
+	public PlayerQuests(final Player player) {
 		this.player = player;
 	}
 
@@ -26,8 +26,8 @@ class PlayerQuests {
 	 *            The quest's name
 	 * @return true iff the quest has been completed by the player
 	 */
-	public boolean isQuestCompleted(String name) {
-		String info = player.getKeyedSlot("!quests", name);
+	public boolean isQuestCompleted(final String name) {
+		final String info = player.getKeyedSlot("!quests", name);
 
 		if (info == null) {
 			return false;
@@ -45,7 +45,7 @@ class PlayerQuests {
 	 *            The quest's name
 	 * @return true iff the player has made any progress in the quest
 	 */
-	public boolean hasQuest(String name) {
+	public boolean hasQuest(final String name) {
 		return (player.getKeyedSlot("!quests", name) != null);
 	}
 
@@ -56,7 +56,7 @@ class PlayerQuests {
 	 *            The quest's name
 	 * @return the player's status in the quest
 	 */
-	public String getQuest(String name) {
+	public String getQuest(final String name) {
 		return player.getKeyedSlot("!quests", name);
 	}
 
@@ -73,8 +73,8 @@ class PlayerQuests {
 	 *            the player's status in the quest. Set it to null to completely
 	 *            reset the player's status for the quest.
 	 */
-	public void setQuest(String name, String status) {
-		String oldStatus = player.getKeyedSlot("!quests", name);
+	public void setQuest(final String name, final String status) {
+		final String oldStatus = player.getKeyedSlot("!quests", name);
 		player.setKeyedSlot("!quests", name, status);
 		if ((status == null) || !status.equals(oldStatus)) {
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "quest",
@@ -83,11 +83,11 @@ class PlayerQuests {
 	}
 
 	public List<String> getQuests() {
-		RPSlot slot = player.getSlot("!quests");
-		RPObject quests = slot.iterator().next();
+		final RPSlot slot = player.getSlot("!quests");
+		final RPObject quests = slot.iterator().next();
 
-		List<String> questsList = new LinkedList<String>();
-		for (String quest : quests) {
+		final List<String> questsList = new LinkedList<String>();
+		for (final String quest : quests) {
 			if (!quest.equals("id") && !quest.equals("zoneid")) {
 				questsList.add(quest);
 			}
@@ -95,7 +95,7 @@ class PlayerQuests {
 		return questsList;
 	}
 
-	public void removeQuest(String name) {
+	public void removeQuest(final String name) {
 		player.setKeyedSlot("!quests", name, null);
 	}
 
@@ -108,11 +108,11 @@ class PlayerQuests {
 	 *            valid states
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
-	public boolean isQuestInState(String name, String... states) {
-		String questState = getQuest(name);
+	public boolean isQuestInState(final String name, final String... states) {
+		final String questState = getQuest(name);
 
 		if (questState != null) {
-			for (String state : states) {
+			for (final String state : states) {
 				if (questState.equals(state)) {
 					return true;
 				}

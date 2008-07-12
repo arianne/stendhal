@@ -9,12 +9,12 @@ public class TestPortalTest {
 
 	@Test
 	public void isDestinationOf() throws Exception {
-		PortalTestObject emptyPortal = new PortalTestObject();
+		final PortalTestObject emptyPortal = new PortalTestObject();
 
 		assertFalse(emptyPortal.isDestinationOf(null));
 		assertFalse(emptyPortal.isDestinationOf(emptyPortal));
-		PortalTestObject source = new PortalTestObject("1", "source", "1", "target");
-		PortalTestObject target = new PortalTestObject("1", "target", "", "");
+		final PortalTestObject source = new PortalTestObject("1", "source", "1", "target");
+		final PortalTestObject target = new PortalTestObject("1", "target", "", "");
 		assertFalse(emptyPortal.isDestinationOf(target));
 		assertTrue(target.isDestinationOf(source));
 		assertFalse(source.isDestinationOf(target));

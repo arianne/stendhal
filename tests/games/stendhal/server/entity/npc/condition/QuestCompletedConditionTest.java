@@ -35,7 +35,7 @@ public class QuestCompletedConditionTest {
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertFalse(new QuestCompletedCondition("questname").fire(bob,
@@ -78,7 +78,7 @@ public class QuestCompletedConditionTest {
 				null)));
 		assertFalse(new QuestCompletedCondition("questname").equals(null));
 
-		QuestCompletedCondition obj = new QuestCompletedCondition("questname");
+		final QuestCompletedCondition obj = new QuestCompletedCondition("questname");
 		assertTrue(obj.equals(obj));
 
 		assertFalse(new QuestCompletedCondition("questname").equals(new Object()));

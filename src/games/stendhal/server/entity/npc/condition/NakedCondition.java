@@ -14,8 +14,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class NakedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		Outfit outfit = player.getOutfit();
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		final Outfit outfit = player.getOutfit();
 		return outfit.isNaked();
 	}
 
@@ -30,7 +30,7 @@ public class NakedCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				NakedCondition.class);
 	}

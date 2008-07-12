@@ -9,9 +9,9 @@ import games.stendhal.server.entity.player.Player;
  */
 public class SetQuestAction extends SpeakerNPC.ChatAction {
 
-	private String questname;
+	private final String questname;
 
-	private String state;
+	private final String state;
 
 	/**
 	 * Creates a new SetQuestAction.
@@ -21,13 +21,13 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 	 * @param state
 	 *            new value
 	 */
-	public SetQuestAction(String questname, String state) {
+	public SetQuestAction(final String questname, final String state) {
 		this.questname = questname;
 		this.state = state;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.setQuest(questname, state);
 	}
 
@@ -47,7 +47,7 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

@@ -7,11 +7,11 @@ package games.stendhal.tools.loganalyser.login;
  */
 public class LoginEvent {
 
-	private String username;
-	private String address;
-	private String timestamp;
+	private final String username;
+	private final String address;
+	private final String timestamp;
 
-	public LoginEvent(String username, String address, String timestamp) {
+	public LoginEvent(final String username, final String address, final String timestamp) {
 		this.username = username;
 		this.address = address;
 		this.timestamp = timestamp;
@@ -31,7 +31,7 @@ public class LoginEvent {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(username);
 		sb.append("\t");
 		sb.append(address);

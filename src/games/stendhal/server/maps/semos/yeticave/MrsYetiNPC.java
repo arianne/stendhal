@@ -14,16 +14,16 @@ public class MrsYetiNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildYeti(zone);
 	}
 
-	private void buildYeti(StendhalRPZone zone) {
-		SpeakerNPC yetifemale = new SpeakerNPC("Mrs. Yeti") {
+	private void buildYeti(final StendhalRPZone zone) {
+		final SpeakerNPC yetifemale = new SpeakerNPC("Mrs. Yeti") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(102, 19));
 				nodes.add(new Node(104, 19));
 				nodes.add(new Node(102, 15));

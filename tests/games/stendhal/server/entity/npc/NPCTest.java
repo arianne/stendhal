@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CatTestHelper;
 
@@ -25,7 +26,7 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		CatTestHelper.generateRPClasses();
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 
@@ -42,8 +43,8 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Felina");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Felina");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Felina"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -54,8 +55,8 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testLogic() {
-		SpeakerNPC npc = getNPC("Felina");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Felina");
+		final Engine en = npc.getEngine();
 
 		npc.listenTo(player, "hi");
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -71,7 +72,7 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testIdea() {
-		SpeakerNPC npc = getNPC("Felina");
+		final SpeakerNPC npc = getNPC("Felina");
 
 		assertEquals(null, npc.getIdea());
 		npc.setIdea("walk");
@@ -84,7 +85,7 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 	//TODO NPC.setOutfit() function seems not to be used anywhere, so it could be removed.
 	@Test
 	public void testOutfit() {
-		SpeakerNPC npc = getNPC("Felina");
+		final SpeakerNPC npc = getNPC("Felina");
 
 		assertEquals(null, npc.getIdea());
 		npc.setOutfit("suite");

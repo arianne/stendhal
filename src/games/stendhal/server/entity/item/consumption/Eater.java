@@ -5,7 +5,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Eater implements Feeder {
 
-	public boolean feed(ConsumableItem item, Player player) {
+	public boolean feed(final ConsumableItem item, final Player player) {
 		if (player.isFull()) {
 			player.sendPrivateText("You can't consume anymore");
 			return false;

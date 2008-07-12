@@ -59,12 +59,12 @@ public class KTextEdit extends JPanel {
 	 * @param textPane
 	 *            the active text component
 	 */
-	protected void initStylesForTextPane(JTextPane textPane) {
+	protected void initStylesForTextPane(final JTextPane textPane) {
 
-		Style def = StyleContext.getDefaultStyleContext().getStyle(
+		final Style def = StyleContext.getDefaultStyleContext().getStyle(
 				StyleContext.DEFAULT_STYLE);
 
-		Style regular = textPane.addStyle("regular", def);
+		final Style regular = textPane.addStyle("regular", def);
 		StyleConstants.setFontFamily(def, "Dialog");
 		StyleConstants.setFontSize(regular, TEXT_SIZE);
 
@@ -94,8 +94,8 @@ public class KTextEdit extends JPanel {
 	 *            the color with which the text must be colored
 	 * @return the colored style
 	 */
-	public Style getColor(Color desiredColor) {
-		Style s = textPane.getStyle("normal");
+	public Style getColor(final Color desiredColor) {
+		final Style s = textPane.getStyle("normal");
 		StyleConstants.setForeground(s, desiredColor);
 		return s;
 	}
@@ -104,66 +104,66 @@ public class KTextEdit extends JPanel {
 	 * insert a header.
 	 * @param header 
 	 */
-	protected void insertHeader(String header) {
-		Document doc = textPane.getDocument();
+	protected void insertHeader(final String header) {
+		final Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
 				doc.insertString(doc.getLength(), "<" + header + "> ",
 						textPane.getStyle("header"));
 			}
-		} catch (BadLocationException ble) {
+		} catch (final BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
 
-	protected void insertTimestamp(String header) {
-		Document doc = textPane.getDocument();
+	protected void insertTimestamp(final String header) {
+		final Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
 				doc.insertString(doc.getLength(), header,
 						textPane.getStyle("timestamp"));
 			}
-		} catch (BadLocationException ble) {
+		} catch (final BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
 
-	protected void insertText(String text, NotificationType type) {
+	protected void insertText(final String text, final NotificationType type) {
 		final Color color = type.getColor();
 		final Document doc = textPane.getDocument();
 
 		try {
-			FormatTextParser parser =	new FormatTextParser() {
+			final FormatTextParser parser =	new FormatTextParser() {
 				@Override
-				public void normalText(String txt) throws BadLocationException {
+				public void normalText(final String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, getColor(color));
 				}
 
 				@Override
-				public void colorText(String txt) throws BadLocationException {
+				public void colorText(final String txt) throws BadLocationException {
 					doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
 				}
 			};
 			parser.format(text);
-		} catch (Exception ble) { // BadLocationException
+		} catch (final Exception ble) { // BadLocationException
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
 
 	protected void insertNewline() {
-		Document doc = textPane.getDocument();
+		final Document doc = textPane.getDocument();
 		try {
 			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
-		} catch (BadLocationException ble) {
+		} catch (final BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
 
-	public void addLine(String line) {
+	public void addLine(final String line) {
 		addLine("", line);
 	}
 
-	public void addLine(String header, String line) {
+	public void addLine(final String header, final String line) {
 		addLine(header, line, NotificationType.NORMAL);
 	}
 
@@ -181,7 +181,7 @@ public class KTextEdit extends JPanel {
 					vbar.setValue(vbar.getMaximum());
 				}
 			});
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
@@ -196,26 +196,26 @@ public class KTextEdit extends JPanel {
 	 * @param type
 	 *            The logical format type.
 	 */
-	public synchronized void addLine(String header, String line,
-			NotificationType type) {
+	public synchronized void addLine(final String header, final String line,
+			final NotificationType type) {
 		// Goal of the new code is making it easier to read older messages:
 		// The client should only scroll down automatically if the scrollbar
 		// was at the bottom before.
 		// TODO: There were some bugs, so it is disabled until there is time to
 		// fix it.
-		boolean useNewCode = false;
+		final boolean useNewCode = false;
 
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 
-		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
+		final boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
 
 		insertNewline();
 
-		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-		String dateString = formatter.format(new Date());
+		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+		final String dateString = formatter.format(new Date());
 		insertTimestamp(dateString);
 
 		insertHeader(header);

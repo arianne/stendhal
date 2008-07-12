@@ -17,15 +17,15 @@ class RemessageAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
+	public boolean execute(final String[] params, final String remainder) {
+		final MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
 
-		if (messageCommand == null
-				|| messageCommand.getLastPlayerTell() == null) {
+		if ((messageCommand == null)
+				|| (messageCommand.getLastPlayerTell() == null)) {
 			return false;
 		}
 
-		RPAction tell = new RPAction();
+		final RPAction tell = new RPAction();
 
 		tell.put("type", "tell");
 		tell.put("target", messageCommand.getLastPlayerTell());

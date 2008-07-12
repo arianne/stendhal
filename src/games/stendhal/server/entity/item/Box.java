@@ -17,7 +17,7 @@ import marauroa.common.game.RPObject;
  */
 public class Box extends Item implements UseListener {
 
-	private Logger logger = Logger.getLogger(Box.class);
+	private final Logger logger = Logger.getLogger(Box.class);
 
 	/**
 	 * Creates a new box.
@@ -27,8 +27,8 @@ public class Box extends Item implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Box(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Box(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -38,11 +38,11 @@ public class Box extends Item implements UseListener {
 	 * @param item
 	 *            item to copy
 	 */
-	public Box(Box item) {
+	public Box(final Box item) {
 		super(item);
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		// TODO: clean up duplicated code with other Item subclasses.
 		if (this.isContained()) {
 			// We modify the base container if the object change.
@@ -64,12 +64,12 @@ public class Box extends Item implements UseListener {
 				return false;
 			}
 		}
-		Player player = (Player) user;
+		final Player player = (Player) user;
 		return useMe(player);
 	}
 
 	// this would be overridden in the subclass
-	protected boolean useMe(Player player) {
+	protected boolean useMe(final Player player) {
 		logger.warn("A box that didn't have a use method failed to open.");
 		player.sendPrivateText("What a strange box! You don't know how to open it.");
 		return false;

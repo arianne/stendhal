@@ -23,7 +23,7 @@ public class LoginEventIterator extends ResultSetIterator<LoginEvent> {
 	 * @param statement statement
 	 * @param resultSet resultSet
 	 */
-	public LoginEventIterator(Statement statement, ResultSet resultSet) {
+	public LoginEventIterator(final Statement statement, final ResultSet resultSet) {
 	    super(statement, resultSet);
     }
 
@@ -34,7 +34,7 @@ public class LoginEventIterator extends ResultSetIterator<LoginEvent> {
 				resultSet.getString("username"),
 				resultSet.getString("address"),
 				resultSet.getString("timedate"));
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.error(e, e);
 			return null;
 		}

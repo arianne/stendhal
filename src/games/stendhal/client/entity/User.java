@@ -75,7 +75,7 @@ public class User extends Player {
 			return false;
 		}
 
-		User me = User.get();
+		final User me = User.get();
 		if (me.rpObject == null) {
 			return false;
 		}
@@ -86,7 +86,7 @@ public class User extends Player {
 
 	public static int getPlayerLevel() {
 		if (!isNull()) {
-			User me = User.get();
+			final User me = User.get();
 
     		if (me.rpObject != null) {
     			return me.getLevel();
@@ -140,7 +140,7 @@ public class User extends Player {
 	 */
 	public Rectangle2D getHearingArea() {
 		final double HEARING_RANGE = 20;
-		double width = HEARING_RANGE * 2;
+		final double width = HEARING_RANGE * 2;
 		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY()
 				- HEARING_RANGE, width, width);
 	}
@@ -174,8 +174,8 @@ public class User extends Player {
 		// The first time we ignore it.
 		if (object != null) {
 			if (changes.has("online")) {
-				String[] players = changes.get("online").split(",");
-				for (String playerName : players) {
+				final String[] players = changes.get("online").split(",");
+				for (final String playerName : players) {
 					StendhalUI.get().addEventLine(
 							playerName + " has joined Stendhal.",
 							NotificationType.INFORMATION);
@@ -183,8 +183,8 @@ public class User extends Player {
 			}
 
 			if (changes.has("offline")) {
-				String[] players = changes.get("offline").split(",");
-				for (String playername : players) {
+				final String[] players = changes.get("offline").split(",");
+				for (final String playername : players) {
 					StendhalUI.get().addEventLine(
 							playername + " has left Stendhal.",
 							NotificationType.INFORMATION);
@@ -251,10 +251,10 @@ public class User extends Player {
 	 *            name of item
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
-	public int findItem(String slotName, String itemName) {
-		for (RPObject item : getSlot(slotName)) {
+	public int findItem(final String slotName, final String itemName) {
+		for (final RPObject item : getSlot(slotName)) {
 			if (item.get("name").equals(itemName)) {
-				int itemID = item.getID().getObjectID();
+				final int itemID = item.getID().getObjectID();
 
 				return itemID;
 			}
@@ -268,7 +268,7 @@ public class User extends Player {
 		return true;
 	}
 	
-	public static double squaredDistanceTo(double x2, double y2) {
+	public static double squaredDistanceTo(final double x2, final double y2) {
 		if (User.isNull()) {
 			return Double.POSITIVE_INFINITY;
 		}

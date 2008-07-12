@@ -19,7 +19,7 @@ public abstract class PassiveEntity extends Entity {
 	 * @param object
 	 *            The template object.
 	 */
-	public PassiveEntity(RPObject object) {
+	public PassiveEntity(final RPObject object) {
 		super(object);
 
 		setResistance(0);

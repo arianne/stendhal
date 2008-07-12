@@ -41,7 +41,7 @@ public class CollisionDetection {
 		}
 	}
 
-	public void init(int width, int height) {
+	public void init(final int width, final int height) {
 		this.width = width;
 		this.height = height;
 
@@ -49,7 +49,7 @@ public class CollisionDetection {
 		clear();
 	}
 
-	public void setCollide(int x, int y) {
+	public void setCollide(final int x, final int y) {
 		if ((x < 0) || (x >= width) || (y < 0) || (y >= height)) {
 			return;
 		}
@@ -57,11 +57,11 @@ public class CollisionDetection {
 		blocked[y * width + x] = true;
 	}
 
-	public void setCollide(Rectangle2D shape, boolean value) {
-		double x = shape.getX();
-		double y = shape.getY();
-		double w = shape.getWidth();
-		double h = shape.getHeight();
+	public void setCollide(final Rectangle2D shape, final boolean value) {
+		final double x = shape.getX();
+		final double y = shape.getY();
+		final double w = shape.getWidth();
+		final double h = shape.getHeight();
 
 		if ((x < 0) || (x/* +w */ >= width)) {
 			return;
@@ -71,10 +71,10 @@ public class CollisionDetection {
 			return;
 		}
 
-		int startx = (int) ((x >= 0) ? x : 0);
-		int endx = (int) ((x + w < width) ? x + w : width);
-		int starty = (int) ((y) >= 0 ? y : 0);
-		int endy = (int) ((y + h) < height ? y + h : height);
+		final int startx = (int) ((x >= 0) ? x : 0);
+		final int endx = (int) ((x + w < width) ? x + w : width);
+		final int starty = (int) ((y) >= 0 ? y : 0);
+		final int endy = (int) ((y + h) < height ? y + h : height);
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
@@ -83,7 +83,7 @@ public class CollisionDetection {
 		}
 	}
 
-	public void setCollisionData(LayerDefinition collisionLayer) {
+	public void setCollisionData(final LayerDefinition collisionLayer) {
 		/* First we build the int array. */
 		collisionLayer.build();
 
@@ -106,7 +106,7 @@ public class CollisionDetection {
 	 * @param x 
 	 * @param y 
 	 * @param size */
-	public void printaround(int x, int y, int size) {
+	public void printaround(final int x, final int y, final int size) {
 		for (int j = y - size; j < y + size; j++) {
 			for (int i = x - size; i < x + size; i++) {
 				if ((j >= 0) && (j < height) && (i >= 0) && (i < width)) {
@@ -123,13 +123,13 @@ public class CollisionDetection {
 		}
 	}
 
-	public boolean walkable(double x, double y) {
+	public boolean walkable(final double x, final double y) {
 		return !blocked[(int) y * width + (int) x];
 	}
 
-	public boolean leavesZone(Rectangle2D shape) {
-		double x = shape.getX();
-		double y = shape.getY();
+	public boolean leavesZone(final Rectangle2D shape) {
+		final double x = shape.getX();
+		final double y = shape.getY();
 		// double w=shape.getWidth();
 		// double h=shape.getHeight();
 
@@ -149,9 +149,9 @@ public class CollisionDetection {
 	 * @return true if the shape enters in any of the non trespasable areas of
 	 * the map.
 	 */
-	public boolean collides(Rectangle2D shape) {
-		double x = shape.getX();
-		double y = shape.getY();
+	public boolean collides(final Rectangle2D shape) {
+		final double x = shape.getX();
+		final double y = shape.getY();
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
@@ -171,10 +171,10 @@ public class CollisionDetection {
 			return true;
 		}
 
-		int startx = (int) ((x >= 0) ? x : 0);
-		int endx = (int) ((x + w < width) ? x + w : width);
-		int starty = (int) ((y >= 0) ? y : 0);
-		int endy = (int) ((y + h < height) ? y + h : height);
+		final int startx = (int) ((x >= 0) ? x : 0);
+		final int endx = (int) ((x + w < width) ? x + w : width);
+		final int starty = (int) ((y >= 0) ? y : 0);
+		final int endy = (int) ((y + h < height) ? y + h : height);
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
@@ -187,7 +187,7 @@ public class CollisionDetection {
 		return false;
 	}
 
-	public boolean collides(int x, int y) {
+	public boolean collides(final int x, final int y) {
 		if ((x < 0) || (x >= width)) {
 			return true;
 		}
@@ -207,12 +207,12 @@ public class CollisionDetection {
 		return height;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(final int width) {
 		this.width = width;
 		clear();
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(final int height) {
 		this.height = height;
 		clear();
 	}

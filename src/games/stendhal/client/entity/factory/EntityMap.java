@@ -45,32 +45,34 @@ import java.util.Map;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-class Triple<P,S,T> {
-// they are used in equals and hashcode
-	@SuppressWarnings("unused")
-	private P prim;
-	@SuppressWarnings("unused")
-	private S sec;
-	@SuppressWarnings("unused")
-	private T third;
 
-	public Triple(P prim, S sec, T third) {
-		this.prim=prim;
-		this.sec=sec;
-		this.third=third;
+class Triple<P, S, T> {
+	// they are used in equals and hashcode
+	@SuppressWarnings("unused")
+	private final P prim;
+	@SuppressWarnings("unused")
+	private final S sec;
+	@SuppressWarnings("unused")
+	private final T third;
+
+	public Triple(final P prim, final S sec, final T third) {
+		this.prim = prim;
+		this.sec = sec;
+		this.third = third;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
-	
+
 }
+
 /**
  * Registers the relationship between Type, eclass and java class of entity
  * Objects.
@@ -81,7 +83,7 @@ class Triple<P,S,T> {
  * 
  */
 public final class EntityMap {
-	private static Map<Triple<String, String,String>, Class< ? extends Entity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends Entity>>();
+	private static Map<Triple<String, String, String>, Class< ? extends Entity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends Entity>>();
 
 	static {
 		register();
@@ -91,9 +93,9 @@ public final class EntityMap {
 	 * Fills EntityMap with initial values.
 	 */
 	private static void register() {
-		register("player", null,null, Player.class);
+		register("player", null, null, Player.class);
 
-		register("creature", "boss",null, BossCreature.class);
+		register("creature", "boss", null, BossCreature.class);
 		register("creature", null, null, Creature.class);
 
 		register("sheep", null, null, Sheep.class);
@@ -102,31 +104,31 @@ public final class EntityMap {
 		 * Not sure whether to register individual pets from child classes, or
 		 * the whole parent class Pet. suggestions welcome.
 		 */
-		register("pet","baby_dragon", null, Pet.class);
-		register("pet","cat", null, Pet.class);
-		register("pet", null,null, Pet.class);
+		register("pet", "baby_dragon", null, Pet.class);
+		register("pet", "cat", null, Pet.class);
+		register("pet", null, null, Pet.class);
 
-		register("npc",null, null, NPC.class);
+		register("npc", null, null, NPC.class);
 
 		register("plant_grower", null, null, PlantGrower.class);
-		register("growing_entity_spawner", "items/grower/carrot_grower",null,
+		register("growing_entity_spawner", "items/grower/carrot_grower", null,
 				CarrotGrower.class);
-		register("growing_entity_spawner", null,null, GrainField.class);
+		register("growing_entity_spawner", null, null, GrainField.class);
 
 		register("gold_source", null, null, GoldSource.class);
 		register("fish_source", null, null, FishSource.class);
 		register("well_source", null, null, WellSource.class);
 
-		register("area", null,null, InvisibleEntity.class);
+		register("area", null, null, InvisibleEntity.class);
 
 		register("food", null, null, SheepFood.class);
-		register("chest",null, null, Chest.class);
+		register("chest", null, null, Chest.class);
 
-		register("corpse", null,null, Corpse.class);
+		register("corpse", null, null, Corpse.class);
 
-		register("blood", null,null, Blood.class);
-		register("sign", null, null,Sign.class);
-		register("blackboard", null,null, Sign.class);
+		register("blood", null, null, Blood.class);
+		register("sign", null, null, Sign.class);
+		register("blackboard", null, null, Sign.class);
 
 		register("item", null, null, Item.class);
 		register("item", "box", null, Box.class);
@@ -143,11 +145,11 @@ public final class EntityMap {
 
 		register("item", "resource", null, StackableItem.class);
 
-		register("item", "scroll",  null,UseableItem.class);
-		register("item", "jewellery",  null,StackableItem.class);
+		register("item", "scroll", null, UseableItem.class);
+		register("item", "jewellery", null, StackableItem.class);
 
 		register("portal", null, null, Portal.class);
-		register("door", null,null, Door.class);
+		register("door", null, null, Door.class);
 
 		register("fire", null, null, Fire.class);
 	}
@@ -161,9 +163,11 @@ public final class EntityMap {
 	 * @param entityClazz
 	 *            the java class of the Entity
 	 */
-	private static void register(final String type, final String eclass, final String subClass,
-			final Class< ? extends Entity> entityClazz) {
-		entityMap.put(new Triple<String, String,String>(type, eclass,subClass), entityClazz);
+	private static void register(final String type, final String eclass,
+			final String subClass, final Class< ? extends Entity> entityClazz) {
+		entityMap.put(
+				new Triple<String, String, String>(type, eclass, subClass),
+				entityClazz);
 	}
 
 	/**
@@ -172,20 +176,24 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
-	 * @param subClass 
+	 * @param subClass
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class< ? extends Entity> getClass(final String type,final String eclass, final String subClass) {
-		//System.out.print(type+" : "+eclass +" : "+subClass +"=");
-		Class<? extends Entity> result = entityMap.get(new Triple<String, String, String>(type, eclass, subClass));
-		if(result==null) {
-			result = entityMap.get(new Triple<String, String, String>(type, eclass, null));
+	public static Class< ? extends Entity> getClass(final String type,
+			final String eclass, final String subClass) {
+		// System.out.print(type+" : "+eclass +" : "+subClass +"=");
+		Class< ? extends Entity> result = entityMap
+				.get(new Triple<String, String, String>(type, eclass, subClass));
+		if (result == null) {
+			result = entityMap.get(new Triple<String, String, String>(type,
+					eclass, null));
 		}
-		if(result==null) {
-			result = entityMap.get(new Triple<String, String, String>(type, null, null));
+		if (result == null) {
+			result = entityMap.get(new Triple<String, String, String>(type,
+					null, null));
 		}
-		//System.out.println(result.getName());
+		// System.out.println(result.getName());
 		return result;
 	}
 }

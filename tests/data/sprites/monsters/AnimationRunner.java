@@ -11,13 +11,13 @@ public class AnimationRunner implements ActionListener {
 
 	private BufferedImage[] frames;
 
-	private ImageViewerSwing ivs;
+	private final ImageViewerSwing ivs;
 
 	private int currentframe;
 
 	private int number_of_frames;
 
-	public AnimationRunner(ImageViewerSwing ivs) {
+	public AnimationRunner(final ImageViewerSwing ivs) {
 
 		this.ivs = ivs;
 
@@ -26,7 +26,7 @@ public class AnimationRunner implements ActionListener {
 
 	// Set up the components in the GUI.
 
-	public synchronized void startAnimation(BufferedImage[] frames) {
+	public synchronized void startAnimation(final BufferedImage[] frames) {
 		this.frames = frames;
 		number_of_frames = frames.length;
 		timer.start();
@@ -41,7 +41,7 @@ public class AnimationRunner implements ActionListener {
 
 	int direction = 1;
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(final ActionEvent e) {
 		ivs.setImage(frames[currentframe]);
 
 		if (currentframe == number_of_frames - 1) {

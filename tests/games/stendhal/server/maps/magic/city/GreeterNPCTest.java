@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -24,7 +25,7 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new GreeterNPC());
 	}
@@ -39,9 +40,9 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Erodel Bmud");
+		final SpeakerNPC npc = getNPC("Erodel Bmud");
 		assertNotNull(npc);
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Erodel"));
 		assertEquals("Salutations, traveller.", npc.get("text"));
@@ -52,8 +53,8 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyScroll() {
-		SpeakerNPC npc = getNPC("Erodel Bmud");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Erodel Bmud");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Salutations, traveller.", npc.get("text"));
@@ -129,8 +130,8 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSellScroll() {
-		SpeakerNPC npc = getNPC("Erodel Bmud");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Erodel Bmud");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Salutations, traveller.", npc.get("text"));

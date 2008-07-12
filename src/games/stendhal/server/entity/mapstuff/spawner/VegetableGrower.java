@@ -28,7 +28,7 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		UseListener {
 	private String vegetableName;
 
-	protected final void setVegetableName(String vegetableName) {
+	protected final void setVegetableName(final String vegetableName) {
 		this.vegetableName = vegetableName;
 	}
 
@@ -37,13 +37,13 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
     }
 
 
-	public VegetableGrower(RPObject object, String name) {
+	public VegetableGrower(final RPObject object, final String name) {
 		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
 		vegetableName = name;
 		update();
 	}
 
-	public VegetableGrower(String name) {
+	public VegetableGrower(final String name) {
 		super("items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
 		vegetableName = name;
 	}
@@ -70,11 +70,11 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 	 * @param entity that tries to harvest
 	 * @return true on success
 	 */
-	public boolean onUsed(RPEntity entity) {
+	public boolean onUsed(final RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == getMaxRipeness()) {
 				onFruitPicked(null);
-				Item grain = SingletonRepository.getEntityManager().getItem(
+				final Item grain = SingletonRepository.getEntityManager().getItem(
 						vegetableName);
 				entity.equip(grain, true);
 				return true;

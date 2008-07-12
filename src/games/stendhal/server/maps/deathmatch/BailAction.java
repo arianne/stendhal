@@ -13,14 +13,14 @@ import games.stendhal.server.entity.player.Player;
 public class BailAction extends SpeakerNPC.ChatAction {
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		String questInfo = player.getQuest("deathmatch");
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		final String questInfo = player.getQuest("deathmatch");
 		if (questInfo == null) {
 			engine.say("Coward, you haven't even #started!");
 			return;
 		}
 
-		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.START) {
 			engine.say("Coward, we haven't even #started!");
@@ -31,8 +31,8 @@ public class BailAction extends SpeakerNPC.ChatAction {
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
-		Item helmet = player.getFirstEquipped("trophy helmet");
-		if (helmet != null && helmet.has("def") && helmet.getInt("def") > 1) {
+		final Item helmet = player.getFirstEquipped("trophy helmet");
+		if ((helmet != null) && helmet.has("def") && (helmet.getInt("def") > 1)) {
 			engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.");
 		} else {
 			engine.say("Coward! You're not as experienced as you used to be.");

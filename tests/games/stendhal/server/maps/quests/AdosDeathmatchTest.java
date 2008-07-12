@@ -36,16 +36,16 @@ public class AdosDeathmatchTest {
 	
 	@Test
 	public void testRecruiter() throws Exception {
-		DeathmatchRecruiterNPC configurator =  new DeathmatchRecruiterNPC();
-		StendhalRPZone zone = new StendhalRPZone("dmTestZone");
-		StendhalRPZone ados_wall_n = new StendhalRPZone("0_ados_wall_n", 200, 200);
+		final DeathmatchRecruiterNPC configurator =  new DeathmatchRecruiterNPC();
+		final StendhalRPZone zone = new StendhalRPZone("dmTestZone");
+		final StendhalRPZone ados_wall_n = new StendhalRPZone("0_ados_wall_n", 200, 200);
 		MockStendlRPWorld.get().addRPZone(ados_wall_n);
 
 		configurator.configureZone(zone, null);
-		SpeakerNPC recruiter = SingletonRepository.getNPCList().get("Thonatus");
+		final SpeakerNPC recruiter = SingletonRepository.getNPCList().get("Thonatus");
 		assertNotNull(recruiter);
-		Player dmPlayer = PlayerTestHelper.createPlayer("dmPlayer");
-		Engine en = recruiter.getEngine();
+		final Player dmPlayer = PlayerTestHelper.createPlayer("dmPlayer");
+		final Engine en = recruiter.getEngine();
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		en.step(dmPlayer, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -87,7 +87,7 @@ public class AdosDeathmatchTest {
 		
 		en.setCurrentState(ConversationStates.IDLE);
 		
-		Player joiner = PlayerTestHelper.createPlayer("dmPlayer");
+		final Player joiner = PlayerTestHelper.createPlayer("dmPlayer");
 		joiner.setLevel(19);
 		en.step(joiner, "hi");
 		en.step(joiner, "challenge");

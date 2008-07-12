@@ -51,12 +51,12 @@ public class CloaksForBario extends AbstractQuest {
 	private static final String QUEST_SLOT = "cloaks_for_bario";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Bario");
+		final SpeakerNPC npc = npcs.get("Bario");
 
 		// player says hi before starting the quest
 		npc.add(
@@ -92,7 +92,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							// player has already finished the quest
 							engine.say("I don't have anything else for you to do, really. Thanks for the offer.");
@@ -127,7 +127,7 @@ public class CloaksForBario extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Bario");
+		final SpeakerNPC npc = npcs.get("Bario");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -135,7 +135,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Hi again! I still need "
 							+ player.getQuest(QUEST_SLOT)
 							+ " blue elven "
@@ -161,11 +161,11 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.drop("blue elf cloak")) {
 							// find out how many cloaks the player still has to
 							// bring
-							int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
+							final int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
 							if (toBring > 0) {
 								player.setQuest(QUEST_SLOT,
 										Integer.toString(toBring));
@@ -174,7 +174,7 @@ public class CloaksForBario extends AbstractQuest {
 												"cloak") + ".");
 								engine.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
-								Item goldenShield = SingletonRepository.getEntityManager().getItem(
+								final Item goldenShield = SingletonRepository.getEntityManager().getItem(
 										"golden shield");
 								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);

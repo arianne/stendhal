@@ -46,7 +46,7 @@ public class AttackAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			// evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(
+			final Entity entity = EntityHelper.entityFromTargetName(
 					action.get(TARGET), player);
 
 			if (entity instanceof RPEntity) {

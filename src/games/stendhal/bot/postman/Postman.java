@@ -28,9 +28,9 @@ public class Postman implements Runnable {
 	private static final String _0_SEMOS_PLAINS_N = "0_semos_plains_n";
 	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
-	private Properties messages = new Properties();
-	private ClientFramework clientManager;
-	private PostmanIRC postmanIRC;
+	private final Properties messages = new Properties();
+	private final ClientFramework clientManager;
+	private final PostmanIRC postmanIRC;
 	private static final String greeting = "Hi, I am the postman. How can I #help you?";
 	private static final String intro = "I store messages for offline players and deliver them on login.\n";
 	private static final String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
@@ -43,7 +43,7 @@ public class Postman implements Runnable {
 	 * @param postmanIRC
 	 *            postmanIRC
 	 */
-	public Postman(final ClientFramework clientManager, PostmanIRC postmanIRC) {
+	public Postman(final ClientFramework clientManager, final PostmanIRC postmanIRC) {
 		this.clientManager = clientManager;
 		this.postmanIRC = postmanIRC;
 
@@ -52,7 +52,7 @@ public class Postman implements Runnable {
 
 		try {
 			this.messages.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_XML));
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.info("no message file found will be created on first write");
 		}
 	}
@@ -61,7 +61,7 @@ public class Postman implements Runnable {
 	 * Starts the /who thread.
 	 */
 	public void startThread() {
-		Thread t = new Thread(this, "Postman");
+		final Thread t = new Thread(this, "Postman");
 		t.setPriority(Thread.MIN_PRIORITY);
 		t.setDaemon(true);
 		t.start();
@@ -78,9 +78,9 @@ public class Postman implements Runnable {
 			if (object == null) {
 				return;
 			}
-			int xdiff=object.getInt("x")-Integer.parseInt(X_COORD);
-			int ydiff=object.getInt("y")-Integer.parseInt(Y_COORD);
-			if (xdiff*xdiff +ydiff*ydiff <36){
+			final int xdiff = object.getInt("x") - Integer.parseInt(X_COORD);
+			final int ydiff = object.getInt("y") - Integer.parseInt(Y_COORD);
+			if (xdiff * xdiff + ydiff * ydiff < 36) {
 				return;
 			}
 
@@ -88,17 +88,17 @@ public class Postman implements Runnable {
 					&& object.has("name")) {
 				if (object.has("text")) {
 					if (!object.get("name").equals("postman")) {
-						String text = object.get("text");
+						final String text = object.get("text");
 						String playerName = "";
 						playerName = object.get("name");
 
-						java.text.Format formatter = new java.text.SimpleDateFormat(
+						final java.text.Format formatter = new java.text.SimpleDateFormat(
 								"[HH:mm] ");
-						String dateString = formatter.format(new Date());
+						final String dateString = formatter.format(new Date());
 						System.err.println(dateString + playerName + ": "
 								+ text);
 
-						StringTokenizer st = new StringTokenizer(text, " ");
+						final StringTokenizer st = new StringTokenizer(text, " ");
 						String cmd = "";
 						if (st.hasMoreTokens()) {
 							cmd = st.nextToken();
@@ -121,7 +121,7 @@ public class Postman implements Runnable {
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			logger.error(e, e);
 		}
@@ -148,14 +148,14 @@ public class Postman implements Runnable {
 					&& object.has("name")) {
 				if (object.get("name").equals("postman")) {
 
-					java.text.Format formatter = new java.text.SimpleDateFormat(
+					final java.text.Format formatter = new java.text.SimpleDateFormat(
 							"[HH:mm] ");
-					String dateString = formatter.format(new Date());
+					final String dateString = formatter.format(new Date());
 					System.err.println(dateString + text);
 
-					StringTokenizer st = new StringTokenizer(text, " ");
-					String from = st.nextToken();
-					String arianneCmd = st.nextToken(); // tells
+					final StringTokenizer st = new StringTokenizer(text, " ");
+					final String from = st.nextToken();
+					final String arianneCmd = st.nextToken(); // tells
 					st.nextToken(); // you:
 
 					if (arianneCmd.equals("tells")) {
@@ -201,7 +201,7 @@ public class Postman implements Runnable {
 				}
 
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			logger.error(e, e);
 		}
@@ -211,26 +211,26 @@ public class Postman implements Runnable {
 	 * response to "who".
 	 * @param st 
 	 */
-	private void onWhoResponse(StringTokenizer st) {
+	private void onWhoResponse(final StringTokenizer st) {
 		String lastUserPart = "";
 		while (st.hasMoreTokens()) {
-			String token = st.nextToken();
+			final String token = st.nextToken();
 			// System.err.println("Player: " + token);
-			int pos = token.indexOf("(");
+			final int pos = token.indexOf("(");
 			if (pos < 0) {
 				lastUserPart = lastUserPart + " " + token;
 				continue;
 			}
-			String user = lastUserPart + token.substring(0, pos);
+			final String user = lastUserPart + token.substring(0, pos);
 			lastUserPart = "";
 
 			// Are there messages for this player?
-			Iterator< ? > itr = messages.keySet().iterator();
+			final Iterator< ? > itr = messages.keySet().iterator();
 			while (itr.hasNext()) {
-				String key = itr.next().toString();
+				final String key = itr.next().toString();
 				if (key.startsWith(user + "!")) {
 					String from = key.substring(key.indexOf("!") + 1);
-					String message = messages.getProperty(key);
+					final String message = messages.getProperty(key);
 					if (from.equals(user)) {
 						from = "You";
 					}
@@ -248,7 +248,7 @@ public class Postman implements Runnable {
 			messages.storeToXML(
 					new FileOutputStream(STENDHAL_POSTMAN_XML),
 					"These are the messages postman should deliver.");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
@@ -263,7 +263,7 @@ public class Postman implements Runnable {
 		if (st.hasMoreTokens()) {
 			msg = st.nextToken("\0").trim(); // the rest of the message
 		}
-		String old = messages.getProperty(param + "!" + from);
+		final String old = messages.getProperty(param + "!" + from);
 		tell(from, "Message accepted for delivery.");
 		if (old != null) {
 			msg = old + "\n" + msg;
@@ -275,23 +275,23 @@ public class Postman implements Runnable {
 			messages.storeToXML(
 					new FileOutputStream(STENDHAL_POSTMAN_XML),
 					"These are the messages postman should deliver.");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
 
 	private void onWhere() {
-		RPAction who = new RPAction();
+		final RPAction who = new RPAction();
 		who.put("type", "who");
 		send(who);
 	}
 
-	private void tell(String to, final String message) {
+	private void tell(final String to, final String message) {
 		if (to.equals("postman")) {
 			logger.warn("I am not speaking to myself: " + message);
 			return;
 		}
-		RPAction tell = new RPAction();
+		final RPAction tell = new RPAction();
 		tell.put("type", "tell");
 		tell.put("target", to);
 		tell.put("text", message);
@@ -299,7 +299,7 @@ public class Postman implements Runnable {
 	}
 
 	private void chat(final String message) {
-		RPAction chat = new RPAction();
+		final RPAction chat = new RPAction();
 		chat.put("type", "chat");
 		chat.put("text", message);
 		send(chat);
@@ -307,14 +307,14 @@ public class Postman implements Runnable {
 
 	@SuppressWarnings("unused")
 	private void shout(final String message) {
-		RPAction chat = new RPAction();
+		final RPAction chat = new RPAction();
 		chat.put("type", "tellall");
 		chat.put("text", message);
 		send(chat);
 	}
 
 	private void teleportPostman() {
-		RPAction teleport = new RPAction();
+		final RPAction teleport = new RPAction();
 		teleport.put("type", "teleport");
 		teleport.put("target", "postman");
 		teleport.put("zone", _0_SEMOS_PLAINS_N);
@@ -324,7 +324,7 @@ public class Postman implements Runnable {
 	}
 
 	private void dumpPlayerPosition() {
-		RPAction chat = new RPAction();
+		final RPAction chat = new RPAction();
 		chat.put("type", "script");
 		chat.put("target", "PlayerPositionMonitoring.class");
 		send(chat);
@@ -334,17 +334,17 @@ public class Postman implements Runnable {
 		teleportPostman();
 		try {
 			Thread.sleep(400);
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			logger.error(e, e);
 		}
 		while (true) {
-			RPAction who = new RPAction();
+			final RPAction who = new RPAction();
 			who.put("type", "who");
 			send(who);
 
 			try {
 				Thread.sleep(60 * 1000);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 				logger.error(e, e);
 			}
 		}

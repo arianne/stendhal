@@ -108,7 +108,7 @@ public class CreatureAnimationPreview {
 		return imageViewerSwing4;
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 
 		(new CreatureAnimationPreview()).getJFrame().setVisible(true);
 	}
@@ -151,7 +151,7 @@ public class CreatureAnimationPreview {
 			jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 
 				@Override
-				public void windowClosing(java.awt.event.WindowEvent e) {
+				public void windowClosing(final java.awt.event.WindowEvent e) {
 					if (animations != null) {
 						for (int i = 0; i < animations.length; i++) {
 							if (animations[i] != null) {
@@ -215,20 +215,20 @@ public class CreatureAnimationPreview {
 	private FileTree getJTree() {
 		if (jTree == null) {
 			try {
-				Preferences pref = Preferences.userNodeForPackage(AnimationRunner.class);
+				final Preferences pref = Preferences.userNodeForPackage(AnimationRunner.class);
 				File lastDirectory = null;
 				if (pref.get("lastpath", null) != null) {
 					lastDirectory = new File(pref.get("lastpath", null));
 
 				}
 
-				JFileChooser fc = new JFileChooser(lastDirectory);
+				final JFileChooser fc = new JFileChooser(lastDirectory);
 
 				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int returnVal = fc.showOpenDialog(jScrollPane);
+				final int returnVal = fc.showOpenDialog(jScrollPane);
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
+					final File file = fc.getSelectedFile();
 					Preferences.userNodeForPackage(AnimationRunner.class).put("lastpath", file.getAbsolutePath());
 
 					jTree = new FileTree(file.getPath());
@@ -236,19 +236,19 @@ public class CreatureAnimationPreview {
 					System.exit(0);
 				}
 
-			} catch (FileNotFoundException e1) {
+			} catch (final FileNotFoundException e1) {
 				e1.printStackTrace();
-			} catch (SecurityException e1) {
+			} catch (final SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if (jTree != null) {
 				jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-					public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+					public void valueChanged(final javax.swing.event.TreeSelectionEvent e) {
 						jFrame.setTitle(e.getNewLeadSelectionPath().getLastPathComponent().toString());
 
 						BufferedImage buf = null;
 						try {
-							File file = new File(e.getNewLeadSelectionPath().getLastPathComponent().toString());
+							final File file = new File(e.getNewLeadSelectionPath().getLastPathComponent().toString());
 							if (file.isDirectory()) {
 								return;
 							}
@@ -257,7 +257,7 @@ public class CreatureAnimationPreview {
 							if (buf == null) {
 								return;
 							}
-						} catch (IOException e1) {
+						} catch (final IOException e1) {
 							// should never happen;
 							e1.printStackTrace();
 							return;
@@ -290,15 +290,15 @@ public class CreatureAnimationPreview {
 		return jTree;
 	}
 
-	AnimationRunner AnimationCreate(BufferedImage buf, int row, ImageViewerSwing imageViewer) {
+	AnimationRunner AnimationCreate(final BufferedImage buf, final int row, final ImageViewerSwing imageViewer) {
 		return new AnimationRunner(imageViewer);
 	}
 
-	private BufferedImage[] buffersCreate(BufferedImage buf, int row) {
-		BufferedImage[] buffers = new BufferedImage[NUMBER_OF_FRAMES];
-		int framewidth = buf.getWidth() / CreatureAnimationPreview.NUMBER_OF_FRAMES;
+	private BufferedImage[] buffersCreate(final BufferedImage buf, final int row) {
+		final BufferedImage[] buffers = new BufferedImage[NUMBER_OF_FRAMES];
+		final int framewidth = buf.getWidth() / CreatureAnimationPreview.NUMBER_OF_FRAMES;
 
-		int frameheight = buf.getHeight() / CreatureAnimationPreview.NUMBER_OF_ROWS;
+		final int frameheight = buf.getHeight() / CreatureAnimationPreview.NUMBER_OF_ROWS;
 		for (int i = 0; i < NUMBER_OF_FRAMES; i++) {
 
 			buffers[i] = buf.getSubimage(i * framewidth, row * frameheight, framewidth, frameheight);

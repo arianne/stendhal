@@ -24,8 +24,8 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	 * @param sp 
 	 * @param gbh 
 	 * @param ui */
-	public GameButtonHelperContent(SettingsPanel sp, GameButtonHelper gbh,
-			StendhalUI ui) { 
+	public GameButtonHelperContent(final SettingsPanel sp, final GameButtonHelper gbh,
+			final StendhalUI ui) { 
 		// settings panel for the setVisable stuff
 		initComponents();
 		
@@ -35,7 +35,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	// <editor-fold defaultstate="collapsed" desc=" Generated Code
 	// ">//GEN-BEGIN:initComponents
 	private void initComponents() {
-		WoodStyle style = new WoodStyle();
+		final WoodStyle style = new WoodStyle();
 		gh = new StyledJButton(style);
 		jButton1 = new StyledJButton(style);
 
@@ -48,7 +48,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 		gh.setText("Game Help");
 		gh.setOpaque(false);
 		gh.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(final java.awt.event.ActionEvent evt) {
 				ghActionPerformed(evt);
 			}
 		});
@@ -58,7 +58,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 
 		jButton1.setText("Purchase Helper");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(final java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
@@ -68,7 +68,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 
 	} // </editor-fold>//GEN-END:initComponents
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
 	// TODO: Do right
 	// if (sp.buywindow.isVisible()) {
 	// sp.buywindow.setVisible(false); // so very useful...
@@ -77,7 +77,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	// }
 	} // GEN-LAST:event_jButton1ActionPerformed
 
-	private void ghActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ghActionPerformed
+	private void ghActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ghActionPerformed
 		new HelpDialog().display();
 	} // GEN-LAST:event_ghActionPerformed
 

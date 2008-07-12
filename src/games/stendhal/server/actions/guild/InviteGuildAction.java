@@ -38,14 +38,14 @@ public class InviteGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	protected void inviteToGuild(Player player, RPAction action) {
+	protected void inviteToGuild(final Player player, final RPAction action) {
 
 		// invites to guild
 		if (action.has(_PLAYERNAME) && action.has(_GUILDNAME)) {
 			// we have all the options, so let's coninue...
 
 			// we use player1 for other player
-			Player player1 = SingletonRepository.getRuleProcessor().getPlayer(
+			final Player player1 = SingletonRepository.getRuleProcessor().getPlayer(
 					action.get(_PLAYERNAME));
 			if (player1.get(_GUILD) == null) {
 				// it is safe to put the player from the guild as they are not
@@ -53,7 +53,7 @@ public class InviteGuildAction implements ActionListener {
 				player1.put(_GUILD, action.get(_GUILDNAME));
 
 				// set the description
-				String description = "You see " + player1.getTitle() + ".\n"
+				final String description = "You see " + player1.getTitle() + ".\n"
 						+ player1.getTitle() + " is level "
 						+ player1.getLevel() + " and is a member of the "
 						+ action.get(_GUILDNAME) + " guild.";
@@ -94,7 +94,7 @@ public class InviteGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.get(_TYPE).equals(_INVITE_GUILD)) {
 			inviteToGuild(player, action);
 		}

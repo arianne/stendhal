@@ -31,7 +31,7 @@ public class AttackStrategyFactoryTest {
 
 	@Test
 	public void testGetArcher() {
-		Map<String, String> profiles = new HashMap<String, String>();
+		final Map<String, String> profiles = new HashMap<String, String>();
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
 		profiles.put("archer", null);
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof RangeAttack);
@@ -40,7 +40,7 @@ public class AttackStrategyFactoryTest {
 
 	@Test
 	public void testGetGandhi() {
-		Map<String, String> profiles = new HashMap<String, String>();
+		final Map<String, String> profiles = new HashMap<String, String>();
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
 		profiles.put("gandhi", null);
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof Gandhi);
@@ -49,7 +49,7 @@ public class AttackStrategyFactoryTest {
 
 	@Test
 	public void testGetCoward() {
-		Map<String, String> profiles = new HashMap<String, String>();
+		final Map<String, String> profiles = new HashMap<String, String>();
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
 		profiles.put("coward", null);
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof Coward);
@@ -58,7 +58,7 @@ public class AttackStrategyFactoryTest {
 
 	@Test
 	public void testGetStupidCoward() {
-		Map<String, String> profiles = new HashMap<String, String>();
+		final Map<String, String> profiles = new HashMap<String, String>();
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
 		profiles.put("stupid coward", null);
 		assertTrue(AttackStrategyFactory.get(profiles) instanceof StupidCoward);

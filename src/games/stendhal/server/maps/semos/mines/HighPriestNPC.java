@@ -18,14 +18,14 @@ public class HighPriestNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildMineArea(zone, attributes);
 	}
 
-	private void buildMineArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Aenihata") {
+	private void buildMineArea(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Aenihata") {
 
 			@Override
 			protected void createPath() {
@@ -36,7 +36,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply = "I am summoning a barrier to keep the #balrog away.";
 
 						if (player.getLevel() < 150) {
@@ -56,9 +56,9 @@ public class HighPriestNPC implements ZoneConfigurator {
 
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				if (!player.hasQuest("AenihataReward")
-						&& player.getLevel() >= 150) {
+						&& (player.getLevel() >= 150)) {
 					player.setQuest("AenihataReward", "done");
 
 					player.setATKXP(1000000 + player.getATKXP());

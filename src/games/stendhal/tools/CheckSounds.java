@@ -31,14 +31,14 @@ public class CheckSounds {
 
 		public boolean active = true;
 
-		public void update(LineEvent event) {
+		public void update(final LineEvent event) {
 			if (event.getType() == LineEvent.Type.STOP) {
 				active = false;
 			}
 		}
 	}
 
-	private static String getString(String s, int width, char c) {
+	private static String getString(String s, final int width, final char c) {
 		while (s.length() < width) {
 			s += c;
 		}
@@ -46,42 +46,42 @@ public class CheckSounds {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
-		Properties prop = new Properties();
+	public static void main(final String[] args) throws Exception {
+		final Properties prop = new Properties();
 		loadSoundProperties(prop);
 
-		Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
-		Map<String, String> fileFormatMap = new TreeMap<String, String>();
-		Mixer defaultMixer = AudioSystem.getMixer(null);
+		final Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
+		final Map<String, String> fileFormatMap = new TreeMap<String, String>();
+		final Mixer defaultMixer = AudioSystem.getMixer(null);
 
 		// get sound library filepath
-		String soundBase = prop.getProperty("soundbase", "data/sounds");
+		final String soundBase = prop.getProperty("soundbase", "data/sounds");
 
 		// read all load-permitted sounds listed in properties
 		// from soundfile into cache map
-		for (Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
+		for (final Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
 			if (isValidEntry(entry.getKey(), entry.getValue())) {
-				String name = entry.getKey().substring(4);
+				final String name = entry.getKey().substring(4);
 				String filename = entry.getValue();
-				int pos = filename.indexOf(',');
+				final int pos = filename.indexOf(',');
 				if (pos > -1) {
 					filename = filename.substring(0, pos);
 				}
 
 				try {
-					InputStream is = CheckSounds.class.getClassLoader().getResourceAsStream(
+					final InputStream is = CheckSounds.class.getClassLoader().getResourceAsStream(
 							soundBase + "/" + filename);
-					AudioInputStream ais = AudioSystem.getAudioInputStream(is);
-					AudioFormat format = ais.getFormat();
-					String formatString = format.toString();
+					final AudioInputStream ais = AudioSystem.getAudioInputStream(is);
+					final AudioFormat format = ais.getFormat();
+					final String formatString = format.toString();
 
 					if (TESTPLAY_SAMPLES) {
 						// testplay the sound
-						DataLine.Info info = new DataLine.Info(Clip.class,
+						final DataLine.Info info = new DataLine.Info(Clip.class,
 								format);
 						if (defaultMixer.isLineSupported(info)) {
 							AudioInputStream playStream = ais;
-							AudioFormat defaultFormat = new AudioFormat(
+							final AudioFormat defaultFormat = new AudioFormat(
 									format.getSampleRate(), 16, 1, false, true);
 							if (AudioSystem.isConversionSupported(
 									defaultFormat, format)) {
@@ -95,10 +95,10 @@ public class CheckSounds {
 							System.out.println("testplaying " + name + " "
 									+ playStream.getFormat());
 
-							Clip line = (Clip) defaultMixer.getLine(info);
+							final Clip line = (Clip) defaultMixer.getLine(info);
 							line.open(playStream);
 							line.loop(2);
-							TestLineListener testListener = new TestLineListener();
+							final TestLineListener testListener = new TestLineListener();
 							line.addLineListener(testListener);
 							while (testListener.active) {
 								Thread.yield();
@@ -111,20 +111,20 @@ public class CheckSounds {
 					if (!formatMap.containsKey(formatString)) {
 						formatMap.put(formatString, format);
 					}
-				} catch (UnsupportedAudioFileException e) {
+				} catch (final UnsupportedAudioFileException e) {
 					System.out.println(name
 							+ " cannot be read, the file format is not supported");
 				}
 			}
 		}
 
-		Mixer.Info[] mixerList = AudioSystem.getMixerInfo();
-		int[] width = new int[mixerList.length];
+		final Mixer.Info[] mixerList = AudioSystem.getMixerInfo();
+		final int[] width = new int[mixerList.length];
 
 		System.out.println("\n\n--- Result ---\n");
 		System.out.println("installed mixer: ");
 		for (int i = 0; i < mixerList.length; i++) {
-			Mixer.Info mixer = mixerList[i];
+			final Mixer.Info mixer = mixerList[i];
 			width[i] = Math.max(mixer.getName().length(),
 					"unsupported".length());
 			System.out.println(mixer.getName() + " - " + mixer.getDescription());
@@ -145,12 +145,12 @@ public class CheckSounds {
 		}
 		System.out.println("---------------------");
 
-		for (String key : formatMap.keySet()) {
-			DataLine.Info info = new DataLine.Info(Clip.class,
+		for (final String key : formatMap.keySet()) {
+			final DataLine.Info info = new DataLine.Info(Clip.class,
 					formatMap.get(key));
 			for (int i = 0; i < mixerList.length; i++) {
-				Mixer mixer = AudioSystem.getMixer(mixerList[i]);
-				boolean supported = mixer.isLineSupported(info);
+				final Mixer mixer = AudioSystem.getMixer(mixerList[i]);
+				final boolean supported = mixer.isLineSupported(info);
 				System.out.print(getString((supported ? "  " : "un")
 						+ "supported (" + mixer.getMaxLines(info) + ")",
 						width[i], ' ')
@@ -160,7 +160,7 @@ public class CheckSounds {
 			System.out.print(key);
 			// line not supported by any mixer
 			String files = "";
-			for (String file : fileFormatMap.keySet()) {
+			for (final String file : fileFormatMap.keySet()) {
 				if (key.equals(fileFormatMap.get(file))) {
 					files += " " + file;
 				}
@@ -184,7 +184,7 @@ public class CheckSounds {
 	 *            the Property Object to load to
 	 * @throws IOException
 	 */
-	private static void loadSoundProperties(Properties prop) throws IOException {
+	private static void loadSoundProperties(final Properties prop) throws IOException {
 		InputStream in1;
 
 		in1 = CheckSounds.class.getClassLoader().getResourceAsStream(
@@ -205,7 +205,7 @@ public class CheckSounds {
 	 * @param value
 	 * @return true, if it is valid, false otherwise
 	 */
-	private static boolean isValidEntry(String key, String value) {
+	private static boolean isValidEntry(final String key, final String value) {
 		boolean load;
 		int pos1;
 		if (key.startsWith("sfx.")) {

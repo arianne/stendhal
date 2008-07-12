@@ -42,12 +42,12 @@ public class ClubOfThornsTest {
 	@Test
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		ClubOfThorns quest = new ClubOfThorns();
+		final ClubOfThorns quest = new ClubOfThorns();
 		quest.addToWorld();
-		SpeakerNPC npc = quest.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
-		double karma = player.getKarma();
+		final SpeakerNPC npc = quest.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final double karma = player.getKarma();
 		
 		// Greetings missing. Jump straight to attending
 		en.setCurrentState(ConversationStates.ATTENDING);
@@ -63,11 +63,11 @@ public class ClubOfThornsTest {
 	@Test
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
-		ClubOfThorns quest = new ClubOfThorns();
+		final ClubOfThorns quest = new ClubOfThorns();
 		quest.addToWorld();
-		SpeakerNPC npc = quest.npcs.get(NPC);
-		Engine en = npc.getEngine();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = quest.npcs.get(NPC);
+		final Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		double karma = player.getKarma();
 		
 		// Kill a mountain orc chief to to allow checking the slot gets cleaned

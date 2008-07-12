@@ -53,7 +53,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param interval
 	 *            Standing action interval.
 	 */
-	public OccupantArea(int width, int height, int interval) {
+	public OccupantArea(final int width, final int height, final int interval) {
 		super(width, height);
 
 		this.interval = interval;
@@ -72,7 +72,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param entity
 	 *            The RPEntity to add.
 	 */
-	protected void addTarget(RPEntity entity) {
+	protected void addTarget(final RPEntity entity) {
 		targets.add(entity.getID());
 
 		if (targets.size() == 1) {
@@ -87,7 +87,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * 
 	 * 
 	 */
-	public boolean isOccupant(RPEntity entity) {
+	public boolean isOccupant(final RPEntity entity) {
 		return targets.contains(entity.getID());
 	}
 
@@ -101,7 +101,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should not be processed,
 	 *         <code>true</code> otherwise.
 	 */
-	protected boolean handleAdded(RPEntity entity) {
+	protected boolean handleAdded(final RPEntity entity) {
 		return true;
 	}
 
@@ -114,7 +114,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
-	protected boolean handleInterval(RPEntity entity) {
+	protected boolean handleInterval(final RPEntity entity) {
 		return true;
 	}
 
@@ -127,7 +127,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
-	protected boolean handleMovement(RPEntity entity) {
+	protected boolean handleMovement(final RPEntity entity) {
 		return true;
 	}
 
@@ -138,7 +138,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param entity
 	 *            The RPEntity that was added.
 	 */
-	protected void handleRemoved(RPEntity entity) {
+	protected void handleRemoved(final RPEntity entity) {
 		// can be implemented by sub classes.
 	}
 
@@ -148,7 +148,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param entity
 	 *            The RPEntity to remove.
 	 */
-	protected void removeTarget(RPEntity entity) {
+	protected void removeTarget(final RPEntity entity) {
 		targets.remove(entity.getID());
 
 		if (targets.isEmpty()) {
@@ -162,7 +162,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param playersOnly
 	 *            Whether to only affect players.
 	 */
-	public void setPlayersOnly(boolean playersOnly) {
+	public void setPlayersOnly(final boolean playersOnly) {
 		this.playersOnly = playersOnly;
 	}
 
@@ -177,7 +177,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 *            The zone this was added to.
 	 */
 	@Override
-	public void onAdded(StendhalRPZone zone) {
+	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
 		zone.addMovementListener(this);
 	}
@@ -189,7 +189,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 *            The zone this will be removed from.
 	 */
 	@Override
-	public void onRemoved(StendhalRPZone zone) {
+	public void onRemoved(final StendhalRPZone zone) {
 		zone.removeMovementListener(this);
 		super.onRemoved(zone);
 	}
@@ -233,8 +233,8 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
-	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX,
-			int newY) {
+	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
+			final int newY) {
 		/*
 		 * Ignore non-RPEntity's
 		 */
@@ -242,7 +242,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 			return;
 		}
 
-		RPEntity rpentity = (RPEntity) entity;
+		final RPEntity rpentity = (RPEntity) entity;
 
 		/*
 		 * Only effect players?
@@ -270,8 +270,8 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 *            The old Y coordinate.
 	 * 
 	 */
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY) {
+	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+			final int oldY) {
 		/*
 		 * Ignore non-RPEntity's
 		 */
@@ -279,7 +279,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 			return;
 		}
 
-		RPEntity rpentity = (RPEntity) entity;
+		final RPEntity rpentity = (RPEntity) entity;
 
 		/*
 		 * Only effect players?
@@ -311,8 +311,8 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY, int newX, int newY) {
+	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+			final int oldY, final int newX, final int newY) {
 		/*
 		 * Ignore non-RPEntity's
 		 */
@@ -320,7 +320,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 			return;
 		}
 
-		RPEntity rpentity = (RPEntity) entity;
+		final RPEntity rpentity = (RPEntity) entity;
 
 		if (targets.contains(rpentity.getID())) {
 			handleMovement(rpentity);
@@ -337,7 +337,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param currentTurn
 	 *            Current turn number.
 	 */
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		IRPZone zone;
 		Rectangle2D area;
 
@@ -348,13 +348,13 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 		 * Perform action on entities still in the area. Remove those that have
 		 * gone missing.
 		 */
-		Iterator<RPEntity.ID> iter = targets.iterator();
+		final Iterator<RPEntity.ID> iter = targets.iterator();
 
 		while (iter.hasNext()) {
-			RPEntity.ID id = iter.next();
+			final RPEntity.ID id = iter.next();
 
 			if (zone.has(id)) {
-				RPEntity entity = (RPEntity) zone.get(id);
+				final RPEntity entity = (RPEntity) zone.get(id);
 
 				if (area.intersects(entity.getArea())) {
 					if (!handleInterval(entity)) {

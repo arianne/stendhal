@@ -10,15 +10,15 @@ import java.util.List;
  */
 class LineAnalyser {
 	// TODO: do not hard code this
-	private List<String> playerNames = Arrays.asList("hendrikus", "player",
+	private final List<String> playerNames = Arrays.asList("hendrikus", "player",
 			"rosie", "gambit", "superkym", "Heman", "jellybean"); 
 
-	private String line;
+	private final String line;
 	private String stripped;
 	private String protagonist;
 	private boolean comment = false;
 
-	protected LineAnalyser(String line) {
+	protected LineAnalyser(final String line) {
 		this.line = line.trim();
 		stripTimeStamp();
 		stripComment();
@@ -27,7 +27,7 @@ class LineAnalyser {
 
 	private void stripTimeStamp() {
 		stripped = line;
-		int pos = stripped.indexOf(']');
+		final int pos = stripped.indexOf(']');
 		if (pos < 0) {
 			return;
 		}
@@ -45,9 +45,9 @@ class LineAnalyser {
 		if (comment) {
 			return;
 		}
-		int posStart = stripped.indexOf('<');
-		int posEnd = stripped.indexOf('>');
-		if (posEnd < posStart || posStart < 0) {
+		final int posStart = stripped.indexOf('<');
+		final int posEnd = stripped.indexOf('>');
+		if ((posEnd < posStart) || (posStart < 0)) {
 			return;
 		}
 		protagonist = stripped.substring(posStart + 1, posEnd);

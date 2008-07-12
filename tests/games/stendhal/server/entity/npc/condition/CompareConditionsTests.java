@@ -21,10 +21,10 @@ public class CompareConditionsTests {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 			// just an empty sub class
 		});
-		ChatCondition[] conarray = new ChatCondition[] { new AdminCondition(),
+		final ChatCondition[] conarray = new ChatCondition[] { new AdminCondition(),
 				new AlwaysTrueCondition(),
 				new AndCondition(new AlwaysTrueCondition()),
 				new NakedCondition(),
@@ -46,8 +46,8 @@ public class CompareConditionsTests {
 
 	@Test
 	public void testname() throws Exception {
-		for (ChatCondition cond1 : conditionsA2) {
-			for (ChatCondition cond2 : conditionsB2) {
+		for (final ChatCondition cond1 : conditionsA2) {
+			for (final ChatCondition cond2 : conditionsB2) {
 				if (cond1 != cond2) {					
 					assertFalse(cond1.toString() + "should not equal" + cond2.toString(), cond1.equals(cond2));
 					assertFalse(cond2.toString() + "should not equal" + cond1.toString(), cond2.equals(cond1));

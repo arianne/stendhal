@@ -74,7 +74,7 @@ public class CreateAccountDialog extends JDialog {
 	private Frame owner;
 	private String badPasswordReason;
 
-	public CreateAccountDialog(Frame owner, StendhalClient client) {
+	public CreateAccountDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
 		this.client = client;
 		this.owner = owner;
@@ -120,7 +120,7 @@ public class CreateAccountDialog extends JDialog {
 		this.rootPane.setDefaultButton(createAccountButton);
 		createAccountButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				createAccountButton_actionPerformed(e, false);
 			}
 		});
@@ -131,7 +131,7 @@ public class CreateAccountDialog extends JDialog {
 		contentPane.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		GridBagConstraints c = new GridBagConstraints();
+		final GridBagConstraints c = new GridBagConstraints();
 
 		// row 0
 		c.anchor = GridBagConstraints.LINE_START;
@@ -218,8 +218,8 @@ public class CreateAccountDialog extends JDialog {
 
 	}
 
-	private void createAccountButton_actionPerformed(ActionEvent e,
-			boolean saveLoginBoxStatus) {
+	private void createAccountButton_actionPerformed(final ActionEvent e,
+			final boolean saveLoginBoxStatus) {
 		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
 
@@ -228,7 +228,7 @@ public class CreateAccountDialog extends JDialog {
 			return;
 		}
 
-		boolean ok = checkFields();
+		final boolean ok = checkFields();
 
 		if (!ok) {
 			return;
@@ -250,7 +250,7 @@ public class CreateAccountDialog extends JDialog {
 
 		try {
 			port = Integer.parseInt(serverPortField.getText());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			JOptionPane.showMessageDialog(owner,
 					"That is not a valid port number. Please try again.",
 					"Invalid Port", JOptionPane.WARNING_MESSAGE);
@@ -260,7 +260,7 @@ public class CreateAccountDialog extends JDialog {
 
 		/* seprate thread for connection proccess added by TheGeneral */
 		// run the connection procces in separate thread
-		Thread m_connectionThread = new Thread() {
+		final Thread m_connectionThread = new Thread() {
 
 			@Override
 			public void run() {
@@ -274,7 +274,7 @@ public class CreateAccountDialog extends JDialog {
 					client.connect(server, finalPort);
 					// for each major connection milestone call step()
 					progressBar.step(); 
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					// if something goes horribly just cancel the progressbar
 					progressBar.cancel(); 
 					setEnabled(true);
@@ -288,7 +288,7 @@ public class CreateAccountDialog extends JDialog {
 				}
 
 				try {
-					AccountResult result = client.createAccount(
+					final AccountResult result = client.createAccount(
 							accountUsername, password, email);
 					if (result.failed()) {
 						/*
@@ -328,28 +328,28 @@ public class CreateAccountDialog extends JDialog {
 
 						stendhal.doLogin = true;
 					}
-				} catch (TimeoutException e) {
+				} catch (final TimeoutException e) {
 					progressBar.cancel();
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
 							owner,
 							"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
 							"Error Creating Account", JOptionPane.ERROR_MESSAGE);
-				} catch (InvalidVersionException e) {
+				} catch (final InvalidVersionException e) {
 					progressBar.cancel();
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
 							owner,
 							"You are running an incompatible version of Stendhal. Please update",
 							"Invalid version", JOptionPane.ERROR_MESSAGE);
-				} catch (BannedAddressException e) {
+				} catch (final BannedAddressException e) {
 					progressBar.cancel();
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
 							owner,
 							"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
 							"IP Banned", JOptionPane.ERROR_MESSAGE);
-				} catch (LoginFailedException e) {
+				} catch (final LoginFailedException e) {
 					progressBar.cancel();
 					setEnabled(true);
 					JOptionPane.showMessageDialog(owner, e.getMessage(),
@@ -381,12 +381,12 @@ public class CreateAccountDialog extends JDialog {
 		//
 		// Password strength
 		//
-		boolean valPass = validatePassword(usernameField.getText(), password);
+		final boolean valPass = validatePassword(usernameField.getText(), password);
 		if (!valPass) {
 			if (badPasswordReason != null) {
 				// didn't like the password for some reason, show a dialog and
 				// try again
-				int i = JOptionPane.showOptionDialog(owner, badPasswordReason,
+				final int i = JOptionPane.showOptionDialog(owner, badPasswordReason,
 						"Bad Password", JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE, null, null, 1);
 
@@ -403,11 +403,11 @@ public class CreateAccountDialog extends JDialog {
 		//
 		// Check the email
 		//
-		String email = emailField.getText();
+		final String email = emailField.getText();
 		if (isInvalid(email)) {
-			String text = "The email you entered appears to be invalid.\n"
+			final String text = "The email you entered appears to be invalid.\n"
 					+ "You must provide a recover a lost password. Are you sure this email is correct? ";
-			int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
+			final int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
 					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, null, 1);
 
@@ -420,7 +420,7 @@ public class CreateAccountDialog extends JDialog {
 		return true;
 	}
 
-	private boolean isInvalid(String email) {
+	private boolean isInvalid(final String email) {
 		return !email.contains("@") || !email.contains(".") || (email.length() <= 5);
 	}
 
@@ -428,7 +428,7 @@ public class CreateAccountDialog extends JDialog {
 	 * Used to preview the CreateAccountDialog.
 	 * @param args 
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		new CreateAccountDialog(null, null);
 	}
 
@@ -436,12 +436,12 @@ public class CreateAccountDialog extends JDialog {
 		private static final long serialVersionUID = -5123268875802709841L;
 
 		@Override
-		public void insertString(int offs, String str, AttributeSet a)
+		public void insertString(final int offs, final String str, final AttributeSet a)
 				throws BadLocationException {
-			String lower = str.toLowerCase();
+			final String lower = str.toLowerCase();
 			boolean ok = true;
 			for (int i = lower.length() - 1; i >= 0; i--) {
-				char chr = lower.charAt(i);
+				final char chr = lower.charAt(i);
 				if ((chr < 'a') || (chr > 'z')) {
 					ok = false;
 					break;
@@ -455,14 +455,14 @@ public class CreateAccountDialog extends JDialog {
 		}
 	}
 
-	public boolean validatePassword(String username, String password) {
+	public boolean validatePassword(final String username, final String password) {
 		if (password.length() > 5) {
 
 			// check for all numbers
 			boolean allNumbers = true;
 			try {
 				Integer.parseInt(password);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				allNumbers = false;
 			}
 			if (allNumbers) {
@@ -480,9 +480,9 @@ public class CreateAccountDialog extends JDialog {
 				// now we'll do some more checks to see if the password
 				// contains more than three letters of the username
 				debug("Checking is password contains a derivitive of the username, trimming from the back...");
-				int min_user_length = 3;
+				final int min_user_length = 3;
 				for (int i = 1; i < username.length(); i++) {
-					String subuser = username.substring(0, username.length()
+					final String subuser = username.substring(0, username.length()
 							- i);
 					debug("\tchecking for \"" + subuser + "\"...");
 					if (subuser.length() <= min_user_length) {
@@ -500,7 +500,7 @@ public class CreateAccountDialog extends JDialog {
 					// now from the end of the password..
 					debug("Checking is password contains a derivitive of the username, trimming from the front...");
 					for (int i = 0; i < username.length(); i++) {
-						String subuser = username.substring(i);
+						final String subuser = username.substring(i);
 						debug("\tchecking for \"" + subuser + "\"...");
 						if (subuser.length() <= min_user_length) {
 							break;
@@ -521,7 +521,7 @@ public class CreateAccountDialog extends JDialog {
 			}
 
 		} else {
-			String text = "The password you provided is too short. It must be at least 6 characters long.";
+			final String text = "The password you provided is too short. It must be at least 6 characters long.";
 			if (isVisible()) {
 				JOptionPane.showMessageDialog(owner, text);
 			} else {
@@ -537,7 +537,7 @@ public class CreateAccountDialog extends JDialog {
 	 * Prints text only when running stand-alone.
 	 * @param text 
 	 */
-	public void debug(String text) {
+	public void debug(final String text) {
 
 		if (client == null) {
 			logger.debug(text);

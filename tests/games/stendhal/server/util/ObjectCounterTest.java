@@ -20,9 +20,9 @@ public class ObjectCounterTest {
 
 	@Test
 	public final void testAdd() {
-		ObjectCounter<String> ocString = new ObjectCounter<String>();
-		String bla = "bla";
-		String blub = "blub";
+		final ObjectCounter<String> ocString = new ObjectCounter<String>();
+		final String bla = "bla";
+		final String blub = "blub";
 		ocString.add(bla);
 		Map<String, Integer> resmap = ocString.getMap();
 		assertEquals(Integer.valueOf(1), resmap.get(bla));

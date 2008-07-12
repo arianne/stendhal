@@ -33,12 +33,12 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	/**
 	 * The minimum level allowed to pass.
 	 */
-	private int minLevel;
+	private final int minLevel;
 
 	/**
 	 * The maximum level allowed to pass.
 	 */
-	private int maxLevel;
+	private final int maxLevel;
 
 	/**
 	 * Creates a level checking portal.
@@ -48,7 +48,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 * @param maxLevel
 	 *            The maximum level allowed to pass.
 	 */
-	public LevelCheckingPortal(int minLevel, int maxLevel) {
+	public LevelCheckingPortal(final int minLevel, final int maxLevel) {
 		this(minLevel, maxLevel, null);
 	}
 
@@ -62,7 +62,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 * @param rejectMessage
 	 *            The custom rejection message.
 	 */
-	public LevelCheckingPortal(int minLevel, int maxLevel, String rejectMessage) {
+	public LevelCheckingPortal(final int minLevel, final int maxLevel, final String rejectMessage) {
 		super(rejectMessage);
 
 		this.minLevel = minLevel;
@@ -82,8 +82,8 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
-	protected boolean isAllowed(RPEntity user) {
-		int level = user.getLevel();
+	protected boolean isAllowed(final RPEntity user) {
+		final int level = user.getLevel();
 
 		if ((level < minLevel) || (level > maxLevel)) {
 			return false;
@@ -101,7 +101,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 *            The rejected user.
 	 */
 	@Override
-	protected void rejected(RPEntity user) {
+	protected void rejected(final RPEntity user) {
 		if (rejectMessage != null) {
 			super.rejected(user);
 		} else if (user.getLevel() < minLevel) {

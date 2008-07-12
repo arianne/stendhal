@@ -42,7 +42,7 @@ public enum ZoneEventType {
 	 * @param message
 	 *            human readable message
 	 */
-	private ZoneEventType(String message) {
+	private ZoneEventType(final String message) {
 		this.message = message;
 	}
 

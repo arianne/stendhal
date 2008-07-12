@@ -39,13 +39,13 @@ class ClipRunner implements LineListener {
 	private static final Logger logger = Logger.getLogger(ClipRunner.class);
 
 	/** name of this clip. */
-	private String name;
+	private final String name;
 
 	/** length. */
 	private long maxLength;
 
 	/** sound samples. */
-	private List<AudioClip> samples;
+	private final List<AudioClip> samples;
 
 	/**
 	 * Creates an empty named ClipRunner instance Volume setting is set to 100%.
@@ -53,7 +53,7 @@ class ClipRunner implements LineListener {
 	 * @param name
 	 * 
 	 */
-	ClipRunner(String name) {
+	ClipRunner(final String name) {
 		this.name = name;
 		samples = new ArrayList<AudioClip>();
 	}
@@ -66,7 +66,7 @@ class ClipRunner implements LineListener {
 	 *            alternate sound clip
 	 * 
 	 */
-	void addSample(AudioClip clip) {
+	void addSample(final AudioClip clip) {
 		samples.add(clip);
 		maxLength = Math.max(maxLength, clip.getLength());
 	}
@@ -91,8 +91,8 @@ class ClipRunner implements LineListener {
 	 * @return the AudioSystem <code>DataLine</code> object that is being
 	 *         played, or <b>null</b> on error
 	 */
-	DataLine play(int volume, float correctionDB, float volumeDelta) {
-		DataLine line = getAudioClip(volume, correctionDB, volumeDelta);
+	DataLine play(final int volume, final float correctionDB, final float volumeDelta) {
+		final DataLine line = getAudioClip(volume, correctionDB, volumeDelta);
 
 		if (line != null) {
 			line.start();
@@ -128,23 +128,23 @@ class ClipRunner implements LineListener {
 	 * @return an AudioSystem sound <code>Clip</code> that represents this
 	 *         sound, or <b>null</b> on error
 	 */
-	Clip getAudioClip(int volume, float correctionDB, float volumeDelta) {
+	Clip getAudioClip(final int volume, final float correctionDB, final float volumeDelta) {
 		if (samples.size() > 0) {
 			try {
-				int index = Rand.rand(samples.size());
-				AudioClip audioClip = samples.get(index);
+				final int index = Rand.rand(samples.size());
+				final AudioClip audioClip = samples.get(index);
 
 				// Obtain and open the line.
-				Clip line = audioClip.openLine();
+				final Clip line = audioClip.openLine();
 				if (line == null) {
 					// well...line not supported
 					return null;
 				}
 
 				// set the volume
-				FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+				final FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
 				if (volCtrl != null) {
-					float dB = DBValues.getDBValue(volume)
+					final float dB = DBValues.getDBValue(volume)
 							+ DBValues.getDBValue(audioClip.getVolume())
 							+ correctionDB;
 					volCtrl.setValue(dB + volumeDelta);
@@ -155,7 +155,7 @@ class ClipRunner implements LineListener {
 				// run clip
 				line.addLineListener(this);
 				return line;
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				logger.error("** AudioSystem: clip line unavailable for: "
 						+ this.name, ex);
 				return null;
@@ -171,7 +171,7 @@ class ClipRunner implements LineListener {
 	 * 
 	 * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
 	 */
-	public void update(LineEvent event) {
+	public void update(final LineEvent event) {
 		// this discards line resources when the sound has stopped
 		if (event.getType() == LineEvent.Type.STOP) {
 			((Line) event.getSource()).close();

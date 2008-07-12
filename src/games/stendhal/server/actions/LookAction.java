@@ -32,7 +32,7 @@ public class LookAction implements ActionListener {
 		CommandCenter.register(_LOOK, new LookAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
 		if (entity == null) {
@@ -42,7 +42,7 @@ public class LookAction implements ActionListener {
 		if (entity != null) {
 			if (entity instanceof Player) {
 				if (((Player) entity).isGhost() 
-						&& player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")) {
+						&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode"))) {
 					return;
 				}
 			}
@@ -52,7 +52,7 @@ public class LookAction implements ActionListener {
 				name = entity.get(ATTR_NAME);
 			}
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _LOOK, name);
-			String text = entity.describe();
+			final String text = entity.describe();
 
 			if (entity instanceof Sign) {
 				player.sendPrivateText(NotificationType.RESPONSE, text);

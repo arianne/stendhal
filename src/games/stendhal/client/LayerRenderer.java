@@ -47,11 +47,11 @@ public abstract class LayerRenderer {
 	 * @param screen
 	 *            The screen to draw on.
 	 */
-	public void draw(IGameScreen screen) {
-		int x = (int) screen.getViewX();
-		int y = (int) screen.getViewY();
-		int w = (int) screen.getViewWidth();
-		int h = (int) screen.getViewHeight();
+	public void draw(final IGameScreen screen) {
+		final int x = (int) screen.getViewX();
+		final int y = (int) screen.getViewY();
+		final int w = (int) screen.getViewWidth();
+		final int h = (int) screen.getViewHeight();
 
 		draw(screen, x, y, w, h);
 	}

@@ -36,11 +36,11 @@ public class Sign extends Entity {
 
 	public static void generateRPClass() {
 		try {
-			RPClass sign = new RPClass("sign");
+			final RPClass sign = new RPClass("sign");
 			sign.isA("entity");
 			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING, Definition.HIDDEN);
 			sign.addAttribute("class", Type.STRING);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -59,7 +59,7 @@ public class Sign extends Entity {
 	 * a sign from the database, use the other constructors.
 	 * @param rpobject 
 	 */
-	public Sign(RPObject rpobject) {
+	public Sign(final RPObject rpobject) {
 		super(rpobject);
 		setResistance(100);
 	}
@@ -83,13 +83,13 @@ public class Sign extends Entity {
 	 * @param text
 	 *            The sign text.
 	 */
-	public void setText(String text) {
+	public void setText(final String text) {
 		put(ATTR_TEXT, text);
 	}
 
 	@Override
 	public String describe() {
-		String text = getText();
+		final String text = getText();
 		if (text == null) {
 			return "You see a sign without any text";
 		}

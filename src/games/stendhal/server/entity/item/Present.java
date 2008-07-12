@@ -26,8 +26,8 @@ public class Present extends Box {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Present(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Present(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 
 		setContent(ITEMS[Rand.rand(ITEMS.length)]);
@@ -37,7 +37,7 @@ public class Present extends Box {
 	 * Sets content.
 	 * @param type of item to be produced.
 	 */
-	public void setContent(String type) {
+	public void setContent(final String type) {
 		setInfoString(type);
 	}
 
@@ -47,16 +47,16 @@ public class Present extends Box {
 	 * @param item
 	 *            item to copy
 	 */
-	public Present(Present item) {
+	public Present(final Present item) {
 		super(item);
 	}
 
 	@Override
-	protected boolean useMe(Player player) {
+	protected boolean useMe(final Player player) {
 		this.removeOne();
 
-		String itemName = getInfoString();
-		Item item = SingletonRepository.getEntityManager().getItem(itemName);
+		final String itemName = getInfoString();
+		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		player.sendPrivateText("Congratulations, you've got " 
 				+ Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)));
 

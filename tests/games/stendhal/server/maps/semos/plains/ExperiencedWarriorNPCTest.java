@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -25,12 +26,12 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
-		SpeakerNPC npc = new SpeakerNPC("Starkad");
+		final SpeakerNPC npc = new SpeakerNPC("Starkad");
 		SingletonRepository.getNPCList().add(npc);
 
-		ExperiencedWarriorNPC npcConf = new ExperiencedWarriorNPC();
+		final ExperiencedWarriorNPC npcConf = new ExperiencedWarriorNPC();
 		npcConf.createDialog(npc);
 
 		setupZone(ZONE_NAME);
@@ -46,8 +47,8 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Starkad");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Starkad");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -58,8 +59,8 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testQuest() {
-		SpeakerNPC npc = getNPC("Starkad");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Starkad");
+		final Engine en = npc.getEngine();
 
 		//test the basic messages
 		assertTrue(en.step(player, "hi"));

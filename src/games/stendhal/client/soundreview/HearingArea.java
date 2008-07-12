@@ -23,14 +23,14 @@ public abstract class HearingArea {
 
 	private static int upper;
 
-	public static void set(int x, int y) {
+	public static void set(final int x, final int y) {
 		left = x - HEARINGDIST;
 		right = x + HEARINGDIST;
 		upper = y - HEARINGDIST;
 		lower = y + HEARINGDIST;
 	}
 
-	public static boolean contains(double x, double y) {
+	public static boolean contains(final double x, final double y) {
 		if (!User.isNull()) {
 			set(User.get().getX(), User.get().getY());
 		}
@@ -40,12 +40,12 @@ public abstract class HearingArea {
 		return false;
 	}
 
-	public static void moveTo(int x, int y) {
+	public static void moveTo(final int x, final int y) {
 		set(x, y);
 
 	}
 
-	public static void set(double x, double y) {
+	public static void set(final double x, final double y) {
 		set((int) x, (int) y);
 
 	}

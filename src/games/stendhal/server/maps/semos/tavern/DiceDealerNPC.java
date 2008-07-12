@@ -18,12 +18,12 @@ public class DiceDealerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildRicardo(zone);
 	}
 
-	private void buildRicardo(StendhalRPZone zone) {
-		CroupierNPC ricardo = new CroupierNPC("Ricardo") {
+	private void buildRicardo(final StendhalRPZone zone) {
+		final CroupierNPC ricardo = new CroupierNPC("Ricardo") {
 
 			@Override
 			protected void createPath() {
@@ -48,7 +48,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		ricardo.setPosition(28, 4);
 		ricardo.setDirection(Direction.LEFT);
 		ricardo.initHP(100);
-		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
+		final Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		
 		zone.add(ricardo);
 		ricardo.setTableArea(tableArea);

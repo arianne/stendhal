@@ -15,7 +15,7 @@ public class TriggerList extends LinkedList<Expression> {
      * @param strings String list
      */
     public TriggerList(final List<String> strings) {
-        for (String item : strings) {
+        for (final String item : strings) {
             add(ConversationParser.createTriggerExpression(item));
         }
     }
@@ -27,7 +27,7 @@ public class TriggerList extends LinkedList<Expression> {
      * @return matching expression in the list
      */
     public final Expression find(final Expression expr) {
-        int idx = indexOf(expr);
+        final int idx = indexOf(expr);
 
         if (idx != -1) {
             return get(idx);

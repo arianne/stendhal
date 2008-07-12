@@ -9,8 +9,8 @@ import marauroa.common.game.Result;
  * @author hendrik
  */
 public class MaxLengthValidator implements AccountParameterValidator {
-	private String parameterValue;
-	private int maxLength;
+	private final String parameterValue;
+	private final int maxLength;
 
 	/**
 	 * creates a new MaxLengthValidator.

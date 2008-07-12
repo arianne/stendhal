@@ -54,18 +54,18 @@ public class BeerForHayunn extends AbstractQuest {
 	public static final String QUEST_SLOT = "beer_hayunn";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("QUEST_REJECTED");
 		}
@@ -83,7 +83,7 @@ public class BeerForHayunn extends AbstractQuest {
 	}
 
 	private void prepareRequestingStep() {
-		SpeakerNPC npc = npcs.get("Hayunn Naratha");
+		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
@@ -141,7 +141,7 @@ public class BeerForHayunn extends AbstractQuest {
 	}
 
 	private void prepareBringingStep() {
-		SpeakerNPC npc = npcs.get("Hayunn Naratha");
+		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("beer")),
@@ -154,7 +154,7 @@ public class BeerForHayunn extends AbstractQuest {
 			"Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?",
 			null);
 
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new DropItemAction("beer"));
 		reward.add(new EquipItemAction("money", 20));
 		reward.add(new IncreaseXPAction(10));

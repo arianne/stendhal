@@ -12,11 +12,11 @@ class AntidoteEater implements TurnListener {
 
 	WeakReference<Player> ref;
 
-	public AntidoteEater(Player player) {
+	public AntidoteEater(final Player player) {
 		ref = new WeakReference<Player>(player);
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		if (ref.get() == null) {
 			return;
 		}
@@ -25,12 +25,12 @@ class AntidoteEater implements TurnListener {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (obj == null) {
 			return false;
 		}
 		if (obj instanceof AntidoteEater) {
-			AntidoteEater other = (AntidoteEater) obj;
+			final AntidoteEater other = (AntidoteEater) obj;
 			return ref.get() == other.ref.get();
 
 		} else {

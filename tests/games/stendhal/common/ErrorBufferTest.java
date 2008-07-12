@@ -13,7 +13,7 @@ public class ErrorBufferTest {
 
 	@Test
 	public final void test() {
-		ErrorDrain errors = new ErrorBuffer();
+		final ErrorDrain errors = new ErrorBuffer();
 
 		assertEquals(false, errors.hasError());
 

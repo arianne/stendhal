@@ -31,17 +31,17 @@ public class BarmanNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC barmanNPC = new SpeakerNPC("Ruarhi") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC barmanNPC = new SpeakerNPC("Ruarhi") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(15, 4));
 				nodes.add(new Node(15, 7));
 				nodes.add(new Node(4, 7));
@@ -61,7 +61,7 @@ public class BarmanNPC implements ZoneConfigurator {
 				addGreeting("Hi there!");
 				addJob("I am the barman. If I can #offer you a drink, just say.");
 				addHelp("Ssh, can you come close so I can whisper? (I know Katerina there looks a wreck .. but she's actually a summon healer .. and cheap too.)");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("beer", 10);
 				offerings.put("wine", 15);
 				// more expensive than in normal taverns

@@ -54,7 +54,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Build animations.
 	 */
-	protected void buildAnimations(IGameScreen gameScreen) {
+	protected void buildAnimations(final IGameScreen gameScreen) {
 		buildSprites(sprites, gameScreen);
 	}
 
@@ -92,8 +92,8 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * @return The appropriate sprite for the current state.
 	 */
 	protected Sprite getStateSprite() {
-		Object state = getState();
-		Sprite sprite = getSprite(state);
+		final Object state = getState();
+		final Sprite sprite = getSprite(state);
 
 		if (sprite == null) {
 			logger.debug("No sprite found for: " + state);
@@ -112,7 +112,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
+	protected void buildRepresentation(final IGameScreen gameScreen) {
 		buildAnimations(gameScreen);
 
 		setSprite(getStateSprite());
@@ -123,7 +123,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		super.update(gameScreen);
 
 	}

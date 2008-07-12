@@ -14,16 +14,16 @@ import java.util.Map;
  * @author hendrik
  */
 public class ItemsOnTable implements ZoneConfigurator {
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMagicianHouseArea(zone);
 	}
 
-	private void buildMagicianHouseArea(StendhalRPZone zone) {
-		Item item = addPersistentItem("summon scroll", zone, 7, 6);
+	private void buildMagicianHouseArea(final StendhalRPZone zone) {
+		final Item item = addPersistentItem("summon scroll", zone, 7, 6);
 		item.setInfoString("giant_red_dragon");
 
 		// Plant grower for poison
-		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
+		final PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
 		plantGrower.setPosition(3, 6);
 		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
 		zone.add(plantGrower);
@@ -31,8 +31,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower.setToFullGrowth();
 	}
 
-	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
-		Item item = SingletonRepository.getEntityManager().getItem(name);
+	private Item addPersistentItem(final String name, final StendhalRPZone zone, final int x, final int y) {
+		final Item item = SingletonRepository.getEntityManager().getItem(name);
 		item.setPosition(x, y);
 		item.setPersistent(true);
 		zone.add(item);

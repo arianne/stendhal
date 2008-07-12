@@ -41,7 +41,7 @@ public class StorageNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(35, 23));
 				nodes.add(new Node(35, 15));
 				nodes.add(new Node(21, 15));

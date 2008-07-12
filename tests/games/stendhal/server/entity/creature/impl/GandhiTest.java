@@ -10,8 +10,8 @@ public class GandhiTest {
 	
 	@Test
 	public void testAttack() {
-		Gandhi g = new Gandhi();
-		Creature c = new Creature();
+		final Gandhi g = new Gandhi();
+		final Creature c = new Creature();
 		g.attack(null);
 		g.attack(c);
 		assertFalse(c.isAttacking());
@@ -19,7 +19,7 @@ public class GandhiTest {
 
 	@Test
 	public void testCanAttackNow() {
-		Gandhi g = new Gandhi();
+		final Gandhi g = new Gandhi();
 		assertFalse(g.canAttackNow(null));
 	}
 
@@ -27,7 +27,7 @@ public class GandhiTest {
 	
 	@Test
 	public void testHasValidTarget() {
-		Gandhi g = new Gandhi();
+		final Gandhi g = new Gandhi();
 		assertFalse(g.hasValidTarget(null));
 	}
 

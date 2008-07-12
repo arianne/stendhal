@@ -44,7 +44,7 @@ public class SoundTest {
 
 	@Test
 	public void testPlay() {
-		SoundMaster sm = new SoundMaster();
+		final SoundMaster sm = new SoundMaster();
 		sm.init();
 		Sound valid = new Sound("chicken-mix", 0, 0);
 		assertNull(valid.play());
@@ -52,7 +52,7 @@ public class SoundTest {
 		assertNotNull("this sound exists", valid);
 		new User();
 		assertNotNull(valid.play());
-		Sound invalid = new Sound("bla", 1, 1);
+		final Sound invalid = new Sound("bla", 1, 1);
 		assertNull(invalid.play());
 	}
 

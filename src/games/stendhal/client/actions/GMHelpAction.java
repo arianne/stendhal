@@ -18,8 +18,8 @@ class GMHelpAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		String[] lines = {
+	public boolean execute(final String[] params, final String remainder) {
+		final String[] lines = {
 				"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
 				"Here are the most-used GM commands:",
 				"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
@@ -39,7 +39,7 @@ class GMHelpAction implements SlashAction {
 				"- /inspect <player> \t\t\tShow complete details of <player>",
 				"- /destroy <entity> \t\t\tDestroy an entity completely" };
 
-		for (String line : lines) {
+		for (final String line : lines) {
 			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);
 		}
 

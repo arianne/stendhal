@@ -23,7 +23,7 @@ public class ArrestWarrant extends Entity implements StoreableEntity {
 	private static final String STARTED = "started";
 
 	public static void generateRPClass() {
-		RPClass clazz = new RPClass(RPCLASS_NAME);
+		final RPClass clazz = new RPClass(RPCLASS_NAME);
 		clazz.isA("entity");
 		clazz.addAttribute(CRIMINAL, Type.STRING, Definition.HIDDEN);
 		clazz.addAttribute(POLICE_OFFICER, Type.STRING, Definition.HIDDEN);
@@ -41,7 +41,7 @@ public class ArrestWarrant extends Entity implements StoreableEntity {
 	 * @param minutes time of sentence
 	 * @param reason reason
 	 */
-	public ArrestWarrant(String criminalName, Player policeOfficer, int minutes, String reason) {
+	public ArrestWarrant(final String criminalName, final Player policeOfficer, final int minutes, final String reason) {
 		setRPClass(RPCLASS_NAME);
 		store();
 		hide();
@@ -58,7 +58,7 @@ public class ArrestWarrant extends Entity implements StoreableEntity {
 	 *
 	 * @param rpobject RPObject
 	 */
-	public ArrestWarrant(RPObject rpobject) {
+	public ArrestWarrant(final RPObject rpobject) {
 		super(rpobject);
 		store();
 		hide();

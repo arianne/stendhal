@@ -28,13 +28,13 @@ public class ImageRenderer extends LayerRenderer {
 
 	private Sprite mySprite;
 
-	public ImageRenderer(URL url) {
+	public ImageRenderer(final URL url) {
 		try {
-			BufferedImage myImage = ImageIO.read(url);
+			final BufferedImage myImage = ImageIO.read(url);
 			width = myImage.getWidth();
 			height = myImage.getHeight();
 			mySprite = new ImageSprite(myImage);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.err.println(e);
 		}
 	}
@@ -46,7 +46,7 @@ public class ImageRenderer extends LayerRenderer {
 	 *            The screen to draw on.
 	 */
 	@Override
-	public void draw(IGameScreen screen) {
+	public void draw(final IGameScreen screen) {
 		if (mySprite != null) {
 			screen.draw(mySprite, 0, 0);
 		}
@@ -67,11 +67,11 @@ public class ImageRenderer extends LayerRenderer {
 	 *            The view world height.
 	 */
 	@Override
-	public void draw(IGameScreen screen, int x, int y, int w, int h) {
+	public void draw(final IGameScreen screen, final int x, final int y, final int w, final int h) {
 		draw(screen);
 	}
 
 	@Override
-	public void setTileset(Tileset tilset) {
+	public void setTileset(final Tileset tilset) {
 	}
 }

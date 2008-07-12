@@ -45,12 +45,12 @@ class Player2DView extends RPEntity2DView {
 	/**
 	 * The player entity.
 	 */
-	private Player player;
+	private final Player player;
 
 	static {
-		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
-		Sprite tiles2 = store.getSprite("data/sprites/ideas/grumpy.png");
+		final SpriteStore store = SpriteStore.get();
+		final Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
+		final Sprite tiles2 = store.getSprite("data/sprites/ideas/grumpy.png");
 		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
@@ -103,11 +103,11 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		OutfitStore store = OutfitStore.get();
+		final OutfitStore store = OutfitStore.get();
 
 		try {
 			return store.getOutfit(player.getOutfit());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
 		}
@@ -160,8 +160,8 @@ class Player2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(Graphics2D g2d, int x, int y, int width, int height,
-			IGameScreen gameScreen) {
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height,
+			final IGameScreen gameScreen) {
 		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (player.isAway()) {

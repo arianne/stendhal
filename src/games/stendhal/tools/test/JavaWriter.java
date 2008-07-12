@@ -10,9 +10,9 @@ import org.apache.commons.lang.StringEscapeUtils;
  * @author hendrik
  */
 class JavaWriter {
-	private PrintStream out;
+	private final PrintStream out;
 
-	JavaWriter(PrintStream out) {
+	JavaWriter(final PrintStream out) {
 		this.out = out;
 	}
 
@@ -65,16 +65,16 @@ class JavaWriter {
 		out.println();
 	}
 
-	public void comment(String line) {
+	public void comment(final String line) {
 		out.println("\t\t// " + line);
 	}
 
-	public void player(String protagonist, String text) {
+	public void player(final String protagonist, final String text) {
 		out.println("\t\ten.step(player, \""
 				+ StringEscapeUtils.escapeJava(text) + "\");");
 	}
 
-	public void npc(String protagonist, String text) {
+	public void npc(final String protagonist, final String text) {
 		out.println("\t\tassertEquals(\"" + StringEscapeUtils.escapeJava(text)
 				+ "\", npc.get(\"text\"));");
 	}

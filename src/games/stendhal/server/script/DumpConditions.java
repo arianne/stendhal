@@ -31,32 +31,32 @@ public class DumpConditions extends ScriptImpl {
 	private StringBuilder dumpedTable;
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		dumpedTable = new StringBuilder();
-		Set<String> npcs = SingletonRepository.getNPCList().getNPCs();
-		for (String npcName : npcs) {
+		final Set<String> npcs = SingletonRepository.getNPCList().getNPCs();
+		for (final String npcName : npcs) {
 			dump(SingletonRepository.getNPCList().get(npcName));
 		}
 		System.out.println(dumpedTable.toString());
 	}
 
-	private void dump(SpeakerNPC npc) {
+	private void dump(final SpeakerNPC npc) {
 		dumpNPC(npc);
 	}
 
-	private void dumpNPC(SpeakerNPC npc) {
-		TransitionList transitions = new TransitionList(npc.getTransitions());
-		Set<Integer> states = transitions.getSourceStates();
+	private void dumpNPC(final SpeakerNPC npc) {
+		final TransitionList transitions = new TransitionList(npc.getTransitions());
+		final Set<Integer> states = transitions.getSourceStates();
 
-		for (Integer stateInt : states) {
-			int state = stateInt.intValue();
-			Set<Expression> triggers = transitions.getTriggersForState(state);
-			for (Expression trigger : triggers) {
-				List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
+		for (final Integer stateInt : states) {
+			final int state = stateInt.intValue();
+			final Set<Expression> triggers = transitions.getTriggersForState(state);
+			for (final Expression trigger : triggers) {
+				final List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
 						state, trigger);
-				Set<PreTransitionCondition> conditions = new HashSet<PreTransitionCondition>();
-				for (Transition tran : trans) {
-					PreTransitionCondition condition = tran.getCondition();
+				final Set<PreTransitionCondition> conditions = new HashSet<PreTransitionCondition>();
+				for (final Transition tran : trans) {
+					final PreTransitionCondition condition = tran.getCondition();
 					if (condition != null) {
 						conditions.add(condition);
 					}
@@ -70,17 +70,17 @@ public class DumpConditions extends ScriptImpl {
 		}
 	}
 
-	private static String getStateName(int number) {
-		Integer num = Integer.valueOf(number);
-		Field[] fields = ConversationStates.class.getFields();
-		for (Field field : fields) {
+	private static String getStateName(final int number) {
+		final Integer num = Integer.valueOf(number);
+		final Field[] fields = ConversationStates.class.getFields();
+		for (final Field field : fields) {
 			try {
 				if (field.get(null).equals(num)) {
 					return field.getName();
 				}
-			} catch (IllegalArgumentException e) {
+			} catch (final IllegalArgumentException e) {
 				logger.error(e, e);
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				logger.error(e, e);
 			}
 		}

@@ -61,8 +61,8 @@ public class LifeDrainArea extends OccupantArea {
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
-	protected boolean doDamage(RPEntity entity) {
-		int hp = entity.getHP();
+	protected boolean doDamage(final RPEntity entity) {
+		final int hp = entity.getHP();
 
 		/*
 		 * Don't beat a dead horse!
@@ -105,7 +105,7 @@ public class LifeDrainArea extends OccupantArea {
 	 *         <code>true</code> otherwise.
 	 */
 	@Override
-	protected boolean handleAdded(RPEntity entity) {
+	protected boolean handleAdded(final RPEntity entity) {
 		if (!super.handleAdded(entity)) {
 			return false;
 		}
@@ -124,7 +124,7 @@ public class LifeDrainArea extends OccupantArea {
 	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
-	protected boolean handleInterval(RPEntity entity) {
+	protected boolean handleInterval(final RPEntity entity) {
 		return doDamage(entity);
 	}
 
@@ -136,7 +136,7 @@ public class LifeDrainArea extends OccupantArea {
 	 *            The RPEntity that was added.
 	 */
 	@Override
-	protected void handleRemoved(RPEntity entity) {
+	protected void handleRemoved(final RPEntity entity) {
 		entity.stopAttacking(this);
 		super.handleRemoved(entity);
 	}

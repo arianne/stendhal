@@ -38,9 +38,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(GameObjects.class);
 
-	private Map<FQID, Entity> objects;
+	private final Map<FQID, Entity> objects;
 
-	private StaticGameLayers collisionMap;
+	private final StaticGameLayers collisionMap;
 
 	/**
 	 * holds the reference to the singleton instance.
@@ -52,7 +52,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            =layers that make floor and building
 	 * @return singleton instance of GameOjects
 	 */
-	public static GameObjects createInstance(StaticGameLayers collisionMap) {
+	public static GameObjects createInstance(final StaticGameLayers collisionMap) {
 		if (instance == null) {
 			instance = new GameObjects(collisionMap);
 		}
@@ -77,7 +77,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 */
-	private GameObjects(StaticGameLayers collisionMap) {
+	private GameObjects(final StaticGameLayers collisionMap) {
 		objects = new HashMap<FQID, Entity>();
 
 		this.collisionMap = collisionMap;
@@ -87,11 +87,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		return objects.values().iterator();
 	}
 
-	public Entity get(RPObject object) {
+	public Entity get(final RPObject object) {
 		return objects.get(FQID.create(object));
 	}
 
-	public Entity get(RPObject.ID id) {
+	public Entity get(final RPObject.ID id) {
 		return objects.get(new FQID(id));
 	}
 
@@ -103,10 +103,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			logger.debug("Game objects not empty!");
 
 			// invalidate all entity objects
-			Iterator<Entity> it = iterator();
+			final Iterator<Entity> it = iterator();
 
 			while (it.hasNext()) {
-				Entity entity = it.next();
+				final Entity entity = it.next();
 				logger.error("Residual entity: " + entity);
 				entity.release();
 			}
@@ -115,21 +115,21 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-	public boolean collides(Entity entity) {
+	public boolean collides(final Entity entity) {
 		if (entity instanceof Player) {
-			Player player = (Player) entity;
+			final Player player = (Player) entity;
 			if (player.isGhostMode()) {
 				return false;
 			}
 		}
-		Rectangle2D area = entity.getArea();
+		final Rectangle2D area = entity.getArea();
 
 		// TODO: Ugly, use similar method that server uses
 		if (collisionMap.collides(area)) {
 			return true;
 		}
 
-		for (Entity other : objects.values()) {
+		for (final Entity other : objects.values()) {
 			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
 				return true;
 			}
@@ -144,8 +144,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
-	public void update(int delta) {
-		for (Entity entity : objects.values()) {
+	public void update(final int delta) {
+		for (final Entity entity : objects.values()) {
 			entity.update(delta);
 		}
 	}
@@ -159,7 +159,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @return An entity.
 	 */
 	protected Entity add(final RPObject object) {
-		Entity entity = EntityFactory.createEntity(object);
+		final Entity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
 			objects.put(FQID.create(object), entity);
@@ -193,7 +193,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				return;
 			}
 
-			Entity entity = add(object);
+			final Entity entity = add(object);
 
 			if (entity != null) {
 				if (entity.isOnGround()) {
@@ -216,7 +216,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(object));
+		final Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
@@ -232,7 +232,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(object));
+		final Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
@@ -246,11 +246,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		RPObject.ID id = object.getID();
+		final RPObject.ID id = object.getID();
 
 		logger.debug("removed " + id);
 
-		Entity entity = objects.remove(FQID.create(object));
+		final Entity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
 			GameScreen.get().removeEntity(entity);
@@ -287,7 +287,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity = objects.get(FQID.create(object));
+		final Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onSlotChangedAdded(object, slotName, sobject, schanges);
@@ -309,7 +309,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		Entity entity = objects.get(FQID.create(object));
+		final Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onSlotChangedRemoved(object, slotName, sobject, schanges);
@@ -349,7 +349,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 * @param id
 		 *            And object ID.
 		 */
-		public FQID(RPObject.ID id) {
+		public FQID(final RPObject.ID id) {
 			this(new Object[] { Integer.valueOf(id.getObjectID()) });
 		}
 
@@ -359,7 +359,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 * @param path
 		 *            An identification path.
 		 */
-		public FQID(Object[] path) {
+		public FQID(final Object[] path) {
 			this.path = path;
 		}
 
@@ -376,13 +376,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 * @return A FQID.
 		 */
 		public static FQID create(final RPObject object) {
-			LinkedList<Object> path = new LinkedList<Object>();
+			final LinkedList<Object> path = new LinkedList<Object>();
 			RPObject node = object;
 
 			while (true) {
 				path.addFirst(Integer.valueOf(node.getID().getObjectID()));
 
-				RPSlot slot = node.getContainerSlot();
+				final RPSlot slot = node.getContainerSlot();
 
 				if (slot == null) {
 					break;
@@ -432,7 +432,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		public int hashCode() {
 			int value = 0;
 
-			for (Object obj : getPath()) {
+			for (final Object obj : getPath()) {
 				value ^= obj.hashCode();
 			}
 
@@ -446,7 +446,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 */
 		@Override
 		public String toString() {
-			StringBuilder sbuf = new StringBuilder();
+			final StringBuilder sbuf = new StringBuilder();
 
 			sbuf.append('[');
 			sbuf.append(path[0]);

@@ -70,8 +70,8 @@ public class Guild extends Entity {
 	private static final String ATTR_NORMALRANK = "normalrank";
 	private static final String ATTR_IDENTIFIER = "identifier";
 
-	public Guild(String name, String slogan, String imageURL, GuildPermission adminRank, GuildPermission normalRank,
-			String identifier) {
+	public Guild(final String name, final String slogan, final String imageURL, final GuildPermission adminRank, final GuildPermission normalRank,
+			final String identifier) {
 		this.name = name;
 		this.slogan = slogan;
 		this.imageURL = imageURL;
@@ -91,14 +91,14 @@ public class Guild extends Entity {
 		put(ATTR_IDENTIFIER, identifier);
 	}
 
-	public Guild(RPObject obj) {
+	public Guild(final RPObject obj) {
 		super(obj);
 		store();
 		loadData();
 	}
 
 	public static void generateRPClass() {
-		RPClass clazz = new RPClass(RPCLASS);
+		final RPClass clazz = new RPClass(RPCLASS);
 		clazz.isA("entity");
 
 		clazz.addRPSlot(SLOT_MEMBERS, MAX_MEMBERS, Definition.HIDDEN);
@@ -121,8 +121,8 @@ public class Guild extends Entity {
 		identifier = get(ATTR_IDENTIFIER);
 
 		// load members
-		RPSlot membersSlot = getSlot(SLOT_MEMBERS);
-		for (RPObject o : membersSlot) {
+		final RPSlot membersSlot = getSlot(SLOT_MEMBERS);
+		for (final RPObject o : membersSlot) {
 			members.add(new GuildMember(o));
 		}
 	}
@@ -131,7 +131,7 @@ public class Guild extends Entity {
 		return adminRank;
 	}
 
-	public void setAdminRank(GuildPermission adminRank) {
+	public void setAdminRank(final GuildPermission adminRank) {
 		this.adminRank = adminRank;
 		put(ATTR_ADMINRANK, adminRank.getIdentifier());
 	}
@@ -140,7 +140,7 @@ public class Guild extends Entity {
 		return identifier;
 	}
 
-	public void setIdentifier(String identifier) {
+	public void setIdentifier(final String identifier) {
 		this.identifier = identifier;
 		put(ATTR_IDENTIFIER, identifier);
 	}
@@ -149,7 +149,7 @@ public class Guild extends Entity {
 		return imageURL;
 	}
 
-	public void setImageURL(String imageURL) {
+	public void setImageURL(final String imageURL) {
 		this.imageURL = imageURL;
 		put(ATTR_IMAGEURL, imageURL);
 	}
@@ -158,7 +158,7 @@ public class Guild extends Entity {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 		put(ATTR_NAME, name);
 	}
@@ -167,7 +167,7 @@ public class Guild extends Entity {
 		return normalRank;
 	}
 
-	public void setNormalRank(GuildPermission normalRank) {
+	public void setNormalRank(final GuildPermission normalRank) {
 		this.normalRank = normalRank;
 		put(ATTR_NORMALRANK, normalRank.getIdentifier());
 	}
@@ -176,8 +176,8 @@ public class Guild extends Entity {
 		return permissions;
 	}
 
-	public GuildPermission getPermission(String identifier) {
-		for (GuildPermission gp : getPermissions()) {
+	public GuildPermission getPermission(final String identifier) {
+		for (final GuildPermission gp : getPermissions()) {
 			if (gp.getIdentifier().equals(identifier)) {
 				return gp;
 			}
@@ -185,7 +185,7 @@ public class Guild extends Entity {
 		return null;
 	}
 
-	public GuildPermission getPermission(int rank) {
+	public GuildPermission getPermission(final int rank) {
 		return GuildPermission.getPermission(rank, getPermissions());
 	}
 
@@ -193,18 +193,18 @@ public class Guild extends Entity {
 		return slogan;
 	}
 
-	public void setSlogan(String slogan) {
+	public void setSlogan(final String slogan) {
 		this.slogan = slogan;
 		put(ATTR_SLOGAN, slogan);
 	}
 
-	public boolean isAdmin(GuildMember member) {
-		int memberRank = member.getPermission().getRank();
+	public boolean isAdmin(final GuildMember member) {
+		final int memberRank = member.getPermission().getRank();
 		return memberRank == getAdminRank().getRank();
 	}
 
-	public GuildPermission getRank(String identifier) {
-		for (GuildPermission g : permissions) {
+	public GuildPermission getRank(final String identifier) {
+		for (final GuildPermission g : permissions) {
 			if (g.getIdentifier().equals(identifier)) {
 				return g;
 			}
@@ -212,17 +212,17 @@ public class Guild extends Entity {
 		return null;
 	}
 
-	public void addMember(GuildMember m) {
+	public void addMember(final GuildMember m) {
 		members.add(m);
-		RPSlot slot = getSlot(SLOT_MEMBERS);
+		final RPSlot slot = getSlot(SLOT_MEMBERS);
 		if (!slot.isFull()) {
 			slot.add(m);
 		}
 	}
 
-	public void removeMember(GuildMember m) {
+	public void removeMember(final GuildMember m) {
 		members.remove(m);
-		RPSlot slot = getSlot(SLOT_MEMBERS);
+		final RPSlot slot = getSlot(SLOT_MEMBERS);
 		if (slot.has(m.getID())) {
 			slot.remove(m.getID());
 		}

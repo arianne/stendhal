@@ -39,7 +39,7 @@ public final class AthorFerry implements TurnListener {
 	 * A list of non-player characters that get notice when the ferry arrives or
 	 * departs, so that they can react accordingly, e.g. inform nearby players.
 	 */
-	private List<IFerryListener> listeners;
+	private final List<IFerryListener> listeners;
 
 	/** How much it costs to board the ferry. */
 	public static final int PRICE = 25;
@@ -70,7 +70,7 @@ public final class AthorFerry implements TurnListener {
 	 */
 
 	private String getRemainingSeconds() {
-		int secondsUntilNextState = SingletonRepository.getTurnNotifier()
+		final int secondsUntilNextState = SingletonRepository.getTurnNotifier()
 				.getRemainingSeconds(this);
 		return TimeUtil.approxTimeUntil(secondsUntilNextState);
 	}
@@ -79,17 +79,17 @@ public final class AthorFerry implements TurnListener {
 	 * Is called when the ferry has either arrived at or departed from a harbor.
 	 * @param currentTurn the turn when this listener is called
 	 */
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		// cycle to the next state
 
 		current = current.next();
-		for (IFerryListener npc : listeners) {
+		for (final IFerryListener npc : listeners) {
 			npc.onNewFerryState(current);
 		}
 		SingletonRepository.getTurnNotifier().notifyInSeconds(current.duration(), this);
 	}
 
-	public void addListener(IFerryListener npc) {
+	public void addListener(final IFerryListener npc) {
 		listeners.add(npc);
 	}
 	

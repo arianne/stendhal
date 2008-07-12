@@ -58,13 +58,13 @@ public class EquipmentAction implements ActionListener {
 			Player.class, Chest.class, Corpse.class };
 
 	/** List of the valid container classes for easy access. */
-	private List<Class< ? >> validContainerClassesList;
+	private final List<Class< ? >> validContainerClassesList;
 
 	/**
 	 * registers "equip" and "drop" action processors.
 	 */
 	public static void register() {
-		EquipmentAction equip = new EquipmentAction();
+		final EquipmentAction equip = new EquipmentAction();
 		CommandCenter.register("equip", equip);
 		CommandCenter.register("drop", equip);
 	}
@@ -74,7 +74,7 @@ public class EquipmentAction implements ActionListener {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		// create a new free character and give it all items.
@@ -93,10 +93,10 @@ public class EquipmentAction implements ActionListener {
 	/** callback for the equip action. 
 	 * @param player 
 	 * @param action */
-	private void onEquip(Player player, RPAction action) {
+	private void onEquip(final Player player, final RPAction action) {
 		// get source and check it
 		logger.debug("Checking source object conditions: " + action);
-		SourceObject source = SourceObject.createSourceObject(action, player);
+		final SourceObject source = SourceObject.createSourceObject(action, player);
 		if (!source.isValid()) {
 			logger.debug("Source is not valid");
 			return;
@@ -114,7 +114,7 @@ public class EquipmentAction implements ActionListener {
 
 		logger.debug("Getting entity name");
 		// is the entity unbound or bound to the right player?
-		Entity entity = source.getEntity();
+		final Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
 			itemName = entity.get("name");
@@ -125,7 +125,7 @@ public class EquipmentAction implements ActionListener {
 		logger.debug("Checking minimum level");
 		// check minimum level
 		if (entity.has("min_level")
-				&& player.getLevel() < entity.getInt("min_level")) {
+				&& (player.getLevel() < entity.getInt("min_level"))) {
 			player.sendPrivateText("You are not experienced enough to use this "
 					+ itemName);
 			return;
@@ -133,7 +133,7 @@ public class EquipmentAction implements ActionListener {
 
 		logger.debug("Checking if entity is bound");
 		if (entity instanceof Item) {
-			Item item = (Item) entity;
+			final Item item = (Item) entity;
 			if (item.isBound() && !item.isBoundTo(player)) {
 				player.sendPrivateText("This " + itemName
 						+ " is a special reward for " + item.getBoundTo()
@@ -145,7 +145,7 @@ public class EquipmentAction implements ActionListener {
 
 		logger.debug("Checking destination");
 		// get destination and check it
-		DestinationObject dest = new DestinationObject(action, player);
+		final DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.isValid()
 				|| !dest.checkDistance(player, EquipActionConsts.MAXDISTANCE)
 				|| !dest.checkClass(validContainerClassesList)) {
@@ -170,9 +170,9 @@ public class EquipmentAction implements ActionListener {
 		}
 	}
 
-	private void onDrop(Player player, RPAction action) {
+	private void onDrop(final Player player, final RPAction action) {
 		// get source and check it
-		SourceObject source = SourceObject.createSourceObject(action, player);
+		final SourceObject source = SourceObject.createSourceObject(action, player);
 		if (!source.isValid()
 				|| !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
 				|| !source.checkClass(validContainerClassesList)) {
@@ -181,7 +181,7 @@ public class EquipmentAction implements ActionListener {
 		}
 
 		// get destination and check it
-		DestinationObject dest = new DestinationObject(action, player);
+		final DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.isValid() || !dest.checkDistance(player, 5.0)
 				|| !dest.checkClass(validContainerClassesList)) {
 			logger.warn("destination is invalid. action is: " + action);
@@ -189,7 +189,7 @@ public class EquipmentAction implements ActionListener {
 			return;
 		}
 
-		Entity entity = source.getEntity();
+		final Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
 			itemName = entity.get("name");
@@ -199,7 +199,7 @@ public class EquipmentAction implements ActionListener {
 
 		if (source.moveTo(dest, player)) {
 			if (entity instanceof Item) {
-				Item item = (Item) entity;
+				final Item item = (Item) entity;
 				if (item.isBound()) {
 
 					player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
@@ -208,7 +208,7 @@ public class EquipmentAction implements ActionListener {
 				}
 			}
 			
-			int amount = source.getQuantity();
+			final int amount = source.getQuantity();
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "drop",
 					itemName, source.getSlot(), dest.getSlot(),
 					Integer.toString(amount));

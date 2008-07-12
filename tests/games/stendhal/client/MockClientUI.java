@@ -10,7 +10,7 @@ import games.stendhal.common.NotificationType;
  * @author Martin Fuchs
  */
 public class MockClientUI extends j2DClient {
-	private ErrorBuffer buffer = new ErrorBuffer();
+	private final ErrorBuffer buffer = new ErrorBuffer();
 
 	@Override
 	public void addEventLine(final String header, final String text, final NotificationType type) {

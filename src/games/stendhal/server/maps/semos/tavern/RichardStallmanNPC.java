@@ -14,15 +14,15 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildStallman(zone);
 	}
 
-	private void buildStallman(StendhalRPZone zone) {
-		SpeakerNPC stallman = new SpeakerNPC("Richard Stallman") {
+	private void buildStallman(final StendhalRPZone zone) {
+		final SpeakerNPC stallman = new SpeakerNPC("Richard Stallman") {
 
 			@Override
-            public void say(String text) {
+            public void say(final String text) {
 				setDirection(Direction.DOWN);
 				super.say(text, false);
 			}

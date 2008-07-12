@@ -29,7 +29,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	public static final int DEGRADATION_TIMEOUT = 30 * 60; // 30 minutes
 
 	public static void generateRPClass() {
-		RPClass blood = new RPClass("blood");
+		final RPClass blood = new RPClass("blood");
 		blood.isA("entity");
 		blood.addAttribute("class", Type.STRING);
 		blood.addAttribute("amount", Type.BYTE);
@@ -83,7 +83,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	 * @param currentTurn
 	 *            The current turn number.
 	 */
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		getZone().remove(this);
 	}
 }

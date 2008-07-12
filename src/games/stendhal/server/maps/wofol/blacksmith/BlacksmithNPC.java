@@ -22,16 +22,16 @@ public class BlacksmithNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBlacksmith(zone);
 	}
 
-	private void buildBlacksmith(StendhalRPZone zone) {
-		SpeakerNPC dwarf = new SpeakerNPC("Alrak") {
+	private void buildBlacksmith(final StendhalRPZone zone) {
+		final SpeakerNPC dwarf = new SpeakerNPC("Alrak") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(22, 8));
 				nodes.add(new Node(22, 7));
 				nodes.add(new Node(17, 7));

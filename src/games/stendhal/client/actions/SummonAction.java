@@ -26,20 +26,20 @@ class SummonAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction summon = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction summon = new RPAction();
 
-		NameBuilder nameBuilder = new NameBuilder();
+		final NameBuilder nameBuilder = new NameBuilder();
 		Integer x = null;
 		Integer y = null;
 
 		for (int i = 0; i < params.length; ++i) {
-			String str = params[i];
+			final String str = params[i];
 
 			if (str != null) {
 				if (str.matches("[0-9].*")) {
         			try {
-        				Integer num = new Integer(str);
+        				final Integer num = new Integer(str);
 
         				if (x == null) {
         					x = num;
@@ -48,7 +48,7 @@ class SummonAction implements SlashAction {
         				} else {
         					nameBuilder.append(str);
         				}
-        			} catch (NumberFormatException e) {
+        			} catch (final NumberFormatException e) {
         				StendhalUI.get().addEventLine("Invalid number: " + str);
         				return true;
         			}

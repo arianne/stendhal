@@ -12,8 +12,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
-	private String questname;
-	private String state;
+	private final String questname;
+	private final String state;
 
 	/**
 	 * Creates a new QuestInStateCondition.
@@ -23,13 +23,13 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 	 * @param state
 	 *            state
 	 */
-	public QuestInStateCondition(String questname, String state) {
+	public QuestInStateCondition(final String questname, final String state) {
 		this.questname = questname;
 		this.state = state;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (player.hasQuest(questname) && player.getQuest(questname).equals(
 				state));
 	}
@@ -45,7 +45,7 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

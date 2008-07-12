@@ -29,10 +29,10 @@ public class AlterAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		if (action.has(_TARGET) && action.has(_STAT) && action.has(_MODE)
 				&& action.has(_VALUE)) {
-			Entity changed = getTarget(player, action);
+			final Entity changed = getTarget(player, action);
 
 			if (changed == null) {
 				logger.debug("Entity not found");
@@ -40,7 +40,7 @@ public class AlterAction extends AdministrationAction {
 				return;
 			}
 
-			String stat = action.get(_STAT);
+			final String stat = action.get(_STAT);
 
 			if ("name".equals(stat) && (changed instanceof Player)) {
 				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(_TARGET)
@@ -59,11 +59,11 @@ public class AlterAction extends AdministrationAction {
 				return;
 			}
 
-			RPClass clazz = changed.getRPClass();
+			final RPClass clazz = changed.getRPClass();
 
 			boolean isNumerical = false;
 
-			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
+			final Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
 			if (type == null) {
 				player.sendPrivateText("Attribute you are altering is not defined in RPClass("
 						+ changed.getRPClass().getName() + ")");
@@ -76,10 +76,10 @@ public class AlterAction extends AdministrationAction {
 			}
 
 			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE, stat)) {
-				String value = action.get(_VALUE);
-				String mode = action.get(_MODE);
+				final String value = action.get(_VALUE);
+				final String mode = action.get(_MODE);
 
-				if (mode.length() > 0 && !mode.equalsIgnoreCase(_ADD) 
+				if ((mode.length() > 0) && !mode.equalsIgnoreCase(_ADD) 
 						&& !mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
 					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
 					return;
@@ -90,7 +90,7 @@ public class AlterAction extends AdministrationAction {
 
 					try {
 						numberValue = Integer.parseInt(value);
-					} catch (NumberFormatException e) {
+					} catch (final NumberFormatException e) {
 						player.sendPrivateText("Please issue a numeric value instead of '" + value + "'");
 						return;
 					}
@@ -109,7 +109,7 @@ public class AlterAction extends AdministrationAction {
 						return;
 					}
 
-					if (_ATTR_HP.equals(stat) && numberValue == 0) {
+					if (_ATTR_HP.equals(stat) && (numberValue == 0)) {
 						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
 								+ Grammar.suffix_s(action.get(_TARGET)) + " HP to 0, making it so unkillable.");
 						return;

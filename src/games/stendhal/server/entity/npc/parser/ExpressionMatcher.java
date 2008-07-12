@@ -145,10 +145,10 @@ public class ExpressionMatcher {
         clear();
 
         if (text.startsWith(PM_SEPARATOR)) {
-            StringTokenizer tok = new StringTokenizer(text, PM_SEPARATOR);
+            final StringTokenizer tok = new StringTokenizer(text, PM_SEPARATOR);
 
             while (tok.hasMoreTokens()) {
-                String flag = tok.nextToken();
+                final String flag = tok.nextToken();
 
                 if (flag.equals(PM_TYPE_MATCH)) {
                     typeMatching = true;
@@ -188,7 +188,7 @@ public class ExpressionMatcher {
             return ConversationParser.parse(text, ctx);
         }
 
-        Sentence sentence = new SentenceImplementation(ctx);
+        final Sentence sentence = new SentenceImplementation(ctx);
 
         // determine sentence type from trailing punctuation
         text = ConversationParser.getSentenceType(text.trim(), sentence);
@@ -217,20 +217,20 @@ public class ExpressionMatcher {
      * @param sentence 
      */
     private void readTypeMatchExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
-        StringTokenizer tok = new StringTokenizer(text, "/");
+        final StringTokenizer tok = new StringTokenizer(text, "/");
 
         while (tok.hasMoreTokens()) {
-            String str = tok.nextToken();
+            final String str = tok.nextToken();
             String typeStr;
 
             try {
                 // remove the leading slash from the type string
                 typeStr = tok.nextToken(" \t\n\r\f").substring(1);
-            } catch (NoSuchElementException e) {
+            } catch (final NoSuchElementException e) {
                 typeStr = "*";
             }
 
-            Expression expr = new Expression(str, typeStr);
+            final Expression expr = new Expression(str, typeStr);
             expr.setMatcher(this);
             sentence.expressions.add(expr);
         }
@@ -244,12 +244,12 @@ public class ExpressionMatcher {
      * @param sentence 
      */
     private void readSimpleExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
-        StringTokenizer tok = new StringTokenizer(text);
+        final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {
-            String str = tok.nextToken();
+            final String str = tok.nextToken();
 
-            Expression expr = new Expression(str);
+            final Expression expr = new Expression(str);
             expr.setNormalized(str);
             expr.setMatcher(this);
             sentence.expressions.add(expr);
@@ -265,12 +265,12 @@ public class ExpressionMatcher {
      * @param sentence 
      */
     private void readJokerExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
-        StringTokenizer tok = new StringTokenizer(text);
+        final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {
-            String str = tok.nextToken();
+            final String str = tok.nextToken();
 
-            Expression expr = new Expression(str);
+            final Expression expr = new Expression(str);
 
             if (ExpressionType.isTypeString(str)) {
                 expr.setType(new ExpressionType(str));
@@ -350,7 +350,7 @@ public class ExpressionMatcher {
         } else if (other == null) {
             return false;
         } else if (other.getClass() == ExpressionMatcher.class) {
-            ExpressionMatcher o = (ExpressionMatcher) other;
+            final ExpressionMatcher o = (ExpressionMatcher) other;
 
             if (typeMatching != o.typeMatching) {
                 return false;
@@ -404,7 +404,7 @@ public class ExpressionMatcher {
      */
     @Override
     public String toString() {
-        StringBuilder b = new StringBuilder();
+        final StringBuilder b = new StringBuilder();
 
         if (typeMatching) {
             b.append(PM_SEPARATOR);

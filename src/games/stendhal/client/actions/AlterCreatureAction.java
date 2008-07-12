@@ -18,11 +18,11 @@ class AlterCreatureAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		if (params == null || params.length < getMinimumParameters()) {
+	public boolean execute(final String[] params, final String remainder) {
+		if ((params == null) || (params.length < getMinimumParameters())) {
 			return false;
 		}
-		RPAction alter = new RPAction();
+		final RPAction alter = new RPAction();
 
 		alter.put("type", "alter");
 		alter.put("target", params[0]);

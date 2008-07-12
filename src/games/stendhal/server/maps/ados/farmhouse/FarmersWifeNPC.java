@@ -26,16 +26,16 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Philomena") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Philomena") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(27, 4));
 				nodes.add(new Node(33, 4));
 				nodes.add(new Node(33, 10));
@@ -49,7 +49,7 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 				addJob("My husband runs this farm. I don't know where he is now though ...");
 				addQuest("If you can write Junit tests then my daughter needs you. Just ask Diogenes how to help the project.");
 				addHelp("I can sell you a bottle of milk from our dairy cows if you like.");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("milk", 30);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 

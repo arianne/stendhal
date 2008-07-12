@@ -56,20 +56,20 @@ public class DefaultActionManager implements ActionManager {
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */
-	public String getSlotNameToEquip(RPEntity entity, Item item) {
+	public String getSlotNameToEquip(final RPEntity entity, final Item item) {
 		// get all possible slots for this item
-		List<String> slotNames = item.getPossibleSlots();
+		final List<String> slotNames = item.getPossibleSlots();
 
 		if (item instanceof Stackable) {
 			// first try to put the item on an existing stack
-			Stackable stackEntity = (Stackable) item;
-			for (String slotName : slotNames) {
+			final Stackable stackEntity = (Stackable) item;
+			for (final String slotName : slotNames) {
 				if (entity.hasSlot(slotName)) {
-					RPSlot rpslot = entity.getSlot(slotName);
-					for (RPObject object : rpslot) {
+					final RPSlot rpslot = entity.getSlot(slotName);
+					for (final RPObject object : rpslot) {
 						if (object instanceof Stackable) {
 							// found another stackable
-							Stackable other = (Stackable) object;
+							final Stackable other = (Stackable) object;
 							if (other.isStackable(stackEntity)) {
 								return slotName;
 							}
@@ -81,9 +81,9 @@ public class DefaultActionManager implements ActionManager {
 
 		// We can't stack it on another item. Check if we can simply
 		// add it to an empty cell.
-		for (String slot : slotNames) {
+		for (final String slot : slotNames) {
 			if (entity.hasSlot(slot)) {
-				RPSlot rpslot = entity.getSlot(slot);
+				final RPSlot rpslot = entity.getSlot(slot);
 				if (!rpslot.isFull()) {
 					return slot;
 				}
@@ -97,20 +97,20 @@ public class DefaultActionManager implements ActionManager {
 	 * @param slotName 
 	 * @param item 
 	 * @return true if successfull*/
-	public boolean onEquip(RPEntity entity, String slotName, Item item) {
+	public boolean onEquip(final RPEntity entity, final String slotName, final Item item) {
 		if (!entity.hasSlot(slotName)) {
 			return false;
 		}
 
-		RPSlot rpslot = entity.getSlot(slotName);
+		final RPSlot rpslot = entity.getSlot(slotName);
 
 		if (item instanceof StackableItem) {
-			StackableItem stackEntity = (StackableItem) item;
+			final StackableItem stackEntity = (StackableItem) item;
 			// find a stackable item of the same type
-			for (RPObject object : rpslot) {
+			for (final RPObject object : rpslot) {
 				if (object instanceof StackableItem) {
 					// found another stackable
-					StackableItem other = (StackableItem) object;
+					final StackableItem other = (StackableItem) object;
 					if (other.isStackable(stackEntity)) {
 						// other is the same type...merge them
 						ItemLogger.merge(entity, stackEntity, other);

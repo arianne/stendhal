@@ -8,7 +8,7 @@ class NonPoisoner implements Attacker {
 		super();
 	}
 
-	public boolean attack(RPEntity victim) {
+	public boolean attack(final RPEntity victim) {
 		return false;
 	}
 

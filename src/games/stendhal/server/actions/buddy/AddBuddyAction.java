@@ -11,11 +11,11 @@ class AddBuddyAction implements ActionListener {
 	private static final String _BUDDYONLINE = "1";
 	private static final String _BUDDY_OFFLINE = "0";
 
-	public void onAction(Player player, RPAction action) {
-		String who = action.get(TARGET);
+	public void onAction(final Player player, final RPAction action) {
+		final String who = action.get(TARGET);
 		String online = _BUDDY_OFFLINE;
-		Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
-		if (buddy != null && !buddy.isGhost()) {
+		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
+		if ((buddy != null) && !buddy.isGhost()) {
 			online = _BUDDYONLINE;
 		}
 		player.setKeyedSlot("!buddy", "_" + who, online);

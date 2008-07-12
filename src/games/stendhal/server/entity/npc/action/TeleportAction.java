@@ -15,10 +15,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class TeleportAction extends SpeakerNPC.ChatAction {
 
-	private String zonename;
-	private int x;
-	private int y;
-	private Direction direction;
+	private final String zonename;
+	private final int x;
+	private final int y;
+	private final Direction direction;
 
 	/**
 	 * Creates a new TeleportAction.
@@ -32,7 +32,7 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	 * @param direction
 	 *            facing into this direction
 	 */
-	public TeleportAction(String zonename, int x, int y, Direction direction) {
+	public TeleportAction(final String zonename, final int x, final int y, final Direction direction) {
 		this.zonename = zonename;
 		this.x = x;
 		this.y = y;
@@ -40,8 +40,8 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zonename);
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zonename);
 		player.teleport(zone, x, y, direction, player);
 		player.notifyWorldAboutChanges();
 	}
@@ -58,7 +58,7 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				TeleportAction.class);
 	}

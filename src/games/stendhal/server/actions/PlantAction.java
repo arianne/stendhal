@@ -10,20 +10,20 @@ public class PlantAction {
 	private RPEntity user;
 	private Seed seed;
 
-	public void setUser(RPEntity user) {
+	public void setUser(final RPEntity user) {
 		this.user = user;
 
 	}
 
-	public void setSeed(Seed seed) {
+	public void setSeed(final Seed seed) {
 		this.seed = seed;
 	}
 
 	public boolean execute() {
-		if (seed == null || user == null) {
+		if ((seed == null) || (user == null)) {
 			return false;
 		} else if (!seed.isContained()) {
-			String infostring = seed.getInfoString();
+			final String infostring = seed.getInfoString();
 			FlowerGrower flowerGrower;
 			if (infostring == null) {
 				flowerGrower = new FlowerGrower();

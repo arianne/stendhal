@@ -16,8 +16,8 @@ public class NameBuilder {
 	 *
 	 * @param str
 	 */
-	public void append(String str) {
-		if (str != null && str.length() > 0) {
+	public void append(final String str) {
+		if ((str != null) && (str.length() > 0)) {
     		if (first) {
     			first = false;
     		} else {

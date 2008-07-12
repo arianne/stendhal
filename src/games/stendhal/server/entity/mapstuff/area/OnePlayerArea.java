@@ -39,7 +39,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * @param height
 	 *            The area height.
 	 */
-	public OnePlayerArea(int width, int height) {
+	public OnePlayerArea(final int width, final int height) {
 		super(width, height);
 
 		put("server-only", "");
@@ -115,7 +115,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		if (!(entity instanceof Player)) {
 			return super.isObstacle(entity);
 		}
-		Player player = (Player) entity;
+		final Player player = (Player) entity;
 
 		/*
 		 * Ghosts shouldn't give away their presence
@@ -124,7 +124,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			return false;
 		}
 
-		Player occupant = getOccupant();
+		final Player occupant = getOccupant();
 
 		if (occupant != null) {
 			/*
@@ -179,7 +179,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		/*
 		 * Reregister incase coordinates/size changed (could be smarter)
 		 */
-		StendhalRPZone zone = getZone();
+		final StendhalRPZone zone = getZone();
 
 		if (zone != null) {
 			zone.removeMovementListener(this);
@@ -208,8 +208,8 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
-	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX,
-			int newY) {
+	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
+			final int newY) {
 		/*
 		 * Just players
 		 */
@@ -221,7 +221,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 				return;
 			}
 
-			Player occupant = getOccupant();
+			final Player occupant = getOccupant();
 
 			/*
 			 * Check to make sure things aren't buggy
@@ -250,8 +250,8 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 *            The old Y coordinate.
 	 * 
 	 */
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY) {
+	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+			final int oldY) {
 		/*
 		 * Check against occupant incase something else is existing
 		 */
@@ -276,8 +276,8 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY, int newX, int newY) {
+	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+			final int oldY, final int newX, final int newY) {
 		// does nothing, but is specified in the implemented interface
 	}
 }

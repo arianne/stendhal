@@ -8,7 +8,7 @@ public class EquipItem {
 
 	public int quantity;
 
-	public EquipItem(String slot, String name, int amount) {
+	public EquipItem(final String slot, final String name, final int amount) {
 		this.slot = slot;
 		this.name = name;
 		this.quantity = amount;

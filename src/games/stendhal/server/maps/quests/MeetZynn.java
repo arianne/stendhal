@@ -17,7 +17,7 @@ public class MeetZynn extends AbstractQuest {
 
 	private void step_1() {
 
-		SpeakerNPC npc = npcs.get("Zynn Iwuhos");
+		final SpeakerNPC npc = npcs.get("Zynn Iwuhos");
 
 		/**
 		 * Quest can always be started again. Just check that no reward is given

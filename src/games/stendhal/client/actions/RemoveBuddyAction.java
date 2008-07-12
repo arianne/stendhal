@@ -18,8 +18,8 @@ class RemoveBuddyAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction remove = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction remove = new RPAction();
 
 		remove.put("type", "removebuddy");
 		remove.put("target", params[0]);

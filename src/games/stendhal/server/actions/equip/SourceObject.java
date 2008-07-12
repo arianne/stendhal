@@ -33,9 +33,9 @@ class SourceObject extends MoveableObject {
 
 	private int quantity;
 
-	public static SourceObject createSourceObject(RPAction action, Player player) {
+	public static SourceObject createSourceObject(final RPAction action, final Player player) {
 
-		if (action == null || player == null) {
+		if ((action == null) || (player == null)) {
 			return invalidSource;
 		}
 
@@ -61,14 +61,14 @@ class SourceObject extends MoveableObject {
 		return source;
 	}
 
-	private static SourceObject createSourceForContainedItem(RPAction action, Player player) {
+	private static SourceObject createSourceForContainedItem(final RPAction action, final Player player) {
 		SourceObject source;
-		Entity parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.BASE_OBJECT));
+		final Entity parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.BASE_OBJECT));
 
 		if (!isValidParent(parent, player)) {
 			return invalidSource;
 		}
-		String slotName = action.get(EquipActionConsts.BASE_SLOT);
+		final String slotName = action.get(EquipActionConsts.BASE_SLOT);
 
 		if (!parent.hasSlot(slotName)) {
 			player.sendPrivateText("Source " + slotName + " does not exist");
@@ -77,14 +77,14 @@ class SourceObject extends MoveableObject {
 
 			return invalidSource;
 		}
-		RPSlot baseSlot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
+		final RPSlot baseSlot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
 
 		if (!isValidBaseSlot(player, baseSlot)) {
 			logger.warn("Unreachable slot");
 			player.sendPrivateText("The " + slotName + " of " + parent.getDescriptionName(true) + " is too far away.");
 			return invalidSource;
 		}
-		RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
+		final RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
 		if (!baseSlot.has(baseItemId)) {
 			logger.warn("Base item(" + parent + ") doesn't contain item(" + baseItemId + ") on given slot(" + slotName
 					+ ")");
@@ -93,7 +93,7 @@ class SourceObject extends MoveableObject {
 			return invalidSource;
 		}
 
-		Entity entity = (Entity) baseSlot.get(baseItemId);
+		final Entity entity = (Entity) baseSlot.get(baseItemId);
 		if (!(entity instanceof Item)) {
 			player.sendPrivateText("Oh, that " + entity.getDescriptionName(true)
 					+ " is not an item and therefore cannot be equipped");
@@ -103,13 +103,13 @@ class SourceObject extends MoveableObject {
 		return source;
 	}
 
-	private static boolean isValidBaseSlot(Player player, RPSlot baseSlot) {
+	private static boolean isValidBaseSlot(final Player player, final RPSlot baseSlot) {
 		return (baseSlot instanceof EntitySlot) && (((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player));
 	}
 
-	private static SourceObject createSourceForNonContainedItem(RPAction action, Player player) {
-		SourceObject source = new SourceObject(player);
-		RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), player.getID().getZoneID());
+	private static SourceObject createSourceForNonContainedItem(final RPAction action, final Player player) {
+		final SourceObject source = new SourceObject(player);
+		final RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), player.getID().getZoneID());
 
 		source.item = source.getNonContainedItem(baseItemId);
 		if (source.item == null) {
@@ -118,9 +118,9 @@ class SourceObject extends MoveableObject {
 		return source;
 	}
 
-	private static void adjustAmountForStackables(RPAction action, SourceObject source) {
+	private static void adjustAmountForStackables(final RPAction action, final SourceObject source) {
 		if ((source.item instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
-			int entityQuantity = ((Stackable) source.item).getQuantity();
+			final int entityQuantity = ((Stackable) source.item).getQuantity();
 
 			source.quantity = action.getInt(EquipActionConsts.QUANTITY);
 			if ((entityQuantity < 1) || (source.quantity < 1) || (source.quantity >= entityQuantity)) {
@@ -144,14 +144,14 @@ class SourceObject extends MoveableObject {
 	 *            the item to move
 	 * 
 	 */
-	private SourceObject(Player player, Entity parent, String slotName, Item entity) {
+	private SourceObject(final Player player, final Entity parent, final String slotName, final Item entity) {
 		super(player);
 		this.parent = parent;
 		this.slot = slotName;
 		this.item = entity;
 	}
 
-	private static boolean isValidParent(Entity parent, Player player) {
+	private static boolean isValidParent(final Entity parent, final Player player) {
 		if (parent == null) {
 			// Object doesn't exist.
 			return false;
@@ -167,7 +167,7 @@ class SourceObject extends MoveableObject {
 		return true;
 	}
 
-	private Item getNonContainedItem(RPObject.ID baseItemId) {
+	private Item getNonContainedItem(final RPObject.ID baseItemId) {
 		Entity entity = null;
 		if (SingletonRepository.getRPWorld().has(baseItemId)) {
 			entity = (Entity) SingletonRepository.getRPWorld().get(baseItemId);
@@ -182,7 +182,7 @@ class SourceObject extends MoveableObject {
 		return (Item) entity;
 	}
 
-	public SourceObject(Player player) {
+	public SourceObject(final Player player) {
 		super(player);
 	}
 
@@ -195,7 +195,7 @@ class SourceObject extends MoveableObject {
 	 *            who moves the Source
 	 * @return true if successful
 	 */
-	public boolean moveTo(DestinationObject dest, Player player) {
+	public boolean moveTo(final DestinationObject dest, final Player player) {
 		if (!((EquipListener) item).canBeEquippedIn(dest.slot)) {
 			// give some feedback
 			player.sendPrivateText("You can't carry this " + item.getTitle() + " on your " + dest.slot);
@@ -208,8 +208,8 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
-		String[] srcInfo = getLogInfo();
-		Item entity = removeFromWorld();
+		final String[] srcInfo = getLogInfo();
+		final Item entity = removeFromWorld();
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
@@ -229,8 +229,8 @@ class SourceObject extends MoveableObject {
 	 * returns true when this entity and the other is within the given distance.
 	 */
 	@Override
-	public boolean checkDistance(Entity other, double distance) {
-		Entity checker = (parent != null) ? parent : item;
+	public boolean checkDistance(final Entity other, final double distance) {
+		final Entity checker = (parent != null) ? parent : item;
 		if (other.nextTo(checker, distance)) {
 			return true;
 		}
@@ -248,7 +248,7 @@ class SourceObject extends MoveableObject {
 	 */
 	public Item removeFromWorld() {
 		if (quantity != 0) {
-			StackableItem newItem = ((StackableItem) item).splitOff(quantity);
+			final StackableItem newItem = ((StackableItem) item).splitOff(quantity);
 			ItemLogger.splitOff(player, item, newItem, quantity);
 			return newItem;
 		} else {
@@ -264,7 +264,7 @@ class SourceObject extends MoveableObject {
 	 *            classes against which to check
 	 * @return true if the RPObject is one of the classes
 	 */
-	public boolean checkClass(List<Class< ? >> validClasses) {
+	public boolean checkClass(final List<Class< ? >> validClasses) {
 		if (parent != null) {
 			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
 				logger.debug("parent is the wrong class " + parent.getClass().getName());
@@ -305,7 +305,7 @@ class SourceObject extends MoveableObject {
 	 *
 	 * @param amount
 	 */
-	public void setQuantity(int amount) {
+	public void setQuantity(final int amount) {
 		quantity = amount;
 	}
 
@@ -317,9 +317,9 @@ class SourceObject extends MoveableObject {
 	 * 
 	 * @return true, if it cannot be taken; false otherwise
 	 */
-	private boolean isItemBelowOtherPlayer(Item sourceItem) {
-		List<Player> players = player.getZone().getPlayers();
-		for (Player otherPlayer : players) {
+	private boolean isItemBelowOtherPlayer(final Item sourceItem) {
+		final List<Player> players = player.getZone().getPlayers();
+		for (final Player otherPlayer : players) {
 			if (player.equals(otherPlayer)) {
 				continue;
 			}
@@ -333,7 +333,7 @@ class SourceObject extends MoveableObject {
 
 	@Override
 	public String[] getLogInfo() {
-		String[] res = new String[3];
+		final String[] res = new String[3];
 		if (parent != null) {
 			res[0] = "slot";
 			if (parent.has("name")) {

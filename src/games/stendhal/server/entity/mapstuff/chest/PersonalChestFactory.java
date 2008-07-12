@@ -26,7 +26,7 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 * @return The slot name.
 	 * 
 	 */
-	protected String getSlot(ConfigurableFactoryContext ctx) {
+	protected String getSlot(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("slot", PersonalChest.DEFAULT_BANK);
 	}
 
@@ -49,7 +49,7 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 * 
 	 * @see PersonalChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new PersonalChest(getSlot(ctx));
 	}
 }

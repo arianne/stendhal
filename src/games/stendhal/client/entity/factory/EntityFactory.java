@@ -38,12 +38,12 @@ public class EntityFactory {
 	 */
 	public static Entity createEntity(final RPObject object) {
 		try {
-			String type = object.get("type");
+			final String type = object.get("type");
 
 			if (type.equals("player") && object.has("name")) {
 				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(
 						object.get("name"))) {
-					User me = new User();
+					final User me = new User();
 					me.initialize(object);
 					return me;
 				}
@@ -60,16 +60,16 @@ public class EntityFactory {
 			}
 
 			
-			Class< ? extends Entity> entityClass = EntityMap.getClass(type, eclass, subClass);
+			final Class< ? extends Entity> entityClass = EntityMap.getClass(type, eclass, subClass);
 			if (entityClass == null) {
 					return null;
 			}
 
-			Entity en = entityClass.newInstance();
+			final Entity en = entityClass.newInstance();
 			en.initialize(object);
 
 			return en;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Error creating entity for object: " + object, e);
 			return null;
 		}

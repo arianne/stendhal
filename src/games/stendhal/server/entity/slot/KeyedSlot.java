@@ -16,7 +16,7 @@ public class KeyedSlot extends EntitySlot {
 	 * @param name
 	 *            name of slot
 	 */
-	public KeyedSlot(String name) {
+	public KeyedSlot(final String name) {
 		super(name);
 	}
 
@@ -26,7 +26,7 @@ public class KeyedSlot extends EntitySlot {
 	}
 
 	@Override
-	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		return false;
 	}
 

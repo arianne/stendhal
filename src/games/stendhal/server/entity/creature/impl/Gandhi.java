@@ -4,24 +4,24 @@ import games.stendhal.server.entity.creature.Creature;
 
 public class Gandhi implements AttackStrategy {
 
-	public void attack(Creature creature) {
+	public void attack(final Creature creature) {
 		// do nothing
 
 	}
 
-	public boolean canAttackNow(Creature creature) {
+	public boolean canAttackNow(final Creature creature) {
 		return false;
 	}
 
-	public void findNewTarget(Creature creature) {
+	public void findNewTarget(final Creature creature) {
 		//do nothing
 	}
 
-	public void getBetterAttackPosition(Creature creature) {
+	public void getBetterAttackPosition(final Creature creature) {
 		// do nothing
 	}
 
-	public boolean hasValidTarget(Creature creature) {
+	public boolean hasValidTarget(final Creature creature) {
 		return false;
 	}
 

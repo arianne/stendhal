@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MultipleActions extends SpeakerNPC.ChatAction {
 
-	private List<SpeakerNPC.ChatAction> actions;
+	private final List<SpeakerNPC.ChatAction> actions;
 
 	/**
 	 * Creates a new MultipleActions.
@@ -22,7 +22,7 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	 * @param action
 	 *            action to execute
 	 */
-	public MultipleActions(SpeakerNPC.ChatAction... action) {
+	public MultipleActions(final SpeakerNPC.ChatAction... action) {
 		this.actions = Arrays.asList(action);
 	}
 
@@ -32,13 +32,13 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	 * @param actions
 	 *            list of actions to execute
 	 */
-	public MultipleActions(List<SpeakerNPC.ChatAction> actions) {
+	public MultipleActions(final List<SpeakerNPC.ChatAction> actions) {
 		this.actions = new LinkedList<SpeakerNPC.ChatAction>(actions);
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		for (SpeakerNPC.ChatAction action : actions) {
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		for (final SpeakerNPC.ChatAction action : actions) {
 			action.fire(player, sentence, npc);
 		}
 	}
@@ -57,7 +57,7 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

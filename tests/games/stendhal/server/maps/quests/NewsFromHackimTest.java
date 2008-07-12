@@ -35,16 +35,16 @@ public class NewsFromHackimTest {
 	public void setUp() {
 		npcHackim = new SpeakerNPC("Hackim Easso");
 		SingletonRepository.getNPCList().add(npcHackim);
-		SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
+		final SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
 		npcConf.createDialog(npcHackim);
 		enHackim = npcHackim.getEngine();
 
-		ZoneConfigurator zoneConf = new TraderNPC();
+		final ZoneConfigurator zoneConf = new TraderNPC();
 		zoneConf.configureZone(new StendhalRPZone("int_semos_tavern"), null);
 		npcXin = SingletonRepository.getNPCList().get("Xin Blanca");
 		enXin = npcXin.getEngine();
 
-		AbstractQuest quest = new NewsFromHackim();
+		final AbstractQuest quest = new NewsFromHackim();
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("player");

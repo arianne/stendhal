@@ -27,12 +27,12 @@ public class LifeguardNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildFemaleDressingRoom(zone, attributes);
 	}
 
-	private void buildFemaleDressingRoom(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC pam = new SpeakerNPC("Pam") {
+	private void buildFemaleDressingRoom(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC pam = new SpeakerNPC("Pam") {
 
 			@Override
 			protected void createPath() {
@@ -46,19 +46,19 @@ public class LifeguardNPC implements ZoneConfigurator {
 				addHelp("Just tell me if you want to #'borrow a swimsuit'!");
 				addGoodbye("Have fun!");
 
-				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("swimsuit", 5);
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "borrow");
 
 				// stuff needed for the SuntanCreamForZara quest
 				// (uses sorted TreeMap instead of HashMap)
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("arandula", 1);
 				requiredResources.put("kokuda", 1);
 				requiredResources.put("minor potion", 1);
 
-				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
+				final ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
 						"mix", "suntan cream", requiredResources, 10 * 60);
 
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Hallo!");

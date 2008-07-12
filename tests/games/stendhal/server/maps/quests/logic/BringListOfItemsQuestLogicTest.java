@@ -47,7 +47,7 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testBringListOfItemsQuestLogic() {
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest());
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest());
 		logic.addToWorld();
 	}
 
@@ -62,7 +62,7 @@ public class BringListOfItemsQuestLogicTest {
 		});
 		assertEquals("emptyList", Arrays.asList(new String[] {}), logic.getListOfStillMissingItems(
 				PlayerTestHelper.createPlayer("player"), false));
-		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
+		final BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public List<String> getNeededItems() {
 
@@ -75,7 +75,7 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }), logic.getListOfStillMissingItems(
 				PlayerTestHelper.createPlayer("player"), true));
 
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 		bob.setQuest(quest.getSlotName(), "");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
@@ -102,14 +102,14 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testWelcomeNewPlayer() {
-		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
-		SpeakerNPC npc = new SpeakerNPC("npc");
+		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
+		final SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomeNewPlayer();
 
-		Player player = PlayerTestHelper.createPlayer("player");
-		Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -117,35 +117,35 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testShouldNotWelcomePlayerAfterQuest() {
-		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
-		SpeakerNPC npc = new SpeakerNPC("npc");
+		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
+		final SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomePlayerAfterQuest();
 
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		player.setQuest(quest.getSlotName(), "done");
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertFalse(npc.isTalking());
 	}
 
 	@Test
 	public final void testShouldWelcomePlayerAfterQuest() {
-		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
+		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public boolean shouldWelcomeAfterQuestIsCompleted() {
 				return true;
 			}
 		};
-		SpeakerNPC npc = new SpeakerNPC("npc");
+		final SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomePlayerAfterQuest();
 
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		player.setQuest(quest.getSlotName(), "done");
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeAfterQuestIsCompleted(), npc.get("text"));
@@ -153,15 +153,15 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void doQuest() {
-		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		final MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
 		};
-		SpeakerNPC npc = new SpeakerNPC("npc");
+		final SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer("player");
-		Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -195,7 +195,7 @@ public class BringListOfItemsQuestLogicTest {
 		npc.remove("text");
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
-		List<String> missing = new LinkedList<String>(quest.getNeededItems());
+		final List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
 		assertEquals("two and three are missing", "#two and #three", npc.get("text"));
 		en.step(player, "two");
@@ -217,16 +217,16 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testAcceptQuest() {
-		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		final MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
 		};
-		SpeakerNPC npc = new SpeakerNPC("npcAccept");
+		final SpeakerNPC npc = new SpeakerNPC("npcAccept");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -241,15 +241,15 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testRejectQuest() {
-		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		final MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
 		};
-		SpeakerNPC npc = new SpeakerNPC("npcReject");
+		final SpeakerNPC npc = new SpeakerNPC("npcReject");
 		quest.setNpc(npc);
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer("player");
-		Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -268,7 +268,7 @@ public class BringListOfItemsQuestLogicTest {
 		private boolean isWelcomingAfterQuests;
 
 		// makes our live easier
-		public void setNpc(SpeakerNPC npc) {
+		public void setNpc(final SpeakerNPC npc) {
 			this.npc = npc;
 		}
 
@@ -276,7 +276,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "askForItemsAfterPlayerSaidHeHasItems";
 		}
 
-		public String askForMissingItems(List<String> missingItems) {
+		public String askForMissingItems(final List<String> missingItems) {
 			return Grammar.enumerateCollection(missingItems);
 		}
 
@@ -313,7 +313,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "respondToLastItemBrought";
 		}
 
-		public String respondToOfferOfNotExistingItem(String itemName) {
+		public String respondToOfferOfNotExistingItem(final String itemName) {
 			return "respondToOfferOfNotExistingItem" + itemName;
 		}
 
@@ -325,7 +325,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "respondToOfferOfNotNeededItem";
 		}
 
-		public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+		public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 			return "respondToPlayerSayingHeHasNoItems";
 		}
 
@@ -345,7 +345,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
-		public void rewardPlayer(Player player) {
+		public void rewardPlayer(final Player player) {
 			
 		}
 
@@ -365,7 +365,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "welcomeDuringActiveQuest";
 		}
 
-		void setWelcomingAfterQuests(boolean isWelcomingAfterQuests) {
+		void setWelcomingAfterQuests(final boolean isWelcomingAfterQuests) {
 			this.isWelcomingAfterQuests = isWelcomingAfterQuests;
 		}
 
@@ -387,7 +387,7 @@ public class BringListOfItemsQuestLogicTest {
 			return null;
 		}
 
-		public String askForMissingItems(List<String> missingItems) {
+		public String askForMissingItems(final List<String> missingItems) {
 			return null;
 		}
 
@@ -427,7 +427,7 @@ public class BringListOfItemsQuestLogicTest {
 			return null;
 		}
 
-		public String respondToOfferOfNotExistingItem(String itemName) {
+		public String respondToOfferOfNotExistingItem(final String itemName) {
 
 			return null;
 		}
@@ -441,7 +441,7 @@ public class BringListOfItemsQuestLogicTest {
 			return null;
 		}
 
-		public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+		public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 			return null;
 		}
 
@@ -461,7 +461,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "respondToQuestRefusal";
 		}
 
-		public void rewardPlayer(Player player) {
+		public void rewardPlayer(final Player player) {
 
 		}
 
@@ -481,7 +481,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "welcomeDuringActiveQuest";
 		}
 
-		public void setNpc(SpeakerNPC npc) {
+		public void setNpc(final SpeakerNPC npc) {
 			this.npc = npc;
 		}
 

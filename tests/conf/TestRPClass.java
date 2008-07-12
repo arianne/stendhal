@@ -10,9 +10,9 @@ public class TestRPClass {
 
 	@Test
 	public void subclass() {
-		RPClass rpsuper = new RPClass("super");
+		final RPClass rpsuper = new RPClass("super");
 		assertTrue(rpsuper.subclassOf("super"));
-		RPClass sub = new RPClass("sub");
+		final RPClass sub = new RPClass("sub");
 		assertFalse(sub.subclassOf(("super")));
 		sub.isA("super");
 		assertTrue(sub.subclassOf(("super")));

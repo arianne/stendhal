@@ -13,10 +13,10 @@ import java.io.PrintStream;
  * @author hendrik
  */
 public class ChatTestCreator {
-	private BufferedReader br;
-	private JavaWriter writer;
+	private final BufferedReader br;
+	private final JavaWriter writer;
 
-	public ChatTestCreator(BufferedReader br, PrintStream out) {
+	public ChatTestCreator(final BufferedReader br, final PrintStream out) {
 		this.br = br;
 		this.writer = new JavaWriter(out);
 	}
@@ -31,8 +31,8 @@ public class ChatTestCreator {
 		writer.footer();
 	}
 
-	private void handleLine(String line) {
-		LineAnalyser analyser = new LineAnalyser(line);
+	private void handleLine(final String line) {
+		final LineAnalyser analyser = new LineAnalyser(line);
 		if (analyser.isEmpty()) {
 			writer.emptyLine();
 		} else if (analyser.isComment()) {
@@ -54,19 +54,19 @@ public class ChatTestCreator {
 	 * @throws IOException
 	 *             in case of an input/output error
 	 */
-	public static void main(String[] args) throws IOException {
-		if (args.length < 1 || args.length > 2) {
+	public static void main(final String[] args) throws IOException {
+		if ((args.length < 1) || (args.length > 2)) {
 			System.err.println("java " + ChatTestCreator.class.getName()
 					+ " chatlog.txt [chatlogtest.java]");
 		}
 
-		BufferedReader br = new BufferedReader(new FileReader(args[0]));
+		final BufferedReader br = new BufferedReader(new FileReader(args[0]));
 		PrintStream out = System.out;
 		if (args.length > 1) {
 			out = new PrintStream(new FileOutputStream(args[1]));
 		}
 
-		ChatTestCreator ctt = new ChatTestCreator(br, out);
+		final ChatTestCreator ctt = new ChatTestCreator(br, out);
 		ctt.convert();
 
 		br.close();

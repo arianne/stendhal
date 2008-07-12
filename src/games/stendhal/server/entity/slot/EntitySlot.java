@@ -24,17 +24,15 @@ public class EntitySlot extends RPSlot implements Slot {
 	 * @param name
 	 *            name of slot
 	 */
-	public EntitySlot(String name) {
+	public EntitySlot(final String name) {
 		super(name);
 	}
 
-	public boolean isReachableForTakingThingsOutOfBy(
-			@SuppressWarnings("unused")
-			Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		return false;
 	}
 
-	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
+	public boolean isReachableForThrowingThingsIntoBy(final Entity entity) {
 		return isReachableForTakingThingsOutOfBy(entity);
 	}
 

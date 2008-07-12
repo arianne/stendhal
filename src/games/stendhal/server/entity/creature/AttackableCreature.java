@@ -19,7 +19,7 @@ public class AttackableCreature extends Creature {
 	 * 
 	 * @param copy
 	 */
-	public AttackableCreature(Creature copy) {
+	public AttackableCreature(final Creature copy) {
 		super(copy);
 	}
 
@@ -45,7 +45,7 @@ public class AttackableCreature extends Creature {
 	 * @param master
 	 *            master
 	 */
-	public void setMaster(RPEntity master) {
+	public void setMaster(final RPEntity master) {
 		this.master = master;
 	}
 

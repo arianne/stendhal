@@ -21,7 +21,7 @@ public class testStoreableEntityListTest {
 		}
 
 		@Override
-		public void onRemoved(StendhalRPZone zone) {
+		public void onRemoved(final StendhalRPZone zone) {
 			
 			removecounter++;
 			super.onRemoved(zone);
@@ -50,21 +50,21 @@ public class testStoreableEntityListTest {
 
 	@Test
 	public void testRemoveByName() {
-		StendhalRPZone zone = new StendhalRPZone("name") {
+		final StendhalRPZone zone = new StendhalRPZone("name") {
 			@Override
 			public void storeToDatabase() {
 				// do nothing
 			}
 		};
-		StoreableEntityList<Entity> storelist = new StoreableEntityList<Entity>(zone, Entity.class) {
+		final StoreableEntityList<Entity> storelist = new StoreableEntityList<Entity>(zone, Entity.class) {
 
 			@Override
-			protected String getName(Entity entity) {
+			protected String getName(final Entity entity) {
 				return entity.getTitle();
 			}
 		};
-		Entity ent = new EntityExtension();
-		Entity ent2 = new EntityExtension();
+		final Entity ent = new EntityExtension();
+		final Entity ent2 = new EntityExtension();
 		assertTrue(storelist.getList().isEmpty());
 		storelist.add(ent);
 		assertFalse(storelist.getList().isEmpty());

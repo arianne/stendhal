@@ -70,7 +70,7 @@ class CarrotGrower2DView extends GrainField2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case PICK:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 			getEntity().fillTargetInfo(rpaction);

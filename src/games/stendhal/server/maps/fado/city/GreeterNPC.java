@@ -21,7 +21,7 @@ import java.util.Map;
  * @author timothyb89
  */
 public class GreeterNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	//
 	// ZoneConfigurator
@@ -33,7 +33,7 @@ public class GreeterNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -41,12 +41,12 @@ public class GreeterNPC implements ZoneConfigurator {
 	// OL0_GreeterNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC greeterNPC = new SpeakerNPC("Xhiphin Zohos") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC greeterNPC = new SpeakerNPC("Xhiphin Zohos") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(39, 29));
 				nodes.add(new Node(23, 29));
 				nodes.add(new Node(23, 21));

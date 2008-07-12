@@ -89,7 +89,7 @@ class Pet2DView extends DomesticAnimal2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case LEAVE_PET:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 

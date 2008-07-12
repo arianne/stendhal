@@ -41,13 +41,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	private static final int BUTTON_SPACING = 5;
 
 	/** the text panel. */
-	private WtTextPanel textPanel;
+	private final WtTextPanel textPanel;
 
 	/** the button. */
-	private List<WtButton> buttons;
+	private final List<WtButton> buttons;
 
 	/** name of the button clicked when the window is closed. */
-	private String closeButtonName;
+	private final String closeButtonName;
 
 	/** false when the messagebox still has to layout the buttons . */
 	private boolean layedout;
@@ -63,8 +63,8 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 * @param buttonCombination
 	 * @param gameScreen
 	 */
-	public WtMessageBox(String name, int x, int y, int width, String message,
-			ButtonCombination buttonCombination, IGameScreen gameScreen) {
+	public WtMessageBox(final String name, final int x, final int y, final int width, final String message,
+			final ButtonCombination buttonCombination, final IGameScreen gameScreen) {
 		super(name, x, y, width, MAX_HEIGHT, gameScreen);
 
 		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20,
@@ -72,22 +72,22 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		addChild(textPanel);
 
 		buttons = new ArrayList<WtButton>();
-		for (ButtonEnum buttonEnum : buttonCombination.getButtons()) {
-			WtButton button = buttonEnum.getButton(gameScreen);
+		for (final ButtonEnum buttonEnum : buttonCombination.getButtons()) {
+			final WtButton button = buttonEnum.getButton(gameScreen);
 			button.registerClickListener(this);
 			buttons.add(button);
 		}
 		this.closeButtonName = buttonCombination.getCloseButton().getName();
 
 		int fullWidth = (buttons.size() - 1) * BUTTON_SPACING;
-		for (WtButton button : buttons) {
+		for (final WtButton button : buttons) {
 			fullWidth += button.getWidth();
 			addChild(button);
 		}
 
 		int xpos = (getWidth() - fullWidth) / 2;
 
-		for (WtButton button : buttons) {
+		for (final WtButton button : buttons) {
 			button.moveTo(xpos, 0);
 			xpos += button.getWidth() + BUTTON_SPACING;
 		}
@@ -107,11 +107,11 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D clientArea, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D clientArea, final IGameScreen gameScreen) {
 		// layout the buttons
 		if (!layedout) {
-			int lastHeight = textPanel.getLastHeight();
-			for (WtButton button : buttons) {
+			final int lastHeight = textPanel.getLastHeight();
+			for (final WtButton button : buttons) {
 				button.moveTo(button.getX(), lastHeight);
 			}
 			layedout = true;
@@ -127,7 +127,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 * @param point
 	 * @param gameScreen
 	 */
-	public void onClick(String name, Point point, IGameScreen gameScreen) {
+	public void onClick(final String name, final Point point, final IGameScreen gameScreen) {
 		// tell our listeners that a button has been clicked
 		notifyClickListeners(name, point);
 		removeCloseListener(this);
@@ -139,7 +139,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 * 
 	 * @param name
 	 */
-	public void onClose(String name) {
+	public void onClose(final String name) {
 		// pseudoclicked the close button
 		onClick(closeButtonName, null, gameScreen);
 	}
@@ -162,7 +162,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		 * @param width
 		 * @param height
 		 */
-		private ButtonEnum(String name, int width, int height) {
+		private ButtonEnum(final String name, final int width, final int height) {
 			this.name = name;
 			this.width = width;
 			this.height = height;
@@ -179,7 +179,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		 * @param gameScreen
 		 * @return the created button
 		 */
-		public WtButton getButton(IGameScreen gameScreen) {
+		public WtButton getButton(final IGameScreen gameScreen) {
 			return new WtButton(name, width, height, name, gameScreen);
 		}
 	}
@@ -204,10 +204,10 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		 * @param closeButton
 		 * @param buttons
 		 */
-		private ButtonCombination(ButtonEnum closeButton, ButtonEnum... buttons) {
-			List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
+		private ButtonCombination(final ButtonEnum closeButton, final ButtonEnum... buttons) {
+			final List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
 			this.closeButton = closeButton;
-			for (ButtonEnum button : buttons) {
+			for (final ButtonEnum button : buttons) {
 				buttonList.add(button);
 			}
 			this.buttons = Collections.unmodifiableList(buttonList);

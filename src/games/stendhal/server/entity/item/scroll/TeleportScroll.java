@@ -30,8 +30,8 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public TeleportScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public TeleportScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -41,7 +41,7 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public TeleportScroll(TeleportScroll item) {
+	public TeleportScroll(final TeleportScroll item) {
 		super(item);
 	}
 
@@ -64,8 +64,8 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @return true iff teleport was successful
 	 */
 	@Override
-	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = player.getZone();
+	protected boolean useScroll(final Player player) {
+		final StendhalRPZone zone = player.getZone();
 
 		if (!zone.isTeleportAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");

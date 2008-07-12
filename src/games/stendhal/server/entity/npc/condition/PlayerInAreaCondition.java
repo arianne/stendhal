@@ -13,7 +13,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
-	private Area area;
+	private final Area area;
 
 	/**
 	 * Creates a new PlayerInAreaCondition.
@@ -21,12 +21,12 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 	 * @param area
 	 *            Area
 	 */
-	public PlayerInAreaCondition(Area area) {
+	public PlayerInAreaCondition(final Area area) {
 		this.area = area;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return area.contains(player);
 	}
 
@@ -41,7 +41,7 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

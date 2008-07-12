@@ -36,14 +36,14 @@ public enum VersionState {
 	 *            a string represantation
 	 * @return VersionState. In case of an error VersionState.ERROR is returned
 	 */
-	public static VersionState getFromString(String versionStateString) {
+	public static VersionState getFromString(final String versionStateString) {
 		try {
 			if ((versionStateString == null)
 					|| (versionStateString.trim().equals(""))) {
 				return UNKOWN;
 			}
 			return VersionState.valueOf(versionStateString.toUpperCase());
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 			e.printStackTrace(System.err);
 			return ERROR;
 		}

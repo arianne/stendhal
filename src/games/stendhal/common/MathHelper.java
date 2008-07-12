@@ -21,7 +21,7 @@ public class MathHelper {
 	 * 
 	 * @return An integer
 	 */
-	public static int parseIntDefault(String s, int def) {
+	public static int parseIntDefault(final String s, final int def) {
 		if (s == null) {
 			return def;
 		}
@@ -29,7 +29,7 @@ public class MathHelper {
 		int r;
 		try {
 			r = Integer.parseInt(s);
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			r = def;
 		}
 		return r;
@@ -42,7 +42,7 @@ public class MathHelper {
 	 * 
 	 * @return An integer
 	 */
-	public static int parseInt(String s) {
+	public static int parseInt(final String s) {
 		return parseIntDefault(s, 0);
 	}
 

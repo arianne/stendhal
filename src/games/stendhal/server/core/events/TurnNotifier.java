@@ -32,7 +32,7 @@ public final class TurnNotifier {
 	 * this turn. Turns at which no event should take place needn't be
 	 * registered here.
 	 */
-	private Map<Integer, Set<TurnListener>> register = new HashMap<Integer, Set<TurnListener>>();
+	private final Map<Integer, Set<TurnListener>> register = new HashMap<Integer, Set<TurnListener>>();
 
 	/** Used for multi-threading synchronization. * */
 	private final Object sync = new Object();
@@ -60,7 +60,7 @@ public final class TurnNotifier {
 	 *            currentTurn
 	 */
 
-	public void logic(int currentTurn) {
+	public void logic(final int currentTurn) {
 		// Note: It is OK to only synchronise the remove part
 		// because notifyAtTurn will not allow registrations
 		// for the current turn. So it is important to
@@ -75,22 +75,22 @@ public final class TurnNotifier {
 		}
 
 		if (logger.isDebugEnabled()) {
-			StringBuilder os = new StringBuilder();
+			final StringBuilder os = new StringBuilder();
 			os.append("register: " + register.size() + "\n");
 			os.append("set: " + (set != null ? set.size() : 0) + "\n");
 			logger.info(os);
 		}
 
 		if (set != null) {
-			for (TurnListener event : set) {
-				TurnListener turnListener = event;
+			for (final TurnListener event : set) {
+				final TurnListener turnListener = event;
 				try {
 					if (logger.isDebugEnabled()) {
 						logger.info(turnListener);
 					}
 
 					turnListener.onTurnReached(currentTurn);
-				} catch (RuntimeException e) {
+				} catch (final RuntimeException e) {
 					logger.error(e, e);
 				}
 			}
@@ -116,7 +116,7 @@ public final class TurnNotifier {
 	 *            the object to notify
 	 */
 
-	public void notifyInTurns(int diff, TurnListener turnListener) {
+	public void notifyInTurns(final int diff, final TurnListener turnListener) {
 		notifyAtTurn(currentTurn + diff + 1, turnListener);
 	}
 
@@ -128,7 +128,7 @@ public final class TurnNotifier {
 	 * @param turnListener
 	 *            the object to notify
 	 */
-	public void notifyInSeconds(int sec, TurnListener turnListener) {
+	public void notifyInSeconds(final int sec, final TurnListener turnListener) {
 		notifyInTurns(SingletonRepository.getRPWorld().getTurnsInSeconds(sec),
 				turnListener);
 	}
@@ -142,12 +142,12 @@ public final class TurnNotifier {
 	 *            the object to notify
 	 */
 
-	public void notifyAtTurn(int turn, TurnListener turnListener) {
+	public void notifyAtTurn(final int turn, final TurnListener turnListener) {
 		if (logger.isDebugEnabled()) {
 			logger.info("Notify at " + turn + " by " + turnListener);
-			StringBuilder st = new StringBuilder();
+			final StringBuilder st = new StringBuilder();
 
-			for (StackTraceElement e : Thread.currentThread().getStackTrace()) {
+			for (final StackTraceElement e : Thread.currentThread().getStackTrace()) {
 				st.append(e);
 				st.append("\n");
 			}
@@ -164,7 +164,7 @@ public final class TurnNotifier {
 
 		synchronized (sync) {
 			// do we have other events for this turn?
-			Integer turnInt = Integer.valueOf(turn);
+			final Integer turnInt = Integer.valueOf(turn);
 			Set<TurnListener> set = register.get(turnInt);
 			if (set == null) {
 				set = new HashSet<TurnListener>();
@@ -182,18 +182,18 @@ public final class TurnNotifier {
 	 * @param turnListener
 	 */
 
-	public void dontNotify(TurnListener turnListener) {
+	public void dontNotify(final TurnListener turnListener) {
 		// all events that are equal to this one should be forgotten.
 		// TurnEvent turnEvent = new TurnEvent(turnListener);
-		for (Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
-			Set<TurnListener> set = mapEntry.getValue();
+		for (final Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
+			final Set<TurnListener> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions.
-			Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
+			final Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
 			if (set.contains(turnListener)) {
 					toBeRemoved.add(turnListener);
 			}
-			for (TurnListener event : toBeRemoved) {
+			for (final TurnListener event : toBeRemoved) {
 				set.remove(event);
 			}
 		}
@@ -208,15 +208,15 @@ public final class TurnNotifier {
 	 *         will not be notified with the given message.
 	 */
 
-	public int getRemainingTurns(TurnListener turnListener) {
+	public int getRemainingTurns(final TurnListener turnListener) {
 		// all events match that are equal to this.
 		// TurnEvent turnEvent = new TurnEvent(turnListener);
 		// the HashMap is unsorted, so we need to run through
 		// all of it.
-		List<Integer> matchingTurns = new ArrayList<Integer>();
-		for (Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
-			Set<TurnListener> set = mapEntry.getValue();
-			for (TurnListener currentEvent : set) {
+		final List<Integer> matchingTurns = new ArrayList<Integer>();
+		for (final Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
+			final Set<TurnListener> set = mapEntry.getValue();
+			for (final TurnListener currentEvent : set) {
 				if (currentEvent.equals(turnListener)) {
 					matchingTurns.add(mapEntry.getKey());
 				}
@@ -239,7 +239,7 @@ public final class TurnNotifier {
 	 *         will not be notified with the given message.
 	 */
 
-	public int getRemainingSeconds(TurnListener turnListener) {
+	public int getRemainingSeconds(final TurnListener turnListener) {
 
 		return (getRemainingTurns(turnListener) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
 	}

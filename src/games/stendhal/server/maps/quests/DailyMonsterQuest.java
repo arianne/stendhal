@@ -61,14 +61,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 
 		private void refreshCreatureList() {
-			Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
+			final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 			sortedcreatures = new LinkedList<Creature>();
 			sortedcreatures.addAll(creatures);
 			Collections.sort(sortedcreatures, new LevelBasedComparator());
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// Debug Only, to debug mode just toggle the true/false for the IF
 			// statement
@@ -79,25 +79,25 @@ public class DailyMonsterQuest extends AbstractQuest {
 				return;
 			}
 
-			String questInfo = player.getQuest("daily");
+			final String questInfo = player.getQuest("daily");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long delay = MathHelper.MILLISECONDS_IN_ONE_DAY;
-			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+			final long delay = MathHelper.MILLISECONDS_IN_ONE_DAY;
+			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
 
 			if ((questKill != null) && !"done".equals(questKill)) {
-				String sayText = "You're already on a quest to slay a "
+				final String sayText = "You're already on a quest to slay a "
 						+ questKill + ". Say #complete if you're done with it!";
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
@@ -111,7 +111,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			if (questLast != null) {
-				long timeRemaining = (Long.parseLong(questLast) + delay)
+				final long timeRemaining = (Long.parseLong(questLast) + delay)
 						- System.currentTimeMillis();
 
 				if (timeRemaining > 0L) {
@@ -123,7 +123,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 			refreshCreatureList();
 			// Creature selection magic happens here
-			Creature pickedCreature = pickIdealCreature(player.getLevel(),
+			final Creature pickedCreature = pickIdealCreature(player.getLevel(),
 					false, sortedcreatures);
 
 			// shouldn't happen
@@ -151,7 +151,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		// Returns a random creature near the players level, returns null if
 		// there is a bug.
 		// The ability to set a different level is for testing purposes
-		public Creature pickIdealCreature(int level, boolean testMode, List<Creature> creatureList) {
+		public Creature pickIdealCreature(final int level, final boolean testMode, final List<Creature> creatureList) {
 			// int level = player.getLevel();
 
 			// start = lower bound, current = upper bound, for the range of
@@ -160,7 +160,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			int start = 0;
 
 			boolean lowerBoundIsSet = false;
-			for (Creature creature : creatureList) {
+			for (final Creature creature : creatureList) {
 				current++;
 				// Set the strongest creature
 				if (creature.getLevel() > level + 5) {
@@ -189,8 +189,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			// make sure the pool of acceptable monsters is at least
 			// minSelected, the additional creatures will be weaker
 			if (current >= start) {
-				int minSelected = 5;
-				int numSelected = current - start + 1;
+				final int minSelected = 5;
+				final int numSelected = current - start + 1;
 				if (numSelected < minSelected) {
 					start = start - (minSelected - numSelected);
 					// don't let the lower bound go too low
@@ -201,8 +201,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			// shouldn't happen
-			if (current < start || start < 0
-					|| current >= creatureList.size()) {
+			if ((current < start) || (start < 0)
+					|| (current >= creatureList.size())) {
 				if (testMode) {
 					debugString += "\r\n" + level + " : ERROR start=" + start
 							+ ", current=" + current;
@@ -211,15 +211,15 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			// pick a random creature from the acceptable range.
-			int result = start + new Random().nextInt(current - start + 1);
-			Creature cResult = creatureList.get(result);
+			final int result = start + new Random().nextInt(current - start + 1);
+			final Creature cResult = creatureList.get(result);
 
 			if (testMode) {
 				debugString += "\r\n" + level + " : OK start=" + start
 						+ ", current=" + current + ", result=" + result
 						+ ", cResult=" + cResult.getName() + ". OPTIONS: ";
 				for (int i = start; i <= current; i++) {
-					Creature cTemp = creatureList.get(i);
+					final Creature cTemp = creatureList.get(i);
 					debugString += cTemp.getName() + ":" + cTemp.getLevel()
 							+ "; ";
 				}
@@ -247,8 +247,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("daily");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("daily");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
@@ -257,7 +257,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				engine.say("I'm afraid I didn't send you on a #quest yet.");
 				return;
 			}
-			String[] tokens = (questInfo + ";0;0").split(";");
+			final String[] tokens = (questInfo + ";0;0").split(";");
 			questKill = tokens[0];
 			questLast = tokens[1];
 			questCount = tokens[2];
@@ -269,8 +269,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 				return;
 			}
 			if (player.hasKilled(questKill)) {
-				int start = Level.getXP(player.getLevel());
-				int next = Level.getXP(player.getLevel() + 1);
+				final int start = Level.getXP(player.getLevel());
+				final int next = Level.getXP(player.getLevel() + 1);
 				int reward = (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
@@ -292,15 +292,15 @@ public class DailyMonsterQuest extends AbstractQuest {
 	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("daily");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("daily");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
@@ -308,7 +308,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			if ((questKill != null) && !"done".equals(questKill)) {
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
@@ -330,12 +330,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Mayor Sakhs");
+		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"),
 				null, ConversationStates.ATTENDING, null,
 				new DailyQuestAction());
@@ -346,7 +346,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Mayor Sakhs");
+		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("complete", "done"), null,
@@ -355,7 +355,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	}
 
 	private void step_4() {
-		SpeakerNPC npc = npcs.get("Mayor Sakhs");
+		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("another", "abort"), null,
 				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());

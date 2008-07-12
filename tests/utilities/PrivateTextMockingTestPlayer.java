@@ -18,7 +18,7 @@ public class PrivateTextMockingTestPlayer extends Player {
 	 * @param obj to copy
 	 * @param name to assign
 	 */
-	public PrivateTextMockingTestPlayer(RPObject obj, String name) {
+	public PrivateTextMockingTestPlayer(final RPObject obj, final String name) {
 		super(obj);
 		setName(name);
 	}
@@ -27,7 +27,7 @@ public class PrivateTextMockingTestPlayer extends Player {
 	 * Catch private message texts.
 	 */
 	@Override
-	public void sendPrivateText(NotificationType type, String text) {
+	public void sendPrivateText(final NotificationType type, final String text) {
 		appendMessage(text);
 
 		// Don't forget to call the super class.
@@ -55,7 +55,11 @@ public class PrivateTextMockingTestPlayer extends Player {
 	 * @return private message string
 	 */
 	public String getPrivateTextString() {
-		return privateTextBuffer != null ? privateTextBuffer.toString() : "";
+		if (privateTextBuffer != null) {
+			return privateTextBuffer.toString();
+		} else {
+			return "";
+		}
 	}
 
 	/**

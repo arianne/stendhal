@@ -76,7 +76,7 @@ public class HouseBuying extends AbstractQuest {
 	protected StendhalRPZone zone3;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -86,7 +86,7 @@ public class HouseBuying extends AbstractQuest {
 		npc = new SpeakerNPC("Barrett Holmes") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(55, 94));
 				nodes.add(new Node(93, 94));
 				nodes.add(new Node(93, 73));
@@ -105,7 +105,7 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -121,7 +121,7 @@ public class HouseBuying extends AbstractQuest {
 
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house is "
 									+ COST
@@ -149,13 +149,13 @@ public class HouseBuying extends AbstractQuest {
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
 						@Override
-	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							Expression number = sentence.getNumeral();
+	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							final Expression number = sentence.getNumeral();
 							if (number != null) {
-	    						int houseNr = number.getAmount();
+	    						final int houseNr = number.getAmount();
 
     							// check for correct house numbers
-    							if (houseNr >= 1 && houseNr <= 25) {
+    							if ((houseNr >= 1) && (houseNr <= 25)) {
     								return true;
     							}
 							}
@@ -167,8 +167,8 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 							// is postman online?
 							if (postman != null) {
@@ -177,15 +177,15 @@ public class HouseBuying extends AbstractQuest {
 								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
 									postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
 								}
-								String postmanslot = postman.getQuest(QUEST_SLOT);
-								String[] boughthouses = postmanslot.split(";");
-								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = Integer.toString(sentence.getNumeral().getAmount());
+								final String postmanslot = postman.getQuest(QUEST_SLOT);
+								final String[] boughthouses = postmanslot.split(";");
+								final List<String> doneList = Arrays.asList(boughthouses);
+								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money
 									if (player.isEquipped("money", COST)) {
-										Item key = SingletonRepository.getEntityManager().getItem(
+										final Item key = SingletonRepository.getEntityManager().getItem(
 												"private key " + itemName);
 										engine.say("Congratulations, here is your key to house "
 												+ itemName
@@ -234,10 +234,10 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								String house = player.getQuest(QUEST_SLOT);
-								Item key = SingletonRepository.getEntityManager().getItem(
+								final String house = player.getQuest(QUEST_SLOT);
+								final Item key = SingletonRepository.getEntityManager().getItem(
 										"private key " + house);
 								key.setUndroppableOnDeath(true);
 								if (player.equip(key)) {
@@ -290,7 +290,7 @@ public class HouseBuying extends AbstractQuest {
 		npc2 = new SpeakerNPC("Reg Denson") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(37, 13));
 				nodes.add(new Node(31, 13));
 				nodes.add(new Node(31, 10));
@@ -317,7 +317,7 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -333,7 +333,7 @@ public class HouseBuying extends AbstractQuest {
 
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Ados is "
 									+ COST_ADOS
@@ -366,13 +366,13 @@ public class HouseBuying extends AbstractQuest {
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
 						@Override
-	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							Expression number = sentence.getNumeral();
+	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							final Expression number = sentence.getNumeral();
 							if (number != null) {
-	    						int houseNr = number.getAmount();
+	    						final int houseNr = number.getAmount();
 
     							// check for correct house numbers
-    							if (houseNr >= 50 && houseNr <= 68) {
+    							if ((houseNr >= 50) && (houseNr <= 68)) {
     								return true;
     							}
 							}
@@ -384,8 +384,8 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 							// is postman online?
 							if (postman != null) {
@@ -394,15 +394,15 @@ public class HouseBuying extends AbstractQuest {
 								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
 									postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
 								}
-								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
-								String[] boughthouses = postmanslot.split(";");
-								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = Integer.toString(sentence.getNumeral().getAmount());
+								final String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
+								final String[] boughthouses = postmanslot.split(";");
+								final List<String> doneList = Arrays.asList(boughthouses);
+								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money
 									if (player.isEquipped("money", COST_ADOS)) {
-										Item key = SingletonRepository.getEntityManager().getItem(
+										final Item key = SingletonRepository.getEntityManager().getItem(
 												"private key " + itemName);
 										engine.say("Congratulations, here is your key to house "
 												+ itemName
@@ -451,10 +451,10 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								String house = player.getQuest(QUEST_SLOT);
-								Item key = SingletonRepository.getEntityManager().getItem(
+								final String house = player.getQuest(QUEST_SLOT);
+								final Item key = SingletonRepository.getEntityManager().getItem(
 										"private key " + house);
 								key.setUndroppableOnDeath(true);
 								if (player.equip(key)) {
@@ -512,7 +512,7 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -528,7 +528,7 @@ public class HouseBuying extends AbstractQuest {
 
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
@@ -556,13 +556,13 @@ public class HouseBuying extends AbstractQuest {
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
 						@Override
-	                    public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-							Expression number = sentence.getNumeral();
+	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							final Expression number = sentence.getNumeral();
 							if (number != null) {
-	    						int houseNr = number.getAmount();
+	    						final int houseNr = number.getAmount();
 
     							// check for correct house numbers
-    							if (houseNr >= 26 && houseNr <= 49) {
+    							if ((houseNr >= 26) && (houseNr <= 49)) {
     								return true;
     							}
 							}
@@ -574,8 +574,8 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 							// is postman online?
 							if (postman != null) {
@@ -584,15 +584,15 @@ public class HouseBuying extends AbstractQuest {
 								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
 									postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
 								}
-								String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
-								String[] boughthouses = postmanslot.split(";");
-								List<String> doneList = Arrays.asList(boughthouses);
-								String itemName = Integer.toString(sentence.getNumeral().getAmount());
+								final String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
+								final String[] boughthouses = postmanslot.split(";");
+								final List<String> doneList = Arrays.asList(boughthouses);
+								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
 								// now check if the house they said is free
 								if (!doneList.contains(itemName)) {
 									// it's available, so take money
 									if (player.isEquipped("money", COST_KIRDNEH)) {
-										Item key = SingletonRepository.getEntityManager().getItem(
+										final Item key = SingletonRepository.getEntityManager().getItem(
 												"private key " + itemName);
 										engine.say("Congratulations, here is your key to house "
 												+ itemName
@@ -641,10 +641,10 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								String house = player.getQuest(QUEST_SLOT);
-								Item key = SingletonRepository.getEntityManager().getItem(
+								final String house = player.getQuest(QUEST_SLOT);
+								final Item key = SingletonRepository.getEntityManager().getItem(
 										"private key " + house);
 								key.setUndroppableOnDeath(true);
 								if (player.equip(key)) {

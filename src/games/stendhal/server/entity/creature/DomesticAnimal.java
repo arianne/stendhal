@@ -52,7 +52,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a new DomesticAnimal that is owned by a player.
 	 * @param owner of the new animal
 	 */
-	public DomesticAnimal(Player owner) {
+	public DomesticAnimal(final Player owner) {
 		this.owner = owner;
 		put("title_type", "friend");
 
@@ -65,7 +65,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * 
 	 * @param object
 	 */
-	public DomesticAnimal(RPObject object) {
+	public DomesticAnimal(final RPObject object) {
 		super(object);
 		put("title_type", "friend");
 
@@ -82,12 +82,12 @@ public abstract class DomesticAnimal extends Creature {
 	 * @param owner
 	 *            The player who should own the sheep
 	 */
-	public DomesticAnimal(RPObject object, Player owner) {
+	public DomesticAnimal(final RPObject object, final Player owner) {
 		this(object);
 		this.owner = owner;
 	}
 
-	public void setOwner(Player owner) {
+	public void setOwner(final Player owner) {
 		this.owner = owner;
 	}
 
@@ -103,7 +103,7 @@ public abstract class DomesticAnimal extends Creature {
 		}
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(final int weight) {
 		this.weight = weight;
 		put("weight", weight);
 	}
@@ -132,8 +132,8 @@ public abstract class DomesticAnimal extends Creature {
 	 *            The corpse on which to put the meat
 	 */
 	@Override
-	protected void dropItemsOn(Corpse corpse) {
-		Food food = (Food) SingletonRepository.getEntityManager().getItem("meat");
+	protected void dropItemsOn(final Corpse corpse) {
+		final Food food = (Food) SingletonRepository.getEntityManager().getItem("meat");
 		food.setQuantity(getWeight() / 10 + 1);
 		corpse.add(food);
 	}
@@ -145,7 +145,7 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	@Override
-	protected void handleSimpleCollision(int nx, int ny) {
+	protected void handleSimpleCollision(final int nx, final int ny) {
 		stop();
 		clearPath();
 	}
@@ -163,14 +163,14 @@ public abstract class DomesticAnimal extends Creature {
     			text = text.trim().toLowerCase();
 
     			// react on calling the pet's name
-        		String title = getTitle();
-    			if (title != null && text.startsWith(title.trim().toLowerCase())) {
+        		final String title = getTitle();
+    			if ((title != null) && text.startsWith(title.trim().toLowerCase())) {
     				return true;
     			}
 
     			// react on calling the pet type ("cat", "sheep", ...)
-        		String type = get("type");
-    			if (type != null && text.startsWith(type)) {
+        		final String type = get("type");
+    			if ((type != null) && text.startsWith(type)) {
     				return true;
     			}
     		}

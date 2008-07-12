@@ -6,10 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class SunbatherNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected SpeakerNPC instantiate(String name) {
-		SpeakerNPC npc = new SpeakerNPC(name) {
+	protected SpeakerNPC instantiate(final String name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 			@Override
-			public void say(String text) {
+			public void say(final String text) {
 				// He doesn't move around because he's "lying" on his towel.
 				say(text, false);
 			}
@@ -18,7 +18,7 @@ public class SunbatherNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Hey there!");
 		npc.addQuest("I don't have a task for you, I'm perfectly happy!");
 		npc.addJob("Don't remind me of my job, I'm on holiday!");

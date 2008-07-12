@@ -33,7 +33,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	private static final int REQUIRED_ADMINLEVEL = 1000;
 
-	private Map<String, ScriptingSandbox> scripts;
+	private final Map<String, ScriptingSandbox> scripts;
 
 	private final String scriptDir = "data/script/";
 
@@ -50,11 +50,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	@Override
 	public void init() {
-		URL url = getClass().getClassLoader().getResource(scriptDir);
+		final URL url = getClass().getClassLoader().getResource(scriptDir);
 		if (url != null) {
-			File dir = new File(url.getFile());
-			String[] strs = dir.list(new FilenameFilter() {
-				public boolean accept(File dir, String name) {
+			final File dir = new File(url.getFile());
+			final String[] strs = dir.list(new FilenameFilter() {
+				public boolean accept(final File dir, final String name) {
 					return name.endsWith(".groovy");
 				}
 			});
@@ -62,7 +62,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 			for (int i = 0; i < strs.length; i++) {
 				try {
 					perform(strs[i]);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					logger.error("Error while loading " + strs[i] + ":", e);
 				}
 			}
@@ -71,12 +71,12 @@ public class ScriptRunner extends StendhalServerExtension implements
 	}
 
 	@Override
-	public synchronized boolean perform(String name) {
+	public synchronized boolean perform(final String name) {
 		return perform(name, "load", null, null);
 	}
 
-	private synchronized boolean perform(String name, String mode,
-			Player player, List<String> args) {
+	private synchronized boolean perform(String name, final String mode,
+			final Player player, final List<String> args) {
 		boolean ret = false;
 		name = name.trim();
 
@@ -128,15 +128,15 @@ public class ScriptRunner extends StendhalServerExtension implements
 	}
 
 	@Override
-	public String getMessage(String name) {
-		ScriptingSandbox gr = scripts.get(name);
+	public String getMessage(final String name) {
+		final ScriptingSandbox gr = scripts.get(name);
 		if (gr != null) {
 			return (gr.getMessage());
 		}
 		return (null);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,
 				"script", true)) {
@@ -177,10 +177,10 @@ public class ScriptRunner extends StendhalServerExtension implements
 			}
 
 			// use the same routine as in the client to parse quoted arguments
-			CommandlineParser parser = new CommandlineParser(cmd);
-			ErrorDrain errors = new ErrorBuffer();
+			final CommandlineParser parser = new CommandlineParser(cmd);
+			final ErrorDrain errors = new ErrorBuffer();
 
-			List<String> args = parser.readAllParameters(errors);
+			final List<String> args = parser.readAllParameters(errors);
 
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"script", script, mode, args.toString());
@@ -188,13 +188,13 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// execute script
 			script = script.trim();
 			if (script.endsWith(".groovy") || script.endsWith(".class")) {
-				boolean res = perform(script, mode, player, args);
+				final boolean res = perform(script, mode, player, args);
 
 				if (res) {
 					text = "Script \"" + script + "\" was successfully " + mode
 							+ (mode == "execute" ? "d" : "ed") + ".";
 				} else {
-					String msg = getMessage(script);
+					final String msg = getMessage(script);
 					if (msg != null) {
 						text = msg;
 					} else {

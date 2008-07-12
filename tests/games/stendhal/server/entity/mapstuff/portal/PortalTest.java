@@ -30,13 +30,13 @@ public class PortalTest {
 	@Test
 	public final void testToString() {
 
-		Portal port = new Portal();
+		final Portal port = new Portal();
 		assertEquals("Portal[0,0]", port.toString());
 	}
 
 	@Test
 	public final void testIsHidden() {
-		Portal port = new Portal();
+		final Portal port = new Portal();
 		assertFalse(port.isHidden());
 		port.put("hidden", "You don't see this object");
 		assertTrue(port.isHidden());
@@ -45,8 +45,8 @@ public class PortalTest {
 	@Test
 	public final void testSetGetIdentifier() {
 
-		Portal port = new Portal();
-		Object o = new Object();
+		final Portal port = new Portal();
+		final Object o = new Object();
 		port.setIdentifier(o);
 		assertSame(o, port.getIdentifier());
 	}
@@ -54,8 +54,8 @@ public class PortalTest {
 	@Test
 	public final void testDestination() {
 
-		Portal port = new Portal();
-		Object ref = new Object();
+		final Portal port = new Portal();
+		final Object ref = new Object();
 		port.setDestination("zonename", ref);
 		assertTrue(port.loaded());
 		assertSame(ref, port.getDestinationReference());
@@ -65,16 +65,16 @@ public class PortalTest {
 	@Test
 	public final void testUsePortalWithNoDestination() {
 
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse("port has no destination", port.usePortal(player));
 	}
 
 	@Test
 	public final void testUsePortalNotNextToPlayer() {
 
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		player.setPosition(5, 5);
 		assertFalse("port is not nextto player", port.usePortal(player));
 	}
@@ -82,9 +82,9 @@ public class PortalTest {
 	@Test
 	public final void testUsePortalHasInvalidDestination() {
 
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
-		Object ref = new Object();
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Object ref = new Object();
 		port.setDestination("zonename", ref);
 		assertFalse("port has invalid destination", port.usePortal(player));
 	}
@@ -92,11 +92,11 @@ public class PortalTest {
 	@Test
 	public final void testUsePortalHasInvalidDestinationReference() {
 
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
-		Object ref = new Object();
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Object ref = new Object();
 		port.setDestination("zonename", ref);
-		StendhalRPZone zone = new StendhalRPZone("zonename");
+		final StendhalRPZone zone = new StendhalRPZone("zonename");
 		MockStendlRPWorld.get().addRPZone(zone);
 		assertFalse("port has invalid destination", port.usePortal(player));
 	}
@@ -104,13 +104,13 @@ public class PortalTest {
 	@Test
 	public final void testUsePortal() {
 
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
-		Object ref = new Object();
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final Object ref = new Object();
 		port.setDestination("zonename", ref);
-		Portal destPort = new Portal();
+		final Portal destPort = new Portal();
 		destPort.setIdentifier(ref);
-		StendhalRPZone zone = new StendhalRPZone("zonename");
+		final StendhalRPZone zone = new StendhalRPZone("zonename");
 		zone.add(destPort);
 		MockStendlRPWorld.get().addRPZone(zone);
 		assertTrue("all things are nice", port.usePortal(player));
@@ -118,22 +118,22 @@ public class PortalTest {
 
 	@Test
 	public final void testOnUsed() {
-		Portal port = new Portal() {
+		final Portal port = new Portal() {
 			@Override
-			protected boolean usePortal(Player player) {
+			protected boolean usePortal(final Player player) {
 				player.setName("renamed-" + player.getName());
 				return false;
 			}
 		};
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		port.usePortal(bob);
 		assertEquals("renamed-bob", bob.getName());
 	}
 
 	@Test
 	public final void testOnUsedBackwards() {
-		Portal port = new Portal();
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Portal port = new Portal();
+		final Player player = PlayerTestHelper.createPlayer("player");
 		port.onUsedBackwards(player);
 	}
 

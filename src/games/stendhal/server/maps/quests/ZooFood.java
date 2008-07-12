@@ -46,18 +46,18 @@ public class ZooFood extends AbstractQuest {
 	private static final String QUEST_SLOT = "zoo_food";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 			return res;
@@ -73,7 +73,7 @@ public class ZooFood extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Katinka");
+		final SpeakerNPC npc = npcs.get("Katinka");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
@@ -121,7 +121,7 @@ public class ZooFood extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Katinka");
+		final SpeakerNPC npc = npcs.get("Katinka");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -136,7 +136,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.drop("ham", REQUIRED_HAM)) {
 							player.notifyWorldAboutChanges();
 							player.setQuest(QUEST_SLOT, "done");
@@ -156,7 +156,7 @@ public class ZooFood extends AbstractQuest {
 	}
 
 	private void step_4() {
-		SpeakerNPC npc = npcs.get("Dr. Feelgood");
+		final SpeakerNPC npc = npcs.get("Dr. Feelgood");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,

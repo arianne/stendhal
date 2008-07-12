@@ -35,7 +35,7 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 	 * 
 	 * @see OnePlayerRoomDoor
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new OnePlayerRoomDoor(getClass(ctx));
 	}
 }

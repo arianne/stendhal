@@ -79,13 +79,13 @@ public class LoginDialog extends JDialog {
 	private JPanel contentPane;
 
 	// End of variables declaration
-	private StendhalClient client;
+	private final StendhalClient client;
 
-	private Frame owner;
+	private final Frame owner;
 
 	protected ProfileList profiles;
 
-	public LoginDialog(Frame owner, StendhalClient client) {
+	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
 		this.client = client;
 		this.owner = owner;
@@ -109,7 +109,7 @@ public class LoginDialog extends JDialog {
 				BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-		GridBagConstraints c = new GridBagConstraints();
+		final GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
 
 		/*
@@ -231,7 +231,7 @@ public class LoginDialog extends JDialog {
 
 		loginButton.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				loginButton.setEnabled(false);
 				loginButton_actionPerformed(e);
 			}
@@ -263,7 +263,7 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(owner);
 	}
 
-	private void loginButton_actionPerformed(ActionEvent e) {
+	private void loginButton_actionPerformed(final ActionEvent e) {
 		Profile profile;
 
 		// If this window isn't enabled, we shouldn't act.
@@ -281,7 +281,7 @@ public class LoginDialog extends JDialog {
 			// Support for saving port number. Only save when input is a number
 			// intensifly@gmx.com
 
-		} catch (NumberFormatException ex) {
+		} catch (final NumberFormatException ex) {
 			JOptionPane.showMessageDialog(this,
 					"That is not a valid port number. Please try again.",
 					"Invalid port", JOptionPane.WARNING_MESSAGE);
@@ -301,7 +301,7 @@ public class LoginDialog extends JDialog {
 			if (savePasswordBox.isSelected()) {
 				saveProfiles(profiles);
 			} else {
-				String pw = profile.getPassword();
+				final String pw = profile.getPassword();
 				profile.setPassword("");
 				saveProfiles(profiles);
 				profile.setPassword(pw);
@@ -312,12 +312,12 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Run the connection procces in separate thread. added by TheGeneral
 		 */
-		Thread t = new Thread(new ConnectRunnable(profile));
+		final Thread t = new Thread(new ConnectRunnable(profile));
 		t.start();
 	}
 
 	@Override
-	public void setEnabled(boolean b) {
+	public void setEnabled(final boolean b) {
 		super.setEnabled(b);
 		loginButton.setEnabled(b);
 	}
@@ -325,7 +325,7 @@ public class LoginDialog extends JDialog {
 	 * Connect to a server using a given profile.
 	 * @param profile 
 	 */
-	protected void connect(Profile profile) {
+	protected void connect(final Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
 
 		// intialize progress bar
@@ -339,7 +339,7 @@ public class LoginDialog extends JDialog {
 
 			// for each major connection milestone call step()
 			progressBar.step();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			// if something goes horribly just cancel the progressbar
 			progressBar.cancel();
 			setEnabled(true);
@@ -361,7 +361,7 @@ public class LoginDialog extends JDialog {
 			setVisible(false);
 			owner.setVisible(false);
 			stendhal.doLogin = true;
-		} catch (InvalidVersionException e) {
+		} catch (final InvalidVersionException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
@@ -369,7 +369,7 @@ public class LoginDialog extends JDialog {
 					this,
 					"You are running an incompatible version of Stendhal. Please update",
 					"Invalid version", JOptionPane.ERROR_MESSAGE);
-		} catch (TimeoutException e) {
+		} catch (final TimeoutException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
@@ -377,13 +377,13 @@ public class LoginDialog extends JDialog {
 					this,
 					"Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
 					"Error Logging In", JOptionPane.ERROR_MESSAGE);
-		} catch (LoginFailedException e) {
+		} catch (final LoginFailedException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Login failed",
 					JOptionPane.INFORMATION_MESSAGE);
-		} catch (BannedAddressException e) {
+		} catch (final BannedAddressException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
@@ -399,10 +399,10 @@ public class LoginDialog extends JDialog {
 	 * @return ProfileList
 	 */
 	private ProfileList loadProfiles() {
-		ProfileList tmpProfiles = new ProfileList();
+		final ProfileList tmpProfiles = new ProfileList();
 
 		try {
-			InputStream is = Persistence.get().getInputStream(true, "stendhal",
+			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
 					"user.dat");
 
 			try {
@@ -410,9 +410,9 @@ public class LoginDialog extends JDialog {
 			} finally {
 				is.close();
 			}
-		} catch (FileNotFoundException fnfe) {
+		} catch (final FileNotFoundException fnfe) {
 			// Ignore
-		} catch (IOException ioex) {
+		} catch (final IOException ioex) {
 			JOptionPane.showMessageDialog(this,
 					"An error occurred while loading your login information",
 					"Error Loading Login Information",
@@ -426,13 +426,13 @@ public class LoginDialog extends JDialog {
 	 * Populate the profiles combobox and select the default.
 	 * @param profiles 
 	 */
-	protected void populateProfiles(ProfileList profiles) {
+	protected void populateProfiles(final ProfileList profiles) {
 		
 		
 
 		profilesComboBox.removeAllItems();
 
-		Iterator< ? > iter = profiles.iterator();
+		final Iterator< ? > iter = profiles.iterator();
 
 		while (iter.hasNext()) {
 			profilesComboBox.addItem(iter.next());
@@ -441,7 +441,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * The last profile (if any) is the default.
 		 */
-		int count = profilesComboBox.getItemCount();
+		final int count = profilesComboBox.getItemCount();
 		if (count != 0) {
 			profilesComboBox.setSelectedIndex(count - 1);
 		}
@@ -479,9 +479,9 @@ public class LoginDialog extends JDialog {
 	 * future, but it will work for now. comment: Thegeneral has added encoding
 	 * for password and username. Changed for multiple profiles.
 	 */
-	private void saveProfiles(ProfileList profiles) {
+	private void saveProfiles(final ProfileList profiles) {
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true,
+			final OutputStream os = Persistence.get().getOutputStream(true,
 					"stendhal", "user.dat");
 
 			try {
@@ -489,7 +489,7 @@ public class LoginDialog extends JDialog {
 			} finally {
 				os.close();
 			}
-		} catch (IOException ioex) {
+		} catch (final IOException ioex) {
 			JOptionPane.showMessageDialog(this,
 					"An error occurred while saving your login information",
 					"Error Saving Login Information",
@@ -511,7 +511,7 @@ public class LoginDialog extends JDialog {
 
 		protected Profile profile;
 
-		public ConnectRunnable(Profile profile) {
+		public ConnectRunnable(final Profile profile) {
 			this.profile = profile;
 		}
 
@@ -525,7 +525,7 @@ public class LoginDialog extends JDialog {
 	 */
 	protected class ProfilesCB implements ActionListener {
 
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			profilesCB();
 		}
 	}
@@ -535,7 +535,7 @@ public class LoginDialog extends JDialog {
 	 */
 	protected class SaveProfileStateCB implements ChangeListener {
 
-		public void stateChanged(ChangeEvent ev) {
+		public void stateChanged(final ChangeEvent ev) {
 			saveProfileStateCB();
 		}
 	}

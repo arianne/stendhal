@@ -19,26 +19,26 @@ public class AnswerActionTest {
 	public void testExecute() {
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("answer", action.get("type"));
 				assertEquals("schnick", action.get("text"));
 
 			}
 		};
-		AnswerAction action = new AnswerAction();
+		final AnswerAction action = new AnswerAction();
 		assertTrue(action.execute(null, "schnick"));
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		AnswerAction action = new AnswerAction();
+		final AnswerAction action = new AnswerAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		AnswerAction action = new AnswerAction();
+		final AnswerAction action = new AnswerAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

@@ -2,6 +2,7 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
@@ -67,15 +68,15 @@ public class QuitDialog {
 	}
 	
 	protected class QuitCancelCB implements ActionListener {
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 			quitDialog.setVisible(false);
 		}
 	}
 
 	protected class QuitConfirmCB implements ActionListener {
-		public void actionPerformed(ActionEvent ev) {
+		public void actionPerformed(final ActionEvent ev) {
 		
-				j2DClient.get().shutdown();
+				StendhalUI.get().shutdown();
 		
 		}
 	}
@@ -95,10 +96,10 @@ public class QuitDialog {
 		/*
 		 * Center dialog
 		 */
-		Dimension psize = quitDialog.getPreferredSize();
+		final Dimension psize = quitDialog.getPreferredSize();
 
-		quitDialog.setBounds((j2DClient.get().getWidth() - psize.width) / 2,
-				(j2DClient.get().getHeight() - psize.height) / 2, psize.width, psize.height);
+		quitDialog.setBounds((StendhalUI.get().getWidth() - psize.width) / 2,
+				(StendhalUI.get().getHeight() - psize.height) / 2, psize.width, psize.height);
 
 		quitDialog.validate();
 		quitDialog.setVisible(true);

@@ -27,8 +27,8 @@ public class Stocking extends Box {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Stocking(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Stocking(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -38,15 +38,15 @@ public class Stocking extends Box {
 	 * @param item
 	 *            item to copy
 	 */
-	public Stocking(Stocking item) {
+	public Stocking(final Stocking item) {
 		super(item);
 	}
 
 	@Override
-	protected boolean useMe(Player player) {
+	protected boolean useMe(final Player player) {
 		this.removeOne();
-		String itemName = ITEMS[Rand.rand(ITEMS.length)];
-		Item item = SingletonRepository.getEntityManager().getItem(
+		final String itemName = ITEMS[Rand.rand(ITEMS.length)];
+		final Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
 		player.sendPrivateText("Congratulations, you've got "
 				+ Grammar.a_noun(itemName));

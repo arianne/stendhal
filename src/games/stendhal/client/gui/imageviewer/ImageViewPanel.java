@@ -21,14 +21,14 @@ public class ImageViewPanel extends StyledJPanel {
 	 */
 	private Image image;
 
-	private URL url;
-	private String alt;
-	private ImageViewWindow imw;
+	private final URL url;
+	private final String alt;
+	private final ImageViewWindow imw;
 
 	public static final String FONT_COLOR = "#FFFFFF";
 	public static final String FONT_SIZE = "5";
 
-	public ImageViewPanel(ImageViewWindow imw, URL url, String alt) {
+	public ImageViewPanel(final ImageViewWindow imw, final URL url, final String alt) {
 		super(WoodStyle.getInstance());
 		this.url = url;
 		this.alt = alt;
@@ -46,7 +46,7 @@ public class ImageViewPanel extends StyledJPanel {
 			// we load the image twice for scaling purposes (height and width).
 			// maybe there's a better way?
 			image = ImageIO.read(url);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -55,7 +55,7 @@ public class ImageViewPanel extends StyledJPanel {
 	 * Creates and adds components to draw the image.
 	 */
 	private void initComponents() {
-		Dimension max = imw.genMaxSize();
+		final Dimension max = imw.genMaxSize();
 		int width = image.getWidth(null);
 		int height = image.getHeight(null);
 
@@ -74,11 +74,11 @@ public class ImageViewPanel extends StyledJPanel {
 		}
 
 		
-		String img = "<img width=" + width + " height=" + height + " src="
+		final String img = "<img width=" + width + " height=" + height + " src="
 					+ url.toString() + ">";
 		
-		String text = "<html>" + caption + img;
-		JLabel imageLabel = new JLabel(text);
+		final String text = "<html>" + caption + img;
+		final JLabel imageLabel = new JLabel(text);
 
 		add(imageLabel);
 

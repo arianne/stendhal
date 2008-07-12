@@ -44,7 +44,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferryState.toString());
 					}
 				});
@@ -56,7 +56,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
 							npc.say("Do ye really want me to take ye to the mainland with me skiff?");
@@ -82,7 +82,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
 							player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);
@@ -109,7 +109,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 		new AthorFerry.FerryListener() {
 
 			
-			public void onNewFerryState(Status status) {
+			public void onNewFerryState(final Status status) {
 				ferryState = status;
 				switch (status) {
 				case ANCHORED_AT_MAINLAND:

@@ -51,7 +51,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public static final int DEGRADATION_TIMEOUT = 10 * 60; 
 
 	public static void generateRPClass() {
-		RPClass entity = new RPClass("item");
+		final RPClass entity = new RPClass("item");
 		entity.isA("entity");
 
 		// class, sword/armor/...
@@ -129,8 +129,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Item(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Item(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		this();
 
 		setEntityClass(clazz);
@@ -140,7 +140,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		if (attributes != null) {
 			// store all attributes
-			for (Entry<String, String> entry : attributes.entrySet()) {
+			for (final Entry<String, String> entry : attributes.entrySet()) {
 				put(entry.getKey(), entry.getValue());
 			}
 		}
@@ -162,7 +162,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param item
 	 *            item to copy
 	 */
-	public Item(Item item) {
+	public Item(final Item item) {
 		super(item);
 		setRPClass("item");
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
@@ -174,7 +174,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param slots
 	 *            list of allowed slots
 	 */
-	public void setEquipableSlots(List<String> slots) {
+	public void setEquipableSlots(final List<String> slots) {
 		// save slots
 		possibleSlots = slots;
 	}
@@ -186,7 +186,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param plantGrower
 	 *            a plant grower
 	 */
-	public void setPlantGrower(PassiveEntityRespawnPoint plantGrower) {
+	public void setPlantGrower(final PassiveEntityRespawnPoint plantGrower) {
 		this.plantGrower = plantGrower;
 	}
 
@@ -262,7 +262,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param persistent
 	 *            If the item's stats are persistent.
 	 */
-	public void setPersistent(boolean persistent) {
+	public void setPersistent(final boolean persistent) {
 		if (persistent) {
 			put("persistent", 1);
 		} else if (has("persistent")) {
@@ -277,7 +277,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *            the class to check
 	 * @return true if the type matches, else false
 	 */
-	public boolean isOfClass(String clazz) {
+	public boolean isOfClass(final String clazz) {
 		return getItemClass().equals(clazz);
 	}
 
@@ -334,7 +334,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return get("bound");
 	}
 	
-	public boolean isBoundTo(Player player) {
+	public boolean isBoundTo(final Player player) {
 		return player.getName().equals(getBoundTo());
 	}
 	
@@ -362,7 +362,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param name
 	 *            The player name, or <code>null</code>.
 	 */
-	public void setBoundTo(String name) {
+	public void setBoundTo(final String name) {
 		if (name != null) {
 			put("bound", name);
 		} else if (has("bound")) {
@@ -393,7 +393,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param unDroppableOnDeath
 	 *            If true, the item won't be dropped if the player dies.
 	 */
-	public void setUndroppableOnDeath(boolean unDroppableOnDeath) {
+	public void setUndroppableOnDeath(final boolean unDroppableOnDeath) {
 		if (unDroppableOnDeath) {
 			put("undroppableondeath", 1);
 		} else if (has("undroppableondeath")) {
@@ -408,7 +408,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param infostring
 	 *            The item's infostring.
 	 */
-	public void setInfoString(String infostring) {
+	public void setInfoString(final String infostring) {
 		if (infostring != null) {
 			put("infostring", infostring);
 		} else if (has("infostring")) {
@@ -429,7 +429,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *            The player who moved the item, or null if it wasn't moved by a
 	 *            player.
 	 */
-	public void onPutOnGround(Player player) {
+	public void onPutOnGround(final Player player) {
 		// persistent items don't degrade
 		if (!isPersistent()) {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
@@ -447,7 +447,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on
 		// the ground
 		if (!isPersistent()) {
@@ -466,7 +466,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			text = getDescription();
 		}
 
-		String boundTo = getBoundTo();
+		final String boundTo = getBoundTo();
 
 		if (boundTo != null) {
 			text = text + " It is a special quest reward for " + boundTo
@@ -501,7 +501,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		removeFromWorld();
 	}
 
-	public boolean canBeEquippedIn(String slot) {
+	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
 			return true; // ground
 		}
@@ -520,7 +520,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				base = base.getContainer();
 			}
 
-			RPSlot slot = getContainerSlot();
+			final RPSlot slot = getContainerSlot();
 			slot.remove(getID());
 
 			SingletonRepository.getRPWorld().modify(base);
@@ -545,7 +545,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;
@@ -561,7 +561,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	@Override
 	public String getTitle() {
-		String name = getName();
+		final String name = getName();
 
 		if (name != null) {
 			return name;

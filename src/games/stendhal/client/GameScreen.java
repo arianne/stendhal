@@ -77,14 +77,14 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	protected static final int PAN_SCALE = 8;
 
-	private BufferStrategy strategy;
+	private final BufferStrategy strategy;
 
 	private Graphics2D g;
 
 	/**
 	 * The ground layer.
 	 */
-	private GroundContainer ground;
+	private final GroundContainer ground;
 
 	/**
 	 * Static game layers.
@@ -94,12 +94,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
 	 * The text bubbles.
 	 */
-	private LinkedList<Text> texts;
+	private final LinkedList<Text> texts;
 
 	/**
 	 * The text bubbles to remove.
 	 */
-	private List<Text> textsToRemove;
+	private final List<Text> textsToRemove;
 
 	/**
 	 * The entity views.
@@ -128,8 +128,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private int y;
 
 	/** Actual size of the screen in pixels. */
-	private int sw;
-	private int sh;
+	private final int sw;
+	private final int sh;
 
 	/** Actual size of the world in world units. */
 	protected int ww;
@@ -173,7 +173,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param screen
 	 *            The screen.
 	 */
-	public static void setDefaultScreen(IGameScreen screen) {
+	public static void setDefaultScreen(final IGameScreen screen) {
 		GameScreen.screen = screen;
 	}
 
@@ -273,8 +273,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
-	public void addEntity(Entity entity) {
-		EntityView view = createView(entity);
+	public void addEntity(final Entity entity) {
+		final EntityView view = createView(entity);
 
 		if (view != null) {
 			entities.put(entity, view);
@@ -288,10 +288,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void addEntityView(EntityView view) {
+	protected void addEntityView(final EntityView view) {
 		views.add(view);
 		if (view instanceof Entity2DView) {
-			Entity2DView inspectable = (Entity2DView) view;
+			final Entity2DView inspectable = (Entity2DView) view;
 			
 			inspectable.setInspector(ground);
 		}
@@ -305,7 +305,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void removeEntity(final Entity entity) {
-		EntityView view = entities.remove(entity);
+		final EntityView view = entities.remove(entity);
 
 		if (view != null) {
 			removeEntityView(view);
@@ -318,7 +318,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void removeEntityView(EntityView view) {
+	protected void removeEntityView(final EntityView view) {
 		view.release(this);
 		views.remove(view);
 	}
@@ -343,8 +343,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			return;
 		}
 
-		int sx = convertWorldXToScreenView(x) + (SIZE_UNIT_PIXELS / 2);
-		int sy = convertWorldYToScreenView(y) + (SIZE_UNIT_PIXELS / 2);
+		final int sx = convertWorldXToScreenView(x) + (SIZE_UNIT_PIXELS / 2);
+		final int sy = convertWorldYToScreenView(y) + (SIZE_UNIT_PIXELS / 2);
 
 		if ((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
@@ -355,10 +355,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			/*
 			 * Calculate the target speed. The farther away, the faster.
 			 */
-			int dux = dvx / 40;
-			int duy = dvy / 40;
+			final int dux = dvx / 40;
+			final int duy = dvy / 40;
 
-			int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
+			final int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
 
 			if (speed > tspeed) {
 				speed = (speed + speed + tspeed) / 3;
@@ -380,7 +380,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				/*
 				 * Not a^2 + b^2 = c^2, but good enough
 				 */
-				int scalediv = (Math.abs(dvx) + Math.abs(dvy)) * PAN_SCALE;
+				final int scalediv = (Math.abs(dvx) + Math.abs(dvy)) * PAN_SCALE;
 
 				int dx = speed * dvx / scalediv;
 				int dy = speed * dvy / scalediv;
@@ -442,7 +442,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		if (cvx < 0) {
 			cvx = 0;
 		} else {
-			int max = (ww * SIZE_UNIT_PIXELS) - sw;
+			final int max = (ww * SIZE_UNIT_PIXELS) - sw;
 
 			if (cvx > max) {
 				cvx = max;
@@ -452,7 +452,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		if (cvy < 0) {
 			cvy = 0;
 		} else {
-			int max = (wh * SIZE_UNIT_PIXELS) - sh;
+			final int max = (wh * SIZE_UNIT_PIXELS) - sh;
 
 			if (cvy > max) {
 				cvy = max;
@@ -502,12 +502,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 * Draw the GameLayers from bootom to top, relies on exact naming of the
 		 * layers
 		 */
-		String set = gameLayers.getRPZoneLayerSet();
+		final String set = gameLayers.getRPZoneLayerSet();
 
-		int xTemp = (int) getViewX();
-		int yTemp = (int) getViewY();
-		int w = (int) getViewWidth();
-		int h = (int) getViewHeight();
+		final int xTemp = (int) getViewX();
+		final int yTemp = (int) getViewY();
+		final int w = (int) getViewWidth();
+		final int h = (int) getViewHeight();
 
 		/*
 		 * End of the world (map falls short of the view)?
@@ -555,7 +555,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 * Dialogs
 		 */
-		ground.draw(g,this);
+		ground.draw(g, this);
 
 		/*
 		 * Offline
@@ -575,10 +575,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * Draw the screen entities.
 	 */
 	protected void drawEntities() {
-		Graphics2D g2d = expose();
+		final Graphics2D g2d = expose();
 
-		for (EntityView view : views) {
-			view.draw(g2d,this);
+		for (final EntityView view : views) {
+			view.draw(g2d, this);
 		}
 	}
 
@@ -586,9 +586,9 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * Draw the top portion screen entities (such as HP/title bars).
 	 */
 	protected void drawTopEntities() {
-		Graphics2D g2d = expose();
+		final Graphics2D g2d = expose();
 
-		for (EntityView view : views) {
+		for (final EntityView view : views) {
 			view.drawTop(g2d, this);
 		}
 	}
@@ -601,10 +601,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		textsToRemove.clear();
 
 		try {
-			for (Text text : texts) {
+			for (final Text text : texts) {
 				text.draw(this);
 			}
-		} catch (ConcurrentModificationException e) {
+		} catch (final ConcurrentModificationException e) {
 			logger.error("cannot draw text", e);
 		}
 	}
@@ -632,7 +632,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#setMaxWorldSize(double, double)
 	 */
-	public void setMaxWorldSize(double width, double height) {
+	public void setMaxWorldSize(final double width, final double height) {
 		ww = (int) width;
 		wh = (int) height;
 
@@ -644,7 +644,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#setOffline(boolean)
 	 */
-	public void setOffline(boolean offline) {
+	public void setOffline(final boolean offline) {
 		this.offline = offline;
 	}
 
@@ -654,8 +654,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#addText(double, double,
 	 *      java.lang.String, games.stendhal.client.NotificationType, boolean)
 	 */
-	public void addText(double x, double y, String text, NotificationType type,
-			boolean isTalking) {
+	public void addText(final double x, final double y, final String text, final NotificationType type,
+			final boolean isTalking) {
 		addText(x, y, text, type.getColor(), isTalking);
 	}
 
@@ -690,7 +690,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	public void addText(int sx, int sy, final String text, final Color color,
 			final boolean isTalking) {
-		Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
+		final Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
 
 		if (isTalking) {
 			// Point alignment: left, bottom
@@ -708,7 +708,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		if (sx < 0) {
 			sx = 0;
 		} else {
-			int max = getScreenWidth() - sprite.getWidth();
+			final int max = getScreenWidth() - sprite.getWidth();
 
 			if (sx > max) {
 				sx = max;
@@ -718,7 +718,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		if (sy < 0) {
 			sy = 0;
 		} else {
-			int max = getScreenHeight() - sprite.getHeight();
+			final int max = getScreenHeight() - sprite.getHeight();
 
 			if (sy > max) {
 				sy = max;
@@ -730,7 +730,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		while (found) {
 			found = false;
 
-			for (Text item : texts) {
+			for (final Text item : texts) {
 				if ((item.getX() == sx) && (item.getY() == sy)) {
 					found = true;
 					sy += (SIZE_UNIT_PIXELS / 2);
@@ -749,7 +749,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeText(games.stendhal.client.gui.j2d.Text)
 	 */
-	public void removeText(Text entity) {
+	public void removeText(final Text entity) {
 		textsToRemove.add(entity);
 	}
 
@@ -780,7 +780,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#clearTexts()
 	 */
 	public void clearTexts() {
-		for (Text text : texts) {
+		for (final Text text : texts) {
 			textsToRemove.add(text);
 		}
 	}
@@ -790,7 +790,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
-	public EntityView getEntityViewAt(double x, double y) {
+	public EntityView getEntityViewAt(final double x, final double y) {
 		ListIterator<EntityView> it;
 
 		/*
@@ -799,7 +799,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			EntityView view = it.previous();
+			final EntityView view = it.previous();
 
 			if (view.getEntity().getArea().contains(x, y)) {
 				return view;
@@ -809,13 +809,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 * Now the visual entity areas
 		 */
-		int sx = convertWorldToScreen(x);
-		int sy = convertWorldToScreen(y);
+		final int sx = convertWorldToScreen(x);
+		final int sy = convertWorldToScreen(y);
 
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			EntityView view = it.previous();
+			final EntityView view = it.previous();
 
 			if (view.getArea().contains(sx, sy)) {
 				return view;
@@ -840,7 +840,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			EntityView view = it.previous();
+			final EntityView view = it.previous();
 
 			if (view.isMovable()) {
 				if (view.getEntity().getArea().contains(x, y)) {
@@ -852,13 +852,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 * Now the visual entity areas
 		 */
-		int sx = convertWorldToScreen(x);
-		int sy = convertWorldToScreen(y);
+		final int sx = convertWorldToScreen(x);
+		final int sy = convertWorldToScreen(y);
 
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
-			EntityView view = it.previous();
+			final EntityView view = it.previous();
 
 			if (view.isMovable()) {
 				if (view.getArea().contains(sx, sy)) {
@@ -875,14 +875,14 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#getTextAt(double, double)
 	 */
-	public Text getTextAt(double x, double y) {
-		ListIterator<Text> it = texts.listIterator(texts.size());
+	public Text getTextAt(final double x, final double y) {
+		final ListIterator<Text> it = texts.listIterator(texts.size());
 
-		int sx = convertWorldToScreen(x);
-		int sy = convertWorldToScreen(y);
+		final int sx = convertWorldToScreen(x);
+		final int sy = convertWorldToScreen(y);
 
 		while (it.hasPrevious()) {
-			Text text = it.previous();
+			final Text text = it.previous();
 
 			if (text.getArea().contains(sx, sy)) {
 				return text;
@@ -897,7 +897,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertWorldXToScreenView(double)
 	 */
-	public int convertWorldXToScreenView(double wx) {
+	public int convertWorldXToScreenView(final double wx) {
 		return convertWorldToScreen(wx) - svx;
 	}
 
@@ -906,7 +906,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertWorldYToScreenView(double)
 	 */
-	public int convertWorldYToScreenView(double wy) {
+	public int convertWorldYToScreenView(final double wy) {
 		return convertWorldToScreen(wy) - svy;
 	}
 
@@ -916,7 +916,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(double,
 	 *      double)
 	 */
-	public Point convertWorldToScreenView(double wx, double wy) {
+	public Point convertWorldToScreenView(final double wx, final double wy) {
 		return new Point(convertWorldXToScreenView(wx),
 				convertWorldYToScreenView(wy));
 	}
@@ -926,7 +926,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(java.awt.geom.Rectangle2D)
 	 */
-	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
+	public Rectangle convertWorldToScreenView(final Rectangle2D wrect) {
 		return convertWorldToScreenView(wrect.getX(), wrect.getY(),
 				wrect.getWidth(), wrect.getHeight());
 	}
@@ -937,8 +937,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(double,
 	 *      double, double, double)
 	 */
-	public Rectangle convertWorldToScreenView(double wx, double wy,
-			double wwidth, double wheight) {
+	public Rectangle convertWorldToScreenView(final double wx, final double wy,
+			final double wwidth, final double wheight) {
 		return new Rectangle(convertWorldXToScreenView(wx),
 				convertWorldYToScreenView(wy),
 				(int) (wwidth * SIZE_UNIT_PIXELS),
@@ -950,7 +950,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#isInScreen(java.awt.Rectangle)
 	 */
-	public boolean isInScreen(Rectangle srect) {
+	public boolean isInScreen(final Rectangle srect) {
 		return isInScreen(srect.x, srect.y, srect.width, srect.height);
 	}
 
@@ -959,7 +959,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#isInScreen(int, int, int, int)
 	 */
-	public boolean isInScreen(int sx, int sy, int swidth, int sheight) {
+	public boolean isInScreen(final int sx, final int sy, final int swidth, final int sheight) {
 		return (((sx >= -swidth) && (sx < sw)) && ((sy >= -sheight) && (sy < sh)));
 	}
 
@@ -969,12 +969,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#draw(games.stendhal.client.sprite.Sprite,
 	 *      double, double)
 	 */
-	public void draw(Sprite sprite, double wx, double wy) {
-		Point p = convertWorldToScreenView(wx, wy);
+	public void draw(final Sprite sprite, final double wx, final double wy) {
+		final Point p = convertWorldToScreenView(wx, wy);
 
 		if (sprite != null) {
-			int spritew = sprite.getWidth() + 2;
-			int spriteh = sprite.getHeight() + 2;
+			final int spritew = sprite.getWidth() + 2;
+			final int spriteh = sprite.getHeight() + 2;
 
 			if (((p.x >= -spritew) && (p.x < sw))
 					&& ((p.y >= -spriteh) && (p.y < sh))) {
@@ -989,7 +989,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#drawInScreen(games.stendhal.client.sprite.Sprite,
 	 *      int, int)
 	 */
-	public void drawInScreen(Sprite sprite, int sx, int sy) {
+	public void drawInScreen(final Sprite sprite, final int sx, final int sy) {
 		sprite.draw(g, sx, sy);
 	}
 
@@ -1009,11 +1009,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#createString(java.lang.String,
 	 *      java.awt.Color)
 	 */
-	public Sprite createString(String text, Color textColor) {
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
+	public Sprite createString(final String text, final Color textColor) {
+		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
 				text) + 2, 16, Transparency.BITMASK);
-		Graphics g2d = image.getGraphics();
+		final Graphics g2d = image.getGraphics();
 
 		drawOutlineString(g2d, textColor, text, 1, 10);
 
@@ -1032,7 +1032,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 * Use light gray as outline for colors < 25% bright. Luminance = 0.299R +
 		 * 0.587G + 0.114B
 		 */
-		int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor.getBlue() * 114)) / 1000;
+		final int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor.getBlue() * 114)) / 1000;
 
 		drawOutlineString(g, textColor, (lum >= 64) ? Color.black
 				: Color.lightGray, text, x, y);
@@ -1057,8 +1057,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		g.drawString(text, x, y);
 	}
 
-	private int positionStringOfSize(String text, int width) {
-		String[] words = text.split("\\s+");
+	private int positionStringOfSize(final String text, final int width) {
+		final String[] words = text.split("\\s+");
 
 		int i = 1;
 		// Bugfix: Prevent NPE for empty text intensifly@gmx.com
@@ -1105,12 +1105,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			final StringBuilder temp = new StringBuilder();
 			FormatTextParser parser = new FormatTextParser() {
 				@Override
-				public void normalText(String tok) {
+				public void normalText(final String tok) {
 					temp.append(tok + " ");
 				}
 
 				@Override
-				public void colorText(String tok) {
+				public void colorText(final String tok) {
 					temp.append(tok + " ");
 				}
 			};
@@ -1123,7 +1123,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				private int s = 0;
 
 				@Override
-				public void normalText(String tok) {
+				public void normalText(final String tok) {
 					aStyledText.addAttribute(TextAttribute.FONT, fontNormal, s, s
 							+ tok.length() + 1);
 					aStyledText.addAttribute(TextAttribute.FOREGROUND, colorNormal, s, s
@@ -1132,7 +1132,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				}
 
 				@Override
-				public void colorText(String tok) {
+				public void colorText(final String tok) {
 					aStyledText.addAttribute(TextAttribute.FONT, specialFont, s, s
 							+ tok.length() + 1);
 					aStyledText.addAttribute(TextAttribute.FOREGROUND, Color.blue, s, s
@@ -1143,7 +1143,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			parser.format(line);
 
 			return aStyledText;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -1155,9 +1155,9 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#createTextBox(java.lang.String,
 	 *      int, java.awt.Color, java.awt.Color, boolean)
 	 */
-	public Sprite createTextBox(String text, int width, Color textColor,
-			Color fillColor, boolean isTalking) {
-		java.util.List<String> lines = new java.util.LinkedList<String>();
+	public Sprite createTextBox(String text, final int width, final Color textColor,
+			final Color fillColor, final boolean isTalking) {
+		final java.util.List<String> lines = new java.util.LinkedList<String>();
 
 		int i = 0;
 		// Added support for speech balloons. If drawn, they take 10 pixels from
@@ -1175,7 +1175,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			/*
 			 * Hard line breaks
 			 */
-			int nlpos = text.indexOf('\n', 1);
+			final int nlpos = text.indexOf('\n', 1);
 			if ((nlpos != -1) && (nlpos < pos)) {
 				pos = nlpos;
 			}
@@ -1185,19 +1185,19 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			i++;
 		}
 
-		int numLines = lines.size();
+		final int numLines = lines.size();
 		int lineLengthPixels = 0;
 
-		for (String line : lines) {
-			int lineWidth = g.getFontMetrics().stringWidth(line);
+		for (final String line : lines) {
+			final int lineWidth = g.getFontMetrics().stringWidth(line);
 			if (lineWidth > lineLengthPixels) {
 				lineLengthPixels = lineWidth;
 			}
 		}
 
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels
+		final int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels
 				+ delta : width) + 4;
 		int imageHeight = 16 * numLines;
 
@@ -1207,16 +1207,16 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			logger.warn("Created textbox for empty text");
 		}
 
-		Image image = gc.createCompatibleImage(imageWidth, imageHeight,
+		final Image image = gc.createCompatibleImage(imageWidth, imageHeight,
 				Transparency.BITMASK);
 
-		Graphics2D g2d = (Graphics2D) image.getGraphics();
+		final Graphics2D g2d = (Graphics2D) image.getGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if (fillColor != null) {
-			Composite xac = g2d.getComposite();
-			AlphaComposite ac = AlphaComposite.getInstance(
+			final Composite xac = g2d.getComposite();
+			final AlphaComposite ac = AlphaComposite.getInstance(
 					AlphaComposite.SRC_OVER, 0.8f);
 			g2d.setComposite(ac);
 			g2d.setColor(fillColor);
@@ -1233,11 +1233,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 						((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
 						16 * numLines - 1, 4, 4);
 			} else {
-				float[] dash = { 4, 2 };
-				BasicStroke newStroke = new BasicStroke(2,
+				final float[] dash = { 4, 2 };
+				final BasicStroke newStroke = new BasicStroke(2,
 						BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash,
 						0);
-				Stroke oldStroke = g2d.getStroke();
+				final Stroke oldStroke = g2d.getStroke();
 				g2d.setStroke(newStroke);
 				g2d.drawRect(
 						10,
@@ -1249,7 +1249,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			g2d.setComposite(xac);
 			if (isTalking) {
 				g2d.setColor(fillColor);
-				Polygon p = new Polygon();
+				final Polygon p = new Polygon();
 				p.addPoint(10, 3);
 				p.addPoint(0, 16);
 				p.addPoint(11, 12);
@@ -1261,8 +1261,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		}
 
 		i = 0;
-		for (String line : lines) {
-			AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
+		for (final String line : lines) {
+			final AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
 
 			if (fillColor == null) {
 				g2d.setColor(Color.black);
@@ -1291,7 +1291,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreen(double)
 	 */
-	public int convertWorldToScreen(double w) {
+	public int convertWorldToScreen(final double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
 	}
 
@@ -1388,8 +1388,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#positionChanged(double, double)
 	 */
 	public void positionChanged(final double x, final double y) {
-		int ix = (int) x;
-		int iy = (int) y;
+		final int ix = (int) x;
+		final int iy = (int) y;
 
 		/*
 		 * Save CPU cycles
@@ -1411,14 +1411,14 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// Comparator
 		//
 
-		public int compare(EntityView view1, EntityView view2) {
+		public int compare(final EntityView view1, final EntityView view2) {
 			int rv;
 
 			rv = view1.getZIndex() - view2.getZIndex();
 
 			if (rv == 0) {
-				Rectangle area1 = view1.getArea();
-				Rectangle area2 = view2.getArea();
+				final Rectangle area1 = view1.getArea();
+				final Rectangle area2 = view2.getArea();
 
 				rv = (area1.y + area1.height) - (area2.y + area2.height);
 

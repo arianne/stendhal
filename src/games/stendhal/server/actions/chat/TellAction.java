@@ -25,7 +25,7 @@ public class TellAction implements ActionListener {
 	private Player sender;
 	private Player receiver;
 
-	private void init(Player player, RPAction action) {
+	private void init(final Player player, final RPAction action) {
 		text = action.get(TEXT).trim();
 		senderName = player.getName();
 		receiverName = action.get(TARGET);
@@ -33,7 +33,7 @@ public class TellAction implements ActionListener {
 		receiver = SingletonRepository.getRuleProcessor().getPlayer(receiverName);
 	}
 
-	private boolean validateAction(RPAction action) {
+	private boolean validateAction(final RPAction action) {
 		return action.has(TARGET) && action.has(TEXT);
 	}
 
@@ -46,9 +46,9 @@ public class TellAction implements ActionListener {
 		return true;
 	}
 
-	private boolean checkIgnoreList(Player player) {
+	private boolean checkIgnoreList(final Player player) {
 		// check ignore list
-		String reply = receiver.getIgnore(senderName);
+		final String reply = receiver.getIgnore(senderName);
 		if (reply != null) {
 			// sender is on ignore list
 			if (reply.length() == 0) {
@@ -72,10 +72,10 @@ public class TellAction implements ActionListener {
 
 	private void extractRealSenderFromMessageInCaseItWasSendViaPostman() {
 		// HACK: extract sender from postman messages
-		StringTokenizer st = new StringTokenizer(text, " ");
+		final StringTokenizer st = new StringTokenizer(text, " ");
 		if (senderName.equals("postman") && (st.countTokens() > 2)) {
-			String temp = st.nextToken();
-			String command = st.nextToken();
+			final String temp = st.nextToken();
+			final String command = st.nextToken();
 			if (command.equals("asked")) {
 				senderName = temp;
 			}
@@ -84,7 +84,7 @@ public class TellAction implements ActionListener {
 
 	private void tellAboutAwayStatusIfNeccessary() {
 		// Handle /away messages
-		String away = receiver.getAwayMessage();
+		final String away = receiver.getAwayMessage();
 		if (away != null) {
 			if (receiver.isAwayNotifyNeeded(senderName)) {
 				// Send away response
@@ -93,13 +93,13 @@ public class TellAction implements ActionListener {
 		}
 	}
 
-	private void tellIgnorePostman(Player receiver, String message) {
+	private void tellIgnorePostman(final Player receiver, final String message) {
 		if (!receiver.getName().equals("postman")) {
 			receiver.sendPrivateText(message);
 		}
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
 			return;
 		}
@@ -121,7 +121,7 @@ public class TellAction implements ActionListener {
 			return;
 		}
 
-		String message = createFullMessageText();
+		final String message = createFullMessageText();
 		extractRealSenderFromMessageInCaseItWasSendViaPostman();
 
 		if (!checkIgnoreList(player)) {
@@ -149,9 +149,9 @@ public class TellAction implements ActionListener {
 	}
 
 	private boolean checkGrumpy() {
-		String grumpy = receiver.getGrumpyMessage();
-		if (grumpy != null && receiver.getSlot("!buddy").size() > 0) {
-			RPObject buddies = receiver.getSlot("!buddy").iterator().next();
+		final String grumpy = receiver.getGrumpyMessage();
+		if ((grumpy != null) && (receiver.getSlot("!buddy").size() > 0)) {
+			final RPObject buddies = receiver.getSlot("!buddy").iterator().next();
 			boolean senderFound = false;
 			for (String buddyName : buddies) {
 				// TODO: as in Player.java, remove '_' prefix if ID is made

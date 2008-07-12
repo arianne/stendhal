@@ -36,7 +36,7 @@ public class StaticGameLayers {
 	/**
 	 * Area collision maps.
 	 */
-	private Map<String, CollisionDetection> collisions;
+	private final Map<String, CollisionDetection> collisions;
 
 	/**
 	 * The current collision map.
@@ -46,12 +46,12 @@ public class StaticGameLayers {
 	/**
 	 * Named layers.
 	 */
-	private Map<String, LayerRenderer> layers;
+	private final Map<String, LayerRenderer> layers;
 
 	/**
 	 * Area tilesets.
 	 */
-	private Map<String, TileStore> tilesets;
+	private final Map<String, TileStore> tilesets;
 
 	/**
 	 * The current area height.
@@ -109,9 +109,9 @@ public class StaticGameLayers {
 	 * 
 	 * @throws ClassNotFoundException
 	 */
-	public void addLayer(String area, String layer, InputStream in)
+	public void addLayer(final String area, final String layer, final InputStream in)
 			throws IOException, ClassNotFoundException {
-		String name = getLayerKey(area, layer);
+		final String name = getLayerKey(area, layer);
 
 		logger.debug("Layer name: " + name);
 
@@ -124,7 +124,7 @@ public class StaticGameLayers {
 				return;
 			}
 
-			CollisionDetection collisionTemp = new CollisionDetection();
+			final CollisionDetection collisionTemp = new CollisionDetection();
 			collisionTemp.setCollisionData(LayerDefinition.decode(in));
 
 			collisions.put(area, collisionTemp);
@@ -132,7 +132,7 @@ public class StaticGameLayers {
 			/*
 			 * Add tileset
 			 */
-			TileStore tileset = new TileStore();
+			final TileStore tileset = new TileStore();
 			tileset.addTilesets(new InputSerializer(in));
 
 			tilesets.put(area, tileset);
@@ -151,7 +151,7 @@ public class StaticGameLayers {
 
 			LayerRenderer content = null;
 
-			URL url = getClass().getClassLoader().getResource(
+			final URL url = getClass().getClassLoader().getResource(
 					"data/layers/" + area + "/" + layer + ".jpg");
 
 			if (url != null) {
@@ -169,7 +169,7 @@ public class StaticGameLayers {
 		invalidate();
 	}
 
-	public boolean collides(Rectangle2D shape) {
+	public boolean collides(final Rectangle2D shape) {
 		validate();
 
 		if (collision != null) {
@@ -191,7 +191,7 @@ public class StaticGameLayers {
 	 * Set the name of the area to be rendered.
 	 * @param area the areas name
 	 */
-	public void setAreaName(String area) {
+	public void setAreaName(final String area) {
 		logger.info("Area: " + area);
 
 		this.area = area;
@@ -232,15 +232,15 @@ public class StaticGameLayers {
 		/*
 		 * Get maximum layer size. Assign tileset to layers.
 		 */
-		TileStore tileset = tilesets.get(area);
+		final TileStore tileset = tilesets.get(area);
 		height = 0.0;
 		width = 0.0;
 
-		String prefix = area + ".";
+		final String prefix = area + ".";
 
-		for (Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
+		for (final Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
 			if (entry.getKey().startsWith(prefix)) {
-				LayerRenderer lr = entry.getValue();
+				final LayerRenderer lr = entry.getValue();
 
 				lr.setTileset(tileset);
 				height = Math.max(height, lr.getHeight());
@@ -256,11 +256,11 @@ public class StaticGameLayers {
 		return area;
 	}
 
-	public void draw(IGameScreen screen, String area, String layer, int x,
-			int y, int width, int height) {
+	public void draw(final IGameScreen screen, final String area, final String layer, final int x,
+			final int y, final int width, final int height) {
 		validate();
 
-		LayerRenderer lr = getLayer(area, layer);
+		final LayerRenderer lr = getLayer(area, layer);
 
 		if (lr != null) {
 			lr.draw(screen, x, y, width, height);
@@ -294,7 +294,7 @@ public class StaticGameLayers {
 	 * 
 	 * @return A layer renderer, or <code>null</code>,
 	 */
-	public LayerRenderer getLayer(String area, String layer) {
+	public LayerRenderer getLayer(final String area, final String layer) {
 		return layers.get(getLayerKey(area, layer));
 	}
 

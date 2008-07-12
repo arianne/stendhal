@@ -31,8 +31,8 @@ public class Ring extends Item implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Ring(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Ring(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -42,11 +42,11 @@ public class Ring extends Item implements UseListener {
 	 * @param item
 	 *            item to copy
 	 */
-	public Ring(Ring item) {
+	public Ring(final Ring item) {
 		super(item);
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		return false;
 	}
 

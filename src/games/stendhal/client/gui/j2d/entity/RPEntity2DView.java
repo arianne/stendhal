@@ -80,14 +80,14 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected int width;
 
 	static {
-		SpriteStore st = SpriteStore.get();
+		final SpriteStore st = SpriteStore.get();
 
-		Sprite tiles = st.getSprite("data/sprites/combat/blade_strike.png");
+		final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike.png");
 
 		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
 
-		int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
-		int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
+		final int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
+		final int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
 		int y = 0;
 		bladeStrikeSprites.put(Direction.UP, st.getTiles(tiles, 0, y, 3,
@@ -187,9 +187,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * 
 	 * @return The title sprite.
 	 */
-	protected Sprite createTitleSprite(IGameScreen gameScreen) {
-		String titleType = rpentity.getTitleType();
-		int adminlevel = rpentity.getAdminLevel();
+	protected Sprite createTitleSprite(final IGameScreen gameScreen) {
+		final String titleType = rpentity.getTitleType();
+		final int adminlevel = rpentity.getAdminLevel();
 		Color nameColor = null;
 
 		if (titleType != null) {
@@ -232,9 +232,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected Sprite createWalkSprite(final Sprite tiles, final int y,
 			final int width, final int height) {
-		SpriteStore store = SpriteStore.get();
+		final SpriteStore store = SpriteStore.get();
 
-		Sprite[] frames = new Sprite[4];
+		final Sprite[] frames = new Sprite[4];
 
 		int x = 0;
 		frames[0] = store.getTile(tiles, x, y, width, height);
@@ -263,23 +263,23 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn width.
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
-			final int width, IGameScreen gameScreen) {
-		FontMetrics fm = g2d.getFontMetrics();
+			final int width, final IGameScreen gameScreen) {
+		final FontMetrics fm = g2d.getFontMetrics();
 
-		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
+		final Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
 
 		while (iter.hasNext()) {
-			RPEntity.TextIndicator indicator = iter.next();
+			final RPEntity.TextIndicator indicator = iter.next();
 
-			int age = indicator.getAge();
-			String text = indicator.getText();
+			final int age = indicator.getAge();
+			final String text = indicator.getText();
 
-			int stringwidth = fm.stringWidth(text) + 2;
+			final int stringwidth = fm.stringWidth(text) + 2;
 
-			int tx = x + ((width - stringwidth) / 2);
-			int ty = y - (int) (age * 5L / 300L);
+			final int tx = x + ((width - stringwidth) / 2);
+			final int ty = y - (int) (age * 5L / 300L);
 
-			Color color = indicator.getType().getColor();
+			final Color color = indicator.getType().getColor();
 
 			gameScreen.drawOutlineString(g2d, color, text, tx, ty + 10);
 		}
@@ -299,15 +299,15 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
 			final int width) {
-		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
+		final int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
 
-		int bx = x + ((width - barWidth) / 2);
-		int by = y - 3;
+		final int bx = x + ((width - barWidth) / 2);
+		final int by = y - 3;
 
-		float hpRatio = rpentity.getHPRatio();
+		final float hpRatio = rpentity.getHPRatio();
 
-		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
-		float g = Math.min(hpRatio * 2.0f, 1.0f);
+		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
+		final float g = Math.min(hpRatio * 2.0f, 1.0f);
 
 		g2d.setColor(Color.gray);
 		g2d.fillRect(bx, by, barWidth, 3);
@@ -349,10 +349,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawTitle(final Graphics2D g2d, int x, int y, final int width) {
+	protected void drawTitle(final Graphics2D g2d, final int x, final int y, final int width) {
 		if (titleSprite != null) {
-			int tx = x + ((width - titleSprite.getWidth()) / 2);
-			int ty = y - 3 - titleSprite.getHeight();
+			final int tx = x + ((width - titleSprite.getWidth()) / 2);
+			final int ty = y - 3 - titleSprite.getHeight();
 
 			titleSprite.draw(g2d, tx, ty);
 		}
@@ -406,8 +406,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen) {
-		Sprite tiles = getAnimationSprite();
+			final IGameScreen gameScreen) {
+		final Sprite tiles = getAnimationSprite();
 
 		width = tiles.getWidth() / getTilesX();
 		height = tiles.getHeight() / getTilesY();
@@ -456,8 +456,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, IGameScreen gameScreen) {
-		Rectangle srect = gameScreen.convertWorldToScreenView(entity.getArea());
+			final int width, final int height, final IGameScreen gameScreen) {
+		final Rectangle srect = gameScreen.convertWorldToScreenView(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
 			// Draw red box around
@@ -479,10 +479,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
 			if (frameBladeStrike < 3) {
-				Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
+				final Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
 
-				int spriteWidth = sprite.getWidth();
-				int spriteHeight = sprite.getHeight();
+				final int spriteWidth = sprite.getWidth();
+				final int spriteHeight = sprite.getHeight();
 
 				int sx;
 				int sy;
@@ -542,8 +542,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
-			int sx = x + width - ICON_OFFSET;
-			int sy = y + height - ICON_OFFSET;
+			final int sx = x + width - ICON_OFFSET;
+			final int sy = y + height - ICON_OFFSET;
 
 			switch (rpentity.getResolution()) {
 			case BLOCKED:
@@ -651,7 +651,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		super.update(gameScreen);
 
 		if (titleChanged) {

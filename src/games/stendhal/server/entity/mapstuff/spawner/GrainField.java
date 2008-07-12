@@ -32,7 +32,7 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	/** How many growing steps are needed before one can harvest again. */
 	public static final int RIPE = 5;
 
-	public GrainField(RPObject object) {
+	public GrainField(final RPObject object) {
 		super(object, "grain_field", "grain field", "Harvest", RIPE, 1, 2);
 		setResistance(80);
 		update();
@@ -65,14 +65,14 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	 * @param entity the harvesting entity
 	 * @return true if successful
 	 */
-	public boolean onUsed(RPEntity entity) {
+	public boolean onUsed(final RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
 				if (entity.isEquipped("old scythe")
 					|| entity.isEquipped("scythe") 
 					|| entity.isEquipped("black scythe")) {
 					onFruitPicked(null);
-					Item grain = SingletonRepository.getEntityManager().getItem(
+					final Item grain = SingletonRepository.getEntityManager().getItem(
 							"grain");
 					entity.equip(grain, true);
 					return true;

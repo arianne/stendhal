@@ -81,7 +81,7 @@ public class TilesetGroupAnimationMap {
 	 *            The delays of frame tiles.
 	 */
 	public void add(final String name, final int index,
-			final int[] frameIndexes, int[] frameDelays) {
+			final int[] frameIndexes, final int[] frameDelays) {
 		acquire(name).add(index, frameIndexes, frameDelays);
 	}
 
@@ -101,7 +101,7 @@ public class TilesetGroupAnimationMap {
 	 *            The delays of frame tiles.
 	 */
 	public void add(final String name, final int[] frameIndexes,
-			int[] frameDelays) {
+			final int[] frameDelays) {
 		acquire(name).add(frameIndexes, frameDelays);
 	}
 
@@ -127,7 +127,7 @@ public class TilesetGroupAnimationMap {
 			return;
 		}
 
-		String name = st.nextToken();
+		final String name = st.nextToken();
 
 		/*
 		 * Tile index
@@ -140,12 +140,12 @@ public class TilesetGroupAnimationMap {
 		String index = st.nextToken();
 		int pos = index.indexOf('@');
 		if (pos != -1) {
-			String val = index.substring(pos + 1);
+			final String val = index.substring(pos + 1);
 			index = index.substring(0, pos);
 
 			try {
 				defaultDelay = Integer.parseInt(val);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Invalid default delay: " + val);
 				return;
 			}
@@ -161,15 +161,15 @@ public class TilesetGroupAnimationMap {
 			return;
 		}
 
-		String frames = st.nextToken();
+		final String frames = st.nextToken();
 
 		/*
 		 * Split up frames indexes
 		 */
 		st = new StringTokenizer(frames, ":");
 
-		int[] frameIndexes = new int[st.countTokens()];
-		int[] frameDelays = new int[frameIndexes.length];
+		final int[] frameIndexes = new int[st.countTokens()];
+		final int[] frameDelays = new int[frameIndexes.length];
 
 		for (int i = 0; i < frameIndexes.length; i++) {
 			String frameIndex = st.nextToken();
@@ -179,12 +179,12 @@ public class TilesetGroupAnimationMap {
 			 */
 			pos = frameIndex.indexOf('@');
 			if (pos != -1) {
-				String val = frameIndex.substring(pos + 1);
+				final String val = frameIndex.substring(pos + 1);
 				frameIndex = frameIndex.substring(0, pos);
 
 				try {
 					frameDelays[i] = Integer.parseInt(val);
-				} catch (NumberFormatException ex) {
+				} catch (final NumberFormatException ex) {
 					logger.error("Invalid delay #" + (i + 1) + " <" + val
 							+ ">: " + line);
 					return;
@@ -198,7 +198,7 @@ public class TilesetGroupAnimationMap {
 			 */
 			try {
 				frameIndexes[i] = Integer.parseInt(frameIndex);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Invalid frame #" + (i + 1) + " <" + frameIndex
 						+ ">: " + line);
 				return;
@@ -213,7 +213,7 @@ public class TilesetGroupAnimationMap {
 		} else {
 			try {
 				add(name, Integer.parseInt(index), frameIndexes, frameDelays);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				logger.error("Invalid tile index: " + line);
 				return;
 			}
@@ -269,7 +269,7 @@ public class TilesetGroupAnimationMap {
 	 * @see-also #clear()
 	 */
 	public void load(final InputStream in) throws IOException {
-		BufferedReader r = new BufferedReader(new InputStreamReader(in));
+		final BufferedReader r = new BufferedReader(new InputStreamReader(in));
 		String line;
 
 		while ((line = r.readLine()) != null) {

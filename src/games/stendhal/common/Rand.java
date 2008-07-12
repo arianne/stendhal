@@ -70,7 +70,7 @@ public class Rand {
 	 *            the upper boundary
 	 * @return A random number between 0 and <i>n</i> - 1, equally distributed.
 	 */
-	public static int rand(int n) {
+	public static int rand(final int n) {
 		return rand.nextInt(n);
 	}
 
@@ -85,7 +85,7 @@ public class Rand {
 	 *            The list from which an element should be chosen.
 	 * @return A random list element.
 	 */
-	public static <T> T rand(List<T> list) {
+	public static <T> T rand(final List<T> list) {
 		return list.get(rand(list.size()));
 	}
 
@@ -104,10 +104,10 @@ public class Rand {
 	 *            The set from which an element should be chosen.
 	 * @return A random set element.
 	 */
-	public static <T> T rand(Set<T> set) {
-		int n = rand(set.size());
+	public static <T> T rand(final Set<T> set) {
+		final int n = rand(set.size());
 		int i = 0;
-		for (T element : set) {
+		for (final T element : set) {
 			if (i == n) {
 				return element;
 			}
@@ -128,7 +128,7 @@ public class Rand {
 	 *            The array from which an element should be chosen.
 	 * @return A random array element.
 	 */
-	public static <T> T rand(T[] array) {
+	public static <T> T rand(final T[] array) {
 		return array[rand(array.length)];
 	}
 
@@ -141,7 +141,7 @@ public class Rand {
 	 *            The standard deviation
 	 * @return An integer near <i>mean</i>
 	 */
-	public static int rand(int mean, int sd) {
+	public static int rand(final int mean, final int sd) {
 		return (int) (rand.nextGaussian() * sd + mean);
 	}
 }

@@ -25,7 +25,7 @@ public class StackableItem2DView extends Item2DView {
 	/**
 	 * The entity this view is for.
 	 */
-	private StackableItem item;
+	private final StackableItem item;
 
 	/**
 	 * The quantity value changed.
@@ -67,7 +67,7 @@ public class StackableItem2DView extends Item2DView {
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
-	protected Sprite getQuantitySprite(IGameScreen gameScreen) {
+	protected Sprite getQuantitySprite(final IGameScreen gameScreen) {
 		int quantity;
 		String label;
 
@@ -108,7 +108,7 @@ public class StackableItem2DView extends Item2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, IGameScreen gameScreen) {
+			final int width, final int height, final IGameScreen gameScreen) {
 		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (showQuantity && (quantitySprite != null)) {
@@ -138,7 +138,7 @@ public class StackableItem2DView extends Item2DView {
 	 *            <code>true</code> if contained.
 	 */
 	@Override
-	public void setContained(boolean contained) {
+	public void setContained(final boolean contained) {
 		super.setContained(contained);
 
 		quantityChanged = true;
@@ -149,7 +149,7 @@ public class StackableItem2DView extends Item2DView {
 	 * Update representation.
 	 */
 	@Override
-	protected void update(IGameScreen gameScreen) {
+	protected void update(final IGameScreen gameScreen) {
 		super.update(gameScreen);
 
 		if (quantityChanged) {

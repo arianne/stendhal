@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -26,7 +27,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);
@@ -45,9 +46,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Reg Denson");
+		final SpeakerNPC npc = getNPC("Reg Denson");
 		assertNotNull(npc);
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Hello, player.", npc.get("text"));
@@ -58,8 +59,8 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyHouse() {
-		SpeakerNPC npc = getNPC("Reg Denson");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Reg Denson");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hello, player.", npc.get("text"));
@@ -107,8 +108,8 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testReally() {
-		SpeakerNPC npc = getNPC("Reg Denson");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Reg Denson");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Reg Denson"));
 		assertEquals("Hello, player.", npc.get("text"));

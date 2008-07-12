@@ -19,7 +19,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 */
 	private static NPCList instance;
 
-	private Map<String, SpeakerNPC> contents;
+	private final Map<String, SpeakerNPC> contents;
 
 	/**
 	 * Returns the Singleton instance.
@@ -46,7 +46,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 *            The NPC's name
 	 * @return The NPC, or null if there is no NPC with this name
 	 */
-	public SpeakerNPC get(String name) {
+	public SpeakerNPC get(final String name) {
 		return contents.get(name.toLowerCase());
 	}
 
@@ -57,7 +57,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 *            The NPC's name
 	 * @return true iff an NPC with the given name exists
 	 */
-	public boolean has(String name) {
+	public boolean has(final String name) {
 		return contents.containsKey(name.toLowerCase());
 	}
 
@@ -69,10 +69,10 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * @param npc
 	 *            The NPC that should be added
 	 */
-	public void add(SpeakerNPC npc) {
+	public void add(final SpeakerNPC npc) {
 		// insert lower case names to allow case insensitive
 		// searches for teleport commands, etc.
-		String name = npc.getName().toLowerCase();
+		final String name = npc.getName().toLowerCase();
 
 		if (contents.containsKey(name)) {
 			logger.error("Not adding " + npc
@@ -91,7 +91,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 *            The name of the NPC that should be removed
 	 * @return SpeakerNPC or null in case it was not in the list
 	 */
-	public SpeakerNPC remove(String name) {
+	public SpeakerNPC remove(final String name) {
 		return contents.remove(name.toLowerCase());
 	}
 

@@ -37,13 +37,13 @@ public class LookBookforCeryl extends AbstractQuest {
 	private static final String QUEST_SLOT = "ceryl_book";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step1LearnAboutQuest() {
 
-		SpeakerNPC npc = npcs.get("Ceryl");
+		final SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -111,7 +111,7 @@ public class LookBookforCeryl extends AbstractQuest {
 	}
 
 	private void step2getBook() {
-		SpeakerNPC npc = npcs.get("Jynath");
+		final SpeakerNPC npc = npcs.get("Jynath");
 
 		/**
 		 * If player has quest and is in the correct state, just give him the
@@ -149,10 +149,10 @@ public class LookBookforCeryl extends AbstractQuest {
 	}
 
 	private void step3returnBook() {
-		SpeakerNPC npc = npcs.get("Ceryl");
+		final SpeakerNPC npc = npcs.get("Ceryl");
 
 		/** Complete the quest */
-		List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("black book"));
 		reward.add(new EquipItemAction("money", 50));
 		reward.add(new IncreaseXPAction(100));
@@ -183,13 +183,13 @@ public class LookBookforCeryl extends AbstractQuest {
 
 	
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}

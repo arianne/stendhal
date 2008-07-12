@@ -37,7 +37,7 @@ public class ArmorForDagobertTest {
 	public void setUp() {
 		npc = new SpeakerNPC("Dagobert");
 		SingletonRepository.getNPCList().add(npc);
-		SpeakerNPCFactory npcConf = new CustomerAdvisorNPC();
+		final SpeakerNPCFactory npcConf = new CustomerAdvisorNPC();
 		npcConf.createDialog(npc);
 
 		quest = new ArmorForDagobert();
@@ -98,7 +98,7 @@ public class ArmorForDagobertTest {
 		assertEquals("It was a pleasure to serve you.", npc.get("text"));
 
 		// -----------------------------------------------
-		Item item = ItemTestHelper.createItem("leather cuirass");
+		final Item item = ItemTestHelper.createItem("leather cuirass");
 		player.getSlot("bag").add(item);
 		questHistory.add("FOUND_ITEM");
 		assertEquals(questHistory, quest.getHistory(player));
@@ -143,7 +143,7 @@ public class ArmorForDagobertTest {
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?",
 				npc.get("text"));
-		int xpBeforeReward = player.getXP();
+		final int xpBeforeReward = player.getXP();
 		en.step(player, "yes");
 		questHistory.add("DONE");
 		assertEquals(questHistory, quest.getHistory(player));

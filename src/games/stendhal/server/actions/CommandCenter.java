@@ -40,8 +40,8 @@ public class CommandCenter {
 		return actionsMap;
 	}
 
-	public static void register(String action, ActionListener actionClass) {
-		ActionListener command = getActionsMap().putIfAbsent(action, actionClass);
+	public static void register(final String action, final ActionListener actionClass) {
+		final ActionListener command = getActionsMap().putIfAbsent(action, actionClass);
 
 		//TODO mf - register slash commands as verbs in WordList
 		if (command == null) {
@@ -53,8 +53,8 @@ public class CommandCenter {
 		}
 	}
 
-	public static void register(String action, ActionListener actionClass,
-			int requiredAdminLevel) {
+	public static void register(final String action, final ActionListener actionClass,
+			final int requiredAdminLevel) {
 		register(action, actionClass);
 		AdministrationAction.registerCommandLevel(action, requiredAdminLevel);
 	}
@@ -84,26 +84,26 @@ public class CommandCenter {
 		WrapAction.register();
 	}
 
-	public static boolean execute(RPObject caster, RPAction action) {
+	public static boolean execute(final RPObject caster, final RPAction action) {
 		try {
 
-			Player player = (Player) caster;
-			ActionListener actionListener = getAction(action);
-			String type = action.get(WellKnownActionConstants.TYPE);
+			final Player player = (Player) caster;
+			final ActionListener actionListener = getAction(action);
+			final String type = action.get(WellKnownActionConstants.TYPE);
 			if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
 				return false;
 			}
 			actionListener.onAction(player, action);
 
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Cannot execute action " + action + " send by "
 					+ caster, e);
 			return false;
 		}
 	}
 
-	private static ActionListener getAction(RPAction action) {
+	private static ActionListener getAction(final RPAction action) {
 		if (action == null) {
 			return UNKNOWN_ACTION;
 		} else {
@@ -111,12 +111,12 @@ public class CommandCenter {
 		}
 	}
 
-	private static ActionListener getAction(String type) {
+	private static ActionListener getAction(final String type) {
 		if (type == null) {
 			return UNKNOWN_ACTION;
 		}
 
-		ActionListener action = getActionsMap().get(type);
+		final ActionListener action = getActionsMap().get(type);
 		if (action == null) {
 			return UNKNOWN_ACTION;
 		} else {
@@ -127,7 +127,7 @@ public class CommandCenter {
 	static class UnknownAction implements ActionListener {
 		private static Logger logger = Logger.getLogger(UnknownAction.class);
 
-		public void onAction(Player player, RPAction action) {
+		public void onAction(final Player player, final RPAction action) {
 			String type = "null";
 			if (action != null) {
 				type = action.get("type");

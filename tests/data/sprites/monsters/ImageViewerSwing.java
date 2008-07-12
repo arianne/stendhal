@@ -37,7 +37,7 @@ public class ImageViewerSwing extends JComponent {
 	 *            the Image to be displayed . See the Java glossary under Image
 	 *            for ways to create an Image from a file.
 	 */
-	public ImageViewerSwing(Image image) {
+	public ImageViewerSwing(final Image image) {
 		this();
 		setImage(image);
 	}
@@ -63,7 +63,7 @@ public class ImageViewerSwing extends JComponent {
 	 *            Connection.getContent Component.createImage
 	 * 
 	 */
-	public void setImage(Image image) {
+	public void setImage(final Image image) {
 		// even if Image object is same, we use it since it may have changed
 		// state.
 
@@ -81,7 +81,7 @@ public class ImageViewerSwing extends JComponent {
 				tracker = new MediaTracker(this);
 				tracker.addImage(image, 0);
 				tracker.waitForID(0);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 				//load completed
 			}
 		}
@@ -106,16 +106,16 @@ public class ImageViewerSwing extends JComponent {
 	 *            Graphics context where to paint, e.g. to screen, printer, RAM.
 	 */
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponent(final Graphics g) {
 		// get size of box we have to draw in
-		Dimension dim = getSize();
+		final Dimension dim = getSize();
 		if (image != null) {
 			/*
 			 * center Image in box, normally should exactly fill the box. If we
 			 * overflow, no problem, drawImage will clip.
 			 */
-			int imageWidth = image.getWidth(this);
-			int imageHeight = image.getHeight(this);
+			final int imageWidth = image.getWidth(this);
+			final int imageHeight = image.getHeight(this);
 
 			// this does not complete the job, just starts it.
 			// We are notified of progress through our Component ImageObserver

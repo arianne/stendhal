@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private String[] points = new String[] { "Carmen", "Monogenes",
+	private final String[] points = new String[] { "Carmen", "Monogenes",
 			"Hayunn Naratha",
 			// TODO: load groovy before quest are inited (or convert
 			// kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is
@@ -32,17 +32,17 @@ public class PaperChase extends AbstractQuest {
 	 * one)
 	 */
 	private class PaperChasePoint extends SpeakerNPC.ChatAction {
-		private int idx;
+		private final int idx;
 
-		PaperChasePoint(int idx) {
+		PaperChasePoint(final int idx) {
 			this.idx = idx;
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String state = points[idx];
-			String next = points[idx + 1];
-			String questState = player.getQuest(QUEST_SLOT);
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String state = points[idx];
+			final String next = points[idx + 1];
+			final String questState = player.getQuest(QUEST_SLOT);
 
 			// player does not have this quest or finished it
 			if ((questState == null) || (questState.indexOf(";") < 0)) {
@@ -51,9 +51,9 @@ public class PaperChase extends AbstractQuest {
 			}
 
 			// analyze quest state
-			StringTokenizer st = new StringTokenizer(questState, ";");
-			String nextNPC = st.nextToken();
-			String startTime = st.nextToken();
+			final StringTokenizer st = new StringTokenizer(questState, ";");
+			final String nextNPC = st.nextToken();
+			final String startTime = st.nextToken();
 
 			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
@@ -63,14 +63,14 @@ public class PaperChase extends AbstractQuest {
 
 			// send player to the next NPC and record it in quest state
 			engine.say("OK, please talk to " + next + " now.");
-			String newState = next + ";" + startTime;
+			final String newState = next + ";" + startTime;
 			player.setQuest(QUEST_SLOT, newState);
 		}
 
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -81,9 +81,9 @@ public class PaperChase extends AbstractQuest {
 	 * @param idx
 	 *            index of way point
 	 */
-	private void addTaskToNPC(int idx) {
-		String state = points[idx];
-		SpeakerNPC npc = npcs.get(state);
+	private void addTaskToNPC(final int idx) {
+		final String state = points[idx];
+		final SpeakerNPC npc = npcs.get(state);
 		npc.add(ConversationStates.ATTENDING, "paper", null,
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 	}

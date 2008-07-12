@@ -20,7 +20,7 @@ public class LogoutPlayer extends ScriptImpl {
 	private static Logger logger = Logger.getLogger(LogoutPlayer.class);
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
 		// help text
 		if (args.size() == 0) {
@@ -32,18 +32,18 @@ public class LogoutPlayer extends ScriptImpl {
 			// see processLogoutEvent in
 			// marauroa-1.34/src/marauroa/server/game/GameServerManager.java
 
-			PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
-			PlayerEntry entry = playerContainer.get(args.get(0));
+			final PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
+			final PlayerEntry entry = playerContainer.get(args.get(0));
 			if (entry == null) {
 				admin.sendPrivateText(args.get(0) + " not found");
 				return;
 			}
 
-			Player player = (Player) entry.object;
+			final Player player = (Player) entry.object;
 			SingletonRepository.getRuleProcessor().getRPManager().disconnectPlayer(
 					player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 

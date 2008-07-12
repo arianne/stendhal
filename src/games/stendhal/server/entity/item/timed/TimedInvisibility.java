@@ -6,17 +6,17 @@ import games.stendhal.server.entity.player.Player;
 
 public class TimedInvisibility extends TimedStackableItem {
 
-	public TimedInvisibility(TimedStackableItem item) {
+	public TimedInvisibility(final TimedStackableItem item) {
 		super(item);
 	}
 
-	public TimedInvisibility(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public TimedInvisibility(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	@Override
-	public boolean useItem(Player player) {
+	public boolean useItem(final Player player) {
 		if (player == null) {
 			return false;
 		}
@@ -25,7 +25,7 @@ public class TimedInvisibility extends TimedStackableItem {
 	}
 
 	@Override
-	public void itemFinished(Player player) {
+	public void itemFinished(final Player player) {
 		if (player != null) {
 			player.sendPrivateText("You don't feel so secure anymore.");
 			player.setInvisible(false);

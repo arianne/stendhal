@@ -51,25 +51,25 @@ public class MockDatabase extends StendhalPlayerDatabase {
 
 					}
 
-					public int execute(String sql) throws SQLException {
+					public int execute(final String sql) throws SQLException {
 
 						return 0;
 					}
 
-					public void execute(String sql, InputStream... inputStreams) throws SQLException, IOException {
+					public void execute(final String sql, final InputStream... inputStreams) throws SQLException, IOException {
 
 					}
 
-					public void executeBatch(String sql, InputStream... inputStreams) throws SQLException, IOException {
+					public void executeBatch(final String sql, final InputStream... inputStreams) throws SQLException, IOException {
 
 					}
 
-					public ResultSet query(String sql) throws SQLException {
+					public ResultSet query(final String sql) throws SQLException {
 
 						return null;
 					}
 
-					public int querySingleCellInt(String sql) throws SQLException {
+					public int querySingleCellInt(final String sql) throws SQLException {
 
 						return 0;
 					}

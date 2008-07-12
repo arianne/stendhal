@@ -26,26 +26,26 @@ import marauroa.common.net.message.TransferContent;
 
 public class textClient extends Thread {
 
-	private String host;
+	private final String host;
 
-	private String username;
+	private final String username;
 
-	private String password;
+	private final String password;
 
-	private String character;
+	private final String character;
 
-	private String port;
+	private final String port;
 
 	private static boolean ShowWorld;
 
-	private Map<RPObject.ID, RPObject> world_objects;
+	private final Map<RPObject.ID, RPObject> world_objects;
 
-	private marauroa.client.ClientFramework clientManager;
+	private final marauroa.client.ClientFramework clientManager;
 
-	private PerceptionHandler handler;
+	private final PerceptionHandler handler;
 
-	public textClient(String h, String u, String p, String c, String P,
-			boolean t) throws SocketException {
+	public textClient(final String h, final String u, final String p, final String c, final String P,
+			final boolean t) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
@@ -56,7 +56,7 @@ public class textClient extends Thread {
 
 		handler = new PerceptionHandler(new IPerceptionListener() {
 
-			public boolean onAdded(RPObject object) {
+			public boolean onAdded(final RPObject object) {
 				return false;
 			}
 
@@ -64,31 +64,31 @@ public class textClient extends Thread {
 				return false;
 			}
 
-			public boolean onDeleted(RPObject object) {
+			public boolean onDeleted(final RPObject object) {
 				return false;
 			}
 
-			public void onException(Exception exception,
-					MessageS2CPerception perception) {
+			public void onException(final Exception exception,
+					final MessageS2CPerception perception) {
 				exception.printStackTrace();
 			}
 
-			public boolean onModifiedAdded(RPObject object, RPObject changes) {
+			public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
-			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+			public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
-			public boolean onMyRPObject(RPObject added, RPObject deleted) {
+			public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 				return false;
 			}
 
-			public void onPerceptionBegin(byte type, int timestamp) {
+			public void onPerceptionBegin(final byte type, final int timestamp) {
 			}
 
-			public void onPerceptionEnd(byte type, int timestamp) {
+			public void onPerceptionEnd(final byte type, final int timestamp) {
 			}
 
 			public void onSynced() {
@@ -112,15 +112,15 @@ public class textClient extends Thread {
 			}
 
 			@Override
-			protected void onPerception(MessageS2CPerception message) {
+			protected void onPerception(final MessageS2CPerception message) {
 				try {
 					System.out.println("Received perception "
 							+ message.getPerceptionTimestamp());
 
 					handler.apply(message, world_objects);
-					int i = message.getPerceptionTimestamp();
+					final int i = message.getPerceptionTimestamp();
 
-					RPAction action = new RPAction();
+					final RPAction action = new RPAction();
 					if (i % 50 == 0) {
 						action.put("type", "move");
 						action.put("dy", "-1");
@@ -133,21 +133,21 @@ public class textClient extends Thread {
 					if (ShowWorld) {
 						System.out.println("<World contents ------------------------------------->");
 						int j = 0;
-						for (RPObject object : world_objects.values()) {
+						for (final RPObject object : world_objects.values()) {
 							j++;
 							System.out.println(j + ". " + object);
 						}
 						System.out.println("</World contents ------------------------------------->");
 					}
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 			}
 
 			@Override
 			protected List<TransferContent> onTransferREQ(
-					List<TransferContent> items) {
-				for (TransferContent item : items) {
+					final List<TransferContent> items) {
+				for (final TransferContent item : items) {
 					item.ack = true;
 				}
 
@@ -155,39 +155,39 @@ public class textClient extends Thread {
 			}
 
 			@Override
-			protected void onTransfer(List<TransferContent> items) {
+			protected void onTransfer(final List<TransferContent> items) {
 				System.out.println("Transfering ----");
-				for (TransferContent item : items) {
+				for (final TransferContent item : items) {
 					System.out.println(item);
 				}
 			}
 
 			@Override
-			protected void onAvailableCharacters(String[] characters) {
+			protected void onAvailableCharacters(final String[] characters) {
 				System.out.println("Characters available");
-				for (String characterAvail : characters) {
+				for (final String characterAvail : characters) {
 					System.out.println(characterAvail);
 				}
 
 				try {
 					chooseCharacter(character);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 			}
 
 			@Override
-			protected void onServerInfo(String[] info) {
+			protected void onServerInfo(final String[] info) {
 				System.out.println("Server info");
-				for (String info_string : info) {
+				for (final String info_string : info) {
 					System.out.println(info_string);
 				}
 			}
 
 			@Override
-			protected void onPreviousLogins(List<String> previousLogins) {
+			protected void onPreviousLogins(final List<String> previousLogins) {
 				System.out.println("Previous logins");
-				for (String info_string : previousLogins) {
+				for (final String info_string : previousLogins) {
 					System.out.println(info_string);
 				}
 			}
@@ -200,23 +200,23 @@ public class textClient extends Thread {
 		try {
 			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return;
 		}
 
-		boolean cond = true;
+		final boolean cond = true;
 
 		while (cond) {
 			clientManager.loop(0);
 			try {
 				sleep(100);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 			}
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		try {
 			if (args.length > 0) {
 				int i = 0;
@@ -270,7 +270,7 @@ public class textClient extends Thread {
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}

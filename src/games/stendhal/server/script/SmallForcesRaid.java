@@ -10,7 +10,7 @@ public class SmallForcesRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
-		Map<String, Integer> attackArmy = new HashMap<String, Integer>();
+		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
 		attackArmy.put("gnome", 12);
 		attackArmy.put("mage gnome", 7);
 		attackArmy.put("infantry gnome", 10);

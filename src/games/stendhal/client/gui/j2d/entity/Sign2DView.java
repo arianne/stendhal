@@ -59,7 +59,7 @@ class Sign2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
+	protected void buildRepresentation(final IGameScreen gameScreen) {
 		String name = getClassResourcePath();
 
 		if (name == null) {
@@ -140,7 +140,7 @@ class Sign2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case READ:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 			rpaction.put("type", at.toString());
 			entity.fillTargetInfo(rpaction);
 

@@ -148,7 +148,7 @@ public abstract class DomesticAnimal extends RPEntity {
 		 * Weight
 		 */
 		if (changes.has("weight")) {
-			int oldWeight = weight;
+			final int oldWeight = weight;
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {

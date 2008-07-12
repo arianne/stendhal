@@ -35,12 +35,12 @@ public class QuestInStateConditionTest {
 
 	@Test
 	public final void testFire() {
-		String validState = "valid";
+		final String validState = "valid";
 		assertFalse(new QuestInStateCondition(QUESTNAME, validState).fire(
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testQuestInStateCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest(QUESTNAME, "valid");
 		assertTrue(new QuestInStateCondition(QUESTNAME, validState).fire(bob,
@@ -77,10 +77,10 @@ public class QuestInStateConditionTest {
 
 	@Test
 	public void testEquals() throws Throwable {
-		String state = "state";
+		final String state = "state";
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(null));
 
-		QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME, state);
+		final QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME, state);
 		assertTrue(obj.equals(obj));
 
 		assertTrue(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
@@ -109,7 +109,7 @@ public class QuestInStateConditionTest {
 	@Test
 	public void testHashCode() throws Throwable {
 
-		QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME,
+		final QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME,
 				"state");
 		assertEquals(obj.hashCode(), obj.hashCode());
 

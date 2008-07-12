@@ -8,7 +8,7 @@ import marauroa.common.game.Result;
  * @author hendrik
  */
 public class NotEmptyValidator implements AccountParameterValidator {
-	private String parameterValue;
+	private final String parameterValue;
 
 	/**
 	 * create a new NotEmptyValidator.

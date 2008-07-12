@@ -20,7 +20,7 @@ public class HealedEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, AMOUNT, Type.INT);
 	}
 
@@ -29,7 +29,7 @@ public class HealedEvent extends RPEvent {
 	 *
 	 * @param amount amount of hp healed
 	 */
-	public HealedEvent(int amount) {
+	public HealedEvent(final int amount) {
 		super(RPCLASS_NAME);		
 		put(AMOUNT, amount);
 	}

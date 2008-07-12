@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -25,7 +26,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new BarMaidNPC());
 	}
@@ -40,8 +41,8 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Margaret");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Margaret");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -52,8 +53,8 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyHam() {
-		SpeakerNPC npc = getNPC("Margaret");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Margaret");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -139,9 +140,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSellHam() {
-		SpeakerNPC npc = SingletonRepository.getNPCList().get("Margaret");
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get("Margaret");
 		assertNotNull(npc);
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Margaret"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));

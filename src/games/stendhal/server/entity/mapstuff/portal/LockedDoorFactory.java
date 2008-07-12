@@ -29,7 +29,7 @@ public class LockedDoorFactory extends DoorFactory {
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
-	protected String getKey(ConfigurableFactoryContext ctx) {
+	protected String getKey(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("key");
 	}
 
@@ -52,7 +52,7 @@ public class LockedDoorFactory extends DoorFactory {
 	 * 
 	 * @see LockedDoor
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		return new LockedDoor(getKey(ctx), getClass(ctx));
 	}
 }

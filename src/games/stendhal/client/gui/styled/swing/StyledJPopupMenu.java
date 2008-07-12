@@ -28,14 +28,14 @@ public class StyledJPopupMenu extends JPopupMenu {
 	/*
 	 * Style used.
 	 */
-	private Style style;
+	private final Style style;
 
 	/**
 	 * Create a styled JPopupMenu.
 	 * @param style to be applied
 	 * @param label 
 	 */
-	public StyledJPopupMenu(Style style, String label) {
+	public StyledJPopupMenu(final Style style, final String label) {
 		super(label);
 
 		setDefaultLightWeightPopupEnabled(false);
@@ -55,10 +55,10 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 * @param item 
 	 * 
 	 */
-	protected void applyStyle(Style style, JMenuItem item) {
-		Color color = style.getForeground();
-		Border border = style.getBorder();
-		Font font = style.getFont();
+	protected void applyStyle(final Style style, final JMenuItem item) {
+		final Color color = style.getForeground();
+		final Border border = style.getBorder();
+		final Font font = style.getFont();
 
 		if (style.getBackground() != null) {
 			item.setOpaque(false);
@@ -84,14 +84,14 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 * @param menu 
 	 * 
 	 */
-	protected void applyStyle(Style style, JPopupMenu menu) {
-		Border border = style.getBorder();
+	protected void applyStyle(final Style style, final JPopupMenu menu) {
+		final Border border = style.getBorder();
 
 		if (border != null) {
 			menu.setBorder(border);
 		}
 
-		for (MenuElement item : menu.getSubElements()) {
+		for (final MenuElement item : menu.getSubElements()) {
 			applyStyle(style, (JMenuItem) item.getComponent());
 		}
 	}
@@ -105,7 +105,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 * 
 	 */
 	@Override
-	public JMenuItem add(JMenuItem item) {
+	public JMenuItem add(final JMenuItem item) {
 		applyStyle(style, item);
 
 		return super.add(item);
@@ -121,8 +121,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 * 
 	 */
 	@Override
-	protected void paintComponent(Graphics g) {
-		Sprite texture = style.getBackground();
+	protected void paintComponent(final Graphics g) {
+		final Sprite texture = style.getBackground();
 
 		if (texture != null) {
 			int twidth;

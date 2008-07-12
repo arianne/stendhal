@@ -47,7 +47,7 @@ public class ImageSprite implements Sprite {
 	 * @param image
 	 *            The image that is this sprite
 	 */
-	public ImageSprite(Image image) {
+	public ImageSprite(final Image image) {
 		this(image, null);
 	}
 
@@ -59,7 +59,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	public ImageSprite(Image image, Object reference) {
+	public ImageSprite(final Image image, final Object reference) {
 		this.image = image;
 		this.reference = reference;
 	}
@@ -70,7 +70,7 @@ public class ImageSprite implements Sprite {
 	 * @param sprite
 	 *            The source sprite.
 	 */
-	public ImageSprite(Sprite sprite) {
+	public ImageSprite(final Sprite sprite) {
 		this(sprite, null);
 	}
 
@@ -82,7 +82,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	public ImageSprite(Sprite sprite, String reference) {
+	public ImageSprite(final Sprite sprite, final String reference) {
 		this.reference = reference;
 
 		image = getGC().createCompatibleImage(sprite.getWidth(),
@@ -101,11 +101,11 @@ public class ImageSprite implements Sprite {
 	 * 
 	 * @return A horizontally flipped sprite.
 	 */
-	public static ImageSprite flipped(Sprite sprite) {
-		Image image = getGC().createCompatibleImage(sprite.getWidth(),
+	public static ImageSprite flipped(final Sprite sprite) {
+		final Image image = getGC().createCompatibleImage(sprite.getWidth(),
 				sprite.getHeight(), Transparency.BITMASK);
 
-		int width = sprite.getWidth();
+		final int width = sprite.getWidth();
 
 		sprite.draw(image.getGraphics(), width, 0, width, 0, -width,
 				sprite.getHeight());
@@ -131,11 +131,11 @@ public class ImageSprite implements Sprite {
 	 * @param alpha 
 	 * @return a new overlayed Image 
 	 */
-	private Image getModifiedImage(Color color, float alpha) {
-		BufferedImage i = getGC().createCompatibleImage(getWidth(),
+	private Image getModifiedImage(final Color color, final float alpha) {
+		final BufferedImage i = getGC().createCompatibleImage(getWidth(),
 				getHeight(), Transparency.TRANSLUCENT);
 		draw(i.getGraphics(), 0, 0);
-		Graphics2D g = i.createGraphics();
+		final Graphics2D g = i.createGraphics();
 		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
 				(int) (alpha * 255)));
 		g.fillRect(0, 0, i.getWidth(), i.getHeight());
@@ -194,8 +194,8 @@ public class ImageSprite implements Sprite {
 	 */
 	public Sprite createRegion(final int x, final int y, final int width,
 			final int height, final Object ref) {
-		int iwidth = getWidth();
-		int iheight = getHeight();
+		final int iwidth = getWidth();
+		final int iheight = getHeight();
 
 		if ((x >= iwidth) || (y >= iheight)) {
 			/*
@@ -222,9 +222,9 @@ public class ImageSprite implements Sprite {
 		/*
 		 * Full copy method (the memory hog)
 		 */
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-		Image imageTemp = gc.createCompatibleImage(width, height,
+		final Image imageTemp = gc.createCompatibleImage(width, height,
 				Transparency.BITMASK);
 
 		draw(imageTemp.getGraphics(), 0, 0, x, y, width, height);
@@ -242,7 +242,7 @@ public class ImageSprite implements Sprite {
 	 * @param y
 	 *            The y location at which to draw the sprite
 	 */
-	public void draw(Graphics g, int x, int y) {
+	public void draw(final Graphics g, final int x, final int y) {
 		g.drawImage(image, x, y, null);
 	}
 
@@ -264,8 +264,8 @@ public class ImageSprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
-	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
-			int h) {
+	public void draw(final Graphics g, final int destx, final int desty, final int x, final int y, final int w,
+			final int h) {
 		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y
 				+ h, null);
 	}

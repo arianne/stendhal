@@ -14,7 +14,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class AlwaysTrueCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return true;
 	}
 
@@ -29,7 +29,7 @@ public class AlwaysTrueCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

@@ -44,16 +44,16 @@ import tiled.plugins.tiled.XMLMapWriter;
  */
 public class MapUpdater extends Task {
 	/** list of *.tmx files to convert. */
-	private List<FileSet> filesets = new ArrayList<FileSet>();
+	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
 	/* mostly copied from dialog/TilesetManager.java, except that
 	   many things refuse to compile with the usual tiled.jar,
 	   so rewrote it to work with more primitive interfaces. */
-	private boolean isUsedTileset(Map map, TileSet tileset) {
-		for (Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
-			Tile tile = (Tile) tiles.next();
+	private boolean isUsedTileset(final Map map, final TileSet tileset) {
+		for (final Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
+			final Tile tile = (Tile) tiles.next();
 
-			for (MapLayer layer : map.getLayerList()) {
+			for (final MapLayer layer : map.getLayerList()) {
 				if ((layer instanceof TileLayer) && (((TileLayer) layer).isUsed(tile))) {
 					return true;
 				}
@@ -63,9 +63,9 @@ public class MapUpdater extends Task {
 		return false;
 	}
 
-	private void removeUnusedTilesets(Map map) {
-		for (Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext();) {
-			TileSet tileset = (TileSet) sets.next();
+	private void removeUnusedTilesets(final Map map) {
+		for (final Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext();) {
+			final TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
 				sets.remove();
@@ -76,11 +76,11 @@ public class MapUpdater extends Task {
 	/** Converts the map files. 
 	 * @param tmxFile 
 	 * @throws Exception */
-	public void convert(String tmxFile) throws Exception {
-		File file = new File(tmxFile);
+	public void convert(final String tmxFile) throws Exception {
+		final File file = new File(tmxFile);
 
-		String filename = file.getAbsolutePath();
-		Map map = new XMLMapTransformer().readMap(filename);
+		final String filename = file.getAbsolutePath();
+		final Map map = new XMLMapTransformer().readMap(filename);
 		removeUnusedTilesets(map);
 		new XMLMapWriter().writeMap(map, filename);
 	}
@@ -91,7 +91,7 @@ public class MapUpdater extends Task {
 	 * @param set
 	 *            a set of files to copy
 	 */
-	public void addFileset(FileSet set) {
+	public void addFileset(final FileSet set) {
 		filesets.add(set);
 	}
 
@@ -101,29 +101,29 @@ public class MapUpdater extends Task {
 	@Override
 	public void execute() {
 		try {
-			for (FileSet fileset : filesets) {
-				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
-				String[] includedFiles = ds.getIncludedFiles();
-				for (String filename : includedFiles) {
+			for (final FileSet fileset : filesets) {
+				final DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+				final String[] includedFiles = ds.getIncludedFiles();
+				for (final String filename : includedFiles) {
 					System.out.println(ds.getBasedir().getAbsolutePath()
 							+ File.separator + filename);
 					convert(ds.getBasedir().getAbsolutePath() + File.separator
 							+ filename);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			throw new BuildException(e);
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		if (args.length < 1) {
 			System.out.println("usage: java games.stendhal.tools.MapConverter <tmx file>");
 			return;
 		}
 
 		// do the job
-		MapUpdater converter = new MapUpdater();
+		final MapUpdater converter = new MapUpdater();
 		converter.convert(args[0]);
 	}
 

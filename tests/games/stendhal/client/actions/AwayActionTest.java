@@ -18,26 +18,26 @@ public class AwayActionTest {
 	public void testExecute() {
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("away", action.get("type"));
 				assertEquals("schnick", action.get("message"));
 			}
 		};
 
-		AwayAction action = new AwayAction();
+		final AwayAction action = new AwayAction();
 		assertTrue(action.execute(null, "schnick"));
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		AwayAction action = new AwayAction();
+		final AwayAction action = new AwayAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		AwayAction action = new AwayAction();
+		final AwayAction action = new AwayAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }

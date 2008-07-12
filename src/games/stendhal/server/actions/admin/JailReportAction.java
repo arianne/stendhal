@@ -14,7 +14,7 @@ public class JailReportAction extends AdministrationAction {
 	}
 
 	@Override
-	protected void perform(Player player, RPAction action) {
+	protected void perform(final Player player, final RPAction action) {
 		player.sendPrivateText(Jail.get().listJailed());
 		player.notifyWorldAboutChanges();
 

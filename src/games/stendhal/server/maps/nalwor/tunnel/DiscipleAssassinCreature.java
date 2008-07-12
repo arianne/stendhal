@@ -19,16 +19,16 @@ public class DiscipleAssassinCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildAssassinIdGuy(zone, attributes);
 	}
 
-	private void buildAssassinIdGuy(StendhalRPZone zone, Map<String, String> attributes) {
-		EntityManager manager = (EntityManager) SingletonRepository.getEntityManager();
+	private void buildAssassinIdGuy(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final EntityManager manager = SingletonRepository.getEntityManager();
 
-		Creature creature = new ItemGuardCreature(manager.getCreature("disciple assassin"), "assassins id");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("disciple assassin"), "assassins id");
 
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 242, 41, creature, 1);
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 242, 41, creature, 1);
 
 		zone.add(point);
 	}

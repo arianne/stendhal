@@ -23,9 +23,9 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
 
-	private String title;
+	private final String title;
 
-	private StringBuilder text = new StringBuilder();
+	private final StringBuilder text = new StringBuilder();
 
 	/** used by the parser to detect the right tag. */
 	private boolean isContent;
@@ -41,18 +41,18 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	 * @param title
 	 *            title of the page to access
 	 */
-	public WikipediaAccess(String title) {
+	public WikipediaAccess(final String title) {
 		this.title = title;
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(final String namespaceURI, final String lName, final String qName,
+			final Attributes attrs) {
 		isContent = qName.equals("content");
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length)
+	public void characters(final char[] ch, final int start, final int length)
 			throws SAXException {
 		if (isContent) {
 			text.append(ch, start, length);
@@ -116,7 +116,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 			// extract the first paragraph (ignoring very short ones but oposing
 			// a max len)
-			int size = content.length();
+			final int size = content.length();
 			int endOfFirstParagraph = content.indexOf("\n", 50);
 			if (endOfFirstParagraph < 0) {
 				endOfFirstParagraph = size;
@@ -135,19 +135,19 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	public void parse() throws Exception {
 		try {
 			// look it up using the Wikipedia API
-			HttpClient httpClient = new HttpClient(
+			final HttpClient httpClient = new HttpClient(
 					"http://en.wikipedia.org/w/query.php?format=xml&titles="
 							+ title.replace(' ', '_').replace("%", "%25")
 							+ "&what=content");
-			SAXParserFactory factory = SAXParserFactory.newInstance();
+			final SAXParserFactory factory = SAXParserFactory.newInstance();
 
 			// Parse the input
-			SAXParser saxParser = factory.newSAXParser();
+			final SAXParser saxParser = factory.newSAXParser();
 			saxParser.parse(httpClient.getInputStream(), this);
 
 			// finished
 			finished = true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			finished = true;
 			error = e.toString();
 			throw e;
@@ -157,7 +157,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	public void run() {
 		try {
 			parse();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// ignore as they are already logged in the parse()-method itself
 		}
 	}

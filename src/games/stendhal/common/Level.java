@@ -43,7 +43,7 @@ public class Level {
 		xp[5] = 800;
 
 		for (int i = 5; i < LEVELS; i++) {
-			int exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
+			final int exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
 			xp[i + 1] = exp;
 		}
 
@@ -70,7 +70,7 @@ public class Level {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		for (int i = 0; i < LEVELS; i++) {
 			System.out.println("<tr><td>" + i + "</td><td>" + xp[i]
 					+ "</td></tr>");
@@ -88,7 +88,7 @@ public class Level {
 	 *            experience needed
 	 * @return level
 	 */
-	public static int getLevel(int exp) {
+	public static int getLevel(final int exp) {
 
 		int first = 0;
 		int last = LEVELS - 1;
@@ -99,7 +99,7 @@ public class Level {
 			return last;
 		}
 		while (last - first > 1) {
-			int current = first + ((last - first) / 2);
+			final int current = first + ((last - first) / 2);
 			if (exp < xp[current]) {
 				last = current;
 			} else {
@@ -115,7 +115,7 @@ public class Level {
 	 * @param level
 	 * @return experience needed
 	 */
-	public static int getXP(int level) {
+	public static int getXP(final int level) {
 		if ((level >= 0) && (level < xp.length)) {
 			return xp[level];
 		}
@@ -132,7 +132,7 @@ public class Level {
 	 *            the added Experience
 	 * @return difference of levels
 	 */
-	public static int changeLevel(int exp, int added) {
+	public static int changeLevel(final int exp, final int added) {
 		int i;
 		for (i = 0; i < LEVELS; i++) {
 			if (exp < xp[i]) {

@@ -23,14 +23,14 @@ public class ThingCreature implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDrowTunnelArea(zone, attributes);
 	}
 
-	private void buildDrowTunnelArea(StendhalRPZone zone, Map<String, String> attributes) {
-		EntityManager manager = (EntityManager) SingletonRepository.getEntityManager();
-		Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet");
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
+	private void buildDrowTunnelArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final EntityManager manager = SingletonRepository.getEntityManager();
+		final Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet");
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
 		zone.add(point);
 	}
 }

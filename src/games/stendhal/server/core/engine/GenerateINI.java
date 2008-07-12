@@ -29,17 +29,17 @@ public class GenerateINI {
 	 *            if no value is written.
 	 * @return the string read or default if none was read.
 	 */
-	public static String getStringWithDefault(BufferedReader input,
-			String defaultValue) {
+	public static String getStringWithDefault(final BufferedReader input,
+			final String defaultValue) {
 		String ret = "";
 		try {
 			ret = input.readLine();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 		if (ret != null) {
-			if (ret.length() == 0 && defaultValue != null) {
+			if ((ret.length() == 0) && (defaultValue != null)) {
 				ret = defaultValue;
 			}
 		}
@@ -57,17 +57,17 @@ public class GenerateINI {
 	 *            the error message to print when failing
 	 * @return string read from input
 	 */
-	public static String getStringWithoutDefault(BufferedReader input,
-			String errorMessage) {
+	public static String getStringWithoutDefault(final BufferedReader input,
+			final String errorMessage) {
 		String ret = "";
 		try {
 			ret = input.readLine();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 
-		if (ret == null || ret.length() == 0) {
+		if ((ret == null) || (ret.length() == 0)) {
 			System.out.println(errorMessage);
 			System.out.println("Terminating...");
 			System.exit(1);
@@ -82,7 +82,7 @@ public class GenerateINI {
 	 *            the string
 	 * @return *T*he string, with first letter is upper case.
 	 */
-	public static String uppcaseFirstLetter(String source) {
+	public static String uppcaseFirstLetter(final String source) {
 		if (source.length() > 0) {
 			return Character.toUpperCase(source.charAt(0))
 					+ source.substring(1);
@@ -114,7 +114,7 @@ public class GenerateINI {
 
 	private static RSAKey rsakey;
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(final String[] args) throws FileNotFoundException {
 		gameName = "stendhal";
 
 		/** Write configuration for database */
@@ -149,11 +149,11 @@ public class GenerateINI {
 		statisticsFilename = getStatisticsFilename();
 
 		/* The size of the RSA Key in bits, usually 512 */
-		String keySize = getRSAKeyBits();
+		final String keySize = getRSAKeyBits();
 		System.out.println("Using key of " + keySize + " bits.");
 		System.out.println("Please wait while the key is generated.");
 		rsakey = RSAKey.generateKey(Integer.valueOf(keySize));
-		PrintWriter out = new PrintWriter(new FileOutputStream(FILENAME));
+		final PrintWriter out = new PrintWriter(new FileOutputStream(FILENAME));
 		write(out);
 		out.close();
 
@@ -162,7 +162,7 @@ public class GenerateINI {
 
 	private static String getRSAKeyBits() {
 		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
-		String keySize = getStringWithDefault(in, "512");
+		final String keySize = getStringWithDefault(in, "512");
 		return keySize;
 	}
 
@@ -190,7 +190,7 @@ public class GenerateINI {
 		return "games.stendhal.server.core.engine.StendhalPlayerDatabase";
 	}
 
-	private static void write(PrintWriter out) {
+	private static void write(final PrintWriter out) {
 		out.println("# Generated .ini file for Test Game at " + new Date());
 		out.println("# Database and factory classes. Don't edit.");
 		out.println("database_implementation=" + databaseImplementation);
@@ -230,27 +230,27 @@ public class GenerateINI {
 
 	protected static String getDatabasePassword() {
 		System.out.print("Write value of the database user password: ");
-		String databasepassword = getStringWithoutDefault(in,
+		final String databasepassword = getStringWithoutDefault(in,
 				"Please enter a database password");
 		return databasepassword;
 	}
 
 	protected static String getDatabaseUsername() {
 		System.out.print("Write name of the database user: ");
-		String databaseuser = getStringWithoutDefault(in,
+		final String databaseuser = getStringWithoutDefault(in,
 				"Please enter a database user");
 		return databaseuser;
 	}
 
 	protected static String getDatabaseHost() {
 		System.out.print("Write name of the database host [localhost]: ");
-		String databasehost = getStringWithDefault(in, "localhost");
+		final String databasehost = getStringWithDefault(in, "localhost");
 		return databasehost;
 	}
 
 	protected static String getDatabaseName() {
 		System.out.print("Write name of the database [marauroa]: ");
-		String databasename = getStringWithDefault(in, "marauroa");
+		final String databasename = getStringWithDefault(in, "marauroa");
 		return databasename;
 	}
 }

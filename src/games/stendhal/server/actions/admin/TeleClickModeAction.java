@@ -15,7 +15,7 @@ public class TeleClickModeAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 
 		if (player.isTeleclickEnabled()) {
 			player.setTeleclickEnabled(false);

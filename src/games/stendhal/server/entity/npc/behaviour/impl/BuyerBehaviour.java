@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public class BuyerBehaviour extends MerchantBehaviour {
 
-	public BuyerBehaviour(Map<String, Integer> priceList) {
+	public BuyerBehaviour(final Map<String, Integer> priceList) {
 		super(priceList);
 	}
 
@@ -36,8 +36,8 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * @param player
 	 *            The player who sells
 	 */
-	protected void payPlayer(SpeakerNPC buyerNPC, Player player) {
-		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
+	protected void payPlayer(final SpeakerNPC buyerNPC, final Player player) {
+		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"money");
 		money.setQuantity(getCharge(buyerNPC, player));
 		player.equip(money, true);
@@ -55,7 +55,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *         has the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 		if (player.drop(chosenItemName, getAmount())) {
 			payPlayer(seller, player);
 			seller.say("Thanks! Here is your money.");

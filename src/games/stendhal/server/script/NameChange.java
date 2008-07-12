@@ -18,7 +18,7 @@ public class NameChange extends ScriptImpl {
 	private static final String CONFIG_KEY = "stendhal.scripts.namechange.enabled";
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		// check configuration
 		// TODO: Do this on load (allowing success/fail return value)?
 		try {
@@ -29,7 +29,7 @@ public class NameChange extends ScriptImpl {
 						+ CONFIG_KEY);
 				return;
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			admin.sendPrivateText(e.toString());
 			return;
 		}
@@ -39,7 +39,7 @@ public class NameChange extends ScriptImpl {
 			admin.setTitle(null);
 			admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
 		} else {
-			String title = args.get(0);
+			final String title = args.get(0);
 
 			admin.setTitle(title);
 			admin.sendPrivateText("Your name has been changed to " + title

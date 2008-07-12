@@ -8,17 +8,17 @@ import java.util.Map;
 
 public class Seed extends Item implements UseListener {
 
-	public Seed(Seed item) {
+	public Seed(final Seed item) {
 		super(item);
 	}
 
-	public Seed(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Seed(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		
-		PlantAction plantAction = new PlantAction();
+		final PlantAction plantAction = new PlantAction();
 		plantAction.setUser(user);
 		plantAction.setSeed(this);
 		return plantAction.execute();

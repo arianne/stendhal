@@ -32,11 +32,11 @@ public class RingMakerTest {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		RingSmithNPC ognir = new RingSmithNPC();
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final RingSmithNPC ognir = new RingSmithNPC();
 		ognir.configureZone(zone, null);
 
-		AbstractQuest quest = new RingMaker();
+		final AbstractQuest quest = new RingMaker();
 		quest.addToWorld();
 		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
@@ -78,7 +78,7 @@ public class RingMakerTest {
 		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		// -----------------------------------------------
-		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
+		final Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -105,7 +105,7 @@ public class RingMakerTest {
 		// this time say no they don't want to pay yet
 		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
-		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
+		final Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
@@ -126,15 +126,15 @@ public class RingMakerTest {
 	@Test
 	public void testOrderEmeraldRing() {
 		
-		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
+		final Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		
-		Item money = ItemTestHelper.createItem("money", 80000);
+		final Item money = ItemTestHelper.createItem("money", 80000);
 		player.getSlot("bag").add(money);
-		Item goldbar = ItemTestHelper.createItem("gold bar", 2);
+		final Item goldbar = ItemTestHelper.createItem("gold bar", 2);
 		player.getSlot("bag").add(goldbar);
-		Item emerald = ItemTestHelper.createItem("emerald", 1);
+		final Item emerald = ItemTestHelper.createItem("emerald", 1);
 		player.getSlot("bag").add(emerald);
 
 		assertTrue(en.step(player, "hi"));
@@ -174,12 +174,12 @@ public class RingMakerTest {
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
 		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
-		int oldXP = player.getXP();
+		final int oldXP = player.getXP();
 		en.step(player, "emerald");
 		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", npc.get("text"));
 		assertEquals("player earns 500 experience points.", oldXP + 500, player.getXP());
 		en.step(player, "bye");
-		Item ring = player.getFirstEquipped("emerald ring");
+		final Item ring = player.getFirstEquipped("emerald ring");
 		assertTrue(ring.isBound());
 		assertTrue(ring.isBoundTo(player));
 		assertEquals("You see ring of life. Wear it, and you risk less from death.", ring.getDescription());

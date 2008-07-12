@@ -34,8 +34,8 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected void defineCreatures(CreatureProtectionArea area,
-			ConfigurableFactoryContext ctx) {
+	protected void defineCreatures(final CreatureProtectionArea area,
+			final ConfigurableFactoryContext ctx) {
 		String s = ctx.getString("rules", null);
 		String clazz;
 		String subclazz;
@@ -106,8 +106,8 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is other than "block" or "allow".
 	 */
-	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx) {
-		String s = ctx.getString("default", null);
+	protected boolean getBlockedDefault(final ConfigurableFactoryContext ctx) {
+		final String s = ctx.getString("default", null);
 
 		if (s == null) {
 			return true;
@@ -133,7 +133,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) {
+	protected int getHeight(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
@@ -146,7 +146,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) {
+	protected int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
@@ -165,7 +165,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @see CreatureProtectionArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		CreatureProtectionArea area;
 
 		area = new CreatureProtectionArea(getWidth(ctx), getHeight(ctx),

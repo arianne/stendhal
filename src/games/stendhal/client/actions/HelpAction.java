@@ -18,8 +18,8 @@ class HelpAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		String[] lines = {
+	public boolean execute(final String[] params, final String remainder) {
+		final String[] lines = {
 				"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
 				"Here are the most-used commands:",
 				"- /tell <player> <message> \tSends a private message to <player>",
@@ -45,7 +45,7 @@ class HelpAction implements SlashAction {
 				"- /sound mute <on|off> \tMute or unmute the sounds"
 		};
 
-		for (String line : lines) {
+		for (final String line : lines) {
 			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);
 		}
 

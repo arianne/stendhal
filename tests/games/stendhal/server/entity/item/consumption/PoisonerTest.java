@@ -38,18 +38,18 @@ public class PoisonerTest {
 		SingletonRepository.getEntityManager();
 		ItemTestHelper.generateRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
-		Map<String, String> attributes = new HashMap<String, String>();
+		final Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put("amount", "1000");
 		attributes.put("regen", "200");
 		attributes.put("frequency", "1");
 		attributes.put("id", "1");
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		StendhalRPZone zone = new StendhalRPZone("test");
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPZone zone = new StendhalRPZone("test");
 		world.addRPZone(zone);
-		ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);
+		final ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);
 		zone.add(c200_1);
-		Poisoner poisoner = new Poisoner();
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Poisoner poisoner = new Poisoner();
+		final Player bob = PlayerTestHelper.createPlayer("player");
 		poisoner.feed(c200_1, bob);
 		assertTrue(bob.isPoisoned());
 	}

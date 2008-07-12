@@ -29,10 +29,10 @@ public abstract class PlayerTestHelper {
 	 * @param name
 	 * @return player
 	 */
-	public static Player createPlayer(String name) {
+	public static Player createPlayer(final String name) {
 		generatePlayerRPClasses();
 
-		Player pl = new Player(new RPObject());
+		final Player pl = new Player(new RPObject());
 		pl.setName(name);
 
 		addEmptySlots(pl);
@@ -46,10 +46,10 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @return mock player object
 	 */
-	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(String name) {
+	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(final String name) {
 		generatePlayerRPClasses();
 
-		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
+		final PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
 		addEmptySlots(pl);
 
 		return pl;
@@ -61,7 +61,7 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @param zoneName
 	 */
-	public static void registerPlayer(Player player, String zoneName) {
+	public static void registerPlayer(final Player player, final String zoneName) {
 		registerPlayer(player, SingletonRepository.getRPWorld().getZone(zoneName));
 	}
 
@@ -71,7 +71,7 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @param zone
 	 */
-	public static void registerPlayer(Player player, StendhalRPZone zone) {
+	public static void registerPlayer(final Player player, final StendhalRPZone zone) {
 		registerPlayer(player);
 
 		zone.add(player);
@@ -82,14 +82,14 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param player
 	 */
-	public static void registerPlayer(Player player) {
+	public static void registerPlayer(final Player player) {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		MockStendlRPWorld.get().add(player);
 	}
 
-	public static Player createPlayerWithOutFit(String name) {
-		Player player = createPlayer(name);
+	public static Player createPlayerWithOutFit(final String name) {
+		final Player player = createPlayer(name);
 
 		player.setOutfit(new Outfit(1, 1, 1, 1));
 
@@ -102,7 +102,7 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @param zone
 	 */
-	public static void unregisterPlayer(Player player, StendhalRPZone zone) {
+	public static void unregisterPlayer(final Player player, final StendhalRPZone zone) {
 		zone.remove(player);
 		removePlayer(player);
 	}
@@ -113,8 +113,8 @@ public abstract class PlayerTestHelper {
 	 * @param playerName
 	 * @param zone
 	 */
-	public static void removePlayer(String playerName, StendhalRPZone zone) {
-		Player player = MockStendhalRPRuleProcessor.get().getPlayer(playerName);
+	public static void removePlayer(final String playerName, final StendhalRPZone zone) {
+		final Player player = MockStendhalRPRuleProcessor.get().getPlayer(playerName);
 
 		if (player != null) {
 			unregisterPlayer(player, zone);
@@ -127,7 +127,7 @@ public abstract class PlayerTestHelper {
 	 * @param playerName
 	 * @param zoneName
 	 */
-	public static void removePlayer(String playerName, String zoneName) {
+	public static void removePlayer(final String playerName, final String zoneName) {
 		removePlayer(playerName, MockStendlRPWorld.get().getZone(zoneName));
 	}
 
@@ -136,8 +136,8 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param playerName
 	 */
-	public static void removePlayer(String playerName) {
-		Player player = MockStendhalRPRuleProcessor.get().getPlayer(playerName);
+	public static void removePlayer(final String playerName) {
+		final Player player = MockStendhalRPRuleProcessor.get().getPlayer(playerName);
 
 		if (player != null) {
 			removePlayer(player);
@@ -149,7 +149,7 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param player
 	 */
-	public static void removePlayer(Player player) {
+	public static void removePlayer(final Player player) {
 		if (player != null) {
 			MockStendlRPWorld.get().remove(player.getID());
 			MockStendhalRPRuleProcessor.get().getOnlinePlayers().remove(player);
@@ -171,7 +171,7 @@ public abstract class PlayerTestHelper {
 	 * @param amount
 	 * @return success flag
 	 */
-	public static boolean equipWithMoney(Player player, int amount) {
+	public static boolean equipWithMoney(final Player player, final int amount) {
 		return equipWithStackableItem(player, "money", amount);
 	}
 
@@ -182,9 +182,9 @@ public abstract class PlayerTestHelper {
 	 * @param clazz
 	 * @return success flag
 	 */
-	public static boolean equipWithItem(Player player, String clazz) {
+	public static boolean equipWithItem(final Player player, final String clazz) {
 		ItemTestHelper.generateRPClasses();
-		Item item = SingletonRepository.getEntityManager().getItem(clazz);
+		final Item item = SingletonRepository.getEntityManager().getItem(clazz);
 
 		return player.equip(item);
 	}
@@ -197,8 +197,8 @@ public abstract class PlayerTestHelper {
 	 * @param amount
 	 * @return success flag
 	 */
-	public static boolean equipWithStackableItem(Player player, String clazz, int amount) {
-		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(clazz);
+	public static boolean equipWithStackableItem(final Player player, final String clazz, final int amount) {
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(clazz);
 		item.setQuantity(amount);
 
 		return player.equip(item);
@@ -209,8 +209,8 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param npcName
 	 */
-	public static void resetNPC(String npcName) {
-		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
+	public static void resetNPC(final String npcName) {
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 
 		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
@@ -222,7 +222,7 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param npcName
 	 */
-	public static void removeNPC(String npcName) {
+	public static void removeNPC(final String npcName) {
 		SingletonRepository.getNPCList().remove(npcName);
 	}
 
@@ -231,11 +231,11 @@ public abstract class PlayerTestHelper {
 	 * 
 	 * @param zoneName
 	 */
-	public static void removeZone(String zoneName) {
+	public static void removeZone(final String zoneName) {
 		// TODO implement removeZone()
 	}
 
-	public static void addEmptySlots(Player player) {
+	public static void addEmptySlots(final Player player) {
 //		"bag", "rhand", "lhand", "head", "armor",
 //		"legs", "feet", "finger", "cloak", "keyring"
 		player.addSlot(new PlayerSlot("bag"));

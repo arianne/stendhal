@@ -24,38 +24,38 @@ public class TeleportAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		if (action.has(TARGET) && action.has(_ZONE) && action.has(X)
 				&& action.has(Y)) {
-			String name = action.get(TARGET);
-			Player teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
+			final String name = action.get(TARGET);
+			final Player teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
-				String text = "Player \"" + name + "\" not found";
+				final String text = "Player \"" + name + "\" not found";
 				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
 
 			// validate the zone-name.
-			IRPZone.ID zoneid = new IRPZone.ID(action.get(_ZONE));
+			final IRPZone.ID zoneid = new IRPZone.ID(action.get(_ZONE));
 			if (!SingletonRepository.getRPWorld().hasRPZone(zoneid)) {
-				String text = "Zone \"" + zoneid + "\" not found.";
+				final String text = "Zone \"" + zoneid + "\" not found.";
 				logger.debug(text);
 
-				Set<String> zoneNames = new TreeSet<String>();
-				for (IRPZone irpZone : SingletonRepository.getRPWorld()) {
-					StendhalRPZone zone = (StendhalRPZone) irpZone;
+				final Set<String> zoneNames = new TreeSet<String>();
+				for (final IRPZone irpZone : SingletonRepository.getRPWorld()) {
+					final StendhalRPZone zone = (StendhalRPZone) irpZone;
 					zoneNames.add(zone.getName());
 				}
 				player.sendPrivateText(text + " Valid zones: " + zoneNames);
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
+			final StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 					zoneid);
-			int x = action.getInt(X);
-			int y = action.getInt(Y);
+			final int x = action.getInt(X);
+			final int y = action.getInt(Y);
 
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELEPORT, action.get(TARGET), zone.getName(),

@@ -20,7 +20,7 @@ import java.util.Map;
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class TraderNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -28,16 +28,16 @@ public class TraderNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildXinBlanca(zone);
 	}
 
 	private void buildXinBlanca(final StendhalRPZone zone) {
-		SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
+		final SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(2, 14));
 				nodes.add(new Node(2, 15));
 				nodes.add(new Node(3, 15));

@@ -33,30 +33,30 @@ public class SoundEffectMap {
 	/**
 	 * stores the named sound effects.
 	 */
-	private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(
+	private final Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(
 			256));
 
-	private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(
+	private final Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(
 			256));
 
-	private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner>(
+	private final Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner>(
 			256));
 
-	Object getByName(String name) {
+	Object getByName(final String name) {
 		return sfxmap.get(name);
 	}
 
-	boolean containsKey(String key) {
+	boolean containsKey(final String key) {
 		return sfxmap.containsKey(key);
 
 	}
 
-	Object put(String key, String value) {
+	Object put(final String key, final String value) {
 		pathMap.put(key, value);
 		return sfxmap.put(key, value);
 	}
 
-	Object put(String key, ClipRunner value) {
+	Object put(final String key, final ClipRunner value) {
 		clipRunnerMap.put(key, value);
 
 		return sfxmap.put(key, value);
@@ -76,7 +76,7 @@ public class SoundEffectMap {
 	 * @return <code>ClipRunner</code> or <b>null</b> if the sound is
 	 *         undefined
 	 */
-	ClipRunner getSoundClip(String name) {
+	ClipRunner getSoundClip(final String name) {
 
 		
 		return (ClipRunner) getByName(name);

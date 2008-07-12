@@ -73,7 +73,7 @@ class PlayerRPClass {
 	 * Generates the RPClass and specifies slots and attributes.
 	 */
 	static void generateRPClass() {
-		RPClass player = new RPClass("player");
+		final RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 
@@ -168,34 +168,34 @@ class PlayerRPClass {
 	 * @param player
 	 *            Player to check for super admin status.
 	 */
-	static void  readAdminsFromFile(Player player) {
+	static void  readAdminsFromFile(final Player player) {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
 
-			String adminFilename = "data/conf/admins.list";
+			final String adminFilename = "data/conf/admins.list";
 
 			try {
-				InputStream is = player.getClass().getClassLoader().getResourceAsStream(
+				final InputStream is = player.getClass().getClassLoader().getResourceAsStream(
 						adminFilename);
 
 				if (is == null) {
 					logger.info("data/conf/admins.list does not exist.");
 				} else {
 
-					BufferedReader in = new BufferedReader(
+					final BufferedReader in = new BufferedReader(
 							new UnicodeSupportingInputStreamReader(is));
 					try {
 						String line;
 						while ((line = in.readLine()) != null) {
 							adminNames.add(line);
 						}
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						logger.error("Error loading admin names from: "
 								+ adminFilename, e);
 					}
 					in.close();
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error(
 						"Error loading admin names from: " + adminFilename, e);
 			}
@@ -215,7 +215,7 @@ class PlayerRPClass {
 	 * @param player
 	 *            Player-object
 	 */
-	static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
+	static void placePlayerIntoWorldOnLogin(final RPObject object, final Player player) {
 		StendhalRPZone zone = null;
 
 		try {
@@ -227,7 +227,7 @@ class PlayerRPClass {
 					TutorialNotifier.newrelease(player);
 				}
 			}
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			// If placing the player at its last position
 			// fails, we reset to default zone
 			logger.warn(
@@ -251,7 +251,7 @@ class PlayerRPClass {
 			/*
 			 * Fallback to default zone
 			 */
-			String defaultZoneName = getDefaultZoneForPlayer(player);
+			final String defaultZoneName = getDefaultZoneForPlayer(player);
 			zone = SingletonRepository.getRPWorld().getZone(defaultZoneName);
 
 			if (zone == null) {
@@ -264,7 +264,7 @@ class PlayerRPClass {
 		}
 
 		// load sheep
-		Sheep sheep = player.petOwner.retrieveSheep();
+		final Sheep sheep = player.petOwner.retrieveSheep();
 
 		if (sheep != null) {
 			logger.debug("Player has a sheep");
@@ -286,7 +286,7 @@ class PlayerRPClass {
 		}
 
 		// load pet
-		Pet pet = player.petOwner.retrievePet();
+		final Pet pet = player.petOwner.retrievePet();
 
 		if (pet != null) {
 			logger.debug("Player has a pet");
@@ -317,7 +317,7 @@ class PlayerRPClass {
 	 * @param player Player
 	 * @return name of start zone
 	 */
-	private static String getDefaultZoneForPlayer(Player player) {
+	private static String getDefaultZoneForPlayer(final Player player) {
 		if (player.getLevel() < 2) {
 			return DEFAULT_ENTRY_ZONE;
 		} else {
@@ -338,13 +338,13 @@ class PlayerRPClass {
 	 */
 	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal,
 			final Player player) {
-		StendhalRPZone playerZone = player.getZone();
+		final StendhalRPZone playerZone = player.getZone();
 
 		/*
 		 * Only add directly if required attributes are present
 		 */
 		if (animal.has("zoneid") && animal.has("x") && animal.has("y")) {
-			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
+			final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 					animal.get("zoneid"));
 
 			/*
@@ -368,25 +368,25 @@ class PlayerRPClass {
 	 * @param player
 	 *            Player
 	 */
-	static void loadItemsIntoSlots(Player player) {
+	static void loadItemsIntoSlots(final Player player) {
 
 		// load items
-		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
+		final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
 
 		try {
-			for (String slotName : slotsItems) {
-				RPSlot slot = player.getSlot(slotName);
-				RPSlot newSlot = new PlayerSlot(slotName);
+			for (final String slotName : slotsItems) {
+				final RPSlot slot = player.getSlot(slotName);
+				final RPSlot newSlot = new PlayerSlot(slotName);
 				loadSlotContent(player, slot, newSlot);
 			}
 
-			for (Banks bank : Banks.values()) {
-				RPSlot slot = player.getSlot(bank.getSlotName());
-				RPSlot newSlot = new BankSlot(bank);
+			for (final Banks bank : Banks.values()) {
+				final RPSlot slot = player.getSlot(bank.getSlotName());
+				final RPSlot newSlot = new BankSlot(bank);
 				loadSlotContent(player, slot, newSlot);
 			}
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			logger.error("cannot create player", e);
 		}
 	}
@@ -401,24 +401,24 @@ class PlayerRPClass {
 	 * @param newSlot
 	 *            new Stendhal specific slot
 	 */
-	private static void loadSlotContent(Player player, RPSlot slot,
-			RPSlot newSlot) {
-		List<RPObject> objects = new LinkedList<RPObject>();
-		for (RPObject objectInSlot : slot) {
+	private static void loadSlotContent(final Player player, final RPSlot slot,
+			final RPSlot newSlot) {
+		final List<RPObject> objects = new LinkedList<RPObject>();
+		for (final RPObject objectInSlot : slot) {
 			objects.add(objectInSlot);
 		}
 		slot.clear();
 		player.removeSlot(slot.getName());
 		player.addSlot(newSlot);
 
-		for (RPObject item : objects) {
+		for (final RPObject item : objects) {
 			try {
 				// We simply ignore corpses...
 				if (item.get("type").equals("item")) {
 					// TODO: Move to Item.create(RPObject)?
 
-					String name = UpdateConverter.updateItemName(item.get("name"));
-					Item entity = SingletonRepository.getEntityManager().getItem(name);
+					final String name = UpdateConverter.updateItemName(item.get("name"));
+					final Item entity = SingletonRepository.getEntityManager().getItem(name);
 
 					// log removed items
 					if (entity == null) {
@@ -441,7 +441,7 @@ class PlayerRPClass {
 						/*
 						 * Keep [new] rpclass
 						 */
-						RPClass rpclass = entity.getRPClass();
+						final RPClass rpclass = entity.getRPClass();
 						entity.fill(item);
 						entity.setRPClass(rpclass);
 						
@@ -473,9 +473,9 @@ class PlayerRPClass {
 
 					// make sure saved individual information is
 					// restored
-					String[] individualAttributes = { "infostring",
+					final String[] individualAttributes = { "infostring",
 							"description", "bound", "undroppableondeath" };
-					for (String attribute : individualAttributes) {
+					for (final String attribute : individualAttributes) {
 						if (item.has(attribute)) {
 							entity.put(attribute, item.get(attribute));
 						}
@@ -492,7 +492,7 @@ class PlayerRPClass {
 					logger.warn("Non-item object found in " + player.getName()
 							+ "[" + slot.getName() + "]: " + item);
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("Error adding " + item + " to player slot" + slot,
 						e);
 			}
@@ -507,7 +507,7 @@ class PlayerRPClass {
 	 * @param item
 	 *            Item
 	 */
-	private static void boundOldItemsToPlayer(Player player, Item item) {
+	private static void boundOldItemsToPlayer(final Player player, final Item item) {
 
 		// No special processing needed, if the item is already bound
 		if (item.isBound()) {
@@ -527,24 +527,24 @@ class PlayerRPClass {
 	 * @param player
 	 *            Player
 	 */
-	static void welcome(Player player) {
+	static void welcome(final Player player) {
 		String msg = "This release is EXPERIMENTAL. Need help? #http://arianne.sourceforge.net/wiki/index.php?title=AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 		try {
-			Configuration config = Configuration.getConfiguration();
+			final Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome")) {
 				msg = config.get("server_welcome");
 				if (msg.startsWith("http://")) {
-					URL url = new URL(msg);
+					final URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					BufferedReader br = new BufferedReader(
+					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					final BufferedReader br = new BufferedReader(
 							new InputStreamReader(connection.getInputStream()));
 					msg = br.readLine();
 					br.close();
 					connection.disconnect();
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			if (PlayerRPClass.firstWelcomeException) {
 				logger.warn("Can't read server_welcome from marauroa.ini", e);
 				PlayerRPClass.firstWelcomeException = false;

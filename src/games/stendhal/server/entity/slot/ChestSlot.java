@@ -12,15 +12,15 @@ import org.apache.log4j.Logger;
  */
 public class ChestSlot extends LootableSlot {
 	private static Logger logger = Logger.getLogger(ChestSlot.class);
-	private Chest chest;
+	private final Chest chest;
 
-	public ChestSlot(Chest owner) {
+	public ChestSlot(final Chest owner) {
 	    super(owner);
 	    this.chest = owner;
     }
 
 	@Override
-    public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+    public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		if (!chest.isOpen()) {
 	    	logger.error(entity + " tried to take stuff out of the closed chest " + chest);
 	    	return false;

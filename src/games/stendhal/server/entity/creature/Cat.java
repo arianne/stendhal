@@ -64,11 +64,11 @@ public class Cat extends Pet {
 
 	public static void generateRPClass() {
 		try {
-			RPClass cat = new RPClass("cat");
+			final RPClass cat = new RPClass("cat");
 			cat.isA("pet");
 			// cat.add("weight", Type.BYTE);
 			// cat.add("eat", Type.FLAG);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -84,7 +84,7 @@ public class Cat extends Pet {
 	 * Creates a new Cat that may be owned by a player.
 	 * @param owner 
 	 */
-	public Cat(Player owner) {
+	public Cat(final Player owner) {
 		// call set up before parent constructor is called as it needs those
 		// values
 		super(owner);
@@ -109,7 +109,7 @@ public class Cat extends Pet {
 	 * @param owner
 	 *            The player who should own the cat
 	 */
-	public Cat(RPObject object, Player owner) {
+	public Cat(final RPObject object, final Player owner) {
 		// call set up before parent constructor is called as it needs those
 		// values
 		super(object, owner);

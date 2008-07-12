@@ -20,12 +20,12 @@ public class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 	 * @param questname
 	 *            name of quest slot
 	 */
-	public QuestStartedCondition(String questname) {
+	public QuestStartedCondition(final String questname) {
 		this.questname = questname;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (player.hasQuest(questname) && !"rejected".equals(player.getQuest(questname)));
 	}
 
@@ -40,7 +40,7 @@ public class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

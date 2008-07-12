@@ -46,10 +46,10 @@ public class Portal extends Entity implements UseListener {
 
 	public static void generateRPClass() {
 		try {
-			RPClass portal = new RPClass("portal");
+			final RPClass portal = new RPClass("portal");
 			portal.isA("entity");
 			portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -72,7 +72,7 @@ public class Portal extends Entity implements UseListener {
 	 * @param reference
 	 *            A reference tag.
 	 */
-	public void setIdentifier(Object reference) {
+	public void setIdentifier(final Object reference) {
 		this.identifier = reference;
 	}
 
@@ -95,7 +95,7 @@ public class Portal extends Entity implements UseListener {
 	 * @param reference
 	 *            A reference tag.
 	 */
-	public void setDestination(String zone, Object reference) {
+	public void setDestination(final String zone, final Object reference) {
 		this.destinationReference = reference;
 		this.destinationZone = zone;
 		this.settedDestination = true;
@@ -125,10 +125,10 @@ public class Portal extends Entity implements UseListener {
 
 	@Override
 	public String toString() {
-		StringBuilder sbuf = new StringBuilder();
+		final StringBuilder sbuf = new StringBuilder();
 		sbuf.append("Portal");
 
-		StendhalRPZone zone = getZone();
+		final StendhalRPZone zone = getZone();
 
 		if (zone != null) {
 			sbuf.append(" at ");
@@ -156,7 +156,7 @@ public class Portal extends Entity implements UseListener {
 	 * @return <code>true</code> if the portal worked, <code>false</code>
 	 *         otherwise.
 	 */
-	protected boolean usePortal(Player player) {
+	protected boolean usePortal(final Player player) {
 		if (!nextTo(player)) {
 			// Too far to use the portal
 			return false;
@@ -168,7 +168,7 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		StendhalRPZone destZone = SingletonRepository.getRPWorld().getZone(
+		final StendhalRPZone destZone = SingletonRepository.getRPWorld().getZone(
 				getDestinationZone());
 
 		if (destZone == null) {
@@ -177,7 +177,7 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		Portal dest = destZone.getPortal(getDestinationReference());
+		final Portal dest = destZone.getPortal(getDestinationReference());
 
 		if (dest == null) {
 			// This portal is incomplete
@@ -193,7 +193,7 @@ public class Portal extends Entity implements UseListener {
 		return true;
 	}
 
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		return usePortal((Player) user);
 	}
 
@@ -204,7 +204,7 @@ public class Portal extends Entity implements UseListener {
 	 *            the player who used the other portal teleporting to us
 	 */
 	@SuppressWarnings("unused")
-	public void onUsedBackwards(RPEntity user) {
+	public void onUsedBackwards(final RPEntity user) {
 		// do nothing
 	}
 }

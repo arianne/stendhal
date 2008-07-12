@@ -18,8 +18,8 @@ class SupportAnswerAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction tell = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction tell = new RPAction();
 
 		tell.put("type", "supportanswer");
 		tell.put("target", params[0]);

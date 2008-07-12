@@ -44,8 +44,8 @@ public class SummonScroll extends InfoStringScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public SummonScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public SummonScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -55,7 +55,7 @@ public class SummonScroll extends InfoStringScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public SummonScroll(SummonScroll item) {
+	public SummonScroll(final SummonScroll item) {
 		super(item);
 	}
 
@@ -67,8 +67,8 @@ public class SummonScroll extends InfoStringScroll {
 	 * @return true iff summoning was successful
 	 */
 	@Override
-	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = player.getZone();
+	protected boolean useScroll(final Player player) {
+		final StendhalRPZone zone = player.getZone();
 
 		if (zone.isInProtectionArea(player)) {
 			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
@@ -81,29 +81,29 @@ public class SummonScroll extends InfoStringScroll {
 			return false;
 		}
 
-		int x = player.getInt("x");
-		int y = player.getInt("y");
+		final int x = player.getInt("x");
+		final int y = player.getInt("y");
 
-		EntityManager manager = SingletonRepository.getEntityManager();
+		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		Creature pickedCreature = null;
 
-		String type = getInfoString();
+		final String type = getInfoString();
 
 		if (type != null) {
 			// scroll for special monster
 			pickedCreature = manager.getCreature(type);
 		} else {
 			// pick it randomly
-			Collection<Creature> creatures = manager.getCreatures();
-			int magiclevel = 4;
-			List<Creature> possibleCreatures = new ArrayList<Creature>();
-			for (Creature creature : creatures) {
+			final Collection<Creature> creatures = manager.getCreatures();
+			final int magiclevel = 4;
+			final List<Creature> possibleCreatures = new ArrayList<Creature>();
+			for (final Creature creature : creatures) {
 				if (creature.getLevel() <= magiclevel) {
 					possibleCreatures.add(creature);
 				}
 			}
-			int pickedIdx = (int) (Math.random() * possibleCreatures.size());
+			final int pickedIdx = (int) (Math.random() * possibleCreatures.size());
 			pickedCreature = possibleCreatures.get(pickedIdx);
 		}
 
@@ -113,7 +113,7 @@ public class SummonScroll extends InfoStringScroll {
 		}
 
 		// create it
-		AttackableCreature creature = new AttackableCreature(pickedCreature);
+		final AttackableCreature creature = new AttackableCreature(pickedCreature);
 
 		StendhalRPAction.placeat(zone, creature, x, y);
 

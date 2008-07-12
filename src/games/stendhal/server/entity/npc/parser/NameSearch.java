@@ -29,7 +29,7 @@ public final class NameSearch {
      */
     public boolean search(final Expression item) {
         // see if the word matches an item in our list
-        String itemName = item.getNormalized();
+        final String itemName = item.getNormalized();
 
         if (names.contains(itemName)) {
             name = itemName;
@@ -38,7 +38,7 @@ public final class NameSearch {
         }
 
         // see if instead the plural matches
-        String plural = Grammar.plural(itemName);
+        final String plural = Grammar.plural(itemName);
 
         if (names.contains(plural)) {
             name = plural;

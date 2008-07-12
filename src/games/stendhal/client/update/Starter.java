@@ -30,9 +30,9 @@ public class Starter {
 	 * @param args
 	 *            args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		try {
-			String version = System.getProperty("java.specification.version");
+			final String version = System.getProperty("java.specification.version");
 			if (Float.parseFloat(version) < 1.5f) {
 				JOptionPane.showMessageDialog(
 						null,
@@ -40,7 +40,7 @@ public class Starter {
 								+ version
 								+ ". You can download it at http://java.sun.com");
 			}
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			// ignore
 		}
 
@@ -49,16 +49,16 @@ public class Starter {
 			// a class-load-time dependency.
 
 			// get class and create an object of it
-			Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
-			Object object = clazz.newInstance();
+			final Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
+			final Object object = clazz.newInstance();
 
 			// get param values of boot method
-			Object[] params = new Object[2];
+			final Object[] params = new Object[2];
 			params[0] = "games.stendhal.client.stendhal";
 			params[1] = args;
 
 			// get types of params
-			Class[] paramTypes = new Class[2];
+			final Class[] paramTypes = new Class[2];
 			for (int i = 0; i < params.length; i++) {
 				paramTypes[i] = params[i].getClass();
 			}
@@ -66,9 +66,9 @@ public class Starter {
 			// get method and invoke it
 			// IGNORE THIS WARNING BECAUSE THIS CODE NEEDS TO BE COMPILED FOR
 			// OLDER JREs.
-			Method method = clazz.getMethod("boot", paramTypes);
+			final Method method = clazz.getMethod("boot", paramTypes);
 			method.invoke(object, params);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}

@@ -30,7 +30,7 @@ public class BringListOfItemsQuestLogic {
 	 *
 	 * @param concreteQuest the real quest
 	 */
-	public BringListOfItemsQuestLogic(BringListOfItemsQuest concreteQuest) {
+	public BringListOfItemsQuestLogic(final BringListOfItemsQuest concreteQuest) {
 		this.concreteQuest = concreteQuest;
 	}
 
@@ -42,15 +42,15 @@ public class BringListOfItemsQuestLogic {
 	 * @param hash If true, sets a # character in front of every name and puts it in quotes
 	 * @return A list of item names
 	 */
-	protected List<String> getListOfStillMissingItems(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
+	protected List<String> getListOfStillMissingItems(final Player player, final boolean hash) {
+		final List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(concreteQuest.getSlotName());
 		if (doneText == null) {
 			doneText = "";
 		}
 
-		List<String> done = Arrays.asList(doneText.split(";"));
+		final List<String> done = Arrays.asList(doneText.split(";"));
 		for (String item : concreteQuest.getNeededItems()) {
 			if (!done.contains(item)) {
 				if (hash) {
@@ -80,8 +80,8 @@ public class BringListOfItemsQuestLogic {
 	 * Player asks about quest.
 	 */
 	protected void tellAboutQuest() {
- 		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
-		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
+ 		final List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		final List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
 		if (additionalTrigger != null) {
 			questTrigger.addAll(additionalTrigger);
 		}
@@ -122,8 +122,8 @@ public class BringListOfItemsQuestLogic {
 				null, ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> missingItems = getListOfStillMissingItems(player, false);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> missingItems = getListOfStillMissingItems(player, false);
 						engine.say(concreteQuest.askForMissingItems(missingItems));
 					}
 
@@ -156,8 +156,8 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					List<String> missingItems = getListOfStillMissingItems(player, true);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final List<String> missingItems = getListOfStillMissingItems(player, true);
 					engine.say(concreteQuest.askForMissingItems(missingItems));
 				}
 
@@ -175,8 +175,8 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					List<String> missingItems = getListOfStillMissingItems(player, false);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					final List<String> missingItems = getListOfStillMissingItems(player, false);
 					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
 				}
 
@@ -191,7 +191,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player says he has a required item with him.
 	 */
 	protected void playerWantsToGiveItems() {
-		int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		final int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states,
 			ConversationPhrases.YES_MESSAGES, 
 			new QuestActiveCondition(concreteQuest.getSlotName()),
@@ -209,13 +209,13 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
-					Expression item = sentence.getTriggerExpression();
+					final Expression item = sentence.getTriggerExpression();
 
-					Expression found = triggerWords.find(item);
+					final Expression found = triggerWords.find(item);
 					if (found != null) {
-						String itemName = found.getOriginal();
+						final String itemName = found.getOriginal();
 
 						TriggerList missing = new TriggerList(getListOfStillMissingItems(player, false));
 
@@ -226,7 +226,7 @@ public class BringListOfItemsQuestLogic {
         					}
 
         					// register item as done
-        					String doneText = player.getQuest(concreteQuest.getSlotName());
+        					final String doneText = player.getQuest(concreteQuest.getSlotName());
         					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
 
         					// check if the player has brought all items

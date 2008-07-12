@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -26,7 +27,7 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new SheepSellerNPC());
 	}
@@ -41,8 +42,8 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Nishiya");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Nishiya");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -53,11 +54,11 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuySheep() {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		registerPlayer(player, world.getZone(ZONE_NAME));
 
-		SpeakerNPC npc = getNPC("Nishiya");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Nishiya");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
@@ -114,8 +115,8 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSellSheep() {
-		SpeakerNPC npc = getNPC("Nishiya");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Nishiya");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Nishiya"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));

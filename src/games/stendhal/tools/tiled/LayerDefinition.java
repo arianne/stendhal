@@ -65,7 +65,7 @@ public class LayerDefinition implements Serializable {
 	 * @param layerHeight
 	 *            the height of the layer
 	 */
-	public LayerDefinition(int layerWidth, int layerHeight) {
+	public LayerDefinition(final int layerWidth, final int layerHeight) {
 		raw = new byte[4 * layerWidth * layerHeight];
 		width = layerWidth;
 		height = layerHeight;
@@ -92,10 +92,10 @@ public class LayerDefinition implements Serializable {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				int tileId = 0;
-				tileId |= ((int) raw[0 + offset] & 0xFF);
-				tileId |= ((int) raw[1 + offset] & 0xFF) << 8;
-				tileId |= ((int) raw[2 + offset] & 0xFF) << 16;
-				tileId |= ((int) raw[3 + offset] & 0xFF) << 24;
+				tileId |= (raw[0 + offset] & 0xFF);
+				tileId |= (raw[1 + offset] & 0xFF) << 8;
+				tileId |= (raw[2 + offset] & 0xFF) << 16;
+				tileId |= (raw[3 + offset] & 0xFF) << 24;
 
 				data[x + y * width] = tileId;
 				offset += 4;
@@ -170,12 +170,12 @@ public class LayerDefinition implements Serializable {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static LayerDefinition decode(InputStream in) throws IOException,
+	public static LayerDefinition decode(final InputStream in) throws IOException,
 			ClassNotFoundException {
 		LayerDefinition layer = new LayerDefinition(0, 0);
 
-		InflaterInputStream szlib = new InflaterInputStream(in, new Inflater());
-		InputSerializer ser = new InputSerializer(szlib);
+		final InflaterInputStream szlib = new InflaterInputStream(in, new Inflater());
+		final InputSerializer ser = new InputSerializer(szlib);
 
 		layer = (LayerDefinition) ser.readObject(layer);
 		layer.build();
@@ -207,12 +207,12 @@ public class LayerDefinition implements Serializable {
 	 *            the tile id
 	 * @return the name of the tileset
 	 */
-	public TileSetDefinition getTilesetFor(int value) {
+	public TileSetDefinition getTilesetFor(final int value) {
 		if (value == 0) {
 			return null;
 		}
 
-		List<TileSetDefinition> tilesets = map.getTilesets();
+		final List<TileSetDefinition> tilesets = map.getTilesets();
 
 		int pos = 0;
 		for (pos = 0; pos < tilesets.size(); pos++) {
@@ -230,7 +230,7 @@ public class LayerDefinition implements Serializable {
 	 * @param layerName
 	 *            the name of the layer
 	 */
-	public void setName(String layerName) {
+	public void setName(final String layerName) {
 		name = layerName;
 	}
 
@@ -243,14 +243,14 @@ public class LayerDefinition implements Serializable {
 		return name;
 	}
 
-	public void readObject(InputSerializer in) throws IOException {
+	public void readObject(final InputSerializer in) throws IOException {
 		name = in.readString();
 		width = in.readInt();
 		height = in.readInt();
 		raw = in.readByteArray();
 	}
 
-	public void writeObject(OutputSerializer out) throws IOException {
+	public void writeObject(final OutputSerializer out) throws IOException {
 		out.write(name);
 		out.write(width);
 		out.write(height);

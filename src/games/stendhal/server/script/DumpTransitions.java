@@ -26,17 +26,17 @@ public class DumpTransitions extends ScriptImpl {
 	private StringBuilder dumpedTable;
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		if (args.size() < 1) {
 			admin.sendPrivateText("/script DumpTransitions.class <npcname>");
 			return;
 		}
 
-		StringBuilder npcName = new StringBuilder();
-		for (String arg : args) {
+		final StringBuilder npcName = new StringBuilder();
+		for (final String arg : args) {
 			npcName.append(arg + " ");
 		}
-		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName.toString().trim());
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName.toString().trim());
 		if (npc == null) {
 			admin.sendPrivateText("There is no NPC called " + npcName);
 			return;
@@ -53,12 +53,12 @@ public class DumpTransitions extends ScriptImpl {
 	 *            SpeakerNPC
 	 * @return transition diagram
 	 */
-	public String getDump(SpeakerNPC npc) {
+	public String getDump(final SpeakerNPC npc) {
 		dump(npc);
 		return dumpedTable.toString();
 	}
 
-	private void dump(SpeakerNPC npc) {
+	private void dump(final SpeakerNPC npc) {
 		dumpedTable = new StringBuilder();
 		dumpHeader();
 		dumpNPC(npc);
@@ -70,17 +70,17 @@ public class DumpTransitions extends ScriptImpl {
 		dumpedTable.append("rankdir=LR\r\n");
 	}
 
-	private void dumpNPC(SpeakerNPC npc) {
-		List<Transition> transitions = npc.getTransitions();
-		for (Transition transition : transitions) {
+	private void dumpNPC(final SpeakerNPC npc) {
+		final List<Transition> transitions = npc.getTransitions();
+		for (final Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> "
 					+ getStateName(transition.getNextState()));
-			String transitionName = getExtendedTransitionName(transition);
+			final String transitionName = getExtendedTransitionName(transition);
 			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
 	}
 
-	private static String getExtendedTransitionName(Transition transition) {
+	private static String getExtendedTransitionName(final Transition transition) {
 		String transitionName = transition.getTrigger().toString();
 
 		if (transition.getCondition() != null) {
@@ -94,18 +94,18 @@ public class DumpTransitions extends ScriptImpl {
 		return transitionName;
 	}
 
-	private static String getStateName(int number) {
-		Integer num = Integer.valueOf(number);
-		Field[] fields = ConversationStates.class.getFields();
+	private static String getStateName(final int number) {
+		final Integer num = Integer.valueOf(number);
+		final Field[] fields = ConversationStates.class.getFields();
 
-		for (Field field : fields) {
+		for (final Field field : fields) {
 			try {
 				if (field.get(null).equals(num)) {
 					return field.getName();
 				}
-			} catch (IllegalArgumentException e) {
+			} catch (final IllegalArgumentException e) {
 				logger.error(e, e);
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				logger.error(e, e);
 			}
 		}

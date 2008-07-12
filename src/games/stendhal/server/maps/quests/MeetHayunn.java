@@ -45,13 +45,13 @@ public class MeetHayunn extends AbstractQuest {
 	private static final int TIME_OUT = 200;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
@@ -64,7 +64,7 @@ public class MeetHayunn extends AbstractQuest {
 
 	private void prepareHayunn() {
 
-		SpeakerNPC npc = npcs.get("Hayunn Naratha");
+		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		// player wants to learn how to attack
 		npc.add(
@@ -93,7 +93,7 @@ public class MeetHayunn extends AbstractQuest {
 				null);
 
 		//player returns to Hayunn having killed a rat
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(10));
 		actions.add(new SetQuestAction(QUEST_SLOT, "killed"));
 
@@ -140,7 +140,7 @@ public class MeetHayunn extends AbstractQuest {
 
 	   	// The player has had enough info for now. Send them to semos. When they come back they can learn some more tips.
 
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new EquipItemAction("money", 5));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "taught"));
@@ -186,7 +186,7 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		String epilog = "You can find many frequently asked questions are answered at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalFAQ \nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n ";
+		final String epilog = "You can find many frequently asked questions are answered at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalFAQ \nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n ";
 		
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,
@@ -195,7 +195,7 @@ public class MeetHayunn extends AbstractQuest {
 			epilog + "You know, you remind me of my younger self...",
 			null);
 
-		List<SpeakerNPC.ChatAction> reward2 = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward2 = new LinkedList<SpeakerNPC.ChatAction>();
 		reward2.add(new EquipItemAction("studded shield"));
 		reward2.add(new IncreaseXPAction(20));
 		reward2.add(new SetQuestAction(QUEST_SLOT, "done"));

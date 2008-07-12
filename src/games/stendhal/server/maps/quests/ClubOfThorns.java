@@ -53,7 +53,7 @@ public class ClubOfThorns extends AbstractQuest {
 	private static final String QUEST_SLOT = "club_thorns";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Orc Saman");
+		final SpeakerNPC npc = npcs.get("Orc Saman");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -77,7 +77,7 @@ public class ClubOfThorns extends AbstractQuest {
 			null);
 
 
-		List<ChatAction> start = new LinkedList<ChatAction>();
+		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new EquipItemAction("kotoch prison key", 1, true));
 		start.add(new StartRecordingKillsAction("mountain orc chief"));
 		start.add(new IncreaseKarmaAction(6.0));
@@ -104,9 +104,9 @@ public class ClubOfThorns extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Orc Saman");
+		final SpeakerNPC npc = npcs.get("Orc Saman");
 
-		List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("club of thorns", 1, true));
 		reward.add(new IncreaseKarmaAction(10.0));
 		reward.add(new IncreaseXPAction(1000));

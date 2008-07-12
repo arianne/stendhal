@@ -55,7 +55,7 @@ public class SpriteCache {
 	 * 
 	 * @see-also Sprite#getReference()
 	 */
-	public void add(Sprite sprite) {
+	public void add(final Sprite sprite) {
 		add(sprite.getReference(), sprite);
 	}
 
@@ -67,7 +67,7 @@ public class SpriteCache {
 	 * @param sprite
 	 *            The sprite to add.
 	 */
-	public void add(Object key, Sprite sprite) {
+	public void add(final Object key, final Sprite sprite) {
 		if (key != null) {
 			sprites.put(key, new SoftReference<Sprite>(sprite));
 			logger.debug("SpriteCache - add: " + key);
@@ -91,19 +91,19 @@ public class SpriteCache {
 	 * 
 	 * @return A sprite, or <code>null</code> if not found.
 	 */
-	public Sprite get(Object key) {
+	public Sprite get(final Object key) {
 		if (key == null) {
 			return null;
 		}
 
-		Reference<Sprite> ref = sprites.get(key);
+		final Reference<Sprite> ref = sprites.get(key);
 
 		if (ref == null) {
 			logger.debug("SpriteCache - miss: " + key);
 			return null;
 		}
 
-		Sprite sprite = ref.get();
+		final Sprite sprite = ref.get();
 
 		if (sprite == null) {
 			logger.debug("SpriteCache - GC'd miss: " + key);

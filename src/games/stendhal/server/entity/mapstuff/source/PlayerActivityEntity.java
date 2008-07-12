@@ -118,10 +118,10 @@ public abstract class PlayerActivityEntity extends Entity implements
 			return false;
 		}
 
-		Player player = (Player) entity;
+		final Player player = (Player) entity;
 
 		if (isPrepared(player)) {
-			Activity activity = new Activity(player);
+			final Activity activity = new Activity(player);
 
 			/*
 			 * You can't start a new activity before the last one has finished.
@@ -156,7 +156,7 @@ public abstract class PlayerActivityEntity extends Entity implements
 		 * @param player
 		 *            The player.
 		 */
-		public Activity(Player player) {
+		public Activity(final Player player) {
 			ref = new WeakReference<Player>(player);
 		}
 
@@ -192,8 +192,8 @@ public abstract class PlayerActivityEntity extends Entity implements
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
-		public void onTurnReached(int currentTurn) {
-			Player player = getPlayer();
+		public void onTurnReached(final int currentTurn) {
+			final Player player = getPlayer();
 
 			if (player != null) {
 				activityDone(player);
@@ -205,9 +205,9 @@ public abstract class PlayerActivityEntity extends Entity implements
 		//
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj instanceof Activity) {
-				Activity activity = (Activity) obj;
+				final Activity activity = (Activity) obj;
 
 				/*
 				 * Equal in context of same parent entity
@@ -224,7 +224,7 @@ public abstract class PlayerActivityEntity extends Entity implements
 
 		@Override
 		public int hashCode() {
-			Object player = getPlayer();
+			final Object player = getPlayer();
 
 			return (player != null) ? player.hashCode() : 0;
 		}

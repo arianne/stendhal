@@ -16,9 +16,9 @@ public class TellAllAction extends AdministrationAction {
 	}
 
 	@Override
-	public void perform(Player player, RPAction action) {
+	public void perform(final Player player, final RPAction action) {
 		if (action.has(_TEXT)) {
-			String message = "Administrator SHOUTS: " + action.get(_TEXT);
+			final String message = "Administrator SHOUTS: " + action.get(_TEXT);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELLALL, action.get(_TEXT));
 

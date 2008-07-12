@@ -198,13 +198,17 @@ public class AnimatedSprite implements Sprite {
 		height = 0;
 		width = 0;
 
-		for (Sprite frame : frames) {
+		for (final Sprite frame : frames) {
 			height = Math.max(height, frame.getHeight());
 			width = Math.max(width, frame.getWidth());
 		}
 
 		index = 0;
-		sprite = frames.length > 0 ? frames[0] : null;
+		if (frames.length > 0) {
+			sprite = frames[0];
+		} else {
+			sprite = null;
+		}
 
 		cycleTime = 0;
 		lastUpdate = System.currentTimeMillis();
@@ -226,7 +230,7 @@ public class AnimatedSprite implements Sprite {
 	 * @return An array of delays.
 	 */
 	protected static int[] createDelays(final int delay, final int count) {
-		int[] delays = new int[count];
+		final int[] delays = new int[count];
 		Arrays.fill(delays, delay);
 
 		return delays;
@@ -378,7 +382,7 @@ public class AnimatedSprite implements Sprite {
 	 * Update the current frame sprite.
 	 */
 	protected void update() {
-		long now = System.currentTimeMillis();
+		final long now = System.currentTimeMillis();
 		update((int) (now - lastUpdate));
 		lastUpdate = now;
 	}
@@ -394,7 +398,7 @@ public class AnimatedSprite implements Sprite {
 	 * @return A new copy of the sprite.
 	 */
 	public Sprite copy() {
-		AnimatedSprite spriteCopy = new AnimatedSprite(getFrames(),
+		final AnimatedSprite spriteCopy = new AnimatedSprite(getFrames(),
 				getDelays(), isAnimating(), getReference());
 
 		spriteCopy.setLoop(isLoop());

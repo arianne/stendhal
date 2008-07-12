@@ -26,7 +26,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
-	public AccessCheckingPortal(String rejectMessage) {
+	public AccessCheckingPortal(final String rejectMessage) {
 		this.rejectMessage = rejectMessage;
 	}
 
@@ -47,7 +47,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @param user
 	 *            The rejected user.
 	 */
-	protected void rejected(RPEntity user) {
+	protected void rejected(final RPEntity user) {
 		if (rejectMessage != null) {
 			sendMessage(user, rejectMessage);
 		}
@@ -61,7 +61,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @param text
 	 *            The message to send.
 	 */
-	protected void sendMessage(RPEntity user, String text) {
+	protected void sendMessage(final RPEntity user, final String text) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
 	}
 
@@ -71,7 +71,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
-	public void setRejectedMessage(String rejectMessage) {
+	public void setRejectedMessage(final String rejectMessage) {
 		this.rejectMessage = rejectMessage;
 	}
 
@@ -83,7 +83,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @return true if passed , false otherwise.
 	 */
 	@Override
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		if (isAllowed(user)) {
 			return super.onUsed(user);
 		} else {

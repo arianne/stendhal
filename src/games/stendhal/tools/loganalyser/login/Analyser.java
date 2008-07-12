@@ -32,39 +32,39 @@ public class Analyser {
 		+ " AND username='%1$s' AND loginEvent.timedate > '%2$s'"
 		+ " ORDER BY loginEvent.timedate LIMIT 1;";
 	
-	private LoginEventIterator readLoginsFromAddress(String address, String timedate) throws SQLException {
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
-		Connection connection = transaction.getConnection();
-		Statement stmt = connection.createStatement();
-		String select = String.format(SQL_FROM_IP, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
-		ResultSet resultSet = stmt.executeQuery(select);
+	private LoginEventIterator readLoginsFromAddress(final String address, final String timedate) throws SQLException {
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		final Connection connection = transaction.getConnection();
+		final Statement stmt = connection.createStatement();
+		final String select = String.format(SQL_FROM_IP, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
+		final ResultSet resultSet = stmt.executeQuery(select);
 		return new LoginEventIterator(stmt, resultSet);
 	}
 	
-	private LoginEvent getNextLoginEvent(LoginEvent event) throws SQLException {
+	private LoginEvent getNextLoginEvent(final LoginEvent event) throws SQLException {
 		LoginEvent nextEvent = null;
-		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
-		Connection connection = transaction.getConnection();
-		Statement stmt = connection.createStatement();
-		String select = String.format(SQL_NEXT_LOGIN, StringChecker.escapeSQLString(event.getUsername()), StringChecker.escapeSQLString(event.getTimestamp()));
-		ResultSet resultSet = stmt.executeQuery(select);
-		Iterator<LoginEvent> itr = new LoginEventIterator(stmt, resultSet);
+		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		final Connection connection = transaction.getConnection();
+		final Statement stmt = connection.createStatement();
+		final String select = String.format(SQL_NEXT_LOGIN, StringChecker.escapeSQLString(event.getUsername()), StringChecker.escapeSQLString(event.getTimestamp()));
+		final ResultSet resultSet = stmt.executeQuery(select);
+		final Iterator<LoginEvent> itr = new LoginEventIterator(stmt, resultSet);
 		if (itr.hasNext()) {
 			nextEvent = itr.next();
 		}
 		return nextEvent;
 	}
 
-	private static <T> List<T> iterableToList(Iterable<T> itr) {
-		List<T> list = new LinkedList<T>();
-		for (T t : itr) {
+	private static <T> List<T> iterableToList(final Iterable<T> itr) {
+		final List<T> list = new LinkedList<T>();
+		for (final T t : itr) {
 			list.add(t);
 		}
 		return list;
 	}
 
-	private String generatelSQLPart(LoginEvent event, LoginEvent nextEvent) {
-		StringBuilder sb = new StringBuilder();
+	private String generatelSQLPart(final LoginEvent event, final LoginEvent nextEvent) {
+		final StringBuilder sb = new StringBuilder();
 		sb.append("OR (source=\"'");
 		sb.append(StringChecker.escapeSQLString(event.getUsername()));
 		sb.append("' AND timedate >= '");
@@ -79,11 +79,11 @@ public class Analyser {
 		return sb.toString();
 	}
 
-	private void analyse(String address, String timedate) throws SQLException {
-		LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
-		List<LoginEvent> events = iterableToList(iterator);
-		for (LoginEvent event : events) {
-			LoginEvent nextEvent = getNextLoginEvent(event);
+	private void analyse(final String address, final String timedate) throws SQLException {
+		final LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
+		final List<LoginEvent> events = iterableToList(iterator);
+		for (final LoginEvent event : events) {
+			final LoginEvent nextEvent = getNextLoginEvent(event);
 			System.out.println(generatelSQLPart(event, nextEvent));
 		}
 	}
@@ -94,14 +94,14 @@ public class Analyser {
 	 * @param args
 	 * @throws SQLException 
 	 */
-	public static void main(String[] args) throws SQLException {
+	public static void main(final String[] args) throws SQLException {
 		Log4J.init();
-		String address = args[0];
+		final String address = args[0];
 		String timedate = "1900-01-01";
 		if (args.length > 1) {
 			timedate = args[1];
 		}
-		Analyser analyser = new Analyser();
+		final Analyser analyser = new Analyser();
 		analyser.analyse(address, timedate);
 	}
 }

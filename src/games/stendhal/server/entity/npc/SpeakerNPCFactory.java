@@ -28,7 +28,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *            The NPC name.
 	 * @return An object of class SpeakerNPC or a subclass.
 	 */
-	protected SpeakerNPC instantiate(String name) {
+	protected SpeakerNPC instantiate(final String name) {
 		return new SpeakerNPC(name);
 	}
 
@@ -41,7 +41,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is missing.
 	 */
-	protected String getName(ConfigurableFactoryContext ctx) {
+	protected String getName(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("name");
 	}
 
@@ -54,7 +54,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is missing.
 	 */
-	protected String getClass(ConfigurableFactoryContext ctx) {
+	protected String getClass(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("class", null);
 	}
 
@@ -66,7 +66,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * 
 	 * @return The hitpoints.
 	 */
-	protected int getHP(ConfigurableFactoryContext ctx) {
+	protected int getHP(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("hp", 100);
 	}
 
@@ -78,7 +78,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * 
 	 * @return The level of experience.
 	 */
-	protected int getLevel(ConfigurableFactoryContext ctx) {
+	protected int getLevel(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("level", 0);
 	}
 
@@ -91,7 +91,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return The text that will be shown when a player looks at the NPC, or
 	 *         null if the default description should be used.
 	 */
-	protected String getDescription(ConfigurableFactoryContext ctx) {
+	protected String getDescription(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("description", null);
 	}
 
@@ -103,8 +103,8 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * 
 	 * @return The hitpoints.
 	 */
-	protected Direction getDirection(ConfigurableFactoryContext ctx) {
-		String s = ctx.getString("direction", "down");
+	protected Direction getDirection(final ConfigurableFactoryContext ctx) {
+		final String s = ctx.getString("direction", "down");
 		return Direction.valueOf(s.toUpperCase());
 	}
 
@@ -112,18 +112,18 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		// sub classes can implement this method
 	}
 
-	protected List<Node> getPath(ConfigurableFactoryContext ctx) {
-		List<Node> result = new ArrayList<Node>();
+	protected List<Node> getPath(final ConfigurableFactoryContext ctx) {
+		final List<Node> result = new ArrayList<Node>();
 		int i = 0;
 		boolean lastNode = false;
 
 		do {
-			String s = ctx.getString("node" + i, null);
+			final String s = ctx.getString("node" + i, null);
 			if (s != null) {
-				String[] coords = s.split(",");
-				int x = Integer.parseInt(coords[0]);
-				int y = Integer.parseInt(coords[1]);
-				Node node = new Node(x, y);
+				final String[] coords = s.split(",");
+				final int x = Integer.parseInt(coords[0]);
+				final int y = Integer.parseInt(coords[1]);
+				final Node node = new Node(x, y);
 				result.add(node);
 				i++;
 			} else {
@@ -153,26 +153,26 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * 
 	 * @see SpeakerNPC
 	 */
-	public Object create(ConfigurableFactoryContext ctx) {
-		SpeakerNPC npc = instantiate(getName(ctx));
+	public Object create(final ConfigurableFactoryContext ctx) {
+		final SpeakerNPC npc = instantiate(getName(ctx));
 
 		npc.setBaseHP(100);
 		npc.setHP(getHP(ctx));
 		npc.setLevel(getLevel(ctx));
 
-		String clazz = getClass(ctx);
+		final String clazz = getClass(ctx);
 
 		if (clazz != null) {
 			npc.setEntityClass(clazz);
 		}
 
-		String description = getDescription(ctx);
+		final String description = getDescription(ctx);
 
 		if (description != null) {
 			npc.setDescription(description);
 		}
 
-		List<Node> path = getPath(ctx);
+		final List<Node> path = getPath(ctx);
 		npc.setPath(new FixedPath(path, path.size() > 0));
 		npc.setDirection(getDirection(ctx));
 

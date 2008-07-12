@@ -56,9 +56,9 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	@Override
 	public SetupDescriptor read(final Element element) {
 		if (element.hasAttribute("class-name")) {
-			String className = element.getAttribute("class-name");
+			final String className = element.getAttribute("class-name");
 
-			ConfiguratorDescriptor desc = read(element, className);
+			final ConfiguratorDescriptor desc = read(element, className);
 
 			readParameters(desc, element);
 

@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -24,11 +25,11 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new DwarfGuardNPC());
 
-		JailedDwarf quest = new JailedDwarf();
+		final JailedDwarf quest = new JailedDwarf();
 		quest.addToWorld();
 	}
 
@@ -42,8 +43,8 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Hunel");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Hunel");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Hunel"));
 		assertEquals("Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles.", npc.get("text"));
@@ -62,8 +63,8 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testQuest() {
-		SpeakerNPC npc = getNPC("Hunel");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Hunel");
+		final Engine en = npc.getEngine();
 
 		equipWithItem(player, "kanmararn prison key");
 

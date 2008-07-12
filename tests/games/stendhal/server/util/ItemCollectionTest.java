@@ -17,7 +17,7 @@ public class ItemCollectionTest {
 	
 	@Test
 	public void testCreateArea() {
-	    ItemCollection coll = new ItemCollection();
+	    final ItemCollection coll = new ItemCollection();
 	    assertEquals("", coll.toStringForQuestState());
         assertEquals(Arrays.asList(), coll.toStringList());
 

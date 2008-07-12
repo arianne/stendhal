@@ -28,16 +28,16 @@ public class LibrarianNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildLibrary(zone, attributes);
 	}
 
-	private void buildLibrary(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
+	private void buildLibrary(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(9, 9));
 				nodes.add(new Node(9, 27));
 				nodes.add(new Node(20, 27));
@@ -54,17 +54,17 @@ public class LibrarianNPC implements ZoneConfigurator {
 				        new SpeakerNPC.ChatAction() {
 
 					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						        // extract the title
-					        	String title = sentence.getExpressionStringAfterVerb();
+					        	final String title = sentence.getExpressionStringAfterVerb();
 
 						        if (title == null) {
 							        npc.say("What do you want to be explained?");
 							        return;
 						        }
 
-						        WikipediaAccess access = new WikipediaAccess(title);
-						        Thread thread = new Thread(access);
+						        final WikipediaAccess access = new WikipediaAccess(title);
+						        final Thread thread = new Thread(access);
 						        thread.setPriority(Thread.MIN_PRIORITY);
 						        thread.setDaemon(true);
 						        thread.start();
@@ -89,16 +89,16 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 	protected class WikipediaWaiter implements TurnListener {
 
-		private WikipediaAccess access;
+		private final WikipediaAccess access;
 
-		private SpeakerNPC npc;
+		private final SpeakerNPC npc;
 
-		public WikipediaWaiter(SpeakerNPC npc, WikipediaAccess access) {
+		public WikipediaWaiter(final SpeakerNPC npc, final WikipediaAccess access) {
 			this.npc = npc;
 			this.access = access;
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			if (!access.isFinished()) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(3, new WikipediaWaiter(npc, access));
 				return;
@@ -109,7 +109,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 			}
 
 			if ((access.getText() != null) && (access.getText().length() > 0)) {
-				String content = access.getProcessedText();
+				final String content = access.getProcessedText();
 				npc.say(content);
 			} else {
 				npc.say("Sorry, this book has still to be written.");

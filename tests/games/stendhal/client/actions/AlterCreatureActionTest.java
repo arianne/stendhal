@@ -21,14 +21,14 @@ public class AlterCreatureActionTest {
 
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("alter", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnack", action.get("text"));
 			}
 		};
-		AlterCreatureAction action = new AlterCreatureAction();
+		final AlterCreatureAction action = new AlterCreatureAction();
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack" }, null));
@@ -37,13 +37,13 @@ public class AlterCreatureActionTest {
 
 	@Test
 	public void testGetMaximumParameters() {
-		AlterCreatureAction action = new AlterCreatureAction();
+		final AlterCreatureAction action = new AlterCreatureAction();
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		AlterCreatureAction action = new AlterCreatureAction();
+		final AlterCreatureAction action = new AlterCreatureAction();
 		assertThat(action.getMinimumParameters(), is(2));
 	}
 

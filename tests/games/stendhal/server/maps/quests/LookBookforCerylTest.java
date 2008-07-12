@@ -60,14 +60,14 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void askJynathWithoutQuest() {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer("joe");
+		final Player pl = PlayerTestHelper.createPlayer("joe");
 		assertFalse(quest.isStarted(pl));
 		assertFalse(quest.isCompleted(pl));
 
-		Engine jynathEngine = jynath.getEngine();
+		final Engine jynathEngine = jynath.getEngine();
 		jynathEngine.step(pl, "Hi");
 		assertTrue(jynath.isTalking());
 		assertEquals("Greetings! How may I help you?", jynath.get("text"));
@@ -84,13 +84,13 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void comeBackFromJynathWithoutBook() {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer("joe");
+		final Player pl = PlayerTestHelper.createPlayer("joe");
 		pl.setQuest(CERYL_BOOK, "jynath");
 
-		Engine cerylEngine = ceryl.getEngine();
+		final Engine cerylEngine = ceryl.getEngine();
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
 		assertEquals(
@@ -102,13 +102,13 @@ public class LookBookforCerylTest {
 
 	@Test
 	public void doQuest() throws Exception {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
 		assertFalse(quest.isCompleted(pl));
-		Engine cerylEngine = ceryl.getEngine();
+		final Engine cerylEngine = ceryl.getEngine();
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
 		assertEquals("Greetings! How may I help you?", ceryl.get("text"));
@@ -133,7 +133,7 @@ public class LookBookforCerylTest {
 				ceryl.get("text"));
 		cerylEngine.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(ceryl.isTalking());
-		Engine jynathEngine = jynath.getEngine();
+		final Engine jynathEngine = jynath.getEngine();
 		jynathEngine.step(pl, "Hi");
 		assertTrue(jynath.isTalking());
 		assertEquals(
@@ -182,7 +182,7 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void testGetHistory() {
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
 		quest.addToWorld();
@@ -205,7 +205,7 @@ public class LookBookforCerylTest {
 				Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED", "LOST_ITEM"),
 				quest.getHistory(pl));
 
-		Item item = SingletonRepository.getEntityManager().getItem(
+		final Item item = SingletonRepository.getEntityManager().getItem(
 				"black book");
 		assertNotNull(item);
 		item.setBoundTo(pl.getName());
@@ -233,7 +233,7 @@ public class LookBookforCerylTest {
 		quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isCompleted(pl));
 		pl.setQuest(LookBookforCerylTest.CERYL_BOOK, "done");
 		assertTrue(pl.hasQuest(LookBookforCerylTest.CERYL_BOOK));
@@ -243,15 +243,15 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void testIsRepeatable() {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		assertFalse(quest.isRepeatable(null));
 	}
 
 	@Test
 	public final void testIsStarted() {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		quest.init("blabla");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		assertFalse(bob.hasQuest(LookBookforCerylTest.CERYL_BOOK));
 		assertFalse(quest.isStarted(bob));
 		bob.setQuest(LookBookforCerylTest.CERYL_BOOK, "done");
@@ -261,7 +261,7 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void testGetName() {
-		LookBookforCeryl quest = new LookBookforCeryl();
+		final LookBookforCeryl quest = new LookBookforCeryl();
 		assertEquals(null, quest.getName());
 		quest.init("testname");
 		assertEquals("testname", quest.getName());

@@ -60,13 +60,13 @@ public class LookUpQuote extends AbstractQuest {
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest(QUEST_SLOT)) {
 			res.add("FIRST_CHAT");
 		}
@@ -81,18 +81,18 @@ public class LookUpQuote extends AbstractQuest {
 	}
 
 	private void createFishingRod() {
-		SpeakerNPC fisherman = npcs.get("Pequod");
+		final SpeakerNPC fisherman = npcs.get("Pequod");
 
 		fisherman.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("Hello newcomer! I can #help you on your way to become a real fisherman!");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
-						String name = player.getQuest(QUEST_SLOT);
+						final String name = player.getQuest(QUEST_SLOT);
 						npc.say("Welcome back! Did you look up the famous quote by " + name + "?");
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
@@ -106,12 +106,12 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("No, thanks. I have all I need.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					} else if (player.hasQuest(QUEST_SLOT)) {
-						String name = player.getQuest(QUEST_SLOT);
+						final String name = player.getQuest(QUEST_SLOT);
 						npc.say("I already asked you for a favor already! Have you already looked up the famous quote by " + name + "?");
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
@@ -130,8 +130,8 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String name = Rand.rand(quotes.keySet());
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String name = Rand.rand(quotes.keySet());
 					npc.say("Please look up the famous quote by " + name + ".");
 					player.setQuest(QUEST_SLOT, name);
 				}
@@ -150,17 +150,17 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String name = player.getQuest(QUEST_SLOT);
-					String quote = quotes.get(name);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String name = player.getQuest(QUEST_SLOT);
+					final String quote = quotes.get(name);
 
-					ConversationContext ctx = new ConvCtxForMatchingSource();
-					Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
-					Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
+					final ConversationContext ctx = new ConvCtxForMatchingSource();
+					final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
+					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
 
 					if (answer.matchesFull(expected)) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
-						Item fishingRod = SingletonRepository.getEntityManager().getItem("fishing rod");
+						final Item fishingRod = SingletonRepository.getEntityManager().getItem("fishing rod");
 						fishingRod.setBoundTo(player.getName());
 						player.equip(fishingRod, true);
 						player.addXP(750);

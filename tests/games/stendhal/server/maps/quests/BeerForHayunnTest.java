@@ -28,7 +28,7 @@ public class BeerForHayunnTest {
 	private class MockRetiredAdventurer extends RetiredAdventurerNPC {
 
 		@Override
-		public void createDialog(SpeakerNPC npc) {
+		public void createDialog(final SpeakerNPC npc) {
 			super.createDialog(npc);
 		}
 
@@ -62,10 +62,10 @@ public class BeerForHayunnTest {
 	@Test
 	public void quest() {
 	
-		Player player = PlayerTestHelper.createPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 
 		(new MockRetiredAdventurer()).createDialog(hayunn);
-		Engine en = hayunn.getEngine();
+		final Engine en = hayunn.getEngine();
 		en.step(player, "hi");
 		// we assume the player has already completed the meet hayunn quest
 		// so that we know which of the greetings he will use
@@ -84,7 +84,7 @@ public class BeerForHayunnTest {
 		en.step(player, "bye");
 		assertFalse(hayunn.isTalking());
 		assertEquals("start", player.getQuest("beer_hayunn"));
-		StackableItem beer = new StackableItem("beer", "", "", null);
+		final StackableItem beer = new StackableItem("beer", "", "", null);
 		beer.setQuantity(1);
 		beer.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(beer);
@@ -94,7 +94,7 @@ public class BeerForHayunnTest {
 		assertEquals("done", player.getQuest("beer_hayunn"));
 		en.step(player, "bye");
 		// reject
-		Player player2 = PlayerTestHelper.createPlayer("player");
+		final Player player2 = PlayerTestHelper.createPlayer("player");
 
 		en.step(player2, "hi");
 		player2.setQuest("meet_hayunn", "done");
@@ -115,10 +115,10 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void testgetHistory() {
-		Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertTrue(bfh.getHistory(player).isEmpty());
 		player.setQuest("beer_hayunn", "");
-		List<String> history = new LinkedList<String>();
+		final List<String> history = new LinkedList<String>();
 		history.add("FIRST_CHAT");
 		assertEquals(history, bfh.getHistory(player));
 		
@@ -142,7 +142,7 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void testinit() {
-		BeerForHayunn quest = new BeerForHayunn();
+		final BeerForHayunn quest = new BeerForHayunn();
 		quest.init("bla");
 		assertEquals("bla", quest.getName());
 	}

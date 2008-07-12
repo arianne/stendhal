@@ -23,15 +23,15 @@ public class NunNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNunNPC(zone, attributes);
 	}
 
 	//
 	// A Nun NPC outside church
 	//
-	private void buildNunNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC nunnpc = new SpeakerNPC("Sister Benedicta") {
+	private void buildNunNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC nunnpc = new SpeakerNPC("Sister Benedicta") {
 
 			@Override
 			protected void createPath() {

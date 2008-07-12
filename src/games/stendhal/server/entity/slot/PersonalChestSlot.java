@@ -12,15 +12,15 @@ import org.apache.log4j.Logger;
  */
 public class PersonalChestSlot extends ChestSlot {
 	private static Logger logger = Logger.getLogger(PersonalChestSlot.class);
-	private PersonalChest chest;
+	private final PersonalChest chest;
 
-	public PersonalChestSlot(PersonalChest owner) {
+	public PersonalChestSlot(final PersonalChest owner) {
 	    super(owner);
 	    this.chest = owner;
     }
 
 	@Override
-    public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+    public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 
 		// first delegate to super method to check that the player
 		// is next to the chest

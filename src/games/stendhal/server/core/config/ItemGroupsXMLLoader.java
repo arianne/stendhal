@@ -28,7 +28,7 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
-	public ItemGroupsXMLLoader(URI uri) {
+	public ItemGroupsXMLLoader(final URI uri) {
 		this.uri = uri;
 	}
 
@@ -42,12 +42,12 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 	 *             If an I/O error occurred.
 	 */
 	public List<DefaultItem> load() throws SAXException, IOException {
-		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
-		List<URI> groups = groupsLoader.load();
+		final GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
+		final List<URI> groups = groupsLoader.load();
 
-		ItemsXMLLoader loader = new ItemsXMLLoader();
-		List<DefaultItem> list = new LinkedList<DefaultItem>();
-		for (URI groupUri : groups) {
+		final ItemsXMLLoader loader = new ItemsXMLLoader();
+		final List<DefaultItem> list = new LinkedList<DefaultItem>();
+		for (final URI groupUri : groups) {
 			logger.debug("Loading item group [" + groupUri + "]");
 			list.addAll(loader.load(groupUri));
 		}

@@ -19,13 +19,13 @@ public class AdminLevelActionTest {
 	public void testExecuteOneParam() {
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("adminlevel", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 			}
 		};
-		AdminLevelAction action = new AdminLevelAction();
+		final AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick" }, null));
 	}
@@ -35,14 +35,14 @@ public class AdminLevelActionTest {
 
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("adminlevel", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertFalse(action.has("newlevel"));
 			}
 		};
-		AdminLevelAction action = new AdminLevelAction();
+		final AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick", null }, null));
 	}
@@ -52,27 +52,27 @@ public class AdminLevelActionTest {
 
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
 				assertEquals("adminlevel", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("100", action.get("newlevel"));
 			}
 		};
-		AdminLevelAction action = new AdminLevelAction();
+		final AdminLevelAction action = new AdminLevelAction();
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick", "100" }, null));
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		AdminLevelAction action = new AdminLevelAction();
+		final AdminLevelAction action = new AdminLevelAction();
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		AdminLevelAction action = new AdminLevelAction();
+		final AdminLevelAction action = new AdminLevelAction();
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

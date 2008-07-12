@@ -15,7 +15,7 @@ import games.stendhal.server.entity.player.Player;
 public class RetireeNPC  extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting();
 		npc.addJob("Ha ha! Job? I retired decades ago! Ha ha!");
 		npc.addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");
@@ -27,7 +27,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (Rand.throwCoin() == 1) {
 					        npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
 				        } else {
@@ -40,9 +40,9 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-					        for (String quest : player.getQuests()) {
+					        for (final String quest : player.getQuests()) {
 						        player.removeQuest(quest);
 					        }
 				        } else {

@@ -8,7 +8,7 @@ import marauroa.common.game.Result;
  * @author hendrik
  */
 public class ReservedSubStringValidator implements AccountParameterValidator {
-	private String parameterValue;
+	private final String parameterValue;
 
 	/**
 	 * creates a ReservedSubStringValidator.
@@ -16,7 +16,7 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 	 * @param parameterValue
 	 *            value to validate
 	 */
-	public ReservedSubStringValidator(String parameterValue) {
+	public ReservedSubStringValidator(final String parameterValue) {
 		this.parameterValue = parameterValue;
 	}
 

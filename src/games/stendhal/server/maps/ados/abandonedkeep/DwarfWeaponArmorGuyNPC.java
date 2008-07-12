@@ -18,7 +18,7 @@ import java.util.Map;
  * Inside Ados Abandoned Keep - level -4 .
  */
 public class DwarfWeaponArmorGuyNPC implements ZoneConfigurator {
-    private ShopList shops = SingletonRepository.getShopList();
+    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -26,16 +26,16 @@ public class DwarfWeaponArmorGuyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildgulimo(zone);
 	}
 
-	private void buildgulimo(StendhalRPZone zone) {
-		SpeakerNPC gulimo = new SpeakerNPC("Gulimo") {
+	private void buildgulimo(final StendhalRPZone zone) {
+		final SpeakerNPC gulimo = new SpeakerNPC("Gulimo") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 24));
 				nodes.add(new Node(3, 27));				
 				nodes.add(new Node(11, 27));

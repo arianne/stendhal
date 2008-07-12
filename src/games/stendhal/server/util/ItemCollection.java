@@ -30,12 +30,12 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * the form "item1=n1;item2=n2;...".
      * @param str
      */
-    public void addFromQuestStateString(String str) {
+    public void addFromQuestStateString(final String str) {
 	    if (str != null) {
-	        List<String> items = Arrays.asList(str.split(";"));
+	        final List<String> items = Arrays.asList(str.split(";"));
 
-    		for (String item : items) {
-    			String[] pair = item.split("=");
+    		for (final String item : items) {
+    			final String[] pair = item.split("=");
 
     			if (pair.length == 2) {
         			addItem(pair[0], Integer.parseInt(pair[1]));
@@ -49,10 +49,10 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * @return semicolon separated states list
      */
     public String toStringForQuestState() {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         boolean first = true;
 
-        for (Map.Entry<String, Integer> e : entrySet()) {
+        for (final Map.Entry<String, Integer> e : entrySet()) {
             if (first) {
                 first = false;
             } else {
@@ -73,7 +73,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	 * @param amount
 	 * @return true if amount has been updated
 	 */
-	public boolean removeItem(String itemName, int amount) {
+	public boolean removeItem(final String itemName, final int amount) {
     	Integer curAmount = get(itemName);
 
     	if (curAmount != null) {
@@ -100,8 +100,8 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * @param itemName
      * @param amount
      */
-    public void addItem(String itemName, int amount) {
-        Integer curAmount = get(itemName);
+    public void addItem(final String itemName, final int amount) {
+        final Integer curAmount = get(itemName);
 
         if (curAmount != null) {
             put(itemName, curAmount + amount);
@@ -114,9 +114,9 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * @return a String list containing the items in the format "xxx=n".
      */
     public List<String> toStringList() {
-        List<String> result = new LinkedList<String>();
+        final List<String> result = new LinkedList<String>();
 
-        for (Map.Entry<String, Integer> item : entrySet()) {
+        for (final Map.Entry<String, Integer> item : entrySet()) {
             result.add(item.getKey() + '=' + item.getValue());
         }
 
@@ -127,9 +127,9 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * @return a String list containing the items in the format "n #xxx, ...".
      */
     public List<String> toStringListWithHash() {
-        List<String> result = new LinkedList<String>();
+        final List<String> result = new LinkedList<String>();
 
-        for (Map.Entry<String, Integer> item : entrySet()) {
+        for (final Map.Entry<String, Integer> item : entrySet()) {
             result.add(Grammar.quantityplnounWithHash(item.getValue(), item.getKey()));
         }
 

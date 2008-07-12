@@ -35,19 +35,19 @@ public class WeaponsCollectorTest {
 
 	@Test
 	public final void testGetSlotName() {
-		WeaponsCollector wc = new WeaponsCollector();
+		final WeaponsCollector wc = new WeaponsCollector();
 		assertEquals("weapons_collector", wc.getSlotName());
 	}
 
 	@Test
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
-		WeaponsCollector wc = new WeaponsCollector();
+		final WeaponsCollector wc = new WeaponsCollector();
 		wc.init("weaponscollector_quest");
 		wc.addToWorld();
-		SpeakerNPC npc = wc.getNPC();
-		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = wc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player pl = PlayerTestHelper.createPlayer("player");
 
 		assertTrue(en.stepTest(pl, "hi"));
 		assertEquals(wc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -62,12 +62,12 @@ public class WeaponsCollectorTest {
 	@Test
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
-		WeaponsCollector wc = new WeaponsCollector();
+		final WeaponsCollector wc = new WeaponsCollector();
 		wc.init("weaponscollector_quest");
 		wc.addToWorld();
-		SpeakerNPC npc = wc.getNPC();
-		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer("pl");
+		final SpeakerNPC npc = wc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player pl = PlayerTestHelper.createPlayer("pl");
 
 		assertTrue(en.stepTest(pl, "hello"));
 		assertEquals(wc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -107,7 +107,7 @@ public class WeaponsCollectorTest {
 		cloak = new Item("stone cloak", "", "", null);
 		pl.getSlot("bag").add(cloak);
 
-		for (String cloakName : wc.getNeededItems()) {
+		for (final String cloakName : wc.getNeededItems()) {
 			cloak = new Item(cloakName, "", "", null);
 			pl.getSlot("bag").add(cloak);
 			assertTrue(en.step(pl, cloakName));
@@ -120,15 +120,15 @@ public class WeaponsCollectorTest {
 
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
-		WeaponsCollector wc = new WeaponsCollector();
+		final WeaponsCollector wc = new WeaponsCollector();
 		assertFalse(wc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
 	@Test
 	public final void testRewardPlayer() {
-		WeaponsCollector wc = new WeaponsCollector();
-		Player player = PlayerTestHelper.createPlayer("player");
-		int oldXP = player.getXP();
+		final WeaponsCollector wc = new WeaponsCollector();
+		final Player player = PlayerTestHelper.createPlayer("player");
+		final int oldXP = player.getXP();
 		wc.rewardPlayer(player);
 		
 		assertTrue(player.isEquipped("ice sword"));

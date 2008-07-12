@@ -16,11 +16,11 @@ public class Line {
 		public abstract void fire(int x, int y);
 	}
 
-	public static Vector<Point> renderLine(int x1, int y1, int x2, int y2) {
+	public static Vector<Point> renderLine(final int x1, final int y1, final int x2, final int y2) {
 		final Vector<Point> points = new Vector<Point>(numsteps);
 		renderLine(x1, y1, x2, y2, new Action() {
 			@Override
-			public void fire(int x, int y) {
+			public void fire(final int x, final int y) {
 				points.add(new Point(x, y));
 			};
 		});
@@ -28,7 +28,7 @@ public class Line {
 		return points;
 	}
 
-	private static void preparefields(int x1, int y1, int x2, int y2) {
+	private static void preparefields(final int x1, final int y1, final int x2, final int y2) {
 		deltay = y2 - y1;
 		deltax = x2 - x1;
 		numsteps = Math.max(Math.abs(deltax), Math.abs(deltay));
@@ -37,7 +37,7 @@ public class Line {
 
 	}
 
-	public static void renderLine(int x1, int y1, int x2, int y2, Action action) {
+	public static void renderLine(final int x1, final int y1, final int x2, final int y2, final Action action) {
 		preparefields(x1, y1, x2, y2);
 
 		for (int curpixel = 1; curpixel <= numsteps + 1; curpixel++) {
@@ -48,7 +48,7 @@ public class Line {
 		}
 	}
 
-	private static void recalculateXY(int x1, int y1, int deltaY, int deltaX, int steps, int curpixel) {
+	private static void recalculateXY(final int x1, final int y1, final int deltaY, final int deltaX, final int steps, final int curpixel) {
 		x = x1 + ((deltaX * curpixel) / steps);
 		y = y1 + ((deltaY * curpixel) / steps);
 	}

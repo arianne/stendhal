@@ -18,12 +18,12 @@ public class MithrilShieldForgerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildbaldemar(zone);
 	}
 
-	private void buildbaldemar(StendhalRPZone zone) {
-		SpeakerNPC baldemar = new SpeakerNPC("Baldemar") {
+	private void buildbaldemar(final StendhalRPZone zone) {
+		final SpeakerNPC baldemar = new SpeakerNPC("Baldemar") {
 
 			@Override
 			protected void createPath() {

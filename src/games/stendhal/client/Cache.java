@@ -54,9 +54,9 @@ public class Cache {
 	public void init() {
 		try {
 			prefilledCacheManager = new Properties();
-			URL url = SpriteStore.get().getResourceURL("cache/stendhal.cache");
+			final URL url = SpriteStore.get().getResourceURL("cache/stendhal.cache");
 			if (url != null) {
-				InputStream is = url.openStream();
+				final InputStream is = url.openStream();
 				prefilledCacheManager.load(is);
 				is.close();
 			}
@@ -88,7 +88,7 @@ public class Cache {
 			cleanCacheOnUpdate();
 			cacheManager.set(VERSION_KEY, stendhal.VERSION);
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("cannot create StendhalClient", e);
 		}
 	}
@@ -117,7 +117,7 @@ public class Cache {
 	 *             in case the cache folder is not readable
 	 */
 	private void initCacheManager() throws IOException {
-		String cacheFile = System.getProperty("user.home")
+		final String cacheFile = System.getProperty("user.home")
 				+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
 
 		// create a new cache file if doesn't exist already
@@ -131,36 +131,36 @@ public class Cache {
 	 * Deletes the cache.
 	 */
 	private void cleanCache() {
-		String homeDir = System.getProperty("user.home");
-		String gameName = ClientGameConfiguration.get("GAME_NAME");
-		String gameFolder = "/" + gameName.toLowerCase() + "/";
-		String cache = "cache";
-		File cacheDir = new File(homeDir + gameFolder + cache);
+		final String homeDir = System.getProperty("user.home");
+		final String gameName = ClientGameConfiguration.get("GAME_NAME");
+		final String gameFolder = "/" + gameName.toLowerCase() + "/";
+		final String cache = "cache";
+		final File cacheDir = new File(homeDir + gameFolder + cache);
 		if (cacheDir.isDirectory()) {
-			File[] files = cacheDir.listFiles();
-			for (File file : files) {
+			final File[] files = cacheDir.listFiles();
+			for (final File file : files) {
 				file.delete();
 			}
 		}
 	}
 
-	private InputStream getItemFromPrefilledCache(TransferContent item) {
-		String name = "cache/" + item.name;
+	private InputStream getItemFromPrefilledCache(final TransferContent item) {
+		final String name = "cache/" + item.name;
 
 		// note: timestamp may contain a checksum. So we have to do an
 		// "equal"-compare.
-		String timestamp = prefilledCacheManager.getProperty(item.name);
+		final String timestamp = prefilledCacheManager.getProperty(item.name);
 		if ((timestamp != null)
 				&& (Integer.parseInt(timestamp) == item.timestamp)) {
 
 			// get the stream
-			URL url = SpriteStore.get().getResourceURL(name);
+			final URL url = SpriteStore.get().getResourceURL(name);
 			if (url != null) {
 				try {
 					logger.debug("Content " + item.name
 							+ " is in prefilled cache.");
 					return url.openStream();
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					logger.error(e, e);
 				}
 			}
@@ -169,7 +169,7 @@ public class Cache {
 		return null;
 	}
 
-	private InputStream getItemFromCache(TransferContent item) {
+	private InputStream getItemFromCache(final TransferContent item) {
 
 		// check cache
 		if (cacheManager.has(item.name)
@@ -181,7 +181,7 @@ public class Cache {
 			try {
 				return Persistence.get().getInputStream(true,
 						stendhal.STENDHAL_FOLDER + "cache/", item.name);
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error(e, e);
 			}
 		}
@@ -195,7 +195,7 @@ public class Cache {
 	 *            key
 	 * @return InputStream or null if not in cache
 	 */
-	public InputStream getItem(TransferContent item) {
+	public InputStream getItem(final TransferContent item) {
 		// 1. try to read it from stendhal-prefilled-cache.jar
 		InputStream is = getItemFromPrefilledCache(item);
 
@@ -214,9 +214,9 @@ public class Cache {
 	 * @param data
 	 *            data
 	 */
-	public void store(TransferContent item, byte[] data) {
+	public void store(final TransferContent item, final byte[] data) {
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true,
+			final OutputStream os = Persistence.get().getOutputStream(true,
 					stendhal.STENDHAL_FOLDER + "cache/", item.name);
 			os.write(data);
 			os.close();
@@ -225,7 +225,7 @@ public class Cache {
 					+ Integer.toString(item.timestamp));
 
 			cacheManager.set(item.name, Integer.toString(item.timestamp));
-		} catch (java.io.IOException e) {
+		} catch (final java.io.IOException e) {
 			logger.error("store", e);
 		}
 	}

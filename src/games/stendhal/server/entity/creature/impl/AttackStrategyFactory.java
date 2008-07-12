@@ -11,7 +11,7 @@ public class AttackStrategyFactory {
 	public static AttackStrategy getGandhi() {
 		return gandhi;
 	}
-	public static AttackStrategy get(Map<String, String> aiProfiles) {
+	public static AttackStrategy get(final Map<String, String> aiProfiles) {
 		
 		if (aiProfiles.containsKey("archer")) {
 			return archer;
@@ -19,7 +19,7 @@ public class AttackStrategyFactory {
 			return coward;
 		} else if (aiProfiles.containsKey("gandhi")) {
 			return gandhi;
-		} else if (aiProfiles.containsKey("stupid coward")){
+		} else if (aiProfiles.containsKey("stupid coward")) {
 			return stupidcoward;
 		}
 

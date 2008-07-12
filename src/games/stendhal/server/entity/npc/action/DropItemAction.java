@@ -11,8 +11,8 @@ import org.apache.log4j.Logger;
  */
 public class DropItemAction extends SpeakerNPC.ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
-	private String itemName;
-	private int amount;
+	private final String itemName;
+	private final int amount;
 
 	/**
 	 * Creates a new DropItemAction.
@@ -20,7 +20,7 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	 * @param itemName
 	 *            name of item
 	 */
-	public DropItemAction(String itemName) {
+	public DropItemAction(final String itemName) {
 		this.itemName = itemName;
 		this.amount = 1;
 	}
@@ -33,14 +33,14 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	 * @param amount
 	 *            for StackableItems
 	 */
-	public DropItemAction(String itemName, int amount) {
+	public DropItemAction(final String itemName, final int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}
 
 	@Override
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		boolean res = player.drop(itemName, amount);
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		final boolean res = player.drop(itemName, amount);
 		if (!res) {
 			logger.error("Cannot drop " + amount + " " + itemName,
 					new Throwable());
@@ -64,7 +64,7 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

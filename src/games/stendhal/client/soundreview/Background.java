@@ -13,9 +13,9 @@ public class Background {
 
 	private static final String ZERO_SEMOS_VILLAGE_W = "0_semos_village_w";
 
-	private LinkedList<Sound> sounds;
+	private final LinkedList<Sound> sounds;
 
-	public Background(String name) {
+	public Background(final String name) {
 		this.clips = new LinkedList<AudioClip>();
 		this.sounds = new LinkedList<Sound>();
 		if (INT_SEMOS_BLACKSMITH.equals(name)) {
@@ -54,20 +54,20 @@ public class Background {
 
 	}
 
-	private void addSound(String string, int i, int j, boolean b) {
+	private void addSound(final String string, final int i, final int j, final boolean b) {
 		sounds.add(new Sound(string, i, j, b));
 
 	}
 
-	private List<AudioClip> clips;
+	private final List<AudioClip> clips;
 
-	public void addSound(String soundFileName, int x, int y) {
+	public void addSound(final String soundFileName, final int x, final int y) {
 
 		sounds.add(new Sound(soundFileName, x, y));
 	}
 
 	public void run() {
-		for (Sound sound : sounds) {
+		for (final Sound sound : sounds) {
 
 			clips.add(sound.play());
 
@@ -75,7 +75,7 @@ public class Background {
 	}
 
 	public void stop() {
-		for (AudioClip ac : clips) {
+		for (final AudioClip ac : clips) {
 
 			ac.stop();
 

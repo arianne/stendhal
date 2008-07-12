@@ -19,27 +19,27 @@ public class WhoActionTest {
 	public void testExecute() {
 		new MockStendhalClient("") {
 			@Override
-			public void send(RPAction action) {
+			public void send(final RPAction action) {
 				client = null;
-				for (String attrib : action) {
+				for (final String attrib : action) {
 					assertEquals("type", attrib);
 					assertEquals("who", (action.get(attrib)));
 				}
 			}
 		};
-		WhoAction action = new WhoAction();
+		final WhoAction action = new WhoAction();
 		assertTrue(action.execute(null, null));
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		WhoAction action = new WhoAction();
+		final WhoAction action = new WhoAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		WhoAction action = new WhoAction();
+		final WhoAction action = new WhoAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

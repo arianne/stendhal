@@ -17,9 +17,9 @@ import marauroa.common.game.RPAction;
  */
 public class AskForSupportAction  implements ActionListener {
 	// HashMap <players_name, last_message_time>
-	private Map<String, Long> lastMsg = new HashMap<String, Long>();
+	private final Map<String, Long> lastMsg = new HashMap<String, Long>();
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TEXT)) {
 
 			if ("".equals(action.get(TEXT).trim())) {
@@ -30,7 +30,7 @@ public class AskForSupportAction  implements ActionListener {
 			if (Jail.isInJail(player)) {
 				// check if the player sent a support message before
 				if (lastMsg.containsKey(player.getName())) {
-					Long timeLastMsg = System.currentTimeMillis()
+					final Long timeLastMsg = System.currentTimeMillis()
 							- lastMsg.get(player.getName());
 
 					// the player have to wait one minute since the last support
@@ -44,7 +44,7 @@ public class AskForSupportAction  implements ActionListener {
 				lastMsg.put(player.getName(), System.currentTimeMillis());
 			}
 
-			String message = action.get(TEXT)
+			final String message = action.get(TEXT)
 					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 

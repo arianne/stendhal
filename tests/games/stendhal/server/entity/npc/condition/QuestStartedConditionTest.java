@@ -19,7 +19,7 @@ public class QuestStartedConditionTest {
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "done");
 		assertTrue(new QuestStartedCondition("questname").fire(bob,
@@ -53,7 +53,7 @@ public class QuestStartedConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestStartedCondition("questname").equals(null));
 
-		QuestStartedCondition obj = new QuestStartedCondition("questname");
+		final QuestStartedCondition obj = new QuestStartedCondition("questname");
 		assertTrue(obj.equals(obj));
 		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
 		"questname")));
@@ -74,7 +74,7 @@ public class QuestStartedConditionTest {
 
 	@Test
 	public void testHashcode() throws Throwable {
-		QuestStartedCondition obj = new QuestStartedCondition("questname");
+		final QuestStartedCondition obj = new QuestStartedCondition("questname");
 		assertTrue(obj.equals(obj));
 assertEquals(obj.hashCode(), obj.hashCode());
 

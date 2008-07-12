@@ -117,7 +117,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/** minimap image. */
 	private BufferedImage image;
 
-	private StendhalClient client;
+	private final StendhalClient client;
 
 	/**
 	 * PATHFIND.
@@ -125,7 +125,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	private int nodo_actual;
 
-	private Pathfind pathfind;
+	private final Pathfind pathfind;
 
 	private CollisionDetection collisiondetection;
 
@@ -138,7 +138,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param client
 	 * @param gameScreen
 	 */
-	public Minimap(StendhalClient client, IGameScreen gameScreen) {
+	public Minimap(final StendhalClient client, final IGameScreen gameScreen) {
 		super("minimap", 0, 0, 100, 100, gameScreen);
 
 		this.client = client;
@@ -169,8 +169,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc,
-			String zone) {
+	public void update(final CollisionDetection cd, final GraphicsConfiguration gc,
+			final String zone) {
 		setTitletext(zone);
 
 		// FOR PATHFINDING THING
@@ -179,8 +179,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		nodo_actual = 0;
 
 		// calculate size and scale
-		int w = cd.getWidth();
-		int h = cd.getHeight();
+		final int w = cd.getWidth();
+		final int h = cd.getHeight();
 
 		// calculate scale
 		scale = MINIMAP_MINIMUM_SCALE;
@@ -196,7 +196,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// create the image for the minimap
 		image = gc.createCompatibleImage(w * scale, h * scale);
 
-		Graphics2D mapgrapics = image.createGraphics();
+		final Graphics2D mapgrapics = image.createGraphics();
 
 		mapgrapics.setColor(COLOR_BACKGROUND);
 		mapgrapics.fillRect(0, 0, w * scale, h * scale);
@@ -237,11 +237,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			return;
 		}
 
-		int w = image.getWidth();
-		int h = image.getHeight();
+		final int w = image.getWidth();
+		final int h = image.getHeight();
 
-		int xpos = (int) ((playerX * scale) + 0.5) - width / 2;
-		int ypos = (int) ((playerY * scale) + 0.5) - width / 2;
+		final int xpos = (int) ((playerX * scale) + 0.5) - width / 2;
+		final int ypos = (int) ((playerY * scale) + 0.5) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -267,7 +267,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	public void update_pathfind() {
 		if (nodo_actual != 0) {
 			pathfind.PathJumpToNode(nodo_actual);
-			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math
+			final int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math
 					.abs(playerY - pathfind.NodeGetY())));
 
 			if (manhatan < 6) {
@@ -278,7 +278,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 					logger.debug("Pathfind: To waypoint: "
 							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
 				}
-				RPAction action = new RPAction();
+				final RPAction action = new RPAction();
 				action.put("type", "moveto");
 				action.put("x", pathfind.NodeGetX());
 				action.put("y", pathfind.NodeGetY());
@@ -303,27 +303,27 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 *            graphics object for the game main window
 	 */
 	@Override
-	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
 		super.drawContent(g, gameScreen);
 
 		if (image == null) {
 			return;
 		}
 
-		Graphics vg = g.create();
+		final Graphics vg = g.create();
 
 		// draw minimap
 		vg.translate(-panx, -pany);
 		vg.drawImage(image, 0, 0, null);
 
-		int level = User.getPlayerLevel();
+		final int level = User.getPlayerLevel();
 
 		// display a "N" to show north direction
 		if (level < 10) {
 			vg.setColor(COLOR_NORTH);
 			vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
-			FontMetrics metrics = vg.getFontMetrics();
-			Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
+			final FontMetrics metrics = vg.getFontMetrics();
+			final Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
 			vg.drawString("N", panx + (width - (int) rect.getWidth()) / 2, pany
 					+ (int) rect.getHeight());
 		}
@@ -347,13 +347,13 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// --------------------------------------
 		// Draw on ground entities
-		for (Entity entity : client.getGameObjects()) {
+		for (final Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
 				continue;
 			}
 
 			if (entity instanceof Player) {
-				Player player = (Player) entity;
+				final Player player = (Player) entity;
 
 				if (!player.isGhostMode()) {
 					drawPlayer(vg, player, Color.WHITE);
@@ -361,7 +361,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 					drawPlayer(vg, player, Color.GRAY);
 				}
 			} else if (entity instanceof Portal) {
-				Portal portal = (Portal) entity;
+				final Portal portal = (Portal) entity;
 
 				if (!portal.isHidden()) {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
@@ -388,8 +388,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param vg
 	 *            graphics context
 	 */
-	private void drawUser(Graphics vg) {
-		User user = User.get();
+	private void drawUser(final Graphics vg) {
+		final User user = User.get();
 
 		if (user != null) {
 			drawPlayer(vg, user, Color.BLUE);
@@ -444,12 +444,12 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	protected void drawEntity(final Graphics g, final Entity entity,
 			final Color color, final Color borderColor) {
-		Rectangle2D area = entity.getArea();
+		final Rectangle2D area = entity.getArea();
 
-		int x = (int) ((area.getX() * scale) + 0.5);
-		int y = (int) ((area.getY() * scale) + 0.5);
-		int widthTemp = ((int) area.getWidth()) * scale;
-		int heightTemp = ((int) area.getHeight()) * scale;
+		final int x = (int) ((area.getX() * scale) + 0.5);
+		final int y = (int) ((area.getY() * scale) + 0.5);
+		final int widthTemp = ((int) area.getWidth()) * scale;
+		final int heightTemp = ((int) area.getHeight()) * scale;
 
 		g.setColor(color);
 		g.fillRect(x, y, widthTemp, heightTemp);
@@ -484,10 +484,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param y
 	 * @param color
 	 */
-	private void drawCross(Graphics g, int x, int y, Color color) {
-		int scale_2 = scale / 2;
+	private void drawCross(final Graphics g, int x, int y, final Color color) {
+		final int scale_2 = scale / 2;
 
-		int size = scale_2 + 2;
+		final int size = scale_2 + 2;
 
 		x += scale_2;
 		y += scale_2;
@@ -498,14 +498,14 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	}
 
 	@Override
-	public synchronized boolean onMouseDoubleClick(Point p) {
+	public synchronized boolean onMouseDoubleClick(final Point p) {
 		// TODO: Check that titlebar height is calculated correctly.
 		// The p.y seems higher than it should after adjustment.
 
 		// If teleclickmode is disabled.
 		if (client.getPlayer().has("teleclickmode")) { // If teleclickmode is
 														// enabled.
-			RPAction action = new RPAction();
+			final RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + panx - getClientX()) / scale);
 			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
@@ -525,12 +525,12 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			nodo_actual = 0;
 
 			// Rectangle(int x, int y, int width, int height)
-			int width2 = width < 192 ? width : 192;
-			int height2 = height < 192 ? height : 192;
-			Rectangle search_area = new Rectangle((panx) / scale, (pany)
+			final int width2 = width < 192 ? width : 192;
+			final int height2 = height < 192 ? height : 192;
+			final Rectangle search_area = new Rectangle((panx) / scale, (pany)
 					/ scale, width2 / scale, height2 / scale);
 
-			long computation_time = System.currentTimeMillis();
+			final long computation_time = System.currentTimeMillis();
 
 			if (pathfind.NewPath(collisiondetection, (int) playerX,
 					(int) playerY, (p.x + panx - getClientX()) / scale, ((p.y
@@ -546,7 +546,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 							+ pathfind.NodeGetX() + "," + pathfind.NodeGetY());
 				}
 
-				RPAction action = new RPAction();
+				final RPAction action = new RPAction();
 				action.put("type", "moveto");
 				action.put("x", pathfind.NodeGetX());
 				action.put("y", pathfind.NodeGetY());

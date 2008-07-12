@@ -30,7 +30,7 @@ public class Dice extends Item {
 
 	private CroupierNPC croupierNPC;
 
-	public Dice(Map<String, String> attributes) {
+	public Dice(final Map<String, String> attributes) {
 		super("dice", "misc", "dice", attributes);
 		randomize(null);
 	}
@@ -45,12 +45,12 @@ public class Dice extends Item {
 	 * @param item
 	 *            item to copy
 	 */
-	public Dice(Dice item) {
+	public Dice(final Dice item) {
 		super(item);
 		randomize(null);
 	}
 
-	public void setCroupierNPC(CroupierNPC croupierNPC) {
+	public void setCroupierNPC(final CroupierNPC croupierNPC) {
 		this.croupierNPC = croupierNPC;
 		setInfoString(croupierNPC.getName());
 	}
@@ -67,7 +67,7 @@ public class Dice extends Item {
 	 */
 	private void updateCroupierNPC() {
 		if (croupierNPC == null) {
-			String name = getInfoString();
+			final String name = getInfoString();
 
 			if (name != null) {
 				croupierNPC = (CroupierNPC) SingletonRepository.getNPCList().get(name);
@@ -80,7 +80,7 @@ public class Dice extends Item {
 	}
 
 	public String getTopFacesString() {
-		List<String> topFacesStrings = new LinkedList<String>();
+		final List<String> topFacesStrings = new LinkedList<String>();
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			topFacesStrings.add(Integer.toString(topFaces[i]));
 		}
@@ -95,16 +95,16 @@ public class Dice extends Item {
 		return result;
 	}
 
-	private void randomize(Player player) {
+	private void randomize(final Player player) {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
-			int topFace = Rand.roll1D6();
+			final int topFace = Rand.roll1D6();
 			topFaces[i] = topFace;
 		}
 	}
 
 	@Override
-	public void onPutOnGround(Player player) {
+	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
 		zoneFix(player);
 		randomize(player);
@@ -120,7 +120,7 @@ public class Dice extends Item {
 	// ground and the zone is updated. Bagged items do not have a zone in
 	// Marauroa 1.0 so this does not work anymore. We need to change the order
 	// in which the dropping of items is implemented.
-	private void zoneFix(Player player) {
+	private void zoneFix(final Player player) {
 		if (getZone() == null) {
 			this.onAdded(player.getZone());
 		}

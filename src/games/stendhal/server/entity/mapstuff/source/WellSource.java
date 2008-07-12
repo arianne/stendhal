@@ -64,7 +64,7 @@ public class WellSource extends PlayerActivityEntity {
 	//
 
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass("well_source");
+		final RPClass rpclass = new RPClass("well_source");
 		rpclass.isA("entity");
 	}
 
@@ -104,7 +104,7 @@ public class WellSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
-		int random = Rand.roll1D100();
+		final int random = Rand.roll1D100();
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
@@ -119,8 +119,8 @@ public class WellSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			String itemName = items[Rand.rand(items.length)];
-			Item item = SingletonRepository.getEntityManager().getItem(itemName);
+			final String itemName = items[Rand.rand(items.length)];
+			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (itemName.equals("dark dagger")
 					|| itemName.equals("horned golden helmet")) {

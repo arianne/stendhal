@@ -19,18 +19,18 @@ public class RentedSignList extends StoreableEntityList<RentedSign> {
 	 * @param zone  zone to store the rented signs in
 	 * @param shape 
 	 */
-	public RentedSignList(StendhalRPZone zone, Shape shape) {
+	public RentedSignList(final StendhalRPZone zone, final Shape shape) {
 		super(zone, shape, RentedSign.class);
 		setupTurnNotifier(60 * 60);
 	}
 
 	@Override
-    public String getName(RentedSign rentedSign) {
+    public String getName(final RentedSign rentedSign) {
 		return rentedSign.getRenter();
     }
 
 	@Override
-	protected boolean shouldExpire(RentedSign entity) {
+	protected boolean shouldExpire(final RentedSign entity) {
 		return entity.getTimestamp() + EXPIRE_TIMEOUT < System.currentTimeMillis();
 	}
 

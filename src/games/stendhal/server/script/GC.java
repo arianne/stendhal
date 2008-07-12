@@ -14,7 +14,7 @@ import java.util.List;
 public class GC extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		System.gc();
 	}
 }

@@ -17,19 +17,19 @@ public class HousewifeNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosStorageArea(zone, attributes);
 	}
 
-	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Eonna") {
+	private void buildSemosStorageArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Eonna") {
 
 			/**
 			 * Creates a path around the table with the beers and to the furnance.
 			 */
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(4, 12)); 
 				nodes.add(new Node(15, 13));
 				nodes.add(new Node(15, 13));

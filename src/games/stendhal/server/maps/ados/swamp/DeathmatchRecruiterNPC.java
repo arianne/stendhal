@@ -25,17 +25,17 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDeathmatchRecruiter(zone);
 	}
 
-	private void buildDeathmatchRecruiter(StendhalRPZone zone) {
+	private void buildDeathmatchRecruiter(final StendhalRPZone zone) {
 
-		SpeakerNPC npc = new SpeakerNPC("Thonatus") {
+		final SpeakerNPC npc = new SpeakerNPC("Thonatus") {
 
 			@Override
 			protected void createPath() {
-				List<Node> path = new LinkedList<Node>();
+				final List<Node> path = new LinkedList<Node>();
 				path.add(new Node(40, 36));
 				path.add(new Node(40, 85));
 				path.add(new Node(53, 85));

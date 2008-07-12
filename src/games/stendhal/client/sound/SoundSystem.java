@@ -107,10 +107,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static SoundSystem singleton;
 
 	/** */
-	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
+	private final Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
 
 	/** */
-	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
+	private final ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
 
 	/** the used mixer. */
 	private Mixer mixer;
@@ -137,7 +137,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param ambient
 	 *            the sound to be registered
 	 */
-	void playAmbientSound(AmbientSound ambient) {
+	void playAmbientSound(final AmbientSound ambient) {
 
 		ambient.play();
 
@@ -153,9 +153,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param ambient
 	 *            the ambient sound to be removed
 	 */
-	static void stopAmbientSound(AmbientSound ambient) {
+	static void stopAmbientSound(final AmbientSound ambient) {
 		// TODO: assert the sound is stopped
-		SoundSystem sys = get();
+		final SoundSystem sys = get();
 
 		synchronized (sys.ambientList) {
 			sys.ambientList.remove(ambient);
@@ -165,8 +165,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** Stops and removes all ambient sounds. */
 	private void clearAmbientSounds() {
 		synchronized (ambientList) {
-			List<AmbientSound> list = new ArrayList<AmbientSound>(ambientList);
-			for (AmbientSound sound : list) {
+			final List<AmbientSound> list = new ArrayList<AmbientSound>(ambientList);
+			for (final AmbientSound sound : list) {
 				sound.terminate();
 			}
 		}
@@ -193,9 +193,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            percent chance of performance
 	 * @return SoundCycle
 	 */
-	public static SoundCycle startSoundCycle(Entity entity, String token,
-			int period, int volBot, int volTop, int chance) {
-		SoundSystem sys = get();
+	public static SoundCycle startSoundCycle(final Entity entity, final String token,
+			final int period, final int volBot, final int volTop, final int chance) {
+		final SoundSystem sys = get();
 		SoundCycle cycle;
 		SoundCycle c1;
 
@@ -216,7 +216,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 				}
 
 				sys.cycleMap.put(entity.ID_Token, cycle);
-			} catch (IllegalStateException e) {
+			} catch (final IllegalStateException e) {
 				logger.error("*** Undefined sound sample: " + token, e);
 			}
 		}
@@ -230,7 +230,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param entity_ID
 	 *            byte[] identity token of the map entity
 	 */
-	public static void stopSoundCycle(byte[] entity_ID) {
+	public static void stopSoundCycle(final byte[] entity_ID) {
 		SoundCycle cycle;
 		SoundSystem sys;
 
@@ -252,7 +252,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the data in the Zipentry
 	 * @throws IOException
 	 */
-	private byte[] getData(String name) throws IOException {
+	private byte[] getData(final String name) throws IOException {
 		InputStream in;
 		ByteArrayOutputStream bout;
 
@@ -273,7 +273,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            token of sound
 	 * @return true, iif it is available
 	 */
-	boolean contains(String name) {
+	boolean contains(final String name) {
 		return (name != null) && SoundEffectMap.getInstance().containsKey(name);
 	}
 
@@ -285,8 +285,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return InputStream
 	 * @throws IOException
 	 */
-	public static InputStream getResourceStream(String name) throws IOException {
-		URL url = SpriteStore.get().getResourceURL(name);
+	public static InputStream getResourceStream(final String name) throws IOException {
+		final URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
 
 			return null;
@@ -319,12 +319,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			loadSoundProperties(prop);
 
 			// get sound library filepath
-			String soundBase = prop.getProperty("soundbase", "data/sounds/");
+			final String soundBase = prop.getProperty("soundbase", "data/sounds/");
 
 			if (prop.isEmpty()) {
 				return;
 			}
-			Enumeration<Object> maps = prop.keys();
+			final Enumeration<Object> maps = prop.keys();
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
 			failedCounted = 0;
@@ -366,7 +366,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						}
 
 						// investigate sample status
-						int i = name.indexOf('.');
+						final int i = name.indexOf('.');
 						if (i != -1) {
 							name = name.substring(0, i);
 						}
@@ -375,7 +375,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						// soundData, loudness);
 						sound = new AudioClip(mixer, soundData, loudness);
 						count++;
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						// could not validate sound file content
 						hstr = "*** CORRUPTED SOUND: " + name + "=" + filename;
 						logger.error(hstr, e);
@@ -417,7 +417,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			// register listeners
 			WorldObjects.addWorldListener(this);
 			operative = true;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			hstr = "*** SOUNDSYSTEM LOAD ERROR";
 			logger.error(hstr, e);
 			return;
@@ -442,7 +442,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param value
 	 * @return true, if it is valid, false otherwise
 	 */
-	boolean isValidEntry(String key, String value) {
+	boolean isValidEntry(final String key, final String value) {
 		boolean load;
 		int pos1;
 		if (key.startsWith("sfx.")) {
@@ -503,7 +503,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		try {
 			volumeCtrl = (FloatControl) mixer.getControl(FloatControl.Type.MASTER_GAIN);
 			volumeCtrl.setValue(0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.debug("SoundSystem: no master volume controls");
 		}
 
@@ -515,7 +515,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * duplicate call.
 	 * @param ismute false if sound is to be heard
 	 */
-	public void setMute(boolean ismute) {
+	public void setMute(final boolean ismute) {
 		if (ismute == muteSetting) {
 			return;
 		}
@@ -524,7 +524,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		muteSetting = ismute;
 
 		synchronized (ambientList) {
-			for (AmbientSound ambient : ambientList) {
+			for (final AmbientSound ambient : ambientList) {
 				if (ismute) {
 					ambient.stop();
 				} else {
@@ -570,7 +570,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 			// update ambient sounds
 			synchronized (ambientList) {
-				for (AmbientSound amb : ambientList) {
+				for (final AmbientSound amb : ambientList) {
 					amb.updateVolume();
 				}
 			}
@@ -627,9 +627,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	static void transferData(InputStream input, OutputStream output,
-			int bufferSize) throws java.io.IOException {
-		byte[] buffer = new byte[bufferSize];
+	static void transferData(final InputStream input, final OutputStream output,
+			final int bufferSize) throws java.io.IOException {
+		final byte[] buffer = new byte[bufferSize];
 		int len;
 
 		while ((len = input.read(buffer)) > 0) {
@@ -641,7 +641,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	private String actualZone = "";
 
-	public void zoneEntered(String zone) {
+	public void zoneEntered(final String zone) {
 		AmbientSound baseAmb;
 		AmbientSound ambient;
 		Point2D soundPos;
@@ -835,8 +835,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * 
 	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneLeft(java.lang.String)
 	 */
-	public void zoneLeft(String zone) {
-		String hstr = "-- SoundSys: ZONE LEFT: " + zone;
+	public void zoneLeft(final String zone) {
+		final String hstr = "-- SoundSys: ZONE LEFT: " + zone;
 		logger.debug(hstr);
 		if (zone.equals(actualZone)) {
 			clearAmbientSounds();
@@ -854,7 +854,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			if (!isMute()) {
 				if (!User.isNull()) {
 					synchronized (ambientList) {
-						for (AmbientSound a : ambientList) {
+						for (final AmbientSound a : ambientList) {
 							a.performPlayerMoved();
 						}
 					}

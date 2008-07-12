@@ -20,7 +20,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 	private static final String TIMESTAMP = "timestamp";
 
 	public static void generateRPClass() {
-		RPClass clazz = new RPClass(RPCLASS_NAME);
+		final RPClass clazz = new RPClass(RPCLASS_NAME);
 		clazz.isA("sign");
 		clazz.addAttribute(RENTER, Type.STRING, Definition.HIDDEN);
 		clazz.addAttribute(TIMESTAMP, Type.FLOAT, Definition.HIDDEN);
@@ -32,7 +32,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 	 * @param renter player who rented this sign
 	 * @param text text to display on this sign
 	 */
-	public RentedSign(Player renter, String text) {
+	public RentedSign(final Player renter, final String text) {
 		setRPClass(RPCLASS_NAME);
 		store();
 		put(RENTER, renter.getName());
@@ -45,7 +45,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 	 * a sign from the database, use the other constructors.
 	 * @param rpobject 
 	 */
-	public RentedSign(RPObject rpobject) {
+	public RentedSign(final RPObject rpobject) {
 	    super(rpobject);
 	    store();
     }
@@ -75,7 +75,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 		// add renter and age to the text. We use a relative time because
 		// a fixed timestamp is meaningless for players from
 		// other timezones.
-		int seconds = (int) ((System.currentTimeMillis() - getTimestamp()) / 1000);
+		final int seconds = (int) ((System.currentTimeMillis() - getTimestamp()) / 1000);
 		text = text + "\nThis sign was rented by " + get(RENTER) + " " + TimeUtil.approxTimeUntil(seconds) + " ago.";
 		return text;
 	}

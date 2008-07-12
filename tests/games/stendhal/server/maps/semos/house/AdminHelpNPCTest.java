@@ -35,7 +35,7 @@ public class AdminHelpNPCTest extends PlayerTestHelper {
 	@Before
 	public void setUp() throws Exception {
 		npc = new SpeakerNPC("chef");
-		AdminHelpNPC adminHelper = new AdminHelpNPC();
+		final AdminHelpNPC adminHelper = new AdminHelpNPC();
 
 		en = npc.getEngine();
 		adminHelper.createDialog(npc);

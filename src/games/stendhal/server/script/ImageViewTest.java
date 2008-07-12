@@ -15,9 +15,9 @@ import marauroa.common.game.RPEvent;
 public class ImageViewTest extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
-		RPEvent event = new RPEvent("examine");
+		final RPEvent event = new RPEvent("examine");
 		event.put("path", "/data/sprites/examine/map-semos-city.png");
 		event.put("alt", "Map of Semos City");
 		event.put("title", "Semos City");

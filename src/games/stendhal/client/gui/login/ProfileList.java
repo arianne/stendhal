@@ -35,7 +35,7 @@ public class ProfileList {
 	 * @param profile
 	 *            A user login profile.
 	 */
-	public void add(Profile profile) {
+	public void add(final Profile profile) {
 		/*
 		 * Keep one equivalent entry (can't use HasSet and preserve order)
 		 */
@@ -65,11 +65,11 @@ public class ProfileList {
 	 * @param in The Stream to read
 	 * @throws IOException if any IO operation fails
 	 */
-	public void load(InputStream in) throws IOException {
-		Encoder codec = new Encoder();
+	public void load(final InputStream in) throws IOException {
+		final Encoder codec = new Encoder();
 		String s;
 
-		BufferedReader r = new BufferedReader(new InputStreamReader(in));
+		final BufferedReader r = new BufferedReader(new InputStreamReader(in));
 
 		clear();
 
@@ -84,7 +84,7 @@ public class ProfileList {
 	 * @param profile
 	 *            A user login profile.
 	 */
-	public void remove(Profile profile) {
+	public void remove(final Profile profile) {
 		profiles.remove(profile);
 	}
 
@@ -95,13 +95,13 @@ public class ProfileList {
 	 *            The stream to write.
 	 * @throws IOException if any IO operation fails
 	 */
-	public void save(OutputStream out) throws IOException {
-		Encoder codec = new Encoder();
+	public void save(final OutputStream out) throws IOException {
+		final Encoder codec = new Encoder();
 
-		PrintStream ps = new PrintStream(out);
+		final PrintStream ps = new PrintStream(out);
 
 		try {
-			Iterator<Profile> iter = iterator();
+			final Iterator<Profile> iter = iterator();
 
 			while (iter.hasNext()) {
 				ps.println(codec.encode(iter.next().encode()));
@@ -114,7 +114,7 @@ public class ProfileList {
 	//
 	//
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		ProfileList list;
 		InputStream in;
 
@@ -136,7 +136,7 @@ public class ProfileList {
 			in.close();
 		}
 
-		Iterator<Profile> iter = list.iterator();
+		final Iterator<Profile> iter = list.iterator();
 
 		while (iter.hasNext()) {
 			System.out.println(iter.next());

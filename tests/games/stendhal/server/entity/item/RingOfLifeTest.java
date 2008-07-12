@@ -21,7 +21,7 @@ public class RingOfLifeTest {
 	}
 	@Test
 	public void testDescribe() {
-		RingOfLife ring = new RingOfLife();
+		final RingOfLife ring = new RingOfLife();
 		assertThat(ring.isBroken(), is(false));
 		assertThat(ring.describe(), is("You see the ring of life. Wear it, and you risk less from death."));
 		
@@ -33,7 +33,7 @@ public class RingOfLifeTest {
 
 	@Test
 	public void testOnUsed() {
-		RingOfLife ring = new RingOfLife();
+		final RingOfLife ring = new RingOfLife();
 		assertThat(ring.isBroken(), is(false));
 		assertThat(ring.describe(), is("You see the ring of life. Wear it, and you risk less from death."));
 		
@@ -48,7 +48,7 @@ public class RingOfLifeTest {
 
 	@Test
 	public void testRepair() {
-		RingOfLife ring = new RingOfLife();
+		final RingOfLife ring = new RingOfLife();
 		assertThat(ring.isBroken(), is(false));
 		assertThat(ring.describe(), is("You see the ring of life. Wear it, and you risk less from death."));
 		

@@ -28,17 +28,17 @@ public class TransitionDiagram {
 
 	private static final Logger logger = Logger.getLogger(TransitionDiagram.class);
 
-	public void showTransitionDiagram(String data) {
+	public void showTransitionDiagram(final String data) {
 		showTransitionDiagram(data, null);
 	}
 
-	public void showTransitionDiagram(String data, Frame parent) {
+	public void showTransitionDiagram(final String data, final Frame parent) {
 		try {
-			File dat = File.createTempFile("stendhal-graph-data", ".txt");
-			File image = File.createTempFile("stendhal-graph", ".png");
+			final File dat = File.createTempFile("stendhal-graph-data", ".txt");
+			final File image = File.createTempFile("stendhal-graph", ".png");
 
 			// print the data
-			PrintStream ps = new PrintStream(new FileOutputStream(dat));
+			final PrintStream ps = new PrintStream(new FileOutputStream(dat));
 			ps.print(data);
 			ps.close();
 
@@ -50,21 +50,21 @@ public class TransitionDiagram {
 			}
 
 			// execute
-			Process p = Runtime.getRuntime().exec(
+			final Process p = Runtime.getRuntime().exec(
 					dotPath + " -Tpng -o " + image.getAbsolutePath() + " "
 							+ dat.getAbsolutePath());
 			p.waitFor();
 
 			// open up the image
-			JDialog jd = new JDialog(parent, "NPC Transition Viewer", false);
+			final JDialog jd = new JDialog(parent, "NPC Transition Viewer", false);
 
-			Image img = Toolkit.getDefaultToolkit().createImage(
+			final Image img = Toolkit.getDefaultToolkit().createImage(
 					image.toURI().toURL());
 			System.out.println("Checking image with size " + img.getWidth(jd)
 					+ "x" + img.getHeight(jd));
-			ImageIcon icon = new ImageIcon(img);
+			final ImageIcon icon = new ImageIcon(img);
 
-			JLabel label = new JLabel(scale(icon));
+			final JLabel label = new JLabel(scale(icon));
 			jd.add(label);
 
 			jd.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,7 +73,7 @@ public class TransitionDiagram {
 
 			image.deleteOnExit();
 			dat.deleteOnExit();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Failed creating graph: ", e);
 			StendhalUI.get().addEventLine(
 					"Failed creating graph (Is graphviz installed and on your system search path?): "
@@ -87,8 +87,8 @@ public class TransitionDiagram {
 	 * @param args
 	 *            ignored
 	 */
-	public static void main(String[] args) {
-		TransitionDiagram td = new TransitionDiagram();
+	public static void main(final String[] args) {
+		final TransitionDiagram td = new TransitionDiagram();
 		td.showTransitionDiagram("digraph finite_state_machine {\n"
 				+ "rankdir=LR\n" + "IDLE -> ATTENDING [ label = \"hi\" ];\n"
 				+ "IDLE -> ATTENDING [ label = \"hello\" ];\n"
@@ -104,16 +104,16 @@ public class TransitionDiagram {
 				+ "ANY -> IDLE [ label = \"adios *\" ];\n" + "}");
 	}
 
-	private ImageIcon scale(ImageIcon image) {
-		Image img = image.getImage();
-		Dimension ssize = Toolkit.getDefaultToolkit().getScreenSize();
-		int ow = img.getWidth(null);
-		int oh = img.getHeight(null);
+	private ImageIcon scale(final ImageIcon image) {
+		final Image img = image.getImage();
+		final Dimension ssize = Toolkit.getDefaultToolkit().getScreenSize();
+		final int ow = img.getWidth(null);
+		final int oh = img.getHeight(null);
 		// screens are usually wide..
-		int w = ssize.width - 20; 
-		int h = ssize.height - 100;
+		final int w = ssize.width - 20; 
+		final int h = ssize.height - 100;
 
-		if (ow >= w || oh >= h) {
+		if ((ow >= w) || (oh >= h)) {
 			return new ImageIcon(img.getScaledInstance(w, h,
 					Image.SCALE_AREA_AVERAGING));
 		} else {

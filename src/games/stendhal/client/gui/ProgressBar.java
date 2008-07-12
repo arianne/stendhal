@@ -21,7 +21,7 @@ public class ProgressBar extends JFrame {
 
 	private static final long serialVersionUID = 6241161656154797719L;
 
-	private Window frame;
+	private final Window frame;
 
 	private JPanel contentPane;
 
@@ -41,9 +41,9 @@ public class ProgressBar extends JFrame {
 	// continue while true
 	private boolean m_con = true; 
 
-	public ProgressBar(Window w) {
+	public ProgressBar(final Window w) {
 		super("Connecting...");
-		URL url = SpriteStore.get().getResourceURL(
+		final URL url = SpriteStore.get().getResourceURL(
 				ClientGameConfiguration.get("GAME_ICON"));
 		setIconImage(new ImageIcon(url).getImage());
 		this.frame = w;
@@ -54,7 +54,7 @@ public class ProgressBar extends JFrame {
 		this.setLocationRelativeTo(frame);
 		try {
 			this.setAlwaysOnTop(true);
-		} catch (AccessControlException e) {
+		} catch (final AccessControlException e) {
 			// ignore it
 		}
 	}
@@ -74,7 +74,7 @@ public class ProgressBar extends JFrame {
 		contentPane.add(m_progressBar);
 	}
 
-	public void setTotalTimeEstimate(int time) {
+	public void setTotalTimeEstimate(final int time) {
 		m_stepSize = time / 5250;
 	}
 
@@ -90,7 +90,7 @@ public class ProgressBar extends JFrame {
 						Thread.sleep(m_sleepTime);
 						counter += m_stepSize * m_stepSizeMultiplier;
 
-						Runnable updateRunner = new Runnable() {
+						final Runnable updateRunner = new Runnable() {
 
 							public void run() {
 								m_progressBar.setValue(counter);
@@ -103,7 +103,7 @@ public class ProgressBar extends JFrame {
 							m_stepSizeMultiplier = 1;
 						}
 						m_stepCounter--;
-					} catch (InterruptedException ie) {
+					} catch (final InterruptedException ie) {
 					}
 				}
 				ProgressBar.this.dispose();

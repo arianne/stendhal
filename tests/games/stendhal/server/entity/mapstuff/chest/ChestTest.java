@@ -33,7 +33,7 @@ public class ChestTest {
 
 	@Test(expected = SlotIsFullException.class)
 	public final void testSize() {
-		Chest ch = new Chest();
+		final Chest ch = new Chest();
 		assertEquals(0, ch.size());
 		for (int i = 0; i < 30; i++) {
 			ch.add(new PassiveEntity() {
@@ -46,7 +46,7 @@ public class ChestTest {
 
 	@Test
 	public final void testOpen() {
-		Chest ch = new Chest();
+		final Chest ch = new Chest();
 		assertFalse(ch.isOpen());
 		ch.open();
 
@@ -57,12 +57,12 @@ public class ChestTest {
 
 	@Test
 	public final void testOnUsed() {
-		Chest ch = new Chest();
+		final Chest ch = new Chest();
 		assertFalse(ch.isOpen());
 		ch.onUsed(new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 			}
 
 			@Override
@@ -75,7 +75,7 @@ public class ChestTest {
 		ch.onUsed(new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 			}
 
 			@Override

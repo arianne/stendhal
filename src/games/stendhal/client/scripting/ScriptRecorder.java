@@ -13,11 +13,11 @@ import java.io.PrintStream;
  */
 public class ScriptRecorder {
 
-	private String classname;
+	private final String classname;
 
-	private String filename;
+	private final String filename;
 
-	private PrintStream ps;
+	private final PrintStream ps;
 
 	private long lastTimestamp;
 
@@ -29,7 +29,7 @@ public class ScriptRecorder {
 	 * @throws FileNotFoundException
 	 *             if the file cannot be created
 	 */
-	public ScriptRecorder(String classname) throws FileNotFoundException {
+	public ScriptRecorder(final String classname) throws FileNotFoundException {
 		this.classname = classname;
 		filename = System.getProperty("java.io.tmpdir") + "/" + classname
 				+ ".java";
@@ -62,7 +62,7 @@ public class ScriptRecorder {
 	 * @param text
 	 *            command to record
 	 */
-	public void recordChatLine(String text) {
+	public void recordChatLine(final String text) {
 
 		// ignore recording related commands
 		if (text.startsWith("/record")) {
@@ -70,8 +70,8 @@ public class ScriptRecorder {
 		}
 
 		// write sleep command (and add a paragraph if the wait time was large
-		long thisTimestamp = System.currentTimeMillis();
-		long diff = thisTimestamp - lastTimestamp;
+		final long thisTimestamp = System.currentTimeMillis();
+		final long diff = thisTimestamp - lastTimestamp;
 		if (diff > 5000) {
 			ps.println("");
 			if (diff > 60000) {

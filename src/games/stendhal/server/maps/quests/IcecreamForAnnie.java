@@ -41,7 +41,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	// The delay between repeating quests is 60 minutes
 	private static final int REQUIRED_MINUTES = 30;
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -50,7 +50,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc = new SpeakerNPC("Annie Jones") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(44, 90));
 				nodes.add(new Node(44, 86));
 				nodes.add(new Node(42, 86));
@@ -62,7 +62,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							npc.say("Hello, my name is Annie. I am five years old.");
 						} else if (player.getQuest(QUEST_SLOT).equals("start")) {
@@ -93,7 +93,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 								npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
 								npc.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -107,14 +107,14 @@ public class IcecreamForAnnie extends AbstractQuest {
 								// Split the time from the word eating 
 								// tokens now is like an array with 'eating' in tokens[0] and
 								// the time is in tokens[1]. so we use just tokens[1]
-								String[] tokens = player.getQuest(QUEST_SLOT).split(";"); 
+								final String[] tokens = player.getQuest(QUEST_SLOT).split(";"); 
 	
-								long delayInMilliseconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+								final long delayInMilliseconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 																			
 								// timeRemaining is ''time when quest was done +
 								// delay - time now''
 								// if this is > 0, she's still full
-								long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliseconds)
+								final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliseconds)
 										- System.currentTimeMillis();
 								if (timeRemaining > 0L) {
 									npc.say("I've had too much icecream. I feel sick.");
@@ -155,14 +155,14 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					    if (player.drop("icecream")) {
 						        npc.say("Thank you EVER so much! You are very kind. Here, take this present.");
 					        	player.setQuest(QUEST_SLOT, "eating;"
 								+ System.currentTimeMillis());
 							player.addKarma(10.0);
 							player.addXP(500);
-							Item item = SingletonRepository.getEntityManager()
+							final Item item = SingletonRepository.getEntityManager()
 										.getItem("present");
 							player.equip(item, true);
 					    } else {

@@ -86,36 +86,36 @@ public class EntityViewFactory { // implements EntityViewFactory {
 	 * 
 	 * @return The corresponding view, or <code>null</code>.
 	 */
-	public EntityView create(Entity entity) {
-		Class< ? extends Entity> entityClass = entity.getClass();
-		Class< ? extends EntityView> viewClass = map.get(entityClass);
+	public EntityView create(final Entity entity) {
+		final Class< ? extends Entity> entityClass = entity.getClass();
+		final Class< ? extends EntityView> viewClass = map.get(entityClass);
 
 		if (viewClass == null) {
 			return null;
 		}
 
 		try {
-			Constructor< ? extends EntityView> cns = viewClass
+			final Constructor< ? extends EntityView> cns = viewClass
 					.getConstructor(entity.getClass());
-			EntityView view = cns.newInstance(entity);
+			final EntityView view = cns.newInstance(entity);
 
 			return view;
-		} catch (SecurityException e) {
+		} catch (final SecurityException e) {
 
 			logger.error(e);
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 
 			logger.error(e);
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 
 			logger.error(e);
-		} catch (InstantiationException e) {
+		} catch (final InstantiationException e) {
 
 			logger.error(e);
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 
 			logger.error(e);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 
 			logger.error(e);
 		}
@@ -174,8 +174,8 @@ public class EntityViewFactory { // implements EntityViewFactory {
 	 * @param viewClass
 	 *            The entity view class.
 	 */
-	private void register(Class< ? extends Entity> entityClass,
-			Class< ? extends EntityView> viewClass) {
+	private void register(final Class< ? extends Entity> entityClass,
+			final Class< ? extends EntityView> viewClass) {
 		map.put(entityClass, viewClass);
 	}
 }

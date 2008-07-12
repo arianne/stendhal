@@ -18,7 +18,7 @@ public class NameAction implements ActionListener {
 	 * Registers the "name" action handler.
 	 */
 	public static void register() {
-		NameAction name = new NameAction();
+		final NameAction name = new NameAction();
 		CommandCenter.register("name", name);
 	}
 
@@ -27,16 +27,16 @@ public class NameAction implements ActionListener {
 	 * @param player 
 	 * @param action 
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		String curName = action.get("target");
 		String newName = action.get("args");
 
-		if (newName == null || newName.length() == 0) {
+		if ((newName == null) || (newName.length() == 0)) {
 			player.sendPrivateText("Please issue the old and the new name.");
 			return;
 		}
 
-		List<DomesticAnimal> animals = player.getAnimals();
+		final List<DomesticAnimal> animals = player.getAnimals();
 
 		if (animals.isEmpty()) {
     		player.sendPrivateText("You don't own any " + curName);
@@ -49,7 +49,7 @@ public class NameAction implements ActionListener {
 				if (animal != null) {
 					if (animal.getTitle().equalsIgnoreCase(curName)) {
 						// remove quotes, if present
-						if (newName.charAt(0) == '\'' && newName.charAt(newName.length() - 1) == '\'') {
+						if ((newName.charAt(0) == '\'') && (newName.charAt(newName.length() - 1) == '\'')) {
 							newName = newName.substring(1, newName.length() - 1);
 						}
 
@@ -61,7 +61,7 @@ public class NameAction implements ActionListener {
 							if (newName.length() > 20) {
 								player.sendPrivateText("The new name of your pet must not be longer than 20 characters.");
 							} else {
-								String oldName = animal.getTitle();
+								final String oldName = animal.getTitle();
 
 								animal.setTitle(newName);
 
@@ -81,10 +81,10 @@ public class NameAction implements ActionListener {
     			} else {
         			// see if we can move the word separator one space to the
 					// right to search for a pet name
-    				int idxSpace = newName.indexOf(' ');
+    				final int idxSpace = newName.indexOf(' ');
 
     				if (idxSpace != -1) {
-    					int idxLastSpace = newName.lastIndexOf(' ', idxSpace);
+    					final int idxLastSpace = newName.lastIndexOf(' ', idxSpace);
     					curName += " " + newName.substring(0, idxSpace);
     					newName = newName.substring(idxLastSpace + 1);
     				} else {

@@ -30,7 +30,7 @@ class Creature2DView extends RPEntity2DView {
 	/**
 	 * The entity this view is for.
 	 */
-	private Creature creature;
+	private final Creature creature;
 
 	/** the patrolpath. */
 	private List<Node> patrolPath;
@@ -58,16 +58,16 @@ class Creature2DView extends RPEntity2DView {
 	//
 
 	public List<Node> decodePath(final String token) {
-		String[] values = token.replace(',', ' ').replace('(', ' ').replace(
+		final String[] values = token.replace(',', ' ').replace('(', ' ').replace(
 				')', ' ').replace('[', ' ').replace(']', ' ').split("\\s+");
-		List<Node> list = new ArrayList<Node>();
+		final List<Node> list = new ArrayList<Node>();
 
 		int x = 0;
 		int pass = 1;
 
-		for (String value : values) {
+		for (final String value : values) {
 			if (value.length() > 0) {
-				int val = Integer.parseInt(value);
+				final int val = Integer.parseInt(value);
 				if (pass % 2 == 0) {
 					list.add(new Node(x, val));
 				} else {
@@ -81,11 +81,11 @@ class Creature2DView extends RPEntity2DView {
 	}
 
 	protected void drawPath(final Graphics2D g2d, final List<Node> path,
-			final int delta, IGameScreen gameScreen) {
+			final int delta, final IGameScreen gameScreen) {
 		Point p1 = gameScreen.convertWorldToScreenView(getX(), getY());
 
-		for (Node node : path) {
-			Point p2 = gameScreen.convertWorldToScreenView(node.x, node.y);
+		for (final Node node : path) {
+			final Point p2 = gameScreen.convertWorldToScreenView(node.x, node.y);
 
 			g2d
 					.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y
@@ -167,8 +167,8 @@ class Creature2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(Graphics2D g2d, int x, int y, int width, int height,
-			IGameScreen gameScreen) {
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height,
+			final IGameScreen gameScreen) {
 
 		super.draw(g2d, x, y, width, height, gameScreen);
 
@@ -239,8 +239,8 @@ class Creature2DView extends RPEntity2DView {
 	//
 
 	private static class Node {
-		private int x;
-		private int y;
+		private final int x;
+		private final int y;
 
 		public Node(final int x, final int y) {
 			this.x = x;

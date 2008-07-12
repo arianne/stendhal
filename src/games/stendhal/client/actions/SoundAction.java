@@ -20,11 +20,11 @@ class SoundAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		String command = params[0];
+	public boolean execute(final String[] params, final String remainder) {
+		final String command = params[0];
 
 		if (command.equals("mute")) {
-			String param = params[1];
+			final String param = params[1];
 
 			WtWindowManager.getInstance().setProperty("sound.mute", param);
 			SoundMaster.setMute(param.equals("on"));
@@ -34,7 +34,7 @@ class SoundAction implements SlashAction {
 
 			try {
 				vol = Integer.parseInt(params[1]);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				vol = -1;
 			}
 

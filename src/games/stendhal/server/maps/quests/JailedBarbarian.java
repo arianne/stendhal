@@ -53,19 +53,19 @@ import java.util.Arrays;
  	private static final String QUEST_SLOT = "jailedbarb";
  	
  	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 	
 	private void step1() {
-		SpeakerNPC npc = npcs.get("Lorenz");	
+		final SpeakerNPC npc = npcs.get("Lorenz");	
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							npc.say("I need some help to escape from this prison. These ugly Amazonesses! Can you help me please?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -88,7 +88,7 @@ import java.util.Arrays;
 	}
 	
 	private void step2() {
-	SpeakerNPC npc = npcs.get("Lorenz");	
+	final SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "scythe",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -96,7 +96,7 @@ import java.util.Arrays;
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("scythe");
 					player.addKarma(10);
 					player.addXP(1000);
@@ -114,14 +114,14 @@ import java.util.Arrays;
 	}
 	
 	private void step3() {
-	SpeakerNPC npc = npcs.get("Princess Esclara");
+	final SpeakerNPC npc = npcs.get("Princess Esclara");
 	
 		npc.add(ConversationStates.ATTENDING, "Lorenz",
 				new QuestInStateCondition(QUEST_SLOT, "capture"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!");
 					player.setQuest(QUEST_SLOT, "princess");
 				};
@@ -134,14 +134,14 @@ import java.util.Arrays;
 	}
 	
 	private void step4() {
-	SpeakerNPC npc = npcs.get("Lorenz");
+	final SpeakerNPC npc = npcs.get("Lorenz");
 	
 		npc.add(ConversationStates.ATTENDING, "tunnel",
 				new QuestInStateCondition(QUEST_SLOT, "princess"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.");
 					player.setQuest(QUEST_SLOT, "egg");
 				};
@@ -149,7 +149,7 @@ import java.util.Arrays;
 	}
 	
 	private void step5() {
-	SpeakerNPC npc = npcs.get("Lorenz");	
+	final SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "egg",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "egg"),
@@ -157,7 +157,7 @@ import java.util.Arrays;
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("egg");
 					player.addKarma(10);
 					player.addXP(1000);
@@ -180,14 +180,14 @@ import java.util.Arrays;
 	}
 	
 	private void step6() {
-	SpeakerNPC npc = npcs.get("Princess Ylflia");
+	final SpeakerNPC npc = npcs.get("Princess Ylflia");
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed", "Lorenz"),
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.");
 					player.setQuest(QUEST_SLOT, "spoken");
 				};
@@ -201,14 +201,14 @@ import java.util.Arrays;
 	}
 
 	private void step7() {
-	SpeakerNPC npc = npcs.get("Lorenz");
+	final SpeakerNPC npc = npcs.get("Lorenz");
 	
 		npc.add(ConversationStates.ATTENDING, "greetings",
 				new QuestInStateCondition(QUEST_SLOT, "spoken"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !");
 					player.setQuest(QUEST_SLOT, "armor");
 				};
@@ -216,7 +216,7 @@ import java.util.Arrays;
 	}
 	
 	private void step8() {
-	SpeakerNPC npc = npcs.get("Lorenz");	
+	final SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "armor",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "armor"),
@@ -224,10 +224,10 @@ import java.util.Arrays;
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("barbarian armor");
-					 StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
-					int goldamount = 20;
+					 final StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
+					final int goldamount = 20;
 					gold.setQuantity(goldamount);
 					player.equip(gold, true);
 					player.addKarma(15);

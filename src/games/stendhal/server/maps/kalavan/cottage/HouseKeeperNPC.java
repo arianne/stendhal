@@ -26,16 +26,16 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Granny Graham") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Granny Graham") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(4, 4));
 				nodes.add(new Node(12, 4));
 				nodes.add(new Node(12, 6));
@@ -51,11 +51,11 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 				addQuest("I have such a headache and little Annie shrieking every time she goes down the slide doesn't help. Maybe you could give her something to keep her occupied? ... like a gag ...");
 				addGoodbye("Bye now.");
 
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("milk", 1);
 				requiredResources.put("honey", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("granny_brew_tea",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("granny_brew_tea",
 						"brew", "tea", requiredResources, 3 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

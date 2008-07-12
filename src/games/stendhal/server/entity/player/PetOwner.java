@@ -25,19 +25,19 @@ class PetOwner {
 	 */
 	protected static final String ATTR_SHEEP = "sheep";
 	
-	private Player player;
+	private final Player player;
 
-	private PlayerSheepManager playerSheepManager;
-	private PlayerPetManager playerPetManager;
+	private final PlayerSheepManager playerSheepManager;
+	private final PlayerPetManager playerPetManager;
 
 
-	public PetOwner(Player player) {
+	public PetOwner(final Player player) {
 		this.player = player;
 		playerSheepManager = new PlayerSheepManager(player);
 		playerPetManager = new PlayerPetManager(player);
 	}
 	
-	public void removeSheep(Sheep sheep) {
+	public void removeSheep(final Sheep sheep) {
 		if (sheep != null) {
 			sheep.setOwner(null);
 		}
@@ -49,7 +49,7 @@ class PetOwner {
 		}
 	}
 
-	public void removePet(Pet pet) {
+	public void removePet(final Pet pet) {
 		if (pet != null) {
 			pet.setOwner(null);
 		}
@@ -75,7 +75,7 @@ class PetOwner {
 	 * @param pet
 	 *            The pet.
 	 */
-	public void setPet(Pet pet) {
+	public void setPet(final Pet pet) {
 		player.put(ATTR_PET, pet.getID().getObjectID());
 		pet.setOwner(player);
 	}
@@ -86,7 +86,7 @@ class PetOwner {
 	 * @param sheep
 	 *            The sheep.
 	 */
-	public void setSheep(Sheep sheep) {
+	public void setSheep(final Sheep sheep) {
 		player.put(ATTR_SHEEP, sheep.getID().getObjectID());
 		sheep.setOwner(player);
 	}
@@ -101,7 +101,7 @@ class PetOwner {
 			try {
 				return (Sheep) SingletonRepository.getRPWorld().get(
 						new RPObject.ID(player.getInt(ATTR_SHEEP), player.get("zoneid")));
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				logger.error("Pre 1.00 Marauroa sheep bug. (player = "
 						+ player.getName() + ")", e);
 
@@ -128,7 +128,7 @@ class PetOwner {
 			} else {
 				return null;
 			}
-		} catch (ClassCastException e) {
+		} catch (final ClassCastException e) {
 			player.remove(ATTR_PET);
 			logger.error("removed pets attribute" + e);
 			return null;
@@ -136,7 +136,7 @@ class PetOwner {
 	}
 
 	public void destroy() {
-		Sheep sheep = player.getSheep();
+		final Sheep sheep = player.getSheep();
 
 		if (sheep != null) {
 			sheep.getZone().remove(sheep);
@@ -152,7 +152,7 @@ class PetOwner {
 			}
 		}
 
-		Pet pet = player.getPet();
+		final Pet pet = player.getPet();
 
 		if (pet != null) {
 			pet.getZone().remove(pet);

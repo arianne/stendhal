@@ -53,20 +53,20 @@ public class ImperialPrincess extends AbstractQuest {
 	private static final String QUEST_SLOT = "imperial_princess";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
 
-		SpeakerNPC npc = npcs.get("Princess Ylflia");
+		final SpeakerNPC npc = npcs.get("Princess Ylflia");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("The trapped creatures looked much better last time I dared venture down to the basement, thank you!");
 
@@ -86,7 +86,7 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("I need "
 								+ Integer.toString(1 + player.getLevel()
 										/ ARANDULA_DIVISOR)
@@ -108,7 +108,7 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						// store the current level incase it increases before
 						// she see them next.
 						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
@@ -135,7 +135,7 @@ public class ImperialPrincess extends AbstractQuest {
 	}
 
 	private void step_2() {
-		SpeakerNPC npc = npcs.get("Princess Ylflia");
+		final SpeakerNPC npc = npcs.get("Princess Ylflia");
 
 		/** If player has quest and has brought the herbs, get them */
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("herb", "herbs"),
@@ -143,14 +143,14 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						int required_arandula = 1
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final int required_arandula = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ ARANDULA_DIVISOR;
-						int required_antidote = 1
+						final int required_antidote = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ ANTIDOTE_DIVISOR;
-						int required_potion = 1
+						final int required_potion = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ POTION_DIVISOR;
 						if (player.hasQuest(QUEST_SLOT)
@@ -193,7 +193,7 @@ public class ImperialPrincess extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("King Cozart");
+		final SpeakerNPC npc = npcs.get("King Cozart");
 
 		/** Complete the quest by speaking to King */
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,

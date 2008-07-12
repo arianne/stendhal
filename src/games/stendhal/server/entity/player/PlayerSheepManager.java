@@ -5,9 +5,9 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerSheepManager {
-	private Player player;
+	private final Player player;
 
-	PlayerSheepManager(Player player) {
+	PlayerSheepManager(final Player player) {
 		this.player = player;
 	}
 
@@ -16,7 +16,7 @@ public class PlayerSheepManager {
 			player.addSlot(new RPSlot("#flock"));
 		}
 
-		RPSlot slot = player.getSlot("#flock");
+		final RPSlot slot = player.getSlot("#flock");
 		slot.clear();
 
 		/*
@@ -48,10 +48,10 @@ public class PlayerSheepManager {
 	 */
 	public Sheep retrieveSheep() {
 		if (player.hasSlot("#flock")) {
-			RPSlot slot = player.getSlot("#flock");
+			final RPSlot slot = player.getSlot("#flock");
 
 			if (slot.size() > 0) {
-				RPObject object = slot.getFirst();
+				final RPObject object = slot.getFirst();
 				slot.remove(object.getID());
 				player.removeSlot("#flock");
 

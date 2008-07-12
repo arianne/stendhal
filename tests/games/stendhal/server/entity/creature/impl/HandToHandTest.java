@@ -34,13 +34,13 @@ public class HandToHandTest {
 	
 	@Test
 	public void testCanAttackNow() {
-		HandToHand hth = new HandToHand();
-		Creature creature = new Creature();	
+		final HandToHand hth = new HandToHand();
+		final Creature creature = new Creature();	
 		assertFalse("no target yet", hth.canAttackNow(creature));
-		RPEntity victim = new RPEntity() {
+		final RPEntity victim = new RPEntity() {
 
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -64,15 +64,15 @@ public class HandToHandTest {
 	
 	@Test
 	public void testCanAttackNowBigCreature() {
-		StendhalRPZone zone = new StendhalRPZone("hthtest");
-		HandToHand hth = new HandToHand();
-		Creature creature = SingletonRepository.getEntityManager().getCreature("balrog");
+		final StendhalRPZone zone = new StendhalRPZone("hthtest");
+		final HandToHand hth = new HandToHand();
+		final Creature creature = SingletonRepository.getEntityManager().getCreature("balrog");
 		assertNotNull(creature);
 		assertThat(creature.getWidth(), is(11.0));
 		assertThat(creature.getHeight(), is(12.0));
 		creature.setPosition(10, 10);
 		assertFalse("no target yet", hth.canAttackNow(creature));
-		RPEntity victim = PlayerTestHelper.createPlayer("bob");
+		final RPEntity victim = PlayerTestHelper.createPlayer("bob");
 		victim.setHP(1);
 		zone.add(creature);
 		zone.add(victim);
@@ -102,19 +102,19 @@ public class HandToHandTest {
 
 	@Test
 	public void testHasValidTarget() {
-		StendhalRPZone zone = new StendhalRPZone("hthtest");
+		final StendhalRPZone zone = new StendhalRPZone("hthtest");
 		
-		HandToHand hth = new HandToHand();
-		Creature creature = new Creature();	
+		final HandToHand hth = new HandToHand();
+		final Creature creature = new Creature();	
 		assertFalse("is not attacking", hth.hasValidTarget(creature));
-		RPEntity victim = new RPEntity() {
+		final RPEntity victim = new RPEntity() {
 		
 			@Override
 			public boolean isInvisibleToCreatures() {
 				return mockinvisible;
 			}
 			@Override
-			protected void dropItemsOn(Corpse corpse) {
+			protected void dropItemsOn(final Corpse corpse) {
 				
 			}
 

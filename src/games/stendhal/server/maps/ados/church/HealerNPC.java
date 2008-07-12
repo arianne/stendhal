@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class HealerNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 	    npc.addJob("Long ago I was a priest of this church. But my #ideas were not approved of by all."); 
 	    npc.addReply("ideas",
 		        "I have read many texts and learnt of strange ways. My healing powers became so strong I can now #concoct a special #'mega potion' for warriors like you.");
@@ -29,10 +29,10 @@ public class HealerNPC extends SpeakerNPCFactory {
 
 		// Valo makes mega potions if you bring giant heart and money
 		// (uses sorted TreeMap instead of HashMap)
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("money", 20);
 		requiredResources.put("giant heart", 1);
-		ProducerBehaviour behaviour = new ProducerBehaviour("valo_concoct_potion",
+		final ProducerBehaviour behaviour = new ProducerBehaviour("valo_concoct_potion",
 				"concoct", "mega potion", requiredResources, 2 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

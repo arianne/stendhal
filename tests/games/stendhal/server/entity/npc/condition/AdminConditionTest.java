@@ -14,21 +14,21 @@ public class AdminConditionTest extends PlayerTestHelper {
 
 	@Test
 	public void testConstructor() throws Throwable {
-		AdminCondition adminCondition = new AdminCondition();
+		final AdminCondition adminCondition = new AdminCondition();
 		assertEquals("adminCondition.hashCode()", 5629,
 				adminCondition.hashCode());
 	}
 
 	@Test
 	public void testConstructor1() throws Throwable {
-		AdminCondition adminCondition = new AdminCondition(100);
+		final AdminCondition adminCondition = new AdminCondition(100);
 		assertEquals("adminCondition.hashCode()", 729,
 				adminCondition.hashCode());
 	}
 
 	@Test
 	public void testEquals() throws Throwable {
-		AdminCondition obj = new AdminCondition(100);
+		final AdminCondition obj = new AdminCondition(100);
 		assertTrue(obj.equals(obj));
 		assertTrue(new AdminCondition().equals(new AdminCondition()));
 		assertFalse(new AdminCondition(100).equals(new AdminCondition(1000)));

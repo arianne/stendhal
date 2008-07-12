@@ -66,14 +66,14 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		Class< ? > clazz;
 		Object obj;
 
-		String classNameTemp = getClassName();
+		final String classNameTemp = getClassName();
 
 		/*
 		 * Load class
 		 */
 		try {
 			clazz = Class.forName(classNameTemp);
-		} catch (ClassNotFoundException ex) {
+		} catch (final ClassNotFoundException ex) {
 			logger.error("Unable to find zone configurator: " + classNameTemp);
 
 			return;
@@ -84,12 +84,12 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 */
 		try {
 			obj = clazz.newInstance();
-		} catch (InstantiationException ex) {
+		} catch (final InstantiationException ex) {
 			logger.error("Error creating zone configurator: " + classNameTemp,
 					ex);
 
 			return;
-		} catch (IllegalAccessException ex) {
+		} catch (final IllegalAccessException ex) {
 			logger.error("Error accessing zone configurator: " + classNameTemp,
 					ex);
 

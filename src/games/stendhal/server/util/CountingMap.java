@@ -17,9 +17,9 @@ public class CountingMap<V> implements Serializable,
 		Iterable<Map.Entry<String, V>> {
 
 	private static final long serialVersionUID = -4142274943695729582L;
-	private Map<V, String> map = new HashMap<V, String>();
-	private Map<String, V> mapKeys = new TreeMap<String, V>();
-	private String prefix;
+	private final Map<V, String> map = new HashMap<V, String>();
+	private final Map<String, V> mapKeys = new TreeMap<String, V>();
+	private final String prefix;
 	private int counter = 0;
 
 	/**
@@ -28,7 +28,7 @@ public class CountingMap<V> implements Serializable,
 	 * @param prefix
 	 *            prefix
 	 */
-	public CountingMap(String prefix) {
+	public CountingMap(final String prefix) {
 		this.prefix = prefix;
 	}
 
@@ -39,7 +39,7 @@ public class CountingMap<V> implements Serializable,
 	 *            entry
 	 * @return key
 	 */
-	public String add(V value) {
+	public String add(final V value) {
 		String key = map.get(value);
 		if (key == null) {
 			key = prefix + counter;

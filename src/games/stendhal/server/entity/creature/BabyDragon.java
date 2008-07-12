@@ -65,11 +65,11 @@ public class BabyDragon extends Pet {
 
 	public static void generateRPClass() {
 		try {
-			RPClass baby_dragon = new RPClass("baby_dragon");
+			final RPClass baby_dragon = new RPClass("baby_dragon");
 			baby_dragon.isA("pet");
 			// baby_dragon.add("weight", Type.BYTE);
 			// baby_dragon.add("eat", Type.FLAG);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -85,7 +85,7 @@ public class BabyDragon extends Pet {
 	 * Creates a new baby dragon that may be owned by a player.
 	 * @param owner The player who should own the baby dragon
 	 */
-	public BabyDragon(Player owner) {
+	public BabyDragon(final Player owner) {
 		super(owner);
 		setUp();
 		setRPClass("baby_dragon");
@@ -108,7 +108,7 @@ public class BabyDragon extends Pet {
 	 * @param owner
 	 *            The player who should own the baby dragon
 	 */
-	public BabyDragon(RPObject object, Player owner) {
+	public BabyDragon(final RPObject object, final Player owner) {
 		
 		super(object, owner);
 		

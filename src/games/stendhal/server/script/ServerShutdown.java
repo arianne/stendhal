@@ -19,7 +19,7 @@ public class ServerShutdown extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		String text = admin.getTitle()
+		final String text = admin.getTitle()
 				+ " started shutdown of the server.";
 
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);

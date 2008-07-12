@@ -51,20 +51,20 @@ public class IntroducePlayers extends AbstractQuest {
 	private static final String QUEST_SLOT = "introduce_players";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("TadFirstChat")) {
 			res.add("FIRST_CHAT");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs",
 				"potion", "done")) {
 			res.add("GET_FLASK");
@@ -95,7 +95,7 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Tad");
+		final SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
@@ -163,9 +163,9 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Tad");
+		final SpeakerNPC npc = npcs.get("Tad");
 
-		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new EquipItemAction("money", 10));
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "ilisa"));
@@ -209,14 +209,14 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 
 	private void step_4() {
-		SpeakerNPC npc = npcs.get("Ilisa");
+		final SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "ilisa"), new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
 				ConversationStates.ATTENDING, 
 				"Medicine for #Tad? Didn't he tell you to bring a flask?", null);
 
-		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new DropItemAction("flask"));
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "corpse&herbs"));
@@ -245,14 +245,14 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 
 	private void step_5() {
-		SpeakerNPC npc = npcs.get("Ilisa");
+		final SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING, 
 				"Can you fetch those #herbs for the #medicine?", null);
 
-		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
 		processStep.add(new IncreaseXPAction(50));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "potion"));
@@ -269,7 +269,7 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 
 	private void step_6() {
-		SpeakerNPC npc = npcs.get("Tad");
+		final SpeakerNPC npc = npcs.get("Tad");
 
         // another reminder incase player says task again                                                                                                    
         npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -278,7 +278,7 @@ public class IntroducePlayers extends AbstractQuest {
                 "*cough* I hope #ilisa hurries with my medicine...",
                 null);
 
-		List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
 		processStep.add(new IncreaseXPAction(100));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "done"));
 		

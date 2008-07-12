@@ -17,19 +17,19 @@ public class WikipediaAccessTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void test() {
-		WikipediaAccess access = new WikipediaAccess("Stendhal");
+		final WikipediaAccess access = new WikipediaAccess("Stendhal");
 
 		access.run();
 
 		if (access.getError() != null) {
 			fail("Wikipedia access was not successful: " + access.getError());
 		} else if (access.isFinished()) {
-			if (access.getText() != null && access.getText().length() > 0) {
-				String result = access.getProcessedText();
+			if ((access.getText() != null) && (access.getText().length() > 0)) {
+				final String result = access.getProcessedText();
 
 				 System.out.println(result);
 
-				Matcher<String> henrimariebeyle = allOf(containsString("Marie"), containsString("Henri"), containsString("Beyle"));
+				final Matcher<String> henrimariebeyle = allOf(containsString("Marie"), containsString("Henri"), containsString("Beyle"));
 				assertThat("There should be named the french novelist for the topic Stendhal.", result, henrimariebeyle);
 			} else {
 				fail("Sorry, could not find information on this topic in Wikipedia.");

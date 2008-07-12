@@ -26,7 +26,7 @@ public class StyledJButton extends JButton {
 	/*
 	 * Style used.
 	 */
-	private Style style;
+	private final Style style;
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	/**
@@ -35,7 +35,7 @@ public class StyledJButton extends JButton {
 	 * 
 	 * 
 	 */
-	public StyledJButton(Style style) {
+	public StyledJButton(final Style style) {
 		this.style = style;
 
 		applyStyle(style, this);
@@ -51,10 +51,10 @@ public class StyledJButton extends JButton {
 	 * @param panel the style is to be applied to
 	 * 
 	 */
-	protected void applyStyle(Style style, JButton panel) {
-		Border border = style.getBorder();
-		Font font = style.getFont();
-		Color color = style.getForeground();
+	protected void applyStyle(final Style style, final JButton panel) {
+		final Border border = style.getBorder();
+		final Font font = style.getFont();
+		final Color color = style.getForeground();
 
 		if (border != null) {
 			panel.setBorder(border);
@@ -81,8 +81,8 @@ public class StyledJButton extends JButton {
 	 * 
 	 */
 	@Override
-	protected void paintComponent(Graphics g) {
-		Sprite texture = style.getBackground();
+	protected void paintComponent(final Graphics g) {
+		final Sprite texture = style.getBackground();
 
 		if (texture != null) {
 			int twidth;

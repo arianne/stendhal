@@ -29,7 +29,7 @@ class Corpse2DView extends Entity2DView {
 	/**
 	 * The RP entity this view is for.
 	 */
-	private Corpse corpse;
+	private final Corpse corpse;
 
 	/**
 	 * The corpse height.
@@ -88,8 +88,8 @@ class Corpse2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
-		String clazz = corpse.getEntityClass();
+	protected void buildRepresentation(final IGameScreen gameScreen) {
+		final String clazz = corpse.getEntityClass();
 		String corpseType = corpse.getType();
 
 		if (clazz != null) {
@@ -124,7 +124,7 @@ class Corpse2DView extends Entity2DView {
 			}
 		}
 
-		Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
+		final Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
 
 		width = sprite.getWidth();
 		height = sprite.getHeight();
@@ -251,7 +251,7 @@ class Corpse2DView extends Entity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void release(IGameScreen gameScreen) {
+	public void release(final IGameScreen gameScreen) {
 		if (wtEntityContainer != null) {
 			wtEntityContainer.destroy(gameScreen);
 			wtEntityContainer = null;

@@ -33,7 +33,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) {
+	protected int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
@@ -46,7 +46,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) {
+	protected int getHeight(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
@@ -59,7 +59,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             if the attribute is missing.
 	 */
-	protected int getInterval(ConfigurableFactoryContext ctx) {
+	protected int getInterval(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("interval");
 	}
 
@@ -72,11 +72,11 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
-	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx) {
+	protected boolean getPlayersOnly(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredBoolean("players-only");
 	}
 
-	public Object create(ConfigurableFactoryContext ctx) {
+	public Object create(final ConfigurableFactoryContext ctx) {
 		OccupantArea area;
 
 		area = createArea(ctx);

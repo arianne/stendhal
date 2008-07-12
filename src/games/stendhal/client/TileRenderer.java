@@ -47,9 +47,9 @@ public class TileRenderer extends LayerRenderer {
 	 * 
 	 * @throws ClassNotFoundException
 	 */
-	public void setMapData(InputStream in) throws IOException,
+	public void setMapData(final InputStream in) throws IOException,
 			ClassNotFoundException {
-		LayerDefinition layer = LayerDefinition.decode(in);
+		final LayerDefinition layer = LayerDefinition.decode(in);
 		width = layer.getWidth();
 		height = layer.getHeight();
 
@@ -97,13 +97,13 @@ public class TileRenderer extends LayerRenderer {
 	 *            The view world height.
 	 */
 	@Override
-	public void draw(IGameScreen screen, int x, int y, int w, int h) {
+	public void draw(final IGameScreen screen, int x, int y, final int w, final int h) {
 		if (spriteMap == null) {
 			return;
 		}
 
-		int x2 = Math.min(x + w + 1, getWidth());
-		int y2 = Math.min(y + h + 1, getHeight());
+		final int x2 = Math.min(x + w + 1, getWidth());
+		final int y2 = Math.min(y + h + 1, getHeight());
 
 		if (x > 0) {
 			x--;
@@ -117,8 +117,8 @@ public class TileRenderer extends LayerRenderer {
 			y = 0;
 		}
 
-		Graphics g = screen.expose();
-		Point p = screen.convertWorldToScreenView(x, y);
+		final Graphics g = screen.expose();
+		final Point p = screen.convertWorldToScreenView(x, y);
 
 		int sy = p.y;
 

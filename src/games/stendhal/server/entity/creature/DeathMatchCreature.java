@@ -22,12 +22,12 @@ public class DeathMatchCreature extends Creature {
 	 * @param copy
 	 *            creature to wrap
 	 */
-	public DeathMatchCreature(Creature copy) {
+	public DeathMatchCreature(final Creature copy) {
 		super(copy);
 	}
 
 	@Override
-	protected void addPlayersToReward(Entity player) {
+	protected void addPlayersToReward(final Entity player) {
 		// don't reward the other attackers
 	}
 
@@ -42,18 +42,18 @@ public class DeathMatchCreature extends Creature {
 	 * @param player
 	 *            Player to reward
 	 */
-	public void setPlayerToReward(Player player) {
+	public void setPlayerToReward(final Player player) {
 		this.playerName = player.getName();
 	}
 
 	@Override
-	protected void rewardKillers(int oldXP) {
-		Player player =  SingletonRepository.getRuleProcessor().getPlayer(playerName);
+	protected void rewardKillers(final int oldXP) {
+		final Player player =  SingletonRepository.getRuleProcessor().getPlayer(playerName);
 		if (player == null) {
 			return;
 		}
 
-		Integer damageReceivedByPlayer = damageReceived.get(player);
+		final Integer damageReceivedByPlayer = damageReceived.get(player);
 		if (damageReceivedByPlayer != null) {
 			points = player.getLevel()
 					* (damageReceivedByPlayer / totalDamageReceived);

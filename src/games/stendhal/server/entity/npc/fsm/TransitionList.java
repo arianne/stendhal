@@ -13,7 +13,7 @@ import java.util.Set;
  * @author hendrik
  */
 public class TransitionList {
-	private List<Transition> transitions;
+	private final List<Transition> transitions;
 
 	/**
 	 * Creates a new TransitionList.
@@ -21,7 +21,7 @@ public class TransitionList {
 	 * @param transitions
 	 *            list of transitions
 	 */
-	public TransitionList(List<Transition> transitions) {
+	public TransitionList(final List<Transition> transitions) {
 		this.transitions = transitions;
 	}
 
@@ -31,8 +31,8 @@ public class TransitionList {
 	 * @return Set of source states
 	 */
 	public Set<Integer> getSourceStates() {
-		Set<Integer> res = new HashSet<Integer>();
-		for (Transition transition : transitions) {
+		final Set<Integer> res = new HashSet<Integer>();
+		for (final Transition transition : transitions) {
 			res.add(Integer.valueOf(transition.getState()));
 		}
 		return res;
@@ -45,9 +45,9 @@ public class TransitionList {
 	 *            source state
 	 * @return set of triggers
 	 */
-	public Set<Expression> getTriggersForState(int state) {
-		Set<Expression> res = new HashSet<Expression>();
-		for (Transition transition : transitions) {
+	public Set<Expression> getTriggersForState(final int state) {
+		final Set<Expression> res = new HashSet<Expression>();
+		for (final Transition transition : transitions) {
 			if (transition.getState() == state) {
 				res.add(transition.getTrigger());
 			}
@@ -64,10 +64,10 @@ public class TransitionList {
 	 *            trigger
 	 * @return list of transitions
 	 */
-	public List<Transition> getTransitionsForStateAndTrigger(int state,
-			Expression trigger) {
-		List<Transition> res = new LinkedList<Transition>();
-		for (Transition transition : transitions) {
+	public List<Transition> getTransitionsForStateAndTrigger(final int state,
+			final Expression trigger) {
+		final List<Transition> res = new LinkedList<Transition>();
+		for (final Transition transition : transitions) {
 			if ((transition.getState() == state)
 					&& (transition.getTrigger().matches(trigger))) {
 				res.add(transition);

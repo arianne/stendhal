@@ -12,7 +12,7 @@ import java.util.List;
  * @author Martin Fuchs
  */
 public abstract class GhostNPCBase extends SpeakerNPC {
-	public GhostNPCBase(String name) {
+	public GhostNPCBase(final String name) {
 		super(name);
 	}
 
@@ -32,15 +32,15 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 	 */
 	private static class GhostGreetingAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			if (!player.hasQuest("find_ghosts")) {
 				player.setQuest("find_ghosts", "looking:said");
 			}
-			String npcQuestText = player.getQuest("find_ghosts");
-			String[] npcDoneText = npcQuestText.split(":");
-			String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
-			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
-			List<String> list = Arrays.asList(lookStr.split(";"));
+			final String npcQuestText = player.getQuest("find_ghosts");
+			final String[] npcDoneText = npcQuestText.split(":");
+			final String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
+			final String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
+			final List<String> list = Arrays.asList(lookStr.split(";"));
 			if (list.contains(npc.getName()) || player.isQuestCompleted("find_ghosts")) {
 				npc.say("Please, let the dead rest in peace.");
 			} else {

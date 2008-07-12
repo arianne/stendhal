@@ -41,12 +41,12 @@ public class stendhal extends Thread {
 	static {
 		try {
 			System.getProperty("user.home");
-		} catch (AccessControlException e) {
+		} catch (final AccessControlException e) {
 			WEB_START_SANDBOX = true;
 		}
 
 		/** We set the main game folder to the game name */
-		String gameName = ClientGameConfiguration.get("GAME_NAME");
+		final String gameName = ClientGameConfiguration.get("GAME_NAME");
 		STENDHAL_FOLDER = "/" + gameName.toLowerCase() + "/";
 	}
 
@@ -68,7 +68,7 @@ public class stendhal extends Thread {
 	 * @param args
 	 *            command line arguments
 	 */
-	private static void parseCommandlineArguments(String[] args) {
+	private static void parseCommandlineArguments(final String[] args) {
 		String size = null;
 		int i = 0;
 
@@ -116,7 +116,7 @@ public class stendhal extends Thread {
 	 * @return StendhalClient
 	 */
 	private static StendhalClient startClient() {
-		StendhalClient client = StendhalClient.get();
+		final StendhalClient client = StendhalClient.get();
 		new StendhalFirstScreen(client);
 		return client;
 	}
@@ -128,7 +128,7 @@ public class stendhal extends Thread {
 		while (!doLogin) {
 			try {
 				Thread.sleep(200);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				// simply ignore it
 			}
 		}
@@ -141,8 +141,8 @@ public class stendhal extends Thread {
 	 *            StendhalClient
 	 * @param gameScreen 
 	 */
-	private static void startGameGUI(StendhalClient client, IGameScreen gameScreen) {
-		j2DClient locclient = new j2DClient(client,gameScreen);
+	private static void startGameGUI(final StendhalClient client, final IGameScreen gameScreen) {
+		final j2DClient locclient = new j2DClient(client, gameScreen);
 		locclient.initialize();
 		locclient.gameLoop(gameScreen);
 		locclient.cleanup();
@@ -154,22 +154,22 @@ public class stendhal extends Thread {
 	 * @param args
 	 *            command line arguments
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		// get size string
 		parseCommandlineArguments(args);
 		startLogSystem();
 
-		StendhalClient client = startClient();
+		final StendhalClient client = startClient();
 		waitForLogin();
 		startSoundMaster();
 		
-		startGameGUI(client,GameScreen.get());
+		startGameGUI(client, GameScreen.get());
 	}
 
 	private static void startSoundMaster() {
-		SoundMaster sm = new SoundMaster();
+		final SoundMaster sm = new SoundMaster();
 		sm.init();
-		Thread th = new Thread(sm);
+		final Thread th = new Thread(sm);
 		th.start();
 	}
 }

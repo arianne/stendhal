@@ -20,7 +20,7 @@ import java.util.Map;
  * Inside Semos Tavern - Level 1 (upstairs)
  */
 public class RareWeaponsSellerNPC implements ZoneConfigurator {
-	private ShopList shops = SingletonRepository.getShopList();
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -28,17 +28,17 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMcPegleg(zone);
 	}
 
-	private void buildMcPegleg(StendhalRPZone zone) {
+	private void buildMcPegleg(final StendhalRPZone zone) {
 		// Adding a new NPC that buys some of the stuff that Xin doesn't
-		SpeakerNPC mcpegleg = new SpeakerNPC("McPegleg") {
+		final SpeakerNPC mcpegleg = new SpeakerNPC("McPegleg") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(16, 3));
 				nodes.add(new Node(13, 3));
 				nodes.add(new Node(13, 2));

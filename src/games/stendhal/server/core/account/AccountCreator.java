@@ -16,9 +16,9 @@ import org.apache.log4j.Logger;
  */
 public class AccountCreator {
 	private static Logger logger = Logger.getLogger(AccountCreator.class);
-	private String username;
-	private String password;
-	private String email;
+	private final String username;
+	private final String password;
+	private final String email;
 
 	/**
 	 * creates a new AccountCreator.
@@ -30,7 +30,7 @@ public class AccountCreator {
 	 * @param email
 	 *            email contact
 	 */
-	public AccountCreator(String username, String password, String email) {
+	public AccountCreator(final String username, final String password, final String email) {
 		this.username = username.trim();
 		this.password = password.trim();
 		this.email = email.trim();
@@ -42,7 +42,7 @@ public class AccountCreator {
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
-		Result result = validate();
+		final Result result = validate();
 		if (result != null) {
 			return new AccountResult(result, username);
 		}
@@ -57,10 +57,10 @@ public class AccountCreator {
 	 *         failed
 	 */
 	private Result validate() {
-		AccountCreationRules rules = new AccountCreationRules(username,
+		final AccountCreationRules rules = new AccountCreationRules(username,
 				password, email);
-		ValidatorList validators = rules.getAllRules();
-		Result result = validators.runValidators();
+		final ValidatorList validators = rules.getAllRules();
+		final Result result = validators.runValidators();
 		return result;
 	}
 
@@ -70,8 +70,8 @@ public class AccountCreator {
 	 * @return Result.OK_CREATED on success
 	 */
 	private AccountResult insertIntoDatabase() {
-		IDatabase database = DatabaseFactory.getDatabase();
-		Transaction trans = database.getTransaction();
+		final IDatabase database = DatabaseFactory.getDatabase();
+		final Transaction trans = database.getTransaction();
 		try {
 			trans.begin();
 
@@ -84,11 +84,11 @@ public class AccountCreator {
 
 			trans.commit();
 			return new AccountResult(Result.OK_CREATED, username);
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			logger.warn("SQL exception while trying to create a new account", e);
 			try {
 				trans.rollback();
-			} catch (SQLException rollbackException) {
+			} catch (final SQLException rollbackException) {
 				logger.error("Rollback failed: ", rollbackException);
 			}
 			return new AccountResult(Result.FAILED_EXCEPTION, username);

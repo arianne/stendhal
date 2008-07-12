@@ -18,7 +18,7 @@ public class TextEvent extends RPEvent {
 	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
-		RPClass rpclass = new RPClass(RPCLASS_NAME);
+		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TEXT, Type.LONG_STRING);
 	}
 
@@ -27,7 +27,7 @@ public class TextEvent extends RPEvent {
 	 *
 	 * @param text Text
 	 */
-	public TextEvent(String text) {
+	public TextEvent(final String text) {
 		super(RPCLASS_NAME);		
 		put(TEXT, text);
 	}

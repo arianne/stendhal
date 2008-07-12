@@ -88,7 +88,7 @@ class Sheep2DView extends DomesticAnimal2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case LEAVE_SHEEP:
-			RPAction rpaction = new RPAction();
+			final RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
 

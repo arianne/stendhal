@@ -51,7 +51,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_dhohr_nuggetcutter";
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Zogfang");
+		final SpeakerNPC npc = npcs.get("Zogfang");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -60,16 +60,16 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
 						}  else if (player.getQuest(QUEST_SLOT).equals("start")) {
 							engine.say("I already asked you to kill Dhohr Nuggetcutter!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
-							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							final long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 								engine.setCurrentState(ConversationStates.ATTENDING);
@@ -83,7 +83,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 					}
 				});
 
-		List<ChatAction> actions = new LinkedList<ChatAction>();
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new StartRecordingKillsAction("Dhohr Nuggetcutter", "mountain dwarf", "mountain elder dwarf", "mountain hero dwarf", "mountain leader dwarf"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -109,7 +109,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 
 	private void step_3() {
 
-		SpeakerNPC npc = npcs.get("Zogfang");
+		final SpeakerNPC npc = npcs.get("Zogfang");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -117,14 +117,14 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.hasKilled("mountain leader dwarf")
 								&& player.hasKilled("Dhohr Nuggetcutter")
 								&& player.hasKilled("mountain elder dwarf")
 								&& player.hasKilled("mountain hero dwarf")
 								&& player.hasKilled("mountain dwarf")) {
 							engine.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
-							Item mithrilnug = SingletonRepository.getEntityManager()
+							final Item mithrilnug = SingletonRepository.getEntityManager()
 									.getItem("mithril nugget");
 							player.equip(mithrilnug, true);
 							player.addKarma(5.0);

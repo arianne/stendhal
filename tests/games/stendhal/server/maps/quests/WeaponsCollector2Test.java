@@ -34,18 +34,18 @@ public class WeaponsCollector2Test {
 
 	@Test
 	public final void testGetSlotName() {
-		WeaponsCollector2 wc = new WeaponsCollector2();
+		final WeaponsCollector2 wc = new WeaponsCollector2();
 		assertEquals("weapons_collector2", wc.getSlotName());
 	}
 
 	@Test
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
-		WeaponsCollector2 wc = new WeaponsCollector2();
+		final WeaponsCollector2 wc = new WeaponsCollector2();
 		wc.addToWorld();
-		SpeakerNPC npc = wc.getNPC();
-		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = wc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player pl = PlayerTestHelper.createPlayer("player");
 
 		// set previous quest to done
 		pl.setQuest("weapons_collector", "done");
@@ -68,12 +68,12 @@ public class WeaponsCollector2Test {
 	@Test
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
-		WeaponsCollector2 wc = new WeaponsCollector2();
+		final WeaponsCollector2 wc = new WeaponsCollector2();
 		wc.init("weaponscollector2_quest");
 		wc.addToWorld();
-		SpeakerNPC npc = wc.getNPC();
-		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final SpeakerNPC npc = wc.getNPC();
+		final Engine en = npc.getEngine();
+		final Player pl = PlayerTestHelper.createPlayer("player");
 
 		// set previous quest to done
 		pl.setQuest("weapons_collector", "done");
@@ -131,7 +131,7 @@ public class WeaponsCollector2Test {
 				"I already have that one. Do you have any other weapon for me?",
 				npc.get("text"));
 
-		for (String cloakName : wc.getNeededItems()) {
+		for (final String cloakName : wc.getNeededItems()) {
 			weapon = new Item(cloakName, "", "", null);
 			pl.getSlot("bag").add(weapon);
 			en.step(pl, cloakName);

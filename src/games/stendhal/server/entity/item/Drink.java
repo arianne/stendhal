@@ -16,8 +16,8 @@ import java.util.Map;
 
 public class Drink extends ConsumableItem {
 
-	public Drink(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Drink(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -27,7 +27,7 @@ public class Drink extends ConsumableItem {
 	 * @param item
 	 *            item to copy
 	 */
-	public Drink(Drink item) {
+	public Drink(final Drink item) {
 		super(item);
 	}
 

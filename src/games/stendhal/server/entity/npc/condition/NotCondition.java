@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class NotCondition extends SpeakerNPC.ChatCondition {
 
-	private SpeakerNPC.ChatCondition condition;
+	private final SpeakerNPC.ChatCondition condition;
 
 	/**
 	 * Creates a new "not"-condition.
@@ -20,12 +20,12 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 	 * @param condition
 	 *            condition which result is to be inversed
 	 */
-	public NotCondition(SpeakerNPC.ChatCondition condition) {
+	public NotCondition(final SpeakerNPC.ChatCondition condition) {
 		this.condition = condition;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return !condition.fire(player, sentence, engine);
 	}
 
@@ -40,7 +40,7 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

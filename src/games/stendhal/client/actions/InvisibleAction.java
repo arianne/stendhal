@@ -18,8 +18,8 @@ class InvisibleAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		RPAction invisible = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction invisible = new RPAction();
 
 		invisible.put("type", "invisible");
 

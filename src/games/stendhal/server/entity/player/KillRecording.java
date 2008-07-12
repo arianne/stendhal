@@ -12,9 +12,9 @@ class KillRecording {
 	private static final String PREFIX_SHARED = "shared.";
 	private static final String PREFIX_SOLO = "solo.";
 	
-	private Player player;
+	private final Player player;
 	
-	public KillRecording(Player player) {
+	public KillRecording(final Player player) {
 		this.player = player;
 	}
 
@@ -25,8 +25,8 @@ class KillRecording {
 	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
-	public boolean hasKilledSolo(String name) {
-		String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name);
+	public boolean hasKilledSolo(final String name) {
+		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name);
 		return MathHelper.parseIntDefault(count, 0) > 0;
 	}
 
@@ -37,9 +37,9 @@ class KillRecording {
 	 * @param  name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
-	public boolean hasKilled(String name) {
-		String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
-		boolean shared = MathHelper.parseIntDefault(count, 0) > 0;
+	public boolean hasKilled(final String name) {
+		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
+		final boolean shared = MathHelper.parseIntDefault(count, 0) > 0;
 		return shared || hasKilledSolo(name);
 	}
 
@@ -50,10 +50,10 @@ class KillRecording {
 	 * @param mode
 	 *            either "solo", "shared", or null.
 	 */
-	private void setKill(String name, String mode) {
-		String key = mode + "." + name;
-		String count = player.getKeyedSlot(KILL_SLOT_NAME, key);
-		int oldValue = MathHelper.parseIntDefault(count, 0);
+	private void setKill(final String name, final String mode) {
+		final String key = mode + "." + name;
+		final String count = player.getKeyedSlot(KILL_SLOT_NAME, key);
+		final int oldValue = MathHelper.parseIntDefault(count, 0);
 		player.setKeyedSlot(KILL_SLOT_NAME, key, Integer.toString(oldValue + 1));
 	}
 
@@ -63,7 +63,7 @@ class KillRecording {
 	 * @param name of the killed entity
 	 * 
 	 */
-	public void setSoloKill(String name) {
+	public void setSoloKill(final String name) {
 		setKill(name, "solo");
 	}
 
@@ -72,7 +72,7 @@ class KillRecording {
 	 * overwrite solo kills of 'name'
 	 * @param name of the killed entity 
 	 */
-	public void setSharedKill(String name) {
+	public void setSharedKill(final String name) {
 		setKill(name, "shared");
 	}
 
@@ -84,7 +84,7 @@ class KillRecording {
 	 * @param name
 	 *            The name of the creature.
 	 */
-	public void removeKill(String name) {
+	public void removeKill(final String name) {
 		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name, null);
 		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name, null);
 	}

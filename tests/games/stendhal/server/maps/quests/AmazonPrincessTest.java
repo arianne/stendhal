@@ -34,12 +34,12 @@ public class AmazonPrincessTest {
 
 	@Before
 	public void setUp() {
-		ZoneConfigurator zoneConf = new PrincessNPC();
+		final ZoneConfigurator zoneConf = new PrincessNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
 		npc = SingletonRepository.getNPCList().get("Princess Esclara");
 		en = npc.getEngine();
 
-		AbstractQuest quest = new AmazonPrincess();
+		final AbstractQuest quest = new AmazonPrincess();
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("player");
@@ -95,7 +95,7 @@ public class AmazonPrincessTest {
 		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
 
 		// -----------------------------------------------
-		Item item = ItemTestHelper.createItem("pina colada");
+		final Item item = ItemTestHelper.createItem("pina colada");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");

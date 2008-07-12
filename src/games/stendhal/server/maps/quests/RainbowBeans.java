@@ -64,7 +64,7 @@ public class RainbowBeans extends AbstractQuest {
 	private static RainbowBeansScroll scroll;
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 		if (scroll == null) {
 			scroll = (RainbowBeansScroll) SingletonRepository.getEntityManager().getItem("rainbow beans");
@@ -74,7 +74,7 @@ public class RainbowBeans extends AbstractQuest {
 		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
-			public void onLoggedIn(Player player) {
+			public void onLoggedIn(final Player player) {
 				scroll.teleportBack(player);
 			}
 
@@ -82,7 +82,7 @@ public class RainbowBeans extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Pdiddi");
+		final SpeakerNPC npc = npcs.get("Pdiddi");
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -97,20 +97,20 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					// we don't set quest slot to done so we can't check
 					// this
 					// return player.isQuestCompleted(QUEST_SLOT);
-					boolean questdone = player.hasQuest(QUEST_SLOT)
+					final boolean questdone = player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"done");
 					if (!questdone) {
 						return false; // we haven't done the quest yet
 					}
 
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining <= 0L);
 				}
@@ -124,31 +124,31 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					// we don't set quest slot to done so we can't check
 					// this
 					// return player.isQuestCompleted(QUEST_SLOT);
-					boolean questdone = player.hasQuest(QUEST_SLOT)
+					final boolean questdone = player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"done");
 					if (!questdone) {
 						return false; // we haven't done the quest yet
 					}
 
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining > 0L);
 				}
 			}, ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					npc.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
@@ -163,7 +163,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.getLevel() >= REQUIRED_LEVEL) {
 						npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
 								+ REQUIRED_MONEY
@@ -181,13 +181,13 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("money", REQUIRED_MONEY)) {
 						player.drop("money", REQUIRED_MONEY);
 						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
 						player.setQuest(QUEST_SLOT, "done;"
 								+ System.currentTimeMillis());
-						Item rainbowBeans = SingletonRepository.getEntityManager().getItem(
+						final Item rainbowBeans = SingletonRepository.getEntityManager().getItem(
 								"rainbow beans");
 						player.equip(rainbowBeans, true);
 					} else {
@@ -216,7 +216,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.getLevel() >= 30) {
 						npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");
 					} else {

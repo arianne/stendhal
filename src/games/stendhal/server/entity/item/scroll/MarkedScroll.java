@@ -38,8 +38,8 @@ public class MarkedScroll extends TeleportScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public MarkedScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public MarkedScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -49,7 +49,7 @@ public class MarkedScroll extends TeleportScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public MarkedScroll(MarkedScroll item) {
+	public MarkedScroll(final MarkedScroll item) {
 		super(item);
 	}
 
@@ -62,7 +62,7 @@ public class MarkedScroll extends TeleportScroll {
 	 * @return true iff teleport was successful
 	 */
 	@Override
-	protected boolean useTeleportScroll(Player player) {
+	protected boolean useTeleportScroll(final Player player) {
 		// init as home_scroll
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
 		int x = 30;
@@ -72,14 +72,14 @@ public class MarkedScroll extends TeleportScroll {
 		 * Marked scrolls have a destination which is stored in the infostring,
 		 * existing of a zone name and x and y coordinates
 		 */
-		String infostring = getInfoString();
+		final String infostring = getInfoString();
 
 		if (infostring != null) {
-			StringTokenizer st = new StringTokenizer(infostring);
+			final StringTokenizer st = new StringTokenizer(infostring);
 			if (st.countTokens() == 3) {
 				// check destination
-				String zoneName = st.nextToken();
-				StendhalRPZone temp = SingletonRepository.getRPWorld().getZone(zoneName);
+				final String zoneName = st.nextToken();
+				final StendhalRPZone temp = SingletonRepository.getRPWorld().getZone(zoneName);
 				if (temp == null) {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)

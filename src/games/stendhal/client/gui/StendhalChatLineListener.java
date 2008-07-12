@@ -32,22 +32,22 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalChatLineListener.class);
 
-	private JTextField playerChatText;
+	private final JTextField playerChatText;
 
-	private LinkedList<String> lines;
-	private Vector<String> playersonline;
+	private final LinkedList<String> lines;
+	private final Vector<String> playersonline;
 
 	private int actual;
 
 	@SuppressWarnings("unchecked")
-	public StendhalChatLineListener(StendhalClient client,
-			JTextField playerChatText) {
+	public StendhalChatLineListener(final StendhalClient client,
+			final JTextField playerChatText) {
 		super();
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
 
 		/* Enable Keyboard TAB events */
-		KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		final KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 
 		kfm.setDefaultFocusTraversalKeys(
 				KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
@@ -62,11 +62,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		// Open chat log file
 		try {
 			// TODO: Create the file on the Stendhal home folder.
-			File chatfile = new File(CHAT_LOG_FILE);
+			final File chatfile = new File(CHAT_LOG_FILE);
 
 			if (chatfile.exists()) {
-				FileInputStream fis = new FileInputStream(chatfile);
-				BufferedReader br = new BufferedReader(new InputStreamReader(
+				final FileInputStream fis = new FileInputStream(chatfile);
+				final BufferedReader br = new BufferedReader(new InputStreamReader(
 						fis));
 
 				String line = null;
@@ -76,7 +76,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 				br.close();
 				fis.close();
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 
@@ -88,7 +88,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		FileOutputStream fo;
 		try {
 			fo = new FileOutputStream(CHAT_LOG_FILE);
-			PrintStream ps = new PrintStream(fo);
+			final PrintStream ps = new PrintStream(fo);
 
 			/*
 			 * Keep size of chat.log in a reasonable size.
@@ -97,19 +97,19 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 				lines.removeFirst();
 			}
 
-			ListIterator<String> iterator = lines.listIterator();
+			final ListIterator<String> iterator = lines.listIterator();
 			while (iterator.hasNext()) {
 				ps.println(iterator.next());
 			}
 			ps.close();
 			fo.close();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			logger.error(ex, ex);
 		}
 	}
 
-	public void keyPressed(KeyEvent e) {
-		int keypressed = e.getKeyCode();
+	public void keyPressed(final KeyEvent e) {
+		final int keypressed = e.getKeyCode();
 
 		if (e.isShiftDown()) {
 			if (keypressed == KeyEvent.VK_UP) {
@@ -126,7 +126,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		}
 
 		if (keypressed == KeyEvent.VK_TAB) {
-			String[] strwords = playerChatText.getText().split("\\s+");
+			final String[] strwords = playerChatText.getText().split("\\s+");
 
 			for (int i = 0; i < playersonline.size(); i++) {
 				if (playersonline.elementAt(i).startsWith(
@@ -143,16 +143,16 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		}
 	}
 
-	public void keyReleased(KeyEvent e) {
+	public void keyReleased(final KeyEvent e) {
 		// specified by interface but not used here
 	}
 
-	public void keyTyped(KeyEvent e) {
+	public void keyTyped(final KeyEvent e) {
 		// specified by interface but not used here
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		String text = playerChatText.getText();
+	public void actionPerformed(final ActionEvent e) {
+		final String text = playerChatText.getText();
 
 		logger.debug("Player wrote: " + text);
 

@@ -61,25 +61,25 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"mithril nugget", "mainio armor");
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("weekly_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
 			final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
 			if ((questKill != null) && !"done".equals(questKill)) {
-				String sayText = "You're already on a quest to bring the museum "
+				final String sayText = "You're already on a quest to bring the museum "
 						+ Grammar.a_noun(questKill)
 						+ ". Please say #complete if you have it with you.";
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0) {
@@ -93,7 +93,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 			}
 
 			if (questLast != null) {
-				long timeRemaining = (Long.parseLong(questLast) + delay)
+				final long timeRemaining = (Long.parseLong(questLast) + delay)
 						- System.currentTimeMillis();
 
 				if (timeRemaining > 0) {
@@ -103,7 +103,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 					return;
 				}
 			}
-			String itemName = Rand.rand(listeditems);
+			final String itemName = Rand.rand(listeditems);
 			engine.say("I want Kirdneh's museum to be the greatest in the land! Please fetch "
 					+ Grammar.a_noun(itemName)
 					+ " and say #complete, once you've brought it.");
@@ -115,8 +115,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	class WeeklyQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("weekly_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
@@ -125,7 +125,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				engine.say("I don't remember giving you any #task yet.");
 				return;
 			}
-			String[] tokens = (questInfo + ";0;0").split(";");
+			final String[] tokens = (questInfo + ";0;0").split(";");
 			questKill = tokens[0];
 			questLast = tokens[1];
 			questCount = tokens[2];
@@ -137,14 +137,14 @@ public class WeeklyItemQuest extends AbstractQuest {
 				return;
 			}
 			if (player.drop(questKill)) {
-				int start = Level.getXP(player.getLevel());
-				int next = Level.getXP(player.getLevel() + 1);
+				final int start = Level.getXP(player.getLevel());
+				final int next = Level.getXP(player.getLevel() + 1);
 				int reward = 3 * (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
 				}
 				int goldamount;
-				StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
+				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("money");
 				goldamount = 100 * Rand.roll1D6();
 				money.setQuantity(goldamount);
@@ -166,14 +166,14 @@ public class WeeklyItemQuest extends AbstractQuest {
 	class WeeklyQuestAbortAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			String questInfo = player.getQuest("weekly_item");
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
 
 			if (questInfo != null) {
-				String[] tokens = (questInfo + ";0;0;0").split(";");
+				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
@@ -181,7 +181,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 			if ((questKill != null) && !"done".equals(questKill)) {
 				if (questLast != null) {
-					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
+					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0) {
@@ -203,12 +203,12 @@ public class WeeklyItemQuest extends AbstractQuest {
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Hazel");
+		final SpeakerNPC npc = npcs.get("Hazel");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task", "exhibits"),
 				null, ConversationStates.ATTENDING, null,
 				new WeeklyQuestAction());
@@ -219,7 +219,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Hazel");
+		final SpeakerNPC npc = npcs.get("Hazel");
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("complete", "done"), null,
@@ -228,7 +228,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 	}
 
 	private void step_4() {
-		SpeakerNPC npc = npcs.get("Hazel");
+		final SpeakerNPC npc = npcs.get("Hazel");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("another", "abort"), null,
 				ConversationStates.ATTENDING, null, new WeeklyQuestAbortAction());

@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -24,7 +25,7 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new IceCreamSellerNPC());
 	}
@@ -39,9 +40,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Sam");
+		final SpeakerNPC npc = getNPC("Sam");
 		assertNotNull(npc);
-		Engine en = npc.getEngine();
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Hi. Can I #offer you an icecream?", npc.get("text"));
@@ -52,8 +53,8 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBuyIceCream() {
-		SpeakerNPC npc = getNPC("Sam");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Sam");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi. Can I #offer you an icecream?", npc.get("text"));
@@ -126,8 +127,8 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testSellIceCream() {
-		SpeakerNPC npc = getNPC("Sam");
-		Engine en = npc.getEngine();
+		final SpeakerNPC npc = getNPC("Sam");
+		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Sam"));
 		assertEquals("Hi. Can I #offer you an icecream?", npc.get("text"));

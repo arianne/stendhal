@@ -65,7 +65,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param title
 	 *            The dialog window title.
 	 */
-	public ManagedDialog(Frame owner, String name, String title) {
+	public ManagedDialog(final Frame owner, final String name, final String title) {
 		JComponent content;
 
 		this.owner = owner;
@@ -135,7 +135,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 
 		listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
 
-		for (WtCloseListener l : listeners) {
+		for (final WtCloseListener l : listeners) {
 			l.onClose(getName());
 		}
 	}
@@ -146,7 +146,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param listener
 	 *            A close listener.
 	 */
-	public void registerCloseListener(WtCloseListener listener) {
+	public void registerCloseListener(final WtCloseListener listener) {
 		closeListeners.add(listener);
 	}
 
@@ -156,7 +156,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param listener
 	 *            A close listener.
 	 */
-	public void removeCloseListener(WtCloseListener listener) {
+	public void removeCloseListener(final WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
 
@@ -231,7 +231,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * 
 	 * @return <code>true</code> if the move was allowed.
 	 */
-	public boolean moveTo(int x, int y) {
+	public boolean moveTo(final int x, final int y) {
 		/*
 		 * TODO Perhaps we should require some of it to remain on the
 		 * screen (incase it was saved while in hi-res, then run in low-res) XXX
@@ -246,7 +246,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param minimized
 	 *            Whether the window should be minimized.
 	 */
-	public void setMinimized(boolean minimized) {
+	public void setMinimized(final boolean minimized) {
 		// No-op
 	}
 
@@ -256,7 +256,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param visible
 	 *            Whether the window should be visible.
 	 */
-	public void setVisible(boolean visible) {
+	public void setVisible(final boolean visible) {
 		dialog.setVisible(visible);
 	}
 
@@ -279,7 +279,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *            The event.
 		 */
 		@Override
-		public void componentHidden(ComponentEvent ev) {
+		public void componentHidden(final ComponentEvent ev) {
 			// System.err.println("componentHidden() - ev = " + ev);
 			// System.err.println("componentHidden() - dialog = " +
 			// getDialog());
@@ -293,7 +293,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *            The event.
 		 */
 		@Override
-		public void componentMoved(ComponentEvent ev) {
+		public void componentMoved(final ComponentEvent ev) {
 			// System.err.println("componentMoved() - ev = " + ev);
 			// System.err.println("componentMoved() - dialog = " + getDialog());
 			windowMoved();
@@ -306,7 +306,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *            The event.
 		 */
 		@Override
-		public void componentShown(ComponentEvent ev) {
+		public void componentShown(final ComponentEvent ev) {
 			// System.err.println("componentShown() - ev = " + ev);
 			// System.err.println("componentShown() - dialog.insets = " +
 			// getDialog().getInsets());
@@ -323,7 +323,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		// PropertyChangeListener
 		//
 
-		public void propertyChange(PropertyChangeEvent ev) {
+		public void propertyChange(final PropertyChangeEvent ev) {
 			getDialog().pack();
 		}
 	}

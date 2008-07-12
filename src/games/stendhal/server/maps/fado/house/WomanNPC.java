@@ -26,7 +26,7 @@ public class WomanNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -34,12 +34,12 @@ public class WomanNPC implements ZoneConfigurator {
 	// IL0_womanNPC - Josephine, the Cloaks Collector
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC woman = new SpeakerNPC("Josephine") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC woman = new SpeakerNPC("Josephine") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 4));
 				nodes.add(new Node(16, 4));
 				nodes.add(new Node(16, 7));

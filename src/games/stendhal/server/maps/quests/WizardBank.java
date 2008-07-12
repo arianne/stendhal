@@ -50,7 +50,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	 * is up.
 	 */
 	class Timer implements TurnListener {
-		private WeakReference<Player> timerPlayer;
+		private final WeakReference<Player> timerPlayer;
 
 		/**
 		 * Starts a teleport-out-timer.
@@ -58,7 +58,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		 * @param player
 		 *            the player who started the timer
 		 */
-		protected Timer(Player player) {
+		protected Timer(final Player player) {
 			timerPlayer = new WeakReference<Player>(player);
 		}
 
@@ -67,9 +67,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		// override equals
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj instanceof Timer) {
-				Timer newTim = (Timer) obj;
+				final Timer newTim = (Timer) obj;
 				return timerPlayer.get() == newTim.timerPlayer.get();
 			} else {
 				return false;
@@ -82,7 +82,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		public int hashCode() {
 			// TODO: This is broken. If player gets GC'd, then
 			// hash code changes. (not good)
-			Player playerTemp = timerPlayer.get();
+			final Player playerTemp = timerPlayer.get();
 
 			if (playerTemp != null) {
 				return playerTemp.hashCode();
@@ -91,17 +91,17 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			}
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
 			// Note that "player" always refers to the current player
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
 
-			Player playerTemp = timerPlayer.get();
+			final Player playerTemp = timerPlayer.get();
 
 			if (playerTemp != null) {
-				IRPZone playerZone = playerTemp.getZone();
+				final IRPZone playerZone = playerTemp.getZone();
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
@@ -121,7 +121,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -137,8 +137,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
 								&& player.isQuestCompleted(ZARA_QUEST_SLOT)) {
 							String reply;
@@ -160,7 +160,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				addReply("fee", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
 							engine.say("The fee is " + COST
@@ -174,7 +174,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				addReply(ConversationPhrases.YES_MESSAGES, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
 							if (player.drop("money", COST)) {
@@ -196,7 +196,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				addReply(ConversationPhrases.NO_MESSAGES, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
 							engine.say("Very well.");
@@ -208,7 +208,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				addReply("leave", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Leave where?");
 						} else {
@@ -246,7 +246,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	}
 
 	// kym says: this was in reverse arrow. don't know what it's for.
-	public void onLoggedIn(Player player) {
+	public void onLoggedIn(final Player player) {
 		teleportAway(player);
 	}
 
@@ -256,9 +256,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	 * @param player
 	 *            the player to teleport out
 	 */
-	void teleportAway(Player player) {
+	void teleportAway(final Player player) {
 		if (player != null) {
-			IRPZone playerZone = player.getZone();
+			final IRPZone playerZone = player.getZone();
 			if (playerZone.equals(zone)) {
 				player.teleport(zone, 15, 16, Direction.DOWN, player);
 

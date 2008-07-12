@@ -33,7 +33,7 @@ public class McPeglegIOU extends AbstractQuest {
 	private static final String QUEST_SLOT = "IOU";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -44,7 +44,7 @@ public class McPeglegIOU extends AbstractQuest {
 
 	private void step_2() {
 
-		SpeakerNPC npc = npcs.get("McPegleg");
+		final SpeakerNPC npc = npcs.get("McPegleg");
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("iou", "henry", "charles", "note"),
@@ -52,12 +52,12 @@ public class McPeglegIOU extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					// from all notes that the player is carrying, try to
 					// find the IOU note
-					List<Item> notes = player.getAllEquipped("note");
+					final List<Item> notes = player.getAllEquipped("note");
 					Item iouNote = null;
-					for (Item note : notes) {
+					for (final Item note : notes) {
 						if ("charles".equalsIgnoreCase(note.getInfoString())) {
 							iouNote = note;
 							break;
@@ -66,7 +66,7 @@ public class McPeglegIOU extends AbstractQuest {
 					if (iouNote != null) {
 						engine.say("Where did you get that from? Anyways, here is the money *sighs*");
 						player.drop(iouNote);
-						StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
+						final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 								"money");
 						money.setQuantity(250);
 						player.equip(money);

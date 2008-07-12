@@ -34,8 +34,8 @@ public class EmptyScroll extends Scroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public EmptyScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public EmptyScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -45,7 +45,7 @@ public class EmptyScroll extends Scroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public EmptyScroll(EmptyScroll item) {
+	public EmptyScroll(final EmptyScroll item) {
 		super(item);
 	}
 
@@ -56,11 +56,11 @@ public class EmptyScroll extends Scroll {
 	 * @return always true
 	 */
 	@Override
-	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = player.getZone();
+	protected boolean useScroll(final Player player) {
+		final StendhalRPZone zone = player.getZone();
 
 		if (zone.isTeleportAllowed()) {
-			Item markedScroll = SingletonRepository.getEntityManager().getItem(
+			final Item markedScroll = SingletonRepository.getEntityManager().getItem(
 					"marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());

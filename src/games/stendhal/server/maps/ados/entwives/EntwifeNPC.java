@@ -17,12 +17,12 @@ public class EntwifeNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildentwife(zone);
 	}
 
-	private void buildentwife(StendhalRPZone zone) {
-		SpeakerNPC entwife = new SpeakerNPC("Tendertwig") {
+	private void buildentwife(final StendhalRPZone zone) {
+		final SpeakerNPC entwife = new SpeakerNPC("Tendertwig") {
 
 			@Override
 			protected void createPath() {

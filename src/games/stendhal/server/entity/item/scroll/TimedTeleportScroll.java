@@ -41,14 +41,14 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param player
 	 * @return true if teleport was successful
 	 */
-	public boolean teleportBack(Player player) {
+	public boolean teleportBack(final Player player) {
 		String targetZoneName = null;
 		String returnZoneName = null;
 		int returnX = 0;
 		int returnY = 0;
-		String infoString = getInfoString();
+		final String infoString = getInfoString();
 		if (infoString != null) {
-			StringTokenizer st = new StringTokenizer(infoString);
+			final StringTokenizer st = new StringTokenizer(infoString);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
 				st.nextToken(); /* targetX */
@@ -64,8 +64,8 @@ public class TimedTeleportScroll extends TeleportScroll {
 		}
 		int x = returnX;
 		int y = returnY;
-		if (player == null || player.getZone() == null
-				|| targetZoneName == null) {
+		if ((player == null) || (player.getZone() == null)
+				|| (targetZoneName == null)) {
 			return true;
 		}
 
@@ -73,7 +73,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			return true; /* player is already away from the target zone */
 		}
 
-		StendhalRPZone returnZone = SingletonRepository.getRPWorld().getZone(
+		final StendhalRPZone returnZone = SingletonRepository.getRPWorld().getZone(
 				returnZoneName);
 
 		if (x < 0) {
@@ -83,9 +83,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 			y = Rand.rand(returnZone.getHeight());
 		}
 
-		boolean result = player.teleport(returnZone, x, y, null, player);
+		final boolean result = player.teleport(returnZone, x, y, null, player);
 
-		String afterReturnMessage = getAfterReturnMessage();
+		final String afterReturnMessage = getAfterReturnMessage();
 		if (afterReturnMessage != null) {
 			player.sendPrivateText(afterReturnMessage);
 		}
@@ -101,8 +101,8 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public TimedTeleportScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public TimedTeleportScroll(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -112,7 +112,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param item
 	 *            item to copy
 	 */
-	public TimedTeleportScroll(TimedTeleportScroll item) {
+	public TimedTeleportScroll(final TimedTeleportScroll item) {
 		super(item);
 	}
 
@@ -125,14 +125,14 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @return true iff teleport was successful
 	 */
 	@Override
-	protected boolean useTeleportScroll(Player player) {
+	protected boolean useTeleportScroll(final Player player) {
 		String targetZoneName = null;
 		int targetX = 0;
 		int targetY = 0;
 		int timeInTurns = 0;
-		String infoString = getInfoString();
+		final String infoString = getInfoString();
 		if (infoString != null) {
-			StringTokenizer st = new StringTokenizer(infoString);
+			final StringTokenizer st = new StringTokenizer(infoString);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
 				targetX = Integer.parseInt(st.nextToken());
@@ -145,11 +145,11 @@ public class TimedTeleportScroll extends TeleportScroll {
 		}
 
 		/* check destination */
-		StendhalRPZone targetZone = SingletonRepository.getRPWorld().getZone(
+		final StendhalRPZone targetZone = SingletonRepository.getRPWorld().getZone(
 				targetZoneName);
 
 		if (targetZone != null) {
-			String beforeReturnMessage = getBeforeReturnMessage();
+			final String beforeReturnMessage = getBeforeReturnMessage();
 			if (beforeReturnMessage != null) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(
 						(int) (timeInTurns * 0.9),
@@ -211,11 +211,11 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 		private final Player player;
 
-		TimedTeleportTurnListener(Player player) {
+		TimedTeleportTurnListener(final Player player) {
 			this.player = player;
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			teleportBack(player);
 		}
 	}
@@ -231,15 +231,15 @@ public class TimedTeleportScroll extends TeleportScroll {
 		private final StendhalRPZone zone;
 		private final String warningMessage;
 
-		TimedTeleportWarningTurnListener(Player player, StendhalRPZone zone,
-				String warningMessage) {
+		TimedTeleportWarningTurnListener(final Player player, final StendhalRPZone zone,
+				final String warningMessage) {
 			this.player = player;
 			this.zone = zone;
 			this.warningMessage = warningMessage;
 		}
 
-		public void onTurnReached(int currentTurn) {
-			if (player == null || player.getZone() == null || zone == null) {
+		public void onTurnReached(final int currentTurn) {
+			if ((player == null) || (player.getZone() == null) || (zone == null)) {
 				return;
 			}
 			if (player.getZone().getName().equals(zone.getName())) {

@@ -69,14 +69,14 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		}
 
 		if (element.hasAttribute("ref")) {
-			String s = element.getAttribute("ref");
+			final String s = element.getAttribute("ref");
 
 			/*
 			 * For now, treat valid number strings as Integer refs
 			 */
 			try {
 				identifier = Integer.valueOf(s);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				identifier = s;
 			}
 		} else {
@@ -105,14 +105,14 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		Object identifier;
 
 		if (element.hasAttribute("ref")) {
-			String s = element.getAttribute("ref");
+			final String s = element.getAttribute("ref");
 
 			/*
 			 * For now, treat valid number strings as Integer refs
 			 */
 			try {
 				identifier = Integer.valueOf(s);
-			} catch (NumberFormatException ex) {
+			} catch (final NumberFormatException ex) {
 				identifier = s;
 			}
 		} else {
@@ -120,12 +120,12 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			return null;
 		}
 
-		PortalSetupDescriptor desc = read(element, x, y, identifier);
+		final PortalSetupDescriptor desc = read(element, x, y, identifier);
 
 		/*
 		 * Destination
 		 */
-		List<Element> list = XMLUtil.getElements(element, "destination");
+		final List<Element> list = XMLUtil.getElements(element, "destination");
 
 		if (!list.isEmpty()) {
 			if (list.size() > 1) {
@@ -139,7 +139,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		 * Replacing
 		 */
 		if (element.hasAttribute("replacing")) {
-			String s = element.getAttribute("replacing");
+			final String s = element.getAttribute("replacing");
 
 			if (s.equals("true")) {
 				desc.setReplacing(true);

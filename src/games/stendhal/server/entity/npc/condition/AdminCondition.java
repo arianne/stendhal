@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class AdminCondition extends SpeakerNPC.ChatCondition {
 
-	private int requiredAdminlevel;
+	private final int requiredAdminlevel;
 
 	/**
 	 * Creates a new AdminCondition for high level admins. '
@@ -27,12 +27,12 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 	 * @param requiredAdminlevel
 	 *            minimum admin level '
 	 */
-	public AdminCondition(int requiredAdminlevel) {
+	public AdminCondition(final int requiredAdminlevel) {
 		this.requiredAdminlevel = requiredAdminlevel;
 	}
 
 	@Override
-	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (player.getAdminLevel() >= requiredAdminlevel);
 	}
 
@@ -47,7 +47,7 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				QuestStartedCondition.class);
 	}

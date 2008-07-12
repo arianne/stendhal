@@ -34,13 +34,13 @@ public class SoundMaster implements Runnable, WorldListener {
 		WorldObjects.addWorldListener(this);
 	}
 
-	public static AudioClip play(String soundName, double x, double y) {
+	public static AudioClip play(final String soundName, final double x, final double y) {
 		return play(soundName, x, y, false);
 	}
 
-	public static AudioClip play(String soundName, double x, double y,
-			boolean loop) {
-		if (!(x == 0 && y == 0)) {
+	public static AudioClip play(final String soundName, final double x, final double y,
+			final boolean loop) {
+		if (!((x == 0) && (y == 0))) {
 			if (HearingArea.contains(x, y)) {
 				return play(soundName);
 			}
@@ -48,12 +48,12 @@ public class SoundMaster implements Runnable, WorldListener {
 		return null;
 	}
 
-	public static AudioClip play(String soundName) {
-		boolean shallLoop = false;
+	public static AudioClip play(final String soundName) {
+		final boolean shallLoop = false;
 		return play(soundName, shallLoop);
 	}
 
-	public static AudioClip play(String soundName, boolean shallLoop) {
+	public static AudioClip play(final String soundName, final boolean shallLoop) {
 		if (isMute) {
 			return null;
 		}
@@ -75,7 +75,7 @@ public class SoundMaster implements Runnable, WorldListener {
 			return null;
 		}
 		try {
-			AudioClip ac = new AudioClip(AudioSystem.getMixer(null), o, 100);
+			final AudioClip ac = new AudioClip(AudioSystem.getMixer(null), o, 100);
 
 			Clip cl;
 
@@ -94,11 +94,11 @@ public class SoundMaster implements Runnable, WorldListener {
 				return ac;
 
 			}
-		} catch (UnsupportedAudioFileException e) {
+		} catch (final UnsupportedAudioFileException e) {
 
-		} catch (IOException e) {
+		} catch (final IOException e) {
 
-		} catch (LineUnavailableException e) {
+		} catch (final LineUnavailableException e) {
 
 		}
 		return null;
@@ -106,7 +106,7 @@ public class SoundMaster implements Runnable, WorldListener {
 
 	class Cliplistener implements LineListener {
 		// dont remove this please astriddemma 12.04.2007
-		public void update(LineEvent event) {
+		public void update(final LineEvent event) {
 
 			// if (event.getType().equals(LineEvent.Type.START)) {
 			//
@@ -131,23 +131,23 @@ public class SoundMaster implements Runnable, WorldListener {
 	}
 
 	// commented for release
-	public void zoneEntered(String zoneName) {
+	public void zoneEntered(final String zoneName) {
 		// System.out.println(zoneName);
 		// bg = new Background(zoneName);
 		// bg.run();
 	}
 
-	public void zoneLeft(String zoneName) {
+	public void zoneLeft(final String zoneName) {
 		// System.out.println(zoneName);
 		// bg.stop();
 		// bg=null;
 	}
 
-	public static void setMute(boolean on) {
+	public static void setMute(final boolean on) {
 		if (on) {
-			Enumeration<Line> enu = playingClips.elements();
+			final Enumeration<Line> enu = playingClips.elements();
 			while (enu.hasMoreElements()) {
-				Line lin = enu.nextElement();
+				final Line lin = enu.nextElement();
 				lin.close();
 			}
 		}

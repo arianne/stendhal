@@ -11,7 +11,7 @@ import java.util.Map;
  *            Type of objects to count
  */
 public class ObjectCounter<K> {
-	private Map<K, Integer> counter = new HashMap<K, Integer>();
+	private final Map<K, Integer> counter = new HashMap<K, Integer>();
 
 	/**
 	 * Clears the counter.
@@ -35,7 +35,7 @@ public class ObjectCounter<K> {
 	 * @param o
 	 *            object
 	 */
-	public void add(K o) {
+	public void add(final K o) {
 		Integer in = counter.get(o);
 		if (in == null) {
 			in = Integer.valueOf(1);

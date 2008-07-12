@@ -55,18 +55,18 @@ public class ArmorForDagobert extends AbstractQuest {
 	private static final String QUEST_SLOT = "armor_dagobert";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("QUEST_REJECTED");
 		}
@@ -83,7 +83,7 @@ public class ArmorForDagobert extends AbstractQuest {
 	}
 
 	private void prepareRequestingStep() {
-		SpeakerNPC npc = npcs.get("Dagobert");
+		final SpeakerNPC npc = npcs.get("Dagobert");
 
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -129,7 +129,7 @@ public class ArmorForDagobert extends AbstractQuest {
 	}
 
 	private void prepareBringingStep() {
-		SpeakerNPC npc = npcs.get("Dagobert");
+		final SpeakerNPC npc = npcs.get("Dagobert");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -144,7 +144,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather cuirass. Anyway, how can I #help you?",
 			null);
 
-		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new DropItemAction("leather cuirass"));
 		reward.add(new EquipItemAction("money", 80));
 		reward.add(new IncreaseXPAction(50));

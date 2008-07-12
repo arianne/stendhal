@@ -58,8 +58,8 @@ public class CommandlineParserTest {
 
 	@Test
 	public final void testError() {
-		ErrorBuffer errors = new ErrorBuffer();
-		CommandlineParser parser = new CommandlineParser("TEST 'abc...");
+		final ErrorBuffer errors = new ErrorBuffer();
+		final CommandlineParser parser = new CommandlineParser("TEST 'abc...");
 		assertFalse(errors.hasError());
 		assertEquals("TEST", parser.getNextParameter(errors));
 		assertEquals("abc...", parser.getNextParameter(errors));

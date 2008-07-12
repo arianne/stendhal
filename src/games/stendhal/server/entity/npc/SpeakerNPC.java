@@ -87,7 +87,7 @@ public class SpeakerNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SpeakerNPC.class);
 
-	private Engine engine = new Engine(this);
+	private final Engine engine = new Engine(this);
 
 	/**
 	 * Determines how long a conversation can be paused before it will
@@ -127,7 +127,7 @@ public class SpeakerNPC extends NPC {
 	 * @param name
 	 *            The NPC's name. Please note that names should be unique.
 	 */
-	public SpeakerNPC(String name) {
+	public SpeakerNPC(final String name) {
 		baseSpeed = 0.2;
 		createPath();
 
@@ -153,7 +153,7 @@ public class SpeakerNPC extends NPC {
 	 * needed.
 	 * @param player who has been talked to.
 	 */
-	protected void onGoodbye(Player player) {
+	protected void onGoodbye(final Player player) {
 		// do nothing
 	}
 
@@ -171,15 +171,15 @@ public class SpeakerNPC extends NPC {
 	 * @param range
 	 * @return A list of nearby players who have recently talked.
 	 */
-	private List<Player> getNearbyPlayersThatHaveSpoken(NPC npc, double range) {
-		int x = npc.getX();
-		int y = npc.getY();
+	private List<Player> getNearbyPlayersThatHaveSpoken(final NPC npc, final double range) {
+		final int x = npc.getX();
+		final int y = npc.getY();
 
-		List<Player> players = new LinkedList<Player>();
+		final List<Player> players = new LinkedList<Player>();
 
-		for (Player player : getZone().getPlayers()) {
-			int px = player.getX();
-			int py = player.getY();
+		for (final Player player : getZone().getPlayers()) {
+			final int px = player.getX();
+			final int py = player.getY();
 
 			if (player.has("text") && (Math.abs(px - x) < range)
 					&& (Math.abs(py - y) < range)) {
@@ -200,20 +200,20 @@ public class SpeakerNPC extends NPC {
 	 * @return The nearest player, or null if no player is standing on the same
 	 *         map.
 	 */
-	private Player getNearestPlayer(double range) {
-		int x = getX();
-		int y = getY();
+	private Player getNearestPlayer(final double range) {
+		final int x = getX();
+		final int y = getY();
 
 		Player nearest = null;
 
 		int squaredDistanceOfNearestPlayer = Integer.MAX_VALUE;
 
-		for (Player player : getZone().getPlayers()) {
-			int px = player.getX();
-			int py = player.getY();
+		for (final Player player : getZone().getPlayers()) {
+			final int px = player.getX();
+			final int py = player.getY();
 
 			if ((Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
-				int squaredDistanceOfThisPlayer = (px - x) * (px - x)
+				final int squaredDistanceOfThisPlayer = (px - x) * (px - x)
 						+ (py - y) * (py - y);
 				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
 					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
@@ -241,7 +241,7 @@ public class SpeakerNPC extends NPC {
 	 * @param player
 	 *            the player with whom the NPC should be talking.
 	 */
-	public void setAttending(Player player) {
+	public void setAttending(final Player player) {
 		attending = player;
 
 		if (player != null) {
@@ -254,13 +254,13 @@ public class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	public void onDead(Entity who) {
+	public void onDead(final Entity who) {
 		heal();
 		notifyWorldAboutChanges();
 	}
 
 	@Override
-	protected void dropItemsOn(Corpse corpse) {
+	protected void dropItemsOn(final Corpse corpse) {
 		// They can't die
 	}
 
@@ -271,7 +271,7 @@ public class SpeakerNPC extends NPC {
 	 * @param playerChatTimeout
 	 *            the time, in turns
 	 */
-	public void setPlayerChatTimeout(long playerChatTimeout) {
+	public void setPlayerChatTimeout(final long playerChatTimeout) {
 		this.playerChatTimeout = playerChatTimeout;
 	}
 
@@ -315,9 +315,9 @@ public class SpeakerNPC extends NPC {
 
 		// now look for nearest player only if there's an initChatAction
 		if (!isTalking() && (initChatAction != null)) {
-			Player nearest = getNearestPlayer(7);
+			final Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if (initChatCondition == null
+				if ((initChatCondition == null)
 						|| initChatCondition.fire(nearest, null, this)) {
 					// Note: The sentence parameter is left as null, so be
 					// carefull not to use it in the fire() handler.
@@ -327,8 +327,8 @@ public class SpeakerNPC extends NPC {
 		}
 
 		// and finally react on anybody talking to us
-		List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, 5);
-		for (Player speaker : speakers) {
+		final List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, 5);
+		for (final Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
 		}
 
@@ -353,12 +353,12 @@ public class SpeakerNPC extends NPC {
 	@Override
 	// you can override this if you don't want your NPC to turn around
 	// in certain situations.
-	public void say(String text) {
+	public void say(final String text) {
 		// turn towards player if necessary, then say it.
 		say(text, true);
 	}
 
-	protected void say(String text, boolean turnToPlayer) {
+	protected void say(final String text, final boolean turnToPlayer) {
 		// be polite and face the player we are talking to
 		if (turnToPlayer && (attending != null)) {
 			faceToward(attending);
@@ -371,12 +371,12 @@ public class SpeakerNPC extends NPC {
 	 * @param text to say to bothering player
 	 * @param action to perform
 	 */
-	public void addWaitMessage(String text, ChatAction action) {
+	public void addWaitMessage(final String text, final ChatAction action) {
 		waitMessage = text;
 		waitAction = action;
 	}
 
-	public void addInitChatMessage(ChatCondition condition, ChatAction action) {
+	public void addInitChatMessage(final ChatCondition condition, final ChatAction action) {
 		initChatCondition = condition;
 		initChatAction = action;
 	}
@@ -398,8 +398,8 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(int state, String trigger, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final String trigger, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, condition, nextState, reply, action);
 	}
 
@@ -414,8 +414,8 @@ public class SpeakerNPC extends NPC {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(int state, String trigger, ExpressionMatcher matcher, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, matcher, condition, nextState, reply, action);
 	}
 
@@ -436,8 +436,8 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(final int state, final List<String> triggers, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
 		engine.add(state, triggers, condition, nextState, reply, action);
 	}
 
@@ -458,9 +458,9 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(int[] states, String trigger, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
-		for (int state : states) {
+	public void add(final int[] states, final String trigger, final ChatCondition condition,
+			final int nextState, final String reply, final ChatAction action) {
+		for (final int state : states) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
 	}
@@ -482,23 +482,23 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(int[] states, List<String> triggers,
-			ChatCondition condition, int nextState, String reply,
-			ChatAction action) {
-		for (int state : states) {
+	public void add(final int[] states, final List<String> triggers,
+			final ChatCondition condition, final int nextState, final String reply,
+			final ChatAction action) {
+		for (final int state : states) {
 			add(state, triggers, condition, nextState, reply, action);
 		}
 	}
 
 
-	public void add(int state, List<String> triggers, int nextState,
-			String reply, ChatAction action) {
-		for (String trigger : triggers) {
+	public void add(final int state, final List<String> triggers, final int nextState,
+			final String reply, final ChatAction action) {
+		for (final String trigger : triggers) {
 			add(state, trigger, null, nextState, reply, action);
 		}
 	}
 
-	public void listenTo(Player player, String text) {
+	public void listenTo(final Player player, final String text) {
 		tell(player, text);
 	}
 
@@ -512,7 +512,7 @@ public class SpeakerNPC extends NPC {
 	 *            The text that the given player has said
 	 * @return true iff the NPC had to get rid of the player
 	 */
-	private boolean getRidOfPlayerIfAlreadySpeaking(Player player, String text) {
+	private boolean getRidOfPlayerIfAlreadySpeaking(final Player player, final String text) {
 		// If we are attending another player make this one wait.
 		if (!player.equals(attending)) {
 			if (ConversationPhrases.GREETING_MESSAGES.contains(text)) {
@@ -523,7 +523,7 @@ public class SpeakerNPC extends NPC {
 				}
 
 				if (waitAction != null) {
-					Sentence sentence = ConversationParser.parse(text);
+					final Sentence sentence = ConversationParser.parse(text);
 					waitAction.fire(player, sentence, this); // Note:
 																// sentence is
 																// currently not
@@ -542,7 +542,7 @@ public class SpeakerNPC extends NPC {
 	 * @param player 
 	 * @param text 
 	 * @return true if step was successfully executed*/
-	private boolean tell(Player player, String text) {
+	private boolean tell(final Player player, final String text) {
 		// If we are not attending a player, attend this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
@@ -558,7 +558,7 @@ public class SpeakerNPC extends NPC {
 		return engine.step(player, text);
 	}
 
-	public void setCurrentState(int state) {
+	public void setCurrentState(final int state) {
 		engine.setCurrentState(state);
 	}
 
@@ -566,17 +566,17 @@ public class SpeakerNPC extends NPC {
 		addGreeting("Greetings! How may I help you?", null);
 	}
 
-	public void addGreeting(String text) {
+	public void addGreeting(final String text) {
 		addGreeting(text, null);
 	}
 
-	public void addGreeting(String text, SpeakerNPC.ChatAction action) {
+	public void addGreeting(final String text, final SpeakerNPC.ChatAction action) {
 		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -593,7 +593,7 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 *            The answer
 	 */
-	public void addReply(String trigger, String text) {
+	public void addReply(final String trigger, final String text) {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, null);
 	}
@@ -602,7 +602,7 @@ public class SpeakerNPC extends NPC {
 	 * @param triggers
 	 * @param text
 	 */
-	public void addReply(List<String> triggers, String text) {
+	public void addReply(final List<String> triggers, final String text) {
 		add(ConversationStates.ATTENDING, triggers,
 				ConversationStates.ATTENDING, text, null);
 	}
@@ -614,13 +614,13 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(String trigger, String text, SpeakerNPC.ChatAction action) {
+	public void addReply(final String trigger, final String text, final SpeakerNPC.ChatAction action) {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -635,13 +635,13 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(List<String> triggers, String text, SpeakerNPC.ChatAction action) {
+	public void addReply(final List<String> triggers, final String text, final SpeakerNPC.ChatAction action) {
 		add(ConversationStates.ATTENDING, triggers, null,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -649,20 +649,20 @@ public class SpeakerNPC extends NPC {
 		});
 	}
 
-	public void addQuest(String text) {
+	public void addQuest(final String text) {
 		add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				ConversationStates.ATTENDING, text, null);
 	}
 
-	public void addJob(String jobDescription) {
+	public void addJob(final String jobDescription) {
 		addReply(ConversationPhrases.JOB_MESSAGES, jobDescription);
 	}
 
-	public void addHelp(String helpDescription) {
+	public void addHelp(final String helpDescription) {
 		addReply(ConversationPhrases.HELP_MESSAGES, helpDescription);
 	}
 
-	public void addOffer(String offerDescription) {
+	public void addOffer(final String offerDescription) {
 		addReply(ConversationPhrases.OFFER_MESSAGES, offerDescription);
 	}
 
@@ -670,14 +670,14 @@ public class SpeakerNPC extends NPC {
 		addGoodbye("Bye.");
 	}
 
-	public void addGoodbye(String text) {
+	public void addGoodbye(final String text) {
 		goodbyeMessage = text;
 		add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
 				ConversationStates.IDLE, text, new ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
 						npc.onGoodbye(player);
 					}
 
@@ -707,7 +707,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	protected void handleSimpleCollision(int nx, int ny) {
+	protected void handleSimpleCollision(final int nx, final int ny) {
 		stop();
 	}
 

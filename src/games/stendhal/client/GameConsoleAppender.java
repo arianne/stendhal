@@ -22,14 +22,14 @@ public class GameConsoleAppender extends AppenderSkeleton {
 
 	@Override
 	protected void append(final LoggingEvent loggingEvent) {
-		StringBuilder buf = new StringBuilder();
+		final StringBuilder buf = new StringBuilder();
 		buf.append(getLayout().format(loggingEvent));
-		ThrowableInformation ti = loggingEvent.getThrowableInformation();
+		final ThrowableInformation ti = loggingEvent.getThrowableInformation();
 
 		if (ti != null) {
-			String[] cause = ti.getThrowableStrRep();
+			final String[] cause = ti.getThrowableStrRep();
 
-			for (String line : cause) {
+			for (final String line : cause) {
 				buf.append(line).append('\n');
 			}
 		}

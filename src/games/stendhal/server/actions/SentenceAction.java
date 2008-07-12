@@ -24,7 +24,7 @@ public class SentenceAction implements ActionListener {
 		CommandCenter.register(_SENTENCE, new SentenceAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.has(_VALUE)) {
 			player.setSentence(action.get(_VALUE));
 		}

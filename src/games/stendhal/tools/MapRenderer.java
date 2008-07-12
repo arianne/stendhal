@@ -49,24 +49,24 @@ public class MapRenderer extends Task {
 	private String imagePath;
 
 	/** list of *.tmx files to convert. */
-	private List<FileSet> filesets = new ArrayList<FileSet>();
+	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
 	/** converts the map files. 
 	 * @param tmxFile 
 	 * @throws Exception */
-	public void convert(String tmxFile) throws Exception {
-		File file = new File(tmxFile);
+	public void convert(final String tmxFile) throws Exception {
+		final File file = new File(tmxFile);
 
-		String filename = file.getAbsolutePath();
-		Map map = new XMLMapTransformer().readMap(filename);
+		final String filename = file.getAbsolutePath();
+		final Map map = new XMLMapTransformer().readMap(filename);
 		saveImageMap(map, tmxFile);
 	}
 
 	@SuppressWarnings("unchecked")
-	private void saveImageMap(Map map, String tmxFile) {
-		File file = new File(tmxFile);
+	private void saveImageMap(final Map map, final String tmxFile) {
+		final File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
-		for (MapLayer layer : map.getLayerList()) {
+		for (final MapLayer layer : map.getLayerList()) {
 			if (layer.getName().equals("navigation")
 					|| layer.getName().equals("collision")
 					|| layer.getName().equals("objects")
@@ -77,19 +77,19 @@ public class MapRenderer extends Task {
 			}
 		}
 
-		MapView myView = new OrthoMapView();
+		final MapView myView = new OrthoMapView();
 		myView.setMap(map);
 		myView.setScale(0.0625);
-		Dimension d = myView.getSize();
-		BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g = i.createGraphics();
+		final Dimension d = myView.getSize();
+		final BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
+		final Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
 		myView.draw(g);
 		g.dispose();
 
-		String area = file.getParentFile().getName();
+		final String area = file.getParentFile().getName();
 		String level;
-		String fileContainer = file.getParentFile().getParent();
+		final String fileContainer = file.getParentFile().getParent();
 
 		if (fileContainer.contains("Level ")) {
 			level = fileContainer.split("Level ")[1];
@@ -108,7 +108,7 @@ public class MapRenderer extends Task {
 
 		try {
 			ImageIO.write(i, "png", new File(filename));
-		} catch (java.io.IOException e) {
+		} catch (final java.io.IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -119,7 +119,7 @@ public class MapRenderer extends Task {
 	 * @param set
 	 *            a set of files to copy
 	 */
-	public void addFileset(FileSet set) {
+	public void addFileset(final FileSet set) {
 		filesets.add(set);
 	}
 
@@ -127,7 +127,7 @@ public class MapRenderer extends Task {
 	 * The setter for the "stendPath" attribute.
 	 * @param imagePath 
 	 */
-	public void setImagePath(String imagePath) {
+	public void setImagePath(final String imagePath) {
 		this.imagePath = imagePath;
 	}
 
@@ -137,29 +137,29 @@ public class MapRenderer extends Task {
 	@Override
 	public void execute() {
 		try {
-			for (FileSet fileset : filesets) {
-				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
-				String[] includedFiles = ds.getIncludedFiles();
-				for (String filename : includedFiles) {
+			for (final FileSet fileset : filesets) {
+				final DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+				final String[] includedFiles = ds.getIncludedFiles();
+				for (final String filename : includedFiles) {
 					System.out.println(ds.getBasedir().getAbsolutePath()
 							+ File.separator + filename);
 					convert(ds.getBasedir().getAbsolutePath() + File.separator
 							+ filename);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			throw new BuildException(e);
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		if (args.length < 1) {
 			System.out.println("usage: java games.stendhal.tools.MapRenderer <tmx file>");
 			return;
 		}
 
 		// do the job
-		MapRenderer renderet = new MapRenderer();
+		final MapRenderer renderet = new MapRenderer();
 		renderet.imagePath = args[1];
 		renderet.convert(args[0]);
 	}

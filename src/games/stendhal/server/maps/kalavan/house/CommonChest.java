@@ -15,13 +15,13 @@ public class CommonChest implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildKalavanHouseAreaChest(zone);
 	}
 
-	private void buildKalavanHouseAreaChest(StendhalRPZone zone) {
+	private void buildKalavanHouseAreaChest(final StendhalRPZone zone) {
 	    // load the stuff in the house with presents
-		Chest chest = new Chest();
+		final Chest chest = new Chest();
 		chest.setPosition(22, 2);
 		chest.add(SingletonRepository.getEntityManager().getItem("wine"));
 		chest.add(SingletonRepository.getEntityManager().getItem("easter egg"));

@@ -52,8 +52,8 @@ public class Token extends Item {
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Token(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Token(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -63,12 +63,12 @@ public class Token extends Item {
 	 * @param item
 	 *            item to copy
 	 */
-	public Token(Token item) {
+	public Token(final Token item) {
 		super(item);
 	}
 
 	@Override
-	public void onPutOnGround(Player player) {
+	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
 
 		if ((player != null) && (tokenMoveListener != null)) {
@@ -82,7 +82,7 @@ public class Token extends Item {
 	 * @param tokenMoveListener
 	 *            TokenMoveListener
 	 */
-	public void setTokenMoveListener(TokenMoveListener tokenMoveListener) {
+	public void setTokenMoveListener(final TokenMoveListener tokenMoveListener) {
 		this.tokenMoveListener = tokenMoveListener;
 	}
 }

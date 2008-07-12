@@ -21,16 +21,16 @@ public class TelepathNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTempleArea(zone, attributes);
 	}
 
-	private void buildSemosTempleArea(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Io Flotto") {
+	private void buildSemosTempleArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Io Flotto") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(8, 19));
 				nodes.add(new Node(8, 20));
 				nodes.add(new Node(15, 20));
@@ -53,7 +53,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				        null, new SpeakerNPC.ChatAction() {
 
 					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						        if (player.hasQuest("meet_io")) {
 							        engine.say("Hi again, " + player.getTitle()
 							                + ". How can I #help you this time? Not that I don't already know...");

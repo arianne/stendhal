@@ -81,19 +81,19 @@ public class ObsidianKnife extends AbstractQuest {
 	private static final String NAME = "Alrak";
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void prepareQuestOfferingStep() {
-		SpeakerNPC npc = npcs.get("Alrak");
+		final SpeakerNPC npc = npcs.get("Alrak");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)
 							|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 						npc.say("You know, it's hard to get food round here. I don't have any #supplies for next year.");
@@ -120,8 +120,8 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String food = player.getQuest(QUEST_SLOT);
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String food = player.getQuest(QUEST_SLOT);
 					npc.say("Thank you! I hope it doesn't take too long to collect. Don't forget to say '"
 						+ food + "' when you have it.");
 					// player.setQuest(QUEST_SLOT, food);
@@ -148,8 +148,8 @@ public class ObsidianKnife extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String food = Rand.rand(FOOD_LIST);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final String food = Rand.rand(FOOD_LIST);
 						player.setQuest(QUEST_SLOT, food);
 						npc.say("If you could get me " + REQUIRED_FOOD
 								+ " pieces of " + food
@@ -159,13 +159,13 @@ public class ObsidianKnife extends AbstractQuest {
 	}
 
 	private void bringFoodStep() {
-		SpeakerNPC npc = npcs.get("Alrak");
+		final SpeakerNPC npc = npcs.get("Alrak");
 
-		List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String item = sentence.getTriggerExpression().getNormalized();
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String item = sentence.getTriggerExpression().getNormalized();
 					if (player.drop(item, REQUIRED_FOOD)) {
 						npc.say("Great! You brought the " + item + "!");
 					}
@@ -179,8 +179,8 @@ public class ObsidianKnife extends AbstractQuest {
 				FOOD_LIST,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String item = sentence.getTriggerExpression().getNormalized();
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final String item = sentence.getTriggerExpression().getNormalized();
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(item)
 								&& player.isEquipped(item, REQUIRED_FOOD);
@@ -192,7 +192,7 @@ public class ObsidianKnife extends AbstractQuest {
 	}
 
 	private void requestBookStep() {
-		SpeakerNPC npc = npcs.get("Alrak");
+		final SpeakerNPC npc = npcs.get("Alrak");
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				"book",
@@ -217,7 +217,7 @@ public class ObsidianKnife extends AbstractQuest {
 	}
 
 	private void getBookStep() {
-		SpeakerNPC npc = npcs.get("Ceryl");
+		final SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
 				"gem book",
@@ -250,14 +250,14 @@ public class ObsidianKnife extends AbstractQuest {
 	}
 
 	private void bringBookStep() {
-		SpeakerNPC npc = npcs.get("Alrak");
+		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("blue book")),
 				ConversationStates.IDLE, 
 				"Great! I think I'll read this for a while. Bye!",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("blue book");
 						player.addXP(500);
 						player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
@@ -268,7 +268,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT) 
 						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
 						&& !player.isEquipped("blue book");
@@ -281,12 +281,12 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private void offerKnifeStep() {
 
-		SpeakerNPC npc = npcs.get("Alrak");
+		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).startsWith("reading;");
 					}
@@ -295,11 +295,11 @@ public class ObsidianKnife extends AbstractQuest {
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT)
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY; 
-						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+						final long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY; 
+						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
 							npc.say("I haven't finished reading that book. Maybe I'll be done in "
@@ -350,7 +350,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 							&& player.hasKilled("black dragon")
@@ -362,7 +362,7 @@ public class ObsidianKnife extends AbstractQuest {
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("obsidian");
 						player.drop(FISH);
 						npc.say("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
@@ -377,7 +377,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 							&& !player.hasKilled("black dragon")
@@ -394,7 +394,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 								&& !(player.isEquipped("obsidian") && player.isEquipped(FISH));
@@ -410,7 +410,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).startsWith("forging;");
 					}
@@ -419,11 +419,11 @@ public class ObsidianKnife extends AbstractQuest {
 				null, 
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT)
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
 							npc.say("I haven't finished making the knife. Please check back in "
@@ -432,7 +432,7 @@ public class ObsidianKnife extends AbstractQuest {
 						}
 						npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
 						player.addXP(10000);
-						Item knife = SingletonRepository.getEntityManager().getItem("obsidian knife");
+						final Item knife = SingletonRepository.getEntityManager().getItem("obsidian knife");
 						knife.setBoundTo(player.getName());
 						player.equip(knife, true);
 						player.setQuest(QUEST_SLOT, "done");
@@ -447,7 +447,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final List<String> NOT_COVERED_LIST = Arrays.asList(
 								"food_brought", "start", "meat", "ham",
 								"cheese", "rejected");

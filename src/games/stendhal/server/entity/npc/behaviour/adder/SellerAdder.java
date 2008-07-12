@@ -14,13 +14,13 @@ import org.apache.log4j.Logger;
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
 
-	public void addSeller(SpeakerNPC npc, SellerBehaviour behaviour) {
+	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);
 	}
 
-	public void addSeller(SpeakerNPC npc, final SellerBehaviour behaviour,
-			boolean offer) {
-		Engine engine = npc.getEngine();
+	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour,
+			final boolean offer) {
+		final Engine engine = npc.getEngine();
 
 		if (offer) {
 			engine.add(
@@ -38,8 +38,8 @@ public class SellerAdder {
 				new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
@@ -61,7 +61,7 @@ public class SellerAdder {
     							}
 
     							if (behaviour.getAmount() > 0) {
-	    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+	    							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 	    									* behaviour.getAmount();
 
 	    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
@@ -92,9 +92,9 @@ public class SellerAdder {
 				ConversationStates.ATTENDING, "Thanks.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						String itemName = behaviour.getChosenItemName();
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC engine) {
+						final String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 

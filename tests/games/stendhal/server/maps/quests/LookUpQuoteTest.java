@@ -16,6 +16,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -42,7 +43,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FishermanNPC());
 
@@ -61,9 +62,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = getNPC("Pequod");
+		final SpeakerNPC npc = getNPC("Pequod");
 		assertNotNull(npc);
-		Engine en1 = npc.getEngine();
+		final Engine en1 = npc.getEngine();
 		assertTrue("test text recognition with additional text after 'hi'",
 				en1.step(player, "hi Pequod"));
 		assertTrue(npc.isTalking());
@@ -78,9 +79,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testDoQuest() {
-		SpeakerNPC pequodNpc = getNPC("Pequod");
+		final SpeakerNPC pequodNpc = getNPC("Pequod");
 		assertNotNull(pequodNpc);
-		Engine pequodEngine = pequodNpc.getEngine();
+		final Engine pequodEngine = pequodNpc.getEngine();
 		assertTrue("test saying 'Hello' instead of 'hi'", pequodEngine.step(
 				player, "Hello"));
 		assertEquals(
@@ -98,10 +99,10 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 				pequodNpc.get("text"));
 
 		assertTrue(pequodEngine.step(player, "yes"));
-		String reply = pequodNpc.get("text");
+		final String reply = pequodNpc.get("text");
 		assertTrue(reply.startsWith("Please look up the famous quote by fisherman "));
 		// fish out the fisherman's man from Pequod's reply
-		String fisherman = reply.substring(45, reply.length() - 1);
+		final String fisherman = reply.substring(45, reply.length() - 1);
 		assertTrue(player.hasQuest(QUEST_SLOT));
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("fisherman "));
 

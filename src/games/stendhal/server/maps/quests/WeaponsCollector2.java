@@ -58,7 +58,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	);
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
@@ -84,14 +84,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 	 *            If true, sets a # character in front of every name
 	 * @return A list of weapon names
 	 */
-	private List<String> missingWeapons(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
+	private List<String> missingWeapons(final Player player, final boolean hash) {
+		final List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(QUEST_SLOT);
 		if (doneText == null) {
 			doneText = "";
 		}
-		List<String> done = Arrays.asList(doneText.split(";"));
+		final List<String> done = Arrays.asList(doneText.split(";"));
 		for (String weapon : neededWeapons) {
 			if (!done.contains(weapon)) {
 				if (hash) {
@@ -104,7 +104,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = getNPC();
+		final SpeakerNPC npc = getNPC();
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
@@ -121,7 +121,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isQuestCompleted(QUEST_SLOT)) {
 								engine.say("My collection is now complete! Thanks again.");
 								engine.setCurrentState(ConversationStates.ATTENDING);
@@ -140,7 +140,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Wonderful. Now, the #list is small but the risk may be great. "
 								+ "If you return safely, I have another reward for you.");
 						player.setQuest(QUEST_SLOT, "");
@@ -163,8 +163,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> needed = missingWeapons(player, true);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> needed = missingWeapons(player, true);
 						engine.say("There "
 								+ Grammar.isare(needed.size())
 								+ " "
@@ -183,8 +183,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						List<String> missing = missingWeapons(player, false);
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final List<String> missing = missingWeapons(player, false);
 						engine.say("Let me know as soon as you find "
 								+ Grammar.itthem(missing.size())
 								+ ". Farewell.");
@@ -206,18 +206,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						Expression item = sentence.getTriggerExpression();
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						final Expression item = sentence.getTriggerExpression();
 
 						TriggerList missing = new TriggerList(missingWeapons(player, false));
 
-						Expression found = missing.find(item);
+						final Expression found = missing.find(item);
 						if (found != null) {
-							String itemName = found.getOriginal();
+							final String itemName = found.getOriginal();
 
 							if (player.drop(itemName)) {
 								// register weapon as done
-								String doneText = player.getQuest(QUEST_SLOT);
+								final String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 								// check if the player has brought all weapons
@@ -226,11 +226,11 @@ public class WeaponsCollector2 extends AbstractQuest {
 								if (missing.size() > 0) {
 									engine.say("Thank you very much! Do you have anything more for me?");
 								} else {
-									Item lhandsword = SingletonRepository.getEntityManager().getItem(
+									final Item lhandsword = SingletonRepository.getEntityManager().getItem(
 											"l hand sword");
 									lhandsword.setBoundTo(player.getName());
 									player.equip(lhandsword, true);
-									Item rhandsword = SingletonRepository.getEntityManager().getItem(
+									final Item rhandsword = SingletonRepository.getEntityManager().getItem(
 											"r hand sword");
 									rhandsword.setBoundTo(player.getName());
 									player.equip(rhandsword, true);
@@ -257,7 +257,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = getNPC();
+		final SpeakerNPC npc = getNPC();
 
 		// player returns while quest is still active
 		playerReturnsWhileQuestIsActive(npc);
@@ -266,7 +266,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		playerReturnsAfterFinishingQuest(npc);
 	}
 
-	private void playerReturnsWhileQuestIsActive(SpeakerNPC npc) {
+	private void playerReturnsWhileQuestIsActive(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
@@ -275,7 +275,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null);
 	}
 
-	private void playerReturnsAfterFinishingQuest(SpeakerNPC npc) {
+	private void playerReturnsAfterFinishingQuest(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),

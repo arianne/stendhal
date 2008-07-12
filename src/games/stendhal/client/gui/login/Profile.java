@@ -27,7 +27,7 @@ class Profile {
 		this("", DEFAULT_SERVER_PORT, "", "");
 	}
 
-	public Profile(String host, int port, String user, String password) {
+	public Profile(final String host, final int port, final String user, final String password) {
 		this.host = host;
 		this.port = port;
 		this.user = user;
@@ -85,7 +85,7 @@ class Profile {
 	 * 
 	 * @return A login profile.
 	 */
-	public static Profile decode(String info) {
+	public static Profile decode(final String info) {
 		String[] params;
 		Profile profile;
 		String s;
@@ -100,7 +100,7 @@ class Profile {
 		if (params.length > 0) {
 			s = params[0];
 
-			for (String host : OLD_SERVER_HOSTS) {
+			for (final String host : OLD_SERVER_HOSTS) {
 				if (s.equals(host)) {
 					s = NEW_SERVER_HOST;
 					break;
@@ -143,7 +143,7 @@ class Profile {
 			if (s.length() != 0) {
 				try {
 					profile.setPort(Integer.parseInt(s));
-				} catch (NumberFormatException ex) {
+				} catch (final NumberFormatException ex) {
 
 				}
 			}
@@ -159,19 +159,19 @@ class Profile {
 		return profile;
 	}
 
-	public void setHost(String host) {
+	public void setHost(final String host) {
 		this.host = host;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
-	public void setPort(int port) {
+	public void setPort(final int port) {
 		this.port = port;
 	}
 
-	public void setUser(String user) {
+	public void setUser(final String user) {
 		this.user = user;
 	}
 
@@ -180,12 +180,12 @@ class Profile {
 	//
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof Profile)) {
 			return false;
 		}
 
-		Profile profile = (Profile) obj;
+		final Profile profile = (Profile) obj;
 
 		if (!getHost().equals(profile.getHost())) {
 			return false;

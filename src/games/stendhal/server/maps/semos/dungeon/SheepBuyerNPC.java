@@ -17,19 +17,19 @@ import java.util.Map;
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
 	@Override
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		// TODO: The code is similar to Sato's SheepBuyerBehaviour.
 		// Only the phrasing is different, and Sato doesn't buy
 		// skinny sheep. Get rid of the code duplication.
 		class SheepBuyerBehaviour extends BuyerBehaviour {
-			SheepBuyerBehaviour(Map<String, Integer> items) {
+			SheepBuyerBehaviour(final Map<String, Integer> items) {
 				super(items);
 			}
 
 			@Override
-			public int getCharge(SpeakerNPC npc, Player player) {
+			public int getCharge(final SpeakerNPC npc, final Player player) {
 				if (player.hasSheep()) {
-					Sheep sheep = player.getSheep();
+					final Sheep sheep = player.getSheep();
 					return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 				} else {
 					return 0;
@@ -37,9 +37,9 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 
 			@Override
-			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+			public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 				// amount is currently ignored.
-				Sheep sheep = player.getSheep();
+				final Sheep sheep = player.getSheep();
 
 				if (sheep != null) {
 					if (seller.squaredDistance(sheep) > 5 * 5) {
@@ -62,7 +62,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 		}
 
-		Map<String, Integer> buyitems = new HashMap<String, Integer>();
+		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
 		buyitems.put("sheep", 1500);
 
 		npc.addGreeting();

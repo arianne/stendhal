@@ -22,17 +22,17 @@ public abstract class StendhalServerExtension {
 
 	public abstract void init();
 
-	public synchronized boolean perform(String name) {
+	public synchronized boolean perform(final String name) {
 		return (false);
 	}
 
-	public String getMessage(String name) {
+	public String getMessage(final String name) {
 		return (null);
 	}
 
-	public static StendhalServerExtension getInstance(String name) {
+	public static StendhalServerExtension getInstance(final String name) {
 		try {
-			Class< ? > extensionClass = Class.forName(name);
+			final Class< ? > extensionClass = Class.forName(name);
 
 			if (!StendhalServerExtension.class.isAssignableFrom(extensionClass)) {
 				logger.debug("Class is no instance of StendhalServerExtension.");
@@ -40,15 +40,15 @@ public abstract class StendhalServerExtension {
 			}
 
 			logger.info("Loading ServerExtension: " + name);
-			java.lang.reflect.Constructor< ? > constr = extensionClass.getConstructor();
+			final java.lang.reflect.Constructor< ? > constr = extensionClass.getConstructor();
 
 			// simply create a new instance. The constructor creates all
 			// additionally objects
-			StendhalServerExtension instance = (StendhalServerExtension) constr.newInstance();
+			final StendhalServerExtension instance = (StendhalServerExtension) constr.newInstance();
 			// store it in the hashmap for later reference
 			loadedInstances.put(name, instance);
 			return instance;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.warn("StendhalServerExtension " + name + " loading failed.",
 					e);
 			return null;

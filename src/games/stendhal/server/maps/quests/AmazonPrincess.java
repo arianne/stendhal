@@ -56,19 +56,19 @@ public class AmazonPrincess extends AbstractQuest {
 	private static final List<String> triggers = Arrays.asList("drink", "pina colada", "cocktail", "cheers", "pina");
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void offerQuestStep() {
-		SpeakerNPC npc = npcs.get("Princess Esclara");
+		final SpeakerNPC npc = npcs.get("Princess Esclara");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 							npc.say("I'm looking for a drink, should be an exotic one. Can you bring me one?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -78,7 +78,7 @@ public class AmazonPrincess extends AbstractQuest {
 								"drinking;")) {
 							// She is still drunk from her previous pina colada,
 							// she doesn't want another yet
-							String[] tokens = player.getQuest(QUEST_SLOT).split(
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(
 									";"); // this splits the time from the
 											// word drinking
 							// tokens now is like an array with 'drinking' in
@@ -86,11 +86,11 @@ public class AmazonPrincess extends AbstractQuest {
 							// the time is in tokens[1]. so we use just
 							// tokens[1]
 
-							long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+							final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 							// timeRemaining is ''time when quest was done +
 							// delay - time now''
 							// if this is > 0, she's still drunk!
-							long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 									- System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								npc.say("I'm sure I'll be too drunk to have another for at least "
@@ -129,17 +129,17 @@ public class AmazonPrincess extends AbstractQuest {
 	 * serves drinks to all, not just those with the quest
 	 */
 	private void bringCocktailStep() {
-		SpeakerNPC npc = npcs.get("Princess Esclara");
+		final SpeakerNPC npc = npcs.get("Princess Esclara");
 		npc.add(
 			ConversationStates.ATTENDING, triggers,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina colada")),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("pina colada");
 					player.addKarma(15);
-					StackableItem fishpies = (StackableItem) SingletonRepository.getEntityManager().getItem(
+					final StackableItem fishpies = (StackableItem) SingletonRepository.getEntityManager().getItem(
 							"fish pie");
 					int pieamount;
 					// make it from 2 to 7 just to avoid dealing with

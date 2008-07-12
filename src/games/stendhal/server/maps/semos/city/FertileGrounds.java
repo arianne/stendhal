@@ -29,17 +29,17 @@ import games.stendhal.server.entity.mapstuff.area.Allotment;
  */
 public class FertileGrounds implements ZoneConfigurator {
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		if (zone != null) {
 			if (isValid(attributes)) {
 
 				try {
-					Allotment all = new Allotment();
+					final Allotment all = new Allotment();
 					all.setPosition(Integer.parseInt(attributes.get("x")), Integer.parseInt(attributes.get("y")));
 					all.setSize(Integer.parseInt(attributes.get("width")), Integer.parseInt(attributes.get("height")));
 					all.hide();
 					zone.add(all);
-				} catch (NumberFormatException e) {
+				} catch (final NumberFormatException e) {
 					Logger.getLogger(FertileGrounds.class).error(
 							"cannot create allotment in " + zone.getName() + ": " + e);
 				}
@@ -47,7 +47,7 @@ public class FertileGrounds implements ZoneConfigurator {
 		}
 	}
 
-	private boolean isValid(Map<String, String> attributes) {
+	private boolean isValid(final Map<String, String> attributes) {
 		return attributes.containsKey("x") && attributes.containsKey("y") && attributes.containsKey("width")
 				&& attributes.containsKey("height");
 	}

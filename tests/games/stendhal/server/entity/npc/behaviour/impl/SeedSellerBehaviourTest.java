@@ -42,18 +42,18 @@ public class SeedSellerBehaviourTest {
 
 	@Test
 	public void testTransactAgreedDeal() {
-		Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		SellerBehaviour sb = new SeedSellerBehaviour(pricelist);
 		pricelist.put("lilia seed", 10);
 		pricelist.put("daisies seed", 20);
-		SpeakerNPC speakerNPC = new SpeakerNPC("hugo");
+		final SpeakerNPC speakerNPC = new SpeakerNPC("hugo");
 
 		sb = new SeedSellerBehaviour(pricelist);
 		sb.setChosenItemName("lilia seed");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		PlayerTestHelper.equipWithMoney(bob, 100);
 		sb.transactAgreedDeal(speakerNPC, bob);
-		Item seed = bob.getFirstEquipped("seed");
+		final Item seed = bob.getFirstEquipped("seed");
 		assertNotNull(seed);
 		assertEquals("lilia", seed.getInfoString());
 		assertEquals(90, ((Stackable) bob.getFirstEquipped("money")).getQuantity());
@@ -61,8 +61,8 @@ public class SeedSellerBehaviourTest {
 
 	@Test
 	public void testGetAskedItem() {
-		Map<String, Integer> pricelist = new HashMap<String, Integer>();
-		SeedSellerBehaviour sb = new SeedSellerBehaviour(pricelist);
+		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		final SeedSellerBehaviour sb = new SeedSellerBehaviour(pricelist);
 		pricelist.put("lilia seed", 10);
 		pricelist.put("daisies seed", 20);
 		Item item = sb.getAskedItem("lilia seed");

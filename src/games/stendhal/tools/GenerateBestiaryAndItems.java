@@ -15,17 +15,17 @@ import java.util.List;
 public class GenerateBestiaryAndItems {
 
 	public static void generateCreatures() throws Exception {
-		CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
-		List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
+		final CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
+		final List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
 
-			public int compare(DefaultCreature o1, DefaultCreature o2) {
+			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
 
 			@Override
-			public boolean equals(Object obj) {
+			public boolean equals(final Object obj) {
 				return true;
 			}
 			
@@ -37,7 +37,7 @@ public class GenerateBestiaryAndItems {
 
 		int level = -1;
 
-		for (DefaultCreature creature : creatures) {
+		for (final DefaultCreature creature : creatures) {
 			System.out.println(creature.getLevel() + ";" + creature.getATK()
 					+ ";" + creature.getDEF() + ";" + creature.getHP() + ";"
 					+ creature.getXP());
@@ -46,13 +46,13 @@ public class GenerateBestiaryAndItems {
 
 		System.exit(0);
 
-		for (DefaultCreature creature : creatures) {
+		for (final DefaultCreature creature : creatures) {
 			if (creature.getLevel() != level) {
 				level = creature.getLevel();
 				System.out.println("= Level " + level + "=");
 			}
 
-			String name = creature.getCreatureName();
+			final String name = creature.getCreatureName();
 			System.out.println("== " + name + " ==");
 			System.out.println("{{Creature|");
 			System.out.println("|name= " + name + "");
@@ -66,7 +66,7 @@ public class GenerateBestiaryAndItems {
 			System.out.println("|strategy = '''(TODO)'''.");
 			System.out.println("|loot = ");
 
-			for (DropItem item : creature.getDropItems()) {
+			for (final DropItem item : creature.getDropItems()) {
 				System.out.println(item.min + "-" + item.max + " " + item.name
 						+ "<br>");
 			}
@@ -77,13 +77,13 @@ public class GenerateBestiaryAndItems {
 	}
 
 	public static void generateItems() throws Exception {
-		ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI(
+		final ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI(
 				"/data/conf/items.xml"));
-		List<DefaultItem> items = loader.load();
+		final List<DefaultItem> items = loader.load();
 
 		String clazz = null;
 
-		for (DefaultItem item : items) {
+		for (final DefaultItem item : items) {
 			if (!item.getItemClass().equals(clazz)) {
 				clazz = item.getItemClass();
 				System.out.println("= " + clazz + " =");
@@ -105,7 +105,7 @@ public class GenerateBestiaryAndItems {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		generateCreatures();
 		System.out.println(" *************************** ");
 		generateItems();

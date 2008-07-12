@@ -14,8 +14,8 @@ public class SlashActionRepository {
 	 * Registers the available Action.
 	 */
 	public static void register() {
-		SlashAction msg = new MessageAction();
-		SlashAction supporta = new SupportAnswerAction();
+		final SlashAction msg = new MessageAction();
+		final SlashAction supporta = new SupportAnswerAction();
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
@@ -62,7 +62,7 @@ public class SlashActionRepository {
 	 *            name of Action
 	 * @return Action object
 	 */
-	public static SlashAction get(String name) {
+	public static SlashAction get(final String name) {
 		return actions.get(name);
 	}
 }

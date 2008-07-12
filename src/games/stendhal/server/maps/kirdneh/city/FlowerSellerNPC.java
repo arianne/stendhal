@@ -28,13 +28,13 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC sellernpc = new SpeakerNPC("Fleur") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC sellernpc = new SpeakerNPC("Fleur") {
 
 			@Override
 			protected void createPath() {
@@ -48,7 +48,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 				addReply(ConversationPhrases.NO_MESSAGES, "Very well, if I can help you just say.");
 				addJob("I sell roses in this here market.");
 				addHelp("If you need to access your funds, there is a branch of Fado bank right here in Kirdneh. It's the small building north of the museum, on the east of the city.");
-				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("rose", 50);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 				addGoodbye("Come back soon!");

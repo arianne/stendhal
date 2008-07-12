@@ -26,16 +26,16 @@ public class Maria extends ScriptImpl {
 
 	class MargaretCouponAction extends SpeakerNPC.ChatAction {
 
-		private ScriptingSandbox sandbox;
+		private final ScriptingSandbox sandbox;
 
-		public MargaretCouponAction(ScriptingSandbox sandbox) {
+		public MargaretCouponAction(final ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;
 		}
 
 		@Override
-		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.drop("coupon")) {
-				Item beer = sandbox.getItem("beer");
+				final Item beer = sandbox.getItem("beer");
 				player.equip(beer, true);
 				engine.say("Here is your free beer.");
 				player.setQuest("MariaCoupon", "done");
@@ -46,14 +46,14 @@ public class Maria extends ScriptImpl {
 	}
 
 	@Override
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 
 		// Create NPC
-		ScriptingNPC npc = new ScriptingNPC("Maria");
+		final ScriptingNPC npc = new ScriptingNPC("Maria");
 		npc.setEntityClass("tavernbarmaidnpc");
 
 		// Place NPC in int_admin_playground on server start
-		String myZone = "int_admin_playground";
+		final String myZone = "int_admin_playground";
 		sandbox.setZone(myZone);
 		int x = 11;
 		int y = 4;
@@ -81,7 +81,7 @@ public class Maria extends ScriptImpl {
 				"You can get an #offer of drinks and take a break to meet new people!");
 		try {
 			npc.behave("sell", SingletonRepository.getShopList().get("food&drinks"));
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 			logger.error(e, e);
 		}
 

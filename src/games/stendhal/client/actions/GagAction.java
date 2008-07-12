@@ -18,7 +18,7 @@ class GagAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		/*
 		 * Reason required
 		 */
@@ -26,7 +26,7 @@ class GagAction implements SlashAction {
 			return false;
 		}
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		action.put("type", "gag");
 		action.put("target", params[0]);

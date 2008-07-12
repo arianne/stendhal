@@ -45,13 +45,13 @@ public class ToysCollector extends AbstractQuest implements
 		Arrays.asList("teddy", "dice", "dress");
 
 	@Override
-	public void init(String name) {
+	public void init(final String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
 	private void setupAbstractQuest() {
-		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
+		final BringListOfItemsQuest concreteQuest = this;
+		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
 				concreteQuest);
 		bringItems.addToWorld();
 	}
@@ -129,11 +129,11 @@ public class ToysCollector extends AbstractQuest implements
 		return "Oh ... you're mean.";
 	}
 
-	public String askForMissingItems(List<String> missingItems) {
+	public String askForMissingItems(final List<String> missingItems) {
 		return "What toys did you bring?";
 	}
 
-	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Okay then. Come back later.";
 	}
 
@@ -149,8 +149,8 @@ public class ToysCollector extends AbstractQuest implements
 		return "These toys will keep me happy for ages! Please take these pies. Arlindo baked them for us but I think you should have them.";
 	}
 
-	public void rewardPlayer(Player player) {
-		StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem(
+	public void rewardPlayer(final Player player) {
+		final StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"pie");
 		pie.setQuantity(3);
 		player.equip(pie, true);
@@ -158,7 +158,7 @@ public class ToysCollector extends AbstractQuest implements
 		player.addKarma(10.0);
 	}
 
-	public String respondToOfferOfNotExistingItem(String itemName) {
+	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Hey! It's bad to lie! You don't have "
 				+ Grammar.a_noun(itemName) + " with you.";
 	}

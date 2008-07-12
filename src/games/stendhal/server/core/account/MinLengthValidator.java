@@ -8,8 +8,8 @@ import marauroa.common.game.Result;
  * @author hendrik
  */
 public class MinLengthValidator implements AccountParameterValidator {
-	private String parameterValue;
-	private int minLength;
+	private final String parameterValue;
+	private final int minLength;
 
 	/**
 	 * create a new MinLengthValidator.

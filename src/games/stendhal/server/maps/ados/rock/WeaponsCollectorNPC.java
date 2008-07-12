@@ -14,12 +14,12 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildRockArea(zone);
 	}
 
-	private void buildRockArea(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Balduin") {
+	private void buildRockArea(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Balduin") {
 
 			@Override
 			protected void createPath() {

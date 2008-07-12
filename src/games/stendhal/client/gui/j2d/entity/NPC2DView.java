@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
@@ -53,10 +52,10 @@ class NPC2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		SpriteStore store = SpriteStore.get();
+		final SpriteStore store = SpriteStore.get();
 
 		try {
-			int code = rpentity.getOutfit();
+			final int code = rpentity.getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
 				return OutfitStore.get().getOutfit(code);
@@ -65,7 +64,7 @@ class NPC2DView extends RPEntity2DView {
 				return store.getSprite(translate("npc/"
 						+ entity.getEntityClass()));
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error("Cannot build animations", e);
 			return store.getSprite(translate(entity.getEntityClass()));
 		}
@@ -93,7 +92,7 @@ class NPC2DView extends RPEntity2DView {
 	}
 
 	@Override
-	protected void buildActions(List<String> list) {
+	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 		// NPC can't be pushed
 		list.remove(ActionType.PUSH.getRepresentation());
@@ -103,10 +102,10 @@ class NPC2DView extends RPEntity2DView {
 	}
 
 	@Override
-	public void onAction(ActionType at) {
+	public void onAction(final ActionType at) {
 		switch (at) {
 		case ADMIN_VIEW_NPC_TRANSITIONS:
-			RPAction action = new RPAction();
+			final RPAction action = new RPAction();
 			action.put("type", "script");
 			action.put("target", "DumpTransitionsEx.class");
 			action.put("args", this.getEntity().getTitle());

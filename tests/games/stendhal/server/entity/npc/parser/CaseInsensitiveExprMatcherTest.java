@@ -15,13 +15,13 @@ public class CaseInsensitiveExprMatcherTest {
 
 	@Test
 	public final void testCaseInsensitiveMatching() {
-		ExpressionMatcher matcher = new CaseInsensitiveExprMatcher();
+		final ExpressionMatcher matcher = new CaseInsensitiveExprMatcher();
 
-		Expression e1 = new Expression("aBc", "VER");
-		Expression e2 = new Expression("abc", "VER");
-		Expression e3 = new Expression("ab", "VER");
-		Expression e4 = new Expression("abc", "SUB");
-		Expression e5 = new Expression("X", "SUB");
+		final Expression e1 = new Expression("aBc", "VER");
+		final Expression e2 = new Expression("abc", "VER");
+		final Expression e3 = new Expression("ab", "VER");
+		final Expression e4 = new Expression("abc", "SUB");
+		final Expression e5 = new Expression("X", "SUB");
 
 		assertTrue(matcher.match(e1, e2));
 		assertFalse(matcher.match(e1, e3));

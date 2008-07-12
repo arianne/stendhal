@@ -21,7 +21,7 @@ public class NPCListTest {
 
 	@Test
 	public final void testGet() {
-		NPCList npclist = new NPCList() {
+		final NPCList npclist = new NPCList() {
 		};
 		assertSame(npclist, SingletonRepository.getNPCList());
 	}
@@ -29,7 +29,7 @@ public class NPCListTest {
 	@Test
 	public final void testAddHas() {
 		PlayerTestHelper.generateNPCRPClasses();
-		NPCList npclist = new NPCList() {
+		final NPCList npclist = new NPCList() {
 		};
 		npclist.add(new SpeakerNPC("Bob"));
 		assertNotNull(npclist.get("Bob"));
@@ -39,7 +39,7 @@ public class NPCListTest {
 	@Test
 	public final void testRemove() {
 		PlayerTestHelper.generateNPCRPClasses();
-		NPCList npclist = new NPCList() {
+		final NPCList npclist = new NPCList() {
 		};
 		npclist.add(new SpeakerNPC("Bob"));
 		assertNotNull(npclist.get("Bob"));
@@ -54,9 +54,9 @@ public class NPCListTest {
 	@Test
 	public final void testGetNPCs() {
 		PlayerTestHelper.generateNPCRPClasses();
-		NPCList npclist = new NPCList() {
+		final NPCList npclist = new NPCList() {
 		};
-		SpeakerNPC speakerNPC = new SpeakerNPC("Bob");
+		final SpeakerNPC speakerNPC = new SpeakerNPC("Bob");
 		npclist.add(speakerNPC);
 		assertEquals(speakerNPC, npclist.get("Bob"));
 		assertEquals(speakerNPC, npclist.get("BOB"));

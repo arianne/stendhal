@@ -36,7 +36,7 @@ public class CreateGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	protected void joinGuild(Player player, RPAction action) {
+	protected void joinGuild(final Player player, final RPAction action) {
 
 		// now we see if the player is in a guild. If not, put them in the
 		// requested one.
@@ -44,7 +44,7 @@ public class CreateGuildAction implements ActionListener {
 			player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
 		} else {
 			player.put(_ATTR_GUILD, action.get(_VALUE));
-			String description = "You see " + player.getTitle() + ".\n"
+			final String description = "You see " + player.getTitle() + ".\n"
 					+ player.getTitle() + " is level " + player.getLevel()
 					+ " and is a member of the " + action.get(_VALUE)
 					+ " guild.";
@@ -65,7 +65,7 @@ public class CreateGuildAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.get(TYPE).equals(_CREATEGUILD)) {
 			joinGuild(player, action);
 		}

@@ -24,7 +24,7 @@ public class NakedConditionTest {
 
 	@Test
 	public final void testFire() {
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 		bob.setOutfit(new Outfit(0));
 		assertTrue(bob.getOutfit().isNaked());
 		assertTrue(new NakedCondition().fire(bob, null, null));
@@ -45,7 +45,7 @@ public class NakedConditionTest {
 
 		assertFalse(new NakedCondition().equals(null));
 
-		NakedCondition obj = new NakedCondition();
+		final NakedCondition obj = new NakedCondition();
 		assertTrue(obj.equals(obj));
 		assertTrue(new NakedCondition().equals(new NakedCondition()));
 
@@ -53,7 +53,7 @@ public class NakedConditionTest {
 
 	@Test
 	public final void testHashCode() {
-		NakedCondition obj = new NakedCondition();
+		final NakedCondition obj = new NakedCondition();
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new NakedCondition().hashCode(),
 				new NakedCondition().hashCode());

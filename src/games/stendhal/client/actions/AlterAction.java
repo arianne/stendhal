@@ -18,11 +18,11 @@ class AlterAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		if (hasInvalidArguments(params, remainder)) {
 			return false;
 		}
-		RPAction alter = new RPAction();
+		final RPAction alter = new RPAction();
 
 		alter.put("type", "alter");
 		alter.put("target", params[0]);
@@ -41,8 +41,8 @@ class AlterAction implements SlashAction {
 	 * @param remainder to be evaluated
 	 * @return true if <code>params</code>.length too short or remainder is <code>null</code>
 	 */
-	private boolean hasInvalidArguments(String[] params, String remainder) {
-		return params == null || remainder == null || params.length < getMinimumParameters();
+	private boolean hasInvalidArguments(final String[] params, final String remainder) {
+		return (params == null) || (remainder == null) || (params.length < getMinimumParameters());
 	}
 
 	/**

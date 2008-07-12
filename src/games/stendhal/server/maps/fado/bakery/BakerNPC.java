@@ -31,7 +31,7 @@ public class BakerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -39,12 +39,12 @@ public class BakerNPC implements ZoneConfigurator {
 	// IL0_BakerNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC baker = new SpeakerNPC("Linzo") {
+	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC baker = new SpeakerNPC("Linzo") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				// to the well
 				nodes.add(new Node(15, 3));
 				// to a barrel
@@ -86,13 +86,13 @@ public class BakerNPC implements ZoneConfigurator {
 
 				// Linzo makes fish pies if you bring him flour, leek, cod and mackerel
 				// (uses sorted TreeMap instead of HashMap)
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
 				requiredResources.put("cod", 2);
 				requiredResources.put("mackerel", 1);
 				requiredResources.put("leek", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish pie",
+				final ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish pie",
 				        requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

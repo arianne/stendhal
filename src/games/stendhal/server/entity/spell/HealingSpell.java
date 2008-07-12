@@ -31,7 +31,7 @@ import java.util.Map;
 public class HealingSpell extends Spell implements UseListener {
 	private int healAmount;
 
-	HealingSpell(String name, Map<String, String> attributes) {
+	HealingSpell(final String name, final Map<String, String> attributes) {
 		super(name, attributes);
 	}
 
@@ -51,7 +51,7 @@ public class HealingSpell extends Spell implements UseListener {
 	 * 
 	 * 
 	 */
-	public int getHealingAmount(Player player) {
+	public int getHealingAmount(final Player player) {
 		return player.getBaseHP() - healAmount;
 	}
 
@@ -59,15 +59,15 @@ public class HealingSpell extends Spell implements UseListener {
 	// UseListener
 	//
 
-	public boolean onUsed(RPEntity user) {
-		Player player = (Player) user;
+	public boolean onUsed(final RPEntity user) {
+		final Player player = (Player) user;
 
 		if (player.getMana() >= 25) {
 			player.heal(getHealingAmount(player), true);
 
 			// takes away the mana
-			int mana = player.getMana();
-			int newmana = mana - 25;
+			final int mana = player.getMana();
+			final int newmana = mana - 25;
 
 			// sets the new mana amount
 			player.setMana(newmana);

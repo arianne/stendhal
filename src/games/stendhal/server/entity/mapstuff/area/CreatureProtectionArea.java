@@ -43,7 +43,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @param height
 	 *            The area height.
 	 */
-	public CreatureProtectionArea(int width, int height) {
+	public CreatureProtectionArea(final int width, final int height) {
 		this(width, height, true);
 	}
 
@@ -57,7 +57,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @param defaultBlocked
 	 *            Whether blocked on no match.
 	 */
-	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) {
+	public CreatureProtectionArea(final int width, final int height, final boolean defaultBlocked) {
 		super(width, height);
 
 		put("server-only", "");
@@ -78,7 +78,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @param clazz
 	 *            A creature class to match (or <code>null</code> for any).
 	 */
-	public void add(String clazz) {
+	public void add(final String clazz) {
 		add(clazz, null);
 	}
 
@@ -90,7 +90,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @param subclazz
 	 *            A creature subclass to match (or <code>null</code> for any).
 	 */
-	public void add(String clazz, String subclazz) {
+	public void add(final String clazz, final String subclazz) {
 		add(clazz, subclazz, true);
 	}
 
@@ -104,7 +104,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @param blocked
 	 *            Whether to block.
 	 */
-	public void add(String clazz, String subclazz, boolean blocked) {
+	public void add(final String clazz, final String subclazz, final boolean blocked) {
 		entries.add(new Entry(clazz, subclazz, blocked));
 	}
 
@@ -118,7 +118,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * 
 	 * @return The matching criteria, or default response.
 	 */
-	protected boolean matchesCriteria(Creature creature, boolean defaultAnswer) {
+	protected boolean matchesCriteria(final Creature creature, final boolean defaultAnswer) {
 		String clazz;
 		String subclazz;
 
@@ -138,7 +138,7 @@ public class CreatureProtectionArea extends AreaEntity {
 			subclazz = "";
 		}
 
-		for (Entry entry : entries) {
+		for (final Entry entry : entries) {
 			if (entry.matches(clazz, subclazz)) {
 				return entry.isBlocked();
 			}
@@ -157,7 +157,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	 * @return <code>true</code> if a matching creature is given.
 	 */
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		/*
 		 * Only applies to Creature's
 		 */
@@ -203,7 +203,7 @@ public class CreatureProtectionArea extends AreaEntity {
 		 * @param blocked
 		 *            Whether it should be blocked.
 		 */
-		public Entry(String clazz, String subclazz, boolean blocked) {
+		public Entry(final String clazz, final String subclazz, final boolean blocked) {
 			this.clazz = clazz;
 			this.subclazz = subclazz;
 			this.blocked = blocked;
@@ -231,7 +231,7 @@ public class CreatureProtectionArea extends AreaEntity {
 		 * 
 		 * 
 		 */
-		public boolean matches(String clazz, String subclazz) {
+		public boolean matches(final String clazz, final String subclazz) {
 			if ((this.clazz != null) && !clazz.equals(this.clazz)) {
 				return false;
 			}

@@ -22,33 +22,33 @@ public class WrapAction implements ActionListener {
 	 * Registers the "wrap" action handler.
 	 */
 	public static void register() {
-		WrapAction wrap = new WrapAction();
+		final WrapAction wrap = new WrapAction();
 		CommandCenter.register("wrap", wrap, 800);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (action.get("type").equals("wrap")) {
     		onWrap(player, action);
 		}
 	}
 
-	private void onWrap(Player player, RPAction action) {
+	private void onWrap(final Player player, final RPAction action) {
 		String itemName = action.get("target");
-		String args = action.get("args");
+		final String args = action.get("args");
 
-		if (args != null && args.length() > 0) {
+		if ((args != null) && (args.length() > 0)) {
 			itemName += ' ';
 			itemName += args;
 		}
 
 		itemName = Grammar.singular(itemName);
 
-		Item item = player.getFirstEquipped(itemName);
+		final Item item = player.getFirstEquipped(itemName);
 
 		if (item != null) {
 			final String slot = "bag";
     	  
-    	    Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
+    	    final Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
     	    present.setContent(itemName);
     	    player.equip(slot, present);
 

@@ -22,7 +22,7 @@ public class OneWayPortalDestination extends Portal {
 	 * other portals.
 	 */
 	@Override
-	public void setDestination(String zone, Object number) {
+	public void setDestination(final String zone, final Object number) {
 		throw new IllegalArgumentException(
 				"One way portal destinations are only destinations of other portals");
 	}
@@ -33,7 +33,7 @@ public class OneWayPortalDestination extends Portal {
 	}
 
 	@Override
-	public boolean onUsed(RPEntity user) {
+	public boolean onUsed(final RPEntity user) {
 		return false;
 	}
 }

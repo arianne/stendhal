@@ -26,16 +26,16 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDressingRoom(zone, attributes);
 	}
 
-	private void buildDressingRoom(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Timothy") {
+	private void buildDressingRoom(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Timothy") {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(20, 10));
 				nodes.add(new Node(20, 3));
 				setPath(new FixedPath(nodes, true));
@@ -50,9 +50,9 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 				addQuest("You should probably be thinking about your wedding.");
 				addGoodbye("Good bye, I hope everything goes well for you.");
 
-				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("suit", 50);
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "wear");
 			}
 		};

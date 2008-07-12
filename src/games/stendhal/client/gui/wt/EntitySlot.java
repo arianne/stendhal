@@ -60,7 +60,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private EntityView view;
 
 	/** The placeholder sprite. */
-	private Sprite placeholder;
+	private final Sprite placeholder;
 
 	static {
 		background = SpriteStore.get().getSprite("data/gui/slot.png");
@@ -75,8 +75,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param y
 	 * @param gameScreen
 	 */
-	public EntitySlot(String name, Sprite placeholder, int x, int y,
-			IGameScreen gameScreen) {
+	public EntitySlot(final String name, final Sprite placeholder, final int x, final int y,
+			final IGameScreen gameScreen) {
 		super(name, x, y, background.getWidth(), background.getHeight(),
 				gameScreen);
 		this.placeholder = placeholder;
@@ -97,7 +97,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * 
 	 * @param parent
 	 */
-	public void setParent(Entity parent) {
+	public void setParent(final Entity parent) {
 		this.parent = parent;
 	}
 
@@ -109,7 +109,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param droppedObject
 	 * @return true if succefully dropped
 	 */
-	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
+	public boolean onDrop(final int x, final int y, final WtDraggable droppedObject) {
 		if (parent == null) {
 			return false;
 		}
@@ -118,14 +118,14 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			return false;
 		}
 
-		MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+		final MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
 		// Don't drag an item into the same slot
 		if ((view != null) && (container.getEntity() == view.getEntity())) {
 			return false;
 		}
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		// looks like an equip
 		action.put("type", "equip");
@@ -148,7 +148,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param entity
 	 *            The new entity, or <code>null</code>.
 	 */
-	public void setEntity(final Entity entity, IGameScreen gameScreen) {
+	public void setEntity(final Entity entity, final IGameScreen gameScreen) {
 		if (view != null) {
 			/*
 			 * Don't replace the same object
@@ -179,7 +179,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D childArea, IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D childArea, final IGameScreen gameScreen) {
 		super.drawContent(childArea, gameScreen);
 
 		// draw the background image
@@ -188,18 +188,18 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// draw the entity (if there is any)
 		if (view != null) {
 			// Center the entity view (assume 1x1 tile)
-			int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
-			int y = (getHeight() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
+			final int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
+			final int y = (getHeight() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
 
-			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
+			final Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
 					getHeight());
 			vg.translate(x, y);
 			view.draw(vg, gameScreen);
 			vg.dispose();
 		} else if (placeholder != null) {
 			// Center the placeholder sprite
-			int x = (getWidth() - placeholder.getWidth()) / 2;
-			int y = (getHeight() - placeholder.getHeight()) / 2;
+			final int x = (getWidth() - placeholder.getWidth()) / 2;
+			final int y = (getHeight() - placeholder.getHeight()) / 2;
 			placeholder.draw(childArea, x, y);
 		}
 	}
@@ -208,8 +208,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * returns a draggable object.
 	 */
 	@Override
-	protected WtDraggable getDragged(int x, int y) {
-		if (view != null && !this.getParent().isMinimized()) {
+	protected WtDraggable getDragged(final int x, final int y) {
+		if ((view != null) && !this.getParent().isMinimized()) {
 			return new MoveableEntityContainer(view.getEntity());
 		}
 
@@ -218,10 +218,10 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** right mouse button was clicked. */
 	@Override
-	public synchronized boolean onMouseRightClick(Point p) {
+	public synchronized boolean onMouseRightClick(final Point p) {
 		if (view != null) {
 			// create the context menu
-			CommandList list = new CommandList(getName(), view.getActions(),
+			final CommandList list = new CommandList(getName(), view.getActions(),
 					view);
 			setContextMenu(list);
 		}
@@ -230,7 +230,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** doubleclick moves this item to the players inventory. */
 	@Override
-	public synchronized boolean onMouseDoubleClick(Point p) {
+	public synchronized boolean onMouseDoubleClick(final Point p) {
 		// check if the baseclass wants to process the event
 		if (super.onMouseDoubleClick(p)) {
 			return true;
@@ -247,9 +247,9 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			return true;
 		}
 
-		RPObject content = view.getEntity().getRPObject();
+		final RPObject content = view.getEntity().getRPObject();
 
-		RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 		action.put("type", "equip");
 		// source object and content from THIS container
 		action.put("baseobject", parent.getID().getObjectID());

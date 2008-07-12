@@ -38,7 +38,7 @@ public class FindGhostsTest {
 
 	@Before
 	public void setUp() {
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		ZoneConfigurator zoneConf = new WomanGhostNPC();
 		zoneConf.configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Carena");
@@ -56,7 +56,7 @@ public class FindGhostsTest {
 		zoneConf = new games.stendhal.server.maps.wofol.house5.GhostNPC();
 		zoneConf.configureZone(zone, null);
 
-		AbstractQuest quest = new FindGhosts();
+		final AbstractQuest quest = new FindGhosts();
 		quest.addToWorld();
 		en = npc.getEngine();
 
@@ -205,7 +205,7 @@ public class FindGhostsTest {
 
 		// -----------------------------------------------
 		oldxp = player.getXP();
-		int oldHP = player.getBaseHP();
+		final int oldHP = player.getBaseHP();
 		en.step(player, "hi");
 		assertEquals("If you found any #spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "yes");

@@ -32,11 +32,11 @@ public class MoveToAction implements ActionListener {
 	private static final String _TELECLICKMODE = "teleclickmode";
 
 	public static void register() {
-		MoveToAction moveTo = new MoveToAction();
+		final MoveToAction moveTo = new MoveToAction();
 		CommandCenter.register(_MOVETO, moveTo);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
 			return;
@@ -48,15 +48,15 @@ public class MoveToAction implements ActionListener {
 
 		if (action.has(X)
 				&& action.has(Y)) {
-			int x = action.getInt(X);
-			int y = action.getInt(Y);
+			final int x = action.getInt(X);
+			final int y = action.getInt(Y);
 			if (player.has(_TELECLICKMODE)) {
 				// Teleport
-				StendhalRPZone zone = player.getZone();
+				final StendhalRPZone zone = player.getZone();
 				player.teleport(zone, x, y, null, null);
 			} else {
 				// Walk
-				List<Node> path = Path.searchPath(player, x, y);
+				final List<Node> path = Path.searchPath(player, x, y);
 				player.setPath(new FixedPath(path, false));
 			}
 		}

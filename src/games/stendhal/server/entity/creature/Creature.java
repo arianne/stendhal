@@ -113,7 +113,7 @@ public class Creature extends NPC {
 
 	private int targetY;
 	
-	private int attackTurn = Rand.rand(5);
+	private final int attackTurn = Rand.rand(5);
 
 	private boolean isIdle; 
 
@@ -121,31 +121,31 @@ public class Creature extends NPC {
 		return isRespawned;
 	}
 
-	public void setRespawned(boolean isRespawned) {
+	public void setRespawned(final boolean isRespawned) {
 		this.isRespawned = isRespawned;
 	}
 
 	public int getAttackTurn() {
 		return attackTurn;
 	}
-	public boolean isAttackTurn(int turn) {
+	public boolean isAttackTurn(final int turn) {
 		return (turn % 5 == attackTurn);
 	}
 
 
 	public static void generateRPClass() {
 		try {
-			RPClass npc = new RPClass("creature");
+			final RPClass npc = new RPClass("creature");
 			npc.isA("npc");
 			npc.addAttribute("debug", Type.VERY_LONG_STRING,
 					Definition.VOLATILE);
 			npc.addAttribute("metamorphosis", Type.STRING, Definition.VOLATILE);
-		} catch (SyntaxException e) {
+		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
 
-	public Creature(RPObject object) {
+	public Creature(final RPObject object) {
 		super(object);
 
 		setRPClass("creature");
@@ -159,7 +159,7 @@ public class Creature extends NPC {
 		setAiProfiles(new HashMap<String, String>());
 	}
 
-	public Creature(Creature copy) {
+	public Creature(final Creature copy) {
 		this();
 
 		this.baseSpeed = copy.baseSpeed;
@@ -253,11 +253,11 @@ public class Creature extends NPC {
 	 * @param respawnTime
 	 * @param description
 	 */
-	public Creature(String clazz, String subclass, String name, int hp,
-			int attack, int defense, int level, int xp, int width, int height,
-			double baseSpeed, List<DropItem> dropItems,
-			Map<String, String> aiProfiles, List<String> noises,
-			int respawnTime, String description) {
+	public Creature(final String clazz, final String subclass, final String name, final int hp,
+			final int attack, final int defense, final int level, final int xp, final int width, final int height,
+			final double baseSpeed, final List<DropItem> dropItems,
+			final Map<String, String> aiProfiles, final List<String> noises,
+			final int respawnTime, final String description) {
 		this();
 
 		this.baseSpeed = baseSpeed;
@@ -306,7 +306,7 @@ public class Creature extends NPC {
 		return getID();
 	}
 
-	private void setAiProfiles(Map<String, String> aiProfiles) {
+	private void setAiProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
 		setAttackStrategy(aiProfiles);
@@ -319,7 +319,7 @@ public class Creature extends NPC {
 		return aiProfiles;
 	}
 
-	public void setRespawnPoint(CreatureRespawnPoint point) {
+	public void setRespawnPoint(final CreatureRespawnPoint point) {
 		this.point = point;
 		setRespawned(true);
 	}
@@ -347,7 +347,7 @@ public class Creature extends NPC {
 	 * @param min 
 	 * @param max 
 	 */
-	public void addDropItem(String name, double probability, int min, int max) {
+	public void addDropItem(final String name, final double probability, final int min, final int max) {
 		dropsItems.add(new DropItem(name, probability, min, max));
 	}
 
@@ -359,7 +359,7 @@ public class Creature extends NPC {
 	 * @param probability 
 	 * @param amount 
 	 */
-	public void addDropItem(String name, double probability, int amount) {
+	public void addDropItem(final String name, final double probability, final int amount) {
 		dropsItems.add(new DropItem(name, probability, amount));
 	}
 
@@ -369,7 +369,7 @@ public class Creature extends NPC {
 	 * 
 	 * @param item
 	 */
-	public void addDropItem(Item item) {
+	public void addDropItem(final Item item) {
 		dropItemInstances.add(item);
 	}
 
@@ -382,7 +382,7 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(final Entity killer) {
 		if (point != null) {
 			point.notifyDead(this);
 		}
@@ -391,15 +391,15 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	protected void dropItemsOn(Corpse corpse) {
-		for (Item item : dropItemInstances) {
+	protected void dropItemsOn(final Corpse corpse) {
+		for (final Item item : dropItemInstances) {
 			corpse.add(item);
 			if (corpse.isFull()) {
 				break;
 			}
 		}
 
-		for (Item item : createDroppedItems(SingletonRepository.getEntityManager())) {
+		for (final Item item : createDroppedItems(SingletonRepository.getEntityManager())) {
 			corpse.add(item);
 
 			if (corpse.isFull()) {
@@ -429,16 +429,16 @@ public class Creature extends NPC {
 	 *            attack radius
 	 * @return chosen enemy or null if no enemy was found.
 	 */
-	public RPEntity getNearestEnemy(double range) {
+	public RPEntity getNearestEnemy(final double range) {
 		// create list of enemies
-		List<RPEntity> enemyList = getEnemyList();
+		final List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.isEmpty()) {
 			return null;
 		}
 
 		// calculate the distance of all possible enemies
-		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
-		for (RPEntity enemy : enemyList) {
+		final Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
+		for (final RPEntity enemy : enemyList) {
 			if (enemy == this) {
 				continue;
 			}
@@ -449,7 +449,7 @@ public class Creature extends NPC {
 			assert (enemy.getZone() == getZone());
 			
 
-			double squaredDistance = this.squaredDistance(enemy);
+			final double squaredDistance = this.squaredDistance(enemy);
 			if (squaredDistance <= (range * range)) {
 				distances.put(enemy, squaredDistance);
 			}
@@ -459,8 +459,8 @@ public class Creature extends NPC {
 		RPEntity chosen = null;
 		while ((chosen == null) && (distances.size() > 0)) {
 			double shortestDistance = Double.MAX_VALUE;
-			for (Map.Entry<RPEntity, Double> enemy : distances.entrySet()) {
-				double distance = enemy.getValue();
+			for (final Map.Entry<RPEntity, Double> enemy : distances.entrySet()) {
+				final double distance = enemy.getValue();
 				if (distance < shortestDistance) {
 					chosen = enemy.getKey();
 					shortestDistance = distance;
@@ -468,7 +468,7 @@ public class Creature extends NPC {
 			}
 
 			if (shortestDistance >= 1) {
-				List<Node> path = Path.searchPath(this, chosen, 20.0);
+				final List<Node> path = Path.searchPath(this, chosen, 20.0);
 				if ((path == null) || (path.size() == 0)) {
 					distances.remove(chosen);
 					chosen = null;
@@ -482,17 +482,17 @@ public class Creature extends NPC {
 		return chosen;
 	}
 
-	public boolean isEnemyNear(double range) {
-		int x = getX();
-		int y = getY();
+	public boolean isEnemyNear(final double range) {
+		final int x = getX();
+		final int y = getY();
 
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
-			StendhalRPZone zone = getZone();
+			final StendhalRPZone zone = getZone();
 			enemyList = zone.getPlayerAndFriends();
 		}
 
-		for (RPEntity playerOrFriend : enemyList) {
+		for (final RPEntity playerOrFriend : enemyList) {
 			if (playerOrFriend == this) {
 				continue;
 			}
@@ -502,8 +502,8 @@ public class Creature extends NPC {
 			}
 
 			if (playerOrFriend.getZone() == getZone()) {
-				int fx = playerOrFriend.getX();
-				int fy = playerOrFriend.getY();
+				final int fx = playerOrFriend.getX();
+				final int fy = playerOrFriend.getY();
 
 				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)) {
 					return true;
@@ -530,21 +530,21 @@ public class Creature extends NPC {
 	
 	public void tryToPoison() {
 		
-		RPEntity entity = getAttackTarget();
+		final RPEntity entity = getAttackTarget();
 		if (poisoner.attack(entity)) {
 			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "poison", entity.getName());
 			entity.sendPrivateText("You have been poisoned by a " + getName());
 		}
 	}
 
-	public void equip(List<EquipItem> items) {
-		for (EquipItem equippedItem : items) {
+	public void equip(final List<EquipItem> items) {
+		for (final EquipItem equippedItem : items) {
 			if (!hasSlot(equippedItem.slot)) {
 				addSlot(new EntitySlot(equippedItem.slot));
 			}
 
-			RPSlot slot = getSlot(equippedItem.slot);
-			Item item = SingletonRepository.getEntityManager().getItem(equippedItem.name);
+			final RPSlot slot = getSlot(equippedItem.slot);
+			final Item item = SingletonRepository.getEntityManager().getItem(equippedItem.name);
 
 			if (item instanceof StackableItem) {
 				((StackableItem) item).setQuantity(equippedItem.quantity);
@@ -554,14 +554,14 @@ public class Creature extends NPC {
 		}
 	}
 
-	private List<Item> createDroppedItems(EntityManager defaultEntityManager) {
-		List<Item> list = new LinkedList<Item>();
+	private List<Item> createDroppedItems(final EntityManager defaultEntityManager) {
+		final List<Item> list = new LinkedList<Item>();
 
-		for (DropItem dropped : dropsItems) {
-			double probability = Rand.rand(1000000) / 10000.0;
+		for (final DropItem dropped : dropsItems) {
+			final double probability = Rand.rand(1000000) / 10000.0;
 
 			if (probability <= (dropped.probability / SERVER_DROP_GENEROSITY)) {
-				Item item = defaultEntityManager.getItem(dropped.name);
+				final Item item = defaultEntityManager.getItem(dropped.name);
 				if (item == null) {
 					logger.error("Unable to create item: " + dropped.name);
 					continue;
@@ -570,7 +570,7 @@ public class Creature extends NPC {
 				if (dropped.min == dropped.max) {
 					list.add(item);
 				} else {
-					StackableItem stackItem = (StackableItem) item;
+					final StackableItem stackItem = (StackableItem) item;
 					stackItem.setQuantity(Rand.rand(dropped.max - dropped.min)
 							+ dropped.min);
 					list.add(stackItem);
@@ -581,7 +581,7 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	public boolean canDoRangeAttack(RPEntity target) {
+	public boolean canDoRangeAttack(final RPEntity target) {
 		if (getAiProfiles().containsKey("archer")) {
 			// The creature can shoot, but only if the target is at most
 			// 7 tiles away.
@@ -598,7 +598,7 @@ public class Creature extends NPC {
 	 *            as defined in creatures.xml
 	 * @return value or null if undefined
 	 */
-	public String getAIProfile(String key) {
+	public String getAIProfile(final String key) {
 		return getAiProfiles().get(key);
 	}
 
@@ -648,13 +648,13 @@ public class Creature extends NPC {
 		}
 
 		if (noises.size() > 0) {
-			int pos = Rand.rand(noises.size());
+			final int pos = Rand.rand(noises.size());
 			say(noises.get(pos));
 		}
 	}
 
 	public boolean hasTargetMoved() {
-		if (targetX != getAttackTarget().getX() || targetY != getAttackTarget().getY()) {
+		if ((targetX != getAttackTarget().getX()) || (targetY != getAttackTarget().getY())) {
 			targetX = getAttackTarget().getX();
 			targetY = getAttackTarget().getY();
 				
@@ -681,12 +681,12 @@ public class Creature extends NPC {
 		isIdle = false;
 	}
 
-	public void setAttackStrategy(Map<String, String> aiProfiles) {
+	public void setAttackStrategy(final Map<String, String> aiProfiles) {
 		strategy = AttackStrategyFactory.get(aiProfiles);
 		
 	}
 
-	public void setHealer(String aiprofile) {
+	public void setHealer(final String aiprofile) {
 		healer = Healingbehaviourfactory.get(aiprofile);
 	}
 

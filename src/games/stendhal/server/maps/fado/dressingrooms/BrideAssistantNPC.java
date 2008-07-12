@@ -23,12 +23,12 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDressingRoom(zone, attributes);
 	}
 
-	private void buildDressingRoom(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Tamara") {
+	private void buildDressingRoom(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final SpeakerNPC npc = new SpeakerNPC("Tamara") {
 
 			@Override
 			protected void createPath() {
@@ -45,9 +45,9 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 				addReply("gown", "Every bride needs a beautiful wedding dress! It's a charge of 100 money if you want to #wear a #gown.");
 				addGoodbye("Have a lovely time!");
 
-				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("gown", 100);
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "wear");
 			}
 		};

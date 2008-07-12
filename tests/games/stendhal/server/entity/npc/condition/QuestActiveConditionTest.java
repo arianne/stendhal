@@ -25,7 +25,7 @@ public class QuestActiveConditionTest {
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("QuestActiveConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer("player");
+		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertTrue(new QuestActiveCondition("questname").fire(bob,
@@ -64,7 +64,7 @@ public class QuestActiveConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestActiveCondition("questname").equals(null));
 
-		QuestActiveCondition obj = new QuestActiveCondition("questname");
+		final QuestActiveCondition obj = new QuestActiveCondition("questname");
 		assertTrue(obj.equals(obj));
 		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
 				"questname")));
@@ -87,7 +87,7 @@ public class QuestActiveConditionTest {
 
 	@Test
 	public void testHashCode() throws Exception {
-		QuestActiveCondition obj = new QuestActiveCondition("questname");
+		final QuestActiveCondition obj = new QuestActiveCondition("questname");
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new QuestActiveCondition("questname").hashCode(),
 				new QuestActiveCondition("questname").hashCode());
