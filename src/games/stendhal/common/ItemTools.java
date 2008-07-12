@@ -17,13 +17,12 @@ public class ItemTools {
      * 			or unchanged String object
      * 			or null if name was null
      */
-    public static String itemNameToDisplayName(String name) {
+    public static String itemNameToDisplayName(final String name) {
     	if (name != null) {
     		if (name.indexOf('_') != -1) {
-    			name = name.replace('_', ' ');
+    			return name.replace('_', ' ');
     		}
     	}
-    
     	return name;
     }
 
