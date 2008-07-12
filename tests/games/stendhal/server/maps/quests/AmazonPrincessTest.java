@@ -46,6 +46,11 @@ public class AmazonPrincessTest {
 	}
 
 	@Test
+	public void testGetSlotname() throws Exception {
+		assertEquals("amazon_princess", new AmazonPrincess().getSlotName());
+	}
+	
+	@Test
 	public void testQuest() {
 		en.step(player, "hi");
 		assertEquals("Huh, what are you doing here?", npc.get("text"));
