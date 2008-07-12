@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
@@ -31,9 +30,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an entity.
@@ -80,11 +79,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	protected boolean representationChanged;
 
 	/**
-	 * The game screen this is for.
-	 */
-	protected IGameScreen screen;
-
-	/**
 	 * The visibility value changed.
 	 */
 	protected boolean visibilityChanged;
@@ -121,9 +115,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		}
 		this.entity = entity;
 
-		// TODO: Pass this in
-		screen = GameScreen.get();
-
 		x = 0;
 		y = 0;
 		xoffset = 0;
@@ -147,9 +138,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/*
 	 * Handle entity changes
 	 */
-	protected void applyChanges() {
+	protected void applyChanges(IGameScreen gameScreen) {
 		if (changed) {
-			update();
+			update(gameScreen);
 			changed = false;
 		}
 	}
@@ -168,7 +159,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Rebuild the representation using the base entity.
 	 */
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
@@ -180,12 +171,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param sheight
 	 *            The sprite height (in pixels).
 	 */
-	protected void calculateOffset(final int swidth, final int sheight) {
+	protected void calculateOffset(final int swidth, final int sheight,
+			IGameScreen screen) {
 		Rectangle2D area = entity.getArea();
 
-		calculateOffset(swidth, sheight,
-				screen.convertWorldToScreen(area.getWidth()),
-				screen.convertWorldToScreen(area.getHeight()));
+		calculateOffset(swidth, sheight, screen.convertWorldToScreen(area
+				.getWidth()), screen.convertWorldToScreen(area.getHeight()));
 	}
 
 	/**
@@ -211,8 +202,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	}
 
 	/**
-	 * Mark this as changed. This will force the <code>update()</code> method
-	 * to be called.
+	 * Mark this as changed. This will force the <code>update()</code> method to
+	 * be called.
 	 */
 	protected void markChanged() {
 		changed = true;
@@ -224,18 +215,18 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
-	public void draw(final Graphics2D g2d) {
-		applyChanges();
+	public void draw(final Graphics2D g2d, final IGameScreen gameScreen) {
+		applyChanges(gameScreen);
 
 		Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= screen.getScreenViewX();
-			r.y -= screen.getScreenViewY();
+			r.x -= gameScreen.getScreenViewX();
+			r.y -= gameScreen.getScreenViewY();
 
-			if (!screen.isInScreen(r)) {
+			if (!gameScreen.isInScreen(r)) {
 				return;
 			}
 		}
@@ -244,7 +235,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		try {
 			g2d.setComposite(entityComposite);
-			draw(g2d, r.x, r.y, r.width, r.height);
+			draw(g2d, r.x, r.y, r.width, r.height, gameScreen);
 		} finally {
 			g2d.setComposite(oldComposite);
 		}
@@ -267,15 +258,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity height.
 	 */
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		drawEntity(g2d, x, y, width, height);
+			final int width, final int height, IGameScreen gameScreen) {
+		drawEntity(g2d, x, y, width, height, gameScreen);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			g2d.setColor(Color.blue);
 			g2d.drawRect(x, y, width, height);
 
 			g2d.setColor(Color.green);
-			g2d.draw(screen.convertWorldToScreenView(entity.getArea()));
+			g2d.draw(gameScreen.convertWorldToScreenView(entity.getArea()));
 		}
 	}
 
@@ -313,7 +304,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity height.
 	 */
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
+			final int width, final int height, IGameScreen gameScreen) {
 		getSprite().draw(g2d, x, y);
 	}
 
@@ -324,16 +315,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
-	public void drawTop(final Graphics2D g2d) {
+	public void drawTop(final Graphics2D g2d, IGameScreen gameScreen) {
 		Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= screen.getScreenViewX();
-			r.y -= screen.getScreenViewY();
+			r.x -= gameScreen.getScreenViewX();
+			r.y -= gameScreen.getScreenViewY();
 
-			if (!screen.isInScreen(r)) {
+			if (!gameScreen.isInScreen(r)) {
 				return;
 			}
 		}
@@ -567,7 +558,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public void setInspector(final Inspector inspector) {
 
-	//TODO: replace by interface instpectable
+		// TODO: replace by interface instpectable
 	}
 
 	/**
@@ -598,15 +589,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Handle updates.
 	 */
-	protected void update() {
+	protected void update(IGameScreen gameScreen) {
 		if (representationChanged) {
-			buildRepresentation();
+			buildRepresentation(gameScreen);
 			representationChanged = false;
 		}
 
 		if (positionChanged) {
-			x = screen.convertWorldToScreen(entity.getX());
-			y = screen.convertWorldToScreen(entity.getY());
+			x = gameScreen.convertWorldToScreen(entity.getX());
+			y = gameScreen.convertWorldToScreen(entity.getY());
 			positionChanged = false;
 		}
 
@@ -632,6 +623,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	public void entityChanged(final Entity entity, final Object property) {
 		changed = true;
@@ -760,7 +752,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 */
-	public void release() {
+	public void release(IGameScreen gameScreen) {
 		entity.removeChangeListener(this);
 		entity = null;
 	}

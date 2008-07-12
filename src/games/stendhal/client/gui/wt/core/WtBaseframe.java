@@ -18,6 +18,9 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -54,7 +57,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/** The context menu, if there is one. */
 	private JPopupMenu jcontextMenu;
 
-	/** A flag for tracking ContextMenu changes.*/
+	/** A flag for tracking ContextMenu changes. */
 	private boolean recreatedContextMenu;
 
 	/**
@@ -73,9 +76,10 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 *            The frame width (in pixels).
 	 * @param height
 	 *            The frame height (in pixels).
+	 * @param gameScreen
 	 */
-	public WtBaseframe(int width, int height) {
-		super("baseframe", 0, 0, width, height);
+	public WtBaseframe(int width, int height, IGameScreen gameScreen) {
+		super("baseframe", 0, 0, width, height, gameScreen);
 		setFrame(false);
 		setTitleBar(false);
 		setMinimizeable(false);
@@ -123,11 +127,12 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param g
 	 *            graphics where to render to
+	 * @param gameScreen
 	 */
 	@Override
-	public synchronized void draw(Graphics2D g) {
+	public synchronized void draw(Graphics2D g, IGameScreen gameScreen) {
 		// draw the stuff
-		super.draw(g);
+		super.draw(g, gameScreen);
 
 		// do we have a dragged object?
 		if (dragInProgress && (draggedObject != null)) {
@@ -140,26 +145,35 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		}
 	}
 
-	/** Stops the dragging operations. 
-	 * @param e */
+	/**
+	 * Stops the dragging operations.
+	 * 
+	 * @param e
+	 */
 	private void stopDrag(MouseEvent e) {
 		// be sure to stop dragging operations when theleft button is released
 		if (dragInProgress && (draggedObject != null)) {
 			Point p = e.getPoint();
-			draggedObject.dragFinished(p);
+			draggedObject.dragFinished(p, gameScreen);
 			// now check if there is a drop-target direct unter the mouse cursor
 			checkDropped(p.x, p.y, draggedObject);
 		}
 		dragInProgress = false;
 	}
 
-	/** Invoked when the mouse enters a component. This event is ignored. 
-	 * @param e */
+	/**
+	 * Invoked when the mouse enters a component. This event is ignored.
+	 * 
+	 * @param e
+	 */
 	public synchronized void mouseEntered(MouseEvent e) {
 	}
 
-	/** Invoked when the mouse exits a component. This event is ignored. 
-	 * @param e */
+	/**
+	 * Invoked when the mouse exits a component. This event is ignored.
+	 * 
+	 * @param e
+	 */
 	public synchronized void mouseExited(MouseEvent e) {
 	}
 
@@ -168,7 +182,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/**
 	 * Invoked when a mouse button has been pressed on a component. This event
 	 * is ignored.
-	 * @param e 
+	 * 
+	 * @param e
 	 */
 	public synchronized void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {
@@ -178,8 +193,11 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		timeOfLastMousePress = System.currentTimeMillis();
 	}
 
-	/** Invoked when a mouse button has been released on a component. 
-	 * @param e */
+	/**
+	 * Invoked when a mouse button has been released on a component.
+	 * 
+	 * @param e
+	 */
 	public synchronized void mouseReleased(MouseEvent e) {
 		// be sure to stop dragging operations when the left button is released
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -200,7 +218,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/**
 	 * Java's official mouseClick handler; we don't use this because it doesn't
 	 * register clicks while the mouse is moving at all.
-	 * @param e 
+	 * 
+	 * @param e
 	 */
 	public synchronized void mouseClicked(MouseEvent e) {
 	}
@@ -265,7 +284,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * Invoked when a mouse button is pressed on a component and then dragged.
 	 * This event will find the panel just under the mouse cursor and starts to
 	 * drag (if the panel allows it)
-	 * @param e 
+	 * 
+	 * @param e
 	 */
 	public synchronized void mouseDragged(MouseEvent e) {
 		Point p = e.getPoint();
@@ -281,7 +301,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			// did we get an object
 			if (draggedObject != null) {
 				// do the object want to be dragged
-				if (draggedObject.dragStarted()) {
+				if (draggedObject.dragStarted(GameScreen.get())) {
 					// start drag
 					dragStartPoint = e.getPoint();
 				} else {
@@ -303,7 +323,8 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * buttons have been pushed.
 	 * 
 	 * This event stops all dragging operations.
-	 * @param e 
+	 * 
+	 * @param e
 	 */
 	public synchronized void mouseMoved(java.awt.event.MouseEvent e) {
 		// be sure to stop dragging operations

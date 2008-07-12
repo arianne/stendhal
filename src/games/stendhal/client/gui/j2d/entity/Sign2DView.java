@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Sign;
@@ -22,7 +23,6 @@ import marauroa.common.game.RPAction;
  * The 2D view of a sign.
  */
 class Sign2DView extends Entity2DView {
-	
 
 	/**
 	 * Create a 2D view of a sign.
@@ -59,7 +59,7 @@ class Sign2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 		String name = getClassResourcePath();
 
 		if (name == null) {
@@ -107,6 +107,7 @@ class Sign2DView extends Entity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {
@@ -145,24 +146,22 @@ class Sign2DView extends Entity2DView {
 
 			at.send(rpaction);
 			break;
-			
-			/*String text = sign.getText();
 
-			Rectangle area = getArea();
-
-			screen.addText(area.x + (area.width / 2), area.y, text,
-					NotificationType.RESPONSE, false);
-
-			if (text.contains("\n")) {
-				// The sign's text has multiple lines. Add a linebreak after
-				// "you read" so that it is easier readable.
-				StendhalUI.get().addEventLine("You read:\n\"" + text + "\"",
-						NotificationType.RESPONSE);
-			} else {
-				StendhalUI.get().addEventLine("You read: \"" + text + "\"",
-						NotificationType.RESPONSE);
-			}
-			break;*/
+		/*
+		 * String text = sign.getText();
+		 * 
+		 * Rectangle area = getArea();
+		 * 
+		 * screen.addText(area.x + (area.width / 2), area.y, text,
+		 * NotificationType.RESPONSE, false);
+		 * 
+		 * if (text.contains("\n")) { // The sign's text has multiple lines. Add
+		 * a linebreak after // "you read" so that it is easier readable.
+		 * StendhalUI.get().addEventLine("You read:\n\"" + text + "\"",
+		 * NotificationType.RESPONSE); } else {
+		 * StendhalUI.get().addEventLine("You read: \"" + text + "\"",
+		 * NotificationType.RESPONSE); } break;
+		 */
 
 		default:
 			super.onAction(at);

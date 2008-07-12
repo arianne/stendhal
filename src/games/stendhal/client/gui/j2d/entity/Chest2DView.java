@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
@@ -87,7 +88,8 @@ class Chest2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			IGameScreen gameScreen) {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(entity.getType()));
 
@@ -160,19 +162,19 @@ class Chest2DView extends StateEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update() {
-		super.update();
+	protected void update(IGameScreen gameScreen) {
+		super.update(gameScreen);
 
 		if (openChanged) {
 			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest,
-							chest.getContent(), wtEntityContainer, 5, 6);
+					wtEntityContainer = inspector.inspectMe(chest, chest
+							.getContent(), wtEntityContainer, 5, 6, gameScreen);
 				}
 			} else {
 				if (wtEntityContainer != null) {
-					wtEntityContainer.destroy();
+					wtEntityContainer.destroy(gameScreen);
 					wtEntityContainer = null;
 				}
 			}
@@ -193,6 +195,7 @@ class Chest2DView extends StateEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {
@@ -218,10 +221,9 @@ class Chest2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			
-			
+
 			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
-					wtEntityContainer, 5, 6);
+					wtEntityContainer, 5, 6, GameScreen.get());
 			break;
 
 		case OPEN:
@@ -250,14 +252,16 @@ class Chest2DView extends StateEntity2DView {
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
+	 * 
+	 * @param gameScreen
 	 */
 	@Override
-	public void release() {
+	public void release(IGameScreen gameScreen) {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy();
+			wtEntityContainer.destroy(gameScreen);
 			wtEntityContainer = null;
 		}
 
-		super.release();
+		super.release(gameScreen);
 	}
 }

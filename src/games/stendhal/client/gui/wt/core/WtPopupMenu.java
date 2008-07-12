@@ -34,8 +34,9 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Create a menu item that will redirect it's key events.
-	 * @param label 
-	 * @param icon 
+	 * 
+	 * @param label
+	 * @param icon
 	 * @return new Menuitem
 	 * 
 	 * 
@@ -46,7 +47,8 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Redirect key event to the menu's invoker.
-	 * @param ev 
+	 * 
+	 * @param ev
 	 * 
 	 */
 	protected void redirectEvent(MenuKeyEvent ev) {
@@ -56,9 +58,9 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 			KeyEvent nev;
 			KeyListener[] listeners;
 
-			nev = new KeyEvent(invoker, ev.getID(), ev.getWhen(),
-					ev.getModifiersEx(), ev.getKeyCode(), ev.getKeyChar(),
-					ev.getKeyLocation());
+			nev = new KeyEvent(invoker, ev.getID(), ev.getWhen(), ev
+					.getModifiersEx(), ev.getKeyCode(), ev.getKeyChar(), ev
+					.getKeyLocation());
 
 			/*
 			 * Call listeners directly to avoid modal redirect

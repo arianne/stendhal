@@ -18,6 +18,8 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -47,27 +49,31 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	/** name of the button clicked when the window is closed. */
 	private String closeButtonName;
 
-	/** false when the messagebox still has to layout the buttons .*/
+	/** false when the messagebox still has to layout the buttons . */
 	private boolean layedout;
 
-	/** Creates a new instance of MessageBox. 
-	 * @param name 
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param message 
-	 * @param buttonCombination */
+	/**
+	 * Creates a new instance of MessageBox.
+	 * 
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param message
+	 * @param buttonCombination
+	 * @param gameScreen
+	 */
 	public WtMessageBox(String name, int x, int y, int width, String message,
-			ButtonCombination buttonCombination) {
-		super(name, x, y, width, MAX_HEIGHT);
+			ButtonCombination buttonCombination, IGameScreen gameScreen) {
+		super(name, x, y, width, MAX_HEIGHT, gameScreen);
 
 		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20,
-				MAX_HEIGHT, message);
+				MAX_HEIGHT, message, gameScreen);
 		addChild(textPanel);
 
 		buttons = new ArrayList<WtButton>();
 		for (ButtonEnum buttonEnum : buttonCombination.getButtons()) {
-			WtButton button = buttonEnum.getButton();
+			WtButton button = buttonEnum.getButton(gameScreen);
 			button.registerClickListener(this);
 			buttons.add(button);
 		}
@@ -101,7 +107,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D clientArea) {
+	protected void drawContent(Graphics2D clientArea, IGameScreen gameScreen) {
 		// layout the buttons
 		if (!layedout) {
 			int lastHeight = textPanel.getLastHeight();
@@ -111,33 +117,37 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			layedout = true;
 		}
 
-		super.drawContent(clientArea);
+		super.drawContent(clientArea, gameScreen);
 	}
 
-	/** clicked a button. 
-	 * @param name 
-	 * @param point */
-	public void onClick(String name, Point point) {
+	/**
+	 * clicked a button.
+	 * 
+	 * @param name
+	 * @param point
+	 * @param gameScreen
+	 */
+	public void onClick(String name, Point point, IGameScreen gameScreen) {
 		// tell our listeners that a button has been clicked
 		notifyClickListeners(name, point);
 		removeCloseListener(this);
-		destroy();
+		destroy(gameScreen);
 	}
 
-	/** closed this window. 
-	 * @param name */
+	/**
+	 * closed this window.
+	 * 
+	 * @param name
+	 */
 	public void onClose(String name) {
 		// pseudoclicked the close button
-		onClick(closeButtonName, null);
+		onClick(closeButtonName, null, gameScreen);
 	}
 
 	/** some default buttons. */
 	public enum ButtonEnum {
-		YES("Yes", 50, 30),
-		NO("No", 50, 30),
-		CANCEL("Cancel", 50, 30),
-		OK("Ok", 50, 30),
-		QUIT("Quit", 50, 30);
+		YES("Yes", 50, 30), NO("No", 50, 30), CANCEL("Cancel", 50, 30), OK(
+				"Ok", 50, 30), QUIT("Quit", 50, 30);
 
 		private String name;
 
@@ -145,10 +155,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 		private int height;
 
-		/** private construction. 
-		 * @param name 
-		 * @param width 
-		 * @param height */
+		/**
+		 * private construction.
+		 * 
+		 * @param name
+		 * @param width
+		 * @param height
+		 */
 		private ButtonEnum(String name, int width, int height) {
 			this.name = name;
 			this.width = width;
@@ -160,24 +173,24 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			return name;
 		}
 
-		/** Creates a new wt-button. 
-		 * @return the created button*/
-		public WtButton getButton() {
-			return new WtButton(name, width, height, name);
+		/**
+		 * Creates a new wt-button.
+		 * 
+		 * @param gameScreen
+		 * @return the created button
+		 */
+		public WtButton getButton(IGameScreen gameScreen) {
+			return new WtButton(name, width, height, name, gameScreen);
 		}
 	}
 
 	/** some button combinations. */
 	public enum ButtonCombination {
-		OK(ButtonEnum.OK, ButtonEnum.OK),
-		YES_NO(ButtonEnum.NO, ButtonEnum.YES, ButtonEnum.NO),
-		YES_NO_CANCEL(
-				ButtonEnum.CANCEL,
-				ButtonEnum.YES,
-				ButtonEnum.NO,
-				ButtonEnum.CANCEL),
-		OK_CANCEL(ButtonEnum.CANCEL, ButtonEnum.OK, ButtonEnum.CANCEL),
-		QUIT_CANCEL(ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
+		OK(ButtonEnum.OK, ButtonEnum.OK), YES_NO(ButtonEnum.NO, ButtonEnum.YES,
+				ButtonEnum.NO), YES_NO_CANCEL(ButtonEnum.CANCEL,
+				ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL), OK_CANCEL(
+				ButtonEnum.CANCEL, ButtonEnum.OK, ButtonEnum.CANCEL), QUIT_CANCEL(
+				ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
 
 		/** list of buttons for this combination. */
 		private List<ButtonEnum> buttons;
@@ -185,9 +198,12 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		/** default button when the window is closed. */
 		private ButtonEnum closeButton;
 
-		/** Contructor. 
-		 * @param closeButton 
-		 * @param buttons */
+		/**
+		 * Contructor.
+		 * 
+		 * @param closeButton
+		 * @param buttons
+		 */
 		private ButtonCombination(ButtonEnum closeButton, ButtonEnum... buttons) {
 			List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
 			this.closeButton = closeButton;
@@ -197,8 +213,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			this.buttons = Collections.unmodifiableList(buttonList);
 		}
 
-		/** 
-		 * @return a list with the buttons. */
+		/**
+		 * @return a list with the buttons.
+		 */
 		public List<ButtonEnum> getButtons() {
 			return buttons;
 		}

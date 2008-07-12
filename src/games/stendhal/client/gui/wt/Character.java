@@ -19,6 +19,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
@@ -58,7 +59,6 @@ public class Character extends WtPanel {
 	/** the stats panel. */
 	private WtTextPanel statsPanel;
 
-	
 	private Map<String, EntitySlot> slotPanels;
 
 	/** cached player entity. */
@@ -70,11 +70,14 @@ public class Character extends WtPanel {
 	/** the last player modification counter. */
 	private long oldPlayerModificationCount;
 
-	/** Creates a new instance of Character. 
-	 * @param ui */
-	public Character(StendhalUI ui) {
+	/**
+	 * Creates a new instance of Character.
+	 * 
+	 * @param ui
+	 */
+	public Character(StendhalUI ui, IGameScreen gameScreen) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
-				PANEL_HEIGHT);
+				PANEL_HEIGHT, gameScreen);
 
 		setTitleBar(true);
 		setFrame(true);
@@ -89,42 +92,42 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot("head",
-				st.getSprite("data/gui/helmet-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
+		slotPanels.put("head", new EntitySlot("head", st
+				.getSprite("data/gui/helmet-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0, gameScreen));
 
-		slotPanels.put("armor", new EntitySlot("armor",
-				st.getSprite("data/gui/armor-slot.png"),
+		slotPanels.put("armor", new EntitySlot("armor", st
+				.getSprite("data/gui/armor-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1)));
+				((SLOT_SIZE + SLOT_SPACING) * 1), gameScreen));
 
-		slotPanels.put("rhand", new EntitySlot("rhand",
-				st.getSprite("data/gui/weapon-slot.png"), xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
+		slotPanels.put("rhand", new EntitySlot("rhand", st
+				.getSprite("data/gui/weapon-slot.png"), xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10, gameScreen));
 
-		slotPanels.put("lhand", new EntitySlot("lhand",
-				st.getSprite("data/gui/shield-slot.png"),
+		slotPanels.put("lhand", new EntitySlot("lhand", st
+				.getSprite("data/gui/shield-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10, gameScreen));
 
-		slotPanels.put("finger", new EntitySlot("finger",
-				st.getSprite("data/gui/ring-slot.png"), xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
+		slotPanels.put("finger", new EntitySlot("finger", st
+				.getSprite("data/gui/ring-slot.png"), xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + 10, gameScreen));
 
-		slotPanels.put("cloak", new EntitySlot("cloak",
-				st.getSprite("data/gui/cloak-slot.png"),
+		slotPanels.put("cloak", new EntitySlot("cloak", st
+				.getSprite("data/gui/cloak-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
+				((SLOT_SIZE + SLOT_SPACING) * 2) + 10, gameScreen));
 
-		slotPanels.put("legs", new EntitySlot("legs",
-				st.getSprite("data/gui/legs-slot.png"),
+		slotPanels.put("legs", new EntitySlot("legs", st
+				.getSprite("data/gui/legs-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 2)));
+				((SLOT_SIZE + SLOT_SPACING) * 2), gameScreen));
 
-		slotPanels.put("feet", new EntitySlot("feet",
-				st.getSprite("data/gui/boots-slot.png"),
+		slotPanels.put("feet", new EntitySlot("feet", st
+				.getSprite("data/gui/boots-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 3)));
+				((SLOT_SIZE + SLOT_SPACING) * 3), gameScreen));
 
 		for (EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
@@ -136,7 +139,8 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
+				"HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}",
+				gameScreen);
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
@@ -148,14 +152,21 @@ public class Character extends WtPanel {
 		return true;
 	}
 
-	/** sets the player entity. 
-	 * @param userEntity */
+	/**
+	 * sets the player entity.
+	 * 
+	 * @param userEntity
+	 */
 	public void setPlayer(User userEntity) {
 		this.playerEntity = userEntity;
 	}
 
-	/** refreshes the player stats and updates the text/slot panels.*/
-	private void refreshPlayerStats() {
+	/**
+	 * refreshes the player stats and updates the text/slot panels.
+	 * 
+	 * @param gameScreen
+	 */
+	private void refreshPlayerStats(IGameScreen gameScreen) {
 		if (playerEntity == null) {
 			return;
 		}
@@ -199,9 +210,9 @@ public class Character extends WtPanel {
 						entity = EntityFactory.createEntity(object);
 					}
 
-					entitySlot.setEntity(entity);
+					entitySlot.setEntity(entity, gameScreen);
 				} else {
-					entitySlot.setEntity(null);
+					entitySlot.setEntity(null, gameScreen);
 				}
 			}
 
@@ -225,25 +236,24 @@ public class Character extends WtPanel {
 		statsPanel.set("atkitem", atkitem);
 		statsPanel.set("defitem", defitem);
 
-
 		/*
 		 * Show the amount of XP left to level up on ATK
 		 */
 		int atkLvl = Level.getLevel(playerEntity.getAtkXp());
-		int nextAtkXp = Level.getXP(atkLvl + 1) -  playerEntity.getAtkXp();
+		int nextAtkXp = Level.getXP(atkLvl + 1) - playerEntity.getAtkXp();
 		statsPanel.set("atkxp", Integer.toString(nextAtkXp));
 
 		/*
 		 * Show the amount of XP left to level up on DEF
 		 */
 		int defLvl = Level.getLevel(playerEntity.getDefXp());
-		int nextDefXp = Level.getXP(defLvl + 1) -  playerEntity.getDefXp();
+		int nextDefXp = Level.getXP(defLvl + 1) - playerEntity.getDefXp();
 		statsPanel.set("defxp", Integer.toString(nextDefXp));
-			
-		
+
 		statsPanel.set("xp", playerEntity.getXp());
 		int level = Level.getLevel(playerEntity.getXp());
-		statsPanel.set("xptonextlevel", Level.getXP(level + 1) - playerEntity.getXp());
+		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
+				- playerEntity.getXp());
 		statsPanel.set("money", money);
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
@@ -257,9 +267,9 @@ public class Character extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
-		refreshPlayerStats();
+	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+		refreshPlayerStats(gameScreen);
 
-		super.drawContent(g);
+		super.drawContent(g, gameScreen);
 	}
 }

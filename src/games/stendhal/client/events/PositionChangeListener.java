@@ -6,6 +6,7 @@
 
 package games.stendhal.client.events;
 
+
 /**
  * A listener of position events.
  */

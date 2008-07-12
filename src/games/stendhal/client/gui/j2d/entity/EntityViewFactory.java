@@ -95,7 +95,8 @@ public class EntityViewFactory { // implements EntityViewFactory {
 		}
 
 		try {
-			Constructor< ? extends EntityView> cns = viewClass.getConstructor(entity.getClass());
+			Constructor< ? extends EntityView> cns = viewClass
+					.getConstructor(entity.getClass());
 			EntityView view = cns.newInstance(entity);
 
 			return view;
@@ -158,6 +159,7 @@ public class EntityViewFactory { // implements EntityViewFactory {
 
 	/**
 	 * Get the shared [singleton] instance.
+	 * 
 	 * @return the singleton instance
 	 */
 	public static EntityViewFactory get() {

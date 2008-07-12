@@ -154,7 +154,7 @@ public class j2DClient extends StendhalUI {
 		setDefault(this);
 	}
 
-	public j2DClient(StendhalClient client) {
+	public j2DClient(StendhalClient client, IGameScreen gameScreen) {
 		super(client);
 
 		setDefault(this);
@@ -358,38 +358,38 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * In-screen dialogs
 		 */
-		settings = new SettingsPanel(SCREEN_WIDTH);
+		settings = new SettingsPanel(SCREEN_WIDTH,gameScreen);
 		screen.addDialog(settings);
 
-		minimap = new Minimap(client);
+		minimap = new Minimap(client,gameScreen);
 		addWindow(minimap);
-		settings.add(minimap, "Enable Minimap");
+		settings.add(minimap, "Enable Minimap",gameScreen);
 
 		positionChangeListener.add(minimap);
 
-		character = new Character(this);
+		character = new Character(this,gameScreen);
 		addWindow(character);
-		settings.add(character, "Enable Character");
+		settings.add(character, "Enable Character",gameScreen);
 
-		inventory = new EntityContainer("bag", 3, 4);
+		inventory = new EntityContainer("bag", 3, 4,gameScreen);
 		addWindow(inventory);
-		settings.add(inventory, "Enable Bag");
+		settings.add(inventory, "Enable Bag",gameScreen);
 
-		keyring = new KeyRing();
+		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
-		settings.add(keyring, "Enable Key Ring");
+		settings.add(keyring, "Enable Key Ring",gameScreen);
 
 		if (newCode) {
 			nbuddies = new BuddyListDialog(this);
 			buddies = nbuddies;
 		} else {
-			Buddies obuddies = new Buddies(this);
+			Buddies obuddies = new Buddies(this,gameScreen);
 			buddies = obuddies;
 		}
 
 		addWindow(buddies);
-		settings.add(buddies, "Enable Buddies");
+		settings.add(buddies, "Enable Buddies",gameScreen);
 
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -425,7 +425,7 @@ public class j2DClient extends StendhalUI {
 	// private long avgmemt = 0L;
 	// private long avgmemc = 0L;
 
-	public void gameLoop() {
+	public void gameLoop(IGameScreen gameScreen) {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 		int fps = 0;
 		GameObjects gameObjects = client.getGameObjects();
@@ -518,8 +518,8 @@ public class j2DClient extends StendhalUI {
 				// Note: this is an exact object reference check
 				if (user != lastuser) {
 					character.setPlayer(user);
-					keyring.setSlot(user, "keyring");
-					inventory.setSlot(user, "bag");
+					keyring.setSlot(user, "keyring",gameScreen);
+					inventory.setSlot(user, "bag",gameScreen);
 
 					lastuser = user;
 				}
@@ -980,9 +980,10 @@ public class j2DClient extends StendhalUI {
 	 *            The user's X coordinate.
 	 * @param y
 	 *            The user's Y coordinate.
+	 * @param gameScreen 
 	 */
 	@Override
-	public void setPosition(double x, double y) {
+	public void setPosition(double x, double y,IGameScreen gameSreen) {
 		positionChangeListener.positionChanged(x, y);
 	}
 
@@ -1025,7 +1026,7 @@ public class j2DClient extends StendhalUI {
 
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args, IGameScreen gameScreen) {
 		if (args.length > 0) {
 			int i = 0;
 			String port = null;
@@ -1054,9 +1055,9 @@ public class j2DClient extends StendhalUI {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
 
-					j2DClient locclient = new j2DClient(client);
+					j2DClient locclient = new j2DClient(client,gameScreen);
 					locclient.initialize();
-					locclient.gameLoop();
+					locclient.gameLoop(gameScreen);
 					locclient.cleanup();
 				} catch (Exception ex) {
 					logger.error(ex, ex);

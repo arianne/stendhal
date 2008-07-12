@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.common.Direction;

@@ -74,9 +74,11 @@ class Door2DView extends StateEntity2DView {
 	 * 
 	 * @param map
 	 *            The map to populate.
+	 * @param gameScreen
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			IGameScreen gameScreen) {
 		String name = door.getEntityClass();
 
 		SpriteStore store = SpriteStore.get();
@@ -96,11 +98,11 @@ class Door2DView extends StateEntity2DView {
 			height = tiles.getHeight() / 2;
 
 			map.put(STATE_OPEN, store.getTile(tiles, 0, 0, width, height));
-			map.put(STATE_CLOSED,
-					store.getTile(tiles, 0, height, width, height));
+			map.put(STATE_CLOSED, store
+					.getTile(tiles, 0, height, width, height));
 		}
 
-		calculateOffset(width, height);
+		calculateOffset(width, height, gameScreen);
 	}
 
 	/**
@@ -194,6 +196,7 @@ class Door2DView extends StateEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {

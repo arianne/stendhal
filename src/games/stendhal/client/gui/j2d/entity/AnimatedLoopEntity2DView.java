@@ -24,7 +24,8 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Logger.getLogger(AnimatedLoopEntity2DView.class);
+	private static final Logger logger = Logger
+			.getLogger(AnimatedLoopEntity2DView.class);
 
 	/**
 	 * Create a 2D view of an animated loop visual.
@@ -54,7 +55,7 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 		SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(entity.getType()));
 

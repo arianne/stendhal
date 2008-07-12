@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
+
 import java.awt.Point;
 
 /**
@@ -38,10 +40,11 @@ public class WtList extends WtPanel implements WtClickListener {
 	 *            width
 	 * @param maxHeight
 	 *            max height (height is dynamically calculated from the items)
+	 * @param gameScreen
 	 */
 	public WtList(String name, String[] items, int x, int y, int width,
-			int maxHeight) {
-		super(name, x, y, width, 10);
+			int maxHeight, IGameScreen gameScreen) {
+		super(name, x, y, width, 10, gameScreen);
 
 		setTitleBar(true);
 		setFrame(true);
@@ -49,30 +52,35 @@ public class WtList extends WtPanel implements WtClickListener {
 		setMinimizeable(false);
 		setMovable(false);
 
-		this.resizeToFitClientArea(
-				width,
-				(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
-						: maxHeight);
+		this
+				.resizeToFitClientArea(
+						width,
+						(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
+								: maxHeight);
 
 		int clientWidth = getClientWidth();
 
 		for (int i = 0; i < items.length; i++) {
 			String item = items[i];
 			WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT,
-					item);
+					item, gameScreen);
 			button.moveTo(0, i * BUTTON_HEIGHT);
 			button.registerClickListener(this);
 			addChild(button);
 		}
 	}
 
-	/** an action has been chosen. 
-	 * @param name 
-	 * @param point */
-	public void onClick(String name, Point point) {
+	/**
+	 * an action has been chosen.
+	 * 
+	 * @param name
+	 * @param point
+	 * @param gameScreen
+	 */
+	public void onClick(String name, Point point, IGameScreen gameScreen) {
 		// tell all listeners what happened
 		notifyClickListeners(name, point);
 		// close ourself
-		destroy();
+		destroy(gameScreen);
 	}
 }

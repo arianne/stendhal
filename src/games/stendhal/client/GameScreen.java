@@ -319,7 +319,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *            A view.
 	 */
 	protected void removeEntityView(EntityView view) {
-		view.release();
+		view.release(this);
 		views.remove(view);
 	}
 
@@ -555,7 +555,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 * Dialogs
 		 */
-		ground.draw(g);
+		ground.draw(g,this);
 
 		/*
 		 * Offline
@@ -578,7 +578,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		Graphics2D g2d = expose();
 
 		for (EntityView view : views) {
-			view.draw(g2d);
+			view.draw(g2d,this);
 		}
 	}
 
@@ -589,7 +589,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		Graphics2D g2d = expose();
 
 		for (EntityView view : views) {
-			view.drawTop(g2d);
+			view.drawTop(g2d, this);
 		}
 	}
 

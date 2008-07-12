@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
@@ -87,7 +88,7 @@ class Corpse2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 		String clazz = corpse.getEntityClass();
 		String corpseType = corpse.getType();
 
@@ -130,7 +131,7 @@ class Corpse2DView extends Entity2DView {
 
 		setSprite(sprite);
 
-		calculateOffset(width, height);
+		calculateOffset(width, height, gameScreen);
 	}
 
 	/**
@@ -189,6 +190,7 @@ class Corpse2DView extends Entity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {
@@ -231,7 +233,9 @@ class Corpse2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(corpse, corpse.getContent(), wtEntityContainer, 2, 2);
+			wtEntityContainer = inspector.inspectMe(corpse,
+					corpse.getContent(), wtEntityContainer, 2, 2, GameScreen
+							.get());
 			break;
 
 		default:
@@ -243,14 +247,16 @@ class Corpse2DView extends Entity2DView {
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
+	 * 
+	 * @param gameScreen
 	 */
 	@Override
-	public void release() {
+	public void release(IGameScreen gameScreen) {
 		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy();
+			wtEntityContainer.destroy(gameScreen);
 			wtEntityContainer = null;
 		}
 
-		super.release();
+		super.release(gameScreen);
 	}
 }

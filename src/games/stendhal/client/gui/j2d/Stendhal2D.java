@@ -470,7 +470,7 @@ public class Stendhal2D extends StendhalGUI {
 	 *            The user's Y coordinate.
 	 */
 	@Override
-	public void setPosition(double x, double y) {
+	public void setPosition(double x, double y,IGameScreen gameScreen) {
 	}
 
 	/**

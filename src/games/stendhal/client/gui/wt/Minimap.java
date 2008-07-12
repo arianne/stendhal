@@ -16,6 +16,7 @@
  */
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -81,15 +82,16 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
+	private static final boolean mininps = (System
+			.getProperty("stendhal.superman") != null);
 
 	/** scale of map. */
 	private int scale;
 
-	/** width of (scaled) minimap .*/
+	/** width of (scaled) minimap . */
 	private int width;
 
-	/** height of (scaled) minimap .*/
+	/** height of (scaled) minimap . */
 	private int height;
 
 	/**
@@ -130,10 +132,14 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Minimap.class);
 
-	/** Creates a new instance of Minimap. 
-	 * @param client */
-	public Minimap(StendhalClient client) {
-		super("minimap", 0, 0, 100, 100);
+	/**
+	 * Creates a new instance of Minimap.
+	 * 
+	 * @param client
+	 * @param gameScreen
+	 */
+	public Minimap(StendhalClient client, IGameScreen gameScreen) {
+		super("minimap", 0, 0, 100, 100, gameScreen);
 
 		this.client = client;
 
@@ -163,7 +169,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
+	public void update(CollisionDetection cd, GraphicsConfiguration gc,
+			String zone) {
 		setTitletext(zone);
 
 		// FOR PATHFINDING THING
@@ -260,8 +267,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	public void update_pathfind() {
 		if (nodo_actual != 0) {
 			pathfind.PathJumpToNode(nodo_actual);
-			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
-					- pathfind.NodeGetY())));
+			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math
+					.abs(playerY - pathfind.NodeGetY())));
 
 			if (manhatan < 6) {
 
@@ -296,8 +303,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 *            graphics object for the game main window
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
-		super.drawContent(g);
+	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+		super.drawContent(g, gameScreen);
 
 		if (image == null) {
 			return;
@@ -313,27 +320,30 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// display a "N" to show north direction
 		if (level < 10) {
-    		vg.setColor(COLOR_NORTH);
-    		vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
-    		FontMetrics metrics = vg.getFontMetrics();
-    		Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
-    		vg.drawString("N", panx + (width - (int) rect.getWidth()) / 2, pany + (int) rect.getHeight());
+			vg.setColor(COLOR_NORTH);
+			vg.setFont(new Font("SansSerif", Font.PLAIN, 9));
+			FontMetrics metrics = vg.getFontMetrics();
+			Rectangle2D rect = metrics.getStringBounds("N", 0, 0, g);
+			vg.drawString("N", panx + (width - (int) rect.getWidth()) / 2, pany
+					+ (int) rect.getHeight());
 		}
 
-//		PATHFIND ---
-//		pathfind.Reinice();
-//		while (!pathfind.ReachedGoal()) {
-//			pathfind.PathNextNode();
-//			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
-//		}
-//		pathfind.Reinice();
-//
-//		 while (!pathfind.ReachedGoal()) {
-//			 pathfind.PathJumpNode();
-//			 vg.setColor(Color.CYAN);
-//			 vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale, scale, scale);
-//		}
-//		pathfind.Reinice();
+		// PATHFIND ---
+		// pathfind.Reinice();
+		// while (!pathfind.ReachedGoal()) {
+		// pathfind.PathNextNode();
+		// vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale,
+		// scale, scale);
+		// }
+		// pathfind.Reinice();
+		//
+		// while (!pathfind.ReachedGoal()) {
+		// pathfind.PathJumpNode();
+		// vg.setColor(Color.CYAN);
+		// vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() scale,
+		// scale, scale);
+		// }
+		// pathfind.Reinice();
 
 		// --------------------------------------
 		// Draw on ground entities
@@ -462,15 +472,18 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	protected void drawPlayer(final Graphics g, final Player player,
 			final Color color) {
-		drawCross(g, (int) ((player.getX() * scale) + 0.5),
-				(int) ((player.getY() * scale) + 0.5), color);
+		drawCross(g, (int) ((player.getX() * scale) + 0.5), (int) ((player
+				.getY() * scale) + 0.5), color);
 	}
 
-	/** Draws a cross at the given position. 
-	 * @param g 
-	 * @param x 
-	 * @param y 
-	 * @param color */
+	/**
+	 * Draws a cross at the given position.
+	 * 
+	 * @param g
+	 * @param x
+	 * @param y
+	 * @param color
+	 */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
 
@@ -490,7 +503,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// The p.y seems higher than it should after adjustment.
 
 		// If teleclickmode is disabled.
-		if (client.getPlayer().has("teleclickmode")) { // If teleclickmode is enabled.
+		if (client.getPlayer().has("teleclickmode")) { // If teleclickmode is
+														// enabled.
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + panx - getClientX()) / scale);

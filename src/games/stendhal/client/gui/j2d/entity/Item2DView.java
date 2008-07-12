@@ -60,7 +60,7 @@ class Item2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 		SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
 
@@ -122,6 +122,7 @@ class Item2DView extends Entity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {

@@ -17,6 +17,8 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
+
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -32,7 +34,7 @@ public interface WtDraggable {
 	 * 
 	 * @return true when this item can be dragged, false otherwise
 	 */
-	boolean dragStarted();
+	boolean dragStarted(IGameScreen gameScreen);
 
 	/**
 	 * This object has been started to drag around.
@@ -42,7 +44,7 @@ public interface WtDraggable {
 	 *            the drag startpoint)
 	 * @return true when this item can be dropped on point p, false otherwise
 	 */
-	boolean dragFinished(Point p);
+	boolean dragFinished(Point p, IGameScreen gameScreen);
 
 	/**
 	 * This object is dragged around the screen. When this method returns false
@@ -58,7 +60,8 @@ public interface WtDraggable {
 
 	/**
 	 * Draws the dragged item.
-	 * @param g 
+	 * 
+	 * @param g
 	 */
 	void drawDragged(Graphics g);
 }

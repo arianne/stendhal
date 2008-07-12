@@ -68,14 +68,17 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/**
 	 * Create an entity slot.
-	 * @param name 
-	 * @param placeholder 
-	 * @param x 
-	 * @param y 
+	 * 
+	 * @param name
+	 * @param placeholder
+	 * @param x
+	 * @param y
+	 * @param gameScreen
 	 */
-	public EntitySlot(String name, Sprite placeholder,
-			int x, int y) {
-		super(name, x, y, background.getWidth(), background.getHeight());
+	public EntitySlot(String name, Sprite placeholder, int x, int y,
+			IGameScreen gameScreen) {
+		super(name, x, y, background.getWidth(), background.getHeight(),
+				gameScreen);
 		this.placeholder = placeholder;
 
 		view = null;
@@ -91,17 +94,21 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/**
 	 * Set the parent entity.
-	 * @param parent 
+	 * 
+	 * @param parent
 	 */
 	public void setParent(Entity parent) {
 		this.parent = parent;
 	}
 
-	/** called when an object is dropped. 
-	 * @param x 
-	 * @param y 
-	 * @param droppedObject 
-	 * @return true if succefully dropped*/
+	/**
+	 * called when an object is dropped.
+	 * 
+	 * @param x
+	 * @param y
+	 * @param droppedObject
+	 * @return true if succefully dropped
+	 */
 	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
 		if (parent == null) {
 			return false;
@@ -141,7 +148,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param entity
 	 *            The new entity, or <code>null</code>.
 	 */
-	public void setEntity(final Entity entity) {
+	public void setEntity(final Entity entity, IGameScreen gameScreen) {
 		if (view != null) {
 			/*
 			 * Don't replace the same object
@@ -150,7 +157,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 				return;
 			}
 
-			view.release();
+			view.release(gameScreen);
 		}
 
 		if (entity != null) {
@@ -172,8 +179,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D childArea) {
-		super.drawContent(childArea);
+	protected void drawContent(Graphics2D childArea, IGameScreen gameScreen) {
+		super.drawContent(childArea, gameScreen);
 
 		// draw the background image
 		background.draw(childArea, 0, 0);
@@ -187,7 +194,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
 					getHeight());
 			vg.translate(x, y);
-			view.draw(vg);
+			view.draw(vg, gameScreen);
 			vg.dispose();
 		} else if (placeholder != null) {
 			// Center the placeholder sprite

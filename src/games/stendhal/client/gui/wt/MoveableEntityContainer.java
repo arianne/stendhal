@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
@@ -25,7 +26,7 @@ import java.awt.Point;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-/** this container is used to drag the entities around .*/
+/** this container is used to drag the entities around . */
 public class MoveableEntityContainer implements WtDraggable {
 
 	/** current x-pos of the dragged item. */
@@ -56,15 +57,19 @@ public class MoveableEntityContainer implements WtDraggable {
 	// MoveableEntityContainer
 	//
 
-	/** Fills the action with appropriate 'move from' parameters. 
-	 * @param action to be filled*/
+	/**
+	 * Fills the action with appropriate 'move from' parameters.
+	 * 
+	 * @param action
+	 *            to be filled
+	 */
 	public void fillRPAction(RPAction action) {
 		RPObject rpObject = entity.getRPObject();
 
 		if (rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject",
-					rpObject.getContainer().getID().getObjectID());
+			action.put("baseobject", rpObject.getContainer().getID()
+					.getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
@@ -93,10 +98,14 @@ public class MoveableEntityContainer implements WtDraggable {
 	// WtDraggable
 	//
 
-	/** drag started. 
-	 * @return true */
-	public boolean dragStarted() {
-		view = GameScreen.get().createView(entity);
+	/**
+	 * drag started.
+	 * 
+	 * @return true
+	 */
+	public boolean dragStarted(IGameScreen gameScreen) {
+
+		view = gameScreen.createView(entity);
 
 		if (view != null) {
 			view.setContained(true);
@@ -115,21 +124,28 @@ public class MoveableEntityContainer implements WtDraggable {
 		return true;
 	}
 
-	/** drag finished. 
-	 * @param p 
-	 * @return true*/
-	public boolean dragFinished(Point p) {
+	/**
+	 * drag finished.
+	 * 
+	 * @param p
+	 * @param gameScreen
+	 * @return true
+	 */
+	public boolean dragFinished(Point p, IGameScreen gameScreen) {
 		if (view != null) {
-			view.release();
+			view.release(gameScreen);
 			view = null;
 		}
 
 		return true;
 	}
 
-	/** moved. 
-	 * @param p 
-	 * @return true*/
+	/**
+	 * moved.
+	 * 
+	 * @param p
+	 * @return true
+	 */
 	public boolean dragMoved(Point p) {
 		x = p.x;
 		y = p.y;
@@ -138,14 +154,16 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/**
 	 * draws the entity.
-	 * @param g the Graphic context to draw to.
+	 * 
+	 * @param g
+	 *            the Graphic context to draw to.
 	 */
 	public void drawDragged(Graphics g) {
 		if (view != null) {
 			Graphics2D cg = (Graphics2D) g.create();
 
 			cg.translate(x, y);
-			view.draw(cg);
+			view.draw(cg, GameScreen.get());
 			cg.dispose();
 		}
 	}

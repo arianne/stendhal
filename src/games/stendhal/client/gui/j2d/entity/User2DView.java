@@ -6,6 +6,7 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
@@ -45,8 +46,8 @@ class User2DView extends Player2DView {
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
 	 * 
-	 * @return <code>true</code> if the client user can see this entity while
-	 *         in ghostmode.
+	 * @return <code>true</code> if the client user can see this entity while in
+	 *         ghostmode.
 	 */
 	@Override
 	protected boolean isVisibleGhost() {
@@ -95,13 +96,15 @@ class User2DView extends Player2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_POSITION) {
-			StendhalUI.get().setPosition(user.getX(), user.getY());
+			StendhalUI.get().setPosition(user.getX(), user.getY(),
+					GameScreen.get());
 		}
 	}
 

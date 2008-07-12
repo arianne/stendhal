@@ -9,9 +9,10 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import java.awt.Graphics2D;
-
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.InvisibleEntity;
+
+import java.awt.Graphics2D;
 
 /**
  * The 2D view of an invisible entity.
@@ -35,7 +36,7 @@ class InvisibleEntity2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IGameScreen gameScreen) {
 	}
 
 	/**
@@ -45,8 +46,8 @@ class InvisibleEntity2DView extends Entity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	public void draw(final Graphics2D g2d) {
-		applyChanges();
+	public void draw(final Graphics2D g2d, final IGameScreen gameScreen) {
+		applyChanges(gameScreen);
 	}
 
 	/**

@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -25,14 +26,13 @@ abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Logger.getLogger(StateEntity2DView.class);
+	private static final Logger logger = Logger
+			.getLogger(StateEntity2DView.class);
 
 	/**
 	 * Map of named sprites.
 	 */
 	protected Map<Object, Sprite> sprites;
-
-	
 
 	/**
 	 * Create a 2D view of an entity.
@@ -44,7 +44,7 @@ abstract class StateEntity2DView extends Entity2DView {
 		super(entity);
 
 		sprites = new HashMap<Object, Sprite>();
-	
+
 	}
 
 	//
@@ -54,8 +54,8 @@ abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Build animations.
 	 */
-	protected void buildAnimations() {
-		buildSprites(sprites);
+	protected void buildAnimations(IGameScreen gameScreen) {
+		buildSprites(sprites, gameScreen);
 	}
 
 	/**
@@ -64,7 +64,8 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * @param map
 	 *            The map to populate.
 	 */
-	protected abstract void buildSprites(final Map<Object, Sprite> map);
+	protected abstract void buildSprites(final Map<Object, Sprite> map,
+			IGameScreen gameScreen);
 
 	/**
 	 * Get a keyed state sprite.
@@ -111,30 +112,26 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation() {
-		buildAnimations();
+	protected void buildRepresentation(IGameScreen gameScreen) {
+		buildAnimations(gameScreen);
 
 		setSprite(getStateSprite());
-		
+
 	}
 
 	/**
 	 * Handle updates.
 	 */
 	@Override
-	protected void update() {
-		super.update();
+	protected void update(IGameScreen gameScreen) {
+		super.update(gameScreen);
 
-		
 	}
-
 
 	protected void proceedChangedState() {
-		
-		
-			setSprite(getStateSprite());
-		
-	}
 
+		setSprite(getStateSprite());
+
+	}
 
 }

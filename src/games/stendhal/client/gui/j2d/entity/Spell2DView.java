@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import marauroa.common.game.RPAction;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Spell;
@@ -54,8 +55,9 @@ class Spell2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
-		setSprite(SpriteStore.get().getSprite(translate(getClassResourcePath())));
+	protected void buildRepresentation(IGameScreen gameScreen) {
+		setSprite(SpriteStore.get()
+				.getSprite(translate(getClassResourcePath())));
 	}
 
 	/**
@@ -96,6 +98,7 @@ class Spell2DView extends Entity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {

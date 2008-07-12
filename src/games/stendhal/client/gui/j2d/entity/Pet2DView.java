@@ -16,6 +16,7 @@ import games.stendhal.client.entity.User;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
+
 /**
  * The 2D view of a pet.
  */
@@ -66,12 +67,14 @@ class Pet2DView extends DomesticAnimal2DView {
 		if (!User.isNull()) {
 			if (!User.get().hasPet()) {
 				list.add(ActionType.OWN.getRepresentation());
-			} else if (User.get().getPetID() == ((Pet) entity).getID().getObjectID()) {
+			} else if (User.get().getPetID() == ((Pet) entity).getID()
+					.getObjectID()) {
 				list.add(ActionType.LEAVE_PET.getRepresentation());
 			}
 
 		}
 	}
+
 	//
 	// EntityView
 	//
@@ -89,7 +92,7 @@ class Pet2DView extends DomesticAnimal2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			
+
 			rpaction.put("species", "pet");
 			rpaction.put("target", -1); // HACK see server handler code
 

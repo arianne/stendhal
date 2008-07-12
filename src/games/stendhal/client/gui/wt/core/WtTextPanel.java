@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.common.StringFormatter;
 
 import java.awt.Color;
@@ -53,26 +54,35 @@ public class WtTextPanel extends WtPanel {
 	/** enable automatic line breaks? */
 	private boolean autoLineBreaks;
 
-	/** Creates a new TextPanel. 
-	 * @param name 
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param height */
-	public WtTextPanel(String name, int x, int y, int width, int height) {
-		this(name, x, y, width, height, "");
+	/**
+	 * Creates a new TextPanel.
+	 * 
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param gameScreen
+	 */
+	public WtTextPanel(String name, int x, int y, int width, int height,
+			IGameScreen gameScreen) {
+		this(name, x, y, width, height, "", gameScreen);
 	}
 
-	/** Creates a new TextPanel with the given StringFormatter. 
-	 * @param name 
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param height 
-	 * @param formatString */
+	/**
+	 * Creates a new TextPanel with the given StringFormatter.
+	 * 
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param formatString
+	 * @param gameScreen
+	 */
 	public WtTextPanel(String name, int x, int y, int width, int height,
-			String formatString) {
-		super(name, x, y, width, height);
+			String formatString, IGameScreen gameScreen) {
+		super(name, x, y, width, height, gameScreen);
 		this.formatter = new StringFormatter(formatString);
 		this.fontSize = DEFAULT_FONT_SIZE;
 		this.color = DEFAULT_COLOR;
@@ -81,50 +91,67 @@ public class WtTextPanel extends WtPanel {
 
 	/**
 	 * @return the estimated height of the text in pixels. The calculation is
-	 * based in the text and the current font size
+	 *         based in the text and the current font size
 	 */
 	public int getLastHeight() {
 		return lastHeight;
 	}
 
-	/** sets the font size. 
-	 * @param fontSize */
+	/**
+	 * sets the font size.
+	 * 
+	 * @param fontSize
+	 */
 	public void setFontSize(int fontSize) {
 		this.fontSize = fontSize;
 	}
 
-	/** sets the color. 
-	 * @param color */
+	/**
+	 * sets the color.
+	 * 
+	 * @param color
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
 
-	/** sets the StringFormatter. This will invalidate all values previously set 
-	 * @param format */
+	/**
+	 * sets the StringFormatter. This will invalidate all values previously set
+	 * 
+	 * @param format
+	 */
 	public void setFormat(String format) {
 		this.formatter = new StringFormatter(format);
 	}
 
-	/** sets the value of a parameter. 
-	 * @param param 
-	 * @param value 
-	* @Deprecated use set(String param, String value)
-	*/
+	/**
+	 * sets the value of a parameter.
+	 * 
+	 * @param param
+	 * @param value
+	 * @Deprecated use set(String param, String value)
+	 */
 	@Deprecated
 	public void setValue(String param, String value) {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter. 
-	 * @param param 
-	 * @param value */
+	/**
+	 * sets the value of a parameter.
+	 * 
+	 * @param param
+	 * @param value
+	 */
 	public void set(String param, int value) {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter. 
-	 * @param param 
-	 * @param value */
+	/**
+	 * sets the value of a parameter.
+	 * 
+	 * @param param
+	 * @param value
+	 */
 	public void set(String param, String value) {
 		formatter.set(param, value);
 	}
@@ -136,7 +163,7 @@ public class WtTextPanel extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D clientArea) {
+	protected void drawContent(Graphics2D clientArea, IGameScreen gameScreen) {
 
 		Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color

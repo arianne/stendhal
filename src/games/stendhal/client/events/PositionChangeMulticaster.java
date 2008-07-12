@@ -6,6 +6,7 @@
 
 package games.stendhal.client.events;
 
+
 //
 //
 
@@ -35,7 +36,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 * @param l
 	 *            The listener.
 	 */
-	public void add(PositionChangeListener l) {
+	public void add(final PositionChangeListener l) {
 		int len = listeners.length;
 
 		PositionChangeListener[] newListeners = new PositionChangeListener[len + 1];
@@ -51,7 +52,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 * @param listener
 	 *            The listener.
 	 */
-	public void remove(PositionChangeListener listener) {
+	public void remove(final PositionChangeListener listener) {
 		int idx = listeners.length;
 
 		while (idx-- != 0) {
@@ -84,6 +85,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 *            The new X coordinate (in world units).
 	 * @param y
 	 *            The new Y coordinate (in world units).
+	 * @param gameScreen 
 	 */
 	public void positionChanged(final double x, final double y) {
 		PositionChangeListener[] list = listeners;

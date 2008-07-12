@@ -6,6 +6,7 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 
@@ -57,17 +58,16 @@ public interface EntityView {
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 */
-	void release();
+	void release(IGameScreen gameScreen);
 
 	Rectangle getArea();
 
-	void draw(Graphics2D vg);
+	void draw(final Graphics2D g2d, final IGameScreen gameScreen);
 
 	int getZIndex();
 
-	void drawTop(Graphics2D g2d);
+	void drawTop(Graphics2D g2d, IGameScreen gameScreen);
 
 	void setContained(boolean b);
 
-	
 }

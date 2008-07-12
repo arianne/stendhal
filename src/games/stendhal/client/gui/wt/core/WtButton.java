@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Graphics2D;
@@ -34,32 +35,41 @@ public class WtButton extends WtPanel {
 	/** image for the button. */
 	private Sprite image;
 
-	/** Creates a new Button with text. 
-	 * @param name 
-	 * @param width 
-	 * @param height 
-	 * @param text */
-	public WtButton(String name, int width, int height, String text) {
-		super(name, 0, 0, width, height);
+	/**
+	 * Creates a new Button with text.
+	 * 
+	 * @param name
+	 * @param width
+	 * @param height
+	 * @param text
+	 * @param gameScreen
+	 */
+	public WtButton(String name, int width, int height, String text,
+			IGameScreen gameScreen) {
+		super(name, 0, 0, width, height, gameScreen);
 		initialize();
 		int clientHeight = (getClientHeight() - WtTextPanel.DEFAULT_FONT_SIZE) / 2;
 		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight,
-				width, height, text);
+				width, height, text, gameScreen);
 		addChild(textPanel);
 		setTitletext(text);
 	}
 
-	/** Creates a new Button with an image. 
-	 * @param name 
-	 * @param width 
-	 * @param height 
-	 * @param image */
-	public WtButton(String name, int width, int height, Sprite image) {
-		super(name, 0, 0, width, height);
+	/**
+	 * Creates a new Button with an image.
+	 * 
+	 * @param name
+	 * @param width
+	 * @param height
+	 * @param image
+	 * @param gameScreen
+	 */
+	public WtButton(String name, int width, int height, Sprite image,
+			IGameScreen gameScreen) {
+		super(name, 0, 0, width, height, gameScreen);
 		initialize();
 		this.image = image;
 	}
-
 
 	private void initialize() {
 		setMinimizeable(false);
@@ -69,15 +79,16 @@ public class WtButton extends WtPanel {
 	}
 
 	/**
-	 * Draw the button contents. 
-	 * <p>This is only called while open and not minimized.
+	 * Draw the button contents.
+	 * <p>
+	 * This is only called while open and not minimized.
 	 * 
 	 * @param g
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
-		super.drawContent(g);
+	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+		super.drawContent(g, gameScreen);
 
 		// draw the image if we have one
 		if (image != null) {
@@ -99,8 +110,11 @@ public class WtButton extends WtPanel {
 		return isEmbossed();
 	}
 
-	/** sets the state of the button. 
-	 * @param pressed */
+	/**
+	 * sets the state of the button.
+	 * 
+	 * @param pressed
+	 */
 	public void setPressed(boolean pressed) {
 		setEmboss(pressed);
 	}

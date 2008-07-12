@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.WtButton;
 import games.stendhal.client.gui.wt.core.WtClickListener;
@@ -56,10 +57,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/** map of the buttons (for faster access) ). */
 	private Map<String, Entry> entries;
 
-	/** Creates a new instance of OptionsPanel. 
-	 * @param frameWidth */
-	public SettingsPanel(final int frameWidth) {
-		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2);
+	/**
+	 * Creates a new instance of OptionsPanel.
+	 * 
+	 * @param frameWidth
+	 * @param gameScreen
+	 */
+	public SettingsPanel(final int frameWidth, IGameScreen gameScreen) {
+		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2,
+				gameScreen);
 
 		setTitletext("Settings");
 
@@ -79,8 +85,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 *            The window.
 	 * @param label
 	 *            The menu label.
+	 * @param gameScreen
 	 */
-	public void add(final ManagedWindow window, final String label) {
+	public void add(final ManagedWindow window, final String label,
+			IGameScreen gameScreen) {
 		window.registerCloseListener(this);
 
 		String mnemonic = window.getName();
@@ -88,7 +96,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 
 		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
-				label);
+				label, gameScreen);
 
 		button.moveTo(SPACING, y);
 		button.setPressed(window.isVisible());
@@ -107,10 +115,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		return true;
 	}
 
-	/** a button was clicked. 
-	 * @param name 
-	 * @param point */
-	public void onClick(String name, Point point) {
+	/**
+	 * a button was clicked.
+	 * 
+	 * @param name
+	 * @param point
+	 */
+	public void onClick(String name, Point point, IGameScreen gameScreen) {
 		/*
 		 * Set window visibility
 		 */
@@ -121,8 +132,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		}
 	}
 
-	/** a window is closed. 
-	 * @param name */
+	/**
+	 * a window is closed.
+	 * 
+	 * @param name
+	 */
 	public void onClose(String name) {
 		/*
 		 * Unset button

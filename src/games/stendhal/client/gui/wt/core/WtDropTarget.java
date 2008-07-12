@@ -25,10 +25,13 @@ package games.stendhal.client.gui.wt.core;
  * @author mtotz
  */
 public interface WtDropTarget {
-	/** called when an object is dropped. 
-	 * @param x 
-	 * @param y 
-	 * @param droppedObject 
-	 * @return if operation succeeded*/
+	/**
+	 * called when an object is dropped.
+	 * 
+	 * @param x
+	 * @param y
+	 * @param droppedObject
+	 * @return if operation succeeded
+	 */
 	boolean onDrop(int x, int y, WtDraggable droppedObject);
 }

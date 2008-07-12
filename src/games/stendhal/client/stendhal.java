@@ -139,11 +139,12 @@ public class stendhal extends Thread {
 	 * 
 	 * @param client
 	 *            StendhalClient
+	 * @param gameScreen 
 	 */
-	private static void startGameGUI(StendhalClient client) {
-		j2DClient locclient = new j2DClient(client);
+	private static void startGameGUI(StendhalClient client, IGameScreen gameScreen) {
+		j2DClient locclient = new j2DClient(client,gameScreen);
 		locclient.initialize();
-		locclient.gameLoop();
+		locclient.gameLoop(gameScreen);
 		locclient.cleanup();
 	}
 
@@ -161,7 +162,8 @@ public class stendhal extends Thread {
 		StendhalClient client = startClient();
 		waitForLogin();
 		startSoundMaster();
-		startGameGUI(client);
+		
+		startGameGUI(client,GameScreen.get());
 	}
 
 	private static void startSoundMaster() {

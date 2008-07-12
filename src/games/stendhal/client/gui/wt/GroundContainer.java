@@ -51,22 +51,25 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	/** the game screen. */
 	private IGameScreen screen;
 
-	/** creates a new groundcontainer. 
-	 * @param client 
-	 * @param screen 
-	 * @param width 
-	 * @param height */
+	/**
+	 * creates a new groundcontainer.
+	 * 
+	 * @param client
+	 * @param gameScreen
+	 * @param width
+	 * @param height
+	 */
 	public GroundContainer(final StendhalClient client,
-			final IGameScreen screen, final int width, final int height) {
-		super(width, height);
+			final IGameScreen gameScreen, final int width, final int height) {
+		super(width, height, gameScreen);
 
 		this.client = client;
-		this.screen = screen;
+		this.screen = gameScreen;
 
 		ui = StendhalUI.get();
 	}
 
-	/** drags an item from the ground .*/
+	/** drags an item from the ground . */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		WtDraggable other = super.getDragged(x, y);
@@ -76,8 +79,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		}
 
 		Point2D point = screen.convertScreenViewToWorld(x, y);
-		EntityView view = screen.getMovableEntityViewAt(point.getX(),
-				point.getY());
+		EntityView view = screen.getMovableEntityViewAt(point.getX(), point
+				.getY());
 
 		// only Items can be dragged
 		if (view != null) {
@@ -192,11 +195,15 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	// WtDropTarget
 	//
 
-	/** called when an object is dropped. 
-	 * @param x 
-	 * @param y 
-	 * @param droppedObject 
-	 * @return true if droppedobject instance of MovableentityContainer false otherwise*/
+	/**
+	 * called when an object is dropped.
+	 * 
+	 * @param x
+	 * @param y
+	 * @param droppedObject
+	 * @return true if droppedobject instance of MovableentityContainer false
+	 *         otherwise
+	 */
 	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
 		// Not an entity?
 		if (!(droppedObject instanceof MoveableEntityContainer)) {
@@ -237,14 +244,15 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	//
 
 	public EntityContainer inspectMe(Entity suspect, RPSlot content,
-			EntityContainer container, int width , int height) {
+			EntityContainer container, int width, int height,
+			IGameScreen gameScreen) {
 		if ((container == null) || !container.isVisible()) {
-			container = new EntityContainer(suspect.getType(), width, height);
-			
+			container = new EntityContainer(suspect.getType(), width, height,
+					gameScreen);
 
 			addChild(container);
 
-			container.setSlot(suspect, content.getName());
+			container.setSlot(suspect, content.getName(), gameScreen);
 			container.setVisible(true);
 		}
 

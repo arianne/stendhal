@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
@@ -25,7 +26,7 @@ import java.util.Map;
  * The 2D view of a creature.
  */
 class Creature2DView extends RPEntity2DView {
-	
+
 	/**
 	 * The entity this view is for.
 	 */
@@ -80,13 +81,15 @@ class Creature2DView extends RPEntity2DView {
 	}
 
 	protected void drawPath(final Graphics2D g2d, final List<Node> path,
-			final int delta) {
-		Point p1 = screen.convertWorldToScreenView(getX(), getY());
+			final int delta, IGameScreen gameScreen) {
+		Point p1 = gameScreen.convertWorldToScreenView(getX(), getY());
 
 		for (Node node : path) {
-			Point p2 = screen.convertWorldToScreenView(node.x, node.y);
+			Point p2 = gameScreen.convertWorldToScreenView(node.x, node.y);
 
-			g2d.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y + delta);
+			g2d
+					.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y
+							+ delta);
 			p1 = p2;
 		}
 	}
@@ -164,9 +167,10 @@ class Creature2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height,
+			IGameScreen gameScreen) {
 
-		super.draw(g2d, x, y, width, height);
+		super.draw(g2d, x, y, width, height, gameScreen);
 
 	}
 
@@ -231,7 +235,6 @@ class Creature2DView extends RPEntity2DView {
 		onAction(ActionType.ATTACK);
 	}
 
-	
 	//
 	//
 

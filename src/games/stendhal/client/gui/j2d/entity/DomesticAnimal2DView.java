@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -77,11 +78,11 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	//
 	// StateEntity
 	//
-	
+
 	@Override
 	protected Sprite getSprite(Object state) {
 		if (animal.getWeight() < getBigWeight()) {
-		return super.getSprite(state);
+			return super.getSprite(state);
 		}
 		switch (rpentity.getDirection()) {
 		case LEFT:
@@ -100,7 +101,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 			return sprites.get(STATE_BIG_DOWN);
 		}
 	}
-	
+
 	//
 	// DomesticAnimal2DView
 	//
@@ -196,7 +197,6 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	// ActiveEntity2DView
 	//
 
-
 	//
 	// Entity2DView
 	//
@@ -209,8 +209,8 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		super.draw(g2d, x, y, width, height);
+			final int width, final int height, IGameScreen gameScreen) {
+		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (ideaSprite != null) {
 			ideaSprite.draw(g2d, x + width - 8, y - 8);
@@ -221,8 +221,8 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update() {
-		super.update();
+	protected void update(IGameScreen gameScreen) {
+		super.update(gameScreen);
 
 		if (ideaChanged) {
 			ideaSprite = getIdeaSprite();

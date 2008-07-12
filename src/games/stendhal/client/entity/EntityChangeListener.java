@@ -6,6 +6,7 @@
 
 package games.stendhal.client.entity;
 
+
 //
 //
 

@@ -116,8 +116,8 @@ class Player2DView extends RPEntity2DView {
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
 	 * 
-	 * @return <code>true</code> if the client user can see this entity while
-	 *         in ghostmode.
+	 * @return <code>true</code> if the client user can see this entity while in
+	 *         ghostmode.
 	 */
 	@Override
 	protected boolean isVisibleGhost() {
@@ -144,13 +144,13 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (!player.isGhostMode()){
-		super.buildActions(list);
+		if (!player.isGhostMode()) {
+			super.buildActions(list);
 
-		// TODO: If practical, only add this if not already a buddy
-		list.add(ActionType.ADD_BUDDY.getRepresentation());
+			// TODO: If practical, only add this if not already a buddy
+			list.add(ActionType.ADD_BUDDY.getRepresentation());
 		}
-		
+
 	}
 
 	/**
@@ -160,8 +160,9 @@ class Player2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
-		super.draw(g2d, x, y, width, height);
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height,
+			IGameScreen gameScreen) {
+		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);

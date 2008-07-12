@@ -18,6 +18,8 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.IGameScreen;
+
 import java.awt.Point;
 
 /**
@@ -36,6 +38,6 @@ public interface WtClickListener {
 	 * @param point
 	 *            coordinate of the clicked point within the clicked panel
 	 */
-	void onClick(String name, Point point);
+	void onClick(String name, Point point, IGameScreen gameScreen);
 
 }

@@ -66,7 +66,8 @@ class GrainField2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			IGameScreen gameScreen) {
 		int height;
 		int width;
 		String clazz;
@@ -82,7 +83,7 @@ class GrainField2DView extends StateEntity2DView {
 		}
 
 		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(clazz.replace(" ","_")));
+		Sprite tiles = store.getSprite(translate(clazz.replace(" ", "_")));
 
 		states = grainField.getMaximumRipeness() + 1;
 
@@ -102,7 +103,8 @@ class GrainField2DView extends StateEntity2DView {
 
 		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += height) {
-			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y, width, height));
+			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y, width,
+					height));
 		}
 	}
 
@@ -179,6 +181,7 @@ class GrainField2DView extends StateEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {

@@ -37,7 +37,8 @@ import org.apache.log4j.Logger;
 public class WtWindowManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(WtWindowManager.class);
+	private static final Logger logger = Logger
+			.getLogger(WtWindowManager.class);
 
 	/** filename for the settings persistence. */
 	private static final String FILE_NAME = "windows.properties";
@@ -68,10 +69,11 @@ public class WtWindowManager {
 	/**
 	 * Sets default window properties. These are used only when there are no
 	 * properties known for this panel.
-	 * @param name 
-	 * @param minimized 
-	 * @param x 
-	 * @param y 
+	 * 
+	 * @param name
+	 * @param minimized
+	 * @param x
+	 * @param y
 	 */
 	public void setDefaultProperties(String name, boolean minimized, int x,
 			int y) {
@@ -120,8 +122,10 @@ public class WtWindowManager {
 		}
 	}
 
-	/** @param panel 
-	 * @return the config. If it does not exist yet, a new one is created. */
+	/**
+	 * @param panel
+	 * @return the config. If it does not exist yet, a new one is created.
+	 */
 	private WindowConfiguration getConfig(ManagedWindow panel) {
 		String name = panel.getName();
 		WindowConfiguration winC = configs.get(name);
@@ -168,7 +172,8 @@ public class WtWindowManager {
 	/**
 	 * Formats the window with the saved config. Nothing happens when this
 	 * windows config is not known.
-	 * @param panel 
+	 * 
+	 * @param panel
 	 */
 	public void formatWindow(ManagedWindow panel) {
 		WindowConfiguration config = getConfig(panel);
@@ -182,19 +187,25 @@ public class WtWindowManager {
 		panel.setVisible(config.visible);
 	}
 
-	/** the panel was moved, so update the internal representation. 
-	 * @param panel 
-	 * @param x 
-	 * @param y */
+	/**
+	 * the panel was moved, so update the internal representation.
+	 * 
+	 * @param panel
+	 * @param x
+	 * @param y
+	 */
 	public void moveTo(ManagedWindow panel, int x, int y) {
 		WindowConfiguration config = getConfig(panel);
 		config.x = x;
 		config.y = y;
 	}
 
-	/** the panels minimized state changed, update the internal representation. 
-	 * @param panel 
-	 * @param state */
+	/**
+	 * the panels minimized state changed, update the internal representation.
+	 * 
+	 * @param panel
+	 * @param state
+	 */
 	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
@@ -229,8 +240,8 @@ public class WtWindowManager {
 			this.name = name;
 		}
 
-		/**  
-		 * @return string to be stored as property 
+		/**
+		 * @return string to be stored as property
 		 */
 		public String writeToPropertyString() {
 			return "window." + name + ".minimized=" + minimized + "\n"
@@ -245,8 +256,11 @@ public class WtWindowManager {
 			return writeToPropertyString();
 		}
 
-		/** adds all props to the property. 
-		 * @param props */
+		/**
+		 * adds all props to the property.
+		 * 
+		 * @param props
+		 */
 		public void writeToProperties(Properties props) {
 			props.put("window." + name + ".minimized", minimized);
 			props.put("window." + name + ".visible", visible);
@@ -254,12 +268,15 @@ public class WtWindowManager {
 			props.put("window." + name + ".y", y);
 		}
 
-		/** reads the config from the properties. 
-		 * @param props 
-		 * @param defaultMinimized 
-		 * @param defaultX 
-		 * @param defaultY 
-		 * @param defaultVisible */
+		/**
+		 * reads the config from the properties.
+		 * 
+		 * @param props
+		 * @param defaultMinimized
+		 * @param defaultX
+		 * @param defaultY
+		 * @param defaultVisible
+		 */
 		public void readFromProperties(Properties props,
 				boolean defaultMinimized, int defaultX, int defaultY,
 				boolean defaultVisible) {
@@ -273,9 +290,12 @@ public class WtWindowManager {
 					Integer.toString(defaultY)));
 		}
 
-		/** reads the config from the properties. 
-		 * @param props 
-		 * @param defaults */
+		/**
+		 * reads the config from the properties.
+		 * 
+		 * @param props
+		 * @param defaults
+		 */
 		public void readFromProperties(Properties props, ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY(), defaults.isVisible());

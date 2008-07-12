@@ -218,7 +218,7 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	protected void fireChange(final  Property property) {
 		EntityChangeListener[] listeners = changeListeners;
-
+		
 		for (EntityChangeListener l : listeners) {
 			l.entityChanged(this, property);
 		}

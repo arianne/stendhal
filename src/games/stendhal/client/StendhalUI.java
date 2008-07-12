@@ -168,7 +168,7 @@ public abstract class StendhalUI {
 	 * @param y
 	 *            The user's Y coordinate.
 	 */
-	public abstract void setPosition(double x, double y);
+	public abstract void setPosition(double x, double y,IGameScreen gameScreen);
 
 	//
 	// <StendhalGUI>

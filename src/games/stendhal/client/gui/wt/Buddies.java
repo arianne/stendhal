@@ -17,6 +17,7 @@
  */
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
@@ -55,8 +56,8 @@ public class Buddies extends WtPanel {
 
 	/** Creates a new instance of Buddies. 
 	 * @param ui */
-	public Buddies(StendhalUI ui) {
-		super("buddies", ui.getWidth() - 132, 265, 132, 200);
+	public Buddies(final StendhalUI ui, final IGameScreen gameScreen) {
+		super("buddies", ui.getWidth() - 132, 265, 132, 200, gameScreen);
 
 		this.ui = ui;
 
@@ -137,7 +138,7 @@ public class Buddies extends WtPanel {
 	 * @param command 
 	 * @param buddieName 
 	 */
-	protected void doAction(String command, String buddieName) {
+	protected void doAction(final String command, String buddieName) {
 		if ("talk".equals(command)) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
@@ -175,8 +176,8 @@ public class Buddies extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
-		super.drawContent(g);
+	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
+		super.drawContent(g, gameScreen);
 
 		int i = 0;
 		RPObject object = ui.getClient().getPlayer();

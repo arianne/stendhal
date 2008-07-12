@@ -57,7 +57,8 @@ class Food2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			IGameScreen gameScreen) {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(entity.getType()));
 
@@ -66,8 +67,10 @@ class Food2DView extends StateEntity2DView {
 
 		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += IGameScreen.SIZE_UNIT_PIXELS) {
-			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
-					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
+			map
+					.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
+							IGameScreen.SIZE_UNIT_PIXELS,
+							IGameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 
@@ -110,6 +113,7 @@ class Food2DView extends StateEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
+	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {

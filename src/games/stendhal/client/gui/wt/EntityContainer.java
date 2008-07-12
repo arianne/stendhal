@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
@@ -38,9 +39,12 @@ import org.apache.log4j.Logger;
 public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(EntityContainer.class);
+	private static final Logger logger = Logger
+			.getLogger(EntityContainer.class);
 
-	/** when the player is this far away from the container, the panel is closed. */
+	/**
+	 * when the player is this far away from the container, the panel is closed.
+	 */
 	private static final int MAX_DISTANCE = 4;
 
 	/** the panels for each item. */
@@ -49,18 +53,21 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/** the object which has the slot. */
 	private Entity parent;
 
-	
 	private String slotName;
 
 	private RPSlot shownSlot;
 
-	/** Creates the panel. 
-	 * @param name 
-	 * @param width 
-	 * @param height */
-	public EntityContainer(String name, int width,
-			int height) {
-		super(name, 0, 300, 100, 100);
+	/**
+	 * Creates the panel.
+	 * 
+	 * @param name
+	 * @param width
+	 * @param height
+	 * @param gameScreen
+	 */
+	public EntityContainer(String name, int width, int height,
+			IGameScreen gameScreen) {
+		super(name, 0, 300, 100, 100, gameScreen);
 
 		setTitletext(name);
 		setTitleBar(true);
@@ -77,7 +84,8 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(name, null, x * spriteWidth + x, y * spriteHeight + y);
+				EntitySlot entitySlot = new EntitySlot(name, null, x
+						* spriteWidth + x, y * spriteHeight + y, gameScreen);
 				slotPanels.add(entitySlot);
 				addChild(entitySlot);
 			}
@@ -94,8 +102,12 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		return true;
 	}
 
-	/** Rescans the content of the slot. */
-	private void rescanSlotContent() {
+	/**
+	 * Rescans the content of the slot.
+	 * 
+	 * @param gameScreen
+	 */
+	private void rescanSlotContent(IGameScreen gameScreen) {
 		if ((parent == null) || (slotName == null)) {
 			return;
 		}
@@ -137,7 +149,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 					entity = EntityFactory.createEntity(object);
 				}
 
-				iter.next().setEntity(entity);
+				iter.next().setEntity(entity, gameScreen);
 			}
 		} else {
 			shownSlot = null;
@@ -148,7 +160,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		 * Clear remaining holders
 		 */
 		while (iter.hasNext()) {
-			iter.next().setEntity(null);
+			iter.next().setEntity(null, gameScreen);
 		}
 	}
 
@@ -157,8 +169,10 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * far away, this panel closes itself.
 	 * 
 	 * TODO: Change to event model, rather than polling
+	 * 
+	 * @param gameScreen
 	 */
-	private void checkDistance() {
+	private void checkDistance(IGameScreen gameScreen) {
 		User user = User.get();
 
 		if (user != null && parent != null) {
@@ -167,7 +181,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			// after double clicking one
 			// monster and a fast double
 			// click on another monster
-			
+
 			if (user.getID().equals(parent.getID())) {
 				// We don't want to close our own stuff
 				return;
@@ -180,18 +194,22 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/*
 	 * Clear all holders.
 	 */
-	protected void clear() {
+	protected void clear(IGameScreen gameScreen) {
 		for (EntitySlot entitySlot : slotPanels) {
-			entitySlot.setEntity(null);
+			entitySlot.setEntity(null, gameScreen);
 		}
 
 		shownSlot = null;
 	}
 
-	/** Sets the player entity. 
-	 * @param parent 
-	 * @param slot */
-	public void setSlot(Entity parent, String slot) {
+	/**
+	 * Sets the player entity.
+	 * 
+	 * @param parent
+	 * @param slot
+	 * @param gameScreen
+	 */
+	public void setSlot(Entity parent, String slot, IGameScreen gameScreen) {
 		this.parent = parent;
 		this.slotName = slot;
 
@@ -204,7 +222,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		}
 
 		shownSlot = null;
-		rescanSlotContent();
+		rescanSlotContent(gameScreen);
 	}
 
 	/**
@@ -215,32 +233,34 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics2D g) {
-		rescanSlotContent();
-		super.drawContent(g);
+	protected void drawContent(Graphics2D g, IGameScreen gameScreen) {
+		rescanSlotContent(gameScreen);
+		super.drawContent(g, gameScreen);
 
 		// TODO: Change to event model, rather than polling
-		checkDistance();
+		checkDistance(gameScreen);
 	}
 
 	/**
 	 * Close the panel.
 	 */
 	@Override
-	public void close() {
-		clear();
-		super.close();
+	public void close(IGameScreen gameScreen) {
+		clear(gameScreen);
+		super.close(gameScreen);
 	}
 
 	/**
 	 * Destroy the panel.
+	 * 
+	 * @param gameScreen
 	 */
 	@Override
-	public void destroy() {
-		clear();
+	public void destroy(IGameScreen gameScreen) {
+		clear(gameScreen);
 		parent = null;
 
-		super.destroy();
+		super.destroy(gameScreen);
 	}
 
 	//
@@ -254,6 +274,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 *            The X coordinate (in world units).
 	 * @param y
 	 *            The Y coordinate (in world units).
+	 * @param gameScreen
 	 */
 	public void positionChanged(final double x, final double y) {
 		/*
@@ -274,7 +295,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			logger.debug("Closing " + slotName + " container because " + px
 					+ "," + py + " is too far from (" + ix + "," + iy + "):"
 					+ orig);
-			destroy();
+			destroy(gameScreen);
 		}
 	}
 }

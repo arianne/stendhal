@@ -9,6 +9,7 @@ package games.stendhal.client.gui.wt;
 //
 //
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.events.FeatureChangeListener;
 
@@ -19,11 +20,13 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
 	 * 
+	 * @param gameScreen
+	 * 
 	 */
-	public KeyRing() {
+	public KeyRing(IGameScreen gameScreen) {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
-		super("keyring", 2, 4);
+		super("keyring", 2, 4, gameScreen);
 
 		// Disable by default
 		disable();
@@ -82,12 +85,14 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 
 	/**
 	 * Destroy the panel.
+	 * 
+	 * @param gameScreen
 	 */
 	@Override
-	public void destroy() {
+	public void destroy(IGameScreen gameScreen) {
 		// TODO: Could be cleaner reference
 		StendhalClient.get().removeFeatureChangeListener(this);
 
-		super.destroy();
+		super.destroy(gameScreen);
 	}
 }

@@ -58,7 +58,7 @@ class FishSource2DView extends AnimatedLoopEntity2DView {
 	 * @Override public void onAction() { onAction(ActionType.FISH); }
 	 * 
 	 * 
-	 * /** Perform an action.
+	 *           /** Perform an action.
 	 * 
 	 * @param at
 	 *            The action.
