@@ -159,9 +159,9 @@ public class Level {
 	 * @return A value between <code>0.0</code> (inclusive) and
 	 *         <code>1.0</code> (exclusive).
 	 */
-	public static double getWisdom(int level) {
+	public static double getWisdom(final int level) {
 		if (level > LEVELS) {
-			level = LEVELS;
+			return wisdom[LEVELS];
 		}
 
 		return wisdom[level];
