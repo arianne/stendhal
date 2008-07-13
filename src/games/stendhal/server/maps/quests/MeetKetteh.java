@@ -51,7 +51,8 @@ public class MeetKetteh extends AbstractQuest {
 							// OK, player is NOT naked this time, but was last
 							// time.
 							engine.say("Hi again, " + player.getTitle()	+ ". How can I #shout at you this time?");
-							player.setQuest("Ketteh", "seen"); // don't be unforgiving
+							// don't be unforgiving
+							player.setQuest("Ketteh", "seen"); 
 						}
 					});
 
