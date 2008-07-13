@@ -424,7 +424,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param player
 	 *            the player to teleport out
 	 */
-	protected void finish(final boolean reset, Player player) {
+	protected void finish(final boolean reset, final Player player) {
 		if (player != null) {
 			final IRPZone playerZone = player.getZone();
 
@@ -435,7 +435,7 @@ public class ReverseArrow extends AbstractQuest implements
 		}
 		if (reset) {
 			removeAllTokens();
-			player = null;
+			this.player = null;
 			moveCount = 0;
 			if (timer != null) {
 				SingletonRepository.getTurnNotifier().dontNotify(timer);
