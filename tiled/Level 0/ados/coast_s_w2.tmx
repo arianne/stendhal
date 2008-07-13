@@ -81,9 +81,6 @@
  <tileset name="long_front_on_pale" firstgid="418" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="pilings" firstgid="421" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/firewood.png"/>
- </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3YQVLCQBRFUcqh7sOJlvtfnjqgykIlkKR5P/3P4Myb3JcEeDqdTk8AAAAAAAAAAAAAAAAAAADEvd4gfUay/e2gh3u2YA9zu3cL9jCnNTuwhXnZAPfsIH1O8jtIn5H8FtJnI78BW+jDDljaQvpc5DdgB73YQG+eA9gAfhtgA9gASztIn438BuygDxvABnrzLsAGWNpB+mzYADaADZDtbwN92ADXdpA+FzaADWAD5DdgB33YANd2kD4XNkB+A3bQhw1gA9gBNsDSDtLnIr+D9JmwAWyA/AbsoBe/D1jagS30sLQBO+jFBvAswDuBW3ZgCz0cbQfPBc4ws4obeL6Qvkazq/IsuOyuf40tpLrrX2cDI/aw1F3/uTZwa2/969nSf233ty8vBT47vzcwovl37/cfXvQv5Zb+e/S+lP7c7NP7svl/vfWvZe37+557XP+atrZf01v/GhL3uv55o9/n+td1rfHPJqOb61+ze0L62sxs9Hc3/es6Qnv9H9f97KNAc/0f373iva9/7/b6926v/9ju1dvrP6b5Udrrv3/zSv/t6P/Y9kfqrv8+3c/Nj9Zd/326p/vpv71lx+4z99dd/z2bz9h9xv5b+v4l3Ub/sd3T176CdLsRfZfap695Jem2j+zunj9Of/e8/r679+y/x/f49HU9inTrLf3P3dPX8MjSrde0171nf9339wlz7seSAAABAA==
@@ -119,7 +116,7 @@
    H4sIAAAAAAAAAO3bQW7CQAxAUbj/gitXXSAhCiiTzuCx/Z7kFVAhf0ITBJcLAAAAAAAAAADAGrdr9DMgym/7+9CP/gAAAAAAAAAAAAAAAADc+a1ZX35v2Jv+AADwl/Pjvlwj9aY/AKzn/2xfzrV60x8AAACAZz4v6k1/AADowbl/b+/6e130pj8AsBPnJX35fntv+gMAAKznuquXx2tt1931veutf11Hm+tfw5ne+tcwo73+eczqrX8eq5rrv49XHb7RXf9YnzroX9vo3vWv40gHx39dI/2PPlb/HI520L+ekQ7e/2sZ7aB/HTP2rn9OZzs4/nMb3ffjbc/30z+Ps/t+dfyP/E3948zY96f76b+nmfvWP48V+17dWP//W7lv/ff0jZ1Htu/eP3r3O0xH0TvfabqJ3vdu00X0nnedDqJ3vPNUFb3XLFNB9A4zT2bRu6swGUXvrNJkEr2rivMDsMJI7AAAAQA=
   </data>
  </layer>
- <layer name="protection" width="128" height="128" visible="0">
+ <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
