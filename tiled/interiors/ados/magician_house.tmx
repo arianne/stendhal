@@ -84,7 +84,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwChAAAIWIb+kYBgAA
   </data>
  </layer>
- <layer name="collision" width="26" height="15" visible="0" opacity="0.35">
+ <layer name="collision" width="26" height="15" opacity="0.35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvBwMBwYphiYgGxeimxA5cZpIhRCsi1G1/4EutOattDC72U2kMKGCh7iHUDNe3BZxe1Ab38Q8g+WqY1emAAAbbW1xgGAAA=
   </data>
