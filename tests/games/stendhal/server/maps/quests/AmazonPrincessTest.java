@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
