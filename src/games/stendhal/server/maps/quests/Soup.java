@@ -127,7 +127,8 @@ public class Soup extends AbstractQuest {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
-						return false; // we haven't done the quest yet
+						// we haven't done the quest yet
+						return false; 
 					}
 
 					final String[] tokens = player.getQuest(QUEST_SLOT)
@@ -149,7 +150,8 @@ public class Soup extends AbstractQuest {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
-						return false; // we haven't done the quest yet
+						// we haven't done the quest yet
+						return false; 
 					}
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
