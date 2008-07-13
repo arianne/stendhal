@@ -87,7 +87,7 @@ public class MagicExtn extends StendhalServerExtension implements
 		// Checks to see if the list of spells available to the player contains
 		// the spell they tried to cast
 		if (availableSpells.contains(castSpell)) {
-			canCastSpell = true; // lets player cast spell
+			canCastSpell = true;
 		} else {
 			player.sendPrivateText("You can not cast this spell.");
 		}
