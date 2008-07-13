@@ -126,10 +126,7 @@
  <tileset name="pool" firstgid="1025" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>
  </tileset>
- <tileset name="romantic art2" firstgid="1034" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/romanic_art2.png"/>
- </tileset>
- <tileset name="romantic art1" firstgid="1038" tilewidth="32" tileheight="32">
+ <tileset name="romantic art1" firstgid="1034" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/romanic_art1.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -144,12 +141,12 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cQWrCQBiGYas9QOvWjVfpATxKodues8seRRHdSEVTSYzy63zPA7MJCoMviWEmZDIBxlq+VM+Ae1n0aKt/u/TP1qc/AJn8/7fL/V82/bPpDzyzj1n1DADybPfX3vWVY3uj6/bK9b/MZsRvP+a7PAb9s+mfTf/2XVr/0799+mcb2v/t9fzYe8cx/evNR+7/OP/bp382/fmP/tn0z9a1/9O1r9P3cwA8Ds9/ZtM/m/7Z9M+mP+Ry/mfTP5v+AAAAAAAAAAAAAAD1+rz/DQAAAAAAAC75nVbPAKjwPf0bAAAAAAAAAAAAAMAw3v8EAAAAAO1aHK3/fZ2Mg6U1QgCA5nxWT4ASx/f/PyfjwP1/uzz/AQAAAADAs9kBkE3oAwAAAQA=
+   H4sIAAAAAAAAAO3cQWrCQBiGYatdthu3brxKD+BRCt32nF32KIroRiqaSmKUX+d7HphNUBh8SQwzIZMJMNbypXoG3MuiR1v926V/tj79Acjk/79d7v+y6Z9Nf+CZfcyqZwCQZ7u/9q6vHNsbXbdXrv9lNiN++zHf5THon03/bPq379L6n/7t0z/b0P5vr+fH3juO6V9vPnL/x/nfPv2z6c9/9M+mf7au/Z+ufZ2+nwPgcXj+M5v+2fTPpn82/SGX8z+b/tn0BwAAAAAAAAAAAACo1+f9bwAAAAAAAHDJ77R6BkCF7+nfAAAAAAAAAAAAAACG8f4nAAAAAGjX4mj97+tkHCytEQIANOezegKUOL7//zkZB+7/2+X5DwAAAAAAns0OGX299gAAAQA=
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dyUoDQRQF0IZyrf+lv+S0cFqo8SMcNg4bh8/RhQOOCK5FX7AXDXYwBEJMv3PgQlGp9OauukKqqgoAAAAAAACAYX2WyXy3aT6es9ASAMbrq7SPR10HAEyf2Znfc3MtcwDA9Oq/y19HbsrP+LbOXeQ+8lDa19FNj9HtU+Q58hJ5jbzpu5PafsPpz7035j/K4HUAAAAAk7BYqmopshxZiazap0hlLfpej2xENiNb+k9lO/reiezW2dM/AAAAAAAAAAAAAAAAAAC1/VJVB5HDyJH/oaZzHJ2fRE4jZ/pP5zw6v4hcRq70DwAAAEOxn5ab/bTc7KcBAAAAAADj5q653Nw1l1vzrrmeu+YAAAAAAAAAgBH1RvyMbuj9EbpN/7npPzf956Z/AACAwZwjnJtzhHNzjjAAwP/zDRXbw24AAAEA
+   H4sIAAAAAAAAAO3dyUoDQRQF0IZypX+mv+S0cFqo8SMcNg4bh8/RhQOOCK5FX7AXDXYwBEJMv3PgQlGp9OauukKqqgoAAAAAAACAYX2WyXy3aT6es9ASAMbrq7SPR10HAEyf2Znfc3MtcwDA9Oq/y19HbsrP+LbOXeQ+8lDa19FNj9HtU+Q58hJ5jbzpu5PafsPpz7035j/K4HUAAAAAk7BYqmopshxZiazap0hlLfpej2xENiNb+k9lO/reiezW2dM/AAAAAAAAAAAAAAAAAAC1/VJVB5HDyJH/oaZzHJ2fRE4jZ/pP5zw6v4hcRq70DwAAAEOxn5ab/bTc7KcBAAAAAADj5q653Nw1l1vzrrmeu+YAAAAAAAAAgBH1RvyMbuj9EbpN/7npPzf956Z/AACAwZwjnJtzhHNzjjAAwP/zDYimGHUAAAEA
   </data>
  </layer>
  <layer name="4_roof_add" width="128" height="128">
