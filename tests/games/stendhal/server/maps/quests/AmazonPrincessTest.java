@@ -1,17 +1,20 @@
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.amazon.hut.PrincessNPC;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,11 +47,28 @@ public class AmazonPrincessTest {
 
 		player = PlayerTestHelper.createPlayer("player");
 	}
+	@After
+	public void tearDown() {
+		SingletonRepository.getNPCList().clear();
+	}
 
 	@Test
 	public void testGetSlotname() throws Exception {
 		assertEquals("amazon_princess", new AmazonPrincess().getSlotName());
 	}
+	
+	@Test
+	public void testhasRecovered() throws Exception {
+		en.setCurrentState(ConversationStates.ATTENDING);
+		player.setQuest(new AmazonPrincess().getSlotName(), "drinking;0");
+		en.step(player, "task");
+		assertEquals("The last cocktail you brought me was so lovely. Will you bring me another?", npc.get("text"));
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		en.step(player, "yes");
+		assertEquals("start", player.getQuest(new AmazonPrincess().getSlotName()));
+		
+	}
+	
 	
 	@Test
 	public void testQuest() {

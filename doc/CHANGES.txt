@@ -12,6 +12,7 @@ Changelog
 - can *destroy blood and corpse now, and blocked *destroy of portal
 - cleaned up /inspect of a player
 - made sally give time remaining to campfire test and reworked parts
+- AmazonPrincess uses 'new' ChatAction way
 
 0.68.1
 - sentence can be set for website
