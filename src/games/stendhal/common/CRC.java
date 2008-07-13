@@ -19,11 +19,11 @@ public class CRC {
 	/**
 	 * generator polynomial.
 	 */
-	private static final int poly = 0x1021; /*
-											 * x16 + x12 + x5 + 1 generator
-											 * polynomial
-											 */
-
+	private static final int poly = 0x1021; 
+	/*
+	 * x16 + x12 + x5 + 1 generator
+	 * polynomial
+	 */
 	/* 0x8408 used in European X.25 */
 
 	/**

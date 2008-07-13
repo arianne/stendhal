@@ -446,7 +446,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
 		} else if (enoun.endsWith("sis")) {
 			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-		} else if (enoun.endsWith("erinys")) { // || enoun.endsWith("cyclops")
+		} else if (enoun.endsWith("erinys")) { 
 			return enoun.substring(0, enoun.length() - 1) + "es" + postfix;
 		} else if (enoun.endsWith("mumak")) {
 			return enoun + "il" + postfix;
