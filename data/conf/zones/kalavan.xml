@@ -44,6 +44,8 @@
 
  <zone name="int_kalavan_castle_basement" file="interiors/kalavan/castle_basement.tmx">
  <configurator class-name="games.stendhal.server.maps.kalavan.castle.ItemsOnTable"/>
+<configurator class-name="games.stendhal.server.maps.kalavan.castle.MadScientist1NPC"/>
+<configurator class-name="games.stendhal.server.maps.kalavan.castle.MadScientist2NPC"/>
   <portal x="31" y="39" ref="upstairs">
    <destination zone="int_kalavan_castle" ref="downstairs"/>
   </portal>
