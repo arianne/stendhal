@@ -14,8 +14,8 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import marauroa.common.Pair;
 
@@ -27,51 +27,12 @@ public class DiceGambling extends AbstractQuest {
 		return "dice_gambling";
 	}
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public void addToWorld() {
 
 		final CroupierNPC ricardo = (CroupierNPC) SingletonRepository.getNPCList().get("Ricardo");
 
-		final List<Pair<String, String>> prizes = Arrays.asList(
-				null, // 0 - can't happen
-				null, // 1 - can't happen
-				null, // 2 - can't happen
-				// secret consolation prize for throwing three ones ;)
-				new Pair<String, String>(
-						"fire sword",
-						"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."), // 3
-				null, // 4 - no prize
-				null, // 5 - no prize
-				null, // 6 - no prize
-				new Pair<String, String>("beer",
-						"That's enough for a consolation prize, a bottle of beer."), // 7
-				// new Pair<String, String>("coupon", "That's enough for
-				// a consolation prize, a coupon for a bottle of beer.
-				// Margaret will accept it."), // 7
-				new Pair<String, String>("wine",
-						"You have won this delicious glass of wine!"), // 8
-				new Pair<String, String>("studded shield",
-						"Take this simple shield as a reward."), // 9
-				new Pair<String, String>("chain legs",
-						"I hope you have a use for these chain legs."), // 10
-				new Pair<String, String>("antidote",
-						"This antidote will serve you well when you fight against poisonous creatures."), // 11
-				new Pair<String, String>("sandwich",
-						"You have won a tasty sandwich!"), // 12
-				new Pair<String, String>("chain helmet",
-						"Your prize is this robust chain helmet."), // 13
-				new Pair<String, String>("golden hammer",
-						"Take this valuable golden hammer!"), // 14
-				new Pair<String, String>(
-						"greater potion",
-						"You have won a greater potion, but with your luck you'll probably never have to use it!"), // 15
-				new Pair<String, String>("pauldroned iron cuirass",
-						"You have won this very rare iron cuirass with pauldrons!"), // 16
-				new Pair<String, String>("crown shield",
-						"You're so lucky! Here's your prize: an invaluable crown shield!"), // 17
-				new Pair<String, String>("golden legs",
-						"You have hit the JACKPOT! Golden legs!") // 18
-		);
+		final Map<Integer, Pair<String, String>> prizes = initPrices();
 
 		ricardo.setPrizes(prizes);
 
@@ -132,6 +93,40 @@ public class DiceGambling extends AbstractQuest {
 			"Coward! How will you ever become a hero when you risk nothing?",
 			null);
 
+	}
+	private Map <Integer, Pair<String, String>> initPrices() {
+		Map<Integer, Pair<String, String>> map = new HashMap<Integer, Pair<String, String>>();
+		map.put(3, new Pair<String, String>("fire sword",
+				"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."));
+		map.put(7, new Pair<String, String>("beer",
+				"That's enough for a consolation prize, a bottle of beer."));
+		// TODO: new Pair<String, String>("coupon", "That's enough for
+		// a consolation prize, a coupon for a bottle of beer.
+		// Margaret will accept it."), // 7
+		map.put(8, new Pair<String, String>("wine",
+				"You have won this delicious glass of wine!"));
+		map.put(9, new Pair<String, String>("studded shield",
+				"Take this simple shield as a reward."));
+		map.put(10, new Pair<String, String>("chain legs",
+				"I hope you have a use for these chain legs."));
+		map.put(11,	new Pair<String, String>("antidote",
+			   "This antidote will serve you well when you fight against poisonous creatures."));
+		map.put(12, new Pair<String, String>("sandwich",
+				"You have won a tasty sandwich!"));
+		map.put(13, new Pair<String, String>("chain helmet",
+				"Your prize is this robust chain helmet."));
+		map.put(14, new Pair<String, String>("golden hammer",
+				"Take this valuable golden hammer!"));
+		map.put(15,	new Pair<String, String>("greater potion",
+				"You have won a greater potion, but with your luck you'll probably never have to use it!"));
+		map.put(16, new Pair<String, String>("pauldroned iron cuirass",
+				"You have won this very rare iron cuirass with pauldrons!"));
+		map.put(17,	new Pair<String, String>("crown shield",
+				"You're so lucky! Here's your prize: an invaluable crown shield!"));
+		map.put(18, new Pair<String, String>("golden legs",
+				"You have hit the JACKPOT! Golden legs!"));
+		
+		return map;
 	}
 
 }
