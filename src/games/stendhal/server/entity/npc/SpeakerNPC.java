@@ -340,8 +340,8 @@ public class SpeakerNPC extends NPC {
 	}
 
 	public abstract static class ChatAction implements PostTransitionAction {
-		public abstract void fire(Player player, Sentence sentence,
-				SpeakerNPC npc);
+		public abstract void fire(final Player player, final Sentence sentence,
+				final SpeakerNPC npc);
 	}
 
 	public abstract static class ChatCondition implements
@@ -524,13 +524,10 @@ public class SpeakerNPC extends NPC {
 
 				if (waitAction != null) {
 					final Sentence sentence = ConversationParser.parse(text);
-					waitAction.fire(player, sentence, this); // Note:
-																// sentence is
-																// currently not
-																// yet used in
-																// the called
-																// handler
-																// functions.
+					// Note: sentence is currently not yet used in
+					// the called handler functions.
+					waitAction.fire(player, sentence, this); 
+					
 				}
 			}
 			return true;
