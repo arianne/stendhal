@@ -17,6 +17,8 @@ import games.stendhal.server.util.TimeUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * QUEST: The mithril shield forging.
@@ -48,6 +50,154 @@ import java.util.List;
  * </ul>
  */
 public class StuffForBaldemar extends AbstractQuest {
+	private static Map<Integer, ItemData> neededItems = initneededitems();
+	private static Map<Integer, ItemData> initneededitems() {
+		neededItems = new TreeMap<Integer, ItemData>();
+		ItemData data = new ItemData("mithril bar", 
+									REQUIRED_MITHRIL_BAR, 
+									"I cannot #forge it without the missing ", 
+									". After all, this IS a mithril shield.");
+		neededItems.put(1, data);
+		data = new ItemData("obsidian",	REQUIRED_OBSIDIAN, 
+				"I need several gems to grind into dust to mix with the mithril. I need ", 
+				" still.");
+		neededItems.put(2, data);
+		data = new ItemData("diamond",	REQUIRED_DIAMOND , 
+				"I need several gems to grind into dust to mix with the mithril. I need ", 
+				" still.");
+		neededItems.put(3, data);
+		
+		
+		data = new ItemData("emerald",	REQUIRED_EMERALD , 
+				"I need several gems to grind into dust to mix with the mithril. I need ", 
+				" still.");
+		neededItems.put(4, data);
+		
+		data = new ItemData("carbuncle",	REQUIRED_CARBUNCLE , 
+				"I need several gems to grind into dust to mix with the mithril. I need ", 
+				" still.");
+		neededItems.put(5, data);
+		
+		data = new ItemData("sapphire",	REQUIRED_SAPPHIRE, 
+				"I need several gems to grind into dust to mix with the mithril. I need ", 
+				" still.");
+		neededItems.put(6, data);
+		int i = 7;
+		data = new ItemData("black shield",	REQUIRED_BLACK_SHIELD , 
+				"I need ", 
+				" to form the framework for your new shield.");
+		neededItems.put(i, data);
+		
+		 i = 8;
+		data = new ItemData("magic plate shield",	REQUIRED_MAGIC_PLATE_SHIELD , 
+				"I need ", 
+				" for the pieces and parts for your new shield.");
+		neededItems.put(i, data);
+	
+		 i = 9;
+			data = new ItemData("gold bar",	REQUIRED_GOLD_BAR , 
+					"I need ", 
+					" to melt down with the mithril and iron.");
+			neededItems.put(i, data);
+
+		 i = 10;
+			data = new ItemData("iron",	REQUIRED_IRON , 
+					"I need ", 
+					" to melt down with the mithril and gold.");
+			neededItems.put(i, data);
+		 i = 11;
+			data = new ItemData("black pearl",	REQUIRED_BLACK_PEARL , 
+					"I need ", 
+					" to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
+			neededItems.put(i, data);
+
+		 i = 12;
+			data = new ItemData("shuriken",	REQUIRED_SHURIKEN , 
+					"I need ", 
+					" to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
+			neededItems.put(i, data);
+			i = 13;
+			data = new ItemData("marbles",	REQUIRED_MARBLES , 
+					"My son wants some new toys. I need ", 
+					" still.");
+			neededItems.put(i, data);
+
+			data = new ItemData("snowglobe",	REQUIRED_SNOWGLOBE, 
+					"I just LOVE those trinkets from athor. I need ", 
+					" still.");
+			neededItems.put(14, data);
+		return neededItems;
+	}
+
+	
+	protected static final class ItemData {
+
+		private int neededAmount;
+		private final String itemName;
+		private final String itemPrefix;
+		private final String itemSuffix;
+		private final int requiredAmount;
+
+		public ItemData(final String name, final int needed, final String prefix, final String suffix) {
+			this.requiredAmount = needed;
+			this.neededAmount = needed;
+			this.itemName = name;
+			this.itemPrefix = prefix;
+			this.itemSuffix = suffix;
+		}
+
+		public int getStillNeeded() {
+			return neededAmount;
+		}
+
+		public void setAmount(final int needed) {
+			neededAmount = needed;
+			
+		}
+
+		public String getName() {
+			return itemName;
+		}
+
+		public String getPrefix() {
+			return itemPrefix;
+		}
+
+		public String getSuffix() {
+			return itemSuffix;
+		}
+
+		public void subAmount(final String string) {
+			subAmount(Integer.parseInt(string));
+			
+		}
+
+		String getAnswer() {
+			return itemPrefix
+				+ Grammar.quantityplnoun(
+						neededAmount, itemName)
+				+ itemSuffix;
+		}
+
+		public int getRequired() {
+			return requiredAmount;
+		}
+
+		public int getAlreadyBrought() {
+			return requiredAmount - neededAmount;
+		}
+
+		public void subAmount(final int amount) {
+			neededAmount -= amount;
+			
+		}
+
+		public void resetAmount() {
+			neededAmount = requiredAmount;
+			
+		}
+	}
+
 	private static final int REQUIRED_MITHRIL_BAR = 20;
 
 	private static final int REQUIRED_OBSIDIAN = 1;
@@ -75,6 +225,36 @@ public class StuffForBaldemar extends AbstractQuest {
 	private static final int REQUIRED_MARBLES = 15;
 
 	private static final int REQUIRED_SNOWGLOBE = 1;
+
+	private static final String I_WILL_NEED_MANY_THINGS = "I will need many, many things: "
+							+ REQUIRED_MITHRIL_BAR
+							+ " mithril bars, "
+							+ REQUIRED_OBSIDIAN
+							+ " obsidian, "
+							+ REQUIRED_DIAMOND
+							+ " diamond, "
+							+ REQUIRED_EMERALD
+							+ " emeralds," 
+							+ REQUIRED_CARBUNCLE
+							+ " carbuncles, "
+							+ REQUIRED_SAPPHIRE
+							+ " sapphires, "
+							+ REQUIRED_BLACK_SHIELD
+							+ " black shield, "
+							+ REQUIRED_MAGIC_PLATE_SHIELD
+							+ " magic plate shield, "
+							+ REQUIRED_GOLD_BAR
+							+ " gold bars, "
+							+ REQUIRED_IRON
+							+ " iron bars, "
+							+ REQUIRED_BLACK_PEARL
+							+ " black pearls," 
+							+ REQUIRED_SHURIKEN
+							+ " shuriken, "
+							+ REQUIRED_MARBLES
+							+ " marbles and "
+							+ REQUIRED_SNOWGLOBE
+							+ " snowglobe. Come back when you have them in the same #exact order!";
 	
 	private static final int REQUIRED_MINUTES = 10;
 
@@ -112,35 +292,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-					engine.say("I will need many, many things: "
-						+ REQUIRED_MITHRIL_BAR
-						+ " mithril bars, "
-						+ REQUIRED_OBSIDIAN
-						+ " obsidian, "
-						+ REQUIRED_DIAMOND
-						+ " diamond, "
-						+ REQUIRED_EMERALD
-						+ " emeralds," 
-						+ REQUIRED_CARBUNCLE
-						+ " carbuncles, "
-						+ REQUIRED_SAPPHIRE
-						+ " sapphires, "
-						+ REQUIRED_BLACK_SHIELD
-						+ " black shield, "
-						+ REQUIRED_MAGIC_PLATE_SHIELD
-						+ " magic plate shield, "
-						+ REQUIRED_GOLD_BAR
-						+ " gold bars, "
-						+ REQUIRED_IRON
-						+ " iron bars, "
-						+ REQUIRED_BLACK_PEARL
-						+ " black pearls," 
-						+ REQUIRED_SHURIKEN
-						+ " shuriken, "
-						+ REQUIRED_MARBLES
-						+ " marbles and "
-						+ REQUIRED_SNOWGLOBE
-						+ " snowglobe. Come back when you have them in the same #exact order!");
+					engine.say(I_WILL_NEED_MANY_THINGS);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
 					player.addKarma(10);
 
@@ -171,268 +323,25 @@ public class StuffForBaldemar extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
-				@Override
+						@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					
+					int idx1 = 1;
+					for (ItemData itemdata : neededItems.values()) {
+							itemdata.resetAmount();
+							itemdata.subAmount(tokens[idx1]);
+							idx1++;
+					}
 
-					int neededMithrilBar = REQUIRED_MITHRIL_BAR
-							- Integer.parseInt(tokens[1]);
-					int neededObsidian = REQUIRED_OBSIDIAN
-							- Integer.parseInt(tokens[2]);
-					int neededDiamond = REQUIRED_DIAMOND
-							- Integer.parseInt(tokens[3]);
-					int neededEmerald = REQUIRED_EMERALD
-							- Integer.parseInt(tokens[4]);
-					int neededCarbuncle = REQUIRED_CARBUNCLE
-							- Integer.parseInt(tokens[5]);
-					int neededSapphire = REQUIRED_SAPPHIRE
-							- Integer.parseInt(tokens[6]);
-					int neededBlackShield = REQUIRED_BLACK_SHIELD
-							- Integer.parseInt(tokens[7]);
-					int neededMagicPlateShield = REQUIRED_MAGIC_PLATE_SHIELD
-							- Integer.parseInt(tokens[8]);	
-					int neededGoldBars = REQUIRED_GOLD_BAR
-							- Integer.parseInt(tokens[9]);
-					int neededIron = REQUIRED_IRON
-							- Integer.parseInt(tokens[10]);
-					int neededBlackPearl = REQUIRED_BLACK_PEARL
-							- Integer.parseInt(tokens[11]);
-					int neededShuriken = REQUIRED_SHURIKEN
-							- Integer.parseInt(tokens[12]);
-					int neededMarbles = REQUIRED_MARBLES
-							- Integer.parseInt(tokens[13]);
-					int neededSnowglobe = REQUIRED_SNOWGLOBE
-							- Integer.parseInt(tokens[14]);
 					boolean missingSomething = false;
 
-					if (!missingSomething && (neededMithrilBar > 0)) {
-						if (player.isEquipped("mithril bar", neededMithrilBar)) {
-							player.drop("mithril bar", neededMithrilBar);
-							neededMithrilBar = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("mithril bar");
-							if (amount > 0) {
-								player.drop("mithril bar", amount);
-								neededMithrilBar -= amount;
-							}
-
-							engine.say("I cannot #forge it without the missing "
-								+ Grammar.quantityplnoun(
-										neededMithrilBar, "mithril bar")
-								+ ". After all, this IS a mithril shield.");
-							missingSomething = true;
-						}
+					int size = neededItems.size();
+					for (int idx = 1; !missingSomething && idx <= size; idx++) {
+						ItemData itemData = neededItems.get(idx);
+						missingSomething = proceedItem(player, engine,
+								itemData);
 					}
-
-					if (!missingSomething && (neededObsidian > 0)) {
-						if (player.isEquipped("obsidian", neededObsidian)) {
-							player.drop("obsidian", neededObsidian);
-							neededObsidian = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("obsidian");
-							if (amount > 0) {
-								player.drop("obsidian", amount);
-								neededObsidian -= amount;
-							}
-
-							engine.say("I need several gems to grind into dust to mix with the mithril. I need "
-								+ Grammar.quantityplnoun(neededObsidian, "obsidian")
-								+ " still.");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && (neededDiamond > 0)) {
-						if (player.isEquipped("diamond", neededDiamond)) {
-							player.drop("diamond", neededDiamond);
-							neededDiamond = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("diamond");
-							if (amount > 0) {
-								player.drop("diamond", amount);
-								neededDiamond -= amount;
-							}
-							engine.say("I need several gems to grind into dust to mix with the mithril. I need "
-									+ Grammar.quantityplnoun(neededDiamond, "diamond") + " still.");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && (neededEmerald > 0)) {
-						if (player.isEquipped("emerald", neededEmerald)) {
-							player.drop("emerald", neededEmerald);
-							neededEmerald = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("emerald");
-							if (amount > 0) {
-								player.drop("emerald", amount);
-								neededEmerald -= amount;
-							}
-							engine.say("I need several gems to grind into dust to mix with the mithril. I need "
-								+ Grammar.quantityplnoun(neededEmerald, "emerald") + " still.");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && (neededCarbuncle > 0)) {
-						if (player.isEquipped("carbuncle", neededCarbuncle)) {
-							player.drop("carbuncle", neededCarbuncle);
-							neededCarbuncle = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("carbuncle");
-							if (amount > 0) {
-								player.drop("carbuncle", amount);
-								neededCarbuncle -= amount;
-							}
-							engine.say("I need several gems to grind into dust to mix with the mithril. I need "
-								+ Grammar.quantityplnoun(neededCarbuncle, "carbuncle") + " still.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededSapphire > 0)) {
-						if (player.isEquipped("sapphire", neededSapphire)) {
-							player.drop("sapphire", neededSapphire);
-							neededSapphire = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("sapphire");
-							if (amount > 0) {
-								player.drop("sapphire", amount);
-								neededSapphire -= amount;
-							}
-							engine.say("I need several gems to grind into dust to mix with the mithril. I need "
-								+ Grammar.quantityplnoun(neededSapphire, "sapphire") + " still.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededBlackShield > 0)) {
-						if (player.isEquipped("black shield", neededBlackShield)) {
-							player.drop("black shield", neededBlackShield);
-							neededBlackShield = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("black shield");
-							if (amount > 0) {
-								player.drop("black shield", amount);
-								neededBlackShield -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededBlackShield, "black shield") + " to form the framework for your new shield.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededMagicPlateShield > 0)) {
-						if (player.isEquipped("magic plate shield", neededMagicPlateShield)) {
-							player.drop("magic plate shield", neededMagicPlateShield);
-							neededMagicPlateShield = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("magic plate shield");
-							if (amount > 0) {
-								player.drop("magic plate shield", amount);
-								neededMagicPlateShield -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededMagicPlateShield, "magic plate shield") + " for the pieces and parts for your new shield.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededGoldBars > 0)) {
-						if (player.isEquipped("gold bar", neededGoldBars)) {
-							player.drop("gold bar", neededGoldBars);
-							neededGoldBars = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("gold bar");
-							if (amount > 0) {
-								player.drop("gold bar", amount);
-								neededGoldBars -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " to melt down with the mithril and iron.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededIron > 0)) {
-						if (player.isEquipped("iron", neededIron)) {
-							player.drop("iron", neededIron);
-							neededIron = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("iron");
-							if (amount > 0) {
-								player.drop("iron", amount);
-								neededIron -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededIron, "iron") + " to melt down with the mithril and gold.");
-							missingSomething = true;
-						}
-					}						
-
-					if (!missingSomething && (neededBlackPearl > 0)) {
-						if (player.isEquipped("black pearl", neededBlackPearl)) {
-							player.drop("black pearl", neededBlackPearl);
-							neededBlackPearl = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("black pearl");
-							if (amount > 0) {
-								player.drop("black pearl", amount);
-								neededBlackPearl -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededBlackPearl, "black pearl") + " to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededShuriken > 0)) {
-						if (player.isEquipped("shuriken", neededShuriken)) {
-							player.drop("shuriken", neededShuriken);
-							neededShuriken = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("shuriken");
-							if (amount > 0) {
-								player.drop("shuriken", amount);
-								neededShuriken -= amount;
-							}
-							engine.say("I need "
-								+ Grammar.quantityplnoun(neededShuriken, "shuriken") + " to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
-							missingSomething = true;
-						}
-					}					
-
-					if (!missingSomething && (neededMarbles > 0)) {
-						if (player.isEquipped("marbles", neededMarbles)) {
-							player.drop("marbles", neededMarbles);
-							neededMarbles = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("marbles");
-							if (amount > 0) {
-								player.drop("marbles", amount);
-								neededMarbles -= amount;
-							}
-							engine.say("My son wants some new toys. I need "
-								+ Grammar.quantityplnoun(neededMarbles, "marbles") + " still.");
-							missingSomething = true;
-						}
-					}						
-
-					if (!missingSomething && (neededSnowglobe > 0)) {
-						if (player.isEquipped("snowglobe", neededSnowglobe)) {
-							player.drop("snowglobe", neededSnowglobe);
-							neededSnowglobe = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("snowglobe");
-							if (amount > 0) {
-								player.drop("snowglobe", amount);
-								neededSnowglobe -= amount;
-							}
-							engine.say("I just LOVE those trinkets from athor. I need "
-								+ Grammar.quantityplnoun(neededSnowglobe, "snowglobe") + " still.");
-							missingSomething = true;
-						}
-					}					
 					
 					if (player.hasKilled("black giant") && !missingSomething) {
 						engine.say("You've brought everything I need to forge the shield. Come back in "
@@ -444,36 +353,37 @@ public class StuffForBaldemar extends AbstractQuest {
 							engine.say("This shield can only be given to those who have killed a black giant.");
 						}
 
-						player.setQuest(QUEST_SLOT,
-							"start;"
-							+ (REQUIRED_MITHRIL_BAR - neededMithrilBar)
-							+ ";"
-							+ (REQUIRED_OBSIDIAN - neededObsidian)
-							+ ";"
-							+ (REQUIRED_DIAMOND - neededDiamond)
-							+ ";"
-							+ (REQUIRED_EMERALD - neededEmerald)
-							+ ";"
-							+ (REQUIRED_CARBUNCLE - neededCarbuncle)
-							+ ";"
-							+ (REQUIRED_SAPPHIRE - neededSapphire)
-							+ ";"
-							+ (REQUIRED_BLACK_SHIELD - neededBlackShield)
-							+ ";"
-							+ (REQUIRED_MAGIC_PLATE_SHIELD - neededMagicPlateShield)
-							+ ";"
-							+ (REQUIRED_GOLD_BAR - neededGoldBars)
-							+ ";"	
-							+ (REQUIRED_IRON - neededIron)
-							+ ";"
-							+ (REQUIRED_BLACK_PEARL - neededBlackPearl)
-							+ ";"
-							+ (REQUIRED_SHURIKEN - neededShuriken)
-							+ ";"
-							+ (REQUIRED_MARBLES - neededMarbles)
-							+ ";"						
-							+ (REQUIRED_SNOWGLOBE - neededSnowglobe));
+						StringBuilder sb = new StringBuilder(30);
+						sb.append("start");
+						for (ItemData id : neededItems.values()) {
+							sb.append(";");
+							sb.append(id.getAlreadyBrought());
+						}
+						player.setQuest(QUEST_SLOT, sb.toString());
+							
 					}
+				}
+
+	
+				private boolean proceedItem(final Player player,
+						final SpeakerNPC engine, final ItemData itemData) {
+					if (itemData.getStillNeeded() > 0) {
+						
+						if (player.isEquipped(itemData.getName(), itemData.getStillNeeded())) {
+							player.drop(itemData.getName(), itemData.getStillNeeded());
+							itemData.setAmount(0);
+						} else {
+							final int amount = player.getNumberOfEquipped(itemData.getName());
+							if (amount > 0) {
+								player.drop(itemData.getName(), amount);
+								itemData.subAmount(amount);
+							}
+
+							engine.say(itemData.getAnswer());
+							return true;
+						}
+					}
+					return false;
 				}
 			});
 
@@ -551,7 +461,6 @@ public class StuffForBaldemar extends AbstractQuest {
 							- Integer.parseInt(tokens[13]);
 					final int neededSnowglobe = REQUIRED_SNOWGLOBE
 							- Integer.parseInt(tokens[14]);
-
 					
 					engine.say("I will need " + neededMithrilBar + " mithril bars, "
 							+ neededObsidian + " obsidian, "
@@ -607,4 +516,5 @@ public class StuffForBaldemar extends AbstractQuest {
 		}
 		return res;
 	}
+	
 }
