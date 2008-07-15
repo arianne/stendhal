@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.RPObjectChangeListener;
@@ -33,12 +34,12 @@ import org.apache.log4j.Logger;
  * stores the objects that exists on the World right now.
  * 
  */
-public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
+public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(GameObjects.class);
 
-	private final Map<FQID, Entity> objects;
+	private final Map<FQID, IEntity> objects;
 
 	private final StaticGameLayers collisionMap;
 
@@ -78,20 +79,20 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            =layers that make floor and building
 	 */
 	private GameObjects(final StaticGameLayers collisionMap) {
-		objects = new HashMap<FQID, Entity>();
+		objects = new HashMap<FQID, IEntity>();
 
 		this.collisionMap = collisionMap;
 	}
 
-	public Iterator<Entity> iterator() {
+	public Iterator<IEntity> iterator() {
 		return objects.values().iterator();
 	}
 
-	public Entity get(final RPObject object) {
+	public IEntity get(final RPObject object) {
 		return objects.get(FQID.create(object));
 	}
 
-	public Entity get(final RPObject.ID id) {
+	public IEntity get(final RPObject.ID id) {
 		return objects.get(new FQID(id));
 	}
 
@@ -103,10 +104,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			logger.debug("Game objects not empty!");
 
 			// invalidate all entity objects
-			final Iterator<Entity> it = iterator();
+			final Iterator<IEntity> it = iterator();
 
 			while (it.hasNext()) {
-				final Entity entity = it.next();
+				final IEntity entity = it.next();
 				logger.error("Residual entity: " + entity);
 				entity.release();
 			}
@@ -115,7 +116,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-	public boolean collides(final Entity entity) {
+	public boolean collides(final IEntity entity) {
 		if (entity instanceof Player) {
 			final Player player = (Player) entity;
 			if (player.isGhostMode()) {
@@ -129,7 +130,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return true;
 		}
 
-		for (final Entity other : objects.values()) {
+		for (final IEntity other : objects.values()) {
 			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
 				return true;
 			}
@@ -145,7 +146,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The time since last update (in ms).
 	 */
 	public void update(final int delta) {
-		for (final Entity entity : objects.values()) {
+		for (final IEntity entity : objects.values()) {
 			entity.update(delta);
 		}
 	}
@@ -158,8 +159,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * 
 	 * @return An entity.
 	 */
-	protected Entity add(final RPObject object) {
-		final Entity entity = EntityFactory.createEntity(object);
+	protected IEntity add(final RPObject object) {
+		final IEntity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
 			objects.put(FQID.create(object), entity);
@@ -193,7 +194,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				return;
 			}
 
-			final Entity entity = add(object);
+			final IEntity entity = add(object);
 
 			if (entity != null) {
 				if (entity.isOnGround()) {
@@ -216,10 +217,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		final Entity entity = objects.get(FQID.create(object));
+		final IEntity entity = objects.get(FQID.create(object));
 
-		if (entity != null) {
-			entity.onChangedAdded(object, changes);
+		if (entity instanceof Entity) {
+			((Entity) entity).onChangedAdded(object, changes);
 		}
 	}
 
@@ -232,10 +233,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		final Entity entity = objects.get(FQID.create(object));
+		final IEntity entity = objects.get(FQID.create(object));
 
-		if (entity != null) {
-			entity.onChangedRemoved(object, changes);
+		if (entity instanceof Entity) {
+			((Entity) entity).onChangedRemoved(object, changes);
 		}
 	}
 
@@ -250,7 +251,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		logger.debug("removed " + id);
 
-		final Entity entity = objects.remove(FQID.create(object));
+		final IEntity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
 			GameScreen.get().removeEntity(entity);
@@ -287,10 +288,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		final Entity entity = objects.get(FQID.create(object));
+		final IEntity entity = objects.get(FQID.create(object));
 
-		if (entity != null) {
-			entity.onSlotChangedAdded(object, slotName, sobject, schanges);
+		if (entity instanceof Entity) {
+			((Entity) entity).onSlotChangedAdded(object, slotName, sobject, schanges);
 		}
 	}
 
@@ -309,10 +310,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		final Entity entity = objects.get(FQID.create(object));
+		final IEntity entity = objects.get(FQID.create(object));
 
-		if (entity != null) {
-			entity.onSlotChangedRemoved(object, slotName, sobject, schanges);
+		if (entity instanceof Entity) {
+			((Entity) entity).onSlotChangedRemoved(object, slotName, sobject, schanges);
 		}
 	}
 

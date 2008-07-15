@@ -20,7 +20,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.DomesticAnimal;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
@@ -354,7 +354,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// --------------------------------------
 		// Draw on ground entities
-		for (final Entity entity : client.getGameObjects()) {
+		for (final IEntity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
 				continue;
 			}
@@ -431,7 +431,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param color
 	 *            the Color to be used
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity,
+	protected void drawEntity(final Graphics g, final IEntity entity,
 			final Color color) {
 		drawEntity(g, entity, color, null);
 	}
@@ -449,7 +449,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param borderColor
 	 *            The (optional) border color.
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity,
+	protected void drawEntity(final Graphics g, final IEntity entity,
 			final Color color, final Color borderColor) {
 		final Rectangle2D area = entity.getArea();
 

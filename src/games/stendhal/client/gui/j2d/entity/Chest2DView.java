@@ -13,7 +13,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
@@ -202,7 +202,7 @@ class Chest2DView extends StateEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {

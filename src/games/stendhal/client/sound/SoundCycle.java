@@ -13,6 +13,7 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
@@ -119,7 +120,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 * Terminates the soundcycle.
 	 */
 	public void terminate() {
-		Entity o;
+		IEntity o;
 		ID oid;
 		String hstr;
 
@@ -189,7 +190,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 */
 	@Override
 	public void run() {
-		Entity o;
+		IEntity o;
 
 		while (executing) {
 			waitTime = Math.max(playMax, Rand.rand(period));

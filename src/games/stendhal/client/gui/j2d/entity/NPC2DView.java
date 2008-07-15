@@ -11,7 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
@@ -83,10 +83,10 @@ class NPC2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if (property == Entity.PROP_CLASS) {
+		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;
 		}
 	}

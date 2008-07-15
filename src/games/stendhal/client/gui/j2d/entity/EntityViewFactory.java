@@ -17,11 +17,11 @@ import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.InvisibleEntity;
 import games.stendhal.client.entity.Item;
 import games.stendhal.client.entity.NPC;
@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
 /**
  * 
  */
-public class EntityViewFactory { // implements EntityViewFactory {
+public class EntityViewFactory { 
 	/**
 	 * Log4J.
 	 */
@@ -63,13 +63,13 @@ public class EntityViewFactory { // implements EntityViewFactory {
 	/**
 	 * The model-to-view class map.
 	 */
-	protected Map<Class< ? extends Entity>, Class< ? extends EntityView>> map;
+	protected Map<Class< ? extends IEntity>, Class< ? extends EntityView>> map;
 
 	/**
 	 * Create an entity view factory.
 	 */
 	public EntityViewFactory() {
-		map = new HashMap<Class< ? extends Entity>, Class< ? extends EntityView>>();
+		map = new HashMap<Class< ? extends IEntity>, Class< ? extends EntityView>>();
 
 		configure();
 	}
@@ -86,8 +86,8 @@ public class EntityViewFactory { // implements EntityViewFactory {
 	 * 
 	 * @return The corresponding view, or <code>null</code>.
 	 */
-	public EntityView create(final Entity entity) {
-		final Class< ? extends Entity> entityClass = entity.getClass();
+	public EntityView create(final IEntity entity) {
+		final Class< ? extends IEntity> entityClass =  entity.getClass();
 		final Class< ? extends EntityView> viewClass = map.get(entityClass);
 
 		if (viewClass == null) {
@@ -174,7 +174,7 @@ public class EntityViewFactory { // implements EntityViewFactory {
 	 * @param viewClass
 	 *            The entity view class.
 	 */
-	private void register(final Class< ? extends Entity> entityClass,
+	private void register(final Class< ? extends IEntity> entityClass,
 			final Class< ? extends EntityView> viewClass) {
 		map.put(entityClass, viewClass);
 	}

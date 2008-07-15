@@ -13,10 +13,11 @@
 package games.stendhal.client.entity.factory;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * creates a Stendhal Entity object based on a Marauroa RPObject.
@@ -36,7 +37,7 @@ public class EntityFactory {
 	 *            the underlying server RPObject
 	 * @return the created Entity
 	 */
-	public static Entity createEntity(final RPObject object) {
+	public static IEntity createEntity(final RPObject object) {
 		try {
 			final String type = object.get("type");
 
@@ -60,12 +61,12 @@ public class EntityFactory {
 			}
 
 			
-			final Class< ? extends Entity> entityClass = EntityMap.getClass(type, eclass, subClass);
+			final Class< ? extends IEntity> entityClass = EntityMap.getClass(type, eclass, subClass);
 			if (entityClass == null) {
 					return null;
 			}
 
-			final Entity en = entityClass.newInstance();
+			final IEntity en = entityClass.newInstance();
 			en.initialize(object);
 
 			return en;

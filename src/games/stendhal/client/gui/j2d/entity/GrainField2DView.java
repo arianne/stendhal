@@ -11,8 +11,8 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.GrainField;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -184,10 +184,10 @@ class GrainField2DView extends StateEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if (property == Entity.PROP_CLASS) {
+		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == GrainField.PROP_RIPENESS) {
 			proceedChangedState();

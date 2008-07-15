@@ -22,47 +22,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class Entity implements RPObjectChangeListener {
-	/**
-	 * Animated property.
-	 */
-	public static final Property PROP_ANIMATED = new Property();
-
-	/**
-	 * Entity class/subclass property.
-	 */
-	public static final Property PROP_CLASS = new Property();
-
-	/**
-	 * Name property.
-	 */
-	public static final Property PROP_NAME = new Property();
-
-	/**
-	 * Position property.
-	 */
-	public static final Property PROP_POSITION = new Property();
-
-	/**
-	 * Size property.
-	 */
-	public static final Property PROP_SIZE = new Property();
-
-	/**
-	 * Title property.
-	 */
-	public static final Property PROP_TITLE = new Property();
-
-	/**
-	 * Type property.
-	 */
-	public static final Property PROP_TYPE = new Property();
-
-	/**
-	 * Visibility property.
-	 */
-	public static final Property PROP_VISIBILITY = new Property();
-
+public class Entity implements RPObjectChangeListener, IEntity {
 	/**
 	 * an array of sounds. out of these randomnly chosen sounds are played while
 	 * moving.
@@ -163,11 +123,8 @@ public class Entity implements RPObjectChangeListener {
 	// Entity
 	//
 
-	/**
-	 * Add a change listener.
-	 * 
-	 * @param listener
-	 *            The listener.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#addChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
 	public void addChangeListener(final EntityChangeListener listener) {
 		EntityChangeListener[] newListeners;
@@ -181,14 +138,8 @@ public class Entity implements RPObjectChangeListener {
 		changeListeners = newListeners;
 	}
 
-	/**
-	 * Fill the action with the entity's target info. This will set the
-	 * <code>baseobject</code>, <code>baseslot</code> and
-	 * <code>baseitem</code> respective the <code>target</code> attributes
-	 * for uncontained objects.
-	 * 
-	 * @param action
-	 *            The RP action.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#fillTargetInfo(marauroa.common.game.RPAction)
 	 */
 	public void fillTargetInfo(final RPAction action) {
 		final int id = rpObject.getID().getObjectID();
@@ -226,34 +177,30 @@ public class Entity implements RPObjectChangeListener {
 	boolean isUser() {
 		return false;
 	}
-	/**
-	 * Get the area the entity occupies.
-	 * 
-	 * @return A rectange (in world coordinate units).
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getArea()
 	 */
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
-	/**
-	 * Get the entity visibility.
-	 * 
-	 * @return The entity visibility (0 - 100).
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getVisibility()
 	 */
 	public int getVisibility() {
 		return visibility;
 	}
 
-	/**
-	 * Get the entity height.
-	 * 
-	 * @return The height.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getHeight()
 	 */
 	public double getHeight() {
 		return height;
 	}
 
-	/** @return the represented arianne object id. */
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getID()
+	 */
 	public final RPObject.ID getID() {
 		if (rpObject == null) {
 			return null;
@@ -262,40 +209,29 @@ public class Entity implements RPObjectChangeListener {
 		}
 	}
 
-	/**
-	 * Get the entity class.
-	 * 
-	 * @return The entity class.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getEntityClass()
 	 */
 	public String getEntityClass() {
 		return clazz;
 	}
 
-	/**
-	 * Get the name.
-	 * 
-	 * @return The name.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getName()
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Get the entity sub-class.
-	 * 
-	 * @return The entity sub-class.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getEntitySubClass()
 	 */
 	public String getEntitySubClass() {
 		return subclazz;
 	}
 
-	/**
-	 * Get the nicely formatted entity title.
-	 * 
-	 * This searches the follow attribute order: title, name (w/o underscore),
-	 * type (w/o underscore).
-	 * 
-	 * @return The title, or <code>null</code> if unknown.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getTitle()
 	 */
 	public String getTitle() {
 		if (title != null) {
@@ -309,77 +245,57 @@ public class Entity implements RPObjectChangeListener {
 		}
 	}
 
-	/**
-	 * Get the entity type.
-	 * 
-	 * @return The type.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getType()
 	 */
 	public String getType() {
 		return type;
 	}
 
-	/**
-	 * Get the X coordinate.
-	 * 
-	 * @return The X coordinate.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getX()
 	 */
 	public double getX() {
 		return x;
 	}
 
-	/**
-	 * Get the Y coordinate.
-	 * 
-	 * @return The Y coordinate.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getY()
 	 */
 	public double getY() {
 		return y;
 	}
 
-	/**
-	 * Get the RPObject this represents.
-	 * 
-	 * @return The RPObject.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getRPObject()
 	 */
 	public RPObject getRPObject() {
 		return rpObject;
 	}
 
-	/**
-	 * Get the entity width.
-	 * 
-	 * @return The width.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getWidth()
 	 */
 	public double getWidth() {
 		return width;
 	}
 
-	/**
-	 * Determine if this entity represents an instance of an RPClass.
-	 * 
-	 * @param clazz
-	 *            The class name.
-	 * 
-	 * @return <code>true</code> if the entity represents that class, or a
-	 *         subclass.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#isInstanceOf(java.lang.String)
 	 */
 	public boolean isInstanceOf(final String clazz) {
 		return rpObject.getRPClass().subclassOf(clazz);
 	}
 
-	/**
-	 * Determine if this entity is on the ground.
-	 * 
-	 * @return <code>true</code> if the entity is on the ground.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#isOnGround()
 	 */
 	public boolean isOnGround() {
 		return !rpObject.isContained();
 	}
 
-	/**
-	 * @return the absolute world area (coordinates) to which audibility of
-	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
-	 * (audible everywhere).
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getAudibleArea()
 	 */
 	public Rectangle2D getAudibleArea() {
 		if (audibleRange == Double.POSITIVE_INFINITY) {
@@ -391,14 +307,8 @@ public class Entity implements RPObjectChangeListener {
 				- audibleRange, tempWidth, tempWidth);
 	}
 
-	/**
-	 * Sets the audible range as radius distance from this entity's position,
-	 * expressed in coordinate units. This reflects an abstract capacity of this
-	 * unit to emit sounds and influences the result of
-	 * <code>getAudibleArea()</code>.
-	 * 
-	 * @param range
-	 *            double audibility area radius in coordinate units
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#setAudibleRange(double)
 	 */
 	public void setAudibleRange(final double range) {
 		audibleRange = range;
@@ -452,33 +362,22 @@ public class Entity implements RPObjectChangeListener {
 		fireChange(PROP_POSITION);
 	}
 
-	/**
-	 * Get the resistance this has on other entities (0-100).
-	 * 
-	 * @return The resistance.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getResistance()
 	 */
 	public int getResistance() {
 		return resistance;
 	}
 
-	/**
-	 * Get the amount of resistance between this and another entity (0-100).
-	 * 
-	 * @param entity
-	 *            The entity to check against.
-	 * 
-	 * @return The effective resistance.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getResistance(games.stendhal.client.entity.IEntity)
 	 */
-	public int getResistance(final Entity entity) {
+	public int getResistance(final IEntity entity) {
 		return ((getResistance() * entity.getResistance()) / 100);
 	}
 
-	/**
-	 * Gets the slot specified by name.
-	 * @param name of the slot
-	 * 
-	 * @return    the specified slot or <code>null</code> if the entity does not
-	 * have this slot
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getSlot(java.lang.String)
 	 */
 	public RPSlot getSlot(final String name) {
 		if (rpObject.hasSlot(name)) {
@@ -488,13 +387,8 @@ public class Entity implements RPObjectChangeListener {
 		return null;
 	}
 
-	/**
-	 * Initialize this entity for an object.
-	 * 
-	 * @param object
-	 *            The object.
-	 * 
-	 * @see-also #release()
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#initialize(marauroa.common.game.RPObject)
 	 */
 	public void initialize(final RPObject object) {
 		rpObject = object;
@@ -603,35 +497,24 @@ public class Entity implements RPObjectChangeListener {
 		inAdd = false;
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 * 
-	 * @param entity
-	 *            The entity to check against.
-	 * 
-	 * @return <code>true</code> the entity can not enter this entity's area.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#isObstacle(games.stendhal.client.entity.IEntity)
 	 */
-	public boolean isObstacle(final Entity entity) {
+	public boolean isObstacle(final IEntity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
 		// TODO: Check is self check is needed here, or obsolete
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
-	/**
-	 * Release this entity. This should clean anything that isn't automatically
-	 * released (such as unregister callbacks, cancel external operations, etc).
-	 * 
-	 * @see-also #initialize(RPObject)
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#release()
 	 */
 	public void release() {
 		SoundSystem.stopSoundCycle(ID_Token);
 	}
 
-	/**
-	 * Remove a change listener.
-	 * 
-	 * @param listener
-	 *            The listener.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#removeChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
 	public void removeChangeListener(final EntityChangeListener listener) {
 		EntityChangeListener[] newListeners;
@@ -658,11 +541,8 @@ public class Entity implements RPObjectChangeListener {
 		}
 	}
 
-	/**
-	 * Update cycle.
-	 * 
-	 * @param delta
-	 *            The time (in ms) since last call.
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#update(int)
 	 */
 	public void update(final int delta) {
 	}
@@ -960,4 +840,6 @@ public class Entity implements RPObjectChangeListener {
 
 		return sbuf.toString();
 	}
+
+	
 }

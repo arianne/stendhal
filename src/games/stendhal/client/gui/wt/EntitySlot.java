@@ -21,7 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -52,7 +52,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private static final Sprite background;
 
 	/** the parent of the slot. */
-	private Entity parent;
+	private IEntity parent;
 
 	/**
 	 * The entity view being held.
@@ -97,7 +97,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * 
 	 * @param parent
 	 */
-	public void setParent(final Entity parent) {
+	public void setParent(final IEntity parent) {
 		this.parent = parent;
 	}
 
@@ -148,7 +148,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param entity
 	 *            The new entity, or <code>null</code>.
 	 */
-	public void setEntity(final Entity entity, final IGameScreen gameScreen) {
+	public void setEntity(final IEntity entity, final IGameScreen gameScreen) {
 		if (view != null) {
 			/*
 			 * Don't replace the same object

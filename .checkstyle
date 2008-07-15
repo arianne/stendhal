@@ -3,7 +3,7 @@
     <fileset name="all" enabled="true" check-config-name="stendhal" local="false">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
-    <filter name="FilesFromPackage" enabled="false">
+    <filter name="FilesFromPackage" enabled="true">
         <filter-data value="src/games/stendhal/tools"/>
         <filter-data value="src/games/stendhal/tools/loganalyser"/>
         <filter-data value="src/games/stendhal/tools/modifer"/>

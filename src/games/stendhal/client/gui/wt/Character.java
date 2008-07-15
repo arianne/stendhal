@@ -21,7 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -200,7 +200,7 @@ public class Character extends WtPanel {
 				if (iter.hasNext()) {
 					final RPObject object = iter.next();
 
-					Entity entity = gameObjects.get(object);
+					IEntity entity = gameObjects.get(object);
 
 					/*
 					 * TODO: Remove once object mapping verified to work in all

@@ -5,6 +5,7 @@ package utilities;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -25,7 +26,7 @@ import java.text.AttributedString;
 
 public class MockScreen implements IGameScreen {
 
-	public void addEntity(final Entity entity) {
+	public void addEntity(final IEntity entity) {
 	}
 
 	public void addText(final double x, final double y, final String text,
@@ -173,7 +174,7 @@ public class MockScreen implements IGameScreen {
 	public void removeAll() {
 	}
 
-	public void removeEntity(final Entity entity) {
+	public void removeEntity(final IEntity entity) {
 	}
 
 	public void removeText(final Text entity) {
@@ -185,7 +186,7 @@ public class MockScreen implements IGameScreen {
 	public void setOffline(final boolean offline) {
 	}
 
-	public EntityView createView(final Entity entity) {
+	public EntityView createView(final IEntity entity) {
 		return null;
 	}
 

@@ -14,7 +14,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.PositionChangeListener;
@@ -51,7 +51,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	private final List<EntitySlot> slotPanels;
 
 	/** the object which has the slot. */
-	private Entity parent;
+	private IEntity parent;
 
 	private String slotName;
 
@@ -141,7 +141,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 					break;
 				}
 
-				Entity entity = gameObjects.get(object);
+				IEntity entity = gameObjects.get(object);
 
 				if (entity == null) {
 					logger.warn("Unable to find entity for: " + object,
@@ -209,7 +209,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * @param slot
 	 * @param gameScreen
 	 */
-	public void setSlot(final Entity parent, final String slot, final IGameScreen gameScreen) {
+	public void setSlot(final IEntity parent, final String slot, final IGameScreen gameScreen) {
 		this.parent = parent;
 		this.slotName = slot;
 

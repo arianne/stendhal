@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.FormatTextParser;
 import games.stendhal.client.gui.j2d.Text;
@@ -109,7 +109,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
 	 * The entity to view map.
 	 */
-	protected Map<Entity, EntityView> entities;
+	protected Map<IEntity, EntityView> entities;
 
 	private static Sprite offlineIcon;
 
@@ -226,7 +226,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
 		views = new LinkedList<EntityView>();
-		entities = new HashMap<Entity, EntityView>();
+		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
 		ground = new GroundContainer(client, this, sw, sh);
@@ -273,7 +273,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
-	public void addEntity(final Entity entity) {
+	public void addEntity(final IEntity entity) {
 		final EntityView view = createView(entity);
 
 		if (view != null) {
@@ -304,7 +304,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
-	public void removeEntity(final Entity entity) {
+	public void removeEntity(final IEntity entity) {
 		final EntityView view = entities.remove(entity);
 
 		if (view != null) {
@@ -483,7 +483,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#createView(games.stendhal.client.entity.Entity)
 	 */
-	public EntityView createView(final Entity entity) {
+	public EntityView createView(final IEntity entity) {
 		return  EntityViewFactory.get().create(entity);
 	}
 

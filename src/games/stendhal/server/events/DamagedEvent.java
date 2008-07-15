@@ -1,6 +1,6 @@
 package games.stendhal.server.events;
 
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
@@ -42,7 +42,7 @@ public class DamagedEvent extends RPEvent {
 	 * @param amount amount of hp healed
 	 * @param damager The entity which caused the damager
 	 */
-	public DamagedEvent(final int amount, final Entity damager) {
+	public DamagedEvent(final int amount, final IEntity damager) {
 		super(RPCLASS_NAME);		
 		put(AMOUNT, amount);
 		put(BY, damager.getID().getObjectID());

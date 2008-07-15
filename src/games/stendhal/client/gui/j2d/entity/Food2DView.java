@@ -10,8 +10,8 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Food;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -116,7 +116,7 @@ class Food2DView extends StateEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Food.PROP_AMOUNT) {

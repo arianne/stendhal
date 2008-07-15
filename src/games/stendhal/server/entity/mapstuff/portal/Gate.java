@@ -32,6 +32,7 @@ public class Gate extends Entity implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
+		Logger.getLogger(Gate.class).info("use-called");
 		if (this.nextTo(user)) {
 			setOpen(!isOpen());
 			return true;

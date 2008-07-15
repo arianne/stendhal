@@ -336,7 +336,7 @@ public abstract class RPEntity extends ActiveEntity {
 		return (attacking != null);
 	}
 
-	public boolean isAttacking(final Entity defender) {
+	public boolean isAttacking(final IEntity defender) {
 		final ID defenderID = defender.getID();
 		return ((attacking != null) && attacking.equals(defenderID));
 	}
@@ -345,7 +345,7 @@ public abstract class RPEntity extends ActiveEntity {
 		return !attackers.isEmpty();
 	}
 
-	public boolean isAttackedBy(final Entity attacker) {
+	public boolean isAttackedBy(final IEntity attacker) {
 		return attackers.contains(attacker);
 	}
 
@@ -386,22 +386,22 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity attacks target.
-	public void onAttack(final Entity target) {
+	public void onAttack(final IEntity target) {
 		attacking = target.getID();
 	}
 
 	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(final Entity target) {
+	public void onAttackBlocked(final IEntity target) {
 		showBladeStrike = true;
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(final Entity target, final int damage) {
+	public void onAttackDamage(final IEntity target, final int damage) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is missing the adversary
-	public void onAttackMissed(final Entity target) {
+	public void onAttackMissed(final IEntity target) {
 		showBladeStrike = true;
 	}
 
@@ -412,7 +412,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity blocks the attack by attacker
-	public void onBlocked(final Entity attacker) {
+	public void onBlocked(final IEntity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.BLOCKED;
 	}
@@ -444,7 +444,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// Called when entity is killed by killer
-	public void onDeath(final Entity killer) {
+	public void onDeath(final IEntity killer) {
 		if (killer != null) {
 			StendhalUI.get().addEventLine(
 					getTitle() + " has been killed by " + killer.getTitle());
@@ -487,11 +487,11 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// Called when entity kills another entity
-	public void onKill(final Entity killed) {
+	public void onKill(final IEntity killed) {
 	}
 
 	// When this entity skip attacker's attack.
-	public void onMissed(final Entity attacker) {
+	public void onMissed(final IEntity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}
@@ -536,7 +536,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When attacker stop attacking us
-	public void onStopAttacked(final Entity attacker) {
+	public void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
 	}
 

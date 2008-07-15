@@ -8,7 +8,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -32,7 +32,7 @@ public interface EntityView {
 	 * 
 	 * @return The view's entity.
 	 */
-	Entity getEntity();
+	IEntity getEntity();
 
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).

@@ -20,7 +20,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -697,7 +697,7 @@ public class j2DClient extends StendhalUI {
 						+ direction.getdx(), user.getY() + direction.getdy());
 
 				if (view != null) {
-					final Entity entity = view.getEntity();
+					final IEntity entity = view.getEntity();
 					if (!entity.equals(user)) {
 						view.onAction();
 						// TODO: Do we want to move also? Or just 'return' here?

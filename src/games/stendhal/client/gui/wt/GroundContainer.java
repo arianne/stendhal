@@ -17,7 +17,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -181,7 +181,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			final String[] actions = view.getActions();
 
 			if (actions.length > 0) {
-				final Entity entity = view.getEntity();
+				final IEntity entity = view.getEntity();
 
 				setContextMenu(new CommandList(entity.getType(), actions, view));
 			}
@@ -243,7 +243,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	// Inspector
 	//
 
-	public EntityContainer inspectMe(final Entity suspect, final RPSlot content,
+	public EntityContainer inspectMe(final IEntity suspect, final RPSlot content,
 			EntityContainer container, final int width, final int height,
 			final IGameScreen gameScreen) {
 		if ((container == null) || !container.isVisible()) {

@@ -12,7 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
@@ -674,7 +674,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == RPEntity.PROP_ADMIN_LEVEL) {
@@ -684,7 +684,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			visibilityChanged = true;
 		} else if (property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
-		} else if (property == Entity.PROP_TITLE) {
+		} else if (property == IEntity.PROP_TITLE) {
 			titleChanged = true;
 		} else if (property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;

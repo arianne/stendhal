@@ -14,7 +14,7 @@ public class EntityTest {
 
 	@Test
 	public final void testEntity() {
-		final Entity en = new MockEntity();
+		final IEntity en = new MockEntity();
 
 		assertEquals(0.0, en.getX(), 0.001);
 		assertEquals(0.0, en.getY(), 0.001);
@@ -40,7 +40,7 @@ public class EntityTest {
 		rpo.put("type", "hugo");
 		rpo.put("name", "bob");
 
-		final Entity en = new MockEntity();
+		final IEntity en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("bob", en.getName());
@@ -53,7 +53,7 @@ public class EntityTest {
 		final RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
-		final Entity en = new MockEntity();
+		final IEntity en = new MockEntity();
 		en.initialize(rpo);
 		assertNotNull("id must not be null", en.getID());
 		assertEquals(1, en.getID().getObjectID());
@@ -62,7 +62,7 @@ public class EntityTest {
 
 	@Test
 	public final void testGetNamegetType() {
-		Entity en;
+		IEntity en;
 		RPObject rpo;
 		rpo = new RPObject();
 		rpo.put("type", "_hugo");
@@ -81,7 +81,7 @@ public class EntityTest {
 
 	@Test
 	public final void testGetXGetY() {
-		Entity en;
+		IEntity en;
 		en = new MockEntity();
 
 		assertEquals(0.0, en.getX(), 0.001);
@@ -107,7 +107,7 @@ public class EntityTest {
 
 	@Test
 	public final void testGetSlot() {
-		final Entity en = new MockEntity();
+		final IEntity en = new MockEntity();
 		assertEquals(null, en.getSlot(""));
 
 	}

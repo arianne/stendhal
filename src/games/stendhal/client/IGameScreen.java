@@ -1,6 +1,6 @@
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -45,7 +45,7 @@ public interface IGameScreen {
 	 * @param entity
 	 *            An entity.
 	 */
-	void addEntity(Entity entity);
+	void addEntity(IEntity entity);
 
 	/**
 	 * Remove an entity.
@@ -53,7 +53,7 @@ public interface IGameScreen {
 	 * @param entity
 	 *            An entity.
 	 */
-	void removeEntity(final Entity entity);
+	void removeEntity(final IEntity entity);
 
 	/**
 	 * @return the Graphics2D object in case you want to operate it directly.
@@ -66,7 +66,7 @@ public interface IGameScreen {
 	 */
 	 void center();
 
-	EntityView createView(final Entity entity);
+	EntityView createView(final IEntity entity);
 
 	/*
 	 * Draw the screen.

@@ -14,7 +14,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
@@ -36,7 +36,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	private int y;
 
 	/** The moved object. */
-	private final Entity entity;
+	private final IEntity entity;
 
 	/**
 	 * The entity view.
@@ -49,7 +49,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @param entity
 	 *            The entity being moved.
 	 */
-	public MoveableEntityContainer(final Entity entity) {
+	public MoveableEntityContainer(final IEntity entity) {
 		this.entity = entity;
 	}
 
@@ -81,7 +81,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * 
 	 * @return The entity.
 	 */
-	public Entity getEntity() {
+	public IEntity getEntity() {
 		return entity;
 	}
 

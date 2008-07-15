@@ -6,6 +6,6 @@ import marauroa.common.game.RPSlot;
 
 public interface Inspector {
 
-	EntityContainer inspectMe(Entity entity, RPSlot content,
+	EntityContainer inspectMe(IEntity entity, RPSlot content,
 			EntityContainer container, int width , int height, IGameScreen gameScreen);
 }

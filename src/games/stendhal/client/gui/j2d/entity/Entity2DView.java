@@ -13,8 +13,8 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityChangeListener;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
@@ -41,7 +41,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * The entity this view is for.
 	 */
-	protected Entity entity;
+	protected IEntity entity;
 
 	/**
 	 * The entity image (or current one at least).
@@ -109,7 +109,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param entity
 	 *            The entity to render.
 	 */
-	public Entity2DView(final Entity entity) {
+	public Entity2DView(final IEntity entity) {
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
 		}
@@ -625,16 +625,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The property identifier.
 	 * @param gameScreen
 	 */
-	public void entityChanged(final Entity entity, final Object property) {
+	public void entityChanged(final IEntity entity, final Object property) {
 		changed = true;
 
-		if (property == Entity.PROP_ANIMATED) {
+		if (property == IEntity.PROP_ANIMATED) {
 			animatedChanged = true;
-		} else if (property == Entity.PROP_POSITION) {
+		} else if (property == IEntity.PROP_POSITION) {
 			positionChanged = true;
-		} else if (property == Entity.PROP_TYPE) {
+		} else if (property == IEntity.PROP_TYPE) {
 			representationChanged = true;
-		} else if (property == Entity.PROP_VISIBILITY) {
+		} else if (property == IEntity.PROP_VISIBILITY) {
 			visibilityChanged = true;
 		}
 	}
@@ -672,7 +672,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * 
 	 * @return The view's entity.
 	 */
-	public Entity getEntity() {
+	public IEntity getEntity() {
 		return entity;
 	}
 
