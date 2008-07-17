@@ -43,9 +43,6 @@ import games.stendhal.client.entity.WellSource;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 class Triple<P, S, T> {
 	// they are used in equals and hashcode
 	@SuppressWarnings("unused")
@@ -55,21 +52,50 @@ class Triple<P, S, T> {
 	@SuppressWarnings("unused")
 	private final T third;
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((prim == null) ? 0 : prim.hashCode());
+		result = prime * result + ((sec == null) ? 0 : sec.hashCode());
+		result = prime * result + ((third == null) ? 0 : third.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Triple<P, S , T> other = (Triple <P,S,T>) obj;
+		if (prim == null) {
+			if (other.prim != null)
+				return false;
+		} else if (!prim.equals(other.prim))
+			return false;
+		if (sec == null) {
+			if (other.sec != null)
+				return false;
+		} else if (!sec.equals(other.sec))
+			return false;
+		if (third == null) {
+			if (other.third != null)
+				return false;
+		} else if (!third.equals(other.third))
+			return false;
+		return true;
+	}
+
 	public Triple(final P prim, final S sec, final T third) {
 		this.prim = prim;
 		this.sec = sec;
 		this.third = third;
 	}
 
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
-
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
+	
 
 }
 
