@@ -40,6 +40,7 @@ import tiled.util.TiledConfiguration;
  * The base class for map views. This is meant to be extended for different tile
  * map orientations, such as orthagonal and isometric.
  */
+@SuppressWarnings("serial")
 public abstract class MapViewPanel extends JPanel implements Scrollable {
 	public static final int PF_GRIDMODE = 0x00000001;
 	public static final int PF_BOUNDARYMODE = 0x00000002;
