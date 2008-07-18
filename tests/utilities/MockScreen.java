@@ -4,7 +4,6 @@
 package utilities;
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
