@@ -101,16 +101,13 @@ public class SummonAction extends AdministrationAction {
 					final EntityFactory factory = new EntityFactory(player) {
 						@Override
 						void found(final String type, Entity entity) {
+							if (manager.isCreature(type)) {
+								entity = new RaidCreature((Creature) entity);
+							}
 							StendhalRPAction.placeat(zone, entity, x, y);
-
-    						if (manager.isCreature(type)) {
-    							entity = new RaidCreature((Creature) entity);
-    						}
-
-    						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
-
-    						// We found what we are searching for.
-    						searching = false;
+							SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
+							// We found what we are searching for.
+							searching = false;
 						}
 
 						@Override
