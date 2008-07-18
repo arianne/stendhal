@@ -89,6 +89,7 @@ public class SummonAtActionTest {
 	@Test
 	public void testFromChatline() throws Exception {
 		// create client UI
+		@SuppressWarnings("unused")
 		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
