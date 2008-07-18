@@ -1,11 +1,13 @@
 package games.stendhal.server.actions.admin;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
@@ -67,6 +69,7 @@ public class SummonActionTest {
 		assertEquals(1, pl.getID().getObjectID());
 		final Creature rat = (Creature) zone.getEntityAt(0, 0);
 		assertEquals("rat", rat.get("subclass"));
+		assertTrue("RaidCreature", rat instanceof RaidCreature);
 	}
 
 	@Test
