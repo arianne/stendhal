@@ -203,7 +203,6 @@ public class Portal extends Entity implements UseListener {
 	 * @param user
 	 *            the player who used the other portal teleporting to us
 	 */
-	@SuppressWarnings("unused")
 	public void onUsedBackwards(final RPEntity user) {
 		// do nothing
 	}

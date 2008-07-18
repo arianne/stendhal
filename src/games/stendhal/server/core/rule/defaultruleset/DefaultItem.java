@@ -43,8 +43,7 @@ public class DefaultItem {
 	/** optional item description. */
 	private String description;
 
-	// weight system is not yet implemented.
-	@SuppressWarnings("unused")
+	/** weight of this item */
 	private double weight;
 
 	/** slots where this item can be equipped. */
