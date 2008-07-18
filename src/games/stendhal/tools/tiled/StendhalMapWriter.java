@@ -43,8 +43,7 @@ public class StendhalMapWriter implements MapWriter {
 	 * @param filename
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
-    public void writeMap(final Map map, String filename) throws Exception {
+	public void writeMap(final Map map, String filename) throws Exception {
 		String level = null;
 		String area = null;
 

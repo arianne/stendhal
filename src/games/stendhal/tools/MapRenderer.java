@@ -62,7 +62,6 @@ public class MapRenderer extends Task {
 		saveImageMap(map, tmxFile);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void saveImageMap(final Map map, final String tmxFile) {
 		final File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();

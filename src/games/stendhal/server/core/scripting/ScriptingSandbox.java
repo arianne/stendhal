@@ -158,7 +158,6 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public void unload(final Player player, final List<String> args) {
 		final Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 
