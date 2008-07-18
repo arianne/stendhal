@@ -22,6 +22,7 @@ import javax.swing.event.MenuKeyEvent;
 /**
  * A popup-menu that will redirect most key events to it's invoker.
  */
+@SuppressWarnings("serial")
 public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	public WtPopupMenu(final String name) {
