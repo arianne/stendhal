@@ -45,11 +45,8 @@ import java.util.Map;
 
 class Triple<P, S, T> {
 	// they are used in equals and hashcode
-	@SuppressWarnings("unused")
 	private final P prim;
-	@SuppressWarnings("unused")
 	private final S sec;
-	@SuppressWarnings("unused")
 	private final T third;
 
 	@Override
@@ -62,6 +59,7 @@ class Triple<P, S, T> {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
