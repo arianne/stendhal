@@ -118,7 +118,7 @@ public class UseAction implements ActionListener {
 	 * Make sure nobody uses items bound to someone else.
 	 * @param player 
 	 * @param object 
-	 * @return true if item is bound flase otherwise
+	 * @return true if item is bound false otherwise
 	 */
 	protected boolean isItemBoundToOtherPlayer(final Player player, final RPObject object) {
 		if (object instanceof Item) {
