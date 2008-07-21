@@ -20,11 +20,12 @@ import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
+import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.InvisibleEntity;
 import games.stendhal.client.entity.Item;
 import games.stendhal.client.entity.NPC;
@@ -53,37 +54,66 @@ class Triple<P, S, T> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((prim == null) ? 0 : prim.hashCode());
-		result = prime * result + ((sec == null) ? 0 : sec.hashCode());
-		result = prime * result + ((third == null) ? 0 : third.hashCode());
+		int add;
+
+		if (prim == null) {
+			add = 0;
+		} else {
+			add = prim.hashCode();
+		}
+
+		result = prime * result + add;
+		if (sec == null) {
+			add = 0;
+		} else {
+			add = sec.hashCode();
+		}
+		result = prime * result + add;
+
+		if (third == null) {
+			add = 0;
+		} else {
+			add = third.hashCode();
+		}
+
+		result = prime * result + add;
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		final Triple<P, S , T> other = (Triple <P,S,T>) obj;
+		}
+		final Triple<P, S , T> other = (Triple <P, S, T>) obj;
 		if (prim == null) {
-			if (other.prim != null)
+			if (other.prim != null) {
 				return false;
-		} else if (!prim.equals(other.prim))
+			}
+		} else if (!prim.equals(other.prim)) {
 			return false;
+		}
 		if (sec == null) {
-			if (other.sec != null)
+			if (other.sec != null) {
 				return false;
-		} else if (!sec.equals(other.sec))
+			}
+		} else if (!sec.equals(other.sec)) {
 			return false;
+		}
 		if (third == null) {
-			if (other.third != null)
+			if (other.third != null) {
 				return false;
-		} else if (!third.equals(other.third))
+			}
+		} else if (!third.equals(other.third)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -107,7 +137,7 @@ class Triple<P, S, T> {
  * 
  */
 public final class EntityMap {
-	private static Map<Triple<String, String, String>, Class< ? extends Entity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends Entity>>();
+	private static Map<Triple<String, String, String>, Class< ? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends IEntity>>();
 
 	static {
 		register();
@@ -174,7 +204,7 @@ public final class EntityMap {
 
 		register("portal", null, null, Portal.class);
 		register("door", null, null, Door.class);
-
+		register("gate", null, null, Gate.class);
 		register("fire", null, null, Fire.class);
 	}
 
@@ -188,7 +218,7 @@ public final class EntityMap {
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,
-			final String subClass, final Class< ? extends Entity> entityClazz) {
+			final String subClass, final Class< ? extends IEntity> entityClazz) {
 		entityMap.put(
 				new Triple<String, String, String>(type, eclass, subClass),
 				entityClazz);
@@ -204,10 +234,10 @@ public final class EntityMap {
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class< ? extends Entity> getClass(final String type,
+	public static Class< ? extends IEntity> getClass(final String type,
 			final String eclass, final String subClass) {
 		// System.out.print(type+" : "+eclass +" : "+subClass +"=");
-		Class< ? extends Entity> result = entityMap
+		Class< ? extends IEntity> result = entityMap
 				.get(new Triple<String, String, String>(type, eclass, subClass));
 		if (result == null) {
 			result = entityMap.get(new Triple<String, String, String>(type,
