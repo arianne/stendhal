@@ -99,20 +99,20 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
-		if (spouse.isEquipped("wedding ring")) { // spouse is equipped with ring but could be divorced and
+		if (spouse.isEquipped("wedding ring")) { 
+			// spouse is equipped with ring but could be divorced and
 			// have another
 
 			final Item weddingRing = spouse.getFirstEquipped("wedding ring");
 
-			if (weddingRing.getInfoString() == null) { // divorced with ring
-				// and engaged again
+			if (weddingRing.getInfoString() == null) { 
+				// divorced with ring and engaged again
 				player.sendPrivateText("Sorry, "
 						+ spouseName
 						+ " has divorced you and is now engaged to someone else.");
 				return;
-			} else if (!(weddingRing.getInfoString().equals(player.getName()))) { // divorced
-				// and
-				// remarried
+			} else if (!(weddingRing.getInfoString().equals(player.getName()))) { 
+				// divorced and remarried
 				player.sendPrivateText("Sorry, " + spouseName
 						+ " has divorced you and is now remarried.");
 

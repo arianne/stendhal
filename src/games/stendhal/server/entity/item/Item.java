@@ -503,7 +503,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
-			return true; // ground
+			// ground
+			return true; 
 		}
 
 		// when the slot is called "content", it's a personal chest.
