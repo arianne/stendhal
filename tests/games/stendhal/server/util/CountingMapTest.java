@@ -29,7 +29,7 @@ public class CountingMapTest {
 		// count map entries
 		int size = 0;
 		for (final Map.Entry<String, String> it : a) {
-			it.toString(); // System.out.println(it.toString());
+			it.toString(); 
 			++size;
 		}
 		assertEquals(2, size);
