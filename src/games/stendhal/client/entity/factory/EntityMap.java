@@ -158,8 +158,8 @@ public final class EntityMap {
 		 * Not sure whether to register individual pets from child classes, or
 		 * the whole parent class Pet. suggestions welcome.
 		 */
-		register("pet", "baby_dragon", null, Pet.class);
-		register("pet", "cat", null, Pet.class);
+		register("baby_dragon", null, null, Pet.class);
+		register("cat", null, null, Pet.class);
 		register("pet", null, null, Pet.class);
 
 		register("npc", null, null, NPC.class);
