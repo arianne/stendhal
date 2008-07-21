@@ -22,7 +22,6 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
-import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
@@ -204,7 +203,6 @@ public final class EntityMap {
 
 		register("portal", null, null, Portal.class);
 		register("door", null, null, Door.class);
-		register("gate", null, null, Gate.class);
 		register("fire", null, null, Fire.class);
 	}
 
