@@ -52,7 +52,7 @@ public class FieldLister {
 	}
 
 	public void scan() {
-		fieldsTypesValues = new TreeMap<String, Pair<String, String>>();
+		fieldsTypesValues = new KeepFirstTreeMap<String, Pair<String, String>>();
 		if (object == null) {
 			return;
 		}
