@@ -169,14 +169,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 	}
 
-	@Override
-	protected void finalize() {
-		if (name != null) {
-			WordList.getInstance().unregisterSubjectName(name);
-			name = null;
-		}
-	}
-
 	public RPEntity(final RPObject object) {
 		super(object);
 		attackSources = new ArrayList<Entity>();
