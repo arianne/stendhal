@@ -19,11 +19,22 @@ public class FieldLister {
 
 	private TreeMap<String, Pair<String, String>> fieldsTypesValues;
 	private Object object = null;
-	
+
+	/**
+	 * Creates a new FieldLister
+	 *
+	 * @param object object to inspect
+	 */
 	public FieldLister(Object object) {
 		this.object = object;
 	}
 
+	/**
+	 * lists all direct fields for this class and the
+	 * corresponding values of the known object.
+	 * 
+	 * @param clazz Class
+	 */
 	private void list(Class<?> clazz) {
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field field : fields) {
@@ -35,6 +46,13 @@ public class FieldLister {
 		}
 	}
 
+	/**
+	 * Extracts the value of a field and converts it into a String. This method
+	 * can deal with null values.
+	 *
+	 * @param field Field
+	 * @return String representation of value
+	 */
 	private String getValue(Field field) {
 		Object objValue = null;
 		try {
@@ -51,11 +69,20 @@ public class FieldLister {
 		return value;
 	}
 
+	/**
+	 * Scans the object for direct and indirect fields.
+	 * Use getResult to get the result.
+	 */
 	public void scan() {
 		fieldsTypesValues = new KeepFirstTreeMap<String, Pair<String, String>>();
 		if (object == null) {
 			return;
 		}
+
+		// Note: class.getFields() returns all direct and indirect public fields.
+		// class.getDeclaredFields returns all direct fields including private
+		// ones. So in order to get all fields we need to call getDeclaredFields
+		// for this class and all parent classes.
 
 		Class<?> clazz = object.getClass();
 		do {
@@ -64,6 +91,11 @@ public class FieldLister {
 		} while (clazz != null);
 	}
 
+	/**
+	 * Retrieves the result. Note: You need to call scan first.
+	 *
+	 * @return Map with field names as keys and a pair of type and value.
+	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Pair<String, String>> getResult() {
 		return (Map<String, Pair<String, String>>) fieldsTypesValues.clone();
