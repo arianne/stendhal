@@ -43,6 +43,7 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
+import org.apache.tools.ant.types.resources.ImmutableResourceException;
 
 public class Player extends RPEntity {
 	/**
@@ -1845,5 +1846,10 @@ public class Player extends RPEntity {
 	public void setDamage(final int damage) {
 		put("damage", damage);
 		
+	}
+
+
+	public boolean isImmune() {
+		return isImmune;
 	}
 }
