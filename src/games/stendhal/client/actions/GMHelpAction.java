@@ -26,7 +26,7 @@ class GMHelpAction implements SlashAction {
 				"- /tellall <message> \t\tSend a private message to all logged-in players",
 				"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
 				"- /gag <player> <minutes> <reason>\t\tGags the player for a given length of time (player is unable to send messages to anyone)",
-				"- /script <scriptname> \t\tLoad (or reload) a script on the server",
+				"- /script <scriptname> \t\tLoad (or reload) a script on the server. See /gmhelp_script for details",
 				"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
 				"- /teleportto <player> \t\tTeleport yourself near the specified player",
 				"- /teleclickmode \t\t\t Makes you teleport to the location you double click",
