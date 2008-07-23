@@ -51,10 +51,10 @@ public class Character extends WtPanel {
 	private static final int PANEL_HEIGHT = 285;
 
 	/** Height/width of slots. */
-	private static final int SLOT_SIZE = 39; // estimate
+	private static final int SLOT_SIZE = 39; 
 
 	/** Space between slots. */
-	private static final int SLOT_SPACING = 3; // estimate
+	private static final int SLOT_SPACING = 3; 
 
 	/** the stats panel. */
 	private final WtTextPanel statsPanel;

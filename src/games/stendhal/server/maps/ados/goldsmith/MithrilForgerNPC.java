@@ -43,7 +43,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 
 				// Pedinghaus makes mithril if you bring him mithril nugget and wood
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 				requiredResources.put("wood", 20);
 				requiredResources.put("mithril nugget", 1);
 

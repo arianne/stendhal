@@ -43,7 +43,6 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
-import org.apache.tools.ant.types.resources.ImmutableResourceException;
 
 public class Player extends RPEntity {
 	/**

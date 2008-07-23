@@ -81,6 +81,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 			}
 		}
 		player.updateItemAtkDef();
-		player.setQuest("deathmatch", "done"); // without the additional information
+		
+		// without the additional information
+		player.setQuest("deathmatch", "done"); 
 	}
 }

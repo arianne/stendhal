@@ -32,8 +32,6 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 
 	}
 
-	// <editor-fold defaultstate="collapsed" desc=" Generated Code
-	// ">//GEN-BEGIN:initComponents
 	private void initComponents() {
 		final WoodStyle style = new WoodStyle();
 		gh = new StyledJButton(style);
@@ -66,25 +64,23 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 		add(jButton1);
 		jButton1.setBounds(0, 30, 150, 25);
 
-	} // </editor-fold>//GEN-END:initComponents
+	} 
 
-	private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) { 
 	// TODO: Do right
 	// if (sp.buywindow.isVisible()) {
 	// sp.buywindow.setVisible(false); // so very useful...
 	// } else {
 	// sp.buywindow.setVisible(true);
 	// }
-	} // GEN-LAST:event_jButton1ActionPerformed
+	} 
 
-	private void ghActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ghActionPerformed
+	private void ghActionPerformed(final java.awt.event.ActionEvent evt) { 
 		new HelpDialog().display();
-	} // GEN-LAST:event_ghActionPerformed
+	} 
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private StyledJButton gh;
 
 	private StyledJButton jButton1;
-	// End of variables declaration//GEN-END:variables
 
 }

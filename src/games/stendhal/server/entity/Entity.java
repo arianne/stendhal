@@ -192,11 +192,13 @@ public abstract class Entity extends RPObject {
 		return (false);
 	}
 
-	public void setDescription(String text) {
+	public void setDescription(final String text) {
 		if (text == null) {
-			text = "";
+			put("description", "");
+		} else {
+			put("description", text);
 		}
-		put("description", text);
+		
 	}
 
 	public String getDescription() {

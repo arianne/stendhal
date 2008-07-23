@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
@@ -26,7 +27,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
-	public static final int DEGRADATION_TIMEOUT = 30 * 60; // 30 minutes
+	public static final int DEGRADATION_TIMEOUT = 30 * MathHelper.SECONDS_IN_ONE_MINUTE; 
 
 	public static void generateRPClass() {
 		final RPClass blood = new RPClass("blood");

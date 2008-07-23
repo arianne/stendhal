@@ -25,7 +25,7 @@ public class FieldLister {
 	 *
 	 * @param object object to inspect
 	 */
-	public FieldLister(Object object) {
+	public FieldLister(final Object object) {
 		this.object = object;
 	}
 
@@ -35,7 +35,7 @@ public class FieldLister {
 	 * 
 	 * @param clazz Class
 	 */
-	private void list(Class<?> clazz) {
+	private void list(final Class< ? > clazz) {
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field field : fields) {
 			field.setAccessible(true);
@@ -53,7 +53,7 @@ public class FieldLister {
 	 * @param field Field
 	 * @return String representation of value
 	 */
-	private String getValue(Field field) {
+	private String getValue(final Field field) {
 		Object objValue = null;
 		try {
 			objValue = field.get(object);
@@ -84,7 +84,7 @@ public class FieldLister {
 		// ones. So in order to get all fields we need to call getDeclaredFields
 		// for this class and all parent classes.
 
-		Class<?> clazz = object.getClass();
+		Class< ? > clazz = object.getClass();
 		do {
 			list(clazz);
 			clazz = clazz.getSuperclass();

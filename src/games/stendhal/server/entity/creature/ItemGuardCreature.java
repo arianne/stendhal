@@ -13,7 +13,6 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -44,7 +43,7 @@ public class ItemGuardCreature extends Creature {
 	 * @param itemType  
 	 *            the quest item to drop on death   
 	 */
-	public ItemGuardCreature(final Creature copy, final String itemType){
+	public ItemGuardCreature(final Creature copy, final String itemType) {
 		this(copy, itemType, null);
 	}
 

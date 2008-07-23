@@ -13,7 +13,7 @@ public class KeepFirstTreeMap<K, V> extends TreeMap<K, V> {
 	private static final long serialVersionUID = -2688811366590604961L;
 
 	@Override
-	public V put(K key, V value) {
+	public V put(final K key, final V value) {
 		V oldVal = super.get(key);
 		if (oldVal != null) {
 			return oldVal;

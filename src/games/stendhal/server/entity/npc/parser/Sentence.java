@@ -626,9 +626,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         // If we look for a full match, there should be no more expressions at both sides.
         if ((e1 == null) && (e2 == null)) {
             return true;
-        }
-        // If we look for a match at Sentence start, there must be no more expressions at the right side.
-        else {
+        } else {
+            // If we look for a match at Sentence start, there must be no more expressions at the right side.
+        	 
             return (matchStart && (e2 == null));
         }
 

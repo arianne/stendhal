@@ -51,6 +51,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weapons_collector2";
 
+	
 	private static final List<String> neededWeapons = Arrays.asList(
 			"morning star", // fairly rare from glow_monster in haunted house
 			"staff", // rare from monk on mountain

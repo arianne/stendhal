@@ -51,7 +51,7 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 				addQuest("I have such a headache and little Annie shrieking every time she goes down the slide doesn't help. Maybe you could give her something to keep her occupied? ... like a gag ...");
 				addGoodbye("Bye now.");
 
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 				requiredResources.put("milk", 1);
 				requiredResources.put("honey", 1);
 

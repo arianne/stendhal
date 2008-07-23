@@ -67,7 +67,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold nugget and wood
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 				requiredResources.put("wood", 2);
 				requiredResources.put("gold nugget", 1);
 

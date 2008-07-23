@@ -509,9 +509,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// TODO: Check that titlebar height is calculated correctly.
 		// The p.y seems higher than it should after adjustment.
 
-		// If teleclickmode is disabled.
-		if (client.getPlayer().has("teleclickmode")) { // If teleclickmode is
-														// enabled.
+		if (client.getPlayer().has("teleclickmode")) { 
+			// teleclickmode is enabled.
 			final RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + panx - getClientX()) / scale);

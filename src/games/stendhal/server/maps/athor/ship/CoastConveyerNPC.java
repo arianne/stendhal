@@ -33,7 +33,8 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
-		npc.addGoodbye("Goodbye!"); //TODO: sailor-style language
+		//TODO: sailor-style language
+		npc.addGoodbye("Goodbye!"); 
 		npc.addGreeting("Ahoy, Matey! How can I #help you?");
 		npc.addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");
 		npc.addJob("I'm taking passengers who want to #disembark to the coast with me rowing boat.");

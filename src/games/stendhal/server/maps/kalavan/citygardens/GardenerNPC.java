@@ -179,7 +179,8 @@ public class GardenerNPC implements ZoneConfigurator {
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
 				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 				requiredResources.put("tea", 1);
 				requiredResources.put("sandwich", 1);
 

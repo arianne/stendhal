@@ -14,7 +14,9 @@ import games.stendhal.server.entity.player.Player;
 public class DeathMatchCreature extends Creature {
 
 	private int points;
-	private String playerName; // save only the name to enable GC of the player object
+	
+	// save only the name to enable GC of the player object
+	private String playerName; 
 
 	/**
 	 * DeathCreature.

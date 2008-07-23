@@ -297,7 +297,8 @@ public class CreatureInfo {
 				} else {
 					result = "below ground level at ";
 				}
-			} else if (level.matches("^\\d")) { /* positive floor */
+			} else if (level.matches("^\\d")) { 
+				/* positive floor */
 				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);

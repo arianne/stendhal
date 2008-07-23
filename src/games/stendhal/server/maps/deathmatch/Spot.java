@@ -18,7 +18,6 @@ public class Spot {
 	 */
 	public Spot(final StendhalRPZone zone, final int x, final int y) {
 		super();
-		assert (zone != null); //todo: remove this
 		this.zone = zone;
 		this.x = x;
 		this.y = y;

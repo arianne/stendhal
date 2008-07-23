@@ -109,7 +109,8 @@ public class RainbowBeans extends AbstractQuest {
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"done");
 					if (!questdone) {
-						return false; // we haven't done the quest yet
+						// we haven't done the quest yet
+						return false; 
 					}
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -136,7 +137,8 @@ public class RainbowBeans extends AbstractQuest {
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"done");
 					if (!questdone) {
-						return false; // we haven't done the quest yet
+						// we haven't done the quest yet
+						return false; 
 					}
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");

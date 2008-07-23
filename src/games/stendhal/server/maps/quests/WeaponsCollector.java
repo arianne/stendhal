@@ -101,7 +101,8 @@ public class WeaponsCollector extends AbstractQuest implements
 	}
 
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
-		return false; // because of WeaponsCollector2
+		// because of WeaponsCollector2
+		return false; 
 	}
 
 	public String respondToQuest() {

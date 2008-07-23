@@ -197,7 +197,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				if ((object1 != null) && (object2 != null) && (preposition != null)) {
     				if (preposition.getNormalized().equals("on")) {
         				betInfo.amount = object1.getAmount();
-        				betInfo.itemName = object1.getNormalized(); // cheese
+        				
+        				// cheese
+        				betInfo.itemName = object1.getNormalized(); 
         				betInfo.target = object2.getNormalized();
     				} else {
     					errorMsg = "missing preposition 'on'";
@@ -305,8 +307,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 					// again:
 					if (item instanceof StackableItem) {
 						final StackableItem stackableItem = (StackableItem) item;
-						stackableItem.setQuantity(2 * betInfo.amount); // bet +
-						// win
+						// bet + win
+						stackableItem.setQuantity(2 * betInfo.amount); 
 					}
 					player.equip(item, true);
 				}
@@ -381,8 +383,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 		final int idx = commands.indexOf(args.get(0));
 		switch (idx) {
-		case 0: // accept #fire #water
-
+		case 0: 
+			// accept #fire #water
 			if (state != State.IDLE) {
 				admin.sendPrivateText("accept command is only valid in state IDLE. But i am in "
 						+ state + " now.\n");
@@ -400,8 +402,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			state = State.ACCEPTING_BETS;
 			break;
 
-		case 1: // action
-
+		case 1: 
+			// action
 			if (state != State.ACCEPTING_BETS) {
 				admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in "
 						+ state + " now.\n");
@@ -411,8 +413,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			state = State.ACTION;
 			break;
 
-		case 2: // winner #fire
-
+		case 2: 
+			// winner #fire
 			if (state != State.ACTION) {
 				admin.sendPrivateText("winner command is only valid in state ACTION. But i am in "
 						+ state + " now.\n");

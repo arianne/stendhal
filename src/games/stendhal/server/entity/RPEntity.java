@@ -2021,7 +2021,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-		} else { // Missed
+		} else { 
+			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
 			this.put("damage", 0);

@@ -24,7 +24,8 @@
 //                                                                     //
 ////////////////////end license & copyright header///////////////////////
 
-package games.stendhal.common; //Added 10May04 by Adam Turk for distribution as part
+//Added 10May04 by Adam Turk for distribution as part
+package games.stendhal.common; 
 
 //of the Tiled codebase
 
@@ -101,7 +102,8 @@ public class Base64 {
 		int tempLen = data.length;
 		for (int ix = 0; ix < data.length; ix++) {
 			if ((data[ix] > 255) || (codes[data[ix]] < 0)) {
-				--tempLen; // ignore non-valid chars and padding
+				// ignore non-valid chars and padding
+				--tempLen; 
 			}
 		}
 		// calculate required length:
@@ -119,22 +121,35 @@ public class Base64 {
 
 		final byte[] out = new byte[len];
 
-		int shift = 0; // # of excess bits stored in accum
-		int accum = 0; // excess bits
+		// # of excess bits stored in accum
+		int shift = 0; 
+		
+		// excess bits
+		int accum = 0; 
 		int index = 0;
 
 		// we now go through the entire array (NOT using the 'tempLen' value)
 		for (int ix = 0; ix < data.length; ix++) {
 			final int value = (data[ix] > 255) ? -1 : codes[data[ix]];
 
-			if (value >= 0) { // skip over non-code
-				accum <<= 6; // bits shift up by 6 each time thru
-				shift += 6; // loop, with new bits being put in
-				accum |= value; // at the bottom.
-				if (shift >= 8) { // whenever there are 8 or more shifted in,
-					shift -= 8; // write them out (from the top, leaving any
-					out[index++] = // excess at the bottom for next iteration.
-					(byte) ((accum >> shift) & 0xff);
+			if (value >= 0) { 
+				// skip over non-code
+				
+				// bits shift up by 6 each time thru
+				accum <<= 6;
+				
+				// loop, with new bits being put in
+				shift += 6; 
+				
+				// at the bottom.
+				accum |= value; 
+				if (shift >= 8) { 
+					// whenever there are 8 or more shifted in,
+					// write them out (from the top, leaving any
+					// excess at the bottom for next iteration.
+					shift -= 8; 
+					
+					out[index++] = 	(byte) ((accum >> shift) & 0xff);
 				}
 			}
 			// we will also have skipped processing a padding null byte ('=')

@@ -112,7 +112,8 @@ class DeathmatchEngine implements TurnListener {
 
 				keepRunning = false;
 			}
-			return; // all creature are there
+			// all creature are there
+			return; 
 		}
 
 		// spawn new monster

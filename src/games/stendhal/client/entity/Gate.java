@@ -17,12 +17,12 @@ public class Gate implements IEntity {
 	private double height;
 	private RPObject rpObject;
 
-	public void addChangeListener(EntityChangeListener listener) {
+	public void addChangeListener(final EntityChangeListener listener) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void fillTargetInfo(RPAction action) {
+	public void fillTargetInfo(final RPAction action) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -33,7 +33,7 @@ public class Gate implements IEntity {
 
 	public Rectangle2D getAudibleArea() {
 	
-		double radius = 6;
+		final double radius = 6;
 		return new Rectangle2D.Double(getX() - radius / 2, getY() - radius / 2, radius, radius);
 	}
 
@@ -85,7 +85,7 @@ public class Gate implements IEntity {
 		return getResistance();
 	}
 
-	public RPSlot getSlot(String name) {
+	public RPSlot getSlot(final String name) {
 		
 		return null;
 	}
@@ -123,7 +123,7 @@ public class Gate implements IEntity {
 		return y;
 	}
 
-	public void initialize(RPObject object) {
+	public void initialize(final RPObject object) {
 		x = object.getInt("x");
 		y = object.getInt("y");
 		width = object.getInt("width");
@@ -131,7 +131,7 @@ public class Gate implements IEntity {
 		this.rpObject = object;
 	}
 
-	public boolean isObstacle(IEntity entity) {
+	public boolean isObstacle(final IEntity entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -145,17 +145,17 @@ public class Gate implements IEntity {
 		
 	}
 
-	public void removeChangeListener(EntityChangeListener listener) {
+	public void removeChangeListener(final EntityChangeListener listener) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void setAudibleRange(double range) {
+	public void setAudibleRange(final double range) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void update(int delta) {
+	public void update(final int delta) {
 		// TODO Auto-generated method stub
 		
 	}
