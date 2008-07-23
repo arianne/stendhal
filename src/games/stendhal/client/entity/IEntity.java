@@ -151,17 +151,6 @@ public interface IEntity {
 	double getWidth();
 
 	/**
-	 * Determine if this entity represents an instance of an RPClass.
-	 * 
-	 * @param clazz
-	 *            The class name.
-	 * 
-	 * @return <code>true</code> if the entity represents that class, or a
-	 *         subclass.
-	 */
-	boolean isInstanceOf(final String clazz);
-
-	/**
 	 * Determine if this entity is on the ground.
 	 * 
 	 * @return <code>true</code> if the entity is on the ground.

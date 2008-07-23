@@ -280,13 +280,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		return width;
 	}
 
-	/* (non-Javadoc)
-	 * @see games.stendhal.client.entity.IEntity#isInstanceOf(java.lang.String)
-	 */
-	public boolean isInstanceOf(final String clazz) {
-		return rpObject.getRPClass().subclassOf(clazz);
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#isOnGround()
 	 */
