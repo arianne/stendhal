@@ -23,6 +23,7 @@ import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
 import marauroa.server.net.validator.InetAddressMask;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -265,6 +266,7 @@ public class PlayerModifierTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testLoadPlayer() {
 		MockStendlRPWorld.get();
@@ -288,6 +290,7 @@ public class PlayerModifierTest {
 		assertThat(player, nullValue());
 	}
 
+	@Ignore
 	@Test
 	public void testmodifyPlayer() {
 		MockStendlRPWorld.get();

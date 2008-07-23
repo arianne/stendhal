@@ -22,6 +22,7 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
+import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
@@ -153,10 +154,6 @@ public final class EntityMap {
 
 		register("sheep", null, null, Sheep.class);
 
-		/*
-		 * Not sure whether to register individual pets from child classes, or
-		 * the whole parent class Pet. suggestions welcome.
-		 */
 		register("baby_dragon", null, null, Pet.class);
 		register("cat", null, null, Pet.class);
 		register("pet", null, null, Pet.class);
@@ -204,6 +201,8 @@ public final class EntityMap {
 		register("portal", null, null, Portal.class);
 		register("door", null, null, Door.class);
 		register("fire", null, null, Fire.class);
+		
+		register("gate", null, null, Gate.class);
 	}
 
 	/**
