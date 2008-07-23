@@ -290,7 +290,8 @@ The sharper minded amongst you might prefer to double-click directly on the crea
  </zone>
 
  <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="Level 0/semos/village_w.tmx">
- <portal x="16" y="34" ref="guard_house_entrance">
+  <configurator class-name="games.stendhal.server.maps.semos.village.DecencyAndMannersWardenNPC"/>
+  <portal x="16" y="34" ref="guard_house_entrance">
    <destination zone="int_semos_guard_house" ref="entrance"/>
   </portal>
    <portal x="29" y="40" ref="hostel_entrance">
@@ -874,7 +875,6 @@ Holy mackerel! These chips are tasty.
    </zone>
 
    <zone name="int_semos_storage_0" file="interiors/semos/storage_0.tmx">
-    <configurator class-name="games.stendhal.server.maps.semos.storage.DecencyAndMannersWardenNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.storage.HousewifeNPC" />
 
     <portal x="9" y="14" ref="entrance">
@@ -1909,6 +1909,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="Level -3/semos/catacombs.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.catacombs.VampireLordCreature"/>
   <entity x="60" y="61">
 	  <!-- all dialogs for this NPC are quest-related, so we don't need a
 		   special SpeakerNPC factory for him. -->
