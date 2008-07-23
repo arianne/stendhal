@@ -3,12 +3,12 @@ package games.stendhal.server.entity.player;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.*;
-import games.stendhal.server.core.engine.SingletonRepository;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.ConsumableItem;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
