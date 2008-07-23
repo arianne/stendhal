@@ -163,12 +163,12 @@
  </layer>
  <layer name="4_roof_add" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bsQkAIAwEwDicI7qPMzmBjqA2EbnrvgmBwHeJAABgVy1nOWsmwKtG9gKkcXuA/+l6AAAAAAAAAACAe71END8kwDIBIJi0XQBAAAA=
+   H4sIAAAAAAAAAO3UwQkAIBADwVz/b/uxJiuwBx+eyEwFC4EkAAAAcMfqDqCN7QH+5+sBAAAAAAAAAADOzUpGdVcAL9g/QAgxAEAAAA==
   </data>
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YsQ2AIBAFUFzOBVzA2Ln/AthZmUABB/heTcJv+EcuJQAA+LZv0QleI2WpcT65r0mzA1DmqOj5mrMQYdY/F0Bv5n87ZhEwstX6X+cClGnZ/7oYAACAv4jamc6wq4WV9H5zLe+79QcAgTLE1VixAEAAAA==
+   H4sIAAAAAAAAAO3YsQ3AIAwEQLJcFsgCabP/AimpIkEBxuSuRuIb3silAADAt/OITlCtlKXHnTQ3AO2ujq7vOQsRsv65AGYz/8cxi4CV7db/Ohegzcj+18UAAAD8RdTONMOuFnYy+82NvO/RHwAEegHK5ROdAEAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="64" visible="0" opacity="0.37">
