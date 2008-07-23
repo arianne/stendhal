@@ -15,6 +15,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 
@@ -24,6 +25,8 @@ import org.apache.log4j.Logger;
  * An ItemGuardCreature is a creature that is responsible for guarding a special
  * item (e.g. a key). Once it is killed, a copy of this special item is given to
  * the player who killed it.
+ *
+ * If a quest is specified then the player only gets the item if the quest isn't completed.
  */
 public class ItemGuardCreature extends Creature {
 
@@ -32,6 +35,19 @@ public class ItemGuardCreature extends Creature {
 
 	private final String itemType;
 
+	private final String questSlot;
+
+	/**                             
+	 * Creates an ItemGuardCreature.
+	 * @param copy
+	 *            base creature
+	 * @param itemType  
+	 *            the quest item to drop on death   
+	 */
+	public ItemGuardCreature(final Creature copy, final String itemType){
+		this(copy, itemType, null);
+	}
+
 	/**
 	 * Creates an ItemGuardCreature.
 	 * 
@@ -39,11 +55,14 @@ public class ItemGuardCreature extends Creature {
 	 *            base creature
 	 * @param itemType
 	 *            the quest item to drop on death
+	 * @param questSlot
+	 *            the quest slot for the active quest
 	 */
-	public ItemGuardCreature(final Creature copy, final String itemType) {
+	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot) {
 		super(copy);
 
 		this.itemType = itemType;
+		this.questSlot = questSlot;
 
 		noises = new LinkedList<String>(noises);
 		noises.add("Thou shall not obtain the " + itemType + "!");
@@ -56,18 +75,18 @@ public class ItemGuardCreature extends Creature {
 
 	@Override
 	public Creature getInstance() {
-		return new ItemGuardCreature(this, itemType);
+		return new ItemGuardCreature(this, itemType, questSlot);
 	}
 
 	@Override
 	public void onDead(final Entity killer) {
-		if (killer instanceof RPEntity) {
-			final RPEntity killerRPEntity = (RPEntity) killer;
-			if (!killerRPEntity.isEquipped(itemType)) {
+		if (killer instanceof Player) {
+			final Player killerPlayer = (Player) killer;
+			if (!killerPlayer.isEquipped(itemType) && !killerPlayer.isQuestCompleted(questSlot)) {
 				final Item item = SingletonRepository.getEntityManager().getItem(
 						itemType);
-				item.setBoundTo(killerRPEntity.getName());
-				killerRPEntity.equip(item, true);
+				item.setBoundTo(killerPlayer.getName());
+				killerPlayer.equip(item, true);
 			}
 		}
 		super.onDead(killer);
