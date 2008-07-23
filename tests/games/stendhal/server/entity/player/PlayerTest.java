@@ -4,8 +4,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.ConsumableItem;
 
 import marauroa.common.game.RPObject;
 
@@ -482,16 +484,27 @@ public class PlayerTest {
 	public void testEat() {
 		fail("Not yet implemented");
 	}
-	@Ignore
+
 	@Test
 	public void testSetImmune() {
-		fail("Not yet implemented");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		assertFalse(bob.isImmune());
+		bob.setImmune();
+		assertTrue(bob.isImmune());
 	}
-	@Ignore
+
+	
 	@Test
 	public void testRemoveImmunity() {
-		fail("Not yet implemented");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		assertFalse(bob.isImmune());
+		bob.setImmune();
+		assertTrue(bob.isImmune());
+		bob.removeImmunity();
+		assertFalse(bob.isImmune());
+		
 	}
+	
 	@Ignore
 	@Test
 	public void testConsume() {
