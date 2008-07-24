@@ -173,14 +173,6 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
-		// expand the collision check for partial moves
-		if ((x - (int) x) > 0.001) {
-			w += 1.0;
-		}
-		if ((y - (int) y) > 0.001) {
-			h += 1.0;
-		}
-
 		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
