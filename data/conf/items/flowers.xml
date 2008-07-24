@@ -35,8 +35,9 @@
   <item name="lilia">
     <type class="flower" subclass="lilia" tileid="-1"/>
     <description>You see a lilia, a single precious bloom.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
+     <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -50,8 +51,9 @@
   <item name="daisies">
     <type class="flower" subclass="daisies" tileid="-1"/>
     <description>You see a bunch of daisies. They are cheap and cheerful!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
+     <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

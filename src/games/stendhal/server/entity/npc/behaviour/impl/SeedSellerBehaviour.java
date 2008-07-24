@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 	@Override
 	protected Item getAskedItem(final String askedItem) {
 		final String[] tokens = askedItem.split(" ");
-		final Item item = SingletonRepository.getEntityManager().getItem("seed");
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("seed");
 		item.setInfoString(tokens[0]);
 		return item;
 

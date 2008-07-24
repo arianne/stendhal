@@ -33,9 +33,10 @@ public class PlantAction {
 			user.getZone().add(flowerGrower);
 			flowerGrower.setPosition(seed.getX(), seed.getY());
 			TurnNotifier.get().notifyInTurns(3, flowerGrower);
-			seed.removeFromWorld();
+			seed.removeOne();
 			return true;
 		}
+		user.sendPrivateText("You have to put the seed on the ground to plant it, silly!");
 		return false;
 
 	}

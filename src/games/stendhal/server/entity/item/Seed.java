@@ -6,7 +6,7 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.util.Map;
 
-public class Seed extends Item implements UseListener {
+public class Seed extends StackableItem implements UseListener {
 
 	public Seed(final Seed item) {
 		super(item);
