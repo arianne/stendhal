@@ -16,6 +16,11 @@ public class Gate implements IEntity {
 	private double width;
 	private double height;
 	private RPObject rpObject;
+	private double radius;
+
+	public Gate() {
+		radius = 6;
+	}
 
 	public void addChangeListener(final EntityChangeListener listener) {
 		// TODO Auto-generated method stub
@@ -33,7 +38,6 @@ public class Gate implements IEntity {
 
 	public Rectangle2D getAudibleArea() {
 	
-		final double radius = 6;
 		return new Rectangle2D.Double(getX() - radius / 2, getY() - radius / 2, radius, radius);
 	}
 
@@ -132,8 +136,7 @@ public class Gate implements IEntity {
 	}
 
 	public boolean isObstacle(final IEntity entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return getResistance() > 0;
 	}
 
 	public boolean isOnGround() {
@@ -151,7 +154,7 @@ public class Gate implements IEntity {
 	}
 
 	public void setAudibleRange(final double range) {
-		// TODO Auto-generated method stub
+		radius = range;
 		
 	}
 
