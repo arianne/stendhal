@@ -51,18 +51,9 @@ class Blood2DView extends StateEntity2DView {
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map,
 			final IGameScreen gameScreen) {
-		String clazz = entity.getEntityClass();
-
-		/*
-		 * If no class (or a single character), fallback to red
-		 */
-		if ((clazz == null) || (clazz.length() == 1)) {
-			clazz = "red";
-		}
-
+	
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz
-				+ ".png");
+		final Sprite tiles = store.getSprite("data/sprites/combat/blood_red.png");
 
 		final int theight = tiles.getHeight();
 		int i = 0;
