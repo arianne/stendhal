@@ -125,7 +125,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		}
 		final Rectangle2D area = entity.getArea();
 
-		// TODO: Ugly, use similar method that server uses
 		if (collisionMap.collides(area)) {
 			return true;
 		}
