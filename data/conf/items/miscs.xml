@@ -234,6 +234,7 @@
     <type class="misc" subclass="marbles" tileid="-1"/>
     <description>You see some marbles. Boys will be boys.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -248,6 +249,7 @@
     <type class="misc" subclass="license" tileid="-1"/>
     <description>You see an assassin's ID. Perhaps this can be put to good use.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -260,6 +262,7 @@
     <type class="misc" subclass="canotuna" tileid="-1"/>
     <description>You see tuna in a can. Too bad you don't have a can opener.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -273,6 +276,7 @@
     <type class="misc" subclass="snowglobe" tileid="-1"/>
     <description>You see a snowglobe. You are SUCH a tourist!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -295,6 +299,51 @@
       <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="magical eggshells">
+    <type class="misc" subclass="eggshells" tileid="-1"/>
+    <description>You see shards from a mythical egg. They have magical properties.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="oil">
+    <type class="misc" subclass="oil" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+  
+    <item name="bobbin">
+    <type class="misc" subclass="bobbin" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
     </equipable>
   </item>
 
