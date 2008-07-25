@@ -74,20 +74,42 @@ public class VampireSword extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
+			ConversationPhrases.QUEST_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
 				@Override
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (!player.hasQuest(QUEST_SLOT)) {
-						npc.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
-					} else if (player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("What are you bothering me for now? You've got your sword, go and use it!");
-					} else {
-						npc.say("Why are you bothering me when you haven't completed your quest yet?");
-					}
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					String quest = player.getQuest(QUEST_SLOT); 
+					return ((quest == null) || quest.equals("rejected")); 
 				}
-			});
+			},
+			ConversationStates.QUEST_OFFERED, 
+			"I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?",
+			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					return player.isQuestCompleted(QUEST_SLOT);  
+				}
+			},
+			ConversationStates.ATTENDING, 
+			"What are you bothering me for now? You've got your sword, go and use it!",
+			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						String state = player.getQuest(QUEST_SLOT);
+						return ((state != null) && !state.equals("rejected") && !state.equals("done"));
+					}
+				},
+				ConversationStates.ATTENDING, 
+				"Why are you bothering me when you haven't completed your quest yet?",
+				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
