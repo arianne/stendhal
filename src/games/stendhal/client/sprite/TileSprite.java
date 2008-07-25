@@ -165,7 +165,6 @@ public class TileSprite implements Sprite {
 	 */
 	public Sprite createRegion(final int x, final int y, final int width,
 			final int height, final Object ref) {
-		// TODO: Calculate intersect area, and avoid the extra level
 		return new TileSprite(this, x, y, width, height, ref);
 	}
 

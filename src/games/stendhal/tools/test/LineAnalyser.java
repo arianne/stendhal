@@ -9,7 +9,6 @@ import java.util.List;
  * @author hendrik
  */
 class LineAnalyser {
-	// TODO: do not hard code this
 	private final List<String> playerNames = Arrays.asList("hendrikus", "player",
 			"rosie", "gambit", "superkym", "Heman", "jellybean"); 
 

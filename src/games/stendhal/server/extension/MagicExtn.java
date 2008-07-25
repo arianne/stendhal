@@ -75,8 +75,6 @@ public class MagicExtn extends StendhalServerExtension implements
 		}
 
 		// the list of spells
-		// TODO: Is this getQuest("spells") correct, shouldn't it be s.th. like
-		// player.getSlot("spells")... ?
 		final String availableSpells = player.getQuest("spells");
 		
 		if (availableSpells == null) {

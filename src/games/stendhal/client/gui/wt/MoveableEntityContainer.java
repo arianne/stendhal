@@ -113,8 +113,6 @@ public class MoveableEntityContainer implements WtDraggable {
 			/*
 			 * Hide quantity until it can be made context sensitive to drag
 			 * modifiers.
-			 * 
-			 * TODO: Find a better way
 			 */
 			if (view instanceof StackableItem2DView) {
 				((StackableItem2DView) view).setShowQuantity(false);

@@ -359,10 +359,6 @@ public class StendhalClient extends ClientFramework {
 
 	private void contentHandling(final String name, final InputStream in)
 			throws IOException, ClassNotFoundException {
-		/*
-		 * TODO: Encode area name into the data sent from server, so it is
-		 * simpler to extract area/layer parts.
-		 */
 		final int i = name.indexOf('.');
 
 		if (i == -1) {

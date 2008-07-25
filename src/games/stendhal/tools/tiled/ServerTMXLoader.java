@@ -137,9 +137,6 @@ public class ServerTMXLoader {
 
 		layer.setName(getAttributeValue(t, "name"));
 
-		// TODO: XXX: Ignored by now.
-		// readProperties(t.getChildNodes(), ml.getProperties());
-
 		for (Node child = t.getFirstChild(); child != null; child = child.getNextSibling()) {
 			if ("data".equalsIgnoreCase(child.getNodeName())) {
 				final String encoding = getAttributeValue(child, "encoding");

@@ -726,7 +726,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * @return an unmodifiable list this panels children. TODO: cache this
+	 * @return an unmodifiable list this panels children. 
 	 */
 	protected List<WtPanel> getChildren() {
 		return Collections.unmodifiableList(children);

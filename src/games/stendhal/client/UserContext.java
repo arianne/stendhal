@@ -78,7 +78,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Constructor.
-	 * @param gameObjects TODO
+	 * @param gameObjects 
 	 */
 	public UserContext(final GameObjects gameObjects) {
 		adminlevel = 0;

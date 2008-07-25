@@ -14,8 +14,6 @@ public class HealedEvent extends RPEvent {
 	private static final String RPCLASS_NAME = "healed";
 	private static final String AMOUNT = "amount";
 
-	// TODO: add additional paramer "healer" onces it is possible to heal other people
-
 	/**
 	 * Creates the rpclass.
 	 */

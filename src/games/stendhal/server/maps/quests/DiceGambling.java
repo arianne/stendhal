@@ -100,9 +100,6 @@ public class DiceGambling extends AbstractQuest {
 				"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."));
 		map.put(7, new Pair<String, String>("beer",
 				"That's enough for a consolation prize, a bottle of beer."));
-		// TODO: new Pair<String, String>("coupon", "That's enough for
-		// a consolation prize, a coupon for a bottle of beer.
-		// Margaret will accept it."), // 7
 		map.put(8, new Pair<String, String>("wine",
 				"You have won this delicious glass of wine!"));
 		map.put(9, new Pair<String, String>("studded shield",

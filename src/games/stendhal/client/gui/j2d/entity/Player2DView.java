@@ -147,7 +147,6 @@ class Player2DView extends RPEntity2DView {
 		if (!player.isGhostMode()) {
 			super.buildActions(list);
 
-			// TODO: If practical, only add this if not already a buddy
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
 		}
 

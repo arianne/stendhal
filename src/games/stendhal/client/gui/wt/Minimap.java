@@ -506,8 +506,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	@Override
 	public synchronized boolean onMouseDoubleClick(final Point p) {
-		// TODO: Check that titlebar height is calculated correctly.
-		// The p.y seems higher than it should after adjustment.
 
 		if (client.getPlayer().has("teleclickmode")) { 
 			// teleclickmode is enabled.

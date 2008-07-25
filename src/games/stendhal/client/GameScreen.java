@@ -1435,7 +1435,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 					 * Quick workaround to stack items in the same order they
 					 * were added.
 					 *
-					 * TODO: Do it right on server side
+					 * TODO: stack items in the same order they were added on server side. 
 					 */
 					if (rv == 0) {
 						rv = view1.getEntity().getID().getObjectID()

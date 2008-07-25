@@ -46,7 +46,7 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap animationMap = createAnimationMap();
 
 	/**
-	 * A cache of loaded tilesets. TODO: Better GC
+	 * A cache of loaded tilesets. 
 	 */
 	protected static Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
 

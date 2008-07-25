@@ -159,7 +159,6 @@ public class StuffForVulcanusTest {
 		en.step(player, "hi");
 		assertEquals("I haven't finished forging the sword. Please check back in 10 minutes.", npc.get("text"));
 		en.step(player, "bye");
-		//TODO: find a way to test this (without waiting ten minutes of course)
 		
 		// -----------------------------------------------
 		

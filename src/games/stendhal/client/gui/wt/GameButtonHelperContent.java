@@ -67,7 +67,6 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	} 
 
 	private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) { 
-	// TODO: Do right
 	// if (sp.buywindow.isVisible()) {
 	// sp.buywindow.setVisible(false); // so very useful...
 	// } else {
