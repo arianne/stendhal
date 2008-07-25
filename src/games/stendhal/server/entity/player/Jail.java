@@ -44,7 +44,7 @@ public class Jail implements LoginListener {
 	private static List<Point> cellEntryPoints = Arrays.asList(
 		new Point(3, 2),
 		new Point(8, 2),
-		// elf cell new Point(13, 2),
+		// elf cell(13, 2),
 		new Point(18, 2), 
 		new Point(23, 2), 
 		new Point(28, 2), 
@@ -162,7 +162,7 @@ public class Jail implements LoginListener {
 			// serving his sentence.
 			SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
 		} else {
-			policeman.sendPrivateText("Could not find a cell for"
+			policeman.sendPrivateText("Could not find a cell for "
 					+ criminal.getName());
 		}
 	}
@@ -184,8 +184,6 @@ public class Jail implements LoginListener {
 		if (jailzone == null) {
 			final StendhalRPWorld world = SingletonRepository.getRPWorld();
 			jailzone = (StendhalRPZone) world.getRPZone(DEFAULT_JAIL_ZONE);
-			
-			
 		}
 
 		return jailzone;
@@ -260,33 +258,53 @@ public class Jail implements LoginListener {
 	public void onLoggedIn(final Player player) {
 		// we need to do this on the next turn because the
 		// client does not get any private messages otherwise
-		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+		// sometime the client does not get the map content
+		// if it gets a cross zone teleport too early. so we wait
+		// 5 seconds.
+		SingletonRepository.getTurnNotifier().notifyInSeconds(5, new TurnListener() {
 			public void onTurnReached(final int currentTurn) {
 				final String name = player.getName();
+
 				final ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);
-				if (arrestWarrant != null) {
-					final long timestamp = arrestWarrant.getTimestamp();
-					if (timestamp + 30 * MathHelper.MILLISECONDS_IN_ONE_DAY < System.currentTimeMillis()) {
-						arrestWarrants.removeByName(name);
-					} else {
-						player.sendPrivateText("You have been jailed by "
-							+ arrestWarrant.getPoliceOfficer()
-							+ " for " + arrestWarrant.getMinutes()
-							+ " minutes on " + String.format("%tF", timestamp)
-							+ ". Reason: " + arrestWarrant.getReason() + ".");
-		
-						if (arrestWarrant.isStarted()) {
-							// Notify player that his sentences is starting again because he tried to escape by logging out
-							player.sendPrivateText("Although you already spent some "
-									+ "time in jail, your sentence has been restarted " 
-									+ "because of your failed escape attempt.");
-						} else {
+				if (arrestWarrant == null) {
+					return;
+				}
+
+				if (removeVeryOldWarrants(arrestWarrant)) {
+					return;
+				}
+
+				final long timestamp = arrestWarrant.getTimestamp();
+				player.sendPrivateText("You have been jailed by "
+					+ arrestWarrant.getPoliceOfficer()
+					+ " for " + arrestWarrant.getMinutes()
+					+ " minutes on " + String.format("%tF", timestamp)
+					+ ". Reason: " + arrestWarrant.getReason() + ".");
+
+				handleEscapeMessages(arrestWarrant);
+				imprison(player, player, arrestWarrant.getMinutes());
+			}
+
+			public boolean removeVeryOldWarrants(ArrestWarrant arrestWarrant) {
+				final long timestamp = arrestWarrant.getTimestamp();
+				if (timestamp + 30 * MathHelper.MILLISECONDS_IN_ONE_DAY < System.currentTimeMillis()) {
+					arrestWarrants.removeByName(arrestWarrant.getCriminal());
+					return true;
+				}
+
+				return false;
+			}
 			
-							// Jail player who was offline at the time /jail was issued.
-							arrestWarrant.setStarted();
-						}
-						imprison(player, player, arrestWarrant.getMinutes());
-					}
+
+			public void handleEscapeMessages(ArrestWarrant arrestWarrant) {
+				if (arrestWarrant.isStarted()) {
+					// Notify player that his sentences is starting again because he tried to escape by logging out
+					player.sendPrivateText("Although you already spent some "
+							+ "time in jail, your sentence has been restarted " 
+							+ "because of your failed escape attempt.");
+				} else {
+					// Jail player who was offline at the time /jail was issued.
+					arrestWarrant.setStarted();
 				}
 			}
 		});
