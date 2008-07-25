@@ -146,7 +146,6 @@ npc.add(ConversationStates.ATTENDING,
 			ConversationStates.ATTENDING, 
 			"Thank you!! Take these " + Integer.toString(pieAmount)	+ " fish pies from my cook, and this kiss, from me.",
 			new MultipleActions(
-					    new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;" + System.currentTimeMillis(), 15.0),
 						new DropItemAction("pina colada"), 
 						new ChatAction() {
 							@Override
@@ -158,6 +157,8 @@ npc.add(ConversationStates.ATTENDING,
 								npc.say("Thank you!! Take these "
 												+ pieAmount
 												+ " fish pies from my cook, and this kiss, from me.");
+								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;" 
+																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
 
 							}
 						}));
