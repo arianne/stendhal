@@ -236,14 +236,4 @@ public class CollisionDetection {
 	public int getHeight() {
 		return height;
 	}
-
-	public void setWidth(final int width) {
-		this.width = width;
-		clear();
-	}
-
-	public void setHeight(final int height) {
-		this.height = height;
-		clear();
-	}
 }

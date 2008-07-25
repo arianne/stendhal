@@ -147,8 +147,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public StendhalRPZone(final String name, final int width, final int height) {
 		this(name);
-		collisionMap.setWidth(width);
-		collisionMap.setHeight(height);
+		collisionMap.init(width, height);
 	}
 
 	/**
