@@ -241,6 +241,9 @@ public class Grammar {
 		} else if (result.equals("daisies")) {
             result = addPrefixIfNotAlreadyThere(lowString, "bunch of ",
                                                 "bunches of ");
+		} else if (result.equals("oil")) {
+            result = addPrefixIfNotAlreadyThere(lowString, "can of ",
+                                                "cans of ");
 		} else {
 			result = lowString;
 		}
