@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import java.lang.Math;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -61,6 +62,24 @@ public class Rand {
 	 */
 	public static int roll1D100() {
 		return rand.nextInt(100) + 1;
+	}
+
+
+	/**
+	 * Generates an equally distributed random number between <i>a</i> and <i>b</i> inclusive
+	 * It doesn't matter if a or b is bigger. 
+	 *
+	 * @param a
+	 *          the first boundary number (upper or lower)
+	 * @param b 
+	 *          the second boundary number (upper or lower)
+	 *
+	 * @return A random number between <i>a</i> and <i>b</i>, equally distributed.
+	 */
+	public static int randUniform(final int a, final int b) {
+		final int max = Math.max(a,b);
+		final int min = Math.min(a,b);
+		return rand.nextInt(b-a+1) + a;
 	}
 
 	/**
@@ -141,6 +160,7 @@ public class Rand {
 	 *            The standard deviation
 	 * @return An integer near <i>mean</i>
 	 */
+	// TODO: Rename to randUniform
 	public static int rand(final int mean, final int sd) {
 		return (int) (rand.nextGaussian() * sd + mean);
 	}
