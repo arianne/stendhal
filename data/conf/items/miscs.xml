@@ -302,6 +302,36 @@
     </equipable>
   </item>
 
+  <item name="bobbin">
+    <type class="misc" subclass="bobbin" tileid="-1"/>
+    <description>You see a bobbin for a sewing machine.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="oil">
+    <type class="misc" subclass="oil" tileid="-1"/>
+    <description>You see a small can of oil.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="magical eggshells">
     <type class="misc" subclass="eggshells" tileid="-1"/>
     <description>You see shards from a mythical egg. They have magical properties.</description>
@@ -314,36 +344,6 @@
       <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="oil">
-    <type class="misc" subclass="oil" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-      <quantity value="1"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-  
-    <item name="bobbin">
-    <type class="misc" subclass="bobbin" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-      <quantity value="1"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
     </equipable>
   </item>
 

@@ -29,4 +29,34 @@
     </equipable>
   </item>
 
+  <item name="magical scissors">
+    <type class="tool" subclass="magical_scissors" tileid="-1"/>
+    <description>You see a sparkling pair of magical scissors. Just think what they could cut!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="3.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="magical needle">
+    <type class="tool" subclass="magical_needle" tileid="-1"/>
+    <description>You see a magical needle with a very sharp point.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="0.5"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
