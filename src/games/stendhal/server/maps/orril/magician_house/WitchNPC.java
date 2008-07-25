@@ -69,7 +69,7 @@ public class WitchNPC implements ZoneConfigurator {
 				 * addHelp("You may want to buy some potions or do some #task
 				 * for me.");
 				 */
-				addHelp("I can #heal you, and I can #offer you powerful #magic #scrolls.");
+				addHelp("I can #heal you, and I can #offer you powerful #scrolls that are #magic.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 				new HealerAdder().addHealer(this, 300);
 				add(
