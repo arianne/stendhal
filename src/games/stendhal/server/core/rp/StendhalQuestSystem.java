@@ -99,6 +99,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetMonogenes");
 	    loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
+		loadQuest("MithrilCloak");
 		loadQuest("NewsFromHackim");
 		// loadQuest("NomyrCataclysm");
 		loadQuest("ObsidianKnife");
