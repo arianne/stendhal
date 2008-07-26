@@ -13,11 +13,6 @@ import java.util.PriorityQueue;
 
 /**
  * A* implementation. 
- * <p>TODO: OPTIMIZATION AND CLEANING!!!! and comment the code..
- * :p i hope durkham dont look here, i dont want hurt her with my crappy code XD
- * <p>TODO: Check if colision() method should be renamed to collision() to prevent
- * double spellings <p>TODO: Check if Reinice() method should be renamed to
- * Restart() to make its name more meaningful
  * 
  * @author Kawn
  */
