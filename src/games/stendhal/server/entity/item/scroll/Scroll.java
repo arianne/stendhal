@@ -68,7 +68,6 @@ public class Scroll extends StackableItem implements UseListener {
 				otheri.getItemSubclass()));
 	}
 
-	// TODO: Move up to Item, use useItem() for real impl's
 	public final boolean onUsed(final RPEntity user) {
 		RPObject base = this;
 

@@ -45,7 +45,6 @@ public class InfoStringScroll extends Scroll {
 		super(item);
 	}
 
-	// TODO: Move up to stackable item?
 	@Override
 	public boolean isStackable(final Stackable other) {
 		final StackableItem otheri = (StackableItem) other;

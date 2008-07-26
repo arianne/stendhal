@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  * <p>
  * Caution: each PersonalChest must be placed in such a way that only one player
  * can stand next to it at a time, to prevent other players from stealing while
- * the owner is looking at his items. TODO: fix PersonalChest placing
+ * the owner is looking at his items. 
  */
 public class PersonalChest extends Chest {
 	private static Logger logger = Logger.getLogger(PersonalChest.class);
@@ -70,8 +70,6 @@ public class PersonalChest extends Chest {
 	/**
 	 * Copies an item
 	 * 
-	 * TODO: Move this to Item.copy() to hide impl (and eventually remove
-	 * reflection). Or even better: Fix .clone() method in marauroa.
 	 * 
 	 * @param item
 	 *            item to copy

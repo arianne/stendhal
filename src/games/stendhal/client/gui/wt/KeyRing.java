@@ -90,7 +90,6 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	@Override
 	public void destroy(final IGameScreen gameScreen) {
-		// TODO: Could be cleaner reference
 		StendhalClient.get().removeFeatureChangeListener(this);
 
 		super.destroy(gameScreen);
