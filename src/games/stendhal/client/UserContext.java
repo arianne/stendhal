@@ -508,7 +508,7 @@ public class UserContext implements RPObjectChangeListener {
 	private void dispatchEvents(final RPObject object, final RPObject changes) {
 		// TODO: clean this method, it is just a quick hack to understand the
 		// way RPEvents should be used
-		// TODO: We probably need a registry/factory to dispatch the different
+		// We probably need a registry/factory to dispatch the different
 		// events to.
 		for (final RPEvent rpevent : object.events()) {
 			if (rpevent.getName().equals("transition_graph")) {

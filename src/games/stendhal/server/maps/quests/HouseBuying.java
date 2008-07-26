@@ -83,7 +83,6 @@ public class HouseBuying extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	// TODO: Clean up duplicated code
 
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {

@@ -43,7 +43,6 @@ public class Box extends Item implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		// TODO: clean up duplicated code with other Item subclasses.
 		if (this.isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = this.getContainer();
