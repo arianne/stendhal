@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class Pet extends DomesticAnimal {
 
-	private static final int START_HUNGER_VALUE = 751;
+	private static final int START_HUNGER_VALUE = 0;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Pet.class);
