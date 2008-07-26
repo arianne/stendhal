@@ -192,6 +192,8 @@ public final class EntityMap {
 		register("item", "missile", null, StackableItem.class);
 		register("item", "ammunition", null, StackableItem.class);
 		register("item", "container", null, StackableItem.class);
+        register("item", "special", null, StackableItem.class);
+        register("item", "special", "mithril clasp", Item.class);
 		register("item", "misc", "seed", UseableItem.class);
 
 		register("item", "resource", null, StackableItem.class);
