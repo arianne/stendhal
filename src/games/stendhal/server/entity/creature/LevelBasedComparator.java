@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * Compares to RPEntities based on their level.
+ * Compares two RPEntities based on their level.
  * 
  * @author hendrik
  */
