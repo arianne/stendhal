@@ -288,9 +288,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	protected void handlePlayersRmTexts() {
-		/*
-		 * TODO: Refactor Removable once RPEvent for chat is added.
-		 */
 		for (final Player player : playersRmText) {
 			if (player.has("text")) {
 				player.remove("text");
@@ -309,9 +306,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	protected void executePlayerLogic() {
-		/*
-		 * TODO: Refactor May be done by the zone itself.
-		 */
 
 		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 			public void execute(final Player player) {
@@ -327,7 +321,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void handleKilledEntities() {
 		/*
-		 * TODO: Refactor. Entities should care about really dying themselves.
 		 * This is here because there is a split between last hit and the moment
 		 * a entity die so that the last hit is visible on client.
 		 */
@@ -391,9 +384,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			final Player player = Player.create(object);
 			entry.object = player;
 
-			/*
-			 * TODO: Removable once RPEvent chat is added.
-			 */
 			playersRmText.add(player);
 
 			getOnlinePlayers().add(player);
