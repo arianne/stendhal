@@ -81,8 +81,10 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 			} else if (entity instanceof Player) {
 				((Player) entity).sendPrivateText("This " + vegetableName
 						+ " is not yet ripe enough to pick.");
-
 			}
+		} else if (entity instanceof Player) {
+		((Player) entity).sendPrivateText("You are too far away from the " + vegetableName
+						+ ".");
 		}
 		return false;
 	}
