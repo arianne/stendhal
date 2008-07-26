@@ -93,12 +93,6 @@ public abstract class NPC extends RPEntity {
 		return idea;
 	}
 
-	// TODO NPC.setOutfit() function seems not to be used anywhere, so it could
-	// be removed.
-	public void setOutfit(final String outfit) {
-		put("outfit", outfit);
-	}
-
 	public void say(final String text) {
 		put("text", text);
 	}

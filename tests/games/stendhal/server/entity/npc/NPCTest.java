@@ -30,7 +30,6 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 
-		//	TODO: make this tests independent of the rest of implementations
 	}
 
 	@AfterClass
@@ -82,14 +81,5 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(null, npc.getIdea());
 	}
 
-	//TODO NPC.setOutfit() function seems not to be used anywhere, so it could be removed.
-	@Test
-	public void testOutfit() {
-		final SpeakerNPC npc = getNPC("Felina");
-
-		assertEquals(null, npc.getIdea());
-		npc.setOutfit("suite");
-		assertEquals("suite", npc.get("outfit"));
-	}
 
 }
