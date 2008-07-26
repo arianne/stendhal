@@ -179,9 +179,6 @@ public class CheckSounds {
 		System.out.println("done");
 	}
 
-	// ------------------------------------------------------------------------
-	// TODO: clean up this copied code from SoundSystem
-	// ------------------------------------------------------------------------
 
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";

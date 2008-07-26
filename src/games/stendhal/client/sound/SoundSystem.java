@@ -154,7 +154,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            the ambient sound to be removed
 	 */
 	static void stopAmbientSound(final AmbientSound ambient) {
-		// TODO: assert the sound is stopped
 		final SoundSystem sys = get();
 
 		synchronized (sys.ambientList) {

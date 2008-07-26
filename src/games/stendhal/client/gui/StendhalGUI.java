@@ -117,7 +117,6 @@ public abstract class StendhalGUI extends StendhalUI {
 	/**
 	 * Get the color that is tied to a notification type.
 	 * 
-	 * TODO: Make dynamic/user configurable.
 	 * 
 	 * @param type
 	 *            The notification type.
