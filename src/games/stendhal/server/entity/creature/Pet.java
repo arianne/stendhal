@@ -34,9 +34,10 @@ import org.apache.log4j.Logger;
  *
  * @author kymara
  *
- * TODO: pets attack weak animals for you
  */
 public abstract class Pet extends DomesticAnimal {
+
+	private static final int START_HUNGER_VALUE = 751;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Pet.class);
@@ -104,7 +105,7 @@ public abstract class Pet extends DomesticAnimal {
 		setBaseHP(HP);
 		setHP(HP);
 
-		hunger = 0;
+		hunger = START_HUNGER_VALUE;
 	}
 
 	/**
@@ -118,7 +119,7 @@ public abstract class Pet extends DomesticAnimal {
 	public Pet(final RPObject object, final Player owner) {
 		super(object, owner);
 		baseSpeed = 0.5;
-		hunger = 0;
+		hunger = START_HUNGER_VALUE;
 	}
 
 	/**
@@ -191,7 +192,7 @@ public abstract class Pet extends DomesticAnimal {
 			setWeight(weight + 1);
 		}
 		food.removeOne();
-		hunger = 0;
+		hunger = START_HUNGER_VALUE;
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
 			heal(incHP); 
@@ -244,12 +245,9 @@ public abstract class Pet extends DomesticAnimal {
 				moveRandomly();
 				setIdea("food");
 				hunger /= 2;
-				// TODO: Find out how to make it so owner doesn't also get this
-				// message every time
-				// owner changes zone, then it may be uncommented.
-				// if (owner != null){
-				// owner.sendPrivateText("Your pet is starving!");
-				// }
+				 if (owner != null) {
+					 owner.sendPrivateText("Your pet is starving!");
+				 }
 				logger.debug("Pet starves");
 				if (weight > 0) {
 					setWeight(weight - 1);
