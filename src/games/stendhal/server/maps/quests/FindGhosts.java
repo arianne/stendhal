@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * QUEST: Find Ghosts
  * 
@@ -53,6 +55,8 @@ import java.util.List;
  */
 public class FindGhosts extends AbstractQuest {
 
+	private static Logger logger = Logger.getLogger(FindGhosts.class);
+
 	private static final String QUEST_SLOT = "find_ghosts";
 	
 	private static final List<String> NEEDED_SPIRITS = 
@@ -83,7 +87,6 @@ public class FindGhosts extends AbstractQuest {
 		final String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
 		final String[] doneAndFound = npcDoneText.split(":");
 		final String[] done = doneAndFound[1].split(";");
-
 		final List<String> doneList = Arrays.asList(done);
 		final List<String> result = new LinkedList<String>();
 		for (final String name : NEEDED_SPIRITS) {
@@ -155,7 +158,7 @@ public class FindGhosts extends AbstractQuest {
 		// the player returns to Carena after having started the quest, or found
 		// some ghosts.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(QUEST_SLOT, "looking"),
+			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_1,
 			"If you found any #spirits, please tell me their name.", null);
 
@@ -165,30 +168,35 @@ public class FindGhosts extends AbstractQuest {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final Expression item = sentence.getTriggerExpression();
-					TriggerList missing = new TriggerList(missingNames(player));
-
+					
+					// although all names our stored as lower case from now on, 
+					// older versions did not,
+					// so we have to be compatible with them
 					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					final String[] npcDoneText = npcQuestText.split(":");
 	    			final String lookingStr;
-					if (npcDoneText.length > 1) {
-						lookingStr = npcDoneText[0];
-					} else {
-						lookingStr = "";
-					}
 	    			final String saidStr;
 					if (npcDoneText.length > 1) {
+						lookingStr = npcDoneText[0];
 						saidStr = npcDoneText[1];
 					} else {
-						saidStr = "";
+						// compatibility with broken quests
+						logger.warn("Player " + player.getTitle() + " found with find_ghosts quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
+						player.setQuest(QUEST_SLOT,"done");
+						npc.say("Sorry, it looks like you have already found them after all. I got confused");
+						player.notifyWorldAboutChanges();
+						npc.setCurrentState(ConversationStates.ATTENDING);
+						return;
 					}
+	    			
 					final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
 					final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
 					String reply = "";
-					String itemName = item.getOriginal();
-
+					String itemName = "initialized";
+					TriggerList missing = new TriggerList(missingNames(player));
 					final Expression found = missing.find(item);
 					if (found != null) {
-						itemName = found.getOriginal();
+						itemName = found.getOriginal().toLowerCase();
 					}
 
 					if ((found != null) && looking.contains(item) && !said.contains(item)) {
