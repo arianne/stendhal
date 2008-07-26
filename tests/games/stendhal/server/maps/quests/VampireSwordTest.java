@@ -5,13 +5,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -46,14 +45,7 @@ public class VampireSwordTest {
 		SingletonRepository.getNPCList().clear();
 	}
 	
-	@Before
-	public void setUp() throws Exception {	
-	}
-	
-	@After
-	public void clear() throws Exception {
-	}
-	
+	// **** Early quest tests ****
 	@Test 
 	public void requestQuest()  {
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
@@ -120,6 +112,7 @@ public class VampireSwordTest {
 		assertEquals("Refusing", "Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.", npc.getText());
 		assertEquals("karma penalty", karma - 5.0, player.getKarma(), 0.01);
 		assertFalse(player.isEquipped("empty goblet"));
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 	}
 	
 	@Test
@@ -137,6 +130,42 @@ public class VampireSwordTest {
 			assertEquals("Then you need this #goblet. Take it to the Semos #Catacombs.", npc.getText());
 			assertEquals("karma bonus", karma + 5.0, player.getKarma(), 0.01);
 			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
+			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
+		}
+	}
+	
+	@Test
+	public void explanations() {
+		final Player player = PlayerTestHelper.createPlayer("me");			
+		final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+		final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+		
+		en.setCurrentState(ConversationStates.ATTENDING);
+		en.step(player, "catacombs");
+		assertEquals("answer to 'catacombs'", "The Catacombs of north Semos of the ancient #stories.", npc.getText());
+		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
+		
+		en.step(player, "goblet");
+		assertEquals("answer to 'goblet'", "Go fill it with the blood of the enemies you meet in the #Catacombs.", npc.getText());
+	}
+	
+	@Test 
+	public void greetWithGoblet() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+			
+			assertFalse(player.hasQuest(quest_slot));
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(quest_slot, "start");
+			
+			final Item goblet = SingletonRepository.getEntityManager().getItem("empty goblet");
+			player.equip(goblet, true);
+			
+			en.step(player, hello);
+			assertEquals(hello, "Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		}
 	}
 	
@@ -156,6 +185,59 @@ public class VampireSwordTest {
 			en.step(player, hello);
 			assertEquals(hello, "I hope you didn't lose your goblet! Do you need another?", npc.getText());
 			assertEquals(en.getCurrentState(), ConversationStates.QUESTION_1);
+		}
+	}
+	
+	
+	@Test
+	public void getAnotherGoblet() {
+		for (String answer : ConversationPhrases.YES_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+			
+			assertFalse(player.hasQuest(quest_slot));
+			assertFalse(player.isEquipped("empty goblet"));
+			assertFalse(player.isEquipped("goblet"));
+			en.setCurrentState(ConversationStates.QUESTION_1);
+			player.setQuest(quest_slot, "start");
+			
+			en.step(player, answer);
+			assertEquals(answer, "You stupid ..... Be more careful next time. Bye!", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
+		}
+	}
+	
+	@Test
+	public void refuseAnotherGoblet() {
+		final Player player = PlayerTestHelper.createPlayer("me");			
+		final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+		final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+			
+		assertFalse(player.hasQuest(quest_slot));
+		assertFalse(player.isEquipped("empty goblet"));
+		assertFalse(player.isEquipped("goblet"));
+		en.setCurrentState(ConversationStates.QUESTION_1);
+		player.setQuest(quest_slot, "start");
+			
+		en.step(player, "no");
+		assertEquals("Then why are you back here? Go slay some vampires! Bye!", npc.getText());
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		assertFalse("Player is not given a goblet", player.isEquipped("empty goblet"));
+	}
+	
+	// **** Goblet filling tests ****
+	@Test
+	public void sayHelloToVampire() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
+			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
+			
+			en.step(player, hello);
+			assertEquals("vampires greeting", "Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}
 }
