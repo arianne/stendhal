@@ -76,6 +76,8 @@ public class MithrilCloak extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES_SCISSORS = 10;
 
+	private static final int REQUIRED_HOURS_SEWING = 24;
+
 	private static final String QUEST_SLOT = "mithril_cloak";
 	private static final String MITHRIL_SHIELD_QUEST = "mithrilshield_quest";
 
@@ -278,6 +280,8 @@ public class MithrilCloak extends AbstractQuest {
 
 	private void getScissorsStep() {
 
+		// Careful not to overlap with any states from VampireSword quest
+
 		final SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.ATTENDING,
@@ -427,6 +431,13 @@ public class MithrilCloak extends AbstractQuest {
 					}
 				});
 
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				Arrays.asList("no", "none", "nothing"),
+				null,
+				ConversationStates.ATTENDING,
+				"No problem. Anything else I can help with, just say.",
+				null);
+
  	}
 
 	private void giveScissorsStep() {
@@ -440,7 +451,7 @@ public class MithrilCloak extends AbstractQuest {
 				"You brought those magical scissors! Excellent! Now that I can cut the fabric I need a magical needle. You can buy one from a trader in the abandoned keep of Ados mountains, #Ritati Dragon something or other. Just go to him and ask for his 'specials'.",
 				new MultipleActions(
 									 new DropItemAction("magical scissors"), 
-									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "need_needle", 10.0), 
+									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "need_needle;", 10.0), 
 									 new IncreaseXPAction(100)
 									 )
 				);
@@ -471,7 +482,7 @@ public class MithrilCloak extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
-				new QuestInStateCondition(QUEST_SLOT, "need_needle"),
+				new QuestStateStartsWithCondition(QUEST_SLOT, "need_needle"),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"I have some magical needles but they cost a pretty penny, "
 				+ Integer.toString(NEEDLE_COST) + " pieces of money to be precise. Do you want to buy one?",
@@ -509,17 +520,38 @@ public class MithrilCloak extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical needle", "magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_needle"),new PlayerHasItemWithHimCondition("magical needle")),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "need_needle"), new PlayerHasItemWithHimCondition("magical needle")),
 				ConversationStates.ATTENDING,
-				"Looks like you found Ritatty then, good. I'll start on the cloak now!",
+				null,
 				new MultipleActions(
-									 new DropItemAction("magical needle"), 
-									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "sewing", 10.0)
-				));
+									 new SpeakerNPC.ChatAction() {
+										 @Override
+										 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+											 final String[] questslot = player.getQuest(QUEST_SLOT).split(";");
+											 int needles;
+											 if (questslot.length >1) {
+												 // if the split works, we had stored a needle number before
+												 needles = Integer.parseInt(questslot[1]);
+												 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," +
+														 " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
+											 } else {
+												 // it wasn't split with a number.
+												 // so this is the first time we brought a needle
+												 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" +
+														 " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
+												 // ida breaks needles - she will need 1 - 3
+												 needles = Rand.randUniform(1,3);
+											 }											
+											 player.setQuest(QUEST_SLOT, "sewing;" + System.currentTimeMillis() + ";" + needles);
+										 }
+									 },
+									 new DropItemAction("magical needle")
+									 )
+				);
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical needle", "magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_needle"),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "need_needle"),
 								 new NotCondition(new PlayerHasItemWithHimCondition("magical needle"))
 								 ),
 				ConversationStates.ATTENDING,
@@ -527,6 +559,167 @@ public class MithrilCloak extends AbstractQuest {
 				null);
 	}
 
+	private void sewingStep() {
+
+		final SpeakerNPC npc = npcs.get("Ida");
+
+		// the quest slot that starts with sewing is the form "sewing;number;number" where the first number is the time she started sewing
+		// the second number is the number of needles that she's still going to use - player doesn't know number
+
+		npc.add(ConversationStates.ATTENDING, 
+				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
+				new QuestStateStartsWithCondition(QUEST_SLOT, "sewing;"),
+				ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							// hours -> milliseconds
+							final long delay = REQUIRED_HOURS_SEWING * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+							final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+							if (timeRemaining > 0L) {
+								npc.say("I'm still sewing your cloak, come back in "
+										+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + " - and don't rush me, or I'm more likely to break the needle.");
+								return;
+							}
+							// ida breaks needles, but if it is the last one,
+							// she pricks her finger on that needle
+							if (Integer.valueOf(tokens[2])==1 ){
+								npc.say("Ouch! I pricked my finger on that needle! I feel woozy ...");
+								player.setQuest(QUEST_SLOT, "twilight_zone");
+							} else {
+								npc.say("These magical needles are so fragile, I'm sorry but you're going to have to get me another, the last one broke. Hopefully Ritati still has plenty.");
+								final int needles = Integer.parseInt(tokens[2]) - 1;
+								player.setQuest(QUEST_SLOT, "need_needle;" + needles );
+							}							
+				}
+			});
+
+	}
+
+	private void getMossStep() {
+
+		// Careful not to overlap with quest states in RainbowBeans quest
+
+		final int MOSS_COST = 3000;
+
+		final SpeakerNPC npc = npcs.get("Pdiddi");
+
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("moss", "magical", "twilight", "ida", "cloak", "mithril cloak", "specials"),
+				new QuestStateStartsWithCondition(QUEST_SLOT, "twilight_zone"),
+				ConversationStates.QUEST_ITEM_QUESTION,
+				"Keep it quiet will you! Yeah, I got moss, it's "
+				+ Integer.toString(MOSS_COST) + " money each. How many do you want?",
+				null);
+
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				// match for all numbers as trigger expression
+				"NUM", new JokerExprMatcher(),
+				new ChatCondition() {
+					@Override
+                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						final Expression number = sentence.getNumeral();
+
+						if (number != null) {
+    						final int required = number.getAmount();
+
+    						// don't let them buy less than 1 or more than, say, 5000
+    						if ((required >= 1) && (required <= 5000)) {
+    							return true;
+    						}
+						}
+
+    					return false;
+                    }
+				}, ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+
+                        final int required = (sentence.getNumeral().getAmount());
+						if( player.drop("money" , required*MOSS_COST) ){
+							npc.say("Ok, here's your " + Integer.toString(required) + " pieces of twilight moss. Don't take too much at once.");
+							new EquipItemAction("twilight moss", required, true).fire(player, sentence, npc);
+						} else {
+							npc.say("Ok, ask me again when you have enough money.");
+						}						
+					}
+				});
+
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				Arrays.asList("no", "none", "nothing"),
+				null,
+				ConversationStates.ATTENDING,
+				"Ok, whatever you like.",
+				null);
+	}
+
+	private void twilightZoneStep() {
+
+		// i don't know if player is meant to visit ida in the twilight zone or not. if yes it has to be a different name i.e. lda
+		// also don't know when she asks you to take the striped cloak to josephine
+
+	}
+
+	private void takeStripedCloakStep() {
+
+		// Deliberately overlap with conversation states from the cloak collector quests.
+		// Since if you're on one of these quests she will always ask 'did you bring any cloaks?' 
+		// and waits for you to say yes or the name of the cloak you brought
+		// if she just said about 'blue striped cloak' "well i don't want that" then that's confusing for player
+		// so we let player give her that cloak even if she was asking about the other quests
+		// of course, she will only take it from ida if player was in quest state for teh mithril cloak quest of "taking_striped_cloak"
+
+		final SpeakerNPC npc = npcs.get("Josephine");
+
+		// overlapping with CloaksCollector quest deliberately
+		npc.add(ConversationStates.QUESTION_1, "blue striped cloak", new QuestInStateCondition(QUEST_SLOT, "taking_striped_cloak"),
+			ConversationStates.QUESTION_1, null,
+			new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						if( player.drop("blue striped cloak") ){
+							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
+							player.setQuest(QUEST_SLOT, "gave_striped_cloak");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else {
+							npc.say("You don't have a blue striped cloak with you.");
+						}						
+					}
+			});
+
+		// overlapping with CloaksCollector2 quest deliberately
+		npc.add(ConversationStates.QUESTION_2, "blue striped cloak", new QuestInStateCondition(QUEST_SLOT, "taking_striped_cloak"),
+				ConversationStates.QUESTION_2, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						if( player.drop("blue striped cloak") ){
+							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+							player.setQuest(QUEST_SLOT, "gave_striped_cloak");
+						} else {
+							npc.say("You don't have a blue striped cloak with you.");
+						}						
+					}
+			});
+				
+
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("blue striped cloak", "mithril", "mithril cloak", "ida"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_striped_cloak"),new PlayerHasItemWithHimCondition("blue striped cloak")),
+				ConversationStates.ATTENDING,
+				"Oh that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!",
+				new MultipleActions(
+									 new DropItemAction("blue striped cloak"), 
+									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "gave_striped_cloak") 
+									 
+									 )
+				);
+
+
+	}
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
@@ -540,6 +733,14 @@ public class MithrilCloak extends AbstractQuest {
 		giveScissorsStep();
 		getNeedleStep();
 		giveNeedleStep();
+		sewingStep();
+		getMossStep();
+		twilightZoneStep();
+		takeStripedCloakStep();
+		//getClaspStep();
+		//giveClaspStep();
+		
+
 	}
 
 	@Override
