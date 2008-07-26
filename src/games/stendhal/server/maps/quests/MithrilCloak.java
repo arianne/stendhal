@@ -746,7 +746,7 @@ public class MithrilCloak extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("mithril bar")) 
 						{	player.drop("mithril bar");
-							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in" 
+							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in " 
 									   + REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
 							player.setQuest(QUEST_SLOT, "forgingclasp;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
@@ -762,7 +762,7 @@ public class MithrilCloak extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES, 
 			null,
 			ConversationStates.ATTENDING,
-			"Well, if you should like me to forge any mithril just say.",
+			"Well, if you should like me to cast any mithril bars just say.",
 			null);
 
 		npc.add(ConversationStates.ATTENDING, 
@@ -777,7 +777,7 @@ public class MithrilCloak extends AbstractQuest {
 					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {
-						npc.say("I haven't finished yet, please retutn in "
+						npc.say("I haven't finished yet, please return in "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 						return;
 					}
