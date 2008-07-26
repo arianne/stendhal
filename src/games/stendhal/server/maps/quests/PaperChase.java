@@ -17,13 +17,7 @@ public class PaperChase extends AbstractQuest {
 
 	private final String[] points = new String[] { "Carmen", "Monogenes",
 			"Hayunn Naratha",
-			// TODO: load groovy before quest are inited (or convert
-			// kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is
-			// inactive
 			"Margaret", "Balduin",
-			// TODO: load groovy before quest are inited (or convert
-			// deathmatch_entry.groovy to java) "Deathmatch Recruiter",
-			// TODO: ignore if groovy is inactive
 			"Katinka", "Haizen", "Bario", "Ceryl", "Nishiya", "Marcus",
 			"Jynath", "Loretta", "Fidorea" };
 
@@ -98,7 +92,7 @@ public class PaperChase extends AbstractQuest {
 		super.addToWorld();
 
 		// TODO: add Fidorea to world introducing the quest
-		// TODO: detect using of scrolls
+		// - detect using of scrolls
 
 		// add normal way points (without first and last)
 		for (int i = 0; i < points.length - 1; i++) {
@@ -107,7 +101,7 @@ public class PaperChase extends AbstractQuest {
 
 		// TODO: Fidorea doing the post processing of this quest (calc points
 		// based on time and level)
-		// TODO: store and read result (with server restart in mind)
-		// TODO: create sign as Hall of Fame
+		// - store and read result (with server restart in mind)
+		// - create sign as Hall of Fame
 	}
 }
