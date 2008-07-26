@@ -226,4 +226,52 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+  <item name="silk gland">
+    <type class="resource" subclass="silkgland" tileid="-1"/>
+    <description>You see a silk gland from a giant spider. Its contents are extremely valuable.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="oil">
+    <type class="resource" subclass="oil" tileid="-1"/>
+    <description>You see a small can of oil.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+     <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="mithril fabric">
+    <type class="resource" subclass="mithril_fabric" tileid="-1"/>
+    <description>You see a roll of mithril fabric. It's very sprakly!</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+
 </items>
