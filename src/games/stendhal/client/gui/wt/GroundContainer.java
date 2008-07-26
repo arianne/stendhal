@@ -152,15 +152,17 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			view.onAction();
 			return true;
 		} else {
-			// moveto action
-			final RPAction action = new RPAction();
-			action.put("type", "moveto");
-			action.put("x", (int) point.getX());
-			action.put("y", (int) point.getY());
-			client.send(action);
-			// TODO: let action do this
+			createAndSendMoveToAction(point);
 			return true;
 		}
+	}
+
+	private void createAndSendMoveToAction(final Point2D point) {
+		final RPAction action = new RPAction();
+		action.put("type", "moveto");
+		action.put("x", (int) point.getX());
+		action.put("y", (int) point.getY());
+		client.send(action);
 	}
 
 	/** Processes right click. */
