@@ -177,7 +177,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	public String respondToOfferOfNotNeededItem() {
-		return "That's not a real cloak...";
+		return "Sorry, that's not a cloak I asked you for.";
 	}
 
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
