@@ -42,7 +42,6 @@ public class DeathmatchArea implements LoginListener {
 	}
 
 	public Area getArea() {
-
 		return area;
 	}
 

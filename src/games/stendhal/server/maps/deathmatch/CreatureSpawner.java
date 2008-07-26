@@ -16,22 +16,35 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+
 import org.apache.log4j.Logger;
 
 
-
+/**
+ * This class spawns creatures during a deathmatch session.
+ *
+ * @author hendrik
+ */
 public class CreatureSpawner implements TurnListener {
-static final Logger logger = Logger.getLogger(CreatureSpawner.class);
-//spawn a new monster each 15 seconds
-	static final long SPAWN_DELAY = 15000; 
+
+	static final Logger logger = Logger.getLogger(CreatureSpawner.class);
+
+	// spawn a new monster each 15 seconds
+	static final long SPAWN_DELAY = 15000;
 	static final long NUMBER_OF_CREATURES = 10;
+
 	private final List<Creature> sortedCreatures = new LinkedList<Creature>();
 	private final List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
+
+	/**
+	 * Creates a new CreatureSpawner
+	 */
 	CreatureSpawner() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
+
 	/**
 	 * Removes the critters that the player was supposed to kill.
 	 */
@@ -44,6 +57,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 			}
 		}
 	}
+
 	/**
 	 * Checks if all our enemies are dead.
 	 *
@@ -81,6 +95,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 			}
 		}
 	}
+
 	/**
 	 * Calculates which type of creature should be spawned next.
 	 *
@@ -155,6 +170,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 
 		return sum;
 	}
+
 	public void onTurnReached(final int currentTurn) {
 		// TODO Auto-generated method stub
 
