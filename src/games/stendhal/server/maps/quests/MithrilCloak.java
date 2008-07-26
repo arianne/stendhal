@@ -75,6 +75,7 @@ import java.util.TreeMap;
 public class MithrilCloak extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES_SCISSORS = 10;
+	private static final int REQUIRED_MINUTES_CLASP = 60;
 
 	private static final int REQUIRED_HOURS_SEWING = 24;
 
@@ -713,13 +714,87 @@ public class MithrilCloak extends AbstractQuest {
 				"Oh that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!",
 				new MultipleActions(
 									 new DropItemAction("blue striped cloak"), 
-									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "gave_striped_cloak") 
+									 new SetQuestAction(QUEST_SLOT, "gave_striped_cloak") 
 									 
 									 )
 				);
 
 
 	}
+	private void getClaspStep() {
+
+		// don't overlap with any states from producer adder since he is a mithril bar producer
+		
+		final SpeakerNPC npc = npcs.get("Pedinghaus");
+
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
+			new QuestInStateCondition(QUEST_SLOT, "need_clasp"),
+			ConversationStates.SERVICE_OFFERED,
+			"A clasp? Whatever you say! I am still so happy from that letter you brought me, it would be my pleasure to make something for you. I only need one mithril bar. Do you have it?",
+			null);
+
+
+		npc.add(
+			ConversationStates.SERVICE_OFFERED,
+			ConversationPhrases.YES_MESSAGES, 
+			new QuestInStateCondition(QUEST_SLOT, "need_clasp"),
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					if (player.isEquipped("mithril bar")) 
+						{	player.drop("mithril bar");
+							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in" 
+									   + REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
+							player.setQuest(QUEST_SLOT, "forgingclasp;" + System.currentTimeMillis());
+							player.notifyWorldAboutChanges();
+						} else {
+							npc.say("You can't fool an old wizard, and I'd know mithril when I see it. Come back when you have at least one bar.");
+						}
+				}
+			});
+
+		// player says they didn't bring the stuff yet
+		npc.add(
+			ConversationStates.SERVICE_OFFERED,
+			ConversationPhrases.NO_MESSAGES, 
+			null,
+			ConversationStates.ATTENDING,
+			"Well, if you should like me to forge any mithril just say.",
+			null);
+
+		npc.add(ConversationStates.ATTENDING, 
+			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
+			new QuestStateStartsWithCondition(QUEST_SLOT, "forgingclasp;"),
+			ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					final long delay = REQUIRED_MINUTES_CLASP * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					if (timeRemaining > 0L) {
+						npc.say("I haven't finished yet, please retutn in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+						return;
+					}
+					npc.say("Here, your clasp is ready!");
+					player.addXP(100);
+					player.addKarma(15);
+					final Item clasp = SingletonRepository.getEntityManager().getItem(
+									"mithril clasp");
+					clasp.setBoundTo(player.getName());
+					player.equip(clasp, true);
+					player.setQuest(QUEST_SLOT, "got_clasp");
+					player.notifyWorldAboutChanges();
+				}
+			});
+
+	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
@@ -737,7 +812,7 @@ public class MithrilCloak extends AbstractQuest {
 		getMossStep();
 		twilightZoneStep();
 		takeStripedCloakStep();
-		//getClaspStep();
+		getClaspStep();
 		//giveClaspStep();
 		
 
