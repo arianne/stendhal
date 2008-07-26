@@ -14,8 +14,6 @@ import java.util.Map;
  */
 public class Stocking extends Box {
 
-	// TODO: Make these configurable
-	// for christmas presents
 	private static final String[] ITEMS = { "mega potion", "fish pie",
 			"lucky charm", "diamond", "gold bar", "empty scroll" };
 

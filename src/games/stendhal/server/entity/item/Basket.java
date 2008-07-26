@@ -14,8 +14,7 @@ import java.util.Map;
  */
 public class Basket extends Box {
 
-	// TODO: Make these configurable
-	// for easter presents
+
 	private static final String[] ITEMS = { "mega potion", "fairy cake",
 			"easter egg", "egg", "spotted egg", "mythical egg"};
 
