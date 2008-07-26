@@ -197,20 +197,23 @@ public class StendhalRPWorld extends RPWorld {
 		GuildMember.generateRPClass();
 		GuildPermission.generateRPClass();
 
-		/*
-		 * TODO: Refactor Create RPClasses for actions
-		 */
+		createChatActionRPClass();
 
-		// Chat action class
-		RPClass chatAction = new RPClass("chat");
-		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
-		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
+		createTellActionRPClass();
+	}
 
-		// Tell action class
+	private void createTellActionRPClass() {
+		RPClass chatAction;
 		chatAction = new RPClass("tell");
 		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
+	}
+
+	private void createChatActionRPClass() {
+		RPClass chatAction = new RPClass("chat");
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 	}
 
 	@Override
