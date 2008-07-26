@@ -363,10 +363,7 @@ public class PizzaDelivery extends AbstractQuest {
 					// pizza, or if he just picked up a pizza from the ground.
 					// NOTE: This is no perfect protection (two players can
 					// still swap their pizzas), but the abuse potential is
-					// quite low. TODO: For full security, we'd have to rewrite
-					// this so that the pizza flavor and baking time are stored
-					// inside the pizza item's infostring, and the quest slot
-					// contains the item ID of the pizza.
+					// quite low. 
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (isDeliveryTooLate(player)) {
 							if (data.messageOnColdPizza.contains("%s")) {

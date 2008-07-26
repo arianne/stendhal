@@ -72,6 +72,5 @@ public abstract class LayerRenderer {
 	 */
 	public abstract void draw(IGameScreen screen, int x, int y, int w, int h);
 
-	// TODO: Cleanly remove from this level
 	public abstract void setTileset(Tileset tileset);
 }

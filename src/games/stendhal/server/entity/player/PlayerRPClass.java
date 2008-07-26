@@ -269,7 +269,6 @@ class PlayerRPClass {
 		if (sheep != null) {
 			logger.debug("Player has a sheep");
 
-			// TODO: Is this needed?
 			if (!sheep.has("base_hp")) {
 				sheep.initHP(10);
 			}
@@ -291,7 +290,6 @@ class PlayerRPClass {
 		if (pet != null) {
 			logger.debug("Player has a pet");
 
-			// TODO: Is this needed?
 			if (!pet.has("base_hp")) {
 				pet.initHP(200);
 			}
@@ -415,7 +413,6 @@ class PlayerRPClass {
 			try {
 				// We simply ignore corpses...
 				if (item.get("type").equals("item")) {
-					// TODO: Move to Item.create(RPObject)?
 
 					final String name = UpdateConverter.updateItemName(item.get("name"));
 					final Item entity = SingletonRepository.getEntityManager().getItem(name);

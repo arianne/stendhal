@@ -153,6 +153,5 @@ public class UseAction implements ActionListener {
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _USE,
 				name, infostring);
 		
-		// TODO: log to itemlog, too?
 	}
 }

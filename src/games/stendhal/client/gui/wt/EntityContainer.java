@@ -168,8 +168,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * Check the distance of the player to the base item. When the player is too
 	 * far away, this panel closes itself.
 	 * 
-	 * TODO: Change to event model, rather than polling
-	 * 
 	 * @param gameScreen
 	 */
 	private void checkDistance(final IGameScreen gameScreen) {
@@ -237,7 +235,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		rescanSlotContent(gameScreen);
 		super.drawContent(g, gameScreen);
 
-		// TODO: Change to event model, rather than polling
 		checkDistance(gameScreen);
 	}
 

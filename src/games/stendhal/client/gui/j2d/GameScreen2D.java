@@ -18,7 +18,6 @@ import java.awt.Canvas;
 /**
  * A 2D representation of a game screen.
  * 
- * TODO: Move 2D specific aspects of game screen here.
  */
 public class GameScreen2D extends GameScreen {
 	/**

@@ -515,7 +515,6 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have changed.
 	 * 
-	 * TODO: Find a way to move this up to RPObject.
 	 */
 	public void notifyWorldAboutChanges() {
 		// Only possible if in a zone

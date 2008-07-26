@@ -87,8 +87,6 @@ public class OwnAction implements ActionListener {
 		} else {
 			final String targetString = action.get(TARGET);
 
-			// TODO: BUG: This features is potentially abusable right now.
-			// Consider removing it...
 			if ((targetString != null) && targetString.equals("-1")) {
 				// Disown
 				if (action.has(_SPECIES)) {

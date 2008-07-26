@@ -927,7 +927,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			g.drawImage(image, 0, 0, null);
 		}
 
-		// TODO: Find a clean way to do g.dispose() after g.create()'s
 
 		if (frame) {
 			g = (Graphics2D) g.create(FRAME_SIZE, FRAME_SIZE, width
