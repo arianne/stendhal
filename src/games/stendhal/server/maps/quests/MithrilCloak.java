@@ -150,24 +150,30 @@ public class MithrilCloak extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new NotCondition(new QuestCompletedCondition(MITHRIL_SHIELD_QUEST)),
-								 new QuestInStateCondition(QUEST_SLOT, "need_mithril_shield")
+								 new OrCondition(new QuestInStateCondition(QUEST_SLOT, "need_mithril_shield"),
+												 new QuestInStateCondition(QUEST_SLOT, "fixed_machine"))
 								 ),
 				ConversationStates.ATTENDING, 
-								 "I don't have anything for you until you have proved yourself worthy of carrying mithril items, by getting the mithril shield",
+								 "I don't have anything for you until you have proved yourself worthy of carrying mithril items, by getting the mithril shield.",
 				null);
 
 
-		//player fixed the machine but hadn't got mithril shield. 
+		// player fixed the machine but hadn't got mithril shield at time or didn't ask to hear more about the cloak. 
 		// when they have got it and return to ask for quest she offers the cloak
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(
 								 new QuestCompletedCondition(MITHRIL_SHIELD_QUEST),
-								 new QuestInStateCondition(QUEST_SLOT, "need_mithril_shield")
+								 new OrCondition(new QuestInStateCondition(QUEST_SLOT, "need_mithril_shield"),
+												 new QuestInStateCondition(QUEST_SLOT, "fixed_machine"))
 								 ),
 				ConversationStates.QUEST_2_OFFERED, 
 				"Congratulations, you completed the quest for the mithril shield! Now, I have another quest for you, do you want to hear it?",
 				null);
+
+
+
+
 	}
 
 	
@@ -196,6 +202,7 @@ public class MithrilCloak extends AbstractQuest {
 								player.drop(questslot[1]);
 								npc.say("Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?");
 								player.addXP(100);
+								player.setQuest(QUEST_SLOT,"fixed_machine");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
 							} else {
