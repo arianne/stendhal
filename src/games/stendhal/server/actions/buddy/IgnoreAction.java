@@ -8,7 +8,6 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 class IgnoreAction implements ActionListener {
 
 	private static final String _REASON = "reason";
-	// TODO: make this minutes
 	private static final String _DURATION = "duration";
 
 	public void onAction(final Player player, final RPAction action) {
