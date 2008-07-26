@@ -200,4 +200,20 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+  <item name="twilight moss">
+    <type class="scroll" subclass="twilight_moss" tileid="-1"/>
+    <description>You see a strange looking piece of moss. It looks like it could have hallucinogenic properties.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.TwilightMossScroll"/>    <attributes>
+      <infostring value="int_semos_house 5 5 10800 int_ados_sewing_room -1 -1"/>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 </items>
