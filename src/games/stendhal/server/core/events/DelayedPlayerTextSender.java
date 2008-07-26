@@ -4,7 +4,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Delays the sending of text (until the next turn for instance to work
+ * Delays the sending of text until the next turn (to work
  * around problems like zone changes).
  */
 class DelayedPlayerTextSender implements TurnListener {
@@ -25,6 +25,7 @@ class DelayedPlayerTextSender implements TurnListener {
 		this.message = message;
 		this.type = NotificationType.PRIVMSG;
 	}
+
 	/**
 	 * Creates a new DelayedPlayerTextSender.
 	 * 
@@ -41,9 +42,7 @@ class DelayedPlayerTextSender implements TurnListener {
 		this.type = type;
 	}
 	
-	
 	public void onTurnReached(final int currentTurn) {
 		player.sendPrivateText(type, message);
 	}
-
 }
