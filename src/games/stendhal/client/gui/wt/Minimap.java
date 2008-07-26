@@ -175,7 +175,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// FOR PATHFINDING THING
 		collisiondetection = cd;
-		pathfind.ClearPath();
+		pathfind.clearPath();
 		nodo_actual = 0;
 
 		// calculate size and scale
@@ -273,29 +273,29 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	public void update_pathfind() {
 		if (nodo_actual != 0) {
-			pathfind.PathJumpToNode(nodo_actual);
-			final int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math
-					.abs(playerY - pathfind.NodeGetY())));
+			pathfind.jumpToPathNode(nodo_actual);
+			final int manhatan = (int) ((Math.abs(playerX - pathfind.nodeGetX()) + Math
+					.abs(playerY - pathfind.nodeGetY())));
 
 			if (manhatan < 6) {
 
-				pathfind.PathJumpNode();
+				pathfind.pathJumpNode();
 
 				if (logger.isDebugEnabled()) {
 					logger.debug("Pathfind: To waypoint: "
-							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
+							+ pathfind.nodeGetX() + " " + pathfind.nodeGetY());
 				}
 				final RPAction action = new RPAction();
 				action.put("type", "moveto");
-				action.put("x", pathfind.NodeGetX());
-				action.put("y", pathfind.NodeGetY());
+				action.put("x", pathfind.nodeGetX());
+				action.put("y", pathfind.nodeGetY());
 
 				client.send(action);
 
 				nodo_actual = pathfind.final_path_index;
 
-				if (pathfind.ReachedGoal()) {
-					pathfind.ClearPath();
+				if (pathfind.isGoalReached()) {
+					pathfind.clearPath();
 				}
 			}
 
@@ -546,24 +546,24 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 			final long computation_time = System.currentTimeMillis();
 
-			if (pathfind.NewPath(collisiondetection, (int) playerX,
+			if (pathfind.newPath(collisiondetection, (int) playerX,
 					(int) playerY, (p.x + panx - getClientX()) / scale, ((p.y
 							+ pany - getClientY()) / scale) - 1, search_area)) {
 
-				pathfind.PathJumpNode();
+				pathfind.pathJumpNode();
 				nodo_actual = pathfind.final_path_index;
 
 				if (logger.isDebugEnabled()) {
 					logger.debug("Pathfind: Found, size: "
 							+ pathfind.final_path_index);
 					logger.debug("Pathfind: First waypoint: "
-							+ pathfind.NodeGetX() + "," + pathfind.NodeGetY());
+							+ pathfind.nodeGetX() + "," + pathfind.nodeGetY());
 				}
 
 				final RPAction action = new RPAction();
 				action.put("type", "moveto");
-				action.put("x", pathfind.NodeGetX());
-				action.put("y", pathfind.NodeGetY());
+				action.put("x", pathfind.nodeGetX());
+				action.put("y", pathfind.nodeGetY());
 
 				client.send(action);
 

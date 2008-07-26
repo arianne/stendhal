@@ -41,7 +41,7 @@ public class Pathfind {
 	private Node current_node;
 	int final_path_index = 0;
 
-	private static int colision(final CollisionDetection collisiondetection, final int x1, final int y1) {
+	private static int collision(final CollisionDetection collisiondetection, final int x1, final int y1) {
 //		if (x1 < 0)
 //			return 1;
 //		if (y1 < 0)
@@ -73,7 +73,7 @@ public class Pathfind {
 		return 0;
 	}
 
-	public void PathNextNode() {
+	public void pathNextNode() {
 
 		if (final_path_index != 0) {
 			final_path_index--;
@@ -81,7 +81,7 @@ public class Pathfind {
 		}
 	}
 
-	public void PathJumpNode() {
+	public void pathJumpNode() {
 		final_path_index = final_path_index - 20;
 
 		if (final_path_index < 0) {
@@ -91,7 +91,7 @@ public class Pathfind {
 		current_node = final_path.get(final_path_index);
 	}
 
-	public void PathJumpToNode(final int destnode) {
+	public void jumpToPathNode(final int destnode) {
 		final_path_index = destnode;
 
 		if (final_path_index < 0) {
@@ -100,25 +100,25 @@ public class Pathfind {
 		current_node = final_path.get(destnode);
 	}
 
-	public int NodeGetX() {
+	public int nodeGetX() {
 		return current_node.x;
 	}
 
-	public int NodeGetY() {
+	public int nodeGetY() {
 		return current_node.y;
 	}
 
-	public boolean ReachedGoal() {
+	public boolean isGoalReached() {
 		return final_path_index == 0;
 	}
 
-	public void Reinice() {
+	public void restart() {
 		if (final_path != null) {
 			final_path_index = final_path.size();
 		}
 	}
 
-	public void ClearPath() {
+	public void clearPath() {
 		open_list.clear();
 		closed_list.clear();
 		final_path.clear();
@@ -128,7 +128,7 @@ public class Pathfind {
 
 	}
 
-	public boolean NewPath(final CollisionDetection collisiondetection,
+	public boolean newPath(final CollisionDetection collisiondetection,
 			final int initial_x, final int initial_y, final int final_x, final int final_y,
 			final Rectangle search_area2) {
 
@@ -149,7 +149,7 @@ public class Pathfind {
 		// long computation_time = System.currentTimeMillis();
 		final Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
 
-		ClearPath();
+		clearPath();
 
 		// 1) Add the starting square (or node) to the open list.
 		ini_node.parent = new Node();
@@ -211,7 +211,7 @@ public class Pathfind {
 						continue;
 					}
 
-					if (colision(collisiondetection, x_tmp, y_tmp) == 0) {
+					if (collision(collisiondetection, x_tmp, y_tmp) == 0) {
 						final int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp
 								- final_y));
 
