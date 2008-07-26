@@ -389,9 +389,8 @@ public class RPObjectChangeDispatcher {
 		for (final RPObject schanges : cslot) {
 			final RPObject sobject = slot.get(schanges.getID());
 
-			// TODO: Find out why this happens with bank contents
 			if (sobject == null) {
-				logger.debug("Unable to find existing: " + schanges);
+				logger.info("Unable to find existing: " + schanges);
 				continue;
 			}
 
