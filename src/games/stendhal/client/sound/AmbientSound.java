@@ -334,7 +334,7 @@ class AmbientSound {
 					chance);
 			cycleList.add(cycle);
 		} catch (final Exception e) {
-			// TODO: handle undefined Soundsample
+			logger.debug("undefined Soundsample");
 		}
 	} // addCycle
 

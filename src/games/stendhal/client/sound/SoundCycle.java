@@ -97,7 +97,7 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 		clip = SoundEffectMap.getInstance().getSoundClip(token);
 		if (clip == null) {
-			// TODO: handle soundeffectMap failure
+			logger.debug("sound effect not found for token: " + token);
 		}
 
 		if (entity != null) {
