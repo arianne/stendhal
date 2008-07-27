@@ -408,7 +408,6 @@ public class StendhalClient extends ClientFramework {
 		} else {
 			logger.warn("No character available, trying to create one with the account name.");
 			final RPObject template = new RPObject();
-			// TODO: Account Username can be != of Character username.
 			try {
 				final CharacterResult result = createCharacter(getAccountUsername(), template);
 				if (result.getResult().failed()) {
@@ -424,7 +423,6 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onServerInfo(final String[] info) {
-		// TODO: handle this info
 	}
 
 	@Override

@@ -70,8 +70,6 @@ public class SoundMaster implements Runnable, WorldListener {
 
 		o = sfm.get(soundName);
 		if (o == null) {
-			// TODO: handle System.out.println("sound " + soundName+" was not
-			// got from sfm");
 			return null;
 		}
 		try {
