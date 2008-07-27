@@ -111,7 +111,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	}
 
 	protected int getRandomTurnsForRegrow() {
-		return Rand.rand(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
+		return Rand.randGaussian(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
 	}
 
 	/**

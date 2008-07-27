@@ -25,8 +25,8 @@ public abstract class CreateRaid extends ScriptImpl {
 
 			for (int i = 0; i < entry.getValue(); i++) {
 				sandbox.add(creature, x
-						+ games.stendhal.common.Rand.rand(0, 30), y
-						+ games.stendhal.common.Rand.rand(0, 30));
+						+ games.stendhal.common.Rand.randGaussian(0, 30), y
+						+ games.stendhal.common.Rand.randGaussian(0, 30));
 			}
 		}
 	}

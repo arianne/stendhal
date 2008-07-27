@@ -182,9 +182,9 @@ public class CreatureRespawnPoint implements TurnListener {
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
-			newentity.setATK(Rand.rand(newentity.getATK(),
+			newentity.setATK(Rand.randGaussian(newentity.getATK(),
 					newentity.getATK() / 10));
-			newentity.setDEF(Rand.rand(newentity.getDEF(),
+			newentity.setDEF(Rand.randGaussian(newentity.getDEF(),
 					newentity.getDEF() / 10));
 
 			StendhalRPAction.placeat(zone, newentity, x, y);
