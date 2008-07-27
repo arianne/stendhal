@@ -71,7 +71,6 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter(npc, access));
 						        npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
 					        }
-					        // TODO: implement pointer to authors, GFDL, etc...
 				        });
 				addReply("wikipedia",
 						"Wikipedia is an Internet based project to create a #free encyclopedia");

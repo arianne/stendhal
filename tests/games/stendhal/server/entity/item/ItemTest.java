@@ -133,7 +133,6 @@ public class ItemTest {
 		slots.add("one");
 		mo.setEquipableSlots(slots);
 		assertEquals(slots, mo.getPossibleSlots());
-		// TODO: should there be several slots of the same name?
 	}
 
 	@Test
