@@ -156,12 +156,13 @@ public class TellAction implements ActionListener {
 			for (String buddyName : buddies) {
 				// TODO: as in Player.java, remove '_' prefix if ID is made
 				// completely virtual
-				if (buddyName.charAt(0) == '_') {
-					buddyName = buddyName.substring(1);
-				}
-				if (buddyName.equals(senderName)) {
-					senderFound = true;
-					break;
+				if (!"id".equals(buddyName)) {
+					
+				buddyName = buddyName.substring(1);
+					if (buddyName.equals(senderName)) {
+						senderFound = true;
+						break;
+					}
 				}
 			}
 			if (!senderFound) {
