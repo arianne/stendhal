@@ -102,8 +102,9 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
-	 * onChangedAdded() from other initialize() hack. TODO: Need to fix it all
+	 * onChangedAdded() from other initialize() hack. 
 	 * to work right, but not now.
+	 * TODO: get rid off inAdd variable.
 	 */
 	protected boolean inAdd;
 

@@ -235,6 +235,7 @@ public class StendhalRPWorld extends RPWorld {
 			validatePortals();
 
 			SingletonRepository.getGagManager();
+			SingletonRepository.getJail();
 		} catch (final Exception e) {
 			logger.error("Error on Init the server.", e);
 		}

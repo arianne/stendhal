@@ -62,10 +62,6 @@ public class ArrestWarrant extends Entity implements StoreableEntity {
 		super(rpobject);
 		store();
 		hide();
-		// initialize jail so that players with pending ArrestWarrants
-		// are arrested on login.
-		// TODO: find a better way to initialize the Jail
-		SingletonRepository.getJail();
 	}
 
 	/**
