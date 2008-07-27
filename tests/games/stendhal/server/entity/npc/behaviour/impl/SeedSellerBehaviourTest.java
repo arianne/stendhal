@@ -49,6 +49,7 @@ public class SeedSellerBehaviourTest {
 		final SpeakerNPC speakerNPC = new SpeakerNPC("hugo");
 
 		sb = new SeedSellerBehaviour(pricelist);
+		sb.setAmount(1);
 		sb.setChosenItemName("lilia seed");
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		PlayerTestHelper.equipWithMoney(bob, 100);
