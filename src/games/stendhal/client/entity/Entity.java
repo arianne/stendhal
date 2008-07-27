@@ -486,7 +486,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		 */
 		onPosition(x, y);
 
-		// TODO: BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
 		inAdd = false;
