@@ -162,8 +162,7 @@ public class Rand {
 	 *            The standard deviation
 	 * @return An integer near <i>mean</i>
 	 */
-	// TODO: Rename to randUniform
-	public static int rand(final int mean, final int sd) {
+	public static int randGaussian(final int mean, final int sd) {
 		return (int) (rand.nextGaussian() * sd + mean);
 	}
 }
