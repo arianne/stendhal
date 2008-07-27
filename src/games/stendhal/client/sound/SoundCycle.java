@@ -216,7 +216,7 @@ class SoundCycle extends Thread implements Cloneable {
 					dataline = ((SoundObject) o).playSound(token, volBot,
 							volTop, chance);
 				} else {
-					// FIXME: could be origin for sound dont stop bug
+					// FIXME: o is never null could be origin for sound dont stop bug
 					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
 				}

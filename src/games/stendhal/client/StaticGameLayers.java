@@ -251,8 +251,7 @@ public class StaticGameLayers {
 		isValid = true;
 	}
 
-	// TODO: Rename to getAreaName()
-	public String getRPZoneLayerSet() {
+	public String getAreaName() {
 		return area;
 	}
 
@@ -308,10 +307,6 @@ public class StaticGameLayers {
 	 * @return the combined key
 	 */
 	protected String getLayerKey(final String area, final String layer) {
-//		            TODO: Make the key an object with area/layer fields and
-//		             replace ugly code that uses startsWith('area.').
-//		 
-		
 		return area + "." + layer;
 	}
 

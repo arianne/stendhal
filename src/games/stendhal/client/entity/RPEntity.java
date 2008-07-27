@@ -525,7 +525,6 @@ public abstract class RPEntity extends ActiveEntity {
 		StendhalClient.get().generateWhoPlayers(text);
 		StendhalUI.get().addEventLine(text, type);
 
-		// TODO: Position based on visual part
 		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
 				text.replace("|", ""), type, false);
 	}
@@ -577,7 +576,6 @@ public abstract class RPEntity extends ActiveEntity {
 				line = line + " ...";
 			}
 
-			// TODO: Position based on visual part
 			GameScreen.get().addText(getX() + getWidth(), getY(), line,
 					NotificationType.NORMAL, true);
 		}
@@ -1099,7 +1097,6 @@ public abstract class RPEntity extends ActiveEntity {
 				StendhalUI.get().addEventLine(text,
 						NotificationType.SIGNIFICANT_POSITIVE);
 
-				// TODO: Position based on visual part
 				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
 						text, NotificationType.SIGNIFICANT_POSITIVE, false);
 			}

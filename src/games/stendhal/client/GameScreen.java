@@ -502,7 +502,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 * Draw the GameLayers from bootom to top, relies on exact naming of the
 		 * layers
 		 */
-		final String set = gameLayers.getRPZoneLayerSet();
+		final String set = gameLayers.getAreaName();
 
 		final int xTemp = (int) getViewX();
 		final int yTemp = (int) getViewY();
