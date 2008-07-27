@@ -161,7 +161,7 @@ public class FindGhostsTest {
 		enGhost.step(player, "hi");
 		assertEquals("Remember my name ... Mary ... Mary ...", npcGhost.get("text"));
 		assertEquals(oldxp + 100, player.getXP());
-		assertThat(player.getQuest("find_ghosts") , containsString("Mary"));
+		assertThat(player.getQuest("find_ghosts") , containsString("mary"));
 
 		// [22:26] superkym earns 100 experience points.
 
@@ -177,10 +177,10 @@ public class FindGhostsTest {
 				npcGhost.get("text"));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
-		assertThat(player.getQuest("find_ghosts") , containsString("Ben"));
+		assertThat(player.getQuest("find_ghosts").toLowerCase() , containsString("ben"));
 
 		// -----------------------------------------------
-		assertThat(player.getQuest("find_ghosts") , not(containsString("Goran")));
+		assertThat(player.getQuest("find_ghosts") , not(containsString("goran")));
 
 		oldxp = player.getXP();
 		npcGhost = SingletonRepository.getNPCList().get("Goran");
@@ -189,11 +189,11 @@ public class FindGhostsTest {
 		assertEquals("Remember my name ... Goran ... Goran ...", npcGhost.get("text"));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
-		assertThat(player.getQuest("find_ghosts") , containsString("Goran"));
+		assertThat(player.getQuest("find_ghosts") , containsString("goran"));
 
 		// -----------------------------------------------
 		oldxp = player.getXP();
-		assertThat(player.getQuest("find_ghosts") , not(containsString("Zak")));
+		assertThat(player.getQuest("find_ghosts") , not(containsString("zak")));
 
 		npcGhost = SingletonRepository.getNPCList().get("Zak");
 		enGhost = npcGhost.getEngine();
@@ -201,7 +201,7 @@ public class FindGhostsTest {
 		assertEquals("Remember my name ... Zak ... Zak ...", npcGhost.get("text"));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
-		assertThat(player.getQuest("find_ghosts") , containsString("Zak"));
+		assertThat(player.getQuest("find_ghosts") , containsString("zak"));
 
 		// -----------------------------------------------
 		oldxp = player.getXP();
@@ -216,8 +216,8 @@ public class FindGhostsTest {
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 				npc.get("text"));
 
-		assertThat(player.getQuest("find_ghosts").split(":")[0], containsString("Mary"));
-		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("Mary")));
+		assertThat(player.getQuest("find_ghosts").split(":")[0], containsString("mary"));
+		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("mary")));
 		en.step(player, "Mary");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("mary"));
