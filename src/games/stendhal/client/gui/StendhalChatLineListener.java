@@ -61,7 +61,6 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 
 		// Open chat log file
 		try {
-			// TODO: Create the file on the Stendhal home folder.
 			final File chatfile = new File(CHAT_LOG_FILE);
 
 			if (chatfile.exists()) {

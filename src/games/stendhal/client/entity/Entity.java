@@ -496,7 +496,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 */
 	public boolean isObstacle(final IEntity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
-		// TODO: Check is self check is needed here, or obsolete
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 

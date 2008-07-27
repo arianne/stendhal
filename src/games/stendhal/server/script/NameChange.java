@@ -20,7 +20,6 @@ public class NameChange extends ScriptImpl {
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		// check configuration
-		// TODO: Do this on load (allowing success/fail return value)?
 		try {
 			if (!Configuration.getConfiguration().has(CONFIG_KEY)
 					|| !Boolean.parseBoolean(Configuration.getConfiguration().get(

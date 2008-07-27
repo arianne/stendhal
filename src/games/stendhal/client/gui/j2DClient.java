@@ -421,10 +421,6 @@ public class j2DClient extends StendhalUI {
 	}
 
 
-	// MEMORY DEBUGGING:
-	// private long avgmemt = 0L;
-	// private long avgmemc = 0L;
-
 	public void gameLoop(final IGameScreen gameScreen) {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 		int fps = 0;
@@ -443,14 +439,6 @@ public class j2DClient extends StendhalUI {
 
 		gameRunning = true;
 
-		// MEMORY DEBUGGING:
-		// {
-		// Runtime rt = Runtime.getRuntime();
-		// rt.gc();
-		// long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
-		// System.err.println("init mem = " + mem + "k");
-		// }
-
 		boolean canExit = false;
 		while (!canExit) {
 			fps++;
@@ -464,22 +452,9 @@ public class j2DClient extends StendhalUI {
 			final int delta = (int) (now - refreshTime);
 			refreshTime = now;
 
-			// MEMORY DEBUGGING:
-			// Runtime rt = Runtime.getRuntime();
-			// long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
-			// avgmemt += mem;
-			// avgmemc++;
-			//
-			// System.err.println("mem = " + (avgmemt / avgmemc) + "k");
-			// //rt.gc();
 			logger.debug("Move objects");
 			gameObjects.update(delta);
 
-			/*
-			 * TODO: Consolidate the next 3 parts into one isInBatchUpdate()
-			 * check, if User update code can be skipped [without side effects]
-			 * while in it.
-			 */
 			if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
 				/*
 				 * Update the screen
@@ -490,8 +465,7 @@ public class j2DClient extends StendhalUI {
 				screen.center();
 
 				// [Re]create the map
-				//
-				// TODO: Replace with listener notification
+	
 				final CollisionDetection cd = gameLayers.getCollisionDetection();
 				if (cd != null) {
 					minimap.update(cd,
@@ -506,9 +480,7 @@ public class j2DClient extends StendhalUI {
 
 			if (user != null) {
 				if (newCode) {
-					/*
-					 * Hack! Need to update list when changes arrive
-					 */
+				
 					if (nbuddies.isVisible()) {
 						nbuddies.update();
 					}
@@ -613,14 +585,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 		}
-		// MEMORY DEBUGGING:
-		// {
-		// Runtime rt = Runtime.getRuntime();
-		// //rt.gc();
-		// long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
-		// System.err.println("end mem = " + mem + "k");
-		// }
-
+	
 		SoundSystem.get().exit();
 	}
 
