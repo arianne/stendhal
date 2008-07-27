@@ -84,6 +84,8 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 				entity.sendPrivateText("This grain is not yet ripe enough to harvest.");
 				return false;
 			}
+		} else if (entity instanceof Player) {
+			entity.sendPrivateText("You can't reach that grain from here.");
 		}
 		return false;
 	}
