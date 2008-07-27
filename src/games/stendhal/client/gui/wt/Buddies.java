@@ -188,7 +188,7 @@ public class Buddies extends WtPanel {
 			buddies.clear();
 
 			for (final String key : buddy) {
-				if (key.startsWith("_")) {
+				if (!"id".equals(key)) {
 					buddies.add(key.substring(1));
 
 					if (buddy.getInt(key) == 0) {

@@ -344,7 +344,9 @@ public class UserContext implements RPObjectChangeListener {
 			 * TODO: Drop underscore prefix when 'id' is not forced into the
 			 * RPObject attributes
 			 */
-			if (!key.startsWith("_")) {
+			logger.info(key);
+			
+			if ("id".equals(key)) {
 				continue;
 			}
 
@@ -381,7 +383,7 @@ public class UserContext implements RPObjectChangeListener {
 			 * TODO: Drop underscore prefix when 'id' is not forced into the
 			 * RPObject attributes
 			 */
-			if (!key.startsWith("_")) {
+			if ("id".equals(key)) {
 				continue;
 			}
 
@@ -402,7 +404,7 @@ public class UserContext implements RPObjectChangeListener {
 	protected void processFeaturesAdded(final RPObject changes) {
 		for (final String featureName : changes) {
 			// Skip internal ID field
-			if (featureName.equals("id")) {
+			if ("id".equals(featureName)) {
 				continue;
 			}
 
@@ -424,7 +426,7 @@ public class UserContext implements RPObjectChangeListener {
 	protected void processFeaturesRemoved(final RPObject changes) {
 		for (final String featureName : changes) {
 			// Skip internal ID field
-			if (featureName.equals("id")) {
+			if ("id".equals(featureName)) {
 				continue;
 			}
 
@@ -572,9 +574,9 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (slotName.equals("!buddy")) {
+		if ("!buddy".equals(slotName)) {
 			processBuddiesAdded(schanges);
-		} else if (slotName.equals("!features")) {
+		} else if ("!features".equals(slotName)) {
 			processFeaturesAdded(schanges);
 		}
 	}
@@ -594,9 +596,9 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (slotName.equals("!buddy")) {
+		if ("!buddy".equals(slotName)) {
 			processBuddiesRemoved(schanges);
-		} else if (slotName.equals("!features")) {
+		} else if ("!features".equals(slotName)) {
 			processFeaturesRemoved(schanges);
 		}
 	}
@@ -613,9 +615,9 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
-		if (slotName.equals("!buddy")) {
+		if ("!buddy".equals(slotName)) {
 			processBuddiesRemoved(sobject);
-		} else if (slotName.equals("!features")) {
+		} else if ("!features".equals(slotName)) {
 			processFeaturesRemoved(sobject);
 		}
 	}

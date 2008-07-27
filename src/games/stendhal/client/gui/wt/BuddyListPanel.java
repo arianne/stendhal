@@ -102,7 +102,7 @@ public class BuddyListPanel extends JPanel {
 		buddies.clear();
 
 		for (final String key : buddy) {
-			if (!key.startsWith("_")) {
+			if ("id".equals(key)) {
 				continue;
 			}
 			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
