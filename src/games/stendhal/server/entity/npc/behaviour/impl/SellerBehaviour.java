@@ -68,7 +68,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			return false;
 		}
 
-		// TODO: When the user tries to buy several of a non-stackable
+		// When the user tries to buy several of a non-stackable
 		// item, he is forced to buy only one.
 		if (item instanceof StackableItem) {
 			((StackableItem) item).setQuantity(getAmount());
