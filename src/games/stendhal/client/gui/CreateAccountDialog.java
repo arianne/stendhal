@@ -310,9 +310,6 @@ public class CreateAccountDialog extends JDialog {
 						progressBar.step();
 						progressBar.finish();
 
-						// TODO: Check mental conflict bewteen username and
-						// account name.
-						// Be sure to fix all the variable names.
 						client.setAccountUsername(accountUsername);
 
 						/*
