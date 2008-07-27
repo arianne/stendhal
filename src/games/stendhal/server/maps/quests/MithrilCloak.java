@@ -16,17 +16,14 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
@@ -39,8 +36,6 @@ import games.stendhal.server.util.TimeUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * QUEST: Mithril Cloak
@@ -156,7 +151,7 @@ public class MithrilCloak extends AbstractQuest {
 									final SpeakerNPC npc) {
 								final List<String> PARTS_LIST = Arrays.asList("leather armor", "oil", "bobbin");
 								final String parts = Rand.rand(PARTS_LIST);
-								if("leather armor".equals(parts)){
+								if ("leather armor".equals(parts)) {
 									npc.say("Thank you! It needs a piece of leather to fix it. Please fetch me " 
 											+ Grammar.a_noun(parts) + " and come back as soon as you can.");
 								} else {
@@ -242,11 +237,11 @@ public class MithrilCloak extends AbstractQuest {
 						@Override
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final String[] questslot = player.getQuest(QUEST_SLOT).split(";");
-							if (player.isEquipped(questslot[1])){
+							if (player.isEquipped(questslot[1])) {
 								player.drop(questslot[1]);
 								npc.say("Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?");
 								player.addXP(100);
-								player.setQuest(QUEST_SLOT,"fixed_machine");
+								player.setQuest(QUEST_SLOT, "fixed_machine");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
 							} else {
@@ -281,7 +276,7 @@ public class MithrilCloak extends AbstractQuest {
 								 ),
 				ConversationStates.ATTENDING, 
 				"Oh, I see you are already on a quest to obtain a mithril shield. You see, I was going to offer you a mithril cloak. But you should finish that first. Come back when you've finished the mithril shield quest and we will speak again.",
-				new SetQuestAction(QUEST_SLOT,"need_mithril_shield"));
+				new SetQuestAction(QUEST_SLOT, "need_mithril_shield"));
 			
 			// player asks for quest but they haven't completed mithril shield quest
 			npc.add(ConversationStates.QUEST_2_OFFERED,
@@ -289,7 +284,7 @@ public class MithrilCloak extends AbstractQuest {
 					new QuestNotStartedCondition(MITHRIL_SHIELD_QUEST),
 					ConversationStates.ATTENDING, 
 					"There are legends of a wizard called Baldemar, in the famous underground magic city, who will forge a mithril shield for those who bring him what it needs. You should meet him and do what he asks. Once you have completed that quest, come back here and speak with me again. I will have another quest for you.",
-					new SetQuestAction(QUEST_SLOT,"need_mithril_shield"));
+					new SetQuestAction(QUEST_SLOT, "need_mithril_shield"));
 
 			// player refused to hear more about another quest after fixing machine
 			npc.add(ConversationStates.QUEST_2_OFFERED,
@@ -313,7 +308,7 @@ public class MithrilCloak extends AbstractQuest {
 		// accept the fabric and ask for scissors
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("fabric", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_fabric"),new PlayerHasItemWithHimCondition(FABRIC)),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_fabric"), new PlayerHasItemWithHimCondition(FABRIC)),
 				ConversationStates.ATTENDING,
 				"Wow you got the " + FABRIC + " , that didn't take as long as I expected! Now, to cut it I need magical scissors, if you would go get them from #Hogart. I will be waiting for you to return.",
 				new MultipleActions(
@@ -331,7 +326,7 @@ public class MithrilCloak extends AbstractQuest {
 				"I'm still waiting for the " + FABRIC + " so I can start work on your mithril cloak.",				
 				null);
 
-		npc.addReply("Hogart","He's that grumpy old dwarf in the Or'ril mines. I already sent him a message saying I wanted some new scissors but he didn't respond. Well, what he lacks in people skills he makes up for in his metal work.");
+		npc.addReply("Hogart", "He's that grumpy old dwarf in the Or'ril mines. I already sent him a message saying I wanted some new scissors but he didn't respond. Well, what he lacks in people skills he makes up for in his metal work.");
 	}
 
 	private void getScissorsStep() {
@@ -349,10 +344,10 @@ public class MithrilCloak extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-					final int neededEggshells = Rand.randUniform(2,4);
+					final int neededEggshells = Rand.randUniform(2, 4);
 					engine.say("Ah yes, Ida sent me a message about some magical scissors. I need one each of an iron bar and a mithril bar, and also " + Integer.toString(neededEggshells) + " magical #eggshells. Ask me about #scissors again when you return with those items.");
 					// store the number of needed eggshells in the quest slot so he remembers how many he asked for
-					player.setQuest(QUEST_SLOT, "need_eggshells;"+Integer.toString(neededEggshells));
+					player.setQuest(QUEST_SLOT, "need_eggshells;" + Integer.toString(neededEggshells));
 				}
 			});
 
@@ -387,8 +382,7 @@ public class MithrilCloak extends AbstractQuest {
 					final int neededEggshells = Integer.valueOf(questslot[1]);
 					if (player.isEquipped("iron")
 						&& player.isEquipped("mithril bar")
-						&& player.isEquipped("magical eggshells", neededEggshells)) 
-						{
+						&& player.isEquipped("magical eggshells", neededEggshells)) {
 							player.drop("iron");
 							player.drop("mithril bar");
 							player.drop("magical eggshells", neededEggshells);
@@ -484,11 +478,11 @@ public class MithrilCloak extends AbstractQuest {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
                         final int required = (sentence.getNumeral().getAmount());
-						if( player.drop("disease poison",required*REQUIRED_POISONS) ){
+						if (player.drop("disease poison", required * REQUIRED_POISONS)) {
 							npc.say("Ok, here's your " + Integer.toString(required) + " eggshells. Enjoy!");
 							new EquipItemAction("magical eggshells", required, true).fire(player, sentence, npc);
 						} else {
-							npc.say("Ok, ask me again when you have " + Integer.toString(required*REQUIRED_POISONS) + " disease poisons with you.");
+							npc.say("Ok, ask me again when you have " + Integer.toString(required * REQUIRED_POISONS) + " disease poisons with you.");
 						}						
 					}
 				});
@@ -510,7 +504,7 @@ public class MithrilCloak extends AbstractQuest {
 		// take scissors and ask for needle now
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("scissors", "magical", "magical scissors", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_scissors"),new PlayerHasItemWithHimCondition("magical scissors")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_scissors"), new PlayerHasItemWithHimCondition("magical scissors")),
 				ConversationStates.ATTENDING,
 				"You brought those magical scissors! Excellent! Now that I can cut the fabric I need a magical needle. You can buy one from a trader in the abandoned keep of Ados mountains, #Ritati Dragon something or other. Just go to him and ask for his 'specials'.",
 				new MultipleActions(
@@ -533,7 +527,7 @@ public class MithrilCloak extends AbstractQuest {
 				"Where are the magical scissors you are supposed to be getting from #Hogart?",				
 				null);
 
-		npc.addReply("Ritati","He's somewhere in the abandoned keep in the mountains north east from here.");
+		npc.addReply("Ritati", "He's somewhere in the abandoned keep in the mountains north east from here.");
 	}
 
 
@@ -557,18 +551,18 @@ public class MithrilCloak extends AbstractQuest {
 		// agrees to buy 1 needle
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
-				new PlayerHasItemWithHimCondition("money",NEEDLE_COST),
+				new PlayerHasItemWithHimCondition("money", NEEDLE_COST),
 				ConversationStates.ATTENDING,
 				"Ok, here you are. Be careful with them, they break easy.",				
 				new MultipleActions(
-									 new DropItemAction("money",NEEDLE_COST), 
-									 new EquipItemAction("magical needle",1,true)
+									 new DropItemAction("money", NEEDLE_COST), 
+									 new EquipItemAction("magical needle", 1, true)
 									 ));
 
 		// said he had money but he didn't
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
-				new NotCondition(new PlayerHasItemWithHimCondition("money",NEEDLE_COST)),
+				new NotCondition(new PlayerHasItemWithHimCondition("money", NEEDLE_COST)),
 				ConversationStates.ATTENDING,
 				"What the ... you don't have enough money! Get outta here!",				
 				null);
@@ -599,18 +593,18 @@ public class MithrilCloak extends AbstractQuest {
 										 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 											 final String[] questslot = player.getQuest(QUEST_SLOT).split(";");
 											 int needles;
-											 if (questslot.length >1) {
+											 if (questslot.length > 1) {
 												 // if the split works, we had stored a needle number before
 												 needles = Integer.parseInt(questslot[1]);
-												 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," +
-														 " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
+												 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," 
+														 + " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
 											 } else {
 												 // it wasn't split with a number.
 												 // so this is the first time we brought a needle
-												 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" +
-														 " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
+												 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" 
+														 + " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
 												 // ida breaks needles - she will need 1 - 3
-												 needles = Rand.randUniform(1,3);
+												 needles = Rand.randUniform(1, 3);
 											 }											
 											 player.setQuest(QUEST_SLOT, "sewing;" + System.currentTimeMillis() + ";" + needles);
 										 }
@@ -655,13 +649,13 @@ public class MithrilCloak extends AbstractQuest {
 							}
 							// ida breaks needles, but if it is the last one,
 							// she pricks her finger on that needle
-							if (Integer.valueOf(tokens[2])==1 ){
+							if (Integer.valueOf(tokens[2]) == 1) {
 								npc.say("Ouch! I pricked my finger on that needle! I feel woozy ...");
 								player.setQuest(QUEST_SLOT, "twilight_zone");
 							} else {
 								npc.say("These magical needles are so fragile, I'm sorry but you're going to have to get me another, the last one broke. Hopefully Ritati still has plenty.");
 								final int needles = Integer.parseInt(tokens[2]) - 1;
-								player.setQuest(QUEST_SLOT, "need_needle;" + needles );
+								player.setQuest(QUEST_SLOT, "need_needle;" + needles);
 							}							
 				}
 			});
@@ -711,7 +705,7 @@ public class MithrilCloak extends AbstractQuest {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
                         final int required = (sentence.getNumeral().getAmount());
-						if( player.drop("money" , required*MOSS_COST) ){
+						if (player.drop("money" , required * MOSS_COST)) {
 							npc.say("Ok, here's your " + Integer.toString(required) + " pieces of twilight moss. Don't take too much at once.");
 							new EquipItemAction("twilight moss", required, true).fire(player, sentence, npc);
 						} else {
@@ -753,7 +747,7 @@ public class MithrilCloak extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						if( player.drop("blue striped cloak") ){
+						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
 							player.setQuest(QUEST_SLOT, "gave_striped_cloak");
 							npc.setCurrentState(ConversationStates.ATTENDING);
@@ -769,7 +763,7 @@ public class MithrilCloak extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						if( player.drop("blue striped cloak") ){
+						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 							player.setQuest(QUEST_SLOT, "gave_striped_cloak");
@@ -781,7 +775,7 @@ public class MithrilCloak extends AbstractQuest {
 				
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("blue striped cloak", "mithril", "mithril cloak", "ida"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_striped_cloak"),new PlayerHasItemWithHimCondition("blue striped cloak")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_striped_cloak"), new PlayerHasItemWithHimCondition("blue striped cloak")),
 				ConversationStates.ATTENDING,
 				"Oh that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!",
 				new MultipleActions(
@@ -814,8 +808,8 @@ public class MithrilCloak extends AbstractQuest {
 				"Please don't forget to take a blue striped cloak to #Josephine. Come back and let me know once she has it.",				
 				null);
 
-		npc.addReply("Josephine","Surely you know Josephine? That flirty flighty girl from Fado, bless her heart.");
-		npc.addReply("Pedinghaus","I mean the wizard who works with Joshua in the Ados smithy.");
+		npc.addReply("Josephine", "Surely you know Josephine? That flirty flighty girl from Fado, bless her heart.");
+		npc.addReply("Pedinghaus", "I mean the wizard who works with Joshua in the Ados smithy.");
 	}
 	
 	private void getClaspStep() {
@@ -842,8 +836,8 @@ public class MithrilCloak extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (player.isEquipped("mithril bar")) 
-						{	player.drop("mithril bar");
+					if (player.isEquipped("mithril bar")) {
+						player.drop("mithril bar");
 							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in " 
 									   + REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
 							player.setQuest(QUEST_SLOT, "forgingclasp;" + System.currentTimeMillis());
@@ -901,13 +895,13 @@ public class MithrilCloak extends AbstractQuest {
 		// Player brought the clasp, don't make them wait any longer for the cloak
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("clasp", "mithril clasp", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_clasp"),new PlayerHasItemWithHimCondition("mithril clasp")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_clasp"), new PlayerHasItemWithHimCondition("mithril clasp")),
 				ConversationStates.ATTENDING,
 				"Wow, Pedinghaus really outdid himself this time. It looks wonderful on your new cloak! Wear it with pride.",
 				new MultipleActions(
 									 new DropItemAction("mithril clasp"), 
 									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 10.0),
-									 new EquipItemAction("mithril cloak",1,true), 
+									 new EquipItemAction("mithril cloak", 1, true), 
 									 new IncreaseXPAction(1000)
 									 )
 				);
