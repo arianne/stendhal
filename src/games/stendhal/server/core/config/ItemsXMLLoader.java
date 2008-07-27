@@ -144,8 +144,6 @@ public class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("description")) {
 			if (text != null) {
 				description = text.trim();
-				// TODO: There are empty spaces on the middle of the
-				// description.
 			}
 		}
 	}

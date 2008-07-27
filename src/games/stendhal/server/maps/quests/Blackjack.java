@@ -63,7 +63,6 @@ public class Blackjack extends AbstractQuest {
 
 	private SpeakerNPC ramon;
 
-	// TODO: Resolve when requested (incase reloadable zones support added)
 	private final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 			"-1_athor_ship_w2");
 

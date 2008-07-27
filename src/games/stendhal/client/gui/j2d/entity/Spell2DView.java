@@ -140,7 +140,6 @@ class Spell2DView extends Entity2DView {
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-		// TODO: Use 'Cast' instead??
 		case USE:
 			final RPAction rpaction = new RPAction();
 

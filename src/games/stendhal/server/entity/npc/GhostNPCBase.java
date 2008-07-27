@@ -39,7 +39,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 	private static class GhostGreetingAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT,"rejected")) {
+			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, "rejected")) {
 				player.setQuest(QUEST_SLOT, "looking:said");
 			}
 			final String npcQuestText = player.getQuest(QUEST_SLOT);
@@ -49,7 +49,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 			// so we have to be compatible with them
 			final String lookStr;
 			final String saidStr;
-			if (npcDoneText.length > 1 ) {
+			if (npcDoneText.length > 1) {
 				lookStr = npcDoneText[0].toLowerCase();
 				saidStr = npcDoneText[1].toLowerCase();			 
 
@@ -67,7 +67,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 			} else {
 				// compatibility with older broken quest slots. fix them.
 				logger.warn("Player " + player.getTitle() + " found with find_ghosts quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
-				player.setQuest(QUEST_SLOT,"done");
+				player.setQuest(QUEST_SLOT, "done");
 				npc.say("Please, let the dead rest in peace.");
 			}
 		}

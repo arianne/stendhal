@@ -62,7 +62,6 @@ public class VampireSword extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES = 10;
 
-	// TODO: rename this to "vampire_sword" before server reset
 	private static final String QUEST_SLOT = "vs_quest";
 
 	@Override

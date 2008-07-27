@@ -84,8 +84,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 */
 	@Override
 	public void setAmount(int amount) {
-		// TODO: This does not solve the problem, it is just a quick fix to get
-		// the server back online.
+
 		if (amount < 1) {
 			amount = 1;
 			logger.warn("Increasing very low amount of " + amount + " to 1.");

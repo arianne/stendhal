@@ -32,9 +32,7 @@ import java.util.Map;
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		LoginListener {
-    // TODO: review scope
-	public static final int NEVER_WEARS_OFF = -1;
-    // TODO: review scope (see OutfitChangerAdder)
+	protected static final int NEVER_WEARS_OFF = -1;
 	public int endurance;
 
 	private final String wearOffMessage;

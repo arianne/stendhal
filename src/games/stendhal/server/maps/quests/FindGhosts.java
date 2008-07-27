@@ -10,7 +10,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -182,7 +181,7 @@ public class FindGhosts extends AbstractQuest {
 					} else {
 						// compatibility with broken quests
 						logger.warn("Player " + player.getTitle() + " found with find_ghosts quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
-						player.setQuest(QUEST_SLOT,"done");
+						player.setQuest(QUEST_SLOT, "done");
 						npc.say("Sorry, it looks like you have already found them after all. I got confused");
 						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.ATTENDING);

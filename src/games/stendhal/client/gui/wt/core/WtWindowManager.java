@@ -33,7 +33,6 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-// TODO: Split this class into parts (the property file handling)
 public class WtWindowManager {
 
 	/** the logger instance. */
