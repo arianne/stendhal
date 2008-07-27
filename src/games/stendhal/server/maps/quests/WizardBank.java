@@ -51,7 +51,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	 */
 	class Timer implements TurnListener {
 		private final WeakReference<Player> timerPlayer;
-
+		/**
+		 * Using unique playername for hashcode.
+		 */
+		private final String playername;
 		/**
 		 * Starts a teleport-out-timer.
 		 * 
@@ -60,6 +63,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		 */
 		protected Timer(final Player player) {
 			timerPlayer = new WeakReference<Player>(player);
+			playername = player.getName();
 		}
 
 		private int counter = TIME;
@@ -67,29 +71,44 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		// override equals
 
 		@Override
-		public boolean equals(final Object obj) {
-			if (obj instanceof Timer) {
-				final Timer newTim = (Timer) obj;
-				return timerPlayer.get() == newTim.timerPlayer.get();
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			
+			if (playername == null) {
+				return prime * result;
 			} else {
+				return prime * result + playername.hashCode();
+			}
+
+		}
+
+		@Override
+		public boolean equals(final Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
 				return false;
 			}
+			if (getClass() != obj.getClass()) {
+				return false;
+			}
+			Timer other = (Timer) obj;
+			
+			if (playername == null) {
+				if (other.playername != null) {
+					return false;
+				}
+			} else if (!playername.equals(other.playername)) {
+				return false;
+			}
+			return true;
 		}
 
 		// override hash
 
-		@Override
-		public int hashCode() {
-			// TODO: This is broken. If player gets GC'd, then
-			// hash code changes. (not good)
-			final Player playerTemp = timerPlayer.get();
-
-			if (playerTemp != null) {
-				return playerTemp.hashCode();
-			} else {
-				return 0;
-			}
-		}
+		
 
 		public void onTurnReached(final int currentTurn) {
 			// check that the player is still in game and stop the timer
