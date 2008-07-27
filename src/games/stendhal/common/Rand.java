@@ -77,9 +77,12 @@ public class Rand {
 	 * @return A random number between <i>a</i> and <i>b</i>, equally distributed.
 	 */
 	public static int randUniform(final int a, final int b) {
-		final int max = Math.max(a,b);
-		final int min = Math.min(a,b);
-		return rand.nextInt(b-a+1) + a;
+		final int max = Math.max(a, b);
+		final int min = Math.min(a, b);
+		if (b < 0 || a < 0) {
+			throw new IllegalArgumentException("argument must not be negative");
+		}
+		return rand.nextInt(max - min + 1) + a;
 	}
 
 	/**
