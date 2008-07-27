@@ -48,7 +48,6 @@ public class IcecreamForAnnie extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	// TODO: move Annie Jones into map file and only add quest stuff here
 	private void createNPC() {
 		npc = new SpeakerNPC("Annie Jones") {
 			@Override
@@ -194,7 +193,6 @@ public class IcecreamForAnnie extends AbstractQuest {
 		zone.add(npc);
 	}
 
-	// TODO: move Mrs Jones into map file and only add quest stuff here
 	private void createMummyNPC() {
 		mummyNPC = new SpeakerNPC("Mrs Jones") {
 			@Override
