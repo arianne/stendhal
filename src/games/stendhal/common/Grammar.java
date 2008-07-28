@@ -244,6 +244,9 @@ public class Grammar {
 		} else if (result.equals("oil")) {
             result = addPrefixIfNotAlreadyThere(lowString, "can of ",
                                                 "cans of ");
+		} else if (result.endsWith(" thread")) {
+				result = addPrefixIfNotAlreadyThere(lowString, "spool of ",
+					"spools of ");
 		} else {
 			result = lowString;
 		}
