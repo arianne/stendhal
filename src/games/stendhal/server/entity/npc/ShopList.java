@@ -205,6 +205,8 @@ public class ShopList {
 		shops.add("boots&helm", "shadow boots", 2000);
 		shops.add("boots&helm", "stone boots", 2500);
 		shops.add("boots&helm", "chaos boots", 4000);
+        shops.add("boots&helm", "green thing boots", 6000);
+        shops.add("boots&helm", "xeno boots", 8000);
 
 		// helmet shop (mithrilbourgh)
 		// Note the shop sign is done by hand in

@@ -72,7 +72,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		// Add a book with the shop offers
 		final Sign book = new Sign();
 		book.setPosition(12, 3);
-		book.setText(" -- Buying -- \n steel boots\t 1000\n golden boots\t 1500\n shadow boots\t 2000\n stone boots\t 2500\n chaos boots\t 4000");
+		book.setText(" -- Buying -- \n steel boots\t 1000\n golden boots\t 1500\n shadow boots\t 2000\n stone boots\t 2500\n chaos boots\t 4000\n green thing boots\t 6000\n xeno boots\t 8000");
 		book.setEntityClass("book_blue");
 		book.setResistance(10);
 		zone.add(book);
