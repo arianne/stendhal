@@ -48,6 +48,7 @@ public class TeacherNPC implements ZoneConfigurator {
 				addJob("I'm a teacher for fishermen. People come to me to take their #exams.");
 				addHelp("If you explore Faiumoni you will find several excellent fishing spots.");
 				addGoodbye("Goodbye.");
+				addReply("oil","You've got the wrong fisherman. Go ask Pequod about oil, he's in the next hut.");
 			}
 		};
 
