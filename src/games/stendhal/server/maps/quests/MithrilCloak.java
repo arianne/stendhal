@@ -209,8 +209,9 @@ public class MithrilCloak extends AbstractQuest {
 				"Congratulations, you completed the quest for the mithril shield! Now, I have another quest for you, do you want to hear it?",
 				null);
 
-
-
+		npc.addReply("oil","The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
+		npc.addReply("bobbin","Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.");
+		npc.addReply("Alrak","I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...");
 
 	}
 
@@ -296,6 +297,7 @@ public class MithrilCloak extends AbstractQuest {
 
 	
 	}
+
 
 	private void getFabricStep() {
 		//I (kymara) don't know what is meant to go here.
