@@ -1131,7 +1131,9 @@ chocolate shake 110
    <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
   </portal>
 </zone>
+
 <zone name="int_magic_house2" file="interiors/magic/house2.tmx">
+ <configurator class-name="games.stendhal.server.maps.magic.house2.WizardNPC"/>
  <portal x="10" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance"/>
   </portal>
