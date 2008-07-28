@@ -12,7 +12,10 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
@@ -20,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
+
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
 		private static long lastShoutTime;
@@ -92,9 +96,52 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addHelp("Can you keep a secret? Dr. Feelgood, our veterinarian, can sell you medicine that he doesn't need for the animals.");
-				addJob("I'm the keeper of this animal refuge.");
+				addOffer("Can you keep a secret? Dr. Feelgood, our veterinarian, can sell you medicine that he doesn't need for the animals.");
+				addJob("I'm the keeper of this animal refuge. I will take care of any abandoned pets I am brought.");
+				add(ConversationStates.ATTENDING,
+					ConversationPhrases.HELP_MESSAGES,
+					new SpeakerNPC.ChatCondition() {
+						@Override
+						public boolean fire(final Player player, final Sentence sentence,
+											final SpeakerNPC engine) {
+							return player.hasPet();
+						}
+					}, 
+					ConversationStates.SERVICE_OFFERED, "Have you brought that pet to be taken care of here?",
+					null);
+				
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.YES_MESSAGES, null,
+					ConversationStates.ATTENDING, null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(final Player player, final Sentence sentence,
+										 final SpeakerNPC npc) {
+							String petName = player.getPet().getTitle();
+							npc.say("Thank you for rescuing this " + petName + ", I will take good care of it.");
+							player.removePet(player.getPet());
+							player.addKarma(30.0);
+						}
+					});
+
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.NO_MESSAGES, null,
+					ConversationStates.ATTENDING, "Oh, it's so nice to see an owner and their pet happy together. Good luck both of you.", null);
+				
+				add(ConversationStates.ATTENDING,
+					ConversationPhrases.HELP_MESSAGES,
+					new SpeakerNPC.ChatCondition() {
+						@Override
+						public boolean fire(final Player player, final Sentence sentence,
+											final SpeakerNPC engine) {
+							return !player.hasPet();
+						}
+					}, 
+					ConversationStates.ATTENDING, "If you should ever find an abandoned pet, please bring it to me.",
+					null);
+
 				addGoodbye("Goodbye!");
+				
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
