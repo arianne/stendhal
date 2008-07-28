@@ -6,6 +6,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.scroll.TwilightMossScroll;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -18,6 +19,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -35,8 +37,12 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
 /**
  * QUEST: Mithril Cloak
  * <p>
@@ -91,6 +97,10 @@ import java.util.List;
 
 public class MithrilCloak extends AbstractQuest {
 
+	private static Logger logger = Logger.getLogger(MithrilCloak.class);
+
+	private static final int REQUIRED_MINUTES_THREAD = 30;
+	private static final int REQUIRED_MINUTES_MITHRIL_THREAD = 120;
 	private static final int REQUIRED_MINUTES_SCISSORS = 10;
 	private static final int REQUIRED_MINUTES_CLASP = 60;
 
@@ -259,12 +269,12 @@ public class MithrilCloak extends AbstractQuest {
 				   "Ok, well if there's anything else I can help you with just say. Don't forget about me though!",
 				   null);
 
-		   //TODO: Say how to get fabric here
+		   //offer cloak
 		   npc.add(ConversationStates.QUEST_2_OFFERED,
 				   ConversationPhrases.YES_MESSAGES,
 				   new QuestCompletedCondition(MITHRIL_SHIELD_QUEST),
 				   ConversationStates.ATTENDING,		   
-				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a yard of " + FABRIC + ".",
+				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a yard of " + FABRIC + ". The expert on fabrics is the wizard #Kampusch.",
 				   new SetQuestAndModifyKarmaAction(QUEST_SLOT, "need_fabric", 10.0));
 					
 
@@ -295,12 +305,469 @@ public class MithrilCloak extends AbstractQuest {
 					"Ok then obviously you don't need any mithril items! Forgive me for offering to help...!",
 					null);
 
+			// where to find wizard
+			npc.addReply("Kampusch","He is obsessed with antiques so look for him in an antiques shop or a museum.");
 	
 	}
 
+	private void getWebSacsStep() {
+    	final SpeakerNPC npc = npcs.get("Vincento Price");
+		
+		npc.addReply("silk","Keep this quiet, ok? I'll spin silk thread from the silk glands of a giant spider. Just ask me to #make it.");
+		npc.addReply("silk gland","Like I said, they come from giant spiders.");
+				
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		requiredResources.put("silk gland", Integer.valueOf(1));
+		
 
-	private void getFabricStep() {
-		//I (kymara) don't know what is meant to go here.
+		// we want to add something to the beginning of quest slot so override classes using it.
+
+		class SpecialProducerBehaviour extends ProducerBehaviour { 
+			SpecialProducerBehaviour(final String productionActivity,
+									 final String productName, final Map<String, Integer> requiredResourcesPerItem,
+									 final int productionTimePerItem) {
+				super(QUEST_SLOT, productionActivity, productName,
+					  requiredResourcesPerItem, productionTimePerItem, false);
+			}
+
+			/**
+			 * Tries to take all the resources required to produce the agreed amount of
+			 * the product from the player. If this is possible, initiates an order.
+			 * 
+			 * @param npc
+			 *            the involved NPC
+			 * @param player
+			 *            the involved player
+			 */
+			@Override
+				public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+				if (getMaximalAmount(player) < amount) {
+					// The player tried to cheat us by placing the resource
+					// onto the ground after saying "yes"
+					npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
+					return false;
+				} else {
+					for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+						final int amountToDrop = amount * entry.getValue();
+						player.drop(entry.getKey(), amountToDrop);
+					}
+					final long timeNow = new Date().getTime();
+					player.setQuest(QUEST_SLOT, "makingthread;" + amount + ";" + getProductName() + ";"
+									+ timeNow);
+					npc.say("It's unorthodox, but I will "
+							+ getProductionActivity()
+							+ " "
+							+ amount
+							+ " "
+							+ getProductName()
+							+ " for you. Please be discreet and come back in "
+							+ amount * REQUIRED_MINUTES_THREAD + " minutes.");
+					return true;
+				}
+			}
+			
+			/**
+			 * This method is called when the player returns to pick up the finished
+			 * product. It checks if the NPC is already done with the order. If that is
+			 * the case, the player is told to get the product from another NPC. 
+			 * Otherwise, the NPC asks the player to come back later.
+			 * 
+			 * @param npc
+			 *            The producing NPC
+			 * @param player
+			 *            The player who wants to fetch the product
+			 */
+			@Override
+				public void giveProduct(final SpeakerNPC npc, final Player player) {
+				final String orderString = player.getQuest(QUEST_SLOT);
+				final String[] order = orderString.split(";");
+				final int numberOfProductItems = Integer.parseInt(order[1]);
+				// String productName = order[1];
+				final long orderTime = Long.parseLong(order[3]);
+				final long timeNow = new Date().getTime();
+				if (timeNow - orderTime <  REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) {
+					npc.say("Shhhh, I'm still working on your request to "
+							+ getProductionActivity() + " " + getProductName()
+							+ " for you.");
+				} else {
+					npc.say("Oh, I gave your "
+							+ Grammar.quantityplnoun(numberOfProductItems,
+													 getProductName()) + " to my research student Boris Karlova. Go collect them from him.");
+					// give some XP as a little bonus for industrious workers
+					player.addXP(100);
+					player.notifyWorldAboutChanges();
+				}
+			}
+		}
+		
+		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "silk thread",
+																		 requiredResources,REQUIRED_MINUTES_THREAD );
+		
+		npc.add(
+				ConversationStates.ATTENDING,
+				"make",
+				new QuestInStateCondition(QUEST_SLOT, "need_fabric"), ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						if (sentence.hasError()) {
+							npc.say("Sorry, I did not understand you. "
+									+ sentence.getErrorString());
+						} else {
+							boolean found = behaviour.parseRequest(sentence);
+							
+    						// Find out how much items we shall produce.
+    						if (!found && (behaviour.getChosenItemName() == null)) {
+    							behaviour.setChosenItemName(behaviour.getProductName());
+    							found = true;
+    						}
+							
+    						if (found) {
+    							if (behaviour.getAmount() > 1000) {
+    								logger.warn("Decreasing very large amount of "
+												+ behaviour.getAmount()
+												+ " " + behaviour.getChosenItemName()
+												+ " to 1 for player "
+												+ player.getName() + " talking to "
+												+ npc.getName() + " saying " + sentence);
+    								behaviour.setAmount(1);
+    							}
+								
+    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+    							}
+    						} else {
+    							if (behaviour.getItemNames().size() == 1) { 
+    								npc.say("Sorry, I can only #make " + behaviour.getItemNames().iterator().next() + ".");
+    							} else {
+    								npc.say("Sorry, I don't understand you.");
+    							}
+    						}
+						}
+					}
+				});
+		
+		npc.add(ConversationStates.PRODUCTION_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
+					behaviour.transactAgreedDeal(npc, player);
+					}
+				});
+
+		npc.add(ConversationStates.PRODUCTION_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING, "OK, no problem.", null);
+
+		npc.add(ConversationStates.ATTENDING,
+				behaviour.getProductionActivity(),
+				new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;"), 
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
+						npc.say("I still haven't finished your last order!");
+					}
+				});
+		// player returns and says hi while sacs being made
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;"),
+			ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence,
+							final SpeakerNPC npc) {
+						behaviour.giveProduct(npc, player);
+					}
+				});
+		// player returns and doesn't need fabric and sacs not being made
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new NotCondition(
+							 new OrCondition(
+											 new QuestInStateCondition(QUEST_SLOT,"need_fabric"),
+											 new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;")
+											 )
+							 ),
+			ConversationStates.IDLE, "Ha ha he he woo hoo!!!",
+			null);
+
+
+		// player returns and needs fabric
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT,"need_fabric"),
+			ConversationStates.ATTENDING, "Ha ha he he woo hoo ... ha ... Sorry, I get carried away sometimes. What do you want?",
+			null);
+
+
+	}
+	private void getThreadStep() {
+		final SpeakerNPC npc = npcs.get("Boris Karlova");
+
+		// player returns and says hi while sacs being made
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;"),
+			ConversationStates.IDLE, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence,
+									 final SpeakerNPC npc) {
+						final String orderString = player.getQuest(QUEST_SLOT);
+						final String[] order = orderString.split(";");
+						final int numberOfProductItems = Integer.parseInt(order[1]);
+						final long orderTime = Long.parseLong(order[3]);
+						final long timeNow = new Date().getTime();
+						if (timeNow - orderTime < REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE ) {
+							npc.say("Haaaa heee woooo hoo!");
+						} else {
+							npc.say("The boss gave me these "  
+									+ Grammar.quantityplnoun(numberOfProductItems,"silk thread") 
+									+ ". Price gets his students to do his dirty work for him.");
+							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
+																														  "silk thread");
+							
+							products.setQuantity(numberOfProductItems);
+							products.setBoundTo(player.getName());
+							player.setQuest(QUEST_SLOT,"got_thread");
+							player.equip(products, true);
+							player.notifyWorldAboutChanges();
+						}
+					}
+				}
+				);
+
+		// player returns and doesn't need fabric and sacs not being made
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;")),
+			ConversationStates.IDLE, "Ha ha he he woo hoo!!!",
+			null);
+
+	}	
+	private void makeMithrilThreadStep() {
+		
+		
+		final SpeakerNPC npc = npcs.get("Kampusch");
+		
+		npc.addReply("balloon","Ah! They are dropped by the charming little baby angels who dwell in Kikareukin Islands. I want one for my daughter.");
+		npc.addReply("silk thread","That is from the silk glands of giant spiders.");
+		npc.addReply("mithril nugget","You can find them for yourself.");
+
+		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+		requiredResources.put("silk thread", Integer.valueOf(40));
+		requiredResources.put("mithril nugget", Integer.valueOf(7));
+		requiredResources.put("balloon", Integer.valueOf(1));
+		
+		class SpecialProducerBehaviour extends ProducerBehaviour { 
+			SpecialProducerBehaviour(final String productionActivity,
+									 final String productName, final Map<String, Integer> requiredResourcesPerItem,
+									 final int productionTimePerItem) {
+				super(QUEST_SLOT, productionActivity, productName,
+					  requiredResourcesPerItem, productionTimePerItem, false);
+			}
+			
+			/**
+			 * Tries to take all the resources required to produce the agreed amount of
+			 * the product from the player. If this is possible, initiates an order.
+			 * 
+			 * @param npc
+			 *            the involved NPC
+			 * @param player
+			 *            the involved player
+			 */
+			@Override
+				public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+				if (getMaximalAmount(player) < amount) {
+					// The player tried to cheat us by placing the resource
+					// onto the ground after saying "yes"
+					npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
+					return false;
+				} else {
+					for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+						final int amountToDrop = amount * entry.getValue();
+						player.drop(entry.getKey(), amountToDrop);
+					}
+					final long timeNow = new Date().getTime();
+					player.setQuest(QUEST_SLOT, "fusingthread;" + amount + ";" + getProductName() + ";"
+									+ timeNow);
+					npc.say("Yes, I will "
+							+ getProductionActivity()
+							+ " "
+							+ amount
+							+ " "
+							+ getProductName()
+							+ " for you. Please come back in "
+							+ amount * REQUIRED_MINUTES_MITHRIL_THREAD + " minutes.");
+					return true;
+				}
+			}
+			
+			/**
+			 * This method is called when the player returns to pick up the finished
+			 * product. It checks if the NPC is already done with the order. If that is
+			 * the case, the player is told to get the product from another NPC. 
+			 * Otherwise, the NPC asks the player to come back later.
+			 * 
+			 * @param npc
+			 *            The producing NPC
+			 * @param player
+			 *            The player who wants to fetch the product
+			 */
+			@Override
+				public void giveProduct(final SpeakerNPC npc, final Player player) {
+				final String orderString = player.getQuest(QUEST_SLOT);
+				final String[] order = orderString.split(";");
+				final int numberOfProductItems = Integer.parseInt(order[1]);
+				// String productName = order[1];
+				final long orderTime = Long.parseLong(order[3]);
+				final long timeNow = new Date().getTime();
+				if (timeNow - orderTime <  REQUIRED_MINUTES_MITHRIL_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) {
+					npc.say("Welcome. I'm still working on your request to "
+							+ getProductionActivity() + " " + getProductName()
+							+ " for you. I cannot say how long it will be.");
+				} else {
+					final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
+																												  getProductName());
+
+					products.setQuantity(numberOfProductItems);
+					
+					products.setBoundTo(player.getName());
+					player.equip(products, true);
+					npc.say("Hello again. The magic is completed. Here you have "
+							+ Grammar.quantityplnoun(numberOfProductItems,
+													 getProductName()) + ".");
+					player.setQuest(QUEST_SLOT, "got_mithril_thread");
+					// give some XP as a little bonus for industrious workers
+					player.addXP(100);
+					player.notifyWorldAboutChanges();
+				}
+			}
+		}
+		
+		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("fuse", "mithril thread",
+																		 requiredResources,REQUIRED_MINUTES_MITHRIL_THREAD );
+		
+		npc.add(
+				ConversationStates.ATTENDING,
+				"fuse",
+				new QuestInStateCondition(QUEST_SLOT, "got_thread"), ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						if (sentence.hasError()) {
+							npc.say("Sorry, I did not understand you. "
+									+ sentence.getErrorString());
+						} else {
+							boolean found = behaviour.parseRequest(sentence);
+							
+    						// Find out how much items we shall produce.
+    						if (!found && (behaviour.getChosenItemName() == null)) {
+    							behaviour.setChosenItemName(behaviour.getProductName());
+    							found = true;
+    						}
+							
+    						if (found) {
+    							if (behaviour.getAmount() > 1000) {
+    								logger.warn("Decreasing very large amount of "
+												+ behaviour.getAmount()
+												+ " " + behaviour.getChosenItemName()
+												+ " to 1 for player "
+												+ player.getName() + " talking to "
+												+ npc.getName() + " saying " + sentence);
+    								behaviour.setAmount(1);
+    							}
+								
+    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+    							}
+    						} else {
+    							if (behaviour.getItemNames().size() == 1) { 
+    								npc.say("Sorry, I can only #fuse " + behaviour.getItemNames().iterator().next() + ".");
+    							} else {
+    								npc.say("Sorry, I don't understand you.");
+    							}
+    						}
+						}
+					}
+				});
+
+		// don't fuse thread unless state correct
+		npc.add(
+				ConversationStates.ATTENDING,
+				"fuse",
+				new NotCondition(new QuestInStateCondition(QUEST_SLOT, "got_thread")), 
+				ConversationStates.ATTENDING, "Ask me again when you have got some silk #thread. And remember, I will know if you really need the magic performed or not.", null);
+		
+		
+		npc.add(ConversationStates.PRODUCTION_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+						public void fire(final Player player, final Sentence sentence,
+										 final SpeakerNPC npc) {
+						behaviour.transactAgreedDeal(npc, player);
+					}
+				});
+		
+		npc.add(ConversationStates.PRODUCTION_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING, "OK, no problem.", null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				behaviour.getProductionActivity(),
+				new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;"), 
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence,
+									 final SpeakerNPC npc) {
+						npc.say("I am already working on an order for you!");
+					}
+				});
+		
+		// player returns and says hi while fusing happening
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestStateStartsWithCondition(QUEST_SLOT,"fusingthread;"),
+			ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+						public void fire(final Player player, final Sentence sentence,
+										 final SpeakerNPC npc) {
+						behaviour.giveProduct(npc, player);
+					}
+				});
+		// player returns and hasn't got thread yet/got thread already and 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new NotCondition(
+								 new OrCondition(
+												 new QuestInStateCondition(QUEST_SLOT,"got_thread"),
+												 new QuestStateStartsWithCondition(QUEST_SLOT,"fusingthread;")
+												 )
+								 ),
+				ConversationStates.ATTENDING, "Greetings. What an interesting place this is.",
+				null);
+
+		
+		// player needs thread fused
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT,"got_thread"),
+				ConversationStates.ATTENDING, "Greetings, can I #offer you anything?",
+				null);
+
+	}
+	private void makeMithrilFabricStep() {
+
 	}
 
 	private void giveFabricStep() {	
@@ -928,7 +1395,10 @@ public class MithrilCloak extends AbstractQuest {
 
 		offerQuestStep();
 		fixMachineStep();
-		getFabricStep();
+		getWebSacsStep();
+		getThreadStep();
+		makeMithrilThreadStep();
+		makeMithrilFabricStep();
 		giveFabricStep();	
 		getScissorsStep();
 		getEggshellsStep();

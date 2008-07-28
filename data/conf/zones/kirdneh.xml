@@ -447,6 +447,7 @@ surgeonfish 15
 
 <zone name="int_kirdneh_museum" file="interiors/kirdneh/museum.tmx">
   <configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.WizardNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable"/>
  <portal x="1" y="24" ref="entrance1">
    <destination zone="0_kirdneh_city" ref="museum1"/>
