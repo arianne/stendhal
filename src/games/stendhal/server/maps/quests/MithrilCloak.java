@@ -165,9 +165,11 @@ public class MithrilCloak extends AbstractQuest {
 								if ("leather armor".equals(parts)) {
 									npc.say("Thank you! It needs a piece of leather to fix it. Please fetch me " 
 											+ Grammar.a_noun(parts) + " and come back as soon as you can.");
+								} else if ("oil".equals(parts)) {
+									npc.say("Thank you! It isn't running smoothly and needs a can of #oil"
+												+ ", I'm ever so grateful for your help.");
 								} else {
-									npc.say("Thank you! It needs " 
-											+ Grammar.a_noun(parts)
+										npc.say("Thank you! It needs a replacement #bobbin"
 												+ ", I'm ever so grateful for your help.");
 								}
 								new SetQuestAndModifyKarmaAction(QUEST_SLOT, "machine;" 
