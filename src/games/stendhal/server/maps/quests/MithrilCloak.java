@@ -426,14 +426,18 @@ public class MithrilCloak extends AbstractQuest {
     						}
 							
     						if (found) {
+								if (behaviour.getAmount() < 40){
+									npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread!");
+									return;
+								}
     							if (behaviour.getAmount() > 1000) {
     								logger.warn("Decreasing very large amount of "
 												+ behaviour.getAmount()
 												+ " " + behaviour.getChosenItemName()
-												+ " to 1 for player "
+												+ " to 40 for player "
 												+ player.getName() + " talking to "
 												+ npc.getName() + " saying " + sentence);
-    								behaviour.setAmount(1);
+    								behaviour.setAmount(40);
     							}
 								
     							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
@@ -560,7 +564,8 @@ public class MithrilCloak extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Kampusch");
 		
 		npc.addReply("balloon","Ah! They are dropped by the charming little baby angels who dwell in Kikareukin Islands. I want one for my daughter.");
-		npc.addReply("silk thread","That is from the silk glands of giant spiders.");
+		npc.addReply("silk thread","That is from the silk glands of giant spiders. You need 40 spools of silk thread to make something as large as a cloak, say.");
+		npc.addReply("silk","That is from the silk glands of giant spiders.");
 		npc.addReply("mithril nugget","You can find them for yourself.");
 
 		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
