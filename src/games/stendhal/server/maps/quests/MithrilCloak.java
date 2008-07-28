@@ -100,7 +100,7 @@ public class MithrilCloak extends AbstractQuest {
 	private static Logger logger = Logger.getLogger(MithrilCloak.class);
 
 	private static final int REQUIRED_MINUTES_THREAD = 30;
-	private static final int REQUIRED_MINUTES_MITHRIL_THREAD = 120;
+	private static final int REQUIRED_MINUTES_MITHRIL_THREAD = 480;
 	private static final int REQUIRED_MINUTES_SCISSORS = 10;
 	private static final int REQUIRED_MINUTES_CLASP = 60;
 
@@ -600,7 +600,7 @@ public class MithrilCloak extends AbstractQuest {
 					npc.say("Yes, I will "
 							+ getProductionActivity()
 							+ " "
-							+ amount
+							+ 40
 							+ " "
 							+ getProductName()
 							+ " for you. Please come back in "
@@ -636,13 +636,11 @@ public class MithrilCloak extends AbstractQuest {
 					final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
 																												  getProductName());
 
-					products.setQuantity(numberOfProductItems);
+					products.setQuantity(40);
 					
 					products.setBoundTo(player.getName());
 					player.equip(products, true);
-					npc.say("Hello again. The magic is completed. Here you have "
-							+ Grammar.quantityplnoun(numberOfProductItems,
-													 getProductName()) + ".");
+					npc.say("Hello again. The magic is completed. Here you have your 40 spools of mithril thread.");
 					player.setQuest(QUEST_SLOT, "got_mithril_thread");
 					// give some XP as a little bonus for industrious workers
 					player.addXP(100);
@@ -674,19 +672,14 @@ public class MithrilCloak extends AbstractQuest {
     						}
 							
     						if (found) {
-    							if (behaviour.getAmount() > 1000) {
-    								logger.warn("Decreasing very large amount of "
-												+ behaviour.getAmount()
-												+ " " + behaviour.getChosenItemName()
-												+ " to 1 for player "
-												+ player.getName() + " talking to "
-												+ npc.getName() + " saying " + sentence);
-    								behaviour.setAmount(1);
-    							}
-								
-    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
-    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-    							}
+    							if (behaviour.getAmount() == 40){	
+									behaviour.setAmount(1);
+									if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+										npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+									}
+								} else {
+									npc.say("Sorry, I will only #fuse #40 mithril thread at a time. No more, and no less. And no questions!");
+								}
     						} else {
     							if (behaviour.getItemNames().size() == 1) { 
     								npc.say("Sorry, I can only #fuse " + behaviour.getItemNames().iterator().next() + ".");
