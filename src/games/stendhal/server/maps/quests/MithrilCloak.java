@@ -235,7 +235,7 @@ public class MithrilCloak extends AbstractQuest {
 
 		// player returns who has agreed to help fix machine and prompts ida
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("sewing", "machine", "sewing machine", "leather armor", "oil", "bobbin", "task", "quest"),
+				Arrays.asList("sewing", "machine", "sewing machine", "task", "quest"),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "machine"),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"My sewing machine is still broken, did you bring anything to fix it?",
