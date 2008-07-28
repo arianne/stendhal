@@ -1539,6 +1539,7 @@ public class MithrilCloak extends AbstractQuest {
 		fetchThreadStep();
 		makeMithrilThreadStep();
 		makeMithrilFabricStep();
+		giveLetterStep();
 		giveFabricStep();	
 		getScissorsStep();
 		getEggshellsStep();
