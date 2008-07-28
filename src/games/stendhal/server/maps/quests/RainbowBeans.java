@@ -71,7 +71,7 @@ public class RainbowBeans extends AbstractQuest {
 		}
 
 		/* login notifier to teleport away players logging into the dream world.
-		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
+		 * there is a note in TimedTeleportScroll that it should be done there or its subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(final Player player) {

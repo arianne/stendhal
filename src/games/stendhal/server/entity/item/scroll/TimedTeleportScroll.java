@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  * 
  * TODO: This class isn't fully self-containing as the LoginHandler (that
  * handles the players logging in the target zone) must be implemented
- * elsewhere.
+ * elsewhere, i.e. in a quest file.
  */
 public class TimedTeleportScroll extends TeleportScroll {
 
