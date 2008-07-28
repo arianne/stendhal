@@ -234,7 +234,22 @@
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
-    <value value="1"/>
+    <value value="2000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="silk thread">
+    <type class="resource" subclass="silkthread" tileid="-1"/>
+    <description>You see a spool of silk thread, spun from the glands of a giant spider..</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="4000"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -258,9 +273,24 @@
     </equipable>
   </item>
 
+  <item name="mithril thread">
+    <type class="resource" subclass="mithril_thread" tileid="-1"/>
+    <description>You see a spool of mithril thread, made from silk fused with mithril.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="8000"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="mithril fabric">
     <type class="resource" subclass="mithril_fabric" tileid="-1"/>
-    <description>You see a roll of mithril fabric. It's very sprakly!</description>
+    <description>You see a roll of mithril fabric. It's very sparkly!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
