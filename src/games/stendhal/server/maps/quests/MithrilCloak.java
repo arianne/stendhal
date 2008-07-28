@@ -101,6 +101,7 @@ public class MithrilCloak extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES_THREAD = 30;
 	private static final int REQUIRED_MINUTES_MITHRIL_THREAD = 480;
+	private static final int REQUIRED_MINUTES_FABRIC = 120;
 	private static final int REQUIRED_MINUTES_SCISSORS = 10;
 	private static final int REQUIRED_MINUTES_CLASP = 60;
 
@@ -310,7 +311,7 @@ public class MithrilCloak extends AbstractQuest {
 	
 	}
 
-	private void getWebSacsStep() {
+	private void makeThreadStep() {
     	final SpeakerNPC npc = npcs.get("Vincento Price");
 		
 		npc.addReply("silk","Keep this quiet, ok? I'll spin silk thread from the silk glands of a giant spider. Just ask me to #make it.");
@@ -507,7 +508,7 @@ public class MithrilCloak extends AbstractQuest {
 
 
 	}
-	private void getThreadStep() {
+	private void fetchThreadStep() {
 		final SpeakerNPC npc = npcs.get("Boris Karlova");
 
 		// player returns and says hi while sacs being made
@@ -761,6 +762,141 @@ public class MithrilCloak extends AbstractQuest {
 	}
 	private void makeMithrilFabricStep() {
 
+		final SpeakerNPC npc = npcs.get("Whiggins");
+
+		// player asks about fabric/quest
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "task", "quest"),
+				new QuestInStateCondition(QUEST_SLOT, "got_mithril_thread"),
+				ConversationStates.QUEST_OFFERED,
+				"I would love to weave you some fabric but I'm afraid my mind is full of other things. I have offended a fellow wizard. I was up all night writing him an apology letter, but I have noone to deliver it to him. Unless ... that is ... would YOU deliver this letter for me?",
+				null);
+			
+		// Player says yes they want to help 
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"Wonderful! I'm so relieved! Please take this note to Pedinghaus, you will find him in Ados goldsmiths. And I'm sure I don't need to say this, but please don't read it.",			
+				new MultipleActions(new EquipItemAction("note",1,true),
+									new SetQuestAction(QUEST_SLOT,"taking_letter"))
+				);
+		
+		// player said no they didn't want to help
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"Oh dear, I'm ever so worried. Please help?",
+			null);
+	
+		// player returns without having taking letter
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "pedinghaus","task", "quest"),
+				new QuestInStateCondition(QUEST_SLOT, "taking_letter"),
+				ConversationStates.ATTENDING,
+				"Please don't forget to take that letter to Pedinghaus. It means a lot to me.", null);
+
+		// player returns having taking letter
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", 
+							  "mithril cloak", "pedinghaus","regards", "forgiven","task", "quest"),
+				new QuestInStateCondition(QUEST_SLOT, "took_letter"),
+				ConversationStates.SERVICE_OFFERED,
+				"Thank you so much for taking that letter! Now, do you have the 40 spools of mithril thread "
+				+ "so that I may weave you a yard of fabric?", null);
+
+		// player's quest state is in nothing to do with the letter, thread or weaving.
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "pedinghaus","task", "quest"),
+				new NotCondition(
+								 new OrCondition(new QuestInStateCondition(QUEST_SLOT, "got_mithril_thread"),
+												 new QuestInStateCondition(QUEST_SLOT, "taking_letter"),
+												 new QuestInStateCondition(QUEST_SLOT, "took_letter"),
+												 new QuestStateStartsWithCondition(QUEST_SLOT, "weavingfabric;")
+												 )
+								 ),
+				ConversationStates.ATTENDING,
+				"I haven't got any quest for you now.", null);
+									
+
+		// player says yes they brought the items needed
+		// we can't use the nice ChatActions here because we have to timestamp the quest slot
+		npc.add(
+			ConversationStates.SERVICE_OFFERED,
+			ConversationPhrases.YES_MESSAGES, 
+			new QuestInStateCondition(QUEST_SLOT, "took_letter"),
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					if (player.isEquipped("mithril thread", 40)) {
+						
+							player.drop("mithril thread", 40);
+							npc.say("Lovely. In " 
+									   + REQUIRED_MINUTES_FABRIC + " minutes your fabric will be ready.");
+							player.setQuest(QUEST_SLOT, "weavingfabric;" + System.currentTimeMillis());
+							player.notifyWorldAboutChanges();
+						} else {
+							npc.say("You don't appear to have 40 spools of mithril thread with you. Sorry, I can't do anything without it.");
+						}
+				}
+			});
+
+		// player says they didn't bring the stuff yet
+		npc.add(
+			ConversationStates.SERVICE_OFFERED,
+			ConversationPhrases.NO_MESSAGES, 
+			null,
+			ConversationStates.ATTENDING,
+			"Oh, ok, well I hope you haven't lost them, they are precious!",
+			null);
+
+		// player returns while fabric is still being woven, or is ready
+		npc.add(ConversationStates.ATTENDING, 
+			Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak","task", "quest"),
+			new QuestStateStartsWithCondition(QUEST_SLOT, "weavingfabric;"),
+			ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					final long delay = REQUIRED_MINUTES_FABRIC * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					if (timeRemaining > 0L) {
+						npc.say("I'm sorry, you're too early. Come back in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+						return;
+					}
+					npc.say("Here your fabric is ready! Isn't it gorgeous?");
+					player.addXP(100);
+					player.addKarma(15);
+					final Item fabric = SingletonRepository.getEntityManager().getItem(
+									FABRIC);
+					fabric.setBoundTo(player.getName());
+					player.equip(fabric, true);
+					player.setQuest(QUEST_SLOT, "got_fabric");
+					player.notifyWorldAboutChanges();
+				}
+			});
+	}
+
+	private void giveLetterStep() {	
+
+		final SpeakerNPC npc = npcs.get("Pedinghaus");
+
+		// accept the letter
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("letter", "note", "whiggins", "apology"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_letter"), new PlayerHasItemWithHimCondition("note")),
+				ConversationStates.ATTENDING,
+				"*reads* ... *reads* ... Well, I must say, that is a weight off my mind. Thank you ever so much. Please convey my warmest regards to Whiggins. All is forgiven.",
+				new MultipleActions(
+									 new DropItemAction("note"), 
+									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "took_letter", 10.0)
+				));
 	}
 
 	private void giveFabricStep() {	
@@ -770,22 +906,33 @@ public class MithrilCloak extends AbstractQuest {
 		// accept the fabric and ask for scissors
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("fabric", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_fabric"), new PlayerHasItemWithHimCondition(FABRIC)),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_fabric"), new PlayerHasItemWithHimCondition(FABRIC)),
 				ConversationStates.ATTENDING,
-				"Wow you got the " + FABRIC + " , that didn't take as long as I expected! Now, to cut it I need magical scissors, if you would go get them from #Hogart. I will be waiting for you to return.",
+				"Wow you got the " + FABRIC + " , that took longer than I expected! Now, to cut it I need magical scissors, if you would go get them from #Hogart. I will be waiting for you to return.",
 				new MultipleActions(
 									 new DropItemAction(FABRIC), 
 									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "need_scissors", 10.0)
 				));
 
-		// remind about fabric
+		// remind about fabric. there are so many steps to getting fabric 
+		// that the player could be in many quest states and she still is just waiting for fabric
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("fabric", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "need_fabric"),
-								 new NotCondition(new PlayerHasItemWithHimCondition(FABRIC))
+				new OrCondition(
+								new QuestInStateCondition(QUEST_SLOT,"need_fabric"),
+								new QuestStateStartsWithCondition(QUEST_SLOT,"makingthread;"),
+								new QuestInStateCondition(QUEST_SLOT, "got_thread"),
+								new QuestStateStartsWithCondition(QUEST_SLOT,"fusingthread;"),
+								new QuestInStateCondition(QUEST_SLOT, "got_mithril_thread"),
+								new QuestInStateCondition(QUEST_SLOT, "taking_letter"),
+								new QuestInStateCondition(QUEST_SLOT, "took_letter"),
+								new AndCondition (new QuestInStateCondition(QUEST_SLOT, "got_fabric"),
+												  new NotCondition(new PlayerHasItemWithHimCondition(FABRIC))
+												  )
 								 ),
 				ConversationStates.ATTENDING,
-				"I'm still waiting for the " + FABRIC + " so I can start work on your mithril cloak.",				
+				"I'm still waiting for the " + FABRIC 
+				+ " so I can start work on your mithril cloak. You should ask #Kampusch about anything textile related.",				
 				null);
 
 		npc.addReply("Hogart", "He's that grumpy old dwarf in the Or'ril mines. I already sent him a message saying I wanted some new scissors but he didn't respond. Well, what he lacks in people skills he makes up for in his metal work.");
@@ -1388,8 +1535,8 @@ public class MithrilCloak extends AbstractQuest {
 
 		offerQuestStep();
 		fixMachineStep();
-		getWebSacsStep();
-		getThreadStep();
+		makeThreadStep();
+		fetchThreadStep();
 		makeMithrilThreadStep();
 		makeMithrilFabricStep();
 		giveFabricStep();	
