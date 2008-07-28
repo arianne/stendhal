@@ -84,6 +84,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				        "After I've casted the gold for you keep it safe. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
 				addReply("gold pan",
 				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
+				addReply(Arrays.asList("oil","can of oil"),"Oh, fishermen supply us with that.");
 			}
 		};
 

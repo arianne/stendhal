@@ -66,6 +66,7 @@ public class FishermanNPC implements ZoneConfigurator {
 				addOffer("I can #make you some #oil if you need any.");
 				addGoodbye("Goodbye.");
 				addReply("oil","Ask me to #make you a bottle if you have some cod with you. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
+				addReply("can of oil","One can needs two cods. I'll #make you one if you need it. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
 
 				/* @author kymara */
 
