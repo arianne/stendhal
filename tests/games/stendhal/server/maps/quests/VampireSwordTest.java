@@ -191,7 +191,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, "start");
 			
 			final Item goblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-			player.equip(goblet, true);
+			player.equip(goblet);
 			
 			en.step(player, hello);
 			assertEquals(hello, "Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!", npc.getText());
@@ -355,13 +355,13 @@ public class VampireSwordTest {
 		final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 		
 		Item item = SingletonRepository.getEntityManager().getItem("empty goblet");
-		player.equip(item, true);
+		player.equip(item);
 		item = SingletonRepository.getEntityManager().getItem("skull ring");
-		player.equip(item, true);
+		player.equip(item);
 		item = SingletonRepository.getEntityManager().getItem("bat entrails");
-		player.equip(item, true);
+		player.equip(item);
 		item = SingletonRepository.getEntityManager().getItem("vampirette entrails");
-		player.equip(item, true);
+		player.equip(item);
 		
 		en.step(player, "fill");
 		String answer = npc.getText();
@@ -415,12 +415,12 @@ public class VampireSwordTest {
 	
 	@Test
 	public void tryGettingGobletTooEarly() {
-		final Player player = PlayerTestHelper.createPlayer("me");			
-		final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
-		final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
-		
 		String questState = "1;goblet;" + Long.toString(new Date().getTime());
 		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
+			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
+			
 			en.setCurrentState(ConversationStates.IDLE);
 			player.setQuest(sickySlotName, questState);
 			
@@ -441,13 +441,13 @@ public class VampireSwordTest {
 	// Try dates in the future too. Should not happen, but you never know...
 	@Test
 	public void tryGettingGobletWayTooEarly() {
-		final Player player = PlayerTestHelper.createPlayer("me");			
-		final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
-		final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
-		
 		// 1 min in the future
 		String questState = "1;goblet;" + Long.toString(new Date().getTime() + 60 * 1000);
 		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
+			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
+			
 			en.setCurrentState(ConversationStates.IDLE);
 			player.setQuest(sickySlotName, questState);
 			
@@ -481,7 +481,130 @@ public class VampireSwordTest {
 			assertEquals("done", player.getQuest(sickySlotName));
 			assertTrue("player got the goblet", player.isEquipped("goblet"));
 			
+			final Item goblet = player.getFirstEquipped("goblet");
+			assertEquals("The filled goblet is bound", "me", goblet.getBoundTo());
+			
 			player.dropAll("goblet");
+		}
+	}
+	
+	// *** Forging tests ***
+	@Test
+	public void greetDwarfWithFullGoblet() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");	
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+		
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(questSlot, "start");
+			Item item = SingletonRepository.getEntityManager().getItem("goblet");
+			player.equip(item);
+			
+			en.step(player, hello);
+			assertEquals("You have battled hard to bring that goblet. I will use it to #forge the vampire sword", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.QUEST_ITEM_BROUGHT);
+		}
+	}
+	
+	@Test
+	public void askAboutForging() {
+		final Player player = PlayerTestHelper.createPlayer("me");
+		final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+		final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+	
+		en.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
+		player.setQuest(questSlot, "start");
+		
+		en.step(player, "forge");
+		assertEquals("Bring me 10 #iron bars to forge the sword with. Don't forget to bring the goblet too.", npc.getText());
+		assertEquals(en.getCurrentState(), ConversationStates.QUEST_ITEM_BROUGHT);
+	}
+	
+	@Test
+	public void askAboutIron() {
+		final Player player = PlayerTestHelper.createPlayer("me");
+		final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+		final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+	
+		en.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
+		player.setQuest(questSlot, "start");
+		
+		en.step(player, "iron");
+		assertEquals("You know, collect the iron ore lying around and get it cast! Bye!", npc.getText());
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+	}
+	
+	@Test
+	public void greetDwarfWithRequiredItems() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");	
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+		
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(questSlot, "start");
+			
+			Item item = SingletonRepository.getEntityManager().getItem("goblet");
+			player.equip(item);
+			item = SingletonRepository.getEntityManager().getItem("iron");
+			((Stackable) item).setQuantity(10);
+			player.equip(item);
+			
+			en.step(player, hello);
+			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", npc.getText());
+			assertFalse("dwarf took the goblet", player.isEquipped("goblet"));
+			assertFalse("dwarf took the iron", player.isEquipped("iron"));
+			assertTrue("in forging state", player.getQuest(questSlot).startsWith("forging;"));
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		}
+	}
+	
+	@Test
+	public void tryGettingSwordTooEarly() {
+		String questState = "forging;" + Long.toString(new Date().getTime());
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+			
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(questSlot, questState);
+			
+			en.step(player, hello);
+			assertEquals("too early '" + hello + "'", "I haven't finished forging the sword. Please check back in 10 minutes.", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+			
+			// should not make any change in quest state, or give the sword
+			assertEquals(questState, player.getQuest(questSlot));
+			assertFalse(player.isEquipped("vampire sword"));
+		}
+	}
+	
+	@Test
+	public void gettingTheSword() {
+		String questState = "forging;" + Long.toString(new Date().getTime() - 10 * 60 * 1000);
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");			
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+			int xp = player.getXP();
+			double karma = player.getKarma();
+			
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(questSlot, questState);
+			
+			en.step(player, hello);
+			assertEquals("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!", npc.getText());
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+			
+			assertEquals("done", player.getQuest(questSlot));
+			assertTrue("got the sword", player.isEquipped("vampire sword"));
+			
+			final Item sword = player.getFirstEquipped("vampire sword");
+			assertEquals("The vampire sword is bound", "me", sword.getBoundTo());
+			assertEquals("XP bonus", xp + 5000, player.getXP());
+			assertEquals("final karma bonus", karma + 15.0, player.getKarma(), 0.01);
 		}
 	}
 }
