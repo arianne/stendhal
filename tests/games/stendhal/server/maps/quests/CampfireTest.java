@@ -3,12 +3,17 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Date;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -189,5 +194,64 @@ public class CampfireTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 	}
+	
+	@Test
+	public void testCanNotRepeatYet() {
+		final String questState = Long.toString(new Date().getTime());
+		
+		for (String request : ConversationPhrases.QUEST_MESSAGES) {
+			final Engine en = npc.getEngine();
+			player.setQuest(CAMPFIRE, questState);
 
+			en.setCurrentState(ConversationStates.ATTENDING);
+			en.step(player, request);
+			assertEquals("Thanks, but I think the wood you brought me already will last me 5 minutes more.", npc.getText());
+			assertEquals(ConversationStates.ATTENDING ,en.getCurrentState());
+			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
+		}
+	}
+	
+	@Test
+	public void testRepeatQuest() {
+		final String questState = Long.toString(new Date().getTime() - 6 * 60 * 1000);
+		for (String request : ConversationPhrases.QUEST_MESSAGES) {
+			final Engine en = npc.getEngine();
+			player.setQuest(CAMPFIRE, questState);
+
+			en.setCurrentState(ConversationStates.ATTENDING);
+			en.step(player, request);
+			assertEquals("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.", npc.get("text"));
+			assertEquals(ConversationStates.QUEST_OFFERED ,en.getCurrentState());
+			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
+		}
+	}
+	
+	@Test
+	public void testAllowRestartAfterRejecting() {
+		for (String request : ConversationPhrases.QUEST_MESSAGES) {
+			final Engine en = npc.getEngine();
+			player.setQuest(CAMPFIRE, "rejected");
+
+			en.setCurrentState(ConversationStates.ATTENDING);
+			en.step(player, request);
+			assertEquals("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.", npc.get("text"));
+			assertEquals(ConversationStates.QUEST_OFFERED ,en.getCurrentState());
+			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE));
+		}
+	}
+	
+	@Test
+	public void testRefuseQuest() {
+		final Engine en = npc.getEngine();
+		final double karma = player.getKarma(); 
+
+		en.setCurrentState(ConversationStates.QUEST_OFFERED);
+		en.step(player, "no");
+		
+		assertEquals("Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals..."
+, npc.getText());
+		assertEquals(ConversationStates.ATTENDING ,en.getCurrentState());
+		assertEquals("quest state 'rejected'", "rejected", player.getQuest(CAMPFIRE));
+		assertEquals("karma penalty", karma - 5.0, player.getKarma(), 0.01);
+	}
 }
