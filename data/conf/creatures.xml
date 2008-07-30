@@ -2,7 +2,7 @@
 <creatures>
   <creature name="deer">
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
-    <description></description>
+    <description>You see a defenseless deer, do not have fear of him.</description>
     <attributes>
       <atk value="5"/>
       <def value="9"/>
@@ -30,7 +30,7 @@
 
   <creature name="crab">
     <type class="animal" subclass="crab" tileid="animal.png:8"/>
-    <description></description>
+    <description>You see a little crab that comes from the beach, be careful of his pincers.</description>
     <attributes>
       <atk value="10"/>
       <def value="5"/>
@@ -118,7 +118,7 @@
 
   <creature name="chick">
     <type class="farm_animal" subclass="chick" tileid="farm_animal.png:2"/>
-    <description></description>
+    <description>You see a little chick, he doesn't like to be away from his mother.</description>
     <attributes>
       <atk value="12"/>
       <def value="6"/>
@@ -146,7 +146,7 @@
 
   <creature name="piglet">
     <type class="farm_animal" subclass="piglet" tileid="farm_animal.png:9"/>
-    <description></description>
+    <description>You see a piglet, a bit dirty.</description>
     <attributes>
       <atk value="12"/>
       <def value="6"/>
@@ -175,7 +175,7 @@
 
   <creature name="bat">
     <type class="animal" subclass="bat" tileid="animal.png:0"/>
-    <description></description>
+    <description>You see a bat, he will seek your blood, don't be distracted...</description>
     <attributes>
       <atk value="19"/>
       <def value="13"/>
@@ -200,7 +200,7 @@
 
   <creature name="chicken">
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
-    <description></description>
+    <description>You see a chicken, isn't he nice?.</description>
     <attributes>
       <atk value="20"/>
       <def value="12"/>
@@ -229,7 +229,7 @@
 
   <creature name="mother hen">
     <type class="farm_animal" subclass="hen" tileid="farm_animal.png:6"/>
-    <description></description>
+    <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
     <attributes>
       <atk value="20"/>
       <def value="12"/>
@@ -257,6 +257,7 @@
 
   <creature name="caverat">
     <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
+	<description>You see a caverat, they are dirty and love the dungeons. </description>
     <attributes>
       <atk value="16"/>
       <def value="10"/>
@@ -283,7 +284,7 @@
 
   <creature name="penguin">
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
-    <description></description>
+    <description>You see a penguin, smart, and silly.</description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -313,7 +314,7 @@
 
   <creature name="pigeon">
     <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
-    <description></description>
+    <description>You see a pigeon, they love the little seeds.</description>
     <attributes>
       <atk value="19"/>
       <def value="13"/>
@@ -338,7 +339,7 @@
 
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
-    <description></description>
+    <description>You see a monkey, would you like to offer him a banana?</description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -368,7 +369,7 @@
 
   <creature name="boar">
     <type class="animal" subclass="boar" tileid="animal.png:4"/>
-    <description></description>
+    <description>You see a boar, they are pretty wild!</description>
     <attributes>
       <atk value="27"/>
       <def value="14"/>
@@ -396,7 +397,7 @@
 
   <creature name="ram">
     <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
-    <description></description>
+    <description>You see a ram, maybe are you able to shear him?</description>
     <attributes>
       <atk value="27"/>
       <def value="14"/>
@@ -423,6 +424,7 @@
 
   <creature name="wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:20"/>
+	<description>You see a wolf, they are wild and very hungry!</description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -451,6 +453,7 @@
 
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
+	<description>You see a fox, they are becoming extinct!</description>
     <attributes>
       <atk value="25"/>
       <def value="14"/>
@@ -475,6 +478,7 @@
 
   <creature name="beaver">
     <type class="farm_animal" subclass="beaver" tileid="farm_animal.png:0"/>
+	<description>You see a beaver, they like to build dams in the river.</description>
     <attributes>
       <atk value="22"/>
       <def value="15"/>
@@ -500,6 +504,7 @@
 
   <creature name="cow">
     <type class="farm_animal" subclass="cow" tileid="farm_animal.png:3"/>
+	<description>You see a cow, taste her delicious milk.</description>
     <attributes>
       <atk value="18"/>
       <def value="16"/>
@@ -526,6 +531,7 @@
 
   <creature name="goat">
     <type class="farm_animal" subclass="goat" tileid="farm_animal.png:4"/>
+	<description>You see a goat, they are wild and live in the mountain.</description>
     <attributes>
       <atk value="18"/>
       <def value="16"/>
@@ -550,6 +556,7 @@
 
   <creature name="horse">
     <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
+	<description>You see funny horse, don't slap him or he will run away!</description>
     <attributes>
       <atk value="18"/>
       <def value="16"/>
@@ -577,6 +584,7 @@
 
   <creature name="white horse">
     <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
+	<description>You see a white horse, they love to stay with their brown friends.</description>
     <attributes>
       <atk value="18"/>
       <def value="16"/>
@@ -604,7 +612,7 @@
 
   <creature name="gnome">
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
-    <description></description>
+    <description>You see a gnome, they live in the mountains.</description>
     <attributes>
       <atk value="35"/>
       <def value="12"/>
@@ -637,7 +645,7 @@
 
   <creature name="mage gnome">
     <type class="gnome" subclass="woman_gnome" tileid="gnome.png:1"/>
-    <description></description>
+    <description>You see a mage gnome, she cleans the dirty mountain.</description>
     <attributes>
       <atk value="35"/>
       <def value="12"/>
@@ -669,7 +677,7 @@
 
   <creature name="caiman">
     <type class="animal" subclass="caiman" tileid="animal.png:6"/>
-    <description></description>
+    <description>You see a caiman, they are hidden in the water.</description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -698,7 +706,7 @@
 
   <creature name="babybear">
     <type class="animal" subclass="babybear" tileid="animal.png:21"/>
-    <description></description>
+    <description>You see a babybear, isn't it sweet?</description>
     <attributes>
       <atk value="24"/>
       <def value="7"/>
@@ -727,7 +735,7 @@
 
   <creature name="panda">
     <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
-    <description></description>
+    <description>You see a panda, they came from an exotic land.</description>
     <attributes>
       <atk value="24"/>
       <def value="7"/>
@@ -756,6 +764,7 @@
 
   <creature name="bull">
     <type class="farm_animal" subclass="bull" tileid="farm_animal.png:1"/>
+	<description>You see a bull, run away!!!</description>
     <attributes>
       <atk value="27"/>
       <def value="15"/>
@@ -783,7 +792,7 @@
 
   <creature name="grass snake">
     <type class="farm_animal" subclass="grass_snake" tileid="farm_animal.png:5"/>
-    <description></description>
+    <description>You see a grass snake, they are pretty dangerous.</description>
     <attributes>
       <atk value="16"/>
       <def value="11"/>
@@ -813,7 +822,7 @@
 
   <creature name="snake">
     <type class="animal" subclass="cobra" tileid="animal.png:7"/>
-    <description></description>
+    <description>You see a snake, she came from the forest to poison you!</description>
     <attributes>
       <atk value="16"/>
       <def value="10"/>
@@ -843,7 +852,7 @@
 
   <creature name="bear">
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
-    <description></description>
+    <description>You see a bear, you are lucky and found it awake.</description>
     <attributes>
       <atk value="39"/>
       <def value="16"/>
@@ -872,7 +881,7 @@
 
   <creature name="lion">
     <type class="animal" subclass="lion" tileid="animal.png:14"/>
-    <description></description>
+    <description>You see a lion, dangerous and hungry...</description>
     <attributes>
       <atk value="39"/>
       <def value="16"/>
@@ -901,7 +910,7 @@
 
   <creature name="goblin">
     <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
-    <description></description>
+    <description>You see a goblin, it is an evil and mischievous creature.</description>
     <attributes>
       <atk value="48"/>
       <def value="14"/>
@@ -937,7 +946,7 @@
 
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
-    <description></description>
+    <description>You see a kobold, people says that is a mythical spirit.</description>
     <attributes>
       <atk value="48"/>
       <def value="17"/>
@@ -973,7 +982,7 @@
 
   <creature name="elephant">
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
-    <description></description>
+    <description>You see a elephant, a big animal, it's dangerous...</description>
     <attributes>
       <atk value="46"/>
       <def value="11"/>
@@ -1003,6 +1012,7 @@
 
   <creature name="venomrat">
     <type class="small_animal" subclass="venomrat" tileid="small_animal.png:3"/>
+	<description>You see a venomrat, extremely poisonous.</description>
     <attributes>
       <atk value="33"/>
       <def value="15"/>
@@ -1031,7 +1041,7 @@
 
   <creature name="tiger">
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
-    <description></description>
+    <description>You see a tiger, they like deer and human meat.</description>
     <attributes>
       <atk value="47"/>
       <def value="16"/>
@@ -1060,7 +1070,7 @@
 
   <creature name="infantry gnome">
     <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
-    <description></description>
+    <description>You see a infantry gnome, he will protect his little town against the humans!</description>
     <attributes>
       <atk value="48"/>
       <def value="16"/>
@@ -1092,7 +1102,7 @@
  
    <creature name="cavalryman gnome">
     <type class="gnome" subclass="cavalryman" tileid="gnome_patrol.png:1"/>
-    <description></description>
+    <description>You see a cavalryman gnome, they do long travels to search for gold.</description>
     <attributes>
       <atk value="52"/>
       <def value="18"/>
@@ -1124,7 +1134,7 @@
   
   <creature name="skeleton">
     <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
-    <description></description>
+    <description>You see a skeleton, they survive to get revenge.</description>
     <attributes>
       <atk value="51"/>
       <def value="13"/>
@@ -1159,7 +1169,7 @@
 
   <creature name="gargoyle">
     <type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
-    <description></description>
+    <description>You see a gargoyle, you should think that it is a statue, but no, it is alive!</description>
     <attributes>
       <atk value="42"/>
       <def value="17"/>
@@ -1184,6 +1194,7 @@
 
   <creature name="young beholder">
     <type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
+	<description>You see a young beholder, with his big eye you won't can hide from him!</description>
     <attributes>
       <atk value="47"/>
       <def value="17"/>
@@ -1211,7 +1222,7 @@
 
   <creature name="zombie rat">
     <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
-    <description></description>
+    <description>You see a hungry zombie rat, they won't like to see you.</description>
     <attributes>
       <atk value="50"/>
       <def value="12"/>
@@ -1243,7 +1254,7 @@
 
   <creature name="veteran goblin">
     <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
-    <description></description>
+    <description>You see a veteran goblin, an old warrior...</description>
     <attributes>
       <atk value="53"/>
       <def value="14"/>
@@ -1279,7 +1290,7 @@
 
   <creature name="soldier kobold">
     <type class="kobold" subclass="soldier_kobold" tileid="kobold.png:3"/>
-    <description></description>
+    <description>You see a soldier kobold, he's protecting his king.</description>
     <attributes>
       <atk value="48"/>
       <def value="18"/>
@@ -1315,6 +1326,7 @@
 
   <creature name="killer bat">
     <type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
+	<description>You see a killer bat, it will suck your blood!</description>
     <attributes>
       <atk value="50"/>
       <def value="16"/>
@@ -1340,6 +1352,7 @@
 
   <creature name="green slime">
     <type class="animal" subclass="green_slime" tileid="animal.png:12"/>
+	<description>You see a green slime, sticky and shiny.</description>
     <attributes>
       <atk value="51"/>
       <def value="17"/>
@@ -1365,7 +1378,7 @@
 
   <creature name="archer kobold">
     <type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
-    <description></description>
+    <description>You see an archer kobold, they run away from the humans.</description>
     <attributes>
       <atk value="53"/>
       <def value="16"/>
@@ -1401,7 +1414,7 @@
 
   <creature name="black bear">
     <type class="animal" subclass="black_bear" tileid="animal.png:2"/>
-    <description></description>
+    <description>You see a strong black bear, they hibernate in winter.</description>
     <attributes>
       <atk value="49"/>
       <def value="15"/>
@@ -1430,7 +1443,7 @@
 
   <creature name="elder gargoyle">
     <type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
-    <description></description>
+    <description>You see an elder gargoyle, they are wise...</description>
     <attributes>
       <atk value="52"/>
       <def value="16"/>
@@ -1456,7 +1469,7 @@
 
   <creature name="razorrat">
     <type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
-    <description></description>
+    <description>You see a razorrat, his noise will make you crazy!</description>
     <attributes>
       <atk value="56"/>
       <def value="20"/>
@@ -1483,7 +1496,7 @@
 
   <creature name="leprechaun">
     <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
-    <description></description>
+    <description>You see a leprechaun, you would be lucky if found their treasure.</description>
     <attributes>
       <atk value="51"/>
       <def value="19"/>
@@ -1515,7 +1528,7 @@
 
   <creature name="cyclops">
     <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
-    <description></description>
+    <description>You see a cyclops, they just have one eye!</description>
     <attributes>
       <atk value="56"/>
       <def value="17"/>
@@ -1546,7 +1559,7 @@
 
   <creature name="beholder">
     <type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
-    <description></description>
+    <description>You see a beholder, they can see you very well with that big eye...</description>
     <attributes>
       <atk value="53"/>
       <def value="17"/>
@@ -1571,7 +1584,7 @@
 
   <creature name="soldier goblin">
     <type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
-    <description></description>
+    <description>You see a soldier goblin, a young warrior.</description>
     <attributes>
       <atk value="59"/>
       <def value="20"/>
@@ -1606,7 +1619,7 @@
 
   <creature name="veteran kobold">
     <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
-    <description></description>
+    <description>You see a veteran kobold, they are mighty!</description>
     <attributes>
       <atk value="57"/>
       <def value="21"/>
@@ -1640,7 +1653,7 @@
 
   <creature name="troll">
     <type class="troll" subclass="troll" tileid="troll.png:0"/>
-    <description></description>
+    <description>You see a troll, be careful in his terrain.</description>
     <attributes>
       <atk value="59"/>
       <def value="18"/>
@@ -1669,7 +1682,7 @@
 
   <creature name="orc">
     <type class="orc" subclass="orc" tileid="orc.png:2"/>
-    <description></description>
+    <description>You see a orc, he is noisy and silly.</description>
     <attributes>
       <atk value="54"/>
       <def value="20"/>
@@ -1698,7 +1711,7 @@
 
   <creature name="dark gargoyle">
     <type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
-    <description></description>
+    <description>You see a dark gargoyle, are you feeling the fear?</description>
     <attributes>
       <atk value="54"/>
       <def value="17"/>
@@ -1726,7 +1739,7 @@
 
   <creature name="littlefairy">
     <type class="fairy" subclass="littlefairy" tileid="fairy.png:3"/>
-    <description></description>
+    <description>You see a littlefairy, they are magic and nice.</description>
     <attributes>
       <atk value="70"/>
       <def value="13"/>
@@ -1752,7 +1765,7 @@
 
   <creature name="ogre">
     <type class="giant" subclass="ogre" tileid="giant.png:2"/>
-    <description></description>
+    <description>You see an ogre, they are nude and rude!</description>
     <attributes>
       <atk value="59"/>
       <def value="16"/>
@@ -1783,7 +1796,7 @@
 
   <creature name="mummy">
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
-    <description></description>
+    <description>You see a mummy, they usually sleep in a coffin.</description>
     <attributes>
       <atk value="58"/>
       <def value="22"/>
@@ -1811,7 +1824,7 @@
 
   <creature name="clurichaun">
     <type class="fairy" subclass="clurichaun" tileid="fairy.png:1"/>
-    <description></description>
+    <description>You see a clurichaun, they are rich, but you don't know if you are able to search his gold!</description>
     <attributes>
       <atk value="54"/>
       <def value="25"/>
@@ -1844,7 +1857,7 @@
 
   <creature name="risecia thug">
     <type class="human" subclass="risecia_thug" tileid="human.png:8"/>
-    <description></description>
+    <description>You see a risecia thug, stay away from him!</description>
     <attributes>
       <atk value="55"/>
       <def value="25"/>
@@ -1879,7 +1892,7 @@
 
   <creature name="leader kobold">
     <type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
-    <description></description>
+    <description>You see a leader kobold, one of the mighty warriors.</description>
     <attributes>
       <atk value="68"/>
       <def value="18"/>
@@ -1915,7 +1928,7 @@
 
   <creature name="orc warrior">
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
-    <description></description>
+    <description>You see an orc warrior, they won't like you searching in the mountain.</description>
     <attributes>
       <atk value="58"/>
       <def value="18"/>
@@ -1946,7 +1959,7 @@
 
   <creature name="orc hunter">
     <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
-    <description></description>
+    <description>You see an orc hunter, they are seeking for you!</description>
     <attributes>
       <atk value="65"/>
       <def value="21"/>
@@ -1977,7 +1990,7 @@
 
   <creature name="risecia archer">
     <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
-    <description></description>
+    <description>You see a risecia archer, just one of the warriors who want to protect his chief.</description>
     <attributes>
       <atk value="60"/>
       <def value="20"/>
@@ -2011,6 +2024,7 @@
 
   <creature name="ghost">
     <type class="undead" subclass="ghost" tileid="undead.png:5"/>
+	<description>You see a ghost, don't be afraid! They don't seem to be evil.</description>
     <attributes>
       <atk value="59"/>
       <def value="20"/>
@@ -2039,7 +2053,7 @@
 
   <creature name="giantrat">
     <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
-    <description></description>
+    <description>You see a giantrat, they are like an experiment gone wrong!</description>
     <attributes>
       <atk value="70"/>
       <def value="18"/>
@@ -2067,7 +2081,7 @@
 
   <creature name="elf">
     <type class="elf" subclass="elf" tileid="elf.png:3"/>
-    <description></description>
+    <description>You see an elf, they love the forest and live in peace.</description>
     <attributes>
       <atk value="63"/>
       <def value="18"/>
@@ -2099,7 +2113,7 @@
 
   <creature name="tiny skelly">
     <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
-    <description></description>
+    <description>You see a tiny skelly, they are silly, little and evil, be careful with his poison...</description>
     <attributes>
       <atk value="51"/>
       <def value="19"/>
@@ -2132,7 +2146,7 @@
 
   <creature name="dwarf">
     <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
-    <description></description>
+    <description>You see a dwarf, they just work in the mines to find some gold for us.</description>
     <attributes>
       <atk value="59"/>
       <def value="17"/>
@@ -2164,7 +2178,7 @@
 
   <creature name="ratman">
     <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
-    <description></description>
+    <description>You see a ratman, they are a mutation that comes from old times.</description>
     <attributes>
       <atk value="58"/>
       <def value="14"/>
@@ -2201,7 +2215,7 @@
 
   <creature name="ratwoman">
     <type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
-    <description></description>
+    <description>You see a ratwoman, they are a mutation of the women with the rats in the century XVIII.</description>
     <attributes>
       <atk value="58"/>
       <def value="14"/>
@@ -2236,6 +2250,7 @@
 
   <creature name="elder beholder">
     <type class="beholder" subclass="elder_beholder" tileid="beholder.png:1"/>
+	<description>You see an elder beholder, his nasty eye will scare you.</description>
     <attributes>
       <atk value="70"/>
       <def value="21"/>
@@ -2261,7 +2276,7 @@
 
   <creature name="crocodile">
     <type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
-    <description></description>
+    <description>You see a crocodile, it arises from the deep waters in the rivers.</description>
     <attributes>
       <atk value="80"/>
       <def value="18"/>
@@ -2293,7 +2308,7 @@
 
   <creature name="frogman">
     <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
-    <description></description>
+    <description>You see a frogman, living in a lake not very deep.</description>
     <attributes>
       <atk value="83"/>
       <def value="15"/>
@@ -2323,6 +2338,7 @@
 
   <creature name="brown slime">
     <type class="animal" subclass="brown_slime" tileid="animal.png:5"/>
+	<description>You see a brown slime, sticky and hungry.</description>
     <attributes>
       <atk value="66"/>
       <def value="17"/>
@@ -2348,7 +2364,7 @@
 
   <creature name="venom gargoyle">
     <type class="gargoyle" subclass="venom_gargoyle" tileid="gargoyle.png:3"/>
-    <description></description>
+    <description>You see a venom gargoyle, a hideous and poisonous creature.</description>
     <attributes>
       <atk value="65"/>
       <def value="20"/>
