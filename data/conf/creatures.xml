@@ -9768,7 +9768,7 @@
   </creature>
 
   <creature name="devil monk">
-    <type class="undead" subclass="devil_monk" tileid="undead.png:8"/>
+    <type class="undead" subclass="devil_monk" tileid="undead_fallen.png:8"/>
     <description></description>
     <attributes>
       <atk value="318"/>
