@@ -61,6 +61,7 @@ public abstract class AdministrationAction implements ActionListener {
 		JailReportAction.register();
 		GagAction.register();
 		AlterQuestAction.register();
+		WrapAction.register();
 		REQUIRED_ADMIN_LEVELS.put("support", 100);
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}

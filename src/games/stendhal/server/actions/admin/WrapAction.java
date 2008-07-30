@@ -1,4 +1,4 @@
-package games.stendhal.server.actions.equip;
+package games.stendhal.server.actions.admin;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
