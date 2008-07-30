@@ -5374,7 +5374,6 @@
 
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
       <item value="dark dagger" quantity="[1,1]" probability="0.05"/>
-      <item value="soul dagger" quantity="[1,1]" probability="0.0002"/>
     </drops>
     <equips>
     </equips>
@@ -8918,13 +8917,13 @@
     <experience value="15000"/>
     <respawn value="3200"/>
     <drops>
-      <item value="button mushroom" quantity="[5,10]" probability="100.0"/>
-      <item value="greater potion" quantity="[2,3]" probability="30.0"/>
+      <item value="button mushroom" quantity="[1,6]" probability="50.0"/>
+      <item value="greater potion" quantity="[2,3]" probability="10.0"/>
       <item value="wood" quantity="[2,6]" probability="70.0"/>
-      <item value="grain" quantity="[20,50]" probability="30.0"/>
-      <item value="leek" quantity="[10,20]" probability="30.0"/>
-      <item value="cauliflower" quantity="[10,20]" probability="25.0"/>
-      <item value="carrot" quantity="[12,24]" probability="33.0"/>
+      <item value="grain" quantity="[5,20]" probability="30.0"/>
+      <item value="leek" quantity="[3,20]" probability="10.0"/>
+      <item value="cauliflower" quantity="[5,20]" probability="25.0"/>
+      <item value="carrot" quantity="[3,24]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
@@ -8952,7 +8951,7 @@
     <respawn value="5900"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="10.0"/>
       <item value="chaos legs" quantity="[1,1]" probability="2.0"/>
       <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
       <item value="black helmet" quantity="[1,1]" probability="0.05"/>
@@ -9149,7 +9148,6 @@
     <drops>
       <item value="money" quantity="[60,340]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="35"/>
-      <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
       <item value="assassin dagger" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
@@ -9350,12 +9348,12 @@
     <respawn value="9700"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="20.0"/>
       <item value="chaos legs" quantity="[1,1]" probability="2.5"/>
       <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
       <item value="black boots" quantity="[1,1]" probability="0.25"/>
       <item value="black halberd" quantity="[1,1]" probability="0.01"/>
-      <item value="diamond" quantity="[1,1]" probability="2.0"/>
+      <item value="diamond" quantity="[1,1]" probability="1.0"/>
    </drops>
     <equips>
     </equips>
@@ -9523,10 +9521,10 @@
     <respawn value="15000"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="greater potion" quantity="[2,4]" probability="50.0"/>
-      <item value="fish pie" quantity="[1,2]" probability="30.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
-      <item value="black legs" quantity="[1,1]" probability="0.5"/>
+      <item value="black legs" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
