@@ -45,11 +45,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Help me, I'm delirious.");
-				addJob("I thought I was a sewing woman .. but that seems like another life now.");
-				addHelp("I don't know what I need."); 
-				addOffer("I'm too confused, I can't do anything...");
-				addGoodbye("Won't you stay and comfort me ...");
+				// all behaviour defined in maps.quests.MithrilCloak
 			}
 		};
 		// see through
