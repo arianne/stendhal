@@ -20,10 +20,13 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
+
+import java.util.Set;
 
 /**
  * Pushes an entity which is next to the player one field forward.
@@ -83,10 +86,19 @@ public class PushAction implements ActionListener {
 
 		// If object is a NPC we ignore the push action because
 		// NPC don't use the pathfinder and would get confused
-		// outside there fixed path. Apart from that some NPCs
-		// may block a way by intend.
+		// outside their fixed path. Apart from that some NPCs
+		// may block a way by intention.
 		if (rpEntity instanceof SpeakerNPC) {
 			return false;
+		}
+
+		// prevent pushing an rpEntity off an item
+		final Set<Item> items = player.getZone().getItemsOnGround();
+		for (final Item item : items) {
+			if (rpEntity.getArea().intersects(item.getArea())) {
+				player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + "." );
+				return false;
+			}
 		}
 
 		// the number of pushes is limited per time and the player
@@ -97,7 +109,7 @@ public class PushAction implements ActionListener {
 	/**
 	 * Moves the entity to the new position.
 	 *
-	 * @param player   player pusing
+	 * @param player   player pushing
 	 * @param rpEntity entity pushed
 	 * @param x new x-position
 	 * @param y new y-position
