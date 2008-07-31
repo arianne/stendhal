@@ -105,8 +105,8 @@
  <tileset name="../../tileset/item/armor/sword_rack.png" firstgid="765" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
- <tileset name="../../tileset/plant/flower/creepers.png" firstgid="769" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/flower/creepers.png" trans="ff00ff"/>
+ <tileset name="../../tileset/plant/mosses.png" firstgid="769" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/mosses.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="785" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/stick.png"/>

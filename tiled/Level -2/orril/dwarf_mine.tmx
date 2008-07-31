@@ -27,8 +27,8 @@
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="../../tileset/plant/flower/creepers.png" firstgid="103" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/flower/creepers.png" trans="ff00ff"/>
+ <tileset name="../../tileset/plant/mosses.png" firstgid="103" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/mosses.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>

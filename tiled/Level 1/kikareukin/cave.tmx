@@ -28,7 +28,7 @@
   <image source="../../tileset/building/wall/earthen.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/flower/creepers.png"/>
+  <image source="../../tileset/plant/mosses.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool.png"/>

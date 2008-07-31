@@ -9,8 +9,8 @@
  <tileset name="../../tileset/building/wall/earthen_2.png" firstgid="42" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/plant/flower/creepers.png" firstgid="69" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/flower/creepers.png" trans="ff00ff"/>
+ <tileset name="../../tileset/plant/mosses.png" firstgid="69" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/mosses.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/various_small.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png" trans="ff00ff"/>

@@ -150,8 +150,8 @@
  <tileset name="../../tileset/plant/bush/large_green.png" firstgid="569" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/large_green.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/plant/flower/creepers.png" firstgid="578" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/flower/creepers.png" trans="ff00ff"/>
+ <tileset name="../../tileset/plant/mosses.png" firstgid="578" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/mosses.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/cross.png" firstgid="594" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/cross.png" trans="ff00ff"/>
