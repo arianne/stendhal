@@ -81,5 +81,18 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(null, npc.getIdea());
 	}
 
-
+	// players use _hi, _hello etc to avoid npcs answering when it's meant to 
+	// other players
+	@Test
+	public void testUnderscore() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final SpeakerNPC npc = getNPC("Felina");
+			final Engine en = npc.getEngine();
+			
+			assertEquals(ConversationStates.IDLE, en.getCurrentState());
+			
+			en.step(player, "_" + hello);
+			assertEquals("npc should not answer to _" + hello, ConversationStates.IDLE, en.getCurrentState());
+		}
+	}
 }
