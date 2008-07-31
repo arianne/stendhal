@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/indoor/tiles.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
@@ -21,19 +21,19 @@
  <tileset name="../../tileset/plant/bush/hedge.png" firstgid="60" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge.png"/>
  </tileset>
- <tileset name="../../tileset/plant/stump/small_stump.png" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/plant/stump/small_stump.png" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/small_stump.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/orbpedestal.png" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/decoration/orbpedestal.png" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/orbpedestal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="86" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elf.png" firstgid="87" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elf.png" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="hedge_2" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset name="hedge_2" firstgid="112" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge_2.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -43,12 +43,12 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONkYGDghmIZJDY6xiWHLM4DxIJAbALEhhRiUyAWgJpnzEA5MKKjeS5UNg8b8EbClJpHjHspCT9s5lMaH6kMCP+nUcE8aruPFPOwhQ+y/7DFM7p5yGFBbfcNlHnI4YLPPGxhhY7Rw2Uw+heXeWZAbEAhNoeaJwrE4liwGhCL4ZHDJi4BxABaHRY0QAYAAA==
+   H4sIAAAAAAAAAONkYGDghmIZJDY6xiWHLM4DxIJAbALEhhRiUyAWgJpnzEA5MKKjeS5UNg8b8EbClJpHjHspCT9s5lMaHyUMCP+XUsE8aruPFPOwhQ+y/7DFM7p5yGFBbfcNlHnI4YLPPGxhhY7Rw2Uw+heXeWZAbEAhNoeaJwrE4liwGhCL4ZHDJi4BxADzWj/yQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBogAIm2AeJQEvQSUmtPlovIswsbsCBRPci9AWh8agJk8wLQ7BqKgBrhgx7e5MQzJSCUAb8/yIkjWqYbegNi4oOe6ZiQewKB2IoEvZpArAXF2hS4i9oAAMF1eYJABgAA
+   H4sIAAAAAAAAAGNgGBogHom2AeIUEvQSUmtPlovIswsbsCBRPci98Wh8agJk8+LR7BqKgBrhgx7e5MQzJSCFAb8/yIkjWqYbegNi4oOe6ZiQexKA2IoEvZpArAXF2uQ7i+oAAFMGQEZABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
@@ -58,17 +58,17 @@
  </layer>
  <layer name="4_roof_add" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA8IoZFaSgE97RoFAwfoHc+j6Qo/GGzhQ4l7Bptf6AkAbpZHGUAGAAA=
+   H4sIAAAAAAAAAGNgoA9IppFaSgE97RoFAwfoHc+j6Qo/GGzhQ4l7Bptf6AkAXduZoUAGAAA=
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ4gnkbmRuORC6eRndQCpIQJtcKP2mGCL/zpDQaTW2gNIgbaAQME6OXvoRq+AKHz4D9ABgAA
+   H4sIAAAAAAAAAGNgGJ4gj0bmZuGRS6ORndQCpIQJtcKP2mGCL/zpDQaTW2gN0gfaAQME6OXvoRq+ALxg3cVABgAA
   </data>
  </layer>
- <layer name="collision" width="20" height="20" visible="0" opacity="0.44">
+ <layer name="collision" width="20" height="20" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWUQQoAIAgEfaX/f0rXCHV3s4MJHkSZRorczPyTtKBmImPtfTUynuqGeMxsNK/ysrq6Cza6fhkTvZXq/Bv+2evwkB/ai90dOTF+03nqH/LKDzmgeYU1NRcbPyYdQAYAAA==
+   H4sIAAAAAAAAANWUQQoAIAgE/az//0LXCHV3s4MJHkSZRorczPyTtKBmImPtfTUynuqGeMxsNK/ysrq6Cza6fhkTvZXq/Bv+2evwkB/ai90dOTF+03nqH/LKDzmgeYU1NRf0nphWQAYAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
