@@ -506,3 +506,7 @@ tileset/sky/cloud/friendlycloud.png *@2150 267:42:51:96:105:150:159:204:213:258:
 tileset/sky/cloud/friendlycloud.png *@2150 268:43:52:97:106:151:160:205:214:259:214:205:160:205:214:259:214:205:160:151:106:97:52:43
 tileset/sky/cloud/friendlycloud.png *@2150 269:44:53:98:107:152:161:206:215:260:215:206:161:206:215:260:215:206:161:152:107:98:53:44
 
+tileset/item/statue/fairypool.png *@800	0:4:8:12
+tileset/item/statue/fairypool.png *@800	1:5:9:13
+tileset/item/statue/fairypool.png *@800 2:6:10:14
+tileset/item/statue/fairypool.png *@800	3:7:11:15
