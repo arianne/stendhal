@@ -115,6 +115,14 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
 
+	/**
+	 * To avoid using karma for damage calculations when the natural ability
+	 * of the fighters would mean they need no luck, we only use karma 
+	 * when the levels are significantly different
+	 */
+	private static final int LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA = 20;
+
+
 	@Override
 	protected boolean handlePortal(final Portal portal) {
 		if (isZoneChangeAllowed()) {
@@ -410,8 +418,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		/*
 		 * Account for karma (+/-10%)
+		 * But, don't need luck to help you attack if you're a much 
+		 * higher level than what you attack
 		 */
-		attackerComponent += (attackerComponent * (float) useKarma(0.1));
+		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())){
+			attackerComponent += (attackerComponent * (float) useKarma(0.1));
+		}
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
 				+ attackerComponent);
@@ -426,8 +438,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		/*
 		 * Account for karma (+/-10%)
+		 * But, the defender doesn't need luck to help him defend if he's a much 
+		 * higher level than this attacker
 		 */
-		defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
+		if (!(defender.getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > getLevel())){
+			defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: "
@@ -1924,9 +1940,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 	
 		/*
-		 * Apply some karma
+		 * Use some karma unless attacker is much stronger than
+		 * defender, in which case attacker doesn't need luck to help 
+		 * him hit.
 		 */
-		final double karma = this.useKarma(0.3) - defender.useKarma(0.3);
+		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())){
+		final double karma = this.useKarma(0.1);
 	
 		if (karma > 0.2) {
 			risk += 4;
@@ -1936,6 +1955,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			risk -= 4;
 		} else if (karma < -0.1) {
 			risk--;
+		}
 		}
 	
 		if (logger.isDebugEnabled()) {
