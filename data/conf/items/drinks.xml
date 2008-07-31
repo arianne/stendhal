@@ -216,6 +216,24 @@
     </equipable>
   </item>
 
+  <item name="twilight elixir">
+    <type class="drink" subclass="twilight_elixir" tileid="-1"/>
+    <description>You see a bottle of elixir.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="-1000"/>
+      <frequency value="5"/>
+      <quantity value="1"/>
+      <regen value="-50"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="300"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="minor potion">
     <type class="drink" subclass="minor_potion" tileid="-1"/>
     <description>You see a minor potion. It's not much but may save you in a tight spot.</description>
