@@ -122,7 +122,7 @@
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONiYGDgIgEzkKgehjVoiEeCHc+A+DkRZhBSh8+OF0D8kgg7CKnDZ8crIH5NhB2E1A10fIzaMWoHLeyA5V9SaVLseMEAyb+k0qN2jNpBTNlOKk2KHdTC9LSDWGyIhonVBwBfqpZwxAkAAA==
+   H4sIAAAAAAAAAONiYGDgIgEzkKgehjVoiEeCHc+A+AURZhBSh8+Ol0D8mgg7CKnDZ8cbIH5HhB2E1A10fIzaMWoHLewA5d/nJOIXJNoByr+vSMTY8vuoHaN2IGNQmf2WRIytjB/oPEhtO4jFhmiYWH0AfZf4CsQJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
