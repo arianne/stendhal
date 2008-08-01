@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.item.scroll;
 
+import games.stendhal.server.entity.player.Player;
+
 import java.util.Map;
 
 /**
@@ -39,5 +41,17 @@ public class BalloonScroll extends TimedTeleportScroll {
 	@Override
 	protected String getAfterReturnMessage() {
 		return "You fell through a hole in the clouds, back to solid ground.";
+	}
+
+	// Only let player use balloon from 6 kika clouds
+
+	@Override
+	protected boolean useTeleportScroll(final Player player) {
+		if (!"6_kikareukin_islands".equals(player.getZone().getName())) {
+			player.sendPrivateText("The balloon tried to float you away but the altitude was too low for it to even lift you. " 
+									  + "Try from somewhere higher up.");
+			return false; 
+		} 
+		return super.useTeleportScroll(player);
 	}
 }
