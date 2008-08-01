@@ -549,7 +549,7 @@ public class MithrilCloak extends AbstractQuest {
 		npc.addReply("balloon","Ah! They are dropped by the charming little baby angels who dwell in Kikareukin Islands. I want one for my daughter.");
 		npc.addReply("silk thread","That is from the silk glands of giant spiders. You need 40 spools of silk thread to make something as large as a cloak, say.");
 		npc.addReply("silk","That is from the silk glands of giant spiders.");
-i		npc.addReply("mithril nuggets","You can find them for yourself.");
+		npc.addReply("mithril nuggets","You can find them for yourself.");
 		npc.addReply("Whiggins","Find the wizard Whiggins inside his house in the magic city.");
 		npc.addReply("scientists","I hear of experiments deep in Kalavan Castle. The scientists are a crazy bunch, but look for the lead researcher, Vincento Price, he may be sane enough to help you.");
 
