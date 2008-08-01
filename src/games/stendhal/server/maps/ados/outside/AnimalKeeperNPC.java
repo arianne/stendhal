@@ -1,16 +1,19 @@
 package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -18,11 +21,15 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import marauroa.common.game.IRPZone;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
+
+	private static final String ZONE_NAME = "int_ados_pet_sanctuary";
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
@@ -117,10 +124,21 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 						@Override
 						public void fire(final Player player, final Sentence sentence,
 										 final SpeakerNPC npc) {
-							String petName = player.getPet().getTitle();
-							npc.say("Thank you for rescuing this " + petName + ", I will take good care of it.");
-							player.removePet(player.getPet());
-							player.addKarma(30.0);
+							Pet pet = player.getPet();
+							String petName = pet.getTitle();
+							// these numbers are hardcoded, they're the area in the pet sanctuary which is for pets. It has food spawners.
+							int x = Rand.randUniform(2,12);
+							int y = Rand.randUniform(7,29);
+							StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
+							if (StendhalRPAction.placeat(zone, pet, x, y)) {
+								player.removePet(pet);
+								player.addKarma(30.0);
+								npc.say("Thank you for rescuing this " + petName + ", I will take good care of it. Remember you can come back and visit the pet sanctuary any time you like!");
+								notifyWorldAboutChanges();
+							} else {
+								// there was no room for the pet
+								npc.say("It looks like we don't have any space left in our pet sanctuary! I hope you can look after this " + petName + " a little longer.");  
+							}
 						}
 					});
 
