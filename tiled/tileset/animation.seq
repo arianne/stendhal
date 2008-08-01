@@ -148,11 +148,40 @@ tileset/ground/water/golden_whirlpool.png	3	3:7:11:7
 tileset/ground/water/golden_whirlpool.png	7	3:7:11:7
 tileset/ground/water/golden_whirlpool.png	11	3:7:11:7
 
-tileset/ground/water/waterfall.png	*	2:9:16
-tileset/ground/water/waterfall.png	*	3:10:17
-tileset/ground/water/waterfall.png	*	4:11:18
-tileset/ground/water/waterfall.png	*	5:12:19
-tileset/ground/water/waterfall.png	*	6:13:20
+# waterfall, top edge
+tileset/ground/water/waterfall.png	*@300	0:1:2:3
+tileset/ground/water/waterfall.png	*@300	4:5:6:7
+# main fall part
+tileset/ground/water/waterfall.png	*@300	8:9:10:11
+# bottom
+tileset/ground/water/waterfall.png	*@300	16:17:18:19
+tileset/ground/water/waterfall.png	*@300	20:21:22:23
+# sides from top to bottom. left and right
+tileset/ground/water/waterfall.png	*@300	24:25:26:27
+tileset/ground/water/waterfall.png	*@300	28:29:30:31
+tileset/ground/water/waterfall.png	*@300	32:33:34:35
+tileset/ground/water/waterfall.png	*@300	36:37:38:39
+tileset/ground/water/waterfall.png	*@300	40:41:42:43
+tileset/ground/water/waterfall.png	*@300	44:45:46:47
+tileset/ground/water/waterfall.png	*@300	48:49:50:51
+tileset/ground/water/waterfall.png	*@300	52:53:54:55
+tileset/ground/water/waterfall.png	*@300	56:57:58:59
+tileset/ground/water/waterfall.png	*@300	60:61:62:63
+tileset/ground/water/waterfall.png	*@300	64:65:66:67
+tileset/ground/water/waterfall.png	*@300	68:69:70:71
+tileset/ground/water/waterfall.png	*@300	72:73:74:75
+tileset/ground/water/waterfall.png	*@300	76:77:78:79
+# inverted waves. top to bottom. left and right
+tileset/ground/water/waterfall.png	*@300	80:81:82:83
+tileset/ground/water/waterfall.png	*@300	84:85:86:87
+tileset/ground/water/waterfall.png	*@300	88:89:90:91
+tileset/ground/water/waterfall.png	*@300	92:93:94:95
+tileset/ground/water/waterfall.png	*@300	96:97:98:99
+tileset/ground/water/waterfall.png	*@300	100:101:102:103
+tileset/ground/water/waterfall.png	*@300	104:105:106:107
+tileset/ground/water/waterfall.png	*@300	108:109:110:111
+tileset/ground/water/waterfall.png	*@300	112:113:114:115
+tileset/ground/water/waterfall.png	*@300	116:117:118:119
 
 tileset/ground/water/golden_waterfall.png	*	0:5:10
 tileset/ground/water/golden_waterfall.png	*	1:6:11
