@@ -111,8 +111,18 @@ West: Semos
     </attribute>
     <attribute name="class">signpost</attribute>
   </entity>
+
+   <portal x="59" y="38" ref="sanctuary">
+    <destination zone="int_ados_pet_sanctuary" ref="in"/>
+   </portal>
  </zone>
 
+  <zone name="int_ados_pet_sanctuary" file="interiors/ados/pet_sanctuary.tmx">
+   <portal x="22" y="30" ref="in">
+    <destination zone="0_ados_outside_nw" ref="sanctuary"/>
+   </portal>
+  </zone>
+   
  <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
@@ -1545,7 +1555,7 @@ Southeast: Docks
    
    <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
    </zone>
-   
+
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
     <portal x="101" y="22" ref="felina_entrance">
      <destination zone="int_ados_felinas_house" ref="entrance"/>
