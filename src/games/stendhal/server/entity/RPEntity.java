@@ -2027,7 +2027,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());
-				damage = this.handleLifesteal(this, this.getWeapons(), damage);
+				this.handleLifesteal(this, this.getWeapons(), damage);
 
 				defender.onDamaged(this, damage);
 				this.put("damage", damage);
@@ -2065,9 +2065,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the weapons of the RPEntity doing the hit
 	 * @param damage
 	 *            the damage done by this hit.
-	 * @return damage (may be altered inside this method)
 	 */
-	public int handleLifesteal(final RPEntity attacker,
+	public void handleLifesteal(final RPEntity attacker,
 			final List<Item> attackerWeapons, int damage) {
 
 		// Calculate the lifesteal value based on the configured factor
@@ -2083,7 +2082,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			final String value = ((Creature) attacker).getAIProfile("lifesteal");
 			if (value == null) {
 				// The creature doesn't steal life.
-				return damage;
+				return;
 			}
 			sumLifesteal = Float.parseFloat(value);
 		} else {
@@ -2103,12 +2102,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			final int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
 
 			if (lifesteal >= 0) {
-				if (attacker.heal(lifesteal, true) == 0) {
-					// If no effective healing, reduce damage
-					if (damage > 1) {
-						damage /= 2;
-					}
-				}
+				attacker.heal(lifesteal, true);
 			} else {
 				/*
 				 * Negative lifesteal means that we hurt ourselves.
@@ -2118,7 +2112,5 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 			attacker.notifyWorldAboutChanges();
 		}
-		return damage;
 	}
-
 }

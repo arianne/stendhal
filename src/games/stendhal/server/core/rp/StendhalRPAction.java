@@ -198,7 +198,7 @@ public class StendhalRPAction {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());
-				damage = player.handleLifesteal(player, weapons, damage);
+				player.handleLifesteal(player, weapons, damage);
 
 				defender.onDamaged(player, damage);
 				player.setDamage(damage);
