@@ -661,7 +661,7 @@ public class MithrilCloak extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Wonderful! I'm so relieved! Please take this note to Pedinghaus, you will find him in Ados goldsmiths. Tell him you have a #letter for him.",			
-				new MultipleActions(new EquipItemAction("note",1,true),
+				new MultipleActions(new EquipItemAction("sealed envelope",1,true),
 									new SetQuestAction(QUEST_SLOT,"taking_letter"))
 				);
 		
@@ -773,11 +773,11 @@ public class MithrilCloak extends AbstractQuest {
 		// accept the letter
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("letter", "note", "whiggins", "apology"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_letter"), new PlayerHasItemWithHimCondition("note")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "taking_letter"), new PlayerHasItemWithHimCondition("sealed envelope")),
 				ConversationStates.ATTENDING,
 				"*reads* ... *reads* ... Well, I must say, that is a weight off my mind. Thank you ever so much. Please convey my warmest regards to Whiggins. All is forgiven.",
 				new MultipleActions(
-									 new DropItemAction("note"), 
+									 new DropItemAction("sealed envelope"), 
 									 new SetQuestAndModifyKarmaAction(QUEST_SLOT, "took_letter", 10.0)
 				));
 	}
