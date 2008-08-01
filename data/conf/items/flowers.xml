@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
 
-<!-- Uncomment these when exotic_flower and rose are moved to flower directory -->
- <!--
   <item name="rhosyd">
     <type class="flower" subclass="exotic_flower" tileid="-1"/>
     <description>You see a beautiful and rare rhosyd flower.</description>
@@ -30,7 +28,7 @@
       <slot name="rhand"/>
       <slot name="bag"/>
     </equipable>
-  </item> -->
+  </item> 
 
   <item name="lilia">
     <type class="flower" subclass="lilia" tileid="-1"/>
