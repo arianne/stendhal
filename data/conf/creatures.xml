@@ -8903,6 +8903,32 @@
     </ai>
   </creature>
 
+  <creature name="twilight slime">
+    <type class="animal" subclass="twilight_slime" tileid="animal.png:-1"/>
+	<description>You see a twilight slime, so strange and beautiful. Why is it coming towards you? Runnnnnnnnn!</description>
+    <attributes>
+      <atk value="271"/>
+      <def value="32"/>
+      <hp value="1290"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="111"/>
+    <experience value="14580"/>
+    <respawn value="5900"/>
+    <drops>
+      <item value="greater antidote" quantity="[1,1]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="entwife">
     <type class="boss" subclass="entwife" tileid="boss.png:3"/>
     <description></description>
