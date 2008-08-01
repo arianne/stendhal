@@ -185,6 +185,30 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 
 			}
+		} else if (clazz.contains("meat_and_fish")) {
+			switch (type) {
+			case 0:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"meat", 100);
+				break;
+			case 1:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"ham", 100);
+				break;
+			case 2:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"chicken", 100);
+				break;
+			case 3:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"roach", 100);
+				break;
+
+			case 4:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"char", 100);
+				break;
+			}
 		}
 
 		if (passiveEntityrespawnPoint == null) {
