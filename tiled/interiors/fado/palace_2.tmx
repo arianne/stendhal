@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
@@ -85,7 +85,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VPQ7CMAyFe55egtNSGkIlNkZgQEjMcAkYYIGJAUfYkhW1aeqEBkGe9KlR4vg5an6KQq4DkkJH1j4lqiHr/3QTjvXp2tG29RCO9ene0Y4hk28KVMgscn4f1UCJzAXzFwxJTIi/iV8DG2CLuYbGaKxLAY3AfwdMgL3D3xVzRlb49ZVCTP4S81LfEnHFhCr7v/dNg7k1a3O0FUN7LVS0Jglt+zT7f7e/fX+O6c/v5Zr1jeFPZ4xEZyj1/zdnmN5sX1966z9x//muW3L/Pa1vKn8uxag84XOG6II1tNURYy+FKLX/r+oF7EIDZAAQAAA=
+   H4sIAAAAAAAAAO2VPQ7CMAyFe57egeNSGkIlNkZgQEjMcAkYYIGJAUfYkhW1aeqEBkGe9KlR4vg5an6KQq4DkkJH1j4lqiHr/3QTjvXp2tG29RCO9ene0Y4hk28KVMgscn4f1UCJzAXzFwxJTIi/iV8DG2CLuYbGaKxLAY3AfwdMgL3D3xVzRlb49ZVCTP4S81LfEnHFhCr7v/dNg7k1a3O0FUN7LVS0Jglt+zT7f7e/fX+O6c/v5Zr1jeFPZ4xEZyj1/zdnmN5sX1966z9x//muW3L/Pa1vKn8uxag84XOG6II1tNURYy+FKLX/r+oFF6U/lQAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -103,12 +103,12 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="objects" width="32" height="32">
+ <layer name="objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VywkAIAxEQdOHiv1X6cEGXBJ/+AZyl2xwUwLeVGwMcEK2MYrKvV5vNlMlf/VO8LfIXqMj563cFTns05y7jvyvlc73vhtQdIBP6rAAEAAA
   </data>
  </layer>
- <layer name="collision" width="32" height="32" opacity="0.73">
+ <layer name="collision" width="32" height="32" visible="0" opacity="0.73">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2VwQoAIQhE/f9f7rKnhZA1dJpgpRmQDk09zaJhZgOMV+j6nfC6iR9JfM6+4vOF1sTkr3L5O7/a/2iuM38eUY/PpwP/6+wQD8L3nmp/GXxU4osvfo4feZE/Enn/GW+Fn/F04Uf+VSD8nbtWFaOG0/wb4gFVbSaKABAAAA==
   </data>
