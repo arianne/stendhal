@@ -13,6 +13,17 @@ Changelog
 - cleaned up /inspect of a player
 - made sally give time remaining to campfire test and reworked parts
 - AmazonPrincess uses 'new' ChatAction way
+- in battle karma isn't used when the level difference is enough that no luck is needed 
+- pet is starving message re-introduced
+- 'use' only seen on items which are useable
+- item guard creatures like the thing can check if a quest is active before dropping item
+- extend ketteh wehoh npc and move her to new player start area
+- rats are stupid cowards
+- new help command /gmhelp_script
+- mithril cloak quest started with Ida
+- creatures added to an empty platform in hell including new creature devil monk
+- push checks if entity to be pushed is stood on an item
+
 
 0.68.1
 - sentence can be set for website
