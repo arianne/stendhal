@@ -42,30 +42,6 @@
     </equipable>
   </item>
 
-  <item name="note">
-    <type class="misc" subclass="paper" tileid="-1"/>
-    <description>You see a note.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
-  <item name="coupon">
-    <type class="misc" subclass="coupon" tileid="-1"/>
-    <description>You see a coupon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
   <item name="dice">
     <type class="misc" subclass="dice" tileid="-1"/>
     <description>You see a set of dice. May lady luck be with you.</description>
@@ -173,62 +149,6 @@
       <slot name="bag"/>
     </equipable>
   </item>
-
-  <item name="closed envelope">
-    <type class="misc" subclass="closed_envelope" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
-  <item name="opened envelope">
-    <type class="misc" subclass="opened_envelope" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
-  <item name="sealed envelope">
-    <type class="misc" subclass="sealed_envelope" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
-  <item name="unsealed envelope">
-    <type class="misc" subclass="unsealed_envelope" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
   
    <item name="marbles">
     <type class="misc" subclass="marbles" tileid="-1"/>
@@ -245,19 +165,6 @@
     </equipable>
   </item>
  
-    <item name="assassins id">
-    <type class="misc" subclass="license" tileid="-1"/>
-    <description>You see an assassin's ID. Perhaps this can be put to good use.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-       <quantity value="1"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
    <item name="canned tuna">
     <type class="misc" subclass="canotuna" tileid="-1"/>
     <description>You see tuna in a can. Too bad you don't have a can opener.</description>
