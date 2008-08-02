@@ -1,4 +1,4 @@
-package games.stendhal.server.actions.equip;
+package games.stendhal.server.actions.admin;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
