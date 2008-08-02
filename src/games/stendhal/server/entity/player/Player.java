@@ -1293,11 +1293,23 @@ public class Player extends RPEntity {
 	}
 
 	public boolean isFull() {
+		return itemsToConsume.size() > 4;
+	}
+
+	public boolean isChoking() {
 		return itemsToConsume.size() > 5;
 	}
 
+	public boolean isChokingToDeath() {
+		return itemsToConsume.size() > 6;
+	}
+
 	public void eat(final ConsumableItem item) {
-		put("eating", 0);
+		if (isChoking()){
+			put("choking", 0);
+		} else {
+			put("eating", 0);
+		}
 		itemsToConsume.add(item);
 	}
 
@@ -1326,7 +1338,14 @@ public class Player extends RPEntity {
 				if (turn % food.getFrecuency() == 0) {
 					logger.debug("Consumed item: " + food);
 					final int amount = food.consume();
-					put("eating", amount);
+					if (isChoking()){
+						put("choking", amount);
+					} else {
+						if (has("choking")) {
+							remove("choking");
+						}
+						put("eating", amount);
+					}
 					if (heal(amount, true) == 0) {
 						itemsToConsume.clear();
 					}
@@ -1335,6 +1354,9 @@ public class Player extends RPEntity {
 		} else {
 			if (has("eating")) {
 				remove("eating");
+			}
+			if (has("choking")) {
+				remove("choking");
 			}
 		}
 
