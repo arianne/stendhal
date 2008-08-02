@@ -81,6 +81,7 @@ class PlayerRPClass {
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
+		player.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
 
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
