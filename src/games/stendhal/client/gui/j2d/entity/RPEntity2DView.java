@@ -43,6 +43,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	private static Sprite poisonedSprite;
 
+	private static Sprite chokingSprite;
+
 	private static Sprite hitSprite;
 
 	private static Sprite blockedSprite;
@@ -110,6 +112,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getSprite("data/sprites/ideas/poisoned.png");
+		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 	}
 
 	/**
@@ -533,7 +536,11 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		super.draw(g2d, x, y, width, height, gameScreen);
 
 		if (rpentity.isEating()) {
-			eatingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
+			if (rpentity.isChoking()){
+				chokingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
+			} else {
+				eatingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
+			}
 		}
 
 		if (rpentity.isPoisoned()) {

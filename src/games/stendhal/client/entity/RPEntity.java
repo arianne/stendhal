@@ -110,6 +110,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private boolean poisoned;
 
+	private boolean choking;
+
 	private long combatIconTime;
 
 	private final List<TextIndicator> textIndicators;
@@ -379,6 +381,10 @@ public abstract class RPEntity extends ActiveEntity {
 		return poisoned;
 	}
 
+	public boolean isChoking() {
+		return choking;
+	}
+
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(final String text) {
@@ -472,6 +478,15 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity gets healed
 	public void onHealed(final int amount) {
+	}
+
+	// When entity chokes on food
+	public final void onChoking() {
+		choking = true;
+	}
+
+	public void onStopChoking() {
+		choking = false;
 	}
 
 	// When entity adjusts HP
@@ -673,6 +688,12 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		/*
+		 * Choking
+		 */
+		if (object.has("choking")) {
+			onChoking();
+		}
+		/*
 		 * Poisoned
 		 */
 		if (object.has("poisoned")) {
@@ -856,6 +877,13 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			if (changes.has("eating")) {
 				onEat();
+			}
+
+			/*
+			 * Choking
+			 */
+			if (changes.has("choking")) {
+				onChoking();
 			}
 
 			/*
@@ -1135,6 +1163,13 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		if (changes.has("eating")) {
 			onStopEating();
+		}
+
+		/*
+		 * No longer choking?
+		 */
+		if (changes.has("choking")) {
+			onStopChoking();
 		}
 
 		if (changes.has("ghostmode")) {
