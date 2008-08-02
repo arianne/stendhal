@@ -617,6 +617,7 @@ in roaches.
 
    <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
    </zone>
  
    <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
