@@ -344,7 +344,7 @@ public class UserContext implements RPObjectChangeListener {
 			 * TODO: Drop underscore prefix when 'id' is not forced into the
 			 * RPObject attributes
 			 */
-			logger.info(key);
+			logger.debug(key);
 			
 			if ("id".equals(key)) {
 				continue;
