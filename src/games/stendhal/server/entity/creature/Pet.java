@@ -162,20 +162,22 @@ public abstract class Pet extends DomesticAnimal {
 	 *         range
 	 */
 	private Item getNearestFood(final double range) {
-
-		final Set<Item> items = getZone().getItemsOnGround();
 		// This way we save several sqrt operations
 		double squaredDistance = range * range; 
 
 		Item chosen = null;
-		for (final Item i : items) {
-			if (canEat(i)) {
-				if (this.squaredDistance(i) < squaredDistance) {
-					chosen = i;
-					squaredDistance = this.squaredDistance(i);
+		
+		// can not check getZone().getItemsOnGround(), because that 
+		// list does not have items on growers.
+		for (final RPObject obj : getZone()) {
+			if (obj instanceof Item) {
+				final Item item = (Item) obj;
+				
+				if (canEat(item) && (this.squaredDistance(item) < squaredDistance)) {
+					chosen = item;
+					squaredDistance = this.squaredDistance(item);
 				}
 			}
-
 		}
 
 		return chosen;
@@ -221,10 +223,11 @@ public abstract class Pet extends DomesticAnimal {
 		setIdea(null);
 		hunger++;
 
-		final Item food = getNearestFood(6);
-		// Show 'food' idea whenever hungry
 		if (hunger > HUNGER_HUNGRY) {
+			// Show 'food' idea whenever hungry
 			setIdea("food");
+			
+			final Item food = getNearestFood(6);
 
 			if ((food != null)) {
 				if (nextTo(food)) {
