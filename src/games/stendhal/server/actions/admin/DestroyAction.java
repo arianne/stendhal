@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -17,6 +18,7 @@ import marauroa.common.game.RPAction;
 public class DestroyAction extends AdministrationAction {
 
 	private static final String _TARGETID = "targetid";
+
 	private static final String _ATTR_NAME = "name";
 
 	public static void register() {
@@ -57,7 +59,10 @@ public class DestroyAction extends AdministrationAction {
 		final StendhalRPZone zone = inspected.getZone();
 
 		if (inspected instanceof RPEntity) {
-			// TODO: override the part that makes the drops happen. Destroyed things shouldn't drop stuff.
+			if (inspected instanceof Creature) {
+				// *destroyed creatures should not drop items
+				((Creature) inspected).clearDropItemList();
+			} 
 			((RPEntity) inspected).onDead(player);
 		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Corpse) || (inspected instanceof Blood)) {
 			zone.remove(inspected);
@@ -66,16 +71,18 @@ public class DestroyAction extends AdministrationAction {
 			return;
 		}
 
-		String name = inspected.getRPClass().getName();
+		String clazz = inspected.getRPClass().getName();
+		String name = "";
+		 
 		if (inspected.has(_ATTR_NAME)) {
-			name = inspected.get(_ATTR_NAME);
-		}
+                      name = inspected.get(_ATTR_NAME);
+		} 
 
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
-				name, zone.getName(), Integer.toString(inspected.getX()),
+				name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
-		player.sendPrivateText("Removed entity " + action.get(_TARGETID));
+		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(_TARGETID));
 	}
 
 }
