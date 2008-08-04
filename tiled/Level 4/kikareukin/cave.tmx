@@ -43,13 +43,13 @@
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/broken_green_column.png"/>
+  <image source="../../tileset/item/statue/broken_green_column.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/blackened_column.png"/>
+  <image source="../../tileset/item/statue/blackened_column.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>

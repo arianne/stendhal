@@ -37,7 +37,7 @@
   <image source="../../tileset/building/decoration/blue_circle.png"/>
  </tileset>
  <tileset name="green_stone_3" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_3.png"/>
+  <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="122" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/stone2.png"/>

@@ -146,12 +146,12 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UMQoAIAwEwfww+P/PiIVglxwcIrgH2wWmSwRbG0V5VN12wtd8d/j4+Ph7zt+Gj6/6t1x8fPz3/BTC9/u/bgIWYAjpABAAAA==
+   H4sIAAAAAAAAAO3UMQoAMAgEQX8o+f9ngkUgnREOJLgH2wnTacZiK8mvstuX8Gu+Onx8/L/87v+DP9tXho+Pj3/mhfD1/tRt9GBOTgAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XOU7DQBQG4DGhCaRlCXAAQoEEdEAHnAAahGkIm30UloY4DesFWMJSJTdAXABqaMgl+C1mpKfROLPFREIZ6ZMdx+/9cuR4xiXG2ICDYSg51tIegzAF4xYmoeBYq+oxyvSjBSE0YUSqfYcP6fwt2IQNWOf7Id9uK3qYjDj43ZrU1iCBOtlPyDGX/HREgXstHT49+vm9zT/CPXAMJ3AaqM/ZgSq32+X8M2TWIIF6Rv4e7HMHcNPF/HNkXsAlXCnyrxX5dLx55pvUHkLExY49fPLz7JFHfvpsDXuYn44o417+q/ymR61vvmm2XDsBYzANFZjhn3XKimuILX//IQi4OZiHBXJMp8j87n+6/lqEJVhm9usvn/+fWH+twCqssXzWX1n5Lvffq2eP//j86+fnW/sJXx166J49Ym6KNevvW7gj7i2uoSWdIz+TI4P3jwdoEI8W+eL9Sh50Xla9f9HxBM/EC/nuG9qKfDGHmCprak3mItGDziE2ih1qZ5nZXJT2+AGE5R0QABAAAA==
+   H4sIAAAAAAAAAO3XOU7DQBQG4DHQBNKyBDgAUCABHdABJ4AGMTTs9lFYGuI0rBdgCUvl3ABxAaihgUvwW8xIT6NxPIuDhZQnfbKT+L1fiRLPpMoY63EwAFXHXjqjD8ZhxMIY9Dr26mYMsfxqAYcEBpXeN3hXrt+AdViDVXHOxXFTM8OkouD3aNJbhxga5Dwmz7nkpxUG7r20fGZ088vNP8R34AiO4STQX7MF28JOwfmnyKxDDI2M/F3YE/bhusD8M2SewwVcavKvNPm0Xj3zTXoPIBQixxk++Z2Ykd7/eIn5aZV9/9OtP3+Vn3j0FpGfVqR8/qMwDBMwCVPicZ6ax3uQ+f0QCDMwC3PkuTwVz3y6/5qHBVhk9vsvn9+/3H8twTKssM7sv7LyXb5/L54zyl5/u/n/L/8DPtvMiDL2MbK4OKr3PzX/Bm6JO4v30FKuSZTHocH/j3toEg8W+fL/lVqcnOetf4/wRDyT177gW5Mv1xBTtZxek7VIzqBriI1Km95pZrYWpTN+ADBZ5XMAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -171,7 +171,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XOwoAIAwD0Hr/c/i7pYhkEUEHJaJ5S6FLnRI0kxXemSXXJksk3oZwwRtERHaq2ZrJ2cbO1kS8z+xVuKFfReQ/s+xBN5zsiL7/+kw+nY/4Y432wOyoFxXDdZMXABAAAA==
+   H4sIAAAAAAAAAO3XQQrAIBADwN2H9nmt+kspJRcRqqDE1sxF8aIgJGomLU43i/6MLIG4N1wLnEH2dnh9Lv92518i3zc7/yJxf2b3wQodKCIy0luuoXdm9k/ZrWXez85e/LFq68Dsvx5feZdmOZFCfwAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" visible="0" opacity="0.34">

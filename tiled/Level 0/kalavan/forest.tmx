@@ -28,7 +28,7 @@
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="156" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/broken_green_column.png"/>
+  <image source="../../tileset/item/statue/broken_green_column.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce.png"/>

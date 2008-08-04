@@ -73,7 +73,7 @@
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
  <tileset name="column" firstgid="139" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/blackened_column.png"/>
+  <image source="../../tileset/item/statue/blackened_column.png"/>
  </tileset>
  <tileset name="chest" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>

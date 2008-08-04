@@ -49,7 +49,7 @@
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="398" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/cross.png"/>
+  <image source="../../tileset/item/statue/cross.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="399" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>

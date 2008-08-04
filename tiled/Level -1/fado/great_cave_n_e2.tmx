@@ -226,7 +226,7 @@
   <image source="../../tileset/object/outhouse.png"/>
  </tileset>
  <tileset name="broken statue" firstgid="1047" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/broken_green_column.png"/>
+  <image source="../../tileset/item/statue/broken_green_column.png"/>
  </tileset>
  <tileset name="broken lion" firstgid="1049" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/broken_lion.png"/>

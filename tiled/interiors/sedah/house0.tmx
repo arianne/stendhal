@@ -30,8 +30,8 @@
  <tileset name="../../tileset/item/furniture/table/grey_plain.png" firstgid="107" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/blackened_column.png" firstgid="116" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/blackened_column.png"/>
+ <tileset name="../../tileset/item/statue/blackened_column.png" firstgid="116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/blackened_column.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

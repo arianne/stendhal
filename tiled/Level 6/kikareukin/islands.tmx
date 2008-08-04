@@ -73,7 +73,7 @@
   <image source="../../tileset/building/decoration/floor_sparkle.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="363" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_3.png"/>
+  <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="366" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png"/>

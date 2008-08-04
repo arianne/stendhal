@@ -33,8 +33,8 @@
  <tileset name="../../tileset/ground/water/water_bubbles.png" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/cross.png" firstgid="161" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/cross.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/cross.png" firstgid="161" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/cross.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>

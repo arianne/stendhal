@@ -66,8 +66,8 @@
  <tileset name="../../tileset/ground/green_paving_3.png" firstgid="385" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_3.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone_3.png" firstgid="386" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_3.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone_3.png" firstgid="386" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone_3.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/hedge.png" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge.png" trans="ffffff"/>
@@ -126,8 +126,8 @@
  <tileset name="../../tileset/plant/stump/rectangular.png" firstgid="606" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/rectangular.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/cross.png" firstgid="608" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/cross.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/cross.png" firstgid="608" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/cross.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_green.png" firstgid="609" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff"/>

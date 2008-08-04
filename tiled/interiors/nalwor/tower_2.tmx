@@ -12,8 +12,8 @@
  <tileset name="../../tileset/ground/indoor/tiles.png" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone_3.png" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_3.png"/>
+ <tileset name="../../tileset/item/statue/green_stone_3.png" firstgid="45" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <tileset name="../../tileset/building/window/window_long_below.png" firstgid="48" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/window_long_below.png"/>

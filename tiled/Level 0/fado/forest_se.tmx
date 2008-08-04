@@ -43,7 +43,7 @@
   <image source="../../tileset/logic/creature/albino_elf.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="286" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/broken_green_column.png"/>
+  <image source="../../tileset/item/statue/broken_green_column.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="288" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce.png"/>
