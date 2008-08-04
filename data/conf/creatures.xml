@@ -8915,7 +8915,7 @@
     </attributes>
     <level value="111"/>
     <experience value="14580"/>
-    <respawn value="5900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="greater antidote" quantity="[1,1]" probability="100.0"/>
     </drops>
