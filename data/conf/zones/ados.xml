@@ -118,6 +118,18 @@ West: Semos
  </zone>
 
   <zone name="int_ados_pet_sanctuary" file="interiors/ados/pet_sanctuary.tmx">
+   <portal x="16" y="9" ref="door_right">
+ <!-- sometime in future we might allow players in to get a pet out but for
+     now, we lock the door into the pet area -->
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+     <parameter name="key">pet sanctuary key</parameter>
+     <parameter name="rejected">Restricted access: animal keepers and vets only.</parameter>
+     </implementation>
+    <destination zone="int_ados_pet_sanctuary" ref="door_left"/>
+   </portal>
+   <portal x="13" y="9" ref="door_left">
+    <destination zone="int_ados_pet_sanctuary" ref="door_right"/>
+   </portal>
    <portal x="22" y="30" ref="in">
     <destination zone="0_ados_outside_nw" ref="sanctuary"/>
    </portal>
@@ -618,6 +630,26 @@ in roaches.
    <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
+	<!--some feedback for a player who might be trapped inside and not know
+    what to do. if they come back after their quest slot isn't 'twilight_zone'
+    anymore, but before they are 'done' they are then trapped forever as lda
+    will only take the elixir if she's still sick from the player point of
+    view. -->
+	<portal x="6" y="18" ref="twilight_door_left">
+     <destination zone="0_ados_city" ref="sewing_entrance"/>
+	 <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
+	  <parameter name="quest">mithril_cloak</parameter>
+	  <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
+	 </implementation>
+    </portal>
+    <portal x="7" y="18" ref="twilight_door_right">
+     <destination zone="0_ados_city" ref="sewing_entrance"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
+      <parameter name="quest">mithril_cloak</parameter>
+      <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
+     </implementation>
+    </portal>
+
    </zone>
  
    <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
@@ -1877,6 +1909,9 @@ Assassin Dagger (atk 6 rate 2) 12000
  
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
+
+ <!-- commented out till ready <zone name="-2_ados_vaults" level="-2" x="500768" y="500128" file="Level -2/ados/vaults.tmx">
+    </zone> -->
 
  <!--  Level -3 -->
 

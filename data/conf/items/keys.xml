@@ -91,6 +91,20 @@
     </equipable>
   </item>
 
+ <!-- this is unused as yet but we create the key object so the door can reject properly-->
+  <item name="pet sanctuary key">
+    <type class="key" subclass="rat" tileid="-1"/>
+    <description>You see a key for the pet sanctuary in Ados.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
  <item name="private key 1">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 1 in Kalavan City.</description>
