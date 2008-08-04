@@ -1166,8 +1166,8 @@ public class MithrilCloak extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Pdiddi");
 
 		// offer moss when prompted
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("moss", "magical", "twilight", "ida", "cloak", "mithril cloak", "specials"),
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("moss", "magical", "twilight", "ida", "cloak", "mithril cloak", "specials", "twilight moss"),
 				new QuestInStateCondition(QUEST_SLOT, "twilight_zone"),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"Keep it quiet will you! Yeah, I got moss, it's "
