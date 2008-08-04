@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Constants;
+import games.stendhal.common.Grammar;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -15,6 +17,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +39,13 @@ public class PlayerDieer {
 
 	private static final Logger logger = Logger.getLogger(PlayerDieer.class);
 	private final Player player;
+
+	private List<PassiveEntity> drops;
+	// it is not crazy to have a number of drops as well as a drops list
+	// because there will be one entry  in the drops list for each item 
+	// but could be more than one stackable item per entry
+	// i need the number of drops for saying it/them at the end.
+	private int numberOfDrops;
 	
 	public PlayerDieer(final Player player) {
 		this.player = player;
@@ -71,7 +81,6 @@ public class PlayerDieer {
 		}
 
 		player.onDead(killer, false);
-
 		player.setHP(player.getBaseHP());
 
 		player.returnToOriginalOutfit();
@@ -83,8 +92,26 @@ public class PlayerDieer {
 		}
 
 		respawnInAfterLife();
+		if (numberOfDrops > 0){
+			Collection<String> strings = new LinkedList<String>();
+			for(PassiveEntity item:this.drops) {
+				if (item instanceof StackableItem) {
+					StackableItem si = (StackableItem) item;
+					StringBuilder sb = new StringBuilder();
+					sb.append(si.getQuantity());
+					sb.append(" ");
+					sb.append(Grammar.plural(si.getName()));
+					strings.add(sb.toString());
+				}else if (item instanceof PassiveEntity) {
+					PassiveEntity pe = (PassiveEntity)item;
+					strings.add(Grammar.a_noun(pe.getTitle()));
+				}
+			}
+			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings ) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");
+		} else {
+			player.sendPrivateText(NotificationType.POSITIVE, "You were lucky and dropped no items when you died.");
+		}
 	}
-
 
 	private void respawnInAfterLife() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(DEFAULT_DEAD_AREA);
@@ -125,8 +152,9 @@ public class PlayerDieer {
 		// drop at least 1 and at most 4 items
 		final int maxItemsToDrop = Rand.rand(4);
 		final List<Pair<RPObject, RPSlot>> objects = retrieveAllDroppableObjects();
+		drops = new LinkedList<PassiveEntity>();
+		numberOfDrops = 0;
 		Collections.shuffle(objects);
-
 		for (int i = 0; i < maxItemsToDrop; i++) {
 			if (!objects.isEmpty()) {
 				final Pair<RPObject, RPSlot> object = objects.remove(0);
@@ -147,14 +175,19 @@ public class PlayerDieer {
 							new String[]{"slot", player.getName(), object.second().getName()}, 
 							new String[]{"slot", player.getName(), "content"});
 						corpse.add(itemToDrop);
+						numberOfDrops += quantityToDrop;
+						drops.add(itemToDrop);
 					}
-				} else if (object.first() instanceof PassiveEntity) {
+				} else if (object.first() instanceof Item) {
+					Item justItem = (Item)object.first();
 					object.second().remove(object.first().getID());
 					ItemLogger.equipAction(player, (Entity) object.first(), 
 									new String[]{"slot", player.getName(), object.second().getName()}, 
 									new String[]{"slot", player.getName(), "content"});
 
 					corpse.add((PassiveEntity) object.first());
+					numberOfDrops += 1;
+					drops.add(justItem);
 				}
 			}
 		}
