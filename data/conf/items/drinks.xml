@@ -218,8 +218,8 @@
 
   <item name="twilight elixir">
     <type class="drink" subclass="twilight_elixir" tileid="-1"/>
-    <description>You see a bottle of elixir.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <description>You see a bottle of medicinal elixir.</description>
+    <implementation class-name="games.stendhal.server.entity.item.TwilightElixir"/>    <attributes>
       <amount value="-1000"/>
       <frequency value="5"/>
       <quantity value="1"/>
