@@ -28,8 +28,23 @@ public class Gate implements IEntity {
 	}
 
 	public void fillTargetInfo(final RPAction action) {
-		// TODO Auto-generated method stub
+		final int id = rpObject.getID().getObjectID();
+
+		if (rpObject.isContained()) {
+			action.put("baseobject",
+					rpObject.getContainer().getID().getObjectID());
+			action.put("baseslot", rpObject.getContainerSlot().getName());
+			action.put("baseitem", id);
+		} else {
+			StringBuilder target;
 		
+				
+			target = new StringBuilder("#");
+		
+			target.append(Integer.toString(id));
+
+			action.put("target", target.toString());
+		}
 	}
 
 	public Rectangle2D getArea() {
