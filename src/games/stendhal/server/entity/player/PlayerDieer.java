@@ -40,7 +40,7 @@ public class PlayerDieer {
 	private static final Logger logger = Logger.getLogger(PlayerDieer.class);
 	private final Player player;
 
-	private List<PassiveEntity> drops;
+	private List<Item> drops;
 	// it is not crazy to have a number of drops as well as a drops list
 	// because there will be one entry  in the drops list for each item 
 	// but could be more than one stackable item per entry
@@ -94,7 +94,7 @@ public class PlayerDieer {
 		respawnInAfterLife();
 		if (numberOfDrops > 0){
 			Collection<String> strings = new LinkedList<String>();
-			for(PassiveEntity item:this.drops) {
+			for(Item item:this.drops) {
 				if (item instanceof StackableItem) {
 					StackableItem si = (StackableItem) item;
 					StringBuilder sb = new StringBuilder();
@@ -102,9 +102,9 @@ public class PlayerDieer {
 					sb.append(" ");
 					sb.append(Grammar.plural(si.getName()));
 					strings.add(sb.toString());
-				}else if (item instanceof PassiveEntity) {
-					PassiveEntity pe = (PassiveEntity)item;
-					strings.add(Grammar.a_noun(pe.getTitle()));
+				}else if (item instanceof Item) {
+					Item it = (Item)item;
+					strings.add(Grammar.a_noun(it.getName()));
 				}
 			}
 			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings ) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");
@@ -152,7 +152,7 @@ public class PlayerDieer {
 		// drop at least 1 and at most 4 items
 		final int maxItemsToDrop = Rand.rand(4);
 		final List<Pair<RPObject, RPSlot>> objects = retrieveAllDroppableObjects();
-		drops = new LinkedList<PassiveEntity>();
+		drops = new LinkedList<Item>();
 		numberOfDrops = 0;
 		Collections.shuffle(objects);
 		for (int i = 0; i < maxItemsToDrop; i++) {
