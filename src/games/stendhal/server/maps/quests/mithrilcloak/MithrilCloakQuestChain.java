@@ -1,6 +1,4 @@
-package games.stendhal.server.maps.quests;
-
-import games.stendhal.server.maps.quests.mithrilcloak.MithrilCloakQuestChain;
+package games.stendhal.server.maps.quests.mithrilcloak;
 
 /**
  * QUEST: Mithril Cloak
@@ -53,28 +51,20 @@ import games.stendhal.server.maps.quests.mithrilcloak.MithrilCloakQuestChain;
  * <ul>
  * <li>None</li>
  * </ul>
- * 
+ *
  * @author kymara
- */
-public class MithrilCloak extends AbstractQuest {
-	private static final String QUEST_SLOT = "mithril_cloak";
+*/
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-	@Override
-	public String getSlotName() {
-		return QUEST_SLOT;
-	}
-	
-	
-	@Override
+public class MithrilCloakQuestChain  {
+	private static MithrilCloakQuestInfo mithrilcloak = new MithrilCloakQuestInfo();
+
 	public void addToWorld() {
-		super.addToWorld();
-		
-		MithrilCloakQuestChain mithrilcloak = new MithrilCloakQuestChain();
-		mithrilcloak.addToWorld();
+		new InitialSteps(mithrilcloak).addToWorld();
+		new MakingFabric(mithrilcloak).addToWorld();
+		new GettingTools(mithrilcloak).addToWorld();
+		new TwilightZone(mithrilcloak).addToWorld();
+		new CloakForJosephine(mithrilcloak).addToWorld();
+		new MakingClasp(mithrilcloak).addToWorld();
 	}
 
 }
