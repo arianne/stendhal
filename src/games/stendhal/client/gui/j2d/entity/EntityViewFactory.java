@@ -19,6 +19,7 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
+import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
@@ -135,6 +136,7 @@ public class EntityViewFactory {
 		register(Corpse.class, Corpse2DView.class);
 		register(Creature.class, Creature2DView.class);
 		register(Door.class, Door2DView.class);
+		register(Gate.class, Gate2DView.class);
 		register(Fire.class, AnimatedLoopEntity2DView.class);
 		register(FishSource.class, FishSource2DView.class);
 		register(GoldSource.class, GoldSource2DView.class);
