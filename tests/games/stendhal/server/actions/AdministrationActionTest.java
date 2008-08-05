@@ -667,7 +667,7 @@ public class AdministrationActionTest {
 		action.put("target", "#1");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Removed entity null", pl.getPrivateTextString());
+		assertEquals("Removed rat creature with ID null", pl.getPrivateTextString());
 	}
 
 	@Test
@@ -689,7 +689,7 @@ public class AdministrationActionTest {
 		action.put("targetid", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Removed entity 1", pl.getPrivateTextString());
+		assertEquals("Removed rat creature with ID 1", pl.getPrivateTextString());
 	}
 
 	@Test
