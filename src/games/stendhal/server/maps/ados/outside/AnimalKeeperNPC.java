@@ -21,8 +21,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-import marauroa.common.game.IRPZone;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;

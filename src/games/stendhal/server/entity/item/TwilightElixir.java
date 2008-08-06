@@ -19,8 +19,6 @@ import games.stendhal.server.entity.item.Drink;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
-import java.util.StringTokenizer;
-
 import org.apache.log4j.Logger;
 
 /**

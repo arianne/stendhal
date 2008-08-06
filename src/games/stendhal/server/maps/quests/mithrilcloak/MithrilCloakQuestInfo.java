@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests.mithrilcloak;
 
-import games.stendhal.server.entity.player.Player;
-
 class MithrilCloakQuestInfo {
 	private static final String QUEST_SLOT = "mithril_cloak";
 
