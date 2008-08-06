@@ -177,7 +177,7 @@ class InitialSteps {
 				   ConversationPhrases.YES_MESSAGES,
 				   new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
 				   ConversationStates.ATTENDING,		   
-				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a yard of " + mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.",
+				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a couple yards of " + mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.",
 				   new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_fabric", 10.0));
 					
 

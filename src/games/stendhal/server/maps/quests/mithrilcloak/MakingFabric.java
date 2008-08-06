@@ -446,7 +446,7 @@ class MakingFabric {
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
 				ConversationStates.SERVICE_OFFERED,
 				"Thank you so much for taking that letter! Now, do you have the 40 spools of mithril thread "
-				+ "so that I may weave you a yard of fabric?", null);
+				+ "so that I may weave you a couple yards of fabric?", null);
 
 		// player's quest state is in nothing to do with the letter, thread or weaving.
 		npc.add(ConversationStates.ATTENDING,

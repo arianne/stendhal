@@ -290,7 +290,7 @@
 
   <item name="mithril fabric">
     <type class="resource" subclass="mithril_fabric" tileid="-1"/>
-    <description>You see a roll of mithril fabric. It's very sparkly!</description>
+    <description>You see a couple yards of mithril fabric. It's very sparkly!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
