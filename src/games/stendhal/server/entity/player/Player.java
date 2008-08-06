@@ -1301,7 +1301,7 @@ public class Player extends RPEntity {
 	}
 
 	public boolean isChokingToDeath() {
-		return itemsToConsume.size() > 6;
+		return itemsToConsume.size() > 8;
 	}
 
 	public void eat(final ConsumableItem item) {

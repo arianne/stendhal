@@ -11,7 +11,6 @@ class Eater implements Feeder {
 	public boolean feed(final ConsumableItem item, final Player player) {
 		if (player.isChokingToDeath()) {
 			// kill the player!
-			int playerHP = player.getHP();
 			player.setHP(0);
 			player.onDead(item);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You choked to death on " + Grammar.a_noun(item.getName()) + ".");
@@ -24,7 +23,7 @@ class Eater implements Feeder {
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand((int) playerHP/3);
 			player.setHP(playerHP-chokingDamage);
-			player.sendPrivateText( NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you WILL choke to death.");
+			player.sendPrivateText( NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could choke to death.");
 			player.notifyWorldAboutChanges();
 		} else if (player.isFull()) {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");
