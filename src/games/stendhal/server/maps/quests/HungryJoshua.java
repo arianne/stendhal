@@ -101,20 +101,18 @@ public class HungryJoshua extends AbstractQuest {
 	private void step_1() {
 
 		final SpeakerNPC npc = npcs.get("Xoderos");
-
+		
+		/** If quest is not started yet, start it. */
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("My brother has enough food now, many thanks.");
-					} else {
-						engine.say("I'm worried about my brother who lives in Ados. I need someone to take some #food to him.");
-					}
-				}
-			});
+			ConversationPhrases.QUEST_MESSAGES, new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, "I'm worried about my brother who lives in Ados. I need someone to take some #food to him.",
+			null);
+		
+		/** In case quest is completed */
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"My brother has enough food now, many thanks.", null);
 
 		/** In case quest is completed */
 		npc.add(ConversationStates.ATTENDING, "food",
@@ -127,9 +125,8 @@ public class HungryJoshua extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"food",
 			new QuestNotStartedCondition(QUEST_SLOT),
-
 			ConversationStates.QUEST_OFFERED,
-			"I think five sandwiches would be enough. My brother is called #Joshua.",
+			"I think five sandwiches would be enough. My brother is called #Joshua. Can you help?",
 			null);
 
 		npc.add(
@@ -166,6 +163,14 @@ public class HungryJoshua extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"My brother, the goldsmith in Ados.", null);
+		
+		/** remind to take the sandwiches */
+		npc.add(
+			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING,
+			"Please don't forget the five #sandwiches for #Joshua!",
+			null);
 	}
 
 	private void step_2() {
@@ -207,7 +212,22 @@ public class HungryJoshua extends AbstractQuest {
 
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Xoderos");
-
+		
+		/** remind to complete the quest */
+		npc.add(
+			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+			new QuestInStateCondition(QUEST_SLOT, "joshua"),
+			ConversationStates.ATTENDING,
+			"I do hope #Joshua is well ....",
+			null);
+		
+		/** Remind player about the quest */
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"), 
+			new QuestInStateCondition(QUEST_SLOT, "joshua"),
+			ConversationStates.ATTENDING,
+			"I wish you could confirm for me that #Joshua is fine ...", null);
+		
+		
 		/** Complete the quest */
 		npc.add(
 			ConversationStates.ATTENDING, "Joshua", 
