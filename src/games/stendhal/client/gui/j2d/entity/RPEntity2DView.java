@@ -80,6 +80,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * The drawn width.
 	 */
 	protected int width;
+	
+	/** Put ideas on top? */
+	private static final boolean ideasontop = (System
+			.getProperty("stendhal.ideasontop") != null);
 
 	static {
 		final SpriteStore st = SpriteStore.get();
@@ -362,6 +366,144 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 	/**
+	 * Draw the entity ideas. (eating, choking, poisoned, etc)
+	 * 
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+
+	 * @param height
+	 *            The drawn entity height.
+	 */
+	protected void drawIdeas(final Graphics2D g2d, final int x,
+			final int y, final int height) {
+		if (rpentity.isEating()) {
+			if (rpentity.isChoking()){
+				chokingSprite.draw(g2d, x, y + height - 2* ICON_OFFSET );
+			} else {
+				eatingSprite.draw(g2d, x, y + height - 2* ICON_OFFSET);
+			}
+		}
+
+		if (rpentity.isPoisoned()) {
+			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2* ICON_OFFSET);
+		}
+	}
+
+	/**
+	 * Draw the combat indicators. 
+	 * 
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn entity width.
+	 * @param height
+	 *            The drawn entity height.
+	 * @param srect
+	 *            The rectangle around the entity
+	 */
+	protected void drawCombat(final Graphics2D g2d, final int x,
+							  final int y, final int width, final int height, final Rectangle srect) {
+
+		if (rpentity.isBeingAttacked()) {
+			// Draw red box around 
+
+			g2d.setColor(Color.red);
+			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
+
+		}
+
+		if (rpentity.isAttacking(User.get())) {
+			// Draw orange box around
+			g2d.setColor(Color.orange);
+			g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4,
+					srect.height - 4);
+		}
+
+		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
+			if (frameBladeStrike < 3) {
+				final Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
+
+				final int spriteWidth = sprite.getWidth();
+				final int spriteHeight = sprite.getHeight();
+
+				int sx;
+				int sy;
+
+				/*
+				 * Align swipe image to be 16 px past the facing edge, centering
+				 * in other axis.
+				 * 
+				 * Swipe image is 3x4 tiles, but really only uses partial areas.
+				 * Adjust positions to match (or fix images to be
+				 * uniform/centered).
+				 */
+				switch (rpentity.getDirection()) {
+				case UP:
+					sx = x + ((width - spriteWidth) / 2) + 16;
+					sy = y - 16 - 32;
+					break;
+
+				case DOWN:
+					sx = x + ((width - spriteWidth) / 2);
+					sy = y + height - spriteHeight + 16;
+					break;
+
+				case LEFT:
+					sx = x - 16;
+					sy = y + ((height - spriteHeight) / 2) - 16;
+					break;
+
+				case RIGHT:
+					sx = x + width - spriteWidth + 16;
+					sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
+					break;
+
+				default:
+					sx = x + ((width - spriteWidth) / 2);
+					sy = y + ((height - spriteHeight) / 2);
+				}
+
+				sprite.draw(g2d, sx, sy);
+			} else {
+				rpentity.doneStriking();
+				frameBladeStrike = 0;
+			}
+
+			frameBladeStrike++;
+		}
+
+		if (rpentity.isDefending()) {
+			// Draw bottom right combat icon
+			final int sx = x + width - 2*ICON_OFFSET;
+			final int sy = y + height - 2* ICON_OFFSET;
+
+			switch (rpentity.getResolution()) {
+			case BLOCKED:
+				blockedSprite.draw(g2d, sx, sy);
+				break;
+
+			case MISSED:
+				missedSprite.draw(g2d, sx, sy);
+				break;
+
+			case HIT:
+				hitSprite.draw(g2d, sx, sy);
+				break;
+			default:
+				// cannot happen we are switching on enum
+			}
+		}
+	}
+
+	/**
 	 * Get the full directional animation tile set for this entity.
 	 * 
 	 * @return A tile sprite containing all animation images.
@@ -462,111 +604,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			final int width, final int height, final IGameScreen gameScreen) {
 		final Rectangle srect = gameScreen.convertWorldToScreenView(entity.getArea());
 
-		if (rpentity.isBeingAttacked()) {
-			// Draw red box around
-
-			g2d.setColor(Color.red);
-			g2d.drawRect(srect.x, srect.y, srect.width, srect.height);
-
-			g2d.setColor(Color.black);
-			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2,
-					srect.height + 2);
-		}
-
-		if (rpentity.isAttacking(User.get())) {
-			// Draw orange box around
-			g2d.setColor(Color.orange);
-			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2,
-					srect.height - 2);
-		}
-
-		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
-			if (frameBladeStrike < 3) {
-				final Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
-
-				final int spriteWidth = sprite.getWidth();
-				final int spriteHeight = sprite.getHeight();
-
-				int sx;
-				int sy;
-
-				/*
-				 * Align swipe image to be 16 px past the facing edge, centering
-				 * in other axis.
-				 * 
-				 * Swipe image is 3x4 tiles, but really only uses partial areas.
-				 * Adjust positions to match (or fix images to be
-				 * uniform/centered).
-				 */
-				switch (rpentity.getDirection()) {
-				case UP:
-					sx = x + ((width - spriteWidth) / 2) + 16;
-					sy = y - 16 - 32;
-					break;
-
-				case DOWN:
-					sx = x + ((width - spriteWidth) / 2);
-					sy = y + height - spriteHeight + 16;
-					break;
-
-				case LEFT:
-					sx = x - 16;
-					sy = y + ((height - spriteHeight) / 2) - 16;
-					break;
-
-				case RIGHT:
-					sx = x + width - spriteWidth + 16;
-					sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
-					break;
-
-				default:
-					sx = x + ((width - spriteWidth) / 2);
-					sy = y + ((height - spriteHeight) / 2);
-				}
-
-				sprite.draw(g2d, sx, sy);
-			} else {
-				rpentity.doneStriking();
-				frameBladeStrike = 0;
-			}
-
-			frameBladeStrike++;
-		}
+		drawCombat(g2d, x, y, width, height, srect);
 
 		super.draw(g2d, x, y, width, height, gameScreen);
 
-		if (rpentity.isEating()) {
-			if (rpentity.isChoking()){
-				chokingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
-			} else {
-				eatingSprite.draw(g2d, x + ICON_OFFSET, y + height - ICON_OFFSET);
-			}
-		}
-
-		if (rpentity.isPoisoned()) {
-			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - ICON_OFFSET);
-		}
-
-		if (rpentity.isDefending()) {
-			// Draw bottom right combat icon
-			final int sx = x + width - ICON_OFFSET;
-			final int sy = y + height - ICON_OFFSET;
-
-			switch (rpentity.getResolution()) {
-			case BLOCKED:
-				blockedSprite.draw(g2d, sx, sy);
-				break;
-
-			case MISSED:
-				missedSprite.draw(g2d, sx, sy);
-				break;
-
-			case HIT:
-				hitSprite.draw(g2d, sx, sy);
-				break;
-			default:
-				// cannot happen we are switching on enum
-			}
+		if (!ideasontop) {
+			drawIdeas(g2d, x, y, height);
 		}
 
 		// Enable this to debug entity view area
@@ -597,6 +640,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void drawTop(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
 		drawStatusBar(g2d, x, y, width);
+		if (ideasontop) {
+			drawIdeas(g2d, x, y, height);
+		}
 	}
 
 	/**
