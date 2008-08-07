@@ -395,8 +395,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected AlphaComposite getComposite() {
 		final int visibility = getVisibility();
-
-		if (visibility == 100) {
+		if (visibility > 100) {
+			return AlphaComposite.SrcOver;
+		} else if (visibility < 0) {
+			return AlphaComposite.Dst;
+		} else if (visibility == 100) {
 			return AlphaComposite.SrcOver;
 		} else if (visibility == 0) {
 			return AlphaComposite.Dst;
