@@ -9,7 +9,9 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -64,19 +66,20 @@ import java.util.Arrays;
 		final SpeakerNPC npc = npcs.get("Lorenz");	
 		
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
-							npc.say("I need some help to escape from this prison. These ugly Amazonesses! Can you help me please?");
-							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else if (player.isQuestCompleted(QUEST_SLOT)) { 
-							npc.say("Thank you for your help! Now I can escape!");
-						}
-					}
-				});
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED, 
+				"I need some help to escape from this prison. These ugly Amazonesses! Can you help me please?",
+				null);
+							
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Thank you for your help! Now I can escape!",
+				null);
+		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
@@ -114,6 +117,13 @@ import java.util.Arrays;
 			ConversationStates.ATTENDING,
 			"You don't have a scythe yet! Go and get one and hurry up!",
 			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.ATTENDING,
+				"I already asked you to bring me a #scythe to cut the flowers down!",
+				null);
 	}
 	
 	private void step3() {
@@ -149,6 +159,20 @@ import java.util.Arrays;
 					player.setQuest(QUEST_SLOT, "egg");
 				};
 		});	
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "capture"),
+				ConversationStates.ATTENDING,
+				"Please go ask Princess Esclara why I am here! I think saying my name should prompt her to tell you",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "princess"),
+				ConversationStates.ATTENDING,
+				"I bet Princess Esclara said I was imprisoned because of the #tunnel ... ",
+				null);
 	}
 	
 	private void step5() {
@@ -175,10 +199,24 @@ import java.util.Arrays;
 			ConversationStates.ATTENDING,
 			"I cannot see an egg!",
 			null);
-
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "egg"),
+				ConversationStates.ATTENDING,
+				"I asked you to fetch an #egg for me!",
+				null);
+		
 		npc.add(ConversationStates.ATTENDING, "jailed",
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, "I know that *I'm* jailed! I need you to go tell Princess Ylflia that I am here!",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "jailed"),
+				ConversationStates.ATTENDING,
+				"I need you to go tell Princess Ylflia that I am #jailed here.",
 				null);
 	}
 	
@@ -216,6 +254,13 @@ import java.util.Arrays;
 					player.setQuest(QUEST_SLOT, "armor");
 				};
 		});
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "greetings"),
+				ConversationStates.ATTENDING,
+				"I suppose you must have spoken with Princess Ylflia by now ... I do hope she sent her warmest #greetings to me...",
+				null);
 	}
 	
 	private void step8() {
@@ -246,6 +291,13 @@ import java.util.Arrays;
 			ConversationStates.ATTENDING,
 			"You have no barbarian armor with you! Go get one!",
 			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "armor"),
+				ConversationStates.ATTENDING,
+				"I am waiting for you to bring me a barbarian #armor so I am strong enough to escape.",
+				null);
 	}
 	
 	@Override
