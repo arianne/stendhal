@@ -590,7 +590,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	@Override
 	public synchronized void add(final RPObject object) {
-		add(object, null);
+		add(object, true);
 	}
 
 	/**
@@ -601,24 +601,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * 
 	 * @param object
 	 *            The object that should be added to the zone
-	 * @param player
-	 *            The player who put the object on the ground, or null if the
-	 *            object wasn't carried by a player before
+	 * @param expire
+	 *            True if the item should expire according to its normal behaviour, 
+	 *            false otherwise
 	 */
-	public synchronized void add(final RPObject object, final Player player) {
+	public synchronized void add(final RPObject object, final boolean expire) {
 		/*
 		 * Assign [zone relative] ID info. TODO: Move up to MarauroaRPZone
 		 */
 		assignRPObjectID(object);
 		super.add(object);
 
-		/*
-		 * This check is to avoid PassiveEntityRespawnPoint to make items grown
-		 * and zone to make them disappear. 
-		 */
-		if ((object instanceof Item) && (player != null)) {
+		if (object instanceof Item) {
 			final Item item = (Item) object;
-			item.onPutOnGround(player);
+			item.onPutOnGround(expire);
 			itemsOnGround.add(item);
 		}
 

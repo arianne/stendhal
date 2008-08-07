@@ -420,18 +420,29 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String toString() {
 		return "Item, " + super.toString();
 	}
-
+	
 	/**
-	 * Is called when the item is created, moved to the ground, or moved on the
+	 * Is called when the item is moved to the ground, or moved on the
 	 * ground.
 	 * 
-	 * @param player
-	 *            The player who moved the item, or null if it wasn't moved by a
-	 *            player.
+	 * @param expire
+	 * 		Set true if the item should expire normally, false otherwise.
+	 * 		Persistent attribute can override this. 
 	 */
 	public void onPutOnGround(final Player player) {
+		onPutOnGround(true);
+	}
+
+	/**
+	 * Is called when the item is created.
+	 * 
+	 * @param expire
+	 * 		Set true if the item should expire normally, false otherwise.
+	 * 		Persistent attribute can override this. 
+	 */
+	public void onPutOnGround(final boolean expire) {
 		// persistent items don't degrade
-		if (!isPersistent()) {
+		if (expire && !isPersistent()) {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 		}
 	}

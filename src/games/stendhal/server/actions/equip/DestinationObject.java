@@ -242,7 +242,7 @@ class DestinationObject extends MoveableObject {
 			entity.setPosition(x, y);
 			logger.debug("entity set to " + x + ", " + y);
 
-			zone.add(entity, player);
+			zone.add(entity, true);
 			logger.debug("entity has valid id: " + entity.getID());
 		}
 	}

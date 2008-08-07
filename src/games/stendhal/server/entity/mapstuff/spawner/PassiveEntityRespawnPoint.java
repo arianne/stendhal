@@ -130,7 +130,9 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 			grownItem.setPlantGrower(this);
 			grownItem.setPosition(getX(), getY());
 
-			zone.add(grownItem);
+			// The item should not expire to avoid unnecessary loop of spawning
+			// and expiring
+			zone.add(grownItem, false);
 			hasPickableFruit = true;
 		}
 	}
