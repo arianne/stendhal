@@ -167,16 +167,10 @@ public abstract class Pet extends DomesticAnimal {
 
 		Item chosen = null;
 		
-		// can not check getZone().getItemsOnGround(), because that 
-		// list does not have items on growers.
-		for (final RPObject obj : getZone()) {
-			if (obj instanceof Item) {
-				final Item item = (Item) obj;
-				
-				if (canEat(item) && (this.squaredDistance(item) < squaredDistance)) {
-					chosen = item;
-					squaredDistance = this.squaredDistance(item);
-				}
+		for (final Item item : getZone().getItemsOnGround()) {
+			if (canEat(item) && (this.squaredDistance(item) < squaredDistance)) {
+				chosen = item;
+				squaredDistance = this.squaredDistance(item);
 			}
 		}
 
