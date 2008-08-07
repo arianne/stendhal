@@ -39,14 +39,17 @@
  <tileset name="stairs" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs.png"/>
  </tileset>
- <layer name="0_floor" width="64" height="64" visible="0">
+ <tileset name="Untitled" firstgid="169" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey_green_detail.png"/>
+ </tileset>
+ <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2bPU8EIRCGOb3129PYm4u1MSYWNtb3G+zs/P9/wSFCstnjYxgYjh0ontCwc7zzAsuxsFFKnQd4WzkhbVtgAi6AvYdTtz8Xn65L4Aq4Bl6BA/DkKE/d/lx8ut6N/snod9U5NND+XHy6rP7hf9j/0PyRw4+BK74l13/f/JHLr4ErviXXf6kl1n+pJdV/LNTnls9Tfw/rv9VPicGlvUYOlv2/tPbapLYvxX8pUPyXRor/0kjxXxo5878UevZ/mYMx/sf87/NfOmP89+k/ZvxLBfP+lwrl/59UevTf1Q98+z/S6Xn+n+dg+H+8/9sLw/8x//e2/hv+9+1/yv6fNMb6/zgXPfnv6gex779SCa3/etHe4/rPN/+Hzn9Ig3P8t54zjvd/C5oxbeB8/7c0ZkJtoHz/XYP2lO92lO9/rZ73obQ11f8W+nRqLrD5wp7/k0LN9/8z8IXA1sfU1bwU0s7pv9b+CTxE2AHfhh2ivuajYA64/Ndx74ANcKb+z6D7yuUZ+FD9raLvVdf03+rXbQ3dK9rPnomdYXfd1anhPyUHHPuKuTFL+h/Lydz/kvqpMX26KP5j+kNN/2PtDJW59z9SvMKuIX31QjGpZcn7HxSvUmJz3NXhuv/D5VXL/nPndS0x1+r/jcKvwWPcmrZOBeNyxdT67xVu7Z3CI0Ncrph/iy64JQBAAAA=
   </data>
  </layer>
- <layer name="1_terrain" width="64" height="64" visible="0">
+ <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aSwrCMBSF4e5QnYgTcaKCzw34Fhyoy9Cqy/SKGXRko+R6m/T/4EAH5XJSKKQlWfbZSXKMNIeStfk4B5hhJUR31h+vmLun7CK5uuTGXSzUff03yd3lYdwlNSvJWmn2QrJUmh3KTrJXmr2RbJVm18FEMrUugWTNJHPrEgAAAAliHw8AAPDGvigs/ueBdwoAAFRNDGdiNFXhTIzmmacYaJ55Aor4Ji839rinIWm6tDznjn5u9D8+a39pF647X8yP4Rn46Baue2Yt7PQlA5ehcRcAAADUxxMNqD0pAEAAAA==
+   H4sIAAAAAAAAAO3aSQrCQBCFYW+obsSNuFHB8QLOggv1GI4QXIgXtMQWsnCIpiudTv4PHmQRH9UBmyhdKLx3lqwlK0+zlFw+rO+bQLKJ8XnX7rNfLXT4ysbseV9/3sXZP97ZSnYme4X+p7OFjrj7xytJrT9Q7I7jIDmanBzPkjVjyUSpeygZKXXbMpcslLqnkplSdx50JT3XQyCz+pKB6yEAAAAyiPd4AACAB96L7OL/PPCdAgAAaePDmRhNaTgTo3nmyQeaZ56AMH6Tf9eJcE9RUjIpR+xt/z1RcqKs/a4Suq7+0O/DM4iiFrquO5vCnYakadJyPAsAAADy4wb/GaPPAEAAAA==
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
