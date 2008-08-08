@@ -107,6 +107,36 @@
    <portal x="21" y="2" ref="downstairs">
     <destination zone="int_nalwor_library" ref="upstairs"/>
    </portal>
+     	<entity x="14" y="3">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      	<attribute name="text">
+WORLDS FUNNIEST JOKES
+
+If a man stands in the middle of the forest speaking and there is no woman around to hear him, is he still wrong?
+
+Everyone has a photographic memory, some just don't have film.
+
+Eagles may soar, free and proud, but weasels never get sucked into jet engines.
+
+There's no future in time travel.
+
+... continued on next page
+      	</attribute>
+      	<attribute name="class">transparent</attribute>
+    </entity>
+      	<entity x="15" y="3">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      	<attribute name="text">
+Artificial intelligence is no match for natural stupidity.
+
+Honk if you love peace and quiet.
+
+Always remember you're unique, just like everyone else.
+
+Half the people in the world are below average.
+      	</attribute>
+      	<attribute name="class">transparent</attribute>
+    </entity>
  </zone> 
   
  <zone name="int_nalwor_weaponshop" file="interiors/nalwor/weaponshop.tmx">
