@@ -37,7 +37,7 @@ public enum TutorialEventType {
 			"Oh, aren't you feeling cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
 	TIMED_PASSWORD(
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
-	NEW_RELEASE(
+	NEW_RELEASE69(
 			"As of version 0.69 you will choke if you try to eat too much at once. You can lose HP and even die, so be careful not to stuff yourself.");
 	private String message;
 
