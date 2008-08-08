@@ -20,14 +20,19 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
+import games.stendhal.server.entity.npc.parser.ConversationContext;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author kymara
@@ -254,15 +259,102 @@ class GettingTools {
 
 	private void getNeedleStep() {
 
-		// There is meant to be something about telling him a joke from a book in here but for now we KISS and just try the selling thing
 		final int NEEDLE_COST = 1500;
+		
+		final Map<Integer, String> jokes = new HashMap<Integer, String>();
+		
+			jokes.put(1, "If a man stands in the middle of the forest speaking and there is no woman around to hear him, is he still wrong?");
+			jokes.put(2, "Everyone has a photographic memory, some just don't have film.");
+			jokes.put(3, "Eagles may soar, free and proud, but weasels never get sucked into jet engines.");
+			jokes.put(4, "There's no future in time travel.");
+			jokes.put(5, "Artificial intelligence is no match for natural stupidity.");
+			jokes.put(6, "Honk if you love peace and quiet.");
+			jokes.put(7, "Always remember you're unique, just like everyone else.");
+			jokes.put(8, "Half the people in the world are below average.");
 
+		
 		final SpeakerNPC npc = npcs.get("Ritati Dragontracker");
 
-		// offer needle when prompted
+		// ask for joke when prompted for needle
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
+				ConversationStates.ATTENDING,
+				"Ok, but I have a little rule: never do important business with someone unless" 
+				+ "they can make you laugh. So, come back to tell me a #joke and I will sell you a needle.",
+				null);
+		
+		// ask for joke when player says joke
+		npc.add(ConversationStates.ATTENDING,
+				"joke",
+				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
+				ConversationStates.QUESTION_1,
+				"Ok, lets hear your joke then. and I hope it's from the book in Nalwor Library, that's my favourite. What joke did you choose?",
+				null);
+	
+		npc.add(ConversationStates.QUESTION_1, "", null,
+				ConversationStates.QUEST_ITEM_QUESTION, null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							for(int i=1;i<9;i++) {
+								String joke = jokes.get(i);
+
+								final ConversationContext ctx = new ConvCtxForMatchingSource();
+								final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
+								final Sentence expected = ConversationParser.parse(joke, new SimilarExprMatcher());
+								if (answer.matchesFull(expected)){
+									final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
+									 if (questslot.length > 2) {
+										 // if the split worked, we had stored a needle number before and we need to store it again
+										 int needles = Integer.parseInt(questslot[1]);
+										 int saidjoke = Integer.parseInt(questslot[2]);
+										 if (i == saidjoke){
+											 npc.say("You told me that joke last time, come back with a new one! Bye.");
+											 npc.setCurrentState(ConversationStates.IDLE);
+//											 // stop looking through the joke list
+											 break;
+										 } else {
+											 player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;"+Integer.toString(needles) + ";" + Integer.toString(i));
+										 }
+									 } else {
+										 player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;" + Integer.toString(i));
+									 }
+									 // this might have been his favourite joke, which is determined randomly
+									 if (Rand.randUniform(1,8) == i) {
+										 npc.say("That's the funniest joke I ever heard! I think it's my favourite of the moment. Here, have your needle for free... and then get out of here, You've been here far too long already.");
+										 new EquipItemAction("magical needle", 1, true).fire(player, sentence, npc);
+										 npc.setCurrentState(ConversationStates.IDLE);
+//										 // stop looking through the joke list
+										 break;
+									 } else {
+										 npc.say("*guffaws* Alright, lets get on with business. A magical needle costs "
+									 
+											+ Integer.toString(NEEDLE_COST) + " pieces of money. Do you want to buy one now?");
+										 // stop looking through the joke list
+										 npc.setCurrentState(ConversationStates.QUEST_ITEM_QUESTION);
+										 break;
+									 }
+								}
+								if (sentence.getTriggerExpression().getNormalized().equals("bye")) {
+										npc.say("Ok, bye then.");
+										npc.setCurrentState(ConversationStates.IDLE);
+								} else if (sentence.getTriggerExpression().getNormalized().equals("none")) {
+									npc.say("Ok, bye.");
+									npc.setCurrentState(ConversationStates.IDLE);
+								} else {
+									npc.say("Sorry, that joke just isn't funny. go back to Nalwor library and get another.");
+									npc.setCurrentState(ConversationStates.IDLE);
+								}
+							}
+					}
+		});
+		
+		
+		// offer needle when prompted if they already told a joke
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
+				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "told_joke"),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"I have some magical needles but they cost a pretty penny, "
 				+ Integer.toString(NEEDLE_COST) + " pieces of money to be precise. Do you want to buy one?",
@@ -272,8 +364,8 @@ class GettingTools {
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
 				new PlayerHasItemWithHimCondition("money", NEEDLE_COST),
-				ConversationStates.ATTENDING,
-				"Ok, here you are. Be careful with them, they break easy.",				
+				ConversationStates.IDLE,
+				"Ok, here you are. Be careful with them, they break easy. Now, get lost, you have hung around here far too long already.",				
 				new MultipleActions(
 									 new DropItemAction("money", NEEDLE_COST), 
 									 new EquipItemAction("magical needle", 1, true)
@@ -304,29 +396,32 @@ class GettingTools {
 		// player brings needle for first or subsequent time
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical needle", "magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"), new PlayerHasItemWithHimCondition("magical needle")),
+				new AndCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "told_joke"), new PlayerHasItemWithHimCondition("magical needle")),
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
 									 new SpeakerNPC.ChatAction() {
 										 @Override
 										 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-											 final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
-											 int needles;
-											 if (questslot.length > 1) {
+											 final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");		
+											 int needles = 1;
+											 int saidjoke = 1;
+											 if (questslot.length > 2) {
 												 // if the split works, we had stored a needle number before
 												 needles = Integer.parseInt(questslot[1]);
+												 saidjoke = Integer.parseInt(questslot[2]);
 												 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," 
 														 + " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
-											 } else {
-												 // it wasn't split with a number.
+											 } else if (questslot.length > 1) {
+												 // it wasn't split with a needle number, only joke
 												 // so this is the first time we brought a needle
+												 saidjoke = Integer.parseInt(questslot[1]);
 												 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" 
 														 + " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
 												 // ida breaks needles - she will need 1 - 3
 												 needles = Rand.randUniform(1, 3);
 											 }											
-											 player.setQuest(mithrilcloak.getQuestSlot(), "sewing;" + System.currentTimeMillis() + ";" + needles);
+											 player.setQuest(mithrilcloak.getQuestSlot(), "sewing;" + System.currentTimeMillis() + ";" + needles + ";" + saidjoke);
 										 }
 									 },
 									 new DropItemAction("magical needle")
@@ -336,9 +431,12 @@ class GettingTools {
 		// remind about needle
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical needle", "magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
-				new AndCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
-								 new NotCondition(new PlayerHasItemWithHimCondition("magical needle"))
-								 ),
+				new OrCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
+								new AndCondition(
+									new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "told_joke"),
+									new NotCondition(new PlayerHasItemWithHimCondition("magical needle"))
+								)
+						),
 				ConversationStates.ATTENDING,
 				"Please ask Ritati thingummy for his 'specials', or just ask about a #needle.",				
 				null);
@@ -375,7 +473,8 @@ class GettingTools {
 							} else {
 								npc.say("These magical needles are so fragile, I'm sorry but you're going to have to get me another, the last one broke. Hopefully Ritati still has plenty.");
 								final int needles = Integer.parseInt(tokens[2]) - 1;
-								player.setQuest(mithrilcloak.getQuestSlot(), "need_needle;" + needles);
+								int saidjoke = Integer.parseInt(tokens[3]);
+								player.setQuest(mithrilcloak.getQuestSlot(), "need_needle;" + needles + ";" + saidjoke);
 							}							
 				}
 			});
