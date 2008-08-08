@@ -38,7 +38,7 @@ public enum TutorialEventType {
 	TIMED_PASSWORD(
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	NEW_RELEASE(
-			"As of version 0.68 you will notice that creatures have become a bit more ... animal like ... some run and hide, others come and bite you!");
+			"As of version 0.69 you will choke if you try to eat too much at once. You can lose HP and even die, so be careful not to stuff yourself.");
 	private String message;
 
 	/**
