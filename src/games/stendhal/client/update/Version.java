@@ -10,7 +10,7 @@ package games.stendhal.client.update;
 public class Version {
 
 	/** Version Number. */
-	public static final String VERSION = "0.68.1";
+	public static final String VERSION = "0.69";
 
 	/**
 	 * Extract the specified number of parts from a version-string.
