@@ -196,7 +196,9 @@
   <item name="chaos hammer">
     <type class="club" subclass="chaos_hammer" tileid="-1"/>
     <description>You see a chaos hammer. It is a fearsome weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    
+    <attributes>
+      <lifesteal value="0.3"/>
       <atk value="42"/>
       <rate value="8"/>
     </attributes>

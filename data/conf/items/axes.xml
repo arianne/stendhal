@@ -211,7 +211,9 @@
   <item name="chaos axe">
     <type class="axe" subclass="chaos_axe" tileid="-1"/>
     <description>You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    
+    <attributes>
+      <lifesteal value="0.2"/>
       <atk value="52"/>
       <rate value="8"/>
     </attributes>
