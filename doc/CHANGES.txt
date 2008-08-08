@@ -2,14 +2,16 @@ Changelog
 ---------
 0.69
 - 7 kikareukin clouds added
-- archangel and dark archangel new creatures
+- archangel and dark archangel, new creatures
 - corrected xp of golden death
 - path between kirdneh and fado
 - added -Dstendhal.quest.regex analog to -Dstendhal.zone.regex to speed up restart while developing.
 - fado battle arena for raids - clear space and divided levels 
 - hedges, waterfall and vegetable growers redrawn
 - spinach, salad, all mushrooms and all herbs now using vegetable grower
-- can *destroy blood and corpse now, and blocked *destroy of portal
+- can *destroy blood and corpse now, (but ths is not clean) and blocked *destroy of portal
+- the *destroy message tells admin exactly what they destroyed
+- *destroyed creatures don't drop items
 - cleaned up /inspect of a player
 - made sally give time remaining to campfire test and reworked parts
 - AmazonPrincess uses 'new' ChatAction way
@@ -20,9 +22,17 @@ Changelog
 - extend ketteh wehoh npc and move her to new player start area
 - rats are stupid cowards
 - new help command /gmhelp_script
-- mithril cloak quest started with Ida
+- mithril cloak quest, started with Ida
 - creatures added to an empty platform in hell including new creature devil monk
 - push checks if entity to be pushed is stood on an item
+- katinka accepts abandoned pets, who are rehomed in the pet sanctuary
+- pets can eat from passive entity respawn points
+- items which are not placed by a player now expire correctly
+- lorenz and xoderos given improved response coverage for their quests 
+- player is no longer told 'you can't consume any more', but eat too much and you choke or choke to death
+- eating, poisoned, choking and combat icons moved up 8 pixels so they don't overhang entity's feet
+- red combat square made slightly smaller so that it is not outside the entity area (which casued map trouble)
+- -D switch available if you want your eating/poisoned/choking icons drawn on top most layer
 
 
 0.68.1
