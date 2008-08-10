@@ -1,5 +1,9 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.entity.item.scroll.TwilightMossScroll;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.mithrilcloak.MithrilCloakQuestChain;
 
 /**
@@ -60,12 +64,28 @@ public class MithrilCloak extends AbstractQuest {
 	private static final String QUEST_SLOT = "mithril_cloak";
 
 	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+
+	/** The twilight moss scroll for teleporting back. */
+	private static TwilightMossScroll scroll;
+
+	@Override
+	public void init(final String name) {
+		super.init(name);
+		if (scroll == null) {
+			scroll = (TwilightMossScroll) SingletonRepository.getEntityManager().getItem("twilight moss");
+		}
+
+		/* login notifier to teleport away players logging into the twilight zone.
+		 */
+		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
+			public void onLoggedIn(final Player player) {
+				scroll.teleportBack(player);
+			}
+
+		});
 	}
 	
 	
