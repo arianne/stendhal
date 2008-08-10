@@ -630,7 +630,8 @@ in roaches.
    <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
-	<!--some feedback for a player who might be trapped inside and not know
+    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>	
+<!--some feedback for a player who might be trapped inside and not know
     what to do. if they come back after their quest slot isn't 'twilight_zone'
     anymore, but before they are 'done' they are then trapped forever as lda
     will only take the elixir if she's still sick from the player point of
