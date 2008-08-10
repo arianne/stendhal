@@ -33,28 +33,32 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.68.1
+Version 0.69
 
 
 How to play
 -----------
 
 You need arianne's Stendhal client in order to be able to play Stendhal.
-You also need Java JRE 1.5 ( http://www.java.com/en/download )
+You also need Sun Java JRE 1.5 or higher ( http://www.java.com/en/download )
 
 Please download Stendhal from http://arianne.sourceforge.net
+Then unzip the client zip into a new folder. 
+You can double click on stendhal-X.XX.jar and the client will run.
 
-Then just do:
+If you prefer to run from command line, then just do:
 
-  java -jar stendhal-X.XX.jar
+  java -jar path-to-folder/stendhal-X.XX.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
   http://stendhal.game-host.org/stendhal.jnlp
 
-To play Arianne you have to use keyboard and mouse.
+To play Stendhal you have to use a keyboard and a mouse.
 
-Read manual at http://arianne.sourceforge.net/wiki/index.php/StendhalManual
+There is a manual at
+http://arianne.sourceforge.net/wiki/index.php/StendhalManual, and there is
+Help from the client main menu too.
 
 
 How to create server
