@@ -192,8 +192,8 @@
   <item name="twilight moss">
     <type class="scroll" subclass="twilightmoss" tileid="-1"/>
     <description>You see a strange looking piece of moss. It looks like it could have hallucinogenic properties.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
-      <infostring value="int_ados_twilight_zone 12 20"/>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.TwilightMossScroll"/>    <attributes>
+      <infostring value="int_ados_twilight_zone 12 20 10800 int_ados_sewing_room -1 -1"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
