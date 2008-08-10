@@ -80,31 +80,35 @@ public class TwilightElixir extends Drink {
 	 * @param user the eating player
 	 * @return true if consumption can be started
 	 * 
-	 * this one first teleports the player before it poisons them.
+	 * this one first teleports the player  (if they are in quest slot twilight zone, to prevent abuse) before it poisons them.
 	 */
 	@Override
-	public boolean onUsed(final RPEntity user) {
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("hell");
-		int x = 5;
-		int y = 5;
-		if (zone == null) {
-			// invalid zone (shouldn't happen)
-			user.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
-			logger.warn("twilight elixir to unknown zone hell,"
-						+ " teleported " + user.getName()
-						+ " to Semos instead");
-			zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
-		}
+		public boolean onUsed(final RPEntity user) {
 		if (user instanceof Player) {
-			// then it's safe to cast user to player and use the player-only teleport method.
-			((Player) user).teleport(zone, x, y, null, (Player) user);
+			String extra = " ";
+				// then it's safe to cast user to player and use the player-only teleport and quest methods.
+			if (((Player) user).isQuestInState("mithril_cloak","twilight_zone")){
+				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("hell");
+				int x = 5;
+				int y = 5;
+				if (zone == null) {
+					// invalid zone (shouldn't happen)
+					user.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
+					logger.warn("twilight elixir to unknown zone hell,"
+								+ " teleported " + user.getName()
+								+ " to Semos instead");
+					zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
+				}
+				((Player) user).teleport(zone, x, y, null, (Player) user);
+				extra = " Now you will go to hell, for thinking of yourself before you think of others.";
+			}
+ 			user.sendPrivateText("Didn't you know, one man's drink is another man's poison? That elixir was meant for Ida in the twilight zone." + extra); 
+			return super.onUsed(user);
 		} else {
 			// should never happen.
 			logger.warn("some non player RPEntity just used a twilight elixir, which shouldn't be possible.");
 			return false;
 		}
-		user.sendPrivateText("Didn't you know, one man's drink is another man's poison? That elixir was meant for Ida in the twilight zone. " 
-							   + "Now you will go to hell, for thinking of yourself before you think of others.");
-		return super.onUsed(user);
+		
 	}
 }
