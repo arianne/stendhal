@@ -33,7 +33,7 @@ Changelog
 - eating, poisoned, choking and combat icons moved up 8 pixels so they don't overhang entity's feet
 - red combat square made slightly smaller so that it is not outside the entity area (which casued map trouble)
 - -D switch available if you want your eating/poisoned/choking icons drawn on top most layer
-
+- on death player is told what items their corpse contains
 
 0.68.1
 - sentence can be set for website
