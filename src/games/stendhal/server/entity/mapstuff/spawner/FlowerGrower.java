@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -23,6 +24,8 @@ import marauroa.common.game.RPObject;
  */
 public class FlowerGrower extends VegetableGrower {
 
+	/* 50 hours for one growing step */
+	private static final int meansTurnsForRegrow = 60000;
 	private static final String ITEM_NAME = "lilia";
 	private final String[] description = {
 			"You see a seed which has just been planted.",
@@ -88,7 +91,7 @@ public class FlowerGrower extends VegetableGrower {
 
 	@Override
 	protected int getRandomTurnsForRegrow() {
-		return 3;
+		return Rand.randGaussian(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
 	}
 
 	@Override
