@@ -186,13 +186,13 @@ class Engagement {
 				giveInvite(bride);
 				additional = "And here are some invitations you can give to your guests.";
 			} else {
-				additional = "I have given invitations for your guests to " + groom.getName() + ".";
+				additional = "I have given invitations for your guests to " + groom.getName() + ". " + bride.getName() + ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 				}
 		} else if (!marriage.isEngaged(bride)) {
 			giveInvite(bride);
-			additional = "I have given invitations for your guests to " + bride.getName() + ".";
+			additional = "I have given invitations for your guests to " + bride.getName() + ". " + groom.getName() + ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 		} else {
-			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had them before.";
+			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had them before. If you were having rings forged you will both need to make them again.";
 		}		
 		nun.say("Congratulations, "
 				+ groom.getName()
