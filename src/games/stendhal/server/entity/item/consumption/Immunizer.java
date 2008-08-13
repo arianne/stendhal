@@ -10,7 +10,7 @@ import games.stendhal.server.entity.player.Player;
 class Immunizer implements Feeder {
 
 	public boolean feed(final ConsumableItem item, final Player player) {
-		if(!player.isImmune()) {
+		if (!player.isImmune()) {
 			player.setImmune();
 			// set a timer to remove the immunity effect after some time
 			final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
@@ -22,7 +22,7 @@ class Immunizer implements Feeder {
 			item.removeOne();
 			return true;
 		} else {
-			player.sendPrivateText(NotificationType.INFORMATION,"Antidote was not consumed, because you are still immune.");
+			player.sendPrivateText(NotificationType.INFORMATION, "Antidote was not consumed, because you are still immune.");
 			return false;
 		}
 	}
