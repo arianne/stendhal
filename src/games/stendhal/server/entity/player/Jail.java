@@ -120,7 +120,7 @@ public class Jail implements LoginListener {
 		final Player criminal = SingletonRepository.getRuleProcessor().getPlayer(
 						criminalName);
 
-//		arrestWarrants.removeByName(criminalName);
+		arrestWarrants.removeByName(criminalName);
 		final ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman, minutes, reason);
 
 		policeman.sendPrivateText("You have jailed " + criminalName
