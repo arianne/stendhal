@@ -66,7 +66,7 @@ public class AdministrationActionTest {
 				.intValue());
 		assertEquals(0, AdministrationAction.getLevelForCommand("adminlevel")
 				.intValue());
-		assertEquals(100, AdministrationAction.getLevelForCommand("support")
+		assertEquals(-1, AdministrationAction.getLevelForCommand("support")
 				.intValue());
 		assertEquals(50, AdministrationAction.getLevelForCommand(
 				"supportanswer").intValue());
@@ -111,20 +111,10 @@ public class AdministrationActionTest {
 				pl, "adminlevel", true));
 		pl.resetPrivateTextString();
 
-		assertEquals(false, AdministrationAction
-				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
-		assertEquals("Sorry, you need to be an admin to run \"support\".", pl
-				.getPrivateTextString());
-
 		pl.setAdminLevel(50);
 		pl.resetPrivateTextString();
 		assertEquals(true, AdministrationAction
 				.isPlayerAllowedToExecuteAdminCommand(pl, "adminlevel", true));
-		assertEquals(false, AdministrationAction
-				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
-		assertEquals(
-				"Your admin level is only 50, but a level of 100 is required to run \"support\".",
-				pl.getPrivateTextString());
 		assertEquals(true,
 				AdministrationAction.isPlayerAllowedToExecuteAdminCommand(pl,
 						"supportanswer", true));
@@ -146,6 +136,7 @@ public class AdministrationActionTest {
 		action.put("text", "huhu");
 		CommandCenter.execute(pl, action);
 		assertEquals("Administrator SHOUTS: huhu", pl.getPrivateTextString());
+	
 	}
 
 	@Test
