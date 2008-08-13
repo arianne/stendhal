@@ -109,9 +109,57 @@ public class PlayerTest {
 		final String time = hours + " hours and " + minutes + " minutes";
 		assertThat(player.describe(), is("You see " + player.getTitle() + ".\n" + player.getTitle() + " is level "
 				+ player.getLevel() + " and has been playing " + time + "."));
-
+	}
+	
+	@Test
+	public void testDescribeOfPlayerWithAwayMessage() {
+		final int hours = player.getAge() / 60;
+		final int minutes = player.getAge() % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
+		player.setAwayMessage("I am away.");
+		String description = player.describe();
+		String expectedDescription = "You see " + player.getTitle() + ".\n"
+				+ player.getTitle() + " is level " + player.getLevel()
+				+ " and has been playing " + time + "."
+				+ "\nThe player is away and has left a message: "
+				+ player.getAwayMessage();
+		assertThat(description, is(expectedDescription));
+	}
+	
+	@Test
+	public void testDescribeOfPlayerWithGrumpyMessage() {
+		final int hours = player.getAge() / 60;
+		final int minutes = player.getAge() % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
+		player.setGrumpyMessage("I am grumpy.");
+		String description = player.describe();
+		String expectedDescription = "You see " + player.getTitle() + ".\n"
+				+ player.getTitle() + " is level " + player.getLevel()
+				+ " and has been playing " + time + "."
+				+ "\nThe player is grumpy and has left a message: "
+				+ player.getGrumpyMessage();
+		assertThat(description, is(expectedDescription));
 	}
 
+	@Test
+	public void testDescribeOfPlayerWithAwayAndGrumpyMessage() {
+		final int hours = player.getAge() / 60;
+		final int minutes = player.getAge() % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
+		player.setAwayMessage("I am away.");
+		player.setGrumpyMessage("I am grumpy.");
+		String description = player.describe();
+		String expectedDescription = "You see " + player.getTitle() + ".\n"
+				+ player.getTitle() + " is level " + player.getLevel()
+				+ " and has been playing " + time + "."
+				+ "\nThe player is away and has left a message: "
+				+ player.getAwayMessage()
+				+ "\nThe player is grumpy and has left a message: "
+				+ player.getGrumpyMessage();
+		assertThat(description, is(expectedDescription));
+	}
+	
+	
 	@Ignore
 	@Test
 	public void testIsZoneChangeAllowed() {

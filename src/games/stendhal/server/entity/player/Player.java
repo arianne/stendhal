@@ -1406,7 +1406,19 @@ public class Player extends RPEntity {
 		final String text = "You see " + getTitle() + ".\n" + getTitle()
 				+ " is level " + getLevel() + " and has been playing " + time
 				+ ".";
-		return (text);
+		StringBuilder sb = new StringBuilder();
+		sb.append(text);
+		final String awayMessage = getAwayMessage();
+		if(awayMessage!=null) {
+			sb.append("\nThe player is away and has left a message: ");
+			sb.append(awayMessage);
+		}
+		final String grumpyMessage = getGrumpyMessage();
+		if(grumpyMessage!=null) {
+			sb.append("\nThe player is grumpy and has left a message: ");
+			sb.append(grumpyMessage);
+		}
+		return (sb.toString());
 	}
 
 	/**
