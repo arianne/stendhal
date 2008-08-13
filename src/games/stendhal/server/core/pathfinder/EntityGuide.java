@@ -37,8 +37,5 @@ public class EntityGuide {
 
 	}
 
-	public int getPathsize() {
-		return path.getNodes().length;
-	}
 
 }

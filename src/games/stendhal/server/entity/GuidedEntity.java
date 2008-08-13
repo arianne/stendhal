@@ -99,9 +99,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return (guide.path != null);
 	}
 
-	public int getPathsize() {
-		return guide.getPathsize();
-	}
 
 	/**
 	 * Is the path a loop.
