@@ -61,6 +61,22 @@ public class JailTest {
 		assertFalse(Jail.isInJail(bob));
 	}
 
+	
+	@Test
+	public final void testrepeatedJailing() throws Exception {
+
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final StendhalRPZone zone = new StendhalRPZone("knast", 100, 100);
+				Jail.jailzone = zone;
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
+		SingletonRepository.getJail().imprison("bob", bob, 1, "test");
+
+		assertTrue(Jail.isInJail(bob));
+		assertEquals("bob: 1 Minutes because: test\n", Jail.get().listJailed());
+		SingletonRepository.getJail().imprison("bob", bob, 1, "test2");
+		assertEquals("bob: 1 Minutes because: test2\n", Jail.get().listJailed());
+		
+	}
 	@Test
 	public final void testIsInJail() throws Exception {
 
@@ -85,4 +101,5 @@ public class JailTest {
 		assertFalse(Jail.isInJail(nobob));
 	}
 
+	
 }
