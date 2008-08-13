@@ -165,4 +165,15 @@ public class Rand {
 	public static int randGaussian(final int mean, final int sd) {
 		return (int) (rand.nextGaussian() * sd + mean);
 	}
+	
+	/**
+	 * Generates an exponentially distributed random number and rounds it.
+	 * 
+	 * @param mean
+	 *            The mean value
+	 * @return An integer exponential variate <i>mean</i>
+	 */
+	public static int randExponential(final int mean) {
+		return (int) (-mean * Math.log(rand.nextDouble()));
+	}
 }
