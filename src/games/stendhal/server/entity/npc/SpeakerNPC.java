@@ -261,7 +261,8 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	protected void dropItemsOn(final Corpse corpse) {
-		// They can't die
+		//they cant die
+		logger.error("SpeakerNpc " + getName());
 	}
 
 	/**
