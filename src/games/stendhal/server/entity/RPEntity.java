@@ -824,9 +824,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public void onDamaged(final Entity attacker, final int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
 
-		SingletonRepository.getRuleProcessor().addGameEvent(attacker.getTitle(),
-				"damaged", getName(), Integer.toString(damage));
-
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
 			final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
