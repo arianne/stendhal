@@ -97,11 +97,16 @@ public class PlayerDieer {
 			for (Item item : this.drops) {
 				if (item instanceof StackableItem) {
 					StackableItem si = (StackableItem) item;
-					StringBuilder sb = new StringBuilder();
-					sb.append(si.getQuantity());
-					sb.append(" ");
-					sb.append(Grammar.plural(si.getName()));
-					strings.add(sb.toString());
+					if (si.getQuantity() > 1) {
+						StringBuilder sb = new StringBuilder();
+						sb.append(si.getQuantity());
+						sb.append(" ");
+						sb.append(Grammar.plural(si.getName()));
+						strings.add(sb.toString());
+					}
+					if (si.getQuantity() == 1) {
+						strings.add(Grammar.a_noun(si.getName()));
+					}
 				} else if (item instanceof Item) {
 					Item it = (Item) item;
 					strings.add(Grammar.a_noun(it.getName()));

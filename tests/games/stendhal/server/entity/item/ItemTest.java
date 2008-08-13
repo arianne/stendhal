@@ -198,6 +198,15 @@ public class ItemTest {
 				new HashMap<String, String>());
 		assertEquals("defaultquantity", 1, mo.getQuantity());
 	}
+	
+	@Test
+	public void testGetQuantityOneSureness() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("quantity", "0");
+		final StackableItem mo = new StackableItem("name1", "myClass", "mySubclass",
+				map);
+		assertEquals("default", 1, mo.getQuantity());
+	}
 
 	@Test
 	public void testGetPossibleSlots() {

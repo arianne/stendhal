@@ -39,7 +39,7 @@ public class StackableItem extends Item implements Stackable {
 	 */
 	public StackableItem(final StackableItem item) {
 		super(item);
-		this.quantity = item.quantity;
+		this.setQuantity(item.getQuantity());
 		update();
 	}
 
@@ -47,7 +47,7 @@ public class StackableItem extends Item implements Stackable {
 	public void update() {
 		super.update();
 		if (has("quantity")) {
-			quantity = getInt("quantity");
+			setQuantity(getInt("quantity"));
 		}
 	}
 
@@ -57,31 +57,31 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	public void setQuantity(int amount) {
-		if (amount < 0) {
+		if (amount <= 0) {
 			logger.error("Trying to set invalid quantity: " + amount,
 					new Throwable());
 			amount = 1;
 		}
 		quantity = amount;
-		put("quantity", quantity);
+		put("quantity", getQuantity());
 	}
 
 	public int sub(final int amount) {
-		setQuantity(quantity - amount);
-		return quantity;
+		quantity = getQuantity() - amount;
+		return getQuantity();
 	}
 
 	public int add(final Stackable other) {
-		setQuantity(other.getQuantity() + quantity);
-		return quantity;
+		setQuantity(other.getQuantity() + getQuantity());
+		return getQuantity();
 	}
 
 	public StackableItem splitOff(final int amountToSplitOff) {
-		if ((quantity <= 0) || (amountToSplitOff <= 0)) {
+		if ((getQuantity() <= 0) || (amountToSplitOff <= 0)) {
 			return null;
 		}
 
-		if (quantity >= amountToSplitOff) {
+		if (getQuantity() >= amountToSplitOff) {
 			final StackableItem newItem = (StackableItem) SingletonRepository.getEntityManager().getItem(
 					getName());
 
@@ -95,10 +95,10 @@ public class StackableItem extends Item implements Stackable {
 					newItem.put(attribute, get(attribute));
 				}
 			}
-
+			
 			sub(amountToSplitOff);
 
-			if (quantity > 0) {
+			if (getQuantity() > 0) {
 				if (isContained()) {
 					// We modify the base container if the object change.
 					RPObject base = getContainer();

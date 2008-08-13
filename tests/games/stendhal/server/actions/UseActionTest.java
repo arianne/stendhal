@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -44,6 +45,25 @@ public class UseActionTest {
 		assertTrue(player.isEquipped("cheese"));
 		ua.onAction(player, action);
 		assertFalse(player.isEquipped("cheese"));
+	}
+	
+	@Test
+	public void testOnActionItemInBagWithTwoCheese() {
+		MockStendlRPWorld.get();
+		final UseAction ua = new UseAction();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final StackableItem cheese = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		cheese.setQuantity(2);
+		player.equip("bag", cheese);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(player);
+		final RPAction action = new RPAction();
+		action.put(_BASEITEM, cheese.getID().getObjectID());
+		action.put(_BASEOBJECT, player.getID().getObjectID());
+		action.put(_BASESLOT, "bag");
+		assertTrue(player.isEquipped("cheese"));
+		ua.onAction(player, action);
+		assertTrue(player.isEquipped("cheese"));
 	}
 
 	@Test
