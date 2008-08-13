@@ -125,8 +125,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 							Pet pet = player.getPet();
 							String petName = pet.getTitle();
 							// these numbers are hardcoded, they're the area in the pet sanctuary which is for pets. It has food spawners.
-							int x = Rand.randUniform(2,12);
-							int y = Rand.randUniform(7,29);
+							int x = Rand.randUniform(2, 12);
+							int y = Rand.randUniform(7, 29);
 							StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 							if (StendhalRPAction.placeat(zone, pet, x, y)) {
 								player.removePet(pet);

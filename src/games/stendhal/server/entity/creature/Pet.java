@@ -17,7 +17,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
-import java.util.Set;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;

@@ -38,7 +38,7 @@ class MakingClasp {
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
-	public MakingClasp(MithrilCloakQuestInfo mithrilcloak) {
+	public MakingClasp(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
 	

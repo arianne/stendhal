@@ -96,7 +96,7 @@ public class PushAction implements ActionListener {
 		final Set<Item> items = player.getZone().getItemsOnGround();
 		for (final Item item : items) {
 			if (rpEntity.getArea().intersects(item.getArea())) {
-				player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + "." );
+				player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + ".");
 				return false;
 			}
 		}

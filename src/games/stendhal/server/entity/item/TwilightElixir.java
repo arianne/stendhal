@@ -15,7 +15,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Drink;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -87,7 +86,7 @@ public class TwilightElixir extends Drink {
 		if (user instanceof Player) {
 			String extra = " ";
 				// then it's safe to cast user to player and use the player-only teleport and quest methods.
-			if (((Player) user).isQuestInState("mithril_cloak","twilight_zone")){
+			if (((Player) user).isQuestInState("mithril_cloak", "twilight_zone")) {
 				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("hell");
 				int x = 5;
 				int y = 5;

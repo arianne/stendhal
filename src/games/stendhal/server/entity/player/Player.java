@@ -1305,7 +1305,7 @@ public class Player extends RPEntity {
 	}
 
 	public void eat(final ConsumableItem item) {
-		if (isChoking()){
+		if (isChoking()) {
 			put("choking", 0);
 		} else {
 			put("eating", 0);
@@ -1338,7 +1338,7 @@ public class Player extends RPEntity {
 				if (turn % food.getFrecuency() == 0) {
 					logger.debug("Consumed item: " + food);
 					final int amount = food.consume();
-					if (isChoking()){
+					if (isChoking()) {
 						put("choking", amount);
 					} else {
 						if (has("choking")) {

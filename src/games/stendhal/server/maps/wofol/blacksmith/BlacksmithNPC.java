@@ -30,7 +30,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 	private static Logger logger = Logger.getLogger(BlacksmithNPC.class);
 
-	final static private String QUEST_SLOT = "alrak_make_bobbin";
+	private static final String QUEST_SLOT = "alrak_make_bobbin";
 	/**
 	 * Configure a zone.
 	 *
@@ -66,7 +66,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				addReply("Wrvil", "He runs a trading business not far from here. I used to make the odd item for him, but don't have any energy left.");
 				addGoodbye();
 
-				addReply("bobbin","Ask me to #make you a bobbin if you have some iron with you, and some cash. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
+				addReply("bobbin", "Ask me to #make you a bobbin if you have some iron with you, and some cash. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
 
 				/* @author kymara */
 

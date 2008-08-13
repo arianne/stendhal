@@ -206,7 +206,7 @@ public class CampfireTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			assertEquals("Thanks, but I think the wood you brought me already will last me 5 minutes more.", npc.getText());
-			assertEquals(ConversationStates.ATTENDING ,en.getCurrentState());
+			assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
 	}
@@ -221,7 +221,7 @@ public class CampfireTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			assertEquals("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.", npc.get("text"));
-			assertEquals(ConversationStates.QUEST_OFFERED ,en.getCurrentState());
+			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
 	}
@@ -235,7 +235,7 @@ public class CampfireTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			assertEquals("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.", npc.get("text"));
-			assertEquals(ConversationStates.QUEST_OFFERED ,en.getCurrentState());
+			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE));
 		}
 	}
@@ -250,7 +250,7 @@ public class CampfireTest {
 		
 		assertEquals("Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals..."
 , npc.getText());
-		assertEquals(ConversationStates.ATTENDING ,en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("quest state 'rejected'", "rejected", player.getQuest(CAMPFIRE));
 		assertEquals("karma penalty", karma - 5.0, player.getKarma(), 0.01);
 	}

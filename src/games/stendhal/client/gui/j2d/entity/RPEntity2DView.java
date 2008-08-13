@@ -381,15 +381,15 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void drawIdeas(final Graphics2D g2d, final int x,
 			final int y, final int height) {
 		if (rpentity.isEating()) {
-			if (rpentity.isChoking()){
-				chokingSprite.draw(g2d, x, y + height - 2* ICON_OFFSET );
+			if (rpentity.isChoking()) {
+				chokingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			} else {
-				eatingSprite.draw(g2d, x, y + height - 2* ICON_OFFSET);
+				eatingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			}
 		}
 
 		if (rpentity.isPoisoned()) {
-			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2* ICON_OFFSET);
+			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2 * ICON_OFFSET);
 		}
 	}
 
@@ -482,8 +482,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
-			final int sx = x + width - 2*ICON_OFFSET;
-			final int sy = y + height - 2* ICON_OFFSET;
+			final int sx = x + width - 2 * ICON_OFFSET;
+			final int sy = y + height - 2 * ICON_OFFSET;
 
 			switch (rpentity.getResolution()) {
 			case BLOCKED:

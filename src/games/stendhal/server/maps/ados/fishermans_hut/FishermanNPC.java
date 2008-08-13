@@ -32,7 +32,7 @@ public class FishermanNPC implements ZoneConfigurator {
 
 	private static Logger logger = Logger.getLogger(FishermanNPC.class);
 
-	final static private String QUEST_SLOT = "pequod_make_oil";
+	private static final String QUEST_SLOT = "pequod_make_oil";
 
 	/**
 	 * Configure a zone.
@@ -65,8 +65,8 @@ public class FishermanNPC implements ZoneConfigurator {
 				addHelp("Nowadays you can read signposts, books and other things here in Faiumoni.");
 				addOffer("I can #make you some #oil if you need any.");
 				addGoodbye("Goodbye.");
-				addReply("oil","Ask me to #make you a bottle if you have some cod with you. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
-				addReply("can of oil","One can needs two cods. I'll #make you one if you need it. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
+				addReply("oil", "Ask me to #make you a bottle if you have some cod with you. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
+				addReply("can of oil", "One can needs two cods. I'll #make you one if you need it. I'm a bit forgetful so when you return please say 'remind' to prompt me.");
 
 				/* @author kymara */
 

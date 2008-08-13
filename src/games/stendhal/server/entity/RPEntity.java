@@ -421,7 +421,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * But, don't need luck to help you attack if you're a much 
 		 * higher level than what you attack
 		 */
-		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())){
+		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
 			attackerComponent += (attackerComponent * (float) useKarma(0.1));
 		}
 
@@ -441,7 +441,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * But, the defender doesn't need luck to help him defend if he's a much 
 		 * higher level than this attacker
 		 */
-		if (!(defender.getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > getLevel())){
+		if (!(defender.getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > getLevel())) {
 			defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
 		}
 
@@ -1944,7 +1944,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * defender, in which case attacker doesn't need luck to help 
 		 * him hit.
 		 */
-		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())){
+		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
 		final double karma = this.useKarma(0.1);
 	
 		if (karma > 0.2) {

@@ -34,7 +34,7 @@ class TwilightZone {
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
-	public TwilightZone(MithrilCloakQuestInfo mithrilcloak) {
+	public TwilightZone(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
 
@@ -111,7 +111,7 @@ class TwilightZone {
 				"What's happening to me? I'm feverish .. I see twilight .. you can't understand unless you visit me here ... you must ask #Pdiddi how to get to the #twilight.",				
 				null);
 
-		npc.addReply("Pdiddi","Oh, I'm too confused... I can't tell you anything about him...");
+		npc.addReply("Pdiddi", "Oh, I'm too confused... I can't tell you anything about him...");
 
 
 		// player gave elixir and returned
@@ -154,7 +154,7 @@ class TwilightZone {
 				"Thank you!",				
 					new MultipleActions(
 										new DropItemAction("twilight elixir"),
-										new SetQuestAction(mithrilcloak.getQuestSlot(),"taking_striped_cloak"),
+										new SetQuestAction(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
 										new TeleportAction("int_ados_sewing_room", 12, 20, Direction.DOWN)
 										)
 				);

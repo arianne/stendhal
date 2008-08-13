@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.mapstuff.office;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;

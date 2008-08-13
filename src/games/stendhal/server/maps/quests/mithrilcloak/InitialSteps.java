@@ -34,7 +34,7 @@ class InitialSteps {
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
-	public InitialSteps(MithrilCloakQuestInfo mithrilcloak) {
+	public InitialSteps(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
 
@@ -122,9 +122,9 @@ class InitialSteps {
 				"Congratulations, you completed the quest for the mithril shield! Now, I have another quest for you, do you want to hear it?",
 				null);
 
-		npc.addReply("oil","The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
-		npc.addReply("bobbin","Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.");
-		npc.addReply("Alrak","I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...");
+		npc.addReply("oil", "The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
+		npc.addReply("bobbin", "Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.");
+		npc.addReply("Alrak", "I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...");
 
 	}
 
@@ -209,7 +209,7 @@ class InitialSteps {
 					null);
 
 			// where to find wizard
-			npc.addReply("Kampusch","He is obsessed with antiques so look for him in an antiques shop or a museum.");
+			npc.addReply("Kampusch", "He is obsessed with antiques so look for him in an antiques shop or a museum.");
 	
 	}
 

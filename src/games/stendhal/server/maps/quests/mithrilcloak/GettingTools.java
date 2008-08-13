@@ -44,7 +44,7 @@ class GettingTools {
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
-	public GettingTools(MithrilCloakQuestInfo mithrilcloak) {
+	public GettingTools(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
 
@@ -297,31 +297,31 @@ class GettingTools {
 					new SpeakerNPC.ChatAction() {
 						@Override
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-							for(int i=1;i<9;i++) {
+							for (int i = 1; i < 9; i++) {
 								String joke = jokes.get(i);
 
 								final ConversationContext ctx = new ConvCtxForMatchingSource();
 								final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
 								final Sentence expected = ConversationParser.parse(joke, new SimilarExprMatcher());
-								if (answer.matchesFull(expected)){
+								if (answer.matchesFull(expected)) {
 									final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 									 if (questslot.length > 2) {
 										 // if the split worked, we had stored a needle number before and we need to store it again
 										 int needles = Integer.parseInt(questslot[1]);
 										 int saidjoke = Integer.parseInt(questslot[2]);
-										 if (i == saidjoke){
+										 if (i == saidjoke) {
 											 npc.say("You told me that joke last time, come back with a new one! Bye.");
 											 npc.setCurrentState(ConversationStates.IDLE);
 //											 // stop looking through the joke list
 											 break;
 										 } else {
-											 player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;"+Integer.toString(needles) + ";" + Integer.toString(i));
+											 player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;" + Integer.toString(needles) + ";" + Integer.toString(i));
 										 }
 									 } else {
 										 player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;" + Integer.toString(i));
 									 }
 									 // this might have been his favourite joke, which is determined randomly
-									 if (Rand.randUniform(1,8) == i) {
+									 if (Rand.randUniform(1, 8) == i) {
 										 npc.say("That's the funniest joke I ever heard! I think it's my favourite of the moment. Here, have your needle for free... and then get out of here, You've been here far too long already.");
 										 new EquipItemAction("magical needle", 1, true).fire(player, sentence, npc);
 										 npc.setCurrentState(ConversationStates.IDLE);

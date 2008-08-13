@@ -92,9 +92,9 @@ public class PlayerDieer {
 		}
 
 		respawnInAfterLife();
-		if (numberOfDrops > 0){
+		if (numberOfDrops > 0) {
 			Collection<String> strings = new LinkedList<String>();
-			for(Item item:this.drops) {
+			for (Item item : this.drops) {
 				if (item instanceof StackableItem) {
 					StackableItem si = (StackableItem) item;
 					StringBuilder sb = new StringBuilder();
@@ -102,12 +102,12 @@ public class PlayerDieer {
 					sb.append(" ");
 					sb.append(Grammar.plural(si.getName()));
 					strings.add(sb.toString());
-				}else if (item instanceof Item) {
-					Item it = (Item)item;
+				} else if (item instanceof Item) {
+					Item it = (Item) item;
 					strings.add(Grammar.a_noun(it.getName()));
 				}
 			}
-			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings ) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");
+			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");
 		} else {
 			player.sendPrivateText(NotificationType.POSITIVE, "You were lucky and dropped no items when you died.");
 		}
@@ -179,7 +179,7 @@ public class PlayerDieer {
 						drops.add(itemToDrop);
 					}
 				} else if (object.first() instanceof Item) {
-					Item justItem = (Item)object.first();
+					Item justItem = (Item) object.first();
 					object.second().remove(object.first().getID());
 					ItemLogger.equipAction(player, (Entity) object.first(), 
 									new String[]{"slot", player.getName(), object.second().getName()}, 
