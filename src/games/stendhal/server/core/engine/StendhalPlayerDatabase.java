@@ -456,7 +456,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 *
 	 * @param transaction database transaction
 	 * @param item item
-	 * @return true iff new
 	 * @throws SQLException in case of a database error
 	 */
 	private void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
@@ -490,7 +489,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param item
 	 * @throws SQLException
 	 */
-	private void itemLogInsertName(Transaction transaction, RPObject item) throws SQLException {
+	private void itemLogInsertName(final Transaction transaction, final RPObject item) throws SQLException {
 		itemLogWriteEntry(transaction, item, null, "register", getAttribute(item, "name"), getAttribute(item, "quantity"), getAttribute(item, "infostring"), getAttribute(item, "bound"));
 	}
 
@@ -587,7 +586,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param object object to read the optional attribute from
 	 * @return attribute name of attribute
 	 */
-	private String getAttribute(final RPObject object, String attribute) {
+	private String getAttribute(final RPObject object, final String attribute) {
 		if (object.has(attribute)) {
 			return object.get(attribute);
 		} else {
