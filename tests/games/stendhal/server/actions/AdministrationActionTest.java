@@ -123,7 +123,6 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTellAllAction() {
 		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("dummy");
-		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		CommandCenter.execute(pl, new RPAction());
@@ -145,7 +144,6 @@ public class AdministrationActionTest {
 		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		final PrivateTextMockingTestPlayer anptherAdmin = PlayerTestHelper.createPrivateTextMockingTestPlayer("anotheradmin");
 		anptherAdmin.setAdminLevel(5000);
-		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		MockStendhalRPRuleProcessor.get().addPlayer(anptherAdmin);
@@ -174,7 +172,6 @@ public class AdministrationActionTest {
 
 		final PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		final Player bob = PlayerTestHelper.createPlayer("bob");
-		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
