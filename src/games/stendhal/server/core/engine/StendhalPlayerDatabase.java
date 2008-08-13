@@ -456,6 +456,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 *
 	 * @param transaction database transaction
 	 * @param item item
+	 * @return true iff new
 	 * @throws SQLException in case of a database error
 	 */
 	private void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
@@ -479,6 +480,18 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		// read last_id from database
 		final int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
 		item.put(ATTR_ITEM_LOGID, id);
+		itemLogInsertName(transaction, item);
+	}
+
+
+	/**
+	 * Logs the name of the item on first
+	 * @param transaction
+	 * @param item
+	 * @throws SQLException
+	 */
+	private void itemLogInsertName(Transaction transaction, RPObject item) throws SQLException {
+		itemLogWriteEntry(transaction, item, null, "register", getAttribute(item, "name"), getAttribute(item, "quantity"), getAttribute(item, "infostring"), getAttribute(item, "bound"));
 	}
 
 	private void itemLogWriteEntry(final Transaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
@@ -561,12 +574,24 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param entity Entity
 	 * @return name of entity
 	 */
-	private String getEntityName(final Entity entity) {
+	private String getEntityName(final RPObject entity) {
 		if (entity instanceof RPEntity) {
 			return ((RPEntity) entity).getName();
 		} else {
 			return entity.getClass().getName();
 		}
 	}
-
+	/**
+	 * gets an optional attribute 
+	 *
+	 * @param object object to read the optional attribute from
+	 * @return attribute name of attribute
+	 */
+	private String getAttribute(final RPObject object, String attribute) {
+		if (object.has(attribute)) {
+			return object.get(attribute);
+		} else {
+			return "null";
+		}
+	}
 }
