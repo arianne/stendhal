@@ -286,7 +286,7 @@ public class Jail implements LoginListener {
 				imprison(player, player, arrestWarrant.getMinutes());
 			}
 
-			public boolean removeVeryOldWarrants(ArrestWarrant arrestWarrant) {
+			public boolean removeVeryOldWarrants(final ArrestWarrant arrestWarrant) {
 				final long timestamp = arrestWarrant.getTimestamp();
 				if (timestamp + 30 * MathHelper.MILLISECONDS_IN_ONE_DAY < System.currentTimeMillis()) {
 					arrestWarrants.removeByName(arrestWarrant.getCriminal());
@@ -297,7 +297,7 @@ public class Jail implements LoginListener {
 			}
 			
 
-			public void handleEscapeMessages(ArrestWarrant arrestWarrant) {
+			public void handleEscapeMessages(final ArrestWarrant arrestWarrant) {
 				if (arrestWarrant.isStarted()) {
 					// Notify player that his sentences is starting again because he tried to escape by logging out
 					player.sendPrivateText("Although you already spent some "
