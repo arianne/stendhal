@@ -37,6 +37,8 @@ import org.apache.log4j.Logger;
  * creatures.
  */
 public class CreatureRespawnPoint implements TurnListener {
+	// half a year
+	private static final int MAX_RESPAWN_TIME = 200 * 60 * 24 * 30 * 6;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
@@ -159,7 +161,10 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @return the amount of turns calculated
 	 */
 	private int calculateNextRespawnTurn() {
-		return Rand.rand(respawnTime) + respawnTime / 2;
+		int time = Rand.randExponential(respawnTime);
+		
+		// limit to maximum allowed
+		return Math.min(time, MAX_RESPAWN_TIME);
 	}
 
 	/**
