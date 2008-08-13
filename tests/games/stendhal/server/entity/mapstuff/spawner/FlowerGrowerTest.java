@@ -41,7 +41,7 @@ public class FlowerGrowerTest {
 	@Test
 	public void testGetRandomTurnsForRegrow() {
 		final FlowerGrower fl = new FlowerGrower();
-		assertThat(fl.getRandomTurnsForRegrow(), is(3));
+		assertThat(fl.getRandomTurnsForRegrow(), is(2809));
 	}
 
 	@Test
