@@ -1,8 +1,9 @@
 package games.stendhal.server.entity.npc.condition;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
@@ -21,31 +22,36 @@ public class QuestActiveConditionTest {
 
 	@Test
 	public final void testFire() {
-		assertFalse(new QuestActiveCondition("questname").fire(
+		assertThat(new QuestActiveCondition("questname").fire(
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("QuestActiveConditionTest"),
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+				SpeakerNPCTestHelper.createSpeakerNPC()),
+				is(false));
 		final Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
-		assertTrue(new QuestActiveCondition("questname").fire(bob,
+		assertThat(new QuestActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestActiveConditionTest"),
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+				SpeakerNPCTestHelper.createSpeakerNPC()),
+				is(true));
 
 		bob.setQuest("questname", null);
-		assertFalse(new QuestActiveCondition("questname").fire(bob,
+		assertThat(new QuestActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestActiveConditionTest"),
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+				SpeakerNPCTestHelper.createSpeakerNPC()),
+				is(false));
 
 		bob.setQuest("questname", "done");
-		assertFalse(new QuestActiveCondition("questname").fire(bob,
+		assertThat(new QuestActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestActiveConditionTest"),
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+				SpeakerNPCTestHelper.createSpeakerNPC()),
+				is(false));
 		
 		bob.setQuest("questname", "rejected");
-		assertFalse(new QuestActiveCondition("questname").fire(bob,
+		assertThat(new QuestActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestActiveConditionTest"),
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+				SpeakerNPCTestHelper.createSpeakerNPC()),
+				is(false));
 
 	}
 
@@ -56,43 +62,48 @@ public class QuestActiveConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestActive <questname>", new QuestActiveCondition(
-				"questname").toString());
+		assertThat(new QuestActiveCondition("questname").toString(), is("QuestActive <questname>"));
 	}
 
 	@Test
 	public void testEquals() throws Throwable {
-		assertFalse(new QuestActiveCondition("questname").equals(null));
+		assertThat(new QuestActiveCondition("questname"), not(equalTo(null)));
 
 		final QuestActiveCondition obj = new QuestActiveCondition("questname");
-		assertTrue(obj.equals(obj));
-		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
-				"questname")));
-		assertTrue(new QuestActiveCondition(null).equals(new QuestActiveCondition(
-				null)));
+		assertThat(obj, equalTo(obj));
+		assertThat(new QuestActiveCondition("questname"), 
+				equalTo(new QuestActiveCondition("questname")));
 
-		assertFalse(new QuestActiveCondition("questname").equals(new Object()));
+		assertThat(new QuestActiveCondition(null), 
+				equalTo(new QuestActiveCondition(null)));
 
-		assertFalse(new QuestActiveCondition(null).equals(new QuestActiveCondition(
-				"questname")));
-		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
-				null)));
-		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
-				"questname2")));
-		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
-				"questname") { 
-			//sub classing
-		}));
+		assertThat(new QuestActiveCondition("questname"),
+				not(equalTo(new Object())));
+
+		assertThat(new QuestActiveCondition(null),
+				not(equalTo(new QuestActiveCondition(
+				"questname"))));
+		assertThat(new QuestActiveCondition("questname"),
+				not(equalTo(new QuestActiveCondition(
+				null))));
+		assertThat(new QuestActiveCondition("questname"),
+				not(equalTo(new QuestActiveCondition(
+				"questname2"))));
+
+		assertThat(new QuestActiveCondition("questname"),
+				equalTo((QuestActiveCondition) new QuestActiveCondition("questname") { 
+					//sub classing
+			}));
 	}
 
 	@Test
 	public void testHashCode() throws Exception {
 		final QuestActiveCondition obj = new QuestActiveCondition("questname");
-		assertEquals(obj.hashCode(), obj.hashCode());
-		assertEquals(new QuestActiveCondition("questname").hashCode(),
-				new QuestActiveCondition("questname").hashCode());
-		assertEquals(new QuestActiveCondition(null).hashCode(),
-				new QuestActiveCondition(null).hashCode());
+		assertThat(obj.hashCode(), equalTo(obj.hashCode()));
+		assertThat(new QuestActiveCondition("questname").hashCode(),
+				equalTo(new QuestActiveCondition("questname").hashCode()));
+		assertThat(new QuestActiveCondition(null).hashCode(),
+				equalTo(new QuestActiveCondition(null).hashCode()));
 
 	}
 
