@@ -2,6 +2,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.actions.admin.BanAction;
 import games.stendhal.server.actions.attack.AttackAction;
 import games.stendhal.server.actions.attack.StopAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
@@ -62,6 +63,7 @@ public class CommandCenter {
 		AdministrationAction.register();
 		AttackAction.register();
 		AwayAction.register();
+		BanAction.register();
 		BuddyAction.register();
 		ChatAction.register();
 		CreateGuildAction.register();
