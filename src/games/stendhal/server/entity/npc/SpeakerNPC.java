@@ -4,7 +4,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
@@ -337,12 +336,6 @@ public class SpeakerNPC extends NPC {
 
 	public boolean isTalking() {
 		return engine.getCurrentState() != ConversationStates.IDLE;
-	}
-
-	public abstract static class ChatCondition implements
-			PreTransitionCondition {
-		public abstract boolean fire(Player player, Sentence sentence,
-				SpeakerNPC npc);
 	}
 
 	@Override
