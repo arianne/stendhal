@@ -48,7 +48,7 @@ public class BanActionTest {
 		if (!database.hasPlayer(database.getTransaction(), player.getName())) {
 			database.addPlayer(database.getTransaction(), player.getName(), new byte[0], "schnubbel");
 		}
-		database.setAccountStatus(database.getTransaction(), player.getName(),"active");
+		database.setAccountStatus(database.getTransaction(), player.getName(), "active");
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), player.getName()));
 		ban.perform(player , action);
 		assertEquals("banned", database.getAccountStatus(database.getTransaction(), player.getName()));
@@ -67,11 +67,11 @@ public class BanActionTest {
 		if (!database.hasPlayer(database.getTransaction(), player.getName())) {
 			database.addPlayer(database.getTransaction(), player.getName(), new byte[0], "schnubbel");
 		}
-		database.setAccountStatus(database.getTransaction(), player.getName(),"active");
+		database.setAccountStatus(database.getTransaction(), player.getName(), "active");
 		if (!database.hasPlayer(database.getTransaction(), admin.getName())) {
 			database.addPlayer(database.getTransaction(), admin.getName(), new byte[0], "schnubbel");
 		}
-		database.setAccountStatus(database.getTransaction(), admin.getName(),"active");
+		database.setAccountStatus(database.getTransaction(), admin.getName(), "active");
 
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), player.getName()));
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), admin.getName()));

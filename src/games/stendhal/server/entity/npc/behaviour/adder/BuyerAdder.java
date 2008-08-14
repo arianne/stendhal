@@ -32,7 +32,7 @@ public class BuyerAdder {
 
 		engine.add(ConversationStates.ATTENDING, "sell", null,
 				ConversationStates.SELL_PRICE_OFFERED, null,
-				new ChatAction () {
+				new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (sentence.hasError()) {
