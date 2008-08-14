@@ -5,7 +5,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -21,10 +20,10 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
@@ -178,22 +177,8 @@ class GettingTools {
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				// match for all numbers as trigger expression
 				"NUM", new JokerExprMatcher(),
-				new ChatCondition() {
-                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						final Expression number = sentence.getNumeral();
-
-						if (number != null) {
-    						final int required = number.getAmount();
-
-    						// don't let them buy less than 1 or more than, say, 5000
-    						if ((required >= 1) && (required <= 5000)) {
-    							return true;
-    						}
-						}
-
-    					return false;
-                    }
-				}, ConversationStates.ATTENDING, null,
+				new TextHasNumberCondition(1, 5000),
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
