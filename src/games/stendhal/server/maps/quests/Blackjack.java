@@ -290,8 +290,7 @@ public class Blackjack extends AbstractQuest {
 				addReply(
 						"blackjack",
 						"Blackjack is a simple card game. You can read the rules at the blackboard at the wall.");
-				// TODO add help description string
-				addHelp("...");
+				addHelp("Don't get too distracted playing cards to leave this ferry! Listen out for announcements.");
 				addGoodbye("Goodbye!");
 			}
 
@@ -333,7 +332,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.ATTENDING, "play", null,
 				ConversationStates.ATTENDING,
 				"In order to play, you have to at least #'stake " + MIN_STAKE
-						+ "' and at most ##stake " + MAX_STAKE
+						+ "' and at most #'stake " + MAX_STAKE
 						+ "' pieces of gold. So, how much will you risk?", null);
 
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
