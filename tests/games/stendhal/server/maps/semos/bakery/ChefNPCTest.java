@@ -9,11 +9,11 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
@@ -27,13 +27,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
 	}
 
 	public ChefNPCTest() {

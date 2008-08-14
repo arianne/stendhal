@@ -8,10 +8,10 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
@@ -24,16 +24,12 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
+		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 
 		final WizardBank wb = new WizardBank();
 		wb.addToWorld();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
 	}
 
 	public WizardBankTest() {

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.ItemTools;
@@ -221,7 +222,7 @@ public class Player extends RPEntity {
 		object.put("def_xp", 0);
 		object.put("xp", 0);
 
-		for (final String slot : RPEntity.CARRYING_SLOTS) {
+		for (final String slot : Constants.CARRYING_SLOTS) {
 			object.addSlot(slot);
 		}
 
