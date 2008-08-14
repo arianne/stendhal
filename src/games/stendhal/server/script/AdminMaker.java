@@ -8,6 +8,7 @@ import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -33,7 +34,7 @@ public class AdminMaker extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(AdminMaker.class);
 
-	protected class UpgradeAction extends SpeakerNPC.ChatAction {
+	protected class UpgradeAction implements ChatAction {
 
 		private void xpGain(final Player player) {
 			final int level = player.getLevel();
@@ -104,7 +105,6 @@ public class AdminMaker extends ScriptImpl {
 			}
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			engine.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
 			xpGain(player);
@@ -113,7 +113,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 	}
 
-	protected class TeleportAction extends SpeakerNPC.ChatAction {
+	protected class TeleportAction implements ChatAction {
 
 		private final List<Destination> DESTINATIONS = Arrays.asList(
 			new Destination("0_nalwor_city", 88, 85),
@@ -184,7 +184,6 @@ public class AdminMaker extends ScriptImpl {
 			}
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// before we send the player off into the unknown give a marked

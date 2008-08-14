@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -13,7 +14,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Teleports the player to the specified location.
  */
-public class TeleportAction extends SpeakerNPC.ChatAction {
+public class TeleportAction implements ChatAction {
 
 	private final String zonename;
 	private final int x;
@@ -39,7 +40,6 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 		this.direction = direction;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zonename);
 		player.teleport(zone, x, y, direction, player);

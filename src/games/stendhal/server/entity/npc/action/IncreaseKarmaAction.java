@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -7,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the karma of the current player.
  */
-public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
+public class IncreaseKarmaAction implements ChatAction {
 
 	private final double karmaDiff;
 
@@ -21,7 +22,6 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 		this.karmaDiff = karmaDiff;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.addKarma(karmaDiff);
 	}

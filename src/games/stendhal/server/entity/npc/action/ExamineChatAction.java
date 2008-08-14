@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ExamineEvent;
@@ -9,7 +9,7 @@ import games.stendhal.server.events.ExamineEvent;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class ExamineChatAction extends ChatAction {
+public class ExamineChatAction implements ChatAction {
 	private final String image;
 	private final String title;
 	private final String alt;
@@ -20,7 +20,6 @@ public class ExamineChatAction extends ChatAction {
 		this.alt = alt;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		player.addEvent(new ExamineEvent(image, title, alt));
 	}

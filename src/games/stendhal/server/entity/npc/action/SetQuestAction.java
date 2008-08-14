@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -7,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Sets the current state of a quest.
  */
-public class SetQuestAction extends SpeakerNPC.ChatAction {
+public class SetQuestAction implements ChatAction {
 
 	private final String questname;
 
@@ -26,7 +27,6 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 		this.state = state;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		player.setQuest(questname, state);
 	}

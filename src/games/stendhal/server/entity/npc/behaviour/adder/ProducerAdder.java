@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -18,8 +19,7 @@ public class ProducerAdder {
 		final Engine engine = npc.getEngine();
 
 		final String thisWelcomeMessage = welcomeMessage;
-		npc.addWaitMessage(null, new SpeakerNPC.ChatAction() {
-			@Override
+		npc.addWaitMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				engine.say("Please wait! I am attending "
 						+ engine.getAttending().getName() + ".");
@@ -41,15 +41,13 @@ public class ProducerAdder {
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
 				new SpeakerNPC.ChatCondition() {
-					@Override
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return !player.hasQuest(behaviour.getQuestSlot())
 								|| player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
@@ -91,8 +89,7 @@ public class ProducerAdder {
 		engine.add(ConversationStates.PRODUCTION_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						behaviour.transactAgreedDeal(npc, player);
@@ -114,8 +111,7 @@ public class ProducerAdder {
 								&& !player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						npc.say("I still haven't finished your last order. Come back in "
@@ -135,8 +131,7 @@ public class ProducerAdder {
 								&& !player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						behaviour.giveProduct(npc, player);

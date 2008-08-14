@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -16,7 +16,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * 
  * @author hendrik
  */
-public class StartRecordingKillsAction extends ChatAction {
+public class StartRecordingKillsAction implements ChatAction {
 	private final List<String> toKill;
 
 	/**
@@ -39,7 +39,6 @@ public class StartRecordingKillsAction extends ChatAction {
 		this.toKill = Arrays.asList(toKill);
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		for (final String creature : toKill) {
 			player.removeKill(creature);

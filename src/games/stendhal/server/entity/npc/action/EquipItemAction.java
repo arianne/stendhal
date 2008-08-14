@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -12,7 +13,7 @@ import org.apache.log4j.Logger;
 /**
  * Equips the specified item.
  */
-public class EquipItemAction extends SpeakerNPC.ChatAction {
+public class EquipItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipItemAction.class);
 
 	private final String itemName;
@@ -57,7 +58,6 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 		this.bind = bind;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {

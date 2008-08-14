@@ -6,6 +6,7 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -24,7 +25,7 @@ public class Maria extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(Maria.class);
 
-	class MargaretCouponAction extends SpeakerNPC.ChatAction {
+	class MargaretCouponAction implements ChatAction {
 
 		private final ScriptingSandbox sandbox;
 
@@ -32,7 +33,6 @@ public class Maria extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.drop("coupon")) {
 				final Item beer = sandbox.getItem("beer");

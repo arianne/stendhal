@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -67,9 +68,8 @@ public class OutfitChangerAdder {
 
 		engine.add(ConversationStates.ATTENDING, command, null,
 				ConversationStates.BUY_PRICE_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
+				new ChatAction() {
 
-					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						if (sentence.hasError()) {
@@ -114,8 +114,7 @@ public class OutfitChangerAdder {
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						final String itemName = behaviour.getChosenItemName();
@@ -144,8 +143,7 @@ public class OutfitChangerAdder {
 		if (canReturn) {
 			engine.add(ConversationStates.ATTENDING, "return", null,
 					ConversationStates.ATTENDING, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
 								final SpeakerNPC npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {

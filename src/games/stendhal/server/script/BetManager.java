@@ -8,6 +8,7 @@ import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Expression;
@@ -177,9 +178,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	/**
 	 * handles a bet.
 	 */
-	protected class BetAction extends SpeakerNPC.ChatAction {
+	protected class BetAction implements ChatAction {
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();

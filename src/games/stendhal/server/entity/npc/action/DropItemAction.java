@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -9,7 +10,7 @@ import org.apache.log4j.Logger;
 /**
  * Drops the specified item.
  */
-public class DropItemAction extends SpeakerNPC.ChatAction {
+public class DropItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private final String itemName;
 	private final int amount;
@@ -38,7 +39,6 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 		this.amount = amount;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		final boolean res = player.drop(itemName, amount);
 		if (!res) {

@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -21,8 +22,7 @@ public class HealerAdder {
 
 		engine.add(ConversationStates.ATTENDING, "heal", null,
 				ConversationStates.HEAL_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						healerBehaviour.setChosenItemName("heal");
@@ -53,8 +53,7 @@ public class HealerAdder {
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						if (player.drop("money",

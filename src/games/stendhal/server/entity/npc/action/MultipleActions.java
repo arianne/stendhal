@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -12,9 +13,9 @@ import java.util.List;
  * executes a list of actions. calls fire() of each action added, when its own
  * fire() is called.
  */
-public class MultipleActions extends SpeakerNPC.ChatAction {
+public class MultipleActions implements ChatAction {
 
-	private final List<SpeakerNPC.ChatAction> actions;
+	private final List<ChatAction> actions;
 
 	/**
 	 * Creates a new MultipleActions.
@@ -22,7 +23,7 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	 * @param action
 	 *            action to execute
 	 */
-	public MultipleActions(final SpeakerNPC.ChatAction... action) {
+	public MultipleActions(final ChatAction... action) {
 		this.actions = Arrays.asList(action);
 	}
 
@@ -32,13 +33,12 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	 * @param actions
 	 *            list of actions to execute
 	 */
-	public MultipleActions(final List<SpeakerNPC.ChatAction> actions) {
-		this.actions = new LinkedList<SpeakerNPC.ChatAction>(actions);
+	public MultipleActions(final List<ChatAction> actions) {
+		this.actions = new LinkedList<ChatAction>(actions);
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-		for (final SpeakerNPC.ChatAction action : actions) {
+		for (final ChatAction action : actions) {
 			action.fire(player, sentence, npc);
 		}
 	}

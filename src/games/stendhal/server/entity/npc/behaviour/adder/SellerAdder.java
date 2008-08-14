@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -35,9 +36,8 @@ public class SellerAdder {
 
 		engine.add(ConversationStates.ATTENDING, "buy", null,
 				ConversationStates.BUY_PRICE_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
+				new ChatAction() {
 
-					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						if (sentence.hasError()) {
@@ -90,8 +90,7 @@ public class SellerAdder {
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, "Thanks.",
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						final String itemName = behaviour.getChosenItemName();

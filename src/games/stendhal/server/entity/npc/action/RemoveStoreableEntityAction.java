@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.mapstuff.office.StoreableEntityList;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -12,7 +13,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * removes all storeable entities from the specified list that
  * has the players name as identifier.
  */
-public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
+public class RemoveStoreableEntityAction implements ChatAction {
 
 	private final StoreableEntityList< ? > storeableEntityList;
 
@@ -25,7 +26,6 @@ public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
 		this.storeableEntityList = storeableEntityList;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		storeableEntityList.removeByName(player.getName());
 	}

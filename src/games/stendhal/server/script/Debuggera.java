@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -41,14 +42,13 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
+	class DebuggeraEnablerAction implements ChatAction {
 		boolean enabled;
 
 		public DebuggeraEnablerAction(final boolean enable) {
 			this.enabled = enable;
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			// TODO debuggeraEnabled = enabled;
 			if (enabled) {
@@ -59,14 +59,13 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class QuestsAction extends SpeakerNPC.ChatAction {
+	class QuestsAction implements ChatAction {
 		ScriptingSandbox sandbox;
 
 		public QuestsAction(final ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			// list quest
 			final StringBuilder sb = new StringBuilder("Your quest states are:");
@@ -95,14 +94,13 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class TeleportNPCAction extends SpeakerNPC.ChatAction {
+	class TeleportNPCAction implements ChatAction {
 		ScriptingSandbox sandbox;
 
 		public TeleportNPCAction(final ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(0,
 					new TeleportScriptAction(player, engine, sentence, sandbox));
@@ -212,9 +210,7 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	public class SightseeingAction extends SpeakerNPC.ChatAction implements
-			TurnListener {
-		// private ScriptingSandbox sandbox;
+	public class SightseeingAction implements ChatAction, TurnListener {
 
 		private Player player;
 
@@ -233,7 +229,6 @@ public class Debuggera extends ScriptImpl {
 			}
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			this.player = player;
 			counter = 0;
