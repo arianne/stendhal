@@ -4,7 +4,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -340,11 +339,6 @@ public class SpeakerNPC extends NPC {
 		return engine.getCurrentState() != ConversationStates.IDLE;
 	}
 
-	public abstract static class ChatAction implements PostTransitionAction {
-		public abstract void fire(final Player player, final Sentence sentence,
-				final SpeakerNPC npc);
-	}
-
 	public abstract static class ChatCondition implements
 			PreTransitionCondition {
 		public abstract boolean fire(Player player, Sentence sentence,
@@ -568,12 +562,11 @@ public class SpeakerNPC extends NPC {
 		addGreeting(text, null);
 	}
 
-	public void addGreeting(final String text, final SpeakerNPC.ChatAction action) {
+	public void addGreeting(final String text, final ChatAction action) {
 		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new SpeakerNPC.ChatAction() {
-			@Override
+		addWaitMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -612,12 +605,11 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(final String trigger, final String text, final SpeakerNPC.ChatAction action) {
+	public void addReply(final String trigger, final String text, final ChatAction action) {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new SpeakerNPC.ChatAction() {
-			@Override
+		addWaitMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -633,12 +625,11 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(final List<String> triggers, final String text, final SpeakerNPC.ChatAction action) {
+	public void addReply(final List<String> triggers, final String text, final ChatAction action) {
 		add(ConversationStates.ATTENDING, triggers, null,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new SpeakerNPC.ChatAction() {
-			@Override
+		addWaitMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -673,7 +664,6 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
 				ConversationStates.IDLE, text, new ChatAction() {
 
-					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						npc.onGoodbye(player);
