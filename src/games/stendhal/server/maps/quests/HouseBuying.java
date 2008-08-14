@@ -6,11 +6,10 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -149,21 +148,7 @@ public class HouseBuying extends AbstractQuest {
 				add(ConversationStates.QUEST_OFFERED,
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
-					new ChatCondition() {
-	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-							final Expression number = sentence.getNumeral();
-							if (number != null) {
-	    						final int houseNr = number.getAmount();
-
-    							// check for correct house numbers
-    							if ((houseNr >= 1) && (houseNr <= 25)) {
-    								return true;
-    							}
-							}
-
-							return false;
-	                    }
-					},
+					new TextHasNumberCondition(1, 25),
 					ConversationStates.ATTENDING,
 					null,
 					new ChatAction() {
@@ -361,21 +346,7 @@ public class HouseBuying extends AbstractQuest {
 				add(ConversationStates.QUEST_OFFERED,
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
-					new ChatCondition() {
-	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-							final Expression number = sentence.getNumeral();
-							if (number != null) {
-	    						final int houseNr = number.getAmount();
-
-    							// check for correct house numbers
-    							if ((houseNr >= 50) && (houseNr <= 68)) {
-    								return true;
-    							}
-							}
-
-							return false;
-	                    }
-					},
+					new TextHasNumberCondition(50, 68),
 					ConversationStates.ATTENDING, 
 					null,
 					new ChatAction() {
@@ -546,21 +517,7 @@ public class HouseBuying extends AbstractQuest {
 				add(ConversationStates.QUEST_OFFERED,
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
-					new ChatCondition() {
-	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-							final Expression number = sentence.getNumeral();
-							if (number != null) {
-	    						final int houseNr = number.getAmount();
-
-    							// check for correct house numbers
-    							if ((houseNr >= 26) && (houseNr <= 49)) {
-    								return true;
-    							}
-							}
-
-							return false;
-	                    }
-					},
+					new TextHasNumberCondition(26, 49),
 					ConversationStates.ATTENDING, 
 					null,
 					new ChatAction() {

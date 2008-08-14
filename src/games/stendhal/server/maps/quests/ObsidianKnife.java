@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -284,12 +285,7 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith("reading;");
-					}
-				}, 
+				new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"),
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
@@ -402,12 +398,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith("forging;");
-					}
-				}, 
+				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {

@@ -14,6 +14,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -102,11 +103,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						return !player.hasQuest(QUEST_SLOT);
-					}
-				},
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Greetings, traveller. I see that you have come far to be here. I am interested in anyone who has encountered our kin, the green #elves",
 				null);

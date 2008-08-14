@@ -11,6 +11,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -88,23 +90,14 @@ public class VampireSword extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					return player.isQuestCompleted(QUEST_SLOT);  
-				}
-			},
+			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
 			"What are you bothering me for now? You've got your sword, go and use it!",
 			null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						String state = player.getQuest(QUEST_SLOT);
-						return ((state != null) && !state.equals("rejected") && !state.equals("done"));
-					}
-				},
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
 				"Why are you bothering me when you haven't completed your quest yet?",
 				null);

@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -203,12 +204,8 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.QUESTION_2,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_2,
 				"Welcome back! Have you brought any #cloaks with you?", null);
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUESTION_2, 
