@@ -5,11 +5,10 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -73,22 +72,8 @@ class Honeymoon {
 		linda.add(ConversationStates.QUESTION_1,
 				// match for all numbers as trigger expression
 				"NUM", new JokerExprMatcher(),
-				new ChatCondition() {
-                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						final Expression number = sentence.getNumeral();
-
-						if (number != null) {
-    						final int roomNr = number.getAmount();
-
-    						// check for correct room numbers
-    						if ((roomNr >= 1) && (roomNr <= 15)) {
-    							return true;
-    						}
-						}
-
-    					return false;
-                    }
-				}, ConversationStates.IDLE, null,
+				new TextHasNumberCondition(1, 15),
+				ConversationStates.IDLE, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 

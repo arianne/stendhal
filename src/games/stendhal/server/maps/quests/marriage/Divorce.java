@@ -7,6 +7,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -74,12 +76,7 @@ class Divorce {
 
 		clerk.add(ConversationStates.ATTENDING,
 				"divorce",
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
-						return !player.isEquipped("wedding ring");
-					}
-				},
+				new NotCondition(new PlayerHasItemWithHimCondition("wedding ring")),
 				ConversationStates.ATTENDING,
 				"I apologise, but I need your wedding ring in order to divorce you.",
 				null);
