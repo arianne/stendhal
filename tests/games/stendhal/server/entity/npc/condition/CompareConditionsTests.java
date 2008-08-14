@@ -2,7 +2,7 @@ package games.stendhal.server.entity.npc.condition;
 
 import static org.junit.Assert.assertFalse;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;

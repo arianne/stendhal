@@ -3,8 +3,8 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -18,8 +18,7 @@ import utilities.SpeakerNPCTestHelper;
 
 public class NotConditionTest {
 
-	private final class AlwaysFalseCondition extends ChatCondition {
-		@Override
+	private final class AlwaysFalseCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return false;
 		}

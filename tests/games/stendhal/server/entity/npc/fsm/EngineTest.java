@@ -2,8 +2,8 @@ package games.stendhal.server.entity.npc.fsm;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -65,7 +65,6 @@ public class EngineTest {
 		final String triggers = "boo";
 
 		final ChatCondition cc = new ChatCondition() {
-			@Override
 			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 				return true;

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -126,8 +126,6 @@ public class TransitionTest {
 										null, 0, null, null);
 		assertNull(t.getCondition());
 		final ChatCondition cond = new ChatCondition() {
-
-			@Override
 			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				return false;
 			}
