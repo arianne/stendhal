@@ -9,11 +9,12 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -181,13 +182,8 @@ public class FishermanNPC implements ZoneConfigurator {
 				add(
 				ConversationStates.ATTENDING,
 				"make",
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
-						return !player.hasQuest(behaviour.getQuestSlot())
-								|| player.isQuestCompleted(behaviour.getQuestSlot());
-					}
-				}, ConversationStates.ATTENDING, null,
+				new QuestNotActiveCondition(behaviour.getQuestSlot()),
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (sentence.hasError()) {
@@ -243,13 +239,8 @@ public class FishermanNPC implements ZoneConfigurator {
 
 		add(ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
-						return player.hasQuest(behaviour.getQuestSlot())
-								&& !player.isQuestCompleted(behaviour.getQuestSlot());
-					}
-				}, ConversationStates.ATTENDING, null,
+				new QuestActiveCondition(behaviour.getQuestSlot()),
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
@@ -261,13 +252,8 @@ public class FishermanNPC implements ZoneConfigurator {
 
 		add(ConversationStates.ATTENDING,
 				"remind",
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
-						return player.hasQuest(behaviour.getQuestSlot())
-								&& !player.isQuestCompleted(behaviour.getQuestSlot());
-					}
-				}, ConversationStates.ATTENDING, null,
+				new QuestActiveCondition(behaviour.getQuestSlot()),
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
