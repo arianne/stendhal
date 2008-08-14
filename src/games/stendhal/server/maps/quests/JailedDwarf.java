@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -37,8 +38,7 @@ public class JailedDwarf extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi. As you see, I am still to nervous to leave ...");

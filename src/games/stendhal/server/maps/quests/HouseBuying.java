@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -105,8 +106,7 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
@@ -121,8 +121,7 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				addReply("cost", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("cost", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house is "
@@ -167,8 +166,7 @@ public class HouseBuying extends AbstractQuest {
 					},
 					ConversationStates.ATTENDING,
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
@@ -234,8 +232,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 								final String house = player.getQuest(QUEST_SLOT);
@@ -317,8 +314,7 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
@@ -333,8 +329,7 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				addReply("cost", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("cost", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Ados is "
@@ -384,8 +379,7 @@ public class HouseBuying extends AbstractQuest {
 					},
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
@@ -451,8 +445,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 								final String house = player.getQuest(QUEST_SLOT);
@@ -512,8 +505,7 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
@@ -528,8 +520,7 @@ public class HouseBuying extends AbstractQuest {
 					}
 				});
 
-				addReply("cost", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("cost", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Kirdneh is "
@@ -574,8 +565,7 @@ public class HouseBuying extends AbstractQuest {
 					},
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
@@ -641,8 +631,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 								final String house = player.getQuest(QUEST_SLOT);

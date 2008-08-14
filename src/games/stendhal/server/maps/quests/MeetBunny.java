@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -62,7 +63,7 @@ public class MeetBunny extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"Hi again!", null);
 
-				final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+				final List<ChatAction> reward = new LinkedList<ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 

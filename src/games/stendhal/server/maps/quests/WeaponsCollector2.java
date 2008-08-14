@@ -3,10 +3,10 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -116,7 +116,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							if (player.isQuestCompleted(QUEST_SLOT)) {
 								engine.say("My collection is now complete! Thanks again.");
@@ -135,7 +134,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null, 
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Wonderful. Now, the #list is small but the risk may be great. "
 								+ "If you return safely, I have another reward for you.");
@@ -158,7 +156,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> needed = missingWeapons(player, true);
 						engine.say("There "
@@ -178,7 +175,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> missing = missingWeapons(player, false);
 						engine.say("Let me know as soon as you find "
@@ -201,7 +197,6 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null, 
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final Expression item = sentence.getTriggerExpression();
 

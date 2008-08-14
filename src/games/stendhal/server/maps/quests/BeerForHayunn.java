@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -154,7 +155,7 @@ public class BeerForHayunn extends AbstractQuest {
 			"Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?",
 			null);
 
-		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("beer"));
 		reward.add(new EquipItemAction("money", 20));
 		reward.add(new IncreaseXPAction(10));

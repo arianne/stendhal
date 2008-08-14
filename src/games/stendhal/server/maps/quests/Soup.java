@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -161,8 +162,7 @@ public class Soup extends AbstractQuest {
 					return (timeRemaining > 0L);
 				}
 			}, ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
@@ -178,8 +178,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.INFORMATION_1, "revive",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
 						// to be honest i don't understand when this
@@ -197,8 +196,7 @@ public class Soup extends AbstractQuest {
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUEST_OFFERED, "ingredients", null,
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I need "
@@ -268,8 +266,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, "ingredients",
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I still need "
@@ -287,8 +284,7 @@ public class Soup extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_1, NEEDED_FOOD, null,
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final Expression item = sentence.getTriggerExpression();
 
@@ -349,8 +345,7 @@ public class Soup extends AbstractQuest {
 				null,
 				ConversationStates.QUESTION_1,
 				null,
-				new SpeakerNPC.ChatAction() {
-			    @Override
+				new ChatAction() {
 			    public void fire(final Player player, final Sentence sentence,
 					   final SpeakerNPC npc) {
 			    	checkForAllIngredients(player, npc);

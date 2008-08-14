@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -34,8 +35,7 @@ class Engagement {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						if (!player.hasQuest(marriage.getQuestSlot())) {
@@ -67,8 +67,7 @@ class Engagement {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						// find out whom the player wants to marry.
@@ -87,8 +86,7 @@ class Engagement {
 				null,
 				ConversationStates.QUESTION_2, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						askBrideE();
@@ -107,8 +105,7 @@ class Engagement {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						finishEngagement();

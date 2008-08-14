@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -61,7 +62,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Thanks again! I think it's still clear down there.", null);
 
-		final List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new StartRecordingKillsAction("rat", "caverat", "snake"));
 		start.add(new IncreaseKarmaAction(2.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -96,7 +97,7 @@ public class CleanStorageSpace extends AbstractQuest {
 
 		final SpeakerNPC npc = npcs.get("Eonna");
 		
-		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseKarmaAction(3.0));
 		reward.add(new IncreaseXPAction(25));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));

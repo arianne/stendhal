@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -71,8 +72,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
@@ -89,8 +89,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					engine.say("I will need several things: "
 						+ REQUIRED_IRON
@@ -130,8 +129,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
@@ -245,8 +243,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							&& player.getQuest(QUEST_SLOT).startsWith(
 									"forging;");
 				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			}, ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -278,8 +275,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new QuestStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
 			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 

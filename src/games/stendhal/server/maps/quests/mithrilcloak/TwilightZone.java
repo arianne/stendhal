@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -77,8 +78,7 @@ class TwilightZone {
     					return false;
                     }
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
                         final int required = (sentence.getNumeral().getAmount());

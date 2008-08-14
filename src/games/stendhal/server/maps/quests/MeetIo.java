@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -134,7 +135,7 @@ public class MeetIo extends AbstractQuest {
 			answer + "Hey! I know what you're thinking, and I don't like it!",
 			null);
 
-		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("money", 10));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));		

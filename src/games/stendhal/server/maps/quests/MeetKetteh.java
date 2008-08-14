@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -44,8 +45,7 @@ public class MeetKetteh extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new NotCondition(new NakedCondition()), new QuestInStateCondition(QUEST_SLOT, "seen_naked")),
 				ConversationStates.ATTENDING, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							// OK, player is NOT naked this time, but was last
 							// time.
@@ -58,8 +58,7 @@ public class MeetKetteh extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new NotCondition(new NakedCondition()), new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.hasQuest(QUEST_SLOT)) {
 							// We have met the player before and he was NOT

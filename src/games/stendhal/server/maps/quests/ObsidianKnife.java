@@ -7,7 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -97,8 +97,7 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)
 							|| player.getQuest(QUEST_SLOT).equals("rejected")) {
@@ -124,8 +123,7 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String food = player.getQuest(QUEST_SLOT);
 					npc.say("Thank you! I hope it doesn't take too long to collect. Don't forget to say '"
@@ -152,8 +150,7 @@ public class ObsidianKnife extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_OFFERED, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final String food = Rand.rand(FOOD_LIST);
 						player.setQuest(QUEST_SLOT, food);
@@ -168,8 +165,7 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new SpeakerNPC.ChatAction() {
-				@Override
+		reward.add(new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String item = sentence.getTriggerExpression().getNormalized();
 					if (player.drop(item, REQUIRED_FOOD)) {
@@ -261,8 +257,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("blue book")),
 				ConversationStates.IDLE, 
 				"Great! I think I'll read this for a while. Bye!",
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("blue book");
 						player.addXP(500);
@@ -299,8 +294,7 @@ public class ObsidianKnife extends AbstractQuest {
 				}, 
 				ConversationStates.IDLE, 
 				null, 
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
@@ -366,8 +360,7 @@ public class ObsidianKnife extends AbstractQuest {
 				}, 
 				ConversationStates.IDLE, 
 				null, 
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("obsidian");
 						player.drop(FISH);
@@ -423,8 +416,7 @@ public class ObsidianKnife extends AbstractQuest {
 				}, 
 				ConversationStates.IDLE, 
 				null, 
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");

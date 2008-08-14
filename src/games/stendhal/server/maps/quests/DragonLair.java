@@ -5,7 +5,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -55,8 +55,7 @@ public class DragonLair extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_OFFERED, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Would you like to visit our dragon lair?");
@@ -87,7 +86,6 @@ public class DragonLair extends AbstractQuest {
 				"Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!",
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
-							@Override
 							public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 								player.setQuest(QUEST_SLOT, "done" + ";" + System.currentTimeMillis());
 							}

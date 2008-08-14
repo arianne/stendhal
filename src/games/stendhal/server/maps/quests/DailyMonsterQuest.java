@@ -5,6 +5,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -49,7 +50,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final Logger logger = Logger.getLogger(DailyMonsterQuest.class);
 
-	class DailyQuestAction extends SpeakerNPC.ChatAction {
+	class DailyQuestAction implements ChatAction {
 
 		/** All creatures, sorted by level. */
 		private List<Creature> sortedcreatures;
@@ -66,8 +67,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 			sortedcreatures.addAll(creatures);
 			Collections.sort(sortedcreatures, new LevelBasedComparator());
 		}
-
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// Debug Only, to debug mode just toggle the true/false for the IF
@@ -249,9 +248,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
+	class DailyQuestCompleteAction implements ChatAction {
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily");
 			String questKill = null;
@@ -294,9 +292,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
+	class DailyQuestAbortAction implements ChatAction {
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily");
 			String questKill = null;

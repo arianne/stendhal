@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -151,8 +152,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestAction extends SpeakerNPC.ChatAction {
-		@Override
+	class HenryQuestAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
 					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
@@ -178,8 +178,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
-		@Override
+	class HenryQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 			final List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
@@ -229,8 +228,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
-		@Override
+	class JamesQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 			final List<Item> allMaps = player.getAllEquipped("map");

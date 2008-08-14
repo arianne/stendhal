@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -67,8 +68,7 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
 			new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;")),
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final Item emeraldRing = player.getFirstEquipped("emerald ring");
 					if (emeraldRing != null) {
@@ -91,8 +91,7 @@ public class RingMaker extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
@@ -128,8 +127,7 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.IDLE, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 							&& (player.isEquipped("money", REQUIRED_MONEY))

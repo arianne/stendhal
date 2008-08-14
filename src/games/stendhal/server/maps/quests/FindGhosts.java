@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -163,8 +164,7 @@ public class FindGhosts extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_1, NEEDED_SPIRITS, null,
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final Expression item = sentence.getTriggerExpression();
 					

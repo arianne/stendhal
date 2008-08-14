@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -13,6 +14,7 @@ import games.stendhal.server.util.TimeUtil;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 
 /**
  * QUEST: Daily Item Fetch Quest.
@@ -37,7 +39,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily_item";
 
-	class DailyQuestAction extends SpeakerNPC.ChatAction {
+	class DailyQuestAction implements ChatAction {
 
 		/**
 		 * All items which are possible/easy enough to find. If you want to do
@@ -80,7 +82,6 @@ public class DailyItemQuest extends AbstractQuest {
 				"licorice", "marbles", "robins hat", "soup", "deadly poison", 
 				"disease poison", "mega poison");
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
@@ -136,8 +137,7 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
-		@Override
+	class DailyQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
@@ -180,9 +180,8 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
+	class DailyQuestAbortAction implements ChatAction {
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;

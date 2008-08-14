@@ -9,7 +9,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -338,7 +338,6 @@ public class Blackjack extends AbstractQuest {
 
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
@@ -368,7 +367,6 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						dealCards(player, 1);
 					}
@@ -379,7 +377,6 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						playerStands = true;
 						if (bankStands) {

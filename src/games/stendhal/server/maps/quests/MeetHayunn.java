@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -145,7 +145,7 @@ public class MeetHayunn extends AbstractQuest {
 
 	   	// The player has had enough info for now. Send them to semos. When they come back they can learn some more tips.
 
-		final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("money", 5));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "taught"));
@@ -200,7 +200,7 @@ public class MeetHayunn extends AbstractQuest {
 			epilog + "You know, you remind me of my younger self...",
 			null);
 
-		final List<SpeakerNPC.ChatAction> reward2 = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> reward2 = new LinkedList<ChatAction>();
 		reward2.add(new EquipItemAction("studded shield"));
 		reward2.add(new IncreaseXPAction(20));
 		reward2.add(new SetQuestAction(QUEST_SLOT, "done"));

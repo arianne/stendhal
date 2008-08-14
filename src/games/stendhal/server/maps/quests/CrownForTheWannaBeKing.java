@@ -6,7 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -115,8 +115,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says yes */
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
-					@Override
+				ConversationStates.QUESTION_1, null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
@@ -158,8 +157,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player asks what exactly is missing (says items) */
 		npc.add(ConversationStates.QUESTION_1, "items", null,
 				ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> needed = getMissingItems(player).toStringListWithHash();
 						engine.say("I need "
@@ -175,8 +173,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				null);
 
 		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new SpeakerNPC.ChatAction() {
-			@Override
+		final ChatAction itemsChatAction = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
                 final String item = sentence.getTriggerExpression().getNormalized();
 			    ItemCollection missingItems = getMissingItems(player);
@@ -274,8 +271,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, "reward",
 				new QuestInStateCondition(QUEST_SLOT, "reward"),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Oh yes, "
 									+ NPC_NAME

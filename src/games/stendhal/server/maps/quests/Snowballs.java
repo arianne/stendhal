@@ -4,6 +4,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -125,8 +126,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
@@ -148,8 +148,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.");
@@ -183,8 +182,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, 
 			new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS),
 			ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("snowball", REQUIRED_SNOWBALLS);
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());

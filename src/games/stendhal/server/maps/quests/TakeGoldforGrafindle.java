@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -80,8 +81,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						engine.say("I ask only that you are honest.");
@@ -112,8 +112,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5.0);
@@ -161,8 +160,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "lorithien");
 
@@ -204,8 +202,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "lorithien"),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					if (player.drop("gold bar", GOLD_AMOUNT)) {
 						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");

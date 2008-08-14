@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -420,8 +421,7 @@ public class PizzaDelivery extends AbstractQuest {
 		leander.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] questData = player.getQuest(QUEST_SLOT)
@@ -450,8 +450,7 @@ public class PizzaDelivery extends AbstractQuest {
 		leander.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					startDelivery(player, npc);
 				}
@@ -463,8 +462,7 @@ public class PizzaDelivery extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					putOffUniform(player);
 				}
@@ -483,8 +481,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 			npc.add(ConversationStates.ATTENDING, "pizza", null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						handOverPizza(player, npc);
 					}

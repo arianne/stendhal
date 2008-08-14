@@ -12,6 +12,7 @@ import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -316,8 +317,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi again "

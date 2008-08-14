@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -25,14 +26,13 @@ public class PaperChase extends AbstractQuest {
 	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)
 	 */
-	private class PaperChasePoint extends SpeakerNPC.ChatAction {
+	private class PaperChasePoint implements ChatAction {
 		private final int idx;
 
 		PaperChasePoint(final int idx) {
 			this.idx = idx;
 		}
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String state = points[idx];
 			final String next = points[idx + 1];

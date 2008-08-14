@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -63,8 +64,7 @@ class MakingClasp {
 			new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_clasp"),
 			ConversationStates.ATTENDING,
 			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("mithril bar")) {
 						player.drop("mithril bar");
@@ -90,8 +90,7 @@ class MakingClasp {
 		npc.add(ConversationStates.ATTENDING, 
 			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
-			ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.ATTENDING, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds

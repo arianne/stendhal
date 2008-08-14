@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -143,8 +144,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
@@ -156,8 +156,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 		fisherman.add(ConversationStates.ATTENDING, "exam", null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
@@ -187,8 +186,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1,
 				"Fine. The first question is: What kind of fish is this?",
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						startQuiz();
 					}
@@ -197,8 +195,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.QUESTION_1, "",
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(getCurrentSpecies()))) {
 							if (currentSpeciesNo == speciesList.size() - 1) {

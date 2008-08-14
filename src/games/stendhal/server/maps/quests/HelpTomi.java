@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -107,11 +108,10 @@ public class HelpTomi extends AbstractQuest {
 			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("ice sword")),
 			ConversationStates.ATTENDING,
 			null,
-			new SpeakerNPC.ChatAction() {
+			new ChatAction() {
 				// we are storing the number of times the player has done the quest in the quest slot like
 				// done;N. We reward based on this number. If the quest slot isn't split like this and only 'done' 
 				// we assume it was just done once (sorry, guys)
-				@Override
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					int N;
 					// compatibility with old version

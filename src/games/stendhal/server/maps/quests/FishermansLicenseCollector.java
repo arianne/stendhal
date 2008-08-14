@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -119,8 +120,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, "species",
 			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_2, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final List<String> needed = missingFish(player, true);
 					engine.say("There " + Grammar.isare(needed.size())
@@ -134,8 +134,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 		// player says he doesn't have required fish with him
 		npc.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final List<String> missing = missingFish(player, false);
 					engine.say("Let me know as soon as you find "
@@ -151,8 +150,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_2, neededFish, null,
 			ConversationStates.QUESTION_2, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final Expression item = sentence.getTriggerExpression();
 

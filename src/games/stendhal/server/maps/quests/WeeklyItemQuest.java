@@ -6,6 +6,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -44,7 +45,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final long expireDelay = 6L * MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
-	class WeeklyQuestAction extends SpeakerNPC.ChatAction {
+	class WeeklyQuestAction implements ChatAction {
 
 		/**
 		 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
@@ -61,7 +62,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"mithril nugget", "mainio armor", "xeno boots", "xeno legs", "xeno armor", "xeno shield", 
 				"mythical egg", "xeno sword", "magic plate armor", "magic plate shield", "magic chain helmet");
 
-		@Override
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
@@ -114,8 +114,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class WeeklyQuestCompleteAction extends SpeakerNPC.ChatAction {
-		@Override
+	class WeeklyQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
@@ -164,9 +163,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class WeeklyQuestAbortAction extends SpeakerNPC.ChatAction {
-
-		@Override
+	class WeeklyQuestAbortAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;

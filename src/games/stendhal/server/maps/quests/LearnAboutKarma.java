@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -111,8 +112,7 @@ public class LearnAboutKarma extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final long roundedkarma = Math.round(player.getKarma());
 					npc.say("Your karma is roughly " + roundedkarma + ".");

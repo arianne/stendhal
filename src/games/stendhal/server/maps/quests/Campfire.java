@@ -4,6 +4,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -183,8 +184,7 @@ public class Campfire extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-			   	@Override
+			new ChatAction() {
 			   	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					respondToQuestMessage(npc, player);
 				}
@@ -214,8 +214,7 @@ public class Campfire extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, 
 			new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
 			ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.drop("wood", REQUIRED_WOOD);
 						player.setQuest(QUEST_SLOT,  "" + System.currentTimeMillis());

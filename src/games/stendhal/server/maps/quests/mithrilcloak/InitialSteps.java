@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -56,7 +56,6 @@ class InitialSteps {
 			ConversationStates.ATTENDING,
 			null,			
 				new ChatAction() {
-							@Override
 							public void fire(final Player player,
 									final Sentence sentence,
 									final SpeakerNPC npc) {
@@ -147,8 +146,7 @@ class InitialSteps {
 					null,
 					ConversationStates.ATTENDING,
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 							if (player.isEquipped(questslot[1])) {

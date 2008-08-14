@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.logic;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -120,8 +121,7 @@ public class BringListOfItemsQuestLogic {
 			concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 				concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 				null, ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> missingItems = getListOfStillMissingItems(player, false);
 						engine.say(concreteQuest.askForMissingItems(missingItems));
@@ -154,8 +154,7 @@ public class BringListOfItemsQuestLogic {
 			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			new QuestActiveCondition(concreteQuest.getSlotName()),
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final List<String> missingItems = getListOfStillMissingItems(player, true);
 					engine.say(concreteQuest.askForMissingItems(missingItems));
@@ -173,8 +172,7 @@ public class BringListOfItemsQuestLogic {
 	 */
 	protected void playerDoesNotWantToGiveItems() {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final List<String> missingItems = getListOfStillMissingItems(player, false);
 					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
@@ -207,8 +205,7 @@ public class BringListOfItemsQuestLogic {
 
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
 					final Expression item = sentence.getTriggerExpression();

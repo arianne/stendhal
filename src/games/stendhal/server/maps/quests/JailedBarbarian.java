@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -100,8 +101,7 @@ import java.util.Arrays;
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
 				new PlayerHasItemWithHimCondition("scythe")),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("scythe");
 					player.addKarma(10);
@@ -132,8 +132,7 @@ import java.util.Arrays;
 		npc.add(ConversationStates.ATTENDING, "Lorenz",
 				new QuestInStateCondition(QUEST_SLOT, "capture"),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!");
 					player.setQuest(QUEST_SLOT, "princess");
@@ -152,8 +151,7 @@ import java.util.Arrays;
 		npc.add(ConversationStates.ATTENDING, "tunnel",
 				new QuestInStateCondition(QUEST_SLOT, "princess"),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.");
 					player.setQuest(QUEST_SLOT, "egg");
@@ -182,8 +180,7 @@ import java.util.Arrays;
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "egg"),
 				new PlayerHasItemWithHimCondition("egg")),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("egg");
 					player.addKarma(10);
@@ -226,8 +223,7 @@ import java.util.Arrays;
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed", "Lorenz"),
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.");
 					player.setQuest(QUEST_SLOT, "spoken");
@@ -247,8 +243,7 @@ import java.util.Arrays;
 		npc.add(ConversationStates.ATTENDING, "greetings",
 				new QuestInStateCondition(QUEST_SLOT, "spoken"),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !");
 					player.setQuest(QUEST_SLOT, "armor");
@@ -270,8 +265,7 @@ import java.util.Arrays;
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "armor"),
 				new PlayerHasItemWithHimCondition("barbarian armor")),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-				@Override
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("barbarian armor");
 					 final StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");

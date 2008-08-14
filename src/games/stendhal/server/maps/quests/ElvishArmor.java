@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -170,8 +171,7 @@ public class ElvishArmor extends AbstractQuest {
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUESTION_1, "equipment", null,
 				ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> needed = missingitems(player, true);
 						engine.say("I have heard descriptions of "
@@ -189,8 +189,7 @@ public class ElvishArmor extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_1, NEEDEDITEMS, null,
 				ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final Expression item = sentence.getTriggerExpression();
 

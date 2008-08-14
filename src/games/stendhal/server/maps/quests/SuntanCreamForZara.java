@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -69,8 +70,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 		zara.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -131,8 +131,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("suntan cream")) {
 						npc.say("Great! You got the suntan cream! Is it for me?");
@@ -151,8 +150,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			new PlayerHasItemWithHimCondition("suntan cream"),
 			ConversationStates.ATTENDING,
 			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("suntan cream");
 					final Item zaraKey = SingletonRepository.getEntityManager()

@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -67,8 +68,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		// player asks about an individual cloak before accepting the quest
 		npc.add(ConversationStates.QUEST_OFFERED, NEEDED_CLOAKS, null,
 				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);

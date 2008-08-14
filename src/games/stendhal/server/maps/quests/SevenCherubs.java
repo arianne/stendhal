@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -94,8 +95,7 @@ public class SevenCherubs extends AbstractQuest {
 		protected void createDialog() {
 			add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.IDLE, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							player.setQuest(QUEST_SLOT, "");

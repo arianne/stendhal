@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -148,8 +149,7 @@ public class RainbowBeans extends AbstractQuest {
 					return (timeRemaining > 0L);
 				}
 			}, ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
@@ -167,8 +167,7 @@ public class RainbowBeans extends AbstractQuest {
 		npc.add(ConversationStates.INFORMATION_1, "deal",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.getLevel() >= REQUIRED_LEVEL) {
 						npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
@@ -185,8 +184,7 @@ public class RainbowBeans extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("money", REQUIRED_MONEY)) {
 						player.drop("money", REQUIRED_MONEY);
@@ -221,8 +219,7 @@ public class RainbowBeans extends AbstractQuest {
 			Arrays.asList("deal", "beans", "rainbow beans", "yes"),
 			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.getLevel() >= 30) {
 						npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");

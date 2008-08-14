@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -67,19 +68,17 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					new QuestCompletedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"Hi again!",
-				    new SpeakerNPC.ChatAction() {
-					    @Override
+				    new ChatAction() {
 					    public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) { 
 						addHat(player);	    
 					    }
 					}
 				    );
 
-				final List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+				final List<ChatAction> reward = new LinkedList<ChatAction>();
 				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
-				      	@Override
 				        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					    addHat(player);
 					}

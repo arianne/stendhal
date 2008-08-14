@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.mithrilcloak;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -45,8 +46,7 @@ class CloakForJosephine {
 		// overlapping with CloaksCollector quest deliberately
 		npc.add(ConversationStates.QUESTION_1, "blue striped cloak", new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
 			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-					@Override
+			new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
@@ -61,8 +61,7 @@ class CloakForJosephine {
 		// overlapping with CloaksCollector2 quest deliberately
 		npc.add(ConversationStates.QUESTION_2, "blue striped cloak", new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
 				ConversationStates.QUESTION_2, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");

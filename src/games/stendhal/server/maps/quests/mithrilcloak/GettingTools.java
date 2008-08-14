@@ -4,6 +4,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -65,8 +66,7 @@ class GettingTools {
 			new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_scissors"),
 			ConversationStates.ATTENDING,
 			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final int neededEggshells = Rand.randUniform(2, 4);
 					engine.say("Ah yes, Ida sent me a message about some magical scissors. I need one each of an iron bar and a mithril bar, and also " + Integer.toString(neededEggshells) + " magical #eggshells. Ask me about #scissors again when you return with those items.");
@@ -99,8 +99,7 @@ class GettingTools {
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_eggshells"),
 			ConversationStates.ATTENDING,
 			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					final int neededEggshells = Integer.valueOf(questslot[1]);
@@ -135,8 +134,7 @@ class GettingTools {
 		npc.add(ConversationStates.ATTENDING, 
 			Arrays.asList("scissors", "magical", "magical scissors", "ida", "mithril", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingscissors;"),
-			ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.ATTENDING, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds
@@ -197,8 +195,7 @@ class GettingTools {
     					return false;
                     }
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
                         final int required = (sentence.getNumeral().getAmount());
@@ -294,8 +291,7 @@ class GettingTools {
 	
 		npc.add(ConversationStates.QUESTION_1, "", null,
 				ConversationStates.QUEST_ITEM_QUESTION, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							for (int i = 1; i < 9; i++) {
 								String joke = jokes.get(i);
@@ -400,32 +396,31 @@ class GettingTools {
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-									 new SpeakerNPC.ChatAction() {
-										 @Override
-										 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-											 final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");		
-											 int needles = 1;
-											 int saidjoke = 1;
-											 if (questslot.length > 2) {
-												 // if the split works, we had stored a needle number before
-												 needles = Integer.parseInt(questslot[1]);
-												 saidjoke = Integer.parseInt(questslot[2]);
-												 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," 
-														 + " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
-											 } else if (questslot.length > 1) {
-												 // it wasn't split with a needle number, only joke
-												 // so this is the first time we brought a needle
-												 saidjoke = Integer.parseInt(questslot[1]);
-												 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" 
-														 + " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
-												 // ida breaks needles - she will need 1 - 3
-												 needles = Rand.randUniform(1, 3);
-											 }											
-											 player.setQuest(mithrilcloak.getQuestSlot(), "sewing;" + System.currentTimeMillis() + ";" + needles + ";" + saidjoke);
-										 }
-									 },
-									 new DropItemAction("magical needle")
-									 )
+					 new ChatAction() {
+						 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+							 final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");		
+							 int needles = 1;
+							 int saidjoke = 1;
+							 if (questslot.length > 2) {
+								 // if the split works, we had stored a needle number before
+								 needles = Integer.parseInt(questslot[1]);
+								 saidjoke = Integer.parseInt(questslot[2]);
+								 npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," 
+										 + " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
+							 } else if (questslot.length > 1) {
+								 // it wasn't split with a needle number, only joke
+								 // so this is the first time we brought a needle
+								 saidjoke = Integer.parseInt(questslot[1]);
+								 npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" 
+										 + " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
+								 // ida breaks needles - she will need 1 - 3
+								 needles = Rand.randUniform(1, 3);
+							 }											
+							 player.setQuest(mithrilcloak.getQuestSlot(), "sewing;" + System.currentTimeMillis() + ";" + needles + ";" + saidjoke);
+						 }
+					 },
+					 new DropItemAction("magical needle")
+					 )
 				);
 
 		// remind about needle
@@ -452,8 +447,7 @@ class GettingTools {
 		npc.add(ConversationStates.ATTENDING, 
 				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "sewing;"),
-				ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-						@Override
+				ConversationStates.ATTENDING, null, new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 							// hours -> milliseconds

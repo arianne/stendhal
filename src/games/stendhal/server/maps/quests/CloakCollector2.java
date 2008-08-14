@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -104,8 +105,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						engine.say("It's missing "
@@ -126,8 +126,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.IDLE, 
 				null, 
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
@@ -146,8 +145,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
@@ -171,8 +169,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
@@ -220,8 +217,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.QUESTION_2, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						engine.say("I want "
@@ -249,8 +245,7 @@ public class CloakCollector2 extends AbstractQuest {
 				null,
 				ConversationStates.QUESTION_2, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						TriggerList missing = new TriggerList(missingcloaks2(player, false));
 						final Expression item = sentence.getTriggerExpression();

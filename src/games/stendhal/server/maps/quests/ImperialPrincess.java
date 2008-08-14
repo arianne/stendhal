@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -67,8 +68,7 @@ public class ImperialPrincess extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("The trapped creatures looked much better last time I dared venture down to the basement, thank you!");
@@ -87,8 +87,7 @@ public class ImperialPrincess extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, "herbs",
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						engine.say("I need "
 								+ Integer.toString(1 + player.getLevel()
@@ -109,8 +108,7 @@ public class ImperialPrincess extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.",
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						// store the current level incase it increases before
 						// she see them next.
@@ -144,8 +142,7 @@ public class ImperialPrincess extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("herb", "herbs"),
 				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final int required_arandula = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))

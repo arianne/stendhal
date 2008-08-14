@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -152,10 +153,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				setPath(null);
 			}
 
-			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
@@ -177,8 +176,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("fee", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("fee", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
@@ -191,8 +189,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply(ConversationPhrases.YES_MESSAGES, null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply(ConversationPhrases.YES_MESSAGES, null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
@@ -213,8 +210,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply(ConversationPhrases.NO_MESSAGES, null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply(ConversationPhrases.NO_MESSAGES, null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
@@ -225,8 +221,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("leave", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("leave", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Leave where?");

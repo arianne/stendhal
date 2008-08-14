@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -53,8 +54,8 @@ public class McPeglegIOU extends AbstractQuest {
 			Arrays.asList("iou", "henry", "charles", "note"),
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
+
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					// from all notes that the player is carrying, try to
 					// find the IOU note

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -168,7 +169,7 @@ public class IntroducePlayers extends AbstractQuest {
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Tad");
 
-		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new EquipItemAction("money", 10));
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "ilisa"));
@@ -219,7 +220,7 @@ public class IntroducePlayers extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Medicine for #Tad? Didn't he tell you to bring a flask?", null);
 
-		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("flask"));
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "corpse&herbs"));
@@ -255,7 +256,7 @@ public class IntroducePlayers extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Can you fetch those #herbs for the #medicine?", null);
 
-		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
 		processStep.add(new IncreaseXPAction(50));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "potion"));
@@ -281,7 +282,7 @@ public class IntroducePlayers extends AbstractQuest {
                 "*cough* I hope #ilisa hurries with my medicine...",
                 null);
 
-		final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new IncreaseXPAction(100));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "done"));
 		

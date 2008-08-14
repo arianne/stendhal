@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -62,8 +63,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							npc.say("Hello, my name is Annie. I am five years old.");
@@ -93,8 +93,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 								npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
@@ -155,8 +154,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					    if (player.drop("icecream")) {
 						        npc.say("Thank you EVER so much! You are very kind. Here, take this present.");

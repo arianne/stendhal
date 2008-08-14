@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -113,8 +114,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
 					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
@@ -179,8 +179,7 @@ public class VampireSword extends AbstractQuest {
 							&& player.isEquipped("goblet");
 				}
 			}, ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.isEquipped("iron", REQUIRED_IRON)) {
 						player.drop("goblet");
@@ -206,8 +205,7 @@ public class VampireSword extends AbstractQuest {
 							&& !player.isEquipped("goblet")
 							&& player.isEquipped("empty goblet");
 				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			}, ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
 				}
@@ -227,8 +225,7 @@ public class VampireSword extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
 					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
@@ -246,8 +243,7 @@ public class VampireSword extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
+			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
