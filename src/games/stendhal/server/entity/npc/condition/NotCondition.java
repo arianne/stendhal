@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -10,9 +11,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * An inverse condition.
  */
-public class NotCondition extends SpeakerNPC.ChatCondition {
+public class NotCondition implements ChatCondition {
 
-	private final SpeakerNPC.ChatCondition condition;
+	private final ChatCondition condition;
 
 	/**
 	 * Creates a new "not"-condition.
@@ -20,11 +21,10 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 	 * @param condition
 	 *            condition which result is to be inversed
 	 */
-	public NotCondition(final SpeakerNPC.ChatCondition condition) {
+	public NotCondition(final ChatCondition condition) {
 		this.condition = condition;
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return !condition.fire(player, sentence, engine);
 	}

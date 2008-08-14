@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
@@ -14,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was one of theses trigger phrases said? (Use with a ""-trigger in npc.add)
  */
-public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
+public class TriggerInListCondition implements ChatCondition {
 	private final TriggerList triggers;
 
 	/**
@@ -37,7 +38,6 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 		triggers = new TriggerList(trigger);
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return triggers.contains(sentence.getTriggerExpression());
 	}

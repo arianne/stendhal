@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.jail;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -53,9 +54,8 @@ public class GuardNPC extends SpeakerNPCFactory {
 	/**
 	 * Is the player speaking to us in jail?
 	 */
-	public static class InJailCondition extends SpeakerNPC.ChatCondition {
+	public static class InJailCondition implements ChatCondition {
 
-		@Override
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return Jail.isInJail(player);
 		}
@@ -64,9 +64,8 @@ public class GuardNPC extends SpeakerNPCFactory {
 	/**
 	 * Is the player speaking to us not in jail?
 	 */
-	public static class NotInJailCondition extends SpeakerNPC.ChatCondition {
+	public static class NotInJailCondition implements ChatCondition {
 
-		@Override
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return !Jail.isInJail(player);
 		}

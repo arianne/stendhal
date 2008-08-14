@@ -5,6 +5,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -123,8 +124,7 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
@@ -147,8 +147,7 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (!player.isQuestCompleted(QUEST_SLOT)) {
 						// we haven't done the quest yet

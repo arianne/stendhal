@@ -6,6 +6,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -164,15 +165,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
-		@Override
+	class HenryQuestNotCompletedCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
-	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-		@Override
+	class HenryQuestCompletedCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}

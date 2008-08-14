@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -13,9 +14,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * An or condition.
  */
-public class OrCondition extends SpeakerNPC.ChatCondition {
+public class OrCondition implements ChatCondition {
 
-	private final List<SpeakerNPC.ChatCondition> conditions;
+	private final List<ChatCondition> conditions;
 
 	/**
 	 * Creates a new "or"-condition.
@@ -23,13 +24,12 @@ public class OrCondition extends SpeakerNPC.ChatCondition {
 	 * @param condition
 	 *            condition which should be or-ed.
 	 */
-	public OrCondition(final SpeakerNPC.ChatCondition... condition) {
+	public OrCondition(final ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		for (final SpeakerNPC.ChatCondition condition : conditions) {
+		for (final ChatCondition condition : conditions) {
 			final boolean res = condition.fire(player, sentence, engine);
 			if (res) {
 				return true;

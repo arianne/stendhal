@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.server.entity.mapstuff.office.StoreableEntityList;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -12,14 +13,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Is there a storeable entity in the specified list that has name
  * of the current player as identifier? 
  */
-public class PlayerHasStoreableEntityCondition extends SpeakerNPC.ChatCondition {
+public class PlayerHasStoreableEntityCondition implements ChatCondition {
 	private final StoreableEntityList< ? > storeableEntityList;
 	
 	public PlayerHasStoreableEntityCondition(final StoreableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return storeableEntityList.getByName(player.getName()) != null;
 	}

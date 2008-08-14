@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -10,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the player carry the specified item?
  */
-public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
+public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	private final String itemName;
 	private final int amount;
@@ -39,7 +40,6 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 		this.amount = amount;
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return player.isEquipped(itemName, amount);
 	}

@@ -3,11 +3,11 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -62,7 +62,6 @@ class TwilightZone {
 				// match for all numbers as trigger expression
 				"NUM", new JokerExprMatcher(),
 				new ChatCondition() {
-					@Override
                     public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final Expression number = sentence.getNumeral();
 

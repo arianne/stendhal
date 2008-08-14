@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -10,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest in this state?
  */
-public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
+public class QuestInStateCondition implements ChatCondition {
 
 	private final String questname;
 	private final String state;
@@ -28,7 +29,6 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 		this.state = state;
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (player.hasQuest(questname) && player.getQuest(questname).equals(
 				state));

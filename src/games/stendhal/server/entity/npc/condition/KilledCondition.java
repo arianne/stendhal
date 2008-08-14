@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * 
  * @author hendrik
  */
-public class KilledCondition extends ChatCondition {
+public class KilledCondition implements ChatCondition {
 	private final Set<String> toKill;
 
 	/**
@@ -41,7 +41,6 @@ public class KilledCondition extends ChatCondition {
 		this.toKill = new TreeSet<String>(Arrays.asList(toKill));
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		for (final String creature : toKill) {
 			if (!player.hasKilled(creature)) {

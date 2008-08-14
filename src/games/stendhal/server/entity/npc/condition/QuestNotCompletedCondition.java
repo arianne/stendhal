@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -10,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest not completed?
  */
-public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+public class QuestNotCompletedCondition implements ChatCondition {
 
 	private final String questname;
 
@@ -24,7 +25,6 @@ public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		this.questname = questname;
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		return (!player.isQuestCompleted(questname));
 	}

@@ -6,6 +6,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -149,7 +150,6 @@ public class HouseBuying extends AbstractQuest {
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
-						@Override
 	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final Expression number = sentence.getNumeral();
 							if (number != null) {
@@ -362,7 +362,6 @@ public class HouseBuying extends AbstractQuest {
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
-						@Override
 	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final Expression number = sentence.getNumeral();
 							if (number != null) {
@@ -548,7 +547,6 @@ public class HouseBuying extends AbstractQuest {
 					// match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
 					new ChatCondition() {
-						@Override
 	                    public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							final Expression number = sentence.getNumeral();
 							if (number != null) {

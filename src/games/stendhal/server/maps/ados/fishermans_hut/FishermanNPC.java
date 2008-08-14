@@ -9,6 +9,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -180,8 +181,7 @@ public class FishermanNPC implements ZoneConfigurator {
 				add(
 				ConversationStates.ATTENDING,
 				"make",
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return !player.hasQuest(behaviour.getQuestSlot())
@@ -243,8 +243,7 @@ public class FishermanNPC implements ZoneConfigurator {
 
 		add(ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return player.hasQuest(behaviour.getQuestSlot())
@@ -262,8 +261,7 @@ public class FishermanNPC implements ZoneConfigurator {
 
 		add(ConversationStates.ATTENDING,
 				"remind",
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return player.hasQuest(behaviour.getQuestSlot())

@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -79,8 +80,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				add(
 					ConversationStates.ATTENDING,
 					Arrays.asList("celebrate", "celebration", "party"),
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							return !player.has("outfit_org");
 						}
@@ -91,8 +91,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				add(
 					ConversationStates.ATTENDING,
 					Arrays.asList("celebrate", "celebration", "party"),
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 							return player.has("outfit_org");
 						}

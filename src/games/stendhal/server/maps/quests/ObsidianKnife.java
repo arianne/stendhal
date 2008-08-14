@@ -4,10 +4,11 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -179,8 +180,7 @@ public class ObsidianKnife extends AbstractQuest {
 		/** If player has quest and has brought the food, and says so, take it */
 		npc.add(ConversationStates.ATTENDING, 
 				FOOD_LIST,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final String item = sentence.getTriggerExpression().getNormalized();
 						return player.hasQuest(QUEST_SLOT)
@@ -267,8 +267,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT) 
 						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
@@ -285,8 +284,7 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).startsWith("reading;");
@@ -348,8 +346,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// he's killed a black dragon
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
@@ -374,8 +371,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// he's not killed a black dragon
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
@@ -391,8 +387,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// player says hi to NPC when not equipped with the fish and the gem
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("knife_offered")
@@ -407,8 +402,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).startsWith("forging;");
@@ -443,8 +437,7 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final List<String> NOT_COVERED_LIST = Arrays.asList(
 								"food_brought", "start", "meat", "ham",

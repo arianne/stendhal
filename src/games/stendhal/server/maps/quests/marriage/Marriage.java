@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.marriage;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -44,8 +45,7 @@ class Marriage {
 		priest = npcs.get("Priest");
 		priest.add(ConversationStates.ATTENDING,
 					"marry",
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
 								final SpeakerNPC npc) {
 							return player.hasQuest(marriage.getQuestSlot())
@@ -117,8 +117,7 @@ class Marriage {
 		// before hand
 		priest.add(ConversationStates.ATTENDING,
 					"marry",
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
 								final SpeakerNPC npc) {
 							return (!player.hasQuest(marriage.getQuestSlot()) 
@@ -132,8 +131,7 @@ class Marriage {
 		// What he responds to marry if you are already married
 		priest.add(ConversationStates.ATTENDING, 
 				"marry",
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()));

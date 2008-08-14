@@ -9,6 +9,7 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -35,8 +36,7 @@ public class Debuggera extends ScriptImpl {
 
 	// boolean debuggeraEnabled;
 
-	class AdminCondition extends SpeakerNPC.ChatCondition {
-		@Override
+	class AdminCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return (player.getAdminLevel() >= 5000);
 		}

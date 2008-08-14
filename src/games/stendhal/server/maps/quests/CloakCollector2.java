@@ -5,6 +5,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -89,8 +90,7 @@ public class CloakCollector2 extends AbstractQuest {
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
 					}
@@ -203,8 +203,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT);
@@ -293,8 +292,7 @@ public class CloakCollector2 extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
@@ -306,8 +304,7 @@ public class CloakCollector2 extends AbstractQuest {
 		// player says he didn't bring any cloaks to different question
 		npc.add(ConversationStates.QUESTION_2, 
 				ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}

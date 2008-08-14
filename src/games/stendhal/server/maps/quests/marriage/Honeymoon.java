@@ -5,10 +5,10 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -74,7 +74,6 @@ class Honeymoon {
 				// match for all numbers as trigger expression
 				"NUM", new JokerExprMatcher(),
 				new ChatCondition() {
-					@Override
                     public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						final Expression number = sentence.getNumeral();
 

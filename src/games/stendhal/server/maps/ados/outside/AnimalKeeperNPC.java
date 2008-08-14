@@ -16,6 +16,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -106,8 +107,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				addJob("I'm the keeper of this animal refuge. I will take care of any abandoned pets I am brought.");
 				add(ConversationStates.ATTENDING,
 					ConversationPhrases.HELP_MESSAGES,
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
 											final SpeakerNPC engine) {
 							return player.hasPet();
@@ -146,8 +146,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				
 				add(ConversationStates.ATTENDING,
 					ConversationPhrases.HELP_MESSAGES,
-					new SpeakerNPC.ChatCondition() {
-						@Override
+					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
 											final SpeakerNPC engine) {
 							return !player.hasPet();

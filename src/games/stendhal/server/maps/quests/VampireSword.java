@@ -4,6 +4,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -75,8 +76,7 @@ public class VampireSword extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					String quest = player.getQuest(QUEST_SLOT); 
 					return ((quest == null) || quest.equals("rejected")); 
@@ -88,8 +88,7 @@ public class VampireSword extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.isQuestCompleted(QUEST_SLOT);  
 				}
@@ -100,8 +99,7 @@ public class VampireSword extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						String state = player.getQuest(QUEST_SLOT);
 						return ((state != null) && !state.equals("rejected") && !state.equals("done"));
@@ -171,8 +169,7 @@ public class VampireSword extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
@@ -197,8 +194,7 @@ public class VampireSword extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
@@ -212,8 +208,7 @@ public class VampireSword extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")

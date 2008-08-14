@@ -9,6 +9,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Expression;
@@ -156,9 +157,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	/**
 	 * Do we accept bets at the moment?
 	 */
-	protected class BetCondition extends SpeakerNPC.ChatCondition {
+	protected class BetCondition implements ChatCondition {
 
-		@Override
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
 		}
@@ -167,9 +167,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	/**
 	 * Do we NOT accept bets at the moment?
 	 */
-	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
+	protected class NoBetCondition implements ChatCondition {
 
-		@Override
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			return state != State.ACCEPTING_BETS;
 		}

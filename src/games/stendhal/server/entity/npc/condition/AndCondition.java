@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -14,9 +15,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Is constructed from a group of conditions. <p>
  * It evaluates to <code>true</code>, iff each condition evaluates to true. 
  */
-public class AndCondition extends SpeakerNPC.ChatCondition {
+public class AndCondition implements ChatCondition {
 
-	private final List<SpeakerNPC.ChatCondition> conditions;
+	private final List<ChatCondition> conditions;
 
 	/**
 	 * Creates a new "and"-condition.
@@ -24,13 +25,12 @@ public class AndCondition extends SpeakerNPC.ChatCondition {
 	 * @param condition
 	 *            condition which should be and-ed.
 	 */
-	public AndCondition(final SpeakerNPC.ChatCondition... condition) {
+	public AndCondition(final ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
 	}
 
-	@Override
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		for (final SpeakerNPC.ChatCondition condition : conditions) {
+		for (final ChatCondition condition : conditions) {
 			final boolean res = condition.fire(player, sentence, engine);
 			if (!res) {
 				return false;

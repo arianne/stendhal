@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -101,8 +102,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
@@ -114,8 +114,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				"elves",
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}

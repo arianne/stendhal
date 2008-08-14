@@ -3,10 +3,11 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -142,8 +143,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player returns while quest is still active */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,	final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
@@ -214,8 +214,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
@@ -227,8 +226,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 		/* player says he didn't bring any items to different question */
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
@@ -250,8 +248,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		 */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT)
 								|| "reward".equals(player.getQuest(QUEST_SLOT));

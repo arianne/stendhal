@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -28,8 +29,7 @@ public class ProducerAdder {
 
 		engine.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return !player.hasQuest(behaviour.getQuestSlot())
@@ -40,7 +40,7 @@ public class ProducerAdder {
 		engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new SpeakerNPC.ChatCondition() {
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return !player.hasQuest(behaviour.getQuestSlot())
@@ -103,8 +103,7 @@ public class ProducerAdder {
 		engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return player.hasQuest(behaviour.getQuestSlot())
@@ -123,8 +122,7 @@ public class ProducerAdder {
 		engine.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
+				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
 						return player.hasQuest(behaviour.getQuestSlot())

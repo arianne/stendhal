@@ -5,6 +5,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -236,8 +237,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
+			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith(
