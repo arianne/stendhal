@@ -3,9 +3,9 @@ package games.stendhal.server.entity.npc.fsm;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
