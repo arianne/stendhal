@@ -15,7 +15,7 @@ class Poisoner implements Attacker {
 	}
 
 	public Poisoner() {
-
+		// standard constructor
 	}
 
 	public boolean attack(final RPEntity victim) {

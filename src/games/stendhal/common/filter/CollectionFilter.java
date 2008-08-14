@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 /**
  * <p>
  * Title: CollectionFilter.
@@ -19,6 +21,7 @@ import java.util.Iterator;
  */
 
 public class CollectionFilter<T> {
+	private static Logger logger = Logger.getLogger(CollectionFilter.class);
 
 	private final ArrayList<FilterCriteria<T>> allFilterCriteria = new ArrayList<FilterCriteria<T>>();
 
@@ -114,13 +117,13 @@ public class CollectionFilter<T> {
 				sameClassObject = constructor.newInstance();
 			}
 		} catch (final IllegalAccessException e) {
-			
+			logger.error(e, e);
 		} catch (final NoSuchMethodException e) {
-			
+			logger.error(e, e);
 		} catch (final InstantiationException e) {
-			
+			logger.error(e, e);
 		} catch (final Exception e) {
-			
+			logger.error(e, e);
 		}
 		return sameClassObject;
 	}

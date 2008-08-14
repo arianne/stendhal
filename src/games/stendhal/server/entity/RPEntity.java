@@ -2051,8 +2051,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	protected void applyDefXP(final RPEntity entity) {
-	
+		// implemented in sub classes
 	}
+
 	/**
 	 * Calculate lifesteal and update hp of source.
 	 * 

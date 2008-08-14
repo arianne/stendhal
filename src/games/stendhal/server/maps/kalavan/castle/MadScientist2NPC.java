@@ -46,11 +46,10 @@ public class MadScientist2NPC implements ZoneConfigurator {
 				nodes.add(new Node(101, 113));
 				setPath(new FixedPath(nodes, true));
 			}
-				// remaining behaviour defined in maps.quests.MithrilCloak
 			@Override
-			    protected void createDialog() {
-	 	     }
-		    
+		    protected void createDialog() {
+				// remaining behaviour defined in maps.quests.MithrilCloak
+			}
 		};
 
 		npc.setDescription("You see someone that is somewhat strange. Perhaps you shouldn't bother him?");

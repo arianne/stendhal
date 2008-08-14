@@ -138,8 +138,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	protected void handleObjectCollision() {
-
-		
+		// implemented by sub classes
 	}
 
 	private void move(final int x, final int y, final int nx, final int ny) {

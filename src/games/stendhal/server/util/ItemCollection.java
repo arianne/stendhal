@@ -20,12 +20,6 @@ import java.util.TreeMap;
 public class ItemCollection extends TreeMap<String, Integer> {
 
     /**
-     * Construct an empty ItemCollection.
-     */
-    public ItemCollection() {
-    }
-
-    /**
      * Construct an ItemCollection from a quest state string in
      * the form "item1=n1;item2=n2;...".
      * @param str
