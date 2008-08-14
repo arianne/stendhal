@@ -1,5 +1,6 @@
 	package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -23,8 +24,7 @@ public class GossipNPC extends SpeakerNPCFactory {
 				null,
 		        ConversationStates.ATTENDING,
 		        null,
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        // A little trick to make NPC remember if it has met
 				        // player before anc react accordingly

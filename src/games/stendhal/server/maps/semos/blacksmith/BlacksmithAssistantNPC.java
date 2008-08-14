@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.blacksmith;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -22,8 +23,7 @@ public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 				null,
 		        ConversationStates.ATTENDING,
 		        null,
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (player.hasQuest("meet_hackim")) {
 					        npc.say("Hi again, " + player.getTitle()

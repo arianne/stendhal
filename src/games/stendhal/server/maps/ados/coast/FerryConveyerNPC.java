@@ -3,11 +3,11 @@ package games.stendhal.server.maps.ados.coast;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
@@ -45,7 +45,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 					}
@@ -57,7 +56,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (ferrystate == Status.ANCHORED_AT_MAINLAND) {
 							npc.say("In order to board the ferry, you have to pay " + AthorFerry.PRICE
@@ -75,7 +73,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);

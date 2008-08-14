@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.mines;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -34,8 +35,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
@@ -50,8 +50,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
-			@Override
+		npc.addInitChatMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");

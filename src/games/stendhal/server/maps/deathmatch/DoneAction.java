@@ -3,16 +3,15 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
  * Handles player claim of victory by giving reward after verifing the winning.
- *
- * @author hendrik
  */
-public class DoneAction extends SpeakerNPC.ChatAction {
+public class DoneAction implements ChatAction {
 
 	/**
 	 * Creates the player bound special trophy helmet and equips it.
@@ -45,7 +44,6 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		return rules.getHallOfFamePoints(player.getName(), "D");
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {

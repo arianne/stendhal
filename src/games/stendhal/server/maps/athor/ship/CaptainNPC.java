@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.athor.ship;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
@@ -44,7 +44,6 @@ private Status ferrystate;
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					@Override
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 								//.getCurrentDescription());

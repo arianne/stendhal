@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -51,9 +52,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addJob("I am the librarian");
 				addHelp("Just ask me to #explain something");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
-				        new SpeakerNPC.ChatAction() {
-
-					        @Override
+				        new ChatAction() {
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						        // extract the title
 					        	final String title = sentence.getExpressionStringAfterVerb();

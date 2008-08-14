@@ -2,6 +2,7 @@ package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -9,12 +10,9 @@ import games.stendhal.server.entity.player.Player;
 /**
  * handle the players request to leave the deathmatch
  * (if it is allowed in the current state).
- *
- * @author hendrik
  */
-public class LeaveAction extends SpeakerNPC.ChatAction {
+public class LeaveAction implements ChatAction {
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 

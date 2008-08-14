@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -50,9 +51,8 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new SpeakerNPC.ChatAction() {
+				        null, new ChatAction() {
 
-					        @Override
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						        // A little trick to make NPC remember if it has met
 						        // player before anc react accordingly

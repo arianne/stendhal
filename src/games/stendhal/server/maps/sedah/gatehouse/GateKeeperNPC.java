@@ -5,6 +5,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -45,8 +46,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isEquipped("sedah gate key")) {
 							// toss a coin to see if he notices player still has
@@ -69,8 +69,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addQuest("The only favour I need is cold hard cash.");
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
 
-				addReply("bribe", null, new SpeakerNPC.ChatAction() {
-					@Override
+				addReply("bribe", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				        if (sentence.hasError()) {
 				        	engine.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");

@@ -15,6 +15,7 @@ import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -118,8 +119,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				add(ConversationStates.SERVICE_OFFERED,
 					ConversationPhrases.YES_MESSAGES, null,
 					ConversationStates.ATTENDING, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
+					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
 										 final SpeakerNPC npc) {
 							Pet pet = player.getPet();

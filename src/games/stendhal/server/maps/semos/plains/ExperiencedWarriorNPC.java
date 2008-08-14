@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -185,8 +186,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.QUESTION_1, "",
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
 						final String creatureName = sentence.getTriggerExpression().getNormalized();
 						final DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
@@ -220,8 +220,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",

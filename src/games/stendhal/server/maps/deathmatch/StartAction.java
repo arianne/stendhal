@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -9,7 +10,7 @@ import games.stendhal.server.entity.player.Player;
  *
  * @author hendrik
  */
-public class StartAction extends SpeakerNPC.ChatAction {
+public class StartAction implements ChatAction {
 
 	private final DeathmatchInfo deathmatchInfo;
 
@@ -22,7 +23,6 @@ public class StartAction extends SpeakerNPC.ChatAction {
 		this.deathmatchInfo = deathmatchInfo;
 	}
 
-	@Override
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		engine.say("Have fun!");
 		deathmatchInfo.startSession(player);

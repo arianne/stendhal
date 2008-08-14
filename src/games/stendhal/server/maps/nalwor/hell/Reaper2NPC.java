@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -53,11 +54,10 @@ public class Reaper2NPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("#elddir a evlos tsum uoy ecalp siht #evael ot kees uoy fI");
 				add(ConversationStates.ATTENDING, "evael", null, ConversationStates.QUESTION_1, "?erus uoy erA .truh lliw tI", null);
-				final List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
+				final List<ChatAction> processStep = new LinkedList<ChatAction>();
 				processStep.add(new TeleportAction("int_afterlife", 31, 23, Direction.UP));
 				processStep.add(new DecreaseKarmaAction(100.0));
-				processStep.add(new SpeakerNPC.ChatAction() {
-					@Override
+				processStep.add(new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.subXP(10000);
 						player.sendPrivateText(NotificationType.NEGATIVE, "The Reaper took 10000 XP and gave you bad karma.");

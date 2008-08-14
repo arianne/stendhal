@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.BabyDragon;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -51,8 +52,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
+				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					    if (player.hasQuest(QUEST_SLOT)) {
 						final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
@@ -88,8 +88,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					    }
 					}
 				});
-			        addReply("hatch", null, new SpeakerNPC.ChatAction() {
-					@Override
+		        addReply("hatch", null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					    if (player.hasPet()) {
 						// there's actually also a check for this when the egg is hatched,

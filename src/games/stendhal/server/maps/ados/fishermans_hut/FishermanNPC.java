@@ -8,6 +8,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -187,8 +188,7 @@ public class FishermanNPC implements ZoneConfigurator {
 								|| player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
@@ -230,8 +230,7 @@ public class FishermanNPC implements ZoneConfigurator {
 		add(ConversationStates.PRODUCTION_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 					behaviour.transactAgreedDeal(npc, player);
@@ -252,8 +251,7 @@ public class FishermanNPC implements ZoneConfigurator {
 								&& !player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						npc.say("I still haven't finished your last order. Come back in "
@@ -272,8 +270,7 @@ public class FishermanNPC implements ZoneConfigurator {
 								&& !player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
+				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC npc) {
 						behaviour.giveProduct(npc, player);

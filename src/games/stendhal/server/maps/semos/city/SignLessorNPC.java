@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.office.RentedSignList;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -67,8 +68,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			new AndCondition(new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
 			ConversationStates.BUY_PRICE_OFFERED, 
 			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					text = sentence.getOriginalText().trim().substring(5).trim();
 
@@ -97,8 +97,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("money", MONEY),
 			ConversationStates.IDLE, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (text.length() > 1000) {
 						text = text.substring(1000);
@@ -156,8 +155,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "delete", 
 			new AdminCondition(100),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
+			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (sentence.getExpressions().size() < 2) {
 						npc.say("Syntax: delete <nameofplayer>");

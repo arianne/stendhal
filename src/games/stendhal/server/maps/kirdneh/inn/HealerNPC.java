@@ -3,6 +3,7 @@ package games.stendhal.server.maps.kirdneh.inn;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -77,8 +78,7 @@ public class HealerNPC implements ZoneConfigurator {
 				null, 
 				ConversationStates.HEAL_OFFERED, 
 				null,
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
                         healerBehaviour.setChosenItemName("heal");
                         healerBehaviour.setAmount(1);
@@ -95,8 +95,7 @@ public class HealerNPC implements ZoneConfigurator {
 				null,
 		        ConversationStates.ATTENDING, 
 		        null,
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				        if (player.drop("money", healerBehaviour.getCharge(npc, player))) {
 					        healerBehaviour.heal(player);

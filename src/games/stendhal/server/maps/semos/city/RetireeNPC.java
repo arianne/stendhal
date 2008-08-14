@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -25,8 +26,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 				null,
 		        ConversationStates.ATTENDING,
 		        null,
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (Rand.throwCoin() == 1) {
 					        npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
@@ -38,8 +38,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 
 		// A convenience function to make it easier for admins to test quests.
 		npc.add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
-		        new SpeakerNPC.ChatAction() {
-			        @Override
+		        new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
 					        for (final String quest : player.getQuests()) {

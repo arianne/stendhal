@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -60,8 +61,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    	null,
 			    	ConversationStates.IDLE,
 			    	null,
-			    	new SpeakerNPC.ChatAction() {
-			    		@Override
+			    	new ChatAction() {
 			    		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			    			if (!player.hasQuest("find_ghosts")) {
 			    				player.setQuest("find_ghosts", "looking:said");
