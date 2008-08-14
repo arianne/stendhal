@@ -157,7 +157,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	}
 	
 	/**
-	 * Calculates a randomized respawn time in the interval of [respawnTime/2,respawnTime + respawnTime/2] .
+	 * Calculates a randomized respawn time.
 	 * @return the amount of turns calculated
 	 */
 	private int calculateNextRespawnTurn() {

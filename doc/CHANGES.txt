@@ -1,5 +1,8 @@
 Changelog
 ---------
+0.70
+- constant change/time unit for monster spawning
+
 0.69
 - 7 kikareukin clouds added
 - archangel and dark archangel, new creatures
