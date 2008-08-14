@@ -9,10 +9,10 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AdminCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -35,12 +35,6 @@ import org.apache.log4j.Logger;
 public class Debuggera extends ScriptImpl {
 
 	// boolean debuggeraEnabled;
-
-	class AdminCondition implements ChatCondition {
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			return (player.getAdminLevel() >= 5000);
-		}
-	}
 
 	class DebuggeraEnablerAction implements ChatAction {
 		boolean enabled;
