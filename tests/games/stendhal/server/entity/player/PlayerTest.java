@@ -21,9 +21,11 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class PlayerTest {
-	String playername = "player";
-	Player player;
-
+	private String playername = "player";
+	private Player player;
+	private Player killer;
+	private StendhalRPZone zone;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 
@@ -35,10 +37,12 @@ public class PlayerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player = PlayerTestHelper.createPlayer(playername);
-
+		zone = new StendhalRPZone("the zone where the corpse shall be slain");
+				player = PlayerTestHelper.createPlayer(playername);
+				zone.add(player);
+				killer = PlayerTestHelper.createPlayer("killer");	
 	}
-
+	
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -613,5 +617,27 @@ public class PlayerTest {
 	public void testIsDisconnected() {
 		fail("Not yet implemented");
 	}
+	@Test
+	public void testIsBadBoy() throws Exception {
+		assertFalse(player.isBadBoy());
+		assertFalse(killer.isBadBoy());
 
+		player.onDead(killer);
+		assertTrue(killer.isBadBoy());
+		assertFalse(player.isBadBoy());
+	}
+	
+	@Test
+	public void testRehabilitate() throws Exception {
+		assertFalse(player.isBadBoy());
+		assertFalse(killer.isBadBoy());
+
+		player.onDead(killer);
+		assertTrue(killer.isBadBoy());
+		assertFalse(player.isBadBoy());
+		killer.rehabilitate();
+		assertFalse(player.isBadBoy());
+		assertFalse(killer.isBadBoy());
+
+	}
 }

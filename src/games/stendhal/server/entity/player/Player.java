@@ -71,7 +71,7 @@ public class Player extends RPEntity {
 	 */
 	protected static final String ATTR_GRUMPY = "grumpy";
 
-
+	private static final String LASTPLAYERKILL = "lastplayerkill";
 	/**
 	 * The teleclick mode attribute name.
 	 */
@@ -1885,5 +1885,18 @@ public class Player extends RPEntity {
 
 	public boolean isImmune() {
 		return isImmune;
+	}
+	void setLastPlayerKill(final long milliseconds) {
+		put(LASTPLAYERKILL, (float) milliseconds);
+	}
+
+	public boolean isBadBoy() {
+		return has(LASTPLAYERKILL);
+	}
+
+
+	public void rehabilitate() {
+		remove(LASTPLAYERKILL);
+		
 	}
 }

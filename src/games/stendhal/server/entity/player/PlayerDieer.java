@@ -76,7 +76,10 @@ public class PlayerDieer {
 			player.setXP((int) (player.getXP() * penaltyFactor));
 			player.setATKXP((int) (player.getATKXP() * penaltyFactor));
 			player.setDEFXP((int) (player.getDEFXP() * penaltyFactor));
-			
+			if (killer instanceof Player) {
+								Player playerKiller = (Player) killer;
+								handlePlayerKiller(playerKiller);
+			}
 			player.update();
 		}
 
@@ -116,6 +119,10 @@ public class PlayerDieer {
 		} else {
 			player.sendPrivateText(NotificationType.POSITIVE, "You were lucky and dropped no items when you died.");
 		}
+	}
+
+	private void handlePlayerKiller(final Player playerKiller) {
+				playerKiller.setLastPlayerKill(System.currentTimeMillis());
 	}
 
 	private void respawnInAfterLife() {
