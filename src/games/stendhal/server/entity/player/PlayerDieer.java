@@ -110,9 +110,8 @@ public class PlayerDieer {
 					if (si.getQuantity() == 1) {
 						strings.add(Grammar.a_noun(si.getName()));
 					}
-				} else if (item instanceof Item) {
-					Item it = (Item) item;
-					strings.add(Grammar.a_noun(it.getName()));
+				} else {
+					strings.add(Grammar.a_noun(item.getName()));
 				}
 			}
 			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");

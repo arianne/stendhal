@@ -21,7 +21,7 @@ class Eater implements Feeder {
 		if (player.isChoking()) {
 			// remove some HP so they know we are serious about this
 			int playerHP = player.getHP();
-			int chokingDamage = Rand.rand((int) playerHP / 3);
+			int chokingDamage = Rand.rand(playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could choke to death.");
 			player.notifyWorldAboutChanges();

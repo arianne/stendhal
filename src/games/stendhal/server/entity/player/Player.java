@@ -1887,7 +1887,7 @@ public class Player extends RPEntity {
 		return isImmune;
 	}
 	void setLastPlayerKill(final long milliseconds) {
-		put(LASTPLAYERKILL, (float) milliseconds);
+		put(LASTPLAYERKILL, milliseconds);
 	}
 
 	public boolean isBadBoy() {
