@@ -71,7 +71,7 @@ public class Player extends RPEntity {
 	 */
 	protected static final String ATTR_GRUMPY = "grumpy";
 
-	private static final String LASTPLAYERKILL = "lastplayerkill";
+	private static final String LASTPLAYERKILL = "last_player_kill_time";
 	/**
 	 * The teleclick mode attribute name.
 	 */

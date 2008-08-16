@@ -158,7 +158,9 @@ class PlayerRPClass {
 		// Last time this player attacked another player
 		player.addAttribute("last_pvp_action_time", Type.FLOAT,
 				Definition.HIDDEN);
-
+		player.addAttribute("last_player_kill_time", Type.FLOAT,
+				Definition.STANDARD);
+		
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
 	}

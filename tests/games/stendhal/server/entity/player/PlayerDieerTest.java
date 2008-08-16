@@ -56,5 +56,7 @@ public class PlayerDieerTest {
 		assertThat("ring wearer with broken ring loses 10 percent", hasRing.getXP(), is(9000));
 		
 	}
+	
+	
 
 }
