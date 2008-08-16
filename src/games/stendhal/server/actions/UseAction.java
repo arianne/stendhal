@@ -88,10 +88,9 @@ public class UseAction implements ActionListener {
 			return;
 		}
 
-		logUsage(player, object);
-
 		if (object instanceof UseListener) {
 			final UseListener listener = (UseListener) object;
+			logUsage(player, object);
 			listener.onUsed(player);
 		}
 	}
