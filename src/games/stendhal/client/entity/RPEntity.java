@@ -339,6 +339,10 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public boolean isAttacking(final IEntity defender) {
+		if (defender == null) {
+			return false;
+		}
+		
 		final ID defenderID = defender.getID();
 		return ((attacking != null) && attacking.equals(defenderID));
 	}
