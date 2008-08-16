@@ -65,7 +65,7 @@ public class Analyser {
 
 	private String generatelSQLPart(final LoginEvent event, final LoginEvent nextEvent) {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("OR (source=\"'");
+		sb.append("OR (source='");
 		sb.append(StringChecker.escapeSQLString(event.getUsername()));
 		sb.append("' AND timedate >= '");
 		sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
