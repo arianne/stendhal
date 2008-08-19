@@ -160,9 +160,7 @@ public class Player extends RPEntity {
 		if (changes.has(LAST_PLAYER_KILL_TIME)){
 			badboy = true;
 		}
-		if (changes.has(LAST_PLAYER_KILL_TIME)){
-			badboy = false;
-		}
+		
 	}
 
 	/**
@@ -186,6 +184,9 @@ public class Player extends RPEntity {
 			grumpy = null;
 			fireChange(PROP_GRUMPY);
 			onGrumpy(null);
+		}
+		if (changes.has(LAST_PLAYER_KILL_TIME)){
+			badboy = false;
 		}
 	}
 }
