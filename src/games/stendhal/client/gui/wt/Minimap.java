@@ -53,22 +53,27 @@ import org.apache.log4j.Logger;
 
 public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
-	 * The color of the background.
+	 * The color of the background (palest grey).
 	 */
 	private static Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
 
 	/**
-	 * The color of blocked areas.
+	 * The color of blocked areas (red).
 	 */
 	private static final Color COLOR_BLOCKED = new Color(1.0f, 0.0f, 0.0f);
-
+	
 	/**
-	 * The color of a general entity.
+	 * The color of protected areas (palest green).
+	 */
+	private static final Color COLOR_PROTECTION = new Color(230, 255, 230);
+	
+	/**
+	 * The color of a general entity (pale green).
 	 */
 	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
 
 	/**
-	 * The color of the "N" text.
+	 * The color of the "N" text (black).
 	 */
 	private static final Color COLOR_NORTH = new Color(0.0f, 0.0f, 0.0f);
 
@@ -164,15 +169,17 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * 
 	 * @param cd
 	 *            The collision map.
+	 * @param pd  
+	 *      	  The protection map.
 	 * @param gc
 	 *            A graphics configuration.
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(final CollisionDetection cd, final GraphicsConfiguration gc,
+	public void update(final CollisionDetection cd, final CollisionDetection pd, final GraphicsConfiguration gc,
 			final String zone) {
-		setTitletext(zone);
-
+		setTitletext(zone);		
+		
 		// FOR PATHFINDING THING
 		collisiondetection = cd;
 		pathfind.clearPath();
@@ -208,15 +215,19 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		mapgrapics.setColor(COLOR_BACKGROUND);
 		mapgrapics.fillRect(0, 0, w * scale, h * scale);
 
-		mapgrapics.setColor(COLOR_BLOCKED);
-
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
 				if (!cd.walkable(x, y)) {
+					mapgrapics.setColor(COLOR_BLOCKED);
+					mapgrapics.fillRect(x * scale, y * scale, scale, scale);
+				} else if (!pd.walkable(x, y)) {
+					// draw protection only if there is no collision to draw
+					mapgrapics.setColor(COLOR_PROTECTION);
 					mapgrapics.fillRect(x * scale, y * scale, scale, scale);
 				}
 			}
 		}
+		
 
 		mapgrapics.dispose();
 

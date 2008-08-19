@@ -37,11 +37,21 @@ public class StaticGameLayers {
 	 * Area collision maps.
 	 */
 	private final Map<String, CollisionDetection> collisions;
-
+	
+	/**
+	 * Area protection maps.
+	 */
+	private final Map<String, CollisionDetection> protections;
+	
 	/**
 	 * The current collision map.
 	 */
 	private CollisionDetection collision;
+	
+	/**
+	 * The current protection map.
+	 */
+	private CollisionDetection protection;
 
 	/**
 	 * Named layers.
@@ -76,6 +86,7 @@ public class StaticGameLayers {
 
 	public StaticGameLayers() {
 		collisions = new HashMap<String, CollisionDetection>();
+		protections = new HashMap<String, CollisionDetection>();	
 		layers = new HashMap<String, LayerRenderer>();
 		tilesets = new HashMap<String, TileStore>();
 
@@ -128,6 +139,19 @@ public class StaticGameLayers {
 			collisionTemp.setCollisionData(LayerDefinition.decode(in));
 
 			collisions.put(area, collisionTemp);
+		} else if (layer.equals("protection")) {
+			/*
+			 * Add protection
+			 */
+			if (protections.containsKey(area)) {
+				// Repeated layers should be ignored.
+				return;
+			}
+
+			final CollisionDetection protectionTemp = new CollisionDetection();
+			protectionTemp.setCollisionData(LayerDefinition.decode(in));
+
+			protections.put(area, protectionTemp);
 		} else if (layer.equals("tilesets")) {
 			/*
 			 * Add tileset
@@ -184,6 +208,7 @@ public class StaticGameLayers {
 		layers.clear();
 		tilesets.clear();
 		collision = null;
+		protection = null;
 		area = null;
 	}
 
@@ -215,7 +240,7 @@ public class StaticGameLayers {
 			height = 0.0;
 			width = 0.0;
 			collision = null;
-
+			protection = null;
 			isValid = true;
 			return;
 		}
@@ -228,7 +253,15 @@ public class StaticGameLayers {
 		if (collision != null) {
 			collisions.put(area, collision);
 		}
+		
+		/*
+		 * Set protection map
+		 */
+		protection = protections.get(area);
 
+		if (protection != null) {
+			protections.put(area, protection);
+		}
 		/*
 		 * Get maximum layer size. Assign tileset to layers.
 		 */
@@ -275,6 +308,17 @@ public class StaticGameLayers {
 		validate();
 
 		return collision;
+	}
+	
+	/**
+	 * 
+	 * @return the ProtectionDetection Layer for the current map
+	 * 
+	 */
+	public CollisionDetection getProtectionDetection() {
+		validate();
+
+		return protection;
 	}
 
 	/**
