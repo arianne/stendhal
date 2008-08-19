@@ -65,7 +65,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The color of protected areas (palest green).
 	 */
-	private static final Color COLOR_PROTECTION = new Color(230, 255, 230);
+	private static final Color COLOR_PROTECTION = new Color(202, 230, 202);
 	
 	/**
 	 * The color of a general entity (pale green).
