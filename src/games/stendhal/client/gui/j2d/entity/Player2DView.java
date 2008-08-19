@@ -42,6 +42,12 @@ class Player2DView extends RPEntity2DView {
 	 */
 	private static Sprite grumpySprite;
 
+	
+	/**
+	 * Sprite representing recently killing of other player.
+	 */
+	private static Sprite skullSprite;
+
 	/**
 	 * The player entity.
 	 */
@@ -49,12 +55,13 @@ class Player2DView extends RPEntity2DView {
 
 	static {
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
-		final Sprite tiles2 = store.getSprite("data/sprites/ideas/grumpy.png");
-		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
+		final Sprite gotAwaySprite = store.getSprite("data/sprites/ideas/away.png");
+		final Sprite gotGrumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
+		skullSprite = store.getSprite("data/sprites/ideas/pk.png");
+		awaySprite = store.getAnimatedSprite(gotAwaySprite, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
-		grumpySprite = store.getAnimatedSprite(tiles2, 0, 0, 4,
+		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
 	}
@@ -169,6 +176,10 @@ class Player2DView extends RPEntity2DView {
 		if (player.isGrumpy()) {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
+		if (player.isBadBoy()) {
+			skullSprite.draw(g2d, x - (width * 1 / 6), y - 10);
+		}
+	
 	}
 
 	//

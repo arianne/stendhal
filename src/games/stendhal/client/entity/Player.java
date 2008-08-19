@@ -17,6 +17,7 @@ import marauroa.common.game.RPObject;
 
 /** A Player entity. */
 public class Player extends RPEntity {
+	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 	/**
 	 * Away property.
 	 */
@@ -33,6 +34,7 @@ public class Player extends RPEntity {
 	 * The grumpy message of this player.
 	 */
 	private String grumpy;
+	private boolean badboy;
 
 	/**
 	 * Create a player entity.
@@ -53,6 +55,11 @@ public class Player extends RPEntity {
 	 */
 	public boolean isAway() {
 		return (getAway() != null);
+	}
+	
+	
+	public boolean isBadBoy(){
+		return badboy;
 	}
 
 	/**
@@ -148,6 +155,13 @@ public class Player extends RPEntity {
 				fireChange(PROP_GRUMPY);
 				onGrumpy(grumpy);
 			}
+		}
+		
+		if (changes.has(LAST_PLAYER_KILL_TIME)){
+			badboy = true;
+		}
+		if (changes.has(LAST_PLAYER_KILL_TIME)){
+			badboy = false;
 		}
 	}
 

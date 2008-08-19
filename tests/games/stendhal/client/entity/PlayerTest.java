@@ -1,6 +1,6 @@
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.awt.geom.Rectangle2D;
 
@@ -20,4 +20,44 @@ public class PlayerTest {
 		final Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 	}
+	
+	@Test
+	public final void testIsBadBoy() {
+		Player george = new Player();
+		assertFalse(george.isBadBoy());
+		
+		RPObject player = new RPObject();
+		player.put("x", 1);
+		player.put("y", 1);
+		
+		RPObject changes = new RPObject();
+		george.onChangedAdded(player, changes);
+		assertFalse(george.isBadBoy());
+		
+		changes.put("last_player_kill_time", 1);
+		george.onChangedAdded(player, changes);
+		assertTrue(george.isBadBoy());
+		
+	}
+		
+	@Test
+	public final void testAmnesty(){
+		Player george = new Player();
+		assertFalse(george.isBadBoy());
+		
+		RPObject player = new RPObject();
+		player.put("x", 1);
+		player.put("y", 1);
+		
+		RPObject changes = new RPObject();
+		changes.put("last_player_kill_time", 1);
+		george.onChangedAdded(player, changes);
+		assertTrue(george.isBadBoy());
+		
+		
+		george.onChangedRemoved(player, changes);
+		assertFalse(george.isBadBoy());
+	}
+	
+	
 }
