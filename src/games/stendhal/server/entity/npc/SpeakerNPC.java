@@ -184,6 +184,7 @@ public class SpeakerNPC extends NPC {
 				players.add(player);
 			}
 		}
+
 		return players;
 	}
 
@@ -315,6 +316,7 @@ public class SpeakerNPC extends NPC {
 		// now look for nearest player only if there's an initChatAction
 		if (!isTalking() && (initChatAction != null)) {
 			final Player nearest = getNearestPlayer(7);
+
 			if (nearest != null) {
 				if ((initChatCondition == null)
 						|| initChatCondition.fire(nearest, null, this)) {
@@ -502,10 +504,10 @@ public class SpeakerNPC extends NPC {
 	 */
 	private boolean getRidOfPlayerIfAlreadySpeaking(final Player player, final String text) {
 		// If we are attending another player make this one wait.
-		if (!player.equals(attending)) {
+		if (attending!=null && !player.equals(attending)) {
 			if (ConversationPhrases.GREETING_MESSAGES.contains(text)) {
-
 				logger.debug("Already attending a player");
+
 				if (waitMessage != null) {
 					say(waitMessage);
 				}
@@ -515,11 +517,12 @@ public class SpeakerNPC extends NPC {
 					// Note: sentence is currently not yet used in
 					// the called handler functions.
 					waitAction.fire(player, sentence, this); 
-					
 				}
 			}
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -528,14 +531,17 @@ public class SpeakerNPC extends NPC {
 	 * @param text 
 	 * @return true if step was successfully executed*/
 	private boolean tell(final Player player, final String text) {
+		//TODO mf - The logic to pass spoken text to NPCs should be moved out of the NPC.
+		// This way we can extend the rules to understand prepended NPC/Player names to confine the listening NPCs.
+		// And we can present the Player a list of possible phrases in the client.
+		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
+			return true;
+		}
+
 		// If we are not attending a player, attend this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
 			setAttending(player);
-		}
-
-		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
-			return true;
 		}
 
 		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
