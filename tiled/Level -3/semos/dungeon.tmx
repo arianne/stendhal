@@ -87,6 +87,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="257" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="protection" firstgid="258" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VO3LDMAxFURUu0mb/m02b0ciS8AeJW6DyEHwHIunPcRwfatv6PVV1Hvzr+M9rJT206572tubAH+t/k9uruvkz7fj9Z9bhe0Vnydqzyoffzy85r+f1Gf7o9y7b/zSXaAN+WZ7qwi9/V/DL7uTdWm3eVf1eeaf6s0v6HlbnrfZL/kuqbSv6O8zO4t+hOvszsuDH39Eu/TbRhX+tvP/r56Yi/Xd7WvPgxz/Nf+fQltdekh47+iW9dvW/+dZX/S33OOK9wB9z1jRnfpq/esb49Tne9KqaO378Xe7/VP/neM6ys3/698ePH788iyazZy/8ekOGGz9+/P390e+k96w7+jP/Z556v9l/st9a+Gf7I+eYdf8938PsGUz3V7/f0/2eefD7F/58vzZbF39VNvz48fvY8Pufm6gzqOmf+b9k7VvhX7Hw45/q935TVnj/ojJae3/r753VmjGyVsqK/zqz5dx190e/tdP83f/vdvZHndlpfstdjjq/+PFP9ltmpJlXlv+qn3Ze0jX4ffLi7+E/r/V4LyxZpPvj98nl4bfadvBH56j232XA39OfdQc9/dI5dfVre+Lfx/8m13R/dEbrfDP9HnPCv49fc3/wy9doz9ab3yK+Hf4Zfo+MnvPCLz+jWf6M++Lh1/RY0e9RGf5vPXbye+2Nv8aGH3+H2t2HH/+3+gM99Lc7AIAAAA==
@@ -117,9 +120,9 @@
    H4sIAAAAAAAAAO3UUY7DMAgE0Ob+l171Y6Uqih0DAzYwSJa2qwZ4BPe6Pp+Lh4en9PnG7h4y+zXP/4a1tiUPqoeOfk3tiDjVj+h3ZY47/Cs5tHUi9iiqZgW/pecIn/e+R/tRO0M//dn9T7HTf0rs9CP3EzFTTe4T/bO7MPuft18677e/I/0r79RrL0eRxS95FjkXrf/ts6cfsf/aOMlvyWv179x/pP+0maFqInuLqDGruXrnVj9n83sG+n553dNu/tEd6HS6+rPu66j3iPc/qxk5Q/rt9WbRwX/Pp6lv9SPDsucavzXHW08RO2OZZQf/qD/6+/klz1Xxz3J51EX0Rj/99NPv1Ud3v7SXHTXpp/8Uv+Uga9CPMUS46aeffvrRtejH+KVBvy1flH+lviay+62R3e/Zfwc/KjxmkMn/1supfuT8PO6Ad/+W5+/fQ/0WSHqh388v7e00f3Rv9NNPP/0nnQx+zXulX54bmes3nyX/KNB2RN6nXNbclaKzH7mjlnzR++/RIyo34n56+71Ppl7pp5/+8W+ixnK6XxOV/Oj3HxU754LwW9+JtDb99Gf2a2bU3e+Vv4pf2hfSP6upnVd3//+z2n3R9ou+T/Tv86Ns9GP9kkD0QL9/H6PvWU30Y/3InJ38q0F/LX+mI/VHvRf6xzWlsdOPmBP9spqe+y81Wd4N/XX8iB7Rdvpr+u9B//p3n2KXf6WXlRxefklU8Fuisl9j0/o1QX9Of8Sxzi/7ob+3v+v5A2U0UVwAgAAA
   </data>
  </layer>
- <layer name="protection" width="64" height="128">
+ <layer name="protection" width="64" height="128" opacity="0.22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
+   H4sIAAAAAAAAAO3DAQ0AAAwCIG//0AY5bPSSqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqurzA5F51+IAgAAA
   </data>
  </layer>
 </map>

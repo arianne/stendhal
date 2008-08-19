@@ -90,6 +90,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="728" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="protection" firstgid="729" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SsQ2AMAxFQStikuw/JBUdShEQFvYV19t6f0TEAAAAAAAAAG7NF2T/gP7oj/7oj/7oj/7oj/7oj/6sN5B9CwAAAAAAAAAAAFyOhezb0B/9+aa3HdS2017/Gnbb61/Dk/428H/696Z/b/r3pn9v+vamPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQyQml+SF1AAABAA==
@@ -120,9 +123,9 @@
    H4sIAAAAAAAAAO3cUW7CMBRFQdT9L7DL6VclUKOmDXn2s++MxDeOjxNMQHk8AAAAAAAAePb5Me5FP/pnG9FG/76e21Sd63f0dx2poX82/bPpn22V/tTQP5v+2fTv47c5rH7Po/fXfyz9s+mfrVP/o/Hov58RbfTvS/9s+q/vnT2D/uu7o//VPd7VPeHV4+Sn3fuP/k60GvPDLqxjAAAAANif+4DoTyXXmGz6wzqcqwD8x1/2efaC+/L/yGz6nzNH2Vbof/cYux/vSO/O7Yj1o3+dxP7cR/9s2gAAAMDaKp7lxDr0z6Z/f7OeAVf53LdddP9tRP9a+mfr3L+6vf6950L3XM77bCOu/dZBfx36Wy/z6J9Nf2Z/Zus/1+z+zKc9wKvZe2Pm0j9Xh+/GzFHdXv/edM/lvM824tpvHaxhdn/rZY4u53+3/t3GU0X/Y93GM8LM4+02393GU82e7VXaXOjPmaN1Ya1kOOtsHQDA/nzeA0fcQwDYk/vE2fTPtlr/1cbb3Wrzudp4uZf+2fQHAAAAALpxzzKb/tn0z/bd/wvpRQTrAAABAA==
   </data>
  </layer>
- <layer name="protection" width="128" height="128">
+ <layer name="protection" width="128" height="128" opacity="0.48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3RQYpUARBEwcb7X3BuI7340BtBQScK8z3IfVHxelVVVdVSXz/0BSXLf7e3ff7/Z4/t76xu9yunPzHO/35/yzP/+ynr/L8nbZr/v0+75W/SXvm7tFX+Lu2Uv0sb5e/SPvm7tE3+Lu2Sv0275O/SJvm7tEf+Lm2Rv0s75O/SBvm79P/11tP/11tO//7CltO/v7DV9N+vbDX99ytbTv/+wtbT/9dbT/9fbz39f7319P/11tP/11tP/19vPf1/vfX0//XW0//XW0//X6+8Qf42bZC/Tzvkb9MO+du0Q/4ubZC/TRvkb9MG+bv0//XW0//XK2+Qv00b5G/TBvn7tEP+Nu2Qv09b5O/SDvnbtEP+Nu2Qv0sb5G/TBvnbtEH+Lv1/vfX0//XW0//XW0//X285/fsLW07//sKW07+/sOX07y9sOf37C1tO//7CltO/v7D19P/1yhvkb9MG+fu0Q/427ZC/TTvkb9MO+du0Q/427ZC/TTvkb9MO+du0Q/427ZC/T1vkb9MW+du0Rf4+7ZG/TXvkb9Me+fu0Sf42bZK/T7vk79M2+du0Tf42bZO/Tdvk79M++fu0Uf4+7ZS/T1vlfyftlr9Nu+V/I+2X/420Y/530qb5+7Rr/j5tm/+NtHH+N9LW+d9Ju+d/r/wr/8q/nvKv/Osp/8q/Psu/nvKvd/nXU/71lH999hMZHFZGAAABAA==
   </data>
  </layer>
 </map>

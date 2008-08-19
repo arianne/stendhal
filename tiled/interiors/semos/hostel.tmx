@@ -78,6 +78,9 @@
  <tileset name="corners" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
+ <tileset name="protection" firstgid="177" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQkAAAwEoSv6/Wssx0DBVVNV9dUD3JJpF8QJAAA=
@@ -113,9 +116,9 @@
    H4sIAAAAAAAAAFvBwMCwYhhhBjqYRwuAz34GKrDxmU0tQA97Bsov2MQpMRObHUMxrAjlGXQ1xJiFTQ+5eRefO6lVPozaQVgvqYDW6RafPeTahR4OxNhBTbtpHWakmE2KPL6wIuQGaqUtaqTxgcIAQ0JdNsQJAAA=
   </data>
  </layer>
- <layer name="protection" width="25" height="25">
+ <layer name="protection" width="25" height="25" opacity="0.26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAO3DAQkAAAwEoevf5hsux0DBVVNV9dUDNfzfrcQJAAA=
   </data>
  </layer>
 </map>
