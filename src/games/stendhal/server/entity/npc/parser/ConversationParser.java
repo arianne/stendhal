@@ -35,14 +35,18 @@ public final class ConversationParser extends ErrorBuffer {
      * @param text
      */
     public ConversationParser(final String text) {
-        // initialize a new tokenizer with the given text
-		originalText = text;
 		if (text == null) {
-			tokenizer = new StringTokenizer("");
+			originalText = "";
+		} else if (text.startsWith("_")) {
+			// ignore sentences starting with "_", so players can talk
+			// without triggering NPCs
+			originalText = "";
 		} else {
-			tokenizer = new StringTokenizer(text);
+			originalText = text;
 		}
-        
+
+        // initialize a new tokenizer with the given text
+		tokenizer = new StringTokenizer(originalText);
     }
 
     /**
