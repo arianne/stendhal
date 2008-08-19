@@ -469,9 +469,7 @@ public class j2DClient extends StendhalUI {
 				final CollisionDetection cd = gameLayers.getCollisionDetection();
 				final CollisionDetection pd = gameLayers.getProtectionDetection();
 				
-				if (cd != null && pd !=null) {
-					// TODO: some zones may not have a protection layer
-					// currently these would just not draw minimap now
+				if (cd != null) {
 					minimap.update(cd,pd,
 							screen.expose().getDeviceConfiguration(),
 							gameLayers.getArea());
