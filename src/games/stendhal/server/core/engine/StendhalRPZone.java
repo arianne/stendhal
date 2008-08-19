@@ -324,6 +324,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public void addProtectionLayer(final String name, final LayerDefinition protectionLayer)
 			throws IOException {
+		addToContent(name, protectionLayer.encode());
 		protectionMap.setCollisionData(protectionLayer);
 	}
 
