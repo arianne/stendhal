@@ -381,7 +381,7 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(10, pl.getHP());
 		CommandCenter.execute(pl, action);
-		assertEquals(-80, pl.getHP());
+		assertEquals(10, pl.getHP());
 	}
 
 	@Test
