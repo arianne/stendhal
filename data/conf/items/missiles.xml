@@ -3,13 +3,30 @@
     <item name="snowball">
     <type class="missile" subclass="snowballs" tileid="-1"/>
     <description>You see snowballs. You can throw them on your friends or put it in your bag to keep your fish fresh. But be carfully, there could be little stones in it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>    <attributes>
       <atk value="-1"/>
       <range value="8"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+  
+   <item name="vomit">
+    <type class="missile" subclass="vomit" tileid="-1"/>
+    <description>You see a pile of vomit. Gross!</description>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>    <attributes>
+      <atk value="-1"/>
+      <range value="5"/>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
