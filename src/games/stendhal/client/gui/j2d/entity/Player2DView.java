@@ -177,7 +177,7 @@ class Player2DView extends RPEntity2DView {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
 		if (player.isBadBoy()) {
-			skullSprite.draw(g2d, x , y );
+			skullSprite.draw(g2d, x , y);
 		}
 	
 	}

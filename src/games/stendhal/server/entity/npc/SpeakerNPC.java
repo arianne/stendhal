@@ -504,7 +504,7 @@ public class SpeakerNPC extends NPC {
 	 */
 	private boolean getRidOfPlayerIfAlreadySpeaking(final Player player, final String text) {
 		// If we are attending another player make this one wait.
-		if (attending!=null && !player.equals(attending)) {
+		if (attending != null && !player.equals(attending)) {
 			if (ConversationPhrases.GREETING_MESSAGES.contains(text)) {
 				logger.debug("Already attending a player");
 

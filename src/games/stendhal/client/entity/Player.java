@@ -58,7 +58,7 @@ public class Player extends RPEntity {
 	}
 	
 	
-	public boolean isBadBoy(){
+	public boolean isBadBoy() {
 		return badboy;
 	}
 
@@ -157,7 +157,7 @@ public class Player extends RPEntity {
 			}
 		}
 		
-		if (changes.has(LAST_PLAYER_KILL_TIME)){
+		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = true;
 		}
 		
@@ -185,7 +185,7 @@ public class Player extends RPEntity {
 			fireChange(PROP_GRUMPY);
 			onGrumpy(null);
 		}
-		if (changes.has(LAST_PLAYER_KILL_TIME)){
+		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = false;
 		}
 	}

@@ -470,7 +470,7 @@ public class j2DClient extends StendhalUI {
 				final CollisionDetection pd = gameLayers.getProtectionDetection();
 				
 				if (cd != null) {
-					minimap.update(cd,pd,
+					minimap.update(cd, pd,
 							screen.expose().getDeviceConfiguration(),
 							gameLayers.getArea());
 				} 

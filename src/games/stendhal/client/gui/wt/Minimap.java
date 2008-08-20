@@ -220,7 +220,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				if (!cd.walkable(x, y)) {
 					mapgrapics.setColor(COLOR_BLOCKED);
 					mapgrapics.fillRect(x * scale, y * scale, scale, scale);
-				} else if (pd!=null && !pd.walkable(x, y)) {
+				} else if (pd != null && !pd.walkable(x, y)) {
 					// draw protection only if there is no collision to draw
 					mapgrapics.setColor(COLOR_PROTECTION);
 					mapgrapics.fillRect(x * scale, y * scale, scale, scale);

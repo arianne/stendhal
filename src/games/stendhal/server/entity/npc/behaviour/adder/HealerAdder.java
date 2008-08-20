@@ -28,7 +28,7 @@ public class HealerAdder {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
 						final int cost = healerBehaviour.getCharge(engine, player);
-						if( player.isBadBoy() ) {
+						if (player.isBadBoy()) {
 							// don't heal player killers at all
 							engine.say("You killed another soul recently, giving you an aura of evil. I cannot, and will not, heal you.");
 							engine.setCurrentState(ConversationStates.ATTENDING);

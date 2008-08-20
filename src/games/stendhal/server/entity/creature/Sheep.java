@@ -326,7 +326,7 @@ public class Sheep extends DomesticAnimal {
 		} else {
 			damage(1, "starvation");
 		}
-		logger.warn("Sheep starve " + getZone().getName() + " "+ getX() + ": " + getY());
+		logger.warn("Sheep starve " + getZone().getName() + " " + getX() + ": " + getY());
 		hunger /= 2;
 	}
 

@@ -41,7 +41,7 @@ public class PlayerTest {
 	}
 		
 	@Test
-	public final void testAmnesty(){
+	public final void testAmnesty() {
 		Player george = new Player();
 		assertFalse(george.isBadBoy());
 		
