@@ -2,6 +2,8 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -21,7 +23,7 @@ public class AlterAction extends AdministrationAction {
 	private static final String _VALUE = "value";
 	private static final String _MODE = "mode";
 	private static final String _STAT = "stat";
-	private static final String _TARGET = "target";
+	
 	private static final String _ALTER = "alter";
 
 	public static void register() {
@@ -30,8 +32,7 @@ public class AlterAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-		if (action.has(_TARGET) && action.has(_STAT) && action.has(_MODE)
-				&& action.has(_VALUE)) {
+		if (hasNeededAttributes(action)) {
 			final Entity changed = getTarget(player, action);
 
 			if (changed == null) {
@@ -43,7 +44,7 @@ public class AlterAction extends AdministrationAction {
 			final String stat = action.get(_STAT);
 
 			if ("name".equals(stat) && (changed instanceof Player)) {
-				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(_TARGET)
+				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(TARGET)
 						+ "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
@@ -61,21 +62,13 @@ public class AlterAction extends AdministrationAction {
 
 			final RPClass clazz = changed.getRPClass();
 
-			boolean isNumerical = false;
 
 			final Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
 			if (type == null) {
 				player.sendPrivateText("Attribute you are altering is not defined in RPClass("
 						+ changed.getRPClass().getName() + ")");
 				return;
-			}
-
-			if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT)
-					|| (type.getType() == Type.INT)) {
-				isNumerical = true;
-			}
-
-			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE, stat)) {
+			} else {
 				final String value = action.get(_VALUE);
 				final String mode = action.get(_MODE);
 
@@ -85,7 +78,7 @@ public class AlterAction extends AdministrationAction {
 					return;
 				}
 
-				if (isNumerical) {
+				if (isParsableByInteger(type)) {
 					int numberValue;
 
 					try {
@@ -105,13 +98,13 @@ public class AlterAction extends AdministrationAction {
 
 					if (_ATTR_HP.equals(stat) && (changed.getInt("base_hp") < numberValue)) {
 						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
-								+ Grammar.suffix_s(action.get(_TARGET)) + " HP over its Base HP");
+								+ Grammar.suffix_s(action.get(TARGET)) + " HP over its Base HP");
 						return;
 					}
 
-					if (_ATTR_HP.equals(stat) && (numberValue == 0)) {
+					if (_ATTR_HP.equals(stat) && (numberValue <= 0)) {
 						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
-								+ Grammar.suffix_s(action.get(_TARGET)) + " HP to 0, making it so unkillable.");
+								+ Grammar.suffix_s(action.get(TARGET)) + " HP to 0, making it so unkillable.");
 						return;
 					}
 
@@ -141,14 +134,14 @@ public class AlterAction extends AdministrationAction {
 					}
 
 					SingletonRepository.getRuleProcessor().addGameEvent(
-							player.getName(), _ALTER, action.get(_TARGET),
+							player.getName(), _ALTER, action.get(TARGET),
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
 					if (mode.equalsIgnoreCase(_SET)) {
 						SingletonRepository.getRuleProcessor().addGameEvent(
-								player.getName(), _ALTER, action.get(_TARGET),
+								player.getName(), _ALTER, action.get(TARGET),
 								stat, action.get(_VALUE));
 						changed.put(stat, action.get(_VALUE));
 					}
@@ -158,6 +151,19 @@ public class AlterAction extends AdministrationAction {
 				changed.notifyWorldAboutChanges();
 			}
 		}
+	}
+
+	protected boolean isParsableByInteger(final Definition type) {
+		if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT)
+				|| (type.getType() == Type.INT)) {
+			return true;
+		}
+		return false;
+	}
+
+	protected boolean hasNeededAttributes(final RPAction action) {
+		return action.has(TARGET) && action.has(_STAT) && action.has(_MODE)
+				&& action.has(_VALUE);
 	}
 
 }
