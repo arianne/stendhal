@@ -103,22 +103,15 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					// we don't set quest slot to done so we can't check
-					// this
-					// return player.isQuestCompleted(QUEST_SLOT);
-					final boolean questdone = player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith(
-									"done");
-					if (!questdone) {
-						// we haven't done the quest yet
-						return false; 
-					}
-
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+					if (player.hasQuest(QUEST_SLOT)){
+						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
-					return (timeRemaining <= 0L);
+						return (timeRemaining <= 0L);
+					} else {
+						return false;
+					}
 				}
 			}, ConversationStates.QUEST_OFFERED,
 			"Oi, you. Back for more rainbow beans?", null);
@@ -130,22 +123,15 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					// we don't set quest slot to done so we can't check
-					// this
-					// return player.isQuestCompleted(QUEST_SLOT);
-					final boolean questdone = player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith(
-									"done");
-					if (!questdone) {
-						// we haven't done the quest yet
-						return false; 
-					}
-
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
+					if (player.hasQuest(QUEST_SLOT)){
+						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
-					return (timeRemaining > 0L);
+						return (timeRemaining > 0L);
+					} else {
+						return false;
+					}
 				}
 			}, ConversationStates.ATTENDING, null,
 			new ChatAction() {
@@ -188,10 +174,26 @@ public class RainbowBeans extends AbstractQuest {
 					if (player.isEquipped("money", REQUIRED_MONEY)) {
 						player.drop("money", REQUIRED_MONEY);
 						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
-						player.setQuest(QUEST_SLOT, "done;"
-								+ System.currentTimeMillis());
+						if (player.hasQuest(QUEST_SLOT)) {
+							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							if (tokens.length == 4) {
+								// we stored an old time taken or set it to -1 (never taken), either way, remember this.
+								player.setQuest(QUEST_SLOT, "bought;"
+												+ System.currentTimeMillis() + ";taken;" + tokens[3]);
+							} else {
+								// it must have started with "done" and they haven't taken beans since
+								player.setQuest(QUEST_SLOT, "bought;"
+												+ System.currentTimeMillis() + ";taken;-1");
+								
+							}
+						} else {
+							// first time they bought beans here
+							player.setQuest(QUEST_SLOT, "bought;"
+											+ System.currentTimeMillis() + ";taken;-1");
+								
+						}
 						final Item rainbowBeans = SingletonRepository.getEntityManager().getItem(
-								"rainbow beans");
+																							 "rainbow beans");
 						rainbowBeans.setBoundTo(player.getName());
 						player.equip(rainbowBeans, true);
 					} else {
