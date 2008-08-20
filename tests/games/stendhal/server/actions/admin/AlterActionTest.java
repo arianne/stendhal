@@ -1,15 +1,22 @@
 package games.stendhal.server.actions.admin;
 
-import static org.junit.Assert.*;
+import static marauroa.common.game.Definition.Type.BYTE;
+import static marauroa.common.game.Definition.Type.FLAG;
+import static marauroa.common.game.Definition.Type.FLOAT;
+import static marauroa.common.game.Definition.Type.INT;
+import static marauroa.common.game.Definition.Type.LONG_STRING;
+import static marauroa.common.game.Definition.Type.NOTYPE;
+import static marauroa.common.game.Definition.Type.SHORT;
+import static marauroa.common.game.Definition.Type.STRING;
+import static marauroa.common.game.Definition.Type.VERY_LONG_STRING;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.Definition.DefinitionClass;
-import marauroa.common.game.Definition.Type;
-import static marauroa.common.game.Definition.Type.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
