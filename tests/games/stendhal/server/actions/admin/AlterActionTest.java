@@ -57,9 +57,9 @@ public class AlterActionTest {
 		rpAction.put("value", "");
 		Player player = PlayerTestHelper.createPlayer("bob");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("Entity not found",player.events().get(0).get("text"));
+		assertEquals("Entity not found", player.events().get(0).get("text"));
 	}
 
 	@Test
@@ -69,14 +69,14 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "");
 		rpAction.put("value", "");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("Attribute you are altering is not defined in RPClass(player)",player.events().get(0).get("text"));
+		assertEquals("Attribute you are altering is not defined in RPClass(player)", player.events().get(0).get("text"));
 	}
 	
 	@Test
@@ -86,14 +86,14 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "name");
 		rpAction.put("value", "");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("Sorry, name cannot be changed.",player.events().get(0).get("text"));
+		assertEquals("Sorry, name cannot be changed.", player.events().get(0).get("text"));
 	}
 	
 	@Test
@@ -103,14 +103,14 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "adminlevel");
 		rpAction.put("value", "");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.",player.events().get(0).get("text"));
+		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.", player.events().get(0).get("text"));
 	}
 	@Test
 	public final void testTitleAttribute() {
@@ -119,14 +119,14 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "title");
 		rpAction.put("value", "");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("The title attribute may not be changed directly.",player.events().get(0).get("text"));
+		assertEquals("The title attribute may not be changed directly.", player.events().get(0).get("text"));
 	}
 	
 	@Test
@@ -136,14 +136,14 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "hp");
 		rpAction.put("value", "");
 		assertTrue(player.events().isEmpty());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertFalse(player.events().isEmpty());
-		assertEquals("Please issue a numeric value instead of ''",player.events().get(0).get("text"));
+		assertEquals("Please issue a numeric value instead of ''", player.events().get(0).get("text"));
 	}
 	
 	@Test
@@ -154,27 +154,27 @@ public class AlterActionTest {
 		zone.add(player);
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
-		rpAction.put("target", "#"+ player.getID().getObjectID());
+		rpAction.put("target", "#" + player.getID().getObjectID());
 		rpAction.put("mode", "");
 		rpAction.put("stat", "hp");
 		rpAction.put("value", "50");
 		assertEquals(0, player.getHP());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertEquals(0, player.getHP());
 		
 		rpAction.put("value", "-10");
 		assertEquals(0, player.getHP());
-		action.perform(player , rpAction );
+		action.perform(player, rpAction);
 		assertEquals(0, player.getHP());
 		
 		rpAction.put("value", "5");
 		assertEquals(0, player.getHP());
-		action.perform(player , rpAction );
+		action.perform(player , rpAction);
 		assertEquals(5, player.getHP());
 	}
 	
 	@Test
-	public final void testHasNeededAttributes(){
+	public final void testHasNeededAttributes() {
 		AlterAction action = new AlterAction();
 		RPAction rpAction = new RPAction();
 		assertFalse(action.hasNeededAttributes(rpAction));
@@ -189,17 +189,17 @@ public class AlterActionTest {
 	}
 	
 	@Test
-	public final void testIsParsableByInteger(){
+	public final void testIsParsableByInteger() {
 		AlterAction action = new AlterAction();
-		  Definition def=new Definition();
+		  Definition def = new Definition();
     	 def.setType(BYTE);
 		assertTrue(action.isParsableByInteger(def));		
 
-		def.setType( FLAG);
+		def.setType(FLAG);
 		assertFalse(action.isParsableByInteger(def));		
 
 		
-		def.setType( INT);
+		def.setType(INT);
 		assertTrue(action.isParsableByInteger(def));		
 
 		def.setType(LONG_STRING);
