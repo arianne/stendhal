@@ -602,11 +602,27 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * 
 	 * @param object
 	 *            The object that should be added to the zone
+	 * @param player
+	 * 		The player that dropped the item
+	 */
+	public void add(final RPObject object, final Player player) {
+		add(object, player, true);
+	}
+	
+	/**
+	 * Adds an object to the ground.
+	 * 
+	 * @param object
+	 *            The object that should be added to the zone
 	 * @param expire
 	 *            True if the item should expire according to its normal behaviour, 
 	 *            false otherwise
 	 */
-	public synchronized void add(final RPObject object, final boolean expire) {
+	public void add(final RPObject object, final boolean expire) {
+		add(object, null, expire);
+	}
+	
+	private synchronized void add(final RPObject object, final Player player, final boolean expire) {
 		/*
 		 * Assign [zone relative] ID info. TODO: Move up to MarauroaRPZone
 		 */
@@ -615,7 +631,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (object instanceof Item) {
 			final Item item = (Item) object;
-			item.onPutOnGround(expire);
+			if (player != null) {
+				// let item decide what to do when it's thrown by a player
+				item.onPutOnGround(player);
+			} else {
+				// otherwise follow expire
+				item.onPutOnGround(expire);
+			}
 			itemsOnGround.add(item);
 		}
 
