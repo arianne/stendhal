@@ -1894,6 +1894,17 @@ public class Player extends RPEntity {
 		return has(LASTPLAYERKILL);
 	}
 
+	/**
+	 * Returns the time the player last did a player kill.
+	 * 
+	 * @return time in milliseconds
+	 */
+	public long getLastPlayerKillTime() {
+		if (has(LASTPLAYERKILL)) {
+			return (long) Float.parseFloat(get(LASTPLAYERKILL));
+		}
+		return -1;
+	}
 
 	public void rehabilitate() {
 		remove(LASTPLAYERKILL);
