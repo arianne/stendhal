@@ -1,7 +1,15 @@
 Changelog
 ---------
 0.70
-- constant change/time unit for monster spawning
+- constant change/time unit for monster spawning, for same average respawn time but no memory effect
+- minimap shows protected areas as pale green
+- away and grumpy message added to player description on 'Look'
+- player killers marked with an icon
+- healers won't heal player killers
+- using a balloon within 6 hours of using the last decreases the time on 7 kika to 5 mins
+- using rainbow beans within 6 hours of using the last makes you sick
+- although snowballs and vomit are missiles, they don't show stats now
+- immortal sword redrawn
 
 0.69
 - 7 kikareukin clouds added
