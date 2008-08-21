@@ -79,16 +79,11 @@ public class TelepathNPC implements ZoneConfigurator {
 
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						       	if ((player.getLastPVPActionTime() > System.currentTimeMillis()
-											- MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
-									// player attacked another within the last week
-									engine.say("You will have to abstain from even attacking other people for a full week. And remember, I will know if you even think of doing it!");
-								} else if ((player.getLastPlayerKillTime() > System.currentTimeMillis()
-											- 3 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
-									// player did a player kill within the last 3 weeks
-									long timeRemaining = player.getLastPlayerKillTime() - System.currentTimeMillis() 
-										+ 3 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-									engine.say("Your last victim hasn't forgotten that you killed them, and neither have I. Come back in " 
-											   + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ", and we will see how sorry you are.");
+											- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
+									// player attacked another within the last two weeks
+									long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis() 
+										+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+									engine.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
 								} else if (player.getKarma() < 5) {
 									// player does not have much good karma
 									engine.say("They say what goes around, comes around. A good thing will happen for you when you have good karma again. Which means you, in turn, must do a good deed for someone else. Come back when your karma is better.");
