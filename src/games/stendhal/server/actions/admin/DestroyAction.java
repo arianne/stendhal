@@ -3,6 +3,7 @@ package games.stendhal.server.actions.admin;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
@@ -65,17 +66,18 @@ public class DestroyAction extends AdministrationAction {
 				((Creature) inspected).clearDropItemList();
 			} 
 			((RPEntity) inspected).onDead(player);
-		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood)) {
+		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood) || (inspected instanceof Corpse)) {
 			zone.remove(inspected);
-		} else if (inspected instanceof Corpse) {
-			Corpse corpse = (Corpse) inspected;
-			TurnNotifier.get().dontNotify(corpse);
-			zone.remove(corpse);
 		} else {
 			player.sendPrivateText("You can't remove this type of entity");
 			return;
 		}
-
+	
+		if (inspected instanceof TurnListener) {
+			TurnListener listener = (TurnListener) inspected;
+			TurnNotifier.get().dontNotify(listener);
+		}
+	
 		String clazz = inspected.getRPClass().getName();
 		String name = "";
 		 
