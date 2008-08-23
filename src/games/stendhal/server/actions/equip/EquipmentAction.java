@@ -196,6 +196,15 @@ public class EquipmentAction implements ActionListener {
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
+		
+		if (entity instanceof Item) {
+			final Item itemobject = (Item) entity;
+				if(itemobject.isBound() && dest.isTradingTable(entity,player)) {
+					player.sendPrivateText("You cannot trade items which are player bound to yourself as the other player cannot use them.");
+					logger.warn(player.getName() + " was trying to place a bound object on the semos bank trading table.");
+					return;
+				}
+		}
 
 		if (source.moveTo(dest, player)) {
 			if (entity instanceof Item) {
