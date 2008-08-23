@@ -1,6 +1,5 @@
 package utilities;
 
-import utilities.RPClass.ItemTestHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
@@ -17,11 +16,19 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+
+import java.util.List;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import org.apache.log4j.Logger;
+
+import utilities.RPClass.ItemTestHelper;
+
 public abstract class PlayerTestHelper {
+	private static Logger logger = Logger.getLogger(PlayerTestHelper.class);
 
 	/**
 	 * Create a named player.
@@ -295,6 +302,13 @@ public abstract class PlayerTestHelper {
 
 		if (!RPClass.hasRPClass("creature")) {
 			Creature.generateRPClass();
+		}
+	}
+
+	public static void dumpQuests(Player player) {
+		List<String> quests = player.getQuests();
+		for (String quest : quests) {
+			logger.info(quest + "=" + player.getQuest(quest));
 		}
 	}
 }
