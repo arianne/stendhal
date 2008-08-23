@@ -100,9 +100,18 @@ public class PushAction implements ActionListener {
 				return false;
 			}
 		}
+		
+		// players cannot push rp entities with area larger than 4
+		/* I (kymara) looked in java api for Rectangle2D and couldn't find how to
+		* get the value for area so i have done w * h . I guessed at .size() but didn't work 
+		* if this is ok please delete these comments */
+		if (rpEntity.getArea().getWidth() * rpEntity.getArea().getHeight() > 4) {
+			player.sendPrivateText("You're strong, but not that strong!");
+			return false;
+		}
 
 		// the number of pushes is limited per time and the player
-		// must be in range
+		// must be in range. 
 		return (player.canPush(rpEntity) && player.nextTo(rpEntity));
 	}
 
