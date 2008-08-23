@@ -64,7 +64,7 @@ class PlayerRPClass {
 	/** these items should be bound.*/
 	private static final List<String> ITEMS_TO_BIND = Arrays.asList(
 			"dungeon silver key", "lich gold key", "trophy helmet",
-			"lucky charm", "soup");
+			"lucky charm");
 
 	public static final String DEFAULT_ENTRY_ZONE = "int_semos_guard_house";
 	public static final String RESET_ENTRY_ZONE = "int_semos_townhall";
