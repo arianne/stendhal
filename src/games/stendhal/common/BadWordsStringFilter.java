@@ -76,10 +76,10 @@ public class BadWordsStringFilter {
 
 	private Map<String, List<String>> buildReplacements() {
 		Map<String,List<String>> replacement = new HashMap<String, List<String>>();
-		replacement.put("a",Arrays.asList("4"));
-		replacement.put("i",Arrays.asList("1"));
-		replacement.put("s",Arrays.asList("5"));
-		replacement.put("a",Arrays.asList("3"));
+		replacement.put("a", Arrays.asList("4"));
+		replacement.put("i", Arrays.asList("1"));
+		replacement.put("s", Arrays.asList("5"));
+		replacement.put("a", Arrays.asList("3"));
 		return replacement;
 	}
 
@@ -105,10 +105,10 @@ public class BadWordsStringFilter {
 		return false;
 	}
 
-	public String censorBadWords(final String mixedText) {
-		String returnString = mixedText;
+	public String censorBadWords(final String text) {
+		String returnString = text;
 		for(String replacer : this.badWords) {
-			returnString = returnString.replaceAll(replacer,"*CENSORED*");
+			returnString = returnString.replaceAll(replacer, "*CENSORED*");
 		}
 		return returnString;
 	}
