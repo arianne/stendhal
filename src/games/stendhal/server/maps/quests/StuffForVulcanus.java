@@ -15,9 +15,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: The immortal sword forging.
@@ -33,6 +31,7 @@ import java.util.List;
  * <li> He offers to forge a immortal sword for you if you bring him what it
  * needs.
  * <li> You give him all what he ask you.
+ * <li> He tells you you must have killed a giant to get the shield
  * <li> Vulcanus forges the immortal sword for you
  * </ul>
  * 
@@ -322,30 +321,4 @@ public class StuffForVulcanus extends AbstractQuest {
 		step_3();
 	}
 
-	@Override
-	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("FIRST_CHAT");
-		final String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
-		if ((questState.equals("start") && player.isEquipped("goblet"))
-				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
-		}
-		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
-			res.add("FORGING");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
-		}
-		return res;
-	}
 }
