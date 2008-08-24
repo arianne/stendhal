@@ -1,0 +1,116 @@
+package games.stendhal.common;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class BadWordsStringFilter {
+
+	private static final String QUESTION_MARK = "?";
+
+	private static final String CLOSE_BRACKET = "]";
+
+	private static final String OPEN_BRACKET = "[";
+	
+	private static final String WORD_BOUNDARY = "\\b";
+
+	private final List<String> badWords;
+	
+	private final Map<String,List<String>> possibleLetterReplacements = buildReplacements();
+	private final Set<String> possibleInterLetterFillings = buildInterLetterFillings();
+
+	public BadWordsStringFilter(List<String> badWords) {
+		this.badWords = new LinkedList<String>();
+		for(String word : badWords) {
+			this.badWords.add(this.buildRegEx(word));
+		}
+	}
+
+	private String buildRegEx(final String word) {
+		StringBuilder sb = new StringBuilder();
+		String lowerCaseWord = word.toLowerCase();
+		sb.append(WORD_BOUNDARY);
+		for (int i = 0; i < word.length(); i++) {
+			sb.append(OPEN_BRACKET);
+			char currentChar = lowerCaseWord.charAt(i);
+			sb.append(currentChar);
+			if (this.possibleLetterReplacements.containsKey(Character.toString(currentChar))) {
+				for (String replacer : this.possibleLetterReplacements.get(Character.toString(currentChar))) {
+					sb.append(replacer);
+				}
+			}
+			sb.append(CLOSE_BRACKET);
+			if (i<word.length()-1) {
+				sb.append(this.buildPossibleInterLetterFilling());
+			}
+		}
+		sb.append(WORD_BOUNDARY);
+		return sb.toString();
+	}
+
+	private String buildPossibleInterLetterFilling() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(OPEN_BRACKET);
+		for (String filler : this.possibleInterLetterFillings) {
+			sb.append(filler);
+		}
+		sb.append(CLOSE_BRACKET);
+		sb.append(QUESTION_MARK);
+		return sb.toString();
+	}
+
+	private Set<String> buildInterLetterFillings() {
+		Set<String> fillings = new HashSet<String>();
+		fillings.add(".");
+		fillings.add("_");
+		fillings.add("-");
+		return fillings ;
+	}
+
+	private Map<String, List<String>> buildReplacements() {
+		Map<String,List<String>> replacement = new HashMap<String, List<String>>();
+		replacement.put("a",Arrays.asList("4"));
+		replacement.put("i",Arrays.asList("1"));
+		replacement.put("s",Arrays.asList("5"));
+		replacement.put("a",Arrays.asList("3"));
+		return replacement;
+	}
+
+	public boolean containsBadWord (final String text) {
+		StringTokenizer st = new StringTokenizer(text);
+		while (st.hasMoreTokens()) {
+			if(this.isBadWord(st.nextToken())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isBadWord (final String word) {
+		String lowerCaseWord = word.toLowerCase();
+		for(String badWord:this.badWords) {
+			Pattern p = Pattern.compile(badWord);
+			Matcher m = p.matcher(lowerCaseWord);
+			if (m.matches()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String censorBadWords(final String mixedText) {
+		String returnString = mixedText;
+		for(String replacer : this.badWords) {
+			returnString = returnString.replaceAll(replacer,"*CENSORED*");
+		}
+		return returnString;
+	}
+
+}
