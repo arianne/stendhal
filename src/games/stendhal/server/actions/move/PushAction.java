@@ -92,12 +92,15 @@ public class PushAction implements ActionListener {
 			return false;
 		}
 
-		// prevent pushing an rpEntity off an item
-		final Set<Item> items = player.getZone().getItemsOnGround();
-		for (final Item item : items) {
-			if (rpEntity.getArea().intersects(item.getArea())) {
-				player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + ".");
-				return false;
+		// prevent pushing a player off an ite
+		if (rpEntity instanceof Player) {
+			// prevent pushing a player off an item
+			final Set<Item> items = player.getZone().getItemsOnGround();
+			for (final Item item : items) {
+				if (rpEntity.getArea().intersects(item.getArea())) {
+					player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + ".");
+					return false;
+				}
 			}
 		}
 		
