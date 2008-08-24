@@ -41,7 +41,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		npc.addReply(Arrays.asList("oil", "can of oil"), "Oh, fishermen supply us with that.");
 
 		npc.addHelp("If you bring me #wood and #'iron ore', I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
-		npc.addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
+		npc.addJob("I am a blacksmith. I #cast iron, and #trade tools.");
 		npc.addGoodbye();
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("selltools")));
 
