@@ -81,8 +81,7 @@ public class StendhalClient extends ClientFramework {
 
 	protected IGameScreen screen;
 
-	// protected PerceptionListenerMulticaster listeners;
-
+	private final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 	private String userName = "";
 
 	private final UserContext userContext;
@@ -98,6 +97,8 @@ public class StendhalClient extends ClientFramework {
 	 * Whether the client is in a batch update.
 	 */
 	private boolean batchUpdate;
+
+	private StendhalPerceptionListener stendhalPerceptionListener;
 
 	public void generateWhoPlayers(final String text) {
 
@@ -123,7 +124,17 @@ public class StendhalClient extends ClientFramework {
 		}
 
 	}
-
+	
+	
+	public void addPerceptionListener(final IPerceptionListener listener) {
+		perceptionDispatch.register(listener);
+	}
+	
+	public void removePerceptionListener(final IPerceptionListener listener) {
+		perceptionDispatch.register(listener);
+	}
+	
+	
 	public static StendhalClient get() {
 		if (client == null) {
 			client = new StendhalClient(LOG4J_PROPERTIES);
@@ -143,8 +154,11 @@ public class StendhalClient extends ClientFramework {
 		userContext = new UserContext(gameObjects);
 
 		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
-
-		handler = new PerceptionHandler(new StendhalPerceptionListener());
+		PerceptionToObject po = new PerceptionToObject();
+		po.setObjectFactory(new ObjectFactory());
+		perceptionDispatch.register(po);
+		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatch);
+		handler = new PerceptionHandler(stendhalPerceptionListener);
 
 		cache = new Cache();
 		cache.init();
@@ -594,28 +608,40 @@ public class StendhalClient extends ClientFramework {
 	//
 
 	class StendhalPerceptionListener implements IPerceptionListener {
-
+		
+		private PerceptionDispatcher dispatch = new PerceptionDispatcher();
+		
+		public StendhalPerceptionListener(final PerceptionDispatcher dispatch) {
+			this.dispatch = dispatch;
+			
+		}
+		
 		public boolean onAdded(final RPObject object) {
+			dispatch.onAdded(object);
 			rpobjDispatcher.dispatchAdded(object, isUser(object));
 			return false;
 		}
 
 		public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
+			dispatch.onModifiedAdded(object, changes);
 			rpobjDispatcher.dispatchModifyAdded(object, changes, false);
 			return true;
 		}
 
 		public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
+			dispatch.onModifiedDeleted(object, changes);
 			rpobjDispatcher.dispatchModifyRemoved(object, changes, false);
 			return true;
 		}
 
 		public boolean onDeleted(final RPObject object) {
+			dispatch.onDeleted(object);
 			rpobjDispatcher.dispatchRemoved(object, isUser(object));
 			return false;
 		}
 
 		public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
+			dispatch.onMyRPObject(added, deleted);
 			try {
 				RPObject.ID id = null;
 
@@ -652,6 +678,7 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		public void onSynced() {
+			dispatch.onSynced();
 			times = 0;
 
 			StendhalUI.get().setOffline(false);
@@ -664,6 +691,7 @@ public class StendhalClient extends ClientFramework {
 		private int times;
 
 		public void onUnsynced() {
+			dispatch.onUnsynced();
 			times++;
 
 			if (times > 3) {
@@ -675,18 +703,22 @@ public class StendhalClient extends ClientFramework {
 
 		public void onException(final Exception e,
 				final marauroa.common.net.message.MessageS2CPerception perception) {
+			dispatch.onException(e, perception);
 			logger.error("perception caused an error: " + perception, e);
 			System.exit(-1);
 		}
 
 		public boolean onClear() {
+			dispatch.onClear();
 			return false;
 		}
 
 		public void onPerceptionBegin(final byte type, final int timestamp) {
+			dispatch.onPerceptionBegin(type, timestamp);
 		}
 
 		public void onPerceptionEnd(final byte type, final int timestamp) {
+			dispatch.onPerceptionEnd(type, timestamp);
 		}
 	}
 

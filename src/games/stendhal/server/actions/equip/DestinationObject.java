@@ -237,8 +237,8 @@ class DestinationObject extends MoveableObject {
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
 			}
-
-			SingletonRepository.getRPWorld().modify(parent);
+			System.out .println(entity.getID().getObjectID() + ":" + entity);
+			SingletonRepository.getRPWorld().modify(parent); 
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.

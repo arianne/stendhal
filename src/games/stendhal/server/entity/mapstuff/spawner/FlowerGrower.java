@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
@@ -139,6 +140,7 @@ public class FlowerGrower extends VegetableGrower {
 		} else {
 			if (getZone() != null) {
 				getZone().remove(this);
+				
 				notifyWorldAboutChanges();
 			}
 
