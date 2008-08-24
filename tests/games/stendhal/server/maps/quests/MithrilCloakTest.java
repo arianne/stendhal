@@ -25,7 +25,6 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -71,14 +70,21 @@ public class MithrilCloakTest {
 		final AbstractQuest quest = new MithrilCloak();
 		// Pdiddi's hi response is defined in RainbowBeans
 		final AbstractQuest quest2 = new RainbowBeans();
+		// player may be mid through cloak collecting quests for josephine
+		final AbstractQuest quest3 = new CloakCollector();
+		final AbstractQuest quest4 = new CloakCollector2();
 		quest.addToWorld();
 		quest2.addToWorld();
-		
+		quest3.addToWorld();
+		quest4.addToWorld();
 	}
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
 		player.setQuest(shieldQuestSlot, "done");
+		// in this test we choose a player who has finished the first cloak collector 
+		// quest for josephine and is mid way through the second
+		// i.e. chose the most complex text case we could think of
 		player.setQuest("cloaks_collector", "done");
 		player.setQuest("cloaks_collector_2", ";red cloak;elvish cloak;");
 	}
@@ -533,8 +539,7 @@ public class MithrilCloakTest {
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 	}
-	@Test
-	@Ignore 
+	@Test 
 	public void testCloakForJosephine() {
 		player.setQuest(questSlot,"taking_striped_cloak"); 
 		npc = SingletonRepository.getNPCList().get("Josephine");
@@ -568,60 +573,59 @@ public class MithrilCloakTest {
 		
 	}
 	@Test
-	@Ignore 
 	public void testMakingClasp() {
-		
+		player.setQuest(questSlot,"need_clasp"); 
 		npc = SingletonRepository.getNPCList().get("Ida");
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "task");
-		assertEquals("You haven't got the clasp from Pedinghaus yet. As soon as I have that your cloak will be finished!", npc.get("text"));
-				
+		assertEquals("You haven't got the clasp from #Pedinghaus yet. As soon as I have that your cloak will be finished!", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
+		
 		npc = SingletonRepository.getNPCList().get("Pedinghaus");
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to cast you a mithril bar, just say the word.", npc.get("text"));
+		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.", npc.get("text"));
 		en.step(player, "clasp");
 		assertEquals("A clasp? Whatever you say! I am still so happy from that letter you brought me, it would be my pleasure to make something for you. I only need one mithril bar. Do you have it?", npc.get("text"));
 		en.step(player, "no");
 		assertEquals("Well, if you should like me to cast any mithril bars just say.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
-		en.step(player, "hi");
-
-		// -----------------------------------------------
-		Item item = ItemTestHelper.createItem("mithril bar", 1);
-		player.getSlot("bag").add(item);
 		
-		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to cast you a mithril bar, just say the word.", npc.get("text"));
+		en.step(player, "hi");	
+		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.", npc.get("text"));
 		en.step(player, "clasp");
 		assertEquals("A clasp? Whatever you say! I am still so happy from that letter you brought me, it would be my pleasure to make something for you. I only need one mithril bar. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("You can't fool an old wizard, and I'd know mithril when I see it. Come back when you have at least one bar.", npc.get("text"));
 		en.step(player, "bye");
-
-		// -----------------------------------------------
-
 		assertEquals("Bye.", npc.get("text"));
+		
 		en.step(player, "hi");
-
-		// -----------------------------------------------
-
-		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to cast you a mithril bar, just say the word.", npc.get("text"));
+		Item item = ItemTestHelper.createItem("mithril bar", 1);
+		player.getSlot("bag").add(item);
+		
+		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.", npc.get("text"));
 		en.step(player, "clasp");
 		assertEquals("A clasp? Whatever you say! I am still so happy from that letter you brought me, it would be my pleasure to make something for you. I only need one mithril bar. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in 60 minutes and hopefully your clasp will be ready!", npc.get("text"));
+		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
-		// [22:27] Changed the state of quest 'mithril_cloak' from 'forgingclasp;1217975068185' to 'forgingclasp;121797'
+		
+		player.setQuest(questSlot,"forgingclasp;0");
 		en.step(player, "hi");
-		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to cast you a mithril bar, just say the word.", npc.get("text"));
+		assertEquals("Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.", npc.get("text"));
 		en.step(player, "clasp");
 		assertEquals("Here, your clasp is ready!", npc.get("text"));
 		// [22:27] jammyjam earns 100 experience points.
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
 		
 		npc = SingletonRepository.getNPCList().get("Ida");
 		en = npc.getEngine();
