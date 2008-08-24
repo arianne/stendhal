@@ -1218,13 +1218,24 @@ public class Player extends RPEntity {
 	 * of any other player.
 	 * 
 	 * @param name of the creature to check.
-	 * @return true iff this player has ever killed this creature on his own.
+	 * @return true iff this player has ever killed this creature.
 	 */
 	public boolean hasKilled(final String name) {
 		return killRec.hasKilled(name);
 	}
 
 
+	/**
+	 * Checks if the player has ever 'solo killed' a creature, i.e. without the help
+	 * of any other player.
+	 * 
+	 * @param name of the creature to check.
+	 * @return true iff this player has ever killed this creature on his own.
+	 */
+	public boolean hasKilledSolo(final String name) {
+		return killRec.hasKilledSolo(name);
+	}
+	
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
