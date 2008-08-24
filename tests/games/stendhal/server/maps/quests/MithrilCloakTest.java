@@ -50,6 +50,7 @@ public class MithrilCloakTest {
 		MockStendlRPWorld.get();
 		
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_ados_sewing_room"));
 		new games.stendhal.server.maps.ados.sewingroom.SeamstressNPC().configureZone(zone, null);
 		new games.stendhal.server.maps.ados.twilightzone.SeamstressNPC().configureZone(zone, null); 
 		new BlacksmithNPC().configureZone(zone, null);
@@ -68,7 +69,10 @@ public class MithrilCloakTest {
 		npcConf.createDialog(npc);
 		
 		final AbstractQuest quest = new MithrilCloak();
+		// Pdiddi's hi response is defined in RainbowBeans
+		final AbstractQuest quest2 = new RainbowBeans();
 		quest.addToWorld();
+		quest2.addToWorld();
 		
 	}
 	@Before
@@ -311,10 +315,10 @@ public class MithrilCloakTest {
 		assertEquals("Wow you got the mithril fabric , that took longer than I expected! Now, to cut it I need magical #scissors, if you would go get them from #Hogart. I will be waiting for you to return.", npc.get("text"));
 		en.step(player, "hogart");
 		assertEquals("He's that grumpy old dwarf in the Or'ril mines. I already sent him a message saying I wanted some new scissors but he didn't respond. Well, what he lacks in people skills he makes up for in his metal work.", npc.get("text"));
-		
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 	}
 	@Test
-	@Ignore 
 	public void testGettingTools() {
 		npc = SingletonRepository.getNPCList().get("Hogart");
 		en = npc.getEngine();
@@ -327,6 +331,8 @@ public class MithrilCloakTest {
 		assertTrue(npc.get("text").startsWith("Ah yes, Ida sent me a message about some magical scissors. I need one each of an iron bar and a mithril bar, and also "));
 		en.step(player, "eggshells");
 		assertEquals("They must be from dragon eggs. I guess you better find someone who dares to hatch dragons!", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("So long. I bet you won't sleep so well tonight.", npc.get("text"));
 		
 		npc = SingletonRepository.getNPCList().get("Terry");
 		en = npc.getEngine();
@@ -361,6 +367,7 @@ public class MithrilCloakTest {
 		en.step(player, "yes");
 		assertEquals("Good. It will take me some time to make these, come back in 10 minutes to get your scissors.", npc.get("text"));
 		// [22:17] jammyjam earns 100 experience points.
+		en.step(player, "bye");
 		assertEquals("So long. I bet you won't sleep so well tonight.", npc.get("text"));
 		// [22:19] Changed the state of quest 'mithril_cloak' from 'makingscissors;1217974651141' to 'makingscissors;10000'
 		player.setQuest(questSlot,"makingscissors;1");
@@ -369,6 +376,8 @@ public class MithrilCloakTest {
 		en.step(player, "scissors");
 		assertEquals("Ah, thanks for reminding me. Here, Ida's scissors are ready. You better take them to her next as I don't know what she wanted them for.", npc.get("text"));
 		player.setQuest(questSlot,"got_scissors");
+		en.step(player, "bye");
+		assertEquals("So long. I bet you won't sleep so well tonight.", npc.get("text"));
 		
 		npc = SingletonRepository.getNPCList().get("Ida");
 		en = npc.getEngine();
@@ -380,6 +389,8 @@ public class MithrilCloakTest {
 		// [22:19] jammyjam earns 100 experience points.
 		en.step(player, "ritati");
 		assertEquals("He's somewhere in the abandoned keep in the mountains north east from here.", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 		
 		npc = SingletonRepository.getNPCList().get("Ritati Dragontracker");
 		en = npc.getEngine();
@@ -398,7 +409,7 @@ public class MithrilCloakTest {
 		
 		npc = SingletonRepository.getNPCList().get("Ida");
 		en = npc.getEngine();
-		
+		player.setQuest(questSlot,"told_joke;1");
 		item = ItemTestHelper.createItem("magical needle", 1);
 		player.getSlot("bag").add(item);
 		
@@ -408,12 +419,15 @@ public class MithrilCloakTest {
 		assertEquals("Looks like you found Ritatty then, good. I'll start on the cloak now! A seamstress needs to take her time, so return in 24 hours.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
-		player.setQuest(questSlot,"sewing;100;2");
+		
+		player.setQuest(questSlot,"sewing;1;2;1");
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "needle");
 		en.step(player, "task");
 		assertEquals("These magical needles are so fragile, I'm sorry but you're going to have to get me another, the last one broke. Hopefully Ritati still has plenty.", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 		
 		npc = SingletonRepository.getNPCList().get("Ritati Dragontracker");
 		en = npc.getEngine();
@@ -430,6 +444,7 @@ public class MithrilCloakTest {
 		
 		item = ItemTestHelper.createItem("magical needle", 1);
 		player.getSlot("bag").add(item);
+		player.setQuest(questSlot,"told_joke;1;1");
 		
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
@@ -437,12 +452,15 @@ public class MithrilCloakTest {
 		assertEquals("I'm really sorry about the previous needle breaking. I'll start work again on your cloak, please return in another 24 hours.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
+		
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "task");
 		assertEquals("I'm still sewing your cloak, come back in 24 hours - and don't rush me, or I'm more likely to break the needle.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
+		
+		player.setQuest(questSlot,"sewing;1;1;1");
 		// [22:21] Changed the state of quest 'mithril_cloak' from 'sewing;1217974895737;1' to 'sewing;10008;1'
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
@@ -456,10 +474,10 @@ public class MithrilCloakTest {
 		assertEquals("Oh, I'm too confused... I can't tell you anything about him...", npc.get("text"));
 		en.step(player, "twilight");
 		assertEquals("What's happening to me? I'm feverish .. I see twilight .. you can't understand unless you visit me here ... you must ask #Pdiddi how to get to the #twilight.", npc.get("text"));
-		
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 	}
 	@Test
-	@Ignore 
 	public void testTwilightZone() {
 		npc = SingletonRepository.getNPCList().get("Pdiddi");
 		en = npc.getEngine();
@@ -469,7 +487,7 @@ public class MithrilCloakTest {
 		player.getSlot("bag").add(item);
 		
 		en.step(player, "hi");
-		assertEquals("SHHH! Don't want all n' sundry knowin' wot I deal in.", npc.get("text"));
+		assertEquals("SHHH! Don't want all n' sundry knowin' wot I #deal in.", npc.get("text"));
 		en.step(player, "twilight");
 		assertEquals("Keep it quiet will you! Yeah, I got moss, it's 3000 money each. How many do you want?", npc.get("text"));
 		en.step(player, "1");
@@ -494,7 +512,7 @@ public class MithrilCloakTest {
 		en.step(player, "no");
 		assertEquals("I'm getting sicker ...", npc.get("text"));
 		en.step(player, "hi");
-		assertEquals("Is that elixir for me? If yes I will take it immediately. You must return to see me again in my normal state.", npc.get("text"));
+		assertEquals("Is that elixir for me? If #yes I will take it immediately. You must return to see me again in my normal state.", npc.get("text"));
 		en.step(player, "yes");
 	
 		npc = SingletonRepository.getNPCList().get("Ida");
@@ -504,7 +522,7 @@ public class MithrilCloakTest {
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "task");
 		assertEquals("When I was sick I got behind on my other jobs. I promised #Josephine I'd make her a stripey cloak but I have no time. So please, I'm relying on you to buy one and take it to her. They sell blue striped cloaks in Ados abandoned keep. Thank you!", npc.get("text"));
-		en.step(player, "josehine");
+		en.step(player, "josephine");
 		assertEquals("Surely you know Josephine? That flirty flighty girl from Fado, bless her heart.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
@@ -512,7 +530,8 @@ public class MithrilCloakTest {
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "task");
 		assertEquals("When I was sick I got behind on my other jobs. I promised #Josephine I'd make her a stripey cloak but I have no time. So please, I'm relying on you to buy one and take it to her. They sell blue striped cloaks in Ados abandoned keep. Thank you!", npc.get("text"));
-		
+		en.step(player, "bye");
+		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 	}
 	@Test
 	@Ignore 
