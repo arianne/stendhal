@@ -236,7 +236,6 @@ public final class EntityMap {
 	 */
 	public static Class< ? extends IEntity> getClass(final String type,
 			final String eclass, final String subClass) {
-		// System.out.print(type+" : "+eclass +" : "+subClass +"=");
 		Class< ? extends IEntity> result = entityMap
 				.get(new Triple<String, String, String>(type, eclass, subClass));
 		if (result == null) {
@@ -247,7 +246,6 @@ public final class EntityMap {
 			result = entityMap.get(new Triple<String, String, String>(type,
 					null, null));
 		}
-		// System.out.println(result.getName());
 		return result;
 	}
 }
