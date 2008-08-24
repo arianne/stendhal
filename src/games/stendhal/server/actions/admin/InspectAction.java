@@ -23,7 +23,7 @@ public class InspectAction extends AdministrationAction {
 		final Entity target = getTarget(player, action);
 
 		if (target == null) {
-			final String text = "Entity not found";
+			final String text = "Entity not found for action" + action;
 			player.sendPrivateText(text);
 			return;
 		}
