@@ -130,15 +130,9 @@ public class SoundMaster implements Runnable, WorldListener {
 
 	// commented for release
 	public void zoneEntered(final String zoneName) {
-		// System.out.println(zoneName);
-		// bg = new Background(zoneName);
-		// bg.run();
 	}
 
 	public void zoneLeft(final String zoneName) {
-		// System.out.println(zoneName);
-		// bg.stop();
-		// bg=null;
 	}
 
 	public static void setMute(final boolean on) {
