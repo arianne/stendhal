@@ -263,25 +263,6 @@ public class PerceptionToObjectTest {
 		assertFalse(object2.has(attribute));
 	}
 
-	@Test
-	public final void testOnPerceptionBegin() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testOnPerceptionEnd() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testOnSynced() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testOnUnsynced() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public final void testRegisterUnregister() {
