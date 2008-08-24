@@ -15,9 +15,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -35,6 +33,7 @@ import java.util.TreeMap;
  * <li> He offers to forge a mithril shield for you if you bring him what he
  * needs.
  * <li> You give him all he asks for.
+ * <li> Baldemar checks if you have ever killed a black giant alone, or not
  * <li> Baldemar forges the shield for you
  * </ul>
  * 
@@ -341,14 +340,14 @@ public class StuffForBaldemar extends AbstractQuest {
 								itemData);
 					}
 					
-					if (player.hasKilled("black giant") && !missingSomething) {
+					if (player.hasKilledSolo("black giant") && !missingSomething) {
 						engine.say("You've brought everything I need to forge the shield. Come back in "
 							+ REQUIRED_MINUTES
 							+ " minutes and it will be ready.");
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
-						if (!player.hasKilled("black giant") && !missingSomething) {
-							engine.say("This shield can only be given to those who have killed a black giant.");
+						if (!player.hasKilledSolo("black giant") && !missingSomething) {
+							engine.say("This shield can only be given to those who have killed a black giant, and without the help of others.");
 						}
 
 						StringBuilder sb = new StringBuilder(30);
@@ -478,33 +477,6 @@ public class StuffForBaldemar extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
-	}
-
-	@Override
-	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("FIRST_CHAT");
-		final String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
-		if ((questState.equals("start") && player.isEquipped("goblet"))
-				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
-		}
-		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
-			res.add("FORGING");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
-		}
-		return res;
 	}
 	
 }
