@@ -13,6 +13,7 @@
 
 package games.stendhal.client.gui;
 
+import games.stendhal.common.Outfits;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.sprite.Sprite;
@@ -59,18 +60,6 @@ public class OutfitDialog extends JDialog {
 
 	private static final long serialVersionUID = 4628210176721975735L;
 
-	/*
-	 * Edit these fields to add new outfits. Note that it counts from 0 and this
-	 * is the total number here
-	 */
-	private static final int HEAD_OUTFITS = 21;
-
-	private static final int CLOTHES_OUTFIT = 52;
-
-	private static final int HAIR_OUTFITS = 43;
-
-	private static final int BODY_OUTFITS = 15;
-
 	private static final int PLAYER_WIDTH = 48;
 
 	private static final int PLAYER_HEIGHT = 64;
@@ -106,8 +95,8 @@ public class OutfitDialog extends JDialog {
 	private final OutfitStore ostore = OutfitStore.get();
 
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
-		this(parent, title, outfit, HAIR_OUTFITS, HEAD_OUTFITS, BODY_OUTFITS,
-				CLOTHES_OUTFIT);
+		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
+				Outfits.CLOTHES_OUTFITS);
 	}
 
 	/**
