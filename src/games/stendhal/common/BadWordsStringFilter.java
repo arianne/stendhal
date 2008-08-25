@@ -76,10 +76,18 @@ public class BadWordsStringFilter {
 
 	private Map<String, List<String>> buildReplacements() {
 		Map<String,List<String>> replacement = new HashMap<String, List<String>>();
-		replacement.put("a", Arrays.asList("4"));
-		replacement.put("i", Arrays.asList("1"));
-		replacement.put("s", Arrays.asList("5"));
-		replacement.put("a", Arrays.asList("3"));
+		String[] aArray = {"4","@"};
+		replacement.put("a", Arrays.asList(aArray));
+		String[] iArray = {"1"};
+        replacement.put("i", Arrays.asList(iArray));
+        String[] sArray = {"5"};
+		replacement.put("s", Arrays.asList(sArray));
+		String[] eArray = {"3"};
+		replacement.put("e", Arrays.asList(eArray));
+		String[] lArray = {"7"};
+		replacement.put("l", Arrays.asList(lArray));
+		String [] bArray = {"8"};
+		replacement.put("b", Arrays.asList(bArray));
 		return replacement;
 	}
 
