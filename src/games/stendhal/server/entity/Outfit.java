@@ -1,5 +1,9 @@
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Outfits;
+import games.stendhal.common.Rand;
+
+import org.apache.log4j.Logger;
 /**
  * A data structure that represents the outfit of an RPEntity. This RPEntity can
  * either be an NPC which uses the outfit sprite system, or of a player.
@@ -18,6 +22,9 @@ package games.stendhal.server.entity;
  * 
  */
 public class Outfit {
+
+	/** the logger instance. */
+	private static final Logger logger = Logger.getLogger(Outfit.class);
 
 	/** The hair index, as a value between 0 and 99, or null. */
 	private Integer hair;
@@ -225,8 +232,8 @@ public class Outfit {
 	 * @return true if it is a normal outfit
 	 */
 	public boolean isChoosableByPlayers() {
-		return (hair < 50) && (hair >= 0) && (head < 50) && (head >= 0)
-				&& (dress < 52) && (dress >= 0) && (base < 50) && (base >= 0);
+		return (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
+				&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0) && (base < Outfits.BODY_OUTFITS) && (base >= 0);
 	}
 
 	/**
@@ -236,5 +243,30 @@ public class Outfit {
 	 */
 	public boolean isNaked() {
 		return (dress == null) || dress.equals(0);
+	}
+
+	/**
+	 * Create a random outfit from those choosable by players
+	 *
+	 * @return the new random outfit
+	 *
+ 	 * @author kymara
+	 */
+
+	public static Outfit getRandomOutfit() {
+		int newHair;
+		int newHead;
+		int newDress;
+		int newBase;
+		newHair = Rand.randUniform(1,Outfits.HAIR_OUTFITS-1);
+		newHead = Rand.randUniform(1,Outfits.HEAD_OUTFITS-1);
+		newDress = Rand.randUniform(1,Outfits.CLOTHES_OUTFITS-1);
+		// the hooded dress only looks good if you wear the hood as hair too
+		if (newDress == 42) {
+			newHair = 37;
+		}
+		newBase = Rand.randUniform(1,Outfits.BODY_OUTFITS-1);
+		logger.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
+		return new Outfit(newHair, newHead, newDress, newBase);
 	}
 }
