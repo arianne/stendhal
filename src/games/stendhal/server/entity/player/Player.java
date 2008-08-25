@@ -213,7 +213,6 @@ public class Player extends RPEntity {
 
 		object.put("type", "player");
 		object.put("name", characterName);
-		object.put("outfit", new Outfit().getCode());
 		object.put("base_hp", 100);
 		object.put("hp", 100);
 		object.put("atk", 10);
@@ -221,6 +220,10 @@ public class Player extends RPEntity {
 		object.put("def", 10);
 		object.put("def_xp", 0);
 		object.put("xp", 0);
+
+
+		Outfit randomoutfit = Outfit.getRandomOutfit();
+		object.setOutfit(randomoutfit);
 
 		for (final String slot : Constants.CARRYING_SLOTS) {
 			object.addSlot(slot);
