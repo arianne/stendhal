@@ -1425,12 +1425,12 @@ public class Player extends RPEntity {
 		sb.append(text);
 		final String awayMessage = getAwayMessage();
 		if (awayMessage != null) {
-			sb.append("\nThe player is away and has left a message: ");
+			sb.append("\n" + getTitle() + " is away and has left a message: ");
 			sb.append(awayMessage);
 		}
 		final String grumpyMessage = getGrumpyMessage();
 		if (grumpyMessage != null) {
-			sb.append("\nThe player is grumpy and has left a message: ");
+			sb.append("\n" +  getTitle() + " is grumpy and has left a message: ");
 			sb.append(grumpyMessage);
 		}
 		return (sb.toString());
