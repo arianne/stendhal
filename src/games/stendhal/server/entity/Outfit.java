@@ -246,7 +246,7 @@ public class Outfit {
 	}
 
 	/**
-	 * Create a random outfit from those choosable by players
+	 * Create a random unisex outfit, with a 'normal' face and unisex base
 	 *
 	 * @return the new random outfit
 	 *
@@ -258,14 +258,16 @@ public class Outfit {
 		int newHead;
 		int newDress;
 		int newBase;
-		newHair = Rand.randUniform(1,Outfits.HAIR_OUTFITS-1);
-		newHead = Rand.randUniform(1,Outfits.HEAD_OUTFITS-1);
-		newDress = Rand.randUniform(1,Outfits.CLOTHES_OUTFITS-1);
-		// the hooded dress only looks good if you wear the hood as hair too
-		if (newDress == 42) {
-			newHair = 37;
-		}
-		newBase = Rand.randUniform(1,Outfits.BODY_OUTFITS-1);
+		// Hardcoded hair to choose from the first selection of hairs
+		// which look ok with both goblin face and cute face (later hairs only look right with cute face)
+		newHair = Rand.randUniform(1,26);
+		// Hardcoded head numbers to avoid the cut eye, pink eyes, weird green eyeshadow etc
+		newHead = Rand.randUniform(1,15);
+		// Hardcoded dress numbers from the early outfits before lady player base got introduced
+		// i.e. they are all unisex
+		newDress = Rand.randUniform(1,16);
+		// Hardcoded base numbers, these are the early bodies which were unisex
+		newBase = Rand.randUniform(1,5);
 		logger.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(newHair, newHead, newDress, newBase);
 	}
