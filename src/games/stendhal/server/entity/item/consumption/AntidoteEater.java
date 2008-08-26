@@ -11,9 +11,11 @@ import java.lang.ref.WeakReference;
 class AntidoteEater implements TurnListener {
 
 	WeakReference<Player> ref;
+	private String refName;
 
 	public AntidoteEater(final Player player) {
 		ref = new WeakReference<Player>(player);
+		refName = player.getName();
 	}
 
 	public void onTurnReached(final int currentTurn) {
@@ -31,7 +33,10 @@ class AntidoteEater implements TurnListener {
 		}
 		if (obj instanceof AntidoteEater) {
 			final AntidoteEater other = (AntidoteEater) obj;
-			return ref.get() == other.ref.get();
+			if (ref.get() == null) {
+				return other.ref.get() == null;
+			}
+			return ref.get().equals(other.ref.get());
 
 		} else {
 			return false;
@@ -42,6 +47,6 @@ class AntidoteEater implements TurnListener {
 	@Override
 	public int hashCode() {
 
-		return ref.hashCode();
+		return refName.hashCode();
 	}
 }
