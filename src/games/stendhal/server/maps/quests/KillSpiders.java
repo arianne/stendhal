@@ -60,15 +60,15 @@ public class KillSpiders extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				null,
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
+							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("I already asked you to kill all creatures in the basement!");
-							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
@@ -81,7 +81,6 @@ public class KillSpiders extends AbstractQuest {
 							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							engine.say("Thanks for your help. Now I'm sleeping well again.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
