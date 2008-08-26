@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 /*
- * Inside Semos Tavern - Level 0 (ground floor)
+ * Food and drink seller,  Inside Semos Tavern - Level 0 (ground floor)
+ * Sells the flask required for Tad's quest IntroducePlayers
  */
 public class BarMaidNPC implements ZoneConfigurator {
 	private final ShopList shops = SingletonRepository.getShopList();
@@ -53,7 +54,8 @@ public class BarMaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
+				addReply("flask","If you wish to buy a flask please just tell me: #buy #flask. Or, you can ask what else I #offer.");
+				addJob("I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
