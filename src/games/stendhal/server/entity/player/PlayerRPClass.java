@@ -227,7 +227,9 @@ class PlayerRPClass {
 					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				} else {
 					player.put("release", Debug.VERSION);
-					TutorialNotifier.newrelease(player);
+					if(player.getLevel() >= 2){
+						TutorialNotifier.newrelease(player);
+					}
 				}
 			}
 		} catch (final RuntimeException e) {
