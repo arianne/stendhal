@@ -7,6 +7,7 @@ import java.util.List;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,6 +20,7 @@ public class PathTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		expected = new LinkedList<Node>();
 		expected.add(new Node(0, 0));
 		expected.add(new Node(1, 0));
@@ -37,6 +39,7 @@ public class PathTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		MockStendlRPWorld.reset();
 	}
 
 	@Before

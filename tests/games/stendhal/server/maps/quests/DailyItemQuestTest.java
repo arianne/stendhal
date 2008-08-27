@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.collection.IsIn.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -85,12 +86,14 @@ public class DailyItemQuestTest {
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", npc.get("text"));
 		en.step(player, "task");
-		assertEquals("I can only give you a new quest once a day. Please check back in 24 hours.", npc.get("text"));
+		assertThat(npc.get("text"), 
+				isOneOf("I can only give you a new quest once a day. Please check back in 24 hours.",
+						"I can only give you a new quest once a day. Please check back in 1 day."));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", npc.get("text"));
 
 		// -----------------------------------------------
-		player.setQuest(questSlot,"done;0");
+		player.setQuest(questSlot, "done;0");
 		// [10:51] Changed the state of quest 'daily_item' from 'done;1219834233092;1' to 'done;0' 
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", npc.get("text"));
@@ -102,7 +105,7 @@ public class DailyItemQuestTest {
 		// -----------------------------------------------
 
 		// [10:53] Changed the state of quest 'daily_item' from 'dwarf cloak;1219834342834;0' to 'dwarf cloak;0' 
-		player.setQuest(questSlot,"dwarf cloak;0");
+		player.setQuest(questSlot, "dwarf cloak;0");
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", npc.get("text"));
 		en.step(player, "task");

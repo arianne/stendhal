@@ -39,19 +39,4 @@ public class AntidoteEaterTest {
 		assertEquals(eater1.hashCode(), eater2.hashCode());
 	}
 
-	@Test
-	public void testAntidoteEater() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testOnTurnReached() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
 }

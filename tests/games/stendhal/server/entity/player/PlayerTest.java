@@ -125,7 +125,7 @@ public class PlayerTest {
 		String expectedDescription = "You see " + player.getTitle() + ".\n"
 				+ player.getTitle() + " is level " + player.getLevel()
 				+ " and has been playing " + time + "."
-				+ "\nThe player is away and has left a message: "
+				+ "\nplayer is away and has left a message: "
 				+ player.getAwayMessage();
 		assertThat(description, is(expectedDescription));
 	}
@@ -140,7 +140,7 @@ public class PlayerTest {
 		String expectedDescription = "You see " + player.getTitle() + ".\n"
 				+ player.getTitle() + " is level " + player.getLevel()
 				+ " and has been playing " + time + "."
-				+ "\nThe player is grumpy and has left a message: "
+				+ "\nplayer is grumpy and has left a message: "
 				+ player.getGrumpyMessage();
 		assertThat(description, is(expectedDescription));
 	}
@@ -156,9 +156,9 @@ public class PlayerTest {
 		String expectedDescription = "You see " + player.getTitle() + ".\n"
 				+ player.getTitle() + " is level " + player.getLevel()
 				+ " and has been playing " + time + "."
-				+ "\nThe player is away and has left a message: "
+				+ "\nplayer is away and has left a message: "
 				+ player.getAwayMessage()
-				+ "\nThe player is grumpy and has left a message: "
+				+ "\nplayer is grumpy and has left a message: "
 				+ player.getGrumpyMessage();
 		assertThat(description, is(expectedDescription));
 	}

@@ -133,7 +133,7 @@ public class StuffForBaldemarTest {
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1"); 
 		en.step(bob, "hi");
-		assertEquals("This shield can only be given to those who have killed a black giant.", baldemar.getText());
+		assertEquals("This shield can only be given to those who have killed a black giant, and without the help of others.", baldemar.getText());
 		
 		
 		
@@ -170,7 +170,7 @@ public class StuffForBaldemarTest {
 		en.setCurrentState(ConversationStates.IDLE);
 		en.step(jim, "hi");
 		
-		assertEquals("This shield can only be given to those who have killed a black giant.", baldemar.getText());
+		assertEquals("This shield can only be given to those who have killed a black giant, and without the help of others.", baldemar.getText());
 	}
 	@Test
 	public void testItemData() throws Exception {

@@ -60,7 +60,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.", npc.get("text"));
+		assertEquals("I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food.", npc.get("text"));
 
 		assertTrue(en.step(player, "offer"));
 		assertEquals("I sell beer, wine, flask, cheese, apple, carrot, meat, and ham.", npc.get("text"));

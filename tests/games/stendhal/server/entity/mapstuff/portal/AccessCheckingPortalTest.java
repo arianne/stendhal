@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal.SendMessage;
 import games.stendhal.server.entity.player.Player;
@@ -86,8 +87,9 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
 		final PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.rejected(player);
-		final Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
-				Integer.valueOf(0));
+		TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+		final Set<TurnListener> bla = turnNotifier.getEventListForDebugging().get(
+				Integer.valueOf(turnNotifier.getCurrentTurnForDebugging() + 1));
 		final TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
@@ -103,7 +105,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
 		final Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
-				Integer.valueOf(0));
+				Integer.valueOf(TurnNotifier.get().getCurrentTurnForDebugging() + 1));
 		final TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);

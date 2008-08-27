@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class PerceptionToObjectTest {
@@ -50,6 +51,7 @@ public class PerceptionToObjectTest {
 	public void tearDown() throws Exception {
 	}
 
+	@Ignore
 	@Test
 	public final void testOnAdded() {
 		fail("Not yet implemented");

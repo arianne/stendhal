@@ -176,7 +176,7 @@ public class OutfitTest {
 		of.setBase(50);
 		assertFalse(of.isChoosableByPlayers());
 		of = new Outfit();
-		of.setDress(52);
+		of.setDress(53);
 		assertFalse(of.isChoosableByPlayers());
 		// fail("wont work for any part of outfit == null");
 
