@@ -66,7 +66,7 @@ public class WeeklyItemQuestTest {
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
 		
-		player.setQuest(questSlot,"obsidian;100");
+		player.setQuest(questSlot, "obsidian;100");
 		Item item = ItemTestHelper.createItem("obsidian");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
@@ -90,7 +90,7 @@ public class WeeklyItemQuestTest {
 		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
 
 		// -----------------------------------------------
-		player.setQuest(questSlot,"done;0");
+		player.setQuest(questSlot, "done;0");
 
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
@@ -101,7 +101,7 @@ public class WeeklyItemQuestTest {
 
 		// -----------------------------------------------
 
-		player.setQuest(questSlot,"dark dagger;0");
+		player.setQuest(questSlot, "dark dagger;0");
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
 		en.step(player, "task");

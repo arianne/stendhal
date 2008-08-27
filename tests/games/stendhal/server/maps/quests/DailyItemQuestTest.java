@@ -67,7 +67,7 @@ public class DailyItemQuestTest {
 		en.step(player, "bye");
 		assertEquals("Good day to you.", npc.get("text"));
 		
-		player.setQuest(questSlot,"pina colada;100");
+		player.setQuest(questSlot, "pina colada;100");
 		Item item = ItemTestHelper.createItem("pina colada");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();

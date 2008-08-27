@@ -45,14 +45,14 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 	protected boolean useTeleportScroll(final Player player) {
 		final String QUEST_SLOT = "rainbow_beans";
 		long lastuse = -1;
-		if (player.hasQuest(QUEST_SLOT)){
+		if (player.hasQuest(QUEST_SLOT)) {
 			final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 			if (tokens.length == 4) {
 				// we stored a last time (or -1)
 				lastuse = Long.parseLong(tokens[3]);
 			}
 			final long timeRemaining = (lastuse + DELAY) - System.currentTimeMillis();
-			if (timeRemaining > 0){
+			if (timeRemaining > 0) {
 				// player used the beans within the last DELAY hours
 				// so are not allowed to go yet. but don't reset the last time taken.
 				// the private text doesn't get sent because events are lost on zone change. (marauroa bug)
@@ -60,11 +60,11 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 				this.removeOne();
 				final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
 				player.getZone().add(sick);
-				sick.setPosition(player.getX(), player.getY()+1);
+				sick.setPosition(player.getX(), player.getY() + 1);
 				return false;
 			} else {
 				// don't overwrite the last bought time from Pdiddi, this is in tokens[1]
-				player.setQuest(QUEST_SLOT,"bought;"+tokens[1]+";taken;" + System.currentTimeMillis());
+				player.setQuest(QUEST_SLOT, "bought;" + tokens[1] + ";taken;" + System.currentTimeMillis());
 				return super.useTeleportScroll(player);
 			}
 		} else {
@@ -74,7 +74,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 			this.removeOne();
 			final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
 			player.getZone().add(sick);
-			sick.setPosition(player.getX(), player.getY()+1);
+			sick.setPosition(player.getX(), player.getY() + 1);
 			return false;
 		}
 	}

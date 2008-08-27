@@ -57,7 +57,7 @@ public class TelepathNPC implements ZoneConfigurator {
 
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						        if (player.hasQuest("meet_io")) {
-									if(player.isBadBoy()) {
+									if (player.isBadBoy()) {
 										// notice pk icon 
 										engine.say("Hi again, " + player.getTitle() + ". I sense have been branded with the mark of a killer. Do you wish to have it removed?");
 										engine.setCurrentState(ConversationStates.QUESTION_1);
@@ -92,7 +92,9 @@ public class TelepathNPC implements ZoneConfigurator {
 									engine.say("Are you really sorry for what you did?");
 									engine.setCurrentState(ConversationStates.QUESTION_2);
 								}
-							}});
+							} 
+					    }
+				);
 				// player didn't want pk icon removed, offer other help
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "Fine! I can still #help you in other ways if you need it.", null);
 				// player satisfied the pk removal requirements and said yes they were sorry
@@ -101,7 +103,7 @@ public class TelepathNPC implements ZoneConfigurator {
 
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 								player.rehabilitate(); 	
-							}});
+							} });
 				// player said no they are not really sorry
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE, "I thought not! Good bye!", null);
 				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");

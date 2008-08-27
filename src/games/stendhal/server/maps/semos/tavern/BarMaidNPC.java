@@ -54,7 +54,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addReply("flask","If you wish to buy a flask please just tell me: #buy #flask. Or, you can ask what else I #offer.");
+				addReply("flask", "If you wish to buy a flask please just tell me: #buy #flask. Or, you can ask what else I #offer.");
 				addJob("I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));

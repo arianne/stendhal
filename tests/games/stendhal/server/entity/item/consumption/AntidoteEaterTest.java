@@ -32,7 +32,7 @@ public class AntidoteEaterTest {
 	@Test
 	public void testHashCode() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		AntidoteEater eater1 = new AntidoteEater(bob );
+		AntidoteEater eater1 = new AntidoteEater(bob);
 		AntidoteEater eater2 = new AntidoteEater(bob);
 		assertTrue(eater1.equals(eater2));
 		assertTrue(eater2.equals(eater1));

@@ -72,7 +72,7 @@ public class ObsidianKnifeTest {
 		assertEquals("Bye.", npc.get("text"));
 		
 		// alrak might have asked for meat, ham or cheese. we choose a definite one for testing.
-		player.setQuest(questSlot,"meat");
+		player.setQuest(questSlot, "meat");
 		
 		Item item = ItemTestHelper.createItem("meat", 100);
 		player.getSlot("bag").add(item);
@@ -148,7 +148,7 @@ public class ObsidianKnifeTest {
 
 		// -----------------------------------------------
 
-		player.setQuest(questSlot,"reading;0");
+		player.setQuest(questSlot, "reading;0");
 		// [09:29] Changed the state of quest 'obsidian_knife' from 'reading;1219829318495' to 'reading;0'
 		en.step(player, "hi");
 		assertEquals("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", npc.get("text"));
@@ -202,7 +202,7 @@ public class ObsidianKnifeTest {
 		assertEquals("I haven't finished making the knife. Please check back in 10 minutes.", npc.get("text"));
 		
 		// [09:33] Changed the state of quest 'obsidian_knife' from 'forging;1219829551665' to 'forging;0'
-		player.setQuest(questSlot,"forging;0");
+		player.setQuest(questSlot, "forging;0");
 		final int xp3 = player.getXP();
 		
 		en.step(player, "hi");

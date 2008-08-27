@@ -59,11 +59,11 @@ public class BalloonScroll extends TimedTeleportScroll {
 			return false; 
 		} 
 		long lastuse = -1;
-		if (player.hasQuest("balloon")){
+		if (player.hasQuest("balloon")) {
 			lastuse = Long.parseLong(player.getQuest("balloon"));		
 		} 
 		final long timeRemaining = (lastuse + DELAY) - System.currentTimeMillis();
-		if (timeRemaining > 0){
+		if (timeRemaining > 0) {
 			// player used the balloon within the last DELAY hours
 			// so this use of balloon is going to be shortened 
 			// (the clouds can't take so much weight on them)
@@ -73,7 +73,7 @@ public class BalloonScroll extends TimedTeleportScroll {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(1, dpts);
 			setInfoString("7_kikareukin_clouds 31 12 " + Integer.toString(NEWTIME) + " 6_kikareukin_islands -1 -1");
 		}
-		player.setQuest("balloon",Long.toString(System.currentTimeMillis()));
+		player.setQuest("balloon", Long.toString(System.currentTimeMillis()));
 		return super.useTeleportScroll(player);
 	}
 }

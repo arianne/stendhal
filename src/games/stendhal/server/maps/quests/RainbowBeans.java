@@ -103,7 +103,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (player.hasQuest(QUEST_SLOT)){
+					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
@@ -123,7 +123,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
 				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (player.hasQuest(QUEST_SLOT)){
+					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)

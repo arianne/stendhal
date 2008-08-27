@@ -13,7 +13,7 @@ public class ConsumableTestHelper {
 		attributes.put("amount", "1");
 		attributes.put("regen", "1");
 		attributes.put("frequency", "1");
-		return new ConsumableItem(name, "class", "subclass", attributes );
+		return new ConsumableItem(name, "class", "subclass", attributes);
 	}
 	
 	public static ConsumableItem createImmunizer(final String name) {
@@ -22,7 +22,7 @@ public class ConsumableTestHelper {
 		attributes.put("amount", "1");
 		attributes.put("regen", "0");
 		attributes.put("frequency", "1");
-		return new ConsumableItem(name, "class", "subclass", attributes );
+		return new ConsumableItem(name, "class", "subclass", attributes);
 	}
 
 	
