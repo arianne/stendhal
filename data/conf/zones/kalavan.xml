@@ -497,6 +497,8 @@
  <zone name="0_kalavan_city_gardens" level="0" x="499744" y="500768" file="Level 0/kalavan/city_gardens.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC"/>
   <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.MummyNPC"/>
   <portal x="114" y="116" ref="greenhouse_1_entrance">
    <destination zone="int_kalavan_greenhouse_1" ref="entrance"/>
   </portal>
