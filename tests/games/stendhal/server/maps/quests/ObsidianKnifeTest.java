@@ -131,6 +131,85 @@ public class ObsidianKnifeTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
 		
-		// there are more steps but my client crashed and this is as far as I got
+		npc = SingletonRepository.getNPCList().get("Alrak");
+		
+		en = npc.getEngine();
+		final int xp2 = player.getXP();
+		
+		en.step(player, "hi");
+		// [09:28] kymara earns 500 experience points.
+		assertEquals("Great! I think I'll read this for a while. Bye!", npc.get("text"));
+		assertFalse(player.isEquipped("blue book"));
+		assertThat(player.getXP(), greaterThan(xp2));
+		assertTrue(player.getQuest(questSlot).startsWith("reading"));
+		
+		en.step(player, "hi");
+		assertEquals("I haven't finished reading that book. Maybe I'll be done in 3 days.", npc.get("text"));
+
+		// -----------------------------------------------
+
+		player.setQuest(questSlot,"reading;0");
+		// [09:29] Changed the state of quest 'obsidian_knife' from 'reading;1219829318495' to 'reading;0'
+		en.step(player, "hi");
+		assertEquals("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", npc.get("text"));
+		en.step(player, "knife");
+		assertEquals("Well, I don't think you're quite ready for such a dangerous weapon yet. How about you come back when you're above level 50?", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
+		
+		// player was too low level last time. make them above level 50
+		player.addXP(1263600);
+		assertThat(player.getLevel(), greaterThan(50));
+		
+		en.step(player, "hi");
+		assertEquals("Hi! Perhaps you have come to ask about that #knife again ... ", npc.get("text"));
+		en.step(player, "knife");
+		assertEquals("I'll make an obsidian knife if you can slay a black dragon and get the gem which makes the blade. Bring a cod so that I can make the bone handle, too.", npc.get("text"));
+		assertThat(player.getQuest(questSlot), is("knife_offered"));
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
+		
+		en.step(player, "hi");
+		assertEquals("Hello again. Don't forget I offered to make that obsidian knife, if you bring me a cod and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
+
+		// -----------------------------------------------
+		item = ItemTestHelper.createItem("obsidian");
+		player.getSlot("bag").add(item);
+		// add one item
+		en.step(player, "hi");
+		assertEquals("Hello again. Don't forget I offered to make that obsidian knife, if you bring me a cod and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
+		// add the next item
+		item = ItemTestHelper.createItem("cod");
+		player.getSlot("bag").add(item);
+		
+		// they haven't killed a dragon
+		en.step(player, "hi");
+		assertEquals("Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.", npc.get("text"));
+		en.step(player, "bye");
+		assertEquals("Bye.", npc.get("text"));
+		
+		player.setSharedKill("black dragon");
+		en.step(player, "hi");
+		assertEquals("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in 10 minutes.", npc.get("text"));
+		assertFalse(player.isEquipped("cod"));
+		assertFalse(player.isEquipped("obsidian"));
+		// -----------------------------------------------
+		en.step(player, "hi");
+		assertEquals("I haven't finished making the knife. Please check back in 10 minutes.", npc.get("text"));
+		
+		// [09:33] Changed the state of quest 'obsidian_knife' from 'forging;1219829551665' to 'forging;0'
+		player.setQuest(questSlot,"forging;0");
+		final int xp3 = player.getXP();
+		
+		en.step(player, "hi");
+		// [09:35] kymara earns 10000 experience points.
+		assertEquals("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!", npc.get("text"));
+		assertTrue(player.isEquipped("obsidian knife"));
+		assertThat(player.getXP(), greaterThan(xp3));
+		assertThat(player.getQuest(questSlot), is("done"));
 	}
 }
