@@ -53,7 +53,7 @@ public class KillSpidersTest {
 
 	@Test
 	public void testQuest() {
-		double karma = player.getKarma();
+		final double oldkarma = player.getKarma();
 		
 		npc = SingletonRepository.getNPCList().get("Morgrin");
 		en = npc.getEngine();
@@ -65,7 +65,7 @@ public class KillSpidersTest {
 		assertEquals("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Fine. Go down to the basement and kill all the creatures there!", npc.get("text"));
-		assertThat(player.getKarma(), greaterThan(karma));
+		assertThat(player.getKarma(), greaterThan(oldkarma));
 		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
 		
@@ -79,7 +79,7 @@ public class KillSpidersTest {
 		player.setSharedKill("giant spider");
 		
 		final int xp = player.getXP();
-		karma = player.getKarma();
+		final double karma = player.getKarma();
 		
 		en.step(player, "hi");
 		// [15:13] kymara earns 5000 experience points.
@@ -98,7 +98,8 @@ public class KillSpidersTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
 		
-		karma = player.getKarma();
+		final double newKarma = player.getKarma();
+		
 		// [15:14] Changed the state of quest 'kill_all_spiders' from 'killed;1219677211115' to 'killed;0'
 		player.setQuest(questSlot, "killed;0");
 		en.step(player, "hi");
@@ -106,7 +107,7 @@ public class KillSpidersTest {
 		en.step(player, "task");
 		assertEquals("Would you like to help me again?", npc.get("text"));
 		en.step(player, "no");
-		assertThat(player.getKarma(), lessThan(karma));
+		assertThat(player.getKarma(), lessThan(newKarma));
 		assertEquals("Ok, i have to find someone else to do this 'little' job!", npc.get("text"));
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		en.step(player, "bye");
