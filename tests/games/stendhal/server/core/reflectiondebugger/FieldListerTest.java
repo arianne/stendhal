@@ -12,11 +12,15 @@ import org.junit.Test;
  */
 public class FieldListerTest {
 
+	/** fails when run with eclemma coverage 
+	 * 
+	 */
 	@Test
 	public void testListAttributesIncludingPrivateAndParents() {
 		FieldLister fl = new FieldLister(new MockChildClass());
 		fl.scan();
-		assertThat(fl.getResult().size(), is(4));
 		System.out.println(fl.getResult());
+		assertThat(fl.getResult().size(), is(4));
+		
 	}
 }
