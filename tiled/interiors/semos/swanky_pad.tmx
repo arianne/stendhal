@@ -48,6 +48,12 @@
  <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
+ <tileset name="grey corners" firstgid="144" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/grey_corners.png"/>
+ </tileset>
+ <tileset name="grey door" firstgid="148" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey_centred.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNhYGAQGcWjeBBhGKC33lF/Dn4MANuPigCwBAAA
@@ -55,12 +61,12 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3OuwrCMBSA4axKaZ/ByzModNFdbb3WS9XBzd0OFsRFnXxo/6FCCGlMhIoHvinn5yQWQoxxcDDBFDPMcXSwQIITMvF5eujDwxm51HoW/XvU1mVMbQddSfiju2UzQlTB3TpqX7Q2jenuP7YNNEvaAYaGtoV2BX/2LTtf0waWbSC1S6xwV1yK3avmbY0NUmzxVNyKvYfmbYc9XmHlYjWwBAAA
+   H4sIAAAAAAAAAM3Ouw6CMBSA4a4aAs/g5Rk0ccEd73hD0MHNXQed1ckX8G39B0wa0tbWBMJJvqXtn9OpEGKGo4M5FoixxMnBCmuccRG/J8QQHq64Sa1n0X+n2LqMqe2hLxlUtFc3Y0xK2NtE44/WpjHtrWPbQlvTRhgZ2g66JfzZt+x8RRtYtoHUbrDFQ+GtOU+wQ4oMr4J7/u6puNvjgA/0Mr6CsAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldYMVAAChj5oksAQAAA==
+   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCGVB6Fhl65wPxAiBeiEcNAIRL9QWwBAAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
