@@ -96,24 +96,30 @@
  <tileset name="Untitled" firstgid="239" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_centred.png"/>
  </tileset>
+ <tileset name="arcmchair" firstgid="267" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/chair/armchair_cream.png"/>
+ </tileset>
+ <tileset name="tiles" firstgid="279" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONgYGDgGMFYEYiV8GBlKtihAsSqeLAaDe3goIMd1PSHOhBr4MGaOPTNRcO0SCtL0DAt7KhCw7SwoxENI8uxUICJtX/UDvzmTgTiSUDcA8S9o3YMuB3DJV2N2jE87QAAp2W2LcQJAAA=
+   H4sIAAAAAAAAABNnZGAQH8FYkYGBQQkPVmag3A4VoBmqeLAaDe3goIMd1PSHOtAMDTxYE4cdcxlQMS3SyhIGVEwLO6oYUDEt7GhkQMXIciwM5GOYGRJY8KgdxNsxESg/CYh7gLh31I4Bt2O4pKtRO7DbQQgPdjsAe3gn0cQJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3VOUvEQBjG8Yk2amPlLuqqvYI2u3ZqoYKCB3it9629ghZ222uhvZ2fxE6/iCd43+d/4V12Mokxu2PAF34kk8zkSSBvklZKjWMrAhOYxBSmkYnADGaxjR20oR0dGBLDyq52sadl5GoEo2JMjun5ZsVlG5NtI5p+ybAt/T7+IuMQRzjWjjWj5YeMmLKrBmOc0DLmMI993OEeDzK2tYBFLGEZB3jFG95lbGsFq0irfA86jlIlKHXcPaTPse3BMq5djgrH3UPF9qnZg35lvhdJ0Yd+dKJb5mb3u7Sx3/owGSkxgEHUGfMrtf2Ez/owGa0iqHrQK/lR9XnQPfrVFa5xg1vj3AlOxRlqtXPJAjIe8YRnvBSQkZKxX0aVcZ0PfOIrO3Dc585xIS59MsI+R9CcakOualT+vTDXx5W3bN8L2+f4rxn1EWbo/481rCvv91+fY/v/2MCm8n7/9TnF/D++AfpapnbECQAA
+   H4sIAAAAAAAAAM3VSUvDQBjG8Yle1IsotEWtelfQS+tNPaig4AJudd/1rmAP3rzrQe/e/CTe9Iu4gvu+/gOvdDpJS9Kx4As/yCQzeRKSN0kppSawVQSTmMI0ZrBdBLOYww520Y4OdGJYjCi72sO+luFWFKMYE+OyX883K6atdasJzTkyqhylqh3LCzeuw8yIcP5oyIwjHONE29eC1hwZttVojONaxjwWcIB7POBRxrYWsYRlrOAQb3jHh4xtrWINKZXpQYfnUYJSJ7uH9Dm2PVjGuctR4WT3UKF9avagX5nvRUL0YwBd6JG57na3NvZbHyQjKQYxhHpjfqW2HfdZHySjTeSrXvRJ/l/3R5Br9Ktr3OAWd8axU5yJc9RpxxIhMp7wjBe8hshIytgvI2Kc5xNf+HYHxrfsApfiyicj6H3km1Nj+K1alXkvzPUx5S3b98L2Pv5rRkMRM/T/xzo2lPf7r8+x/X9sIq283399TiH/jx//hhRUxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ4gkAS1glBagBYOIRM8AeJnWMTvAfED+joFA1wfYPtHweAAZ4D4NI3tuATEF7GIX0bjX6WxO2gF0N19ZUBcgQrM8cgZUdmut0D8jspmEgOMB8DOwQZ4SVC7jUw7+Ii0B2T+RiLUXcNhB7I9sDIDmd4BxNuBeAsRdgw1AACuX8X5xAkAAA==
+   H4sIAAAAAAAAAGNgGJ4gkAS1glBagBYOoTK4B8QPBtgN1wfY/lEwOMAZID5NYzsuAfFFLOKX0fhXaewOWgF0d18ZEFegAnM8ckZUtustEL+jspnEAOMBsHOwAV4S1G4j0w4+Iu0Bmb+RCHXXcNiBbA+szECmdwDxdiDeQoQdQw0AAKCwANrECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB+wAmJrILaho53E2i8CpYWJMOchED/GIn6DTHdRC+wE4gNAfBBJTAeIdXGoJ8avowAB2BgRmFaAnRGBBxp4AbE3EDsAsRNUDMR2ROJjA+fQ+Beo7TAqAjcgdschh+5udH8NdcACTGOsVExnQnSwg9ZgtEwkHxCTz88A8Wk0ehRQBgC2D2XixAkAAA==
+   H4sIAAAAAAAAAGNgoB+wAmJrILahsT3CZNgvQkAvMuBlxC5+gwi9pAA+HPbgAjuB+AAQH0QS0wFiXaq5aGQDNkYEphVgZ0TggQZeQOwNxA5A7AQVA7EdkfjYwDk0/gVqO4yKwA2I3XHIobsb3V9DHbAA0xgrFdOZEB3soDUgpvwfBdgBMfn8DBCfRqNHAWUAAARoSjnECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -126,12 +132,12 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKMAOAoa4+cMZAABjhKwgxAkAAA==
   </data>
  </layer>
- <layer name="collision" width="25" height="25" opacity="0.37">
+ <layer name="collision" width="25" height="25" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2OQQ6AQAgDeQr/f6VXQ0op1cTD2oS4EdppRkQeMExZvmiPstCbMSsnwbtj1S6OpuxtRv2HGC7nnt3xEYft35ifoWVXPenV+R1GvWdeJCV322u630rxs5tppzKYXAa6ZTkOY9OVqWOgDJex8Ss91PwNQ+F0PuSdbtl+Yjjer+cCPMiX6MQJAAA=
+   H4sIAAAAAAAAAO2OQQqAQAwD9yn9/yu9Skhj0hU8uIEiuM1Ma61VPxiVgi97RxZy8T9joYfxVJ95kzB+ysI+3sQcO0EG8tGl3t+Y4/DYmJ27uv6Uf++oPovDdTvdTQnb8aU7T2+uQ2XqYLuKM3Ekt6p0DsaYOpK+c4fLTxyOp+thV+2VuaMck+7XcwGNXlgYxAkAAA==
   </data>
  </layer>
- <layer name="protection" width="25" height="25">
+ <layer name="protection" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
