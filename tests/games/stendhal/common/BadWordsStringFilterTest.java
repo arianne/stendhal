@@ -2,6 +2,7 @@ package games.stendhal.common;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.matchers.JUnitMatchers.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class BadWordsStringFilterTest {
 	public void setUpBadWords() {
 		this.badWords = new LinkedList<String>();
 		this.badWords.add("shit");
+		this.badWords.add("asshole");
 	}
 
 	@Test
@@ -27,28 +29,28 @@ public class BadWordsStringFilterTest {
 	}
 	
 	@Test
-	public void testNegativeDetectionOfBadWordInContainedInAnotherWord() {
-		String badWord = "adsfkshitassad adsfkassad";
+	public void testNegativeDetectionOfBadWordInContainedInAnotherWord () {
+		String badWord = "bullshit adsfkassad";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
 		assertFalse(checker.isBadWord(badWord));
 	}
 	
 	@Test
-	public void testPositiveDetectionOfCamouflagedBadWordInText() {
+	public void testPositiveDetectionOfCamouflagedBadWordInText () {
 		String badWord = "holy sh1t";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
 		assertTrue(checker.containsBadWord(badWord));
 	}
 	
 	@Test
-	public void testPositiveDetectionOfCamouflagedBadWordInTextTwo() {
+	public void testPositiveDetectionOfCamouflagedBadWordInTextTwo () {
 		String badWord = "holy 5h1t";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
 		assertTrue(checker.containsBadWord(badWord));
 	}
 	
 	@Test
-	public void testNegativeDetectionOfGoodWordInText() {
+	public void testNegativeDetectionOfGoodWordInText () {
 		String badWord = "hello george";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
 		assertFalse(checker.containsBadWord(badWord));
@@ -83,7 +85,7 @@ public class BadWordsStringFilterTest {
 	}
 	
 	@Test
-	public void testNegativeDetectionOfGoodWord() {
+	public void testNegativeDetectionOfGoodWord () {
 		String badWord = "george";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
 		assertFalse(checker.isBadWord(badWord));
@@ -93,7 +95,16 @@ public class BadWordsStringFilterTest {
 	public void testReplacementOfBadWords() {
 		String mixedText = "George did some shit!";
 		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
-		assertThat(checker.censorBadWords(mixedText), equalTo("George did some *CENSORED*!"));
+		assertThat(checker.censorBadWords(mixedText),equalTo("George did some *CENSORED*!"));
+	}
+	
+	@Test
+	public void testListOfBadWordsInAText() {
+		String mixedText = "The asshole George did some shit";
+		BadWordsStringFilter checker = new BadWordsStringFilter(badWords);
+		List<String> listBadWordsInText = checker.listBadWordsInText(mixedText);
+		assertThat(listBadWordsInText,hasItem("shit"));
+		assertThat(listBadWordsInText,hasItem("asshole"));
 	}
 	
 }

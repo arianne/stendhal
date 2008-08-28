@@ -23,12 +23,14 @@ public class BadWordsStringFilter {
 
 	private final List<String> badWords;
 	
-	private final Map<String, List<String>> possibleLetterReplacements = buildReplacements();
+	private final Map<String,List<String>> possibleLetterReplacements = buildReplacements();
 	private final Set<String> possibleInterLetterFillings = buildInterLetterFillings();
 
-	public BadWordsStringFilter(final List<String> badWords) {
+	private String fillingString;
+
+	public BadWordsStringFilter(List<String> badWords) {
 		this.badWords = new LinkedList<String>();
-		for (String word : badWords) {
+		for(String word : badWords) {
 			this.badWords.add(this.buildRegEx(word));
 		}
 	}
@@ -37,6 +39,7 @@ public class BadWordsStringFilter {
 		StringBuilder sb = new StringBuilder();
 		String lowerCaseWord = word.toLowerCase();
 		sb.append(WORD_BOUNDARY);
+		sb.append(this.getPossibleInterLetterFilling());
 		for (int i = 0; i < word.length(); i++) {
 			sb.append(OPEN_BRACKET);
 			char currentChar = lowerCaseWord.charAt(i);
@@ -48,22 +51,25 @@ public class BadWordsStringFilter {
 			}
 			sb.append(CLOSE_BRACKET);
 			if (i < word.length() - 1) {
-				sb.append(this.buildPossibleInterLetterFilling());
+				sb.append(this.getPossibleInterLetterFilling());
 			}
 		}
 		sb.append(WORD_BOUNDARY);
 		return sb.toString();
 	}
 
-	private String buildPossibleInterLetterFilling() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(OPEN_BRACKET);
-		for (String filler : this.possibleInterLetterFillings) {
-			sb.append(filler);
+	private String getPossibleInterLetterFilling() {
+		if (this.fillingString == null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(OPEN_BRACKET);
+			for (String filler : this.possibleInterLetterFillings) {
+				sb.append(filler);
+			}
+			sb.append(CLOSE_BRACKET);
+			sb.append(QUESTION_MARK);
+			this.fillingString = sb.toString();
 		}
-		sb.append(CLOSE_BRACKET);
-		sb.append(QUESTION_MARK);
-		return sb.toString();
+		return this.fillingString;
 	}
 
 	private Set<String> buildInterLetterFillings() {
@@ -71,12 +77,13 @@ public class BadWordsStringFilter {
 		fillings.add(".");
 		fillings.add("_");
 		fillings.add("-");
+		fillings.add("#");
 		return fillings;
 	}
 
 	private Map<String, List<String>> buildReplacements() {
-		Map<String, List<String>> replacement = new HashMap<String, List<String>>();
-		String[] aArray = {"4", "@"};
+		Map<String,List<String>> replacement = new HashMap<String, List<String>>();
+		String[] aArray = {"4","@"};
 		replacement.put("a", Arrays.asList(aArray));
 		String[] iArray = {"1"};
         replacement.put("i", Arrays.asList(iArray));
@@ -91,19 +98,19 @@ public class BadWordsStringFilter {
 		return replacement;
 	}
 
-	public boolean containsBadWord(final String text) {
+	public boolean containsBadWord (final String text) {
 		StringTokenizer st = new StringTokenizer(text);
 		while (st.hasMoreTokens()) {
-			if (this.isBadWord(st.nextToken())) {
+			if(this.isBadWord(st.nextToken())) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean isBadWord(final String word) {
+	public boolean isBadWord (final String word) {
 		String lowerCaseWord = word.toLowerCase();
-		for (String badWord : this.badWords) {
+		for(String badWord:this.badWords) {
 			Pattern p = Pattern.compile(badWord);
 			Matcher m = p.matcher(lowerCaseWord);
 			if (m.matches()) {
@@ -115,10 +122,22 @@ public class BadWordsStringFilter {
 
 	public String censorBadWords(final String text) {
 		String returnString = text;
-		for (String replacer : this.badWords) {
+		for(String replacer : this.badWords) {
 			returnString = returnString.replaceAll(replacer, "*CENSORED*");
 		}
 		return returnString;
+	}
+
+	public List<String> listBadWordsInText(String text) {
+		List<String> returnList = new LinkedList<String>();
+		StringTokenizer st = new StringTokenizer(text);
+		while (st.hasMoreTokens()) {
+			String word = st.nextToken();
+			if(this.isBadWord(word)) {
+				returnList.add(word);
+			}
+		}
+		return returnList;
 	}
 
 }
