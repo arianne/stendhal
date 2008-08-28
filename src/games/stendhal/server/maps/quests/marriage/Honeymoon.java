@@ -22,7 +22,7 @@ class Honeymoon {
 	private final NPCList npcs = SingletonRepository.getNPCList();
 	private MarriageQuestInfo marriage;
 
-	public Honeymoon(MarriageQuestInfo marriage) {
+	public Honeymoon(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 

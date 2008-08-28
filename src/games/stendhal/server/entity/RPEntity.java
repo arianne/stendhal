@@ -2065,7 +2065,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the damage done by this hit.
 	 */
 	public void handleLifesteal(final RPEntity attacker,
-			final List<Item> attackerWeapons, int damage) {
+			final List<Item> attackerWeapons, final int damage) {
 
 		// Calculate the lifesteal value based on the configured factor
 		// In case of a lifesteal weapon used together with a non-lifesteal

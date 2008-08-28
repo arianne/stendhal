@@ -17,7 +17,7 @@ class Divorce {
 	private SpeakerNPC clerk;
 	private MarriageQuestInfo marriage;
 
-	public Divorce(MarriageQuestInfo marriage) {
+	public Divorce(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 

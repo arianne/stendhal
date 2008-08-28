@@ -24,7 +24,7 @@ class Engagement {
 	private Player groom;
 	private Player bride;
 	
-	public Engagement(MarriageQuestInfo marriage) {
+	public Engagement(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 	

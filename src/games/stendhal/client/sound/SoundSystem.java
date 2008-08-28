@@ -519,7 +519,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return;
 		}
 
-		logger.info("- sound system setting mute = " + (ismute ? "ON" : "OFF"));
+		String muteString;
+		if (ismute) {
+			muteString = "- sound system setting mute = ON";
+		} else {
+			muteString = "- sound system setting mute = OFF";
+		}
+		logger.info(muteString);
 		muteSetting = ismute;
 
 		synchronized (ambientList) {
@@ -546,22 +552,25 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Sets a global volume level for all sounds played with this sound system.
 	 * The volume value ranges between 0 (silent) and 100 (loudest).
 	 * 
-	 * @param volume
+	 * @param tempVolume
 	 *            0 .. 100
 	 */
-	public void setVolume(int volume) {
+	public void setVolume(final int volume) {
 		float dB;
+		int tempVolume;
 		if (volume < 0) {
-			volume = 0;
+			tempVolume = 0;
 		} else if (volume > 100) {
-			volume = 100;
+			tempVolume = 100;
+		} else {
+			tempVolume = volume;
 		}
 		
-		dB = DBValues.getDBValue(volume);
+		dB = DBValues.getDBValue(tempVolume);
 		logger.info("- sound system setting volume dB = " + dB + "  (gain "
-				+ volume + ")");
+				+ tempVolume + ")");
 
-		volumeSetting = volume;
+		volumeSetting = tempVolume;
 		if (volumeCtrl != null) {
 			volumeCtrl.setValue(dB);
 		} else {

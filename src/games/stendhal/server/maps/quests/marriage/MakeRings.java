@@ -31,7 +31,7 @@ class MakeRings {
 	private final NPCList npcs = SingletonRepository.getNPCList();
 	private MarriageQuestInfo marriage;
 
-	public MakeRings(MarriageQuestInfo marriage) {
+	public MakeRings(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 
