@@ -7,7 +7,7 @@ To create the labeled world map:
   * Open a command line
   * Change to your stendhal directory
   * Run
-      ant convertmaps
+      ant rendermaps
   * Change to the tiled directory
   * Run
       python vampire_maplabel.py -world
@@ -16,7 +16,7 @@ To create the labeled world map:
   * Set the zoom to 1:1 (CTRL-0)
   * From the file menu, select "Save as Image"
   * Crop the black border (e.g. use "Crop Automatically" in The GIMP)
-  * Upload the image, e.g. at http://www.speedyshare.com/
+  * Upload the image, e.g. at http://imageshack.us
   * Replace your labeled image files from the tiled/world directory with
     the clean (unlabeled) ones from CVS.
   * Edit http://arianne.sourceforge.net/wiki/index.php?title=Template:SmallWorldMap
