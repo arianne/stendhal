@@ -274,9 +274,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 			npc.say("OK, I will "
 					+ getProductionActivity()
 					+ " "
-					+ amount
-					+ " "
-					+ getProductName()
+					+ Grammar.quantityplnoun(amount, getProductName())
 					+ " for you, but that will take some time. Please come back in "
 					+ getApproximateRemainingTime(player) + ".");
 			return true;
@@ -303,7 +301,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		final long timeNow = new Date().getTime();
 		if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
 			npc.say("Welcome back! I'm still busy with your order to "
-					+ getProductionActivity() + " " + getProductName()
+					+ getProductionActivity() + " " + Grammar.quantityplnoun(numberOfProductItems, getProductName())
 					+ " for you. Come back in "
 					+ getApproximateRemainingTime(player) + " to get it.");
 		} else {
