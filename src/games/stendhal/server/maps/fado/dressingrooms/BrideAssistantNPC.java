@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Welcome! If you're a bride-to-be I can #help you get ready for your wedding");
+				// greetings in Marriage quest
 				addJob("I assist brides with getting dressed for their wedding.");
 				addHelp("Just tell me if you want to #'wear a gown' for your wedding.");
 				addQuest("You don't want to be thinking about that kind of thing ahead of your big day!");

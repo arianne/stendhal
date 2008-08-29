@@ -41,19 +41,11 @@ public class MarriageQuestChain  {
 	private static MarriageQuestInfo marriage = new MarriageQuestInfo();
 
 
-	private void getDressedStep() {
-
-		// Just go to the NPCs Tamara and Timothy
-		// you can only get into the room if you have the quest slot for
-		// marriage
-	}
-
-
 
 	public void addToWorld() {
 		new Engagement(marriage).addToWorld();
 		new MakeRings(marriage).addToWorld();
-		getDressedStep();
+		new GetOutfits(marriage).addToWorld();	
 		new Marriage(marriage).addToWorld();
 		new Honeymoon(marriage).addToWorld();
 		new Divorce(marriage).addToWorld();
