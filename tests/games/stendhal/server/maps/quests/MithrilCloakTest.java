@@ -106,8 +106,9 @@ public class MithrilCloakTest {
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
 		assertThat(npc.get("text") , isOneOf("Thank you! It isn't running smoothly and needs a can of #oil, I'm ever so grateful for your help.",
-				"Thank you! It needs a replacement #bobbin, I'm ever so grateful for your help."));
-		//assertTrue(.equals(npc.get("text")) || "Thank you! It needs a piece of leather to fix it. Please fetch me a suit of leather armor and come back as soon as you can.".equals(npc.get("text"))||.equals(npc.get("text")));
+				"Thank you! It needs a replacement #bobbin, I'm ever so grateful for your help.",
+				"Thank you! It needs a piece of leather to fix it. Please fetch me a suit of leather armor and come back as soon as you can."));
+
 		player.setQuest(questSlot, "machine;bobbin");
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		en.step(player, "bobbin");
