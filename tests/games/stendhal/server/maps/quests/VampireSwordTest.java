@@ -428,7 +428,7 @@ public class VampireSwordTest {
 			// This will fail if someone manages to stop the test 
 			// within the loop and continue later. (Or to run it on a 
 			// ridiculously slow computer)
-			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill goblet for you. Come back in 5 minutes to get it.", npc.getText());
+			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in 5 minutes to get it.", npc.getText());
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
@@ -452,7 +452,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertTrue("''" + hello + "' in future", npc.getText().startsWith("Welcome back! I'm still busy with your order to fill goblet for you. Come back in"));
+			assertTrue("''" + hello + "' in future", npc.getText().startsWith("Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in"));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
