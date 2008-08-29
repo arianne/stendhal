@@ -534,6 +534,7 @@ For example say:  11  if you want the room called Water of Love.
       </portal> 
      </zone>
      <zone name="int_fado_battle_pit" file="interiors/fado/battle_arena_-1.tmx">
+	 <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
       <portal x="54" y="3" ref="basement_exit">
        <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
       </portal>
