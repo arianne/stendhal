@@ -172,7 +172,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"OK, I will make 2 sandwich for you, but that will take some time. Please come back in 6 minutes.",
+				"OK, I will make 2 sandwiches for you, but that will take some time. Please come back in 6 minutes.",
 				npc.get("text"));
 		assertEquals(0, player.getNumberOfEquipped("cheese"));
 		assertEquals(0, player.getNumberOfEquipped("bread"));
@@ -224,7 +224,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"OK, I will make 3 sandwich for you, but that will take some time. Please come back in 9 minutes.",
+				"OK, I will make 3 sandwiches for you, but that will take some time. Please come back in 9 minutes.",
 				npc.get("text"));
 		assertEquals(0, player.getNumberOfEquipped("cheese"));
 		assertEquals(0, player.getNumberOfEquipped("bread"));
