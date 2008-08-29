@@ -159,10 +159,13 @@ public class MarriageTest {
 	}
 
 	@Test
-	public void testBuySuitForGrom() {
+	public void testBuySuitForGroom() {
 		// **at hotel's dressing room**
 		npc = SingletonRepository.getNPCList().get("Timothy");
 		en = npc.getEngine();
+
+		player.setQuest(QUEST_SLOT, "engaged");
+
 		en.step(player, "hi");
 		assertEquals("Good day! If you're a prospective groom I can #help you prepare for your wedding.", npc.get("text"));
 		en.step(player, "help");
@@ -173,14 +176,22 @@ public class MarriageTest {
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
 		en.step(player2, "bye");
 		assertEquals("Good bye, I hope everything goes well for you.", npc.get("text"));
+		
+		// now test that once you are married you cannot get the outfit again
+		player.setQuest(QUEST_SLOT, "just_married");
+		en.step(player, "hi");
+		assertEquals("Sorry, I can't help you, I am busy pressing suits.", npc.get("text"));
+		
 	}
 
 	@Test
 	public void testBuyGownForBride() {
-
 		// **at hotel's dressing room**
+
 		npc = SingletonRepository.getNPCList().get("Tamara");
 		en = npc.getEngine();
+		
+		player2.setQuest(QUEST_SLOT, "engaged");
 		en.step(player2, "hi");
 		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", npc.get("text"));
 		en.step(player2, "help");
@@ -189,6 +200,14 @@ public class MarriageTest {
 		assertEquals("To wear a gown will cost 100. Do you want to wear it?", npc.get("text"));
 		en.step(player2, "yes");
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
+		en.step(player2, "bye");
+		assertEquals("Have a lovely time!", npc.get("text"));
+		
+		// now test that once you are married you cannot get the outfit again
+		player2.setQuest(QUEST_SLOT,"just_married");
+		en.step(player, "hi");
+		assertEquals("Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!", npc.get("text"));
+		
 	}
 
 	@Test
