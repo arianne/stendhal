@@ -92,16 +92,15 @@ class Honeymoon {
 							partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
 							wife = SingletonRepository.getRuleProcessor().getPlayer(
                                                                                 partnerName);
-							// I (kym) have to make two of these because when I only did one, the second one sometimes had quantity 0 sometimes didn't.
 							final StackableItem invite1 = (StackableItem) SingletonRepository.getEntityManager().getItem(
 																												  "invitation scroll");
 							invite1.setQuantity(1);
                             final StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
                                                                                                                   "invitation scroll");
                             invite2.setQuantity(1);
-                            
-							invite1.setInfoString("int_fado_hotel_0 4 40");
-							invite2.setInfoString("int_fado_hotel_0 4 40");
+                            // 
+							invite1.setInfoString("honeymoon," + partnerName);
+							invite2.setInfoString("honeymoon," + husband.getTitle());
 							if (wife.equip(invite1) &&  husband.equip(invite2)) {
 								npc.say("Great choice! I will arrange that now."); 
 								husband.setQuest(marriage.getQuestSlot(), "done");
