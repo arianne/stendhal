@@ -114,7 +114,7 @@
   <item name="invitation scroll">
     <type class="scroll" subclass="invitation" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.InvitationScroll"/>    <attributes>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
