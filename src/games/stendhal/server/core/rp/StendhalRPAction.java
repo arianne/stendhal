@@ -69,6 +69,9 @@ public class StendhalRPAction {
 
 		// Disable attacking NPCS that are created as not attackable.
 		if (!victim.isAttackable()) {
+			if ((victim instanceof SpeakerNPC)) {
+				((SpeakerNPC) victim).say(player.getName() + ", if you want my attention, just say #hi.");
+			}
 			logger.info("REJECTED. " + player.getName() + " is attacking "
 					+ victim.getName());
 			return;
