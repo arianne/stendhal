@@ -48,13 +48,13 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		String text;
 		switch (getRipeness()) {
 		case 0:
-			text = "You see a grain field that has just been harvested.";
+			text = "You see grain that has just been harvested.";
 			break;
 		case RIPE:
-			text = "You see a ripe grain field.";
+			text = "You see ripe grain.";
 			break;
 		default:
-			text = "You see an unripe grain field.";
+			text = "You see unripe grain.";
 			break;
 		}
 		return text;
