@@ -45,7 +45,7 @@ public class MeetZynn extends AbstractQuest {
 		npc
 				.addReply(
 						"places",
-						"The most important locations on #Faiumoni are #Or'ril Castle, #Semos, #Ados, #Narwol, and of course #Deniran City.");
+						"The most important locations on #Faiumoni are #Or'ril Castle, #Semos, #Ados, #Nalwor, and of course #Deniran City.");
 
 		npc
 				.addReply(
@@ -69,8 +69,8 @@ public class MeetZynn extends AbstractQuest {
 
 		npc
 				.addReply(
-						"Narwol",
-						"Narwol is an ancient elven city, built deep inside the forest to the southeast of us long before humans ever arrived on this island. Elves don't like mixing with other races, but we're given to understand that Narwol was built to help defend their capital city of Teruykeh against an evil force.");
+						"Nalwor",
+						"Nalwor is an ancient elven city, built deep inside the forest to the southeast of us long before humans ever arrived on this island. Elves don't like mixing with other races, but we're given to understand that Nalwor was built to help defend their capital city of Teruykeh against an evil force.");
 
 		npc
 				.addReply(
