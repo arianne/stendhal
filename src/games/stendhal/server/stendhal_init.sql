@@ -32,7 +32,7 @@ create table if not exists character_stats
   primary key(name)
   )
   TYPE=MYISAM;
-
+/*CREATE INDEX i_character_stats_name ON character_stats(name);*/
 
 create table if not exists halloffame
   (
@@ -44,6 +44,8 @@ create table if not exists halloffame
   primary key(id)
   ) 
   TYPE=MYISAM;
+
+/*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
 
   
 CREATE TABLE IF NOT EXISTS itemid (
