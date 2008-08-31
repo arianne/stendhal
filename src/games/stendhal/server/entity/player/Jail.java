@@ -42,12 +42,12 @@ public class Jail implements LoginListener {
 
 
 	private static List<Point> cellEntryPoints = Arrays.asList(
-		new Point(3, 2),
-		new Point(8, 2),
-		// elf cell(13, 2),
-		new Point(18, 2), 
-		new Point(23, 2), 
-		new Point(28, 2), 
+		new Point(3, 3),
+		new Point(8, 3),
+		// elf cell(13, 3),
+		new Point(18, 3), 
+		new Point(23, 3), 
+		new Point(28, 3), 
 		new Point(8, 11),
 		new Point(13, 11),
 		new Point(18, 11),
@@ -57,7 +57,7 @@ public class Jail implements LoginListener {
 
 	private static Rectangle[] cellBlocks = { 
 		new Rectangle(1, 1, 30, 3),
-		new Rectangle(7, 10, 30, 12)
+		new Rectangle(7, 10, 30, 3)
 	};
 
 	private final class Jailer implements TurnListener {
