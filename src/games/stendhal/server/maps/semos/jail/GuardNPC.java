@@ -38,7 +38,7 @@ public class GuardNPC extends SpeakerNPCFactory {
 		        ConversationPhrases.HELP_MESSAGES,
 		        new InJailCondition(),
 		        ConversationStates.ATTENDING,
-		        "Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.",
+		        "Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you. If you logout, your jail sentence will simply be restarted.",
 		        null);
 		
 		npc.add(ConversationStates.ATTENDING,
