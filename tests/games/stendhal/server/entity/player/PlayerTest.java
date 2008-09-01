@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
@@ -28,7 +29,7 @@ public class PlayerTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
