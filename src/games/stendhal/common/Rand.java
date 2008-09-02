@@ -94,6 +94,15 @@ public class Rand {
 	public static int rand(final int n) {
 		return rand.nextInt(n);
 	}
+	
+	/**
+	 * Generates an equally distributed double precision random number.
+	 *            the upper boundary
+	 * @return A random number between 0 and 1, equally distributed.
+	 */
+	public static double rand() {
+		return rand.nextDouble();
+	}
 
 	/**
 	 * Given a list of any type, returns an arbitrary element, using an equal

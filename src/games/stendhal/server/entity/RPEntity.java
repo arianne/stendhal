@@ -121,6 +121,31 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * when the levels are significantly different
 	 */
 	private static final int LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA = 20;
+	
+	/** 
+	 * Level bonus for defence given to everyone. Prevents newbies 
+	 * killing each other too fast.
+	 */ 
+	private static final double NEWBIE_DEF = 10.0;
+	/** 
+	 * Armor value of no armor. Prevents unarmored or lightly armored
+	 * entities from being completely helpless
+	 */
+	private static final double SKIN_DEF = 10.0;
+	/** Adjusts the weight of level. Larger means weight more */
+	private static final double LEVEL_ATK = 0.05;
+	/** Adjusts the weight of level. Larger means weight more */
+	private static final double LEVEL_DEF = 0.05;
+	/** General parameter for damage. Larger means more damage */
+	private static final double WEIGHT_ATK = 8.0;
+	/** the level where relative damage curves start being linear */ 
+	private static final double EVEN_POINT = 1.2;
+	/** 
+	 * Steepness of the damage vs level curves. The maximum 
+	 * bonus/penalty with weak enemies
+	 */ 
+	private static final double WEIGHT_EFFECT = 0.5;
+	
 
 
 	@Override
@@ -401,57 +426,72 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         attack was completely blocked by the defender.
 	 */
 	public int damageDone(final RPEntity defender) {
-
-		final float weapon = getItemAtk();
-
+		// Don't start from 0 to mitigate weird behaviour at very low levels 
+		final int effectiveAttackerLevel = getLevel() + 5;
+		final int effectiveDefenderLevel = defender.getLevel() + 5;
+		
+		// Defending side
+		final double armor = defender.getItemDef();
+		final int targetDef = defender.getDEF();;
+		// Even strong players are vulnerable without any armor.
+		// Armor def gets much higher with high level players unlike
+		// weapon atk, so it can not be treated similarly. Using geometric 
+		/// mean to balance things a bit.  
+		final double maxDefence = Math.sqrt(targetDef * (SKIN_DEF + armor)) 
+			* (NEWBIE_DEF + LEVEL_DEF * effectiveDefenderLevel);
+		
+		double defence = Rand.rand() * maxDefence;
+		/*
+		 * Account for karma (+/-10%)
+		 * But, the defender doesn't need luck to help him defend if he's a much 
+		 * higher level than this attacker
+		 */
+		if (!(effectiveDefenderLevel - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > effectiveAttackerLevel)) {
+			defence += defence * defender.useKarma(0.1);
+		}
+		
+		// Attacking
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + getATK()
-					+ " and uses a weapon of " + weapon);
+					+ " and uses a weapon of " + getItemAtk());
 		}
-
-		
 		final int sourceAtk = getATK();
-		final float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon
-				* sourceAtk;
-		float attackerComponent = (Rand.roll1D100() / 100.0f)
-				* maxAttackerComponent;
+		
+		// Make fast weapons efficient against weak enemies, and heavy 
+		// better against strong enemies. 
+		// Half a parabola; desceding for rate < 5; ascending for > 5
+		double speedEffect = 1.0;
+		if (effectiveDefenderLevel < EVEN_POINT * effectiveAttackerLevel) {
+			final double levelPart = 1.0 - effectiveDefenderLevel / (EVEN_POINT * effectiveAttackerLevel);
+			// Gets values -1 at rate = 1, 0 at rate = 5,
+			// and approaches 1 when rate approaches infinity.
+			// We can't use a much simpler function as long as we need 
+			// to deal with open ended rate values.
+			final double speedPart = 1 - 8 / (getAttackRate() + 3);
+			
+			speedEffect = 1.0 - WEIGHT_EFFECT * speedPart * levelPart * levelPart;
+		}
+		
+		final double weaponComponent = 1.0 + getItemAtk();
+		final double maxAttack = sourceAtk * weaponComponent * (1 + LEVEL_ATK * effectiveAttackerLevel) * speedEffect;
+		double attack = Rand.rand() * maxAttack;
 
 		/*
 		 * Account for karma (+/-10%)
 		 * But, don't need luck to help you attack if you're a much 
 		 * higher level than what you attack
 		 */
-		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
-			attackerComponent += (attackerComponent * (float) useKarma(0.1));
+		if (!(effectiveAttackerLevel - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > effectiveDefenderLevel)) {
+			attack += attack * useKarma(0.1);
 		}
-
-		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
-				+ attackerComponent);
-
-		final float armor = defender.getItemDef();
-		final int targetDef = defender.getDEF();
-		final double maxDefenderComponent = (0.6f * targetDef + armor)
-				* (10 + 0.5f * defender.getLevel());
-
-		double defenderComponent = (Rand.roll1D100() / 100.0f)
-				* maxDefenderComponent;
-
-		/*
-		 * Account for karma (+/-10%)
-		 * But, the defender doesn't need luck to help him defend if he's a much 
-		 * higher level than this attacker
-		 */
-		if (!(defender.getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > getLevel())) {
-			defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
-		}
-
+		
+		
 		if (logger.isDebugEnabled()) {
-			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: "
-					+ defenderComponent);
+			logger.debug("DEF MAX: " + maxDefence + "\t DEF VALUE: "
+					+ defence);
 		}
 
-		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
-				* (maxAttackerComponent / maxDefenderComponent) * (getATK() / 10.0f));
+		int damage = (int) ((WEIGHT_ATK * attack - defence) / maxDefence); 
 
 		if (canDoRangeAttack(defender)) {
 			// The attacker is attacking either using a range weapon with
@@ -1744,7 +1784,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				}
 			}
 		}
-		return 4.0f * weapon;
+		
+		return weapon;
 	}
 
 	public float getItemDef() {
