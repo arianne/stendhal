@@ -15,6 +15,36 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="grass snow" firstgid="137" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_snow.png"/>
+ </tileset>
+ <tileset name="dead tree snow" firstgid="146" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/deadtree_snow.png"/>
+ </tileset>
+ <tileset name="snow on pine" firstgid="156" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/snow_on_pine.png"/>
+ </tileset>
+ <tileset name="stump snow" firstgid="176" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/stump/stump_snow.png"/>
+ </tileset>
+ <tileset name="stump snow 1" firstgid="178" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/stump/stump_snow1.png"/>
+ </tileset>
+ <tileset name="snowy grass" firstgid="180" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/snowygrass.png"/>
+ </tileset>
+ <tileset name="snowman" firstgid="183" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/snowman.png"/>
+ </tileset>
+ <tileset name="logs snow" firstgid="185" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/logs_snow1.png"/>
+ </tileset>
+ <tileset name="logs snow 1" firstgid="186" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/logs_snow1.png"/>
+ </tileset>
+ <tileset name="old wood" firstgid="187" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/old_wood.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VQW7jMBBFQSGeWeT+Fx4gmIURxLEkstndUi3eUpCI+rQ/t237lCRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkvTV3wLfoDjb0bLPoPXm/Ps1251/n6Ls+dct0px/7VbZ86/TSnP+tcqy539fd/7s+d/X3Q642wJ7O2BvC+xtgL0tsLcD9jbA3wbY84+z//OibEc7iPd/ZW8HPZttbwN9irK/ygauvoNI+yvtINsp03/U/ipbyLbK8J9tbwO1yvK3gxpl+9sAfxvg33kH2YZX8u+4l2xD/vz5859tz/+6/nvPlu3bwb/jBvjfewf8+fO/7wb48+fPv/sGsq3v4F9tA4+nsq27buDMmbLdv9tX9q++gbNnynJ+VdX/gOobGDlTFfvH0zPZzt02UNX/iP3jh+ezrbtsoKL/Ufuf/CvvINu8sv8Z+9/8baCP/1n7d/42UN9/xH6Pvw3U9B91//jf3vdle1fbQif/j1868s5s50obyPSfZX/U3wby/c/+zs/yt4E+/u/sz/pX3wL/ffYz/KtuIHoHlf332s/yr7yBqB1U9T9iP9O/+gZm72C1/+x7H+HfYQOzdrDSP8o+wr/LHrr4R9qv8K+8gZF9VLn7I/ar/Ltu4NUOos332I+6r/bvvIHRZvvPsl/tf9cNVPYf/Ub+cRuItudfewPR9s/+Kzdw5x1Uuvvf/VfuINuh+gYy/VdsINugsn0F/+gNZDvwf+8fuYFsB/78+W/bP1lPLV8AAAEA
