@@ -120,20 +120,6 @@ public class Cat extends Pet {
 	}
 
 	@Override
-	public String describe() {
-		String text;
-
-		if (hasDescription()) {
-			text = getDescription();
-		} else {
-			text = "You see a friendly cat; it looks like it weighs about "
-					+ weight + ".";
-		}
-
-		return (text);
-	}
-
-	@Override
 	protected List<String> getFoodNames() {
 		return Arrays.asList("chicken", "trout", "cod", "mackerel", "char",
 				"perch", "roach", "surgeonfish", "clownfish");
