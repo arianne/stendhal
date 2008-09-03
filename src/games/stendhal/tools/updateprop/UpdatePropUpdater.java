@@ -1,5 +1,9 @@
 package games.stendhal.tools.updateprop;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -33,30 +37,42 @@ public class UpdatePropUpdater {
 	
 	/**
 	 * Updates the update.properties file
+	 * @throws IOException 
 	 */
-	public void process() {
+	public void process() throws IOException {
 		loadOldUpdateProperties();
 		update();
 		writeNewUpdateProperties();
 	}
 
-	private void loadOldUpdateProperties() {
-		// TODO Auto-generated method stub
+	private void loadOldUpdateProperties() throws IOException {
+		prop = new Properties();
+		InputStream is;
+		if (oldFile.indexOf(":") > 2) {
+			URL url = new URL(oldFile);
+			is = url.openStream();
+		} else {
+			is = new FileInputStream(oldFile);
+		}
+		prop.load(is);
+		is.close();
 	}
 
 	private void update() {
 		// TODO Auto-generated method stub
+		prop.list(System.out);
 	}
 
 	private void writeNewUpdateProperties() {
 		// TODO Auto-generated method stub
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		if (args.length != 4) {
 			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion");
 			System.exit(1);
 		}
 		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3]);
+		updater.process();
 	}
 }
