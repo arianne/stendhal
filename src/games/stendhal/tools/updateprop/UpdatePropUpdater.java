@@ -67,7 +67,7 @@ public class UpdatePropUpdater {
 	private void updateVersion() {
 		prop.put("version." + oldVersion, "UPDATE_NEEDED");
 		prop.put("version." + newVersion, "CURRENT");
-		prop.put("version.destination" + oldVersion, newVersion);
+		prop.put("version.destination", newVersion);
 	}
 
 	private void updateInit() {
@@ -77,8 +77,7 @@ public class UpdatePropUpdater {
 	}
 
 	private void updateUpdateFileList() {
-		// TODO Auto-generated method stub
-		
+		prop.put("init.file-list", NON_STENDHAL_FILES + ",stendhal-data-diff-" + oldVersion + "-" + newVersion + ".jar,stendhal--diff-" + oldVersion + "-" + newVersion + ".jar");
 	}
 
 	private void updateFileSize() {
