@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.item.consumption;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
