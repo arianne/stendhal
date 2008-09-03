@@ -63,8 +63,9 @@ public class UpdatePropUpdater {
 
 
 	private void updateVersion() {
-		// TODO Auto-generated method stub
-		
+		prop.put("version." + oldVersion, "UPDATE_NEEDED");
+		prop.put("version." + newVersion, "CURRENT");
+		prop.put("version.destination" + oldVersion, newVersion);
 	}
 
 	private void updateInit() {
