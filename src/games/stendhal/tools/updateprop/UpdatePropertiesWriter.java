@@ -35,6 +35,16 @@ public class UpdatePropertiesWriter {
 		updateFileList();
 		fileSize();
 	}
+
+	private void writeKeysWithPrefix(String prefix) {
+		for (String key : keys) {
+			if (key.startsWith(prefix)) {
+				ps.println(key + "=" + prop.getProperty(key));
+			}
+		}
+		ps.println();
+	}
+
 	private void header() {
 		ps.println("# This file contains information required for automatic updates");
 		ps.println();
@@ -46,12 +56,7 @@ public class UpdatePropertiesWriter {
 		ps.println("#     UPDATE_NEEDED:   there is an update available");
 		ps.println("#     CURRENT:  good, we don't have to do anything at the moment");
 
-		for (String key : keys) {
-			if (key.startsWith("version.")) {
-				ps.println(key + "=" + prop.getProperty(key));
-			}
-		}
-		ps.println();
+		writeKeysWithPrefix("version.");
 	}
 
 	private void destination() {
