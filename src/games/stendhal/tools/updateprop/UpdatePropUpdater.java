@@ -1,8 +1,10 @@
 package games.stendhal.tools.updateprop;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -63,8 +65,11 @@ public class UpdatePropUpdater {
 		prop.list(System.out);
 	}
 
-	private void writeNewUpdateProperties() {
-		// TODO Auto-generated method stub
+	private void writeNewUpdateProperties() throws IOException {
+		PrintStream ps = new PrintStream(new FileOutputStream(newFile));
+		UpdatePropertiesWriter writer = new UpdatePropertiesWriter(prop, ps);
+		writer.process();
+		ps.close();
 	}
 
 	public static void main(String[] args) throws IOException {
