@@ -215,7 +215,7 @@
     <type class="sword" subclass="sword" tileid="-1"/>
     <description>You see a sharp sword which might even be worth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="14"/>
+      <atk value="12"/>
       <rate value="4"/>
     </attributes>
     <weight value="4.0"/>
@@ -247,7 +247,7 @@
     <type class="sword" subclass="scimitar" tileid="-1"/>
     <description>This scimitar catches the light as you look at it, it will be a powerful weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="15"/>
+      <atk value="14"/>
       <rate value="4"/>
     </attributes>
     <weight value="4.0"/>
@@ -263,7 +263,7 @@
     <type class="sword" subclass="katana" tileid="-1"/>
     <description>You see a valuable katana, with a lethal looking blade.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="16"/>
+      <atk value="15"/>
       <rate value="4"/>
     </attributes>
     <weight value="4.0"/>
@@ -343,9 +343,9 @@
     <type class="sword" subclass="vampire_sword" tileid="-1"/>
     <description>You see the vampire sword, which will suck life from those you attack with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="24"/>
+      <atk value="22"/>
       <lifesteal value="0.1"/>
-      <rate value="7"/>
+      <rate value="5"/>
     </attributes>
     <weight value="4.0"/>
     <value value="98742"/>
@@ -360,7 +360,7 @@
     <type class="sword" subclass="claymore" tileid="-1"/>
     <description>This claymore is very hard to lift as it is so heavy. It will be a good weapon if you can swing it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="28"/>
+      <atk value="36"/>
       <rate value="10"/>
     </attributes>
     <weight value="4.0"/>
@@ -392,7 +392,7 @@
     <type class="sword" subclass="fire_sword" tileid="-1"/>
     <description>Flames race along this fire sword as you wield it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="28"/>
+      <atk value="30"/>
       <rate value="7"/>
     </attributes>
     <weight value="4.0"/>
@@ -457,8 +457,8 @@
     <type class="sword" subclass="golden_orc_sword" tileid="-1"/>
     <description>You see a golden orc sword, with its heavy and deadly appearance it seems also valuable.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="33"/>
-      <rate value="9"/>
+      <atk value="32"/>
+      <rate value="5"/>
     </attributes>
     <weight value="8.0"/>
     <value value="199650"/>
@@ -473,7 +473,7 @@
     <type class="sword" subclass="elvish_sword" tileid="-1"/>
     <description>This an elvish sword. It looks like it is made from tree leaves!</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="26"/>
+      <atk value="16"/>
       <rate value="4"/>
     </attributes>
     <weight value="4.0"/>
@@ -505,7 +505,7 @@
     <type class="sword" subclass="great_sword" tileid="-1"/>
     <description>This rare great sword is heavy and of good craftsmanship. It can only attack incredibly slowly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="45"/>
+      <atk value="60"/>
       <rate value="15"/>
     </attributes>
     <weight value="8.0"/>
