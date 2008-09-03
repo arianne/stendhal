@@ -35,15 +35,16 @@ public class UpdatePropUpdater {
 		this.oldVersion = oldVersion;
 	}
 
-	
-	
 	/**
 	 * Updates the update.properties file
 	 * @throws IOException 
 	 */
 	public void process() throws IOException {
 		loadOldUpdateProperties();
-		update();
+		updateVersion();
+		updateInit();
+		updateUpdateFileList();
+		updateFileSize();
 		writeNewUpdateProperties();
 	}
 
@@ -60,9 +61,25 @@ public class UpdatePropUpdater {
 		is.close();
 	}
 
-	private void update() {
+
+	private void updateVersion() {
 		// TODO Auto-generated method stub
-		prop.list(System.out);
+		
+	}
+
+	private void updateInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void updateUpdateFileList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void updateFileSize() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void writeNewUpdateProperties() throws IOException {
