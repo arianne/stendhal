@@ -2,6 +2,8 @@ package games.stendhal.tools.updateprop;
 
 import java.io.PrintStream;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Writes an update.properties file
@@ -9,6 +11,7 @@ import java.util.Properties;
  * @author hendrik
  */
 public class UpdatePropertiesWriter {
+	private Set<String> keys;
 	private Properties prop;
 	private PrintStream ps;
 
@@ -21,6 +24,7 @@ public class UpdatePropertiesWriter {
 	public UpdatePropertiesWriter(Properties prop, PrintStream ps) {
 		this.prop = prop;
 		this.ps = ps;
+		this.keys = new TreeSet<String>((Set<String>) (Set) prop.keySet());
 	}
 
 	public void process() {
@@ -32,46 +36,22 @@ public class UpdatePropertiesWriter {
 		fileSize();
 	}
 	private void header() {
-		ps.println("#This file contains information required for automatic updates");
+		ps.println("# This file contains information required for automatic updates");
 		ps.println();
 	}
 
 	private void status() {
-		// TODO Auto-generated method stub
-/*
-# Status of this version:
-#     OUTDATED: sorry, you have to redownload
-#     UPDATE_NEEDED:   there is an update availible
-#     CURRENT:  good, we don't have to do anything at the moment
-		version.0.69=CURRENT
-		version.0.68.1=OUTDATED
-		version.0.68=OUTDATED
-		version.0.67=OUTDATED
-		version.0.66=OUTDATED
-		version.0.65=OUTDATED
-		version.0.64=OUTDATED
-		version.0.63=OUTDATED
-		version.0.62=OUTDATED
-		version.0.61=OUTDATED
-		version.0.60=OUTDATED
-		version.0.59.0.2=OUTDATED
-		version.0.59.0.1=OUTDATED
-		version.0.59=OUTDATED
-		version.0.58.1=OUTDATED
-		version.0.58=OUTDATED
-		version.0.57.1=OUTDATED
-		version.0.57=OUTDATED
-		version.0.56=OUTDATED
-		version.0.55.1=OUTDATED
-		version.0.55=OUTDATED
-		version.0.54.9=OUTDATED
-		version.0.54.8=OUTDATED
-		version.0.54.3=OUTDATED
-		version.0.54.2=OUTDATED
-		version.0.54.1=OUTDATED
-		version.0.54=OUTDATED
-*/
-		
+		ps.println("# Status of this version:");
+		ps.println("#     OUTDATED: sorry, you have to redownload");
+		ps.println("#     UPDATE_NEEDED:   there is an update available");
+		ps.println("#     CURRENT:  good, we don't have to do anything at the moment");
+
+		for (String key : keys) {
+			if (key.startsWith("version.")) {
+				ps.println(key + "=" + prop.getProperty(key));
+			}
+		}
+		ps.println();
 	}
 
 	private void destination() {
