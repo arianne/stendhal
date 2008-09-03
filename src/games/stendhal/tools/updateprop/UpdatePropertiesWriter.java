@@ -29,52 +29,84 @@ public class UpdatePropertiesWriter {
 		destination();
 		init();
 		updateFileList();
+		fileSize();
 	}
-/*
-#This file contains information required for automatic updates
+	private void header() {
+		ps.println("#This file contains information required for automatic updates");
+		ps.println();
+	}
 
+	private void status() {
+		// TODO Auto-generated method stub
+/*
 # Status of this version:
 #     OUTDATED: sorry, you have to redownload
 #     UPDATE_NEEDED:   there is an update availible
 #     CURRENT:  good, we don't have to do anything at the moment
-version.0.69=CURRENT
-version.0.68.1=OUTDATED
-version.0.68=OUTDATED
-version.0.67=OUTDATED
-version.0.66=OUTDATED
-version.0.65=OUTDATED
-version.0.64=OUTDATED
-version.0.63=OUTDATED
-version.0.62=OUTDATED
-version.0.61=OUTDATED
-version.0.60=OUTDATED
-version.0.59.0.2=OUTDATED
-version.0.59.0.1=OUTDATED
-version.0.59=OUTDATED
-version.0.58.1=OUTDATED
-version.0.58=OUTDATED
-version.0.57.1=OUTDATED
-version.0.57=OUTDATED
-version.0.56=OUTDATED
-version.0.55.1=OUTDATED
-version.0.55=OUTDATED
-version.0.54.9=OUTDATED
-version.0.54.8=OUTDATED
-version.0.54.3=OUTDATED
-version.0.54.2=OUTDATED
-version.0.54.1=OUTDATED
-version.0.54=OUTDATED
+		version.0.69=CURRENT
+		version.0.68.1=OUTDATED
+		version.0.68=OUTDATED
+		version.0.67=OUTDATED
+		version.0.66=OUTDATED
+		version.0.65=OUTDATED
+		version.0.64=OUTDATED
+		version.0.63=OUTDATED
+		version.0.62=OUTDATED
+		version.0.61=OUTDATED
+		version.0.60=OUTDATED
+		version.0.59.0.2=OUTDATED
+		version.0.59.0.1=OUTDATED
+		version.0.59=OUTDATED
+		version.0.58.1=OUTDATED
+		version.0.58=OUTDATED
+		version.0.57.1=OUTDATED
+		version.0.57=OUTDATED
+		version.0.56=OUTDATED
+		version.0.55.1=OUTDATED
+		version.0.55=OUTDATED
+		version.0.54.9=OUTDATED
+		version.0.54.8=OUTDATED
+		version.0.54.3=OUTDATED
+		version.0.54.2=OUTDATED
+		version.0.54.1=OUTDATED
+		version.0.54=OUTDATED
+*/
+		
+	}
 
+	private void destination() {
+		// TODO Auto-generated method stub
+		
+/*
 # new version after update to calculate multiple updates in a row
 #version.destination.0.66=0.67
+ */
+	}
+	
 
-# files to download on first install
-init.file-list=log4j.jar,marauroa-2.5.jar,stendhal-data-0.69.jar,stendhal-0.69.jar
-init.version=0.69
+	private void init() {
+		// TODO Auto-generated method stub
 
-# files to download on update from this version
-#update-file-list.0.67=stendhal-diff-0.67-0.68.jar,stendhal-data-diff-0.67-0.68.jar,marauroa-2.5.jar,log4j.jar
+/*
+		# files to download on first install
+		init.file-list=log4j.jar,marauroa-2.5.jar,stendhal-data-0.69.jar,stendhal-0.69.jar
+		init.version=0.69
+*/
+	}
 
+	private void updateFileList() {
+		// TODO Auto-generated method stub
+
+/*
+		# files to download on update from this version
+		#update-file-list.0.67=stendhal-diff-0.67-0.68.jar,stendhal-data-diff-0.67-0.68.jar,marauroa-2.5.jar,log4j.jar
+*/
+	}
+
+	private void fileSize() {
+		// TODO Auto-generated method stub
+		
+/*
 # size of complete files
 file-size.log4j.jar=209693
 file-size.marauroa-2.5.jar=245198
@@ -85,31 +117,6 @@ file-size.stendhal-data-0.69.jar=18336725
 # size of update files
 #file-size.stendhal-diff-0.68.1-0.69.jar=428828
 #file-size.stendhal-data-diff-0.68.1-0.69.jar=1010978
-
  */
-
-	private void header() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void status() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void destination() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void init() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void updateFileList() {
-		// TODO Auto-generated method stub
-		
 	}
 }
