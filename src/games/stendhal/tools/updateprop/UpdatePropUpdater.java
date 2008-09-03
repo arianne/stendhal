@@ -14,6 +14,8 @@ import java.util.Properties;
  * @author hendrik
  */
 public class UpdatePropUpdater {
+	private static final String NON_STENDHAL_FILES = "log4j.jar,marauroa-2.6.jar";
+
 	private String oldFile;
 	private String newFile;
 	private String oldVersion;
@@ -69,8 +71,9 @@ public class UpdatePropUpdater {
 	}
 
 	private void updateInit() {
-		// TODO Auto-generated method stub
-		
+		prop.put("init.file-list", NON_STENDHAL_FILES + ",stendhal-data-" + newVersion + ".jar,stendhal-" + newVersion + ".jar");
+		prop.put("init.version", newVersion);
+
 	}
 
 	private void updateUpdateFileList() {
