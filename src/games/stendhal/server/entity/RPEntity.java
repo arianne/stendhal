@@ -133,9 +133,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	private static final double SKIN_DEF = 10.0;
 	/** Adjusts the weight of level. Larger means weight more */
-	private static final double LEVEL_ATK = 0.05;
+	private static final double LEVEL_ATK = 0.03;
 	/** Adjusts the weight of level. Larger means weight more */
-	private static final double LEVEL_DEF = 0.05;
+	private static final double LEVEL_DEF = 0.03;
 	/** General parameter for damage. Larger means more damage */
 	private static final double WEIGHT_ATK = 8.0;
 	/** the level where relative damage curves start being linear */ 
