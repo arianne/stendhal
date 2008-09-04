@@ -1,7 +1,5 @@
 package games.stendhal.server.entity.creature;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -62,17 +60,13 @@ public class DeathMatchCreature extends Creature {
 
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
-			// Find out if the player killed this RPEntity on his own, but
-			// don't overwrite solo with shared.
+			// Find out if the player killed this RPEntity on his own.
 			if (damageReceivedByPlayer == totalDamageReceived) {
 				player.setSoloKill(getName());
 			} else {
 				player.setSharedKill(getName());
 			}
 			player.notifyWorldAboutChanges();
-
-		} else {
-			Logger.getLogger(DeathMatchCreature.class).error(this + " rewardkillers with amount: " + damageReceived);
 		}
 	}
 
