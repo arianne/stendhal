@@ -133,8 +133,6 @@ public class RPEntityTest {
 	}
 	@Test
 	public void testGetItemAtkforsimpleweapon() {
-		final float magicFour = 4.0f;
-		
 		final RPEntity entity = new RPEntity() {
 
 			@Override
@@ -155,11 +153,11 @@ public class RPEntityTest {
 		assertThat(entity.getItemAtk(), is(0f));
 		final Item item = SingletonRepository.getEntityManager().getItem("dagger");
 		entity.getSlot("lhand").add(item);
-		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));		
+		assertThat(entity.getItemAtk(), is((float) item.getAttack()));		
 		entity.getSlot("rhand").add(item);
-		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));
+		assertThat(entity.getItemAtk(), is((float) item.getAttack()));
 		entity.getSlot("lhand").remove(item.getID());
-		assertThat(entity.getItemAtk(), is(magicFour * item.getAttack()));		
+		assertThat(entity.getItemAtk(), is((float) item.getAttack()));		
 		
 	}
 	@Test
@@ -194,8 +192,6 @@ public class RPEntityTest {
 	
 	@Test
 	public void testGetItemAtkforLeftandRightweaponCorrectlyWorn() {
-		final float magicFour = 4.0f;
-		
 		ItemTestHelper.generateRPClasses();
 		final RPEntity entity = new RPEntity() {
 
@@ -221,7 +217,7 @@ public class RPEntityTest {
 
 		final Item righthanditem = SingletonRepository.getEntityManager().getItem("r hand sword");
 		entity.getSlot("rhand").add(righthanditem);
-		assertThat(entity.getItemAtk(), is(magicFour * (lefthanditem.getAttack() + righthanditem.getAttack())));
+		assertThat(entity.getItemAtk(), is((float) (lefthanditem.getAttack() + righthanditem.getAttack())));
 	}
 	
 	@Test
