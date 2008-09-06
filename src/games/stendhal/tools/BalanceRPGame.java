@@ -126,7 +126,7 @@ public class BalanceRPGame {
 
 		final Player player = Player.createEmptyZeroLevelPlayer("Tester");
 
-		player.equip(weapon);
+		//player.equip(weapon);
 		player.equip(shield);
 		player.equip(armor);
 		player.equip(helmet);
