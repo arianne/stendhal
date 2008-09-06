@@ -9,14 +9,12 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.Pair;
-import marauroa.common.game.RPObject;
 
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
@@ -126,13 +124,7 @@ public class BalanceRPGame {
 		final Item boots = em.getItem("leather boots");
 		area.assignRPObjectID(boots);
 
-		final Player player = new Player(new RPObject());
-		player.addSlot(new EntitySlot("lhand"));
-		player.addSlot(new EntitySlot("rhand"));
-		player.addSlot(new EntitySlot("armor"));
-		player.addSlot(new EntitySlot("head"));
-		player.addSlot(new EntitySlot("legs"));
-		player.addSlot(new EntitySlot("feet"));
+		final Player player = Player.createEmptyZeroLevelPlayer("Tester");
 
 		player.equip(weapon);
 		player.equip(shield);
