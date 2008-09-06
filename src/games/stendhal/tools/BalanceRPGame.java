@@ -82,8 +82,8 @@ public class BalanceRPGame {
 
 	public static void main(final String[] args) throws Exception {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
-		final StendhalRPZone area = new StendhalRPZone("test");
-		world.addRPZone(area);
+		final StendhalRPZone zone = new StendhalRPZone("test");
+		world.addRPZone(zone);
 
 		final List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
 				"data/conf/creatures.xml");
@@ -107,22 +107,22 @@ public class BalanceRPGame {
 
 		final EntityManager em = SingletonRepository.getEntityManager();
 		final Item weapon = em.getItem("club");
-		area.assignRPObjectID(weapon);
+		zone.assignRPObjectID(weapon);
 
 		final Item shield = em.getItem("wooden shield");
-		area.assignRPObjectID(shield);
+		zone.assignRPObjectID(shield);
 
 		final Item armor = em.getItem("dress");
-		area.assignRPObjectID(armor);
+		zone.assignRPObjectID(armor);
 
 		final Item helmet = em.getItem("leather helmet");
-		area.assignRPObjectID(helmet);
+		zone.assignRPObjectID(helmet);
 
 		final Item legs = em.getItem("leather legs");
-		area.assignRPObjectID(legs);
+		zone.assignRPObjectID(legs);
 
 		final Item boots = em.getItem("leather boots");
-		area.assignRPObjectID(boots);
+		zone.assignRPObjectID(boots);
 
 		final Player player = Player.createEmptyZeroLevelPlayer("Tester");
 
