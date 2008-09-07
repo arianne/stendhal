@@ -130,9 +130,11 @@ public final class Expression {
         if (left != null) {
             if (right != null) {
                 if (left <= right) {
-                    return left * right; // e.g. five hundred
+                	// e.g. five hundred
+                    return left * right; 
                 } else {
-                    return left + right; // e.g. hundred fifty
+                	// e.g. hundred fifty
+                    return left + right; 
                 }
             } else {
                 return left;
