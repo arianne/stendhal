@@ -1924,4 +1924,9 @@ public class Player extends RPEntity {
 		remove(LASTPLAYERKILL);
 		
 	}
+	
+	@Override
+	protected void rewardKillers(int oldXP) {
+		// Don't reward for killing players
+	}
 }
