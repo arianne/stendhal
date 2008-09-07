@@ -94,11 +94,23 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
+		
+		
 		if (added != null) {
-			map.get(added.getID()).modifiedAdded(added);
+			ObjectChangeListener objectChangeListener = map.get(added.getID());
+			if (objectChangeListener == null) {
+				logger.error("no listener for: " + added);
+			} else {
+				objectChangeListener.modifiedAdded(added);
+			}	
 		}
 		if (deleted != null) {
-			map.get(deleted.getID()).modifiedDeleted(deleted);
+			ObjectChangeListener objectChangeListener = map.get(deleted.getID());
+			if (objectChangeListener == null) {
+				logger.error("no listener for: " + added);
+			} else {
+				objectChangeListener.modifiedDeleted(deleted);
+			}
 		}
 		return false;
 	}
