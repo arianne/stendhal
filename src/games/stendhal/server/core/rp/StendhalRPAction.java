@@ -87,25 +87,21 @@ public class StendhalRPAction {
 				logger.info("REJECTED. " + victim.getName()
 						+ " is in a protection zone");
 
-				String name = victim.getTitle();
-
-				if (victim instanceof DomesticAnimal) {
-					final Player owner = ((DomesticAnimal) victim).getOwner();
-
-					if (owner != null) {
-						name = Grammar.suffix_s(owner.getTitle()) + " " + name;
-					} else {
-						if (victim instanceof Sheep) {
-							name = "that " + name;
-						} else {
-							name = "that poor little " + name;
-						}
-					}
-				}
+				String name = getNiceVictimName(victim);				
 
 				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
 						+ name + ".");
 				return;
+			}
+			
+			if (victim instanceof Player) {
+				// disable attacking much weaker players, except in
+				// self defence
+				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, victim)) {
+					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");
+				
+					return;
+				}
 			}
 
 			logger.info(player.getName() + " is attacking " + victim.getName());
@@ -119,8 +115,47 @@ public class StendhalRPAction {
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
 	}
+	
+	/**
+	 * Check that the victim has high enough level compared to the attacker
+	 * 
+	 * @param player The player trying to attack
+	 * @param victim The entity being attacked
+	 * @return <code>true</code> if the victim is strong enough to allow
+	 *  the attack to happen, <code>false</code> otherwise.
+	 */
+	private static boolean victimIsStrongEnough(final Player player, final RPEntity victim) {
+		return (victim.getLevel() + 2.0) / player.getLevel() >= 0.75;
+	}
+	
+	/**
+	 * Get a nice target description string to be sent to the attacker in case
+	 * the attacking action is forbidden.
+	 * 
+	 * @param victim The attacked entity
+	 * @return Description of the attacked pet or player
+	 */
+	private static String getNiceVictimName(RPEntity victim) {
+		String name = victim.getTitle();
 
-/**
+		if (victim instanceof DomesticAnimal) {
+			final Player owner = ((DomesticAnimal) victim).getOwner();
+
+			if (owner != null) {
+				name = Grammar.suffix_s(owner.getTitle()) + " " + name;
+			} else {
+				if (victim instanceof Sheep) {
+					name = "that " + name;
+				} else {
+					name = "that poor little " + name;
+				}
+			}
+		}
+
+		return name;
+	}
+
+	/**
 	 * Lets the attacker try to attack the defender.
 	 * @param player 
 	 * 
