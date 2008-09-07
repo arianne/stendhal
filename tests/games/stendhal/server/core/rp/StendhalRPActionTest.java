@@ -1,0 +1,190 @@
+package games.stendhal.server.core.rp;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+
+import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
+
+public class StendhalRPActionTest {
+	private static StendhalRPZone zone;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		zone = new StendhalRPZone("zone");
+		zone.protectionMap.init(1, 1);
+		MockStendlRPWorld.get().addRPZone(zone);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		PlayerTestHelper.removeAllPlayers();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		zone.protectionMap.clear();
+	}
+	
+	// Sets the square below the victim protected 
+	private void protectMap() {
+		// this seems to be enough for now
+		zone.protectionMap.setCollide(0, 0);
+	}
+	
+	@Test
+	public void startAttackingOneself() {
+		final Player player = PlayerTestHelper.createPlayer("lunatic");
+		zone.add(player);
+		// players can't attack themselves. should always fail
+		StendhalRPAction.startAttack(player, player);
+		assertNull("don't allow targeting oneself", player.getAttackTarget());
+	}
+	
+	// Trying to attack creatures should always succeed
+	@Test
+	public void startAttackingCreature() {
+		final Player player = PlayerTestHelper.createPlayer("cat");
+		
+		Creature victim = SingletonRepository.getEntityManager().getCreature("mouse");
+		zone.add(victim);
+		
+		// both at level 0
+		StendhalRPAction.startAttack(player, victim);
+		assertSame(player.getAttackTarget(), victim);
+		player.stopAttack();
+		assertNull(player.getAttackTarget());
+		
+		// protecting the mouse should not matter
+		protectMap();
+		StendhalRPAction.startAttack(player, victim);
+		assertSame(player.getAttackTarget(), victim);
+		player.stopAttack();
+		
+		// strong player, weak monster
+		player.setLevel(100);
+		StendhalRPAction.startAttack(player, victim);
+		assertSame(player.getAttackTarget(), victim);
+		
+		// weak player, strong monster
+		player.setLevel(0);
+		victim = SingletonRepository.getEntityManager().getCreature("dark angel");
+		zone.add(victim);
+		StendhalRPAction.startAttack(player, victim);
+		assertSame(player.getAttackTarget(), victim);
+		
+		// both are somewhat strong
+		player.setLevel(100);
+		StendhalRPAction.startAttack(player, victim);
+		assertSame(player.getAttackTarget(), victim);
+	}
+	
+	@Test
+	public void startAttackingEqualPlayer() {
+		final Player jekyll = PlayerTestHelper.createPlayer("jekyll");
+		final PrivateTextMockingTestPlayer hyde = PlayerTestHelper.createPrivateTextMockingTestPlayer("hyde");
+		
+		zone.add(jekyll);
+		zone.add(hyde);
+		
+		for (int level = 0; level < 200; level++) {
+			hyde.setLevel(level);
+			jekyll.setLevel(level);
+			StendhalRPAction.startAttack(hyde, jekyll);
+			// equal level. should always succeed
+			assertSame("Attacking player at unprotected area", hyde.getAttackTarget(), jekyll);
+			hyde.stopAttack();
+		}
+		
+		// protect jekyll; the attack should fail
+		protectMap();
+		for (int level = 0; level < 200; level++) {
+			hyde.setLevel(level);
+			jekyll.setLevel(level);
+			StendhalRPAction.startAttack(hyde, jekyll);
+			assertNull("Attacking player at protected area", hyde.getAttackTarget());
+			assertEquals("message at attacking at protected area", 
+					"The powerful protective aura in this place prevents you from attacking jekyll.", hyde.getPrivateTextString());
+			hyde.resetPrivateTextString();
+		}
+	}
+	
+	@Test
+	public void startAttackingStrongerPlayer() {
+		final Player jekyll = PlayerTestHelper.createPlayer("jekyll");
+		final PrivateTextMockingTestPlayer hyde = PlayerTestHelper.createPrivateTextMockingTestPlayer("hyde");
+		
+		zone.add(jekyll);
+		zone.add(hyde);
+		
+		for (int level = 0; level < 200; level++) {
+			jekyll.setLevel(level);
+			StendhalRPAction.startAttack(hyde, jekyll);
+			// jekyll is stronger than hyde, so attacking should succeed
+			assertSame("Attacking player at unprotected area", hyde.getAttackTarget(), jekyll);
+			hyde.stopAttack();
+		}
+		
+		// protect jekyll; the attack should fail
+		protectMap();
+		for (int level = 0; level < 200; level++) {
+			jekyll.setLevel(level);
+			StendhalRPAction.startAttack(hyde, jekyll);
+			assertNull("Attacking player at protected area", hyde.getAttackTarget());
+			assertEquals("message at attacking at protected area", 
+					"The powerful protective aura in this place prevents you from attacking jekyll.", hyde.getPrivateTextString());
+			hyde.resetPrivateTextString();
+		}
+	}
+	
+	@Test
+	public void startAttackingWeakPlayer() {
+		final Player jekyll = PlayerTestHelper.createPlayer("jekyll");
+		final PrivateTextMockingTestPlayer hyde = PlayerTestHelper.createPrivateTextMockingTestPlayer("hyde");
+		
+		zone.add(jekyll);
+		zone.add(hyde);
+		
+		for (int defenderLevel = 0; defenderLevel < 200; defenderLevel += 10) {
+			hyde.setLevel(defenderLevel);
+			for (int attackerLevel = (int) (defenderLevel * 0.74); attackerLevel < (int) (0.76 * defenderLevel + 2); attackerLevel++) {
+				StendhalRPAction.startAttack(hyde, jekyll);
+				if ((jekyll.getLevel() + 2.0) / hyde.getLevel() < 0.75) {
+					assertNull("Attacking a too weak player. Level " + hyde.getLevel() + " vs Level " + jekyll.getLevel(), 
+							hyde.getAttackTarget());
+					
+					assertEquals("message at attacking at protected area", 
+							"Your conscience would trouble you if you carried out this attack.", hyde.getPrivateTextString());
+					hyde.resetPrivateTextString();
+					
+					// check that self defence works
+					StendhalRPAction.startAttack(jekyll, hyde);
+					StendhalRPAction.startAttack(hyde, jekyll);
+					assertSame("Self defence against a weak enemy", hyde.getAttackTarget(), jekyll);
+					jekyll.stopAttack();
+				} else {
+					// the victim is not too weak
+					assertSame("Attacking only a bit weaker victim", hyde.getAttackTarget(), jekyll);
+				}
+				hyde.stopAttack();
+			}
+		}
+	}
+}
