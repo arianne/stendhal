@@ -37,25 +37,20 @@ public class GoldsmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				// to the oven
-				nodes.add(new Node(5, 3));
-				// to a water
-				nodes.add(new Node(5, 9));
-				nodes.add(new Node(4, 9));
-				// to the table
-				nodes.add(new Node(4, 12));
-				nodes.add(new Node(3, 12));
-				nodes.add(new Node(3, 13));
-				// to the bar
-				nodes.add(new Node(8, 13));
-				nodes.add(new Node(8, 10));
-				nodes.add(new Node(14, 10));
-				// towards the shields
-				nodes.add(new Node(14, 5));
+				// by the sink
+				nodes.add(new Node(5, 7));
+				// to the left wall
+				nodes.add(new Node(2, 7));
+				nodes.add(new Node(11, 7));
+				// up one by the armor
+				nodes.add(new Node(11, 6));
+				nodes.add(new Node(12, 6));
+				nodes.add(new Node(12, 5));
+				// to the right wall
 				nodes.add(new Node(18, 5));
-				// to the starting point
 				nodes.add(new Node(18, 3));
-
+				// to the starting point
+				nodes.add(new Node(5, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -84,7 +79,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				        "After I've casted the gold for you keep it safe. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
 				addReply("gold pan",
 				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
-				addReply(Arrays.asList("oil", "can of oil"), "Oh, fishermen supply us with that.");
+				addReply(Arrays.asList("oil", "can of oil", "buy oil"), "Oh, fishermen supply us with that.");
 			}
 		};
 
