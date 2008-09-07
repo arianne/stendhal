@@ -416,23 +416,38 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	protected void createEntityAt(final String clazz, final int type, final int x, final int y) {
 		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
-
+		final int ENTRY_POINT = 0;
+		final int ZONE_CHANGE = 1;
+		final int DOOR = 6;
+		final int PORTAL = 4;
+		final int PORTAL_STAIRS_DOWN = 3;
+		final int PORTAL_STAIRS_UP = 2;
+		final int ONE_WAY_PORTAL_DESTINATION = 5;
+		
 		try {
 			if (clazz.contains("logic/portal")) {
 				switch (type) {
-				case 0: /* Entry point */
-				case 1: /* Zone change */
+				
+				case ENTRY_POINT: 
+				case ZONE_CHANGE: 
+					
 					setEntryPoint(x, y);
 					break;
 
-				case 5: /* one way portal destination */
-				case 2: /* portal stairs up */
-				case 3: /* portal stairs down */
+				case ONE_WAY_PORTAL_DESTINATION: 
+				case PORTAL_STAIRS_UP: 
+				case PORTAL_STAIRS_DOWN: 
 					createLevelPortalAt(type, x, y);
 					break;
-				case 4: /* portal */
+				case PORTAL:
 					break;
-				case 6: /* door */
+				
+				case DOOR: 
+					break;
+				default:
+					logger.error("Unknown Portal (class/type: " + clazz + ":"
+							+ type + ") at (" + x + "," + y + ") of " + getID()
+							+ " found");
 					break;
 				}
 			} else if (clazz.contains("sheep.png")) {
