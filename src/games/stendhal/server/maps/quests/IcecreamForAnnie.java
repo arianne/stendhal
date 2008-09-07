@@ -2,7 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -29,10 +28,9 @@ public class IcecreamForAnnie extends AbstractQuest {
 	// constants
 	private static final String QUEST_SLOT = "icecream_for_annie";
 
-	protected SpeakerNPC npc;
-	protected SpeakerNPC mummyNPC;
+	
+	
 
-	protected StendhalRPZone zone;
 
 	// The delay between repeating quests is 60 minutes
 	private static final int REQUIRED_MINUTES = 30;
