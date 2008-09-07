@@ -102,9 +102,16 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			final Connection connection = transaction.getConnection();
 			final Statement stmt = connection.createStatement();
 
+			
+			String onlinestate;
+			if (online) {
+				onlinestate = "1";
+			} else {
+				onlinestate = "0";
+			}
 			// first try an update
 			final String query = "UPDATE character_stats SET online="
-					+ (online ? 1 : 0) + " WHERE name='"
+					+ onlinestate + " WHERE name='"
 					+ StringChecker.escapeSQLString(player.get("name")) + "'";
 			logger.debug("setOnlineStatus is running: " + query);
 			stmt.executeUpdate(query);
