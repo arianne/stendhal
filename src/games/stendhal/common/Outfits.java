@@ -15,7 +15,7 @@ public class Outfits {
 
 	public static final int CLOTHES_OUTFITS = 53;
 
-	public static final int HAIR_OUTFITS = 43;
+	public static final int HAIR_OUTFITS = 44;
 
 	public static final int BODY_OUTFITS = 15;
 
