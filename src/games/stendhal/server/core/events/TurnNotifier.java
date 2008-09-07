@@ -77,7 +77,13 @@ public final class TurnNotifier {
 		if (logger.isDebugEnabled()) {
 			final StringBuilder os = new StringBuilder();
 			os.append("register: " + register.size() + "\n");
-			os.append("set: " + (set != null ? set.size() : 0) + "\n");
+			int setSize;
+			if (set != null) {
+				setSize = set.size();
+			} else {
+				setSize = 0;
+			}
+			os.append("set: " + setSize + "\n");
 			logger.info(os);
 		}
 
