@@ -432,7 +432,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		
 		// Defending side
 		final double armor = defender.getItemDef();
-		final int targetDef = defender.getDEF();;
+		final int targetDef = defender.getDEF();
 		// Even strong players are vulnerable without any armor.
 		// Armor def gets much higher with high level players unlike
 		// weapon atk, so it can not be treated similarly. Using geometric 
