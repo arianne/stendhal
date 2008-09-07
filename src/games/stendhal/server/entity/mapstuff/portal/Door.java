@@ -33,7 +33,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	 * How many turns it takes until door automatically closes itself after
 	 * somebody walked through it.
 	 */
-	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
+	private static final int SECONDS_TO_STAY_OPEN = 3;
 
 	/**
 	 * Whether or not the door is currently open.
@@ -132,8 +132,9 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 			}
 
 			// register automatic close
-			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this);
-		} else { // player may not use it
+			turnNotifier.notifyInSeconds(SECONDS_TO_STAY_OPEN, this);
+		} else { 
+			// player may not use it
 			if (isOpen()) {
 				// close now to make visible that the entity is not allowed
 				// to pass
