@@ -21,7 +21,7 @@ public class UpdatePropertiesWriter {
 	 * @param prop properties to write
 	 * @param ps   output stream
 	 */
-	public UpdatePropertiesWriter(Properties prop, PrintStream ps) {
+	public UpdatePropertiesWriter(final Properties prop, final PrintStream ps) {
 		this.prop = prop;
 		this.ps = ps;
 		this.keys = new TreeSet<String>((Set<String>) (Set) prop.keySet());
