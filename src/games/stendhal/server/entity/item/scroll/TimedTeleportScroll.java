@@ -20,12 +20,19 @@ import org.apache.log4j.Logger;
  * for a specified time, after which it will teleport the player to given
  * location.
  * <p>
- * infostring attribute in items.xml:<p> 
+ * infostring attribute in items.xml:
+ * <p>
  * <code> 1_dreamscape 77 35 5400 0_semos_plains_s -1 -1 </code>
- * <p>where <ul><li>1_dreamscape is the target zone name; <li>77 and 35 are the target x
- * and y position; <li>5400 is the number of turns before return; <li>0_semos_plains_s
- * is the return zone; <li>-1 and -1 are the return x and y positions (negative
- * value means a random position)</ul>
+ * <p>
+ * where
+ * <ul>
+ * <li>1_dreamscape is the target zone name;
+ * <li>77 and 35 are the target x and y position;
+ * <li>5400 is the number of turns before return;
+ * <li>0_semos_plains_s is the return zone;
+ * <li>-1 and -1 are the return x and y positions (negative value means a random
+ * position)
+ * </ul>
  * 
  * TODO: This class isn't fully self-containing as the LoginHandler (that
  * handles the players logging in the target zone) must be implemented
@@ -62,35 +69,55 @@ public class TimedTeleportScroll extends TeleportScroll {
 						"the infostring attribute is malformed");
 			}
 		}
-		int x = returnX;
-		int y = returnY;
+	
 		if ((player == null) || (player.getZone() == null)
 				|| (targetZoneName == null)) {
 			return true;
 		}
 
-		if (!targetZoneName.equals(player.getZone().getName())) {
-			return true; /* player is already away from the target zone */
+		if (notInTargetZone(player, targetZoneName)) {
+			return true; 
 		}
 
 		final StendhalRPZone returnZone = SingletonRepository.getRPWorld().getZone(
 				returnZoneName);
-
-		if (x < 0) {
-			x = Rand.rand(returnZone.getWidth());
-		}
-		if (y < 0) {
-			y = Rand.rand(returnZone.getHeight());
-		}
-
+		
+		int x = initCoord(returnX, returnZone.getWidth());
+		int y = initCoord(returnY, returnZone.getHeight());
+	
 		final boolean result = player.teleport(returnZone, x, y, null, player);
 
+		sendAfterTransportMessage(player);
+
+		return result;
+	}
+
+	private boolean notInTargetZone(final Player player, String targetZoneName) {
+		return !targetZoneName.equals(player.getZone().getName());
+	}
+
+	private void sendAfterTransportMessage(final Player player) {
 		final String afterReturnMessage = getAfterReturnMessage();
 		if (afterReturnMessage != null) {
 			player.sendPrivateText(afterReturnMessage);
 		}
+	}
 
-		return result;
+	/**
+	 * Evaluates the given coord to be non negative.
+	 * 
+	 * @param coord
+	 * @param max
+	 * @return the coord if coord non negative or a randomized value between 0 and max.
+	 */
+	private int initCoord(int coord, int max) {
+		int x;
+		if (coord < 0) {
+			x = Rand.rand(max);
+		} else {
+			x = coord;
+		}
+		return x;
 	}
 
 	/**
@@ -144,34 +171,58 @@ public class TimedTeleportScroll extends TeleportScroll {
 			}
 		}
 
-		/* check destination */
 		final StendhalRPZone targetZone = SingletonRepository.getRPWorld().getZone(
 				targetZoneName);
 
-		if (targetZone != null) {
-			final String beforeReturnMessage = getBeforeReturnMessage();
-			if (beforeReturnMessage != null) {
-				SingletonRepository.getTurnNotifier().notifyInTurns(
-						(int) (timeInTurns * 0.9),
-						new TimedTeleportWarningTurnListener(player,
-								SingletonRepository.getRPWorld().getZone(targetZoneName),
-								beforeReturnMessage));
-			}
-			SingletonRepository.getTurnNotifier().notifyInTurns(timeInTurns,
-					new TimedTeleportTurnListener(player));
-
-			/*
-			 * we use the player as teleporter (last parameter) to give feedback
-			 * if something goes wrong
-			 */
-			return player.teleport(targetZone, targetX, targetY, null, player);
+		if (targetZone == null) {
+			logUnknownZone(targetZoneName);
+			return false;
 		} else {
-			/* invalid zone - only log it */
-			logger.warn("Timed teleport scroll to unknown zone: "
-					+ targetZoneName);
+			createWarningBeforeRetransport(player, targetZoneName, timeInTurns);
+			createReTransportTimer(player, timeInTurns);
+
+			return teleportPlayer(player, targetX, targetY, targetZone);
 		}
 
-		return false;
+		
+	}
+
+	
+	/**
+	 * Teleports the player to the given position in the given zone.
+	 * Uses player as teleporter to give report to him in case something goes wrong while transport.
+	 * 
+	 * @param player the person to teleport
+	 * @param targetX 
+	 * @param targetY
+	 * @param targetZone the zone to teleport to.
+	 * @return
+	 */
+	private boolean teleportPlayer(final Player player, int targetX,
+			int targetY, final StendhalRPZone targetZone) {
+		
+		return player.teleport(targetZone, targetX, targetY, null, player);
+	}
+
+	private void createReTransportTimer(final Player player, int timeInTurns) {
+		SingletonRepository.getTurnNotifier().notifyInTurns(timeInTurns,
+				new TimedTeleportTurnListener(player));
+	}
+
+	private void logUnknownZone(String targetZoneName) {
+		logger.warn("Timed teleport scroll to unknown zone: " + targetZoneName);
+	}
+
+	private void createWarningBeforeRetransport(final Player player,
+			String targetZoneName, int timeInTurns) {
+		final String beforeReturnMessage = getBeforeReturnMessage();
+		if (beforeReturnMessage != null) {
+			SingletonRepository.getTurnNotifier().notifyInTurns(
+					(int) (timeInTurns * 0.9),
+					new TimedTeleportWarningTurnListener(player,
+							SingletonRepository.getRPWorld().getZone(targetZoneName),
+							beforeReturnMessage));
+		}
 	}
 
 	@Override
@@ -247,4 +298,6 @@ public class TimedTeleportScroll extends TeleportScroll {
 			}
 		}
 	}
+	
+	
 }
