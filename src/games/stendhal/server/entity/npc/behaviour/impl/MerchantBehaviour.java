@@ -83,15 +83,15 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 *            amount
 	 */
 	@Override
-	public void setAmount(int amount) {
+	public void setAmount(final int amount) {
 
 		if (amount < 1) {
-			amount = 1;
+			this.amount = 1;
 			logger.warn("Increasing very low amount of " + amount + " to 1.");
 		}
 		if (amount > 1000) {
 			logger.warn("Decreasing very large amount of " + amount + " to 1.");
-			amount = 1;
+			this.amount = 1;
 		}
 		this.amount = amount;
 	}
