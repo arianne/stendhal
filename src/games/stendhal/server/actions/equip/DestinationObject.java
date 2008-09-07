@@ -167,11 +167,8 @@ class DestinationObject extends MoveableObject {
 	public boolean isTradingTable(final Entity other, final Player player) {
 		final StendhalRPZone zone = player.getZone();
 			// Note! Hardcoded in the location of trading table, it starts at x = 32
-			if ("int_semos_bank".equals(zone.getName()) && x >= 32) {
-				return true;
-			} else {
-				return false;
-			}
+			return "int_semos_bank".equals(zone.getName()) && x >= 32;
+			
 	}
 	
 	/** returns true when this DestinationObject is valid. */
