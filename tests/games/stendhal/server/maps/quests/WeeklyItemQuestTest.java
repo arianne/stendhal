@@ -86,7 +86,8 @@ public class WeeklyItemQuestTest {
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
 		en.step(player, "task");
-		assertThat(npc.get("text"),isOneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.","The museum can only afford to send you to fetch an item once a week. Please check back in 1 week."));
+		assertThat(npc.get("text"), isOneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.", 
+				                            "The museum can only afford to send you to fetch an item once a week. Please check back in 1 week."));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
 

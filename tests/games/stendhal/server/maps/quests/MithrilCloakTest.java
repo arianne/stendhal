@@ -467,7 +467,7 @@ public class MithrilCloakTest {
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "task");
-		assertThat(npc.get("text"),isOneOf("I'm still sewing your cloak, come back in 24 hours - and don't rush me, or I'm more likely to break the needle.","I'm still sewing your cloak, come back in 1 day - and don't rush me, or I'm more likely to break the needle."));
+		assertThat(npc.get("text"), isOneOf("I'm still sewing your cloak, come back in 24 hours - and don't rush me, or I'm more likely to break the needle.", "I'm still sewing your cloak, come back in 1 day - and don't rush me, or I'm more likely to break the needle."));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
 		

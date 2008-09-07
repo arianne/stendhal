@@ -204,7 +204,7 @@ public class MarriageTest {
 		assertEquals("Have a lovely time!", npc.get("text"));
 		
 		// now test that once you are married you cannot get the outfit again
-		player2.setQuest(QUEST_SLOT,"just_married");
+		player2.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
 		assertEquals("Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!", npc.get("text"));
 		

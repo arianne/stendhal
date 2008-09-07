@@ -92,7 +92,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 		return result;
 	}
 
-	private boolean notInTargetZone(final Player player, String targetZoneName) {
+	private boolean notInTargetZone(final Player player, final String targetZoneName) {
 		return !targetZoneName.equals(player.getZone().getName());
 	}
 
@@ -110,7 +110,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param max
 	 * @return the coord if coord non negative or a randomized value between 0 and max.
 	 */
-	private int initCoord(int coord, int max) {
+	private int initCoord(final int coord, final int max) {
 		int x;
 		if (coord < 0) {
 			x = Rand.rand(max);
@@ -198,13 +198,13 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param targetZone the zone to teleport to.
 	 * @return
 	 */
-	private boolean teleportPlayer(final Player player, int targetX,
-			int targetY, final StendhalRPZone targetZone) {
+	private boolean teleportPlayer(final Player player, final int targetX,
+			final int targetY, final StendhalRPZone targetZone) {
 		
 		return player.teleport(targetZone, targetX, targetY, null, player);
 	}
 
-	private void createReTransportTimer(final Player player, int timeInTurns) {
+	private void createReTransportTimer(final Player player, final int timeInTurns) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(timeInTurns,
 				new TimedTeleportTurnListener(player));
 	}
@@ -214,7 +214,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	}
 
 	private void createWarningBeforeRetransport(final Player player,
-			String targetZoneName, int timeInTurns) {
+			final String targetZoneName, final int timeInTurns) {
 		final String beforeReturnMessage = getBeforeReturnMessage();
 		if (beforeReturnMessage != null) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(

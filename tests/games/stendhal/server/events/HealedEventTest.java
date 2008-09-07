@@ -16,7 +16,7 @@ public class HealedEventTest {
     
     @Ignore
     @Test
-    public void testHealedEventTryBroken () {
+    public void testHealedEventTryBroken() {
         HealedEvent event = new HealedEvent(1);
         event.put("amount", "boo boo");
         assertThat(event.get("amount"), is("boo boo"));

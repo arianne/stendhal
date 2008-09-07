@@ -304,12 +304,12 @@ public abstract class Pet extends DomesticAnimal {
 	}
 	// provide a nice string, describing the pet's hunger, to add to the 
 	// Look description.
-	private String getHungerType(int hunger) {
+	private String getHungerType(final int hunger) {
 		if (hunger < HUNGER_HUNGRY) {
 			return " It seems quite content.";
-		} else if (hunger < 2*HUNGER_STARVATION/3) {
+		} else if (hunger < 2 * HUNGER_STARVATION / 3) {
 			return " It appears to be getting a bit peckish.";
-		} else if (hunger < 9*HUNGER_STARVATION/10) {
+		} else if (hunger < 9 * HUNGER_STARVATION / 10) {
 			return " It seems really hungry.";
 		} else {
 			return " It's on the brink of starvation!";

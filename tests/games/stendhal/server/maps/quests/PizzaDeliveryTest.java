@@ -145,7 +145,7 @@ public class PizzaDeliveryTest {
 		npc = SingletonRepository.getNPCList().get("Eliza");
 		en = npc.getEngine();
 		int xp = player.getXP();
-		player.setQuest(questSlot,"Eliza;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Eliza;" + System.currentTimeMillis());
 		en.step(player, "hi");
 		assertEquals("Welcome to the #ferry service to #Athor #island! How can I #help you?", npc.get("text"));
 		en.step(player, "pizza");
@@ -199,7 +199,7 @@ public class PizzaDeliveryTest {
 		en = npc.getEngine();
 		xp = player.getXP();
 		// testing taking too long to bring the pizza
-		player.setQuest(questSlot,"Jenny;0");
+		player.setQuest(questSlot, "Jenny;0");
 		// we choose to make it so that he had asked us to take a pizza to a specific npc so we have to remove the 
 		// old pizza and add the correct new flavour of pizza
 		player.drop("pizza");
@@ -236,7 +236,7 @@ public class PizzaDeliveryTest {
 		
 		npc = SingletonRepository.getNPCList().get("Katinka");
 		en = npc.getEngine();
-		player.setQuest(questSlot,"Katinka;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Katinka;" + System.currentTimeMillis());
 		// we choose to make it so that he had asked us to take a pizza to a DIFFERENT npc than Katinka
 		// so we have to remove the 
 		// old pizza and add the WRONG new flavour of pizza
@@ -288,7 +288,7 @@ public class PizzaDeliveryTest {
 		
 		npc = SingletonRepository.getNPCList().get("Fidorea");
 		en = npc.getEngine();
-		player.setQuest(questSlot,"Fidorea;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Fidorea;" + System.currentTimeMillis());
 		// on time
 		en.step(player, "hi");
 		assertEquals("Hi, there. Do you need #help with anything?", npc.get("text"));
@@ -341,7 +341,7 @@ public class PizzaDeliveryTest {
 		player.getSlot("bag").add(item);
 		npc = SingletonRepository.getNPCList().get("Jenny");
 		en = npc.getEngine();
-		player.setQuest(questSlot,"Jenny;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Jenny;" + System.currentTimeMillis());
 		// on time
 		en.step(player, "hi");
 		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
@@ -375,7 +375,7 @@ public class PizzaDeliveryTest {
 		item.setInfoString("Pizza Vegetale");	
 		player.getSlot("bag").add(item);
 		// be late
-		player.setQuest(questSlot,"Katinka;0");
+		player.setQuest(questSlot, "Katinka;0");
 		
 		en.step(player, "hi");
 		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc.get("text"));
@@ -400,7 +400,7 @@ public class PizzaDeliveryTest {
 		assertEquals("Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
-		player.setQuest(questSlot,"Cyk;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Cyk;" + System.currentTimeMillis());
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
 		item.setInfoString("Pizza Hawaii");	
@@ -443,7 +443,7 @@ public class PizzaDeliveryTest {
 		
 		npc = SingletonRepository.getNPCList().get("Haizen");
 		en = npc.getEngine();
-		player.setQuest(questSlot,"Haizen;"+ System.currentTimeMillis());
+		player.setQuest(questSlot, "Haizen;" + System.currentTimeMillis());
 		// on time 
 		en.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
