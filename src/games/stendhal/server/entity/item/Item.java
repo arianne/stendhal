@@ -422,12 +422,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 	
 	/**
-	 * Is called when the item is moved to the ground, or moved on the
-	 * ground.
+	 * Is called when the item is moved to the ground.
 	 * 
-	 * @param expire
-	 * 		Set true if the item should expire normally, false otherwise.
-	 * 		Persistent attribute can override this. 
+	 * @param player the player who drops the Item.
+	 * 
 	 */
 	public void onPutOnGround(final Player player) {
 		onPutOnGround(true);

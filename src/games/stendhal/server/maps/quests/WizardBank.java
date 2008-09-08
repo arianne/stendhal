@@ -153,6 +153,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				setPath(null);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,

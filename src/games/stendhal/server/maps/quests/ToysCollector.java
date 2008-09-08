@@ -78,6 +78,7 @@ public class ToysCollector extends AbstractQuest implements
 		return neededToys;
 	}
 
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}

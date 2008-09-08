@@ -167,6 +167,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param y
 	 * @param width
 	 * @param height
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	public WtPanel(final String name, final int x, final int y, final int width, final int height,
 			final IGameScreen gameScreen) {
@@ -617,7 +619,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return closed;
 	}
 
-	/** Tells this panel (and all subpanels) to close. */
+	/** Tells this panel (and all subpanels) to close. 
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
+	 */
 	public void close(final IGameScreen gameScreen) {
 		if (isCloseable()) {
 			setVisible(false);
@@ -626,6 +631,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Destroy the panel.
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	public void destroy(final IGameScreen gameScreen) {
 		setVisible(false);

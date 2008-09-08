@@ -376,7 +376,7 @@ public class CreatureInfo {
 	public String getHowDangerous(final Player player, final DefaultCreature creature,
 			final Map<Double, String> dangerLiterals) {
 		String s = getLiteral(dangerLiterals,
-				(double) ((double) creature.getLevel())
+				((double) creature.getLevel())
 						/ ((double) player.getLevel()), 0.0);
 		s = s.replaceAll("%s", creature.getCreatureName());
 		s = s.replaceAll("%S", Grammar.plural(creature.getCreatureName()));

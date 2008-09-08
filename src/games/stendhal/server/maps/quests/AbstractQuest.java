@@ -17,7 +17,9 @@ public abstract class AbstractQuest implements IQuest {
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name;
 
-	/** The slot-name in !quests. 
+	/** 
+	 * The slot-name in !quests. 
+	 * @return the slot's name 
 	 * 
 	 */
 	public abstract String getSlotName();

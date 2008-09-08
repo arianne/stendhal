@@ -55,7 +55,10 @@ public class Buddies extends WtPanel {
 	private final LinkedList<String> buddies;
 
 	/** Creates a new instance of Buddies. 
-	 * @param ui */
+	 * @param ui 
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
+	 */
 	public Buddies(final StendhalUI ui, final IGameScreen gameScreen) {
 		super("buddies", ui.getWidth() - 132, 265, 132, 200, gameScreen);
 

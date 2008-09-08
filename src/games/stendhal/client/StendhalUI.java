@@ -167,6 +167,8 @@ public abstract class StendhalUI {
 	 *            The user's X coordinate.
 	 * @param y
 	 *            The user's Y coordinate.
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	public abstract void setPosition(double x, double y, IGameScreen gameScreen);
 

@@ -57,6 +57,8 @@ public interface EntityView {
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	void release(IGameScreen gameScreen);
 

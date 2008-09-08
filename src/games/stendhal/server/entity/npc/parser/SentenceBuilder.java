@@ -49,6 +49,7 @@ public final class SentenceBuilder {
      *
      * @param it
      *            Expression iterator
+     * @return amount of appended tokens
      */
     public int appendUntilBreak(final Iterator<Expression> it) {
         int count = 0;

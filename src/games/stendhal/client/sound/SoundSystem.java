@@ -552,7 +552,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Sets a global volume level for all sounds played with this sound system.
 	 * The volume value ranges between 0 (silent) and 100 (loudest).
 	 * 
-	 * @param tempVolume
+	 * @param volume
 	 *            0 .. 100
 	 */
 	public void setVolume(final int volume) {

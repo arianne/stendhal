@@ -104,6 +104,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return NEEDED_CLOAKS;
 	}
 
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}

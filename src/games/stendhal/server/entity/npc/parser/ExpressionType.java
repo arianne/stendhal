@@ -139,7 +139,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of numeral words.
-     *
+     * @return true if typeString start with 'NUM' false otherwise.
      */
     public boolean isNumeral() {
         return typeString.startsWith(NUMERAL);
@@ -147,7 +147,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of adjectives or adverbs.
-     *
+     * @return true if typeString start with 'ADJ' false otherwise.
      */
     public boolean isAdjective() {
         return typeString.startsWith(ADJECTIVE);
@@ -155,7 +155,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of prepositions.
-     *
+     * @return true if typeString start with 'PRE' false otherwise.
+
      */
     public boolean isPreposition() {
         return typeString.startsWith(PREPOSITION);
@@ -163,7 +164,8 @@ public final class ExpressionType {
 
     /**
      * Determine Expressions to ignore.
-     *
+     * @return true if typeString start with 'IGN' false otherwise.
+
      */
     public boolean isIgnore() {
         return typeString.startsWith(IGNORE);
@@ -171,7 +173,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is in plural form.
-     *
+      * @return true if typeString contains '-PLU' false otherwise.
+  
      */
     public boolean isPlural() {
         return typeString.contains(SUFFIX_PLURAL);
@@ -179,7 +182,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a creature name.
-     *
+      * @return true if typeString contains '-NAM' false otherwise.
+  
      */
     public boolean isName() {
         return typeString.contains(SUFFIX_NAME);
@@ -187,7 +191,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of question words.
-     *
+         * @return true if typeString start with 'QUE' false otherwise.
+
      */
     public boolean isQuestion() {
         return typeString.startsWith(QUESTION);
@@ -195,7 +200,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a or is merged with a question word.
-     *
+   * @return true if typeString contains 'QUE' false otherwise.
      */
     public boolean hasQuestion() {
         return typeString.contains(QUESTION);
@@ -203,7 +208,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression specifies a color.
-     *
+      * @return true if typeString contains 'COL' false otherwise.
+  
      */
     public boolean hasColor() {
         return typeString.contains(COLOR);
@@ -211,7 +217,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a pronoun.
-     *
+      * @return true if typeString contains '-PRO' false otherwise.
+  
      */
     public boolean isPronoun() {
         return typeString.contains(SUFFIX_PRONOUN);
@@ -219,7 +226,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is in conditional form.
-     *
+      * @return true if typeString contains '-CON' false otherwise.
+  
      */
     public boolean isConditional() {
         return typeString.contains(SUFFIX_CONDITIONAL);
@@ -227,7 +235,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is negated.
-     *
+     * @return true if typeString contains '-NEG' false otherwise.
+  
      */
     public boolean isNegated() {
         return typeString.contains(SUFFIX_NEGATED);
@@ -235,7 +244,8 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression contains a dynamically defined word.
-     *
+      * @return true if typeString contains '-DYN' false otherwise.
+  
      */
     public boolean isDynamic() {
         return typeString.contains(SUFFIX_DYNAMIC);
@@ -245,7 +255,9 @@ public final class ExpressionType {
      * Check if the given String contains a type string specifier.
      *
      * @param str
-s     */
+     * 
+     * @return true if first letter is Uppercase and contains any of the predefined TYPESTRINGs 
+     * */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {
             final char first = str.charAt(0);

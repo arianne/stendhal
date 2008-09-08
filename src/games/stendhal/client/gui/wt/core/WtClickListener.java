@@ -37,6 +37,8 @@ public interface WtClickListener {
 	 *            be unique
 	 * @param point
 	 *            coordinate of the clicked point within the clicked panel
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	void onClick(String name, Point point, IGameScreen gameScreen);
 

@@ -70,6 +70,7 @@ public class WeaponsCollector extends AbstractQuest implements
 		return neededWeapons;
 	}
 
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}

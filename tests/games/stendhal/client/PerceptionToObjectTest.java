@@ -165,6 +165,7 @@ public class PerceptionToObjectTest {
 		final String attribute = "modifiedadded";
 		final ObjectChangeListener listener = new ObjectChangeListenerAdapter() {
 
+			@Override
 			public void modifiedAdded(final RPObject changes) {
 				object.add(attribute, 1);
 			}
@@ -199,6 +200,7 @@ public class PerceptionToObjectTest {
 		final String attribute = "modifieddeleted";
 		final ObjectChangeListener listener = new ObjectChangeListenerAdapter() {
 			
+			@Override
 			public void modifiedDeleted(final RPObject changes) {
 				object.add(attribute, 1);
 			}
@@ -234,6 +236,7 @@ public class PerceptionToObjectTest {
 		final String attribute = "modifieddeleted";
 		final ObjectChangeListener listener = new ObjectChangeListenerAdapter() {
 			
+			@Override
 			public void modifiedDeleted(final RPObject changes) {
 				object.add(attribute, 1);
 			}

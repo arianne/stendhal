@@ -147,6 +147,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * 
 	 * @param entity
 	 *            The new entity, or <code>null</code>.
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	public void setEntity(final IEntity entity, final IGameScreen gameScreen) {
 		if (view != null) {

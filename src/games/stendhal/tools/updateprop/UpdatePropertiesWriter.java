@@ -24,7 +24,7 @@ public class UpdatePropertiesWriter {
 	public UpdatePropertiesWriter(final Properties prop, final PrintStream ps) {
 		this.prop = prop;
 		this.ps = ps;
-		this.keys = new TreeSet<String>((Set<String>) (Set) prop.keySet());
+		this.keys = new TreeSet<String>((Set) prop.keySet());
 	}
 
 	public void process() {

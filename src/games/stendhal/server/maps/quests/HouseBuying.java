@@ -495,7 +495,7 @@ public class HouseBuying extends AbstractQuest {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
-									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((int) (REQUIRED_AGE / 60)) + " hours on Faiumoni.");
+									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.");
 						} else if (!player.isQuestCompleted(KIRDNEH_QUEST_SLOT)) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH

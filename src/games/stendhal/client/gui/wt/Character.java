@@ -74,6 +74,9 @@ public class Character extends WtPanel {
 	 * Creates a new instance of Character.
 	 * 
 	 * @param ui
+	 *
+	 * @param gameScreen 
+	 * 			 The gameScreen to paint on.
 	 */
 	public Character(final StendhalUI ui, final IGameScreen gameScreen) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
