@@ -45,7 +45,7 @@ public class StackableItemTest {
 
 	@Test
 	public void testGetQuantity() {
-		StackableItem stack = new StackableItem("item","clazz","subclass",null);
+		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
 		assertThat(stack.getQuantity(), is(1));
 		
 	}
@@ -73,7 +73,7 @@ public class StackableItemTest {
 
 	@Test
 	public void testSetQuantity() {
-		StackableItem stack = new StackableItem("item","clazz","subclass",null);
+		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
 		assertThat(stack.getQuantity(), is(1));
 		stack.setQuantity(0);
 		assertThat(stack.getQuantity(), is(1));
