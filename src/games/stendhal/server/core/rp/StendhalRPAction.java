@@ -125,7 +125,7 @@ public class StendhalRPAction {
 	 *  the attack to happen, <code>false</code> otherwise.
 	 */
 	private static boolean victimIsStrongEnough(final Player player, final RPEntity victim) {
-		return (victim.getLevel() + 2.0) / player.getLevel() >= 0.75;
+		return victim.getLevel() + 2.0 >= 0.75 * player.getLevel();
 	}
 	
 	/**
