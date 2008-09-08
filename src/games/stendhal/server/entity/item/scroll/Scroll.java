@@ -15,7 +15,6 @@ package games.stendhal.server.entity.item.scroll;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
@@ -52,20 +51,6 @@ public class Scroll extends StackableItem implements UseListener {
 	 */
 	public Scroll(final Scroll item) {
 		super(item);
-	}
-
-	/**
-	 * Make sure that both are scrolls of the same kind.
-	 * 
-	 * @return <code>true</code> if the items have the same class and
-	 *         subclass.
-	 */
-	@Override
-	public boolean isStackable(final Stackable other) {
-		final StackableItem otheri = (StackableItem) other;
-
-		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(
-				otheri.getItemSubclass()));
 	}
 
 	public final boolean onUsed(final RPEntity user) {

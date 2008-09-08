@@ -6,7 +6,6 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
@@ -100,11 +99,6 @@ public abstract class TimedStackableItem extends StackableItem implements
 		}
 
 		return text;
-	}
-
-	@Override
-	public boolean isStackable(final Stackable other) {
-		return (other.getClass() == this.getClass());
 	}
 
 	/**

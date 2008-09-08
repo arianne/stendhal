@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.entity.item.Stackable;
-import games.stendhal.server.entity.item.StackableItem;
 
 import java.util.Map;
 
@@ -43,26 +41,5 @@ public class InfoStringScroll extends Scroll {
 	 */
 	public InfoStringScroll(final InfoStringScroll item) {
 		super(item);
-	}
-
-	@Override
-	public boolean isStackable(final Stackable other) {
-		final StackableItem otheri = (StackableItem) other;
-
-		// Same types?
-		if (!super.isStackable(other)) {
-			return false;
-		}
-
-		// scroll can be stacked if they have the same infostring
-		final String infostring = getInfoString();
-		final String oinfostring = otheri.getInfoString();
-
-		if (infostring != null) {
-			return infostring.equals(oinfostring);
-		} else {
-			// scrolls without infostring can be stacked as well
-			return (oinfostring == null);
-		}
 	}
 }

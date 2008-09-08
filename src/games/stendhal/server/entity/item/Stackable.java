@@ -17,7 +17,7 @@ package games.stendhal.server.entity.item;
  * 
  * @author mtotz
  */
-public interface Stackable {
+public interface Stackable<T> {
 
 	/** @return the quantity */
 	int getQuantity();
@@ -29,10 +29,10 @@ public interface Stackable {
 	/** Adds the quantity of the other Stackable to this .
 	 * @param other 
 	 * @return the previous quantity */
-	int add(Stackable other);
+	int add(T other);
 
 	/** @param other 
 	 * @return true when both stackables are of the same type and can be merged */
-	boolean isStackable(Stackable other);
+	boolean isStackable(T other);
 
 }

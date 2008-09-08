@@ -45,11 +45,6 @@ public class Money extends StackableItem {
 	}
 
 	@Override
-	public boolean isStackable(final Stackable other) {
-		return (other.getClass() == Money.class);
-	}
-
-	@Override
 	public String describe() {
 		return "You see " + getQuantity() + " money.";
 	}

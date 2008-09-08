@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,14 +17,15 @@ import utilities.PrivateTextMockingTestPlayer;
 public class GagManagerTest {
 
 	@BeforeClass
-	public static void setUpeforeClass() throws Exception {
+	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.removePlayer("bob");
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public void tearDownAfterClass() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
