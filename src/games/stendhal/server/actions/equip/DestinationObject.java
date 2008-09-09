@@ -115,6 +115,7 @@ class DestinationObject extends MoveableObject {
 					final Iterator<RPObject> it = rpslot.iterator();
 					while (it.hasNext()) {
 						final RPObject object = it.next();
+						
 						if (object instanceof Stackable) {
 							// found another stackable
 							final Stackable other = (Stackable) object;
@@ -234,7 +235,6 @@ class DestinationObject extends MoveableObject {
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
 			}
-			System.out .println(entity.getID().getObjectID() + ":" + entity);
 			SingletonRepository.getRPWorld().modify(parent); 
 		} else {
 			// drop the entity to the ground. Do this always in the player's
