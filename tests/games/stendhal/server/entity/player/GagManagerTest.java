@@ -24,8 +24,8 @@ public class GagManagerTest {
 	}
 
 	@AfterClass
-	public void tearDownAfterClass() throws Exception {
-		MockStendhalRPRuleProcessor.get().clearPlayers();
+	public static void tearDownAfterClass() throws Exception {
+	  MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
