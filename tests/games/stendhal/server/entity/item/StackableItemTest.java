@@ -2,6 +2,10 @@ package games.stendhal.server.entity.item;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -209,8 +213,42 @@ public class StackableItemTest {
 		assertTrue(stack.isStackable(stackOnTop));
 		assertTrue(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
-		final StackableItem summonStack = (StackableItem) SingletonRepository.getEntityManager().getItem("summon scroll");
-		assertFalse(stack.isStackable(summonStack));
+	}
+	
+	@Test
+	public void testIsStackableDifferentScrolls() {
+	    final List<StackableItem> stackables = new LinkedList<StackableItem>();
+	    final StackableItem summonStack = (StackableItem) SingletonRepository.getEntityManager().getItem("summon scroll");
+	    stackables.add(summonStack);
+	    final StackableItem invitationStack = (StackableItem) SingletonRepository.getEntityManager().getItem("invitation scroll");
+	    stackables.add(invitationStack);
+	    final StackableItem nalworStack = (StackableItem) SingletonRepository.getEntityManager().getItem("nalwor city scroll");
+	    stackables.add(nalworStack);
+	    final StackableItem adosStack = (StackableItem) SingletonRepository.getEntityManager().getItem("ados city scroll");
+	    stackables.add(adosStack);
+	    final StackableItem fadoStack = (StackableItem) SingletonRepository.getEntityManager().getItem("fado city scroll");
+	    stackables.add(fadoStack);
+	    final StackableItem kirdnehStack = (StackableItem) SingletonRepository.getEntityManager().getItem("kirdneh city scroll");
+	    stackables.add(kirdnehStack);
+        final StackableItem kalavanStack = (StackableItem) SingletonRepository.getEntityManager().getItem("kalavan city scroll");
+        stackables.add(kalavanStack);
+        final StackableItem markedStack = (StackableItem) SingletonRepository.getEntityManager().getItem("marked scroll");
+        stackables.add(markedStack);
+        final StackableItem homeStack = (StackableItem) SingletonRepository.getEntityManager().getItem("home scroll");
+        stackables.add(homeStack);
+        final StackableItem emptyStack = (StackableItem) SingletonRepository.getEntityManager().getItem("empty scroll");
+        stackables.add(emptyStack);
+        final StackableItem rainbowStack = (StackableItem) SingletonRepository.getEntityManager().getItem("rainbow beans");
+        stackables.add(rainbowStack);
+        final StackableItem balloonStack = (StackableItem) SingletonRepository.getEntityManager().getItem("balloon");
+        stackables.add(balloonStack);
+        final StackableItem twilightStack = (StackableItem) SingletonRepository.getEntityManager().getItem("twilight moss");
+        stackables.add(twilightStack);
+        for (StackableItem stackable : stackables) {
+            for (StackableItem onTop : stackables) {
+                assertFalse(stackable.isStackable(onTop));
+            }
+        }
 	}
 
 }
