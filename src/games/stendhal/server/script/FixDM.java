@@ -49,7 +49,7 @@ public class FixDM extends ScriptImpl {
 									   + "' from '" + oldQuestState + "' to 'done'. They need to fix your helmet, still.");
 				return;
 			} else {
-				String newQuestState = "victory;"+questpieces[1]+";"+questpieces[2];
+				String newQuestState = "victory;" + questpieces[1] + ";" + questpieces[2];
 				// set the quest
 				target.setQuest(questName, newQuestState);
 
