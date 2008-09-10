@@ -479,7 +479,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			// In case itemlog was emptied, too; this workaround does not work because
 			// there are still items with higher ids out there.
 			logger.warn("Initializing itemid table, this may take a few minutes in case this database is not empty.");
-			transaction.getAccessor().execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;");
+			transaction.getAccessor().execute("insert into itemid set last_id = (SELECT IFNull(max(itemid) + 1 ,1) FROM itemlog) ;");
+			//transaction.getAccessor().execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;");
 			logger.warn("itemid initialized.");
 		}
 
