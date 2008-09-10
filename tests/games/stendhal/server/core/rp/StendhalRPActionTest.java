@@ -165,7 +165,7 @@ public class StendhalRPActionTest {
 		
 		for (int defenderLevel = 0; defenderLevel < 200; defenderLevel += 10) {
 			jekyll.setLevel(defenderLevel);
-			for (int attackerLevel = (int) (1.3 * defenderLevel) ; 0.74 * attackerLevel  <= defenderLevel + 2; attackerLevel++) {
+			for (int attackerLevel = (int) (1.3 * defenderLevel); 0.74 * attackerLevel  <= defenderLevel + 2; attackerLevel++) {
 				hyde.setLevel(attackerLevel);
 				StendhalRPAction.startAttack(hyde, jekyll);
 				if ((jekyll.getLevel() + 2.0) < hyde.getLevel() * 0.75) {
