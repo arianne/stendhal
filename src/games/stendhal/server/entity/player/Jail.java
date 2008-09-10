@@ -250,9 +250,12 @@ public class Jail implements LoginListener {
 		return false;
 	}
 
+	/**
+	 * Destroy the arrest warrent so that the player is not rejailed on next login.
+	 * @param player
+	 */
 	public void grantParoleIfPlayerWasAPrisoner(final Player player) {
-		// destroy the arrest warrent so that the player is not
-		// rejailed on next login
+		
 		arrestWarrants.removeByName(player.getName());
 	}
 
