@@ -221,9 +221,23 @@ public class BalanceRPGame {
 
 		boolean combatFinishedWinPlayer = false;
 		int turns = 0;
+		int healAmount = 0;
+		int healRate = 0;
+		
+		String healer = target.getAIProfile("heal"); 
+		if (healer != null) {
+			final String[] healingAttributes = healer.split(",");
+			healAmount = Integer.parseInt(healingAttributes[0]);
+			healRate = Integer.parseInt(healingAttributes[1]);
+		}
+		
 
 		while (!combatFinishedWinPlayer) {
 			turns++;
+			if ((healAmount != 0) && (turns % healRate == 0)) {
+				final int newHP = target.getHP() + healAmount; 
+				target.setHP(Math.min(target.getBaseHP(), newHP));
+			}
 
 			if (player.canHit(target)) {
 				int damage = player.damageDone(target);
