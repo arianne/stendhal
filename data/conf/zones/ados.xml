@@ -470,8 +470,7 @@ Under new management. Chests to the right are still held by Semos Bank Merchants
    </zone>
 
    <zone name="int_ados_library" file="interiors/ados/library.tmx">
-<!-- deactivated see http://sourceforge.net/tracker/index.php?func=detail&aid=2097030&group_id=1111&atid=101111
-    <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" /> -->
+    <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
     <entity x="4" y="27">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>

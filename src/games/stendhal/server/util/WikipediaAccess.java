@@ -48,7 +48,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	@Override
 	public void startElement(final String namespaceURI, final String lName, final String qName,
 			final Attributes attrs) {
-		isContent = qName.equals("content");
+		isContent = qName.equals("rev");
 	}
 
 	@Override
@@ -136,9 +136,9 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 		try {
 			// look it up using the Wikipedia API
 			final HttpClient httpClient = new HttpClient(
-					"http://en.wikipedia.org/w/query.php?format=xml&titles="
+					"http://en.wikipedia.org/w/api.php?action=query&titles="
 							+ title.replace(' ', '_').replace("%", "%25")
-							+ "&what=content");
+							+ "&prop=revisions&rvprop=content&format=xml");
 			final SAXParserFactory factory = SAXParserFactory.newInstance();
 
 			// Parse the input

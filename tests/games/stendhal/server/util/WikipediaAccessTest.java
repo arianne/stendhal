@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import org.hamcrest.Matcher;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -17,7 +16,6 @@ public class WikipediaAccessTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	@Ignore // http://sourceforge.net/tracker/index.php?func=detail&aid=2097030&group_id=1111&atid=101111
 	public void test() {
 		final WikipediaAccess access = new WikipediaAccess("Stendhal");
 
