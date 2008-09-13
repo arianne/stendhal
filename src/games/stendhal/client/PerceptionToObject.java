@@ -55,12 +55,14 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public boolean onDeleted(final RPObject object) {
-		ObjectChangeListener objectChangeListener = map.get(object.getID());
-		if (objectChangeListener == null) {
-			logger.error("no listener for: " + object);
-		} else {
-			objectChangeListener.deleted();
-			map.remove(object.getID());
+		if (object != null && object.getID() !=  null) {
+			ObjectChangeListener objectChangeListener = map.get(object.getID());
+			if (objectChangeListener == null) {
+				logger.error("no listener for: " + object);
+			} else {
+				objectChangeListener.deleted();
+				map.remove(object.getID());
+			}
 		}
 		return false;
 	}
@@ -72,23 +74,26 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
-		ObjectChangeListener objectChangeListener = map.get(object.getID());
-		if (objectChangeListener == null) {
-			logger.error("no listener for: " + object);
-		} else {
-			objectChangeListener.modifiedAdded(changes);
+		if (object != null && object.getID() != null) {
+			ObjectChangeListener objectChangeListener = map.get(object.getID());
+			if (objectChangeListener == null) {
+				logger.error("no listener for: " + object);
+			} else {
+				objectChangeListener.modifiedAdded(changes);
+			}
 		}
-
 		return false;
 	}
 
 	public boolean onModifiedDeleted(final RPObject object,
 			final RPObject changes) {
+		if (object != null && object.getID() != null) {
 		ObjectChangeListener objectChangeListener = map.get(object.getID());
 		if (objectChangeListener == null) {
 			logger.error("no listener for: " + object);
 		} else {
 			objectChangeListener.modifiedDeleted(changes);
+		}
 		}
 		return false;
 	}
@@ -96,7 +101,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 		
 		
-		if (added != null) {
+		if (added != null && added.getID() != null) {
 			ObjectChangeListener objectChangeListener = map.get(added.getID());
 			if (objectChangeListener == null) {
 				logger.error("no listener for: " + added);
@@ -132,7 +137,9 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public void register(final RPObject object, final ObjectChangeListener listener) {
+		if (object != null && object.getID()!= null) {
 		map.put(object.getID(), listener);
+		}
 
 	}
 	
