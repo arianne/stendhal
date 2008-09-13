@@ -61,9 +61,11 @@ public class BalanceRPGame {
 			creature.setDEF(newDef);
 		}
 	}
+	
 	private static final int ROUNDS = 100;
-
 	private static final int HIGHEST_LEVEL = 500;
+	private static final double DEFAULT_DURATION_THRESHOLD = 0.2;
+	private static double durationThreshold;
 
 	public static void main(final String[] args) throws Exception {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
@@ -146,7 +148,10 @@ public class BalanceRPGame {
 			System.out.println("Player(" + level + ") vs "
 					+ creature.getCreatureName());
 
+			durationThreshold = DEFAULT_DURATION_THRESHOLD;
+			
 			boolean balanced = false;
+			int tries = 0;
 			while (!balanced) {
 				final Pair<Integer, Integer> results = combat(player, target,
 						ROUNDS);
@@ -175,6 +180,13 @@ public class BalanceRPGame {
 					System.out.println("New ATK: " + target.getATK()
 							+ "/DEF: " + target.getDEF() + "/HP: "
 							+ target.getBaseHP());
+				}
+				
+				// relax convergence criteria for pathological cases
+				tries++;
+				if (tries % 200 == 0) {
+					durationThreshold *= 1.1;
+					System.out.println(target.getName() + ": changed threshold to " + durationThreshold);
 				}
 			}
 
@@ -316,10 +328,11 @@ public class BalanceRPGame {
 
 	private static boolean isWithinDurationRange(final double preferred,
 			final double real) {
-		return (real < 1.2 * preferred) && (real > 0.8 * preferred);
+		return (real < (1.0 + durationThreshold) * preferred)
+			&& (real > (1.0 - durationThreshold) * preferred);
 	}
 
 	private static double preferredDuration(final int level) {
-		return 30 + level / 10.0;
+		return 30 + level / 5.0;
 	}
 }
