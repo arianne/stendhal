@@ -246,7 +246,8 @@ public class StackableItemTest {
         stackables.add(twilightStack);
         for (StackableItem stackable : stackables) {
             for (StackableItem onTop : stackables) {
-                assertFalse(stackable.isStackable(onTop));
+            	String message = stackable.getName()+" and "+onTop.getName();
+                assertFalse(message, stackable.isStackable(onTop));
             }
         }
 	}
