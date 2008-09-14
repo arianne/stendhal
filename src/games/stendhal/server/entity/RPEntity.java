@@ -1968,14 +1968,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         block this); false if the attacker has missed the defender.
 	 */
 	public boolean canHit(final RPEntity defender) {
-		boolean result = false;
-		
-		final int roll = Rand.roll1D20();
-		
+		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getDEF();
-		
 		final int attackerATK = this.getATK();
-		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 	
 		/*
 		 * Use some karma unless attacker is much stronger than
@@ -1983,18 +1978,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * him hit.
 		 */
 		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
-		final double karma = this.useKarma(0.1);
-	
-		if (karma > 0.2) {
-			risk += 4;
-		} else if (karma > 0.1) {
-			risk++;
-		} else if (karma < -0.2) {
-			risk -= 4;
-		} else if (karma < -0.1) {
-			risk--;
+			final double karma = this.useKarma(0.1);
+		
+			roll += roll * karma;
 		}
-		}
+		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
+		
 	
 		if (logger.isDebugEnabled()) {
 			logger.debug("attack from " + this + " to " + defender
@@ -2007,15 +1996,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	
 		if (risk > 1) {
 			risk = 1;
-			result = true;
 		}
 	
 		this.put("risk", risk);
-		return result;
+		
+		return (risk != 0);
 	}
 
 	int calculateRiskForCanHit(final int roll, final int defenderDEF, final int attackerATK) {
-		return 2 * attackerATK - defenderDEF + roll - 10;
+		return 20 * attackerATK - roll * defenderDEF;  
 	}
 
 	/**
