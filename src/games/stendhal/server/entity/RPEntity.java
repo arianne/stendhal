@@ -1980,7 +1980,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
 			final double karma = this.useKarma(0.1);
 		
-			roll += roll * karma;
+			roll -= roll * karma;
 		}
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 		
