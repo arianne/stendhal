@@ -29,7 +29,7 @@ public class BalanceRPGame {
 		}
 		
 		public void step(final int leftHP, final int rounds) {
-			float stepSize = leftHP / (float) creature.getBaseHP();
+			float stepSize = leftHP / (float) player.getBaseHP();
 			stepSize = Math.signum(stepSize) * Math.min(Math.abs(stepSize), 0.5f);
 			
 			final int oldAtk = creature.getATK();
@@ -41,22 +41,26 @@ public class BalanceRPGame {
 			}
 			
 			final int level = creature.getLevel();
-			int newDef;
+			final int oldDef = creature.getDEF();
+			int newDef = oldDef;
 			final double preferred = preferredDuration(level);
 			if (!isWithinDurationRange(preferred, rounds)) {
-				final int oldDef = creature.getDEF();
-				
+				// Don't grow it the monster is already stronger than the player
+				if ((leftHP > 0) || (preferred < rounds)) {
 				newDef = Math.max(1, (int) (creature.getDEF()
 						+ preferred - rounds + 0.5));
-				// Don't grow too fast, or the fight might never end
-				if (newDef > 1.2 * oldDef) {
-					newDef = Math.max((int) (1.2 * oldDef), oldDef + 1);
 				}
 			} else {
 				newDef = 	Math.max(1, (int) (creature.getDEF() 
-					+ stepSize * creature.getDEF() + 0.5f));
+					+ 5 * stepSize * creature.getDEF() + 0.5f));
 			}
-					
+			// Don't change too fast
+			if (newDef > 1.1 * oldDef) {
+				newDef = Math.max((int) (1.1 * oldDef), oldDef + 1);
+			} else if (newDef < 0.9 * oldDef) {
+				newDef = Math.max(1, Math.min((int) (0.9 * oldDef), oldDef - 1));
+			}
+	
 			creature.setATK(newAtk);
 			creature.setDEF(newDef);
 		}
@@ -66,6 +70,7 @@ public class BalanceRPGame {
 	private static final int HIGHEST_LEVEL = 500;
 	private static final double DEFAULT_DURATION_THRESHOLD = 0.2;
 	private static double durationThreshold;
+	private static Player player;
 
 	public static void main(final String[] args) throws Exception {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
@@ -85,12 +90,12 @@ public class BalanceRPGame {
 		final int[] atkLevels = new int[HIGHEST_LEVEL + 1];
 		final int[] defLevels = new int[HIGHEST_LEVEL + 1];
 
-		for (int i = 0; i < atkLevels.length; i++) {
+		for (int level = 0; level < atkLevels.length; level++) {
 			// help newbies a bit, so don't start at real stats, but a bit lower
-			atkLevels[i] = (int) Math.round(Math.log(i + 2) / Math.log(10)
-					* 25 - 3);
-			defLevels[i] = (int) Math.round(Math.log(i + 2) / Math.log(10)
-					* 40 - 7);
+			atkLevels[level] = (int) Math.round(Math.log(level + 2) * 9 
+					+ 0.12 * level - 3);
+			defLevels[level] = (int) Math.round(Math.log(level + 2) * 17
+					+ level - 8);
 		}
 
 		final EntityManager em = SingletonRepository.getEntityManager();
@@ -112,7 +117,7 @@ public class BalanceRPGame {
 		final Item boots = em.getItem("leather boots");
 		zone.assignRPObjectID(boots);
 
-		final Player player = Player.createEmptyZeroLevelPlayer("Tester");
+		player = Player.createEmptyZeroLevelPlayer("Tester");
 
 		//player.equip(weapon);
 		player.equip(shield);
