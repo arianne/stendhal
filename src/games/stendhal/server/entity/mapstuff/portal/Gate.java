@@ -47,6 +47,7 @@ public class Gate extends Entity implements UseListener {
 			setResistance(100);
 		}
 		isOpen = b;
+		notifyWorldAboutChanges();
 
 	}
 

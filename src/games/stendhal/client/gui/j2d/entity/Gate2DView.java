@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.j2d.entity;
 
+import java.awt.Graphics2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -70,6 +71,22 @@ public class Gate2DView extends Entity2DView {
 		default:
 			super.onAction(at);
 			break;
+		}
+	}
+	@Override
+	protected void drawEntity(Graphics2D g2d, int x, int y, int width,
+			int height, IGameScreen gameScreen) {
+		Sprite closedGate = getSprite().createRegion(0, 32 + 96, 96, 32, entity);
+		Sprite openGate = getSprite().createRegion(0, 32, 96, 32, entity);
+		openGate.draw(g2d,
+				x - 32, y);
+		
+		if (entity.getResistance() ==100) {
+			closedGate.draw(g2d,
+					x - 32, y);
+		} else {
+			openGate.draw(g2d,
+					x - 32, y);
 		}
 	}
 }
