@@ -15,38 +15,44 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 public class Gate2DView extends Entity2DView {
+	static final Sprite closedGate;
+	static final Sprite openGate;
+	static {
+		 final Sprite sprite = SpriteStore.get().getSprite("data/sprites/doors/fence_gate_h.png");
+		 closedGate = sprite.createRegion(0, 32 + 96, 96, 64, null);
+		 openGate = sprite.createRegion(0, 32, 96, 64, null);
 	
-	public Gate2DView(Gate entity) {
+	}
+	
+	public Gate2DView(final Gate entity) {
 		this ((IEntity) entity);
 	}
 
 
-	public Gate2DView(IEntity entity) {
+	public Gate2DView(final IEntity entity) {
 		super(entity);
 		this.entity = entity;
 	}
 
 	@Override
-	protected String translate(String name) {
+	protected String translate(final String name) {
 		return "data/sprites/doors/fence_gate_h.png";
 	}
 	
 	@Override
-	protected void buildActions(List<String> list) {
+	protected void buildActions(final List<String> list) {
 		list.add(ActionType.USE.getRepresentation());
 	}
 	
 	@Override
-	protected void buildRepresentation(IGameScreen gameScreen) {
-		SpriteStore store = SpriteStore.get();
+	protected void buildRepresentation(final IGameScreen gameScreen) {
+		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(""));
 
-		int width = tiles.getWidth();
-		int height = tiles.getHeight() / 2;
+		final int width = tiles.getWidth();
+		final int height = tiles.getHeight() / 2;
 
 		setSprite(store.getTile(tiles, 0, 0, width, height));
-//		map.put("closed", store
-//				.getTile(tiles, 0, height, width, height));	// TODO Auto-generated method stub
 		super.buildRepresentation(gameScreen);
 	}
 	
@@ -74,20 +80,22 @@ public class Gate2DView extends Entity2DView {
 		}
 	}
 	@Override
-	protected void drawEntity(Graphics2D g2d, int x, int y, int width,
-			int height, IGameScreen gameScreen) {
-		Sprite closedGate = getSprite().createRegion(0, 32 + 96, 96, 32, entity);
-		Sprite openGate = getSprite().createRegion(0, 32, 96, 32, entity);
-		openGate.draw(g2d,
-				x - 32, y);
+	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width,
+			final int height, final IGameScreen gameScreen) {
+	
 		
-		if (entity.getResistance() ==100) {
-			closedGate.draw(g2d,
-					x - 32, y);
+		if (entity.getResistance() == 100) {
+			closedGate.draw(g2d, x - 32, y);
 		} else {
-			openGate.draw(g2d,
-					x - 32, y);
+			openGate.draw(g2d, x - 32, y);
 		}
+	}
+
+
+	@Override
+	public int getZIndex() {
+		
+		return 0;
 	}
 }
 
