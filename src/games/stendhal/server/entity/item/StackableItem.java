@@ -94,6 +94,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			return getQuantity();
 		}
 		quantity = getQuantity() - amount;
+		put("quantity", getQuantity());
 		return getQuantity();
 	}
 
