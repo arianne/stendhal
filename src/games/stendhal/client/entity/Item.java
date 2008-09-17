@@ -12,5 +12,5 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-public class Item extends PassiveEntity {
+public class Item extends Entity {
 }

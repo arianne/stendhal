@@ -12,5 +12,5 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-public class Spell extends PassiveEntity {
+public class Spell extends Entity {
 }

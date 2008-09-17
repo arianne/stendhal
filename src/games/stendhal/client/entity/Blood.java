@@ -20,7 +20,7 @@ import marauroa.common.game.RPObject;
 /**
  * A blood entity.
  */
-public class Blood extends PassiveEntity {
+public class Blood extends Entity {
 	/**
 	 * Amount property.
 	 */

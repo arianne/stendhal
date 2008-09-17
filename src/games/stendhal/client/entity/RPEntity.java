@@ -23,6 +23,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -452,24 +453,6 @@ public abstract class RPEntity extends ActiveEntity {
 					NotificationType.NEGATIVE);
 		}
 	}
-
-	// Called when entity is killed by killer
-	public void onDeath(final IEntity killer) {
-		if (killer != null) {
-			StendhalUI.get().addEventLine(
-					getTitle() + " has been killed by " + killer.getTitle());
-		}
-
-		/*
-		 * see
-		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
-		 * if (getID().equals(client.getPlayer().getID())) {
-		 * client.addEventLine(getTitle() + " has died. " +
-		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
-		 */
-	}
-
-	
 
 	// When entity eats food
 	public final void onEat() {
@@ -945,11 +928,9 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 
 				if (hp == 0) {
-					if (attackers.isEmpty()) {
-						onDeath(null);
-					} else {
-						onDeath(attackers.get(0));
-					}
+					
+						onDeath(attackers);
+					
 					
 				}
 			}
@@ -1133,6 +1114,23 @@ public abstract class RPEntity extends ActiveEntity {
 						text, NotificationType.SIGNIFICANT_POSITIVE, false);
 			}
 		}
+	}
+
+	private void onDeath(List<Entity> attackers) {
+		if (!attackers.isEmpty()){
+			Collection<String> attackerNames = new LinkedList<String>();
+			for (Entity ent : attackers){
+					attackerNames.add(ent.getTitle());
+			}
+			
+			
+			StendhalUI.get().addEventLine(
+					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames));
+	
+			
+		}
+		
+		
 	}
 
 	/**

@@ -21,7 +21,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A corpse entity.
  */
-public class Corpse extends PassiveEntity {
+public class Corpse extends Entity {
 	/**
 	 * Content property.
 	 */
