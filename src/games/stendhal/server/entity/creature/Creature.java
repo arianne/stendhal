@@ -690,4 +690,8 @@ public class Creature extends NPC {
 		healer = Healingbehaviourfactory.get(aiprofile);
 	}
 
+	@Override
+	public float getItemAtk() {
+		return 0f;
+	}
 }
