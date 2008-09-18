@@ -4,8 +4,8 @@
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
     <description>You see a defenseless deer, do not have fear of him.</description>
     <attributes>
-      <atk value="47"/>
-      <def value="5"/>
+      <atk value="8"/>
+      <def value="3"/>
       <hp value="20"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -32,8 +32,8 @@
     <type class="animal" subclass="crab" tileid="animal.png:8"/>
     <description>You see a little crab that comes from the beach, be careful of his pincers.</description>
     <attributes>
-      <atk value="57"/>
-      <def value="7"/>
+      <atk value="8"/>
+      <def value="4"/>
       <hp value="10"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -60,8 +60,8 @@
     <type class="small_animal" subclass="rat" tileid="small_animal.png:1"/>
     <description>You see a small rat that seems to be extremely hungry.</description>
     <attributes>
-      <atk value="49"/>
-      <def value="5"/>
+      <atk value="8"/>
+      <def value="3"/>
       <hp value="20"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -91,8 +91,8 @@
     <type class="small_animal" subclass="mouse" tileid="farm_animal.png:8"/>
     <description>You see a small mouse that seems to be very hungry.</description>
     <attributes>
-      <atk value="47"/>
-      <def value="5"/>
+      <atk value="8"/>
+      <def value="3"/>
       <hp value="20"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -120,8 +120,8 @@
     <type class="farm_animal" subclass="chick" tileid="farm_animal.png:2"/>
     <description>You see a little chick, he doesn't like to be away from his mother.</description>
     <attributes>
-      <atk value="250"/>
-      <def value="11"/>
+      <atk value="32"/>
+      <def value="7"/>
       <hp value="25"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -148,8 +148,8 @@
     <type class="farm_animal" subclass="piglet" tileid="farm_animal.png:9"/>
     <description>You see a piglet, a bit dirty.</description>
     <attributes>
-      <atk value="238"/>
-      <def value="11"/>
+      <atk value="31"/>
+      <def value="7"/>
       <hp value="25"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -177,8 +177,8 @@
     <type class="animal" subclass="bat" tileid="animal.png:0"/>
     <description>You see a bat, he will seek your blood, don't be distracted...</description>
     <attributes>
-      <atk value="252"/>
-      <def value="13"/>
+      <atk value="36"/>
+      <def value="7"/>
       <hp value="20"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -202,8 +202,8 @@
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
     <description>You see a chicken, isn't he nice?.</description>
     <attributes>
-      <atk value="271"/>
-      <def value="11"/>
+      <atk value="32"/>
+      <def value="7"/>
       <hp value="25"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -231,8 +231,8 @@
     <type class="farm_animal" subclass="hen" tileid="farm_animal.png:6"/>
     <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
     <attributes>
-      <atk value="270"/>
-      <def value="11"/>
+      <atk value="29"/>
+      <def value="6"/>
       <hp value="25"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -259,8 +259,8 @@
     <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
 	<description>You see a caverat, they are dirty and love the dungeons. </description>
     <attributes>
-      <atk value="259"/>
-      <def value="10"/>
+      <atk value="34"/>
+      <def value="6"/>
       <hp value="30"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -286,8 +286,8 @@
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
     <description>You see a penguin, smart, and silly.</description>
     <attributes>
-      <atk value="241"/>
-      <def value="13"/>
+      <atk value="36"/>
+      <def value="7"/>
       <hp value="20"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -316,8 +316,8 @@
     <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
     <description>You see a pigeon, they love the little seeds.</description>
     <attributes>
-      <atk value="245"/>
-      <def value="13"/>
+      <atk value="36"/>
+      <def value="7"/>
       <hp value="20"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -341,8 +341,8 @@
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
     <description>You see a monkey, would you like to offer him a banana?</description>
     <attributes>
-      <atk value="292"/>
-      <def value="15"/>
+      <atk value="55"/>
+      <def value="9"/>
       <hp value="35"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -371,8 +371,8 @@
     <type class="animal" subclass="boar" tileid="animal.png:4"/>
     <description>You see a boar, they are pretty wild!</description>
     <attributes>
-      <atk value="333"/>
-      <def value="12"/>
+      <atk value="53"/>
+      <def value="7"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -399,8 +399,8 @@
     <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
     <description>You see a ram, maybe are you able to shear him?</description>
     <attributes>
-      <atk value="320"/>
-      <def value="12"/>
+      <atk value="52"/>
+      <def value="7"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -426,8 +426,8 @@
     <type class="animal" subclass="wolf" tileid="animal.png:20"/>
 	<description>You see a wolf, they are wild and very hungry!</description>
     <attributes>
-      <atk value="295"/>
-      <def value="15"/>
+      <atk value="46"/>
+      <def value="9"/>
       <hp value="35"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -455,8 +455,8 @@
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
 	<description>You see a fox, they are becoming extinct!</description>
     <attributes>
-      <atk value="318"/>
-      <def value="15"/>
+      <atk value="55"/>
+      <def value="8"/>
       <hp value="35"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -480,8 +480,8 @@
     <type class="farm_animal" subclass="beaver" tileid="farm_animal.png:0"/>
 	<description>You see a beaver, they like to build dams in the river.</description>
     <attributes>
-      <atk value="316"/>
-      <def value="15"/>
+      <atk value="53"/>
+      <def value="8"/>
       <hp value="35"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -506,8 +506,8 @@
     <type class="farm_animal" subclass="cow" tileid="farm_animal.png:3"/>
 	<description>You see a cow, taste her delicious milk.</description>
     <attributes>
-      <atk value="293"/>
-      <def value="17"/>
+      <atk value="51"/>
+      <def value="9"/>
       <hp value="30"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -533,8 +533,8 @@
     <type class="farm_animal" subclass="goat" tileid="farm_animal.png:4"/>
 	<description>You see a goat, they are wild and live in the mountain.</description>
     <attributes>
-      <atk value="322"/>
-      <def value="17"/>
+      <atk value="52"/>
+      <def value="9"/>
       <hp value="30"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -558,8 +558,8 @@
     <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
 	<description>You see funny horse, don't slap him or he will run away!</description>
     <attributes>
-      <atk value="297"/>
-      <def value="19"/>
+      <atk value="48"/>
+      <def value="10"/>
       <hp value="30"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -586,8 +586,8 @@
     <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
 	<description>You see a white horse, they love to stay with their brown friends.</description>
     <attributes>
-      <atk value="296"/>
-      <def value="17"/>
+      <atk value="50"/>
+      <def value="9"/>
       <hp value="30"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -614,8 +614,8 @@
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
     <description>You see a gnome, they live in the mountains.</description>
     <attributes>
-      <atk value="322"/>
-      <def value="12"/>
+      <atk value="51"/>
+      <def value="7"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -647,8 +647,8 @@
     <type class="gnome" subclass="woman_gnome" tileid="gnome.png:1"/>
     <description>You see a mage gnome, she cleans the dirty mountain.</description>
     <attributes>
-      <atk value="318"/>
-      <def value="12"/>
+      <atk value="52"/>
+      <def value="7"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -679,8 +679,8 @@
     <type class="animal" subclass="caiman" tileid="animal.png:6"/>
     <description>You see a caiman, they are hidden in the water.</description>
     <attributes>
-      <atk value="292"/>
-      <def value="16"/>
+      <atk value="49"/>
+      <def value="9"/>
       <hp value="35"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -708,8 +708,8 @@
     <type class="animal" subclass="babybear" tileid="animal.png:21"/>
     <description>You see a babybear, isn't it sweet?</description>
     <attributes>
-      <atk value="330"/>
-      <def value="11"/>
+      <atk value="48"/>
+      <def value="7"/>
       <hp value="54"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -737,8 +737,8 @@
     <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
     <description>You see a panda, they came from an exotic land.</description>
     <attributes>
-      <atk value="332"/>
-      <def value="11"/>
+      <atk value="48"/>
+      <def value="7"/>
       <hp value="54"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -766,8 +766,8 @@
     <type class="farm_animal" subclass="bull" tileid="farm_animal.png:1"/>
 	<description>You see a bull, run away!!!</description>
     <attributes>
-      <atk value="334"/>
-      <def value="15"/>
+      <atk value="47"/>
+      <def value="9"/>
       <hp value="35"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -794,8 +794,8 @@
     <type class="farm_animal" subclass="grass_snake" tileid="farm_animal.png:5"/>
     <description>You see a grass snake, they are pretty dangerous.</description>
     <attributes>
-      <atk value="443"/>
-      <def value="22"/>
+      <atk value="68"/>
+      <def value="15"/>
       <hp value="35"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -824,8 +824,8 @@
     <type class="animal" subclass="cobra" tileid="animal.png:7"/>
     <description>You see a snake, she came from the forest to poison you!</description>
     <attributes>
-      <atk value="451"/>
-      <def value="19"/>
+      <atk value="67"/>
+      <def value="13"/>
       <hp value="40"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -854,8 +854,8 @@
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
     <description>You see a bear, you are lucky and found it awake.</description>
     <attributes>
-      <atk value="489"/>
-      <def value="19"/>
+      <atk value="80"/>
+      <def value="14"/>
       <hp value="50"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -883,8 +883,8 @@
     <type class="animal" subclass="lion" tileid="animal.png:14"/>
     <description>You see a lion, dangerous and hungry...</description>
     <attributes>
-      <atk value="506"/>
-      <def value="20"/>
+      <atk value="80"/>
+      <def value="15"/>
       <hp value="45"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -912,8 +912,8 @@
     <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
     <description>You see a goblin, it is an evil and mischievous creature.</description>
     <attributes>
-      <atk value="503"/>
-      <def value="18"/>
+      <atk value="88"/>
+      <def value="11"/>
       <hp value="85"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -948,8 +948,8 @@
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
     <description>You see a kobold, people says that is a mythical spirit.</description>
     <attributes>
-      <atk value="584"/>
-      <def value="25"/>
+      <atk value="88"/>
+      <def value="16"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -984,8 +984,8 @@
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
     <description>You see a elephant, a big animal, it's dangerous...</description>
     <attributes>
-      <atk value="461"/>
-      <def value="13"/>
+      <atk value="73"/>
+      <def value="6"/>
       <hp value="165"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -1014,8 +1014,8 @@
     <type class="small_animal" subclass="venomrat" tileid="small_animal.png:3"/>
 	<description>You see a venomrat, extremely poisonous.</description>
     <attributes>
-      <atk value="498"/>
-      <def value="21"/>
+      <atk value="89"/>
+      <def value="14"/>
       <hp value="70"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -1043,8 +1043,8 @@
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
     <description>You see a tiger, they like deer and human meat.</description>
     <attributes>
-      <atk value="528"/>
-      <def value="23"/>
+      <atk value="88"/>
+      <def value="15"/>
       <hp value="60"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1072,8 +1072,8 @@
     <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
     <description>You see a infantry gnome, he will protect his little town against the humans!</description>
     <attributes>
-      <atk value="570"/>
-      <def value="21"/>
+      <atk value="91"/>
+      <def value="15"/>
       <hp value="60"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1104,8 +1104,8 @@
     <type class="gnome" subclass="cavalryman" tileid="gnome_patrol.png:1"/>
     <description>You see a cavalryman gnome, they do long travels to search for gold.</description>
     <attributes>
-      <atk value="461"/>
-      <def value="25"/>
+      <atk value="90"/>
+      <def value="14"/>
       <hp value="65"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1136,8 +1136,8 @@
     <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
     <description>You see a skeleton, they survive to get revenge.</description>
     <attributes>
-      <atk value="639"/>
-      <def value="19"/>
+      <atk value="98"/>
+      <def value="13"/>
       <hp value="95"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1171,8 +1171,8 @@
     <type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
     <description>You see a gargoyle, you should think that it is a statue, but no, it is alive!</description>
     <attributes>
-      <atk value="565"/>
-      <def value="25"/>
+      <atk value="98"/>
+      <def value="16"/>
       <hp value="70"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -1196,8 +1196,8 @@
     <type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
 	<description>You see a young beholder, with his big eye you won't can hide from him!</description>
     <attributes>
-      <atk value="611"/>
-      <def value="24"/>
+      <atk value="96"/>
+      <def value="16"/>
       <hp value="70"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1224,8 +1224,8 @@
     <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
     <description>You see a hungry zombie rat, they won't like to see you.</description>
     <attributes>
-      <atk value="663"/>
-      <def value="27"/>
+      <atk value="105"/>
+      <def value="19"/>
       <hp value="70"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -1256,8 +1256,8 @@
     <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
     <description>You see a veteran goblin, an old warrior...</description>
     <attributes>
-      <atk value="680"/>
-      <def value="19"/>
+      <atk value="106"/>
+      <def value="14"/>
       <hp value="120"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1292,8 +1292,8 @@
     <type class="kobold" subclass="soldier_kobold" tileid="kobold.png:3"/>
     <description>You see a soldier kobold, he's protecting his king.</description>
     <attributes>
-      <atk value="659"/>
-      <def value="29"/>
+      <atk value="105"/>
+      <def value="20"/>
       <hp value="65"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1328,8 +1328,8 @@
     <type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
 	<description>You see a killer bat, it will suck your blood!</description>
     <attributes>
-      <atk value="663"/>
-      <def value="24"/>
+      <atk value="104"/>
+      <def value="19"/>
       <hp value="80"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1354,8 +1354,8 @@
     <type class="animal" subclass="green_slime" tileid="animal.png:12"/>
 	<description>You see a green slime, sticky and shiny.</description>
     <attributes>
-      <atk value="727"/>
-      <def value="24"/>
+      <atk value="114"/>
+      <def value="18"/>
       <hp value="90"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -1380,8 +1380,8 @@
     <type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
     <description>You see an archer kobold, they run away from the humans.</description>
     <attributes>
-      <atk value="652"/>
-      <def value="39"/>
+      <atk value="115"/>
+      <def value="28"/>
       <hp value="40"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1416,8 +1416,8 @@
     <type class="animal" subclass="black_bear" tileid="animal.png:2"/>
     <description>You see a strong black bear, they hibernate in winter.</description>
     <attributes>
-      <atk value="735"/>
-      <def value="23"/>
+      <atk value="119"/>
+      <def value="16"/>
       <hp value="95"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -1445,8 +1445,8 @@
     <type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
     <description>You see an elder gargoyle, they are wise...</description>
     <attributes>
-      <atk value="734"/>
-      <def value="22"/>
+      <atk value="114"/>
+      <def value="16"/>
       <hp value="100"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -1471,8 +1471,8 @@
     <type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
     <description>You see a razorrat, his noise will make you crazy!</description>
     <attributes>
-      <atk value="725"/>
-      <def value="37"/>
+      <atk value="119"/>
+      <def value="28"/>
       <hp value="45"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1498,8 +1498,8 @@
     <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
     <description>You see a leprechaun, you would be lucky if found their treasure.</description>
     <attributes>
-      <atk value="770"/>
-      <def value="28"/>
+      <atk value="126"/>
+      <def value="20"/>
       <hp value="95"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -1530,8 +1530,8 @@
     <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
     <description>You see a cyclops, they just have one eye!</description>
     <attributes>
-      <atk value="783"/>
-      <def value="38"/>
+      <atk value="125"/>
+      <def value="26"/>
       <hp value="60"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1561,8 +1561,8 @@
     <type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
     <description>You see a beholder, they can see you very well with that big eye...</description>
     <attributes>
-      <atk value="792"/>
-      <def value="29"/>
+      <atk value="126"/>
+      <def value="20"/>
       <hp value="90"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -1586,8 +1586,8 @@
     <type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
     <description>You see a soldier goblin, a young warrior.</description>
     <attributes>
-      <atk value="793"/>
-      <def value="50"/>
+      <atk value="127"/>
+      <def value="39"/>
       <hp value="40"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1621,8 +1621,8 @@
     <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
     <description>You see a veteran kobold, they are mighty!</description>
     <attributes>
-      <atk value="795"/>
-      <def value="45"/>
+      <atk value="125"/>
+      <def value="31"/>
       <hp value="50"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1655,8 +1655,8 @@
     <type class="troll" subclass="troll" tileid="troll.png:0"/>
     <description>You see a troll, be careful in his terrain.</description>
     <attributes>
-      <atk value="851"/>
-      <def value="41"/>
+      <atk value="135"/>
+      <def value="34"/>
       <hp value="60"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1684,8 +1684,8 @@
     <type class="orc" subclass="orc" tileid="orc.png:2"/>
     <description>You see a orc, he is noisy and silly.</description>
     <attributes>
-      <atk value="841"/>
-      <def value="45"/>
+      <atk value="136"/>
+      <def value="32"/>
       <hp value="55"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -1713,8 +1713,8 @@
     <type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
     <description>You see a dark gargoyle, are you feeling the fear?</description>
     <attributes>
-      <atk value="835"/>
-      <def value="29"/>
+      <atk value="134"/>
+      <def value="22"/>
       <hp value="93"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1741,8 +1741,8 @@
     <type class="fairy" subclass="littlefairy" tileid="fairy.png:3"/>
     <description>You see a littlefairy, they are magic and nice.</description>
     <attributes>
-      <atk value="897"/>
-      <def value="35"/>
+      <atk value="143"/>
+      <def value="26"/>
       <hp value="81"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1767,8 +1767,8 @@
     <type class="giant" subclass="ogre" tileid="giant.png:2"/>
     <description>You see an ogre, they are nude and rude!</description>
     <attributes>
-      <atk value="958"/>
-      <def value="27"/>
+      <atk value="151"/>
+      <def value="20"/>
       <hp value="140"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -1798,8 +1798,8 @@
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
     <description>You see a mummy, they usually sleep in a coffin.</description>
     <attributes>
-      <atk value="939"/>
-      <def value="56"/>
+      <atk value="154"/>
+      <def value="42"/>
       <hp value="55"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -1826,8 +1826,8 @@
     <type class="fairy" subclass="clurichaun" tileid="fairy.png:1"/>
     <description>You see a clurichaun, they are rich, but you don't know if you are able to search his gold!</description>
     <attributes>
-      <atk value="811"/>
-      <def value="38"/>
+      <atk value="152"/>
+      <def value="27"/>
       <hp value="95"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -1859,8 +1859,8 @@
     <type class="human" subclass="risecia_thug" tileid="human.png:8"/>
     <description>You see a risecia thug, stay away from him!</description>
     <attributes>
-      <atk value="927"/>
-      <def value="50"/>
+      <atk value="152"/>
+      <def value="38"/>
       <hp value="60"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -1894,8 +1894,8 @@
     <type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
     <description>You see a leader kobold, one of the mighty warriors.</description>
     <attributes>
-      <atk value="939"/>
-      <def value="54"/>
+      <atk value="155"/>
+      <def value="39"/>
       <hp value="65"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -1930,8 +1930,8 @@
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
     <description>You see an orc warrior, they won't like you searching in the mountain.</description>
     <attributes>
-      <atk value="1007"/>
-      <def value="37"/>
+      <atk value="166"/>
+      <def value="28"/>
       <hp value="114"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1961,8 +1961,8 @@
     <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
     <description>You see an orc hunter, they are seeking for you!</description>
     <attributes>
-      <atk value="993"/>
-      <def value="53"/>
+      <atk value="165"/>
+      <def value="44"/>
       <hp value="60"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1992,8 +1992,8 @@
     <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
     <description>You see a risecia archer, just one of the warriors who want to protect his chief.</description>
     <attributes>
-      <atk value="837"/>
-      <def value="52"/>
+      <atk value="159"/>
+      <def value="38"/>
       <hp value="70"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -2026,8 +2026,8 @@
     <type class="undead" subclass="ghost" tileid="undead.png:5"/>
 	<description>You see a ghost, don't be afraid! They don't seem to be evil.</description>
     <attributes>
-      <atk value="1056"/>
-      <def value="35"/>
+      <atk value="171"/>
+      <def value="25"/>
       <hp value="140"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -2055,8 +2055,8 @@
     <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
     <description>You see a giantrat, they are like an experiment gone wrong!</description>
     <attributes>
-      <atk value="1047"/>
-      <def value="44"/>
+      <atk value="173"/>
+      <def value="30"/>
       <hp value="110"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -2083,8 +2083,8 @@
     <type class="elf" subclass="elf" tileid="elf.png:3"/>
     <description>You see an elf, they love the forest and live in peace.</description>
     <attributes>
-      <atk value="1052"/>
-      <def value="41"/>
+      <atk value="177"/>
+      <def value="30"/>
       <hp value="115"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -2115,8 +2115,8 @@
     <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
     <description>You see a tiny skelly, they are silly, little and evil, be careful with his poison...</description>
     <attributes>
-      <atk value="1056"/>
-      <def value="38"/>
+      <atk value="173"/>
+      <def value="28"/>
       <hp value="125"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2148,8 +2148,8 @@
     <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
     <description>You see a dwarf, they just work in the mines to find some gold for us.</description>
     <attributes>
-      <atk value="1045"/>
-      <def value="38"/>
+      <atk value="168"/>
+      <def value="26"/>
       <hp value="140"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -2180,8 +2180,8 @@
     <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
     <description>You see a ratman, they are a mutation that comes from old times.</description>
     <attributes>
-      <atk value="1057"/>
-      <def value="25"/>
+      <atk value="171"/>
+      <def value="19"/>
       <hp value="225"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -2217,8 +2217,8 @@
     <type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
     <description>You see a ratwoman, they are a mutation of the women with the rats in the century XVIII.</description>
     <attributes>
-      <atk value="1059"/>
-      <def value="25"/>
+      <atk value="170"/>
+      <def value="18"/>
       <hp value="225"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -2252,8 +2252,8 @@
     <type class="beholder" subclass="elder_beholder" tileid="beholder.png:1"/>
 	<description>You see an elder beholder, his nasty eye will scare you.</description>
     <attributes>
-      <atk value="1073"/>
-      <def value="79"/>
+      <atk value="172"/>
+      <def value="53"/>
       <hp value="50"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2278,8 +2278,8 @@
     <type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
     <description>You see a crocodile, it arises from the deep waters in the rivers.</description>
     <attributes>
-      <atk value="1035"/>
-      <def value="43"/>
+      <atk value="172"/>
+      <def value="30"/>
       <hp value="110"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -2310,8 +2310,8 @@
     <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
     <description>You see a frogman, living in a lake not very deep.</description>
     <attributes>
-      <atk value="1060"/>
-      <def value="45"/>
+      <atk value="171"/>
+      <def value="33"/>
       <hp value="98"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -2340,8 +2340,8 @@
     <type class="animal" subclass="brown_slime" tileid="animal.png:5"/>
 	<description>You see a brown slime, sticky and hungry.</description>
     <attributes>
-      <atk value="1117"/>
-      <def value="33"/>
+      <atk value="184"/>
+      <def value="26"/>
       <hp value="160"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -2366,8 +2366,8 @@
     <type class="gargoyle" subclass="venom_gargoyle" tileid="gargoyle.png:3"/>
     <description>You see a venom gargoyle, a hideous and poisonous creature.</description>
     <attributes>
-      <atk value="1130"/>
-      <def value="70"/>
+      <atk value="188"/>
+      <def value="61"/>
       <hp value="55"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -2397,8 +2397,8 @@
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
     <description/>
     <attributes>
-      <atk value="1126"/>
-      <def value="48"/>
+      <atk value="182"/>
+      <def value="34"/>
       <hp value="100"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -2429,8 +2429,8 @@
     <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
     <description/>
     <attributes>
-      <atk value="1105"/>
-      <def value="43"/>
+      <atk value="190"/>
+      <def value="34"/>
       <hp value="110"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -2458,8 +2458,8 @@
     <type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
     <description/>
     <attributes>
-      <atk value="1141"/>
-      <def value="20"/>
+      <atk value="195"/>
+      <def value="13"/>
       <hp value="350"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -2487,8 +2487,8 @@
     <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
     <description/>
     <attributes>
-      <atk value="1193"/>
-      <def value="38"/>
+      <atk value="194"/>
+      <def value="27"/>
       <hp value="150"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -2520,8 +2520,8 @@
     <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
     <description/>
     <attributes>
-      <atk value="1191"/>
-      <def value="71"/>
+      <atk value="200"/>
+      <def value="60"/>
       <hp value="65"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2552,8 +2552,8 @@
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
     <description/>
     <attributes>
-      <atk value="1217"/>
-      <def value="56"/>
+      <atk value="200"/>
+      <def value="44"/>
       <hp value="100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2586,8 +2586,8 @@
     <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
     <description/>
     <attributes>
-      <atk value="1200"/>
-      <def value="41"/>
+      <atk value="200"/>
+      <def value="31"/>
       <hp value="150"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -2620,8 +2620,8 @@
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
     <description/>
     <attributes>
-      <atk value="1003"/>
-      <def value="55"/>
+      <atk value="198"/>
+      <def value="42"/>
       <hp value="105"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2654,8 +2654,8 @@
     <type class="undead" subclass="zombie" tileid="undead.png:11"/>
     <description/>
     <attributes>
-      <atk value="1206"/>
-      <def value="66"/>
+      <atk value="202"/>
+      <def value="49"/>
       <hp value="80"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -2682,8 +2682,8 @@
     <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
     <description/>
     <attributes>
-      <atk value="1259"/>
-      <def value="39"/>
+      <atk value="214"/>
+      <def value="33"/>
       <hp value="180"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2716,8 +2716,8 @@
     <type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:0"/>
     <description/>
     <attributes>
-      <atk value="1006"/>
-      <def value="8"/>
+      <atk value="186"/>
+      <def value="4"/>
       <hp value="800"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2745,8 +2745,8 @@
     <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
     <description/>
     <attributes>
-      <atk value="1261"/>
-      <def value="29"/>
+      <atk value="209"/>
+      <def value="22"/>
       <hp value="150"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -2779,8 +2779,8 @@
   <creature name="spider">
     <type class="animal" subclass="spider" tileid="animal.png:18"/>
     <attributes>
-      <atk value="1251"/>
-      <def value="73"/>
+      <atk value="213"/>
+      <def value="56"/>
       <hp value="80"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2803,8 +2803,8 @@
     <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
     <description/>
     <attributes>
-      <atk value="1263"/>
-      <def value="47"/>
+      <atk value="207"/>
+      <def value="38"/>
       <hp value="140"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2831,8 +2831,8 @@
     <type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
     <description/>
     <attributes>
-      <atk value="1315"/>
-      <def value="52"/>
+      <atk value="216"/>
+      <def value="40"/>
       <hp value="140"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -2865,8 +2865,8 @@
     <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
     <description/>
     <attributes>
-      <atk value="1271"/>
-      <def value="64"/>
+      <atk value="221"/>
+      <def value="54"/>
       <hp value="100"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -2892,8 +2892,8 @@
     <type class="giant" subclass="ogre_soldier" tileid="giant.png:3"/>
     <description/>
     <attributes>
-      <atk value="1357"/>
-      <def value="54"/>
+      <atk value="222"/>
+      <def value="40"/>
       <hp value="132"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -2919,8 +2919,8 @@
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
     <description/>
     <attributes>
-      <atk value="1360"/>
-      <def value="76"/>
+      <atk value="233"/>
+      <def value="65"/>
       <hp value="90"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -2951,8 +2951,8 @@
   <creature name="black slime">
     <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
     <attributes>
-      <atk value="1449"/>
-      <def value="41"/>
+      <atk value="250"/>
+      <def value="36"/>
       <hp value="210"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -2977,8 +2977,8 @@
     <type class="golem" subclass="wooden_golem" tileid="golem.png:1"/>
     <description/>
     <attributes>
-      <atk value="1473"/>
-      <def value="41"/>
+      <atk value="251"/>
+      <def value="34"/>
       <hp value="223"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -3005,8 +3005,8 @@
     <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
     <description/>
     <attributes>
-      <atk value="1475"/>
-      <def value="90"/>
+      <atk value="250"/>
+      <def value="71"/>
       <hp value="80"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -3034,8 +3034,8 @@
     <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
     <description/>
     <attributes>
-      <atk value="1460"/>
-      <def value="89"/>
+      <atk value="244"/>
+      <def value="75"/>
       <hp value="80"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3067,8 +3067,8 @@
     <type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
     <description/>
     <attributes>
-      <atk value="1446"/>
-      <def value="113"/>
+      <atk value="229"/>
+      <def value="77"/>
       <hp value="60"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3104,8 +3104,8 @@
     <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
     <description/>
     <attributes>
-      <atk value="1461"/>
-      <def value="56"/>
+      <atk value="244"/>
+      <def value="43"/>
       <hp value="160"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3136,8 +3136,8 @@
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
     <description/>
     <attributes>
-      <atk value="1438"/>
-      <def value="81"/>
+      <atk value="242"/>
+      <def value="63"/>
       <hp value="100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3165,8 +3165,8 @@
     <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
     <description/>
     <attributes>
-      <atk value="1449"/>
-      <def value="67"/>
+      <atk value="242"/>
+      <def value="53"/>
       <hp value="120"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3194,8 +3194,8 @@
   <creature name="poisonous spider">
     <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
     <attributes>
-      <atk value="1422"/>
-      <def value="76"/>
+      <atk value="244"/>
+      <def value="61"/>
       <hp value="100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3223,8 +3223,8 @@
     <type class="sheepman" subclass="sheepman" tileid="sheepman.png:3"/>
     <description/>
     <attributes>
-      <atk value="1452"/>
-      <def value="56"/>
+      <atk value="245"/>
+      <def value="47"/>
       <hp value="150"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -3257,8 +3257,8 @@
     <type class="frogman" subclass="caped_frogman" tileid="frogman.png:0"/>
     <description/>
     <attributes>
-      <atk value="1497"/>
-      <def value="59"/>
+      <atk value="257"/>
+      <def value="50"/>
       <hp value="156"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3284,8 +3284,8 @@
     <type class="undead" subclass="elder_skeleton" tileid="undead.png:7"/>
     <description/>
     <attributes>
-      <atk value="1497"/>
-      <def value="58"/>
+      <atk value="253"/>
+      <def value="49"/>
       <hp value="156"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3317,8 +3317,8 @@
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
     <description/>
     <attributes>
-      <atk value="1469"/>
-      <def value="57"/>
+      <atk value="246"/>
+      <def value="48"/>
       <hp value="160"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -3343,8 +3343,8 @@
   <creature name="monk">
     <type class="human" subclass="monk" tileid="human.png:4"/>
     <attributes>
-      <atk value="1525"/>
-      <def value="88"/>
+      <atk value="261"/>
+      <def value="75"/>
       <hp value="100"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -3377,8 +3377,8 @@
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
     <description/>
     <attributes>
-      <atk value="1539"/>
-      <def value="91"/>
+      <atk value="256"/>
+      <def value="70"/>
       <hp value="100"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -3409,8 +3409,8 @@
     <type class="human" subclass="littlewizard" tileid="human_little.png:1"/>
     <description/>
     <attributes>
-      <atk value="1574"/>
-      <def value="59"/>
+      <atk value="266"/>
+      <def value="50"/>
       <hp value="168"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3435,8 +3435,8 @@
     <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
     <description/>
     <attributes>
-      <atk value="1564"/>
-      <def value="63"/>
+      <atk value="271"/>
+      <def value="48"/>
       <hp value="168"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3461,8 +3461,8 @@
     <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
     <description/>
     <attributes>
-      <atk value="1604"/>
-      <def value="60"/>
+      <atk value="278"/>
+      <def value="49"/>
       <hp value="175"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3489,8 +3489,8 @@
     <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
     <description/>
     <attributes>
-      <atk value="1586"/>
-      <def value="52"/>
+      <atk value="274"/>
+      <def value="42"/>
       <hp value="200"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -3516,8 +3516,8 @@
     <type class="undead" subclass="death" tileid="undead.png:2"/>
     <description/>
     <attributes>
-      <atk value="1638"/>
-      <def value="85"/>
+      <atk value="283"/>
+      <def value="69"/>
       <hp value="120"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3547,8 +3547,8 @@
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
     <description/>
     <attributes>
-      <atk value="1649"/>
-      <def value="122"/>
+      <atk value="285"/>
+      <def value="102"/>
       <hp value="70"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3581,8 +3581,8 @@
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
     <description/>
     <attributes>
-      <atk value="1650"/>
-      <def value="129"/>
+      <atk value="281"/>
+      <def value="91"/>
       <hp value="70"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3611,8 +3611,8 @@
     <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:0"/>
     <description/>
     <attributes>
-      <atk value="1699"/>
-      <def value="62"/>
+      <atk value="287"/>
+      <def value="51"/>
       <hp value="188"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -3644,8 +3644,8 @@
     <type class="human" subclass="kalavan_peasant" tileid="human_kalavan.png:3"/>
     <description/>
     <attributes>
-      <atk value="1679"/>
-      <def value="55"/>
+      <atk value="296"/>
+      <def value="44"/>
       <hp value="240"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -3672,8 +3672,8 @@
   <creature name="stone golem">
     <type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
     <attributes>
-      <atk value="1709"/>
-      <def value="112"/>
+      <atk value="297"/>
+      <def value="85"/>
       <hp value="95"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -3702,8 +3702,8 @@
     <type class="dwarf" subclass="duergar_axe" tileid="dwarf_duergar.png:0"/>
     <description/>
     <attributes>
-      <atk value="1713"/>
-      <def value="68"/>
+      <atk value="298"/>
+      <def value="52"/>
       <hp value="195"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3733,8 +3733,8 @@
     <type class="giant" subclass="superogre" tileid="giant.png:4"/>
     <description/>
     <attributes>
-      <atk value="1745"/>
-      <def value="68"/>
+      <atk value="296"/>
+      <def value="52"/>
       <hp value="195"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -3758,8 +3758,8 @@
     <type class="human" subclass="kalavan_wisewoman" tileid="human_kalavan.png:4"/>
     <description/>
     <attributes>
-      <atk value="1712"/>
-      <def value="51"/>
+      <atk value="301"/>
+      <def value="46"/>
       <hp value="250"/>
       <speed value="0.3"/>
       <size value="1,1"/>
@@ -3787,8 +3787,8 @@
     <type class="human" subclass="kalavan_citizen" tileid="human_kalavan.png:1"/>
     <description/>
     <attributes>
-      <atk value="1803"/>
-      <def value="68"/>
+      <atk value="310"/>
+      <def value="56"/>
       <hp value="210"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -3815,8 +3815,8 @@
     <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:2"/>
     <description/>
     <attributes>
-      <atk value="1806"/>
-      <def value="70"/>
+      <atk value="305"/>
+      <def value="57"/>
       <hp value="210"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3841,8 +3841,8 @@
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
     <description/>
     <attributes>
-      <atk value="1850"/>
-      <def value="103"/>
+      <atk value="320"/>
+      <def value="88"/>
       <hp value="125"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3873,8 +3873,8 @@
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
     <description/>
     <attributes>
-      <atk value="1790"/>
-      <def value="133"/>
+      <atk value="311"/>
+      <def value="111"/>
       <hp value="80"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3907,8 +3907,8 @@
     <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
     <description/>
     <attributes>
-      <atk value="1812"/>
-      <def value="97"/>
+      <atk value="325"/>
+      <def value="88"/>
       <hp value="125"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3939,8 +3939,8 @@
     <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
     <description/>
     <attributes>
-      <atk value="1830"/>
-      <def value="134"/>
+      <atk value="315"/>
+      <def value="111"/>
       <hp value="83"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3970,8 +3970,8 @@
     <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
     <description/>
     <attributes>
-      <atk value="1894"/>
-      <def value="73"/>
+      <atk value="325"/>
+      <def value="60"/>
       <hp value="195"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -3996,8 +3996,8 @@
     <type class="human" subclass="imperial_defender" tileid="human_imperial.png:5"/>
     <description/>
     <attributes>
-      <atk value="1770"/>
-      <def value="48"/>
+      <atk value="325"/>
+      <def value="36"/>
       <hp value="400"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -4026,8 +4026,8 @@
     <type class="human" subclass="bandit" tileid="human_evil.png:1"/>
     <description/>
     <attributes>
-      <atk value="1908"/>
-      <def value="66"/>
+      <atk value="329"/>
+      <def value="56"/>
       <hp value="233"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4058,8 +4058,8 @@
     <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
     <description/>
     <attributes>
-      <atk value="1920"/>
-      <def value="66"/>
+      <atk value="330"/>
+      <def value="57"/>
       <hp value="230"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -4086,8 +4086,8 @@
     <type class="hybrid" subclass="robot_aruthon" tileid="hybrid.png:4"/>
     <description/>
     <attributes>
-      <atk value="1895"/>
-      <def value="69"/>
+      <atk value="330"/>
+      <def value="57"/>
       <hp value="233"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -4114,8 +4114,8 @@
     <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
     <description/>
     <attributes>
-      <atk value="1890"/>
-      <def value="68"/>
+      <atk value="326"/>
+      <def value="58"/>
       <hp value="241"/>
       <speed value="0.4"/>
       <size value="1,1"/>
@@ -4147,8 +4147,8 @@
     <type class="albino_elf" subclass="albino_elf_swordsman" tileid="albino_elf.png:4"/>
     <description/>
     <attributes>
-      <atk value="1912"/>
-      <def value="69"/>
+      <atk value="330"/>
+      <def value="57"/>
       <hp value="250"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4177,8 +4177,8 @@
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
     <description/>
     <attributes>
-      <atk value="1954"/>
-      <def value="128"/>
+      <atk value="334"/>
+      <def value="102"/>
       <hp value="120"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -4208,8 +4208,8 @@
   <creature name="cat woman">
     <type class="mutant" subclass="cat_woman" tileid="mutant.png:5"/>
     <attributes>
-      <atk value="1985"/>
-      <def value="102"/>
+      <atk value="329"/>
+      <def value="84"/>
       <hp value="160"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4237,8 +4237,8 @@
   <creature name="vampirette">
     <type class="vampire" subclass="vampirette_evil" tileid="vampire.png:4"/>
     <attributes>
-      <atk value="2013"/>
-      <def value="51"/>
+      <atk value="353"/>
+      <def value="43"/>
       <hp value="140"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4267,8 +4267,8 @@
     <type class="human" subclass="barbarian" tileid="human_barbarian.png:3"/>
     <description/>
     <attributes>
-      <atk value="2037"/>
-      <def value="74"/>
+      <atk value="350"/>
+      <def value="57"/>
       <hp value="258"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4296,8 +4296,8 @@
     <type class="human" subclass="imperial_archer" tileid="human_imperial.png:2"/>
     <description/>
     <attributes>
-      <atk value="1525"/>
-      <def value="95"/>
+      <atk value="331"/>
+      <def value="77"/>
       <hp value="180"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -4328,8 +4328,8 @@
     <type class="madaram" subclass="madaram_archer" tileid="madaram.png:1"/>
     <description/>
     <attributes>
-      <atk value="1576"/>
-      <def value="97"/>
+      <atk value="332"/>
+      <def value="76"/>
       <hp value="180"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4359,8 +4359,8 @@
     <type class="human" subclass="little_assassin" tileid="human_evil.png:6"/>
     <description/>
     <attributes>
-      <atk value="2039"/>
-      <def value="99"/>
+      <atk value="344"/>
+      <def value="77"/>
       <hp value="180"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4394,8 +4394,8 @@
     <type class="orc" subclass="orc" tileid="mountain_orc.png:2"/>
     <description/>
     <attributes>
-      <atk value="2036"/>
-      <def value="75"/>
+      <atk value="352"/>
+      <def value="57"/>
       <hp value="260"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -4423,8 +4423,8 @@
     <type class="madaram" subclass="madaram_peasant" tileid="madaram.png:7"/>
     <description/>
     <attributes>
-      <atk value="2047"/>
-      <def value="67"/>
+      <atk value="357"/>
+      <def value="52"/>
       <hp value="300"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4451,8 +4451,8 @@
     <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
     <description/>
     <attributes>
-      <atk value="2067"/>
-      <def value="73"/>
+      <atk value="354"/>
+      <def value="58"/>
       <hp value="266"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -4479,8 +4479,8 @@
     <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
     <description/>
     <attributes>
-      <atk value="2098"/>
-      <def value="155"/>
+      <atk value="316"/>
+      <def value="102"/>
       <hp value="100"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -4510,8 +4510,8 @@
     <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
     <description/>
     <attributes>
-      <atk value="2112"/>
-      <def value="71"/>
+      <atk value="367"/>
+      <def value="59"/>
       <hp value="275"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -4539,8 +4539,8 @@
     <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
     <description/>
     <attributes>
-      <atk value="1581"/>
-      <def value="108"/>
+      <atk value="345"/>
+      <def value="94"/>
       <hp value="150"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -4571,8 +4571,8 @@
     <type class="human" subclass="imperial_priest" tileid="human_imperial.png:12"/>
     <description/>
     <attributes>
-      <atk value="2058"/>
-      <def value="65"/>
+      <atk value="368"/>
+      <def value="57"/>
       <hp value="300"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -4600,8 +4600,8 @@
     <type class="madaram" subclass="madaram_trooper" tileid="madaram.png:11"/>
     <description/>
     <attributes>
-      <atk value="2138"/>
-      <def value="63"/>
+      <atk value="370"/>
+      <def value="55"/>
       <hp value="320"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4628,8 +4628,8 @@
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
     <description/>
     <attributes>
-      <atk value="2164"/>
-      <def value="73"/>
+      <atk value="374"/>
+      <def value="67"/>
       <hp value="283"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -4658,8 +4658,8 @@
     <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:2"/>
     <description/>
     <attributes>
-      <atk value="2130"/>
-      <def value="83"/>
+      <atk value="373"/>
+      <def value="70"/>
       <hp value="241"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -4691,8 +4691,8 @@
     <type class="human" subclass="imperial_elite_guardian" tileid="human_imperial.png:7"/>
     <description/>
     <attributes>
-      <atk value="2141"/>
-      <def value="59"/>
+      <atk value="376"/>
+      <def value="52"/>
       <hp value="380"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4721,8 +4721,8 @@
     <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
     <description/>
     <attributes>
-      <atk value="2110"/>
-      <def value="79"/>
+      <atk value="368"/>
+      <def value="71"/>
       <hp value="250"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -4747,8 +4747,8 @@
   <creature name="nymph">
     <type class="elemental" subclass="nymph" tileid="elemental.png:6"/>
     <attributes>
-      <atk value="2100"/>
-      <def value="72"/>
+      <atk value="368"/>
+      <def value="61"/>
       <hp value="300"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -4775,8 +4775,8 @@
     <type class="human" subclass="barbarian_wolf" tileid="human_barbarian.png:5"/>
     <description/>
     <attributes>
-      <atk value="2090"/>
-      <def value="76"/>
+      <atk value="365"/>
+      <def value="62"/>
       <hp value="292"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4804,8 +4804,8 @@
 <creature name="ice golem">
     <type class="golem" subclass="ice_golem" tileid="golem.png:2"/>
     <attributes>
-      <atk value="2135"/>
-      <def value="65"/>
+      <atk value="381"/>
+      <def value="53"/>
       <hp value="390"/>
       <speed value="0.6"/>
       <size value="1,1"/>
@@ -4834,8 +4834,8 @@
     <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
     <description/>
     <attributes>
-      <atk value="2135"/>
-      <def value="128"/>
+      <atk value="380"/>
+      <def value="108"/>
       <hp value="155"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4863,8 +4863,8 @@
     <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
     <description/>
     <attributes>
-      <atk value="2101"/>
-      <def value="142"/>
+      <atk value="373"/>
+      <def value="122"/>
       <hp value="125"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -4896,8 +4896,8 @@
     <type class="human" subclass="apprentice_assassin" tileid="human_evil.png:7"/>
     <description/>
     <attributes>
-      <atk value="2162"/>
-      <def value="136"/>
+      <atk value="375"/>
+      <def value="123"/>
       <hp value="130"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4932,8 +4932,8 @@
     <type class="orc" subclass="orc_warrior" tileid="mountain_orc.png:3"/>
     <description/>
     <attributes>
-      <atk value="2212"/>
-      <def value="79"/>
+      <atk value="377"/>
+      <def value="66"/>
       <hp value="310"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -4961,8 +4961,8 @@
     <type class="dwarf" subclass="duergar_hero" tileid="dwarf_duergar.png:4"/>
     <description/>
     <attributes>
-      <atk value="2215"/>
-      <def value="76"/>
+      <atk value="378"/>
+      <def value="63"/>
       <hp value="311"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -4992,8 +4992,8 @@
     <type class="human" subclass="hunter" tileid="human_evil.png:2"/>
     <description/>
     <attributes>
-      <atk value="1646"/>
-      <def value="84"/>
+      <atk value="371"/>
+      <def value="60"/>
       <hp value="320"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5031,8 +5031,8 @@
     <type class="madaram" subclass="madaram_soldier" tileid="madaram.png:9"/>
     <description/>
     <attributes>
-      <atk value="2259"/>
-      <def value="77"/>
+      <atk value="400"/>
+      <def value="64"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5059,8 +5059,8 @@
     <type class="elf" subclass="elf_wizard" tileid="elf.png:9"/>
     <description/>
     <attributes>
-      <atk value="2296"/>
-      <def value="82"/>
+      <atk value="400"/>
+      <def value="70"/>
       <hp value="300"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5087,8 +5087,8 @@
     <type class="human" subclass="barbarian_elite" tileid="human_barbarian.png:1"/>
     <description/>
     <attributes>
-      <atk value="2284"/>
-      <def value="79"/>
+      <atk value="413"/>
+      <def value="67"/>
       <hp value="330"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5119,8 +5119,8 @@
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
     <description/>
     <attributes>
-      <atk value="1752"/>
-      <def value="146"/>
+      <atk value="385"/>
+      <def value="125"/>
       <hp value="130"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5153,8 +5153,8 @@
     <type class="elf" subclass="elf_bodyguard" tileid="elf.png:8"/>
     <description/>
     <attributes>
-      <atk value="2251"/>
-      <def value="117"/>
+      <atk value="403"/>
+      <def value="102"/>
       <hp value="200"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5183,8 +5183,8 @@
   <creature name="earth elemental">
     <type class="elemental" subclass="earth_elemental" tileid="elemental.png:1"/>
     <attributes>
-      <atk value="2309"/>
-      <def value="80"/>
+      <atk value="407"/>
+      <def value="66"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5211,8 +5211,8 @@
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
     <description/>
     <attributes>
-      <atk value="2326"/>
-      <def value="80"/>
+      <atk value="411"/>
+      <def value="67"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5238,8 +5238,8 @@
   <creature name="water elemental">
     <type class="elemental" subclass="water_elemental" tileid="elemental.png:3"/>
     <attributes>
-      <atk value="2309"/>
-      <def value="79"/>
+      <atk value="403"/>
+      <def value="64"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5268,8 +5268,8 @@
   <creature name="air elemental">
     <type class="elemental" subclass="air_elemental" tileid="elemental.png:4"/>
     <attributes>
-      <atk value="2334"/>
-      <def value="80"/>
+      <atk value="409"/>
+      <def value="68"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5295,8 +5295,8 @@
   <creature name="ice elemental">
     <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
     <attributes>
-      <atk value="2331"/>
-      <def value="80"/>
+      <atk value="400"/>
+      <def value="61"/>
       <hp value="350"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5324,8 +5324,8 @@
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
     <description/>
     <attributes>
-      <atk value="2364"/>
-      <def value="94"/>
+      <atk value="403"/>
+      <def value="75"/>
       <hp value="300"/>
       <speed value="1.0"/>
       <size value="3,3"/>
@@ -5358,8 +5358,8 @@
     <type class="human" subclass="imperial_scientist" tileid="human_imperial.png:13"/>
     <description/>
     <attributes>
-      <atk value="2273"/>
-      <def value="63"/>
+      <atk value="393"/>
+      <def value="49"/>
       <hp value="480"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -5389,8 +5389,8 @@
     <type class="orc" subclass="orc_hunter" tileid="mountain_orc.png:1"/>
     <description/>
     <attributes>
-      <atk value="2341"/>
-      <def value="79"/>
+      <atk value="411"/>
+      <def value="68"/>
       <hp value="360"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5418,8 +5418,8 @@
     <type class="dwarf" subclass="duergar_wizard" tileid="dwarf_duergar.png:7"/>
     <description/>
     <attributes>
-      <atk value="2381"/>
-      <def value="82"/>
+      <atk value="413"/>
+      <def value="67"/>
       <hp value="360"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -5445,8 +5445,8 @@
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
     <description/>
     <attributes>
-      <atk value="2384"/>
-      <def value="64"/>
+      <atk value="421"/>
+      <def value="52"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5477,8 +5477,8 @@
     <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
     <description/>
     <attributes>
-      <atk value="2420"/>
-      <def value="74"/>
+      <atk value="423"/>
+      <def value="61"/>
       <hp value="400"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -5508,8 +5508,8 @@
     <type class="human" subclass="barbarian_priest" tileid="human_barbarian.png:4"/>
     <description/>
     <attributes>
-      <atk value="2424"/>
-      <def value="77"/>
+      <atk value="425"/>
+      <def value="68"/>
       <hp value="380"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5534,8 +5534,8 @@
     <type class="madaram" subclass="madaram_healer" tileid="madaram.png:5"/>
     <description/>
     <attributes>
-      <atk value="2440"/>
-      <def value="77"/>
+      <atk value="425"/>
+      <def value="64"/>
       <hp value="390"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5562,8 +5562,8 @@
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
     <description/>
     <attributes>
-      <atk value="2433"/>
-      <def value="80"/>
+      <atk value="437"/>
+      <def value="72"/>
       <hp value="390"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -5593,8 +5593,8 @@
     <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
     <description/>
     <attributes>
-      <atk value="2476"/>
-      <def value="144"/>
+      <atk value="430"/>
+      <def value="128"/>
       <hp value="165"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5621,8 +5621,8 @@
     <type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
     <description/>
     <attributes>
-      <atk value="2533"/>
-      <def value="180"/>
+      <atk value="433"/>
+      <def value="151"/>
       <hp value="140"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5652,8 +5652,8 @@
     <type class="madaram" subclass="madaram_axeman" tileid="madaram.png:2"/>
     <description/>
     <attributes>
-      <atk value="2461"/>
-      <def value="81"/>
+      <atk value="438"/>
+      <def value="73"/>
       <hp value="370"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5680,8 +5680,8 @@
     <type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:4"/>
     <description/>
     <attributes>
-      <atk value="2486"/>
-      <def value="60"/>
+      <atk value="440"/>
+      <def value="57"/>
       <hp value="400"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -5714,8 +5714,8 @@
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
     <description/>
     <attributes>
-      <atk value="2463"/>
-      <def value="52"/>
+      <atk value="435"/>
+      <def value="48"/>
       <hp value="400"/>
       <speed value="1.0"/>
       <size value="3,3"/>
@@ -5743,8 +5743,8 @@
     <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
     <description/>
     <attributes>
-      <atk value="2475"/>
-      <def value="79"/>
+      <atk value="438"/>
+      <def value="66"/>
       <hp value="402"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -5773,8 +5773,8 @@
     <type class="albino_elf" subclass="albino_elf_magician" tileid="albino_elf.png:2"/>
     <description/>
     <attributes>
-      <atk value="2494"/>
-      <def value="70"/>
+      <atk value="432"/>
+      <def value="58"/>
       <hp value="500"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -5803,8 +5803,8 @@
     <type class="human" subclass="imperial_high_priest" tileid="human_imperial.png:9"/>
     <description/>
     <attributes>
-      <atk value="2298"/>
-      <def value="64"/>
+      <atk value="437"/>
+      <def value="52"/>
       <hp value="580"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5834,8 +5834,8 @@
     <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
     <description/>
     <attributes>
-      <atk value="2469"/>
-      <def value="60"/>
+      <atk value="450"/>
+      <def value="50"/>
       <hp value="600"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -5862,8 +5862,8 @@
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
     <description/>
     <attributes>
-      <atk value="2576"/>
-      <def value="85"/>
+      <atk value="448"/>
+      <def value="70"/>
       <hp value="423"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5894,8 +5894,8 @@
     <type class="madaram" subclass="madaram_queen" tileid="madaram.png:8"/>
     <description/>
     <attributes>
-      <atk value="2520"/>
-      <def value="80"/>
+      <atk value="440"/>
+      <def value="64"/>
       <hp value="470"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5924,8 +5924,8 @@
     <type class="human" subclass="barbarian_chaman" tileid="human_barbarian.png:0"/>
     <description/>
     <attributes>
-      <atk value="2541"/>
-      <def value="83"/>
+      <atk value="449"/>
+      <def value="67"/>
       <hp value="435"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -5954,8 +5954,8 @@
     <type class="albino_elf" subclass="albino_elf_queen" tileid="albino_elf.png:3"/>
     <description/>
     <attributes>
-      <atk value="2562"/>
-      <def value="59"/>
+      <atk value="454"/>
+      <def value="48"/>
       <hp value="700"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -5983,8 +5983,8 @@
     <type class="madaram" subclass="madaram_hero" tileid="madaram.png:6"/>
     <description/>
     <attributes>
-      <atk value="2547"/>
-      <def value="81"/>
+      <atk value="453"/>
+      <def value="65"/>
       <hp value="470"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6011,8 +6011,8 @@
     <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
     <description/>
     <attributes>
-      <atk value="2126"/>
-      <def value="151"/>
+      <atk value="432"/>
+      <def value="125"/>
       <hp value="200"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6044,8 +6044,8 @@
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
     <description/>
     <attributes>
-      <atk value="2606"/>
-      <def value="82"/>
+      <atk value="461"/>
+      <def value="70"/>
       <hp value="440"/>
       <speed value="0.7"/>
       <size value="1,1"/>
@@ -6074,8 +6074,8 @@
   <creature name="green phantom">
     <type class="undead" subclass="green_phantom" tileid="undead.png:12"/>
     <attributes>
-      <atk value="2626"/>
-      <def value="74"/>
+      <atk value="462"/>
+      <def value="65"/>
       <hp value="500"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -6103,8 +6103,8 @@
     <type class="madaram" subclass="madaram_windwalker" tileid="madaram.png:12"/>
     <description/>
     <attributes>
-      <atk value="2645"/>
-      <def value="77"/>
+      <atk value="460"/>
+      <def value="67"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6130,8 +6130,8 @@
   <creature name="djinn">
     <type class="elemental" subclass="djinn" tileid="elemental.png:0"/>
     <attributes>
-      <atk value="2665"/>
-      <def value="93"/>
+      <atk value="460"/>
+      <def value="74"/>
       <hp value="400"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6157,8 +6157,8 @@
     <type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
     <description/>
     <attributes>
-      <atk value="2668"/>
-      <def value="112"/>
+      <atk value="465"/>
+      <def value="97"/>
       <hp value="300"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6191,8 +6191,8 @@
     <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
     <description/>
     <attributes>
-      <atk value="2692"/>
-      <def value="66"/>
+      <atk value="468"/>
+      <def value="53"/>
       <hp value="650"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6222,8 +6222,8 @@
     <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
     <description/>
     <attributes>
-      <atk value="2614"/>
-      <def value="85"/>
+      <atk value="473"/>
+      <def value="69"/>
       <hp value="458"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -6255,8 +6255,8 @@
     <type class="albino_elf" subclass="albino_elf_king" tileid="albino_elf.png:1"/>
     <description/>
     <attributes>
-      <atk value="2645"/>
-      <def value="63"/>
+      <atk value="461"/>
+      <def value="53"/>
       <hp value="675"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -6286,8 +6286,8 @@
     <type class="orc" subclass="orc_chief" tileid="mountain_orc.png:0"/>
     <description/>
     <attributes>
-      <atk value="2679"/>
-      <def value="83"/>
+      <atk value="474"/>
+      <def value="75"/>
       <hp value="460"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6317,8 +6317,8 @@
     <type class="madaram" subclass="madaram_cavalry" tileid="madaram.png:4"/>
     <description/>
     <attributes>
-      <atk value="2660"/>
-      <def value="75"/>
+      <atk value="469"/>
+      <def value="66"/>
       <hp value="520"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6347,8 +6347,8 @@
     <type class="human" subclass="imperial_archer_leader" tileid="human_imperial.png:1"/>
     <description/>
     <attributes>
-      <atk value="2185"/>
-      <def value="77"/>
+      <atk value="440"/>
+      <def value="69"/>
       <hp value="500"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -6378,8 +6378,8 @@
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
     <description/>
     <attributes>
-      <atk value="2684"/>
-      <def value="63"/>
+      <atk value="481"/>
+      <def value="57"/>
       <hp value="675"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6413,8 +6413,8 @@
     <type class="dwarf" subclass="elder_dwarf" tileid="mountain_dwarf.png:2"/>
     <description/>
     <attributes>
-      <atk value="2745"/>
-      <def value="84"/>
+      <atk value="484"/>
+      <def value="75"/>
       <hp value="480"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6446,8 +6446,8 @@
     <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
     <description/>
     <attributes>
-      <atk value="2668"/>
-      <def value="80"/>
+      <atk value="472"/>
+      <def value="74"/>
       <hp value="480"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -6475,8 +6475,8 @@
     <type class="huge_troll" subclass="cave_troll" tileid="troll.png:1"/>
     <description/>
     <attributes>
-      <atk value="2664"/>
-      <def value="51"/>
+      <atk value="474"/>
+      <def value="45"/>
       <hp value="1000"/>
       <speed value="0.7"/>
       <size value="2,2"/>
@@ -6508,8 +6508,8 @@
     <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
     <description/>
     <attributes>
-      <atk value="2103"/>
-      <def value="73"/>
+      <atk value="448"/>
+      <def value="66"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6540,8 +6540,8 @@
     <type class="human" subclass="barbarian_leader" tileid="human_barbarian.png:2"/>
     <description/>
     <attributes>
-      <atk value="2735"/>
-      <def value="84"/>
+      <atk value="492"/>
+      <def value="75"/>
       <hp value="505"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6573,8 +6573,8 @@
     <type class="human" subclass="soldier_common" tileid="human_soldier.png:2"/>
     <description/>
     <attributes>
-      <atk value="2737"/>
-      <def value="85"/>
+      <atk value="490"/>
+      <def value="78"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6601,8 +6601,8 @@
     <type class="human" subclass="imperial_elite_archer" tileid="human_imperial.png:6"/>
     <description/>
     <attributes>
-      <atk value="2197"/>
-      <def value="77"/>
+      <atk value="461"/>
+      <def value="62"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6633,8 +6633,8 @@
     <type class="human" subclass="masked_ninja" tileid="human_evil.png:4"/>
     <description/>
     <attributes>
-      <atk value="2722"/>
-      <def value="85"/>
+      <atk value="489"/>
+      <def value="75"/>
       <hp value="520"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6664,8 +6664,8 @@
     <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
     <description/>
     <attributes>
-      <atk value="2763"/>
-      <def value="67"/>
+      <atk value="484"/>
+      <def value="57"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6694,8 +6694,8 @@
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
     <description/>
     <attributes>
-      <atk value="2823"/>
-      <def value="122"/>
+      <atk value="494"/>
+      <def value="96"/>
       <hp value="350"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -6726,8 +6726,8 @@
     <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
     <description/>
     <attributes>
-      <atk value="2715"/>
-      <def value="41"/>
+      <atk value="497"/>
+      <def value="35"/>
       <hp value="750"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6755,8 +6755,8 @@
     <type class="human" subclass="imperial_leader" tileid="human_imperial.png:11"/>
     <description/>
     <attributes>
-      <atk value="2743"/>
-      <def value="76"/>
+      <atk value="493"/>
+      <def value="64"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6785,8 +6785,8 @@
     <type class="madaram" subclass="madaram_stalker" tileid="madaram.png:10"/>
     <description/>
     <attributes>
-      <atk value="2796"/>
-      <def value="76"/>
+      <atk value="497"/>
+      <def value="67"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6813,8 +6813,8 @@
     <type class="demon" subclass="imp" tileid="demon.png:0"/>
     <description/>
     <attributes>
-      <atk value="2769"/>
-      <def value="85"/>
+      <atk value="495"/>
+      <def value="73"/>
       <hp value="530"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6840,8 +6840,8 @@
     <type class="oni" subclass="oni_warrior" tileid="oni.png:0"/>
     <description/>
     <attributes>
-      <atk value="2827"/>
-      <def value="86"/>
+      <atk value="499"/>
+      <def value="77"/>
       <hp value="500"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -6869,8 +6869,8 @@
     <type class="dwarf" subclass="hero_dwarf" tileid="mountain_dwarf.png:3"/>
     <description/>
     <attributes>
-      <atk value="2820"/>
-      <def value="87"/>
+      <atk value="503"/>
+      <def value="72"/>
       <hp value="540"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6901,8 +6901,8 @@
     <type class="human" subclass="soldier_archer" tileid="human_soldier.png:0"/>
     <description/>
     <attributes>
-      <atk value="2065"/>
-      <def value="89"/>
+      <atk value="487"/>
+      <def value="76"/>
       <hp value="540"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6932,8 +6932,8 @@
     <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
     <description/>
     <attributes>
-      <atk value="2836"/>
-      <def value="73"/>
+      <atk value="509"/>
+      <def value="67"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6959,8 +6959,8 @@
     <type class="madaram" subclass="madaram_buster_blader" tileid="madaram.png:3"/>
     <description/>
     <attributes>
-      <atk value="2861"/>
-      <def value="85"/>
+      <atk value="497"/>
+      <def value="73"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -6987,8 +6987,8 @@
     <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
     <description/>
     <attributes>
-      <atk value="2842"/>
-      <def value="96"/>
+      <atk value="515"/>
+      <def value="86"/>
       <hp value="500"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7016,8 +7016,8 @@
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
     <description/>
     <attributes>
-      <atk value="2845"/>
-      <def value="103"/>
+      <atk value="515"/>
+      <def value="92"/>
       <hp value="450"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7051,8 +7051,8 @@
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
     <description/>
     <attributes>
-      <atk value="2879"/>
-      <def value="64"/>
+      <atk value="511"/>
+      <def value="57"/>
       <hp value="900"/>
       <speed value="1.0"/>
       <size value="3,3"/>
@@ -7081,8 +7081,8 @@
     <type class="human" subclass="soldier_knight" tileid="human_soldier.png:5"/>
     <description/>
     <attributes>
-      <atk value="2895"/>
-      <def value="88"/>
+      <atk value="523"/>
+      <def value="78"/>
       <hp value="595"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7111,8 +7111,8 @@
     <type class="human" subclass="soldier_elite_archer" tileid="human_soldier.png:3"/>
     <description/>
     <attributes>
-      <atk value="2276"/>
-      <def value="88"/>
+      <atk value="500"/>
+      <def value="73"/>
       <hp value="608"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7143,8 +7143,8 @@
     <type class="oni" subclass="oni_archer" tileid="oni.png:1"/>
     <description/>
     <attributes>
-      <atk value="2057"/>
-      <def value="92"/>
+      <atk value="511"/>
+      <def value="77"/>
       <hp value="600"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7174,8 +7174,8 @@
     <type class="human" subclass="imperial_knight" tileid="human_imperial.png:10"/>
     <description/>
     <attributes>
-      <atk value="3007"/>
-      <def value="101"/>
+      <atk value="536"/>
+      <def value="88"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7204,8 +7204,8 @@
     <type class="human" subclass="imperial_chief" tileid="human_imperial.png:3"/>
     <description/>
     <attributes>
-      <atk value="2998"/>
-      <def value="88"/>
+      <atk value="533"/>
+      <def value="82"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7234,8 +7234,8 @@
     <type class="amazon" subclass="amazoness_archer_commander" tileid="amazon.png:0"/>
     <description/>
     <attributes>
-      <atk value="2754"/>
-      <def value="86"/>
+      <atk value="518"/>
+      <def value="71"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7265,8 +7265,8 @@
     <type class="mutant" subclass="naga" tileid="naga.png:2"/>
     <description/>
     <attributes>
-      <atk value="2992"/>
-      <def value="90"/>
+      <atk value="536"/>
+      <def value="81"/>
       <hp value="622"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7292,8 +7292,8 @@
     <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
     <description/>
     <attributes>
-      <atk value="3129"/>
-      <def value="91"/>
+      <atk value="546"/>
+      <def value="80"/>
       <hp value="636"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7322,8 +7322,8 @@
     <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
     <description/>
     <attributes>
-      <atk value="3056"/>
-      <def value="89"/>
+      <atk value="538"/>
+      <def value="73"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7351,8 +7351,8 @@
     <type class="human" subclass="barbarian_king" tileid="human_barbarian.png:6"/>
     <description/>
     <attributes>
-      <atk value="3018"/>
-      <def value="98"/>
+      <atk value="531"/>
+      <def value="79"/>
       <hp value="600"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7381,8 +7381,8 @@
     <type class="chaos" subclass="chaos_soldier" tileid="chaos.png:4"/>
     <description/>
     <attributes>
-      <atk value="2947"/>
-      <def value="88"/>
+      <atk value="543"/>
+      <def value="81"/>
       <hp value="650"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7412,8 +7412,8 @@
     <type class="human" subclass="soldier_sergeant" tileid="human_soldier.png:7"/>
     <description/>
     <attributes>
-      <atk value="2970"/>
-      <def value="88"/>
+      <atk value="547"/>
+      <def value="80"/>
       <hp value="650"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7440,8 +7440,8 @@
     <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
     <description/>
     <attributes>
-      <atk value="3117"/>
-      <def value="116"/>
+      <atk value="548"/>
+      <def value="95"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7466,8 +7466,8 @@
     <type class="oni" subclass="oni_priest" tileid="oni.png:2"/>
     <description/>
     <attributes>
-      <atk value="3070"/>
-      <def value="90"/>
+      <atk value="547"/>
+      <def value="76"/>
       <hp value="680"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7495,8 +7495,8 @@
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
     <description/>
     <attributes>
-      <atk value="3079"/>
-      <def value="88"/>
+      <atk value="560"/>
+      <def value="83"/>
       <hp value="690"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7529,8 +7529,8 @@
     <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
     <description/>
     <attributes>
-      <atk value="3138"/>
-      <def value="91"/>
+      <atk value="569"/>
+      <def value="81"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7558,8 +7558,8 @@
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
     <description/>
     <attributes>
-      <atk value="3103"/>
-      <def value="87"/>
+      <atk value="565"/>
+      <def value="78"/>
       <hp value="707"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7587,8 +7587,8 @@
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
     <description/>
     <attributes>
-      <atk value="3211"/>
-      <def value="385"/>
+      <atk value="593"/>
+      <def value="323"/>
       <hp value="100"/>
       <speed value="0.1"/>
       <size value="5,3"/>
@@ -7616,8 +7616,8 @@
     <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
     <description/>
     <attributes>
-      <atk value="3186"/>
-      <def value="87"/>
+      <atk value="584"/>
+      <def value="79"/>
       <hp value="722"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7644,8 +7644,8 @@
     <type class="hybrid" subclass="dark_aruthon" tileid="hybrid.png:2"/>
     <description/>
     <attributes>
-      <atk value="3218"/>
-      <def value="89"/>
+      <atk value="583"/>
+      <def value="73"/>
       <hp value="750"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -7671,8 +7671,8 @@
     <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
     <description/>
     <attributes>
-      <atk value="3223"/>
-      <def value="90"/>
+      <atk value="593"/>
+      <def value="82"/>
       <hp value="736"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -7698,8 +7698,8 @@
     <type class="human" subclass="samurai" tileid="human_evil.png:5"/>
     <description/>
     <attributes>
-      <atk value="3275"/>
-      <def value="85"/>
+      <atk value="585"/>
+      <def value="73"/>
       <hp value="820"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7728,8 +7728,8 @@
     <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
     <description/>
     <attributes>
-      <atk value="3181"/>
-      <def value="89"/>
+      <atk value="582"/>
+      <def value="80"/>
       <hp value="751"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7759,8 +7759,8 @@
     <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
     <description/>
     <attributes>
-      <atk value="3191"/>
-      <def value="123"/>
+      <atk value="566"/>
+      <def value="105"/>
       <hp value="500"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7785,8 +7785,8 @@
     <type class="human" subclass="imperial_commander" tileid="human_imperial.png:4"/>
     <description/>
     <attributes>
-      <atk value="3208"/>
-      <def value="147"/>
+      <atk value="567"/>
+      <def value="122"/>
       <hp value="400"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7819,8 +7819,8 @@
    <type class="boss" subclass="dead_ent" tileid="boss.png:1"/> 	 
    <description/> 	 
    <attributes> 	 
-    <atk value="3329"/> 	 
-	<def value="159"/> 	 
+    <atk value="573"/> 	 
+	<def value="128"/> 	 
 	<hp value="400"/> 	 
 	<speed value="0.2"/> 	 
 	<size value="2,2"/> 	 
@@ -7849,8 +7849,8 @@
     <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
     <description/>
     <attributes>
-      <atk value="3245"/>
-      <def value="93"/>
+      <atk value="577"/>
+      <def value="80"/>
       <hp value="760"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7877,8 +7877,8 @@
     <type class="mutant" subclass="high_naga" tileid="naga.png:1"/>
     <description/>
     <attributes>
-      <atk value="3286"/>
-      <def value="92"/>
+      <atk value="587"/>
+      <def value="79"/>
       <hp value="782"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7905,8 +7905,8 @@
     <type class="mutant" subclass="imperial_experiment" tileid="mutant.png:4"/>
     <description/>
     <attributes>
-      <atk value="3367"/>
-      <def value="88"/>
+      <atk value="572"/>
+      <def value="71"/>
       <hp value="900"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -7933,8 +7933,8 @@
     <type class="chaos" subclass="chaos_warrior" tileid="chaos.png:5"/>
     <description/>
     <attributes>
-      <atk value="3319"/>
-      <def value="93"/>
+      <atk value="604"/>
+      <def value="81"/>
       <hp value="798"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -7968,8 +7968,8 @@
     <type class="demon" subclass="demon" tileid="demon.png:4"/>
     <description/>
     <attributes>
-      <atk value="3334"/>
-      <def value="93"/>
+      <atk value="591"/>
+      <def value="80"/>
       <hp value="800"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -7996,8 +7996,8 @@
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
     <description/>
     <attributes>
-      <atk value="3293"/>
-      <def value="93"/>
+      <atk value="587"/>
+      <def value="74"/>
       <hp value="830"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8025,8 +8025,8 @@
     <type class="giant_madaram" subclass="kasarkutominubat" tileid="madaram.png:0"/>
     <description/>
     <attributes>
-      <atk value="3349"/>
-      <def value="94"/>
+      <atk value="606"/>
+      <def value="86"/>
       <hp value="850"/>
       <speed value="0.6"/>
       <size value="2,2"/>
@@ -8052,8 +8052,8 @@
     <type class="human" subclass="soldier_colonel" tileid="human_soldier.png:1"/>
     <description/>
     <attributes>
-      <atk value="3314"/>
-      <def value="92"/>
+      <atk value="610"/>
+      <def value="82"/>
       <hp value="860"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8080,8 +8080,8 @@
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
     <description/>
     <attributes>
-      <atk value="3398"/>
-      <def value="112"/>
+      <atk value="615"/>
+      <def value="103"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8115,8 +8115,8 @@
     <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
     <description/>
     <attributes>
-      <atk value="3395"/>
-      <def value="107"/>
+      <atk value="628"/>
+      <def value="100"/>
       <hp value="700"/>
       <speed value="0.9"/>
       <size value="1,1"/>
@@ -8150,8 +8150,8 @@
     <type class="huge_hybrid" subclass="grobble_monster" tileid="hybrid.png:12"/>
     <description/>
     <attributes>
-      <atk value="3448"/>
-      <def value="85"/>
+      <atk value="609"/>
+      <def value="73"/>
       <hp value="1000"/>
       <speed value="0.9"/>
       <size value="2,2"/>
@@ -8184,8 +8184,8 @@
     <type class="huge_animal" subclass="giant_dwarf" tileid="huge_animal.png:9"/>
     <description/>
     <attributes>
-      <atk value="3440"/>
-      <def value="106"/>
+      <atk value="616"/>
+      <def value="99"/>
       <hp value="700"/>
       <speed value="0.4"/>
       <size value="2,2"/>
@@ -8216,8 +8216,8 @@
     <type class="huge_animal" subclass="giant_dwarf" tileid="dhohr_nuggetcutter.png:0"/>
     <description/>
     <attributes>
-      <atk value="3421"/>
-      <def value="109"/>
+      <atk value="619"/>
+      <def value="101"/>
       <hp value="700"/>
       <speed value="0.4"/>
       <size value="2,2"/>
@@ -8248,8 +8248,8 @@
     <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
     <description/>
     <attributes>
-      <atk value="3438"/>
-      <def value="89"/>
+      <atk value="619"/>
+      <def value="81"/>
       <hp value="894"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -8278,8 +8278,8 @@
     <type class="mutant" subclass="imperial_mutant" tileid="mutant.png:3"/>
     <description/>
     <attributes>
-      <atk value="3511"/>
-      <def value="86"/>
+      <atk value="633"/>
+      <def value="77"/>
       <hp value="1000"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8310,8 +8310,8 @@
     <type class="human" subclass="soldier_wizard" tileid="human_soldier.png:8"/>
     <description/>
     <attributes>
-      <atk value="3470"/>
-      <def value="94"/>
+      <atk value="634"/>
+      <def value="80"/>
       <hp value="911"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8336,8 +8336,8 @@
     <type class="human" subclass="shadows_assassin" tileid="human_evil.png:3"/>
     <description/>
     <attributes>
-      <atk value="3521"/>
-      <def value="92"/>
+      <atk value="645"/>
+      <def value="87"/>
       <hp value="920"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8367,8 +8367,8 @@
     <type class="human" subclass="imperial_general" tileid="human_imperial.png:8"/>
     <description/>
     <attributes>
-      <atk value="3547"/>
-      <def value="118"/>
+      <atk value="631"/>
+      <def value="102"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8399,8 +8399,8 @@
     <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
     <description/>
     <attributes>
-      <atk value="3509"/>
-      <def value="101"/>
+      <atk value="617"/>
+      <def value="86"/>
       <hp value="944"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8430,8 +8430,8 @@
     <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
     <description/>
     <attributes>
-      <atk value="3517"/>
-      <def value="107"/>
+      <atk value="629"/>
+      <def value="86"/>
       <hp value="900"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8458,8 +8458,8 @@
     <type class="human" subclass="soldier_general" tileid="human_soldier.png:4"/>
     <description/>
     <attributes>
-      <atk value="3483"/>
-      <def value="98"/>
+      <atk value="624"/>
+      <def value="83"/>
       <hp value="960"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8488,8 +8488,8 @@
     <type class="chaos" subclass="chaos_commander" tileid="chaos.png:0"/>
     <description/>
     <attributes>
-      <atk value="3558"/>
-      <def value="95"/>
+      <atk value="654"/>
+      <def value="91"/>
       <hp value="996"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8523,8 +8523,8 @@
     <type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
     <description/>
     <attributes>
-      <atk value="3682"/>
-      <def value="134"/>
+      <atk value="663"/>
+      <def value="120"/>
       <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8560,8 +8560,8 @@
     <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
     <description/>
     <attributes>
-      <atk value="3696"/>
-      <def value="95"/>
+      <atk value="676"/>
+      <def value="89"/>
       <hp value="1100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8591,8 +8591,8 @@
     <type class="hybrid" subclass="winged_blurble" tileid="hybrid.png:5"/>
     <description/>
     <attributes>
-      <atk value="3706"/>
-      <def value="91"/>
+      <atk value="666"/>
+      <def value="78"/>
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8621,8 +8621,8 @@
     <type class="chaos" subclass="chaos_sorceror" tileid="chaos.png:6"/>
     <description/>
     <attributes>
-      <atk value="3665"/>
-      <def value="132"/>
+      <atk value="670"/>
+      <def value="123"/>
       <hp value="708"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8654,8 +8654,8 @@
     <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
     <description/>
     <attributes>
-      <atk value="3840"/>
-      <def value="131"/>
+      <atk value="693"/>
+      <def value="123"/>
       <hp value="751"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8685,8 +8685,8 @@
     <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
     <description/>
     <attributes>
-      <atk value="3781"/>
-      <def value="128"/>
+      <atk value="687"/>
+      <def value="108"/>
       <hp value="800"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8712,8 +8712,8 @@
     <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:11"/>
     <description/>
     <attributes>
-      <atk value="3788"/>
-      <def value="98"/>
+      <atk value="688"/>
+      <def value="88"/>
       <hp value="1179"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8750,8 +8750,8 @@
     <type class="human" subclass="emperor_dalmung" tileid="human_imperial.png:0"/>
     <description/>
     <attributes>
-      <atk value="3802"/>
-      <def value="98"/>
+      <atk value="705"/>
+      <def value="91"/>
       <hp value="1100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8784,8 +8784,8 @@
     <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
     <description/>
     <attributes>
-      <atk value="3865"/>
-      <def value="99"/>
+      <atk value="706"/>
+      <def value="89"/>
       <hp value="1218"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8813,8 +8813,8 @@
     <type class="oni" subclass="oni_king" tileid="oni.png:3"/>
     <description/>
     <attributes>
-      <atk value="3880"/>
-      <def value="101"/>
+      <atk value="714"/>
+      <def value="93"/>
       <hp value="1200"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -8843,8 +8843,8 @@
     <type class="huge_animal" subclass="giant_spider" tileid="huge_animal.png:5"/>
     <description/>
     <attributes>
-      <atk value="3904"/>
-      <def value="104"/>
+      <atk value="709"/>
+      <def value="94"/>
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -8874,8 +8874,8 @@
     <type class="giant_human" subclass="giant" tileid="giant_human.png:1"/>
     <description/>
     <attributes>
-      <atk value="3891"/>
-      <def value="101"/>
+      <atk value="703"/>
+      <def value="93"/>
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -8907,8 +8907,8 @@
     <type class="animal" subclass="twilight_slime" tileid="animal.png:-1"/>
 	<description>You see a twilight slime, so strange and beautiful. Why is it coming towards you? Runnnnnnnnn!</description>
     <attributes>
-      <atk value="3929"/>
-      <def value="96"/>
+      <atk value="718"/>
+      <def value="88"/>
       <hp value="1290"/>
       <speed value="0.5"/>
       <size value="1,1"/>
@@ -8933,8 +8933,8 @@
     <type class="boss" subclass="entwife" tileid="boss.png:3"/>
     <description/>
     <attributes>
-      <atk value="3956"/>
-      <def value="108"/>
+      <atk value="719"/>
+      <def value="93"/>
       <hp value="1250"/>
       <speed value="0.1"/>
       <size value="5,3"/>
@@ -8966,8 +8966,8 @@
     <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
     <description/>
     <attributes>
-      <atk value="3995"/>
-      <def value="102"/>
+      <atk value="727"/>
+      <def value="94"/>
       <hp value="1317"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8998,8 +8998,8 @@
     <type class="giant_human" subclass="imperial_general_giant" tileid="giant_human.png:8"/>
     <description/>
     <attributes>
-      <atk value="3980"/>
-      <def value="114"/>
+      <atk value="738"/>
+      <def value="100"/>
       <hp value="1100"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9031,8 +9031,8 @@
     <type class="oni" subclass="oni_queen" tileid="oni.png:4"/>
     <description/>
     <attributes>
-      <atk value="4077"/>
-      <def value="113"/>
+      <atk value="737"/>
+      <def value="98"/>
       <hp value="1200"/>
       <speed value="0.8"/>
       <size value="1,1"/>
@@ -9063,8 +9063,8 @@
     <type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="dark_elf.png:7"/>
     <description/>
     <attributes>
-      <atk value="4207"/>
-      <def value="174"/>
+      <atk value="765"/>
+      <def value="158"/>
       <hp value="800"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9097,8 +9097,8 @@
     <type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:7"/>
     <description/>
     <attributes>
-      <atk value="4206"/>
-      <def value="125"/>
+      <atk value="777"/>
+      <def value="115"/>
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9126,8 +9126,8 @@
     <type class="chaos" subclass="chaos_lord" tileid="chaos.png:2"/>
     <description/>
     <attributes>
-      <atk value="4368"/>
-      <def value="105"/>
+      <atk value="807"/>
+      <def value="92"/>
       <hp value="1662"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9162,8 +9162,8 @@
     <type class="human" subclass="master_assassin" tileid="human_evil.png:8"/>
     <description/>
     <attributes>
-      <atk value="4434"/>
-      <def value="101"/>
+      <atk value="820"/>
+      <def value="95"/>
       <hp value="1800"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9195,8 +9195,8 @@
     <type class="dark_elf" subclass="dark_elf_admiral" tileid="dark_elf.png:13"/>
     <description/>
     <attributes>
-      <atk value="4418"/>
-      <def value="174"/>
+      <atk value="809"/>
+      <def value="160"/>
       <hp value="900"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9229,8 +9229,8 @@
     <type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
     <description/>
     <attributes>
-      <atk value="4462"/>
-      <def value="102"/>
+      <atk value="826"/>
+      <def value="96"/>
       <hp value="1800"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9264,8 +9264,8 @@
     <type class="huger_animal" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
     <description/>
     <attributes>
-      <atk value="4503"/>
-      <def value="148"/>
+      <atk value="837"/>
+      <def value="138"/>
       <hp value="1100"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9296,8 +9296,8 @@
     <type class="dark_elf" subclass="dark_elf_master" tileid="dark_elf.png:12"/>
     <description/>
     <attributes>
-      <atk value="4418"/>
-      <def value="184"/>
+      <atk value="838"/>
+      <def value="174"/>
       <hp value="900"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9332,8 +9332,8 @@
     <type class="huge_animal" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
     <description/>
     <attributes>
-      <atk value="4534"/>
-      <def value="110"/>
+      <atk value="836"/>
+      <def value="96"/>
       <hp value="1900"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9363,8 +9363,8 @@
     <type class="human" subclass="armored_leader" tileid="human_armored.png:1"/>
     <description/>
     <attributes>
-      <atk value="4598"/>
-      <def value="114"/>
+      <atk value="842"/>
+      <def value="97"/>
       <hp value="1898"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9398,8 +9398,8 @@
     <type class="giant_human" subclass="master_giant" tileid="giant_human.png:9"/>
     <description/>
     <attributes>
-      <atk value="4678"/>
-      <def value="115"/>
+      <atk value="850"/>
+      <def value="98"/>
       <hp value="2000"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9433,8 +9433,8 @@
     <type class="huge_animal" subclass="chaos_green_dragonrider" tileid="huge_animal.png:3"/>
     <description/>
     <attributes>
-      <atk value="4674"/>
-      <def value="110"/>
+      <atk value="867"/>
+      <def value="98"/>
       <hp value="2022"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9468,8 +9468,8 @@
     <type class="dark_elf" subclass="dark_elf_matronmother" tileid="dark_elf.png:5"/>
     <description/>
     <attributes>
-      <atk value="4680"/>
-      <def value="156"/>
+      <atk value="869"/>
+      <def value="136"/>
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9506,8 +9506,8 @@
     <type class="giant_human" subclass="ice_giant" tileid="giant_human.png:2"/>
     <description/>
     <attributes>
-      <atk value="4974"/>
-      <def value="118"/>
+      <atk value="934"/>
+      <def value="102"/>
       <hp value="2418"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9536,8 +9536,8 @@
     <type class="human" subclass="super_human" tileid="human_armored.png:2"/>
     <description/>
     <attributes>
-      <atk value="5141"/>
-      <def value="118"/>
+      <atk value="921"/>
+      <def value="98"/>
       <hp value="2618"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9569,8 +9569,8 @@
     <type class="giant_human" subclass="dwarf_golem" tileid="giant_human.png:5"/>
     <description/>
     <attributes>
-      <atk value="5175"/>
-      <def value="122"/>
+      <atk value="939"/>
+      <def value="99"/>
       <hp value="2700"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9600,8 +9600,8 @@
     <type class="huge_hybrid" subclass="xenocium" tileid="hybrid.png:6"/>
     <description/>
     <attributes>
-      <atk value="5167"/>
-      <def value="127"/>
+      <atk value="953"/>
+      <def value="114"/>
       <hp value="2350"/>
       <speed value="0.7"/>
       <size value="2,2"/>
@@ -9632,8 +9632,8 @@
     <type class="huge_animal" subclass="thing" tileid="huge_animal.png:8"/>
     <description/>
     <attributes>
-      <atk value="5205"/>
-      <def value="137"/>
+      <atk value="977"/>
+      <def value="121"/>
       <hp value="2250"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9663,8 +9663,8 @@
     <type class="giant_human" subclass="amazoness_giant" tileid="giant_human.png:10"/>
     <description/>
     <attributes>
-      <atk value="5247"/>
-      <def value="144"/>
+      <atk value="974"/>
+      <def value="124"/>
       <hp value="2218"/>
       <speed value="0.8"/>
       <size value="2,2"/>
@@ -9693,8 +9693,8 @@
     <type class="chaos" subclass="chaos_overlord" tileid="chaos.png:3"/>
     <description/>
     <attributes>
-      <atk value="5543"/>
-      <def value="123"/>
+      <atk value="1042"/>
+      <def value="113"/>
       <hp value="3318"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9731,8 +9731,8 @@
     <type class="huge_animal" subclass="chaos_red_dragonrider" tileid="huge_animal.png:11"/>
     <description/>
     <attributes>
-      <atk value="5713"/>
-      <def value="122"/>
+      <atk value="1044"/>
+      <def value="107"/>
       <hp value="3618"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9764,8 +9764,8 @@
     <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
     <description/>
     <attributes>
-      <atk value="5663"/>
-      <def value="129"/>
+      <atk value="1081"/>
+      <def value="122"/>
       <hp value="3300"/>
       <speed value="1.0"/>
       <size value="6,5"/>
@@ -9795,8 +9795,8 @@
     <type class="undead" subclass="devil_monk" tileid="undead_fallen.png:8"/>
     <description/>
     <attributes>
-      <atk value="5976"/>
-      <def value="128"/>
+      <atk value="1089"/>
+      <def value="108"/>
       <hp value="4000"/>
       <speed value="1.0"/>
       <size value="2,1"/>
@@ -9827,8 +9827,8 @@
     <type class="giant_human" subclass="fallen_angel" tileid="giant_human.png:7"/>
     <description/>
     <attributes>
-      <atk value="5990"/>
-      <def value="121"/>
+      <atk value="1120"/>
+      <def value="105"/>
       <hp value="4333"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9864,8 +9864,8 @@
     <type class="giant_human" subclass="black_giant" tileid="giant_human.png:3"/>
     <description/>
     <attributes>
-      <atk value="6002"/>
-      <def value="129"/>
+      <atk value="1154"/>
+      <def value="119"/>
       <hp value="4300"/>
       <speed value="0.8"/>
       <size value="2,2"/>
@@ -9903,8 +9903,8 @@
     <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
     <description/>
     <attributes>
-      <atk value="6446"/>
-      <def value="149"/>
+      <atk value="1187"/>
+      <def value="128"/>
       <hp value="4000"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9940,8 +9940,8 @@
     <type class="huger_hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
     <description/>
     <attributes>
-      <atk value="6490"/>
-      <def value="162"/>
+      <atk value="1292"/>
+      <def value="154"/>
       <hp value="4118"/>
       <speed value="0.8"/>
       <size value="4,3"/>
@@ -9974,8 +9974,8 @@
     <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
     <description/>
     <attributes>
-      <atk value="7361"/>
-      <def value="170"/>
+      <atk value="1451"/>
+      <def value="154"/>
       <hp value="5900"/>
       <speed value="1.0"/>
       <size value="3,3"/>
@@ -10012,8 +10012,8 @@
     <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
     <description/>
     <attributes>
-      <atk value="6111"/>
-      <def value="182"/>
+      <atk value="1455"/>
+      <def value="162"/>
       <hp value="7000"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -10051,8 +10051,8 @@
     <type class="enormous_creature" subclass="balrog" tileid="enormous_creature.png:0"/>
     <description/>
     <attributes>
-      <atk value="8327"/>
-      <def value="156"/>
+      <atk value="1609"/>
+      <def value="140"/>
       <hp value="10000"/>
       <speed value="0.6"/>
       <size value="11,12"/>
@@ -10087,8 +10087,8 @@
     <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
     <description/>
     <attributes>
-      <atk value="8948"/>
-      <def value="177"/>
+      <atk value="1755"/>
+      <def value="142"/>
       <hp value="12000"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -10126,8 +10126,8 @@
     <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
     <description/>
     <attributes>
-      <atk value="9696"/>
-      <def value="181"/>
+      <atk value="1968"/>
+      <def value="171"/>
       <hp value="14000"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -10162,8 +10162,8 @@
     <type class="giant_human" subclass="dark_archangel" tileid="giant_human.png:12"/>
     <description/>
     <attributes>
-      <atk value="8487"/>
-      <def value="199"/>
+      <atk value="1965"/>
+      <def value="171"/>
       <hp value="18000"/>
       <speed value="1.0"/>
       <size value="3,2"/>

@@ -692,6 +692,8 @@ public class Creature extends NPC {
 
 	@Override
 	public float getItemAtk() {
-		return 0f;
+		// Give creatures a bit weapon atk to prevent having too high
+		// personal atk values
+		return 5f;
 	}
 }
