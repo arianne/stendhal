@@ -10214,7 +10214,7 @@
       <size value="1,1"/>
     </attributes>
     <level value="1000"/>
-    <experience value="100"/>
+    <experience value="0"/>
     <respawn value="5000"/>
     <drops>
     </drops>
