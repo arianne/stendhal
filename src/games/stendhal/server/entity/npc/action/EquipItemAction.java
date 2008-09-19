@@ -98,6 +98,9 @@ public class EquipItemAction implements ChatAction {
 			result = PRIME * result;
 		} else {
 			result = PRIME * result + itemName.hashCode();
+		} 
+		if (bind) {
+			result = PRIME * result;
 		}
 		
 		return result;
@@ -125,7 +128,7 @@ public class EquipItemAction implements ChatAction {
 		} else if (!itemName.equals(other.itemName)) {
 			return false;
 		}
-		return true;
+		return bind == other.bind;
 	}
 
 }
