@@ -1,5 +1,6 @@
 package games.stendhal.common;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -655,5 +656,11 @@ public class GrammarTest {
 		assertNull(Grammar.normalizeDerivedAdjective("word"));
 		assertEquals("magic", Grammar.normalizeDerivedAdjective("magical"));
 		assertEquals("nomad", Grammar.normalizeDerivedAdjective("nomadic"));
+	}
+	
+	
+	@Test
+	public void testLeatherLegs() throws Exception {
+		assertEquals("leather legs", Grammar.singular("leather legs"));
 	}
 }
