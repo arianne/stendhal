@@ -1116,21 +1116,15 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	private void onDeath(List<Entity> attackers) {
-		if (!attackers.isEmpty()){
+	private void onDeath(final List<Entity> attackers) {
+		if (!attackers.isEmpty()) {
 			Collection<String> attackerNames = new LinkedList<String>();
-			for (Entity ent : attackers){
+			for (Entity ent : attackers) {
 					attackerNames.add(ent.getTitle());
 			}
-			
-			
 			StendhalUI.get().addEventLine(
 					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames));
-	
-			
 		}
-		
-		
 	}
 
 	/**

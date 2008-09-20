@@ -36,7 +36,7 @@ public class BalanceRPGame {
 			int newAtk = Math.max(1, Math.round(creature.getATK()
 					+ stepSize * creature.getATK()));
 			// Always ensure trying to get out of dead area
-			if ((leftHP < 0 ) && (newAtk == oldAtk)) {
+			if ((leftHP < 0) && (newAtk == oldAtk)) {
 				newAtk--;
 			}
 			

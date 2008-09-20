@@ -1,14 +1,10 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Scanner;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -20,6 +16,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
+
+import java.util.Scanner;
+
 import marauroa.common.Log4J;
 
 import org.junit.AfterClass;
@@ -143,8 +142,8 @@ public class RingMakerTest {
 		player.equip(ring);
 		
 		PlayerTestHelper.equipWithMoney(player, 80000);
-		PlayerTestHelper.equipWithStackableItem(player, "gold bar",2);
-		PlayerTestHelper.equipWithStackableItem(player, "emerald",1);
+		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 2);
+		PlayerTestHelper.equipWithStackableItem(player, "emerald", 1);
 		
 
 		assertTrue(en.step(player, "hi"));
@@ -194,7 +193,7 @@ public class RingMakerTest {
 		assertTrue(ring.isBoundTo(player));
 		assertEquals("You see ring of life. Wear it, and you risk less from death.", ring.getDescription());
 		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ring.describe());
-		assertThat(en.getCurrentState(),is(ConversationStates.ATTENDING));
+		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertTrue(player.isQuestCompleted(QUEST_SLOT));
 		en.step(player, "bye");
 		assertEquals("Bye, my friend.", npc.get("text"));
@@ -203,9 +202,9 @@ public class RingMakerTest {
 	@Test
 	public void testRingIsboundAfterfix() {
 		RingMaker rm = new RingMaker();
-		SpeakerNPC npc = new SpeakerNPC("jack");
-		rm.fixRingStep(npc);
-		Engine engine = npc.getEngine();
+		SpeakerNPC testNpc = new SpeakerNPC("jack");
+		rm.fixRingStep(testNpc);
+		Engine engine = testNpc.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.setQuest(QUEST_SLOT, "forging;0");
@@ -217,9 +216,9 @@ public class RingMakerTest {
 	@Test
 	public void testRingIsUnboundAfterfix() {
 		RingMaker rm = new RingMaker();
-		SpeakerNPC npc = new SpeakerNPC("jack");
-		rm.fixRingStep(npc);
-		Engine engine = npc.getEngine();
+		SpeakerNPC testNpc = new SpeakerNPC("jack");
+		rm.fixRingStep(testNpc);
+		Engine engine = testNpc.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.setQuest(QUEST_SLOT, "forgingunbound;0");
@@ -231,17 +230,17 @@ public class RingMakerTest {
 	@Test
 	public void testdeliverBoundRinghasnoRing() {
 		RingMaker rm = new RingMaker();
-		SpeakerNPC npc = new SpeakerNPC("jack");
+		SpeakerNPC testNpc = new SpeakerNPC("jack");
 		Player hasnoRingPlayer = PlayerTestHelper.createPlayer("hasnoRingPlayer");
 		
-		rm.fixRingStep(npc);
-		Engine engine = npc.getEngine();
+		rm.fixRingStep(testNpc);
+		Engine engine = testNpc.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
 			//queststate may not start with forging
 		hasnoRingPlayer.setQuest(QUEST_SLOT, "doesnotstartwithforging");
 		assertTrue(engine.step(hasnoRingPlayer, "life"));
-		assertThat(npc.getText(),is("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."));
-		assertThat(engine.getCurrentState(),is (ConversationStates.ATTENDING));
+		assertThat(testNpc.getText(), is("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."));
+		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 
 		assertFalse(hasnoRingPlayer.isEquipped("emerald ring"));
 		
@@ -265,10 +264,10 @@ public class RingMakerTest {
 	
 	}
 
-	private void orderfixandfetchordered(Player testplayer) {
+	private void orderfixandfetchordered(final Player testplayer) {
 		PlayerTestHelper.equipWithMoney(testplayer, 80000);
-		PlayerTestHelper.equipWithStackableItem(testplayer, "gold bar",2);
-		PlayerTestHelper.equipWithStackableItem(testplayer, "emerald",1);
+		PlayerTestHelper.equipWithStackableItem(testplayer, "gold bar", 2);
+		PlayerTestHelper.equipWithStackableItem(testplayer, "emerald", 1);
 
 		assertTrue(en.step(testplayer, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -318,7 +317,7 @@ public class RingMakerTest {
 		ring.damage();
 		player.equip(ring);
 		
-		assertFalse(ring.isBound());;
+		assertFalse(ring.isBound());
 		orderfixandfetchordered(player);
 		final Item ringafter = player.getFirstEquipped("emerald ring");
 		assertFalse(ringafter.isBound());
@@ -339,7 +338,7 @@ public class RingMakerTest {
 	public void testnotTimeepiredCondition() throws Exception {
 		RingMaker rm = new RingMaker();
 		RingMaker.TimeExpiredCondition cond = rm.new TimeExpiredCondition(60000);
-		player.setQuest(QUEST_SLOT, "forging;"+System.currentTimeMillis());
+		player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		assertFalse(cond.fire(player, null, npc));
 		
 			
@@ -349,9 +348,9 @@ public class RingMakerTest {
 	public void testname() throws Exception {
 		Scanner sc = new Scanner("forging;123").useDelimiter(";");
 		assertFalse(sc.hasNextInt());
-		assertThat(sc.next(),is("forging"));
+		assertThat(sc.next(), is("forging"));
 		assertTrue(sc.hasNextInt());
-		assertThat(sc.next(),is("123"));
+		assertThat(sc.next(), is("123"));
 		
 	}
 	
