@@ -57,6 +57,7 @@ public class UpdatePropertiesWriter {
 		ps.println("#     CURRENT:  good, we don't have to do anything at the moment");
 
 		writeKeysWithPrefix("version.");
+		// TODO: exclude "version.destination"
 	}
 
 	private void destination() {
