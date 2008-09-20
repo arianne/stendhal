@@ -8,41 +8,77 @@ public final class ExpressionType {
     private final String typeString;
 
     // Expression type string constants
-    public static final String VERB = "VER"; // verb
-    public static final String GERUND = "GER"; // gerund form
-    public static final String CONDITIONAL = "CON"; // conditional form
-    public static final String NEGATED = "NEG"; // negated form
-    public static final String PRONOUN = "PRO"; // pronoun
+    
+    /** String constant representing verb form. */
+    public static final String VERB = "VER"; 
+    
+    /** String constant representing gerund form. */
+    public static final String GERUND = "GER"; 
+    
+    /** String constant representing conditional form. */
+    public static final String CONDITIONAL = "CON"; 
+    /** String constant representing negated form. */
+    public static final String NEGATED = "NEG"; 
+    /** String constant representing pronoun. */
+    public static final String PRONOUN = "PRO"; 
 
-    public static final String OBJECT = "OBJ"; // object
-    public static final String AMOUNT = "AMO"; // amount
-    public static final String FLUID = "FLU"; // fluid
-    public static final String FOOD = "FOO"; // food
-    public static final String OBSESSIONAL = "OBS"; // obsessional word
+    /** String constant representing an object (syntax).*/
+    public static final String OBJECT = "OBJ"; 
+    
+    /** String constant representing an amount. */
+    public static final String AMOUNT = "AMO"; 
+    
+    /** String constant representing a fluid. */
+    public static final String FLUID = "FLU"; 
+    
+    /** String constant representing food. */
+    public static final String FOOD = "FOO"; 
+    
+    /** String constant representing an obsessional word. */
+    public static final String OBSESSIONAL = "OBS"; 
 
-    public static final String SUBJECT = "SUB"; // subject
-    public static final String ANIMAL = "ANI"; // animal
-    public static final String NAME = "NAM"; // person name
+    
+    /** String constant representing a subject. */
+    public static final String SUBJECT = "SUB"; 
+    
+    /** String constant representing an animal. */
+    public static final String ANIMAL = "ANI"; 
+    
+    /** String constant representing a person's name. */
+    public static final String NAME = "NAM"; 
 
-    public static final String ADJECTIVE = "ADJ"; // adjective/adverb
-    public static final String COLOR = "COL"; // color expression
+    /** String constant representing an adjective or adverb. */
+    public static final String ADJECTIVE = "ADJ"; 
+    
+    /** String constant representing a color. */
+    public static final String COLOR = "COL"; 
 
-    public static final String NUMERAL = "NUM"; // numeral
-    public static final String PREPOSITION = "PRE"; // preposition
+    /** String constant representing a numeral. */
+    public static final String NUMERAL = "NUM"; 
+    
+    /** String constant representing a preposition. */
+    public static final String PREPOSITION = "PRE"; 
 
-    public static final String QUESTION = "QUE"; // question word
+    /** String constant representing  a question word. */
+    public static final String QUESTION = "QUE"; 
 
-    public static final String IGNORE = "IGN"; // expression to ignore
+    /** String constant representing an expression which is to be ignored. */
+    public static final String IGNORE = "IGN"; 
 
+    /** String constant representing a suffix. */
     public static final String SUFFIX = "-";
 
-    public static final String PLURAL = "PLU"; // plural form
+    /** String constant representing plural form. */
+    public static final String PLURAL = "PLU"; 
 
-    public static final String DYNAMIC = "DYN"; // expression dynamically defined at runtime
+    /** String constant representing a n expression dynamically defined at runtime. */
+    public static final String DYNAMIC = "DYN"; 
 
-    public static final String UNKNOWN = ""; // expression without type
+    /** String constant representing a typeless expression. */
+    public static final String UNKNOWN = ""; 
 
     // derived string type constants
+    
     public static final String SUFFIX_GERUND = SUFFIX + GERUND;
     public static final String SUFFIX_COLOR = SUFFIX + COLOR;
     public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
