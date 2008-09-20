@@ -8,16 +8,30 @@ package games.stendhal.server.entity.npc.parser;
 public class ConversationContext {
 
     // conversation context states
-    static final int CCS_NONE = 0; // no current conversation context
-    static final int CCS_WAIT_FOR_YES_NO = 1; // wait for a yes/no answer
-    static final int CCS_WAIT_FOR_OBJECT = 2; // wait for a named object
+	
+	/** no current conversation context */
+    static final int CCS_NONE = 0; 
+    
+    /** Conversation Context wait for a yes/no answer */
+    static final int CCS_WAIT_FOR_YES_NO = 1; 
+    
+    /** Conversation Context wait for a named object */
+    static final int CCS_WAIT_FOR_OBJECT = 2; 
 
-    private int state = CCS_NONE; // current state
+    /** stores current Conversation state. */
+    private int state = CCS_NONE; 
 
-    protected boolean forMatching = false; // flag for sentences to be used for matching
-    protected boolean mergeExpressions = true; // flag to enable Expression merging
-    protected boolean persistNewWords = true; // flag to enable storing new words into the database
-    protected boolean ignoreIgnorable = true; // flag to enable ignoring of words marked with the type IGN
+    /** Flag for sentences to be used for matching. */
+    protected boolean forMatching = false;
+    
+    /** Flag to enable Expression merging. */
+    protected boolean mergeExpressions = true;
+    
+    /** Flag to enable storing new words into the database. */
+    protected boolean persistNewWords = true; 
+    
+    /** Flag to enable ignoring of words marked with the type IGN. */
+    protected boolean ignoreIgnorable = true; 
 
     public void setState(final int state) {
         this.state = state;

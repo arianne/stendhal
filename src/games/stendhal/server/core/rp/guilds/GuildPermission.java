@@ -47,7 +47,7 @@ public class GuildPermission extends Entity {
 	 * also invite other users into the guild (with confirmation from both the 
 	 * invited player and a mod/admin).
 	 */
-	public static final GuildPermission NORMAL = new GuildPermission("Normal", 100);
+	public static final GuildPermission DEFAULT = new GuildPermission("Normal", 100);
 	
 	/**
 	 * The permission name. Mainly used for display.
@@ -144,6 +144,6 @@ public class GuildPermission extends Entity {
 			}
 		}
 
-		return NORMAL; // default
+		return DEFAULT; 
 	}
 }

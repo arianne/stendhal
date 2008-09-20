@@ -145,7 +145,8 @@ public class KTextEdit extends JPanel {
 				}
 			};
 			parser.format(text);
-		} catch (final Exception ble) { // BadLocationException
+		} catch (final Exception ble) { 
+			// BadLocationException
 			System.err.println("Couldn't insert initial text.");
 		}
 	}

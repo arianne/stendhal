@@ -492,7 +492,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return false;
 		}
 
-		mixer = AudioSystem.getMixer(null); // mixInfos[4] );
+		mixer = AudioSystem.getMixer(null); 
 		info = mixer.getMixerInfo();
 		hstr = "Sound driver: " + info.getName() + "(" + info.getDescription()
 				+ ")";

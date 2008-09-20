@@ -155,12 +155,17 @@ public class Postman implements Runnable {
 
 					final StringTokenizer st = new StringTokenizer(text, " ");
 					final String from = st.nextToken();
-					final String arianneCmd = st.nextToken(); // tells
-					st.nextToken(); // you:
+					
+					// tells
+					final String arianneCmd = st.nextToken();
+					
+					// you:
+					st.nextToken(); 
 
 					if (arianneCmd.equals("tells")) {
 						// Command was send by a player
-						String cmd = st.nextToken(); // cmd
+						// cmd
+						String cmd = st.nextToken(); 
 						if (cmd.startsWith("/")) {
 							cmd = cmd.substring(1);
 						}
@@ -237,8 +242,8 @@ public class Postman implements Runnable {
 					tell(user, from + " asked me to deliver this message: \n"
 							+ message.trim());
 					itr.remove();
-					break; // workaround: Only the last message processed in
-					// one turn is delivered
+					// workaround: Only the last message processed in one turn is delivered
+					break; 
 				}
 			}
 		}
@@ -258,10 +263,13 @@ public class Postman implements Runnable {
 		String msg = "";
 		// System.err.println("!" + from + "! !" + cmd + "! !" + msg + "!");
 		if (st.hasMoreTokens()) {
-			param = st.nextToken(); // player
+			
+			// player
+			param = st.nextToken(); 
 		}
 		if (st.hasMoreTokens()) {
-			msg = st.nextToken("\0").trim(); // the rest of the message
+			// the rest of the message
+			msg = st.nextToken("\0").trim(); 
 		}
 		final String old = messages.getProperty(param + "!" + from);
 		tell(from, "Message accepted for delivery.");

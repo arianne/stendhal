@@ -169,7 +169,9 @@ class Pathfinder {
 	 * Initialize the pathfinder.
 	 */
 	private void init() {
-		listOpen.clear(); // Clear the open list
+		
+		// Clear the open list
+		listOpen.clear(); 
 		nodeRegistry.clear();
 
 		nodeBest = null;

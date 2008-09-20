@@ -275,10 +275,10 @@ public class Stendhal2D extends StendhalGUI {
 		chatText = new JTextField("");
 		root.add(chatText);
 
-		/*
-		 * Chat/game log
-		 */
-		gameLog = new KTextEdit();	//TODO use KHtmlEdit instead
+		// Chat/game log
+		//TODO use KHtmlEdit instead of KTextEdit()
+		
+		gameLog = new KTextEdit();	
 		gameLog.setPreferredSize(new Dimension(width, GAMELOG_HEIGHT));
 		root.add(gameLog);
 

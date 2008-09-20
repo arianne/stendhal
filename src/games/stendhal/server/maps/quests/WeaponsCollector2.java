@@ -53,9 +53,12 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 	
 	private static final List<String> neededWeapons = Arrays.asList(
-			"morning star", // fairly rare from glow_monster in haunted house
-			"staff", // rare from monk on mountain
-			"great sword" // rare from devil_queen on mountain
+			// fairly rare from glow_monster in haunted house
+			"morning star",
+			// rare from monk on mountain
+			"staff", 
+			// rare from devil_queen on mountain
+			"great sword" 
 	);
 
 	@Override

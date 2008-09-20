@@ -99,11 +99,9 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); // don't
-																		// respawn
-																		// in
-																		// next
-																		// turn!
+		
+		// don't respawn in next turn!
+		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); 
 	}
 
 	public Creature getPrototypeCreature() {

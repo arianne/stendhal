@@ -552,12 +552,14 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 3) + "man" + postfix;
 		} else if (enoun.endsWith("matrices")) {
 			return enoun.substring(0, enoun.length() - 4) + "ix" + postfix;
-		} else if (enoun.endsWith("ices")) { // indices, vertices, ...
+		} else if (enoun.endsWith("ices")) { 
+			// indices, vertices, ...
 			return enoun.substring(0, enoun.length() - 4) + "ex" + postfix;
-		} else if (enoun.endsWith("erinyes")) { // || enoun.endsWith("cyclopes")
+		} else if (enoun.endsWith("erinyes")) { 
 			return enoun.substring(0, enoun.length() - 2) + "s" + postfix;
 		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-			return enoun + postfix; // singular detected
+			// singular detected
+			return enoun + postfix; 
 		} else if (enoun.endsWith("mumakil")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
 		} else if (enoun.endsWith("djin")) {
@@ -634,16 +636,16 @@ public class Grammar {
 	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
 	 *         appropriate
 	 */
-	public static String quantityplnounWithHash(final int quantity, String noun) {
+	public static String quantityplnounWithHash(final int quantity, final String noun) {
 		final StringBuilder sb = new StringBuilder(Integer.toString(quantity));
 
-		noun = plnoun(quantity, noun);
+		String noun1 = plnoun(quantity, noun);
 
-		if (noun.indexOf(' ') != -1) {
-			sb.append(" #'" + noun + "'");
+		if (noun1.indexOf(' ') != -1) {
+			sb.append(" #'" + noun1 + "'");
 		} else {
 			sb.append(" #");
-			sb.append(noun);
+			sb.append(noun1);
 		}
 
 		return sb.toString();

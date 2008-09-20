@@ -58,9 +58,15 @@ public class TimedTeleportScroll extends TeleportScroll {
 			final StringTokenizer st = new StringTokenizer(infoString);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
-				st.nextToken(); /* targetX */
-				st.nextToken(); /* targetY */
-				st.nextToken(); /* timeInTurns */
+				
+				// targetX 
+				st.nextToken(); 
+				
+				// targetY 
+				st.nextToken(); 
+				
+				// timeInTurns 
+				st.nextToken(); 
 				returnZoneName = st.nextToken();
 				returnX = Integer.parseInt(st.nextToken());
 				returnY = Integer.parseInt(st.nextToken());
@@ -209,7 +215,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 				new TimedTeleportTurnListener(player));
 	}
 
-	private void logUnknownZone(String targetZoneName) {
+	private void logUnknownZone(final String targetZoneName) {
 		logger.warn("Timed teleport scroll to unknown zone: " + targetZoneName);
 	}
 

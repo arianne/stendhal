@@ -39,7 +39,9 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hi, there. Do you need #help with anything?");
 				addHelp("I sell masks. If you don't like your mask, you can #return and I will remove it, or you can just wait an hour, until it wears off.");
-				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); // this is a hint that one of the items Anna wants is a dress (goblin dress)
+				
+				// this is a hint that one of the items Anna wants is a dress (goblin dress)
+				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); 
 				addJob("I am a makeup artist.");
 				addReply(
 				        "dress",

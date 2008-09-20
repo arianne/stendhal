@@ -56,7 +56,9 @@ class Profile {
 		sbuf.append('\n');
 		sbuf.append(getPort());
 		sbuf.append('\n');
-		sbuf.append(true); // TCP
+		
+		// TCP
+		sbuf.append(true); 
 
 		return sbuf.toString();
 	}

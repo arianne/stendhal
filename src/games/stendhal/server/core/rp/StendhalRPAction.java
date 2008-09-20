@@ -250,7 +250,8 @@ public class StendhalRPAction {
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-		} else { // Missed
+		} else { 
+			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
 			player.setDamage(0);
@@ -428,7 +429,10 @@ public class StendhalRPAction {
 									// We found a place!
 
 									found = true;
-									break outerLoop; // break all for-loops
+									
+									// break all for-loops
+									break outerLoop; 
+									
 								}
 							}
 						}

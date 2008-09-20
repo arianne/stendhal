@@ -149,13 +149,16 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Balduin is a hermit who's living on a mountain between Semos and Ados. It's called Ados Rock. Walk east from here.",
 				"Pizza Prosciutto",
-				7,  // minutes to deliver. Tested by mort: 6:30
-					// min, with killing some orcs.
-				200, // tip when delivered on time. Quite
-						// high because you can't do much
-						// sensefull on top of the hill and must
-						// walk down again.
-				30, // experience gain for delivery
+				// minutes to deliver. Tested by mort: 6:30
+				// min, with killing some orcs.
+				7,  
+				// tip when delivered on time. Quite
+				// high because you can't do much
+				// sensefull on top of the hill and must
+				// walk down again.
+				200,
+				// experience gain for delivery
+				30, 
 				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
 				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway."));
 
@@ -163,13 +166,16 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.",
 				"Pizza Hawaii",
-				20, // minutes to deliver. You need about 6 min
-					// to Eliza, up to 12 min to wait for the
-					// ferry, 5 min for the crossing, and 0.5
-					// min from the docks to the beach, so you
-					// need a bit of luck for this one.
-				300, // tip when delivered on time
-				50, // experience gain for delivery
+				// minutes to deliver. You need about 6 min
+				// to Eliza, up to 12 min to wait for the
+				// ferry, 5 min for the crossing, and 0.5
+				// min from the docks to the beach, so you
+				// need a bit of luck for this one.
+				20, 
+				// tip when delivered on time
+				300, 
+				// experience gain for delivery
+				50, 
 				"Wow, I never believed you would really deliver this half over the world! Here, take these %s bucks!",
 				"It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway."));
 
@@ -177,11 +183,14 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Eliza works for the Athor Island ferry service. You'll find her at the docks south of the Ados swamps.",
 				"Pizza del Mare",
-				7, // minutes to deliver. Tested by mort: 6
-					// min, ignoring slow animals and not
-					// walking through the swamps.
-				170, // tip when delivered on time.
-				30, // experience gain for delivery
+				// minutes to deliver. Tested by mort: 6
+				// min, ignoring slow animals and not
+				// walking through the swamps.
+				7, 
+				// tip when delivered on time.
+				170, 
+				// experience gain for delivery
+				30, 
 				"Incredible! It's still hot! Here, buy something nice from these %d pieces of gold!",
 				"What a pity. It has become cold. Nevertheless, thank you!"));
 
@@ -189,10 +198,13 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Fidorea lives in Ados city. She is a makeup artist. You'll need to walk east from here.",
 				"Pizza Napoli",
-				7,  // minutes to deliver. Tested by mort: about
-					// 6 min, outrunning all enemies.
-				150, // tip when delivered on time
-				20, // experience gain for delivery
+				// minutes to deliver. Tested by mort: about
+				// 6 min, outrunning all enemies.
+				7,  
+				// tip when delivered on time
+				150, 
+				// experience gain for delivery
+				20, 
 				"Thanks a lot! You're a born pizza deliverer. You can have these %d pieces of gold as a tip!",
 				"Bummer. Cold pizza."));
 
@@ -200,10 +212,13 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Haizen is a magician who lives in a hut near the road to Ados. You'll need to walk east and north from here.",
 				"Pizza Diavolo",
-				4,  // minutes to deliver. Tested by kymara:
-					// exactly 3 min.
-				80, // tip when delivered on time
-				15, // experience gain for delivery
+				// minutes to deliver. Tested by kymara:
+				// exactly 3 min.
+				4,  
+				// tip when delivered on time
+				80, 
+				// experience gain for delivery
+				15, 
 				"Ah, my %s! And it's fresh out of the oven! Take these %d coins as a tip!",
 				"I hope next time I order a pizza it's still hot."));
 
@@ -212,10 +227,13 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Jenny owns a mill in the plains north and a little east of Semos.",
 				"Pizza Margherita",
-				2,  // minutes to deliver. Tested by mort: can
-					// be done in 1:15 min, with no real danger.
-				20, // tip when delivered on time
-				10, // experience gain for delivery
+				// minutes to deliver. Tested by mort: can
+				// be done in 1:15 min, with no real danger.
+				2,  
+				// tip when delivered on time
+				20, 
+				// experience gain for delivery
+				10, 
 				"Ah, you brought my %s! Very nice of you! Here, take %d coins as a tip!",
 				"It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner."));
 
@@ -223,11 +241,14 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Jynath is a witch who lives in a small house south of Or'ril castle. You'll need to walk south west from Semos, all the way through the forest, then follow the path west till you see her hut.",
 				"Pizza Funghi",
-				6,  // minutes to deliver. Tested by mort: 5:30
-					// min, leaving the slow monsters on the way
-					// behind.
-				140, // tip when delivered on time
-				20, // experience gain for delivery
+				// minutes to deliver. Tested by mort: 5:30
+				// min, leaving the slow monsters on the way
+				// behind.
+				6,  
+				// tip when delivered on time
+				140, 
+				// experience gain for delivery
+				20, 
 				"Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are %d pieces of gold.",
 				"Too bad... I will have to use an extra strong spell to get this pizza hot again."));
 
@@ -235,21 +256,27 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Katinka takes care of the animals at the Ados Wildlife Refuge. That's north east of here, on the way to Ados city.",
 				"Pizza Vegetale",
-				4,  // minutes to deliver. Tested by kymara in
-					// 3:25 min, leaving behind the orcs.
-				100, // tip when delivered on time
-				20, // experience gain for delivery
+				// minutes to deliver. Tested by kymara in
+				// 3:25 min, leaving behind the orcs.
+				4,  
+				// tip when delivered on time
+				100, 
+				// experience gain for delivery
+				20, 
 				"Yay! My %s! Here, you can have %d pieces of gold as a tip!",
 				"Eek. I hate cold pizza. I think I'll feed it to the animals."));
 
 		customerDB.put("Marcus", 
 			new CustomerData(
 				"Marcus is a guard in the Semos jail. That is due west from here, beyond Semos village.", "Pizza Tonno",
-				3, // minutes to deliver. Tested by kymara: takes longer than before due to fence in village
-				25, // tip when delivered on time. A bit higher than Jenny
-					// because you can't do anything else in the jail and need
-					// to walk out again.
-				10, // experience gain for delivery
+				// minutes to deliver. Tested by kymara: takes longer than before due to fence in village
+				3, 
+				// tip when delivered on time. A bit higher than Jenny
+				// because you can't do anything else in the jail and need
+				// to walk out again.
+				25, 
+				// experience gain for delivery
+				10, 
 				"Ah, my %s! Here's your tip: %d pieces of gold.",
 				"Finally! Why did that take so long?"));
 
@@ -257,10 +284,13 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Nishiya sells sheep. You'll find him west of here, in Semos village.",
 				"Pizza Pasta",
-				1,  // minutes to deliver. Tested by mort: easy
-					// to do in less than 1 min.
-				10, // tip when delivered on time
-				5,  // experience gain for delivery
+				// minutes to deliver. Tested by mort: easy
+				// to do in less than 1 min.
+				1,  
+				// tip when delivered on time
+				10, 
+				// experience gain for delivery
+				5,  
 				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
 				"Too bad. It has become cold. Thank you anyway."));
 
@@ -268,10 +298,13 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Ouchit is a weapons trader. He has currently rented a room upstairs in Semos tavern, just around the corner.",
 				"Pizza Quattro Stagioni",
-				1,  // minutes to deliver. Tested by mort: can
-					// be done in 45 sec with no danger.
-				10, // tip when delivered on time
-				5,  // experience gain for delivery
+				// minutes to deliver. Tested by mort: can
+				// be done in 45 sec with no danger.
+				1,  
+				// tip when delivered on time
+				10, 
+				// experience gain for delivery
+				5,  
 				"Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!",
 				"I should have rather picked it up myself at the bakery, that would have been faster."));
 
@@ -279,25 +312,32 @@ public class PizzaDelivery extends AbstractQuest {
 			new CustomerData(
 				"Ramon works as a blackjack dealer on the ferry to Athor Island. The ferry terminal is south east from here - it's a long way!",
 				"Pizza Bolognese",
-				14, // minutes to deliver. You need about 6 mins
-					// to Eliza, and once you board the ferry,
-					// about 15 sec to deliver. If you have bad
-					// luck, you need to wait up to 12 mins for
-					// the ferry to arrive at the mainland, so
-					// you need a bit of luck for this one.
-				250, // tip when delivered on time
-				40, // experience gain for delivery
+				// minutes to deliver. You need about 6 mins
+				// to Eliza, and once you board the ferry,
+				// about 15 sec to deliver. If you have bad
+				// luck, you need to wait up to 12 mins for
+				// the ferry to arrive at the mainland, so
+				// you need a bit of luck for this one.
+				14, 
+				// tip when delivered on time
+				250, 
+				// experience gain for delivery
+				40, 
 				"Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these %d pieces of gold as a tip!",
 				"Too bad. It is cold. And I had hoped to get something better than that galley food."));
 
 		customerDB.put("Tor'Koom",
 			new CustomerData(
 				"Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favourite food. He lives at the 3rd level below ground. Be careful!",
-				"Pizza Pecora", // "Pizza sheep" in Italian ;)
-				9, // minutes to deliver. Tested by kymara:
-					// done in about 8 min, with lots of monsters getting in your way.
-				170, // tip when delivered on time
-				30, // experience gain for delivery
+				// "Pizza sheep" in Italian ;)
+				"Pizza Pecora", 
+				// minutes to deliver. Tested by kymara:
+				// done in about 8 min, with lots of monsters getting in your way.
+				9, 
+				// tip when delivered on time
+				170,
+				// experience gain for delivery
+				30, 
 				"Yummy %s! Here, take %d moneys!",
 				"Grrr. Pizza cold. You walking slow like sheep."));
 	}

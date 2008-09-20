@@ -110,7 +110,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 		pack();
 	} 
 
-	private void acceptButtonActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
+	private void acceptButtonActionPerformed(final java.awt.event.ActionEvent evt) { 
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 			// check for server password and see if that is accepted
 			// remove this- just for testing.

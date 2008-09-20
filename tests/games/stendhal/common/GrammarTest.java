@@ -1,12 +1,10 @@
 package games.stendhal.common;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 
 import java.util.Collection;
