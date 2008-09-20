@@ -75,24 +75,24 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return perform(name, "load", null, null);
 	}
 
-	private synchronized boolean perform(String name, final String mode,
+	private synchronized boolean perform(final String name, final String mode,
 			final Player player, final List<String> args) {
 		boolean ret = false;
-		name = name.trim();
+		
 
 		// block exploit
 		if (name.indexOf("..") >= 0) {
-			return (ret);
+			return false;
 		}
-
+		final String trimmedName = name.trim();
 		// if the script is already running get it, else null it
-		ScriptingSandbox script = scripts.get(name);
+		ScriptingSandbox script = scripts.get(trimmedName);
 
 		// unloading
 		if ("load".equals(mode) || "remove".equals(mode)
 				|| "unload".equals(mode)) {
 
-			script = scripts.remove(name);
+			script = scripts.remove(trimmedName);
 			if (script != null) {
 				script.unload(player, args);
 				ret = true;
@@ -107,15 +107,15 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// load script if it is not already loaded,
 			// if we want to execute we'll also load it if needed
 			if (script == null) {
-				if (name.endsWith(".groovy")) {
-					script = new ScriptInGroovy(scriptDir + name);
+				if (trimmedName.endsWith(".groovy")) {
+					script = new ScriptInGroovy(scriptDir + trimmedName);
 					ignoreExecute = true;
-				} else if (name.endsWith(".class")) {
-					script = new ScriptInJava(name);
+				} else if (trimmedName.endsWith(".class")) {
+					script = new ScriptInJava(trimmedName);
 				}
 				if (script != null) {
 					ret = script.load(player, args);
-					scripts.put(name, script);
+					scripts.put(trimmedName, script);
 				}
 			}
 
