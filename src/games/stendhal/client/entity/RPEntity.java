@@ -435,10 +435,9 @@ public abstract class RPEntity extends ActiveEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
 		try {
-
 			SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
 		} catch (final NullPointerException e) {
-
+			// ignore errors
 		}
 
 		boolean showAttackInfoForPlayer = (this.isUser() || attacker.isUser());
@@ -465,6 +464,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity gets healed
 	public void onHealed(final int amount) {
+		// do nothing for normal rpentities
 	}
 
 	// When entity chokes on food
@@ -486,10 +486,6 @@ public abstract class RPEntity extends ActiveEntity {
 						NotificationType.NEGATIVE);
 			}
 		}
-	}
-
-	// Called when entity kills another entity
-	public void onKill(final IEntity killed) {
 	}
 
 	// When this entity skip attacker's attack.
@@ -926,12 +922,8 @@ public abstract class RPEntity extends ActiveEntity {
 				} else {
 					hp_base_hp = hp / (float) base_hp;
 				}
-
 				if (hp == 0) {
-					
-						onDeath(attackers);
-					
-					
+					onDeath(attackers);
 				}
 			}
 
