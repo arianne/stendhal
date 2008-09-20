@@ -15,6 +15,7 @@ import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
+import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
 import games.stendhal.server.entity.player.Player;
@@ -70,6 +71,7 @@ public class CommandCenter {
 		DisplaceAction.register();
 		EquipmentAction.register();
 		FaceAction.register();
+		ForsakeAction.register();
 		LookAction.register();
 		MoveAction.register();
 		MoveToAction.register();

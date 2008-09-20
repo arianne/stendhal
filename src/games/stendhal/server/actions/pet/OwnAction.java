@@ -28,13 +28,8 @@ import java.util.List;
 
 import marauroa.common.game.RPAction;
 
-import org.apache.log4j.Logger;
-
 public class OwnAction implements ActionListener {
 
-	private static final Logger logger = Logger.getLogger(OwnAction.class);
-
-	private static final String _SPECIES = "species";
 	private static final String _OWN = "own";
 
 	public static void register() {
@@ -84,44 +79,7 @@ public class OwnAction implements ActionListener {
 					}
 				}
 			}
-		} else {
-			final String targetString = action.get(TARGET);
-
-			if ((targetString != null) && targetString.equals("-1")) {
-				// Disown
-				if (action.has(_SPECIES)) {
-					final String species = action.get(_SPECIES);
-
-					if (species.equals("sheep")) {
-						final Sheep sheep = player.getSheep();
-
-						if (sheep != null) {
-							player.removeSheep(sheep);
-
-    						// HACK: Avoid a problem on database
-    						if (sheep.has("#db_id")) {
-    							sheep.remove("#db_id");
-    						}
-    					} else {
-    						logger.error("sheep not found in disown action: " + action.toString());
-    					}
-					} else if (species.equals("pet")) {
-						final Pet pet = player.getPet();
-
-						if (pet != null) {
-							player.removePet(pet);
-
-    						// HACK: Avoid a problem on database
-    						if (pet.has("#db_id")) {
-    							pet.remove("#db_id");
-    						}
-						} else {
-							logger.error("pet not found in disown action: " + action.toString());
-						}
-					}
-				}
-			}
-		}
+		} 
 
 		player.notifyWorldAboutChanges();
 	}
