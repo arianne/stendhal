@@ -220,8 +220,8 @@ public class ItemTest {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		// ignore attribute listing because their sort order is not reliable
-		assertTrue(mo.toString().matches(
-				"Item, RPObject with Attributes of Class\\(item\\): \\[.*\\] and RPSlots  and RPLink  and RPEvents "));
+		assertTrue(mo.toString(), mo.toString().contains("Item, RPObject with Attributes of Class(item):"));
+		assertTrue(mo.toString(), mo.toString().contains("and RPSlots"));
 	}
 
 	@Test
