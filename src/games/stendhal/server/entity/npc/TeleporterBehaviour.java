@@ -109,12 +109,10 @@ public final class TeleporterBehaviour implements TurnListener {
 	}
 
 	public void onTurnReached(final int currentTurn) {
-		// Say bye
-		speakerNPC.say("Bye.");
-
-		// We make NPC to stop speaking to anyone.
-		speakerNPC.setCurrentState(ConversationStates.IDLE);
-
+		if (speakerNPC.getEngine().getCurrentState() != ConversationStates.IDLE) {
+			speakerNPC.say("Bye.");
+			speakerNPC.setCurrentState(ConversationStates.IDLE);
+		}
 		// remove NPC from old zone
 		zone = speakerNPC.getZone();
 		zone.remove(speakerNPC);
