@@ -473,14 +473,14 @@ public class Player extends RPEntity {
 	/**
 	 * Give the player some karma (good or bad).
 	 * 
-	 * @param karma
+	 * @param karmaToAdd
 	 *            An amount of karma to add/subtract.
 	 */
 	@Override
-	public void addKarma(final double karma) {
-		this.karma += karma;
+	public void addKarma(final double karmaToAdd) {
+		this.karma += karmaToAdd;
 
-		put("karma", karma);
+		put("karma", this.karma);
 	}
 
 	/**
