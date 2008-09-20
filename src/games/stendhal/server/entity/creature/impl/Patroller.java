@@ -12,9 +12,9 @@ class Patroller implements Idlebehaviour {
 	
 	private void initArea(final Creature creature) {
 		minX = creature.getX() - 3;
-		maxX = creature.getX() + 3;
+		maxX = creature.getX() + 2 + (int) (creature.getWidth());
 		minY = creature.getY() - 3;
-		maxY = creature.getY() + 3;
+		maxY = creature.getY() + 2 + (int) (creature.getHeight());
 	}
 
 	public void perform(final Creature creature) {
@@ -29,13 +29,13 @@ class Patroller implements Idlebehaviour {
 				Direction currentDir = creature.getDirection();
 				if ((currentDir == Direction.STOP)
 						|| weWouldLeaveArea(creature, creature.getDirection())
-						|| creature.getZone().collides(creature.getX() + currentDir.getdx(),
+						|| creature.getZone().collides(creature, creature.getX() + currentDir.getdx(),
 								creature.getY() + currentDir.getdy())) {
 					for (int i = 0; i < 4; i++) {
 						currentDir = currentDir.nextDirection();
 
 						if (!weWouldLeaveArea(creature, currentDir)
-								&& !creature.getZone().collides(creature.getX() + currentDir.getdx(),
+								&& !creature.getZone().collides(creature, creature.getX() + currentDir.getdx(),
 										creature.getY() + currentDir.getdy())) {
 							creature.setDirection(currentDir);
 							continue;
