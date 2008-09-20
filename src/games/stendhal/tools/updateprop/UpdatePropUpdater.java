@@ -30,7 +30,7 @@ public class UpdatePropUpdater {
 	 * @param oldVersion last version
 	 * @param newVersion new version
 	 */
-	public UpdatePropUpdater(String oldFile, String newFile, String oldVersion, String newVersion) {
+	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion) {
 		this.newFile = newFile;
 		this.newVersion = newVersion;
 		this.oldFile = oldFile;
@@ -92,7 +92,7 @@ public class UpdatePropUpdater {
 		ps.close();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(final String[] args) throws IOException {
 		if (args.length != 4) {
 			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion");
 			System.exit(1);
