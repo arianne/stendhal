@@ -61,7 +61,7 @@ public class OwnAction implements ActionListener {
 				final List<Node> path = Path.searchPath(player, player.getX(),
 						player.getY(), animal.getArea(), 7);
 
-				if (path.isEmpty()) {
+				if (path.isEmpty() && !animal.nextTo(player)) {
 					// The animal is too far away
 					player.sendPrivateText("That " + animal.getTitle()
 							+ " is too far away.");
