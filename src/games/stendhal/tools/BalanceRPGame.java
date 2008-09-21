@@ -92,10 +92,9 @@ public class BalanceRPGame {
 
 		for (int level = 0; level < atkLevels.length; level++) {
 			// help newbies a bit, so don't start at real stats, but a bit lower
-			atkLevels[level] = (int) Math.round(Math.log(level + 2) * 9 
-					+ 0.12 * level - 3);
-			defLevels[level] = (int) Math.round(Math.log(level + 2) * 17
-					+ level - 8);
+			atkLevels[level] = (int) Math.round(Math.log(level + 4) * 9  - 10);
+			defLevels[level] = (int) Math.round(Math.log(level + 4) * 20
+					+ level - 26);
 		}
 
 		final EntityManager em = SingletonRepository.getEntityManager();
@@ -247,7 +246,6 @@ public class BalanceRPGame {
 			healAmount = Integer.parseInt(healingAttributes[0]);
 			healRate = Integer.parseInt(healingAttributes[1]);
 		}
-		
 
 		while (!combatFinishedWinPlayer) {
 			turns++;
