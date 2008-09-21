@@ -655,7 +655,7 @@ public class AdministrationActionTest {
 		action.put("target", "#1");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Removed rat creature with ID null", pl.getPrivateTextString());
+		assertEquals("Removed rat creature with ID #1", pl.getPrivateTextString());
 	}
 
 	@Test
@@ -674,10 +674,10 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		final RPAction action = new RPAction();
 		action.put("type", "destroy");
-		action.put("targetid", 1);
+		action.put("target", "#1");
 
-		CommandCenter.execute(pl, action);
-		assertEquals("Removed rat creature with ID 1", pl.getPrivateTextString());
+		assertTrue(CommandCenter.execute(pl, action));
+		assertEquals("Removed rat creature with ID #1", pl.getPrivateTextString());
 	}
 
 	@Test
@@ -695,9 +695,9 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		final RPAction action = new RPAction();
 		action.put("type", "inspect");
-		action.put("targetid", 1);
+		action.put("target", "#1");
 
-		CommandCenter.execute(pl, action);
+		assertTrue(CommandCenter.execute(pl, action));
 		assertTrue(pl
 				.getPrivateTextString()
 				.startsWith(

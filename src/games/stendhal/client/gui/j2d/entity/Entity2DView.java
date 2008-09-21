@@ -726,7 +726,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 			rpaction.put("type", at.toString());
 			// fillTargetInfo(rpaction);
-			rpaction.put("targetid", id);
+			entity.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;
@@ -735,7 +735,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			rpaction = new RPAction();
 			rpaction.put("type", at.toString());
 
-			rpaction.put("targetid", id);
+			entity.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

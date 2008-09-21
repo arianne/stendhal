@@ -22,6 +22,7 @@ class InspectAction implements SlashAction {
 		final RPAction action = new RPAction();
 
 		action.put("type", "inspect");
+		
 		action.put("target", params[0]);
 
 		StendhalClient.get().send(action);

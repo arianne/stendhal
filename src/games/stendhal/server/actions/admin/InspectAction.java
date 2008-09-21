@@ -111,7 +111,7 @@ public class InspectAction extends AdministrationAction {
 				}
 			}
 		} else {
-			st.append("Inspected entity has id " + action.getInt("targetid")
+			st.append("Inspected entity has id " + action.get("target")
 					+ " and has attributes:\r\n");
 			st.append(target.toString());
 		}

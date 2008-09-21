@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -16,10 +17,10 @@ import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 public class DestroyAction extends AdministrationAction {
 
-	private static final String _TARGETID = "targetid";
 
 	private static final String _ATTR_NAME = "name";
 
@@ -39,7 +40,25 @@ public class DestroyAction extends AdministrationAction {
 			player.sendPrivateText(text);
 			return;
 		}
+		
+		String clazz = inspected.getRPClass().getName();
+		String name = "";
+		 
+		if (inspected.has(_ATTR_NAME)) {
+                      name = inspected.get(_ATTR_NAME);
+		} 
+		
+if (inspected.isContained()) {
+	RPObject slot = inspected.getContainer();
+	
+	SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
+			name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()),
+			Integer.toString(inspected.getY()));
 
+	player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + inspected.getID().getObjectID() + " from " + inspected.getContainerSlot().getName());
+	
+	inspected.getContainerSlot().remove(inspected.getID());
+} else {
 		if (inspected instanceof Player) {
 			final String text = "You can't remove players";
 			player.sendPrivateText(text);
@@ -78,18 +97,14 @@ public class DestroyAction extends AdministrationAction {
 			TurnNotifier.get().dontNotify(listener);
 		}
 	
-		String clazz = inspected.getRPClass().getName();
-		String name = "";
-		 
-		if (inspected.has(_ATTR_NAME)) {
-                      name = inspected.get(_ATTR_NAME);
-		} 
+		
 
 		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
 				name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
-		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(_TARGETID));
+		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(WellKnownActionConstants.TARGET));
 	}
+}
 
 }

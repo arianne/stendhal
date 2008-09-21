@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.EntityHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -134,41 +135,50 @@ public abstract class AdministrationAction implements ActionListener {
 	 */
 	protected final Entity getTarget(final Player player, final RPAction action) {
 
-		String id = null;
-		Entity target = null;
+		
+		Entity entity = EntityHelper.entityFromSlot(player, action);
 
-		// target contains a name unless it starts with #
-		if (action.has(WellKnownActionConstants.TARGET)) {
-			id = action.get(WellKnownActionConstants.TARGET);
+		if (entity == null) {
+			entity = EntityHelper.entityFromTargetName(action.get(WellKnownActionConstants.TARGET), player);
 		}
-		if (id != null) {
-			if (id.startsWith("#")) {
-				id = id.substring(1);
-			} else {
-				target = SingletonRepository.getRuleProcessor().getPlayer(id);
-				return target;
-			}
-		}
-
-		// either target started with a # or it was not specified
-		if (action.has(_TARGETID)) {
-			id = action.get(_TARGETID);
-		}
-
-		// go for the id
-		if (id != null) {
-			final StendhalRPZone zone = player.getZone();
-
-			final RPObject.ID oid = new RPObject.ID(Integer.parseInt(id),
-					zone.getName());
-			if (zone.has(oid)) {
-				final RPObject object = zone.get(oid);
-				if (object instanceof Entity) {
-					target = (Entity) object;
-				}
-			}
-		}
-
-		return target;
+		
+		return entity;
+		
+//		String id = null;
+//		Entity target = null;
+//
+//		// target contains a name unless it starts with #
+//		if (action.has(WellKnownActionConstants.TARGET)) {
+//			id = action.get(WellKnownActionConstants.TARGET);
+//		}
+//		if (id != null) {
+//			if (id.startsWith("#")) {
+//				id = id.substring(1);
+//			} else {
+//				target = SingletonRepository.getRuleProcessor().getPlayer(id);
+//				return target;
+//			}
+//		}
+//
+//		// either target started with a # or it was not specified
+//		if (action.has(_TARGETID)) {
+//			id = action.get(_TARGETID);
+//		}
+//
+//		// go for the id
+//		if (id != null) {
+//			final StendhalRPZone zone = player.getZone();
+//
+//			final RPObject.ID oid = new RPObject.ID(Integer.parseInt(id),
+//					zone.getName());
+//			if (zone.has(oid)) {
+//				final RPObject object = zone.get(oid);
+//				if (object instanceof Entity) {
+//					target = (Entity) object;
+//				}
+//			}
+//		}
+//
+//		return target;
 	}
 }

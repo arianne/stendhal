@@ -28,6 +28,7 @@ engaged player is online
 - dresses corrected to fit female body better
 - new players start with a random unisex outfit instead of nekked
 - pet Look description tells how hungry it is
+- admin inspect and admin destroy now work for contained items too.
 
 0.69
 - 7 kikareukin clouds added
