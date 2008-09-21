@@ -192,15 +192,31 @@ public class StendhalRPActionTest {
 	
 	@Test
 	public void startAttackingPet() {
+		final Player jekyll = PlayerTestHelper.createPlayer("jekyll");
 		final PrivateTextMockingTestPlayer hyde = PlayerTestHelper.createPrivateTextMockingTestPlayer("hyde");
 		final Sheep sheep = new Sheep();
 		
 		zone.add(hyde);
 		zone.add(sheep);
-		// usuall attacking should be ok
+		// attacking wild sheep should be ok
 		StendhalRPAction.startAttack(hyde, sheep);
 		assertSame("Attacking a sheep in unprotected area", hyde.getAttackTarget(), sheep);
 		hyde.stopAttack();
+		// also if you are the owner
+		sheep.setOwner(hyde);
+		StendhalRPAction.startAttack(hyde, sheep);
+		assertSame("Attacking a sheep in unprotected area", hyde.getAttackTarget(), sheep);
+		hyde.stopAttack();
+		// but attacking someone elses pet is a no-no
+		sheep.setOwner(jekyll);
+		StendhalRPAction.startAttack(hyde, sheep);
+		assertNull("Attacking someone else's sheep", hyde.getAttackTarget());
+		assertEquals("message at attacking someone else's sheep", 
+				"You pity jekyll's sheep too much to kill it.", 
+				hyde.getPrivateTextString());
+		hyde.stopAttack();
+		hyde.resetPrivateTextString();
+		sheep.setOwner(null);
 		
 		// Protected. should fail
 		protectMap();
@@ -218,6 +234,15 @@ public class StendhalRPActionTest {
 		assertNull("Attacking a sheep in protected area ", hyde.getAttackTarget());
 		assertEquals("message at attacking a sheep in protected area", 
 				"The powerful protective aura in this place prevents you from attacking hyde's sheep.", 
+				hyde.getPrivateTextString());
+		hyde.resetPrivateTextString();
+		
+		// ...regarless of the owner
+		sheep.setOwner(jekyll);
+		StendhalRPAction.startAttack(hyde, sheep);
+		assertNull("Attacking a sheep in protected area ", hyde.getAttackTarget());
+		assertEquals("message at attacking a sheep in protected area", 
+				"The powerful protective aura in this place prevents you from attacking jekyll's sheep.", 
 				hyde.getPrivateTextString());
 	}
 }
