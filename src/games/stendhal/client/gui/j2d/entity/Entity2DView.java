@@ -662,7 +662,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		if (User.isAdmin()) {
 			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
 			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
-			list.add(ActionType.ADMIN_ALTER.getRepresentation());
+			if (!this.isContained()) {
+				list.add(ActionType.ADMIN_ALTER.getRepresentation());
+			}
 		}
 
 		reorderActions(list);
