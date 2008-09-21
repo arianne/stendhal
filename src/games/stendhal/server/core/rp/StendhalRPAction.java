@@ -102,6 +102,14 @@ public class StendhalRPAction {
 				
 					return;
 				}
+			} else {
+				// Only allow owners, if there is one, to attack the pet
+				Player owner = ((DomesticAnimal) victim).getOwner();
+				if ((owner != null) && (owner != player)) {
+					player.sendPrivateText("You pity " + getNiceVictimName(victim) + " too much to kill it.");
+					
+					return;
+				}
 			}
 
 			logger.info(player.getName() + " is attacking " + victim.getName());
