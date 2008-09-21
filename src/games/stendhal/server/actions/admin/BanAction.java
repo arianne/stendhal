@@ -23,7 +23,8 @@ public class BanAction extends AdministrationAction {
 			
 			try {
 				playerDatabase.setAccountStatus(playerDatabase.getTransaction(), bannedName, "banned");
-				player.sendPrivateText("you have banned " + bannedName);
+				player.sendPrivateText("You have banned " + bannedName);
+				//	TODO: use add game event and send message to supporters 
 				Logger.getLogger(BanAction.class).info(player.getName() + " has banned " + bannedName);
 			} catch (SQLException e) {
 				logger.error("Error while trying to ban user", e);
@@ -32,6 +33,6 @@ public class BanAction extends AdministrationAction {
 
 	}
 	public static void register() {
-		CommandCenter.register("ban", new BanAction(), 5000);
+		CommandCenter.register("ban", new BanAction(), 1000);
 	}
 }
