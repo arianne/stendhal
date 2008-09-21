@@ -55,9 +55,16 @@ if (inspected.isContained()) {
 			name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()),
 			Integer.toString(inspected.getY()));
 
-	player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + inspected.getID().getObjectID() + " from " + inspected.getContainerSlot().getName());
+	String slotname = inspected.getContainerSlot().getName();
+	int objectID = inspected.getID().getObjectID();
+	if (null != inspected.getContainerSlot().remove(inspected.getID())) {
+		player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + objectID + " from " + slotname);
+	} else {
+		player.sendPrivateText("could not remove contained " + inspected + " " + clazz + " with ID " + objectID + " from " + slotname);
+
+	}
 	
-	inspected.getContainerSlot().remove(inspected.getID());
+
 } else {
 		if (inspected instanceof Player) {
 			final String text = "You can't remove players";
