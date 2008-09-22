@@ -19,7 +19,7 @@ strong creatures than a dagger type)
 - poison prevents you from using double click to walk
 - improved stats of : great sword, claymore, vampire sword, fire sword, golden
 orc sword
-- reduced stats of: sword, katana, scimitar, elvish sword
+- reduced stats of: sword, katana, scimitar, elvish sword, twin swords
 - extra semos chest in ados bank
 - script for GM to run which corrects the slot of a player in DM so they can
 claim victory
