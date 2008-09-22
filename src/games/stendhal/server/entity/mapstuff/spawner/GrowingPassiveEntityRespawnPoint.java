@@ -104,13 +104,12 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	@Override
 	protected void growNewFruit() {
+		setRipeness(ripeness + 1);
+		logger.debug("Grow " + ripeness + " up to " + maxRipeness);
+		notifyWorldAboutChanges();
+		
 		if (ripeness < maxRipeness) {
-			setRipeness(ripeness + 1);
-
-			logger.debug("Grow " + ripeness + " up to " + maxRipeness);
 			SingletonRepository.getTurnNotifier().notifyInTurns(getRandomTurnsForRegrow(), this);
-
-			notifyWorldAboutChanges();
 		}
 	}
 
