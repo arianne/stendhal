@@ -8,6 +8,7 @@ strong creatures than a dagger type)
 - constant change/time unit for monster spawning, for same average respawn time but no memory effect
 - minimap shows protected areas as pale green
 - away and grumpy message added to player description on 'Look'
+- no XP reward for killing a player
 - player killers marked with an icon
 - healers won't heal player killers (even if they want to pay)
 - Io Flotto removes player killer icon
@@ -22,12 +23,21 @@ orc sword
 - extra semos chest in ados bank
 - script for GM to run which corrects the slot of a player in DM so they can
 claim victory
+- NPCShoutZone script for GM
+- /ban command for GM 
 - invited guest cannot use invitation scroll to get to church unless the
 engaged player is online
 - older invitation scrolls with a different format will not work now (magic lost)
 - dresses corrected to fit female body better
+- a new hair and some new GM outfits
 - new players start with a random unisex outfit instead of nekked
 - pet Look description tells how hungry it is
+- pet Leave and Own refactored, fixed bugs
+- NPCs say something when you 'attack' them
+- client reports all killers of an entity
+- Ognir now distinguishes between bound an unbound rings when fixing
+- Wikipedian fixed for new wikipedia.org API
+- some wooden furniture items redrawn
 - admin inspect and admin destroy now work for contained items too.
 
 0.69
