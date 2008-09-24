@@ -23,25 +23,27 @@ public class NPCShoutZone extends ScriptImpl {
 		} else {
 			final StringBuilder sb = new StringBuilder();
 			sb.append(args.get(0));
-			sb.append(" shouts: ");
-
-			for (int i = 2; i < args.size(); i++) {
-				sb.append(args.get(i));
-				sb.append(" ");
-			}
-			final String text = sb.toString();
+			sb.append(" shouts ");
 
 			StendhalRPZone targetZone;
 			String targetZoneName = args.get(1);
 			if ("-".equals(targetZoneName)) {
 				targetZone = admin.getZone();
+				targetZoneName = targetZone.getName();
 			} else {
 				targetZone = SingletonRepository.getRPWorld().getZone(targetZoneName);
 			}
 
 			if (targetZone != null) {
+				sb.append("to those in " + targetZoneName + ": ");
+				for (int i = 2; i < args.size(); i++) {
+					sb.append(args.get(i));
+					sb.append(" ");
+				}
+				final String text = sb.toString();
 				for (Player player : targetZone.getPlayers()) {
 					player.sendPrivateText(text);
+					// TODO: tell supporters so that they know and postman reports it
 				}
 			} else {
 				admin.sendPrivateText("zone " + targetZoneName + "not found");
