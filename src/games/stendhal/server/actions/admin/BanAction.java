@@ -2,6 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
@@ -18,14 +19,25 @@ public class BanAction extends AdministrationAction {
 	protected void perform(final Player player, final RPAction action) {
 		if (action.has("target")) {
 			String bannedName = action.get("target");
-			
+			String reason = "";
+			if (action.has("reason")) {
+				reason = action.get("reason");
+			}
+
 			IDatabase playerDatabase = SingletonRepository.getPlayerDatabase();
 			
 			try {
 				playerDatabase.setAccountStatus(playerDatabase.getTransaction(), bannedName, "banned");
 				player.sendPrivateText("You have banned " + bannedName);
-				//	TODO: use add game event and send message to supporters 
+
+				// logging
 				Logger.getLogger(BanAction.class).info(player.getName() + " has banned " + bannedName);
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "ban",
+						bannedName, reason);				
+				
+				StendhalRPRuleProcessor.sendMessageToSupporters("JailKeeper",
+						player.getName() + " banned " + bannedName
+						+ ". Reason: " + reason	+ ".");
 			} catch (SQLException e) {
 				logger.error("Error while trying to ban user", e);
 			}
