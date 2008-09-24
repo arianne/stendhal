@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -318,7 +319,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	@Override
 	public String describe() {
-		String text = "You see a cute " + get("type") + "; it looks like it weighs about " + weight + ".";
+		String text = "You see a cute " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + ".";
 		if (hasDescription()) {
 			text = getDescription();
 		}
