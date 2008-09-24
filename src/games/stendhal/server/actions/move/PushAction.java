@@ -92,7 +92,7 @@ public class PushAction implements ActionListener {
 			return false;
 		}
 
-		// prevent pushing a player off an ite
+		// prevent pushing a player off an item
 		if (rpEntity instanceof Player) {
 			// prevent pushing a player off an item
 			final Set<Item> items = player.getZone().getItemsOnGround();
