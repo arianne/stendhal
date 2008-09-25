@@ -128,7 +128,7 @@ public class KillDarkElvesTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUEST_STARTED));
 			assertEquals(
 					playerSays,
-					"Don't you remember promising to sort out my dark elf problem? You need to go to the #secret #room below. Kill every dark elf.",
+					"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
 					npc.getText());
 
 		}
