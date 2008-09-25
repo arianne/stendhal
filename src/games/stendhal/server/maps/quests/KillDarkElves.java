@@ -120,7 +120,7 @@ public class KillDarkElves extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
 				   , new NotCondition(new KilledCondition("dark elf archer", "dark elf captain", "thing"))),
 				ConversationStates.QUEST_STARTED, 
-				"Don't you remember promising to sort out my dark elf problem? You need to go to the #secret #room below. Kill every dark elf.",
+				"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
 				null);
 		
 		npc.add(ConversationStates.IDLE, 
