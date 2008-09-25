@@ -134,7 +134,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							player.addXP(4000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
 						} else {
-							engine.say("Just go kill Dhohr Nuggetcutter and his minions.");
+							engine.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");
 						}
 		 			}
 				});
