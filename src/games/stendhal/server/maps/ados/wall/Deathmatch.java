@@ -23,7 +23,7 @@ public class Deathmatch implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(88, 77, 112 - 88 + 1, 93 - 77 + 1);
+		shape.setRect(88, 77, 112 - 88 + 1, 94 - 77 + 1);
 		final Area arena = new Area(zone, shape);
 		final AdosDeathmatch deathmatch = new AdosDeathmatch(zone, arena);
 		deathmatch.createHelmet(102, 75);
