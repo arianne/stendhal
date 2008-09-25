@@ -94,11 +94,18 @@ public final class TeleporterBehaviour implements TurnListener {
 		final Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();
 		zones = new ArrayList<StendhalRPZone>();
 		final List<String> badZones = new ArrayList<String>();
+		// the following are too dangerous
 		badZones.add("0_nalwor_city");
 		badZones.add("0_orril_castle");
 		badZones.add("0_ados_swamp");
 		badZones.add("0_ados_outside_w");
 		badZones.add("0_ados_wall_n");
+		// the following have historically been very hard to find a path in
+		badZones.add("0_ados_city_n");	
+		badZones.add("0_ados_ocean_e");
+		badZones.add("0_athor_island_w");
+		badZones.add("0_nalwor_forest_n");
+		badZones.add("0_nalwor_river_s");
 		while (itr.hasNext()) {
 			final StendhalRPZone aZone = (StendhalRPZone) itr.next();
 			final String zoneName = aZone.getName();
