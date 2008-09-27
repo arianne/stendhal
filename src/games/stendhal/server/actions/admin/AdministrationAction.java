@@ -124,7 +124,17 @@ public abstract class AdministrationAction implements ActionListener {
 	}
 
 	protected abstract void perform(Player player, RPAction action);
+protected final Entity getTargetAnyZone(final Player player, final RPAction action) {
 
+		
+		Entity entity = EntityHelper.entityFromSlot(player, action);
+
+		if (entity == null) {
+			entity = EntityHelper.entityFromTargetNameAnyZone(action.get(WellKnownActionConstants.TARGET), player);
+		}
+		
+		return entity;
+}
 	/**
 	 * get the Entity-object of the specified target.
 	 * 

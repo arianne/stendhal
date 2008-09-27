@@ -33,7 +33,7 @@ public class AlterAction extends AdministrationAction {
 	@Override
 	public void perform(final Player player, final RPAction action) {
 		if (hasNeededAttributes(action)) {
-			final Entity changed = getTarget(player, action);
+			final Entity changed = getTargetAnyZone(player, action);
 
 			if (changed == null) {
 				logger.debug("Entity not found");

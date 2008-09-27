@@ -39,7 +39,7 @@ public class DestroyActionTest {
 		RPAction rpAction = new RPAction();
 		rpAction.put("target", "#" + corpse.getID().getObjectID());
 		destroyAction.perform(player , rpAction);
-		assertEquals("Removed  corpse with ID null", player.events().get(0).get("text"));
+		assertEquals("Removed  corpse with ID #1", player.events().get(0).get("text"));
 	}
 
 }

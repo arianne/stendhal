@@ -11,9 +11,12 @@ import static marauroa.common.game.Definition.Type.STRING;
 import static marauroa.common.game.Definition.Type.VERY_LONG_STRING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPAction;
@@ -171,6 +174,77 @@ public class AlterActionTest {
 		assertEquals(0, player.getHP());
 		action.perform(player , rpAction);
 		assertEquals(5, player.getHP());
+	}
+	
+	
+	@Test
+	public final void testValidAttributeValidName() {
+		Player player = PlayerTestHelper.createPlayer("bob");
+		player.put("base_hp", 10);
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		
+		MockStendlRPWorld.get().addRPZone(zone);
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+		zone.add(player);
+		assertNotNull(SingletonRepository.getRuleProcessor().getPlayer("bob"));
+		AlterAction action = new AlterAction();
+		RPAction rpAction = new RPAction();
+		rpAction.put("target", "bob");
+		rpAction.put("mode", "");
+		rpAction.put("stat", "hp");
+		rpAction.put("value", "50");
+		assertEquals(0, player.getHP());
+		action.perform(player, rpAction);
+		assertEquals(0, player.getHP());
+		
+		rpAction.put("value", "-10");
+		assertEquals(0, player.getHP());
+		action.perform(player, rpAction);
+		assertEquals(0, player.getHP());
+		
+		rpAction.put("value", "5");
+		assertEquals(0, player.getHP());
+		action.perform(player , rpAction);
+		assertEquals(5, player.getHP());
+	}
+	
+	@Test
+	public final void testValidAttributeValidNameDifferentZone() {
+		Player player = PlayerTestHelper.createPlayer("bob");
+		player.put("base_hp", 10);
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		StendhalRPZone zoneaway = new StendhalRPZone("testzonefaraway");
+		zone.add(player);
+		Player playerAway = PlayerTestHelper.createPlayer("bobaway");
+		playerAway.put("base_hp", 10);
+		zoneaway.add(playerAway);
+		
+		
+		MockStendlRPWorld.get().addRPZone(zone);
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+		MockStendlRPWorld.get().addRPZone(zoneaway);
+		MockStendhalRPRuleProcessor.get().addPlayer(playerAway);
+		
+		assertNotNull(SingletonRepository.getRuleProcessor().getPlayer("bobaway"));
+		AlterAction action = new AlterAction();
+		RPAction rpAction = new RPAction();
+		rpAction.put("target", "bobaway");
+		rpAction.put("mode", "");
+		rpAction.put("stat", "hp");
+		rpAction.put("value", "50");
+		assertEquals(0, playerAway.getHP());
+		action.perform(player, rpAction);
+		assertEquals(0, playerAway.getHP());
+		
+		rpAction.put("value", "-10");
+		assertEquals(0, playerAway.getHP());
+		action.perform(player, rpAction);
+		assertEquals(0, playerAway.getHP());
+		
+		rpAction.put("value", "5");
+		assertEquals(0, playerAway.getHP());
+		action.perform(player , rpAction);
+		assertEquals(5, playerAway.getHP());
 	}
 	
 	@Test
