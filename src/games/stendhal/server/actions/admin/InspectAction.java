@@ -20,7 +20,7 @@ public class InspectAction extends AdministrationAction {
 	@Override
 	public void perform(final Player player, final RPAction action) {
 
-		final Entity target = getTarget(player, action);
+		final Entity target = getTargetAnyZone(player, action);
 
 		if (target == null) {
 			final String text = "Entity not found for action" + action;

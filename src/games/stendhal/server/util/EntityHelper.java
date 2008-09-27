@@ -61,15 +61,7 @@ public class EntityHelper {
 				&& Character.isDigit(target.charAt(1))) {
 			final int objectId = Integer.parseInt(target.substring(1));
 
-			final RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
-
-			if (zone.has(targetid)) {
-				final RPObject object = zone.get(targetid);
-
-				if (object instanceof Entity) {
-					entity = (Entity) object;
-				}
-			}
+			entity = entityFromZoneByID(objectId, zone);
 		}
 
 		if (entity == null) {
@@ -86,6 +78,47 @@ public class EntityHelper {
 			if ((entity != null) && !player.isInSight(entity)) {
 				entity = null;
 			}
+		}
+
+		return entity;
+	}
+	
+	/**
+	 * Translate the "target" parameter of actions like "look" into an entity
+	 * reference. Numeric parameters are treated as object IDs, alphanumeric
+	 * names are searched in the list of players and NPCs.
+	 * 
+	 * @param target
+	 *			  representation of the target
+	 * @param player
+	 *			  to constraint for current zone and screen area
+	 * @return the entity associated either with name or id or
+	 *		   <code> null </code> if none was found or any of
+	 *		   the input parameters was <code> null </code>.
+	 */
+	public static Entity entityFromTargetNameAnyZone(final String target, final Entity player) {
+		if ((target == null) || (player == null)) {
+			return null;
+		}
+
+		final StendhalRPZone zone = player.getZone();
+		Entity entity = null;
+
+		if ((target.length() > 1) && (target.charAt(0) == '#')
+				&& Character.isDigit(target.charAt(1))) {
+			final int objectId = Integer.parseInt(target.substring(1));
+
+			entity = entityFromZoneByID(objectId, zone);
+		}
+
+		if (entity == null) {
+			entity = SingletonRepository.getRuleProcessor().getPlayer(target);
+
+			
+		}
+
+		if (entity == null) {
+			entity = SingletonRepository.getNPCList().get(target);
 		}
 
 		return entity;
