@@ -25,6 +25,8 @@ public enum TutorialEventType {
 			"Did you notice that creature walking towards you with the yellow square? It is attacking you."),
 	FIRST_KILL(
 			"Double click on the Corpse and drag the items with the mouse over your bag and drop them there."),
+    FIRST_PLAYER_KILL(
+			   "You have been marked with the red skull of a player killer. You may find that people are wary of you now. To get it removed, you may speak to Io Flotto in Semos temple."),
 	FIRST_POISONED(
 			"You've just been poisoned. If you didn't drink poison, it was probably a poisonous creature attacking you. Kill poisonous creatures quickly, as you lose more HP each time you are poisoned."),
 	FIRST_PLAYER(
@@ -39,8 +41,8 @@ public enum TutorialEventType {
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	TIMED_OUTFIT(
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
-	NEW_RELEASE69(
-			"As of version 0.69 you will choke if you try to eat too much at once. You can lose HP and even die, so be careful not to stuff yourself.");
+	NEW_RELEASE70(
+			"Please be careful during training and battles: fights are much more dangerous as of Stendhal 0.70. Even weak creatures and players can hurt you now, if they are lucky, so you should always pay attention and not leave your character idle.");
 	private String message;
 
 	/**
