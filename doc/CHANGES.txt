@@ -12,6 +12,7 @@ strong creatures than a dagger type)
 - player killers marked with an icon
 - healers won't heal player killers (even if they want to pay)
 - Io Flotto removes player killer icon
+- tutorial event for first player kill
 - using a balloon within 6 hours of using the last decreases the time on 7 kika to 5 mins
 - using rainbow beans within 6 hours of using the last makes you sick
 - although snowballs and vomit are missiles, they don't show stats now
@@ -38,7 +39,8 @@ engaged player is online
 - Ognir now distinguishes between bound an unbound rings when fixing
 - Wikipedian fixed for new wikipedia.org API
 - some wooden furniture items redrawn
-- admin inspect and admin destroy now work for contained items too.
+- admin inspect, admin destroy, and admin alter now work for contained items too.
+- pushing creatures with an area > 4 is no longer possible
 
 0.69
 - 7 kikareukin clouds added
