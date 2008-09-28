@@ -84,7 +84,7 @@ public class KillDarkElvesTest {
 	@Test
 	public void testQuestOfferedToQuestOffered() throws Exception {
 
-		for (final String playerSays : Arrays.asList("secret", "room")) {
+		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(false));
@@ -102,7 +102,7 @@ public class KillDarkElvesTest {
 	@Test
 	public void testQuestStartedTOAttending() throws Exception {
 
-		for (final String playerSays : Arrays.asList("secret", "room")) {
+		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			assertThat(bob.hasQuest(QUEST_SLOT), is(false));
