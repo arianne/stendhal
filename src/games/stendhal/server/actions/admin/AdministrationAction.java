@@ -14,8 +14,6 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.WellKnownActionConstants;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
@@ -24,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
