@@ -108,6 +108,17 @@ public class TutorialNotifier {
 	}
 
 	/**
+	 * player killed another player.
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	public static void killedPlayer(final Player player) {
+		process(player, TutorialEventType.FIRST_PLAYER_KILL);
+	}
+
+
+	/**
 	 * player got poisoned.
 	 * 
 	 * @param player
@@ -151,6 +162,6 @@ public class TutorialNotifier {
 	 *            Player
 	 */
 	public static void newrelease(final Player player) {
-		process(player, TutorialEventType.NEW_RELEASE69);
+		process(player, TutorialEventType.NEW_RELEASE70);
 	}
 }
