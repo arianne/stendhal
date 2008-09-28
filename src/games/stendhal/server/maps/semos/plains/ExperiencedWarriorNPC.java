@@ -110,8 +110,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	 * %1 = time to respawn.
 	 */
 	static final String[] RESPAWN_TEXTS = new String[] {
-			"On average they return after %1.",
-			"It varies, but they're reborn around %1 after their death." };
+			"If you waited in the right place for %1, you would be likely to see one.",
+			"It can take %1 to find one.", "Hunting them for %1 gives you a good chance of finding one." };
 
 	/**
 	 * %1 = list of items dropped.
@@ -139,9 +139,9 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	static final String[] LOCATION_UNKNOWN_TEXTS = new String[] { "I don't know of any place where you could find %1." };
 
 	private static CreatureInfo creatureInfo = new CreatureInfo(probabilityLiterals,
-			amountLiterals, dangerLiterals, LINE_STARTS, RESPAWN_TEXTS,
-			CARRY_TEXTS, CARRY_NOTHING_TEXTS, LOCATION_TEXTS,
-			LOCATION_UNKNOWN_TEXTS);
+																amountLiterals, dangerLiterals, LINE_STARTS, RESPAWN_TEXTS,
+																CARRY_TEXTS, CARRY_NOTHING_TEXTS, LOCATION_TEXTS,
+																LOCATION_UNKNOWN_TEXTS);
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
