@@ -1122,6 +1122,8 @@ Holy mackerel! These chips are tasty.
    <zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.LeaderNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.CadetsNPCs" />
 
     <portal x="14" y="46" ref="entrance_left">
      <destination zone="0_semos_city" ref="townhall_entrance_left"/>
