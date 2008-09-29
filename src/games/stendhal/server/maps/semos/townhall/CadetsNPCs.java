@@ -25,7 +25,7 @@ public class CadetsNPCs implements ZoneConfigurator {
 
 	private void buildNPCs(final StendhalRPZone zone) {
 		final String[] names = {"Super Trainer", "XP Hunter", "Well Rounded"};
-		final String[] images = {"youngsoldiernpc", "dwarfguardnpc", "recruiter1npc"};
+		final String[] images = {"supertrainedguynpc", "xpphunternpc", "wellroundedguynpc"};
 		final Direction[] directions = {Direction.RIGHT, Direction.UP, Direction.LEFT};
 		final String[] descriptions = {"You see a soldier who rarely goes out to fight as he spends so much time training. He has stats: atk 40, def 40.","You see a cowardly soldier who depends on others to defend against enemies, while he reaps the rewards of attacking them. He has stats: atk 20, def 20.","You see a well rounded soldier, who is not afraid to face the attack of his enemies and thus earns some skills from them. He has stats: atk 30, def 30."};
 		final int[] levels = {20,60,40};
