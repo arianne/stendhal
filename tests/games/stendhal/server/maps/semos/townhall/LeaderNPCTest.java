@@ -100,19 +100,19 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("club"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Well, your club has quite low damage capability, doesn't it? You should look for something with a better attack - to - rate ratio. And remember, against creatures you find challenging you should use something which hits hard, even if it is slow.", npc.get("text"));
+		assertEquals("Well, your club has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio.", npc.get("text"));
 		
 		player.drop(weapon);
 		
 		final Item weapon2 = new Item("ice sword", "sword", "subclass", null);
 		weapon2.setEquipableSlots(Arrays.asList("lhand"));
 		weapon2.put("atk",29);
-		weapon2.put("rate",6);
+		weapon2.put("rate",5);
 		player.equip(weapon2);
 		assertTrue(player.isEquipped("ice sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That ice sword is a powerful weapon, it has a good damage - to - rate ratio. It should be useful against strong creatures. Remember though that something weak but fast may suffice against lower level creatures.", npc.get("text"));
+		assertEquals("That ice sword is a powerful weapon, it has a good damage to rate ratio.", npc.get("text"));
 		player.drop(weapon2);
 		
 		final Item weapon3 = new Item("vampire sword", "sword", "subclass", null);
@@ -124,7 +124,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("vampire sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Well, your vampire sword has quite low damage capability, doesn't it? You should look for something with a better attack - to - rate ratio. And remember, against creatures you find challenging you should use something which hits hard, even if it is slow. The positive lifesteal of 0.1 will increase your health as you use it.", npc.get("text"));
+		assertEquals("Well, your vampire sword has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. The positive lifesteal of 0.1 will increase your health as you use it.", npc.get("text"));
 		player.drop(weapon3);
 		
 		final Item weapon4 = new Item("club of thorns", "club", "subclass", null);
@@ -136,7 +136,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("club of thorns"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That club of thorns is a powerful weapon, it has a good damage - to - rate ratio. It should be useful against strong creatures. Remember though that something weak but fast may suffice against lower level creatures. The negative lifesteal of -0.1 will drain your health as you use it.", npc.get("text"));
+		assertEquals("That club of thorns is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures. The negative lifesteal of -0.1 will drain your health as you use it.", npc.get("text"));
 		player.drop(weapon4);
 		
 		final Item weapon5 = new Item("l hand sword", "sword", "subclass", null);
@@ -147,6 +147,39 @@ public class LeaderNPCTest {
 		assertTrue(en.step(player, "weapon"));
 		assertEquals("I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.", npc.get("text"));
 		player.drop(weapon5);
+		
+		final Item weapon6 = new Item("black sword", "sword", "subclass", null);
+		weapon6.setEquipableSlots(Arrays.asList("lhand"));
+		weapon6.put("atk",40);
+		weapon6.put("rate",7);
+		player.equip(weapon6);
+		assertTrue(player.isEquipped("black sword"));
+		
+		assertTrue(en.step(player, "weapon"));
+		assertEquals("That black sword is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures.", npc.get("text"));
+		player.drop(weapon6);
+		
+		final Item weapon7 = new Item("obsidian knife", "sword", "subclass", null);
+		weapon7.setEquipableSlots(Arrays.asList("lhand"));
+		weapon7.put("atk",4);
+		weapon7.put("rate",1);
+		player.equip(weapon7);
+		assertTrue(player.isEquipped("obsidian knife"));
+		
+		assertTrue(en.step(player, "weapon"));
+		assertEquals("That obsidian knife is a powerful weapon, it has a good damage to rate ratio. Despite the fast rate being useful, the low attack will not help you against strong creatures. Something heavier would be better then.", npc.get("text"));
+		player.drop(weapon7);
+		
+		final Item weapon8 = new Item("assassin dagger", "sword", "subclass", null);
+		weapon8.setEquipableSlots(Arrays.asList("lhand"));
+		weapon8.put("atk",6);
+		weapon8.put("rate",2);
+		player.equip(weapon8);
+		assertTrue(player.isEquipped("assassin dagger"));
+		
+		assertTrue(en.step(player, "weapon"));
+		assertEquals("Well, your assassin dagger has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. At least you can hit fast with it, so it may be good enough against creatures weaker than you.", npc.get("text"));		
+		player.drop(weapon8);
 		
 		//say goodbye
 		assertTrue(en.step(player, "bye"));
