@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.MonologueBehaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -19,14 +20,15 @@ public class LeaderNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSemosTownhallAreaLeader(zone);
+		final String[] text = {"Super Trainer, listen to me. Your skills are excellent but as you rarely hunt any creatures you are lacking in XP. Since your level is a factor in how hard you can hit, you are not reaching your full potential.","XP Hunter, I have teaching for you too. Your habit of always letting another soldier defend against creatures means that your skills are never increasing. Yes, you have good level but your skills matter too!", "Well Rounded, I must commend you. You have a good level and good skills, both are needed for you to be able to hit creatures hard, and so that you can defend yourself. Well done!"};
+		new MonologueBehaviour(buildSemosTownhallAreaLeader(zone), text);
 	}
 
 	/**
 	 * A leader of three cadets. He has an information giving role.
 	 * @param zone zone to be configured with this npc
 	 */
-	private void buildSemosTownhallAreaLeader(final StendhalRPZone zone) {
+	private SpeakerNPC buildSemosTownhallAreaLeader(final StendhalRPZone zone) {
 		// We create an NPC
 		final SpeakerNPC npc = new SpeakerNPC("Leader") {
 
@@ -43,7 +45,7 @@ public class LeaderNPC implements ZoneConfigurator {
 				addHelp("I can give you advice on your #weapon.");
 				addQuest("Let me advise you on your #weapon.");
 				addOffer("I'd like to comment on your #weapon, if I may.");
-				addGoodbye("Don't forget to listen in on my teachings to these cadets!");
+				addGoodbye("Don't forget to listen in on my teachings to these cadets, you may find it helpful!");
 				add(ConversationStates.ATTENDING, "weapon", null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
@@ -53,13 +55,16 @@ public class LeaderNPC implements ZoneConfigurator {
 					        		String comment;
 					        		// this is the formula used for damage of a weapon, maybe there is a method for it?
 					        		final float damage = (weapon.getAttack() + 1)/weapon.getAttackRate();
-					        		// TODO: deal with the special case of twin swords.
-					        		if (damage>5) {
-					        			comment = "That " + weapon.getName() + " is a powerful weapon. It'll certainly be useful against strong creatures. Remember though that something weaker and faster may suffice against lower level creatures.";
+					        		if (weapon.getName().endsWith(" hand sword")) {
+					        			// this is a special case, we deal with explicitly
+					        			comment = "I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.";
+					        		}
+					        		else if (damage>5) {
+					        			comment = "That " + weapon.getName() + " is a powerful weapon, it has a good damage - to - rate ratio. It should be useful against strong creatures. Remember though that something weak but fast may suffice against lower level creatures.";
 					        		} else {
-					        			comment = "Well, your " + weapon.getName() + " has quite low damage capability, doesn't it? Against creatures you find challenging you should use something which hits harder, even if it is slower.";
+					        			comment = "Well, your " + weapon.getName() + " has quite low damage capability, doesn't it? You should look for something with a better attack - to - rate ratio. And remember, against creatures you find challenging you should use something which hits hard, even if it is slow.";
 						       		}
-					        		// simple damage doesn't take into account lifesteal. this is a decision the player mustmake, so inform them about the stats
+					        		// simple damage doesn't take into account lifesteal. this is a decision the player must make, so inform them about the stats
 					        		if (weapon.has("lifesteal")) {
 					        			double lifesteal = weapon.getDouble("lifesteal");
 					        			if (lifesteal > 0 ) {
@@ -80,8 +85,10 @@ public class LeaderNPC implements ZoneConfigurator {
 		};
 		npc.setLevel(150);
 		npc.setEntityClass("royalguardnpc");
-		npc.setPosition(23, 16);
+		npc.setPosition(23, 15);
 		npc.initHP(100);
 		zone.add(npc);
+		
+		return npc;
 	}
 }
