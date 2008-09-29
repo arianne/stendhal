@@ -57,7 +57,8 @@ class Player2DView extends RPEntity2DView {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite gotAwaySprite = store.getSprite("data/sprites/ideas/away.png");
 		final Sprite gotGrumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
-		skullSprite = store.getSprite("data/sprites/ideas/pk.png");
+		final Sprite gotPkSprite = store.getSprite("data/sprites/ideas/pk.png");
+		skullSprite = store.getAnimatedSprite(gotPkSprite ,0,0,4,16,24,500);
 		awaySprite = store.getAnimatedSprite(gotAwaySprite, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
