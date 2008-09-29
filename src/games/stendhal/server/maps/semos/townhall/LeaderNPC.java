@@ -58,8 +58,7 @@ public class LeaderNPC implements ZoneConfigurator {
 					        		if (weapon.getName().endsWith(" hand sword")) {
 					        			// this is a special case, we deal with explicitly
 					        			comment = "I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.";
-					        		}
-					        		else if (damage>5) {
+					        		} else if (damage >= 5) {
 					        			comment = "That " + weapon.getName() + " is a powerful weapon, it has a good damage - to - rate ratio. It should be useful against strong creatures. Remember though that something weak but fast may suffice against lower level creatures.";
 					        		} else {
 					        			comment = "Well, your " + weapon.getName() + " has quite low damage capability, doesn't it? You should look for something with a better attack - to - rate ratio. And remember, against creatures you find challenging you should use something which hits hard, even if it is slow.";
