@@ -39,11 +39,11 @@ public class LeaderNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.");
-				addJob("I'm in charge of these three cadets. They need a lot of instruction, which I will have to go back to soon. Feel free to listen in, you may learn something!");
+				addJob("I'm in charge of these three cadets. They need a lot of instruction!");
 				addHelp("I can give you advice on your #weapon.");
 				addQuest("Let me advise you on your #weapon.");
 				addOffer("I'd like to comment on your #weapon, if I may.");
-				addGoodbye("Don't forget to listen in on my teachings to these cadets!");
+				addGoodbye("Bye!");
 				add(ConversationStates.ATTENDING, "weapon", null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
