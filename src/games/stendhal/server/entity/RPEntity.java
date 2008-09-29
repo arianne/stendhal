@@ -1568,7 +1568,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         the entity has a weapon in each hand, returns the weapon in its
 	 *         left hand.
 	 */
-	private Item getWeapon() {
+	public Item getWeapon() {
 		
 		final String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
 
