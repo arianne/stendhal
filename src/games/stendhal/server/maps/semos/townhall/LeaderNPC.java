@@ -53,15 +53,23 @@ public class LeaderNPC implements ZoneConfigurator {
 					        	final Item weapon = player.getWeapon();
 					        	if (weapon != null) {
 					        		String comment;
-					        		// this is the formula used for damage of a weapon, maybe there is a method for it?
+					        		// this is, loosely, the formula used for damage of a weapon (not taking level into account here)
 					        		final float damage = (weapon.getAttack() + 1)/weapon.getAttackRate();
 					        		if (weapon.getName().endsWith(" hand sword")) {
 					        			// this is a special case, we deal with explicitly
 					        			comment = "I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.";
 					        		} else if (damage >= 5) {
-					        			comment = "That " + weapon.getName() + " is a powerful weapon, it has a good damage - to - rate ratio. It should be useful against strong creatures. Remember though that something weak but fast may suffice against lower level creatures.";
+					        			comment = "That " + weapon.getName() + " is a powerful weapon, it has a good damage to rate ratio.";
+					        			if (weapon.getAttackRate()<3){
+					        				comment += " Despite the fast rate being useful, the low attack will not help you against strong creatures. Something heavier would be better then.";
+					        			} else if (weapon.getAttackRate()>6){
+					        				comment +=  " It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures.";
+					        			}
 					        		} else {
-					        			comment = "Well, your " + weapon.getName() + " has quite low damage capability, doesn't it? You should look for something with a better attack - to - rate ratio. And remember, against creatures you find challenging you should use something which hits hard, even if it is slow.";
+					        			comment = "Well, your " + weapon.getName() + " has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio.";
+					        			if (weapon.getAttackRate()<3){
+					        				comment += " At least you can hit fast with it, so it may be good enough against creatures weaker than you.";
+					        			}
 						       		}
 					        		// simple damage doesn't take into account lifesteal. this is a decision the player must make, so inform them about the stats
 					        		if (weapon.has("lifesteal")) {
