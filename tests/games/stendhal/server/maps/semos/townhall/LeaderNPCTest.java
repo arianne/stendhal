@@ -107,7 +107,7 @@ public class LeaderNPCTest {
 		final Item weapon2 = new Item("ice sword", "sword", "subclass", null);
 		weapon2.setEquipableSlots(Arrays.asList("lhand"));
 		weapon2.put("atk",29);
-		weapon2.put("rate",5);
+		weapon2.put("rate",6);
 		player.equip(weapon2);
 		assertTrue(player.isEquipped("ice sword"));
 		
