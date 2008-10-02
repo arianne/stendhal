@@ -30,7 +30,7 @@ public class LeaderNPC implements ZoneConfigurator {
 	 */
 	private SpeakerNPC buildSemosTownhallAreaLeader(final StendhalRPZone zone) {
 		// We create an NPC
-		final SpeakerNPC npc = new SpeakerNPC("Leader") {
+		final SpeakerNPC npc = new SpeakerNPC("Lieutenant Drilenun") {
 
 			@Override
 			protected void createPath() {
