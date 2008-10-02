@@ -56,7 +56,7 @@ public class LeaderNPCTest {
 
 	@Test
 	public void testHiAndBye() {
-		npc = SingletonRepository.getNPCList().get("Leader");
+		npc = SingletonRepository.getNPCList().get("Lieutenant Drilenun");
 		en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -69,7 +69,7 @@ public class LeaderNPCTest {
 	@Test
 	public void testQuest() {
 
-		npc = SingletonRepository.getNPCList().get("Leader");
+		npc = SingletonRepository.getNPCList().get("Lieutenant Drilenun");
 		en = npc.getEngine();
 
 		//test the basic messages
