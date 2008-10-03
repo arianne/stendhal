@@ -119,8 +119,8 @@ class SourceObject extends MoveableObject {
 	}
 
 	private static void adjustAmountForStackables(final RPAction action, final SourceObject source) {
-		if ((source.item instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
-			final int entityQuantity = ((Stackable) source.item).getQuantity();
+		if ((source.item instanceof Stackable<?>) && action.has(EquipActionConsts.QUANTITY)) {
+			final int entityQuantity = ((Stackable<?>) source.item).getQuantity();
 
 			source.quantity = action.getInt(EquipActionConsts.QUANTITY);
 			if ((entityQuantity < 1) || (source.quantity < 1) || (source.quantity >= entityQuantity)) {

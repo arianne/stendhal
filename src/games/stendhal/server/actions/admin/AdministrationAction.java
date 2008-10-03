@@ -30,8 +30,6 @@ import org.apache.log4j.Logger;
  */
 public abstract class AdministrationAction implements ActionListener {
 
-	private static final String _TARGETID = "targetid";
-
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
 
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
@@ -137,12 +135,9 @@ protected final Entity getTargetAnyZone(final Player player, final RPAction acti
 	 * 
 	 * @param player
 	 * @param action
-	 * @return the Entity or null if it does not exist TODO merge with
-	 *         EntityHelper.entityFromTargetName()
+	 * @return the Entity or null if it does not exist
 	 */
 	protected final Entity getTarget(final Player player, final RPAction action) {
-
-		
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
 		if (entity == null) {
@@ -150,42 +145,5 @@ protected final Entity getTargetAnyZone(final Player player, final RPAction acti
 		}
 		
 		return entity;
-		
-//		String id = null;
-//		Entity target = null;
-//
-//		// target contains a name unless it starts with #
-//		if (action.has(WellKnownActionConstants.TARGET)) {
-//			id = action.get(WellKnownActionConstants.TARGET);
-//		}
-//		if (id != null) {
-//			if (id.startsWith("#")) {
-//				id = id.substring(1);
-//			} else {
-//				target = SingletonRepository.getRuleProcessor().getPlayer(id);
-//				return target;
-//			}
-//		}
-//
-//		// either target started with a # or it was not specified
-//		if (action.has(_TARGETID)) {
-//			id = action.get(_TARGETID);
-//		}
-//
-//		// go for the id
-//		if (id != null) {
-//			final StendhalRPZone zone = player.getZone();
-//
-//			final RPObject.ID oid = new RPObject.ID(Integer.parseInt(id),
-//					zone.getName());
-//			if (zone.has(oid)) {
-//				final RPObject object = zone.get(oid);
-//				if (object instanceof Entity) {
-//					target = (Entity) object;
-//				}
-//			}
-//		}
-//
-//		return target;
 	}
 }
