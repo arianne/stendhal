@@ -62,14 +62,14 @@ public class PerceptionToObjectTest {
 		final PerceptionToObject pto = new PerceptionToObject();
 		final RPObject testvalues = new RPObject();
 		
-		final ObjectChangeListener listener1 = new ObjectChangeListenerAdapter(){
+		final ObjectChangeListener listener1 = new ObjectChangeListenerAdapter() {
 			@Override
 			public void deleted() {
 				testvalues.put("listener1", "");
 
 			}
 		};
-		final ObjectChangeListener listener2 = new ObjectChangeListenerAdapter(){
+		final ObjectChangeListener listener2 = new ObjectChangeListenerAdapter() {
 			@Override
 			public void deleted() {
 				testvalues.put("listener2", "");
@@ -117,7 +117,7 @@ public class PerceptionToObjectTest {
 
 		pto.register(object, listener);
 		pto.register(object2, listener);
-		assertTrue("object is contained in map after register of listener",pto.map.containsKey(object.getID()));
+		assertTrue("object is contained in map after register of listener", pto.map.containsKey(object.getID()));
 		
 		assertFalse("deleted not yet called", object.has(attribute));
 
@@ -346,7 +346,7 @@ public class PerceptionToObjectTest {
 		PerceptionToObject pto = new PerceptionToObject();
 		assertTrue(pto.map.isEmpty());
 		RPObject object = new RPObject();
-		object.setID(new RPObject.ID(1,"ZONE"));
+		object.setID(new RPObject.ID(1, "ZONE"));
 		
 		pto.onClear();
 		pto.onDeleted(object);

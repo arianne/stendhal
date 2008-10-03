@@ -41,8 +41,8 @@ public class PerceptionToObject implements IPerceptionListener {
 	 * call deleted() on every Listener and resets this.
 	 */
 	public boolean onClear() {
-		for ( Set<ObjectChangeListener>listenerset : map.values()) {
-			for( ObjectChangeListener listener: listenerset){
+		for (Set<ObjectChangeListener>listenerset : map.values()) {
+			for (ObjectChangeListener listener : listenerset) {
 				listener.deleted();
 			}
 		}
@@ -52,11 +52,12 @@ public class PerceptionToObject implements IPerceptionListener {
 
 	public boolean onDeleted(final RPObject object) {
 		Set<ObjectChangeListener> set = map.get(object.getID());
-		if ( set!= null)
-		for (ObjectChangeListener objectChangeListener : set) {
-			
-			objectChangeListener.deleted();
-			map.remove(object.getID());
+		if (set != null) {
+			for (ObjectChangeListener objectChangeListener : set) {
+				
+				objectChangeListener.deleted();
+				map.remove(object.getID());
+			}
 		}
 		return false;
 	}
@@ -70,7 +71,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 		
 		Set<ObjectChangeListener> set = map.get(object.getID());
-		if (set != null){
+		if (set != null) {
 			for (ObjectChangeListener objectChangeListener : set) {
 				
 				objectChangeListener.modifiedAdded(changes);

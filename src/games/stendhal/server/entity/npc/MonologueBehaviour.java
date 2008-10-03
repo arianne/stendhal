@@ -26,7 +26,7 @@ public final class MonologueBehaviour implements TurnListener {
 	 *            text to repeat
 	 */
 	public MonologueBehaviour(final SpeakerNPC speakerNPC,
-			final String repeatedText[]) {
+			final String[] repeatedText) {
 		this.speakerNPC = speakerNPC;
 		this.repeatedText = repeatedText;
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
@@ -34,9 +34,9 @@ public final class MonologueBehaviour implements TurnListener {
 
 	public void onTurnReached(final int currentTurn) {
 		if (speakerNPC.getEngine().getCurrentState() == ConversationStates.IDLE) {
-			speakerNPC.say(repeatedText[i%repeatedText.length]);
+			speakerNPC.say(repeatedText[i % repeatedText.length]);
 			speakerNPC.setCurrentState(ConversationStates.IDLE);
-			if (i== Integer.MAX_VALUE) {
+			if (i == Integer.MAX_VALUE) {
 				// deal with overflow (only takes 9 hours :P)
 				// probably means there is a better way to do it, but this should work...
 				i = 0;

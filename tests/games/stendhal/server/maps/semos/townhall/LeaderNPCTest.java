@@ -93,8 +93,8 @@ public class LeaderNPCTest {
 		
 		final Item weapon = new Item("club", "club", "subclass", null);
 		weapon.setEquipableSlots(Arrays.asList("lhand"));
-		weapon.put("atk",6);
-		weapon.put("rate",4);
+		weapon.put("atk", 6);
+		weapon.put("rate", 4);
 		player.equip(weapon);
 
 		assertTrue(player.isEquipped("club"));
@@ -106,8 +106,8 @@ public class LeaderNPCTest {
 		
 		final Item weapon2 = new Item("ice sword", "sword", "subclass", null);
 		weapon2.setEquipableSlots(Arrays.asList("lhand"));
-		weapon2.put("atk",29);
-		weapon2.put("rate",5);
+		weapon2.put("atk", 29);
+		weapon2.put("rate", 5);
 		player.equip(weapon2);
 		assertTrue(player.isEquipped("ice sword"));
 		
@@ -117,9 +117,9 @@ public class LeaderNPCTest {
 		
 		final Item weapon3 = new Item("vampire sword", "sword", "subclass", null);
 		weapon3.setEquipableSlots(Arrays.asList("lhand"));
-		weapon3.put("atk",22);
-		weapon3.put("rate",5);
-		weapon3.put("lifesteal",0.1);
+		weapon3.put("atk", 22);
+		weapon3.put("rate", 5);
+		weapon3.put("lifesteal", 0.1);
 		player.equip(weapon3);
 		assertTrue(player.isEquipped("vampire sword"));
 		
@@ -129,9 +129,9 @@ public class LeaderNPCTest {
 		
 		final Item weapon4 = new Item("club of thorns", "club", "subclass", null);
 		weapon4.setEquipableSlots(Arrays.asList("lhand"));
-		weapon4.put("atk",48);
-		weapon4.put("rate",7);
-		weapon4.put("lifesteal",-0.1);
+		weapon4.put("atk", 48);
+		weapon4.put("rate", 7);
+		weapon4.put("lifesteal", -0.1);
 		player.equip(weapon4);
 		assertTrue(player.isEquipped("club of thorns"));
 		
@@ -150,8 +150,8 @@ public class LeaderNPCTest {
 		
 		final Item weapon6 = new Item("black sword", "sword", "subclass", null);
 		weapon6.setEquipableSlots(Arrays.asList("lhand"));
-		weapon6.put("atk",40);
-		weapon6.put("rate",7);
+		weapon6.put("atk", 40);
+		weapon6.put("rate", 7);
 		player.equip(weapon6);
 		assertTrue(player.isEquipped("black sword"));
 		
@@ -161,8 +161,8 @@ public class LeaderNPCTest {
 		
 		final Item weapon7 = new Item("obsidian knife", "sword", "subclass", null);
 		weapon7.setEquipableSlots(Arrays.asList("lhand"));
-		weapon7.put("atk",4);
-		weapon7.put("rate",1);
+		weapon7.put("atk", 4);
+		weapon7.put("rate", 1);
 		player.equip(weapon7);
 		assertTrue(player.isEquipped("obsidian knife"));
 		
@@ -172,8 +172,8 @@ public class LeaderNPCTest {
 		
 		final Item weapon8 = new Item("assassin dagger", "sword", "subclass", null);
 		weapon8.setEquipableSlots(Arrays.asList("lhand"));
-		weapon8.put("atk",6);
-		weapon8.put("rate",2);
+		weapon8.put("atk", 6);
+		weapon8.put("rate", 2);
 		player.equip(weapon8);
 		assertTrue(player.isEquipped("assassin dagger"));
 		
