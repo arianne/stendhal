@@ -9,7 +9,9 @@ import marauroa.common.game.RPSlot;
 
 public class TileController implements ObjectChangeListener {
 	final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
+	//TODO: add 2 more for events and slots so you can add listeners distinguished
+	// maybe extend this
+	
 	public TileController() {
 		pcs.addPropertyChangeListener("bag", new BagController());
 

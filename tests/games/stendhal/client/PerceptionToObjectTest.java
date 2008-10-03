@@ -58,6 +58,47 @@ public class PerceptionToObjectTest {
 	}
 
 	@Test
+	public final void testOnClear2Listeners1Object() {
+		final PerceptionToObject pto = new PerceptionToObject();
+		final RPObject testvalues = new RPObject();
+		
+		final ObjectChangeListener listener1 = new ObjectChangeListenerAdapter(){
+			@Override
+			public void deleted() {
+				testvalues.put("listener1", "");
+
+			}
+		};
+		final ObjectChangeListener listener2 = new ObjectChangeListenerAdapter(){
+			@Override
+			public void deleted() {
+				testvalues.put("listener2", "");
+			}
+		};
+		
+		RPObject observed = new RPObject();
+		observed.setID(new RPObject.ID(1, "zone"));
+		assertFalse(testvalues.has("listener1"));
+		assertFalse(testvalues.has("listener2"));
+		
+		pto.register(observed, listener1);
+		pto.register(observed, listener2);
+		
+		assertTrue(pto.map.get(observed.getID()).contains(listener2));
+		assertTrue(pto.map.get(observed.getID()).contains(listener1));
+		
+		pto.onClear();
+		
+		
+		assertTrue(testvalues.has("listener2"));
+		assertTrue(testvalues.has("listener1"));
+	}
+	
+	// TODO: remove listener from pto must remove all references
+	
+	
+	
+	@Test
 	public final void testOnClear() {
 		final String attribute = "clear";
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -76,9 +117,9 @@ public class PerceptionToObjectTest {
 
 		pto.register(object, listener);
 		pto.register(object2, listener);
-		assertTrue(pto.map.containsKey(object.getID()));
+		assertTrue("object is contained in map after register of listener",pto.map.containsKey(object.getID()));
 		
-		assertFalse(object.has(attribute));
+		assertFalse("deleted not yet called", object.has(attribute));
 
 		assertTrue(pto.map.containsKey(object2.getID()));
 		assertFalse(object2.has(attribute));
@@ -86,6 +127,8 @@ public class PerceptionToObjectTest {
 		pto.onClear();
 
 		assertTrue(object.has(attribute));
+		assertFalse(object2.has(attribute));
+		
 		assertFalse(pto.map.containsKey(object.getID()));
 		assertFalse(pto.map.containsKey(object2.getID()));
 	}
@@ -292,9 +335,27 @@ public class PerceptionToObjectTest {
 
 
 		pto.unregister(listener);
-		assertFalse(pto.map.containsKey(object.getID()));
-		assertFalse(pto.map.containsKey(object2.getID()));
-		assertTrue(pto.map.containsKey(object3.getID()));
+		assertTrue(pto.map.get(object.getID()).isEmpty());
+		assertTrue(pto.map.get(object2.getID()).isEmpty());
+		assertFalse(pto.map.get(object3.getID()).isEmpty());
+		
+	}
+	
+	@Test
+	public final void testabsentObject() {
+		PerceptionToObject pto = new PerceptionToObject();
+		assertTrue(pto.map.isEmpty());
+		RPObject object = new RPObject();
+		object.setID(new RPObject.ID(1,"ZONE"));
+		
+		pto.onClear();
+		pto.onDeleted(object);
+		pto.onException(null, null);
+		pto.onModifiedAdded(object, null);
+		pto.onModifiedDeleted(object, null);
+		pto.onMyRPObject(object, null);
+		pto.onMyRPObject(null, object);
+
 		
 	}
 
