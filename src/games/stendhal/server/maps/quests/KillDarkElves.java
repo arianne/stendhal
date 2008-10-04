@@ -52,6 +52,7 @@ public class KillDarkElves extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Maerion");
 
@@ -81,7 +82,7 @@ public class KillDarkElves extends AbstractQuest {
 		actions.add(new StartRecordingKillsAction("dark elf archer", "dark elf captain", "thing"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
-		
+
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
@@ -99,7 +100,7 @@ public class KillDarkElves extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("secret", "room"),
+			Arrays.asList("secret", "room", "secret room"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"It's that room downstairs with a grey roof and the evil face on the door. Inside you'll find what the dark elves were making, a mutant thing. Will you help?",
@@ -131,7 +132,7 @@ public class KillDarkElves extends AbstractQuest {
 				, ConversationStates.QUEST_STARTED
 				, "What happened to the amulet? Remember I need it back!"
 				, null);
-				
+	
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
@@ -145,10 +146,9 @@ public class KillDarkElves extends AbstractQuest {
 						new IncreaseKarmaAction(5.0),
 						new SetQuestAction(QUEST_SLOT, "done")));
 
-
 		npc.add(
 			ConversationStates.QUEST_STARTED,
-			Arrays.asList("secret", "room"),
+			Arrays.asList("secret", "room", "secret room"),
 			null,
 			ConversationStates.ATTENDING,
 			"The room is below us. It has a grey roof and a evil face for a door. I need you to kill all the dark elves and bring me the amulet from the mutant thing.",
