@@ -2,6 +2,9 @@ package games.stendhal.server.core.account;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import java.util.Locale;
+
 import marauroa.common.game.Result;
 
 import org.junit.After;
@@ -12,6 +15,7 @@ public class LowerCaseValidatorTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Locale.setDefault(Locale.ENGLISH);
 	}
 
 	@After
@@ -25,11 +29,12 @@ public class LowerCaseValidatorTest {
 		lcv = new LowerCaseValidator("a");
 		assertNull(lcv.validate());
 
-		lcv = new LowerCaseValidator("Ü");
+		// Note: To successfully pass the following tests, Eclipse's file encoding
+		// must be set to "UTF-8". 
+		lcv = new LowerCaseValidator("Ü");	// german Umlaut "Ue"
 		assertEquals(Result.FAILED_INVALID_CHARACTER_USED, lcv.validate());
-		lcv = new LowerCaseValidator("ü");
+		lcv = new LowerCaseValidator("ü");	// german Umlaut "ue"
 		assertNull(lcv.validate());
-
 	}
 
 }
