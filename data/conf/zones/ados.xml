@@ -1905,14 +1905,23 @@ Assassin Dagger (atk 6 rate 2) 12000
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
  </zone>
  <zone name="-1_ados_outside_w" level="-1" x="500640" y="500000" file="Level -1/ados/outside_w.tmx">
-      <entity x="0" y="1">
+      <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
       <parameter name="width">27</parameter>
-      <parameter name="height">44</parameter>
+      <parameter name="height">47</parameter>
       <parameter name="new-x">29</parameter>
       <parameter name="new-y">27</parameter>
      </implementation>
      <attribute name="name">dragon lair</attribute>
+    </entity>
+      <entity x="27" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
+      <parameter name="width">19</parameter>
+      <parameter name="height">19</parameter>
+      <parameter name="new-x">29</parameter>
+      <parameter name="new-y">27</parameter>
+     </implementation>
+     <attribute name="name">dragon lair2</attribute>
     </entity>
   <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   <configurator class-name="games.stendhal.server.maps.ados.tunnel.WishmanNPC"/>
