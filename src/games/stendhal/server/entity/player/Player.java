@@ -70,6 +70,11 @@ public class Player extends RPEntity {
 	 * The grumpy attribute name.
 	 */
 	protected static final String ATTR_GRUMPY = "grumpy";
+	
+	/**
+	 * The happy attribute name.
+	 */
+	protected static final String ATTR_HAPPY = "happy";
 
 	private static final String LASTPLAYERKILL = "last_player_kill_time";
 	/**
@@ -466,6 +471,34 @@ public class Player extends RPEntity {
 			put(ATTR_GRUMPY, message);
 		} else if (has(ATTR_GRUMPY)) {
 			remove(ATTR_GRUMPY);
+		}
+
+	}
+	
+	/**
+	 * Get the happy message.
+	 * 
+	 * @return The happy message, or <code>null</code> if unset.
+	 */
+	public String getHappyMessage() {
+		if (has(ATTR_HAPPY)) {
+			return get(ATTR_HAPPY);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Set the happy message.
+	 * 
+	 * @param message
+	 *            A happy message, or <code>null</code>.
+	 */
+	public void setHappyMessage(final String message) {
+		if (message != null) {
+			put(ATTR_HAPPY, message);
+		} else if (has(ATTR_HAPPY)) {
+			remove(ATTR_HAPPY);
 		}
 
 	}
@@ -1432,6 +1465,11 @@ public class Player extends RPEntity {
 		if (grumpyMessage != null) {
 			sb.append("\n" +  getTitle() + " is grumpy and has left a message: ");
 			sb.append(grumpyMessage);
+		}
+		final String happyMessage = getHappyMessage();
+		if (happyMessage != null) {
+			sb.append("\n" +  getTitle() + " is happy: ");
+			sb.append(happyMessage);
 		}
 		return (sb.toString());
 	}

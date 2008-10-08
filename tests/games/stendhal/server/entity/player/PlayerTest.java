@@ -3,6 +3,7 @@ package games.stendhal.server.entity.player;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -157,7 +158,19 @@ public class PlayerTest {
 		assertThat(description, is(expectedDescription));
 	}
 	
-	
+	@Test
+	public void testHappy() throws Exception {
+		final int hours = player.getAge() / 60;
+		final int minutes = player.getAge() % 60;
+		final String time = hours + " hours and " + minutes + " minutes";
+		player.setHappyMessage("I am happy!");
+		String description = player.describe();
+		String expectedDescription = "You see " + player.getTitle() + ".\n"
+				+ player.getTitle() + " is level " + player.getLevel()
+				+ " and has been playing " + time + "." + "\nplayer is happy: "
+				+ player.getHappyMessage();
+		assertThat(description, is(expectedDescription));
+	}
 
 
 	@Test
