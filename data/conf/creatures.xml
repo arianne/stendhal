@@ -141,6 +141,8 @@
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
+      <profine name="non offensive"/>
+      <profile name="coward"/>
     </ai>
   </creature>
 
@@ -222,8 +224,9 @@
         <noise value="cluck cluck"/>
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
+      <profile name="coward"/>
     </ai>
   </creature>
 
@@ -252,6 +255,7 @@
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
+      <profile name="non offensive"/>
     </ai>
   </creature>
 
@@ -332,8 +336,9 @@
     </equips>
     <ai>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
+      <profile name="coward"/>
     </ai>
   </creature>
 
