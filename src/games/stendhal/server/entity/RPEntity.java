@@ -334,16 +334,21 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public int heal(final int amount, final boolean tell) {
 		int tempHp = getHP();
-		final int given = Math.min(amount, getBaseHP() - tempHp);
+		int given = 0;
+		
+		// Avoid creating zombies out of dead creatures
+		if (tempHp > 0) {
+			given = Math.min(amount, getBaseHP() - tempHp);
 
-		if (given != 0) {
-			tempHp += given;
+			if (given != 0) {
+				tempHp += given;
 
-			if (tell) {
-				put("heal", given);
+				if (tell) {
+					put("heal", given);
+				}
+
+				setHP(tempHp);
 			}
-
-			setHP(tempHp);
 		}
 
 		return given;
