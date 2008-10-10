@@ -70,7 +70,7 @@
  </layer>
  <layer name="1_terrain" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VuQrCQBAG4EnhEY33fWu80hiPR7SysvJ99RddWEJc3MwUCWTga3YZ5mdDGJeIihFX+tQt5k6pgGu4l/CeUYYtnDT3b75H5FzZQelHrxR9Rkh2dWD0/lshY0ba89WgDg1oCudSxXmDFrShA92Y+6dBGvJJFCdfD/owgKFwLlWcfHrvHo5MIxjDRDsLBPJVoSBgCjOYR849Zj6p/bGAJawofn9wvq9xfzhEZ7g45l3hwxo2lJ39IfV/5PnyfEkqS/lsd0DA6LWdkXQHeIxemxkvYXSqBoAMAAA=
+   H4sIAAAAAAAAAO3VyQrCQAwG4PTgUq37vmvderEuj+jJkyffV3/RwjDUodMEodDAd5kQ8kMpcYmoqLnSp24xvUgFXENfwntHGbZwUty/+R7ae2QHpR+zUtQdIdnVgTGbtELGjjwfb0cN6tCAZkz/afCPfC1oQwe6lrNJi5OvB30YwFA4V1ScfOrsHo5MIxjDRHkLBPJVoSBgCjOYa+8eM5/U/VjAElYUfz8439d4PxyiM1wc863wYQ0bys79kPo/8nx5vjSVpXy2NyBgzNruSHsDPMaszY4XQqOhOoAMAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="20">
@@ -80,10 +80,10 @@
  </layer>
  <layer name="3_roof" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgL7gAYX6eYGYD4j5gVgATe43EP/Bg/9SaDexQAiIhfHI/4TS36AYBH7Q1EWogJD7BhKIArEYEIsDscQAu2UUMDDIALEsEMvhUXMdiG8QIUYLIA/ECkCsSAe7Riq4CsTXiBAbBUMTYItLeuXfUTByAQAziW5NgAwAAA==
+   H4sIAAAAAAAAAGNgGAWjgL7gAQ3N/g3Ef/DgvzS0GxnwATE/newiBwgBsfBAOwIHEAViMSAWB2KJAXbLKGBgkAFiWSCWw6PmOhDfIEKMFkAeiBWAWJEOdo1UcBWIrxEhNgqGJsAWl/TKv6Ng5AIAZB4xeoAMAAA=
   </data>
  </layer>
- <layer name="4_roof_add" width="40" height="20">
+ <layer name="4_roof_add" width="40" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OoQ0AAAjAMP7/lwTJA2ARpJVTi4Bfaul5egEAwKQB+yWVG4AMAAA=
   </data>
@@ -93,9 +93,9 @@
    H4sIAAAAAAAAAGNgwA4UGXFIjIJRMAroBvgZsbNJBZyj+XkUjAKqA3rWkxyjeZhmgFphOxBxJDyaLkbBEAUAhHzfQYAMAAA=
   </data>
  </layer>
- <layer name="collision" width="40" height="20" opacity="0.41">
+ <layer name="collision" width="40" height="20" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNhZGCQwYJBAJv4YMGDzX3YAD5xYvxESD0pYUMKoEQvPeygtfuIjV9qmU2qXbR0HzUApe4baumPHuXZqPsocx82d+JyO63spVX40QIMNfdREr/0cB+99A5X9w32+B3F5GEARkj1EYAMAAA=
+   H4sIAAAAAAAAAJNhZGCQwYJBAJv4YMGDzX3YAD5xYvxESD0pYUMKoEQvPeygtfuIjV9y3EduWqKm+2gNaBl+tHIjJXqpVX5QkiZG3Ud63sLldlrZS6vwowUYau6jJH7p4T566R2u7hvs8TuKycMA4zsir4AMAAA=
   </data>
  </layer>
  <layer name="protection" width="40" height="20">
