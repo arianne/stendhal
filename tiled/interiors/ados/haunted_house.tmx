@@ -105,6 +105,9 @@
  <tileset name="entrance/detail_ew.png" firstgid="328" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ew.png"/>
  </tileset>
+ <tileset name="hybrid for tiny skelly" firstgid="334" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/hybrid.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TMQ4AIAgEQUJ8gv//qYmNpdXlCpQtth4IISMiTU0hl42Pj1/bX6eu++P/fX9lBvya/riEX9t3/j9+b18JH/81fwP3CI9VABAAAA==
@@ -132,7 +135,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDAXAyDrQLhh5QISPMOEjQQ4raUTA8gACN09QoGAUDCQilb+khkpZH68tRgA6GStolp90yUgA59e9gAFZD1N3UBmbDKByGg18A1Sk38QAQAAA=
+   H4sIAAAAAAAAAGNgGAVDAXAyDrQLhh5QISPMOEjQQ4raUTA8gACN09QoGAUDCcIJpFXpIZKWR+vLUYAOhkraJafdMlIAOfXvYABWQ9Td1AZmwygchoNfAMDFKEMAEAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.52">
