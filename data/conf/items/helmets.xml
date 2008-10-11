@@ -184,7 +184,7 @@
 
   <item name="mainio helmet">
     <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
-    <description>You see a strange helmet. You can barely see when wearing it, but it protects your head very well.</description>
+    <description>You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="16"/>
     </attributes>

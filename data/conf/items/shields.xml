@@ -243,7 +243,7 @@
 
   <item name="mainio shield">
     <type class="shield" subclass="mainio_shield" tileid="-1"/>
-    <description>You see a strange looking shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
+    <description>You see a strange looking mainio shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="37"/>
     </attributes>
