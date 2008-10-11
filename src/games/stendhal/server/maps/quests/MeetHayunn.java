@@ -155,8 +155,8 @@ public class MeetHayunn extends AbstractQuest {
 			ConversationStates.INFORMATION_5,
 			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.ATTENDING,
-			"Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes, the old man in this picture, he will give you a map. Good luck!",
+			ConversationStates.IDLE,
+			"Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes, the old man in this picture, he will give you a map. Here's 5 money to get you started. Bye bye!",
 			new MultipleActions(reward));
 
 	   	// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
@@ -220,8 +220,8 @@ public class MeetHayunn extends AbstractQuest {
 				   	ConversationStates.INFORMATION_6,
 				   	ConversationStates.INFORMATION_7,
 				   	ConversationStates.INFORMATION_8},
-				ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING,
-				"Oh well, I'm sure someone else will stop by for a chat soon.",
+				ConversationPhrases.NO_MESSAGES, new NotCondition(new QuestInStateCondition(QUEST_SLOT, "start")), ConversationStates.IDLE,
+				"Oh well, I'm sure someone else will stop by for a chat soon. Bye...",
 				null);
 
 		npc.setPlayerChatTimeout(TIME_OUT); 
