@@ -451,6 +451,10 @@ Under new management. Chests to the right are still held by Semos Bank Merchants
      <destination zone="0_ados_city_n" ref="11"/>
     </portal>
     <portal x="28" y="28" ref="downstairs">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+      <parameter name="minimum-level">80</parameter>
+      <parameter name="rejected">You were about to walk down the stairs when someone or something held you back, whispering 'Beware the giant spider, for you are too weak!'</parameter>
+     </implementation>
      <destination zone="int_ados_haunted_house_basement" ref="upstairs"/>
     </portal>
    </zone>
