@@ -141,23 +141,29 @@ public class Buddies extends WtPanel {
 	 * @param command 
 	 * @param buddieName 
 	 */
-	protected void doAction(final String command, String buddieName) {
+	protected void doAction(final String command, final String buddieName) {
 		if ("talk".equals(command)) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
+			String buddy;
 			if (buddieName.indexOf(' ') > -1) {
-				buddieName = "'" + buddieName + "'";
+				buddy = "'" + buddieName + "'";
+			} else {
+				buddy = buddieName;
 			}
 
-			ui.setChatLine("/tell " + buddieName + " ");
+			ui.setChatLine("/tell " + buddy + " ");
 		} else if ("leave-message".equals(command)) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
+			String buddy;
 			if (buddieName.indexOf(' ') > -1) {
-				buddieName = "'" + buddieName + "'";
+				buddy = "'" + buddieName + "'";
+			} else {
+				buddy = buddieName;
 			}
 
-			ui.setChatLine("/msg postman tell " + buddieName + " ");
+			ui.setChatLine("/msg postman tell " + buddy + " ");
 		} else if ("where".equals(command)) {
 			final RPAction where = new RPAction();
 			where.put("type", "where");

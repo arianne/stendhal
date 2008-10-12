@@ -71,7 +71,7 @@ class Player2DView extends RPEntity2DView {
 		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
-		happySprite = store.getTile(gotHappySprite,IGameScreen.SIZE_UNIT_PIXELS,IGameScreen.SIZE_UNIT_PIXELS,IGameScreen.SIZE_UNIT_PIXELS,IGameScreen.SIZE_UNIT_PIXELS);
+		happySprite = store.getTile(gotHappySprite, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**

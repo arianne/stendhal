@@ -18,7 +18,7 @@ public class HappyAction implements ActionListener  {
 		CommandCenter.register(_HAPPY, new HappyAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		if (_HAPPY.equals(action.get(TYPE))) {
 			if (action.has(MESSAGE)) {
 				player.setHappyMessage(action.get(MESSAGE));

@@ -8,4 +8,5 @@
         <filter-data value="tiled/src"/>
         <filter-data value="tools"/>
     </filter>
+    <filter name="NonSrcDirs" enabled="true"/>
 </fileset-config>

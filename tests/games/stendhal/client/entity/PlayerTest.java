@@ -68,7 +68,7 @@ public class PlayerTest {
 		RPObject changes = new RPObject();
 		changes.put("happy", "I feel fine!");
 		assertFalse(barrack.isHappy());
-		barrack.onChangedAdded(player,changes);
+		barrack.onChangedAdded(player, changes);
 		assertTrue(barrack.isHappy());
 	}
 		
