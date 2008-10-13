@@ -31,13 +31,13 @@ class BuddyLabel extends JLabel {
 
 	public BuddyLabel(final String name) {
 		this();
+		setName(name);
 		setText(name);
 	}
 
 	public BuddyLabel(final String name, final boolean isOnline) {
-		this();
+		this(name);
 		setOnline(isOnline);
-		setText(name);
 	}
 
 	/**
@@ -50,6 +50,9 @@ class BuddyLabel extends JLabel {
 		this.setDisabledIcon(offlineIcon);
 		this.setForeground(Color.GREEN);
 		this.setSize(new Dimension(200, 30));
+		this.addMouseListener(new BuddyLabelMouseListener());
 	}
-
+	
+	
+	
 }

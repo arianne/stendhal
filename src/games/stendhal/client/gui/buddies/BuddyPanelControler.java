@@ -11,12 +11,14 @@ public class BuddyPanelControler implements BuddyChangeListener {
 	public BuddyPanelControler() {
 		buddyPanel = new BuddyPanel(WoodStyle.getInstance());
 		buddyPanel.setVisible(true);
+		
 		buddyPanel.setSize(100, 200);
 	}
 
 	public void buddyAdded(final String buddyName) {
 
 		buddyPanel.addBuddy(buddyName, false);
+		buddyPanel.validate();
 
 	}
 
