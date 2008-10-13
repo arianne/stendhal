@@ -1,6 +1,8 @@
 package games.stendhal.client.gui.buddies;
 
 
+import javax.swing.JMenuItem;
+
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
@@ -15,27 +17,27 @@ public class BuddyLabelPopMenu extends StyledJPopupMenu {
 			createOfflineMenu(buddyName);
 		}
 		
-		RemoveBuddyMenuItem removeBuddyMenuItem = new RemoveBuddyMenuItem(buddyName);
+		JMenuItem removeBuddyMenuItem = new JMenuItem("Remove");
 		this.add(removeBuddyMenuItem);
 		removeBuddyMenuItem.addActionListener(new RemovebuddyAction(buddyName));
 	}
 
 	private void createOfflineMenu(final String buddyName) {
-		LeaveMessageBuddyMenuItem leaveMessageBuddyMenuItem = new LeaveMessageBuddyMenuItem(buddyName);
+		JMenuItem leaveMessageBuddyMenuItem = new JMenuItem("Leave Message");
 		this.add(leaveMessageBuddyMenuItem);
 		leaveMessageBuddyMenuItem.addActionListener(new LeaveBuddyMessageAction(buddyName));
 		
 	}
 
 	private void createOnlineMenu(final String buddyName) {
-		TalkBuddyMenuItem talkBuddyMenuItem = new TalkBuddyMenuItem(buddyName);
+		JMenuItem talkBuddyMenuItem = new JMenuItem("Talk");
 		this.add(talkBuddyMenuItem);
 		talkBuddyMenuItem.addActionListener(new TalkBuddyAction(buddyName));
 		
 		
-		WhereBuddyMenuItem whereBuddyMenuItem = new WhereBuddyMenuItem(buddyName);
+		JMenuItem whereBuddyMenuItem = new JMenuItem("Where");
 		this.add(whereBuddyMenuItem);
-		whereBuddyMenuItem.addActionListener(new WhereBuddyMessageAction(buddyName));
+		whereBuddyMenuItem.addActionListener(new WhereBuddyAction(buddyName));
 		
 	}
 

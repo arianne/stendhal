@@ -5,11 +5,11 @@ import games.stendhal.client.actions.SlashActionRepository;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WhereBuddyMessageAction implements ActionListener {
+public class WhereBuddyAction implements ActionListener {
 
 	private final String buddyName;
 
-	public WhereBuddyMessageAction(final String buddyName) {
+	public WhereBuddyAction(final String buddyName) {
 		this.buddyName = buddyName;
 	}
 

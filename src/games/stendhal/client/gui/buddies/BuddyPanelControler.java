@@ -19,7 +19,7 @@ public class BuddyPanelControler implements BuddyChangeListener {
 
 		buddyPanel.addBuddy(buddyName, false);
 		buddyPanel.validate();
-
+	
 	}
 
 	public void buddyOffline(final String buddyName) {
