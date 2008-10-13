@@ -5,7 +5,7 @@ import games.stendhal.client.actions.SlashActionRepository;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WhereBuddyAction implements ActionListener {
+class WhereBuddyAction implements ActionListener {
 
 	private final String buddyName;
 

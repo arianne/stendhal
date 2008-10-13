@@ -5,7 +5,7 @@ import games.stendhal.client.gui.StendhalGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TalkBuddyAction implements ActionListener {
+class TalkBuddyAction implements ActionListener {
 	private final String buddyName;
 	public TalkBuddyAction(final String buddyName) {
 		if (buddyName.indexOf(' ') > -1) {

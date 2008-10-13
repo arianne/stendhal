@@ -7,7 +7,7 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
 @SuppressWarnings("serial")
-public class BuddyLabelPopMenu extends StyledJPopupMenu {
+class BuddyLabelPopMenu extends StyledJPopupMenu {
 
 	public BuddyLabelPopMenu(final Style style, final String buddyName, final boolean online) {
 		super(style, buddyName);
