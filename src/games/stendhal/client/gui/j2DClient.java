@@ -26,8 +26,6 @@ import games.stendhal.client.events.PositionChangeMulticaster;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.chatlog.StandardEventLine;
-import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
@@ -341,8 +339,7 @@ public class j2DClient extends StendhalUI {
 		// I hope that it discourages its use without the risks of unupdateable
 		// clients being distributed
 		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
-			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE,
-					NotificationType.NEGATIVE);
+			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + stendhal.SCREEN_SIZE), NotificationType.NEGATIVE));
 		}
 
 		mainFrame.getMainFrame().setLocation(new Point(20, 20));
@@ -847,30 +844,6 @@ public class j2DClient extends StendhalUI {
 	//
 	// StendhalUI
 	//
-
-	/**
-	 * Add an event line.
-	 *
-	 */
-	public void addEventLine(final String text) {
-		addEventLine(new StandardEventLine(text));
-	}
-
-	/**
-	 * Add an event line.
-	 *
-	 */
-	public void addEventLine(final String header, final String text) {
-		addEventLine(new StandardHeaderedEventLine(header, text));
-	}
-
-	/**
-	 * Add an event line.
-	 *
-	 */
-	public void addEventLine(final String text, final NotificationType type) {
-		addEventLine(new HeaderLessEventLine(text, type));
-	}
 
 	/**
 	 * Add an event line.
