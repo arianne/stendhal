@@ -12,6 +12,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.StendhalGUI;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.common.NotificationType;
@@ -338,31 +339,22 @@ public class Stendhal2D extends StendhalGUI {
 	// StendhalUI
 	//
 
-	/**
-	 * Add an event line.
-	 * 
-	 */
-	@Override
-	public void addEventLine(final String text) {
-		addEventLine("", text, NotificationType.NORMAL);
-	}
+
 
 	/**
 	 * Add an event line.
 	 * 
 	 */
-	@Override
 	public void addEventLine(final String header, final String text) {
-		addEventLine(header, text, NotificationType.NORMAL);
+		addEventLine(new EventLine(header, text, NotificationType.NORMAL));
 	}
 
 	/**
 	 * Add an event line.
 	 * 
 	 */
-	@Override
 	public void addEventLine(final String text, final NotificationType type) {
-		addEventLine("", text, type);
+		addEventLine(new EventLine("", text, type));
 	}
 
 	/**
@@ -370,9 +362,8 @@ public class Stendhal2D extends StendhalGUI {
 	 * 
 	 */
 	@Override
-	public void addEventLine(final String header, final String text,
-			final NotificationType type) {
-		gameLog.addLine(header, text, type);
+	public void addEventLine(EventLine line) {
+		gameLog.addLine(line.getHeader(), line.getText(), line.getType());
 	}
 
 	/**

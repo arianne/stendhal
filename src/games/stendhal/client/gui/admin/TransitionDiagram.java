@@ -2,6 +2,7 @@ package games.stendhal.client.gui.admin;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Dimension;
@@ -75,9 +76,9 @@ public class TransitionDiagram {
 			dat.deleteOnExit();
 		} catch (final Exception e) {
 			logger.error("Failed creating graph: ", e);
-			StendhalUI.get().addEventLine(
+			StendhalUI.get().addEventLine(new HeaderLessEventLine(
 					"Failed creating graph (Is graphviz installed and on your system search path?): "
-							+ e.getMessage(), NotificationType.ERROR);
+							+ e.getMessage(), NotificationType.ERROR));
 		}
 	}
 

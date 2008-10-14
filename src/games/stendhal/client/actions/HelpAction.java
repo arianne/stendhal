@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
 /**
@@ -46,7 +47,7 @@ class HelpAction implements SlashAction {
 		};
 
 		for (final String line : lines) {
-			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);
+			StendhalUI.get().addEventLine(new HeaderLessEventLine(line, NotificationType.CLIENT));
 		}
 
 		return true;

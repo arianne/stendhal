@@ -15,6 +15,7 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -684,8 +685,8 @@ public class StendhalClient extends ClientFramework {
 			StendhalUI.get().setOffline(false);
 
 			logger.debug("Synced with server state.");
-			StendhalUI.get().addEventLine("Synchronized",
-					NotificationType.CLIENT);
+			StendhalUI.get().addEventLine(new HeaderLessEventLine("Synchronized",
+					NotificationType.CLIENT));
 		}
 
 		private int times;
@@ -696,8 +697,8 @@ public class StendhalClient extends ClientFramework {
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...",
-						NotificationType.CLIENT);
+				StendhalUI.get().addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
+						NotificationType.CLIENT));
 			}
 		}
 

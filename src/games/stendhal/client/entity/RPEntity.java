@@ -17,6 +17,9 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chatlog.StandardEventLine;
+import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
@@ -393,7 +396,7 @@ public abstract class RPEntity extends ActiveEntity {
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(final String text) {
-		StendhalUI.get().addEventLine(getTitle(), text);
+		StendhalUI.get().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
 	// When this entity attacks target.
@@ -445,11 +448,11 @@ public abstract class RPEntity extends ActiveEntity {
 				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			StendhalUI.get().addEventLine(
+			StendhalUI.get().addEventLine(new HeaderLessEventLine(
 					getTitle() + " suffers "
 							+ Grammar.quantityplnoun(damage, "point")
 							+ " of damage from " + attacker.getTitle(),
-					NotificationType.NEGATIVE);
+					NotificationType.NEGATIVE));
 		}
 	}
 
@@ -498,11 +501,10 @@ public abstract class RPEntity extends ActiveEntity {
 	public final void onPoisoned(final int amount) {
 		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
 			poisoned = true;
-
-			StendhalUI.get().addEventLine(
+			StendhalUI.get().addEventLine(new HeaderLessEventLine(
 					getTitle() + " is poisoned, losing "
 							+ Grammar.quantityplnoun(amount, "health point")
-							+ ".", NotificationType.NEGATIVE);
+							+ ".", NotificationType.NEGATIVE));
 		}
 	}
 
@@ -521,7 +523,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		StendhalClient.get().generateWhoPlayers(text);
-		StendhalUI.get().addEventLine(text, type);
+		StendhalUI.get().addEventLine(new HeaderLessEventLine(text, type));
 
 		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
 				text.replace("|", ""), type, false);
@@ -1074,23 +1076,21 @@ public abstract class RPEntity extends ActiveEntity {
 				if (amount > 0) {
 					addTextIndicator("+" + amount,
 							NotificationType.SIGNIFICANT_POSITIVE);
-
-					StendhalUI.get().addEventLine(
+					StendhalUI.get().addEventLine(new HeaderLessEventLine(
 							getTitle()
 									+ " earns "
 									+ Grammar.quantityplnoun(amount,
 											"experience point") + ".",
-							NotificationType.SIGNIFICANT_POSITIVE);
+							NotificationType.SIGNIFICANT_POSITIVE));
 				} else if (amount < 0) {
 					addTextIndicator("" + amount,
 							NotificationType.SIGNIFICANT_NEGATIVE);
-
-					StendhalUI.get().addEventLine(
+					StendhalUI.get().addEventLine(new HeaderLessEventLine(
 							getTitle()
 									+ " loses "
 									+ Grammar.quantityplnoun(-amount,
 											"experience point") + ".",
-							NotificationType.SIGNIFICANT_NEGATIVE);
+							NotificationType.SIGNIFICANT_NEGATIVE));
 				}
 			}
 		}
@@ -1098,9 +1098,8 @@ public abstract class RPEntity extends ActiveEntity {
 		if (changes.has("level") && object.has("level")) {
 			if (User.squaredDistanceTo(x, y) < 15 * 15) {
 				final String text = getTitle() + " reaches Level " + getLevel();
-
-				StendhalUI.get().addEventLine(text,
-						NotificationType.SIGNIFICANT_POSITIVE);
+				StendhalUI.get().addEventLine(new HeaderLessEventLine(text,
+						NotificationType.SIGNIFICANT_POSITIVE));
 
 				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
 						text, NotificationType.SIGNIFICANT_POSITIVE, false);
@@ -1114,8 +1113,8 @@ public abstract class RPEntity extends ActiveEntity {
 			for (Entity ent : attackers) {
 					attackerNames.add(ent.getTitle());
 			}
-			StendhalUI.get().addEventLine(
-					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames));
+			StendhalUI.get().addEventLine(new StandardEventLine(
+					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames)));
 		}
 	}
 

@@ -1,5 +1,6 @@
 package games.stendhal.client.gui;
 
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -225,6 +226,11 @@ public class KTextEdit extends JPanel {
 
 	public boolean isAutoScrollEnabled() {
 		return autoScrollEnabled;
+	}
+
+	public void addLine(EventLine line) {
+		this.addLine(line.getHeader(), line.getText(), line.getType());
+		
 	}
 
 	

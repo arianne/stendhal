@@ -3,6 +3,7 @@ package games.stendhal.client.actions;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Grammar;
@@ -32,7 +33,7 @@ class DropAction implements SlashAction {
     		try {
     			quantity = Integer.parseInt(params[0]);
     		} catch (final NumberFormatException ex) {
-    			StendhalUI.get().addEventLine("Invalid quantity: " + params[0]);
+    			StendhalUI.get().addEventLine(new StandardEventLine("Invalid quantity: " + params[0]));
     			return true;
     		}
 
@@ -67,8 +68,7 @@ class DropAction implements SlashAction {
 				return true;
 			}
 		}
-
-		StendhalUI.get().addEventLine("You don't have any " + singularItemName);
+		StendhalUI.get().addEventLine(new StandardEventLine("You don't have any " + singularItemName));
 		return true;
 	}
 

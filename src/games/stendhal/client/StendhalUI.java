@@ -7,7 +7,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.common.NotificationType;
+import games.stendhal.client.gui.chatlog.EventLine;
 
 /**
  * A base class for the stendhal client UI (not GUI).
@@ -42,36 +42,10 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * @param text to be printed 
+	 * @param line TODO
 	 *
 	 */
-	public abstract void addEventLine(String text);
-
-	/**
-	 * Add an event line.
-	 * @param header 
-	 * @param text to be printed
-	 *
-	 */
-	public abstract void addEventLine(String header, String text);
-
-	/**
-	 * Add an event line.
-	 * @param text to be printed
-	 * @param type specifies if it is normal positive or negative 
-	 *
-	 */
-	public abstract void addEventLine(String text, NotificationType type);
-
-	/**
-	 * Add an event line.
-	 * @param header 
-	 * @param text to be printed
-	 * @param type specifies if it is normal positive or negative 
-	 *
-	 */
-	public abstract void addEventLine(String header, String text,
-			NotificationType type);
+	public abstract void addEventLine(EventLine line);
 
 	/**
 	 * Adds a Swing component to the view.

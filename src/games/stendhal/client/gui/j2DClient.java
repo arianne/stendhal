@@ -23,6 +23,11 @@ import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
+import games.stendhal.client.gui.buddies.BuddyPanelControler;
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chatlog.StandardEventLine;
+import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
@@ -59,6 +64,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -390,15 +396,25 @@ public class j2DClient extends StendhalUI {
 
 		addWindow(buddies);
 		settings.add(buddies, "Enable Buddies", gameScreen);
-
+		createAndShowNewbuddy(client);
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 
 		directionRelease = null;
+	
 
 	} // constructor
+
+	private void createAndShowNewbuddy(final StendhalClient client) {
+		BuddyPanelControler buddy = new BuddyPanelControler();
+		client.addBuddyChangeListener(buddy);
+		JFrame secondary = new JFrame("nudo");
+		secondary.setSize(100, 100);
+		secondary.setVisible(true);
+		secondary.add(buddy.getComponent());
+	}
 
 	public void initialize() {
 
@@ -836,27 +852,24 @@ public class j2DClient extends StendhalUI {
 	 * Add an event line.
 	 *
 	 */
-	@Override
 	public void addEventLine(final String text) {
-		addEventLine("", text, NotificationType.NORMAL);
+		addEventLine(new StandardEventLine(text));
 	}
 
 	/**
 	 * Add an event line.
 	 *
 	 */
-	@Override
 	public void addEventLine(final String header, final String text) {
-		addEventLine(header, text, NotificationType.NORMAL);
+		addEventLine(new StandardHeaderedEventLine(header, text));
 	}
 
 	/**
 	 * Add an event line.
 	 *
 	 */
-	@Override
 	public void addEventLine(final String text, final NotificationType type) {
-		addEventLine("", text, type);
+		addEventLine(new HeaderLessEventLine(text, type));
 	}
 
 	/**
@@ -864,9 +877,8 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	@Override
-	public void addEventLine(final String header, final String text,
-			final NotificationType type) {
-		gameLog.addLine(header, text, type);
+	public void addEventLine(final EventLine line) {
+		gameLog.addLine(line);
 	}
 
 	/**
