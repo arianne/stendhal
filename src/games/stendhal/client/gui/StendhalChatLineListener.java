@@ -4,57 +4,85 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.scripting.ChatLineParser;
 
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Vector;
 
-import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
 
-public class StendhalChatLineListener implements ActionListener, KeyListener {
+public class StendhalChatLineListener implements ActionListener {
 
+	KeyAdapter keylistener = new KeyAdapter() {
+	public void keyPressed(final KeyEvent e) {
+		final int keypressed = e.getKeyCode();
+
+		if (e.isShiftDown()) {
+			if (keypressed == KeyEvent.VK_UP) {
+				if (actual > 0) {
+					chatController.setChatLine(lines.get(actual - 1));
+					actual--;
+				}
+			} else if (keypressed == KeyEvent.VK_DOWN) {
+				if (actual < lines.size()) {
+					chatController.setChatLine(lines.get(actual));
+					actual++;
+				}
+			}
+		}
+
+		if (keypressed == KeyEvent.VK_TAB) {
+			final String[] strwords = chatController.getPlayerChatText().getText().split("\\s+");
+
+			for (int i = 0; i < playersonline.size(); i++) {
+				if (playersonline.elementAt(i).startsWith(
+						strwords[strwords.length - 1])) {
+					String output = "";
+					for (int j = 0; j < strwords.length - 1; j++) {
+						output = output + strwords[j] + " ";
+					}
+					output = output + playersonline.elementAt(i) + " ";
+
+					chatController.setChatLine(output);
+				}
+			}
+		}
+	}
+
+	};
+	
 	private static final String CHAT_LOG_FILE = System.getProperty("user.home")
 			+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalChatLineListener.class);
 
-	private final JTextField playerChatText;
+	//private final JTextField playerChatText;
 
+	
 	private final LinkedList<String> lines;
 	private final Vector<String> playersonline;
 
 	private int actual;
 
-	@SuppressWarnings("unchecked")
+	private ChatTextController chatController;
+
 	public StendhalChatLineListener(final StendhalClient client,
-			final JTextField playerChatText) {
+			final ChatTextController chatText) {
 		super();
-		this.playerChatText = playerChatText;
+		this.chatController = chatText;
+		//this.playerChatText = chatText.getPlayerChatText();
 		lines = new LinkedList<String>();
-
-		/* Enable Keyboard TAB events */
-		final KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-
-		kfm.setDefaultFocusTraversalKeys(
-				KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-				Collections.EMPTY_SET);
-		kfm.setDefaultFocusTraversalKeys(
-				KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
-				Collections.EMPTY_SET);
 
 		client.whoplayers = new Vector<String>();
 		playersonline = client.whoplayers;
@@ -107,51 +135,10 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		}
 	}
 
-	public void keyPressed(final KeyEvent e) {
-		final int keypressed = e.getKeyCode();
-
-		if (e.isShiftDown()) {
-			if (keypressed == KeyEvent.VK_UP) {
-				if (actual > 0) {
-					playerChatText.setText(lines.get(actual - 1));
-					actual--;
-				}
-			} else if (keypressed == KeyEvent.VK_DOWN) {
-				if (actual < lines.size()) {
-					playerChatText.setText(lines.get(actual));
-					actual++;
-				}
-			}
-		}
-
-		if (keypressed == KeyEvent.VK_TAB) {
-			final String[] strwords = playerChatText.getText().split("\\s+");
-
-			for (int i = 0; i < playersonline.size(); i++) {
-				if (playersonline.elementAt(i).startsWith(
-						strwords[strwords.length - 1])) {
-					String output = "";
-					for (int j = 0; j < strwords.length - 1; j++) {
-						output = output + strwords[j] + " ";
-					}
-					output = output + playersonline.elementAt(i) + " ";
-
-					playerChatText.setText(output);
-				}
-			}
-		}
-	}
-
-	public void keyReleased(final KeyEvent e) {
-		// specified by interface but not used here
-	}
-
-	public void keyTyped(final KeyEvent e) {
-		// specified by interface but not used here
-	}
+	
 
 	public void actionPerformed(final ActionEvent e) {
-		final String text = playerChatText.getText();
+		final String text = chatController.getPlayerChatText().getText();
 
 		logger.debug("Player wrote: " + text);
 
@@ -160,11 +147,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			actual = lines.size();
 
 			if (lines.size() > 50) {
-				lines.remove(0);
+				lines.removeFirst();
 				actual--;
 			}
 
-			playerChatText.setText("");
+			chatController.setChatLine("");
 		}
 	}
 }

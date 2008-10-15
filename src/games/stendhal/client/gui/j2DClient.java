@@ -66,7 +66,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 
@@ -108,9 +107,10 @@ public class j2DClient extends StendhalUI {
 
 	private boolean gameRunning;
 
-	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
-	private JTextField playerChatText;
 
+
+	ChatTextController chatText = new ChatTextController();
+	
 	private boolean ctrlDown;
 
 	private boolean shiftDown;
@@ -208,24 +208,20 @@ public class j2DClient extends StendhalUI {
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
 
-		/*
-		 * Chat input field
-		 */
-		playerChatText = new JTextField("");
+		
 
-		chatListener = new StendhalChatLineListener(
-				client, playerChatText);
-		playerChatText.addActionListener(chatListener);
-		playerChatText.addKeyListener(chatListener);
+		chatListener = new StendhalChatLineListener(client, chatText);
+		chatText.getPlayerChatText().addActionListener(chatListener);
+		chatText.getPlayerChatText().addKeyListener(chatListener.keylistener);
 
-		content.add(playerChatText);
+		content.add(chatText.getPlayerChatText());
 
 		/*
 		 * Always redirect focus to chat field
 		 */
 		canvas.addFocusListener(new FocusListener() {
 			public void focusGained(final FocusEvent e) {
-				playerChatText.requestFocus();
+				chatText.getPlayerChatText().requestFocus();
 			}
 
 			public void focusLost(final FocusEvent e) {
@@ -238,17 +234,17 @@ public class j2DClient extends StendhalUI {
 		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent ev) {
-				playerChatText.requestFocus();
+				chatText.getPlayerChatText().requestFocus();
 			}
 
 			@Override
 			public void windowActivated(final WindowEvent ev) {
-				playerChatText.requestFocus();
+				chatText.getPlayerChatText().requestFocus();
 			}
 
 			@Override
 			public void windowGainedFocus(final WindowEvent ev) {
-				playerChatText.requestFocus();
+				chatText.getPlayerChatText().requestFocus();
 			}
 
 			@Override
@@ -296,7 +292,7 @@ public class j2DClient extends StendhalUI {
 
 			dialog.addFocusListener(new FocusListener() {
 				public void focusGained(final FocusEvent e) {
-					playerChatText.requestFocus();
+					chatText.getPlayerChatText().requestFocus();
 				}
 
 				public void focusLost(final FocusEvent e) {
@@ -331,8 +327,8 @@ public class j2DClient extends StendhalUI {
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
-		playerChatText.addKeyListener(keyListener);
-		canvas.addKeyListener(keyListener);
+		chatText.getPlayerChatText().addKeyListener(keyListener);
+		//canvas.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
@@ -920,7 +916,8 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public void setChatLine(final String text) {
-		playerChatText.setText(text);
+		chatText.setChatLine(text);
+		
 	}
 
 	/**
