@@ -1,19 +1,21 @@
 package games.stendhal.client.gui;
 
 
+import java.awt.Component;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 
 import javax.swing.JTextField;
 
 public class ChatTextController {
-	JTextField playerChatText = new JTextField("");
+	private JTextField playerChatText = new JTextField("");
 	public ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
 		playerChatText.addKeyListener(new ChatTextKeyListener());
 		
 	}
 	
-	public JTextField getPlayerChatText() {
+	public Component getPlayerChatText() {
 		
 		return playerChatText;
 	}
@@ -28,5 +30,14 @@ public class ChatTextController {
 
 		
 		
+	}
+
+	public void addActionListener(final ActionListener l) {
+		playerChatText.addActionListener(l);
+		
+	}
+
+	public String getText() {
+		return playerChatText.getText();
 	}
 }

@@ -87,8 +87,7 @@ public class StendhalClient extends ClientFramework {
 
 	private final UserContext userContext;
 
-	public Vector<String> whoplayers;
-
+	public Vector<String> whoplayers = new Vector<String>();
 	/**
 	 * The amount of content yet to be transfered.
 	 */

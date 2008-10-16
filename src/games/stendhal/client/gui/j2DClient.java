@@ -85,11 +85,7 @@ public class j2DClient extends StendhalUI {
 	/** height of the game screen (without the chat line). */
 	public static int SCREEN_HEIGHT;
 
-	static {
-		final String[] dim = stendhal.SCREEN_SIZE.split("x");
-		SCREEN_WIDTH = Integer.parseInt(dim[0]);
-		SCREEN_HEIGHT = Integer.parseInt(dim[1]);
-	}
+	
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
@@ -160,12 +156,13 @@ public class j2DClient extends StendhalUI {
 
 	public j2DClient(final StendhalClient client, final IGameScreen gameScreen) {
 		super(client);
-
+		
+			final String[] dim = stendhal.SCREEN_SIZE.split("x");
+			SCREEN_WIDTH = Integer.parseInt(dim[0]);
+			SCREEN_HEIGHT = Integer.parseInt(dim[1]);
+		
 		setDefault(this);
 		mainFrame = new MainFrame();
-
-
-
 
 		positionChangeListener = new PositionChangeMulticaster();
 
@@ -210,10 +207,8 @@ public class j2DClient extends StendhalUI {
 
 		
 
-		chatListener = new StendhalChatLineListener(client, chatText);
-		chatText.getPlayerChatText().addActionListener(chatListener);
-		chatText.getPlayerChatText().addKeyListener(chatListener.keylistener);
-
+		chatListener = new StendhalChatLineListener(chatText, client.whoplayers);
+	
 		content.add(chatText.getPlayerChatText());
 
 		/*
