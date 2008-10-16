@@ -23,7 +23,7 @@
     <description>You see some cheese.  Eat it and see what happens.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="20"/>
-      <frequency value="20"/>
+      <frequency value="15"/>
       <quantity value="1"/>
       <regen value="1"/>
     </attributes>
@@ -510,7 +510,7 @@
     <description>You see a piece of meat.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="60"/>
-      <frequency value="30"/>
+      <frequency value="20"/>
       <quantity value="1"/>
       <regen value="5"/>
     </attributes>
@@ -564,7 +564,7 @@
     <description>You see a juicy ham.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="80"/>
-      <frequency value="30"/>
+      <frequency value="20"/>
       <quantity value="1"/>
       <regen value="6"/>
     </attributes>
@@ -618,7 +618,7 @@
     <description>You see a ham and cheese sandwich.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="120"/>
-      <frequency value="30"/>
+      <frequency value="20"/>
       <quantity value="1"/>
       <regen value="10"/>
     </attributes>
@@ -636,7 +636,7 @@
     <description>You see a meat and vegetable pie.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="150"/>
-      <frequency value="30"/>
+      <frequency value="25"/>
       <quantity value="1"/>
       <regen value="12"/>
     </attributes>
@@ -654,7 +654,7 @@
     <description>You see a fish and leek pie. It's not too stodgy so you can eat it faster than a meat pie.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="160"/>
-      <frequency value="20"/>
+      <frequency value="18"/>
       <quantity value="1"/>
       <regen value="10"/>
     </attributes>
@@ -673,7 +673,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="250"/>
-      <frequency value="15"/>
+      <frequency value="12"/>
       <quantity value="1"/>
       <regen value="50"/>
     </attributes>

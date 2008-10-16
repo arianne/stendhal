@@ -257,7 +257,7 @@
     <description>You see a bowl of soup. Its contents fill you up.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="2500"/>
-      <frequency value="10"/>
+      <frequency value="8"/>
       <quantity value="1"/>
       <regen value="25"/>
       <persistent value="1"/>
