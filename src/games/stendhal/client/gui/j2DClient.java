@@ -55,6 +55,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -207,8 +208,11 @@ public class j2DClient extends StendhalUI {
 
 		
 
-		chatListener = new StendhalChatLineListener(chatText, client.whoplayers);
-	
+		chatListener = new StendhalChatLineListener(chatText);
+		
+		chatText.addActionListener(chatListener);
+		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.whoplayers);
+		chatText.addKeyListener(tabcompletion);
 		content.add(chatText.getPlayerChatText());
 
 		/*
@@ -322,7 +326,7 @@ public class j2DClient extends StendhalUI {
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
-		chatText.getPlayerChatText().addKeyListener(keyListener);
+		chatText.addKeyListener(keyListener);
 		//canvas.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
@@ -409,7 +413,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	public void cleanup() {
-		chatListener.save();
+		chatText.saveCache();
 		logger.debug("Exit");
 		System.exit(0);
 	}
