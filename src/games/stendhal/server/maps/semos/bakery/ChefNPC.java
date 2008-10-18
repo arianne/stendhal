@@ -2,6 +2,8 @@ package games.stendhal.server.maps.semos.bakery;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
@@ -25,7 +27,7 @@ public class ChefNPC extends SpeakerNPCFactory {
 		npc.addHelp("If you want to earn some money, you could do me a #favor and help me with the #pizza deliveries. My daughter #Sally used to do it, but she's camping at the moment.");
 		npc.addReply("bread", "Oh, Erna handles that side of the business; just go over and talk to her.");
 		npc.addReply("cheese",
-		        "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
+		        "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to? If you #'sell cheese' I'd be happy to buy some from you!");
 		npc.addReply("ham",
 		        "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
 		npc.addReply("Sally",
@@ -33,6 +35,11 @@ public class ChefNPC extends SpeakerNPCFactory {
 		npc.addReply("pizza", "I need someone who helps me delivering pizza. Maybe you could do that #task.");
 		npc.addReply(Arrays.asList("sandwich", "sandwiches"),
 		        "My sandwiches are tasty and nutritious. If you want one, just tell me to #'make 1 sandwich'.");
+		npc.addOffer("My #pizza needs cheese and we have no supplies. I'll buy cheese if you will #sell.");
+		final Map<String, Integer> offers = new TreeMap<String, Integer>();
+		offers.put("cheese", 5);
+		new BuyerAdder().add(npc, new BuyerBehaviour(offers), false);
+
 		npc.addGoodbye();
 
 		// Leander makes sandwiches if you bring him bread, cheese, and ham.
