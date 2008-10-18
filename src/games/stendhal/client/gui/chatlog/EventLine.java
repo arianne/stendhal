@@ -7,7 +7,7 @@ public class EventLine {
 	private String text;
 	private NotificationType type;
 
-	public EventLine(String header, String text, NotificationType type) {
+	public EventLine(final String header, final String text, final NotificationType type) {
 		this.header = header;
 		this.text = text;
 		this.type = type;
@@ -17,7 +17,7 @@ public class EventLine {
 		return header;
 	}
 
-	public void setHeader(String header) {
+	public void setHeader(final String header) {
 		this.header = header;
 	}
 
@@ -25,7 +25,7 @@ public class EventLine {
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(final String text) {
 		this.text = text;
 	}
 
@@ -33,7 +33,7 @@ public class EventLine {
 		return type;
 	}
 
-	public void setType(NotificationType type) {
+	public void setType(final NotificationType type) {
 		this.type = type;
 	}
 }
