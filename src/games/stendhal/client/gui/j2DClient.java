@@ -388,7 +388,7 @@ public class j2DClient extends StendhalUI {
 
 		addWindow(buddies);
 		settings.add(buddies, "Enable Buddies", gameScreen);
-		createAndShowNewbuddy(client);
+	//	createAndShowNewbuddy(client);
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
