@@ -2,8 +2,10 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.scripting.ChatLineParser;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -19,6 +21,7 @@ public class ChatTextController {
 	public ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
 		playerChatText.addKeyListener(new ChatTextKeyListener());
+		addActionListener(new ParserHandler());
 		cache = new ChatCache(CHAT_LOG_FILE);
 		cache.loadChatCache();
 		setCache(cache);
@@ -58,7 +61,18 @@ public class ChatTextController {
 		
 		
 	}
+	class ParserHandler implements ActionListener {
 
+		public void actionPerformed(final ActionEvent e) {
+			final String text = e.getActionCommand();
+
+			if (ChatLineParser.parseAndHandle(text)) {
+				clearLine();
+
+			}
+
+		}
+	}
 	public void addActionListener(final ActionListener l) {
 		playerChatText.addActionListener(l);
 		

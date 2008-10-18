@@ -71,7 +71,7 @@ public class ChatCache {
 			ps.close();
 			fo.close();
 		} catch (final Exception ex) {
-			StendhalChatLineListener.logger.error(ex, ex);
+			logger.error(ex, ex);
 		}
 	}
 

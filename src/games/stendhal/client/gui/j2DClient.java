@@ -139,7 +139,6 @@ public class j2DClient extends StendhalUI {
 
 
 	private PositionChangeMulticaster positionChangeListener;
-	private StendhalChatLineListener chatListener;
 	/**
 	 * Delayed direction release holder.
 	 */
@@ -158,9 +157,9 @@ public class j2DClient extends StendhalUI {
 	public j2DClient(final StendhalClient client, final IGameScreen gameScreen) {
 		super(client);
 		
-			final String[] dim = stendhal.SCREEN_SIZE.split("x");
-			SCREEN_WIDTH = Integer.parseInt(dim[0]);
-			SCREEN_HEIGHT = Integer.parseInt(dim[1]);
+		final String[] dim = stendhal.SCREEN_SIZE.split("x");
+		SCREEN_WIDTH = Integer.parseInt(dim[0]);
+		SCREEN_HEIGHT = Integer.parseInt(dim[1]);
 		
 		setDefault(this);
 		mainFrame = new MainFrame();
@@ -205,12 +204,6 @@ public class j2DClient extends StendhalUI {
 
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
-
-		
-
-		chatListener = new StendhalChatLineListener(chatText);
-		
-		chatText.addActionListener(chatListener);
 		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.whoplayers);
 		chatText.addKeyListener(tabcompletion);
 		content.add(chatText.getPlayerChatText());
