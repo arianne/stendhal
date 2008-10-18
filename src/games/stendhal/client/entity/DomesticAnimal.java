@@ -65,19 +65,11 @@ public abstract class DomesticAnimal extends RPEntity {
 	 *            The idea, or <code>null</code>.
 	 */
 	protected void onIdea(final String idea) {
-		if (idea == null) {
-			// No "idea" - Do nothing
-		} else if ("eat".equals(idea)) {
+		if ("eat".equals(idea)) {
 			probableChat(15);
-		} else if ("food".equals(idea)) {
+		} else if ("food".equals(idea) || "walk".equals(idea) || "follow".equals(idea)) {
 			probableChat(20);
-		} else if ("walk".equals(idea)) {
-			probableChat(20);
-		} else if ("follow".equals(idea)) {
-			probableChat(20);
-		} else if ("stop".equals(idea)) {
-			// Do nothing
-		}
+		} 
 	}
 
 	protected abstract void probableChat(final int chance);
