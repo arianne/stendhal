@@ -386,9 +386,7 @@ public class CreateAccountDialog extends JDialog {
 						"Bad Password", JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE, null, null, 1);
 
-				if (i == 0) {
-					// yes
-				} else {
+				if (i == JOptionPane.NO_OPTION) {
 					return false;
 				}
 			} else {
