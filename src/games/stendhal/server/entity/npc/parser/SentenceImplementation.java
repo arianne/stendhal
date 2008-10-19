@@ -244,9 +244,8 @@ public final class SentenceImplementation extends Sentence {
             verb2.mergeLeft(verb1, false);
             expressions.remove(verb1);
             sentenceType = SentenceType.QUESTION;
-        }
-        // Does the Sentence match "do you have OBJ for me?"?
-        else if (matchesNormalized("you have OBJ for me")) {
+        } else if (matchesNormalized("you have OBJ for me")) {
+        	// the Sentence matches "do you have OBJ for me?"?
             // remove "you"
             expressions.remove(subject1);
             // remove "for"
@@ -256,9 +255,9 @@ public final class SentenceImplementation extends Sentence {
             // replace "have" by "buy"
             verb1.setNormalized("buy");
             sentenceType = SentenceType.IMPERATIVE;
-        }
-        // "[you] give me(i)" -> "[I] buy"
-        else if (isYouGiveMe(subject1, verb1, subject2)) {
+        } else if (isYouGiveMe(subject1, verb1, subject2)) {
+        	// the sentence matches "[you] give me(i)" -> "[I] buy"
+        	
             // remove the subjects and replace the verb with "buy" as first word
             // remove "you"
             expressions.remove(subject1);

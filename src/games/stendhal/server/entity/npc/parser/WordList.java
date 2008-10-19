@@ -260,24 +260,23 @@ public final class WordList {
 
             final String normalized = entry.getNormalized();
 
-            // Type identifiers are always upper case, so a word in lower case
-            // must be a plural.
+           
             if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
+            	 // Type identifiers are always upper case, so a word in lower case
+                // must be a plural.
                 entry.setType(new ExpressionType(ExpressionType.OBJECT));
                 entry.setPlurSing(trimWord(entry.getTypeString()));
-            }
-            // complete missing plural expressions using the Grammar.plural()
-            // function
-            else if ((entry.getPlurSing() == null) && entry.getType().isObject()) {
+            } else if ((entry.getPlurSing() == null) && entry.getType().isObject()) {
+            	  // complete missing plural expressions using the Grammar.plural()
+                // function
                 final String plural = Grammar.plural(normalized);
 
                 // only store single word plurals
                 if (plural.indexOf(' ') == -1) {
                     entry.setPlurSing(plural);
                 }
-            }
-            // check plural strings using the Grammar.plural() function
-            else if (entry.getPlurSing() != null) {
+            } else if (entry.getPlurSing() != null) {
+            	// check plural strings using the Grammar.plural() function
                 if (!entry.getType().isPronoun() && !normalized.equals("is")) {
                     String plural = Grammar.plural(key);
 
@@ -363,31 +362,31 @@ public final class WordList {
      * @param word
      * @return the trimmed word
      */
-    public static String trimWord(String word) {
-        word = word.toLowerCase();
+    public static String trimWord(final String word) {
+        String tempword = word.toLowerCase();
 
         // Currently we only need to trim "'" characters.
-        while (word.length() > 0) {
-            final char c = word.charAt(0);
+        while (tempword.length() > 0) {
+            final char c = tempword.charAt(0);
 
             if (c == '\'') {
-                word = word.substring(1);
+            	tempword = tempword.substring(1);
             } else {
                 break;
             }
         }
 
-        while (word.length() > 0) {
-            final char c = word.charAt(word.length() - 1);
+        while (tempword.length() > 0) {
+            final char c = tempword.charAt(tempword.length() - 1);
 
             if (c == '\'') {
-                word = word.substring(0, word.length() - 1);
+            	tempword = tempword.substring(0, tempword.length() - 1);
             } else {
                 break;
             }
         }
 
-        return word;
+        return tempword;
     }
 
     /**
@@ -451,20 +450,20 @@ public final class WordList {
     /**
      * Try to normalize the given verb.
      *
-     * @param word
+     * @param trimmedWord
      * @return WordEntry
      */
-    WordEntry normalizeVerb(String word) {
-        word = trimWord(word);
+    WordEntry normalizeVerb(final String word) {
+        String trimmedWord = trimWord(word);
 
-        final String normalized = Grammar.normalizeRegularVerb(word);
+        final String normalized = Grammar.normalizeRegularVerb(trimmedWord);
 
         if (normalized != null) {
             WordEntry entry = words.get(normalized);
 
             // try and re-append "e" if it was removed by
             // normalizeRegularVerb()
-            if ((entry == null) && word.endsWith("e") && !normalized.endsWith("e")) {
+            if ((entry == null) && trimmedWord.endsWith("e") && !normalized.endsWith("e")) {
                 entry = words.get(normalized + "e");
             }
 
@@ -480,10 +479,8 @@ public final class WordList {
      * @param word
      * @return WordEntry
      */
-    WordEntry normalizeAdjective(String word) {
-        word = trimWord(word);
-
-        final String normalized = Grammar.normalizeDerivedAdjective(word);
+    WordEntry normalizeAdjective(final String word) {
+    	 final String normalized = Grammar.normalizeDerivedAdjective(trimWord(word));
 
         if (normalized != null) {
             final WordEntry entry = words.get(normalized);

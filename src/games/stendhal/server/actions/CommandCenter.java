@@ -46,9 +46,8 @@ public class CommandCenter {
 		final ActionListener command = getActionsMap().putIfAbsent(action, actionClass);
 
 		//TODO mf - register slash commands as verbs in WordList
-		if (command == null) {
-//			WordList.getInstance().registerVerb(action);
-		} else {
+		//		WordList.getInstance().registerVerb(action);
+		if (command != null) {
 			logger.error("not registering " + command.getClass()
 					+ ". it has the same handler: " + action + " as  "
 					+ CommandCenter.getAction(action).getClass());

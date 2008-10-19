@@ -55,50 +55,57 @@ public class OutfitStore {
 	 * @param code
 	 *            The outfit code.
 	 * 
-	 * @return An walking state tileset.
+	 * @return A walking state tileset.
 	 */
 	protected Sprite buildOutfit(int code) {
-		int idx;
+			
+		int basecode = code % 100;
+		code /= 100;
+		
+		int dresscode = code % 100;
+		code /= 100;
+		
+		int headcode = code % 100;
+		code /= 100;
+		
+		int haircode = code % 100;
 
+		
 		/*
 		 * Base (body) layer
 		 */
-		idx = code % 100;
-
-		Sprite layer = getBaseSprite(idx);
+		Sprite layer = getBaseSprite(basecode);
 
 		if (layer == null) {
 			throw new IllegalArgumentException(
 					"No base image found for outfit: " + code);
 		}
-		code /= 100;
+		
 		final ImageSprite sprite = new ImageSprite(layer);
 		final Graphics g = sprite.getGraphics();
 
 		/*
 		 * Dress layer
 		 */
-		idx = code % 100;
-		code /= 100;
+		
 
-		layer = getDressSprite(idx);
+		layer = getDressSprite(dresscode);
 		layer.draw(g, 0, 0);
 
 		/*
 		 * Head layer
 		 */
-		idx = code % 100;
-		code /= 100;
+		
 
-		layer = getHeadSprite(idx);
+		layer = getHeadSprite(headcode);
 		layer.draw(g, 0, 0);
 
 		/*
 		 * Hair layer
 		 */
-		idx = code % 100;
+		
 
-		layer = getHairSprite(idx);
+		layer = getHairSprite(haircode);
 		layer.draw(g, 0, 0);
 
 		return sprite;
