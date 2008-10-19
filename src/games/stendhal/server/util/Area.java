@@ -41,6 +41,9 @@ public class Area {
 	 * @return true, if and only if the entity is in this area.
 	 */
 	public boolean contains(final Entity entity) {
+		if (entity == null) {
+			return false;
+		}
 		final IRPZone entityZone = entity.getZone();
 
 		// We have ask the zone whether it knows about the entity because

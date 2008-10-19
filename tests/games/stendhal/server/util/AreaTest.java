@@ -1,5 +1,6 @@
 package games.stendhal.server.util;
 
+import static org.junit.Assert.*;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
@@ -58,4 +59,11 @@ public class AreaTest {
 		entity.setPosition(1, 1);
 		Assert.assertFalse(area.contains(entity));
 }
+	
+	@Test
+	public void testContainsNull() throws Exception {
+		
+		final Area area = new Area(null, null);
+		assertFalse(area.contains(null));
+	}
 }

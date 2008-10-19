@@ -77,7 +77,7 @@ public class TradeManagerNPC extends SpeakerNPCFactory {
 		if (!tradingArea.contains(alice)) {
 			npc.say("I can't hear " + alice.getTitle() + " from here.");
 		} else if ((bob == null) || !tradingArea.contains(bob)) {
-			npc.say("I can't hear " + bob.getTitle() + " from here.");
+			npc.say("I can't hear " + player2 + " from here.");
 		} else if (alice.getName().equals(bob.getName())) {
 			npc.say("You can't trade with yourself!");
 		} else {
