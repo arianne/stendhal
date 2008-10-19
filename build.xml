@@ -731,6 +731,18 @@
 
 	</target>
 
+	<target name="java_doc" description="Build javadoc">
+		<javadoc packagenames="games.*"
+			sourcepath="src"
+			defaultexcludes="yes"
+			destdir="api"
+			author="true"
+	        version="true"
+	        use="true"
+	        windowtitle="Stendhal API">
+			
+		</javadoc>
+	</target>
 	
 	<!-- Runs the Tiled editor -->
 	<target name="tiled_run" depends="compile_tiled" description="Runs Tiled">
