@@ -700,7 +700,8 @@
 			</classpath>
 
 			<formatter type="plain" usefile="false"/>
-
+			<formatter type="xml"/>
+			
 			<batchtest>
 				<fileset dir="tests">
 					<include name="**/*Test.java"/>
