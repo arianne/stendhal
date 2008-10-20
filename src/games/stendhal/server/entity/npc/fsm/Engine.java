@@ -134,17 +134,13 @@ public class Engine {
 
 			existing.setReply(reply);
 
-			if ((action == null) && (existingAction == null)) {
-				// There is no action associated with the previous and with the new rule, we
-				// can silently ignore the new transition, as it is already handled completely.
-				return;
-			} else if ((action != null) && action.equals(existingAction)) {
-				// The previous and the new action are identical, we can silently ignore the
-				// new transition, as it is already handled.
+			if (((action == null) && (existingAction == null))
+					|| ((action != null) && action.equals(existingAction))) {
+				
 				return;
 			} else {
 				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
-						+ " existingAction='" + existingAction + "' newAction='" + action + "'");
+				+ " existingAction='" + existingAction + "' newAction='" + action + "'");
 			}
 		}
 
@@ -299,8 +295,8 @@ public class Engine {
 			return super.add(otherTrans);
 		}
 
-		public static void advance(final Iterator<Transition> it, int i) {
-			for (; i > 0; --i) {
+		public static void advance(final Iterator<Transition> it, final int i) {
+			for (int x = i; x > 0; --x) {
 				it.next();
 			}
 		}

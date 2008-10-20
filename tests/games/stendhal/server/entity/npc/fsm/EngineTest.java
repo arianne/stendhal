@@ -1,11 +1,15 @@
 package games.stendhal.server.entity.npc.fsm;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,6 +20,7 @@ public class EngineTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.generateNPCRPClasses();
 	}
@@ -54,6 +59,91 @@ public class EngineTest {
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
 	}
+	
+	@Test
+	public void testaddBothActionsNull() throws Exception {
+		final Engine en = new Engine(new SpeakerNPC("bob"));
+		assertTrue(en.getTransitions().isEmpty());
+		en.add(0, null, null, null, 0, null, null);
+		assertThat(en.getTransitions().size(), is(1));
+		en.add(0, null, null, null, 0, null, null);
+		assertThat(en.getTransitions().size(), is(1));
+	}
+	
+	@Test
+	public void testaddExistingActionNull() throws Exception {
+		final Engine en = new Engine(new SpeakerNPC("bob"));
+		
+		en.add(0, null, null, null, 0, null, null);
+		assertThat(en.getTransitions().size(), is(1));
+		en.add(0, null, null, null, 0, null, new ChatAction() {
+
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				
+			}
+		});
+		assertThat(en.getTransitions().size(), is(2));
+		
+	}
+	
+	@Test
+	public void testaddnewNullAction() throws Exception {
+		final Engine en = new Engine(new SpeakerNPC("bob"));
+		
+		
+		en.add(0, null, null, null, 0, null, new ChatAction() {
+
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				
+			}
+		});
+		assertThat(en.getTransitions().size(), is(1));
+		en.add(0, null, null, null, 0, null, null);
+		
+		assertThat(en.getTransitions().size(), is(2));
+		
+	}
+	
+	@Test
+	public void testaddSameAction() throws Exception {
+		final Engine en = new Engine(new SpeakerNPC("bob"));
+		ChatAction chatAction = new ChatAction() {
+
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				
+			}
+		};
+		en.add(0, null, null, null, 0, null, chatAction);
+		assertThat(en.getTransitions().size(), is(1));
+		
+		en.add(0, null, null, null, 0, null, chatAction);
+		assertThat(en.getTransitions().size(), is(1));
+		
+	}
+	
+	@Test
+	public void testaddNotSameAction() throws Exception {
+		final Engine en = new Engine(new SpeakerNPC("bob"));
+		ChatAction chatAction1 = new ChatAction() {
+
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				
+			}
+		};
+		ChatAction chatAction2 = new ChatAction() {
+
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				
+			}
+		};
+		en.add(0, null, null, null, 0, null, chatAction1);
+		assertThat(en.getTransitions().size(), is(1));
+		
+		en.add(0, null, null, null, 0, null, chatAction2);
+		assertThat(en.getTransitions().size(), is(2));
+		
+	}
+	
 
 	@Test
 	public void testAddSingleStringValidCondition() {
