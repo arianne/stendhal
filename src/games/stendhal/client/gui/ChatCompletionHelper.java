@@ -11,10 +11,6 @@ final class ChatCompletionHelper extends KeyAdapter {
 	private final ChatTextController chatController;
 	private final Vector<String> playersonline;
 
-	/**
-	 * @param chatTextController TODO
-	 * @param onlineplayers TODO
-	 */
 	ChatCompletionHelper(final ChatTextController chatTextController, final Vector<String> onlineplayers) {
 		this.chatController = chatTextController;
 		this.playersonline = onlineplayers;
