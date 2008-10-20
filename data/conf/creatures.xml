@@ -2807,7 +2807,7 @@
 
   <creature name="brain ahouga">
     <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
-    <description>"You see a brain ahouga, a very strange creature only living in your dreams!"</description>
+    <description>You see a brain ahouga, a very strange creature only living in your dreams!</description>
     <attributes>
       <atk value="207"/>
       <def value="38"/>
@@ -3044,7 +3044,7 @@
 
   <creature name="wooden golem">
     <type class="golem" subclass="wooden_golem" tileid="golem.png:1"/>
-    <description/>
+    <description>You see a wooden golem. The scroll with ancient words in his head keeps it walking.</description>
     <attributes>
       <atk value="251"/>
       <def value="34"/>
@@ -3072,7 +3072,7 @@
 
   <creature name="royal mummy">
     <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
-    <description/>
+    <description>You see a royal mummy. You wonder what keeps this king's soul from finding peace.</description>
     <attributes>
       <atk value="250"/>
       <def value="71"/>
