@@ -71,10 +71,6 @@ public class PassiveEntityRespawnPointFactory {
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"iron ore", 3000);
-				// TODO: This is only a workaround. We should find a
-				// better name than "plant grower", as we're also
-				// using them for resources, teddies and whatever.
-				// We should also consider making them non-clickable.
 				passiveEntityrespawnPoint.setDescription("You see a small vein of iron ore.");
 				break;
 
