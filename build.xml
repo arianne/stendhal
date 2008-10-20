@@ -580,14 +580,17 @@
 		<mkdir dir="${build_stendhaltools}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
-			<include name="games/stendhal/tools/MapRenderer.java"/>
-			<include name="games/stendhal/tools/MapUpdater.java"/>
-
+			<include name="games/stendhal/tools/**/*.java"/>
+			<include name="games/stendhal/tools/*.java"/>
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<classpath>
+				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${groovy_jar}"/>
+			    <pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
@@ -628,7 +631,7 @@
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests"/>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_tools">
+	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_tools, compile_stendhaltools">
 		<mkdir dir="${build_tests}"/>
 
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
@@ -640,6 +643,7 @@
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
@@ -660,7 +664,6 @@
 
 		<javac srcdir="tools" destdir="${build_tools}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
-
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
 
@@ -686,6 +689,7 @@
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
+				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${hamcrest_jar}"/>
