@@ -100,11 +100,14 @@ public class SummonAction extends AdministrationAction {
 				if (!zone.collides(player, x, y)) {
 					final EntityFactory factory = new EntityFactory(player) {
 						@Override
-						void found(final String type, Entity entity) {
+						void found(final String type, final Entity entity) {
+							 final Entity entityToBePlaced;
 							if (manager.isCreature(type)) {
-								entity = new RaidCreature((Creature) entity);
+								entityToBePlaced = new RaidCreature((Creature) entity);
+							} else {
+								entityToBePlaced = entity;
 							}
-							StendhalRPAction.placeat(zone, entity, x, y);
+							StendhalRPAction.placeat(zone, entityToBePlaced, x, y);
 							SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
 							// We found what we are searching for.
 							searching = false;

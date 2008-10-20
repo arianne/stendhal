@@ -115,7 +115,7 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-  		String[] info = dest.split(",");
+  		final String[] info = dest.split(",");
 		if (info.length < 2) {
 			player.sendPrivateText("This scroll is so old that it lost its magic.");
 			return false;
@@ -131,8 +131,8 @@ public class InvitationScroll extends TeleportScroll {
 		}
 	}
 
-	private boolean handleTeleportToChurch(Player player, String playerName) {
-		Player engagedPlayer = StendhalRPRuleProcessor.get().getPlayer(playerName);
+	private boolean handleTeleportToChurch(final Player player, final String playerName) {
+		final Player engagedPlayer = StendhalRPRuleProcessor.get().getPlayer(playerName);
 		if (engagedPlayer == null) {
 			player.sendPrivateText("There does not seem be a marriage going on, at least " + playerName + " is not online at the moment.");
 			return false;
@@ -147,7 +147,7 @@ public class InvitationScroll extends TeleportScroll {
 		return teleportTo(WEDDING_ZONE + " " + WEDDING_SPOT, player);
 	}
 
-	private boolean handleTeleportToHotel(Player player, String playerName) {
+	private boolean handleTeleportToHotel(final Player player, final String playerName) {
 		// check player was original recipient
 		if (!player.getTitle().equals(playerName)) {
 			player.sendPrivateText("That invitation scroll was given to " + playerName + ".");
@@ -175,7 +175,7 @@ public class InvitationScroll extends TeleportScroll {
 			return getDescription();
 		} else {
 			final String dest = getInfoString();
-			String[] info = dest.split(",");
+			final String[] info = dest.split(",");
 			if (info.length == 2) {
 				// if this was set on creation in maps.quests.marriage.Engagement then both engaged players names could be added.
 				if (info[0].equals("marriage")) {

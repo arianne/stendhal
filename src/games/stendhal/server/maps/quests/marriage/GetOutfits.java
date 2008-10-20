@@ -10,13 +10,13 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 class GetOutfits {
-	private MarriageQuestInfo marriage;
+	private final MarriageQuestInfo marriage;
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 	private SpeakerNPC tam;
 	private SpeakerNPC tim;
 	
-	public GetOutfits(MarriageQuestInfo marriage) {
+	public GetOutfits(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 	
@@ -24,7 +24,7 @@ class GetOutfits {
 		tam = npcs.get("Tamara");
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return marriage.isEngaged(player);
 					}
 				}, 
@@ -33,7 +33,7 @@ class GetOutfits {
 				null);
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return !marriage.isEngaged(player);
 					}
 				}, 
@@ -44,7 +44,7 @@ class GetOutfits {
 		tim = npcs.get("Timothy");
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return marriage.isEngaged(player);
 					}
 				}, 
@@ -53,7 +53,7 @@ class GetOutfits {
 				null);
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						return !marriage.isEngaged(player);
 					}
 				}, 

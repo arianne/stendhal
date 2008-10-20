@@ -305,7 +305,7 @@ public abstract class PlayerTestHelper {
 		}
 	}
 
-	public static void dumpQuests(Player player) {
+	public static void dumpQuests(final Player player) {
 		List<String> quests = player.getQuests();
 		for (String quest : quests) {
 			logger.info(quest + "=" + player.getQuest(quest));

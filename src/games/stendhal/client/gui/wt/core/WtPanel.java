@@ -1068,11 +1068,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * @param x
-	 * @param y
+	 * @param transposedX
+	 * @param transposedY
 	 * @return a object for dragging which is at the position (x,y) or null.
 	 */
-	protected WtDraggable getDragged(int x, int y) {
+	protected WtDraggable getDragged(final int x, final int y) {
 		if (isClosed()) {
 			return null;
 		}
@@ -1083,15 +1083,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// translate point to client coordinates
-		x -= getClientX();
-		y -= getClientY();
+		int transposedX = x - getClientX();
+		int transposedY = y - getClientY();
 
 		// check all children
 		for (final WtPanel panel : children) {
 			// only if the point is inside the child
-			if (panel.isHit(x, y)) {
-				final WtDraggable draggedObject = panel.getDragged(x - panel.getX(),
-						y - panel.getY());
+			if (panel.isHit(transposedX, transposedY)) {
+				final WtDraggable draggedObject = panel.getDragged(transposedX - panel.getX(),
+						transposedY - panel.getY());
 
 				// did we get an object
 				if (draggedObject != null) {
@@ -1114,26 +1114,26 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if there is a droptarget direct under the position (x,y).
 	 * 
-	 * @param x
+	 * @param transposedX
 	 *            x-coordinate in client space
-	 * @param y
+	 * @param transposedY
 	 *            y-coordinate in client space
 	 * @param droppedObject
 	 *            the dropped object
 	 * @return true when this panel or a child panel is a droptarget and has
 	 *         received the object, false when there is no droptarget found
 	 */
-	protected boolean checkDropped(int x, int y, final WtDraggable droppedObject) {
+	protected boolean checkDropped(final int x, final int y, final WtDraggable droppedObject) {
 		// translate point to client coordinates
-		x -= getClientX();
-		y -= getClientY();
+		int transposedX = x - getClientX();
+		int transposedY = y - getClientY();
 
 		// now ask each child
 		for (final WtPanel panel : children) {
 			// only if the point is inside the child
-			if (panel.isHit(x, y)) {
+			if (panel.isHit(transposedX, transposedY)) {
 				// the child checks itself
-				if (panel.checkDropped(x - panel.getX(), y - panel.getY(),
+				if (panel.checkDropped(transposedX - panel.getX(), transposedY - panel.getY(),
 						droppedObject)) {
 					return true;
 				}
@@ -1143,7 +1143,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// are we ourself a drop target
 		if (this instanceof WtDropTarget) {
 			final WtDropTarget target = (WtDropTarget) this;
-			return target.onDrop(x, y, droppedObject);
+			return target.onDrop(transposedX, transposedY, droppedObject);
 		}
 
 		// no drop target found
