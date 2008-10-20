@@ -2432,7 +2432,7 @@
 
   <creature name="red troll">
     <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
-    description>You see a red troll, he's burning with anger.</description>
+    <description>You see a red troll, he's burning with anger.</description>
     <attributes>
       <atk value="190"/>
       <def value="34"/>
@@ -2555,7 +2555,7 @@
 
   <creature name="militia elf">
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
-    description>You see a militia elf, they train hard to beat you!</description>
+    <description>You see a militia elf, they train hard to beat you!</description>
     <attributes>
       <atk value="200"/>
       <def value="44"/>
@@ -2783,7 +2783,7 @@
 
   <creature name="spider">
     <type class="animal" subclass="spider" tileid="animal.png:18"/>
-    <description>You see a spider, they are making a giant spider web to trap you!<description>
+    <description>You see a spider, they are making a giant spider web to trap you!</description>
 	<attributes>
       <atk value="213"/>
       <def value="56"/>
@@ -3018,7 +3018,7 @@
 
   <creature name="black slime">
     <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
-    <description>You see a black slime, with a sticky trail behind him.<description>
+    <description>You see a black slime, with a sticky trail behind him.</description>
 	<attributes>
       <atk value="250"/>
       <def value="36"/>
