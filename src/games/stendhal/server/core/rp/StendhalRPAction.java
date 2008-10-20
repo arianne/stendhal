@@ -143,7 +143,7 @@ public class StendhalRPAction {
 	 * @param victim The attacked entity
 	 * @return Description of the attacked pet or player
 	 */
-	private static String getNiceVictimName(RPEntity victim) {
+	private static String getNiceVictimName(final RPEntity victim) {
 		String name = victim.getTitle();
 
 		if (victim instanceof DomesticAnimal) {
