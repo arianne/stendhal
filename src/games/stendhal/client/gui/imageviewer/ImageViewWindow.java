@@ -1,7 +1,7 @@
 package games.stendhal.client.gui.imageviewer;
 
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -23,21 +23,11 @@ public class ImageViewWindow extends InternalManagedDialog {
 	private String alt;
 
 	public ImageViewWindow(final URL url) {
-		super("examine", "Examine");
-
-		this.url = url;
-
-		init();
-
+		this(url, "Examine", "Examine");
 	}
 
 	public ImageViewWindow(final URL url, final String title) {
-		super("examine", title);
-
-		this.url = url;
-		alt = title;
-
-		init();
+		this(url, title, title);
 	}
 
 	public ImageViewWindow(final URL url, final String title, final String alt) {
@@ -63,14 +53,14 @@ public class ImageViewWindow extends InternalManagedDialog {
 	}
 
 	public Dimension genMaxSize() {
-		final int width = j2DClient.SCREEN_WIDTH - PADDING;
-		final int height = j2DClient.SCREEN_HEIGHT - PADDING;
+		final int width = (int) (stendhal.screenSize.getWidth() - PADDING);
+		final int height = (int) (stendhal.screenSize.getHeight() - PADDING);
 		return new Dimension(width, height);
 	}
 
 	public Point genCenterPoint() {
-		final int x = (j2DClient.SCREEN_WIDTH - this.getDialog().getWidth()) / 2;
-		final int y = (j2DClient.SCREEN_HEIGHT - this.getDialog().getHeight()) / 2;
+		final int x = (int) ((stendhal.screenSize.getWidth()  - this.getDialog().getWidth()) / 2);
+		final int y = (int) ((stendhal.screenSize.getHeight() - this.getDialog().getHeight()) / 2);
 
 		return new Point(x, y);
 	}

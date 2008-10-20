@@ -18,6 +18,7 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
+import java.awt.Dimension;
 import java.security.AccessControlException;
 
 import marauroa.common.Log4J;
@@ -52,8 +53,8 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
-	public static String SCREEN_SIZE = "640x480";
-
+	public static Dimension screenSize = new Dimension(640, 480);
+	
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
@@ -80,7 +81,9 @@ public class stendhal extends Thread {
 		}
 
 		if (size != null) {
-			SCREEN_SIZE = size;
+			String[] tempsize = size.split("x");
+			screenSize = new Dimension(Integer.parseInt(tempsize[0]), Integer.parseInt(tempsize[1]));
+			
 		}
 	}
 

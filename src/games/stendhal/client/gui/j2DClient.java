@@ -80,14 +80,6 @@ public class j2DClient extends StendhalUI {
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
-	/** width of the game screen (without the chat line). */
-	public static int SCREEN_WIDTH;
-
-	/** height of the game screen (without the chat line). */
-	public static int SCREEN_HEIGHT;
-
-	
-
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
@@ -157,10 +149,6 @@ public class j2DClient extends StendhalUI {
 	public j2DClient(final StendhalClient client, final IGameScreen gameScreen) {
 		super(client);
 		
-		final String[] dim = stendhal.SCREEN_SIZE.split("x");
-		SCREEN_WIDTH = Integer.parseInt(dim[0]);
-		SCREEN_HEIGHT = Integer.parseInt(dim[1]);
-		
 		setDefault(this);
 		mainFrame = new MainFrame();
 
@@ -174,7 +162,7 @@ public class j2DClient extends StendhalUI {
 		 * game
 		 */
 		pane = new JLayeredPane();
-		pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		pane.setPreferredSize(stendhal.screenSize);
 		content.add(pane);
 
 		/*
@@ -182,7 +170,7 @@ public class j2DClient extends StendhalUI {
 		 */
 		final JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		panel.setPreferredSize(stendhal.screenSize);
 		pane.add(panel, JLayeredPane.DEFAULT_LAYER);
 
 		/*
@@ -192,10 +180,10 @@ public class j2DClient extends StendhalUI {
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			canvas = new Canvas();
 			// A bit repetitive... oh well
-			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);
+			canvas.setBounds(200, 0, 600, getHeight());
 		} else {
 			canvas = new Canvas();
-			canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			canvas.setBounds(0, 0, getWidth(), getHeight());
 		}
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
@@ -258,7 +246,7 @@ public class j2DClient extends StendhalUI {
 		 * Game log
 		 */
 		gameLog = new KTextEdit();
-		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 171));
+		gameLog.setPreferredSize(new Dimension(getWidth(), 171));
 
 		if (System.getProperty("stendhal.onewindow") != null) {
 			content.add(gameLog);
@@ -326,8 +314,8 @@ public class j2DClient extends StendhalUI {
 		// This is a temporary solution until this issue is fixed server side.
 		// I hope that it discourages its use without the risks of unupdateable
 		// clients being distributed
-		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
-			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + stendhal.SCREEN_SIZE), NotificationType.NEGATIVE));
+		if (!stendhal.screenSize.equals(new Dimension(640, 480))) {
+			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + getWidth() + "x" + getHeight()), NotificationType.NEGATIVE));
 		}
 
 		mainFrame.getMainFrame().setLocation(new Point(20, 20));
@@ -349,7 +337,7 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * In-screen dialogs
 		 */
-		settings = new SettingsPanel(SCREEN_WIDTH, gameScreen);
+		settings = new SettingsPanel(getWidth(), gameScreen);
 		screen.addDialog(settings);
 
 		minimap = new Minimap(client, gameScreen);
@@ -875,7 +863,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public int getHeight() {
-		return SCREEN_HEIGHT;
+		return (int) stendhal.screenSize.getHeight();
 	}
 
 	/**
@@ -895,7 +883,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public int getWidth() {
-		return SCREEN_WIDTH;
+		return (int) stendhal.screenSize.getWidth();
 	}
 
 
