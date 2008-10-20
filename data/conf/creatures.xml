@@ -2400,7 +2400,7 @@
 
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
-    <description/>
+    <description>You see a bloody zombie, can you see the drops of blood that fall from his body?</description>
     <attributes>
       <atk value="182"/>
       <def value="34"/>
@@ -2432,7 +2432,7 @@
 
   <creature name="red troll">
     <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
-    <description/>
+    description>You see a red troll, he's burning with anger.</description>
     <attributes>
       <atk value="190"/>
       <def value="34"/>
@@ -2461,7 +2461,7 @@
 
   <creature name="elder ogre">
     <type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
-    <description/>
+     <description>You see an elder ogre, he's in the last moments of his life, take pity on him.</description>
     <attributes>
       <atk value="195"/>
       <def value="13"/>
@@ -2490,7 +2490,7 @@
 
   <creature name="risecia swordsman">
     <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
-    <description/>
+    <description>You see a risecia swordsman, The blade of his sword will cut your head!</description>
     <attributes>
       <atk value="194"/>
       <def value="27"/>
@@ -2523,7 +2523,7 @@
 
   <creature name="orc chief">
     <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
-    <description/>
+    <description>You see an orc chief, he is too busy to attend to you!</description>
     <attributes>
       <atk value="200"/>
       <def value="60"/>
@@ -2555,7 +2555,7 @@
 
   <creature name="militia elf">
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
-    <description/>
+    description>You see a militia elf, they train hard to beat you!</description>
     <attributes>
       <atk value="200"/>
       <def value="44"/>
@@ -2589,7 +2589,7 @@
 
   <creature name="dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
-    <description/>
+    <description>You see a dwarf guardian, they are making defense against the humans.</description>
     <attributes>
       <atk value="200"/>
       <def value="31"/>
@@ -2623,7 +2623,7 @@
 
   <creature name="archer elf">
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
-    <description/>
+    <description>You see an archer elf, they can do much damage with that wooden arrows.</description> 
     <attributes>
       <atk value="198"/>
       <def value="42"/>
@@ -2657,7 +2657,7 @@
 
   <creature name="zombie">
     <type class="undead" subclass="zombie" tileid="undead.png:11"/>
-    <description/>
+    <description>You see a zombie, they wake up just to take revenge, be silent.</description>
     <attributes>
       <atk value="202"/>
       <def value="49"/>
@@ -2685,7 +2685,7 @@
 
   <creature name="elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
-    <description/>
+    <description>You see an elder dwarf, a mighty warrior tired of fighting.</description>
     <attributes>
       <atk value="214"/>
       <def value="33"/>
@@ -2719,7 +2719,7 @@
 
   <creature name="vampire bride">
     <type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:0"/>
-    <description/>
+    <description>You see a vampire bride, she was resurrected from the dead by a wicked vampire lord.</description>
     <attributes>
       <atk value="186"/>
       <def value="4"/>
@@ -2748,7 +2748,7 @@
 
   <creature name="Chief Falatheen of the Risecia">
     <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
-    <description/>
+    <description>You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors are protecting him against invaders.</description> 
     <attributes>
       <atk value="209"/>
       <def value="22"/>
@@ -2783,7 +2783,8 @@
 
   <creature name="spider">
     <type class="animal" subclass="spider" tileid="animal.png:18"/>
-    <attributes>
+    <description>You see a spider, they are making a giant spider web to trap you!<description>
+	<attributes>
       <atk value="213"/>
       <def value="56"/>
       <hp value="80"/>
@@ -2806,7 +2807,7 @@
 
   <creature name="brain ahouga">
     <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
-    <description/>
+    <description>"You see a brain ahouga, a very strange creature only living in your dreams!"</description>
     <attributes>
       <atk value="207"/>
       <def value="38"/>
@@ -2865,7 +2866,7 @@
 
   <creature name="soldier elf">
     <type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
-    <description/>
+    <description>You see a soldier elf, a good partner of the militia elves.</description>
     <attributes>
       <atk value="216"/>
       <def value="40"/>
@@ -2899,7 +2900,7 @@
 
   <creature name="headless monster">
     <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
-    <description/>
+    <description>You see a headless monster, how he can hear that we come to him?</description>
     <attributes>
       <atk value="221"/>
       <def value="54"/>
@@ -2926,7 +2927,7 @@
 
   <creature name="ogre soldier">
     <type class="giant" subclass="ogre_soldier" tileid="giant.png:3"/>
-    <description/>
+    <description>You see an ogre soldier, smelling like they have not had a bath for years. Ewww.</description>
     <attributes>
       <atk value="222"/>
       <def value="40"/>
@@ -2953,7 +2954,7 @@
 
   <creature name="warrior skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
-    <description/>
+    <description>You see a warrior skeleton, he's just a normal skeleton with a shield!</description>
     <attributes>
       <atk value="233"/>
       <def value="65"/>
@@ -3017,7 +3018,8 @@
 
   <creature name="black slime">
     <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
-    <attributes>
+    <description>You see a black slime, with a sticky trail behind him.<description>
+	<attributes>
       <atk value="250"/>
       <def value="36"/>
       <hp value="210"/>
@@ -3099,7 +3101,7 @@
 
   <creature name="cannibal woman">
     <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
-    <description/>
+    <description>You see a cannibal woman. She wants to make a soup with your bones!</description> 
     <attributes>
       <atk value="244"/>
       <def value="75"/>
@@ -3132,7 +3134,7 @@
 
   <creature name="archrat">
     <type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
-    <description/>
+    <description>You see an archrat. You will be distracted with his aura, be careful...</description>
     <attributes>
       <atk value="229"/>
       <def value="77"/>
