@@ -42,7 +42,7 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add an event line.
-	 * @param line TODO
+	 * @param line the line to be added
 	 *
 	 */
 	public abstract void addEventLine(EventLine line);
