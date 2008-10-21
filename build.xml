@@ -629,7 +629,7 @@
 		</mapupdater>
 	</target>
 
-	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests"/>
+	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_tools, compile_stendhaltools">
 		<mkdir dir="${build_tests}"/>
@@ -718,7 +718,16 @@
 			</batchtest>
 		</junit>
 	</target>
-
+	
+	<target name="report_test" description="Aggregate Testresults">
+		<junitreport todir="." tofile="testresults.xml">
+				  <fileset dir=".">
+				    <include name="TEST-*.xml"/>
+				  </fileset>
+				  <report format="noframes" todir="."/>
+        </junitreport>
+	</target>
+	
 	<target name="compile_tiled" description="Compile tiled">
 		<mkdir dir="${build_tiled}"/>
 
