@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.ItemTools;
+import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -56,6 +57,11 @@ public abstract class Pet extends DomesticAnimal {
 	 * The weight at which the pet will stop eating.
 	 */
 	public final int MAX_WEIGHT = 100;
+
+	/**
+	 * Approximately how much slower he gets hungry if he's full weight
+	 */
+	public final int FAT_FACTOR = 5;
 
 	protected List<String> foodName = getFoodNames();
 
@@ -215,7 +221,12 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		setPath(null);
 		setIdea(null);
-		hunger++;
+		if ( weight < MAX_WEIGHT ) {
+			hunger++;
+		} else if (Rand.rand(FAT_FACTOR)==1) {
+			// don't get hungry so fast if we are full weight
+			hunger++;
+		}
 
 		if (hunger > HUNGER_HUNGRY) {
 			// Show 'food' idea whenever hungry
