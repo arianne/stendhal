@@ -2834,7 +2834,7 @@
   </creature>
 
   <creature name="pirate">
-    <type class="lutin" subclass="lutin_bandit" tileid="X"/>
+    <type class="lutin" subclass="lutin_bandit" tileid="animal.png:100"/>
     <description/>
     <attributes>
       <atk value="221"/>
@@ -2986,7 +2986,7 @@
   </creature>
 
   <creature name="pirate wench">
-    <type class="lutin" subclass="lutin_wench" tileid="X"/>
+    <type class="lutin" subclass="lutin_wench" tileid="animal.png:100"/>
     <description/>
     <attributes>
       <atk value="181"/>
@@ -3613,7 +3613,7 @@
   </creature>
 
   <creature name="buccaneer">
-    <type class="lutin" subclass="lutin_outlaw" tileid="X"/>
+    <type class="lutin" subclass="lutin_outlaw" tileid="animal.png:100"/>
     <description/>
     <attributes>
       <atk value="261"/>
@@ -4211,7 +4211,7 @@
   </creature>
 
  <creature name="smuggler">
-    <type class="lutin" subclass="lutin_king" tileid="X"/>
+    <type class="lutin" subclass="lutin_king" tileid="animal.png:100"/>
     <description/>
     <attributes>
       <atk value="270"/>
@@ -5308,6 +5308,72 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+    </ai>
+  </creature>
+
+ <creature name="evil pirate">
+    <type class="truskull" subclass="truskull_nightshade" tileid="animal.png:100"/>
+    <description/>
+    <attributes>
+      <atk value="400"/>
+      <def value="65"/>
+      <hp value="500"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1700"/>
+    <respawn value="1350"/>
+    <drops>
+      <item value="money" quantity="[40,155]" probability="80.0"/>
+      <item value="iron" quantity="[1,3]" probability="5.0"/>
+      <item value="obsidian" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Don't interfere with pirate business. Our ship and who we keep on it is private!"/>
+        <noise value="Shhh, don't let the secret out about the captive on our ship..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="pirate leader">
+    <type class="truskull" subclass="truskull_magician" tileid="animal.png:100"/>
+    <description/>
+    <attributes>
+      <atk value="400"/>
+      <def value="65"/>
+      <hp value="500"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1700"/>
+    <respawn value="1350"/>
+    <drops>
+      <item value="money" quantity="[40,155]" probability="80.0"/>
+      <item value="wine" quantity="[3,10]" probability="40.0"/>
+      <item value="gold bar" quantity="[1,1]" probability="5.0"/>
+      <item value="pie" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Be quiet or I will lock you on my ship, just like I locked up the girl Susi!"/>
+        <noise value="You remind me of the Ados girl we stole to clean our ship!"/>
+        <noise value="You'd make a nice playmate for the Susi girl on our ship..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
