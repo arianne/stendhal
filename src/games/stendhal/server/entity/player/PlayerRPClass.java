@@ -90,7 +90,6 @@ class PlayerRPClass {
 		// player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
-		player.addAttribute("happy", Type.LONG_STRING, Definition.VOLATILE);
 		player.addAttribute("grumpy", Type.LONG_STRING, Definition.VOLATILE);
 
 		// Use this for admin menus and usage.

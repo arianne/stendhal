@@ -38,11 +38,6 @@ class Player2DView extends RPEntity2DView {
 	private static Sprite awaySprite;
 	
 	/**
-	 * Sprite representing happy.
-	 */
-	private static Sprite happySprite;
-
-	/**
 	 * Sprite representing grumpy.
 	 */
 	private static Sprite grumpySprite;
@@ -61,7 +56,6 @@ class Player2DView extends RPEntity2DView {
 	static {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite gotAwaySprite = store.getSprite("data/sprites/ideas/away.png");
-		final Sprite gotHappySprite = store.getSprite("data/sprites/ideas/smileys.png");
 		final Sprite gotGrumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
 		final Sprite gotPkSprite = store.getSprite("data/sprites/ideas/pk.png");
 		skullSprite = store.getAnimatedSprite(gotPkSprite , 0, 0, 12, 16, 24, 200);
@@ -71,7 +65,6 @@ class Player2DView extends RPEntity2DView {
 		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
-		happySprite = store.getTile(gotHappySprite, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
@@ -180,9 +173,6 @@ class Player2DView extends RPEntity2DView {
 
 		if (player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
-		}
-		if (player.isHappy()) {
-			happySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
 		if (player.isGrumpy()) {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);

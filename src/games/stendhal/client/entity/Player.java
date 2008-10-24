@@ -23,10 +23,6 @@ public class Player extends RPEntity {
 	 */
 	public static final Property PROP_AWAY = new Property();
 	/**
-	 * Happy property.
-	 */
-	public static final Property PROP_HAPPY = new Property();
-	/**
 	 * Grumpy property.
 	 */
 	public static final Property PROP_GRUMPY = new Property();
@@ -38,10 +34,6 @@ public class Player extends RPEntity {
 	 * The grumpy message of this player.
 	 */
 	private String grumpy;
-	/**
-	 * The happy message of this player.
-	 */
-	private String happy;
 	private boolean badboy;
 
 	/**
@@ -50,7 +42,6 @@ public class Player extends RPEntity {
 	public Player() {
 		away = null;
 		grumpy = null;
-		happy = null;
 	}
 
 	//
@@ -66,16 +57,6 @@ public class Player extends RPEntity {
 		return (getAway() != null);
 	}
 	
-	/**
-	 * Determine if the player is happy.
-	 * 
-	 * @return <code>true</code> if the player is happy.
-	 */
-	public boolean isHappy() {
-		return (getHappy() != null);
-	}
-	
-	
 	public boolean isBadBoy() {
 		return badboy;
 	}
@@ -87,15 +68,6 @@ public class Player extends RPEntity {
 	 */
 	public String getAway() {
 		return away;
-	}
-	
-	/**
-	 * Get the happy message.
-	 * 
-	 * @return The happy text, or <code>null</code> if not happy.
-	 */
-	public String getHappy() {
-		return happy;
 	}
 	
 	/**
@@ -112,18 +84,6 @@ public class Player extends RPEntity {
 		}
 	}
 	
-	/**
-	 * A happy message was set/cleared.
-	 * 
-	 * @param message
-	 *            The happy message, or <code>null</code> if no-longer happy.
-	 */
-	protected void onHappy(final String message) {
-		if (message != null) {
-			addTextIndicator("Happy", NotificationType.INFORMATION);
-		}
-	}
-
 	/**
 	 * Determine if the player is grumpy.
 	 * 
@@ -184,17 +144,6 @@ public class Player extends RPEntity {
 				onAway(away);
 			}
 		}
-		if (changes.has("happy")) {
-			/*
-			 * Filter out a player "changing" to the same message
-			 */
-			if (!object.has("happy")
-					|| !object.get("happy").equals(changes.get("happy"))) {
-				happy = changes.get("happy");
-				fireChange(PROP_HAPPY);
-				onHappy(happy);
-			}
-		}
 		if (changes.has("grumpy")) {
 			/*
 			 * Filter out a player "changing" to the same message
@@ -229,11 +178,6 @@ public class Player extends RPEntity {
 			away = null;
 			fireChange(PROP_AWAY);
 			onAway(null);
-		}
-		if (changes.has("happy")) {
-			happy = null;
-			fireChange(PROP_HAPPY);
-			onHappy(null);
 		}
 		if (changes.has("grumpy")) {
 			grumpy = null;

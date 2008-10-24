@@ -59,17 +59,4 @@ public class PlayerTest {
 		assertFalse(george.isBadBoy());
 	}
 	
-	@Test
-	public final void testHappy() throws Exception {
-		Player barrack = new Player();
-		RPObject player = new RPObject();
-		player.put("x", 1);
-		player.put("y", 1);
-		RPObject changes = new RPObject();
-		changes.put("happy", "I feel fine!");
-		assertFalse(barrack.isHappy());
-		barrack.onChangedAdded(player, changes);
-		assertTrue(barrack.isHappy());
-	}
-		
 }

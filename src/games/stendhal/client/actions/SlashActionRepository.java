@@ -25,7 +25,6 @@ public class SlashActionRepository {
 		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("away", new AwayAction());
-		actions.put("happy", new HappyAction());
 		actions.put("drop", new DropAction());
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp_alter", new GMHelpAlterAction());

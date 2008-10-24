@@ -8,7 +8,6 @@ import games.stendhal.server.actions.attack.StopAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
 import games.stendhal.server.actions.chat.AwayAction;
 import games.stendhal.server.actions.chat.ChatAction;
-import games.stendhal.server.actions.chat.HappyAction;
 import games.stendhal.server.actions.equip.DisplaceAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.guild.CreateGuildAction;
@@ -64,7 +63,6 @@ public class CommandCenter {
 		AdministrationAction.register();
 		AttackAction.register();
 		AwayAction.register();
-		HappyAction.register();
 		BanAction.register();
 		BuddyAction.register();
 		ChatAction.register();

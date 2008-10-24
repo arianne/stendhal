@@ -158,21 +158,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testHappy() throws Exception {
-		final int hours = player.getAge() / 60;
-		final int minutes = player.getAge() % 60;
-		final String time = hours + " hours and " + minutes + " minutes";
-		player.setHappyMessage("I am happy!");
-		String description = player.describe();
-		String expectedDescription = "You see " + player.getTitle() + ".\n"
-				+ player.getTitle() + " is level " + player.getLevel()
-				+ " and has been playing " + time + "." + "\nplayer is happy: "
-				+ player.getHappyMessage();
-		assertThat(description, is(expectedDescription));
-	}
-
-
-	@Test
 	public void testIsGhost() {
 		assertFalse(player.isGhost());
 		player.setGhost(true);
