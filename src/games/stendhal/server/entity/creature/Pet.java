@@ -221,9 +221,9 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		setPath(null);
 		setIdea(null);
-		if ( weight < MAX_WEIGHT ) {
+		if (weight < MAX_WEIGHT) {
 			hunger++;
-		} else if (Rand.rand(FAT_FACTOR)==1) {
+		} else if (Rand.rand(FAT_FACTOR) == 1) {
 			// don't get hungry so fast if we are full weight
 			hunger++;
 		}
