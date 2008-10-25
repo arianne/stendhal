@@ -1,5 +1,7 @@
 Changelog
 ---------
+0.71
+- chatlog stops automatic scroll on when not at bottom of text.
 0.70
 - damage calculations place greater emphasis on weapon attack and level
 instead of mainly base skills (this means heavy weapons are now better against
@@ -39,7 +41,7 @@ engaged player is online
 - Ognir now distinguishes between bound an unbound rings when fixing
 - Wikipedian fixed for new wikipedia.org API
 - some wooden furniture items redrawn
-- admin inspect, admin destroy, and admin alter now work for contained items too.
+- admin inspect and admin destroy now work for contained items too.
 - pushing creatures with an area > 4 is no longer possible
 
 0.69
