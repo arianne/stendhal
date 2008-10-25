@@ -308,7 +308,7 @@ public class j2DClient extends StendhalUI {
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		chatText.addKeyListener(keyListener);
-		//canvas.addKeyListener(keyListener);
+		canvas.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
