@@ -41,7 +41,9 @@ public class BoyNPC implements ZoneConfigurator {
 							engine.say("*sniff* *sniff* I still feel ill, please hurry with that #favour for me.");
 							}
 						} else {
-							engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
+							if (!player.isGhost()) {
+								engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
+							}
 						}
 					}
 				});
