@@ -20,7 +20,7 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 	private void buildRossHouseArea(final StendhalRPZone zone) {
 		final Item item = addPersistentItem("teddy", zone, 9, 9);
-		final Item item2 = addPersistentItem("dice", zone, 11, 9);
+		final Item item2 = addPersistentItem("dice", zone, 12, 10);
 	}
 
 	private Item addPersistentItem(final String name, final StendhalRPZone zone, final int x, final int y) {
