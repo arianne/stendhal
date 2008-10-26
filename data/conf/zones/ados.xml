@@ -1346,6 +1346,15 @@ My fee:
    <destination zone="-1_ados_city" ref="crawlyspaceup"/>
   </portal>
  </zone>
+ 
+ <zone name="int_ados_ross_house" file="interiors/ados/ross_house.tmx">
+    <!--<configurator class-name="games.stendhal.server.maps.ados.rosshouse.MotherNPC"/>    
+	<configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC"/>-->
+	<configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable"/>
+    <!--<portal x="7" y="14" ref="entrance">
+     <destination zone="0_ados_city" ref="ross_house_entrance"/>
+    </portal>-->
+  </zone>
 
  <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx">
   <portal x="7" y="14" ref="in">
@@ -1713,6 +1722,10 @@ Southeast: Docks
    <portal x="75" y="70" ref="meat_market_entrance">
      	<destination zone="int_ados_meat_market" ref="entrance_meat_market"/>
     </portal>
+ <!-- when you uncomment this, also delete the collision at this point in map 
+ <portal x="34" y="110" ref="ross_house_entrance">
+     	<destination zone="int_ados_ross_house" ref="entrance"/>
+    </portal>-->
    <portal x="42" y="93" ref="town_hall_entrance">
      <destination zone="int_ados_town_hall" ref="entrance"/>
    </portal>
