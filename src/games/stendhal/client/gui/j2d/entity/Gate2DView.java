@@ -46,14 +46,7 @@ public class Gate2DView extends Entity2DView {
 	
 	@Override
 	protected void buildRepresentation(final IGameScreen gameScreen) {
-		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite(translate(""));
 
-		final int width = tiles.getWidth();
-		final int height = tiles.getHeight() / 2;
-
-		setSprite(store.getTile(tiles, 0, 0, width, height));
-		super.buildRepresentation(gameScreen);
 	}
 	
 	@Override
