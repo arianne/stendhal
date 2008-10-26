@@ -26,6 +26,7 @@ import games.stendhal.client.events.PositionChangeMulticaster;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
@@ -50,7 +51,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
@@ -68,7 +68,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
 
 import marauroa.common.game.RPObject;
 
@@ -192,7 +191,7 @@ public class j2DClient extends StendhalUI {
 
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
-		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.whoplayers);
+		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.playerList.getNamesList());
 		chatText.addKeyListener(tabcompletion);
 		content.add(chatText.getPlayerChatText());
 

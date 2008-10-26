@@ -522,7 +522,7 @@ public abstract class RPEntity extends ActiveEntity {
 			type = NotificationType.PRIVMSG;
 		}
 
-		StendhalClient.get().generateWhoPlayers(text);
+		StendhalClient.get().playerList.generateWhoPlayers(text);
 		StendhalUI.get().addEventLine(new HeaderLessEventLine(text, type));
 
 		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),

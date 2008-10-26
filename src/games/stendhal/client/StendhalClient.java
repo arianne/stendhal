@@ -30,9 +30,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -87,7 +84,10 @@ public class StendhalClient extends ClientFramework {
 
 	private final UserContext userContext;
 
-	public Vector<String> whoplayers = new Vector<String>();
+	
+	
+	public PlayerList playerList = new PlayerList();
+
 	/**
 	 * The amount of content yet to be transfered.
 	 */
@@ -100,32 +100,6 @@ public class StendhalClient extends ClientFramework {
 
 	private StendhalPerceptionListener stendhalPerceptionListener;
 
-	public void generateWhoPlayers(final String text) {
-
-		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
-				text);
-
-		if (matcher.find()) {
-			final String[] names = matcher.group(1).split("\\s+");
-
-			whoplayers.removeAllElements();
-			for (int i = 0; i < names.length; i++) {
-				/*
-				 * NOTE: On the future Players names won't have any non ascii
-				 * character.
-				 */
-				matcher = Pattern.compile(
-						"^([-_a-zA-Z0-9äöüßÄÖÜ]+)\\([0-9]+\\)$").matcher(
-						names[i]);
-				if (matcher.find()) {
-					whoplayers.addElement(matcher.group(1));
-				}
-			}
-		}
-
-	}
-	
-	
 	public void addPerceptionListener(final IPerceptionListener listener) {
 		perceptionDispatch.register(listener);
 	}

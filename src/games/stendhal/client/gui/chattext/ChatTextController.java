@@ -1,4 +1,4 @@
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.chattext;
 
 
 import games.stendhal.client.stendhal;

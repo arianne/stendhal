@@ -2,6 +2,7 @@ Changelog
 ---------
 0.71
 - chatlog stops automatic scroll on when not at bottom of text.
+- tab-completion toggles through all online players in chat line.
 0.70
 - damage calculations place greater emphasis on weapon attack and level
 instead of mainly base skills (this means heavy weapons are now better against
