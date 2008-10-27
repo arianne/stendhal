@@ -25,7 +25,6 @@ public class FieldListerTest {
 		// field created by ecl-emma to track coverage data
 		fields.remove("$VRc");
 
-		System.out.println(fields);
 		assertThat(fields.size(), is(5));
 		
 	}
