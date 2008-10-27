@@ -3,7 +3,6 @@ package games.stendhal.client.gui.chattext;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-import games.stendhal.client.gui.chattext.ChatCache;
 
 import java.util.NoSuchElementException;
 

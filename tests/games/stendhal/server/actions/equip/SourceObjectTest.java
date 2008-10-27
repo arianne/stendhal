@@ -12,7 +12,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;

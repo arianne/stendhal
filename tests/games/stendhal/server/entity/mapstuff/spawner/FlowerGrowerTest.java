@@ -13,7 +13,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.RPClass.GrowingPassiveEntityRespawnPointTestHelper;
