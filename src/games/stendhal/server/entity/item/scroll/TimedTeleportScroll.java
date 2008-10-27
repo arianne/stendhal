@@ -155,7 +155,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * 
 	 * @param player
 	 *            The player who used the scroll and who will be teleported
-	 * @return true iff teleport was successful
+	 * @return true if teleport was successful
 	 */
 	@Override
 	protected boolean useTeleportScroll(final Player player) {
@@ -177,6 +177,28 @@ public class TimedTeleportScroll extends TeleportScroll {
 			}
 		}
 
+		return useTeleportScroll(player, targetZoneName, targetX, targetY, timeInTurns);
+	}
+	
+	/**
+	 * Is invoked when a teleporting scroll is used. Tries to put the player on
+	 * the destination, or near it.
+	 * 
+	 * @param player
+	 * 	The player who used the scroll
+	 * @param targetZoneName
+	 * 	The name of the zone where the player tries to teleport
+	 * @param x
+	 * 	x coordinate of the target location
+	 * @param y
+	 * 	y coordinate of the target location
+	 * @param timeInTurns
+	 * 	The time on turns that the player should spend on the the target 
+	 * 	zone unless she leaves by other means than the scrolls timeout feature
+	 * @return true if teleport was succesful
+	 */
+	protected boolean useTeleportScroll(final Player player, final String targetZoneName,
+			final int x, final int y, int timeInTurns) {
 		final StendhalRPZone targetZone = SingletonRepository.getRPWorld().getZone(
 				targetZoneName);
 
@@ -187,12 +209,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 			createWarningBeforeRetransport(player, targetZoneName, timeInTurns);
 			createReTransportTimer(player, timeInTurns);
 
-			return teleportPlayer(player, targetX, targetY, targetZone);
+			return teleportPlayer(player, x, y, targetZone);
 		}
-
-		
 	}
-
 	
 	/**
 	 * Teleports the player to the given position in the given zone.
