@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.awt.geom.Rectangle2D;
 
@@ -18,7 +17,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class GateTest {
@@ -37,18 +35,6 @@ public class GateTest {
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Ignore
-	@Test
-	public void testAddChangeListener() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testFillTargetInfo() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -278,36 +264,13 @@ public class GateTest {
 		assertSame(object, g.getRPObject());
 	}
 
-	@Ignore
-	@Test
-	public void testIsObstacle() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public void testIsOnGround() {
 		Gate g = new Gate();
 		assertTrue(g.isOnGround());
 	}
 
-	@Ignore
-	@Test
-	public void testRemoveChangeListener() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testSetAudibleRange() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testToString() {
 		Gate g = new Gate();

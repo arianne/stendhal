@@ -51,12 +51,6 @@ public class PerceptionToObjectTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Ignore
-	@Test
-	public final void testOnAdded() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public final void testOnClear2Listeners1Object() {
 		final PerceptionToObject pto = new PerceptionToObject();

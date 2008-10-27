@@ -175,46 +175,6 @@ public class SourceObjectTest {
 		assertEquals("too many are reduced to all", dropitem.getQuantity(), so.getQuantity());
 	}
 
-	@Ignore
-	@Test
-	public void testCheckDistance() {
-		fail("Not yet implemented");
-	}
 
-	@Ignore
-	@Test
-	public void testGetLogInfo() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testMoveTo() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testRemoveFromWorld() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testCheckClass() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testGetEntity() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testGetQuantity() {
-		fail("Not yet implemented");
-	}
 
 }

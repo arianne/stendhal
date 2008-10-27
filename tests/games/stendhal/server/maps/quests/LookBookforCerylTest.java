@@ -222,12 +222,6 @@ public class LookBookforCerylTest {
 	}
 
 	@Test
-	@Ignore
-	public final void testGetHint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public final void testIsCompleted() {
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();

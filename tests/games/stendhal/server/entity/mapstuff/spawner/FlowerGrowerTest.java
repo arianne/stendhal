@@ -39,13 +39,6 @@ public class FlowerGrowerTest {
 		assertTrue(zone.getPlantGrowers().isEmpty());
 	}
 
-	@Ignore("hard to test randomized")
-	@Test
-	public void testGetRandomTurnsForRegrow() {
-		final FlowerGrower fl = new FlowerGrower();
-		assertThat(fl.getRandomTurnsForRegrow(), is(2809));
-	}
-
 	@Test
 	public void testFlowerGrower() {
 		final FlowerGrower fl = new FlowerGrower();

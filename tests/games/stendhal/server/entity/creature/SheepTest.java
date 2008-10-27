@@ -156,23 +156,7 @@ public class SheepTest {
 		assertEquals("mehmeh", meh.describe());
 	}
 
-	@Ignore
-	@Test
-	public void testOnDeadEntity() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testOnDeadString() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testLogic() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	public void testSheep() {
@@ -220,12 +204,6 @@ public class SheepTest {
 		meh.setIdea("food");
 		meh.setSpeed(1.0);
 		assertTrue("pretend hunting", meh.onHungry());
-	}
-
-	@Ignore
-	@Test
-	public void testOnIdle() {
-		fail("Not yet implemented");
 	}
 
 	@Test

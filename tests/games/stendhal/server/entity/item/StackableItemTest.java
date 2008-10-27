@@ -1,19 +1,19 @@
 package games.stendhal.server.entity.item;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.RPClass.ItemTestHelper;
@@ -41,12 +41,6 @@ public class StackableItemTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Ignore
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public void testGetQuantity() {
 		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
@@ -61,18 +55,6 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(1));
 		stack.removeOne();
 		assertThat(stack.getQuantity(), is(0));
-	}
-
-	@Ignore
-	@Test
-	public void testStackableItemStringStringStringMapOfStringString() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testStackableItemStackableItem() {
-		fail("Not yet implemented");
 	}
 
 	@Test
