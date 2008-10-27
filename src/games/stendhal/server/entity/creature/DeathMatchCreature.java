@@ -5,8 +5,10 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * A creature that will only reward the specified player.
- * 
+ * <p>A creature that will give no XP to killers.
+ * <p>It calculates the DM score (points) due to the DM starter.
+ * <p>All players who did damage get the kill attributed.
+ *
  * @author hendrik
  */
 public class DeathMatchCreature extends Creature {
@@ -26,18 +28,8 @@ public class DeathMatchCreature extends Creature {
 		super(copy);
 	}
 
-	@Override
-	protected void addPlayersToReward(final Entity player) {
-		// don't reward the other attackers
-	}
-
-	@Override
-	public Creature getInstance() {
-		return new DeathMatchCreature(this);
-	}
-
 	/**
-	 * Only this player gets an XP reward.
+	 * Only this player gets a points reward.
 	 * 
 	 * @param player
 	 *            Player to reward
@@ -45,31 +37,51 @@ public class DeathMatchCreature extends Creature {
 	public void setPlayerToReward(final Player player) {
 		this.playerName = player.getName();
 	}
+	
+	@Override
+	public Creature getInstance() {
+		return new DeathMatchCreature(this);
+	}
 
 	@Override
 	protected void rewardKillers(final int oldXP) {
-		final Player player =  SingletonRepository.getRuleProcessor().getPlayer(playerName);
-		if (player == null) {
-			return;
-		}
-
-		final Integer damageReceivedByPlayer = damageReceived.get(player);
-		if (damageReceivedByPlayer != null) {
-			points = player.getLevel()
-					* (damageReceivedByPlayer / totalDamageReceived);
-
+	  
+		for (final String killerName : playersToReward) {
+			final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
+			// check logout
+			if (killer == null) {
+				continue;
+			}
+			
+			final Integer damageDone = damageReceived.get(killer);
+			if (damageDone == null) {
+				continue;
+			}
+			// set the DM points score only for the player who started the DM
+			if (killerName.equals(playerName)) {
+				points = (int)( killer.getLevel()
+					* ((float) damageDone / (float) totalDamageReceived));
+			}	
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
-			// Find out if the player killed this RPEntity on his own.
-			if (damageReceivedByPlayer == totalDamageReceived) {
-				player.setSoloKill(getName());
-			} else {
-				player.setSharedKill(getName());
+			// Find out if the player killed this RPEntity on his own, but
+			// don't overwrite solo with shared.
+			final String killedName = getName();
+			
+			if (killedName != null) {
+				if (damageDone == totalDamageReceived) {
+					killer.setSoloKill(killedName);
+				} else {
+					killer.setSharedKill(killedName);
+				}
 			}
-			player.notifyWorldAboutChanges();
+			
+			killer.notifyWorldAboutChanges();
+			
 		}
+		
 	}
-
+	
 	/**
 	 * Calculates the deathmatch points for this kill.
 	 * 
