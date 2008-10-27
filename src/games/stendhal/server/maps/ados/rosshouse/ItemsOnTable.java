@@ -4,7 +4,6 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 
 import java.util.Map;
 
@@ -19,8 +18,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 	}
 
 	private void buildRossHouseArea(final StendhalRPZone zone) {
-		final Item item = addPersistentItem("teddy", zone, 9, 9);
-		final Item item2 = addPersistentItem("dice", zone, 12, 10);
+		addPersistentItem("teddy", zone, 9, 9);
+		addPersistentItem("dice", zone, 12, 10);
 	}
 
 	private Item addPersistentItem(final String name, final StendhalRPZone zone, final int x, final int y) {
