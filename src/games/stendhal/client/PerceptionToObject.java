@@ -51,6 +51,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public boolean onDeleted(final RPObject object) {
+		if (object != null) {
 		Set<ObjectChangeListener> set = map.get(object.getID());
 		if (set != null) {
 			for (ObjectChangeListener objectChangeListener : set) {
@@ -58,6 +59,7 @@ public class PerceptionToObject implements IPerceptionListener {
 				objectChangeListener.deleted();
 				map.remove(object.getID());
 			}
+		}
 		}
 		return false;
 	}
@@ -69,7 +71,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
-		
+		if (object != null) {
 		Set<ObjectChangeListener> set = map.get(object.getID());
 		if (set != null) {
 			for (ObjectChangeListener objectChangeListener : set) {
@@ -77,17 +79,19 @@ public class PerceptionToObject implements IPerceptionListener {
 				objectChangeListener.modifiedAdded(changes);
 			}
 		}
-
+		}
 		return false;
 	}
 
 	public boolean onModifiedDeleted(final RPObject object,
 			final RPObject changes) {
+		if (object != null) {
 		Set<ObjectChangeListener> set = map.get(object.getID());
 		if (set != null) {
 			for (ObjectChangeListener objectChangeListener : set) {
 				objectChangeListener.modifiedDeleted(changes);
 			}
+		}
 		}
 		return false;
 	}
@@ -132,10 +136,12 @@ public class PerceptionToObject implements IPerceptionListener {
 	}
 
 	public void register(final RPObject object, final ObjectChangeListener listener) {
+		if (object != null) {
 		if (!map.containsKey(object.getID())) {
 			map.put(object.getID(), new HashSet<ObjectChangeListener>());		
 		} 
 		map.get(object.getID()).add(listener);
+		}
 	}
 	
 	public void unregister(final ObjectChangeListener listener) {
