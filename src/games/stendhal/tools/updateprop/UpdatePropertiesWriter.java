@@ -21,6 +21,7 @@ public class UpdatePropertiesWriter {
 	 * @param prop properties to write
 	 * @param ps   output stream
 	 */
+	@SuppressWarnings("unchecked")
 	public UpdatePropertiesWriter(final Properties prop, final PrintStream ps) {
 		this.prop = prop;
 		this.ps = ps;
