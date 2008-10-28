@@ -2856,6 +2856,7 @@
     <ai>
       <says>
         <noise value="Aye, my hearties!"/>
+        <noise value="Yohoho and a boddle of rum!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
