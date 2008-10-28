@@ -463,6 +463,7 @@ Danger! Deep Water!
  <zone name="-2_orril_dungeon" level="-2" x="499936" y="500224" file="Level -2/orril/dungeon.tmx">
  </zone>
  <zone name="-2_orril_dungeon_e" level="-2" x="500064" y="500224" file="Level -2/orril/dungeon_e.tmx">
+  <configurator class-name="games.stendhal.server.maps.orril.dungeon.DarkElfNPC"/>
  </zone>
 
 
