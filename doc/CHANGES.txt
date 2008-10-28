@@ -3,6 +3,19 @@ Changelog
 0.71
 - chatlog stops automatic scroll on when not at bottom of text.
 - tab-completion toggles through all online players in chat line.
+- attribute all players who kill in DM not just the DM starter
+- fix a bug in heal which was confusing the DM assistant
+- fix a bug in the calculation of DM score
+- add npc to guide players to the rat city and help them avoid going wrong way
+- leander buys cheese 
+- place a few creatures that were low level but only accessible by going past
+high level cretaures, in better places to aid mayor task
+- fixed a bug with using balloons
+- -2 semos mines decorated more
+- prototype pirate creatures added
+- consumption of meat, ham, soup, pizza and cheese sped up by about 1.5 x
+- added some more creature descriptions
+
 0.70
 - damage calculations place greater emphasis on weapon attack and level
 instead of mainly base skills (this means heavy weapons are now better against
