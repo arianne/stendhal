@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -59,7 +58,7 @@ public class DeathMatchCreature extends Creature {
 			}
 			// set the DM points score only for the player who started the DM
 			if (killerName.equals(playerName)) {
-				points = (int)( killer.getLevel()
+				points = (int) (killer.getLevel()
 					* ((float) damageDone / (float) totalDamageReceived));
 			}	
 			// For some quests etc., it is required that the player kills a
