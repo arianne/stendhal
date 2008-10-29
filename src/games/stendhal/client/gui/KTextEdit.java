@@ -33,6 +33,8 @@ public class KTextEdit extends JPanel {
 
 	protected JTextPane textPane;
 
+	
+	
 	private JScrollPane scrollPane;
 	private boolean autoScrollEnabled;
 
@@ -50,10 +52,12 @@ public class KTextEdit extends JPanel {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
+		
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
 		scrollPane = new JScrollPane(textPane);
 		add(scrollPane, BorderLayout.CENTER);
+		
 	}
 
 	/**
@@ -216,11 +220,15 @@ public class KTextEdit extends JPanel {
 		
 		if (isAutoScrollEnabled()) {
 				scrollToBottom();
+				textPane.setBackground(Color.white);
+		} else {
+				textPane.setBackground(Color.pink);
 		}
 
 	}
 
 	public void setAutoScrollEnabled(final boolean autoScrollEnabled) {
+	
 		this.autoScrollEnabled = autoScrollEnabled;
 	}
 
@@ -228,7 +236,7 @@ public class KTextEdit extends JPanel {
 		return autoScrollEnabled;
 	}
 
-	public void addLine(EventLine line) {
+	public void addLine(final EventLine line) {
 		this.addLine(line.getHeader(), line.getText(), line.getType());
 		
 	}
