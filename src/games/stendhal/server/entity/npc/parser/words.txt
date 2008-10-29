@@ -435,6 +435,7 @@ gem	OBJ	gems
 geography	OBJ	geographies
 germany	OBJ	germanies
 glas	OBJ	glas
+glass    OBJ glasses
 glow	OBJ	glows
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
