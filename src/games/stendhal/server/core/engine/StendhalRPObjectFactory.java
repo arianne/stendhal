@@ -33,13 +33,17 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		} else if (name.equals(RentedSign.RPCLASS_NAME)) {
 			return new RentedSign(object);
 		} else if (name.equals("growing_entity_spawner")) {
-			String itemname = object.get("class");
-			itemname = itemname.substring(itemname.lastIndexOf('/') + 1, itemname.length() - "_grower".length());
-			return new FlowerGrower(object, itemname);
+			return createGrower(object);
 		}
 
 		// fallback
 		return super.transform(object);
+	}
+
+	private RPObject createGrower(final RPObject object) {
+		String itemname = object.get("class");
+		itemname = itemname.substring(itemname.lastIndexOf('/') + 1, itemname.length() - "_grower".length());
+		return new FlowerGrower(object, itemname);
 	}
 
 	/**
