@@ -1,7 +1,10 @@
 package games.stendhal.server.actions;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -208,7 +211,6 @@ public class AdministrationActionTest {
 			public boolean teleport(final StendhalRPZone zone, final int x, final int y,
 					final Direction dir, final Player teleporter) {
 				assertEquals("zoneTo", zone.getName());
-				// added hack to have something to verify
 				setName("hugo");
 				return true;
 
@@ -231,9 +233,9 @@ public class AdministrationActionTest {
 
 		assertTrue(action.has("target") && action.has("zone")
 				&& action.has("x"));
-
+		assertThat(bob.getName(), not(is("hugo")));
 		CommandCenter.execute(pl, action);
-		assertEquals("hugo", bob.getName());
+		assertEquals("name must have changed, if action was executed", "hugo", bob.getName());
 	}
 
 	@Test
