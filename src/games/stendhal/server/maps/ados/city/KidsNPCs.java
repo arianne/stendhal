@@ -66,7 +66,7 @@ public class KidsNPCs implements ZoneConfigurator {
 						        ConversationStates.IDLE,
 						        ConversationPhrases.GREETING_MESSAGES,
 						        ConversationStates.IDLE,
-						        "Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
+						        "Mummy said, we are not allowed to talk to strangers. Bye.",
 						        null);
 					}
 					addGoodbye("Bye bye!");
