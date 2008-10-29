@@ -146,8 +146,6 @@ public class WtWindowManager {
 	 *            configuration file
 	 * @return value
 	 */
-	// Hack: enables other parts of the program to read from this configuration
-	// file
 	public String getProperty(final String key, final String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
@@ -162,8 +160,6 @@ public class WtWindowManager {
 	 *            configuration file
 	 * @return value
 	 */
-	// Hack: enables other parts of the program to read from this configuration
-	// file
 	public String setProperty(final String key, final String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
