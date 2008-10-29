@@ -5,6 +5,8 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.Date;
 
 import javax.swing.JPanel;
@@ -55,9 +57,21 @@ public class KTextEdit extends JPanel {
 		
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
-		scrollPane = new JScrollPane(textPane);
-		add(scrollPane, BorderLayout.CENTER);
 		
+		scrollPane = new JScrollPane(textPane);
+		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent ev) {
+				JScrollBar bar = (JScrollBar) ev.getAdjustable();
+				// Try to avoid turning the new message indicator off
+				// while the player keeps adjusting the scroll bar to 
+				// avoid missleading results
+				if (!bar.getValueIsAdjusting() && 
+					(bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
+						textPane.setBackground(Color.white);
+				}
+			}
+		});
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	/**
@@ -220,7 +234,6 @@ public class KTextEdit extends JPanel {
 		
 		if (isAutoScrollEnabled()) {
 				scrollToBottom();
-				textPane.setBackground(Color.white);
 		} else {
 				textPane.setBackground(Color.pink);
 		}
