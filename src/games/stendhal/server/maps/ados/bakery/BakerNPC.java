@@ -73,7 +73,7 @@ public class BakerNPC implements ZoneConfigurator {
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work to do.");
 				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button mushroom"),
 				        "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
-				addHelp("My wife is searching for that lost girl, too. So we cannot sell you anthing at the moment.");
+				addHelp("If you have plenty of meat or cheese you can sell it to Siandta in Ados bar.");
 				addGoodbye();
 
 				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
