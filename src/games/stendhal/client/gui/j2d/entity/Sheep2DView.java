@@ -94,9 +94,6 @@ class Sheep2DView extends DomesticAnimal2DView {
 
 			rpaction.put("species", "sheep");
 			
-			// HACK see server handler code
-			rpaction.put("target", -1); 
-
 			at.send(rpaction);
 			break;
 
