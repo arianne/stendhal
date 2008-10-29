@@ -582,6 +582,10 @@ in roaches.
 
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
+<!-- originally located in semos townhall hence package here - may move back -->
+<!-- if needed again there later -->
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.LeaderNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.CadetsNPCs" />
 
     <entity x="35" y="52">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
