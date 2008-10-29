@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Map;
  * Ados Wall North population.
  *
  * @author hendrik
+ * @author kymara
  */
 public class SoldierNPC implements ZoneConfigurator {
 	/**
@@ -45,12 +47,16 @@ public class SoldierNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, have you heard the latest news? A small girl called #Susi is missing and almost the whole population is out of town looking for her.");
-				addReply("susi",
-				        "This girl was last seen during the Semos Mine Town Revival Weeks. But she did not return after the end of the fair.");
-				addJob("I protect Ados City against looters while most of the people are out of town searching for that girl.");
-				addHelp("Just look around, some people are still in Ados doing their work.");
-				addGoodbye("I hope you will enjoy your visit to Ados anyway.");
+				addGreeting("Hi, welcome to Ados City!");
+				addReply("map", "Caption\n"
+					+ "1 Bank,   2 Goldsmith,   3 Bakery,   4 Haunted House,\n"
+					+ "5 Castle,   6 Felina's House,   7 Barracks \n"
+					+ "8 Bar,   9 Sewing Rooms, ida \n"
+					+ "10 Meat and Fish Huts,   11 Town Hall",
+					new ExamineChatAction("map-ados-city.png", "Ados City", "Map of Ados City"));
+				addJob("I guard Ados against attacks, and #help visitors.");
+				addHelp("If you need a #map to guide you around Ados, just ask.");
+				addGoodbye("I hope you will enjoy your visit to Ados.");
 			}
 		};
 
