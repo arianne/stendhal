@@ -96,7 +96,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public String welcomeBeforeStartingQuest() {
-		return "Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But I'm bored. I want some #toys!";
+		return "Mummy said, we are not allowed to talk to strangers. But I'm bored. I want some #toys!";
 	}
 
 	public String welcomeDuringActiveQuest() {
