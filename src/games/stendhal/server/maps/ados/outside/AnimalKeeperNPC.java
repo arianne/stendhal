@@ -69,8 +69,6 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		}
 
 		public void onTurnReached(final int currentTurn) {
-			// HACK: we need to wait a turn because the message is lost otherwise
-			// sends the message to all players
 			SingletonRepository.getRuleProcessor().tellAllPlayers(cryForHelp);
 		}
 	}
