@@ -132,6 +132,7 @@ hear	VER
 hello	VER
 hi	VER	=hello
 hide	VER
+hire	VER
 hola	VER	=hello
 hold	VER
 hurry	VER
