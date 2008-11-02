@@ -224,7 +224,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			action.put("type", "displace");
 		}
 
-		// HACK: if ctrl is pressed, attempt to split stackables
+		// if ctrl is pressed, attempt to split stackables
 		if (ui.isCtrlDown()) {
 			action.put("quantity", 1);
 		}
