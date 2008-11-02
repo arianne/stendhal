@@ -60,13 +60,14 @@ public class KTextEdit extends JPanel {
 		
 		scrollPane = new JScrollPane(textPane);
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-			public void adjustmentValueChanged(AdjustmentEvent ev) {
+			public void adjustmentValueChanged(final AdjustmentEvent ev) {
 				JScrollBar bar = (JScrollBar) ev.getAdjustable();
 				// Try to avoid turning the new message indicator off
 				// while the player keeps adjusting the scroll bar to 
 				// avoid missleading results
 				if (!bar.getValueIsAdjusting() && (bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
 						textPane.setBackground(Color.white);
+						setAutoScrollEnabled(true);
 				}
 			}
 		});
