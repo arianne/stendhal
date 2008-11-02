@@ -65,8 +65,7 @@ public class KTextEdit extends JPanel {
 				// Try to avoid turning the new message indicator off
 				// while the player keeps adjusting the scroll bar to 
 				// avoid missleading results
-				if (!bar.getValueIsAdjusting() && 
-					(bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
+				if (!bar.getValueIsAdjusting() && (bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
 						textPane.setBackground(Color.white);
 				}
 			}

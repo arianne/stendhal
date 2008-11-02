@@ -1,23 +1,18 @@
 package games.stendhal.server.maps.magic.clothing_boutique;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Pair;
@@ -127,7 +122,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final boolean type = outfitPair.second();
 						if (type) {
-							if (player.getOutfit().getBase()>94 && player.getOutfit().getBase()<98) {
+							if (player.getOutfit().getBase() > 94
+									&& player.getOutfit().getBase() < 98) {
 								seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 								return false;
 							}
@@ -143,18 +139,18 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					}
 				}
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("jumpsuit", (int) (N*500));
-				priceList.put("dungarees", (int) (N*500));
-				priceList.put("green dress", (int) (N*500));
-				priceList.put("gown", (int) (N*750));
-				priceList.put("orange", (int) (N*500));
-				priceList.put("bunny", (int) (N*800));
-				priceList.put("glasses", (int) (N*400));
-				priceList.put("other glasses", (int) (N*400));
-				priceList.put("hat", (int) (N*400));
-				priceList.put("horse", (int) (N*1200));
-				priceList.put("girl horse", (int) (N*1200));
-				priceList.put("alien", (int) (N*1200));	
+				priceList.put("jumpsuit", (int) (N * 500));
+				priceList.put("dungarees", (int) (N * 500));
+				priceList.put("green dress", (int) (N * 500));
+				priceList.put("gown", (int) (N * 750));
+				priceList.put("orange", (int) (N * 500));
+				priceList.put("bunny", (int) (N * 800));
+				priceList.put("glasses", (int) (N * 400));
+				priceList.put("other glasses", (int) (N * 400));
+				priceList.put("hat", (int) (N * 400));
+				priceList.put("horse", (int) (N * 1200));
+				priceList.put("girl horse", (int) (N * 1200));
+				priceList.put("alien", (int) (N * 1200));	
 				//	addGreeting("Hi! How may I help you?");
 				addGreeting("Hi! Welcome to Semos Mine Town Revival Weeks!");
 				addQuest("I can't think of anything for you, sorry.");
