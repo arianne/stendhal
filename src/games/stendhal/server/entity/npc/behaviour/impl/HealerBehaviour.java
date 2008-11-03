@@ -16,10 +16,11 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Represents the behaviour of a NPC who is able to heal a player. This can
- * either be done for free or paid in a lump sum.
- * 
- * Use SpeakerNPC.addHealer() to assign this behaviour to an NPC.
+ * <p>Represents the behaviour of a NPC who is able to heal a player. This can
+ * either be done for free or paid in a lump sum, or for a price depending on 
+ * level of the player</p>
+ *
+ * <p>Use SpeakerNPC.addHealer() to assign this behaviour to an NPC.</p>
  */
 public class HealerBehaviour extends SellerBehaviour {
 
