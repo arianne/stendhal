@@ -43,9 +43,10 @@ public class HealerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
-				addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
+				addHelp("I can #heal you here for a cost, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")));
-				new HealerAdder().addHealer(this, 0);
+				// charge (2*the player level + 1) to heal
+				new HealerAdder().addHealer(this, -2);
 				addGoodbye();
 			}
 		};
