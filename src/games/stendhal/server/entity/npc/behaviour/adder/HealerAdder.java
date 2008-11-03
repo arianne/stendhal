@@ -12,6 +12,23 @@ import games.stendhal.server.entity.player.Player;
 
 public class HealerAdder {
 
+	/**
+	 *<p>Makes this NPC a healer, i.e. someone who sets the player's hp to
+	 * the value of their base hp.
+	 *
+	 *<p>Player killers are not healed at all even by healers who charge.
+	 *
+	 *<p>Too strong players (atk >35 or def > 35) cannot be healed for free.
+	 *
+	 *<p>Players who have done PVP in the last 2 hours cannot be healed free,
+	 * unless they are very new to the game.
+	 * 
+	 * @param npc
+	 *            SpeakerNPC
+	 * @param cost
+	 *            The price which can be positive for a lump sum cost, 0 for free healing
+	 *            or negative for a price dependent on level of player.
+	 */
 	public void addHealer(final SpeakerNPC npc, final int cost) {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		final Engine engine = npc.getEngine();
@@ -27,7 +44,7 @@ public class HealerAdder {
 							final SpeakerNPC engine) {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
-						final int cost = healerBehaviour.getCharge(engine, player);
+						int cost = healerBehaviour.getCharge(engine, player);
 						if (player.isBadBoy()) {
 							// don't heal player killers at all
 							engine.say("You killed another soul recently, giving you an aura of evil. I cannot, and will not, heal you.");
@@ -36,7 +53,15 @@ public class HealerAdder {
 							if (cost > 0) {
 								engine.say("Healing costs " + cost
 									+ ". Do you have that much?");
-							} else {
+							} else if (cost < 0 )
+								{
+									// price depends on level if cost was set at -1
+									// where the factor is |cost| and we have a +1 to avoid 0 charge.
+									cost = player.getLevel()*Math.abs(cost) + 1;
+									engine.say("Healing someone of your abilities costs " + cost
+												   + " money. Do you have that much?");
+								}
+							else {
 								if ((player.getATK() > 35) || (player.getDEF() > 35)) {
 									engine.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
 								} else if (!player.isNew()
@@ -61,8 +86,12 @@ public class HealerAdder {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {
+						int cost = healerBehaviour.getCharge(engine, player);
+						if (cost < 0) {
+							cost = player.getLevel()*Math.abs(cost) + 1;
+						}
 						if (player.drop("money",
-								healerBehaviour.getCharge(engine, player))) {
+								cost)) {
 							healerBehaviour.heal(player);
 							engine.say("There, you are healed. How else may I help you?");
 						} else {
