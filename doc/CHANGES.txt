@@ -1,8 +1,9 @@
 Changelog
 ---------
 0.71
-- chatlog stops automatic scroll on when not at bottom of text.
-- tab-completion toggles through all online players in chat line.
+- chatlog stops automatic scroll on when not at bottom of text 
+- chatlog highlighted pink if the scroll was halted and there are unread messages
+- tab-completion toggles through all online players in chat line
 - attribute all players who kill in DM not just the DM starter
 - fix a bug in heal which was confusing the DM assistant
 - fix a bug in the calculation of DM score
@@ -15,6 +16,12 @@ high level cretaures, in better places to aid mayor task
 - prototype pirate creatures added
 - consumption of meat, ham, soup, pizza and cheese sped up by about 1.5 x
 - added some more creature descriptions
+- pets at full weight (usually 100) get hungry slower - approximately 5 times slower
+- add healer ability to charge dependent on level of player
+- valo and ilisa healing dependent on charge (so all players can get healed in
+semos and ados)
+- pk skull icon got glowing eyes
+- semos mine town revival weeks celebrated - outfit lender + more
 
 0.70
 - damage calculations place greater emphasis on weapon attack and level
