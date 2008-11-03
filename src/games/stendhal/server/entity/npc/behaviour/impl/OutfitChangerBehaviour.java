@@ -149,8 +149,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		@Override
 		public boolean equals(final Object obj) {
 			if (obj instanceof OutwearClothes) {
-				final OutwearClothes newName = (OutwearClothes) obj;
-				return ref.get() == newName.ref.get();
+				OutwearClothes other = (OutwearClothes) obj;
+				return name.equals(other.name);
 			} else {
 				return false;
 			}
@@ -159,18 +159,14 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 
 		@Override
 		public int hashCode() {
-			final Player player = ref.get();
-
-			if (player != null) {
-				return player.hashCode();
-			} else {
-				return 0;
-			}
+			return name.hashCode();
 		}
 
 		public void onTurnReached(final int currentTurn) {
-			final Player player = ref.get();
-
+			Player player = ref.get();
+			if (player == null) {
+				player = SingletonRepository.getRuleProcessor().getPlayer(name);
+			}
 			if (player != null) {
 				onWornOff(player);
 			} else {
