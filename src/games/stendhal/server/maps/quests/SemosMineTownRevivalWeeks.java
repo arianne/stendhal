@@ -14,6 +14,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -21,7 +22,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Puts the player into a funny constume.
+ * <p>Creates a special version of Susi by the semos mine town.
+ * <p>Creates a special version of Susi's father in a nearby house.
+ * <p>Puts a sign by the tower to say why it is shut.
  */
 public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
@@ -32,7 +35,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
-	private void createNPC() {
+	private void createGirlNPC() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 				"0_semos_mountain_n2");
 		final SpeakerNPC npc = new SpeakerNPC("Susi") {
@@ -61,12 +64,10 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, I like the #Semos #Mine #Town #Revival #Weeks. Its like a huge party.");
+				addGreeting("Guess what, we are having another #Semos #Mine #Town #Revival #Weeks in my honour!");
 				addJob("I am just a litte girl having lots of fun here during the #Semos #Mine #Town #Revival #Weeks-");
 				addGoodbye("Have fun!");
-				add(ConversationStates.ATTENDING, "debuggera", null,
-						ConversationStates.ATTENDING,
-						"She is my crazy twin sister.", null);
+				addReply("debuggera", "She is my crazy twin sister.");
 				addQuest("Just have fun.");
 				addOffer("I can offer you my #friendship.");
 
@@ -75,34 +76,25 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
 					ConversationStates.ATTENDING,
-					"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. Lots of people from Ados come for a visit.",
+					"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. "
+					+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
+					+ "Now that I am found we can party again!",
 					null);
 				add(
 					ConversationStates.ATTENDING,
 					Arrays.asList("celebrate", "celebration", "party"),
-					new ChatCondition() {
-						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							return !player.has("outfit_org");
-						}
-					},
+					null,
 					ConversationStates.ATTENDING,
-					"You can get a costume from Fidorea over there or you can try to solve a difficult puzzle in one of the houses.",
+					"You can get a costume from Liliana over there or you can try to solve a difficult #puzzle in one of the houses.",
 					null);
-				add(
-					ConversationStates.ATTENDING,
-					Arrays.asList("celebrate", "celebration", "party"),
-					new ChatCondition() {
-						public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							return player.has("outfit_org");
-						}
-					},
-					ConversationStates.ATTENDING,
-					"I see, you already got a costume from Fidorea. But have you tried your luck in a difficult puzzle in one of the houses?",
-					null);
-
+				
+				addReply("puzzle", "Gamblos has nine tokens on the floor arranged into a triangle with the point downwards."
+						 + " The puzzle is to try to make it into an triangle pointing upwards by moving only three tokens!"
+						 + " Just remember, you must be stood next to the token to move it.");
+				
 				// friends
 				add(ConversationStates.ATTENDING, Arrays.asList("friend",
-					"friends"),
+																"friends"),
 					new QuestInStateCondition("susi", "friends"), 
 					ConversationStates.ATTENDING,
 					"We are friends.", null);
@@ -129,7 +121,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				add(ConversationStates.INFORMATION_4, Arrays.asList(
 					"I will be your friend.", "I will be your friend"),
 					null, ConversationStates.ATTENDING,
-					"Cool. We are friends now.",
+					"Yay! We are friends now.",
 					new SetQuestAction("susi", "friends"));
 
 				// help
@@ -147,13 +139,41 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 			}
 		};
 
-		npcs.add(npc);
-		npc.setEntityClass("girlnpc");
+		//	npcs.add(npc);
+		npc.setOutfit(new Outfit(04, 07, 32, 13));
 		npc.setPosition(95, 120);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		// npc.setSpeed(1.0);
 		zone.add(npc);
+	}
+
+	private void createDadNPC() {
+		final StendhalRPZone zone2 = SingletonRepository.getRPWorld().getZone(
+																			  "int_semos_frank_house");
+		final SpeakerNPC npc2 = new SpeakerNPC("Mr Ross") {
+
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Hi there.");
+				addJob("I'm on vacation now for the Semos Mine Town Revival Weeks.");
+				addHelp("My daughter Susi is outside, she will tell you how to party.");
+				addOffer("Sorry I do not have anything to offer you. I am just waiting here while my daughter is playing outside. I have to walk her home to Ados once the party is over.");
+				addQuest("Go meet my daughter Susi outside, she'd love to make friends.");
+				addGoodbye("Bye, nice to meet you.");
+			}
+		};
+
+		npc2.setOutfit(new Outfit(27, 07, 34, 01));
+		npc2.setPosition(21, 10);
+		npc2.setDirection(Direction.LEFT);
+		npc2.initHP(100);
+		zone2.add(npc2);
 	}
 
 	private void createSignToCloseTower() {
@@ -168,7 +188,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		createNPC();
+		createGirlNPC();
+		createDadNPC();
 		createSignToCloseTower();
 	}
 }
