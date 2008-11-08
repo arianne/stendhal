@@ -20,7 +20,7 @@ import marauroa.common.Pair;
 public class OutfitLenderNPC implements ZoneConfigurator {
 	
 	// outfits to last for 2 hours (endurance is in turns) for semos mine town revival weeks
-	public static final int endurance = 2 * 60 * 20 * 10;  
+	public static final int endurance = 2 * 60 * 20 * 10;
 
 	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions 
 	private static final double N = 0.05;
@@ -111,7 +111,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 							// another temporary outfit.
 							SingletonRepository.getTurnNotifier().dontNotify(new OutwearClothes(player));
 							// make the costume disappear after some time
-							SingletonRepository.getTurnNotifier().notifyInSeconds(endurance,
+							SingletonRepository.getTurnNotifier().notifyInTurns(endurance,
 									new OutwearClothes(player));
 						}
 					}
@@ -136,6 +136,20 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 							seller.say("Sorry, you don't have enough money!");
 							return false;
 						}
+					}
+					
+					// These outfits are not on the usual OutfitChangerBehaviour's
+					// list, so they need special care when looking for them
+					@Override
+					public boolean wearsOutfitFromHere(final Player player) {
+						final Outfit currentOutfit = player.getOutfit();
+
+						for (final Pair<Outfit,Boolean> possiblePair : outfitTypes.values()) {
+							if (possiblePair.first().isPartOf(currentOutfit)) {
+								return true;
+							}
+						}
+						return false;
 					}
 				}
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
