@@ -167,7 +167,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 			if (player == null) {
 				player = SingletonRepository.getRuleProcessor().getPlayer(name);
 			}
-			if (player != null) {
+			if ((player != null) && (!player.isDisconnected())) {
 				onWornOff(player);
 			} else {
 				// The player has logged out before the outfit wore off.
