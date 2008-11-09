@@ -164,10 +164,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 
 		public void onTurnReached(final int currentTurn) {
 			Player player = ref.get();
-			if (player == null) {
+			if ((player == null) || player.isDisconnected()) {
 				player = SingletonRepository.getRuleProcessor().getPlayer(name);
 			}
-			if ((player != null) && (!player.isDisconnected())) {
+			if (player != null) {
 				onWornOff(player);
 			} else {
 				// The player has logged out before the outfit wore off.
