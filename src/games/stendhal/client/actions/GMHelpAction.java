@@ -26,7 +26,7 @@ class GMHelpAction implements SlashAction {
 				"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
 				"- /tellall <message> \t\tSend a private message to all logged-in players",
 				"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
-				"- /jailreport\t\tList the jailed players and their sentences",
+				"- /jailreport [<player>]\t\tList the jailed players and their sentences",
 				"- /gag <player> <minutes> <reason>\t\tGags the player for a given length of time (player is unable to send messages to anyone)",
 				"- /ban <player> \t\tPermanently bans the player from logging onto the game server or website.",
 				"- /script <scriptname> \t\tLoad (or reload) a script on the server. See /gmhelp_script for details",

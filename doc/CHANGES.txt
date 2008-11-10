@@ -22,6 +22,7 @@ high level cretaures, in better places to aid mayor task
 semos and ados)
 - pk skull icon got glowing eyes
 - semos mine town revival weeks celebrated - outfit lender + more
+- jailreport is available to level 50 admins, and takes an optional player argument
 
 0.70
 - damage calculations place greater emphasis on weapon attack and level

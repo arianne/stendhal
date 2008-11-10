@@ -320,4 +320,14 @@ public class Jail implements LoginListener {
 		}
 		return "jail not inited ?";
 	}
+	
+	/**
+	 * Get the ArrestWarrant of a jailed player.
+	 * 
+	 * @param name the name of the player
+	 * @return the ArrestWarrant for the player, or null if there is none
+	 */
+	public ArrestWarrant getWarrant(String name) {
+		return arrestWarrants.getByName(name);
+	}
 }
