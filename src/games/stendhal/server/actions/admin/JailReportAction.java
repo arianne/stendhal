@@ -9,7 +9,7 @@ public class JailReportAction extends AdministrationAction {
 	private static final String JAILREPORT = "jailreport";
 
 	public static void register() {
-		CommandCenter.register(JAILREPORT, new JailReportAction(), 400);
+		CommandCenter.register(JAILREPORT, new JailReportAction(), 50);
 
 	}
 
