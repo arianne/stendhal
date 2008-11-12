@@ -66,7 +66,7 @@ public class KTextEdit extends JPanel {
 				// while the player keeps adjusting the scroll bar to 
 				// avoid missleading results
 				if (!bar.getValueIsAdjusting() && (bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
-						textPane.setBackground(Color.white);
+						setUnreadLinesWarning(false);
 						setAutoScrollEnabled(true);
 				}
 			}
@@ -188,21 +188,9 @@ public class KTextEdit extends JPanel {
 		addLine(header, line, NotificationType.NORMAL);
 	}
 
-	private void scrollToBottom() {
-		
+	private void scrollToBottom() {	
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-
-		try {
-			// We need to wait because we must not print further lines
-			// before we have scrolled down.
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					vbar.setValue(vbar.getMaximum());
-				}
-			});
-		} catch (final Exception e) {
-			logger.error(e, e);
-		}
+		vbar.setValue(vbar.getMaximum());
 	}
 
 	/**
@@ -217,11 +205,28 @@ public class KTextEdit extends JPanel {
 	 */
 	public synchronized void addLine(final String header, final String line,
 			final NotificationType type) {
+		// do the whole thing in the event dispatch thread to ensure the generated 
+		// events get handled in the correct order
+		try {
+			if (SwingUtilities.isEventDispatchThread()) {
+				handleAddLine(header, line, type);
+			} else {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						handleAddLine(header, line, type);
+					}
+				});
+			}
+		} catch (final Exception e) {
+			logger.error(e, e);
+		}
+	}
 	
+	private void handleAddLine(final String header, final String line, final NotificationType type) {
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-
+		final int currentLocation = vbar.getValue();
+		
 		setAutoScrollEnabled((vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum()));
-
 		insertNewline();
 
 		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
@@ -230,14 +235,21 @@ public class KTextEdit extends JPanel {
 
 		insertHeader(header);
 		insertText(line, type);
-
 		
-		if (isAutoScrollEnabled()) {
-				scrollToBottom();
-		} else {
-				textPane.setBackground(Color.pink);
-		}
-
+		// wait a bit so that the scroll bar knows where it should scroll 
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (isAutoScrollEnabled()) {
+					scrollToBottom();
+				} else {
+					// the scroll bar insists changing its value, so jump back.
+					// in a sane toolkit it would be possible to defer drawing
+					// until this
+					vbar.setValue(currentLocation);
+					setUnreadLinesWarning(true);
+				}
+			}
+		});
 	}
 
 	public void setAutoScrollEnabled(final boolean autoScrollEnabled) {
@@ -253,7 +265,16 @@ public class KTextEdit extends JPanel {
 		this.addLine(line.getHeader(), line.getText(), line.getType());
 		
 	}
-
 	
-
+	/**
+	 * Set a clear warning for the user that there are new, unread lines.
+	 * @param warn true if the warning indicator should be shown, false otherwise
+	 */
+	private void setUnreadLinesWarning(boolean warn) {
+		if (warn) {
+			textPane.setBackground(Color.pink);
+		} else {
+			textPane.setBackground(Color.white);
+		}
+	}
 }
