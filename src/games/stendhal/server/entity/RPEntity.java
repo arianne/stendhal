@@ -472,7 +472,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			// and approaches 1 when rate approaches infinity.
 			// We can't use a much simpler function as long as we need 
 			// to deal with open ended rate values.
-			final double speedPart = 1 - 8 / (getAttackRate() + 3);
+			final double speedPart = 1 - 8 / (getAttackRate() + 3.0);
 			
 			speedEffect = 1.0 - WEIGHT_EFFECT * speedPart * levelPart * levelPart;
 		}
