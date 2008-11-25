@@ -69,19 +69,17 @@ public class Rand {
 	 * It doesn't matter if a or b is bigger. 
 	 *
 	 * @param a
-	 *          the first boundary number (upper or lower)
+	 *          the first boundary number (upper or lower) 
 	 * @param b 
-	 *          the second boundary number (upper or lower)
+	 *          the second boundary number (upper or lower) 
 	 *
 	 * @return A random number between <i>a</i> and <i>b</i>, equally distributed.
 	 */
 	public static int randUniform(final int a, final int b) {
 		final int max = Math.max(a, b);
 		final int min = Math.min(a, b);
-		if (b < 0 || a < 0) {
-			throw new IllegalArgumentException("argument must not be negative");
-		}
-		return rand.nextInt(max - min + 1) + a;
+		
+		return rand.nextInt(max - min + 1) + min;
 	}
 
 	/**
