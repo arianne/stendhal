@@ -375,7 +375,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				if (!player.isGhostMode()) {
 					drawPlayer(vg, player, Color.WHITE);
-				} else if (mininps) {
+				} else if (User.isAdmin()) {
 					drawPlayer(vg, player, Color.GRAY);
 				}
 			} else if (entity instanceof Portal) {
@@ -384,12 +384,14 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				if (!portal.isHidden()) {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
 				}
-			} else if (mininps) {
+			} else if (mininps && User.isAdmin()) {
 				// Enabled with -Dstendhal.superman=x.
 
 				if (entity instanceof RPEntity) {
 					drawRPEntity(vg, (RPEntity) entity);
-				} 
+				} else {
+					drawEntity(vg, entity, COLOR_ENTITY);
+				}
 			}
 		}
 
