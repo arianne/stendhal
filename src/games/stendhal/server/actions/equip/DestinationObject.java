@@ -11,7 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.Iterator;
-import java.util.List;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -28,8 +27,7 @@ class DestinationObject extends MoveableObject {
 	/** true when this object is valid. */
 	private boolean valid;
 
-	/** optional, parent item. */
-	private Entity parent;
+	
 
 	/** x coordinate when dropped on ground. */
 	private int x;
@@ -192,7 +190,7 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * add the entity to the world (specified by the action during constuction).
+	 * add the entity to the world (specified by the action during construction).
 	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
 	 * before adding an item to the world
 	 * @param entity 
@@ -253,18 +251,6 @@ class DestinationObject extends MoveableObject {
 			zone.add(entity, player);
 			logger.debug("entity has valid id: " + entity.getID());
 		}
-	}
-
-	/**
-	 * Checks if RPobject is one the valid classes.
-	 * @param validClasses 
-	 * @return true if the rpobject is one of the classes in <i>validClasses</i>.
-	 */
-	public boolean checkClass(final List<Class< ? >> validClasses) {
-		if (parent != null) {
-			return EquipUtil.isCorrectClass(validClasses, parent);
-		}
-		return true;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package games.stendhal.server.actions.equip;
 
+import java.util.List;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
@@ -61,4 +63,20 @@ public abstract class MoveableObject {
 	 * @return String[2]
 	 */
 	public abstract String[] getLogInfo();
+
+	/**
+	 * Checks if RPobject is one the valid classes.
+	 * @param validClasses 
+	 * @return true if the rpobject is one of the classes in <i>validClasses</i>.
+	 */
+	public boolean checkClass(final List<Class< ? >> validClasses) {
+		if (parent != null) {
+			return EquipUtil.isCorrectClass(validClasses, parent);
+		}
+		return true;
+	}
+
+	boolean isInvalidMoveable(final Player player, final double maxDistance, final List<Class< ? >> containerClassesList) {
+		return !isValid() || !checkDistance(player, maxDistance) || (!checkClass(containerClassesList));
+	}
 }

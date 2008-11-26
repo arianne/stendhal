@@ -14,6 +14,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -35,10 +36,6 @@ import org.apache.log4j.Logger;
 public class DisplaceAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(DisplaceAction.class);
 
-	private static final String _BASEITEM = "baseitem";
-	private static final String _Y = "y";
-	private static final String _X = "x";
-
 	/**
 	 * register this action.
 	 */
@@ -53,7 +50,7 @@ public class DisplaceAction implements ActionListener {
 	 */
 	public void onAction(final Player player, final RPAction action) {
 
-		if (!action.has(_BASEITEM) || !action.has(_X) || !action.has(_Y)) {
+		if (!action.has(_BASEITEM) || !action.has(X) || !action.has(Y)) {
 			logger.error("Incomplete DisplaceAction: " + action);
 			return;
 		}
@@ -66,8 +63,8 @@ public class DisplaceAction implements ActionListener {
 			return;
 		}
 
-		final int x = action.getInt(_X);
-		final int y = action.getInt(_Y);
+		final int x = action.getInt(X);
+		final int y = action.getInt(Y);
 
 		final PassiveEntity entity = (PassiveEntity) object;
 

@@ -28,8 +28,7 @@ class SourceObject extends MoveableObject {
 	/** the item . */
 	private Item item;
 
-	/** optional, parent item. */
-	private Entity parent;
+
 
 	private int quantity;
 
@@ -263,23 +262,6 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * Checks if RPObject is one of the classes in <i>validClasses</i>.
-	 * 
-	 * @param validClasses
-	 *            classes against which to check
-	 * @return true if the RPObject is one of the classes
-	 */
-	public boolean checkClass(final List<Class< ? >> validClasses) {
-		if (parent != null) {
-			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
-				logger.debug("parent is the wrong class " + parent.getClass().getName());
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
 	 * Gets the entity that should be equipped.
 	 * 
 	 * @return entity
@@ -353,6 +335,19 @@ class SourceObject extends MoveableObject {
 			res[2] = item.getX() + " " + item.getY();
 		}
 		return res;
+	}
+
+	String getEntityName() {
+		Entity entity1 = getEntity();
+		final String itemName;
+		if (entity1.has("name")) {
+			itemName = entity1.get("name");
+		} else if (entity1 instanceof Item) {
+			itemName = "item";
+		} else {
+			itemName = "entity";
+		}
+		return itemName;
 	}
 
 	private static class InvalidSource extends SourceObject {
