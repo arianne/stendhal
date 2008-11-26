@@ -33,6 +33,7 @@ import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.portal.Door;
+import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -151,6 +152,7 @@ public class StendhalRPWorld extends RPWorld {
 		Door.generateRPClass();
 		Fire.generateRPClass();
 		FishSource.generateRPClass();
+		Gate.generateGateRPClass();
 		GoldSource.generateRPClass();
 		WellSource.generateRPClass();
 		Item.generateRPClass();
