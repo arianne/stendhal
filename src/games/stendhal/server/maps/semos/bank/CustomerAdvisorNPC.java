@@ -7,12 +7,16 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.deathmatch.Spot;
 
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
@@ -46,9 +50,16 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			final StendhalRPZone zone = StendhalRPZone.fillContent(player
 					.getName()
 					+ "_vault", vaultzone);
+			
 			zone.addMovementListener(new MovementListenerImplementation());
+			PersonalChest chest = new PersonalChest();
+			chest.setPosition(3, 2);
+			Portal prot = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
+			prot.setPosition(3, 6);
+			zone.add(prot);
+			zone.add(chest);
 			SingletonRepository.getRPWorld().addRPZone(zone);
-			player.teleport(zone, 1, 1, Direction.UP, player);
+			player.teleport(zone, 3, 5, Direction.UP, player);
 			
 		}
 	}
