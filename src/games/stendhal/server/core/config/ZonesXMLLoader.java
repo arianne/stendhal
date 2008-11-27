@@ -25,6 +25,8 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,6 +37,8 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import org.apache.log4j.Logger;
+
+import com.sun.org.apache.xerces.internal.impl.dtd.XML11DTDValidator;
 
 /**
  * Load and configure zones via an XML configuration file.
@@ -113,6 +117,7 @@ public class ZonesXMLLoader {
 	 *             If an I/O error occurred.
 	 */
 	protected void load(final InputStream in) throws SAXException, IOException {
+		
 		final Document doc = XMLUtil.parse(in);
 
 		/*
@@ -180,7 +185,13 @@ public class ZonesXMLLoader {
 	protected StendhalRPZone load(final ZoneDesc desc, final StendhalMapStructure zonedata)
 			throws SAXException, IOException {
 		final String name = desc.getName();
-		final StendhalRPZone zone = new StendhalRPZone(name);
+		
+		final StendhalRPZone zone;
+		if (desc.getImplementation() == null) {
+			zone = new StendhalRPZone(name);
+		} else {
+			zone = createZone(desc, name);
+		}
 
 		zone.addTilesets(name + ".tilesets", zonedata.getTilesets());
 		zone.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
@@ -216,6 +227,30 @@ public class ZonesXMLLoader {
 		zone.populate(zonedata.getLayer("objects"));
 
 		return zone;
+	}
+
+	private StendhalRPZone createZone(final ZoneDesc desc, final String name)  {
+		try {
+			Class<StendhalRPZone> zoneclass = (Class<StendhalRPZone>) Class.forName(desc.getImplementation());
+			Constructor<StendhalRPZone> constr = zoneclass.getConstructor(String.class);
+			return  (StendhalRPZone) constr.newInstance(name);
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return new StendhalRPZone(name);
 	}
 
 	public ZoneDesc readZone(final Element element) {
@@ -299,6 +334,9 @@ public class ZonesXMLLoader {
 
 			desc.setTitle(XMLUtil.getText(list.get(0)).trim());
 		}
+		
+		
+		
 
 		/*
 		 * Setup elements
@@ -306,10 +344,13 @@ public class ZonesXMLLoader {
 		for (final Element child : XMLUtil.getElements(element)) {
 			final String tag = child.getTagName();
 
-			SetupDescriptor setupDesc;
+			SetupDescriptor setupDesc = null;
 
 			if (tag.equals("configurator")) {
 				setupDesc = configuratorReader.read(child);
+			} else if (tag.equals("implementation")) {
+				desc.setImplementation(child.getAttribute("class-name"));
+				
 			} else if (tag.equals("entity")) {
 				setupDesc = entitySetupReader.read(child);
 			} else if (tag.equals("portal")) {
@@ -327,6 +368,7 @@ public class ZonesXMLLoader {
 			}
 		}
 
+		
 		return desc;
 	}
 
@@ -364,6 +406,8 @@ public class ZonesXMLLoader {
 	protected static class ZoneDesc {
 		public static final int UNSET = Integer.MIN_VALUE;
 
+		protected String zoneClassName;
+		
 		protected String name;
 
 		protected String file;
@@ -378,6 +422,8 @@ public class ZonesXMLLoader {
 
 		protected ArrayList<SetupDescriptor> descriptors;
 
+		private String implementation;
+
 		public ZoneDesc(final String name, final String file, final int level, final int x, final int y) {
 			this.name = name;
 			this.file = file;
@@ -388,9 +434,17 @@ public class ZonesXMLLoader {
 			descriptors = new ArrayList<SetupDescriptor>();
 		}
 
+		public void setImplementation(final String imclass) {
+			implementation = imclass;
+		}
+
 		//
 		// ZoneDesc
 		//
+
+		public String getImplementation() {
+			return implementation;
+		}
 
 		/**
 		 * Add a setup descriptor.
