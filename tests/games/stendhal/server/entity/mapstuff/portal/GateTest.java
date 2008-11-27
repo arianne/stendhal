@@ -4,11 +4,24 @@ import static org.junit.Assert.*;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 
+import marauroa.common.game.RPClass;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GateTest {
+	
+	@BeforeClass
+	public static void setupBeforeClass() {
+		if (!RPClass.hasRPClass("gate")) {
+			Gate.generateGateRPClass();
+		}
+		
+	}
+	
 	@Test
 	public void testOpenCloseGate() throws Exception {
+		
 		final Gate gate = new Gate();
 		gate.open();
 		assertTrue(gate.isOpen());
