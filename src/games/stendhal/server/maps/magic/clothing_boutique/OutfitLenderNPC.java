@@ -144,7 +144,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					public boolean wearsOutfitFromHere(final Player player) {
 						final Outfit currentOutfit = player.getOutfit();
 
-						for (final Pair<Outfit,Boolean> possiblePair : outfitTypes.values()) {
+						for (final Pair<Outfit, Boolean> possiblePair : outfitTypes.values()) {
 							if (possiblePair.first().isPartOf(currentOutfit)) {
 								return true;
 							}

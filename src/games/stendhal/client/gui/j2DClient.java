@@ -368,7 +368,7 @@ public class j2DClient extends StendhalUI {
 
 		addWindow(buddies);
 		settings.add(buddies, "Enable Buddies", gameScreen);
-	//	createAndShowNewbuddy(client);
+		//createAndShowNewbuddy(client);
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
@@ -381,7 +381,7 @@ public class j2DClient extends StendhalUI {
 
 	private void createAndShowNewbuddy(final StendhalClient client) {
 		BuddyPanelControler buddy = new BuddyPanelControler();
-		client.addBuddyChangeListener(buddy);
+		//client.addBuddyChangeListener(buddy);
 		JFrame secondary = new JFrame("nudo");
 		secondary.setSize(100, 100);
 		secondary.setVisible(true);

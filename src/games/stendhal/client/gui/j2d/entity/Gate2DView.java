@@ -30,7 +30,7 @@ public class Gate2DView extends Entity2DView {
 	}
 
 
-	private String orientation="orientation";
+	private String orientation = "orientation";
 	
 	public Gate2DView(final Gate entity) {
 		this ((IEntity) entity);
@@ -45,7 +45,7 @@ public class Gate2DView extends Entity2DView {
 
 	@Override
 	protected String translate(final String name) {
-		return "data/sprites/doors/fence_gate_"+ entity.getRPObject().get("orientation") +".png";
+		return "data/sprites/doors/fence_gate_" + entity.getRPObject().get("orientation") + ".png";
 	}
 	
 	@Override

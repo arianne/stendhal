@@ -22,21 +22,32 @@ class BuddyPanel extends StyledJPanel {
 
 
 	public void addBuddy(final String buddyName, final boolean isOnline) {
-		final BuddyLabel label = new BuddyLabel(buddyName, isOnline);
-		labelMap.put(buddyName, label);
-		this.add(label, Component.LEFT_ALIGNMENT);
-		revalidate();
+		
+		if (labelMap.get(buddyName) == null) {
+			final BuddyLabel label = new BuddyLabel(buddyName, isOnline);
+			labelMap.put(buddyName, label);
+			this.add(label, Component.LEFT_ALIGNMENT);
+			revalidate();
+		}
 
 	}
 
 	void setOffline(final String buddyName) {
-		labelMap.get(buddyName).setOnline(false);
+		if (labelMap.get(buddyName) == null) {
+			addBuddy(buddyName, false);
+		} else {
+			labelMap.get(buddyName).setOnline(false);
+		}
 		revalidate();
 	}
 
 
 	void setOnline(final String buddyName) {
-		labelMap.get(buddyName).setOnline(true);
+		if (labelMap.get(buddyName) == null) {
+			addBuddy(buddyName, true);
+		} else {
+			labelMap.get(buddyName).setOnline(true);
+		}
 		revalidate();
 	}
 

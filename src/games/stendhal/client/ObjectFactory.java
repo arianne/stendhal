@@ -12,10 +12,12 @@ public class ObjectFactory {
  */
 	public void onAdded(final RPObject object,
 			final PerceptionToObject perceptionTobject) {
-//		if ("player".equals(object.getRPClass().getName())) {
-//			if (StendhalClient.client.isUser(object)) {
-//				perceptionTobject.register(object, new TileController());
-//			} else {
+		if ("player".equals(object.getRPClass().getName())) {
+			if (StendhalClient.client.isUser(object)) {
+				perceptionTobject.register(object, new UserController());
+			}
+		}
+//			else {
 //				perceptionTobject.register(object, LISTENER);
 //			}
 //		} else {

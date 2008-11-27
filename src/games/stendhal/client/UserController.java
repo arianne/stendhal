@@ -1,5 +1,7 @@
 package games.stendhal.client;
 
+import games.stendhal.client.gui.buddies.BuddyPanelControler;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -7,13 +9,14 @@ import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class TileController implements ObjectChangeListener {
+public class UserController implements ObjectChangeListener {
+
 	final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	//TODO: add 2 more for events and slots so you can add listeners distinguished
 	// maybe extend this
 	
-	public TileController() {
-		pcs.addPropertyChangeListener("bag", new BagController());
+	public UserController() {
+		pcs.addPropertyChangeListener("!buddy", BuddyPanelControler.get());
 
 	}
 
