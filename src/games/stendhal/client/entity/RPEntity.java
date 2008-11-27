@@ -17,7 +17,6 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
@@ -548,8 +547,7 @@ public abstract class RPEntity extends ActiveEntity {
 			//an emote action is changed server side to an chat action with a leading !me
 			//this supports also invoking an emote with !me instead of /me
 			//raignarok@sourceforge.net
-			if(text.startsWith("!me"))
-			{
+			if (text.startsWith("!me")) {
 				line = line.replace("!me", getTitle());
 				StendhalUI.get().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
 				

@@ -22,7 +22,7 @@ public class EmoteAction implements ActionListener {
 		if (action.has(TEXT)) {
 			//emote actions are treated as normal chat actions
 			//on the client side, !me is replaced with the name
-			final String text = "!me "+action.get(TEXT);
+			final String text = "!me " + action.get(TEXT);
 			player.put("text", text);
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "chat",
 					null, Integer.toString(text.length()),

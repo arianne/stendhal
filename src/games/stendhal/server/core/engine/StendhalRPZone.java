@@ -64,7 +64,7 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 
-	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone){
+	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone) {
 		StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
 		newZone.contents.addAll(zone.contents);
 		newZone.collisionMap = zone.collisionMap;
