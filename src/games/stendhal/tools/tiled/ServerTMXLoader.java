@@ -173,9 +173,7 @@ public class ServerTMXLoader {
 	}
 
 	private void buildMap(final Document doc) throws Exception {
-		Node mapNode;
-
-		mapNode = doc.getDocumentElement();
+		Node mapNode = doc.getDocumentElement();
 
 		if (!"map".equals(mapNode.getNodeName())) {
 			throw new Exception("Not a valid tmx map file.");
