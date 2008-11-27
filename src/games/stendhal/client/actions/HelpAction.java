@@ -41,6 +41,7 @@ class HelpAction implements SlashAction {
 				"- /grumpy \t\tRemove status grumpy",
 				"- /look  <name> \t\tLook at the named character",
 				"- /attack <name> \t\tAttack the named character",
+				"- /me <action> \t\tShow a message about what you are doing",
 				"- /name <pet> <name> \t\tGive a name to your pet",
 				"- /quit \t\t\tLeave the game. You will continue where you left off upon your return",
 				"- /sound mute <on|off> \tMute or unmute the sounds"

@@ -37,6 +37,7 @@ public class SlashActionRepository {
 		actions.put("invisible", new InvisibleAction());
 		actions.put("jail", new JailAction());
 		actions.put("joinguild", new CreateGuildAction());
+		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("quit", new QuitAction());
 		actions.put("remove", new RemoveBuddyAction());

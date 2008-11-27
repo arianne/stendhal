@@ -17,6 +17,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
@@ -542,9 +543,21 @@ public abstract class RPEntity extends ActiveEntity {
 	// Called when entity says text
 	public void onTalk(final String text) {
 		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < 15 * 15)) {
-			nonCreatureClientAddEventLine(text);
-
 			String line = text.replace("|", "");
+			
+			//an emote action is changed server side to an chat action with a leading !me
+			//this supports also invoking an emote with !me instead of /me
+			//raignarok@sourceforge.net
+			if(text.startsWith("!me"))
+			{
+				line = line.replace("!me", getTitle());
+				StendhalUI.get().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
+				
+				return;
+			} else {
+				//add the original version
+				nonCreatureClientAddEventLine(text);
+			}
 
 			// Allow for more characters and cut the text if possible at the
 			// nearest space etc. intensifly@gmx.com

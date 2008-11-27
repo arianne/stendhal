@@ -28,6 +28,7 @@ public class ChatAction {
 	private static final String _TELL = "tell";
 	private static final String _CHAT = "chat";
 	private static final String _ANSWER = "answer";
+	private static final String _EMOTE = "emote";
 
 	/**
 	 * Registers AnswerAction ChatAction TellAction and SupportAction.
@@ -37,6 +38,7 @@ public class ChatAction {
 		CommandCenter.register(_CHAT, new PublicChatAction());
 		CommandCenter.register(_TELL, new TellAction());
 		CommandCenter.register(_SUPPORT, new AskForSupportAction());
+		CommandCenter.register(_EMOTE, new EmoteAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
