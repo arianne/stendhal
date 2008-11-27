@@ -1,9 +1,57 @@
 package games.stendhal.server.maps.semos.bank;
 
+import java.awt.geom.Rectangle2D;
+
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
+
+	private final class ChatActionImplementation implements ChatAction {
+		private final class MovementListenerImplementation implements
+				MovementListener {
+			public Rectangle2D getArea() {
+				return new Rectangle2D.Double(0, 0, 100, 100);
+			}
+
+			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
+					final int newY) {
+
+			}
+
+			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+					final int oldY) {
+				SingletonRepository.getRPWorld().removeZone(zone);
+
+			}
+
+			public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+					final int oldY, final int newX, final int newY) {
+
+			}
+		}
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			final StendhalRPZone vaultzone = (StendhalRPZone) SingletonRepository
+					.getRPWorld().getRPZone("int_vault");
+			final StendhalRPZone zone = StendhalRPZone.fillContent(player
+					.getName()
+					+ "_vault", vaultzone);
+			zone.addMovementListener(new MovementListenerImplementation());
+			SingletonRepository.getRPWorld().addRPZone(zone);
+			player.teleport(zone, 1, 1, Direction.UP, player);
+			
+		}
+	}
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
@@ -14,6 +62,14 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 		npc.addReply("exchange", "When you are both ready, swap places. The narrow corridors are designed so that noone else can take the items you have placed. If someone gets in the way you can just go back and remove your items from the table until the area is clear again. If you don't understand anything, try asking another player for a demonstration. Oh, and by the way, we also have #security at the table.");
 		npc.addReply("security", "Yes, there is a spell to make sure noone can return to this world next to the table. If they exit to the astral plane when standing by the table, and then attempt to return there, they are magically moved to a safer place. Good luck with your trading!");
 		npc.addJob("I'm the Customer Advisor here at Semos Bank.");
+		
 		npc.addGoodbye("It was a pleasure to serve you.");
+		
+		npc.add(ConversationStates.ANY, "vault", null, ConversationStates.IDLE, null, 
+				new ChatActionImplementation());
+		
+		
 	}
+
+	
 }

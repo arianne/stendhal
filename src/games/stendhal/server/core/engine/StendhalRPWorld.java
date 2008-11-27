@@ -56,6 +56,7 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
 
 import java.net.URI;
+import java.util.Iterator;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
@@ -102,6 +103,18 @@ public class StendhalRPWorld extends RPWorld {
 		instance = this;
 	}
 
+	public void removeZone(final StendhalRPZone toBeRemoved) {
+		Iterator<IRPZone> it = iterator();
+		while (it.hasNext()) {
+			IRPZone zone = it.next();
+			if (zone.getID().equals(toBeRemoved.getID())) {
+				it.remove();
+			}
+		}
+
+	}
+	
+	
 	public static StendhalRPWorld get() {
 		if (instance == null) {
 			instance = new StendhalRPWorld();
