@@ -300,6 +300,7 @@ public class SpeakerNPC extends NPC {
 		} else if (attending != null) {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > 8 * 8)
+					|| attending.isDisconnected()
 			// or if the player fell asleep ;)
 					|| (SingletonRepository.getRuleProcessor().getTurn()
 							- lastMessageTurn > playerChatTimeout)) {
