@@ -483,9 +483,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (passiveEntityrespawnPoint != null) {
 					passiveEntityrespawnPoint.setPosition(x, y);
 					add(passiveEntityrespawnPoint);
-
-					// full fruits on server restart
-					passiveEntityrespawnPoint.setToFullGrowth();
+					passiveEntityrespawnPoint.setStartState();
+				
 				}
 			}
 		} catch (final Exception e) {

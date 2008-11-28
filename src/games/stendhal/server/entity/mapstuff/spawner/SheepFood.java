@@ -66,8 +66,8 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	}
 
 	private void setAmount(final int amount) {
-		this.amount = amount;
-		put("amount", amount);
+			this.amount = amount;
+			put("amount", amount);
 	}
 
 	/**
@@ -98,5 +98,10 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 		setAmount(MAX_NUMBER_OF_FRUITS);
 		// don't grow anything new until someone picks a fruit
 		SingletonRepository.getTurnNotifier().dontNotify(this);
+	}
+	
+	@Override
+	public void setStartState() {
+		setToFullGrowth();
 	}
 }

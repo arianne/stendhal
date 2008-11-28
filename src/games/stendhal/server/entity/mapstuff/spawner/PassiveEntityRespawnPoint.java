@@ -149,4 +149,9 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		growNewFruit();
 	}
 
+	public void setStartState() {
+		onFruitPicked(null);
+		
+	}
+
 }
