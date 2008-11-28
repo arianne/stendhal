@@ -189,6 +189,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						startQuiz();
+						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 					}
 				});
 
