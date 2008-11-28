@@ -135,17 +135,11 @@ public abstract class Pet extends DomesticAnimal {
 	 *            The entity who caused the death
 	 */
 	@Override
-	public void onDead(final String killername) {
+	public void onDead(final Entity killer, final boolean remove) {
+		
 		cleanUpPet();
 
-		super.onDead(killername);
-	}
-
-	@Override
-	public void onDead(final Entity killer) {
-		cleanUpPet();
-
-		super.onDead(killer);
+		super.onDead(killer, remove);
 	}
 
 	private void cleanUpPet() {

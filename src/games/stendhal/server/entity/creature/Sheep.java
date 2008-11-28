@@ -168,18 +168,14 @@ public class Sheep extends DomesticAnimal {
 	 *            The entity who caused the death
 	 */
 	@Override
-	public void onDead(final String killername) {
+	public void onDead(final Entity killer, final boolean remove) {
+		
 		cleanUpSheep();
 
-		super.onDead(killername);
+		super.onDead(killer, remove);
 	}
 
-	@Override
-	public void onDead(final Entity killer) {
-		cleanUpSheep();
-
-		super.onDead(killer);
-	}
+	
 
 	private void cleanUpSheep() {
 		if (owner != null) {

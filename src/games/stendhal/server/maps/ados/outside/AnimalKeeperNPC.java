@@ -48,8 +48,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public void onDead(final Entity killer) {
-			super.onDead(killer);
+		public void onDead(final Entity killer, final boolean remove) {
+			super.onDead(killer, remove);
 
 			if (!(killer instanceof Player)) {
 				final long currentTime = System.currentTimeMillis();

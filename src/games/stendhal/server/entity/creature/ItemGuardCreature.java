@@ -78,7 +78,8 @@ public class ItemGuardCreature extends Creature {
 	}
 
 	@Override
-	public void onDead(final Entity killer) {
+	public void onDead(final Entity killer, final boolean remove) {
+		
 		if (killer instanceof Player) {
 			final Player killerPlayer = (Player) killer;
 			if (!killerPlayer.isEquipped(itemType) && !killerPlayer.isQuestCompleted(questSlot)) {
@@ -88,6 +89,6 @@ public class ItemGuardCreature extends Creature {
 				killerPlayer.equip(item, true);
 			}
 		}
-		super.onDead(killer);
+		super.onDead(killer, remove);
 	}
 }

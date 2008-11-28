@@ -83,7 +83,7 @@ public class PlayerDieer {
 			player.update();
 		}
 
-		player.onDead(killer, false);
+		
 		player.setHP(player.getBaseHP());
 
 		player.returnToOriginalOutfit();

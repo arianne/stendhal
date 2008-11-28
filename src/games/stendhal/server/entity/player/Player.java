@@ -972,7 +972,8 @@ public class Player extends RPEntity {
 	}
 	
 	@Override
-	public void onDead(final Entity killer) {
+	public void onDead(final Entity killer, final boolean remove) {
+		super.onDead(killer, remove);
 		dieer.onDead(killer);
 	}
 

@@ -253,7 +253,8 @@ public class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	public void onDead(final Entity who) {
+	public void onDead(final Entity killer, final boolean remove) {
+		
 		heal();
 		notifyWorldAboutChanges();
 	}

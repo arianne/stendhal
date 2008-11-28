@@ -381,13 +381,14 @@ public class Creature extends NPC {
 		return true;
 	}
 
+	
 	@Override
-	public void onDead(final Entity killer) {
-		if (point != null) {
+	public void onDead(final Entity killer, final boolean remove) {
+			if (point != null) {
 			point.notifyDead(this);
 		}
 
-		super.onDead(killer);
+		super.onDead(killer, remove);
 	}
 
 	@Override

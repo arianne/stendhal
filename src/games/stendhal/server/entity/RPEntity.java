@@ -1058,7 +1058,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param killer
 	 *            The entity who caused the death
 	 */
-	public void onDead(final Entity killer) {
+	public final void onDead(final Entity killer) {
 		onDead(killer, true);
 	}
 
@@ -1069,7 +1069,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
 	 */
-	public void onDead(final String killerName) {
+	public final void onDead(final String killerName) {
 		onDead(killerName, true);
 	}
 
@@ -1104,7 +1104,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param remove
 	 *            <code>true</code> to remove entity from world.
 	 */
-	protected void onDead(final String killerName, final boolean remove) {
+	protected final void onDead(final String killerName, final boolean remove) {
 		stopAttack();
 		
 		final int oldXP = this.getXP();
