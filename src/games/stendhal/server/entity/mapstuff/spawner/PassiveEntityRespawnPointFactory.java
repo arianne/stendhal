@@ -64,8 +64,7 @@ public class PassiveEntityRespawnPointFactory {
 		} else if (clazz.contains("resources")) {
 			switch (type) {
 			case 0:
-				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"wood", 1500);
+				passiveEntityrespawnPoint = new VegetableGrower("wood");
 				passiveEntityrespawnPoint.setDescription("You see a log shaped indent in the ground.");
 				break;
 			case 1:

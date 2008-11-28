@@ -163,6 +163,8 @@ public final class EntityMap {
 		register("plant_grower", null, null, PlantGrower.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null,
 				CarrotGrower.class);
+		register("growing_entity_spawner", "items/grower/wood_grower", null,
+				CarrotGrower.class);
 		register("growing_entity_spawner", null, null, GrainField.class);
 
 		register("gold_source", null, null, GoldSource.class);
