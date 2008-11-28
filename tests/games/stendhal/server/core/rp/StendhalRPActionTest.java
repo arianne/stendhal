@@ -25,9 +25,7 @@ public class StendhalRPActionTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		zone = new StendhalRPZone("zone");
-		zone.protectionMap.init(1, 1);
-		MockStendlRPWorld.get().addRPZone(zone);
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
@@ -37,11 +35,15 @@ public class StendhalRPActionTest {
 
 	@Before
 	public void setUp() throws Exception {
+		zone = new StendhalRPZone("zone",20,20);
+		zone.protectionMap.init(1, 1);
+		MockStendlRPWorld.get().addRPZone(zone);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		zone.protectionMap.clear();
+		MockStendlRPWorld.get().removeZone(zone);
+		
 	}
 	
 	// Sets the square below the victim protected 

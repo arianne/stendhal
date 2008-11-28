@@ -21,40 +21,40 @@ import java.awt.geom.Rectangle2D;
  * not with any of the non trespasable areas of the world.
  */
 public class CollisionDetection {
+	CollisionMap map;
 
-	private boolean[] blocked;
 
 	private int width;
 
 	private int height;
 
 	public CollisionDetection() {
-		blocked = null;
 	}
 
 	public void clear() {
-		if ((blocked == null) || (blocked.length < width * height)) {
-			blocked = new boolean[width * height];
-		}
-		for (int i = 0; i < width * height; i++) {
-			blocked[i] = false;
+		if (map == null) {
+			map = new CollisionMap(width, height);
 		}
 	}
 
 	public void init(final int width, final int height) {
+		if (this.width != width || this.height != height) {
+			map = null;
+		}
+		
+		
 		this.width = width;
 		this.height = height;
-
-		blocked = new boolean[width * height];
+		
 		clear();
 	}
 
 	public void setCollide(final int x, final int y) {
+		
 		if ((x < 0) || (x >= width) || (y < 0) || (y >= height)) {
 			return;
 		}
-
-		blocked[y * width + x] = true;
+		map.set(x, y);
 	}
 
 	public void setCollide(final Rectangle2D shape, final boolean value) {
@@ -62,7 +62,8 @@ public class CollisionDetection {
 		final double y = shape.getY();
 		final double w = shape.getWidth();
 		final double h = shape.getHeight();
-
+	
+		
 		if ((x < 0) || (x/* +w */ >= width)) {
 			return;
 		}
@@ -96,7 +97,11 @@ public class CollisionDetection {
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
-				blocked[k * width + i] = value;
+				if (value) {
+					map.set(i, k);
+				} else {
+					map.unset(i, k);
+				}
 			}
 		}
 	}
@@ -107,15 +112,19 @@ public class CollisionDetection {
 
 		width = collisionLayer.getWidth();
 		height = collisionLayer.getHeight();
-
-		blocked = new boolean[width * height];
+		map = new CollisionMap(width, height);
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				/*
 				 * NOTE: Right now our collision detection system is binary, so
 				 * something or is blocked or is not.
 				 */
-				blocked[x + y * width] = (collisionLayer.getTileAt(x, y) != 0);
+				boolean b = collisionLayer.getTileAt(x, y) != 0;
+				if (b) {
+					map.set(x, y);
+				}
+				
+				
 			}
 		}
 	}
@@ -130,7 +139,7 @@ public class CollisionDetection {
 				if ((j >= 0) && (j < height) && (i >= 0) && (i < width)) {
 					if ((j == y) && (i == x)) {
 						System.out.print("O");
-					} else if (blocked[j * width + i]) {
+					} else if (map.get(i, j)) {
 						System.out.print("X");
 					} else {
 						System.out.print(".");
@@ -142,7 +151,7 @@ public class CollisionDetection {
 	}
 
 	public boolean walkable(final double x, final double y) {
-		return !blocked[(int) y * width + (int) x];
+		return !map.get((int)x, (int)y);
 	}
 
 	public boolean leavesZone(final Rectangle2D shape) {
@@ -172,7 +181,6 @@ public class CollisionDetection {
 		final double y = shape.getY();
 		double w = shape.getWidth();
 		double h = shape.getHeight();
-
 		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
@@ -206,9 +214,16 @@ public class CollisionDetection {
 			endy = height;
 		}
 
+		/*
+		 * TODO: the advantages from using bitset in collissionmapare lost here
+		 * the weird behaviour with clientside player when using map.collides (x,y,width, height)
+		 * is caused by the delta calculation for 2dviewtiles; 
+		 */
+		
 		for (int k = (int) starty; k < endy; k++) {
+			
 			for (int i = (int) startx; i < endx; i++) {
-				if (blocked[k * width + i]) {
+				if (map.get(i, k)) {
 					return true;
 				}
 			}
@@ -225,8 +240,7 @@ public class CollisionDetection {
 		if ((y < 0) || (y >= height)) {
 			return true;
 		}
-
-		return blocked[y * width + x];
+		return map.get(x, y);
 	}
 
 	public int getWidth() {
