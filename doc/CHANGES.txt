@@ -1,5 +1,14 @@
 Changelog
 ---------
+0.xx
+- chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
+- dagobert creates vaults for players, so they can access semos bank slot without spys.
+- /me shows emotes
+- zones can be implemented by subclassing StendhalRPZone and specifying it in 'zones'.xml
+- wood grower shows branch till picked
+- /clear clears gamelog
+ 
+
 0.71
 - chatlog stops automatic scroll on when not at bottom of text 
 - chatlog highlighted pink if the scroll was halted and there are unread messages
