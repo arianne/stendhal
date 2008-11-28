@@ -109,19 +109,7 @@ class Ring2DView extends Item2DView {
 		return 5000;
 	}
 
-	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		list.add(ActionType.USE.getRepresentation());
 
-		super.buildActions(list);
-	}
 
 	/**
 	 * Handle updates.

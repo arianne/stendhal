@@ -38,6 +38,7 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.WellSource;
 
@@ -184,7 +185,9 @@ public final class EntityMap {
 
 		register("item", null, null, Item.class);
 		register("item", "box", null, Box.class);
-		register("item", "ring", null, Ring.class);
+		register("item", "ring", "emerald-ring", Ring.class);
+		register("item", "ring", null, UseableRing.class);
+		
 		register("item", "drink", null, UseableItem.class);
         register("item", "flower", null, StackableItem.class);
 		register("item", "food", null, UseableItem.class);

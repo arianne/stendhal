@@ -37,6 +37,7 @@ import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.UseableItem;
+import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
 
@@ -155,6 +156,8 @@ public class EntityViewFactory {
 		register(Spell.class, Spell2DView.class);
 		register(StackableItem.class, StackableItem2DView.class);
 		register(UseableItem.class, UseableItem2DView.class);
+		register(UseableRing.class, UseableRing2DView.class);
+		
 		register(User.class, User2DView.class);
 		register(WellSource.class, WellSource2DView.class);
 	}
