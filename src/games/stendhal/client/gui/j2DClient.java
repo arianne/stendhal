@@ -898,6 +898,10 @@ public class j2DClient extends StendhalUI {
 		chatText.setChatLine(text);
 		
 	}
+	
+	public void clearGameLog(){
+		gameLog.clear();
+	}
 
 	/**
 	 * Set the user's positiion.

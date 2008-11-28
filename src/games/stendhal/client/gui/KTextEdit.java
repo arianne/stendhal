@@ -266,6 +266,10 @@ public class KTextEdit extends JPanel {
 		
 	}
 	
+	public void clear() {
+		textPane.setText("");
+	}
+	
 	/**
 	 * Set a clear warning for the user that there are new, unread lines.
 	 * @param warn true if the warning indicator should be shown, false otherwise
