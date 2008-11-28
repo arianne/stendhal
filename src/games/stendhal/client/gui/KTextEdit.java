@@ -1,15 +1,25 @@
 package games.stendhal.client.gui;
 
+import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.FileWriter;
 import java.util.Date;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -25,6 +35,33 @@ import org.apache.log4j.Logger;
 
 
 public class KTextEdit extends JPanel {
+	private static final String GAME_LOG_FILE = System.getProperty("user.home")
+	+ "/" + stendhal.STENDHAL_FOLDER + "gamechat.log";
+	private final class TextPaneMouseListener extends MouseAdapter {
+		public void mousePressed(final MouseEvent e) {
+	        maybeShowPopup(e);
+	    }
+
+	    public void mouseReleased(final MouseEvent e) {
+	        maybeShowPopup(e);
+	    }
+
+	    private void maybeShowPopup(final MouseEvent e) {
+	    	if (e.isPopupTrigger()) {
+	        	final JPopupMenu popup = new StyledJPopupMenu(new WoodStyle(), "save");
+	        	
+	        	JMenuItem menuItem = new JMenuItem("save");
+	        	menuItem.addActionListener(new ActionListener(){
+
+					public void actionPerformed(ActionEvent e) {
+						save();
+						
+					}});
+				popup.add(menuItem);
+	        	popup.show(e.getComponent(), e.getX(), e.getY());
+	        }
+	    }
+	}
 
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
@@ -54,6 +91,8 @@ public class KTextEdit extends JPanel {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
+		
+		textPane.addMouseListener(new TextPaneMouseListener());
 		
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
@@ -281,4 +320,19 @@ public class KTextEdit extends JPanel {
 			textPane.setBackground(Color.white);
 		}
 	}
+	
+	
+	public void save() {
+		FileWriter fo;
+		try {
+			fo = new FileWriter(GAME_LOG_FILE);
+			textPane.write(fo);
+	
+			
+			fo.close();
+		} catch (final Exception ex) {
+			logger.error(ex, ex);
+		}
+	}
+
 }
