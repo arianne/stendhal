@@ -146,7 +146,7 @@ public class stendhal extends Thread {
 	 */
 	private static void startGameGUI(final StendhalClient client, final IGameScreen gameScreen) {
 		final j2DClient locclient = new j2DClient(client, gameScreen);
-		locclient.initialize();
+		
 		locclient.gameLoop(gameScreen);
 		locclient.cleanup();
 	}

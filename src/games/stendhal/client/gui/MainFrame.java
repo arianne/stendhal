@@ -4,10 +4,8 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
 
-import java.awt.Container;
 import java.net.URL;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -20,19 +18,12 @@ public class MainFrame {
 	}
 
 	 private void initialize() {
-
-
 		 setTitle();
 		setIcon();
 		setDefaultCloseBehaviour();
-		setLayout();
-
 	}
 
-	private void setLayout() {
-		final Container content = mainFrame.getContentPane();
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-	}
+
 
 	private void setDefaultCloseBehaviour() {
 		// When the user tries to close the window, don't close immediately,

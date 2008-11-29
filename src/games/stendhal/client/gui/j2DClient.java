@@ -28,7 +28,6 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
@@ -44,6 +43,7 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Component;
 import java.awt.Container;
@@ -63,7 +63,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -117,9 +116,6 @@ public class j2DClient extends StendhalUI {
 	/** the buddy list panel. */
 	private BuddyListDialog nbuddies;
 
-	private ManagedWindow buddies;
-
-
 	/** the minimap panel. */
 	private Minimap minimap;
 
@@ -153,7 +149,7 @@ public class j2DClient extends StendhalUI {
 
 		positionChangeListener = new PositionChangeMulticaster();
 
-		Container content = mainFrame.getMainFrame().getContentPane();
+		final Container content = mainFrame.getMainFrame().getContentPane();
 
 
 		/*
@@ -162,7 +158,7 @@ public class j2DClient extends StendhalUI {
 		 */
 		pane = new JLayeredPane();
 		pane.setPreferredSize(stendhal.screenSize);
-		content.add(pane);
+	
 
 		/*
 		 * Wrap canvas in panel that can has setPreferredSize()
@@ -176,25 +172,22 @@ public class j2DClient extends StendhalUI {
 		 * Setup our rendering canvas
 		 */
 
-		if (System.getProperty("stendhal.refactoringgui") != null) {
+	
+	
 			canvas = new Canvas();
-			// A bit repetitive... oh well
-			canvas.setBounds(200, 0, 600, getHeight());
-		} else {
-			canvas = new Canvas();
-			canvas.setBounds(0, 0, getWidth(), getHeight());
-		}
+			canvas.setBounds(0,0,getWidth(), getHeight());
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
 		panel.add(canvas);
-
+		panel.validate();
+		content.add(pane,BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
 		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.playerList.getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		content.add(chatText.getPlayerChatText());
-
+		content.add(chatText.getPlayerChatText(),BorderLayout.SOUTH);
+content.validate();
 		/*
 		 * Always redirect focus to chat field
 		 */
@@ -265,9 +258,9 @@ public class j2DClient extends StendhalUI {
 			final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
 					"Game chat and events log");
 
-			content = dialog.getContentPane();
-			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-			content.add(gameLog);
+			Container dialogContent = dialog.getContentPane();
+			dialogContent.setLayout(new BoxLayout(dialogContent, BoxLayout.Y_AXIS));
+			dialogContent.add(gameLog);
 
 			dialog.addFocusListener(new FocusListener() {
 				public void focusGained(final FocusEvent e) {
@@ -319,10 +312,7 @@ public class j2DClient extends StendhalUI {
 
 		mainFrame.getMainFrame().setLocation(new Point(20, 20));
 
-		// finally make the window visible
-		mainFrame.getMainFrame().pack();
-		mainFrame.getMainFrame().setResizable(false);
-		mainFrame.getMainFrame().setVisible(true);
+		
 
 		screen = new GameScreen(client, canvas);
 
@@ -358,39 +348,22 @@ public class j2DClient extends StendhalUI {
 		addWindow(keyring);
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 
-		if (newCode) {
-			nbuddies = new BuddyListDialog(this);
-			buddies = nbuddies;
-		} else {
-			final Buddies obuddies = new Buddies(this, gameScreen);
-			buddies = obuddies;
-		}
-
-		addWindow(buddies);
-		settings.add(buddies, "Enable Buddies", gameScreen);
+		BuddyPanelControler buddy = new BuddyPanelControler();
+		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
+		content.add(buddy.getComponent(),BorderLayout.WEST);
 		//createAndShowNewbuddy(client);
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 
+		mainFrame.getMainFrame().pack();
+		mainFrame.getMainFrame().setVisible(true);
+		mainFrame.getMainFrame().setResizable(false);
 		directionRelease = null;
 	
 
 	} // constructor
-
-	private void createAndShowNewbuddy(final StendhalClient client) {
-		BuddyPanelControler buddy = new BuddyPanelControler();
-		//client.addBuddyChangeListener(buddy);
-		JFrame secondary = new JFrame("nudo");
-		secondary.setSize(100, 100);
-		secondary.setVisible(true);
-		secondary.add(buddy.getComponent());
-	}
-
-	public void initialize() {
-
-	}
 
 	public void cleanup() {
 		chatText.saveCache();
@@ -986,7 +959,7 @@ public class j2DClient extends StendhalUI {
 					client.login(username, password);
 
 					final j2DClient locclient = new j2DClient(client, gameScreen);
-					locclient.initialize();
+					
 					locclient.gameLoop(gameScreen);
 					locclient.cleanup();
 				} catch (final Exception ex) {
