@@ -1,6 +1,9 @@
 Changelog
 ---------
 0.xx
+- mossy rubble pic has been added to rock
+- Collisionmap is now backed by Bitset
+- buddy panel is no free floating window anymore
 - chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
 - dagobert creates vaults for players, so they can access semos bank slot without spys.
 - /me shows emotes
