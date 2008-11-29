@@ -41,8 +41,8 @@ public enum TutorialEventType {
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	TIMED_OUTFIT(
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
-	NEW_RELEASE70(
-			"Please be careful during training and battles: fights are much more dangerous as of Stendhal 0.70. Even weak creatures and players can hurt you now, if they are lucky, so you should always pay attention and not leave your character idle.");
+	NEW_RELEASE71(
+			"The Stendhal 0.71 client allows you read your chat history easily, by disabling the automatic scroll down for new messages if you are trying to read an older line. While the log is not scrolling automatically, it is highlighted pink to let you know if you have new messages. Once you're finished reading the old message and you want auto-scroll to begin again, just move down to the newest line in the chat log.");
 	private String message;
 
 	/**
