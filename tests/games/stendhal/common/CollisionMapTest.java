@@ -172,8 +172,8 @@ public class CollisionMapTest {
 	
 	@Test
 	public void testsetCollideRectangle2D2x1() throws Exception {
-		final CollisionMap map = new CollisionMap(4,4);
-		Rectangle2D shape = new Rectangle2D.Double(1.0,2.0,2.0,1.0);
+		final CollisionMap map = new CollisionMap(4, 4);
+		Rectangle2D shape = new Rectangle2D.Double(1.0, 2.0, 2.0, 1.0);
 		map.set(shape);
 		assertFalse(map.get(0, 0));
 		assertFalse(map.get(0, 1));
