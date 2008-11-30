@@ -9,6 +9,7 @@
 	<property file="build.ant.properties"/>
 
 	<property name="build_tests" value="${buildroot}/build_tests"/>
+	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
 	<property name="build_tools" value="${buildroot}/build_tools"/>
 	<property name="build_tiled" value="${buildroot}/build_tiled"/>
 
@@ -75,58 +76,59 @@
 	</target>
 
 	<target name="clean">
-		<delete dir="${lib}"/>
-		<delete dir="${build_client}"/>
-		<delete dir="${buildroot}/build_client_data"/>
-		<delete dir="${build_server}"/>
-		<delete dir="${build_server_maps}"/>
-		<delete dir="${build_server_script}"/>
-		<delete dir="${buildroot}/build_server_quests"/>
-		<delete dir="${buildroot}/build_server_xmlconf"/>
-		<delete dir="${build_tests}"/>
-		<delete dir="${build_tools}"/>
-		<delete dir="${build_tiled}"/>
-		<delete dir="${buildroot}/build_stendhaltools"/>
-		<delete dir="${buildroot}/buildbot"/>
+		<delete dir="${lib}" />
+		<delete dir="${build_client}" />
+		<delete dir="${buildroot}/build_client_data" />
+		<delete dir="${build_server}" />
+		<delete dir="${build_server_maps}" />
+		<delete dir="${build_server_script}" />
+		<delete dir="${buildroot}/build_server_quests" />
+		<delete dir="${buildroot}/build_server_xmlconf" />
+		<delete dir="${build_tests}" />
+		<delete dir="${build_tools}" />
+		<delete dir="${build_tiled}" />
+		<delete dir="${buildroot}/build_stendhaltools" />
+		<delete dir="${buildroot}/buildbot" />
+		<delete dir="${build_tests_report}" />
 	</target>
 
-	
-	
+
+
 	<target name = "postman">
-	                <mkdir dir="${buildroot}/buildbot"/>
-	                <javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
-	                        <include name="games/stendhal/bot/postman/*.java"/>
-	                        <include name="games/stendhal/bot/package-info.java"/>
-	                        <include name="games/stendhal/bot/shouter/*.java"/>
-	
-	                        <compilerarg value="-encoding"/>
-	                        <compilerarg value="utf-8"/>
-	                        <compilerarg value="-Xlint:unchecked"/>
-	
-	                        <classpath>
-	                               <pathelement path="${build_server}"/>
-	                                <pathelement path="${marauroa_jar}"/>
-	                                <pathelement path="${log4j_jar}"/>
-	                                <pathelement path="${junit_jar}"/>
-	                        	 <pathelement path="libs/pircbot.jar"/>
-	
-	                        </classpath>
-	
-	                </javac>
-				<jar jarfile="${buildroot}/buildbot/postman.jar">
-					<fileset dir="${buildroot}/buildbot">
-						  <include name="games/stendhal/bot/postman/*"/>
-							
-	                       <include name="games/stendhal/bot/*"/>
-					
-	                       <include name="games/stendhal/bot/shouter/*"/>
-					</fileset>
-					<manifest>
-						<attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
-					</manifest>
-				</jar>
-	                <!-- ende build bot -->
-	
+		<mkdir dir="${buildroot}/buildbot"/>
+		<javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/bot/postman/*.java"/>
+			<include name="games/stendhal/bot/package-info.java"/>
+			<include name="games/stendhal/bot/shouter/*.java"/>
+
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
+			<compilerarg value="-Xlint:unchecked"/>
+
+			<classpath>
+				<pathelement path="${build_server}"/>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
+				<pathelement path="libs/pircbot.jar"/>
+
+			</classpath>
+
+		</javac>
+		<jar jarfile="${buildroot}/buildbot/postman.jar">
+			<fileset dir="${buildroot}/buildbot">
+				<include name="games/stendhal/bot/postman/*"/>
+
+				<include name="games/stendhal/bot/*"/>
+
+				<include name="games/stendhal/bot/shouter/*"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
+			</manifest>
+		</jar>
+		<!-- ende build bot -->
+
 	</target>
 	<target name="server_build" depends="init, checkxml" description="Build JAR file for Stendhal server">
 		<mkdir dir="${build_server}"/>
@@ -232,7 +234,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>				
+				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${lib}/${server_jarname}"/>
 				<pathelement path="${lib}/${maps_jarname}"/>
 			</classpath>
@@ -335,7 +337,7 @@
 
 		<jar jarfile="${lib}/${client_starter_jarname}">
 			<fileset dir="${build_client}">
-			   <include name="games/stendhal/client/update/*"/>
+				<include name="games/stendhal/client/update/*"/>
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
@@ -413,9 +415,9 @@
 	<target name="compile" depends="server_build, client_build" description="Generates JAR files for both client and server"/>
 
 	<condition property="exclude.signing" value="true">
-	  <not>
-	   <available file="keystore.ks"/>
-	  </not>
+		<not>
+			<available file="keystore.ks"/>
+		</not>
 	</condition>
 
 	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
@@ -456,7 +458,7 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-		
+
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
@@ -522,13 +524,13 @@
 
 	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
-		
+
 		<copy todir="${buildroot}/stendhal-${version}-src/src">
 			<fileset dir="src"/>
 		</copy>
-		
+
 		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
-		
+
 		<copy todir="${buildroot}/stendhal-${version}-src/tests">
 			<fileset dir="tests"/>
 		</copy>
@@ -557,11 +559,11 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
-		
+
 		<copy todir="${buildroot}/stendhal-${version}-src" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="COPYING.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
-		
+
 		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
 		<copy todir="${buildroot}/stendhal-server-${version}-src/doc">
 			<fileset dir="doc"/>
@@ -589,7 +591,7 @@
 			<classpath>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${groovy_jar}"/>
-			    <pathelement path="${marauroa_jar}"/>
+				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
@@ -692,7 +694,7 @@
 				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
-				
+
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${hamcrest_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -701,15 +703,15 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
-				
+
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
-				
+
 			</classpath>
 
 			<formatter type="plain" usefile="false"/>
 			<formatter type="xml"/>
-			
+
 			<batchtest>
 				<fileset dir="tests">
 					<include name="**/*Test.java"/>
@@ -718,16 +720,21 @@
 			</batchtest>
 		</junit>
 	</target>
-	
+
 	<target name="report_test" description="Aggregate Testresults">
-		<junitreport todir="." tofile="testresults.xml">
-				  <fileset dir=".">
-				    <include name="TEST-*.xml"/>
-				  </fileset>
-				  <report format="noframes" todir="."/>
-        </junitreport>
+		<junitreport todir="." tofile="${build_tests_report}/testresults.xml">
+			<fileset dir=".">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="noframes" todir="${build_tests_report}"/>
+		</junitreport>
+		<delete>
+			<fileset dir=".">
+				<include name="TEST-*.xml"/>
+			</fileset>
+		</delete>
 	</target>
-	
+
 	<target name="compile_tiled" description="Compile tiled">
 		<mkdir dir="${build_tiled}"/>
 
@@ -741,10 +748,10 @@
 			</fileset>
 		</copy>
 		<jar jarfile="${buildroot}/tiled.jar" basedir="${build_tiled}">
-						<manifest>
-							<attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
-							<attribute name="Class-path" value="${build_tiled}"/>
-						</manifest>
+			<manifest>
+				<attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
+				<attribute name="Class-path" value="${build_tiled}"/>
+			</manifest>
 		</jar>
 
 	</target>
@@ -758,10 +765,10 @@
 	        version="true"
 	        use="true"
 	        windowtitle="Stendhal API">
-			
+
 		</javadoc>
 	</target>
-	
+
 	<!-- Runs the Tiled editor -->
 	<target name="tiled_run" depends="compile_tiled" description="Runs Tiled">
 		<java classname="tiled.mapeditor.MapEditor" classpath="${build_tiled}" fork="true"/>
