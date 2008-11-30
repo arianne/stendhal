@@ -160,6 +160,7 @@ public class ShopList {
 		shops.add("buyrare2", "great sword", 250);
 		shops.add("buyrare2", "fire sword", 2000);
 		shops.add("buyrare2", "ice sword", 5000);
+        shops.add("buyrare2", "hell dagger", 8000);
 
 		// very rare armor shop (ados)
 		shops.add("buyrare3", "golden legs", 3000);
@@ -244,7 +245,7 @@ public class ShopList {
 
 		// magic items or 'relics' (witch in magic city)
 		shops.add("buymagic", "demon sword", 4000);
-		shops.add("buymagic", "dark dagger", 6000);
+		shops.add("buymagic", "dark dagger", 8000);
 		shops.add("buymagic", "liberty helmet", 8000);
 		shops.add("buymagic", "immortal sword", 10000);
 		shops.add("buymagic", "jewelled legs", 12000);
