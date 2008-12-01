@@ -47,7 +47,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 				        ConversationPhrases.YES_MESSAGES,
 				        null,
 				        ConversationStates.ATTENDING,
-				        "First you need a #gold #pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold ressources. Just doubleclick on the lightblue water when you see something glittering. But don't give up too early, you need a lot of luck and patience.",
+				        "First you need a #gold #pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold resources. Just right-click and select Prospect on the light blue water where you see gold glittering. But don't give up too early, you need a lot of luck and patience.",
 				        null);
 
 				add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES, null,
@@ -60,7 +60,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 
 				add(ConversationStates.ATTENDING, Arrays.asList("gold", "pan", "gold pan"), null,
 				        ConversationStates.ATTENDING,
-				        "I don't have a gold pan, but maybe you could ask a blacksmith to forge you one.", null);
+				        "I don't have a gold pan, but maybe you could ask a blacksmith to sell you one.", null);
 
 				addGoodbye("Seeya, get yer spurs on!");
 
