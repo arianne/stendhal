@@ -28,6 +28,7 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.BuddyListDialog;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
@@ -115,6 +116,9 @@ public class j2DClient extends StendhalUI {
 
 	/** the buddy list panel. */
 	private BuddyListDialog nbuddies;
+
+	private ManagedWindow buddies;
+
 
 	/** the minimap panel. */
 	private Minimap minimap;
@@ -347,11 +351,10 @@ content.validate();
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
 		settings.add(keyring, "Enable Key Ring", gameScreen);
-
-		BuddyPanelControler buddy = new BuddyPanelControler();
-		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
-		content.add(buddy.getComponent(),BorderLayout.WEST);
-		//createAndShowNewbuddy(client);
+		
+	//	createAndAddOldBuddies(gameScreen);
+		createAndAddNewBuddy(content);
+		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
@@ -364,6 +367,18 @@ content.validate();
 	
 
 	} // constructor
+
+	private void createAndAddNewBuddy(final Container content) {
+		BuddyPanelControler buddy = new BuddyPanelControler();
+		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
+		content.add(buddy.getComponent(),BorderLayout.WEST);
+	}
+
+	private void createAndAddOldBuddies(final IGameScreen gameScreen) {
+		buddies = new Buddies(this, gameScreen);
+		addWindow(buddies);
+		settings.add(buddies, "Enable Buddies", gameScreen);
+	}
 
 	public void cleanup() {
 		chatText.saveCache();
