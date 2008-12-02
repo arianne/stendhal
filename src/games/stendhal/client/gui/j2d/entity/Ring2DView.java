@@ -16,8 +16,6 @@ import games.stendhal.client.entity.Ring;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.util.List;
-
 /**
  * The 2D view of a ring.
  */

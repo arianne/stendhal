@@ -33,7 +33,6 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;

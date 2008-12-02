@@ -17,7 +17,6 @@ import games.stendhal.server.core.config.zone.SetupXMLReader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
@@ -32,13 +31,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
-import org.apache.log4j.Logger;
-
-import com.sun.org.apache.xerces.internal.impl.dtd.XML11DTDValidator;
 
 /**
  * Load and configure zones via an XML configuration file.
