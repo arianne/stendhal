@@ -176,9 +176,6 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			final Player policeman) {
 		Collections.shuffle(cells);
 		for (final Cell cell : cells) {
-			logger.info(cell.getEntry() + "" + cell.isEmpty());
-		}
-		for (final Cell cell : cells) {
 			if (cell.isEmpty()) {
 				if (criminal.teleport(jailzone, cell.getEntry().x, cell
 						.getEntry().y, Direction.DOWN, policeman)) {
