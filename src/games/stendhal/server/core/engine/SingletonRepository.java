@@ -64,7 +64,7 @@ public class SingletonRepository {
 		return jailInstance;
 	}
 	
-	public static void setJail(Jail jail) {
+	public static void setJail(final Jail jail) {
 		jailInstance = jail;
 		
 	}

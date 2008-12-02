@@ -101,7 +101,7 @@ public abstract class EquipmentAction implements ActionListener {
 	protected abstract void execute(final Player player, final RPAction action, final  SourceObject source);
 
 	
-	private boolean isValidAction(RPAction action) {
+	private boolean isValidAction(final RPAction action) {
 		return action != null;
 	}
 
