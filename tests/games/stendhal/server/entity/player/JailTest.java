@@ -23,7 +23,9 @@ public class JailTest {
 		Log4J.init();
 		ArrestWarrentTestHelper.generateRPClasses();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
+		StendhalRPZone jailZone = new StendhalRPZone("test_jail", 100, 100);
+		MockStendlRPWorld.get().addRPZone(jailZone);
+		new Jail().configureZone(jailZone, null);
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));
 	}
 
@@ -69,38 +71,32 @@ public class JailTest {
 		final StendhalRPZone zone = new StendhalRPZone("knast", 100, 100);
 				Jail.jailzone = zone;
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
-		String jaillist = Jail.get().listJailed();
+		String jaillist = SingletonRepository.getJail().listJailed();
 		
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test");
 			assertTrue(Jail.isInJail(bob));
 		
-		assertEquals("bob: 1 Minutes because: test\n", Jail.get().listJailed().replace(jaillist, ""));
+		assertEquals("bob: 1 Minutes because: test\n", SingletonRepository.getJail().listJailed().replace(jaillist, ""));
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test2");
-		assertEquals("bob: 1 Minutes because: test2\n", Jail.get().listJailed().replace(jaillist, ""));
+		assertEquals("bob: 1 Minutes because: test2\n", SingletonRepository.getJail().listJailed().replace(jaillist, ""));
 		
 	}
 	@Test
 	public final void testIsInJail() throws Exception {
 
+		StendhalRPZone jail = new StendhalRPZone("testknast");
+		Jail jailcnf = new Jail();
+		jailcnf.configureZone(jail, null);
+		
+		
 		final Player bob = PlayerTestHelper.createPlayer("bob");
-		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(Jail.DEFAULT_JAIL_ZONE);
-		zone.add(bob);
-		Jail.jailzone = zone;
-		SingletonRepository.getJail().imprison("bob", bob, 1, "test");
+		jail.add(bob);
+		
 		assertFalse(Jail.isInJail(bob));
-
-		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		bob.setPosition(1, 1);
+
 		assertTrue(Jail.isInJail(bob));
-		final Player nobob = PlayerTestHelper.createPlayer("police_officer");
-		final StendhalRPZone noJail = new StendhalRPZone("noJail");
-		noJail.add(nobob);
-		nobob.setPosition(0, 0);
-		SingletonRepository.getJail().imprison("nobob", nobob, 1, "test");
-		assertFalse(Jail.isInJail(nobob));
-
-		bob.setPosition(1, 1);
-		assertFalse(Jail.isInJail(nobob));
+		
 	}
 
 	

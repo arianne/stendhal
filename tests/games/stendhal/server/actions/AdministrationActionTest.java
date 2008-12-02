@@ -49,7 +49,10 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 
 		// create zones needed for correct jail functionality:
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
+		StendhalRPZone jailzone = new StendhalRPZone("knast", 100, 100);
+		MockStendlRPWorld.get().addRPZone(jailzone);
+		Jail jail = new Jail();
+		jail.configureZone(jailzone, null);
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));
 	}
 

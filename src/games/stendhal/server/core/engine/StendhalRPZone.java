@@ -18,6 +18,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.ActiveEntity;
@@ -110,6 +111,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private final List<MovementListener> movementListeners;
 
+	
+	private final List<ZoneEnterExitListener> zoneListeners;
+
 	/**
 	 * A set of all items that are lying on the ground in this zone. This set is
 	 * currently only used for plant growers, and these might be changed so that
@@ -148,6 +152,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		playersAndFriends = new LinkedList<RPEntity>();
 
 		movementListeners = new LinkedList<MovementListener>();
+		zoneListeners = new LinkedList<ZoneEnterExitListener>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -651,6 +656,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		assignRPObjectID(object);
 		super.add(object);
 
+		notifyAdded(object);
+		
 		if (object instanceof Item) {
 			final Item item = (Item) object;
 			if (player != null) {
@@ -701,10 +708,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		SingletonRepository.getRPWorld().requestSync(object);
 	}
 
+	private void notifyAdded(RPObject object) {
+		for (final ZoneEnterExitListener l : zoneListeners) {
+			
+				l.onEntered(object, this);
+			
+		}
+		
+	}
+	private void notifyRemoved(RPObject object) {
+		for (final ZoneEnterExitListener l : zoneListeners) {
+			
+			l.onExited(object, this);
+		
+	}
+		
+	}
+
 	@Override
 	public synchronized RPObject remove(final RPObject.ID id) {
-		final RPObject object = get(id);
 
+		final RPObject object = get(id);
+		notifyRemoved(object);
 		if (object instanceof Entity) {
 			((Entity) object).onRemoved(this);
 		}
@@ -749,6 +774,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		return object;
 	}
+
+	
 
 	/**
 	 * removes object from zone.
@@ -1024,6 +1051,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
+	public void addZoneEnterExitListener(final ZoneEnterExitListener listener) {
+		zoneListeners.add(listener);
+	}
+	
+	public void removeZoneEnterExitListener(final ZoneEnterExitListener listener) {
+		zoneListeners.add(listener);
+	}
+	
+	
+	
 	/**
 	 * Register a movement listener for notification. Eventually create a
 	 * macro-block hash to cut down on listeners to check.

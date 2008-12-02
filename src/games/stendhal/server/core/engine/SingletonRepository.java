@@ -38,6 +38,7 @@ import games.stendhal.server.maps.athor.ship.AthorFerry;
 public class SingletonRepository {
 	
 	private static EntityManager entityManager;
+	private static Jail jailInstance;
 
 	public static StendhalRPRuleProcessor getRuleProcessor() {
 		return StendhalRPRuleProcessor.get();
@@ -60,7 +61,12 @@ public class SingletonRepository {
 	}
 
 	public static Jail getJail() {
-		return Jail.get();
+		return jailInstance;
+	}
+	
+	public static void setJail(Jail jail) {
+		jailInstance = jail;
+		
 	}
 
 	public static NPCList getNPCList() {
@@ -118,5 +124,7 @@ public class SingletonRepository {
 	public static DefaultActionManager getActionManager() {
 		return DefaultActionManager.getInstance();
 	}
+
+	
 
 }

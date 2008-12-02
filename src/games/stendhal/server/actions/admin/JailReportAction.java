@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
@@ -18,7 +19,7 @@ public class JailReportAction extends AdministrationAction {
 
 	@Override
 	protected void perform(final Player player, final RPAction action) {
-		final Jail jail = Jail.get();
+		final Jail jail = SingletonRepository.getJail();
 		final String playerName = action.get(TARGET);
 		
 		if (playerName != null) {

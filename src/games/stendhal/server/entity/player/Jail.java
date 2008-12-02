@@ -2,12 +2,14 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
 
@@ -15,9 +17,12 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -28,18 +33,35 @@ import org.apache.log4j.Logger;
  *
  * @author daniel
  */
-public class Jail implements LoginListener {
+public class Jail implements ZoneConfigurator, LoginListener {
 
 	private static final Logger logger = Logger.getLogger(Jail.class);
 
-	// package visible because of tests
-	public static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
 	static StendhalRPZone jailzone;
 	ArrestWarrantList arrestWarrants;
 
-	/** The Singleton instance. */
-	private static Jail instance;
+	List<Cell> cells = new LinkedList<Cell>();
+	
+	ZoneEnterExitListener listener = new ZoneEnterExitListener(){
 
+		public void onEntered(RPObject object, StendhalRPZone zone) {
+			if(object.getRPClass().subclassOf("player")){
+				
+				
+			}
+			
+		}
+
+		public void onExited(RPObject object, StendhalRPZone zone) {
+			if(object.getRPClass().subclassOf("player")){
+				for ( Cell cell : cells){
+					cell.remove(((Player)object).getName());
+				}
+				
+				
+			}
+			
+		}};
 
 	private static List<Point> cellEntryPoints = Arrays.asList(
 		new Point(3, 3),
@@ -88,24 +110,6 @@ public class Jail implements LoginListener {
 	}
 
 	/**
-	 * returns the Jail object (Singleton Pattern).
-	 *
-	 * @return Jail
-	 */
-	public static Jail get() {
-		if (instance == null) {
-			instance = new Jail();
-		}
-		return instance;
-	}
-
-	// singleton
-	private Jail() {
-		
-		arrestWarrants = new ArrestWarrantList(getJailzone());
-		SingletonRepository.getLoginNotifier().addListener(this);
-	}
-	/**
 	 * @param criminalName
 	 *            The name of the player who should be jailed
 	 * @param policeman
@@ -148,12 +152,12 @@ public class Jail implements LoginListener {
 
 	protected void imprison(final Player criminal, final Player policeman, final int minutes) {
 
-		if (getJailzone() == null) {
-			final String text = "Zone " + DEFAULT_JAIL_ZONE + " not found";
+		if (jailzone == null) {
+			final String text = "No zone has been configured to be Jailzone";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
 			return;
-		}
+		} 
 		final boolean successful = teleportToAvailableCell(criminal, policeman);
 		if (successful) {
 			final Jailer jailer = new Jailer(criminal.getName());
@@ -170,24 +174,23 @@ public class Jail implements LoginListener {
 
 	private boolean teleportToAvailableCell(final Player criminal,
 			final Player policeman) {
-		Collections.shuffle(cellEntryPoints);
-		for (final Point cell : cellEntryPoints) {
-			if (criminal.teleport(getJailzone(), cell.x, cell.y, Direction.DOWN,
-					policeman)) {
-				return true;
+		Collections.shuffle(cells);
+		for (final Cell cell : cells) {
+			logger.info(cell.getEntry() + "" + cell.isEmpty());
+		}
+		for (final Cell cell : cells) {
+			if (cell.isEmpty()) {
+				if (criminal.teleport(jailzone, cell.getEntry().x, cell
+						.getEntry().y, Direction.DOWN, policeman)) {
+					cell.add(criminal.getName());
+					logger.info(cell.getEntry());
+					return true;
+				}
 			}
+			
 		}
 
 		return false;
-	}
-
-	private static StendhalRPZone getJailzone() {
-		if (jailzone == null) {
-			final StendhalRPWorld world = SingletonRepository.getRPWorld();
-			jailzone = (StendhalRPZone) world.getRPZone(DEFAULT_JAIL_ZONE);
-		}
-
-		return jailzone;
 	}
 
 	/**
@@ -240,7 +243,7 @@ public class Jail implements LoginListener {
 	public static boolean isInJail(final Player inmate) {
 		final StendhalRPZone zone = inmate.getZone();
 
-		if ((zone != null) && zone.equals(getJailzone())) {
+		if ((zone != null) && zone.equals(jailzone)) {
 			for (final Rectangle cellBlock : cellBlocks) {
 				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
 					return true;
@@ -329,5 +332,20 @@ public class Jail implements LoginListener {
 	 */
 	public ArrestWarrant getWarrant(String name) {
 		return arrestWarrants.getByName(name);
+	}
+
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		SingletonRepository.getLoginNotifier().addListener(this);
+		SingletonRepository.setJail(this);
+		initCells();
+		arrestWarrants = new ArrestWarrantList(zone);
+		jailzone = zone;
+	}
+
+	private void initCells() {
+		for (Point p : cellEntryPoints){
+			cells.add(new Cell(p));
+		}
+		
 	}
 }

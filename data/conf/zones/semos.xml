@@ -1631,6 +1631,8 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-1_semos_jail" level="-1" x="499872" y="500000" file="Level -1/semos/jail.tmx">
+   <configurator class-name="games.stendhal.server.entity.player.Jail"/>
+ 
   <entity x="9" y="7">
 	  <implementation class-name="games.stendhal.server.maps.semos.jail.GuardNPC">
 		  <parameter name="name">Marcus</parameter>
