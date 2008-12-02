@@ -390,13 +390,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			if (!player.isGhost()) {
 				notifyOnlineStatus(true, player.getName());
+				database.setOnlineStatus(player, true);
+
 			}
 
 			addGameEvent(player.getName(), "login");
 			SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
 
-			database.setOnlineStatus(player, true);
 
 			return true;
 		} catch (final Exception e) {
