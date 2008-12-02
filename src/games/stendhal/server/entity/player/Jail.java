@@ -181,7 +181,6 @@ public class Jail implements ZoneConfigurator, LoginListener {
 				if (criminal.teleport(jailzone, cell.getEntry().x, cell
 						.getEntry().y, Direction.DOWN, policeman)) {
 					cell.add(criminal.getName());
-					logger.info(cell.getEntry());
 					return true;
 				}
 			}
@@ -335,6 +334,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		SingletonRepository.getLoginNotifier().addListener(this);
 		SingletonRepository.setJail(this);
+		zone.addZoneEnterExitListener(listener);
 		initCells();
 		arrestWarrants = new ArrestWarrantList(zone);
 		jailzone = zone;
