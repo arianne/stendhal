@@ -51,12 +51,13 @@ public class KTextEdit extends JPanel {
 	        	final JPopupMenu popup = new StyledJPopupMenu(new WoodStyle(), "save");
 	        	
 	        	JMenuItem menuItem = new JMenuItem("save");
-	        	menuItem.addActionListener(new ActionListener(){
+	        	menuItem.addActionListener(new ActionListener() {
 
-					public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(final ActionEvent e) {
 						save();
 						
-					}});
+					}
+				});
 				popup.add(menuItem);
 	        	popup.show(e.getComponent(), e.getX(), e.getY());
 	        }
@@ -313,7 +314,7 @@ public class KTextEdit extends JPanel {
 	 * Set a clear warning for the user that there are new, unread lines.
 	 * @param warn true if the warning indicator should be shown, false otherwise
 	 */
-	private void setUnreadLinesWarning(boolean warn) {
+	private void setUnreadLinesWarning(final boolean warn) {
 		if (warn) {
 			textPane.setBackground(Color.pink);
 		} else {

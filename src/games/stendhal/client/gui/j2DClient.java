@@ -179,19 +179,19 @@ public class j2DClient extends StendhalUI {
 	
 	
 			canvas = new Canvas();
-			canvas.setBounds(0,0,getWidth(), getHeight());
+			canvas.setBounds(0, 0, getWidth(), getHeight());
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
 		panel.add(canvas);
 		panel.validate();
-		content.add(pane,BorderLayout.CENTER);
+		content.add(pane, BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
 		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.playerList.getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		content.add(chatText.getPlayerChatText(),BorderLayout.SOUTH);
-content.validate();
+		content.add(chatText.getPlayerChatText(), BorderLayout.SOUTH);
+		content.validate();
 		/*
 		 * Always redirect focus to chat field
 		 */
@@ -371,7 +371,7 @@ content.validate();
 	private void createAndAddNewBuddy(final Container content) {
 		BuddyPanelControler buddy = new BuddyPanelControler();
 		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
-		content.add(buddy.getComponent(),BorderLayout.WEST);
+		content.add(buddy.getComponent(), BorderLayout.WEST);
 	}
 
 	private void createAndAddOldBuddies(final IGameScreen gameScreen) {
@@ -887,7 +887,7 @@ content.validate();
 		
 	}
 	
-	public void clearGameLog(){
+	public void clearGameLog() {
 		gameLog.clear();
 	}
 

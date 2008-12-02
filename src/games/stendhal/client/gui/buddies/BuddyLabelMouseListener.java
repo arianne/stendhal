@@ -27,6 +27,4 @@ final class BuddyLabelMouseListener extends MouseAdapter {
         	popup.show(e.getComponent(), e.getX(), e.getY());
         }
     }
-
-	
 }

@@ -38,30 +38,31 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	private static final Logger logger = Logger.getLogger(Jail.class);
 
 	static StendhalRPZone jailzone;
-	ArrestWarrantList arrestWarrants;
+	private ArrestWarrantList arrestWarrants;
 
-	List<Cell> cells = new LinkedList<Cell>();
+	private List<Cell> cells = new LinkedList<Cell>();
 	
-	ZoneEnterExitListener listener = new ZoneEnterExitListener(){
+	private ZoneEnterExitListener listener = new ZoneEnterExitListener() {
 
-		public void onEntered(RPObject object, StendhalRPZone zone) {
-			if(object.getRPClass().subclassOf("player")){
+		public void onEntered(final RPObject object, final StendhalRPZone zone) {
+			if (object.getRPClass().subclassOf("player")) {
 				
 				
 			}
 			
 		}
 
-		public void onExited(RPObject object, StendhalRPZone zone) {
-			if(object.getRPClass().subclassOf("player")){
-				for ( Cell cell : cells){
-					cell.remove(((Player)object).getName());
+		public void onExited(final RPObject object, final StendhalRPZone zone) {
+			if (object.getRPClass().subclassOf("player")) {
+				for (final Cell cell : cells) {
+					cell.remove(((Player) object).getName());
 				}
 				
 				
 			}
 			
-		}};
+		}
+	};
 
 	private static List<Point> cellEntryPoints = Arrays.asList(
 		new Point(3, 3),
@@ -327,11 +328,11 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	 * @param name the name of the player
 	 * @return the ArrestWarrant for the player, or null if there is none
 	 */
-	public ArrestWarrant getWarrant(String name) {
+	public ArrestWarrant getWarrant(final String name) {
 		return arrestWarrants.getByName(name);
 	}
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		SingletonRepository.getLoginNotifier().addListener(this);
 		SingletonRepository.setJail(this);
 		initCells();
@@ -340,7 +341,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	}
 
 	private void initCells() {
-		for (Point p : cellEntryPoints){
+		for (final Point p : cellEntryPoints) {
 			cells.add(new Cell(p));
 		}
 		

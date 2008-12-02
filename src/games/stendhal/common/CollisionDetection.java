@@ -151,7 +151,7 @@ public class CollisionDetection {
 	}
 
 	public boolean walkable(final double x, final double y) {
-		return !map.get((int)x, (int)y);
+		return !map.get((int) x, (int) y);
 	}
 
 	public boolean leavesZone(final Rectangle2D shape) {

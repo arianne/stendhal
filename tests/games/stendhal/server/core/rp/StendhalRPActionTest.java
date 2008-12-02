@@ -35,7 +35,7 @@ public class StendhalRPActionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		zone = new StendhalRPZone("zone",20,20);
+		zone = new StendhalRPZone("zone", 20, 20);
 		zone.protectionMap.init(1, 1);
 		MockStendlRPWorld.get().addRPZone(zone);
 	}

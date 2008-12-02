@@ -27,14 +27,14 @@ public class CellTest {
 
 	@Test
 	public void testRemove() {
-		Cell cell = new Cell(new Point(0,0));
+		Cell cell = new Cell(new Point(0, 0));
 		assertTrue(cell.isEmpty());
 		assertFalse(cell.remove("jack"));
 		assertTrue(cell.isEmpty());
 	}
 	@Test
 	public void testAdd() {
-		Cell cell = new Cell(new Point(0,0));
+		Cell cell = new Cell(new Point(0, 0));
 		assertTrue(cell.isEmpty());
 		assertTrue(cell.add("jack"));
 		assertFalse(cell.isEmpty());

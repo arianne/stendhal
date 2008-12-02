@@ -6,12 +6,12 @@ public class Cell {
 	private final Point entry;
 	private String inmateName = "";
 
-	public Cell(Point entry) {
+	public Cell(final Point entry) {
 		this.entry = entry;
 	}
 
-	public boolean remove(String name) {
-		if(this.inmateName.equalsIgnoreCase(name)){
+	public boolean remove(final String name) {
+		if (this.inmateName.equalsIgnoreCase(name)) {
 			this.inmateName = "";
 			return true;
 		}
@@ -27,8 +27,8 @@ public class Cell {
 		return entry;
 	}
 
-	public boolean add(String string) {
-		if (isEmpty()){
+	public boolean add(final String string) {
+		if (isEmpty()) {
 			inmateName = string;
 			return true;
 		}

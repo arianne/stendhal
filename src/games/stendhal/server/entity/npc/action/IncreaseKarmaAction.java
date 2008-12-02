@@ -58,5 +58,4 @@ public class IncreaseKarmaAction implements ChatAction {
 		}
 		return true;
 	}
-
 }

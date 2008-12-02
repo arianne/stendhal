@@ -125,5 +125,4 @@ class GroupsXMLLoader extends DefaultHandler {
 			logger.warn("Unknown XML element: " + qName);
 		}
 	}
-
 }
