@@ -732,7 +732,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		put("base_mana", base_mana);
 	}
 
-	public void setXP(final int newxp) {
+	public final void setXP(final int newxp) {
+		if (newxp < 0) {
+			return;
+		}
 		this.xp = newxp;
 		put("xp", xp);
 	}
@@ -742,6 +745,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	public void addXP(final int newxp) {
+		
+		if (Integer.MAX_VALUE - this.xp <= newxp) {
+			return;
+		}
 		// Increment experience points
 		this.xp += newxp;
 		put("xp", xp);

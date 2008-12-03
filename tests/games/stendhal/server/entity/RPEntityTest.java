@@ -394,7 +394,50 @@ public class RPEntityTest {
 		
 	}
 	
+	@Test
+	public void testSetXP() throws Exception {
+		
+		final RPEntity entity = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(final Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		entity.setXP(300);
+		int oldXP = entity.getXP();
+		entity.setXP(oldXP + Integer.MAX_VALUE);
+		assertThat(entity.getXP(), is(oldXP));
+	}
 	
-	
+	@Test
+	public void testaddXP() throws Exception {
+		
+		final RPEntity entity = new RPEntity() {
+
+			@Override
+			protected void dropItemsOn(final Corpse corpse) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void logic() {
+				// do nothing
+				
+			}
+		};
+		entity.setXP(300);
+		int oldXP = entity.getXP();
+		entity.addXP(Integer.MAX_VALUE);
+		assertThat(entity.getXP(), is(oldXP));
+	}
 	
 }

@@ -23,7 +23,7 @@ public class IncreaseXPAction implements ChatAction {
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		player.setXP(player.getXP() + xpDiff);
+		player.addXP(xpDiff);
 		player.notifyWorldAboutChanges();
 	}
 
