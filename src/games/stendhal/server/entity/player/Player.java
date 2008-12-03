@@ -208,38 +208,38 @@ public class Player extends RPEntity {
 		/*
 		 * TODO: Update to use Player and RPEntity methods.
 		 */
-		final Player object = new Player(new RPObject());
-		object.setID(RPObject.INVALID_ID);
+		final Player player = new Player(new RPObject());
+		player.setID(RPObject.INVALID_ID);
 
-		object.put("type", "player");
-		object.put("name", characterName);
-		object.put("base_hp", 100);
-		object.put("hp", 100);
-		object.put("atk", 10);
-		object.put("atk_xp", 0);
-		object.put("def", 10);
-		object.put("def_xp", 0);
-		object.put("xp", 0);
+		player.put("type", "player");
+		player.put("name", characterName);
+		player.put("base_hp", 100);
+		player.put("hp", 100);
+		player.put("atk", 10);
+		player.put("atk_xp", 0);
+		player.put("def", 10);
+		player.put("def_xp", 0);
+		player.setXP(0);
 
 
 		Outfit randomoutfit = Outfit.getRandomOutfit();
-		object.setOutfit(randomoutfit);
+		player.setOutfit(randomoutfit);
 
 		for (final String slot : Constants.CARRYING_SLOTS) {
-			object.addSlot(slot);
+			player.addSlot(slot);
 		}
 
-		object.update();
+		player.update();
 
         Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
-        RPSlot slot = object.getSlot("armor");
+        RPSlot slot = player.getSlot("armor");
         slot.add(entity);
         
         entity = SingletonRepository.getEntityManager().getItem("club");
-        slot = object.getSlot("rhand");
+        slot = player.getSlot("rhand");
         slot.add(entity);
 
-		return object;
+		return player;
 	}
 
 	private static void convertOldfeaturesList(final Player player) {
