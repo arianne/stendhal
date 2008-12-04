@@ -10,6 +10,7 @@ Changelog
 - zones can be implemented by subclassing StendhalRPZone and specifying it in 'zones'.xml
 - wood grower shows branch till picked
 - /clear clears gamelog
+- sheep and pet only get hungrier when there are players in the same zone 
  
 
 0.71
