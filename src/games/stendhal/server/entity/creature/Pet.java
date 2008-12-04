@@ -216,10 +216,9 @@ public abstract class Pet extends DomesticAnimal {
 		setPath(null);
 		setIdea(null);
 		if (weight < MAX_WEIGHT) {
-			hunger++;
+			increaseHunger();
 		} else if (Rand.rand(FAT_FACTOR) == 1) {
-			// don't get hungry so fast if we are full weight
-			hunger++;
+			increaseHunger();
 		}
 
 		if (hunger > HUNGER_HUNGRY) {
@@ -307,6 +306,12 @@ public abstract class Pet extends DomesticAnimal {
 		this.applyMovement();
 
 		notifyWorldAboutChanges();
+	}
+
+	private void increaseHunger() {
+		if (!getZone().getPlayers().isEmpty()) {
+			hunger++;
+		}
 	}
 	// provide a nice string, describing the pet's hunger, to add to the 
 	// Look description.

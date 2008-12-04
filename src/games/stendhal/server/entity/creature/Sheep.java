@@ -356,7 +356,12 @@ public class Sheep extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-		hunger++;
+
+		if (!getZone().getPlayers().isEmpty()) {
+			hunger++;
+		}
+		
+		
 
 		/*
 		 * Allow owner to call sheep (will override other reactions)
