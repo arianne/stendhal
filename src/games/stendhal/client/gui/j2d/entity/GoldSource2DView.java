@@ -54,11 +54,13 @@ class GoldSource2DView extends AnimatedLoopEntity2DView {
 
 	/**
 	 * Perform the default action.
-	 * 
-	 * @Override public void onAction() { onAction(ActionType.PROSPECT); }
-	 * 
-	 * 
-	 *           /** Perform an action.
+	 */
+	 @Override
+	 public void onAction() { 
+		 onAction(ActionType.PROSPECT);
+	}
+	
+	/** Perform an action.
 	 * 
 	 * @param at
 	 *            The action.
