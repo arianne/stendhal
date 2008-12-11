@@ -26,6 +26,7 @@ import games.stendhal.client.events.PositionChangeMulticaster;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.Buddies;

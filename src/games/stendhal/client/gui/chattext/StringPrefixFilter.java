@@ -1,7 +1,7 @@
 /**
  * 
  */
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.chattext;
 
 import games.stendhal.common.filter.CollectionFilter;
 import games.stendhal.common.filter.FilterCriteria;

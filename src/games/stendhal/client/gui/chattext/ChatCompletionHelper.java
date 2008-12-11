@@ -1,9 +1,8 @@
 /**
  * 
  */
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.chattext;
 
-import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.common.filter.CollectionFilter;
 
 import java.awt.event.KeyAdapter;
@@ -12,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Vector;
 
-final class ChatCompletionHelper extends KeyAdapter {
+public final class ChatCompletionHelper extends KeyAdapter {
 	private final ChatTextController chatController;
 	private final Vector<String> playersonline;
 	private int  lastkeypressed;
@@ -20,7 +19,7 @@ final class ChatCompletionHelper extends KeyAdapter {
 	private int currentIndex;
 	private String output;
 
-	ChatCompletionHelper(final ChatTextController chatTextController,
+	public ChatCompletionHelper(final ChatTextController chatTextController,
 			final Vector<String> onlineplayers) {
 		this.chatController = chatTextController;
 		this.playersonline = onlineplayers;
