@@ -28,10 +28,10 @@ public class BanAction extends AdministrationAction {
 			
 			try {
 				playerDatabase.setAccountStatus(playerDatabase.getTransaction(), bannedName, "banned");
-				player.sendPrivateText("You have banned " + bannedName);
+				player.sendPrivateText("You have banned " + bannedName + " for: " + reason);
 
 				// logging
-				Logger.getLogger(BanAction.class).info(player.getName() + " has banned " + bannedName);
+				Logger.getLogger(BanAction.class).info(player.getName() + " has banned " + bannedName + " for: " + reason);
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "ban",
 						bannedName, reason);				
 				

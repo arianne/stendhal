@@ -25,6 +25,9 @@ public class SlashActionRepository {
 		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("away", new AwayAction());
+		
+		actions.put("ban", new BanAction());
+		
 		actions.put("clear", new CLearChatLogAction());
 		
 		actions.put("drop", new DropAction());

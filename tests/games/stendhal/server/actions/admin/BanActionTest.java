@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.admin;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPEvent;
 import marauroa.server.game.db.IDatabase;
 
 import org.junit.After;
@@ -64,6 +66,7 @@ public class BanActionTest {
 		RPAction action = new RPAction();
 		action.put("type", "ban");
 		action.put("target", player.getName());
+		action.put("reason", "whynot");
 		if (!database.hasPlayer(database.getTransaction(), player.getName())) {
 			database.addPlayer(database.getTransaction(), player.getName(), new byte[0], "schnubbel");
 		}
@@ -76,11 +79,13 @@ public class BanActionTest {
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), player.getName()));
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), admin.getName()));
 		assertFalse(CommandCenter.execute(admin , action));
-		
+		admin.clearEvents();
 		admin.setAdminLevel(5000);
 		assertTrue(CommandCenter.execute(admin , action));
 		assertEquals("banned", database.getAccountStatus(database.getTransaction(), player.getName()));
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), admin.getName()));
-		
+		assertFalse(admin.events().isEmpty());
+		assertThat(admin.events().get(0).toString(), is("[private_text=Attributes of Class(): [text=You have banned bobby for: whynot][texttype=PRIVMSG]]"));
+
 	}
 }

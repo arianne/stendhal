@@ -111,5 +111,27 @@ public class SlashActionParserTest {
 		assertTrue(cmd.hasError());
 		assertEquals("Unterminated quote", cmd.getErrorString());
 	}
+	
+	@Test
+	public final void testBan() {
+		SlashActionCommand cmd = SlashActionParser.parse("ban bob reason");
+		assertFalse(cmd.hasError());
+		assertNotNull(cmd.getParams());
+		assertEquals(2, cmd.getParams().length);
+		assertEquals("bob", cmd.getParams()[0]);
+		assertEquals("reason", cmd.getParams()[1]);
+		assertEquals("", cmd.getRemainder());
+		
+		
+		 cmd = SlashActionParser.parse("ban bob");
+		assertFalse(cmd.hasError());
+		assertNotNull(cmd.getParams());
+		assertEquals(2, cmd.getParams().length);
+		assertEquals("bob", cmd.getParams()[0]);
+		assertEquals(null, cmd.getParams()[1]);
+		assertEquals("", cmd.getRemainder());
+
+	}
+	
 
 }
