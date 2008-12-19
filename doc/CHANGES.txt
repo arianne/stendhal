@@ -11,7 +11,7 @@ Changelog
 - wood grower shows branch till picked
 - /clear clears gamelog
 - sheep and pet only get hungrier when there are players in the same zone 
- 
+- /ban reason is no longer eaten on client side
 
 0.71
 - chatlog stops automatic scroll on when not at bottom of text 
