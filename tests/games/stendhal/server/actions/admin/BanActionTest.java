@@ -1,16 +1,17 @@
 package games.stendhal.server.actions.admin;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
-import java.sql.SQLException;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
+import java.sql.SQLException;
+
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPEvent;
 import marauroa.server.game.db.IDatabase;
 
 import org.junit.After;

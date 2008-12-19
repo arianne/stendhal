@@ -11,7 +11,7 @@ public boolean execute(final String[] params, final String remainder) {
 			action.put("type", "ban");
 			action.put("target", params[0]);
 			if (params.length > 1) {
-				if (params[1]!=null){
+				if (params[1] != null) {
 					action.put("reason", params[1]);
 				}
 			}

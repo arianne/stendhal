@@ -6,6 +6,6 @@ import games.stendhal.server.entity.player.Player;
 
 public interface ChatAction extends PostTransitionAction {
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc);
+	void fire(final Player player, final Sentence sentence, final SpeakerNPC npc);
 
 }

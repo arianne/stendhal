@@ -31,7 +31,7 @@ public class CloakCollector2Test {
 		"shadow cloak", "xeno cloak",  "elvish cloak", "chaos cloak", 
 		"mainio cloak", "golden cloak", "black dragon cloak");
 	
-	private static final List<String> missingCloaks(final Player player) {
+	private static List<String> missingCloaks(final Player player) {
 		String done = player.getQuest(QUEST_NAME);
 		final List<String> needed = new LinkedList<String>(CLOAKS);
 		final List<String> colored = new LinkedList<String>();
@@ -48,7 +48,7 @@ public class CloakCollector2Test {
 		return colored;
 	}
 	
-	private static final String initiallyWantedMessage(final Player player) {
+	private static String initiallyWantedMessage(final Player player) {
 		final List<String> needed = missingCloaks(player);
 		
 		return "It's missing "
@@ -57,7 +57,7 @@ public class CloakCollector2Test {
 			+ ". Will you find them?";
 	}
 	
-	private static final String stillWantedMessage(final Player player) {
+	private static String stillWantedMessage(final Player player) {
 		final List<String> needed = missingCloaks(player);
 		
 		return ("I want " + Grammar.quantityplnoun(needed.size(), "cloak")

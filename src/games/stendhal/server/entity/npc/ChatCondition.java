@@ -6,5 +6,5 @@ import games.stendhal.server.entity.player.Player;
 
 public interface ChatCondition extends PreTransitionCondition {
 
-	public abstract boolean fire(Player player, Sentence sentence, SpeakerNPC npc);
+	boolean fire(Player player, Sentence sentence, SpeakerNPC npc);
 }
