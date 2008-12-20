@@ -1927,17 +1927,16 @@ public class Player extends RPEntity {
 	}
 	
 	@Override
-	protected void rewardKillers(int oldXP) {
+	protected void rewardKillers(final int oldXP) {
 		// Don't reward for killing players
 		// process tutorial event for first player kill
 
 		for (final String killerName : playersToReward) {
             final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
             // check logout  
-            if (killer == null) {
-				continue;
+            if (killer != null) {
+				TutorialNotifier.killedPlayer(killer);
             }
-			TutorialNotifier.killedPlayer(killer);
 		}
 	}
 }
