@@ -3,6 +3,7 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.Outfits;
 
 import org.junit.Test;
 
@@ -25,6 +26,12 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
 		assertEquals(Integer.valueOf(4), ou.getBase());
+		
+		final Outfit outfit2 = new Outfit(-1, -2, -3, -4);
+		assertEquals(Integer.valueOf(-1), outfit2.getHair());
+		assertEquals(Integer.valueOf(-2), outfit2.getHead());
+		assertEquals(Integer.valueOf(-3), outfit2.getDress());
+		assertEquals(Integer.valueOf(-4), outfit2.getBase());
 	}
 
 	@Test
@@ -56,82 +63,39 @@ public class OutfitTest {
 	}
 
 	@Test
-	public void testSetGetBase() {
-		final Outfit of = new Outfit();
-		of.setBase(0);
-		assertEquals(Integer.valueOf(0), of.getBase());
-		of.setBase(100);
-		assertEquals(Integer.valueOf(100), of.getBase());
-		of.setBase(123);
-		assertEquals(Integer.valueOf(123), of.getBase());
-
-	}
-
-	@Test
-	public void testSetGetDress() {
-		final Outfit of = new Outfit();
-		of.setDress(0);
-		assertEquals(Integer.valueOf(0), of.getDress());
-		of.setDress(-1);
-		assertEquals(Integer.valueOf(-1), of.getDress());
-		of.setDress(123);
-		assertEquals(Integer.valueOf(123), of.getDress());
-	}
-
-	@Test
-	public void testSetGetHair() {
-		final Outfit of = new Outfit();
-		of.setHair(0);
-		assertEquals(Integer.valueOf(0), of.getHair());
-		of.setHair(-1);
-		assertEquals(Integer.valueOf(-1), of.getHair());
-		of.setHair(123);
-		assertEquals(Integer.valueOf(123), of.getHair());
-	}
-
-	@Test
-	public void testSetGetHead() {
-		final Outfit of = new Outfit();
-		of.setHead(0);
-		assertEquals(Integer.valueOf(0), of.getHead());
-		of.setHead(-1);
-		assertEquals(Integer.valueOf(-1), of.getHead());
-		of.setHead(123);
-		assertEquals(Integer.valueOf(123), of.getHead());
-	}
-
-	@Test
 	public void testGetCode() {
 		assertEquals(12345678, new Outfit(12345678).getCode());
 	}
 
 	@Test
 	public void testPutOver() {
-		final Outfit orig = new Outfit(12345678);
+		Outfit orig = new Outfit(12345678);
 		final Outfit pullover = new Outfit();
 		assertEquals(12345678, orig.getCode());
 
 		Outfit result = orig.putOver(pullover);
 		assertEquals(12345678, result.getCode());
-		orig.setBase(null);
+		
+		
+		orig = new Outfit(12, 34, 56, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBase());
-		orig.setDress(null);
+		orig = new Outfit(12, 34, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBase());
-		orig.setHead(null);
+		orig = new Outfit(12, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBase());
-		orig.setHair(null);
+		orig = new Outfit(null, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(0), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
@@ -167,16 +131,15 @@ public class OutfitTest {
 	public void testIsChoosableByPlayers() {
 		Outfit of = new Outfit();
 		assertTrue(of.isChoosableByPlayers());
-		of.setHair(50);
+		of = new Outfit(Outfits.HAIR_OUTFITS, 0, 0, 0);
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit();
-		of.setHead(50);
+		of = new Outfit(0, Outfits.HEAD_OUTFITS, 0, 0);
+		
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit();
-		of.setBase(50);
+		of = new Outfit(0, 0, Outfits.CLOTHES_OUTFITS, 0);
+		
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit();
-		of.setDress(53);
+		of = new Outfit(0, 0, 0, Outfits.BODY_OUTFITS);
 		assertFalse(of.isChoosableByPlayers());
 		// fail("wont work for any part of outfit == null");
 
@@ -184,12 +147,12 @@ public class OutfitTest {
 
 	@Test
 	public void testIsNaked() {
-		final Outfit of = new Outfit();
+		Outfit of = new Outfit();
 		assertTrue(of.isNaked());
-		of.setDress(1);
+		 of = new Outfit(0, 0, null, 0);
+		assertTrue(of.isNaked());
+		 of = new Outfit(0, 0, 1, 0);
 		assertFalse(of.isNaked());
-		of.setDress(null);
-		assertTrue(of.isNaked());
 	}
 
 }

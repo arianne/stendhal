@@ -75,14 +75,14 @@ public class Outfit {
 	 *            pair for dress, and the fourth pair for base.
 	 */
 	public Outfit(final int code) {
-		int remainder = code;
-		this.base = remainder % 100;
-		remainder /= 100;
-		this.dress = remainder % 100;
-		remainder /= 100;
-		this.head = remainder % 100;
-		remainder /= 100;
-		this.hair = remainder;
+		
+		this.base = code % 100;
+		
+		this.dress = code / 100 % 100;
+		
+		this.head = code / 10000 % 100;
+		
+		this.hair = code / 1000000 % 100;
 	}
 
 	/**
@@ -95,16 +95,6 @@ public class Outfit {
 	}
 
 	/**
-	 * Sets the index of this outfit's base style.
-	 * 
-	 * @param base
-	 *            The index, or null if this outfit shouldn't contain a base.
-	 */
-	public void setBase(final Integer base) {
-		this.base = base;
-	}
-
-	/**
 	 * Gets the index of this outfit's dress style.
 	 * 
 	 * @return The index, or null if this outfit doesn't contain a dress.
@@ -113,15 +103,6 @@ public class Outfit {
 		return dress;
 	}
 
-	/**
-	 * Sets the index of this outfit's dress style.
-	 * 
-	 * @param dress
-	 *            The index, or null if this outfit shouldn't contain a dress.
-	 */
-	public void setDress(final Integer dress) {
-		this.dress = dress;
-	}
 
 	/**
 	 * Gets the index of this outfit's hair style.
@@ -133,32 +114,12 @@ public class Outfit {
 	}
 
 	/**
-	 * Sets the index of this outfit's hair style.
-	 * 
-	 * @param hair
-	 *            The index, or null if this outfit shouldn't contain hair.
-	 */
-	public void setHair(final Integer hair) {
-		this.hair = hair;
-	}
-
-	/**
 	 * Gets the index of this outfit's head style.
 	 * 
 	 * @return The index, or null if this outfit doesn't contain a head.
 	 */
 	public Integer getHead() {
 		return head;
-	}
-
-	/**
-	 * Sets the index of this outfit's head style.
-	 * 
-	 * @param head
-	 *            The index, or null if this outfit shouldn't contain a head.
-	 */
-	public void setHead(final Integer head) {
-		this.head = head;
 	}
 
 	/**
@@ -232,8 +193,10 @@ public class Outfit {
 	 * @return true if it is a normal outfit
 	 */
 	public boolean isChoosableByPlayers() {
-		return (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
-				&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0) && (base < Outfits.BODY_OUTFITS) && (base >= 0);
+		return (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) 
+		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
+			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0) 
+			&& (base < Outfits.BODY_OUTFITS) && (base >= 0);
 	}
 
 	/**
@@ -263,14 +226,10 @@ public class Outfit {
 	 */
 
 	public static Outfit getRandomOutfit() {
-		int newHair;
-		int newHead;
-		int newDress;
-		int newBase;
-		newHair = Rand.randUniform(1, 26);
-		newHead = Rand.randUniform(1, 15);
-		newDress = Rand.randUniform(1, 16);
-		newBase = Rand.randUniform(1, 5);
+		final int newHair = Rand.randUniform(1, 26);
+		final int newHead = Rand.randUniform(1, 15);
+		final int newDress = Rand.randUniform(1, 16);
+		final int newBase = Rand.randUniform(1, 5);
 		logger.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(newHair, newHead, newDress, newBase);
 	}
