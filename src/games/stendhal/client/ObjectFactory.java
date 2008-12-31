@@ -17,12 +17,9 @@ public class ObjectFactory {
 				perceptionTobject.register(object, new UserController());
 			}
 		}
-//			else {
-//				perceptionTobject.register(object, LISTENER);
-//			}
-//		} else {
+
 			perceptionTobject.register(object, LISTENER);
-//		}
+
 	}
 
 }
