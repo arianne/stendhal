@@ -142,13 +142,16 @@ class ClipRunner implements LineListener {
 				}
 
 				// set the volume
-				final FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+				if(line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+					final FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+				
 				if (volCtrl != null) {
 					final float dB = DBValues.getDBValue(volume)
 							+ DBValues.getDBValue(audioClip.getVolume())
 							+ correctionDB;
 					volCtrl.setValue(dB + volumeDelta);
-				} else {
+				} } 
+				else {
 					logger.info("no master gain for line " + line.getLineInfo());
 				}
 
