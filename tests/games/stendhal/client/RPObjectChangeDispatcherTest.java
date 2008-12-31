@@ -46,8 +46,7 @@ public class RPObjectChangeDispatcherTest {
 			}
 		};
 		final RPObjectChangeDispatcher dispatcher = new RPObjectChangeDispatcher(listener, listener);
-		dispatcher.dispatchModifyRemoved(null, null, false);
-		dispatcher.dispatchModifyRemoved(null, null, true);
+		dispatcher.dispatchModifyRemoved(null, null);
 		assertTrue("make sure we have no NPE", true);
 	}
 

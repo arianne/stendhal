@@ -114,17 +114,6 @@ public class stendhal extends Thread {
 	}
 
 	/**
-	 * Starts the client and show the first screen.
-	 * 
-	 * @return StendhalClient
-	 */
-	private static StendhalClient startClient() {
-		final StendhalClient client = StendhalClient.get();
-		new StendhalFirstScreen(client);
-		return client;
-	}
-
-	/**
 	 * A loop which simply waits for the login to be completed.
 	 */
 	private static void waitForLogin() {
@@ -138,20 +127,6 @@ public class stendhal extends Thread {
 	}
 
 	/**
-	 * Starts the real game gui.
-	 * 
-	 * @param client
-	 *            StendhalClient
-	 * @param gameScreen 
-	 */
-	private static void startGameGUI(final StendhalClient client, final IGameScreen gameScreen) {
-		final j2DClient locclient = new j2DClient(client, gameScreen);
-		
-		locclient.gameLoop(gameScreen);
-		locclient.cleanup();
-	}
-
-	/**
 	 * Main Entry point.
 	 * 
 	 * @param args
@@ -161,12 +136,20 @@ public class stendhal extends Thread {
 		// get size string
 		parseCommandlineArguments(args);
 		startLogSystem();
+		UserContext userContext = new UserContext();
+		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
+		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch );
+		new StendhalFirstScreen(client);
 
-		final StendhalClient client = startClient();
+		
 		waitForLogin();
 		startSoundMaster();
+		IGameScreen gameScreen = GameScreen.get();
 		
-		startGameGUI(client, GameScreen.get());
+		final j2DClient locclient = new j2DClient(client, gameScreen, userContext);
+		perceptionDispatch.register(locclient.getPerceptionListener());
+		locclient.gameLoop(gameScreen);
+		locclient.cleanup();
 	}
 
 	private static void startSoundMaster() {

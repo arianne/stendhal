@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.World;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -32,6 +33,13 @@ public class User extends Player {
 		modificationCount = 0;
 	}
 
+	
+	 @Override
+	public void onPrivateListen(String texttype, String text) {
+		// TODO Auto-generated method stub
+		super.onPrivateListen(texttype, text);
+		World.getPlayerList().generateWhoPlayers(text);
+	 }
 	/**
 	 * When the entity's position changed.
 	 * 

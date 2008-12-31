@@ -15,9 +15,12 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.PerceptionListenerImpl;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.UserContext;
+import games.stendhal.client.World;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
@@ -70,6 +73,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
@@ -136,6 +140,33 @@ public class j2DClient extends StendhalUI {
 	 */
 	protected DelayedDirectionRelease directionRelease;
 
+	private UserContext userContext;
+
+	private IPerceptionListener perceptionListener = new PerceptionListenerImpl(){
+		int times;
+		@Override
+		public void onSynced() {
+			setOffline(false);
+			times = 0;
+			logger.debug("Synced with server state.");
+			addEventLine(new HeaderLessEventLine("Synchronized",
+					NotificationType.CLIENT));
+			
+		}
+		
+		@Override
+		public void onUnsynced() {
+			times++;
+
+			if (times > 3) {
+				logger.debug("Request resync");
+				StendhalUI.get().addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
+						NotificationType.CLIENT));
+			}
+			
+		}
+	};
+
 	private static final boolean newCode = (System.getProperty("stendhal.newgui") != null);
 
 	/**
@@ -146,9 +177,9 @@ public class j2DClient extends StendhalUI {
 		setDefault(this);
 	}
 
-	public j2DClient(final StendhalClient client, final IGameScreen gameScreen) {
+	public j2DClient(final StendhalClient client, final IGameScreen gameScreen, UserContext userContext) {
 		super(client);
-		
+		this.userContext = userContext;
 		setDefault(this);
 		mainFrame = new MainFrame();
 
@@ -189,7 +220,7 @@ public class j2DClient extends StendhalUI {
 		content.add(pane, BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
-		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, client.playerList.getNamesList());
+		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
 		content.add(chatText.getPlayerChatText(), BorderLayout.SOUTH);
 		content.validate();
@@ -353,7 +384,7 @@ public class j2DClient extends StendhalUI {
 		addWindow(keyring);
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 		
-	//	createAndAddOldBuddies(gameScreen);
+		createAndAddOldBuddies(gameScreen);
 		createAndAddNewBuddy(content);
 		
 		// set some default window positions
@@ -825,7 +856,7 @@ public class j2DClient extends StendhalUI {
 	public void chooseOutfit() {
 		int outfit;
 
-		final RPObject player = client.getPlayer();
+		final RPObject player = userContext.getPlayer();
 
 		if (player.has("outfit_org")) {
 			outfit = player.getInt("outfit_org");
@@ -941,61 +972,6 @@ public class j2DClient extends StendhalUI {
 	}
 
 
-
-
-
-
-	public static void main(final String[] args, final IGameScreen gameScreen) {
-		if (args.length > 0) {
-			int i = 0;
-			String port = null;
-			String username = null;
-			String password = null;
-			String host = null;
-
-			while (i != args.length) {
-				if (args[i].equals("-u")) {
-					username = args[i + 1];
-				} else if (args[i].equals("-p")) {
-					password = args[i + 1];
-				} else if (args[i].equals("-h")) {
-					host = args[i + 1];
-				} else if (args[i].equals("-port")) {
-					port = args[i + 1];
-				}
-				i++;
-			}
-
-			if ((username != null) && (password != null) && (host != null)
-					&& (port != null)) {
-				final StendhalClient client = StendhalClient.get();
-
-				try {
-					client.connect(host, Integer.parseInt(port));
-					client.login(username, password);
-
-					final j2DClient locclient = new j2DClient(client, gameScreen);
-					
-					locclient.gameLoop(gameScreen);
-					locclient.cleanup();
-				} catch (final Exception ex) {
-					logger.error(ex, ex);
-				}
-
-				return;
-			}
-		}
-
-		System.out.println("Stendhal j2DClient\n");
-		System.out.println("  games.stendhal.j2DClient -u username -p pass -h host -c character\n");
-		System.out.println("Required parameters");
-		System.out.println("* -h\tHost that is running Marauroa server");
-		System.out.println("* -port\tport of the Marauroa server (try 32160)");
-		System.out.println("* -u\tUsername to log into Marauroa server");
-		System.out.println("* -p\tPassword to log into Marauroa server");
-	}
-
-
 	protected static class DelayedDirectionRelease {
 		/**
 		 * The maximum delay between auto-repeat release-press.
@@ -1087,5 +1063,10 @@ public class j2DClient extends StendhalUI {
 	public void requestQuit() {
 		quitDialog.requestQuit();
 
+	}
+
+	public IPerceptionListener getPerceptionListener() {
+		
+		return perceptionListener;
 	}
 }

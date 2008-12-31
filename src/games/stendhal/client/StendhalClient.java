@@ -15,13 +15,11 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
-import games.stendhal.common.NotificationType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -34,7 +32,6 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 
 import marauroa.client.ClientFramework;
-import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.Perception;
@@ -57,13 +54,11 @@ public class StendhalClient extends ClientFramework {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalClient.class);
 
-	private final Map<RPObject.ID, RPObject> world_objects;
+	final Map<RPObject.ID, RPObject> world_objects;
 
 	private final PerceptionHandler handler;
 
 	private final RPObjectChangeDispatcher rpobjDispatcher;
-
-	private RPObject player;
 
 	private final StaticGameLayers staticLayers;
 
@@ -79,14 +74,15 @@ public class StendhalClient extends ClientFramework {
 
 	protected IGameScreen screen;
 
-	private final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 	private String userName = "";
 
+	
+	
 	private final UserContext userContext;
 
 	
 	
-	public PlayerList playerList = new PlayerList();
+	
 
 	/**
 	 * The amount of content yet to be transfered.
@@ -100,38 +96,25 @@ public class StendhalClient extends ClientFramework {
 
 	private StendhalPerceptionListener stendhalPerceptionListener;
 
-	public void addPerceptionListener(final IPerceptionListener listener) {
-		perceptionDispatch.register(listener);
-	}
-	
-	public void removePerceptionListener(final IPerceptionListener listener) {
-		perceptionDispatch.register(listener);
-	}
-	
-	
 	public static StendhalClient get() {
-		if (client == null) {
-			client = new StendhalClient(LOG4J_PROPERTIES);
-		}
-
 		return client;
 	}
 
-	protected StendhalClient(final String loggingProperties) {
-		super(loggingProperties);
-
+	public StendhalClient( UserContext userContext, PerceptionDispatcher perceptionDispatcher) {
+		super(LOG4J_PROPERTIES);
+client = this;
 		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
-		userContext = new UserContext(gameObjects);
+		this.userContext = userContext;
 
 		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
 		PerceptionToObject po = new PerceptionToObject();
 		po.setObjectFactory(new ObjectFactory());
-		perceptionDispatch.register(po);
-		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatch);
+		perceptionDispatcher.register(po);
+		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, world_objects);
 		handler = new PerceptionHandler(stendhalPerceptionListener);
 
 		cache = new Cache();
@@ -162,9 +145,7 @@ public class StendhalClient extends ClientFramework {
 		return gameObjects;
 	}
 
-	public RPObject getPlayer() {
-		return player;
-	}
+	
 
 	/**
 	 * Check if the client is in the middle of a batch update. A batch update
@@ -188,13 +169,13 @@ public class StendhalClient extends ClientFramework {
 		 * Simulate object disassembly
 		 */
 		for (final RPObject object : world_objects.values()) {
-			if (object != player) {
-				rpobjDispatcher.dispatchRemoved(object, false);
+			if (object != userContext.getPlayer()) {
+				rpobjDispatcher.dispatchRemoved(object);
 			}
 		}
 
-		if (player != null) {
-			rpobjDispatcher.dispatchRemoved(player, true);
+		if (userContext.getPlayer() != null) {
+			rpobjDispatcher.dispatchRemoved(userContext.getPlayer());
 		}
 
 		gameObjects.clear();
@@ -541,16 +522,7 @@ public class StendhalClient extends ClientFramework {
 	 * Handle player changes.
 	 * @param object the player object
 	 */
-	protected void setPlayer(final RPObject object) {
-		/*
-		 * Ignore no-changes
-		 */
-		if (player != object) {
-			player = object;
-
-			firePlayerAssignment(player);
-		}
-	}
+	
 
 	/*
 	 * public void addPlayerChangeListener(PlayerChangeListener l) { }
@@ -575,128 +547,13 @@ public class StendhalClient extends ClientFramework {
 		userContext.removeBuddyChangeListener(l);
 	}
 
-	protected void firePlayerAssignment(final RPObject object) {
-	}
+
 
 	//
 	//
-
-	class StendhalPerceptionListener implements IPerceptionListener {
-		
-		private PerceptionDispatcher dispatch = new PerceptionDispatcher();
-		
-		public StendhalPerceptionListener(final PerceptionDispatcher dispatch) {
-			this.dispatch = dispatch;
-			
-		}
-		
-		public boolean onAdded(final RPObject object) {
-			dispatch.onAdded(object);
-			rpobjDispatcher.dispatchAdded(object, isUser(object));
-			return false;
-		}
-
-		public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
-			dispatch.onModifiedAdded(object, changes);
-			rpobjDispatcher.dispatchModifyAdded(object, changes, false);
-			return true;
-		}
-
-		public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
-			dispatch.onModifiedDeleted(object, changes);
-			rpobjDispatcher.dispatchModifyRemoved(object, changes, false);
-			return true;
-		}
-
-		public boolean onDeleted(final RPObject object) {
-			dispatch.onDeleted(object);
-			rpobjDispatcher.dispatchRemoved(object, isUser(object));
-			return false;
-		}
-
-		public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
-			dispatch.onMyRPObject(added, deleted);
-			try {
-				RPObject.ID id = null;
-
-				if (added != null) {
-					id = added.getID();
-				}
-
-				if (deleted != null) {
-					id = deleted.getID();
-				}
-
-				if (id == null) {
-					// Unchanged.
-					return true;
-				}
-
-				final RPObject object = world_objects.get(id);
-
-				setPlayer(object);
-
-				if (deleted != null) {
-					rpobjDispatcher.dispatchModifyRemoved(object, deleted, true);
-				}
-
-				if (added != null) {
-					rpobjDispatcher.dispatchModifyAdded(object, added, true);
-				}
-			} catch (final Exception e) {
-				logger.error("onMyRPObject failed, added=" + added
-						+ " deleted=" + deleted, e);
-			}
-
-			return true;
-		}
-
-		public void onSynced() {
-			dispatch.onSynced();
-			times = 0;
-
-			StendhalUI.get().setOffline(false);
-
-			logger.debug("Synced with server state.");
-			StendhalUI.get().addEventLine(new HeaderLessEventLine("Synchronized",
-					NotificationType.CLIENT));
-		}
-
-		private int times;
-
-		public void onUnsynced() {
-			dispatch.onUnsynced();
-			times++;
-
-			if (times > 3) {
-				logger.debug("Request resync");
-				StendhalUI.get().addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
-						NotificationType.CLIENT));
-			}
-		}
-
-		public void onException(final Exception e,
-				final marauroa.common.net.message.MessageS2CPerception perception) {
-			dispatch.onException(e, perception);
-			logger.error("perception caused an error: " + perception, e);
-			System.exit(-1);
-		}
-
-		public boolean onClear() {
-			dispatch.onClear();
-			return false;
-		}
-
-		public void onPerceptionBegin(final byte type, final int timestamp) {
-			dispatch.onPerceptionBegin(type, timestamp);
-		}
-
-		public void onPerceptionEnd(final byte type, final int timestamp) {
-			dispatch.onPerceptionEnd(type, timestamp);
-		}
-	}
 
 	public void setAccountUsername(final String username) {
+		userContext.setName(username);
 		userName = username;
 	}
 
@@ -742,6 +599,11 @@ public class StendhalClient extends ClientFramework {
 			put("type", "face");
 			put("dir", dir.get());
 		}
+	}
+
+	public RPObject getPlayer() {
+		return userContext.getPlayer();
+		
 	}
 
 }

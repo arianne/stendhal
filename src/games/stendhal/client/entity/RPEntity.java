@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -522,7 +521,7 @@ public abstract class RPEntity extends ActiveEntity {
 			type = NotificationType.PRIVMSG;
 		}
 
-		StendhalClient.get().playerList.generateWhoPlayers(text);
+		
 		StendhalUI.get().addEventLine(new HeaderLessEventLine(text, type));
 
 		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
