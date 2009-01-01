@@ -160,7 +160,7 @@ public class j2DClient extends StendhalUI {
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalUI.get().addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
+				addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
 						NotificationType.CLIENT));
 			}
 			
