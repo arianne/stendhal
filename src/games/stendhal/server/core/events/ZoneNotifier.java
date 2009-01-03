@@ -29,9 +29,8 @@ public class ZoneNotifier {
 			// change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
-			final DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
-					type.getMessage());
-			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
+			new DelayedPlayerTextSender(player, type.getMessage(), 2);
+			
 		}
 	}
 

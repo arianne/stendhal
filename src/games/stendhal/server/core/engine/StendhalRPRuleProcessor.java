@@ -361,13 +361,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized void endTurn() {
 		final int currentTurn = getTurn();
 		try {
+
+			SingletonRepository.getTurnNotifier().logic(currentTurn);
+
 			for (final IRPZone zoneI : SingletonRepository.getRPWorld()) {
 				final StendhalRPZone zone = (StendhalRPZone) zoneI;
 				zone.logic();
 			}
 
 			// run registered object's logic method for this turn
-			SingletonRepository.getTurnNotifier().logic(currentTurn);
 
 		} catch (final Exception e) {
 			logger.error("error in endTurn", e);

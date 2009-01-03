@@ -29,7 +29,9 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
+import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
@@ -222,7 +224,7 @@ public class Player extends RPEntity {
 		player.setXP(0);
 
 
-		Outfit randomoutfit = Outfit.getRandomOutfit();
+		final Outfit randomoutfit = Outfit.getRandomOutfit();
 		player.setOutfit(randomoutfit);
 
 		for (final String slot : Constants.CARRYING_SLOTS) {
@@ -1422,7 +1424,7 @@ public class Player extends RPEntity {
 		final String text = "You see " + getTitle() + ".\n" + getTitle()
 				+ " is level " + getLevel() + " and has been playing " + time
 				+ ".";
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(text);
 		final String awayMessage = getAwayMessage();
 		if (awayMessage != null) {
@@ -1938,5 +1940,19 @@ public class Player extends RPEntity {
 				TutorialNotifier.killedPlayer(killer);
             }
 		}
+	}
+
+
+	public void equip(final Item item, final int amount) {
+		if (item instanceof Stackable) {
+			((Stackable) item).setQuantity(amount);
+			super.equip(item);
+		} else {
+			for (int i = 1; i <= amount; i++) {
+				super.equip(item, true);
+			}
+		}
+		super.equip(item); 
+		
 	}
 }

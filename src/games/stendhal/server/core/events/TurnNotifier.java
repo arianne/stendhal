@@ -23,7 +23,7 @@ public final class TurnNotifier {
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
 
 	/** The Singleton instance. */
-	private static TurnNotifier instance;
+	private static final TurnNotifier instance = new TurnNotifier();
 
 	private int currentTurn = -1;
 
@@ -47,9 +47,6 @@ public final class TurnNotifier {
 	 * @return TurnNotifier the Singleton instance
 	 */
 	public static TurnNotifier get() {
-		if (instance == null) {
-			instance = new TurnNotifier();
-		}
 		return instance;
 	}
 
@@ -101,16 +98,6 @@ public final class TurnNotifier {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Return the number of the next turn.
-	 * 
-	 * @return number of the next turn
-	 */
-
-	public int getNumberOfNextTurn() {
-		return this.currentTurn + 1;
 	}
 
 	/**

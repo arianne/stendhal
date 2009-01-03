@@ -30,8 +30,8 @@ public class TutorialNotifier {
 			// change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
-			final DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL);
-			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
+			new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL, 2);
+			
 		}
 	}
 

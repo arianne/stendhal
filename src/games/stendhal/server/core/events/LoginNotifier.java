@@ -16,7 +16,7 @@ import java.util.List;
 public final class LoginNotifier {
 
 	/** The Singleton instance. */
-	private static LoginNotifier instance;
+	private static final LoginNotifier instance = new LoginNotifier();
 
 	/**
 	 * Holds a list of all registered listeners.
@@ -34,9 +34,6 @@ public final class LoginNotifier {
 	 * @return LoginNotifier the Singleton instance
 	 */
 	public static LoginNotifier get() {
-		if (instance == null) {
-			instance = new LoginNotifier();
-		}
 		return instance;
 	}
 
