@@ -102,10 +102,9 @@ public class BuddyListPanel extends JPanel {
 		buddies.clear();
 
 		for (final String key : buddy) {
-			if ("id".equals(key)) {
-				continue;
+			if (!"id".equals(key)) {
+				buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
 			}
-			buddies.add(new Entry(key.substring(1), buddy.getInt(key) != 0));
 		}
 
 		final int height = buddies.size() * 20 + 3;
