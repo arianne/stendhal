@@ -22,7 +22,8 @@ class MarriageQuestInfo {
 	} 
 	
     public boolean isEngaged(final Player player) {
-        return (player.hasQuest(QUEST_SLOT) && (player.getQuest(QUEST_SLOT).startsWith("engaged") || player.getQuest(QUEST_SLOT).startsWith("forging;")));
+        return (player.hasQuest(QUEST_SLOT) 
+        		&& (player.getQuest(QUEST_SLOT).startsWith("engaged") || player.getQuest(QUEST_SLOT).startsWith("forging;")));
     }
 
 }
