@@ -85,6 +85,7 @@ public class CommandCenter {
 		SentenceAction.register();
 		StopAction.register();
 		UseAction.register();
+		register("info", new InfoAction());
 	}
 
 	public static boolean execute(final RPObject caster, final RPAction action) {

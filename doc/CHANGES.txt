@@ -1,6 +1,7 @@
 Changelog
 ---------
 0.xx
+
 - mossy rubble pic has been added to rock
 - Collisionmap is now backed by Bitset
 - buddy panel is no free floating window anymore
@@ -12,6 +13,7 @@ Changelog
 - /clear clears gamelog
 - sheep and pet only get hungrier when there are players in the same zone 
 - /ban reason is no longer eaten on client side
+- /info returns current server time
 
 0.71
 - chatlog stops automatic scroll on when not at bottom of text 
