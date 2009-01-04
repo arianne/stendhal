@@ -66,7 +66,7 @@ import org.apache.log4j.Logger;
 public class StendhalRPZone extends MarauroaRPZone {
 
 	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone) {
-		StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
+		final StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
 		newZone.contents.addAll(zone.contents);
 		newZone.collisionMap = zone.collisionMap;
 		newZone.protectionMap  = zone.protectionMap;
@@ -708,7 +708,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		SingletonRepository.getRPWorld().requestSync(object);
 	}
 
-	private void notifyAdded(RPObject object) {
+	private void notifyAdded(final RPObject object) {
 		for (final ZoneEnterExitListener l : zoneListeners) {
 			
 				l.onEntered(object, this);
@@ -716,7 +716,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 		
 	}
-	private void notifyRemoved(RPObject object) {
+	private void notifyRemoved(final RPObject object) {
 		for (final ZoneEnterExitListener l : zoneListeners) {
 			
 			l.onExited(object, this);

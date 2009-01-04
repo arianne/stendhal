@@ -35,8 +35,7 @@ public class User extends Player {
 
 	
 	 @Override
-	public void onPrivateListen(String texttype, String text) {
-		// TODO Auto-generated method stub
+	public void onPrivateListen(final String texttype, final String text) {
 		super.onPrivateListen(texttype, text);
 		World.getPlayerList().generateWhoPlayers(text);
 	 }

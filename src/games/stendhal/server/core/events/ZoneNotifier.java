@@ -1,6 +1,5 @@
 package games.stendhal.server.core.events;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 /**

@@ -13,8 +13,8 @@ import games.stendhal.server.entity.player.Player;
  * Does this trigger contain a number?
  */
 public class TextHasNumberCondition implements ChatCondition {
-	private int min;
-	private int max;
+	private final int min;
+	private final int max;
 
 	/**
 	 * Creates a new TextHasNumberCondition which checks for a positive integer.
@@ -31,7 +31,7 @@ public class TextHasNumberCondition implements ChatCondition {
 	 * @param min minimal accepted number
 	 * @param max maximal accepted number
 	 */
-	public TextHasNumberCondition(int min, int max) {
+	public TextHasNumberCondition(final int min, final int max) {
 		this.min = min;
 		this.max = max;
 	}

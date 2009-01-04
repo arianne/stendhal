@@ -183,7 +183,7 @@ public class Character extends WtPanel {
 		final GameObjects gameObjects = GameObjects.getInstance();
 
 		// taverse all carrying slots
-		final String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
+		final String[] slotsCarrying = {"bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
 
 		for (final String slotName : slotsCarrying) {

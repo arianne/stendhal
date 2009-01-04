@@ -19,11 +19,11 @@ class StendhalPerceptionListener implements IPerceptionListener {
 	 */
 	private PerceptionDispatcher dispatch = new PerceptionDispatcher();
 
-	private RPObjectChangeDispatcher rpobjDispatcher;
+	private final RPObjectChangeDispatcher rpobjDispatcher;
 
-	private UserContext userContext ;
+	private final UserContext userContext;
 	
-	public StendhalPerceptionListener(final PerceptionDispatcher dispatch, RPObjectChangeDispatcher rpobjDispatcher, UserContext userContext, Map<ID, RPObject> world_objects) {
+	public StendhalPerceptionListener(final PerceptionDispatcher dispatch, final RPObjectChangeDispatcher rpobjDispatcher, final UserContext userContext, final Map<ID, RPObject> world_objects) {
 		this.userContext = userContext;
 		this.dispatch = dispatch;
 		this.rpobjDispatcher = rpobjDispatcher;
@@ -31,7 +31,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 	}
 	
 	public boolean onAdded(final RPObject object) {
-		if(userContext.isUser(object)){
+		if (userContext.isUser(object)) {
 			userContext.setPlayer(object);
 		}
 		dispatch.onAdded(object);
@@ -103,7 +103,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 	}
 
 
-	private Map<ID, RPObject> world_objects;
+	private final Map<ID, RPObject> world_objects;
 
 	public void onUnsynced() {
 		dispatch.onUnsynced();

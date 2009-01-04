@@ -142,7 +142,7 @@ public class j2DClient extends StendhalUI {
 
 	private UserContext userContext;
 
-	private IPerceptionListener perceptionListener = new PerceptionListenerImpl(){
+	private final IPerceptionListener perceptionListener = new PerceptionListenerImpl() {
 		int times;
 		@Override
 		public void onSynced() {
@@ -177,7 +177,7 @@ public class j2DClient extends StendhalUI {
 		setDefault(this);
 	}
 
-	public j2DClient(final StendhalClient client, final IGameScreen gameScreen, UserContext userContext) {
+	public j2DClient(final StendhalClient client, final IGameScreen gameScreen, final UserContext userContext) {
 		super(client);
 		this.userContext = userContext;
 		setDefault(this);
@@ -220,7 +220,7 @@ public class j2DClient extends StendhalUI {
 		content.add(pane, BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
-		KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
+		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
 		content.add(chatText.getPlayerChatText(), BorderLayout.SOUTH);
 		content.validate();
@@ -294,7 +294,7 @@ public class j2DClient extends StendhalUI {
 			final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
 					"Game chat and events log");
 
-			Container dialogContent = dialog.getContentPane();
+			final Container dialogContent = dialog.getContentPane();
 			dialogContent.setLayout(new BoxLayout(dialogContent, BoxLayout.Y_AXIS));
 			dialogContent.add(gameLog);
 
@@ -401,7 +401,7 @@ public class j2DClient extends StendhalUI {
 	} // constructor
 
 	private void createAndAddNewBuddy(final Container content) {
-		BuddyPanelControler buddy = new BuddyPanelControler();
+		final BuddyPanelControler buddy = new BuddyPanelControler();
 		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
 		content.add(buddy.getComponent(), BorderLayout.WEST);
 	}

@@ -500,7 +500,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		// try a master volume control
 		try {
-			if (mixer.isControlSupported(FloatControl.Type.MASTER_GAIN)){
+			if (mixer.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
 				volumeCtrl = (FloatControl) mixer.getControl(FloatControl.Type.MASTER_GAIN);
 				volumeCtrl.setValue(0f);
 			}

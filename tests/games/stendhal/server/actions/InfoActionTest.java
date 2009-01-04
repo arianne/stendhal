@@ -1,7 +1,6 @@
 package games.stendhal.server.actions;
 
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import games.stendhal.server.entity.player.Player;
 

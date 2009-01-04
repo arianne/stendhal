@@ -94,13 +94,13 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private boolean batchUpdate;
 
-	private StendhalPerceptionListener stendhalPerceptionListener;
+	private final StendhalPerceptionListener stendhalPerceptionListener;
 
 	public static StendhalClient get() {
 		return client;
 	}
 
-	public StendhalClient( UserContext userContext, PerceptionDispatcher perceptionDispatcher) {
+	public StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
 		super(LOG4J_PROPERTIES);
 client = this;
 		SoundSystem.get();
@@ -111,7 +111,7 @@ client = this;
 		this.userContext = userContext;
 
 		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
-		PerceptionToObject po = new PerceptionToObject();
+		final PerceptionToObject po = new PerceptionToObject();
 		po.setObjectFactory(new ObjectFactory());
 		perceptionDispatcher.register(po);
 		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, world_objects);

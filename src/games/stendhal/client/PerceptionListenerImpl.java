@@ -6,7 +6,7 @@ import marauroa.common.net.message.MessageS2CPerception;
 
 public abstract class PerceptionListenerImpl implements IPerceptionListener {
 
-	public boolean onAdded(RPObject object) {
+	public boolean onAdded(final RPObject object) {
 		return false;
 	}
 
@@ -14,31 +14,31 @@ public abstract class PerceptionListenerImpl implements IPerceptionListener {
 		return false;
 	}
 
-	public boolean onDeleted(RPObject object) {
+	public boolean onDeleted(final RPObject object) {
 		return false;
 	}
 
-	public void onException(Exception exception, MessageS2CPerception perception) {
+	public void onException(final Exception exception, final MessageS2CPerception perception) {
 
 	}
 
-	public boolean onModifiedAdded(RPObject object, RPObject changes) {
+	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 		return false;
 	}
 
-	public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+	public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 		return false;
 	}
 
-	public boolean onMyRPObject(RPObject added, RPObject deleted) {
+	public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 		return false;
 	}
 
-	public void onPerceptionBegin(byte type, int timestamp) {
+	public void onPerceptionBegin(final byte type, final int timestamp) {
 
 	}
 
-	public void onPerceptionEnd(byte type, int timestamp) {
+	public void onPerceptionEnd(final byte type, final int timestamp) {
 	}
 
 	public void onSynced() {

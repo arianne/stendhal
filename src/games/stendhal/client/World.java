@@ -4,9 +4,7 @@ public final class World {
 
 	private static final World instance = new World();
 	
-	
-	
-	public final static World get(){
+	public static World get() {
 		return instance;
 	}
 	

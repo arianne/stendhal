@@ -138,7 +138,7 @@ public class stendhal extends Thread {
 		startLogSystem();
 		UserContext userContext = new UserContext();
 		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
-		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch );
+		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 		new StendhalFirstScreen(client);
 
 		

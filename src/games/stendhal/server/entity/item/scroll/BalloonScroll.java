@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.entity.player.Player;
 

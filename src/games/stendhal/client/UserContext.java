@@ -75,13 +75,14 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Constructor.
-	 * @param username 
-	 * @param gameObjects 
+	 * 
+	 * @param username
+	 * @param gameObjects
 	 */
 	public UserContext() {
-		
+
 		adminlevel = 0;
-	    name = null;
+		name = null;
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
@@ -111,8 +112,6 @@ public class UserContext implements RPObjectChangeListener {
 		buddyListeners = newListeners;
 	}
 
-	
-
 	/**
 	 * Add a feature change listener.
 	 * 
@@ -130,7 +129,6 @@ public class UserContext implements RPObjectChangeListener {
 
 		featureListeners = newListeners;
 	}
-
 
 	/**
 	 * Fire buddy added to all registered listeners.
@@ -229,7 +227,6 @@ public class UserContext implements RPObjectChangeListener {
 			l.featureEnabled(name, value);
 		}
 	}
-
 
 	/**
 	 * Get the admin level.
@@ -343,7 +340,7 @@ public class UserContext implements RPObjectChangeListener {
 			 * RPObject attributes
 			 */
 			logger.debug(key);
-			
+
 			if ("id".equals(key)) {
 				continue;
 			}
@@ -438,6 +435,7 @@ public class UserContext implements RPObjectChangeListener {
 	public RPObject getPlayer() {
 		return player;
 	}
+
 	protected void setPlayer(final RPObject object) {
 		/*
 		 * Ignore no-changes
@@ -445,11 +443,11 @@ public class UserContext implements RPObjectChangeListener {
 		if (player != object) {
 			player = object;
 
-			
 		}
 	}
+
 	public boolean isUser(final RPObject object) {
-		if(name == null) {
+		if (name == null) {
 			return false;
 		}
 		if (object.getRPClass().subclassOf("player")) {
@@ -458,6 +456,7 @@ public class UserContext implements RPObjectChangeListener {
 			return false;
 		}
 	}
+
 	//
 	// RPObjectChangeListener
 	//
@@ -469,8 +468,8 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if (isUser(object)){
-		
+		if (isUser(object)) {
+
 			if (object.has("adminlevel")) {
 				adminlevel = object.getInt("adminlevel");
 				// fireAdminLevelChanged(adminlevel);
@@ -488,20 +487,20 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		if (isUser(object)){
-		if (changes.has("adminlevel")) {
-			adminlevel = changes.getInt("adminlevel");
-		}
+		if (isUser(object)) {
+			if (changes.has("adminlevel")) {
+				adminlevel = changes.getInt("adminlevel");
+			}
 
-		if (changes.has("name")) {
-			name = changes.get("name");
-		}
+			if (changes.has("name")) {
+				name = changes.get("name");
+			}
 
-		if (changes.has("sheep")) {
-			sheepID = changes.getInt("sheep");
-			// fireOwnedSheep(sheepID);
-		}
-		dispatchEvents(object, changes);
+			if (changes.has("sheep")) {
+				sheepID = changes.getInt("sheep");
+				// fireOwnedSheep(sheepID);
+			}
+			dispatchEvents(object, changes);
 		}
 	}
 
@@ -520,12 +519,13 @@ public class UserContext implements RPObjectChangeListener {
 		// events to.
 		for (final RPEvent rpevent : object.events()) {
 			if (rpevent.getName().equals("transition_graph")) {
-				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
+				new TransitionDiagram().showTransitionDiagram(rpevent
+						.get("data"));
 			} else if (rpevent.getName().equals("examine")) {
 				RPEventImageViewer.viewImage(rpevent);
 			}
 		}
-	
+
 	}
 
 	/**
@@ -537,19 +537,19 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		if (isUser(object)){
-		if (changes.has("adminlevel")) {
-			adminlevel = 0;
-		}
+		if (isUser(object)) {
+			if (changes.has("adminlevel")) {
+				adminlevel = 0;
+			}
 
-		if (changes.has("name")) {
-			name = null;
-		}
+			if (changes.has("name")) {
+				name = null;
+			}
 
-		if (changes.has("sheep")) {
-			sheepID = 0;
-			// fireOwnedSheep(sheepID);
-		}
+			if (changes.has("sheep")) {
+				sheepID = 0;
+				// fireOwnedSheep(sheepID);
+			}
 		}
 	}
 
@@ -560,12 +560,12 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		if (isUser(object)){
-		adminlevel = 0;
+		if (isUser(object)) {
+			adminlevel = 0;
 
-		name = null;
+			name = null;
 
-		sheepID = 0;
+			sheepID = 0;
 		}
 	}
 
@@ -581,13 +581,13 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public void onSlotAdded(final RPObject object, final String slotName,
 			final RPObject sobject) {
-		if (isUser(object)){
-		if (slotName.equals("!buddy")) {
-			processBuddiesAdded(sobject);
-		}
-		if (slotName.equals("!features")) {
-			processFeaturesAdded(sobject);
-		} 
+		if (isUser(object)) {
+			if (slotName.equals("!buddy")) {
+				processBuddiesAdded(sobject);
+			}
+			if (slotName.equals("!features")) {
+				processFeaturesAdded(sobject);
+			}
 		}
 	}
 
@@ -606,12 +606,12 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (isUser(object)){
-		if ("!buddy".equals(slotName)) {
-			processBuddiesAdded(schanges);
-		} else if ("!features".equals(slotName)) {
-			processFeaturesAdded(schanges);
-		}
+		if (isUser(object)) {
+			if ("!buddy".equals(slotName)) {
+				processBuddiesAdded(schanges);
+			} else if ("!features".equals(slotName)) {
+				processFeaturesAdded(schanges);
+			}
 		}
 	}
 
@@ -630,12 +630,12 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (isUser(object)){
-		if ("!buddy".equals(slotName)) {
-			processBuddiesRemoved(schanges);
-		} else if ("!features".equals(slotName)) {
-			processFeaturesRemoved(schanges);
-		}
+		if (isUser(object)) {
+			if ("!buddy".equals(slotName)) {
+				processBuddiesRemoved(schanges);
+			} else if ("!features".equals(slotName)) {
+				processFeaturesRemoved(schanges);
+			}
 		}
 	}
 
@@ -651,17 +651,17 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
-		if (isUser(object)){
-		if ("!buddy".equals(slotName)) {
-			processBuddiesRemoved(sobject);
-		} else if ("!features".equals(slotName)) {
-			processFeaturesRemoved(sobject);
-		}
+		if (isUser(object)) {
+			if ("!buddy".equals(slotName)) {
+				processBuddiesRemoved(sobject);
+			} else if ("!features".equals(slotName)) {
+				processFeaturesRemoved(sobject);
+			}
 		}
 	}
 
-	public void setName(String username) {
-		name=username;
-		
+	public void setName(final String username) {
+		name = username;
+
 	}
 }
