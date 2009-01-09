@@ -43,8 +43,8 @@ public class NPCShoutZone extends ScriptImpl {
 				final String text = sb.toString();
 				for (Player player : targetZone.getPlayers()) {
 					player.sendPrivateText(text);
-					// TODO: tell supporters so that they know and postman reports it
 				}
+				SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
 			} else {
 				admin.sendPrivateText("zone " + targetZoneName + "not found");
 			}
