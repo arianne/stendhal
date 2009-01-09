@@ -127,15 +127,16 @@ public class SpriteStore {
 	private static final String FAILSAFE_ICON_REF = "data/sprites/failsafe.png";
 
 	/**
-	 * Get the failsafe sprite.
+	 * Get the failsafe sprite. 
+	 * The failsafe sprite is needed in case there are newer graphic requested in server than in client.
+	 * 
+	 * It is ok not to return a handmade one. 
+	 * If we cannot reach the failsafe icon,
+	 * we have bigger problems then just the need to show anything.
 	 * 
 	 * @return The failsafe sprite.
 	 */
 	public Sprite getFailsafe() {
-		/*
-		 * TODO: Create in-line sprite, incase missing all png's is why we need
-		 * a failsafe. Otherwise we return null.
-		 */
 		return getSprite(FAILSAFE_ICON_REF);
 	}
 
