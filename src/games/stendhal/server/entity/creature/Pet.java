@@ -244,7 +244,7 @@ public abstract class Pet extends DomesticAnimal {
 			} else if (hunger > HUNGER_STARVATION) {
 				// move crazy if starving
 				moveRandomly();
-				setIdea("food");
+				
 				hunger /= 2;
 				 if (owner != null) {
 					 owner.sendPrivateText("Your pet is starving!");
@@ -268,13 +268,6 @@ public abstract class Pet extends DomesticAnimal {
 				if (owner == null) {
 					logger.debug("Pet (ownerless and hungry but not starving) moves randomly");
 					moveRandomly();
-					// TODO: refactor move randomly to not override hungry idea 
-					// unfortunately something in moveRandomly overwrites the
-					// hungry idea
-					// :( must i change moveRandomly,
-					// or is setting it again here after the one in
-					// moveRandomly() enough?
-					setIdea("food");
 				} else if ((owner != null) && !nextTo(owner)) {
 					moveToOwner();
 				} else {

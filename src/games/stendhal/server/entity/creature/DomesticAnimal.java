@@ -120,7 +120,6 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	protected void moveRandomly() {
-		setIdea("walk");
 		setRandomPathFrom(getX(), getY(), 10);
 	}
 

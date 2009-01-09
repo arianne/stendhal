@@ -287,6 +287,7 @@ public class Sheep extends DomesticAnimal {
 			 */
 			if (((turn % 15) == 0) && isEnemyNear(20)) {
 				logger.debug("Sheep (ownerless) moves randomly");
+				setIdea("walk");
 				moveRandomly();
 			} else {
 				logger.debug("Sheep sleeping");
