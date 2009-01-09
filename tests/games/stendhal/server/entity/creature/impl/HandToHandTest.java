@@ -41,13 +41,11 @@ public class HandToHandTest {
 
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void logic() {
-				// TODO Auto-generated method stub
 				
 			}
 		};

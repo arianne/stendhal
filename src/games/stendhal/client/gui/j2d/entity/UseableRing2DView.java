@@ -9,7 +9,6 @@ public class UseableRing2DView extends Ring2DView {
 
 	public UseableRing2DView(UseableRing ring) {
 		super(ring);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry

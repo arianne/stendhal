@@ -81,7 +81,6 @@ public class UpdatePropUpdater {
 	}
 
 	private void updateFileSize() {
-		// TODO Auto-generated method stub
 		
 	}
 

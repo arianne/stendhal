@@ -47,7 +47,6 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -94,7 +93,6 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -108,7 +106,6 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -123,7 +120,6 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -138,7 +134,6 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};

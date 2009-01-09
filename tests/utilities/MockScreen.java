@@ -198,67 +198,64 @@ public class MockScreen implements IGameScreen {
 	}
 
 	public void addDialog(final WtPanel panel) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public int convertWorldXToScreenView(final double wx) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int convertWorldYToScreenView(final double wy) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int getScreenHeight() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getScreenViewHeight() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getScreenViewWidth() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getScreenViewX() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getScreenViewY() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getScreenWidth() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public double getViewHeight() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public double getViewWidth() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public double getViewX() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public double getViewY() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

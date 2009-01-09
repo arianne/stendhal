@@ -23,7 +23,6 @@ public class Gate implements IEntity {
 	}
 
 	public void addChangeListener(final EntityChangeListener listener) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -164,7 +163,6 @@ public class Gate implements IEntity {
 	}
 
 	public void removeChangeListener(final EntityChangeListener listener) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -174,7 +172,6 @@ public class Gate implements IEntity {
 	}
 
 	public void update(final int delta) {
-		// TODO Auto-generated method stub
 		
 	}
 

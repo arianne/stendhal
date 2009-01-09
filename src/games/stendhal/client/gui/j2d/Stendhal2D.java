@@ -595,6 +595,6 @@ public class Stendhal2D extends StendhalGUI {
 
 	@Override
 	public void shutdown() {
-		// TODO Auto-generated method stub
+		
 	}
 }

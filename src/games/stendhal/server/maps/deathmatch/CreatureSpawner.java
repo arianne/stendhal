@@ -172,7 +172,6 @@ public class CreatureSpawner implements TurnListener {
 	}
 
 	public void onTurnReached(final int currentTurn) {
-		// TODO Auto-generated method stub
 
 	}
 }
