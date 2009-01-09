@@ -14,6 +14,11 @@ Changelog
 - sheep and pet only get hungrier when there are players in the same zone 
 - /ban reason is no longer eaten on client side
 - /info returns current server time
+- optimal distance for archer is 4. now it hurts most when distance is 4 and less when farer or nearer and not all if distance = 0 or bigger 7.
+- LoginDialog positions caret on name now 
+- NPCShoutZone.java: messages are now also send to all supporters as stated in todo
+- Snowballs.java: let NPC say when new snowballs could be needed
+
 
 0.71
 - chatlog stops automatic scroll on when not at bottom of text 
