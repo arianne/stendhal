@@ -915,7 +915,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 				hp = newHP;
 
-				// TODO: Remove has() check hack
 				if (object.has("hp") && (change != 0)) {
 					onHPChange(change);
 				}
