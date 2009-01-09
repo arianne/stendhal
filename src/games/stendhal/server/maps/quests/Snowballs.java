@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +91,7 @@ public class Snowballs extends AbstractQuest {
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			final String lasttime = player.getQuest(QUEST_SLOT);
-		   
-		   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-		   
-		   final long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+			final long timeRemaining = calculateRemainingTime(player);
 		   
 		   if (timeRemaining < 0) {
 		   player.setQuest(QUEST_SLOT, "0");
@@ -103,6 +100,15 @@ public class Snowballs extends AbstractQuest {
 		   return false;
 		   }
 		}
+	}
+
+	private long calculateRemainingTime(final Player player) {
+		final String lasttime = player.getQuest(QUEST_SLOT);
+	   
+	   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+	   
+	   final long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		return timeRemaining;
 	}
 
 	private void prepareRequestingStep() {
@@ -131,8 +137,9 @@ public class Snowballs extends AbstractQuest {
 					if (canStartQuestNow(npc, player)) {
 						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
 					} else {
-						// TODO: say how many minutes are left.
-						npc.say("I have enough snow for my new sculpture. Thank you for helping!");
+						int seconds = (int) (calculateRemainingTime(player) / 1000);
+						npc.say("I have enough snow for my new sculpture. Thank you for helping! " 
+								+ "I might start a new one in " + TimeUtil.approxTimeUntil(seconds));
 					}
 				}
 			});
