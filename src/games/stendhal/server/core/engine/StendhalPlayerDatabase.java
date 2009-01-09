@@ -206,9 +206,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		final PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
 
 		insertStatement.setString(1, instance.getName());
-		/*
-		 * TODO: Check if this should be true or false.
-		 */
 		insertStatement.setBoolean(2, false);
 		insertStatement.setInt(3, instance.getAdminLevel());
 		insertStatement.setString(4, instance.getSentence());
