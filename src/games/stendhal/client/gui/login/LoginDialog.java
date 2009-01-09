@@ -176,8 +176,7 @@ public class LoginDialog extends JDialog {
 		contentPane.add(l, c);
 
 		usernameField = new JTextField();
-		// TODO: put the caret into the username field, does not work?!
-		usernameField.requestFocusInWindow();
+	
 		c.gridx = 1;
 		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
@@ -260,6 +259,7 @@ public class LoginDialog extends JDialog {
 		//
 
 		this.pack();
+		usernameField.requestFocusInWindow();
 		this.setLocationRelativeTo(owner);
 	}
 
