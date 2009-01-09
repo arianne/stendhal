@@ -518,13 +518,23 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The damage that will be done with the distance attack.
 	 */
 	public static int applyDistanceAttackModifiers(final int damage, final double squareDistance) {
-		final double minrangeSquared = 2 * 2;
-		final double maxrangeSquared = 7 * 7;
-		// FIXME: make a gaussian like result
-		return (int) (damage * (1.0 - squareDistance / maxrangeSquared) + (damage - damage
-				* (1.0 - (minrangeSquared / maxrangeSquared)))
-				* (1.0 - squareDistance / maxrangeSquared));
-	}
+		double maxrange = 7;
+		final double maxrangeSquared = maxrange * maxrange;
+		if (maxrangeSquared < squareDistance) {
+			return 0;
+		}
+		
+		double distance = Math.pow(squareDistance, 0.5);
+		
+		double best = (maxrange + 1) / 2;
+		double temp;
+			if (best > distance) {
+				temp = distance;
+			} else {
+				temp = 2 * best -  distance;
+			}
+			return (int) ((temp / best) * damage);
+		}
 
 
 	/**

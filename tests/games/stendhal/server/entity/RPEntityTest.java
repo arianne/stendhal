@@ -59,16 +59,18 @@ public class RPEntityTest {
 	public void testApplydistanceattackModifiers() {
 		
 		final int damage = 100;
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0), is(108));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1), is(105));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4), is(99));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9), is(88));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16), is(72));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25), is(52));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36), is(28));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49), is(0));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64), is(-33));
+		
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0), is(0));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1), is(25));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4), is(50));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9), is(75));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16), is(100));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25), is(75));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36), is(50));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49), is(25));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64), is(0));
 	}
+	
 	@Test
 	public void testCalculateRiskForCanHit() {
 		final RPEntity entity = new RPEntity() {
