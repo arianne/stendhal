@@ -30,7 +30,7 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
-// TODO: split this class, it does too many different things
+
 public class ReverseArrow extends AbstractQuest implements
 		Token.TokenMoveListener, LoginListener {
 
