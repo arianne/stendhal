@@ -32,7 +32,7 @@ public class SupportAnswerAction extends AdministrationAction {
 
 				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT) + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
-				StendhalRPRuleProcessor.sendMessageToSupporters(message);
+				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
 			} else {
 				player.sendPrivateText(action.get(TARGET) + " is not currently logged in.");

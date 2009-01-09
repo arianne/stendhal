@@ -35,7 +35,7 @@ public class BanAction extends AdministrationAction {
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "ban",
 						bannedName, reason);				
 				
-				StendhalRPRuleProcessor.sendMessageToSupporters("JailKeeper",
+				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 						player.getName() + " banned " + bannedName
 						+ ". Reason: " + reason	+ ".");
 			} catch (SQLException e) {

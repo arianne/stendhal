@@ -468,8 +468,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param message
 	 *            Support message
 	 */
-	public static void sendMessageToSupporters(final String message) {
-		SingletonRepository.getRuleProcessor().getOnlinePlayers().forFilteredPlayersExecute(
+	public void sendMessageToSupporters(final String message) {
+		getOnlinePlayers().forFilteredPlayersExecute(
 
 		new Task<Player>() {
 
@@ -500,7 +500,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param message
 	 *            Support message
 	 */
-	public static void sendMessageToSupporters(final String source, final String message) {
+	public void sendMessageToSupporters(final String source, final String message) {
 
 		final String text = source + " asks for support to ADMIN: " + message;
 		sendMessageToSupporters(text);

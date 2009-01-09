@@ -130,7 +130,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 
 		policeman.sendPrivateText("You have jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason + ".");
-		StendhalRPRuleProcessor.sendMessageToSupporters("JailKeeper",
+		SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 			policeman.getName() + " jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason
 			+ ".");

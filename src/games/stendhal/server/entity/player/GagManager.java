@@ -79,7 +79,7 @@ public class GagManager implements LoginListener {
 		criminal.sendPrivateText("You have been gagged by "
 				+ policeman.getTitle() + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
-		StendhalRPRuleProcessor.sendMessageToSupporters("GagManager", policeman.getName()
+		SingletonRepository.getRuleProcessor().sendMessageToSupporters("GagManager", policeman.getName()
 				+ " gagged " + criminalName + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 

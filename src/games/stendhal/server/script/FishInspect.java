@@ -100,7 +100,7 @@ public class FishInspect extends ScriptImpl implements TurnListener {
 					if (warn || caught) {
 
 						SingletonRepository.getRuleProcessor().addGameEvent("fish inspect", "support", message);
-						StendhalRPRuleProcessor.sendMessageToSupporters("fish inspect", message);
+						SingletonRepository.getRuleProcessor().sendMessageToSupporters("fish inspect", message);
 						logger.warn("User with large amount of fish: " + message + "\r\n" + sb.toString());
 					}
 				}

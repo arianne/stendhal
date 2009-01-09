@@ -51,7 +51,7 @@ public class AskForSupportAction  implements ActionListener {
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"support", action.get(TEXT));
 
-			StendhalRPRuleProcessor.sendMessageToSupporters(player.getTitle(), message);
+			SingletonRepository.getRuleProcessor().sendMessageToSupporters(player.getTitle(), message);
 
 			player.sendPrivateText("You ask for support: "
 					+ action.get(TEXT)

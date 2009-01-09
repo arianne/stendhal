@@ -95,7 +95,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 					if (warn || caught) {
 
 						SingletonRepository.getRuleProcessor().addGameEvent("bug inspect", "support", message);
-						StendhalRPRuleProcessor.sendMessageToSupporters("bug inspect", message);
+						SingletonRepository.getRuleProcessor().sendMessageToSupporters("bug inspect", message);
 						logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
 					}
 				}

@@ -164,7 +164,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					final String playerName = sentence.getExpressionStringAfterVerb();
 					if (rentedSignList.removeByName(playerName)) {
 						final String message = player.getName() + " deleted sign from " + playerName;
-						StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
+						SingletonRepository.getRuleProcessor().sendMessageToSupporters("SignLessorNPC", message);
 						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "deleted", playerName);
 					} else {
 						player.sendPrivateText("I could not find a sign by " + playerName);
