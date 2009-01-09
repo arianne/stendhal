@@ -72,7 +72,7 @@ public class InvitationScroll extends TeleportScroll {
 		if (!st.hasMoreTokens()) {
 			return false;
 		}
-		// TODO: catch the NPE in case the zone is null.
+		
 		zone = SingletonRepository.getRPWorld().getZone(st.nextToken());
 
 		if (!st.hasMoreTokens()) {

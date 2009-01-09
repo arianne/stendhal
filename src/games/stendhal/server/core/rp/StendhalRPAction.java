@@ -367,7 +367,9 @@ public class StendhalRPAction {
 	 */
 	public static boolean placeat(final StendhalRPZone zone, final Entity entity, final int x,
 			final int y, final Shape allowedArea) {
-
+		if (zone == null) {
+			return false;
+		}
 		// check in case of players that that they are still in game
 		// because the entity is added to the world again otherwise.
 		if (entity instanceof Player) {
