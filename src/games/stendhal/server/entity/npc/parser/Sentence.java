@@ -153,7 +153,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return trigger Expression for the FSM engine. TODO mf - replace by sentence matching.
+     * Return trigger Expression for the FSM engine. 
+     * TODO mf - replace by sentence matching.
      *
      * @return trigger string
      */
@@ -347,7 +348,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     /**
      * Return the complete text of the sentence with unchanged case, but with trimmed white space. 
-     * <p>TODO mf - There should be only as less code places as possible to rely on this method.
+     * There should be only as less code places as possible to rely on this method.
      *
      * @return string
      */
@@ -364,7 +365,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return the original parsed text of the sentence. TODO mf - There should be only as less code places as possible
+     * Return the original parsed text of the sentence. 
+     * There should be only as less code places as possible
      * to rely on this method.
      *
      * @return string
