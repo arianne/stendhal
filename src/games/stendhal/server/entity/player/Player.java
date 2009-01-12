@@ -1583,7 +1583,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if the entity can change zones.
 	 */
 	@Override
-	protected boolean isZoneChangeAllowed() {
+	public boolean isZoneChangeAllowed() {
 		/*
 		 * If we are too far from dependents, then disallow zone change
 		 */

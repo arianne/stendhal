@@ -157,7 +157,7 @@ public class Portal extends Entity implements UseListener {
 	 *         otherwise.
 	 */
 	protected boolean usePortal(final Player player) {
-		if (!nextTo(player)) {
+		if (!nextTo(player) || !player.isZoneChangeAllowed()) {
 			// Too far to use the portal
 			return false;
 		}
