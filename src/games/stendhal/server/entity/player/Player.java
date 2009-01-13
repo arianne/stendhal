@@ -1769,7 +1769,7 @@ public class Player extends RPEntity {
 	@Override
 	public int hashCode() {
 		// player names are unique, so we can use the name's hash code.
-		return getName().hashCode();
+		return getName().toLowerCase().hashCode();
 	}
 
 	@Override
@@ -1779,7 +1779,7 @@ public class Player extends RPEntity {
 		}
 		if (obj instanceof Player) {
 			final Player other = (Player) obj;
-			return this.getName().equals(other.getName());
+			return this.getName().toLowerCase().equals(other.getName().toLowerCase());
 		}
 		return false;
 	}
