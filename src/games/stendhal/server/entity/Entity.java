@@ -257,8 +257,6 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Is this entity not moving?
 	 * 
-	 * TODO: Remove after the StendhalNavigableEntities dependency is gone
-	 * 
 	 * @return true, if it stopped, false if it is moving
 	 */
 	public boolean stopped() {
