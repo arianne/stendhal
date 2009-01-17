@@ -11,6 +11,7 @@ import java.util.List;
 
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
@@ -24,7 +25,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 import utilities.RPClass.SheepTestHelper;
 
 public class PlayersQueryTest {
@@ -58,7 +58,7 @@ public class PlayersQueryTest {
 		};
 		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(whoWasExecuted);
 		al.onAction(player, action);
 		assertTrue(whoWasExecuted);
@@ -75,31 +75,31 @@ public class PlayersQueryTest {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		pq.onWho(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("0 Players online: "));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("0 Players online: "));
+		player.clearEvents();
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		pq.onWho(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("1 Players online: player(0) "));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("1 Players online: player(0) "));
+		player.clearEvents();
 
 		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode") - 1);
 		player.setGhost(true);
 		pq.onWho(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("0 Players online: "));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("0 Players online: "));
+		player.clearEvents();
 
 		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode"));
 		player.setGhost(true);
 		pq.onWho(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("1 Players online: player(!0) "));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("1 Players online: player(!0) "));
+		player.clearEvents();
 		
 		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode") + 1);
 		player.setGhost(true);
 		pq.onWho(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("1 Players online: player(!0) "));
+		assertThat(player.events().get(0).get("text"), equalTo("1 Players online: player(!0) "));
 	}
 
 	@Test
@@ -107,11 +107,11 @@ public class PlayersQueryTest {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
-		assertEquals("", player.getPrivateTextString());
+		assertTrue(player.events().isEmpty());
 	}
 
 	@Test
@@ -121,11 +121,11 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "NotThere");
 
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"NotThere\" is currently logged in."));
+		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"NotThere\" is currently logged in."));
 	}
 
 	@Test
@@ -135,27 +135,27 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "bob");
 
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("bob is in zone at (0,0)"));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("bob is in zone at (0,0)"));
+		player.clearEvents();
 		
 		
-		final PrivateTextMockingTestPlayer ghosted = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghosted");
+		final Player ghosted = PlayerTestHelper.createPlayer("ghosted");
 		zone.add(ghosted);
 		MockStendhalRPRuleProcessor.get().addPlayer(ghosted);
 		action.put(WellKnownActionConstants.TARGET, ghosted.getName());
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("ghosted is in zone at (0,0)"));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("ghosted is in zone at (0,0)"));
+		player.clearEvents();
 		
 		ghosted.setGhost(true);
 		pq.onWhere(player, action);
 		
-		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"ghosted\" is currently logged in."));
+		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"ghosted\" is currently logged in."));
 	}
 
 	@Test
@@ -165,81 +165,53 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "sheep");
 
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"sheep\" is currently logged in."));
+		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"sheep\" is currently logged in."));
 	}
 
 	@Test
 	public void testOnWherePetSheep() {
 		SheepTestHelper.generateRPClasses();
+		Pet.generateRPClass();
+		Cat.generateRPClass();
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "pet");
 
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("No player or pet named \"pet\" is currently logged in."));
-		final Pet testPet = new Pet() {
-			@Override
-			public ID getID() {
-				return new ID(new RPObject() {
-					@Override
-					public int getInt(final String attribute) {
-						return 1;
-					}
-				});
-			}
+		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"pet\" is currently logged in."));
+	
+		
+		final Pet testPet = new Cat();
+		
+		final Sheep testSheep = new Sheep();
 
-			@Override
-			protected List<String> getFoodNames() {
-				return new LinkedList<String>();
-			}
-		};
-		testPet.put("type", "pet");
-
-		final Sheep testSheep = new Sheep() {
-			@Override
-			public ID getID() {
-				return new ID(new RPObject() {
-					@Override
-					public int getInt(final String attribute) {
-						return 1;
-					}
-				});
-			}
-		};
-
-		player = new PrivateTextMockingTestPlayer(new RPObject(), "player") {
-			@Override
-			public Sheep getSheep() {
-				return testSheep;
-			}
-
-			@Override
-			public Pet getPet() {
-				return testPet;
-			}
-		};
-
+		player = PlayerTestHelper.createPlayer("player");
+		
+		StendhalRPZone stendhalRPZone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(stendhalRPZone);
+		stendhalRPZone.add(player);
+		
+		stendhalRPZone.add(testSheep);
+		stendhalRPZone.add(testPet);
 		player.setPet(testPet);
 
-		MockStendhalRPRuleProcessor.get().addPlayer(player);
-
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("Your pet is at (0,0)"));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), equalTo("Your cat is at (0,0)"));
+		player.clearEvents();
 
 		player.setSheep(testSheep);
 
 		action.put(WellKnownActionConstants.TARGET, "sheep");
 
 		pq.onWhere(player, action);
-		assertThat(player.getPrivateTextString(), equalTo("Your sheep is at (0,0)"));
+		assertThat(player.events().get(0).get("text"), equalTo("Your sheep is at (0,0)"));
 	}
 
 }

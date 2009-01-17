@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
 
@@ -14,7 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 import utilities.RPClass.SheepTestHelper;
 
 public class NameActionTest {
@@ -39,9 +39,9 @@ public class NameActionTest {
 	public void testOnActionNoArgs() {
 		final RPAction action = new RPAction();
 		final NameAction nameAction = new NameAction();
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("Please issue the old and the new name."));
+		assertThat(bob.events().get(0).get("text"), is("Please issue the old and the new name."));
 
 	}
 
@@ -51,9 +51,9 @@ public class NameActionTest {
 		final NameAction nameAction = new NameAction();
 		action.put("target", "oldname");
 		action.put("args", "newname");
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("You don't own any oldname"));
+		assertThat(bob.events().get(0).get("text"), is("You don't own any oldname"));
 
 	}
 
@@ -70,12 +70,12 @@ public class NameActionTest {
 		final Sheep pet = new Sheep();
 		
 		zone.add(pet);
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		zone.add(bob);
 		
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("You changed the name of 'sheep' to 'newname'"));
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'sheep' to 'newname'"));
 
 	}
 	
@@ -92,12 +92,12 @@ public class NameActionTest {
 		final Sheep pet = new Sheep();
 		pet.setTitle("oldname");
 		zone.add(pet);
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		zone.add(bob);
 		
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("You changed the name of 'oldname' to 'newname'"));
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to 'newname'"));
 
 	}
 	@Test
@@ -113,12 +113,12 @@ public class NameActionTest {
 		final Sheep pet = new Sheep();
 		pet.setTitle("oldname");
 		zone.add(pet);
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		zone.add(bob);
 		
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("You changed the name of 'oldname' to '01234567890123456789'"));
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to '01234567890123456789'"));
 		
 		
 
@@ -137,12 +137,12 @@ public class NameActionTest {
 		final Sheep pet = new Sheep();
 		pet.setTitle("oldname");
 		zone.add(pet);
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		zone.add(bob);
 		
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
-		assertThat(bob.getPrivateTextString(), is("The new name of your pet must not be longer than 20 characters."));
+		assertThat(bob.events().get(0).get("text"), is("The new name of your pet must not be longer than 20 characters."));
 		
 		
 

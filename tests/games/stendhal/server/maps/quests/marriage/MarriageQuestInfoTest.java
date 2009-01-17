@@ -4,13 +4,26 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class MarriageQuestInfoTest {
 
+	@BeforeClass
+	public static void setupBeforeClass() {
+		MockStendlRPWorld.get();
+	}
+	
+	@AfterClass
+	public static void teardownAfterClass() throws Exception {
+		
+		MockStendlRPWorld.reset();
+	}
 	@Test
 	public void testGetQuestSlot() {
 		MarriageQuestInfo questinfo = new MarriageQuestInfo();

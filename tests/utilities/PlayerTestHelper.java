@@ -13,13 +13,16 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import java.util.Iterator;
 import java.util.List;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -39,25 +42,16 @@ public abstract class PlayerTestHelper {
 	public static Player createPlayer(final String name) {
 		generatePlayerRPClasses();
 
-		final Player pl = new Player(new RPObject());
+		RPObject object = new RPObject();
+		object.put("name", name);
+		final Player pl = Player.create(object);
+		Iterator<RPEvent> eventsIterator = pl.eventsIterator();
+		eventsIterator.next();
+		eventsIterator.remove();
+		
 		pl.setName(name);
 
-		addEmptySlots(pl);
-
-		return pl;
-	}
-
-	/**
-	 * Create an named mock player object.
-	 * @param name of the player
-	 * 
-	 * @return mock player object
-	 */
-	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(final String name) {
-		generatePlayerRPClasses();
-
-		final PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
-		addEmptySlots(pl);
+		//addEmptySlots(pl);
 
 		return pl;
 	}
@@ -167,7 +161,7 @@ public abstract class PlayerTestHelper {
 	 * Remove all players from world and rule processor.
 	 */
 	public static void removeAllPlayers() {
-		MockStendlRPWorld.reset();
+		
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 

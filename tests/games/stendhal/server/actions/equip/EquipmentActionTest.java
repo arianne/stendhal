@@ -17,7 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 import utilities.ZoneAndPlayerTestImpl;
 
 
@@ -49,8 +48,8 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	 * @param name
 	 * @return a Player where the  privateTexts are captured
 	 */
-	private PrivateTextMockingTestPlayer createTestPlayer(final String name) {
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
+	private Player createTestPlayer(final String name) {
+		final Player player = PlayerTestHelper.createPlayer(name);
 
 		player.setPosition(10, 5);
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).assignRPObjectID(player);
@@ -61,7 +60,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 
 	@Test
 	public void testDropInvalidSourceSlot() {
-		final PrivateTextMockingTestPlayer player = createTestPlayer("george");
+		final Player player = createTestPlayer("george");
 
 		final RPAction drop = new RPAction();
 		drop.put("type", "drop");
@@ -71,12 +70,12 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
-		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.getPrivateTextString());
+		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.events().get(0).get("text"));
 	}
 
 	@Test
 	public void testDropNonExistingItem() {
-		final PrivateTextMockingTestPlayer player = createTestPlayer("bob");
+		final Player player = createTestPlayer("bob");
 
 		final RPAction drop = new RPAction();
 		drop.put("type", "drop");
@@ -89,7 +88,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
-		Assert.assertEquals("There is no such item in the bag of bob", player.getPrivateTextString());
+		Assert.assertEquals("There is no such item in the bag of bob", player.events().get(0).get("text"));
 	}
 
 	@Test

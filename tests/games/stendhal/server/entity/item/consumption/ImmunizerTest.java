@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
@@ -33,6 +34,7 @@ public class ImmunizerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@After

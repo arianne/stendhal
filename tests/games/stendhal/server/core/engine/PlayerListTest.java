@@ -9,9 +9,11 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.game.RPObject;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,6 +23,13 @@ public class PlayerListTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
+	}
+
+	@AfterClass
+	public static void teardownAfterClass() throws Exception {
+		
+		MockStendlRPWorld.reset();
 	}
 
 	@Test

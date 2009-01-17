@@ -27,7 +27,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
@@ -79,7 +78,7 @@ public class DailyMonsterQuestTest {
 	@Test
 	public void testClaimDone() {
 
-		final PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ATTENDING);
 		CreatureTestHelper.generateRPClasses();
 		SingletonRepository.getEntityManager().getCreature("rat");
@@ -88,7 +87,7 @@ public class DailyMonsterQuestTest {
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertTrue(bob.hasQuest("daily"));
 		assertTrue(en.step(bob, "complete"));
-		assertEquals("", bob.getPrivateTextString());
+		assertTrue(bob.events().isEmpty());
 		
 	}
 	

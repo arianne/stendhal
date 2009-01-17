@@ -5,9 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,8 +21,14 @@ public class QuestNotCompletedConditionTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
+		MockStendlRPWorld.get();
 	}
 
+	@AfterClass
+	public static void teardownAfterClass() throws Exception {
+		
+		MockStendlRPWorld.reset();
+	}
 	@Before
 	public void setUp() throws Exception {
 	}

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.item.Present;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
 
@@ -13,7 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 
 public class WrapActionTest {
 
@@ -29,30 +29,30 @@ public class WrapActionTest {
 	@Test
 	public void testOnActionnotAtplayer() {
 		final WrapAction wrap = new WrapAction();
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		final RPAction action = new RPAction();
 		action.put("type", "wrap");
 		action.put("args", "");
 		wrap.onAction(player, action);
-		assertThat(player.getPrivateTextString(), is("You don't have any null"));
-		player.resetPrivateTextString();
+		assertThat(player.events().get(0).get("text"), is("You don't have any null"));
+		player.clearEvents();
 
 		action.put("args", "blabla");
 		wrap.onAction(player, action);
-		assertThat(player.getPrivateTextString(), is("You don't have any null blabla"));
+		assertThat(player.events().get(0).get("text"), is("You don't have any null blabla"));
 
-		player.resetPrivateTextString();
+		player.clearEvents();
 
 		action.put("target", "what");
 		action.put("args", "blabla");
 		wrap.onAction(player, action);
-		assertThat(player.getPrivateTextString(), is("You don't have any what blabla"));
+		assertThat(player.events().get(0).get("text"), is("You don't have any what blabla"));
 	}
 
 	@Test
 	public void testOnActionPotion() {
 		final WrapAction wrap = new WrapAction();
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "potion");
 
@@ -73,7 +73,7 @@ public class WrapActionTest {
 	public void testOnActionGreaterPotion() {
 		
 		final WrapAction wrap = new WrapAction();
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "greater potion");
 
@@ -95,7 +95,7 @@ public class WrapActionTest {
 	@Test
 	public void testOnActionMithrilshield() {
 		final WrapAction wrap = new WrapAction();
-		final PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 
 		PlayerTestHelper.equipWithItem(player, "mithril shield");
 

@@ -228,7 +228,7 @@ public class ItemTest {
 	public void testOnPutOnGround() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.onPutOnGround(PlayerTestHelper.createPrivateTextMockingTestPlayer("player"));
+		mo.onPutOnGround(PlayerTestHelper.createPlayer("player"));
 	}
 
 	@Test

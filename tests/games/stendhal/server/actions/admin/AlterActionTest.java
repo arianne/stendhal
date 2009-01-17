@@ -161,17 +161,17 @@ public class AlterActionTest {
 		rpAction.put("mode", "");
 		rpAction.put("stat", "hp");
 		rpAction.put("value", "50");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		
 		rpAction.put("value", "-10");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		
 		rpAction.put("value", "5");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player , rpAction);
 		assertEquals(5, player.getHP());
 	}
@@ -193,17 +193,17 @@ public class AlterActionTest {
 		rpAction.put("mode", "");
 		rpAction.put("stat", "hp");
 		rpAction.put("value", "50");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		
 		rpAction.put("value", "-10");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		
 		rpAction.put("value", "5");
-		assertEquals(0, player.getHP());
+		assertEquals(100, player.getHP());
 		action.perform(player , rpAction);
 		assertEquals(5, player.getHP());
 	}
@@ -232,17 +232,17 @@ public class AlterActionTest {
 		rpAction.put("mode", "");
 		rpAction.put("stat", "hp");
 		rpAction.put("value", "50");
-		assertEquals(0, playerAway.getHP());
+		assertEquals(100, playerAway.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, playerAway.getHP());
+		assertEquals(100, playerAway.getHP());
 		
 		rpAction.put("value", "-10");
-		assertEquals(0, playerAway.getHP());
+		assertEquals(100, playerAway.getHP());
 		action.perform(player, rpAction);
-		assertEquals(0, playerAway.getHP());
+		assertEquals(100, playerAway.getHP());
 		
 		rpAction.put("value", "5");
-		assertEquals(0, playerAway.getHP());
+		assertEquals(100, playerAway.getHP());
 		action.perform(player , rpAction);
 		assertEquals(5, playerAway.getHP());
 	}

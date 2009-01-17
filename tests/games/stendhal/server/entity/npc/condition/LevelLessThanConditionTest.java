@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,12 +22,14 @@ public class LevelLessThanConditionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public static void teardownAfterClass() throws Exception {
+		
+		MockStendlRPWorld.reset();
 	}
-
 	@Before
 	public void setUp() throws Exception {
 		level100Player = PlayerTestHelper.createPlayer("player");

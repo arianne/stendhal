@@ -23,13 +23,13 @@ public class CollectionFilterTest {
 	public final void testFilter() {
 		final Collection<Player> list = new LinkedList<Player>();
 
-		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin1"));
-		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin2"));
-		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin3"));
-		Player player = PlayerTestHelper.createPrivateTextMockingTestPlayer("Admin1");
+		list.add(PlayerTestHelper.createPlayer("nonAdmin1"));
+		list.add(PlayerTestHelper.createPlayer("nonAdmin2"));
+		list.add(PlayerTestHelper.createPlayer("nonAdmin3"));
+		Player player = PlayerTestHelper.createPlayer("Admin1");
 		player.setAdminLevel(1);
 		list.add(player);
-		player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		player = PlayerTestHelper.createPlayer("bob");
 		player.setAdminLevel(10);
 		list.add(player);
 		assertThat(list.size(), is(5));

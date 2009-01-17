@@ -20,7 +20,7 @@ public class AwayActionTest {
 
 	@Test
 	public void testOnAction() {
-		final Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		final RPAction action = new RPAction();
 		action.put("type", "away");
 		final AwayAction aa = new AwayAction();
@@ -33,7 +33,7 @@ public class AwayActionTest {
 
 	@Test
 	public void testOnInvalidAction() {
-		final Player bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.clearEvents();
 		final RPAction action = new RPAction();
 		action.put("type", "bla");

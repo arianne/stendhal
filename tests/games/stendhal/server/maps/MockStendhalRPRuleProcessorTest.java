@@ -5,6 +5,8 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 import static org.hamcrest.core.Is.*;
+
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,8 +17,14 @@ public class MockStendhalRPRuleProcessorTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		PlayerTestHelper.removeAllPlayers();
+		MockStendlRPWorld.get();
 	}
 
+	@AfterClass
+	public static void teardownAfterClass() throws Exception {
+		
+		MockStendlRPWorld.reset();
+	}
 	@Test
 	public void testGetTurn() {
 		assertThat(MockStendhalRPRuleProcessor.get().getTurn(), is(0));

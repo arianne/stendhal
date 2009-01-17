@@ -23,7 +23,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 import utilities.RPClass.PortalTestHelper;
 
 public class AccessCheckingPortalTest extends PlayerTestHelper {
@@ -85,7 +84,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 	@Test
 	public final void testRejected() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
-		final PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
+		final Player player = PlayerTestHelper.createPlayer("mayNot");
 		port.rejected(player);
 		TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 		final Set<TurnListener> bla = turnNotifier.getEventListForDebugging().get(
@@ -95,13 +94,13 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		final SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("rejected", player.getPrivateTextString());
+		assertEquals("rejected", player.events().get(0).get("text"));
 	}
 
 	@Test
 	public final void testSetRejectedMessage() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
-		final PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
+		final Player player = PlayerTestHelper.createPlayer("mayNot");
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
 		final Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
@@ -111,7 +110,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		final SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("setRejectMessage", player.getPrivateTextString());
+		assertEquals("setRejectMessage", player.events().get(0).get("text"));
 	}
 
 	class MockAccessCheckingPortal extends AccessCheckingPortal {
