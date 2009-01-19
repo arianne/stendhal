@@ -1068,8 +1068,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * @param transposedX
-	 * @param transposedY
+	 * @param x
+	 * @param y
 	 * @return a object for dragging which is at the position (x,y) or null.
 	 */
 	protected WtDraggable getDragged(final int x, final int y) {
@@ -1114,9 +1114,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if there is a droptarget direct under the position (x,y).
 	 * 
-	 * @param transposedX
+	 * @param x
 	 *            x-coordinate in client space
-	 * @param transposedY
+	 * @param y
 	 *            y-coordinate in client space
 	 * @param droppedObject
 	 *            the dropped object
@@ -1185,7 +1185,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * processed
 	 * 
 	 * @param p
-	 * @param gameScreen
 	 * @return true if click was processed
 	 */
 	public synchronized boolean onMouseClick(final Point p) {

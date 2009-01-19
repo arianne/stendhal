@@ -219,6 +219,7 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
+	 * @param subClass 
 	 * @param entityClazz
 	 *            the java class of the Entity
 	 */

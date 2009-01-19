@@ -462,7 +462,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Check if two Sentences consist of identical normalized Expressions.
      *
      * @param other
-     * @return
+     * @return true if so
      */
     public boolean equalsNormalized(final Sentence other) {
         if (other == this) {
@@ -531,7 +531,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Advance the iterator and return the next non-ignorable Expression.
      *
      * @param it
-     * @return
+     * @return the next non-ignorable Expression
      */
     public Expression nextValid(final Iterator<Expression> it) {
         while (it.hasNext()) {
@@ -550,7 +550,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
      * @param text
-     * @return
+     * @return true if it matches.
      */
     public boolean matchesNormalized(final String text) {
         return matchesFull(ConversationParser.parseForMatching(text));

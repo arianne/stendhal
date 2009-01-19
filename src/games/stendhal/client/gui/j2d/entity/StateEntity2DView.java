@@ -53,6 +53,7 @@ abstract class StateEntity2DView extends Entity2DView {
 
 	/**
 	 * Build animations.
+	 * @param gameScreen 
 	 */
 	protected void buildAnimations(final IGameScreen gameScreen) {
 		buildSprites(sprites, gameScreen);
@@ -63,6 +64,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * 
 	 * @param map
 	 *            The map to populate.
+	 * @param gameScreen 
 	 */
 	protected abstract void buildSprites(final Map<Object, Sprite> map,
 			IGameScreen gameScreen);

@@ -271,8 +271,6 @@ public class RPObjectChangeDispatcher {
 	 *            The base object.
 	 * @param cslot
 	 *            The changes slot.
-	 * @param user
-	 *            If this is the private user object.
 	 */
 	protected void fireChangedAdded(final RPObject object, final RPSlot cslot) {
 		final String slotName = cslot.getName();
@@ -352,8 +350,6 @@ public class RPObjectChangeDispatcher {
 	 *            The base object.
 	 * @param cslot
 	 *            The changes slot.
-	 * @param user
-	 *            If this is the private user object.
 	 */
 	protected void fireChangedRemoved(final RPObject object, final RPSlot cslot) {
 		final String slotName = cslot.getName();
@@ -430,8 +426,6 @@ public class RPObjectChangeDispatcher {
 	 *            The slot name.
 	 * @param sobject
 	 *            The slot object.
-	 * @param user
-	 *            If this is the private user object.
 	 */
 	protected void fireRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {

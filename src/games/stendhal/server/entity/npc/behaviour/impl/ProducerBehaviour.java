@@ -229,7 +229,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param npc
 	 * @param player
 	 * @param amount
-	 * @return 
+	 * @return true if all resources can be taken
 	 */
 	public boolean askForResources(final SpeakerNPC npc, final Player player, final int amount) {
 		if (getMaximalAmount(player) < amount) {

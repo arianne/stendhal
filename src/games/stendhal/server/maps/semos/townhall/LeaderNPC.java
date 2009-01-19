@@ -27,6 +27,7 @@ public class LeaderNPC implements ZoneConfigurator {
 	/**
 	 * A leader of three cadets. He has an information giving role.
 	 * @param zone zone to be configured with this npc
+	 * @return the built NPC
 	 */
 	private SpeakerNPC buildSemosTownhallAreaLeader(final StendhalRPZone zone) {
 		// We create an NPC

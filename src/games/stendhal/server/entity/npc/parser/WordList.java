@@ -449,8 +449,8 @@ public final class WordList {
 
     /**
      * Try to normalize the given verb.
+     * @param word 
      *
-     * @param trimmedWord
      * @return WordEntry
      */
     WordEntry normalizeVerb(final String word) {

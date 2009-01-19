@@ -191,6 +191,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Create the title sprite.
+	 * @param gameScreen 
 	 * 
 	 * @return The title sprite.
 	 */
@@ -268,6 +269,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn Y coordinate.
 	 * @param width
 	 *            The drawn width.
+	 * @param gameScreen 
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
 			final int width, final IGameScreen gameScreen) {
@@ -724,7 +726,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
-	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final IEntity entity, final Object property) {

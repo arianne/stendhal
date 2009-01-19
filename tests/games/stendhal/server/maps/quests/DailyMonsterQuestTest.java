@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import static games.stendhal.server.entity.npc.ConversationStates.ATTENDING;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;

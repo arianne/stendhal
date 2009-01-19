@@ -2,7 +2,6 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;

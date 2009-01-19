@@ -89,7 +89,7 @@ public class Base64 {
 	 * this by pre-parsing the input and generating from that a count of VALID
 	 * input characters.
 	 * @param data 
-	 * @return 
+	 * @return the decoded data
 	 */
 	public static byte[] decode(final char[] data) {
 		// as our input could contain non-BASE64 data (newlines,

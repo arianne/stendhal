@@ -271,7 +271,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 *            The X coordinate (in world units).
 	 * @param y
 	 *            The Y coordinate (in world units).
-	 * @param gameScreen
 	 */
 	public void positionChanged(final double x, final double y) {
 		/*

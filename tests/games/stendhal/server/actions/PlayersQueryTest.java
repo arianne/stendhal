@@ -1,13 +1,9 @@
 package games.stendhal.server.actions;
 
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -18,8 +14,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;

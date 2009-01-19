@@ -112,7 +112,6 @@ class Food2DView extends StateEntity2DView {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
-	 * @param gameScreen
 	 */
 	@Override
 	public void entityChanged(final IEntity entity, final Object property) {

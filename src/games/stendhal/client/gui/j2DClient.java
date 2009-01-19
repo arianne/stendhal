@@ -930,7 +930,6 @@ public class j2DClient extends StendhalUI {
 	 *            The user's X coordinate.
 	 * @param y
 	 *            The user's Y coordinate.
-	 * @param gameScreen 
 	 */
 	@Override
 	public void setPosition(final double x, final double y, final IGameScreen gameSreen) {

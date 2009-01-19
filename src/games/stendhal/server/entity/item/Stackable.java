@@ -16,6 +16,7 @@ package games.stendhal.server.entity.item;
  * this interface tags all items which are stackable.
  * 
  * @author mtotz
+ * @param <T> 
  */
 public interface Stackable<T> {
 

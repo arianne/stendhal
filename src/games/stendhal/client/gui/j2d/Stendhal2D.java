@@ -343,6 +343,8 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
+	 * @param header 
+	 * @param text 
 	 * 
 	 */
 	public void addEventLine(final String header, final String text) {
@@ -351,6 +353,8 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
+	 * @param text 
+	 * @param type 
 	 * 
 	 */
 	public void addEventLine(final String text, final NotificationType type) {

@@ -518,19 +518,6 @@ client = this;
 		send(rpaction);
 	}
 
-	/**
-	 * Handle player changes.
-	 * @param object the player object
-	 */
-	
-
-	/*
-	 * public void addPlayerChangeListener(PlayerChangeListener l) { }
-	 * 
-	 * 
-	 * public void removePlayerChangeListener(PlayerChangeListener l) { }
-	 */
-
 	public void addFeatureChangeListener(final FeatureChangeListener l) {
 		userContext.addFeatureChangeListener(l);
 	}

@@ -85,7 +85,6 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 *            The new X coordinate (in world units).
 	 * @param y
 	 *            The new Y coordinate (in world units).
-	 * @param gameScreen 
 	 */
 	public void positionChanged(final double x, final double y) {
 		final PositionChangeListener[] list = listeners;

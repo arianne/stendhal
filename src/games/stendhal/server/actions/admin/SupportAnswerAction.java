@@ -4,7 +4,6 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 

@@ -76,8 +76,6 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * Constructor.
 	 * 
-	 * @param username
-	 * @param gameObjects
 	 */
 	public UserContext() {
 

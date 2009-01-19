@@ -204,6 +204,7 @@ public class ItemLogger {
 	 * gets an optional attribute 
 	 *
 	 * @param object object to read the optional attribute from
+	 * @param attribute 
 	 * @return attribute name of attribute
 	 */
 	private static String getAttribute(final RPObject object, final String attribute) {

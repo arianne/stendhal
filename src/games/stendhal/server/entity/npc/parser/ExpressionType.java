@@ -148,7 +148,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression contains a verb in gerund form.
-     * @return 
+     * @return true if so
      *
      */
     public boolean isGerund() {

@@ -544,7 +544,7 @@ public final class SentenceImplementation extends Sentence {
      * @param curType
      * @param nextType
      * @param precedingVerb
-     * @return
+     * @return true if so
      */
     private static boolean isCompoundNoun(final ExpressionType curType, final ExpressionType nextType,
             final boolean precedingVerb) {

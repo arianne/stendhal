@@ -7,7 +7,6 @@ import java.util.Map;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;

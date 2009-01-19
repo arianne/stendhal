@@ -221,7 +221,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param targetX 
 	 * @param targetY
 	 * @param targetZone the zone to teleport to.
-	 * @return
+	 * @return true if successful
 	 */
 	private boolean teleportPlayer(final Player player, final int targetX,
 			final int targetY, final StendhalRPZone targetZone) {

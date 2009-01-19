@@ -158,6 +158,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Rebuild the representation using the base entity.
+	 * @param gameScreen 
 	 */
 	protected void buildRepresentation(final IGameScreen gameScreen) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
@@ -170,6 +171,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The sprite width (in pixels).
 	 * @param sheight
 	 *            The sprite height (in pixels).
+	 * @param screen 
 	 */
 	protected void calculateOffset(final int swidth, final int sheight,
 			final IGameScreen screen) {
@@ -256,6 +258,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity width.
 	 * @param height
 	 *            The drawn entity height.
+	 * @param gameScreen 
 	 */
 	protected void draw(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height, final IGameScreen gameScreen) {
@@ -302,6 +305,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity width.
 	 * @param height
 	 *            The drawn entity height.
+	 * @param gameScreen 
 	 */
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height, final IGameScreen gameScreen) {
@@ -591,6 +595,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Handle updates.
+	 * @param gameScreen 
 	 */
 	protected void update(final IGameScreen gameScreen) {
 		if (representationChanged) {
@@ -626,7 +631,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
-	 * @param gameScreen
 	 */
 	public void entityChanged(final IEntity entity, final Object property) {
 		changed = true;
