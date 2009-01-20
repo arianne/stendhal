@@ -1,12 +1,22 @@
 package games.stendhal.server.maps.semos.bank;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.Set;
+
+import marauroa.common.game.RPSlot;
+
+import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
@@ -20,7 +30,7 @@ import games.stendhal.server.maps.deathmatch.Spot;
 
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
-	private final class ChatActionImplementation implements ChatAction {
+	private final class VaultChatAction implements ChatAction {
 		private final class MovementListenerImplementation implements
 				MovementListener {
 			public Rectangle2D getArea() {
@@ -34,8 +44,14 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
+				Set<Item> itemsOnGround = zone.getItemsOnGround();
+				for (Item item : itemsOnGround) {
+					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity,"bag",item);
+					if(!equippedToBag) {
+						DefaultActionManager.getInstance().onEquip((RPEntity) entity,"bank",item);
+					}
+				}
 				SingletonRepository.getRPWorld().removeZone(zone);
-
 			}
 
 			public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
@@ -77,7 +93,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 		npc.addGoodbye("It was a pleasure to serve you.");
 		
 		npc.add(ConversationStates.ANY, "vault", null, ConversationStates.IDLE, null, 
-				new ChatActionImplementation());
+				new VaultChatAction());
 		
 		
 	}
