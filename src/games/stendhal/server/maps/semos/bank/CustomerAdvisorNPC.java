@@ -1,13 +1,5 @@
 package games.stendhal.server.maps.semos.bank;
 
-import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
-import java.util.Set;
-
-import marauroa.common.game.RPSlot;
-
-import org.apache.tools.ant.types.CommandlineJava.SysProperties;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -16,7 +8,6 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
@@ -27,6 +18,9 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.Spot;
+
+import java.awt.geom.Rectangle2D;
+import java.util.Set;
 
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
@@ -46,9 +40,9 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					final int oldY) {
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
-					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity,"bag",item);
-					if(!equippedToBag) {
-						DefaultActionManager.getInstance().onEquip((RPEntity) entity,"bank",item);
+					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
+					if (!equippedToBag) {
+						DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
 					}
 				}
 				SingletonRepository.getRPWorld().removeZone(zone);
@@ -70,9 +64,9 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			zone.addMovementListener(new MovementListenerImplementation());
 			PersonalChest chest = new PersonalChest();
 			chest.setPosition(3, 2);
-			Portal prot = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
-			prot.setPosition(3, 6);
-			zone.add(prot);
+			Portal portal = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
+			portal.setPosition(3, 6);
+			zone.add(portal);
 			zone.add(chest);
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.teleport(zone, 3, 5, Direction.UP, player);
