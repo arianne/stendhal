@@ -25,7 +25,7 @@ import java.util.Set;
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 	private final class VaultChatAction implements ChatAction {
-		private final class MovementListenerImplementation implements
+		private final class VaultMovementListener implements
 				MovementListener {
 			public Rectangle2D getArea() {
 				return new Rectangle2D.Double(0, 0, 100, 100);
@@ -61,7 +61,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					.getName()
 					+ "_vault", vaultzone);
 			
-			zone.addMovementListener(new MovementListenerImplementation());
+			zone.addMovementListener(new VaultMovementListener());
 			PersonalChest chest = new PersonalChest();
 			chest.setPosition(3, 2);
 			Portal portal = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
