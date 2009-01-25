@@ -54,6 +54,7 @@ public class SoundMaster implements Runnable, WorldListener {
 	}
 
 	public static AudioClip play(final String soundName, final boolean shallLoop) {
+		//TODO: make it run in soundmasterthread so that it wont crash main if malfunct
 		if (isMute) {
 			return null;
 		}
