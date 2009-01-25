@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
 
@@ -46,11 +47,12 @@ public class KillDarkElvesTest {
 		final KillDarkElves quest = new KillDarkElves();
 		quest.addToWorld();
 
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-
+		MockStendlRPWorld.reset();
 		SingletonRepository.getNPCList().clear();
 	}
 

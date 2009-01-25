@@ -19,6 +19,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.CatTestHelper;
+import utilities.RPClass.PetTestHelper;
 import utilities.RPClass.SheepTestHelper;
 
 public class PlayersQueryTest {
@@ -169,8 +171,8 @@ public class PlayersQueryTest {
 	@Test
 	public void testOnWherePetSheep() {
 		SheepTestHelper.generateRPClasses();
-		Pet.generateRPClass();
-		Cat.generateRPClass();
+		PetTestHelper.generateRPClasses();
+		CatTestHelper.generateRPClasses();
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");

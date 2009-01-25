@@ -2,6 +2,7 @@ package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.*;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,10 +16,12 @@ public class AntidoteEaterTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		MockStendlRPWorld.reset();
 	}
 
 	@Before

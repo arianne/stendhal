@@ -8,9 +8,12 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -33,6 +36,16 @@ public class NotConditionTest {
 
 	private ChatCondition falsecondition;
 
+	@BeforeClass
+	public static void setupClass(){
+		MockStendlRPWorld.get();
+	}
+	
+	@AfterClass
+	public static void tearDownClass(){
+		MockStendlRPWorld.get();
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();

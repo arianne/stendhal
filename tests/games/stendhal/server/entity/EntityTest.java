@@ -6,12 +6,26 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class EntityTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		MockStendlRPWorld.reset();
+	}
+
 	@Test
 	public void testnextTo() {
 		PlayerTestHelper.generatePlayerRPClasses();
