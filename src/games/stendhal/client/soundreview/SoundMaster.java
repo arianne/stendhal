@@ -98,6 +98,8 @@ public class SoundMaster implements Runnable, WorldListener {
 
 		} catch (final LineUnavailableException e) {
 
+		} catch (final IllegalArgumentException e) {
+			
 		}
 		return null;
 	}
