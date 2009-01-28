@@ -722,6 +722,7 @@
 	</target>
 
 	<target name="report_test" description="Aggregate Testresults">
+		<mkdir dir="${build_tests_report}" />
 		<junitreport todir="." tofile="${build_tests_report}/testresults.xml">
 			<fileset dir=".">
 				<include name="TEST-*.xml"/>
