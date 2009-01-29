@@ -213,7 +213,7 @@ class DestinationObject extends MoveableObject {
 						// found another stackable
 						final StackableItem other = (StackableItem) object;
 						if (other.isStackable(stackEntity)) {
-							ItemLogger.merge(player, stackEntity, other);
+							new ItemLogger().merge(player, stackEntity, other);
 
 							// other is the same type...merge them
 							other.add(stackEntity);

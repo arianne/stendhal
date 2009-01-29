@@ -462,7 +462,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (!isPersistent()) {
 			if (getZone() != null) {
 				getZone().remove(getID());
-				ItemLogger.timeout(this);
+				new ItemLogger().timeout(this);
 			}
 		}
 	}

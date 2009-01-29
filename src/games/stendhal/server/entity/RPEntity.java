@@ -1331,7 +1331,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 					// multiple ones.
 					final int quantity = item.getQuantity();
 					if (toDrop >= quantity) {
-						ItemLogger.destroy(this, slot, item);
+						new ItemLogger().destroy(this, slot, item);
 						slot.remove(item.getID());
 						toDrop -= quantity;
 						// Recreate the iterator to prevent
@@ -1340,7 +1340,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 						objectsIterator = slot.iterator();
 					} else {
 						((StackableItem) item).setQuantity(quantity - toDrop);
-						ItemLogger.splitOff(this, item, toDrop);
+						new ItemLogger().splitOff(this, item, toDrop);
 						toDrop = 0;
 					}
 				} else {
@@ -1396,7 +1396,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				if (object instanceof Item) {
 					if (object == item) {
 						slot.remove(object.getID());
-						ItemLogger.destroy(this, slot, item);
+						new ItemLogger().destroy(this, slot, item);
 						return true;
 					}
 				}

@@ -21,11 +21,12 @@ import marauroa.server.game.db.Transaction;
  * @author hendrik
  */
 public class ItemLogger {
+	
 	private static final String ATTR_ITEM_LOGID = "logid";
 	private static final Logger logger = Logger.getLogger(ItemLogger.class);
 	
 
-	private static String getQuantity(final RPObject item) {
+	private String getQuantity(final RPObject item) {
 		int quantity = 1;
 		if (item.has("quantity")) {
 			quantity = item.getInt("quantity");
@@ -33,38 +34,38 @@ public class ItemLogger {
 		return Integer.toString(quantity);
 	}
 
-	public static void loadOnLogin(final Player player, final RPSlot slot, final Item item) {
+	public void loadOnLogin(final Player player, final RPSlot slot, final Item item) {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
 		itemLog(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
 	}
 
-	public static void destroyOnLogin(final Player player, final RPSlot slot, final RPObject item) {
+	public void destroyOnLogin(final Player player, final RPSlot slot, final RPObject item) {
 		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
-	public static void destroy(final RPEntity entity, final RPSlot slot, final RPObject item) {
+	public void destroy(final RPEntity entity, final RPSlot slot, final RPObject item) {
 		itemLog(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
     }
 
-	public static void dropQuest(final Player player, final Item item) {
+	public void dropQuest(final Player player, final Item item) {
 		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
     }
 
-	public static void timeout(final Item item) {
+	public void timeout(final Item item) {
 		itemLog(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
     }
 
-	public static void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int x, final int y) {
+	public void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int x, final int y) {
 		itemLog(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
-	public static void equipAction(final Player player, final Entity entity, final String[] sourceInfo, final String[] destInfo) {
+	public void equipAction(final Player player, final Entity entity, final String[] sourceInfo, final String[] destInfo) {
 	    itemLog(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
-	public static void merge(final RPEntity entity, final Item oldItem, final Item outlivingItem) {
+	public void merge(final RPEntity entity, final Item oldItem, final Item outlivingItem) {
 		if (!(entity instanceof Player)) {
 			return;
 		}
@@ -78,7 +79,7 @@ public class ItemLogger {
 	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
     }
 
-	public static void splitOff(final RPEntity player, final Item item, final int quantity) {
+	public void splitOff(final RPEntity player, final Item item, final int quantity) {
 		final String oldQuantity = getQuantity(item);
 		final String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
 	    itemLog(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
@@ -86,7 +87,7 @@ public class ItemLogger {
 
 	
 
-	public static void splitOff(final Player player, final Item item, final StackableItem newItem, final int quantity) {
+	public void splitOff(final Player player, final Item item, final StackableItem newItem, final int quantity) {
 		itemLogAssignIDIfNotPresent(item, newItem);
 		final String outlivingQuantity = getQuantity(item);
 		final String newQuantity = getQuantity(newItem);
@@ -95,7 +96,7 @@ public class ItemLogger {
 	    itemLog(newItem, player, "splitted out", item.get(ATTR_ITEM_LOGID), oldQuantity, newQuantity, outlivingQuantity);
     }
 
-	public static void itemLog(final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) {
+	public void itemLog(final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) {
 		if (!item.getRPClass().subclassOf("item")) {
 			return;
 		}
@@ -122,7 +123,7 @@ public class ItemLogger {
 	 *
 	 * @param items item
 	 */
-	public static void itemLogAssignIDIfNotPresent(final RPObject... items) {
+	public void itemLogAssignIDIfNotPresent(final RPObject... items) {
 		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 			for (final RPObject item : items) {
@@ -149,7 +150,7 @@ public class ItemLogger {
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private static void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
+	private void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
@@ -179,11 +180,11 @@ public class ItemLogger {
 	 * @param item
 	 * @throws SQLException
 	 */
-	private static void itemLogInsertName(final Transaction transaction, final RPObject item) throws SQLException {
+	private void itemLogInsertName(final Transaction transaction, final RPObject item) throws SQLException {
 		itemLogWriteEntry(transaction, item, null, "register", getAttribute(item, "name"), getAttribute(item, "quantity"), getAttribute(item, "infostring"), getAttribute(item, "bound"));
 	}
 
-	private static void itemLogWriteEntry(final Transaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
+	private void itemLogWriteEntry(final Transaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
@@ -207,7 +208,7 @@ public class ItemLogger {
 	 * @param attribute 
 	 * @return attribute name of attribute
 	 */
-	private static String getAttribute(final RPObject object, final String attribute) {
+	private String getAttribute(final RPObject object, final String attribute) {
 		if (object.has(attribute)) {
 			return object.get(attribute);
 		} else {

@@ -432,7 +432,7 @@ class PlayerRPClass {
 								+ " on login of " + player.getName()
 								+ " because this item"
 								+ " was removed from items.xml");
-						ItemLogger.destroyOnLogin(player, newSlot, item);
+						new ItemLogger().destroyOnLogin(player, newSlot, item);
 						continue;
 					}
 
@@ -488,7 +488,7 @@ class PlayerRPClass {
 					if (item.has("logid")) {
 						entity.put("logid", item.get("logid"));
 					}
-					ItemLogger.loadOnLogin(player, newSlot, entity);
+					new ItemLogger().loadOnLogin(player, newSlot, entity);
 					newSlot.add(entity);
 				} else {
 					logger.warn("Non-item object found in " + player.getName()

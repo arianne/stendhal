@@ -213,7 +213,7 @@ class SourceObject extends MoveableObject {
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
 
-		ItemLogger.equipAction(player, entity, srcInfo, dest.getLogInfo());
+		new ItemLogger().equipAction(player, entity, srcInfo, dest.getLogInfo());
 
 		return true;
 	}
@@ -253,7 +253,7 @@ class SourceObject extends MoveableObject {
 	public Item removeFromWorld() {
 		if (quantity != 0) {
 			final StackableItem newItem = ((StackableItem) item).splitOff(quantity);
-			ItemLogger.splitOff(player, item, newItem, quantity);
+			new ItemLogger().splitOff(player, item, newItem, quantity);
 			return newItem;
 		} else {
 			item.removeFromWorld();

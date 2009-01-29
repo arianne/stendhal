@@ -113,7 +113,7 @@ public class DefaultActionManager implements ActionManager {
 					final StackableItem other = (StackableItem) object;
 					if (other.isStackable(stackEntity)) {
 						// other is the same type...merge them
-						ItemLogger.merge(entity, stackEntity, other);
+						new ItemLogger().merge(entity, stackEntity, other);
 						other.add(stackEntity);
 						entity.updateItemAtkDef();
 						return true;

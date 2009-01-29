@@ -181,8 +181,8 @@ public class PlayerDieer {
 
 					if (quantityToDrop > 0) {
 						final StackableItem itemToDrop = item.splitOff(quantityToDrop);
-						ItemLogger.splitOff(player, item, itemToDrop, quantityToDrop);
-						ItemLogger.equipAction(player, itemToDrop, 
+						new ItemLogger().splitOff(player, item, itemToDrop, quantityToDrop);
+						new ItemLogger().equipAction(player, itemToDrop, 
 							new String[]{"slot", player.getName(), object.second().getName()}, 
 							new String[]{"slot", player.getName(), "content"});
 						corpse.add(itemToDrop);
@@ -192,7 +192,7 @@ public class PlayerDieer {
 				} else if (object.first() instanceof Item) {
 					Item justItem = (Item) object.first();
 					object.second().remove(object.first().getID());
-					ItemLogger.equipAction(player, (Entity) object.first(), 
+					new ItemLogger().equipAction(player, (Entity) object.first(), 
 									new String[]{"slot", player.getName(), object.second().getName()}, 
 									new String[]{"slot", player.getName(), "content"});
 
