@@ -1,5 +1,7 @@
 package games.stendhal.server.trade;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -9,11 +11,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-
-import static org.junit.Assert.assertThat;
 
 import utilities.PlayerTestHelper;
 

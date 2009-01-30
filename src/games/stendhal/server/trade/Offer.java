@@ -1,11 +1,10 @@
 package games.stendhal.server.trade;
 
 
+import games.stendhal.server.entity.item.Item;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 
 public class Offer {
 
