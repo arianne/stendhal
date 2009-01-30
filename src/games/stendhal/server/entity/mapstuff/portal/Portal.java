@@ -36,7 +36,7 @@ public class Portal extends Entity implements UseListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Portal.class);
 
-	private boolean settedDestination;
+	private boolean isDestinationSet;
 
 	private Object identifier;
 
@@ -61,7 +61,7 @@ public class Portal extends Entity implements UseListener {
 		setRPClass("portal");
 		put("type", "portal");
 
-		settedDestination = false;
+		isDestinationSet = false;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Portal extends Entity implements UseListener {
 	public void setDestination(final String zone, final Object reference) {
 		this.destinationReference = reference;
 		this.destinationZone = zone;
-		this.settedDestination = true;
+		this.isDestinationSet = true;
 	}
 
 	public Object getDestinationReference() {
@@ -120,7 +120,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	public boolean loaded() {
-		return settedDestination;
+		return isDestinationSet;
 	}
 
 	@Override
