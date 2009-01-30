@@ -26,15 +26,27 @@ public class Gate extends Entity implements UseListener {
 	
 	private boolean isOpen;
 
-	public Gate() {
-		
+	public Gate(final String orientation) {
 		setRPClass("gate");
 		put("type", "gate");
-		put(ORIENTATION, VERTICAL);
+		setOrientation(orientation);
 		setOpen(false);
 		Logger.getLogger(Gate.class).info("gatecreated");
 	}
+	
+	public Gate() {
+		this(VERTICAL);
+	}
 
+	private void setOrientation(String orientation) {
+		if(HORIZONTAL.equals(orientation)){
+			put(ORIENTATION, HORIZONTAL);
+		} else {
+			put(ORIENTATION, VERTICAL);
+		}
+	}
+
+	
 	public void open() {
 		setOpen(true);
 	}
