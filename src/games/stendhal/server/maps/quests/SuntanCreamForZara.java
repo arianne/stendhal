@@ -76,6 +76,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else if ("rejected".equals(player.getQuest(QUEST_SLOT))) {
+							npc.say("You refused to help me last time and my skin is getting worse. " 
+								+ "Please can you bring me the magic #'suntan cream' that the #lifeguards produce?");
 						} else {
 							npc.say("Did you forget that you promised me to ask the #lifeguards for #'suntan cream'?");
 							npc.setCurrentState(ConversationStates.ATTENDING);
