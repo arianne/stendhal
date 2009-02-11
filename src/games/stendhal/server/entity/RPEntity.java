@@ -518,23 +518,21 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return The damage that will be done with the distance attack.
 	 */
 	public static int applyDistanceAttackModifiers(final int damage, final double squareDistance) {
-		double maxrange = 7;
+		final double maxrange = 7;
 		final double maxrangeSquared = maxrange * maxrange;
 		if (maxrangeSquared < squareDistance) {
 			return 0;
+		} else if (squareDistance == 0) {
+			// as a special case, make archers switch to melee when the enemy is next to them
+			return (int) (0.8 * damage);
 		}
 		
-		double distance = Math.pow(squareDistance, 0.5);
+		final double outOfRange = maxrange + 1;
+		final double distance = Math.sqrt(squareDistance);
 		
-		double best = (maxrange + 1) / 2;
-		double temp;
-			if (best > distance) {
-				temp = distance;
-			} else {
-				temp = 2 * best -  distance;
-			}
-			return (int) ((temp / best) * damage);
-		}
+		// a downward parabola with zero points at 0 and outOfRange
+		return (int) (damage * ((distance * 4) / outOfRange - squareDistance / (outOfRange * outOfRange)));
+	}
 
 
 	/**
