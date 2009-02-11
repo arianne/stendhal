@@ -38,7 +38,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * This is the panel where the character can be outfittet.
+ * This is the panel where the character equipment and stats can be seen.
  * 
  * @author mtotz
  */
@@ -142,7 +142,8 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}",
+				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\n" +
+				"Level: ${level} (${xptonextlevel})\nMoney: $${money}",
 				gameScreen);
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
@@ -257,6 +258,7 @@ public class Character extends WtPanel {
 
 		statsPanel.set("xp", playerEntity.getXp());
 		final int level = Level.getLevel(playerEntity.getXp());
+		statsPanel.set("level", level);
 		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
 				- playerEntity.getXp());
 		statsPanel.set("money", money);
