@@ -38,7 +38,7 @@ import marauroa.common.game.IRPZone;
  * is served at table<li> Eating the soup heals you fully over time <li> Making it adds karma
  * </ul>
  * 
- * REWARD: <ul><li>heal <li> Karma bonus of 5 <li>100 XP</ul>
+ * REWARD: <ul><li>healing soup <li> Karma bonus of 5 (if ingredients given individually)<li>20 XP</ul>
  * 
  * REPETITIONS: <ul><li> as many as desired <li> Only possible to repeat once every ten
  * minutes</ul>
@@ -304,13 +304,8 @@ public class Soup extends AbstractQuest {
 							if (missing.size() > 0) {
 								npc.say("Thank you very much! What else did you bring?");
 							} else {
-								// had to comment out mana as not sure
-								// it's in game - added karma instead
 								player.addKarma(5.0);
-								// player.addBaseMana(10); // i don't
-								// know what number to choose here as i
-								// don't know about mana.
-								player.addXP(100);
+								player.addXP(20);
 								/*
 								 * place soup after XP added otherwise
 								 * the XP change MIGHT change level and
@@ -374,7 +369,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	// if we're checking all at once it's a bit different method
-	// also player is rewarded less xp and no karma (don't get karma for being lazy)
+	// also player gets no karma (don't get karma for being lazy)
 	private void checkForAllIngredients(final Player player, final SpeakerNPC npc) {
 		List<String> missing = missingFood(player, false);
 		for (final String food : missing) {
@@ -392,7 +387,9 @@ public class Soup extends AbstractQuest {
 							+ Grammar.quantityplnoun(missing.size(),
 									"ingredient") + ": "
 							+ Grammar.enumerateCollection(missing)
-							+ ".");
+							+ ". You'll get bad karma if you keep making mistakes like that!");
+			// to fix bug [ 2517439 ] 
+			player.addKarma(-5.0);
 			return;
 		} else {
 			// you get less XP if you did it the lazy way
