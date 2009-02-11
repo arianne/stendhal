@@ -162,7 +162,7 @@ Half the people in the world are below average.
    </portal>
  </zone> 
  
- <zone name="int_nalwor_jail" file="interiors/nalwor/jail.tmx">
+ <zone name="int_nalwor_prison" file="interiors/nalwor/jail.tmx">
    <portal x="6" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="jail_entrance"/>
    </portal>
@@ -649,7 +649,7 @@ buy 100 empty scroll
    <destination zone="int_nalwor_library" ref="entrance_left"/>
   </portal>
   <portal x="88" y="106" ref="jail_entrance">
-   <destination zone="int_nalwor_jail" ref="entrance"/>
+   <destination zone="int_nalwor_prison" ref="entrance"/>
   </portal>
   <portal x="38" y="106" ref="inn_entrance_left">
    <destination zone="int_nalwor_inn" ref="entrance_left"/>
