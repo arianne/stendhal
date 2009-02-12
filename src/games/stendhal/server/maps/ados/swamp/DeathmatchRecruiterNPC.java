@@ -36,18 +36,34 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> path = new LinkedList<Node>();
-				path.add(new Node(40, 36));
-				path.add(new Node(40, 85));
-				path.add(new Node(53, 85));
-				path.add(new Node(53, 81));
-				path.add(new Node(84, 81));
-				path.add(new Node(84, 57));
-				path.add(new Node(89, 57));
-				path.add(new Node(89, 38));
-				path.add(new Node(72, 38));
-				path.add(new Node(72, 33));
-				path.add(new Node(50, 33));
-				path.add(new Node(50, 36));
+				path.add(new Node(24, 9));
+				path.add(new Node(38, 9));
+				path.add(new Node(38, 15));
+				path.add(new Node(35, 15));
+				path.add(new Node(35, 21));
+				path.add(new Node(47, 21));
+				path.add(new Node(47, 10));
+				path.add(new Node(43, 10));
+				path.add(new Node(43, 6));
+				path.add(new Node(55, 6));
+				path.add(new Node(55, 16));
+				path.add(new Node(62, 16));
+				path.add(new Node(62, 14));
+				path.add(new Node(64, 14));
+				path.add(new Node(64, 15));
+				path.add(new Node(70, 15));
+				path.add(new Node(70, 18));
+				path.add(new Node(80, 18));
+				path.add(new Node(80, 9));
+				path.add(new Node(69, 9));
+				path.add(new Node(69, 14));
+				path.add(new Node(56, 14));
+				path.add(new Node(56, 8));
+				path.add(new Node(47, 8));
+				path.add(new Node(47, 21));
+				path.add(new Node(35, 21));
+				path.add(new Node(35, 15));
+				path.add(new Node(24, 15));
 				setPath(new FixedPath(path, true));
 			}
 
@@ -55,12 +71,14 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hey there. You look like a reasonable fighter.");
 				addJob("I'm recruiter for the Ados #deathmatch.");
-				addHelp("Have you ever heard of the Ados #deathmatch.");
+				addHelp("I tell you about the Ados #deathmatch and send you there if you are strong enough.");
+				addQuest("If you are brave, you can try the Ados #deathmatch.");
+				addOffer("I'll tell you about the Ados #deathmatch.");
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
-				        "The deathmatch is the ultimate challenge for true #heroes.", null);
+				        "Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", null);
 				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
-				        "Are you such a hero? I can take you to the #challenge.", null);
-				addGoodbye("I hope you will enjoy the Ados #Deathmatch!");
+				        "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
+				addGoodbye("I hope you will enjoy the Ados Deathmatch!");
 
 				add(ConversationStates.ATTENDING, "challenge", 
 					new LevelGreaterThanCondition(19), 
@@ -69,13 +87,13 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 
 				add(ConversationStates.ATTENDING, "challenge",
 					new LevelLessThanCondition(20), 
-					ConversationStates.ATTENDING, "Sorry, you are too weak!",
+					ConversationStates.ATTENDING, "Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
 					null);
 			}
 		};
 
 		npc.setEntityClass("youngsoldiernpc");
-		npc.setPosition(40, 36);
+		npc.setPosition(24, 9);
 		npc.initHP(100);
 		zone.add(npc);
 	}
