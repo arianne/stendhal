@@ -128,8 +128,9 @@ public class Creature extends NPC {
 	public int getAttackTurn() {
 		return attackTurn;
 	}
+	
 	public boolean isAttackTurn(final int turn) {
-		return (turn % 5 == attackTurn);
+		return ((turn + attackTurn) % getAttackRate() == 0);
 	}
 
 
@@ -191,6 +192,10 @@ public class Creature extends NPC {
 		setName(copy.getName());
 
 		setLevel(copy.getLevel());
+		
+		for (RPSlot slot : copy.slots()) {
+			this.addSlot((RPSlot) slot.clone());
+		}
 
 		update();
 
@@ -550,7 +555,7 @@ public class Creature extends NPC {
 			if (item instanceof StackableItem) {
 				((StackableItem) item).setQuantity(equippedItem.quantity);
 			}
-
+			
 			slot.add(item);
 		}
 	}
