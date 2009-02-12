@@ -3,6 +3,8 @@ package games.stendhal.server.maps.magic.clothing_boutique;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -13,17 +15,19 @@ import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Pair;
 
 public class OutfitLenderNPC implements ZoneConfigurator {
 	
-	// outfits to last for 2 hours (endurance is in turns) for semos mine town revival weeks
-	public static final int endurance = 2 * 60 * 20 * 10;
+	// outfits to last for 48 hours normally 
+	public static final int endurance = 48 * 60 * 20 * 10;
 
 	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions 
-	private static final double N = 0.05;
+	private static final double N = 1;
 
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
 	/**
@@ -47,12 +51,12 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 		  final Pair<Outfit, Boolean> GOWN = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(82), null), true);
 		  final Pair<Outfit, Boolean> NOOB = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(80), null), true);
-		  final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), null, Integer.valueOf(81), Integer.valueOf(98)), true);
 		  final Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(99), null, null), true);
 		  final Pair<Outfit, Boolean> GLASSES_2 = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(79), null, null), true);
 		  final Pair<Outfit, Boolean> HAT = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(99), null, null, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
+		  final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(81), Integer.valueOf(98)), false);
 		  final Pair<Outfit, Boolean> HORSE = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(97)), false);
 		  final Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(96)), false);
 		  final Pair<Outfit, Boolean> ALIEN = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(95)), false);
@@ -64,7 +68,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 			outfitTypes.put("green dress", GREEN_DRESS);
 			outfitTypes.put("gown", GOWN);
 			outfitTypes.put("orange", NOOB);
-			outfitTypes.put("bunny", BUNNY);
+			outfitTypes.put("bunny suit", BUNNY);
 			outfitTypes.put("glasses", GLASSES);
 			outfitTypes.put("other glasses", GLASSES_2);
 			outfitTypes.put("hat", HAT);
@@ -79,13 +83,12 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		final SpeakerNPC npc = new SpeakerNPC("Liliana") {
 			@Override
 			protected void createPath() {
-				//				final List<Node> nodes = new LinkedList<Node>();
-				//nodes.add(new Node(16, 5));
-				//	nodes.add(new Node(16, 16));
-				//nodes.add(new Node(26, 16));
-				//nodes.add(new Node(26, 5));
-				//setPath(new FixedPath(nodes, true));
-				setPath(null);
+			    final List<Node> nodes = new LinkedList<Node>();
+			    nodes.add(new Node(16, 5));
+			    nodes.add(new Node(16, 16));
+			    nodes.add(new Node(26, 16));
+			    nodes.add(new Node(26, 5));
+			    setPath(new FixedPath(nodes, true));
 			}
 
 			@Override
@@ -123,7 +126,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						final boolean type = outfitPair.second();
 						if (type) {
 							if (player.getOutfit().getBase() > 94
-									&& player.getOutfit().getBase() < 98) {
+									&& player.getOutfit().getBase() < 99) {
 								seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 								return false;
 							}
@@ -158,15 +161,14 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				priceList.put("green dress", (int) (N * 500));
 				priceList.put("gown", (int) (N * 750));
 				priceList.put("orange", (int) (N * 500));
-				priceList.put("bunny", (int) (N * 800));
+				priceList.put("bunny suit", (int) (N * 800));
 				priceList.put("glasses", (int) (N * 400));
 				priceList.put("other glasses", (int) (N * 400));
 				priceList.put("hat", (int) (N * 400));
 				priceList.put("horse", (int) (N * 1200));
 				priceList.put("girl horse", (int) (N * 1200));
 				priceList.put("alien", (int) (N * 1200));	
-				//	addGreeting("Hi! How may I help you?");
-				addGreeting("Hi! Welcome to Semos Mine Town Revival Weeks!");
+			       	addGreeting("Hi! How may I help you?");
 				addQuest("I can't think of anything for you, sorry.");
 				add(
 					ConversationStates.ATTENDING,
@@ -175,8 +177,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					"Just tell me if you want to #hire a #gown, #hire a #green #dress, #hire #glasses, #hire #other #glasses, #hire a #hat, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny #suit or #hire an #orange outfit.",
 					new ExamineChatAction("outfits.png", "Outfits", "Price varies"));
-				//	addJob("I work in this clothes boutique. It's no ordinary shop, we use magic to put our clients into fantastic outfits. Ask about the #offer.");
-				addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Semos Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
+				addJob("I work in this clothes boutique. It's no ordinary shop, we use magic to put our clients into fantastic outfits. Ask about the #offer.");
+				// addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Semos Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
 				addHelp("Our hired outfits wear off after some time, but you can always come back for more!");
 				addGoodbye("Bye!");
 				final OutfitChangerBehaviour behaviour = new SpecialOutfitChangerBehaviour(priceList, endurance, "Your magical outfit has worn off.");
@@ -185,8 +187,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("slim_woman_npc");
-		//npc.setPosition(16, 5);
-		npc.setPosition(101, 102);
+		npc.setPosition(16, 5);
+		// npc.setPosition(101, 102);
 		npc.initHP(100);
 		zone.add(npc);
 	}
