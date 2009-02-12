@@ -531,7 +531,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final double distance = Math.sqrt(squareDistance);
 		
 		// a downward parabola with zero points at 0 and outOfRange
-		return (int) (damage * ((distance * 4) / outOfRange - squareDistance / (outOfRange * outOfRange)));
+		return (int) (damage * ((distance * 4) / outOfRange - 4 * squareDistance / (outOfRange * outOfRange)));
 	}
 
 
