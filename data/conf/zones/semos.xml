@@ -24,8 +24,6 @@
  </zone>
 
  <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744" file="Level 0/semos/mountain_n2.tmx">
- <!-- added for 0.71 for semos mine town revival week-->
- <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC"/>
   <portal x="80" y="108" ref="frank_house">
    <destination zone="int_semos_frank_house" ref="exit"/>
   </portal> 
