@@ -121,8 +121,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	@Override
 	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 		final String outfitType = chosenItemName;
-		if (player.getOutfit().getBase() > 94 && player.getOutfit().getBase() < 98) {
-			// if the player is wearing a non standard player base (95, 96, 97) 
+		if (player.getOutfit().getBase() > 94 && player.getOutfit().getBase() < 99) {
+			// if the player is wearing a non standard player base (95, 96, 97, 98) 
 			// then swimsuits, masks and many other outfits wouldn't look good mixed with it
 			seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 			return false;
