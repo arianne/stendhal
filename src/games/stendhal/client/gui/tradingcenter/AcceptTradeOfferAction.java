@@ -1,12 +1,14 @@
 package games.stendhal.client.gui.tradingcenter;
 
-import games.stendhal.client.StendhalClient;
+import static games.stendhal.common.Constants.ACCEPT_OFFER_ITEM;
+import static games.stendhal.common.Constants.ACCEPT_OFFER_PRICE;
+import static games.stendhal.common.Constants.ACCEPT_OFFER_TYPE;
+import static games.stendhal.common.Constants.ACTION_TYPE;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import marauroa.common.game.RPAction;
-import static games.stendhal.common.Constants.*;
 
 public class AcceptTradeOfferAction implements ActionListener {
 	

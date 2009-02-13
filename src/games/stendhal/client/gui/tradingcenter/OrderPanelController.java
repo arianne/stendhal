@@ -1,11 +1,11 @@
 package games.stendhal.client.gui.tradingcenter;
 
+import games.stendhal.client.ObjectChangeListener;
+
 import java.awt.Component;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import games.stendhal.client.ObjectChangeListener;
-import games.stendhal.client.entity.Item;
 
 public class OrderPanelController implements ObjectChangeListener{
 
@@ -30,7 +30,6 @@ public class OrderPanelController implements ObjectChangeListener{
 		}
 		
 		int price = object.getInt("price");
-		String playerName = object.get("offerer");
 		component = new OrderPanel(itemname, price);
 		OrderPanelMouseListener listener = new OrderPanelMouseListener(new AcceptTradeOfferAction(itemname,price));
 		
