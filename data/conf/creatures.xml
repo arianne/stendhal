@@ -1077,7 +1077,7 @@
     <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
     <description>You see a infantry gnome, he will protect his little town against the humans!</description>
     <attributes>
-      <atk value="91"/>
+      <atk value="58"/>
       <def value="15"/>
       <hp value="60"/>
       <speed value="0.5"/>
@@ -1093,6 +1093,7 @@
       <item value="potion" quantity="[1,1]" probability="20.0"/>
     </drops>
     <equips>
+      <slot name="rhand" item="dagger"/>
     </equips>
     <ai>
       <says>
@@ -2708,6 +2709,7 @@
       <item value="halberd" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
+	<slot name="rhand" item="chaos hammer"/>
     </equips>
     <ai>
       <profile name="brave"/>
@@ -3942,8 +3944,8 @@
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
     <description/>
     <attributes>
-      <atk value="320"/>
-      <def value="88"/>
+      <atk value="256"/>
+      <def value="87"/>
       <hp value="125"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -3961,6 +3963,7 @@
 
     </drops>
     <equips>
+      <slot name="rhand" item="elvish sword"/>
     </equips>
     <ai>
       <profile name="brave"/>
@@ -6910,6 +6913,7 @@
       <item value="drow sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
+      <slot name="rhand" item="drow sword"/>
     </equips>
     <ai>
       <profile name="brave"/>
@@ -9261,8 +9265,8 @@
     <type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="dark_elf.png:7"/>
     <description/>
     <attributes>
-      <atk value="765"/>
-      <def value="158"/>
+      <atk value="479"/>
+      <def value="162"/>
       <hp value="800"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -9278,6 +9282,7 @@
       <item value="jewelled legs" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
+      <slot name="rhand" item="dagger"/>
     </equips>
     <ai>
       <says>
@@ -9962,8 +9967,8 @@
     <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
     <description/>
     <attributes>
-      <atk value="1081"/>
-      <def value="122"/>
+      <atk value="1227"/>
+      <def value="127"/>
       <hp value="3300"/>
       <speed value="1.0"/>
       <size value="6,5"/>
@@ -9979,6 +9984,7 @@
       <item value="black dragon cloak" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
+      <slot name="rhand" item="golden mace"/>
     </equips>
     <ai>
       <profile name="brave"/>
