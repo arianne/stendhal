@@ -6,10 +6,9 @@ import javax.swing.JLabel;
 public class OrderPanel extends JLabel {
 	
 	
-	OrderPanel(final String playerName, final String itemname, final int price) {
+	OrderPanel(final String itemname, final int price) {
 		setIcon(new ImageIcon("data/gui/buddy_online.png"));
 		setText(Integer.valueOf(price).toString());
-		this.addMouseListener(new OrderPanelMouseListener());
 	}
 
 }

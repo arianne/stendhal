@@ -31,7 +31,12 @@ public class OrderPanelController implements ObjectChangeListener{
 		
 		int price = object.getInt("price");
 		String playerName = object.get("offerer");
-		component = new OrderPanel(playerName, itemname, price);
+		component = new OrderPanel(itemname, price);
+		OrderPanelMouseListener listener = new OrderPanelMouseListener(new AcceptTradeOfferAction(itemname,price));
+		
+
+		component.addMouseListener(listener);
+		
 		return true;
 	}
 

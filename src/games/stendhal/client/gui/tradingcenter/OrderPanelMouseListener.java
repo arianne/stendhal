@@ -10,6 +10,12 @@ import javax.swing.JPopupMenu;
 
 public final class OrderPanelMouseListener extends MouseAdapter {
 
+	final private AcceptTradeOfferAction acceptAction;
+
+	public OrderPanelMouseListener(AcceptTradeOfferAction acceptTradeOfferAction) {
+		this.acceptAction = acceptTradeOfferAction;
+	}
+
 	public void mousePressed(final MouseEvent e) {
 		this.maybeShowPopup(e);
 	}
@@ -20,9 +26,10 @@ public final class OrderPanelMouseListener extends MouseAdapter {
 
 	private void maybeShowPopup(final MouseEvent e) {
 		if (e.isPopupTrigger()) {
-			final JPopupMenu popup = new OrderPanelPopupMenu(new WoodStyle(), e.getComponent().getName(), e.getComponent().isEnabled());
+			final JPopupMenu popup = new OrderPanelPopupMenu(new WoodStyle(), acceptAction);
 			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
 	}
+
 
 }
