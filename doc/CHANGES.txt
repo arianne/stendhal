@@ -1,10 +1,12 @@
 Changelog
 ---------
 0.xx
+- buddy panel is no free floating window anymore
+
+0.72
 
 - mossy rubble pic has been added to rock
 - Collisionmap is now backed by Bitset
-- buddy panel is no free floating window anymore
 - chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
 - dagobert creates vaults for players, so they can access semos bank slot without spys.
 - /me shows emotes
@@ -14,10 +16,23 @@ Changelog
 - sheep and pet only get hungrier when there are players in the same zone 
 - /ban reason is no longer eaten on client side
 - /info returns current server time
-- optimal distance for archer is 4. now it hurts most when distance is 4 and less when farer or nearer and not all if distance = 0 or bigger 7.
+- optimal distance for archer to attack from is 4. Less effective when farther or nearer and not all if distance > 7. Switches to melee at 0 distance.
 - LoginDialog positions caret on name now 
 - NPCShoutZone.java: messages are now also send to all supporters as stated in todo
 - Snowballs.java: let NPC say when new snowballs could be needed
+- Deathmatch recruiter walks in safer (upper) part of swamp and gives more warning about DM
+- Susi and her father living in a house in Ados
+- special outfit lender Liliana in magic city 
+- creatures equip the items they have, and use the respective attack rate 
+- balrog attacks using a demon fire sword so he hits at rate 10 (but harder)
+- player level info added to character panel
+- player atk displayed as base 'times' (weapon + 1) on character panel
+- Soup making exploit to boost karma now fixed
+- Zara re-offers quest if player previously rejected 
+- security measures on nalwor jail removed so players can heal there
+- fence around semos village w closer to house to be less obstructive
+- some creatures in bad places for very new players moved
+
 
 
 0.71
