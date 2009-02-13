@@ -30,7 +30,8 @@ public class OrderPanelController implements ObjectChangeListener{
 		}
 		
 		int price = object.getInt("price");
-		component = new OrderPanel(itemname, price);
+		String playerName = object.get("offerer");
+		component = new OrderPanel(playerName, itemname, price);
 		return true;
 	}
 
