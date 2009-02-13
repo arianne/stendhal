@@ -8,6 +8,7 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,6 +16,18 @@ import java.util.List;
 
 import marauroa.common.Pair;
 
+/* 
+ * Running:
+ * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame
+ * 		calculates balanced atk and def values to all creatures up to HIGHEST_LEVEL
+ * 		(defined in the code below)
+ * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame creature
+ * 		calculates the values only for the specified creature
+ * 
+ * 	CLASSPATH should be (with appropriate changes for OS and versions), assuming
+ * 		the compiled .class for this file is under "bin":
+ *		.:bin:libs/marauroa.jar:libs/log4j.jar:libs/mysql-connector-java-5.1.5-bin.jar:build/lib/stendhal-stendhal-server-0.71.jar
+ */
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
 public class BalanceRPGame {
@@ -73,7 +86,7 @@ public class BalanceRPGame {
 	private static Player player;
 
 	public static void main(final String[] args) throws Exception {
-		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPWorld world = MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("test");
 		world.addRPZone(zone);
 
@@ -254,32 +267,32 @@ public class BalanceRPGame {
 				target.setHP(Math.min(target.getBaseHP(), newHP));
 			}
 
-			if (player.canHit(target)) {
+			if ((turns % 5 == 0) && player.canHit(target)) {
 				int damage = player.damageDone(target);
 				if (damage < 0) {
 					damage = 0;
 				}
 
 				target.setHP(target.getHP() - damage);
+				
+				if (target.getHP() <= 0) {
+					combatFinishedWinPlayer = true;
+					break;
+				}
 			}
 
-			if (target.getHP() <= 0) {
-				combatFinishedWinPlayer = true;
-				break;
-			}
-
-			if (target.canHit(player)) {
+			if ((turns % target.getAttackRate() == 0) && target.canHit(player)) {
 				int damage = target.damageDone(player);
 				if (damage < 0) {
 					damage = 0;
 				}
 				player.setHP(player.getHP() - damage);
 				target.handleLifesteal(target, target.getWeapons(), damage);
-			}
-
-			if (player.getHP() <= 0) {
-				combatFinishedWinPlayer = true;
-				break;
+				
+				if (player.getHP() <= 0) {
+					combatFinishedWinPlayer = true;
+					break;
+				}
 			}
 		}
 
@@ -336,6 +349,6 @@ public class BalanceRPGame {
 	}
 
 	private static double preferredDuration(final int level) {
-		return 30 + level / 5.0;
+		return 150 + level;
 	}
 }
