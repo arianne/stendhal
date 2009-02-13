@@ -10247,10 +10247,10 @@
 
   <creature name="balrog">
     <type class="enormous_creature" subclass="balrog" tileid="enormous_creature.png:0"/>
-    <description/>
+    <description>You see a huge balrog. He is slow hitting, but terribly strong as he stands towering above you.</description>
     <attributes>
-      <atk value="1609"/>
-      <def value="140"/>
+      <atk value="2557"/>
+      <def value="154"/>
       <hp value="10000"/>
       <speed value="0.6"/>
       <size value="11,12"/>
@@ -10267,6 +10267,7 @@
       <item value="demon fire sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
+      <slot name="rhand" item="demon fire sword"/>
     </equips>
     <ai>
       <says>
