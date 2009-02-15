@@ -155,6 +155,7 @@ public class Creature extends NPC {
 		if (object.has("title_type")) {
 			put("title_type", object.get("title_type"));
 		}
+		
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
@@ -518,6 +519,16 @@ public class Creature extends NPC {
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Check if the creature has a rare profile, and thus should not appear in DeathMatch,
+	 * or the daily quest.
+	 * 
+	 * @return true if the creature is rare, false otherwise
+	 */
+	public boolean isRare() {
+		return getAiProfiles().keySet().contains("rare");
 	}
 
 	/** need to recalculate the ai when we stop the attack. */

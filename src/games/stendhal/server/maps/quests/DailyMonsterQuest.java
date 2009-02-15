@@ -64,9 +64,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 		private void refreshCreatureList() {
 			final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 			sortedcreatures = new LinkedList<Creature>();
-			sortedcreatures.addAll(creatures);
+			for (Creature creature : creatures) {
+				if (!creature.isRare()) {
+					sortedcreatures.add(creature);
+				}
+			}
 			Collections.sort(sortedcreatures, new LevelBasedComparator());
 		}
+		
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// Debug Only, to debug mode just toggle the true/false for the IF

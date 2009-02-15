@@ -456,6 +456,99 @@
     </ai>
   </creature>
 
+  <creature name="big bad wolf">
+    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
+	<description>You see a wolf, they are wild and very hungry!</description>
+    <attributes>
+      <atk value="46"/>
+      <def value="9"/>
+      <hp value="35"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <!-- once in a month -->
+    <respawn value="8640000"/>
+    <drops>
+      <item value="money" quantity="[2,5]" probability="70.0"/>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Aooooooouuhhh!!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+
+  <creature name="big bad wolf">
+    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
+	<description>You see a wolf, they are wild and very hungry!</description>
+    <attributes>
+      <atk value="46"/>
+      <def value="9"/>
+      <hp value="35"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <!-- once in a month -->
+    <respawn value="8640000"/>
+    <drops>
+      <item value="money" quantity="[2,5]" probability="70.0"/>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Aooooooouuhhh!!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+
+  <creature name="big bad wolf">
+    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
+	<description>You see a wolf, they are wild and very hungry!</description>
+    <attributes>
+      <atk value="46"/>
+      <def value="9"/>
+      <hp value="35"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <!-- once in a month -->
+    <respawn value="8640000"/>
+    <drops>
+      <item value="money" quantity="[2,5]" probability="70.0"/>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Aooooooouuhhh!!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
 	<description>You see a fox, they are becoming extinct!</description>

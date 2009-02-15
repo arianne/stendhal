@@ -41,7 +41,11 @@ public class CreatureSpawner implements TurnListener {
 	 */
 	CreatureSpawner() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
-		sortedCreatures.addAll(creatures);
+		for (Creature creature : creatures) {
+			if (!creature.isRare()) {
+				sortedCreatures.add(creature);
+			}
+		}
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
 
