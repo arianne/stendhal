@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.bank;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
@@ -41,11 +42,29 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
 			    if(zone.getPlayers().size() == 1) {
+				final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+									"postman");
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
 					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
-					if (!equippedToBag) {
-						DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
+					if (equippedToBag) {
+					    // player may not have been online so use postman to send info message
+					    if (postman != null) {
+						postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The " 
+									+ Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
+									+ " which you left on the floor in the vault have been automatically "
+									+ "returned to your bag.");
+					    }
+					} else {
+					    boolean equippedToBank = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
+					    if (equippedToBank) {
+						if (postman != null) {
+						    postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The "
+									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
+									    + " which you left on the floor in the vault have been automatically "
+									    + "returned to your bank chest." );
+						}	
+					    }
 					}
 				}
 				SingletonRepository.getRPWorld().removeZone(zone);
@@ -94,8 +113,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 		
 		npc.add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you about the private banking vaults.", null);
 		
-		// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert			
-		
+		// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert	
 	}
 
 	
