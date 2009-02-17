@@ -64,7 +64,15 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									    + " which you left on the floor in the vault have been automatically "
 									    + "returned to your bank chest." );
 						}	
-					    }
+					    } else {
+						// the player lost their items
+						if (postman != null) {
+						    postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The "
+									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
+									    + " which you left on the floor in the vault have been thrown into "
+									    + "the void, because there was no space to fit them into either your "
+									    + "bank chest or your bag." );
+						} }
 					}
 				}
 				SingletonRepository.getRPWorld().removeZone(zone);
