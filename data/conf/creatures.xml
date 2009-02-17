@@ -2801,9 +2801,7 @@
       <item value="lion shield" quantity="[1,1]" probability="3.5"/>
       <item value="halberd" quantity="[1,1]" probability="0.5"/>
     </drops>
-    <equips>
-	<slot name="rhand" item="chaos hammer"/>
-    </equips>
+    <equips/>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
