@@ -487,68 +487,6 @@
     </ai>
   </creature>
 
-  <creature name="big bad wolf">
-    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-	<description>You see a wolf, they are wild and very hungry!</description>
-    <attributes>
-      <atk value="46"/>
-      <def value="9"/>
-      <hp value="35"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <!-- once in a month -->
-    <respawn value="8640000"/>
-    <drops>
-      <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise value="Aooooooouuhhh!!"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
-
-  <creature name="big bad wolf">
-    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-	<description>You see a wolf, they are wild and very hungry!</description>
-    <attributes>
-      <atk value="46"/>
-      <def value="9"/>
-      <hp value="35"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <!-- once in a month -->
-    <respawn value="8640000"/>
-    <drops>
-      <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise value="Aooooooouuhhh!!"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
-
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
 	<description>You see a fox, they are becoming extinct!</description>
@@ -5338,6 +5276,35 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="unicorn">
+    <type class="animal" subclass="unicorn" tileid="animal.png:27"/>
+    <description>You see a rare unicorn. They are widely believed to be only a myth.</description>
+    <attributes>
+      <atk value="308"/>
+      <def value="108"/>
+      <hp value="200"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="48"/>
+    <experience value="2000"/>
+    <!-- once in 2 months -->
+    <respawn value="17280000"/>
+    <drops>
+      <item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
+      <item value="lucky charm" quantity="[1,1]" probability="80.0"/>
+      <item value="diamond" quantity="[1,1]" probability="20.0"/>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="non offensive"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
     </ai>
   </creature>
 
