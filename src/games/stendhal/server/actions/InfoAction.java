@@ -11,7 +11,7 @@ public class InfoAction implements ActionListener {
 	private static final String DATE_FORMAT_NOW = "dd-MMMM-yyyy HH:mm:ss";
 
 	public void onAction(final Player player, final RPAction action) {
-		player.sendPrivateText("It is " + getGametime());
+		player.sendPrivateText("The server time is " + getGametime());
 
 	}
 
