@@ -158,7 +158,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			// make sure the player isn't cheating by putting the armor
 			// away and then saying "yes"
 			new PlayerHasItemWithHimCondition("leather cuirass"), 
-			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.",
+			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
 			new MultipleActions(reward));
 
 		npc.add(
