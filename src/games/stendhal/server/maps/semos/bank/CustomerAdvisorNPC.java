@@ -40,6 +40,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
+			    if(zone.getPlayers().size() == 1) {
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
 					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
@@ -48,6 +49,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					}
 				}
 				SingletonRepository.getRPWorld().removeZone(zone);
+			    }
 			}
 
 			public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
