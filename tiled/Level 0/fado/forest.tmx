@@ -61,6 +61,9 @@
  <tileset name="paving" firstgid="456" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_3.png"/>
  </tileset>
+ <tileset name="animal" firstgid="457" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WQQ6CMBBAUWLiBi+i3v+AujExRKAC02n1Ld5KYoA/bRmHYRgruj5dqOK24lK5/fsMlNwb25vfCzucJ6bXTH+fu84+ka+keWnfb2XtE/+4d3x65i3tj+yfNSNb5ia7X0bnpf6nGb3PQW9nS1TnpQ5z7Uv0PBeZM1BjXa+1f9nTP3KPqDEXW78v9ojqXNr76P6tzkwL50y0Pa0z+2fNRXav6L4trvXW5iK7aWTfX2gdPSORnWo3z37nvYg+V6zhfmQ31b7P/kf9V/bzs94w+54AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoDcPNOU67AAAAQA=
@@ -83,7 +86,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bTRLCIAwG0Hr/Gzj+XNWVowsXtaD9mrx3AhhoCCFdFgAAAAAAAKC762nvEQAA1VzkF8BEaXcWMQ4AAKC3tHsqAFSxtvaqRtuDnAuYqePZcS4w51uBObCe9e7pU84nD6SKu70MMKTjPa4j6wwAMJ/6GgAch7eETNYFOLK0uvtoD9vsmCzGr1Oh95DtrD8AAAAA8Gtp7xnwb74BAABG+XeId/p9gC2q9tSmzSttPABkk9vTmVrHfsSel7R96F0ZAGqThwFwVM8zzFnGN9Q5ALKIywAAUNvMHnb98HTnDg0AyIkhU9r/HwAAAGRT4wEAAAAAgJq8AeR5AFll1tkAAAEA
+   H4sIAAAAAAAAAO3byxHCMAwFQOi/A4ZPcxTCiYEDh5A4yYu0W4E9dmRZVk4nAAAAAAAAoLvbee8RAADVXOUXwEBpdxYxDgAAoLe0eyoAVDG19qpG24OcCxip49lxCZvzc8Z47mFzYF3Wu6dfOZ88kCoe9jLAIh3vcR1ZZwCA8dTXAOA4vCVksi7AkaXV3Zf2sI2OyWL8NGm9h2zL+gMAAAAAa0t7z4Ct+QYAAFjKv0N80+8DzFG1pzZtXmnjASCb3J7O1Dr2I/Z8pO1D78oAUJs8DICjep9hzjL+oc4BkEVcBgCA2kb2sOuHpzt3aABATgyZ0v7/AAAAIJsaDwAAAAAA1OQNIM8Ll6nWvwAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
