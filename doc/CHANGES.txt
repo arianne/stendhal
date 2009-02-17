@@ -24,7 +24,9 @@ Changelog
 - Susi and her father living in a house in Ados
 - special outfit lender Liliana in magic city 
 - creatures equip the items they have, and use the respective attack rate 
-- balrog attacks using a demon fire sword so he hits at rate 10 (but harder)
+- infantry gnome, archmage elf, dark elf knight, dark elf sacedrotist, black 
+dragon and balrog attack at different rates from the default, and hit either
+harder or weaker accordingly
 - player level info added to character panel
 - player atk displayed as base 'times' (weapon + 1) on character panel
 - Soup making exploit to boost karma now fixed
@@ -32,7 +34,8 @@ Changelog
 - security measures on nalwor jail removed so players can heal there
 - fence around semos village w closer to house to be less obstructive
 - some creatures in bad places for very new players moved
-
+- rare monsters that do not appear in DM or daily quests. a big bad wolf and an
+unicorn added for now
 
 
 0.71
