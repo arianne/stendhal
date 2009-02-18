@@ -19,6 +19,7 @@ import java.util.Map;
  * Entrance to Deathmatch.
  */
 public class DeathmatchRecruiterNPC implements ZoneConfigurator {
+
 	/**
 	 * Configure a zone.
 	 *
@@ -76,8 +77,8 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				addOffer("I'll tell you about the Ados #deathmatch.");
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
 				        "Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", null);
-				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
-				        "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
+				// response to 'heroes' is defined in maps.quests.AdosDeathmatch 
+				// because we need here to know about who is in the deathmatch
 				addGoodbye("I hope you will enjoy the Ados Deathmatch!");
 
 				add(ConversationStates.ATTENDING, "challenge", 

@@ -1,14 +1,18 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.BailAction;
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
@@ -18,31 +22,39 @@ import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.util.Area;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * Creates the Ados Deathmatch Game.
  */
 public class AdosDeathmatch extends AbstractQuest {
-	
+
+		/** the logger instance. */
+	private static final Logger logger = Logger.getLogger(AdosDeathmatch.class);
+
 	private StendhalRPZone zone;
 
-	private Area arena;
+	private static Area arena;
 
 	private DeathmatchInfo deathmatchInfo;
 
 	public AdosDeathmatch() {
-		// constructor for quest system
+	    // constructor for quest system
+	    logger.debug("little constructor for quest system", new Throwable());
 	}
 	@Override
 	public String getSlotName() {
 		return "adosdeathmatch";
 	}
 
-	public AdosDeathmatch(final StendhalRPZone zone, final Area arena) {
+	public AdosDeathmatch(final StendhalRPZone zone, final Area area) {
 		this.zone = zone;
-		this.arena = arena;
+		arena = area;
+		logger.debug("big constructor for zone", new Throwable());
 		final Spot entrance = new Spot(zone, 96, 75);
-
 		deathmatchInfo = new DeathmatchInfo(arena, zone, entrance);
 		zone.setTeleportAllowed(false);
 	}
@@ -178,5 +190,35 @@ public class AdosDeathmatch extends AbstractQuest {
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
+	}
+
+	private void recruiterInformation() {
+		final SpeakerNPC npc2 = npcs.get("Thonatus");
+
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero") , null, ConversationStates.ATTENDING,
+				    null,
+				    new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					    final List<Player> dmplayers = arena.getPlayers();
+					    final List<String> dmplayernames = new LinkedList<String>();
+					    for (Player dmplayer : dmplayers) {
+						dmplayernames.add(dmplayer.getName());
+					    }
+					    if (dmplayers.size() == 0){
+						// No players inside so continue as normal
+						npc.say("Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.");
+					    } else {
+						// List the players inside deathmatch
+						npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
+							+ Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
+					    }
+					}});
+	}
+
+	@Override
+	public void addToWorld() {
+		super.addToWorld();
+
+		recruiterInformation();
 	}
 }
