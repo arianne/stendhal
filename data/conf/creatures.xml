@@ -2032,7 +2032,7 @@
       <atk value="159"/>
       <def value="38"/>
       <hp value="70"/>
-      <speed value="0.9"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="14"/>
@@ -2660,7 +2660,7 @@
       <atk value="198"/>
       <def value="42"/>
       <hp value="105"/>
-      <speed value="1.0"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="19"/>
@@ -4463,7 +4463,7 @@
       <atk value="331"/>
       <def value="77"/>
       <hp value="180"/>
-      <speed value="0.8"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="40"/>
@@ -4495,7 +4495,7 @@
       <atk value="332"/>
       <def value="76"/>
       <hp value="180"/>
-      <speed value="1.0"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="40"/>
@@ -4706,7 +4706,7 @@
       <atk value="345"/>
       <def value="94"/>
       <hp value="150"/>
-      <speed value="0.9"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="42"/>
@@ -5159,7 +5159,7 @@
       <atk value="371"/>
       <def value="60"/>
       <hp value="320"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="47"/>
@@ -5315,7 +5315,7 @@
       <atk value="385"/>
       <def value="125"/>
       <hp value="130"/>
-      <speed value="1.0"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="49"/>
@@ -6273,7 +6273,7 @@
       <atk value="432"/>
       <def value="125"/>
       <hp value="200"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="59"/>
@@ -6609,7 +6609,7 @@
       <atk value="440"/>
       <def value="69"/>
       <hp value="500"/>
-      <speed value="0.9"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="61"/>
@@ -6770,7 +6770,7 @@
       <atk value="448"/>
       <def value="66"/>
       <hp value="600"/>
-      <speed value="1.0"/>
+      <speed value="0.5"/>
       <size value="1,1"/>
     </attributes>
     <level value="63"/>
@@ -6863,7 +6863,7 @@
       <atk value="461"/>
       <def value="62"/>
       <hp value="600"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="64"/>
@@ -7164,7 +7164,7 @@
       <atk value="487"/>
       <def value="76"/>
       <hp value="540"/>
-      <speed value="1.0"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="68"/>
@@ -7374,7 +7374,7 @@
       <atk value="500"/>
       <def value="73"/>
       <hp value="608"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="72"/>
@@ -7406,7 +7406,7 @@
       <atk value="511"/>
       <def value="77"/>
       <hp value="600"/>
-      <speed value="0.8"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="72"/>
@@ -7497,7 +7497,7 @@
       <atk value="518"/>
       <def value="71"/>
       <hp value="700"/>
-      <speed value="1.0"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="73"/>
