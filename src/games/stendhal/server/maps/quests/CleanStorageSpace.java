@@ -33,7 +33,7 @@ import java.util.List;
  * <li> Eoanna checks your kills and then thanks you.
  * <p>
  * REWARD:
- * <li> 25 XP
+ * <li> 100 XP, karma
  * <p>
  * REPETITIONS:
  * <li> None.
@@ -98,8 +98,8 @@ public class CleanStorageSpace extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Eonna");
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new IncreaseKarmaAction(3.0));
-		reward.add(new IncreaseXPAction(25));
+		reward.add(new IncreaseKarmaAction(5.0));
+		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		// the player returns to Eonna after having started the quest.

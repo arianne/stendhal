@@ -40,7 +40,7 @@ import java.util.List;
  * </ul>
  * <p>
  * REWARD:<ul>
- * <li> 170 XP
+ * <li> 270 XP
  * <li> 10 gold coins
  * </ul>
  * <p>
@@ -283,7 +283,7 @@ public class IntroducePlayers extends AbstractQuest {
                 null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
-		processStep.add(new IncreaseXPAction(100));
+		processStep.add(new IncreaseXPAction(200));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "done"));
 		
 		// note Ilisa is spelled with a small i here because I

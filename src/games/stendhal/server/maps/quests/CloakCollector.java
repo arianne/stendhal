@@ -31,7 +31,7 @@ import java.util.List;
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
- * REWARD: - black cloak - 2500 XP
+ * REWARD: - black cloak - 10000 XP
  * <p>
  * REPETITIONS: - None.
  */
@@ -190,7 +190,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);
-		player.addXP(2500);
+		player.addXP(10000);
 	}
 
 }

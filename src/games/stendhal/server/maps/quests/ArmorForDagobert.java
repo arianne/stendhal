@@ -43,7 +43,8 @@ import java.util.List;
  * <ul>
  * <li>50 XP</li>
  * <li>80 gold</li>
- * <li>Karma: 10
+ * <li>Karma: 10</li>
+ * <li>Access to vault</li>
  * </ul>
  *
  * REPETITIONS:

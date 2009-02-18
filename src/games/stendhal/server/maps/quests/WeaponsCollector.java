@@ -33,7 +33,7 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li> ice sword
- * <li> 1000 XP
+ * <li> 5000 XP
  * </ul>
  * <p>
  * REPETITIONS:
@@ -155,7 +155,7 @@ public class WeaponsCollector extends AbstractQuest implements
 		final Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
 		player.equip(iceSword, true);
-		player.addXP(1000);
+		player.addXP(5000);
 	}
 
 	public String respondToOfferOfNotExistingItem(final String itemName) {

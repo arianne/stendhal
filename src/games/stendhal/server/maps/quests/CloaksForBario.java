@@ -36,7 +36,7 @@ import games.stendhal.server.entity.player.Player;
  * REWARD:
  * <ul>
  * <li> golden shield</li>
- * <li> 1500 XP</li>
+ * <li> 15000 XP</li>
  * <li> Karma: 25</li>
  * </ul>
  * 
@@ -179,7 +179,7 @@ public class CloaksForBario extends AbstractQuest {
 										"golden shield");
 								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);
-								player.addXP(1500);
+								player.addXP(15000);
 								player.addKarma(25);
 								player.notifyWorldAboutChanges();
 								player.setQuest(QUEST_SLOT, "done");

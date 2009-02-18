@@ -40,7 +40,7 @@ import java.util.List;
  * 
  * REWARD:
  * <ul>
- * <li>10 XP</li>
+ * <li>50 XP</li>
  * <li>20 gold coins</li>
  * <li>Karma: 10</li>
  * </ul>
@@ -158,7 +158,7 @@ public class BeerForHayunn extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("beer"));
 		reward.add(new EquipItemAction("money", 20));
-		reward.add(new IncreaseXPAction(10));
+		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
 		npc.add(
