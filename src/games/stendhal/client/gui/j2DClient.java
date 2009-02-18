@@ -385,7 +385,7 @@ public class j2DClient extends StendhalUI {
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 		
 		createAndAddOldBuddies(gameScreen);
-		createAndAddNewBuddy(content);
+		//createAndAddNewBuddy(content);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
