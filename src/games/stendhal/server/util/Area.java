@@ -1,9 +1,13 @@
 package games.stendhal.server.util;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.player.Player;
 
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -60,5 +64,23 @@ public class Area {
 	public Shape getShape() {
 		return shape;
 	}
+
+	/**
+	 * Gets a list of players in the area
+	 * 
+	 * @return  A list of all players in the area.
+	 */
+    public List<Player> getPlayers() {
+	// interface marauroa.common.game.IRPZone doesn't have a method getPlayers, so cast it to StendhalRPZone
+        final List<Player> playersInZone = ((StendhalRPZone) zone).getPlayers();
+	// for each of the players in the zone, check contains(player)
+	final List<Player> result = new LinkedList<Player>();
+	for (Player player : playersInZone) {
+	    if (this.contains(player)) {
+		result.add(player);
+	    }
+	}
+	return result;
+    }
 
 }
