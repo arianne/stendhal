@@ -29,8 +29,8 @@ public class CreatureSpawner implements TurnListener {
 
 	static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 
-	// spawn a new monster each 15 seconds
-	static final long SPAWN_DELAY = 15000;
+	// spawn a new monster each 20 seconds
+	static final long SPAWN_DELAY = 20000;
 	static final long NUMBER_OF_CREATURES = 10;
 
 	private final List<Creature> sortedCreatures = new LinkedList<Creature>();
