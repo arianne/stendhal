@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  */
 class DeathmatchEngine implements TurnListener {
 	/** The amount of milliseconds to wait before bail takes effect. */
-	private static final long BAIL_DELAY = 2000; 
+	private static final long BAIL_DELAY = 600; 
 
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
