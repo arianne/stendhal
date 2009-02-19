@@ -60,7 +60,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"chaos legs", "chaos sword", "chaos shield", "chaos armor", "green dragon shield", "egg",
 				"golden arrow", "power arrow", "mainio legs", "mainio boots", "mainio shield", "mithril bar",
 				"mithril nugget", "mainio armor", "xeno boots", "xeno legs", "xeno armor", "xeno shield", 
-				"mythical egg", "stone armor", "demon sword", "mainio helmet");
+				"mythical egg", "stone armor", "demon sword", "mainio helmet", "red dragon cloak");
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
