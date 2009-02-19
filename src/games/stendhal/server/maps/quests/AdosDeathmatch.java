@@ -195,7 +195,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	private void recruiterInformation() {
 		final SpeakerNPC npc2 = npcs.get("Thonatus");
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero") , null, ConversationStates.ATTENDING,
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , null, ConversationStates.ATTENDING,
 				    null,
 				    new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
