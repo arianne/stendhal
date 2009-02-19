@@ -4,38 +4,45 @@ Changelog
 - buddy panel is no free floating window anymore
 
 0.72
-
-- mossy rubble pic has been added to rock
-- Collisionmap is now backed by Bitset
-- chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
+*Features*
 - dagobert creates vaults for players, so they can access semos bank slot without spys.
 - /me shows emotes
-- zones can be implemented by subclassing StendhalRPZone and specifying it in 'zones'.xml
-- wood grower shows branch till picked
 - /clear clears gamelog
-- sheep and pet only get hungrier when there are players in the same zone 
-- /ban reason is no longer eaten on client side
+- chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
 - /info returns current server time
-- optimal distance for archer to attack from is 4. Less effective when farther or nearer and not all if distance > 7. Switches to melee at 0 distance.
-- LoginDialog positions caret on name now 
-- NPCShoutZone.java: messages are now also send to all supporters as stated in todo
-- Snowballs.java: let NPC say when new snowballs could be needed
-- Deathmatch recruiter walks in safer (upper) part of swamp and gives more warning about DM
 - Susi and her father living in a house in Ados
 - special outfit lender Liliana in magic city 
 - creatures equip the items they have, and use the respective attack rate 
 - infantry gnome, archmage elf, dark elf knight, dark elf sacedrotist, black 
 dragon and balrog attack at different rates from the default, and hit either
 harder or weaker accordingly
+- rare monsters that do not appear in DM or daily quests. a big bad wolf and an
+unicorn added for now
+*Improvements* 
 - player level info added to character panel
 - player atk displayed as base 'times' (weapon + 1) on character panel
+- Deathmatch recruiter walks in safer (upper) part of swamp 
+- find out which heroes are in the deathmatch already by asking Thonatus, the recruiter
+- increased spawn delay of creatures in DM by 5 sec
+- increased the XP given for some of the low and mid level quests
+- optimal distance for archer to attack from is 4. Less effective when farther or nearer and not all if distance > 7. Switches to melee at 0 distance.
+- reduce the archer speeds else many left unkilled at zone boundaries
+- fence around semos village w closer to house to be less obstructive
+- some creatures in bad places for very new players moved
+*Bug fixes*
+- /ban reason is no longer eaten on client side
+- NPCShoutZone.java: messages are now also send to all supporters as stated in todo
+- Snowballs.java: let NPC say when new snowballs could be needed
 - Soup making exploit to boost karma now fixed
 - Zara re-offers quest if player previously rejected 
 - security measures on nalwor jail removed so players can heal there
-- fence around semos village w closer to house to be less obstructive
-- some creatures in bad places for very new players moved
-- rare monsters that do not appear in DM or daily quests. a big bad wolf and an
-unicorn added for now
+- sheep and pet only get hungrier when there are players in the same zone 
+*Misc*
+- mossy rubble pic has been added to rock
+- wood grower shows branch till picked
+- Collisionmap is now backed by Bitset
+- zones can be implemented by subclassing StendhalRPZone and specifying it in 'zones'.xml
+- LoginDialog positions caret on name now
 
 
 0.71
