@@ -142,7 +142,7 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\n" +
+				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP:${xp}\n" +
 				"Level: ${level} (${xptonextlevel})\nMoney: $${money}",
 				gameScreen);
 		statsPanel.setFrame(false);
@@ -229,10 +229,10 @@ public class Character extends WtPanel {
 			}
 		}
 
-		// atk +1 is more correct, because that's how the damage code 
-		// treats items
+		// atk and def +1 is more correct, because that's how the damage code 
+		// treats items (to avoid a multiply by zero in case of no weapon)
 		final int atkitem = playerEntity.getAtkItem() + 1;
-		final int defitem = playerEntity.getDefItem();
+		final int defitem = playerEntity.getDefItem() + 1;
 
 		setTitletext(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
