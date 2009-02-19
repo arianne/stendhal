@@ -5,7 +5,7 @@
     <description>You see a cherry.  It tangy taste revives you a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="10"/>
-      <frequency value="15"/>
+      <frequency value="10"/>
       <quantity value="1"/>
       <regen value="2"/>
     </attributes>
@@ -150,7 +150,7 @@
     <description>You see a nice shiny apple.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="20"/>
-      <frequency value="30"/>
+      <frequency value="12"/>
       <quantity value="1"/>
       <regen value="3"/>
     </attributes>
