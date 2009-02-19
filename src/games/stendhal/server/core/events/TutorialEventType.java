@@ -41,8 +41,8 @@ public enum TutorialEventType {
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	TIMED_OUTFIT(
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
-	NEW_RELEASE70(
-			"Please be careful during training and battles: fights are much more dangerous as of Stendhal 0.70. Even weak creatures and players can hurt you now, if they are lucky, so you should always pay attention and not leave your character idle.");
+	NEW_RELEASE72(
+			"You can check out a couple of new commands (and remind yourself of old ones) by doing #/help. Also, please note that the display on your character's panel has been updated to be more informative and reflect the changes that came in release 0.70. So the actual gameplay of attack, defense and level has not changed in this release, just the display on your character panel. Read about other new things at #http://arianne.sourceforge.net");
 	private String message;
 
 	/**
