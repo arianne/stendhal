@@ -21,7 +21,7 @@ public interface Debug {
 
 	/** server version. */
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
-	String VERSION = "0.71";
+	String VERSION = "0.72";
 
 	/** if this is enable tileset are loaded on demand. */
 	public static final boolean VERY_FAST_CLIENT_START = true;
