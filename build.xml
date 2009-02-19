@@ -50,6 +50,10 @@
 			match=".*"
 			replace="${version}"
 			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
+			match="out.println\(&quot;server_version=.*&quot;\);"
+			replace="out.println(&quot;server_version=${version}&quot;);"
+			byline="true"/>
 
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
