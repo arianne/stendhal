@@ -2673,6 +2673,7 @@
       <item value="wooden arrow" quantity="[1,5]" probability="5.0"/>
       <item value="wooden bow" quantity="[1,1]" probability="2.5"/>
       <item value="scimitar" quantity="[1,1]" probability="5.0"/>
+      <item value="apple" quantity="[1,3]" probability="20.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden arrow" quantity="10000"/>
@@ -3251,6 +3252,7 @@
       <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
       <item value="katana" quantity="[1,1]" probability="5.0"/>
       <item value="broadsword" quantity="[1,1]" probability="2.0"/>
+      <item value="potion" quantity="[2,4]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
@@ -5362,7 +5364,7 @@
       <item value="ice sword" quantity="[1,1]" probability="0.0080"/>
       <item value="broadsword" quantity="[1,1]" probability="5.0"/>
       <item value="elvish shield" quantity="[1,1]" probability="5.0"/>
-
+      <item value="greater potion" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
