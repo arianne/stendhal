@@ -13,7 +13,7 @@ Changelog
 - Susi and her father living in a house in Ados
 - special outfit lender Liliana in magic city 
 - creatures equip the items they have, and use the respective attack rate 
-- infantry gnome, archmage elf, dark elf knight, dark elf sacedrotist, black 
+- infantry gnome, archmage elf, dark elf knight, dark elf sacerdotist, black 
 dragon and balrog attack at different rates from the default, and hit either
 harder or weaker accordingly
 - rare monsters that do not appear in DM or daily quests. a big bad wolf and an
