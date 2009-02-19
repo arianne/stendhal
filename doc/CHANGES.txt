@@ -29,6 +29,9 @@ unicorn added for now
 - reduce the archer speeds else many left unkilled at zone boundaries
 - fence around semos village w closer to house to be less obstructive
 - some creatures in bad places for very new players moved
+- arrows dropped more often
+- some elves dropping food and potions
+- cherries and apples heal faster
 *Bug fixes*
 - /ban reason is no longer eaten on client side
 - NPCShoutZone.java: messages are now also send to all supporters as stated in todo
