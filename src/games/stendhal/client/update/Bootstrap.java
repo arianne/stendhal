@@ -310,7 +310,7 @@ public class Bootstrap {
 						className, args));
 			} catch (final SecurityException e) {
 				// partly update
-				System.err.println("Got SecurityException most likly because singed jars files from the official distribution have been included into a self build client."
+				System.err.println("Got SecurityException most likely because signed jars files from the official distribution have been included into a self build client."
 						+ e);
 				startSelfBuild = true;
 			}
@@ -353,7 +353,7 @@ public class Bootstrap {
 		} else if (e instanceof LinkageError) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
-					"Sorry an error occurred because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
+					"Sorry an error occurred because of an inconsistent update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
