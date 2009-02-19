@@ -196,6 +196,20 @@
     </equipable>
   </item>
 
+  <item name="red dragon cloak">
+    <type class="cloak" subclass="red_dragon_cloak" tileid="-1"/>
+    <description>You see a red dragon cloak. He didn't have one for a long time but finally caved in to peer pressure and got one.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="14"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="20000"/>
+    <equipable>
+      <slot name="cloak"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="black dragon cloak">
     <type class="cloak" subclass="black_dragon_cloak" tileid="-1"/>
     <description>You see a torn section from an enormous black dragon cloak. You're very lucky: the piece is just the right size for a human to wear.</description>
