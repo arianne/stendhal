@@ -2655,7 +2655,7 @@
 
   <creature name="archer elf">
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
-    <description>You see an archer elf, they can do much damage with that wooden arrows.</description> 
+    <description>You see an archer elf, they can do much damage with their wooden arrows.</description> 
     <attributes>
       <atk value="198"/>
       <def value="42"/>
