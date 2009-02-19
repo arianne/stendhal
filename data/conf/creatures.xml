@@ -9373,6 +9373,7 @@
       <item value="greater potion" quantity="[2,4]" probability="80.0"/>
       <item value="money" quantity="[60,160]" probability="100.0"/>
       <item value="carbuncle" quantity="[1,4]" probability="10.0"/>
+      <item value="red dragon cloak" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -10008,6 +10009,7 @@
       <item value="greater potion" quantity="[1,3]" probability="50.0"/>
       <item value="demon fire sword" quantity="[1,1]" probability="0.02"/>
       <item value="carbuncle" quantity="[1,2]" probability="10.0"/>
+      <item value="red dragon cloak" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
