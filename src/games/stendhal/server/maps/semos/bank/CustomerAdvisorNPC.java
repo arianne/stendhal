@@ -50,7 +50,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					if (equippedToBag) {
 					    // player may not have been online so use postman to send info message
 					    if (postman != null) {
-						postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The " 
+						postman.sendPrivateText("Dagobert tells you: tell " + ((RPEntity) entity).getName() + " The " 
 									+ Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									+ " which you left on the floor in the vault have been automatically "
 									+ "returned to your bag.");
@@ -59,7 +59,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					    boolean equippedToBank = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
 					    if (equippedToBank) {
 						if (postman != null) {
-						    postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The "
+						    postman.sendPrivateText("Dagobert tells you: tell " + ((RPEntity) entity).getName() + " The "
 									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									    + " which you left on the floor in the vault have been automatically "
 									    + "returned to your bank chest." );
@@ -67,7 +67,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					    } else {
 						// the player lost their items
 						if (postman != null) {
-						    postman.sendPrivateText("tell " + ((RPEntity) entity).getName() + " The "
+						    postman.sendPrivateText("Dagobert tells you: tell " + ((RPEntity) entity).getName() + " The "
 									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									    + " which you left on the floor in the vault have been thrown into "
 									    + "the void, because there was no space to fit them into either your "
