@@ -26,6 +26,7 @@ import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
@@ -384,13 +385,15 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				if (!portal.isHidden()) {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
 				}
+			}  else if (entity instanceof WalkBlocker) {
+				    drawEntity(vg, entity, Color.PINK);
 			} else if (mininps && User.isAdmin()) {
 				// Enabled with -Dstendhal.superman=x.
 
 				if (entity instanceof RPEntity) {
 					drawRPEntity(vg, (RPEntity) entity);
 				} else {
-					drawEntity(vg, entity, COLOR_ENTITY);
+				    drawEntity(vg, entity, COLOR_ENTITY);
 				}
 			}
 		}

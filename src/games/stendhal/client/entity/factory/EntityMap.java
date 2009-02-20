@@ -40,6 +40,7 @@ import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.UseableItem;
+import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.entity.WellSource;
 
 import java.util.HashMap;
@@ -162,6 +163,7 @@ public final class EntityMap {
 		register("npc", null, null, NPC.class);
 
 		register("plant_grower", null, null, PlantGrower.class);
+		register("walkblocker", null, null, WalkBlocker.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null,
 				CarrotGrower.class);
 		register("growing_entity_spawner", "items/grower/wood_grower", null,
