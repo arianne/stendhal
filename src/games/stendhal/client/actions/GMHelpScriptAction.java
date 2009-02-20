@@ -37,7 +37,7 @@ class GMHelpScriptAction implements SlashAction {
 				"#/script #WhereWho.class : Lists where all the online players are",
 				"#/script #Maria.class : Summons Maria, who sells food&drinks. Don't forget to -unload her after you're done.",
 				"#/script #ServerReset.class : use only in a real emergency to shut down server. If possible please warn the players to logout and give them some time. It kills the server the hard way.",
-				
+			    "#/script #ResetSlot.class #player #slot : Resets the named slot such as !kills or !quests. Useful for debugging.",
 		};
 
 		for (final String line : lines) {
