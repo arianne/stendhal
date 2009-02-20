@@ -9,9 +9,11 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -46,6 +48,8 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									"postman");
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
+				    // ignore items which are in the wastebin
+				    if (!(item.getX()==2 && item.getY()==5)) {
 					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
 					if (equippedToBag) {
 					    // player may not have been online so use postman to send info message
@@ -54,7 +58,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									+ Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									+ " which you left on the floor in the vault have been automatically "
 									+ "returned to your bag.");
-					    }
+						}
 					} else {
 					    boolean equippedToBank = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
 					    if (equippedToBank) {
@@ -72,8 +76,10 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									    + " which you left on the floor in the vault have been thrown into "
 									    + "the void, because there was no space to fit them into either your "
 									    + "bank chest or your bag." );
-						} }
+						} 
+					    }
 					}
+				    }
 				}
 				SingletonRepository.getRPWorld().removeZone(zone);
 			    }
@@ -94,13 +100,30 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			
 			zone.addMovementListener(new VaultMovementListener());
 			PersonalChest chest = new PersonalChest();
-			chest.setPosition(3, 2);
+			chest.setPosition(4, 2);
 			Portal portal = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
-			portal.setPosition(3, 6);
+			portal.setPosition(4, 8);
 			zone.add(portal);
 			zone.add(chest);
+			WalkBlocker walkblocker = new WalkBlocker();
+			walkblocker.setPosition(2, 5);
+			zone.add(walkblocker);
+			// Add a sign explaining the wastebin (after the walkblocker else the Look is used from that)
+			final Sign bin = new Sign();
+			bin.setPosition(2, 5);
+			bin.setText("You see a wastebin, handily placed for items you wish to dispose of.");
+			bin.setEntityClass("transparent");
+			bin.setResistance(10);
+			zone.add(bin);
+			// Add a sign explaining about dropped items
+			final Sign book = new Sign();
+			book.setPosition(2, 2);
+			book.setText("Items left on the ground will be returned to you when you leave the vault, as it is assumed they were dropped by mistake. There is a wastebin provided below for anything you want to throw away. It will be emptied automatically when you leave the vault.");
+			book.setEntityClass("book_blue");
+			book.setResistance(0);
+			zone.add(book);
 			SingletonRepository.getRPWorld().addRPZone(zone);
-			player.teleport(zone, 3, 5, Direction.UP, player);
+			player.teleport(zone, 4, 5, Direction.UP, player);
 			
 		}
 	}
@@ -114,12 +137,12 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 		npc.addReply("exchange", "When you are both ready, swap places. The narrow corridors are designed so that noone else can take the items you have placed. If someone gets in the way you can just go back and remove your items from the table until the area is clear again. If you don't understand anything, try asking another player for a demonstration. Oh, and by the way, we also have #security at the table.");
 		npc.addReply("security", "Yes, there is a spell to make sure noone can return to this world next to the table. If they exit to the astral plane when standing by the table, and then attempt to return there, they are magically moved to a safer place. Good luck with your trading!");
 		npc.addJob("I'm the Customer Advisor here at Semos Bank.");
-		
+		npc.addOffer("If you wish to access your personal chest in solitude, I can give you access to a private #vault. A guidebook inside will explain how it works.");		
 		npc.addGoodbye("It was a pleasure to serve you.");
 		npc.add(ConversationStates.ANY, "vault", new QuestCompletedCondition("armor_dagobert"), ConversationStates.IDLE, null, 
 				new VaultChatAction());
 		
-		npc.add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you about the private banking vaults.", null);
+		npc.add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you more about the private banking vaults.", null);
 		
 		// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert	
 	}
