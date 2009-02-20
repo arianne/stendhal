@@ -400,7 +400,7 @@ public class UserContext implements RPObjectChangeListener {
 			if ("id".equals(featureName)) {
 				continue;
 			}
-
+			
 			if (!features.containsKey(featureName)) {
 				final String value = changes.get(featureName);
 
@@ -583,9 +583,9 @@ public class UserContext implements RPObjectChangeListener {
 			if (slotName.equals("!buddy")) {
 				processBuddiesAdded(sobject);
 			}
-			if (slotName.equals("!features")) {
-				processFeaturesAdded(sobject);
-			}
+		}
+		if (slotName.equals("!features")) {
+			processFeaturesAdded(sobject);
 		}
 	}
 
@@ -607,9 +607,10 @@ public class UserContext implements RPObjectChangeListener {
 		if (isUser(object)) {
 			if ("!buddy".equals(slotName)) {
 				processBuddiesAdded(schanges);
-			} else if ("!features".equals(slotName)) {
-				processFeaturesAdded(schanges);
 			}
+		}
+		if ("!features".equals(slotName)) {
+			processFeaturesAdded(schanges);
 		}
 	}
 
