@@ -81,6 +81,12 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 					}
 				    }
 				}
+				// since we are about to destroy the vault, change the player zoneid to semos bank so that if they are relogging, 
+				// they can enter back to the bank (not the default zone of PlayerRPClass). 
+				// If they are scrolling out or walking out the portal it works as before.
+				entity.put("zoneid","int_semos_bank");
+				entity.put("x","9");
+				entity.put("y","27");
 				SingletonRepository.getRPWorld().removeZone(zone);
 			    }
 			}
