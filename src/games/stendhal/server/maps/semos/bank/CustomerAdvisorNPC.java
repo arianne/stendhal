@@ -113,14 +113,8 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			zone.add(chest);
 			WalkBlocker walkblocker = new WalkBlocker();
 			walkblocker.setPosition(2, 5);
+			walkblocker.setDescription("You see a wastebin, handily placed for items you wish to dispose of.");
 			zone.add(walkblocker);
-			// Add a sign explaining the wastebin (after the walkblocker else the Look is used from that)
-			final Sign bin = new Sign();
-			bin.setPosition(2, 5);
-			bin.setText("You see a wastebin, handily placed for items you wish to dispose of.");
-			bin.setEntityClass("transparent");
-			bin.setResistance(10);
-			zone.add(bin);
 			// Add a sign explaining about dropped items
 			final Sign book = new Sign();
 			book.setPosition(2, 2);
