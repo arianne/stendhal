@@ -42,7 +42,7 @@ public class BlacksheepBobNPC implements ZoneConfigurator {
 
 		@Override
 		protected void createDialog() {
-			addJob("I'm proud to say i #make some absolutely delicious sausage.");
+			addJob("I'm proud to say I #make some absolutely delicious sausage.");
 			addHelp("I only #make sausage. My brothers here make canned tuna and cheese sausage.");
 			addOffer("Check the blackboard to see what I need to #make you some sausage.");
 			addQuest("I don't need any help.");
@@ -60,7 +60,7 @@ public class BlacksheepBobNPC implements ZoneConfigurator {
 			        requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,
-			        "Hey there. Welcome to Blacksheep Meat Market. Can i #make you some sausage?");
+			        "Hey there. Welcome to Blacksheep Meat Market. Can I #make you some sausage?");
 		}
 	};
 

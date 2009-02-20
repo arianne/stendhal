@@ -101,7 +101,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING,
-				"Ok, i have to find someone else to do this 'little' job!",
+				"Ok, I have to find someone else to do this 'little' job!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 

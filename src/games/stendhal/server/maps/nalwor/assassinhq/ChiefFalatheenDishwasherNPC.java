@@ -19,8 +19,8 @@ public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
 			@Override
 			public void createDialog(final SpeakerNPC dishwasher) {
 				dishwasher.addGreeting("You better have a good excuse for bothering me. I'm up to my neck in dishwater!");
-				dishwasher.addJob("It is my job to wash all the dishes for all these pesty little brats.");
-				dishwasher.addHelp("I can buy your vegetables and herbs.  Please see blackboards on wall for what i need.");
+				dishwasher.addJob("It is my job to wash all the dishes for all these pesky little brats.");
+				dishwasher.addHelp("I can buy your vegetables and herbs.  Please see blackboards on wall for what I need.");
 				dishwasher.addOffer("Look at blackboards on wall to see my prices.");
 				dishwasher.addQuest("You could try to help me #escape from these hoodlums. Well... maybe not.");
 				dishwasher.addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");

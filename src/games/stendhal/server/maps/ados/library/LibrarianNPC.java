@@ -68,7 +68,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        thread.setDaemon(true);
 						        thread.start();
 						        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter(npc, access));
-						        npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
+						        npc.say("Please wait, while I am looking it up in the book called #Wikipedia!");
 					        }
 				        });
 				addReply("wikipedia",

@@ -148,7 +148,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "remove", 
 			new NotCondition(new PlayerHasStoreableEntityCondition(rentedSignList)),
 			ConversationStates.ATTENDING,
-			"You did not rent any sign, so i cannot remove one.", null);
+			"You did not rent any sign, so I cannot remove one.", null);
 
 		// admins may remove signs (even low level admins)
 		npc.add(ConversationStates.ATTENDING, "delete", 

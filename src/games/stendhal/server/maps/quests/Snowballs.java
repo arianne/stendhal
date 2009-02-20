@@ -118,7 +118,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS)),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
-			"Greetings stranger! I see you have the snow i asked for. Are these snowballs for me?",
+			"Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?",
 			null);
 
 		npc.add(ConversationStates.IDLE, 

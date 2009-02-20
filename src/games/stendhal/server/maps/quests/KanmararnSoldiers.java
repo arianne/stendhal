@@ -324,7 +324,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
 			new HenryQuestNotCompletedCondition(),
 			ConversationStates.ATTENDING,
-			"If you find my friends, i will give you the map", null);
+			"If you find my friends, I will give you the map", null);
 	}
 
 	/**

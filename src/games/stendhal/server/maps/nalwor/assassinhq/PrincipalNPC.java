@@ -48,7 +48,7 @@ public class PrincipalNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("It is my job to keep all my little guys armed and equipped. Please help me.");
-				addHelp("I can buy your surplus items.  Please see blackboard on wall for what i need.");
+				addHelp("I can buy your surplus items.  Please see blackboard on wall for what I need.");
 				addOffer("Look at blackboard on wall to see my offer.");
 				addQuest("Other than selling me what I need, I don't require anything from you.");
 				addGoodbye();
