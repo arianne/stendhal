@@ -9829,8 +9829,9 @@
     </ai>
   </creature>
 
+<!-- used to be in giant human folder which is why the tiled image is different -->
   <creature name="dwarf golem">
-    <type class="giant_human" subclass="dwarf_golem" tileid="giant_human.png:5"/>
+    <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
     <description/>
     <attributes>
       <atk value="939"/>
