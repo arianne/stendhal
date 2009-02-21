@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="50" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -140,7 +140,7 @@
  </layer>
  <layer name="collision" width="50" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1WWw7AIAjj/pfa1fa1ZDFIwFZkC034cTzaCeolIldbeZPJmrY+89e+vXNYNbxA41fh0a7FePJla3nqazxkWB9jvL2RhV19daK3NB6ajycXcg6geSwdXqzyZgOpg/x/Ntg6TuEvOlC0jlo8WgcXyF1Tac5bR+sY6zOA8tm5H5GcCH9GPAtW/1j+VvwJVL0/ojMY5fGV/Yhy2T0fq3OepYONqjpQHlV0RFH1vMrm4XmreIyZ62SNKnYDuC8zkgAZAAA=
+   H4sIAAAAAAAAAO2VUQ7AIAhDuf+lvNq+liwGGbNViOMl/DgKdHPaRKRVpA8ZrGnro3zt2bOG1cMLqp/F413TeOrt9nL31+aQbr3XePfGLlbtq4i9pc2h5XhqIecAWsfy4WV2bjZIH+T9s2H7iOIUHyjlI9cc5YMLctdk+s/LR/no+zNA58n6Pb7oED0ba/9Y+ZY+glPvD2/+rH4V6JlTPrhk9YHOkcXHV/56Xr3pZ4NZK7JHlrgAvdM58QAZAAA=
   </data>
  </layer>
  <layer name="protection" width="50" height="32" opacity="0.38">
