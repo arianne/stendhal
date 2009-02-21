@@ -149,33 +149,61 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
            <portal x="41" y="30" ref="entrance_right">
              <destination zone="0_fado_city" ref="tavern_entrance_right"/>
            </portal>
+           
+           
+           <!-- round table upper left -->
+            <entity x="12" y="21">
+     		  <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+              <attribute name="description">You see a table clean enough to eat from.</attribute>
+  		    </entity>
+           
+           <!-- small table lower left -->
+             <entity x="12" y="25">
+     		  <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+              <attribute name="description">You see a table clean enough to eat from.</attribute>
+  		    </entity>
+           
+           <!-- long vertical table -->
+           
            <entity x="17" y="20">
      		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
              <attribute name="description">You see a table clean enough to eat from.</attribute>
+              <attribute name="width">1</attribute>
+             <attribute name="height">6</attribute>
   		   </entity>
-           <entity x="17" y="21">
+          
+  		   
+  		      <!-- upper horizontal table -->
+  		   <entity x="21" y="20">
      		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
              <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		   </entity> 	
-            <entity x="17" y="22">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		   </entity>
-           <entity x="17" y="23">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+              <attribute name="width">2</attribute>
+             <attribute name="height">1</attribute>
   		   </entity> 
-  		   <entity x="17" y="24">
+  		  	
+  		   
+  		       <!-- horizontal table -->
+  		   <entity x="20" y="23">
      		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
              <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <attribute name="width">7</attribute>
+             <attribute name="height">1</attribute>
   		   </entity> 
-  		   <entity x="17" y="25">
+  		   
+  		      <!-- small table lower right-->
+  		   <entity x="22" y="25">
      		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
              <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		   </entity>	
-  		 <entity x="21" y="23">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+              <attribute name="width">2</attribute>
+             <attribute name="height">1</attribute>
+  		   </entity> 
+  		  	
+  		 
+  		   
+  		   
+  		  <entity x="21" y="23">
+    		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      		<attribute name="text">
 SOUP RECIPE
 
 carrot, salad (From Semos)
