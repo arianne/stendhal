@@ -78,6 +78,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	private static final Color COLOR_NORTH = new Color(0.0f, 0.0f, 0.0f);
 
+	/**
+	 * The colour of walk blockers (dark pink) 
+	 */
+    private static final Color COLOR_WALKBLOCKER = new Color(209, 144, 224);
+
 	/** width of the minimap. */
 	private static final int MINIMAP_WIDTH = 129;
 
@@ -387,7 +392,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
 				}
 			}  else if (entity instanceof WalkBlocker) {
-				    drawEntity(vg, entity, Color.PINK);
+				    drawEntity(vg, entity, COLOR_WALKBLOCKER);
 			} else if (mininps && User.isAdmin()) {
 				// Enabled with -Dstendhal.superman=x.
 
