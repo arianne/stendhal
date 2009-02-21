@@ -581,7 +581,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 	<!--  table on the left -->
      <entity x="14" y="12">
 		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+		 <attribute name="description">You see a table, sticky with splashes of old beer.</attribute>
          <attribute name="width">1</attribute>
          <attribute name="height">4</attribute>
 	 </entity>
@@ -589,7 +589,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 <!--  table in the middle -->
      <entity x="19" y="12">
 		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+		 <attribute name="description">You see a table, ideal for gathering round with friends.</attribute>
          <attribute name="width">1</attribute>
          <attribute name="height">4</attribute>
 	 </entity>
@@ -597,7 +597,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 <!--  table on the right -->
      <entity x="26" y="12">
 		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+		 <attribute name="description">You see a sturdy wooden table.</attribute>
          <attribute name="width">1</attribute>
          <attribute name="height">4</attribute>
 	 </entity>
@@ -605,7 +605,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 <!--  bar -->
      <entity x="10" y="5">
 		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-		 <attribute name="description">You see a bar.</attribute>
+		 <attribute name="description">You see a bar, perhaps to rest a refreshing beer on?</attribute>
          <attribute name="width">9</attribute>
          <attribute name="height">1</attribute>
 	 </entity>
