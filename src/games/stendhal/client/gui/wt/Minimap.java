@@ -56,7 +56,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The color of the background (palest grey).
 	 */
-	private static Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
+	private static final Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
 
 	/**
 	 * The color of blocked areas (red).
@@ -154,7 +154,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		setMovable(true);
 		setMinimizeable(true);
 		if (System.getProperty("stendhal.transparency") != null) {
-			COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
+			
 			setTransparency(0.5f);
 		}
 
@@ -179,7 +179,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	public void update(final CollisionDetection cd, final CollisionDetection pd, final GraphicsConfiguration gc,
 			final String zone) {
-		setTitletext(zone);		
+		
+		setTitletext(User.get().getRPObject().getID().getZoneID());		
 		
 		// FOR PATHFINDING THING
 		collisiondetection = cd;
