@@ -117,8 +117,8 @@ public class ElfPrincess extends AbstractQuest {
 		rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.ATTENDING, 
-			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.",
+			ConversationStates.IDLE, 
+			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.",
 			new MultipleActions(new EquipItemAction("rhosyd", 1, true), new SetQuestAction(QUEST_SLOT, "got_flower")));
 
 	rose.add(ConversationStates.IDLE,
