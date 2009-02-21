@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.jail;
+package games.stendhal.server.core.config.zone;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;

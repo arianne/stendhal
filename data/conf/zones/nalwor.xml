@@ -906,7 +906,7 @@ buy 100 empty scroll
  </zone>
 
 <zone name="hell" level="-2" x="500160" y="500096" file="Level -2/nalwor/hell.tmx">
- <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+ <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.Reaper2NPC"/>

@@ -658,7 +658,7 @@ in roaches.
    <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
-    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>	
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>	
 <!--some feedback for a player who might be trapped inside and not know
     what to do. if they come back after their quest slot isn't 'twilight_zone'
     anymore, but before they are 'done' they are then trapped forever as lda
@@ -1757,7 +1757,7 @@ Southeast: Docks
    </zone>
 
    <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" file="Level 0/ados/ocean_e.tmx">
-     <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
    </zone>
   
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
@@ -1944,7 +1944,7 @@ Assassin Dagger (atk 6 rate 2) 12000
      </implementation>
      <attribute name="name">dragon lair2</attribute>
     </entity>
-  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
   <configurator class-name="games.stendhal.server.maps.ados.tunnel.WishmanNPC"/>
  <portal x="25" y="28" ref="dragonlairinside">
    <destination zone="-1_ados_outside_w" ref="dragonlairoutside"/>
@@ -2031,7 +2031,7 @@ Hell Dagger (atk 9 rate 2) 20000
  <!--  Level -5 -->
 
  <zone name="-5_ados_abandoned_keep" level="-5" x="500512" y="499744" file="Level -5/ados/abandoned_keep.tmx">
- <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+ <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
  </zone>
 
  <!--  Level -6 -->
