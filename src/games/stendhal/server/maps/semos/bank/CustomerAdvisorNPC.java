@@ -100,10 +100,10 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			final StendhalRPZone vaultzone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_vault");
-			final StendhalRPZone zone = StendhalRPZone.fillContent(player
-					.getName()
-					+ "_vault", vaultzone);
+			String zoneName = player.getName() + "_vault";
 			
+			final StendhalRPZone zone = new StendhalRPZone(zoneName, vaultzone);
+			//final StendhalRPZone zone = StendhalRPZone.fillContent(zoneName, vaultzone);
 			zone.addMovementListener(new VaultMovementListener());
 			PersonalChest chest = new PersonalChest();
 			chest.setPosition(4, 2);

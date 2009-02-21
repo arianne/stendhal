@@ -65,13 +65,13 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 
-	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone) {
-		final StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
-		newZone.contents.addAll(zone.contents);
-		newZone.collisionMap = zone.collisionMap;
-		newZone.protectionMap  = zone.protectionMap;
-		return newZone;
-	}
+//	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone) {
+//		final StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
+//		newZone.contents.addAll(zone.contents);
+//		newZone.collisionMap = zone.collisionMap;
+//		newZone.protectionMap  = zone.protectionMap;
+//		return newZone;
+//	}
 	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPZone.class);
@@ -161,6 +161,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public StendhalRPZone(final String name, final int width, final int height) {
 		this(name);
 		collisionMap.init(width, height);
+	}
+
+	public StendhalRPZone(String name, StendhalRPZone zone) {
+		this(name);
+		contents.addAll(zone.contents);
+		collisionMap = zone.collisionMap;
+		protectionMap  = zone.protectionMap;
+		
+		this.zoneid = new ID(name);
 	}
 
 	/**
@@ -258,7 +267,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
-	// We reserve the first 64 portals ids for hand made portals
+	/** We reserve the first 64 portals ids for hand made portals. */
 	private int maxPortalNumber = 64;
 
 	public Object assignPortalID(final Portal portal) {
