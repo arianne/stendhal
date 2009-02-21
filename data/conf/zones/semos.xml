@@ -385,100 +385,6 @@ Mature sheep wanted: please speak to Sato.
   <title>The City of Semos</title>
   
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
-	
-<![CDATA[
-  <!-- XXX: Hypothtical "NPC" element. No used yet - Concept only -->
-  <npc x="46" y="20" name="Nomyr Ahba">
-   <!-- This returns a general configured SpeakerNPC object -->
-   <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC"/>
-
-   <attribute name="class">thiefnpc</attribute>
-
-   <path>
-    <!-- I think relative coordinates would be better -->
-    <node x="46" y="20"/>
-    <node x="46" y="21"/>
-    <node x="50" y="21"/>
-    <node x="50" y="20"/>
-    <node x="50" y="21"/>
-    <node x="46" y="21"/>
-   </path>
-
-   <!-- Idle -->
-   <dialog states="idle" next-state="attending">
-    <!-- 'ref' maps to a predefined alias list -->
-    <trigger ref="greeting"/>
-
-    <!-- This returns a SpeakerNPC.ChatAction -->
-    <action class-name="games.stendhal.server.entity.npc.action.PriorChatResponseAction">
-     <parameter name="first-response">
-Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?
-     </parameter>
-
-     <parameter name="later-response">
-Hi again, ${player.name}. How can I #help you this time?
-     </parameter>
-    </action>
-   </dialog>
-
-   <!-- Attending -->
-   <dialog states="attending" next-state="information-1">
-    <!-- This reaction only makes sense in the first greeting reply -->
-    <trigger ref="yes"/>
-    <reply>
-The young people have joined the Imperial Deniran Army to fight in the south, so the city has been left almost unprotected against the hordes of monsters coming from the dungeons. Can you help us?
-    </reply>
-   </dialog>
-
-   <dialog states="attending" next-state="idle">
-    <!-- This reaction only makes sense in the first greeting reply -->
-    <trigger ref="no"/>
-    <reply>
-Huh. Well, you could help me by taking a peek through that other window, if you're not busy... I'm trying to figure out what'sgoing on inside.
-    </reply>
-   </dialog>
-
-   <dialog states="attending" next-state="attending">
-    <trigger ref="help"/>
-    <reply>
-I'm a... let's call me an "observer". I can tell you about all the latest rumours. Do you want to hear?
-    </reply>
-   </dialog>
-
-   <dialog states="attending" next-state="attending">
-    <trigger ref="job"/>
-    <reply>
-I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.
-    </reply>
-   </dialog>
-
-   <dialog states="attending" next-state="attending">
-    <trigger ref="quest"/>
-    <reply>
-Thanks for asking, but I don't need anything right now.
-    </reply>
-   </dialog>
-
-   <!-- Information #1 -->
-   <dialog states="information-1" next-state="idle">
-    <trigger ref="yes"/>
-    <reply>
-First of all, you should go talk to Hayunn Naratha. He's an great old hero, and he's also pretty much our only defender here...  I'm sure he will gladly give you some advice! Good luck.
-    </reply>
-   </dialog>
-
-   <dialog states="information-1" next-state="idle">
-    <trigger ref="no"/>
-    <reply>
-Awww... so you're a coward, then? Huh.
-    </reply>
-   </dialog>
-
-   <!-- This is a special internal dialog handler -->
-   <goodbye>Bye.</goodbye>
-  </npc>
-  <!-- XXX: End of Hypothtical "NPC" element. -->
-]]>
 
   <entity x="46" y="20">
     <implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
@@ -666,10 +572,44 @@ Shepherds please note: keep watch for the wolves while searching for berries her
   </entity>
  </zone>
 
+
    <zone name="int_semos_tavern_0" file="interiors/semos/tavern_0.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.tavern.RichardStallmanNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
+
+	<!--  table on the left -->
+     <entity x="14" y="12">
+		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+         <attribute name="width">1</attribute>
+         <attribute name="height">4</attribute>
+	 </entity>
+
+<!--  table in the middle -->
+     <entity x="19" y="12">
+		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+         <attribute name="width">1</attribute>
+         <attribute name="height">4</attribute>
+	 </entity>
+
+<!--  table on the right -->
+     <entity x="26" y="12">
+		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+		 <attribute name="description">You see a table clean enough to eat from.</attribute>
+         <attribute name="width">1</attribute>
+         <attribute name="height">4</attribute>
+	 </entity>
+
+<!--  bar -->
+     <entity x="10" y="5">
+		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+		 <attribute name="description">You see a bar.</attribute>
+         <attribute name="width">9</attribute>
+         <attribute name="height">1</attribute>
+	 </entity>
+
 
     <entity x="2" y="11">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -691,7 +631,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
     <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
 
-    <!-- This must be after the NPC configurator -->
+   
     <entity x="2" y="16">
      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Xin Blanca</parameter>
