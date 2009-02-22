@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="leather helmet">
     <type class="helmet" subclass="leather_helmet" tileid="-1"/>
     <description>You see a leather helmet, it seems more like a hat than a defensive item.</description>

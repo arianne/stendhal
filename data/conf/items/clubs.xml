@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="club">
     <type class="club" subclass="club" tileid="-1"/>
     <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
@@ -101,8 +102,9 @@
     <description>You see a rare skull staff. It appears mystical but will work like any other staff.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
-      <lifesteal value="0.05"/>
       <rate value="7"/>
+      <lifesteal value="0.05"/>
+      
     </attributes>
     <weight value="8.0"/>
     <value value="76057"/>
@@ -198,9 +200,10 @@
     <description>You see a chaos hammer. It is a fearsome weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    
     <attributes>
-      <lifesteal value="0.3"/>
+      
       <atk value="42"/>
       <rate value="8"/>
+      <lifesteal value="0.3"/>
     </attributes>
     <weight value="8.0"/>
     <value value="463050"/>
@@ -248,8 +251,9 @@
     <description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="48"/>
+       <rate value="7"/>
       <lifesteal value="-0.1"/>
-      <rate value="7"/>
+     
     </attributes>
     <weight value="8.0"/>
     <value value="691200"/>

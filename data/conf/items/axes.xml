@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="old scythe">
     <type class="axe" subclass="oldscythe" tileid="-1"/>
     <description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
@@ -213,9 +214,9 @@
     <description>You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    
     <attributes>
-      <lifesteal value="0.2"/>
       <atk value="52"/>
       <rate value="8"/>
+       <lifesteal value="0.2"/>
     </attributes>
     <weight value="3.0"/>
     <value value="878800"/>

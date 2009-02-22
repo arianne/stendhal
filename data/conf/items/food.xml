@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="cherry">
     <type class="food" subclass="cherry" tileid="-1"/>
     <description>You see a cherry.  It tangy taste revives you a little.</description>
@@ -473,10 +474,12 @@
     <type class="food" subclass="egg" tileid="-1"/>
     <description>You see an egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <quantity value="1"/>
+      
       <amount value="30"/>
-      <regen value="1"/>
       <frequency value="20"/>
+       <quantity value="1"/>
+      <regen value="1"/>
+     
     </attributes>
     <weight value="0.5"/>
     <value value="1"/>

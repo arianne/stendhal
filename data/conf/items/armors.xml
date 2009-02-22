@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="dress">
     <type class="armor" subclass="dress" tileid="-1"/>
     <description>You see a dress, which provides practically no defence. It is barely worth picking up.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="5.0"/>

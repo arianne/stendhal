@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>  <item name="wood">
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
+	 <item name="wood">
     <type class="resource" subclass="wood" tileid="-1"/>
     <description>You see some wood, fallen from a nearby tree.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>

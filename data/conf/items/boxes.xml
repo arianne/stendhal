@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="present">
     <type class="box" subclass="present" tileid="-1"/>
     <description>You see a present. Open it.</description>

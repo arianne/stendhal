@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="leather boots">
     <type class="boots" subclass="leather_boots" tileid="-1"/>
     <description>You see a simple pair of leather boots to give your feet some protection.</description>

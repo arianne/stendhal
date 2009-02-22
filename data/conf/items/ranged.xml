@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>

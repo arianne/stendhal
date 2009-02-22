@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="wooden arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
     <description>You see a wooden arrow. With a supply of arrows in one hand
     and a bow in the other you can attack from a distance. </description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    
+    <attributes>
       <atk value="1"/>
       <range value="2"/>
       <quantity value="1"/>

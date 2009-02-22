@@ -811,6 +811,12 @@
 				<include name="creatures.xml" />
 			</fileset>
 		</schemavalidate>
+		<schemavalidate>
+			<schema namespace="stendhal" file="${config_dir}/items.xsd" />
+			<fileset dir="data/conf/items">
+				<include name="*.xml"/>
+			</fileset>
+		</schemavalidate>
 	</target>
 
 </project>

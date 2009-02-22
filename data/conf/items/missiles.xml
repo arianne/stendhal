@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
     <item name="snowball">
     <type class="missile" subclass="snowballs" tileid="-1"/>
     <description>You see snowballs. You can throw them on your friends or put it in your bag to keep your fish fresh. But be carfully, there could be little stones in it.</description>

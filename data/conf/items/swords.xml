@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="assassin dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
     <description>You see an assassin dagger, easy to pull out and use when needed.</description>
@@ -150,9 +151,11 @@
   <description>You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.</description> 
   <implementation class-name="games.stendhal.server.entity.item.Item"/> 
   <attributes>
-   <lifesteal value="0.1"/> 
    <atk value="7"/> 
-   <rate value="2"/>
+    <rate value="2"/>
+   <lifesteal value="0.1"/> 
+  
+  
   </attributes> 
   <weight value="1"/>    
   <value value="10400"/>
@@ -342,8 +345,9 @@
     <description>You see the vampire sword, which will suck life from those you attack with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
+       <rate value="5"/>
       <lifesteal value="0.1"/>
-      <rate value="5"/>
+     
     </attributes>
     <weight value="4.0"/>
     <value value="98742"/>
@@ -423,8 +427,9 @@
     <description>The chaos sword. It hurts them but it heals you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="32"/>
-      <lifesteal value="0.3"/>
       <rate value="9"/>
+      <lifesteal value="0.3"/>
+      
     </attributes>
     <weight value="10.0"/>
     <value value="182044"/>
@@ -584,8 +589,9 @@
     <description>The demon fire sword, a horrible sword taken from hell's deepest dungeons.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="58"/>
+        <rate value="10"/>
       <lifesteal value="0.3"/>
-      <rate value="10"/>
+    
     </attributes>
     <weight value="12.0"/>
     <value value="975560"/>
