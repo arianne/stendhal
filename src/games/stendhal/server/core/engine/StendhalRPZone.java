@@ -17,6 +17,7 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
 import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.core.config.zone.TeleportationRules;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -65,13 +66,7 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 
-//	public static StendhalRPZone  fillContent(final String name, final StendhalRPZone zone) {
-//		final StendhalRPZone newZone = new StendhalRPZone(name, zone.getWidth(), zone.getHeight());
-//		newZone.contents.addAll(zone.contents);
-//		newZone.collisionMap = zone.collisionMap;
-//		newZone.protectionMap  = zone.protectionMap;
-//		return newZone;
-//	}
+	TeleportationRules teleRules = new TeleportationRules();
 	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPZone.class);
@@ -102,7 +97,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private final List<Blood> bloods;
 
-	private boolean teleportAllowed = true;
+	//private boolean teleportAllowed = true;
 
 	private boolean moveToAllowed = true;
 
@@ -1128,7 +1123,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return true, if teleportion is possible, false otherwise
 	 */
 	public boolean isTeleportAllowed() {
-		return teleportAllowed;
+		return teleRules.isInAllowed() && teleRules.isOutAllowed();
 	}
 
 	/**
@@ -1138,8 +1133,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param teleportAllowed
 	 *            true, if teleportion is possible, false otherwise
 	 */
-	public void setTeleportAllowed(final boolean teleportAllowed) {
-		this.teleportAllowed = teleportAllowed;
+	public void disAllowTeleport() {
+		teleRules.disAllowIn();
+		teleRules.disallowOut();
 	}
 
 	/**
@@ -1164,6 +1160,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	private int debugturn;
+
+	
 
 	@Override
 	public void nextTurn() {
@@ -1264,6 +1262,25 @@ public class StendhalRPZone extends MarauroaRPZone {
 		
 		return result;
 		
+		
+	}
+
+	
+	public boolean isTeleportInAllowed() {
+		return teleRules.isInAllowed();
+	}
+
+	public boolean isTeleportOutAllowed() {
+		return teleRules.isOutAllowed();
+	}
+
+	public void disallowIn() {
+		teleRules.disAllowIn();
+		
+	}
+
+	public void disallowOut() {
+		teleRules.disallowOut();
 		
 	}
 	

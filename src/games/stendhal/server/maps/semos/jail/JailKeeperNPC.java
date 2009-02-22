@@ -56,6 +56,6 @@ public class JailKeeperNPC implements ZoneConfigurator {
 	}
 
 	private void disabledMagicScrolls(final StendhalRPZone zone) {
-		zone.setTeleportAllowed(false);
+		zone.disAllowTeleport();
 	}
 }
