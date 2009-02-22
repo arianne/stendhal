@@ -93,7 +93,7 @@ public class MarkedScroll extends TeleportScroll {
 								+ "you cannot concentrate on it because you have never been there.");
 						return false;
 					} else {
-						if (zone.isTeleportAllowed()) {
+						if (zone.isTeleportInAllowed()) {
 							zone = temp;
 							x = Integer.parseInt(st.nextToken());
 							y = Integer.parseInt(st.nextToken());

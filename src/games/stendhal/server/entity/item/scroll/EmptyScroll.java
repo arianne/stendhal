@@ -59,7 +59,7 @@ public class EmptyScroll extends Scroll {
 	protected boolean useScroll(final Player player) {
 		final StendhalRPZone zone = player.getZone();
 
-		if (zone.isTeleportAllowed()) {
+		if (zone.isTeleportInAllowed()) {
 			final Item markedScroll = SingletonRepository.getEntityManager().getItem(
 					"marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "

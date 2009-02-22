@@ -127,13 +127,13 @@ public class WeddingRing extends Ring {
 		}
 
 		final StendhalRPZone sourceZone = player.getZone();
-		if (!sourceZone.isTeleportAllowed()) {
+		if (!sourceZone.isTeleportOutAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the wedding ring from working!");
 			return;
 		}
 
 		final StendhalRPZone destinationZone = spouse.getZone();
-		if (!destinationZone.isTeleportAllowed()) {
+		if (!destinationZone.isTeleportInAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in the destination area prevents the wedding ring from working!");
 			return;
 		}
