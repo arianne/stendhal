@@ -38,6 +38,7 @@ unicorn added for now
 - cherries and apples heal faster
 - Yorphin Baos (Fado) buys hell dagger
 - all tables in fado and semos tavern walk blockers instead of collisions so items can be placed on them
+- teleporting out of semos bank now possible, as in teleporting out of a few other areas which only had magic scrolls disallowed for stopping players teleporting in
 *Bug fixes*
 - /ban reason is no longer eaten on client side
 - NPCShoutZone.java: messages are now also send to all supporters as stated in todo
