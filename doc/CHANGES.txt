@@ -5,7 +5,8 @@ Changelog
 
 0.72
 *Features*
-- dagobert creates vaults for players, so they can access semos bank slot without spys.
+- dagobert creates personal vaults for players, so they can access semos bank slot without spies
+- vaults contain a wastebin for disposing of items; other items left on ground get returned to player on leaving
 - /me shows emotes
 - /clear clears gamelog
 - chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
@@ -18,12 +19,15 @@ dragon and balrog attack at different rates from the default, and hit either
 harder or weaker accordingly
 - rare monsters that do not appear in DM or daily quests. a big bad wolf and an
 unicorn added for now
+- new item, red dragon cloak
+- walkblocker squares coloured pink on minimap
 *Improvements* 
 - player level info added to character panel
-- player atk displayed as base 'times' (weapon + 1) on character panel
+- player atk and def displayed as base 'times' (weapon + 1) on character panel
 - Deathmatch recruiter walks in safer (upper) part of swamp 
 - find out which heroes are in the deathmatch already by asking Thonatus, the recruiter
 - increased spawn delay of creatures in DM by 5 sec
+- decrease how long player is forced to wait after requesting bail
 - increased the XP given for some of the low and mid level quests
 - optimal distance for archer to attack from is 4. Less effective when farther or nearer and not all if distance > 7. Switches to melee at 0 distance.
 - reduce the archer speeds else many left unkilled at zone boundaries
@@ -32,6 +36,8 @@ unicorn added for now
 - arrows dropped more often
 - some elves dropping food and potions
 - cherries and apples heal faster
+- Yorphin Baos (Fado) buys hell dagger
+- all tables in fado and semos tavern walk blockers instead of collisions so items can be placed on them
 *Bug fixes*
 - /ban reason is no longer eaten on client side
 - NPCShoutZone.java: messages are now also send to all supporters as stated in todo
@@ -40,6 +46,8 @@ unicorn added for now
 - Zara re-offers quest if player previously rejected 
 - security measures on nalwor jail removed so players can heal there
 - sheep and pet only get hungrier when there are players in the same zone 
+- rose leigh says Bye directly after giving flower so other players can say hi
+- dwarf golem moved to giant animal instead of giant human
 *Misc*
 - mossy rubble pic has been added to rock
 - wood grower shows branch till picked
