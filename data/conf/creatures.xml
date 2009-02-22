@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<creatures>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal creatures.xsd ">
   <creature name="deer">
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
     <description>You see a defenseless deer, do not have fear of him.</description>
@@ -141,7 +142,7 @@
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
-      <profine name="non offensive"/>
+      <profile name="non offensive"/>
       <profile name="coward"/>
     </ai>
   </creature>
@@ -1124,7 +1125,7 @@
       <item value="potion" quantity="[1,1]" probability="20.0"/>
     </drops>
     <equips>
-      <slot name="rhand" item="dagger"/>
+          <slot name="rhand" item="dagger"/>
     </equips>
     <ai>
       <says>
@@ -1434,8 +1435,8 @@
       <item value="wooden bow" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
-      <slot name="lhand" item="wooden arrow" quantity="10000"/>
-      <slot name="rhand" item="wooden bow" quantity="1"/>
+      <slot name="lhand" item="wooden arrow" quantity="10000" />
+      <slot name="rhand" item="wooden bow" quantity="1" />
     </equips>
     <ai>
       <says>
@@ -10471,8 +10472,8 @@
     (doesn't have to push it away, say.) The AI profiles ensure they do not
     move except when pushed by player. -->
  <creature name="madaram pawn">
-    <hidden/>
     <type class="madaram" subclass="madaram_peasant" tileid="chess.png:6"/>
+    <hidden />
     <description>You see a pawn for a game of chess. It will reward nothing if killed.</description>
     <attributes>
       <atk value="100"/>
@@ -10495,8 +10496,8 @@
   </creature>
 
   <creature name="chaos pawn">
-    <hidden/>
     <type class="chaos" subclass="chaos_soldier" tileid="chess.png:0"/>
+    <hidden/>
     <description>You see a pawn for a game of chess. He will drop nothing if you kill him.</description>
     <attributes>
       <atk value="100"/>
@@ -10520,8 +10521,8 @@
 
 
  <creature name="madaram rook">
-    <hidden/>
     <type class="madaram" subclass="madaram_axeman" tileid="chess.png:7"/>
+    <hidden/>
     <description>You see a rook for a game of chess. It will scarcely reward you to kill it.</description>
     <attributes>
       <atk value="100"/>
@@ -10545,8 +10546,8 @@
 
 
   <creature name="chaos rook">
-    <hidden/>
     <type class="chaos" subclass="chaos_commander" tileid="chess.png:1"/>
+    <hidden/>
     <description>You see a rook for a game of chess. He will drop nothing if you kill him.</description>
      <attributes>
       <atk value="100"/>
@@ -10569,8 +10570,8 @@
   </creature>
 
  <creature name="madaram knight">
-    <hidden/>
     <type class="madaram" subclass="madaram_cavalry" tileid="chess.png:8"/>
+    <hidden/>
     <description>You see a knight, a chess piece. He won't reward you if you kill him.</description>
     <attributes>
       <atk value="100"/>
@@ -10594,8 +10595,8 @@
 
 
   <creature name="chaos knight">
-    <hidden/>
     <type class="chaos" subclass="chaos_dragonrider" tileid="chess.png:2"/>
+    <hidden/>
     <description>You see a knight for a game of chess. He will drop nothing if you kill him.</description>
     <attributes>
       <atk value="100"/>
@@ -10618,8 +10619,8 @@
   </creature>
 
  <creature name="madaram bishop">
-    <hidden/>
     <type class="madaram" subclass="madaram_healer" tileid="chess.png:9"/>
+    <hidden/>
     <description>You see a bishop for a game of chess. It will reward you nothing if you slay it.</description>
     <attributes>
       <atk value="100"/>
@@ -10642,8 +10643,8 @@
   </creature>
 
   <creature name="chaos bishop">
-    <hidden/>
     <type class="chaos" subclass="chaos_sorceror" tileid="chess.png:3"/>
+    <hidden/>
     <description>You see a bishop for a game of chess. He will not reward you if you kill him.</description>
      <attributes>
       <atk value="100"/>
@@ -10666,8 +10667,8 @@
   </creature>
 
  <creature name="madaram king">
-    <hidden/>
     <type class="madaram" subclass="madaram_buster_blader" tileid="chess.png:10"/>
+    <hidden/>
     <description>You see a king to play chess with, he will reward you nothing if you kill him.</description>
      <attributes>
       <atk value="100"/>
@@ -10690,8 +10691,8 @@
   </creature>
 
   <creature name="chaos king">
-    <hidden/>
     <type class="chaos" subclass="chaos_lord" tileid="chess.png:4"/>
+    <hidden/>
     <description>You see a king of a game of chess. He will reward nothing if you kill him.</description>
      <attributes>
       <atk value="100"/>
@@ -10714,8 +10715,8 @@
   </creature>
 
  <creature name="madaram queen ">
-    <hidden/>
     <type class="madaram" subclass="madaram_queen" tileid="chess.png:11"/>
+    <hidden/>
     <description>You see a queen piece for a game of chess. She will reward nothing if you kill her.</description>
     <attributes>
       <atk value="100"/>
@@ -10738,8 +10739,8 @@
   </creature>
 
   <creature name="chaos queen">
-    <hidden/>
     <type class="chaos" subclass="chaos_overlord" tileid="chess.png:5"/>
+    <hidden/>
     <description>You see a queen piece for a game of chess. She will reward nothing if you kill her.</description>
     <attributes>
       <atk value="100"/>
