@@ -13,7 +13,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.common.Log4J;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -21,6 +26,14 @@ import utilities.SpeakerNPCTestHelper;
 
 public class AlwaysTrueConditionTest {
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+
+		MockStendlRPWorld.get();
+		
+	}
+	
 	@Test
 	public void testConstructor() throws Throwable {
 		new AlwaysTrueCondition();

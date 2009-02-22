@@ -57,21 +57,18 @@ public class AdosDeathmatchTest {
 		
 		en.step(dmPlayer, "deathmatch");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("The deathmatch is the ultimate challenge for true #heroes.", recruiter.get("text"));
+		assertEquals("Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", recruiter.get("text"));
 		
-		en.step(dmPlayer, "heroes");
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Are you such a hero? I can take you to the #challenge.", recruiter.get("text"));
 		
 		dmPlayer.setLevel(19);
 		en.step(dmPlayer, "challenge");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Sorry, you are too weak!", recruiter.get("text"));
+		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", recruiter.get("text"));
 		recruiter.remove("text");
 		
 		en.step(dmPlayer, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("I hope you will enjoy the Ados #Deathmatch!", recruiter.get("text"));
+		assertEquals("I hope you will enjoy the Ados Deathmatch!", recruiter.get("text"));
 		
 
 		

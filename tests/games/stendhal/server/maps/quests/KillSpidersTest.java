@@ -108,7 +108,7 @@ public class KillSpidersTest {
 		assertEquals("Would you like to help me again?", npc.get("text"));
 		en.step(player, "no");
 		assertThat(player.getKarma(), lessThan(newKarma));
-		assertEquals("Ok, i have to find someone else to do this 'little' job!", npc.get("text"));
+		assertEquals("Ok, I have to find someone else to do this 'little' job!", npc.get("text"));
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		en.step(player, "bye");
 		

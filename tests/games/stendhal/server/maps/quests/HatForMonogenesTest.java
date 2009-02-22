@@ -161,7 +161,7 @@ public class HatForMonogenesTest {
 		assertEquals("Hey! Is that leather hat for me?", npc.get("text"));
 		oldXP = player.getXP();
 		en.step(player, "yes");
-		assertEquals(oldXP + 10, player.getXP());
+		assertEquals(oldXP + 50, player.getXP());
 
 		assertEquals("Bless you, my good friend! Now my head will stay nice and warm.", npc.get("text"));
 		en.step(player, "bye");

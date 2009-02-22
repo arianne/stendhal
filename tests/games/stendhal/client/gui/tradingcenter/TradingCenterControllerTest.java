@@ -5,10 +5,12 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TradingCenterControllerTest {
 
+	@Ignore
 	@Test
 	public void testAddToZone() throws Exception {
 		TradingCenterController controller = new TradingCenterController();

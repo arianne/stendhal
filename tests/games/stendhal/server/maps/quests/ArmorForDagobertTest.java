@@ -50,7 +50,7 @@ public class ArmorForDagobertTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("Welcome to the bank of Semos! Do you need #help on your personal chest?", npc.get("text"));
+		assertEquals("Welcome to the bank of Semos! I am here to #help you manage your personal chest.", npc.get("text"));
 		assertTrue(quest.getHistory(player).isEmpty());
 
 		en.step(player, "no");
@@ -74,7 +74,7 @@ public class ArmorForDagobertTest {
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Welcome to the bank of Semos! Do you need #help on your personal chest?", npc.get("text"));
+		assertEquals("Welcome to the bank of Semos! I am here to #help you manage your personal chest.", npc.get("text"));
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "task");
 		assertEquals(questHistory, quest.getHistory(player));
@@ -147,7 +147,7 @@ public class ArmorForDagobertTest {
 		en.step(player, "yes");
 		questHistory.add("DONE");
 		assertEquals(questHistory, quest.getHistory(player));
-		assertEquals("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.", npc.get("text"));
+		assertEquals("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.", npc.get("text"));
 		assertEquals(xpBeforeReward + 50, player.getXP());
 		en.step(player, "task");
 		assertEquals(questHistory, quest.getHistory(player));

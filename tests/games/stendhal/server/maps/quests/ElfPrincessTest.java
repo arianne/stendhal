@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -84,9 +85,9 @@ public class ElfPrincessTest {
 
 		assertTrue("Flowers! Get your fresh flowers here!".equals(npcRose.get("text")) || (npcRose.get("text") == null));
 		enRose.step(player, "hi");
-		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.", npcRose.get("text"));
-		enRose.step(player, "bye");
-		assertEquals("Everything's coming up roses ... bye ...", npcRose.get("text"));
+		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", npcRose.get("text"));
+		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
+		
 
 		// -----------------------------------------------
 		// return to Tywysoga
@@ -125,10 +126,9 @@ public class ElfPrincessTest {
 		// -----------------------------------------------
 
 		enRose.step(player, "hi");
-		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.", npcRose.get("text"));
-		enRose.step(player, "bye");
-		assertEquals("Everything's coming up roses ... bye ...", npcRose.get("text"));
-
+		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", npcRose.get("text"));
+		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
+	
 		// -----------------------------------------------
 
 		en.step(player, "hi");

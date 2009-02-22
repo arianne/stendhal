@@ -5,9 +5,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -18,6 +23,16 @@ public class AndConditionTest {
 
 	private ChatCondition falsecondition;
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+		//MockStendhalRPRuleProcessor.get();
+
+		MockStendlRPWorld.get();
+		
+	}
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();

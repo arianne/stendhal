@@ -132,6 +132,6 @@ public class WeaponsCollectorTest {
 		wc.rewardPlayer(player);
 		
 		assertTrue(player.isEquipped("ice sword"));
-		assertEquals(oldXP + 1000, player.getXP());
+		assertEquals(oldXP + 5000, player.getXP());
 	}
 }
