@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
-<zones>
+<zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal zones.xsd ">
  <!--
    ** Load zones. Written from left to right and from top to bottom.
    ** Please respect it!
@@ -121,11 +122,11 @@ West: Semos
    <portal x="16" y="9" ref="door_right">
  <!-- sometime in future we might allow players in to get a pet out but for
      now, we lock the door into the pet area -->
+     <destination zone="int_ados_pet_sanctuary" ref="door_left"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">pet sanctuary key</parameter>
      <parameter name="rejected">Restricted access: animal keepers and vets only.</parameter>
      </implementation>
-    <destination zone="int_ados_pet_sanctuary" ref="door_left"/>
    </portal>
    <portal x="13" y="9" ref="door_left">
     <destination zone="int_ados_pet_sanctuary" ref="door_right"/>
@@ -451,11 +452,11 @@ Under new management. Chests to the right are still held by Semos Bank Merchants
      <destination zone="0_ados_city_n" ref="11"/>
     </portal>
     <portal x="28" y="28" ref="downstairs">
+    <destination zone="int_ados_haunted_house_basement" ref="upstairs"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
       <parameter name="minimum-level">80</parameter>
       <parameter name="rejected">You were about to walk down the stairs when someone or something held you back, whispering 'Beware the giant spider, for you are too weak!'</parameter>
      </implementation>
-     <destination zone="int_ados_haunted_house_basement" ref="upstairs"/>
     </portal>
    </zone>
 
@@ -1734,25 +1735,25 @@ Southeast: Docks
      <destination zone="int_ados_town_hall" ref="entrance"/>
    </portal>
   <portal x="17" y="40" ref="castle_left_entrance">
+    <destination zone="int_ados_castle_entrance" ref="entranceleft"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
       <parameter name="minimum-level">10</parameter>
       <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
     </implementation>
-     <destination zone="int_ados_castle_entrance" ref="entranceleft"/>
    </portal>
   <portal x="18" y="40" ref="castle_centre_entrance">
+  <destination zone="int_ados_castle_entrance" ref="entranceright"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
       <parameter name="minimum-level">10</parameter>
       <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
     </implementation>
-     <destination zone="int_ados_castle_entrance" ref="entranceright"/>
    </portal>
     <portal x="19" y="40" ref="castle_right_entrance">
+    <destination zone="int_ados_castle_entrance" ref="entranceright"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
       <parameter name="minimum-level">10</parameter>
       <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
     </implementation>
-     <destination zone="int_ados_castle_entrance" ref="entranceright"/>
    </portal>
    </zone>
 
