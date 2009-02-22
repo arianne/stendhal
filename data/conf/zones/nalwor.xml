@@ -63,13 +63,7 @@
 
 	<zone name="0_nalwor_forest_w" level="0" x="500128" y="500256"
 		file="Level 0/nalwor/forest_w.tmx">
-		<!--
-			** Alternative configuration ** <portal x="84" y="92" ref="entrance">
-			<destination zone="0_nalwor_forest_w" ref="exit"/> </portal> <portal
-			x="114" y="91" ref="exit"> <destination zone="0_nalwor_forest_w"
-			ref="entrance"/> </portal> **
-		-->
-
+		
 		<portal x="84" y="92" ref="outside_entrance">
 			<destination zone="0_nalwor_forest_w" ref="inside_exit" />
 		</portal>
