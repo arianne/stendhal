@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
-<zones>
+<zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal zones.xsd ">
  <!--
    ** Load zones. Written from left to right and from top to bottom.
    ** Please respect it!
@@ -567,28 +568,28 @@ For example say:  11  if you want the room called Water of Love.
        <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
       </portal>
       <portal x="30" y="5" ref="stairs1down">
+      <destination zone="int_fado_battle_pit" ref="stairs1up"/>
 	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
 	    <parameter name="minimum-level">150</parameter>
 		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
 	   </implementation>
 	   <attribute name="hidden"/>
-	   <destination zone="int_fado_battle_pit" ref="stairs1up"/>
       </portal>
       <portal x="31" y="5" ref="stairs2down">
+      <destination zone="int_fado_battle_pit" ref="stairs2up"/>
 	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
 	    <parameter name="minimum-level">150</parameter>
 		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
 	   </implementation>
 	   <attribute name="hidden"/>
-	   <destination zone="int_fado_battle_pit" ref="stairs2up"/>
       </portal>
       <portal x="30" y="6" ref="stairs1up">
+      <destination zone="int_fado_battle_pit" ref="stairs1down"/>
 	   <attribute name="hidden"/>
-       <destination zone="int_fado_battle_pit" ref="stairs1down"/>
       </portal>
       <portal x="31" y="6" ref="stairs2up">
+      <destination zone="int_fado_battle_pit" ref="stairs2down"/>
 	   <attribute name="hidden"/>
-       <destination zone="int_fado_battle_pit" ref="stairs2down"/>
       </portal>
      </zone>
 
@@ -852,25 +853,25 @@ black halberd     12000
 <zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
  <configurator class-name="games.stendhal.server.maps.sedah.gatehouse.GateKeeperNPC" />
   <portal x="115" y="73" ref="in1">
+  <destination zone="-1_fado_great_cave_w2" ref="in"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
-   <destination zone="-1_fado_great_cave_w2" ref="in"/>
   </portal>
   <portal x="116" y="73" ref="in2">
+  <destination zone="-1_fado_great_cave_w2" ref="in"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
-   <destination zone="-1_fado_great_cave_w2" ref="in"/>
   </portal>
   <portal x="117" y="73" ref="in3">
+  <destination zone="-1_fado_great_cave_w2" ref="in"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
-   <destination zone="-1_fado_great_cave_w2" ref="in"/>
   </portal>
   <portal x="115" y="72" ref="out">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
