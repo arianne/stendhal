@@ -33,6 +33,10 @@
 
 	<property name="server_jarname" value="stendhal-server-${version}.jar"/>
 	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
+	
+	<property name="config_dir" value="data/conf"/>
+
+	<property name="schema_location" value="${config_dir}"/>
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -94,6 +98,11 @@
 		<delete dir="${buildroot}/build_stendhaltools" />
 		<delete dir="${buildroot}/buildbot" />
 		<delete dir="${build_tests_report}" />
+		<delete>
+					<fileset dir=".">
+						<include name="TEST-*.xml"/>
+					</fileset>
+		</delete>
 	</target>
 
 
@@ -716,7 +725,7 @@
 			<formatter type="plain" usefile="false"/>
 			<formatter type="xml"/>
 
-			<batchtest>
+			<batchtest todir="${build_tests_report}">
 				<fileset dir="tests">
 					<include name="**/*Test.java"/>
 					<include name="**/Test*.java"/>
@@ -728,13 +737,13 @@
 	<target name="report_test" description="Aggregate Testresults">
 		<mkdir dir="${build_tests_report}" />
 		<junitreport todir="." tofile="${build_tests_report}/testresults.xml">
-			<fileset dir=".">
+			<fileset dir="${build_tests_report}">
 				<include name="TEST-*.xml"/>
 			</fileset>
 			<report format="noframes" todir="${build_tests_report}"/>
 		</junitreport>
 		<delete>
-			<fileset dir=".">
+			<fileset dir="${build_tests_report}">
 				<include name="TEST-*.xml"/>
 			</fileset>
 		</delete>
@@ -794,6 +803,12 @@
 				<include name="*.xml"/>
 			</fileset>
 		</xmlvalidate>
+		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
+			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
+			<fileset dir="data/conf/zones">
+							<include name="*.xml"/>
+			</fileset>
+		</schemavalidate>
 	</target>
 
 </project>
