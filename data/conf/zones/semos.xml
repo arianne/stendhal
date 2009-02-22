@@ -898,7 +898,8 @@ Holy mackerel! These chips are tasty.
 	</zone>
 
 	<zone name="int_semos_bank" file="interiors/semos/bank.tmx">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+         <!-- to disallow making or using marked scrolls for getting to trading table area-->
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 
 
 		<portal x="9" y="30" ref="entrance">
@@ -2212,10 +2213,10 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="1_dreamscape" file="interiors/abstract/dreamscape.tmx">
 		<!--
-			Don't allow teleporting as we don't want marked scrolls made or ring
+			Don't allow teleporting in as we don't want marked scrolls made or ring
 			abused
 		-->
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 		<portal x="43" y="49" ref="exit1">
 			<destination zone="0_semos_plains_s" ref="dream_exit1" />
 		</portal>

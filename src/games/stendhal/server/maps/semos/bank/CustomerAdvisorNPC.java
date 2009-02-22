@@ -122,6 +122,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			book.setEntityClass("book_blue");
 			book.setResistance(0);
 			zone.add(book);
+			zone.disallowIn();
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.teleport(zone, 4, 5, Direction.UP, player);
 			

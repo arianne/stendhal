@@ -56,7 +56,8 @@ public class AdosDeathmatch extends AbstractQuest {
 		logger.debug("big constructor for zone", new Throwable());
 		final Spot entrance = new Spot(zone, 96, 75);
 		deathmatchInfo = new DeathmatchInfo(arena, zone, entrance);
-		zone.disAllowTeleport();
+		// do not let players scroll out of deathmatch
+		zone.disallowOut();
 	}
 
 	/**
