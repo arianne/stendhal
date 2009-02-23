@@ -3,6 +3,7 @@ package games.stendhal.server.entity.player;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -232,5 +233,22 @@ public class PlayerTest {
 		assertFalse(player.isBadBoy());
 		assertFalse(killer.isBadBoy());
 
+	}
+	
+	@Test
+	public void testgetWidth() throws Exception {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		assertThat(bob.getWidth(), is(1.0));
+		assertThat(bob.get("width"), is("1"));
+		
+		assertThat(bob.getHeight(), is(1.0));
+		assertThat(bob.get("height"), is("1"));
+		
+		Player george = Player.createEmptyZeroLevelPlayer("george");
+		assertThat(george.getWidth(), is(1.0));
+		assertThat(george.get("width"), is("1"));
+		
+		assertThat(george.getHeight(), is(1.0));
+		assertThat(george.get("height"), is("1"));
 	}
 }
