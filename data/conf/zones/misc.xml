@@ -48,6 +48,10 @@ Walk on, and you will be returned to the land of the living...
  
  </zone>
 
+ <zone name="int_adventure_island" file="interiors/abstract/adventure_island.tmx">
+ 
+ </zone>
+
  <zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx">
   <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
 
