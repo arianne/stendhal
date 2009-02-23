@@ -39,7 +39,7 @@ public class CreatureSpawner implements TurnListener {
 	/**
 	 * Creates a new CreatureSpawner
 	 */
-	CreatureSpawner() {
+	public CreatureSpawner() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
 			if (!creature.isRare()) {
@@ -106,7 +106,7 @@ public class CreatureSpawner implements TurnListener {
 	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
 	 */
-	private Creature calculateNextCreature(final int questLevel) {
+	public Creature calculateNextCreature(final int questLevel) {
 		final List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
 		int lastLevel = 0;
 
