@@ -15,11 +15,14 @@ import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -28,11 +31,13 @@ import java.util.Map;
 
 import org.junit.Test;
 
+
+
 public class ResultSetIteratorTest {
 
 	/**
 	 * Returns false for boolean, null for object and 0 for numbers.
-	 * 
+	 * please dont add missing override tags and they break compatibility with java 1.5. 
 	 */
 	private class ResultSetImplementation implements ResultSet {
 		public boolean absolute(final int row) throws SQLException {
@@ -723,6 +728,54 @@ public class ResultSetIteratorTest {
 
 		public <T> T unwrap(final Class<T> iface) throws SQLException {
 			return null;
+		}
+
+		public NClob getNClob(int arg0) throws SQLException {
+			return null;
+		}
+
+		public NClob getNClob(String arg0) throws SQLException {
+			return null;
+		}
+
+		public RowId getRowId(int arg0) throws SQLException {
+			return null;
+		}
+
+		public RowId getRowId(String arg0) throws SQLException {
+			return null;
+		}
+
+		public SQLXML getSQLXML(int arg0) throws SQLException {
+			return null;
+		}
+
+		public SQLXML getSQLXML(String arg0) throws SQLException {
+			return null;
+		}
+
+		public void updateNClob(int arg0, NClob arg1) throws SQLException {
+			
+		}
+
+		public void updateNClob(String arg0, NClob arg1) throws SQLException {
+			
+		}
+
+		public void updateRowId(int arg0, RowId arg1) throws SQLException {
+			
+		}
+
+		public void updateRowId(String arg0, RowId arg1) throws SQLException {
+			
+		}
+
+		public void updateSQLXML(int arg0, SQLXML arg1) throws SQLException {
+			
+		}
+
+		public void updateSQLXML(String arg0, SQLXML arg1) throws SQLException {
+			
 		}
 	}
 
