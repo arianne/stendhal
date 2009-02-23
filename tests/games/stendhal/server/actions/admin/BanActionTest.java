@@ -1,6 +1,6 @@
 package games.stendhal.server.actions.admin;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.sql.SQLException;
 
@@ -26,6 +27,7 @@ public class BanActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
@@ -86,7 +88,9 @@ public class BanActionTest {
 		assertEquals("banned", database.getAccountStatus(database.getTransaction(), player.getName()));
 		assertEquals("active", database.getAccountStatus(database.getTransaction(), admin.getName()));
 		assertFalse(admin.events().isEmpty());
-		assertThat(admin.events().get(0).toString(), is("[private_text=Attributes of Class(): [text=You have banned bobby for: whynot][texttype=PRIVMSG]]"));
+		assertThat(admin.events().get(0).toString(), containsString("[private_text=Attributes of Class(): ")); 
+		assertThat(admin.events().get(0).toString(), containsString("[text=You have banned bobby for: whynot]"));
+		assertThat(admin.events().get(0).toString(), containsString("[texttype=PRIVMSG]"));
 
 	}
 }
