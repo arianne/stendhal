@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../zones.xsd ">
  <zone name="int_afterlife" file="interiors/abstract/afterlife.tmx">
