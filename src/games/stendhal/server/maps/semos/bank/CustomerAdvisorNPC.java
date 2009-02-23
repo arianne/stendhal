@@ -43,6 +43,9 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
+				if (!(entity instanceof Player)){
+					return;
+				}
 			    if(zone.getPlayers().size() == 1) {
 				final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
@@ -125,6 +128,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 			zone.disallowIn();
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.teleport(zone, 4, 5, Direction.UP, player);
+			
 			
 		}
 	}
