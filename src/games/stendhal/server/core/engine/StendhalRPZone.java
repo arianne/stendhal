@@ -662,6 +662,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		notifyAdded(object);
 		
+		// Needs to be before adding an item, in case Item.onPutOnGround() 
+		// needs proper zone information
+		if (object instanceof Entity) {
+			((Entity) object).onAdded(this);
+		}
+		
 		if (object instanceof Item) {
 			final Item item = (Item) object;
 			if (player != null) {
@@ -702,10 +708,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (object instanceof NPC) {
 			npcs.add((NPC) object);
-		}
-
-		if (object instanceof Entity) {
-			((Entity) object).onAdded(this);
 		}
 
 		// TODO: Move up to MarauroaRPZone?
