@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -9,6 +8,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -21,7 +21,6 @@ import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -54,7 +53,7 @@ public class Soup extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "soup_maker";
 
-	private static final long REQUIRED_MINUTES_IN_MILLISECONDS = 10 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+	private static final int REQUIRED_MINUTES = 10;
 
 	@Override
 	public String getSlotName() {
@@ -125,7 +124,7 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,10,1)), ConversationStates.QUEST_OFFERED,
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)), ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special soup?",
 			null);
 
@@ -134,19 +133,10 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,10,1)))
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)))
 			, ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
-							- System.currentTimeMillis();
-					npc.say("I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in "
-						+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-						+ " and I will have more time for you.");
-					return;
-				}
-			});
+			new StateTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES ,1)
+			);
 
 		// player responds to word 'revive'
 		npc.add(ConversationStates.INFORMATION_1, "revive",
