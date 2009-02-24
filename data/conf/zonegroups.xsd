@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+	xmlns:Q3="stendhal">
+	
+	<element name="groups" type="Q3:groupsType" />
+	
+	<complexType name="groupsType">
+	    <sequence>
+	        <element name="group" type="Q3:groupType" maxOccurs="unbounded"/>
+	    </sequence>
+	</complexType>
+	
+	<complexType name="groupType">
+	    <attribute name="uri" type="anyURI" />
+	</complexType>
+	
+</schema>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<groups>
+<groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal zonegroups.xsd ">
 	<group uri="zones/ados.xml"/>
 	<group uri="zones/amazon.xml"/>
 	<group uri="zones/athor.xml"/>

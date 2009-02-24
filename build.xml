@@ -790,10 +790,8 @@
 
 	<target name="checkxml" description="Verify XML files are well-formed">
 		<xmlvalidate failonerror="yes" lenient="yes" warn="yes">
-			<fileset file="data/conf/items.xml"/>
 			<fileset file="data/conf/npc.xml"/>
 			<fileset file="data/conf/quests.xml"/>
-			<fileset file="data/conf/zones.xml"/>
 
 			<fileset dir="data/conf/items">
 				<include name="*.xml"/>
@@ -805,17 +803,24 @@
 							<include name="*.xml"/>
 			</fileset>
 		</schemavalidate>
+		
 		<schemavalidate>
 			<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
 			<fileset dir="${config_dir}">
 				<include name="creatures.xml" />
 			</fileset>
 		</schemavalidate>
+		
 		<schemavalidate>
 			<schema namespace="stendhal" file="${config_dir}/items.xsd" />
 			<fileset dir="data/conf/items">
 				<include name="*.xml"/>
 			</fileset>
+		</schemavalidate>
+		
+		<schemavalidate>
+			<schema namespace="stendhal" file="${config_dir}/zonegroups.xsd"/>
+			<fileset file="data/conf/zones.xml"/>
 		</schemavalidate>
 	</target>
 
