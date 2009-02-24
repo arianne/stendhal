@@ -15,11 +15,13 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.CreatureSpawner;
@@ -31,16 +33,26 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 
 public class ChallengerNPC extends SpeakerNPCFactory {
-	// assign here all the hardcoded constants
+ /** how many creatures will be spawned */
  private static final int NUMBER_OF_CREATURES = 5;
+ /** lowest level allowed to island*/
  private static final int MIN_LEVEL = 50;
+ /** Cost of getting to island */
  private static final int COST = 50000;
+ /** island coordinates for placing monsters */
  private static final int MIN_X = 10;
+ /** island coordinates for placing monsters */
  private static final int MIN_Y = 10;
+ /** island coordinates for placing monsters */
  private static final int MAX_X = 25;
+ /** island coordinates for placing monsters */
  private static final int MAX_Y = 25;
+ /** The creatures spawned are between player level * ratio and player level */
  private static final double LEVEL_RATIO = 0.75;
- //private static final int DAYS_BEFORE_REPEAT = 3;
+ /** How long to wait before visiting island again */
+ private static final int DAYS_BEFORE_REPEAT = 3;
+ /** The name of the quest slot where we store the time last visited */
+ private static final String QUEST_SLOT = "adventure_island";
  
  static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 	private final class ChallengeChatAction implements ChatAction {
@@ -117,6 +129,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			zone.disallowIn();
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.drop("money", COST);
+			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 			player.teleport(zone, 4, 6, Direction.DOWN, player);
 			
 		}
@@ -130,18 +143,25 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 		npc.addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical island.");
 		npc.addOffer("To fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge. Just know that if you die inside while on the island your corpse and items are lost forever.");		
 		npc.addGoodbye("Bye.");
-		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1),new PlayerHasItemWithHimCondition("money", COST)) , ConversationStates.QUEST_OFFERED, 
+		// player meets conditions, first remind them of the dangers and wait for a 'yes'
+		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1),new PlayerHasItemWithHimCondition("money", COST), new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT*24*60)) , ConversationStates.QUEST_OFFERED, 
 				"I accept your challenge. Remember if you die inside you CANNOT return to your corpse to retrieve any items you lost. Likewise if you leave and have left items on the ground, you lose them. Are you still sure you want to enter the adventure island?", 
 				null);
+		// player doesn't have enough money
 		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new NotCondition(new PlayerHasItemWithHimCondition("money", COST)), ConversationStates.ATTENDING, "You don't have the fee, it is " + COST + " money.", 
 				null);
-		
+		// player returns within DAYS_BEFORE_REPEAT days
+		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT*24*60)), ConversationStates.ATTENDING, null, 
+				new StateTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT*24*60));
+		// player below MIN_LEVEL
 		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new LevelLessThanCondition(MIN_LEVEL), ConversationStates.ATTENDING, "You are too weak to fight against " + NUMBER_OF_CREATURES  + " at once. Come back when you are at least Level " + MIN_LEVEL + ".", null);
+		// all conditions are met and player says yes he wants to fight
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1),new PlayerHasItemWithHimCondition("money", COST)) , ConversationStates.IDLE, null, 
 				new ChallengeChatAction());
-				// incase player says challenge then drops the money before they say yes
+		// incase player says challenge then drops the money before they say yes
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, new NotCondition(new PlayerHasItemWithHimCondition("money", COST)), ConversationStates.ATTENDING, "You don't have the fee, it is " + COST + " money.", 
 						null);
+		// player was reminded of dangers and he doesn't want to fight
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "Fair enough.",null);	
 	}
 
