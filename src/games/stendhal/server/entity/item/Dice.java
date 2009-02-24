@@ -106,10 +106,23 @@ public class Dice extends Item {
 	@Override
 	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
+		zoneFix(player);
 		randomize(player);
 		updateCroupierNPC();
 		if (croupierNPC != null) {
 			croupierNPC.onThrown(this, player);
+		}
+	}
+
+	// TODO: Find a real fix for this: In Marauroa 1.0 items had a zone even
+	// when in player's bags. So the above code in onPutOnGroupd (onThrown)
+	// was able to verify the zone before the item is actually put onto the
+	// ground and the zone is updated. Bagged items do not have a zone in
+	// Marauroa 1.0 so this does not work anymore. We need to change the order
+	// in which the dropping of items is implemented.
+	private void zoneFix(final Player player) {
+		if (getZone() == null) {
+			this.onAdded(player.getZone());
 		}
 	}
 
