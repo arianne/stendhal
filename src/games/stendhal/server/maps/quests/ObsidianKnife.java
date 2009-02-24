@@ -1,9 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -15,17 +12,17 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -285,28 +282,18 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_DAYS*24*60,1))),
 				ConversationStates.IDLE, 
 				null, 
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						final String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						final long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY; 
-						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
-								- System.currentTimeMillis();
-						if (timeRemaining > 0L) {
-							npc.say("I haven't finished reading that book. Maybe I'll be done in "
-									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-									+ ".");
-							return;
-						}
-						npc.say("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.");
-						player.setQuest(QUEST_SLOT, "book_read");
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
-					}
-			});
+				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS*24*60,1));
+		
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT,REQUIRED_DAYS*24*60,1)),
+				ConversationStates.QUEST_2_OFFERED, 
+				"I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", 
+				new SetQuestAction(QUEST_SLOT, "book_read"));
+						
 
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				"obsidian",
@@ -398,30 +385,24 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1))),
 				ConversationStates.IDLE, 
 				null, 
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						final String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
-								- System.currentTimeMillis();
-						if (timeRemaining > 0L) {
-							npc.say("I haven't finished making the knife. Please check back in "
-								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-							return;
-						}
-						npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
-						player.addXP(10000);
-						final Item knife = SingletonRepository.getEntityManager().getItem("obsidian knife");
-						knife.setBoundTo(player.getName());
-						player.equip(knife, true);
-						player.setQuest(QUEST_SLOT, "done");
-						player.notifyWorldAboutChanges();
-					}
-				});
+				new StateTimeRemainingAction(QUEST_SLOT,"I haven't finished making the knife. Please check back in ", REQUIRED_MINUTES, 1));
+		
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new IncreaseXPAction(10000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new EquipItemAction("obsidian knife",1,true));
+		
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
+				ConversationStates.IDLE, 
+				"The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!",
+				new MultipleActions(reward));
+		
+		
 
 		// Here because of the random response from different actions bug, we
 		// define the greeting message for all cases not covered so far:
