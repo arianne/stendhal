@@ -50,6 +50,8 @@ public class ChallengerNPC extends SpeakerNPCFactory {
  private static final int MAX_X = 25;
  /** island coordinates for placing monsters */
  private static final int MAX_Y = 25;
+ /** max numbers of fails to place a creature before we just make the island as it is */
+ private static final int ALLOWED_FAILS = 5;
  /** The creatures spawned are between player level * ratio and player level */
  private static final double LEVEL_RATIO = 0.75;
  /** How long to wait before visiting island again */
@@ -120,8 +122,8 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			zone.add(portal);
 			int i = 0;
 			int count = 0;
-			// max 20 fails to place all creatures before we give up
-			while (i < NUMBER_OF_CREATURES && count < 20) {
+			// max ALLOWED_FAILS fails to place all creatures before we give up
+			while (i < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
 				int level = Rand.randUniform((int) (player.getLevel()*LEVEL_RATIO),player.getLevel()); 
 				CreatureSpawner creatureSpawner = new CreatureSpawner();
 				Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
@@ -133,7 +135,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				}
 			}
 			String message;
-			if (count>=20) {
+			if (count>=ALLOWED_FAILS) {
 				// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
 				cost =  cost*(i/NUMBER_OF_CREATURES);
 				message = "Haastaja bellows from below: I could only fit " + i + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
