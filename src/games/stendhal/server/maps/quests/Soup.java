@@ -5,16 +5,17 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -124,21 +125,7 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-
-					if (!player.isQuestCompleted(QUEST_SLOT)) {
-						// we haven't done the quest yet
-						return false; 
-					}
-
-					final String[] tokens = player.getQuest(QUEST_SLOT)
-							.split(";");
-					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
-							- System.currentTimeMillis();
-					return (timeRemaining <= 0L);
-				}
-			}, ConversationStates.QUEST_OFFERED,
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,10,1)), ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special soup?",
 			null);
 
@@ -147,20 +134,8 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (!player.isQuestCompleted(QUEST_SLOT)) {
-						// we haven't done the quest yet
-						return false; 
-					}
-
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					
-					final long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
-							- System.currentTimeMillis();
-					return (timeRemaining > 0L);
-				}
-			}, ConversationStates.ATTENDING, null,
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,10,1)))
+			, ConversationStates.ATTENDING, null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
