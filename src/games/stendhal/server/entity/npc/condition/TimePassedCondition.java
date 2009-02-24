@@ -44,7 +44,7 @@ public class TimePassedCondition implements ChatCondition {
 	public TimePassedCondition(final String questname, final int delay) {
 		this.questname = questname;
 		this.delay = delay;
-		arg = 0;
+		this.arg = 0;
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
