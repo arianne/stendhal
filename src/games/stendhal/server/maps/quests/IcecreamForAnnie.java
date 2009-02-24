@@ -32,7 +32,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	
 
 
-	// The delay between repeating quests is 60 minutes
+	/** The delay between repeating quests */
 	private static final int REQUIRED_MINUTES = 30;
 	@Override
 	public void init(final String name) {
