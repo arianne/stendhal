@@ -102,8 +102,15 @@ public class SummonAction extends AdministrationAction {
 						@Override
 						void found(final String type, final Entity entity) {
 							 final Entity entityToBePlaced;
-							if (manager.isCreature(type)) {
+							if (manager.isCreature(type)) {	
 								entityToBePlaced = new RaidCreature((Creature) entity);
+								if (((Creature) entity).isRare() && System.getProperty("stendhal.testserver") == null) {
+									// Rare creatures should not be summoned even in raids
+									// Require parameter -Dstendhal.testserver=junk
+									error("Creatures with the rare property may only be summoned on test servers " 
+												+ "which are activated with the vm parameter: -Dstendhal.testserver=junk");
+									return;
+								} 
 							} else {
 								entityToBePlaced = entity;
 							}

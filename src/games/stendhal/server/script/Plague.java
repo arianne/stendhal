@@ -51,6 +51,11 @@ public class Plague extends ScriptImpl {
 		
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
+		} else if (tempCreature.isRare() && System.getProperty("stendhal.testserver") == null) {
+			// Rare creatures should not be summoned even in raids
+			// Require parameter -Dstendhal.testserver=junk
+			admin.sendPrivateText("Creatures with the rare property may only be summoned on test servers " 
+												+ "which are activated with the vm parameter: -Dstendhal.testserver=junk");
 		} else {
 			final Creature creature = new RaidCreature(tempCreature);
 
