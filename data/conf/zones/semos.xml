@@ -938,7 +938,7 @@ Holy mackerel! These chips are tasty.
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
 				<parameter name="width">2</parameter>
-				<parameter name="height">5</parameter>
+				<parameter name="height">4</parameter>
 			</implementation>
 		</entity>
 
@@ -956,7 +956,7 @@ Holy mackerel! These chips are tasty.
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
 				<parameter name="width">2</parameter>
-				<parameter name="height">5</parameter>
+				<parameter name="height">4</parameter>
 			</implementation>
 		</entity>
 
@@ -980,7 +980,7 @@ Holy mackerel! These chips are tasty.
 
 		<entity x="14" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">When you open this chest or the one directly below it, others may inspect its contents. If you want privacy use any of the four chests to the far left.
+			<attribute name="text">When you open your chest, others may inspect its contents. If you want privacy, ask Dagobert for access to a vault.
      </attribute>
 			<attribute name="class">transparent</attribute>
 		</entity>
@@ -1004,7 +1004,7 @@ Holy mackerel! These chips are tasty.
 
 		<entity x="21" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">When you open this chest or the one directly below it, others may inspect its contents. If you want privacy use any of the four chests to the far left.
+			<attribute name="text">When you open your chest, others may inspect its contents. If you want privacy, ask Dagobert for access to a vault.
      </attribute>
 			<attribute name="class">transparent</attribute>
 		</entity>
@@ -1019,11 +1019,11 @@ Holy mackerel! These chips are tasty.
 			<attribute name="description">You see a conveniently placed table.</attribute>
 		</entity>
 
-		<entity x="2" y="11">
+		<entity x="2" y="12">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
 				<parameter name="width">2</parameter>
-				<parameter name="height">5</parameter>
+				<parameter name="height">4</parameter>
 			</implementation>
 		</entity>
 
@@ -1037,11 +1037,11 @@ Holy mackerel! These chips are tasty.
 			<attribute name="description">You see a conveniently placed table.</attribute>
 		</entity>
 
-		<entity x="8" y="11">
+		<entity x="8" y="12">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
 				<parameter name="width">2</parameter>
-				<parameter name="height">5</parameter>
+				<parameter name="height">4</parameter>
 			</implementation>
 		</entity>
 
