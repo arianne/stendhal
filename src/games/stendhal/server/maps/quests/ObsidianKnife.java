@@ -388,7 +388,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1))),
 				ConversationStates.IDLE, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT,"I haven't finished making the knife. Please check back in ", REQUIRED_MINUTES, 1));
+				new StateTimeRemainingAction(QUEST_SLOT,"I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(10000));
