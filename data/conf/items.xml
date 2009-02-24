@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<groups>
+<groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="items/arrows.xml"/>
 	<group uri="items/armors.xml"/>
 	<group uri="items/axes.xml"/>

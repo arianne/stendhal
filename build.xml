@@ -792,10 +792,6 @@
 		<xmlvalidate failonerror="yes" lenient="yes" warn="yes">
 			<fileset file="data/conf/npc.xml"/>
 			<fileset file="data/conf/quests.xml"/>
-
-			<fileset dir="data/conf/items">
-				<include name="*.xml"/>
-			</fileset>
 		</xmlvalidate>
 		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
 			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
@@ -803,24 +799,24 @@
 							<include name="*.xml"/>
 			</fileset>
 		</schemavalidate>
-		
 		<schemavalidate>
 			<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
 			<fileset dir="${config_dir}">
 				<include name="creatures.xml" />
 			</fileset>
 		</schemavalidate>
-		
 		<schemavalidate>
 			<schema namespace="stendhal" file="${config_dir}/items.xsd" />
 			<fileset dir="data/conf/items">
 				<include name="*.xml"/>
 			</fileset>
 		</schemavalidate>
-		
 		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/zonegroups.xsd"/>
-			<fileset file="data/conf/zones.xml"/>
+			<schema namespace="stendhal" file="${config_dir}/groups.xsd"/>
+			<fileset dir="${config_dir}">
+				<filename name="zones.xml"/>
+				<filename name="items.xml"/>
+			</fileset>
 		</schemavalidate>
 	</target>
 
