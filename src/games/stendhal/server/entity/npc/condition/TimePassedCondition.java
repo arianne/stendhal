@@ -49,7 +49,8 @@ public class TimePassedCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		if (!player.hasQuest(questname)) {
-			return false;
+			// never done quest so enough 'time' has passed
+			return true;
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";"); 
 			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
