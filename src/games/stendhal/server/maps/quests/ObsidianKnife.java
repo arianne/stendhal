@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

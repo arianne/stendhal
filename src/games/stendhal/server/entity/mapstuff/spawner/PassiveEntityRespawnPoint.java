@@ -20,11 +20,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * A PassiveEntityRespawnPoint basically is a 1x1 area where a plant, a fruit or

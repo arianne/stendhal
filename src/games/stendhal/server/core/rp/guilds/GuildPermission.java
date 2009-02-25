@@ -1,12 +1,14 @@
 package games.stendhal.server.core.rp.guilds;
 
 import games.stendhal.server.entity.Entity;
+
 import java.util.Collections;
 import java.util.List;
+
 import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Manages permissions for a guild (ex. can assign a rank (like adminlevel) to a

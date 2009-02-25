@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.INSPECT;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -11,10 +12,9 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class InspectAction extends AdministrationAction {
-	private static final String _INSPECT = "inspect";
-
+	
 	public static void register() {
-		CommandCenter.register(_INSPECT, new InspectAction(), 600);
+		CommandCenter.register(INSPECT, new InspectAction(), 600);
 	}
 
 	@Override

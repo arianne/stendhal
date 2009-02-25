@@ -1,13 +1,12 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 public class JailReportAction extends AdministrationAction {
 	private static final String JAILREPORT = "jailreport";

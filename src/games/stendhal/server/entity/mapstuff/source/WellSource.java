@@ -15,7 +15,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPClass;
 
 /**

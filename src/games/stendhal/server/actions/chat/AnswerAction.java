@@ -1,11 +1,11 @@
 package games.stendhal.server.actions.chat;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
-import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
-import marauroa.common.game.RPAction;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 
 /**
  * handles /tell-action (/msg-action). 

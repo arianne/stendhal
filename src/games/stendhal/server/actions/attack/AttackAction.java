@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.attack;
 
+import static games.stendhal.common.constants.Actions.ATTACK;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -21,17 +23,15 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-
 public class AttackAction implements ActionListener {
 
-	private static final String _ATTACK = "attack";
+
 
 	/**
 	 * registers the AttackAction with its trigger word "attack".
 	 */
 	public static void register() {
-		CommandCenter.register(_ATTACK, new AttackAction());
+		CommandCenter.register(ATTACK, new AttackAction());
 	}
 
 	/**

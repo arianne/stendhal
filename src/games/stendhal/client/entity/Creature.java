@@ -17,6 +17,7 @@ import games.stendhal.common.Rand;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+
 import marauroa.common.game.RPObject;
 
 public class Creature extends RPEntity {
@@ -32,6 +33,7 @@ public class Creature extends RPEntity {
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {
+		
 		// no logging for Creature "sounds" in the client window
 	}
 

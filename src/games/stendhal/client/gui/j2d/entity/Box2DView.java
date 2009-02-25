@@ -9,10 +9,11 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import java.util.List;
-
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Box;
+
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 
 /**

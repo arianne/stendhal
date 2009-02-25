@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants._BASEITEM;
-import static games.stendhal.server.actions.WellKnownActionConstants._BASEOBJECT;
-import static games.stendhal.server.actions.WellKnownActionConstants._BASESLOT;
-import static games.stendhal.server.actions.WellKnownActionConstants._USE;
+import static games.stendhal.common.constants.Actions.BASEITEM;
+import static games.stendhal.common.constants.Actions.BASEOBJECT;
+import static games.stendhal.common.constants.Actions.BASESLOT;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.USE;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
@@ -31,7 +31,7 @@ import marauroa.common.game.RPObject;
 public class UseAction implements ActionListener {
 
 	public static void register() {
-		CommandCenter.register(_USE, new UseAction());
+		CommandCenter.register(USE, new UseAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
@@ -45,8 +45,8 @@ public class UseAction implements ActionListener {
 	}
 
 	private boolean isItemInSlot(final RPAction action) {
-		return action.has(_BASEITEM) && action.has(_BASEOBJECT)
-				&& action.has(_BASESLOT);
+		return action.has(BASEITEM) && action.has(BASEOBJECT)
+				&& action.has(BASESLOT);
 	}
 
 	private void useItemOnGround(final Player player, final RPAction action) {
@@ -149,7 +149,7 @@ public class UseAction implements ActionListener {
 			infostring = object.get("infostring");
 		}
 
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _USE,
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), USE,
 				name, infostring);
 		
 	}

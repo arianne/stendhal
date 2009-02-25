@@ -1,14 +1,14 @@
 package games.stendhal.server.actions.chat;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import marauroa.common.game.RPAction;
 
 /**

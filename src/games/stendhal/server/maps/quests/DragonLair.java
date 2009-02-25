@@ -2,17 +2,17 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-import games.stendhal.server.entity.npc.action.TeleportAction;
 
 import java.util.LinkedList;
 import java.util.List;

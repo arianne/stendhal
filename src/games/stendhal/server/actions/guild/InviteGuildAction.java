@@ -6,6 +6,11 @@
 
 package games.stendhal.server.actions.guild;
 
+import static games.stendhal.common.constants.Actions.GUILD;
+import static games.stendhal.common.constants.Actions.GUILDNAME;
+import static games.stendhal.common.constants.Actions.INVITE_GUILD;
+import static games.stendhal.common.constants.Actions.PLAYERNAME;
+import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -17,17 +22,12 @@ import marauroa.common.game.RPAction;
  */
 public class InviteGuildAction implements ActionListener {
 
-	private static final String _INVITE_GUILD = "inviteGuild";
-	private static final String _GUILD = "guild";
-	private static final String _TYPE = "type";
-	private static final String _GUILDNAME = "guildname";
-	private static final String _PLAYERNAME = "playername";
 
 	/**
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCenter.register(_GUILD, new InviteGuildAction());
+		CommandCenter.register(GUILD, new InviteGuildAction());
 	}
 
 	/**
@@ -41,22 +41,22 @@ public class InviteGuildAction implements ActionListener {
 	protected void inviteToGuild(final Player player, final RPAction action) {
 
 		// invites to guild
-		if (action.has(_PLAYERNAME) && action.has(_GUILDNAME)) {
+		if (action.has(PLAYERNAME) && action.has(GUILDNAME)) {
 			// we have all the options, so let's coninue...
 
 			// we use player1 for other player
 			final Player player1 = SingletonRepository.getRuleProcessor().getPlayer(
-					action.get(_PLAYERNAME));
-			if (player1.get(_GUILD) == null) {
+					action.get(PLAYERNAME));
+			if (player1.get(GUILD) == null) {
 				// it is safe to put the player from the guild as they are not
 				// in one
-				player1.put(_GUILD, action.get(_GUILDNAME));
+				player1.put(GUILD, action.get(GUILDNAME));
 
 				// set the description
 				final String description = "You see " + player1.getTitle() + ".\n"
 						+ player1.getTitle() + " is level "
 						+ player1.getLevel() + " and is a member of the "
-						+ action.get(_GUILDNAME) + " guild.";
+						+ action.get(GUILDNAME) + " guild.";
 				player1.setDescription(description);
 
 				// update player
@@ -65,12 +65,12 @@ public class InviteGuildAction implements ActionListener {
 
 				// notify player(s)
 				player1.sendPrivateText("You have beed added to the \""
-						+ action.get(_GUILDNAME)
+						+ action.get(GUILDNAME)
 						+ "\" guild by "
 						+ player.getTitle()
 						+ ". If you did not want to be in this guild, open the Guild Management window and choose \"Leave Guild\".");
 				player.sendPrivateText(player1.getTitle()
-						+ " has been added to the \"" + action.get(_GUILDNAME)
+						+ " has been added to the \"" + action.get(GUILDNAME)
 						+ "\" guild.");
 			} else {
 				player1.sendPrivateText(player.getTitle()
@@ -95,7 +95,7 @@ public class InviteGuildAction implements ActionListener {
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (action.get(_TYPE).equals(_INVITE_GUILD)) {
+		if (action.get(TYPE).equals(INVITE_GUILD)) {
 			inviteToGuild(player, action);
 		}
 	}

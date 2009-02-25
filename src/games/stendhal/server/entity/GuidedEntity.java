@@ -11,8 +11,6 @@ package games.stendhal.server.entity;
 
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
-
-
 import marauroa.common.game.RPObject;
 
 /**

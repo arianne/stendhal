@@ -1,8 +1,8 @@
 package games.stendhal.server.actions;
 
-import static games.stendhal.server.actions.WellKnownActionConstants._BASEITEM;
-import static games.stendhal.server.actions.WellKnownActionConstants._BASEOBJECT;
-import static games.stendhal.server.actions.WellKnownActionConstants._BASESLOT;
+import static games.stendhal.common.constants.Actions.BASEITEM;
+import static games.stendhal.common.constants.Actions.BASEOBJECT;
+import static games.stendhal.common.constants.Actions.BASESLOT;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -39,14 +39,14 @@ public class UseActionTest {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		final RPAction action = new RPAction();
-		action.put(_BASEITEM, cheese.getID().getObjectID());
-		action.put(_BASEOBJECT, player.getID().getObjectID());
-		action.put(_BASESLOT, "bag");
+		action.put(BASEITEM, cheese.getID().getObjectID());
+		action.put(BASEOBJECT, player.getID().getObjectID());
+		action.put(BASESLOT, "bag");
 		assertTrue(player.isEquipped("cheese"));
 		ua.onAction(player, action);
 		assertFalse(player.isEquipped("cheese"));
 	}
-	
+
 	@Test
 	public void testOnActionItemInBagWithTwoCheese() {
 		MockStendlRPWorld.get();
@@ -58,9 +58,9 @@ public class UseActionTest {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(player);
 		final RPAction action = new RPAction();
-		action.put(_BASEITEM, cheese.getID().getObjectID());
-		action.put(_BASEOBJECT, player.getID().getObjectID());
-		action.put(_BASESLOT, "bag");
+		action.put(BASEITEM, cheese.getID().getObjectID());
+		action.put(BASEOBJECT, player.getID().getObjectID());
+		action.put(BASESLOT, "bag");
 		assertTrue(player.isEquipped("cheese"));
 		ua.onAction(player, action);
 		assertTrue(player.isEquipped("cheese"));
@@ -79,13 +79,14 @@ public class UseActionTest {
 		zone.add(player);
 		zone.add(chest);
 		final RPAction action = new RPAction();
-		action.put(_BASEITEM, cheese.getID().getObjectID());
-		action.put(_BASEOBJECT, chest.getID().getObjectID());
-		action.put(_BASESLOT, "content");
+		action.put(BASEITEM, cheese.getID().getObjectID());
+		action.put(BASEOBJECT, chest.getID().getObjectID());
+		action.put(BASESLOT, "content");
 		assertFalse(player.has("eating"));
 		ua.onAction(player, action);
 		assertTrue(player.has("eating"));
 	}
+
 	@Test
 	public void testIsItemBoundToOtherPlayer() {
 		final UseAction ua = new UseAction();
@@ -94,16 +95,13 @@ public class UseActionTest {
 		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
 		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
 		cheese.setBoundTo("jack");
-		
+
 		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
 		assertTrue(ua.isItemBoundToOtherPlayer(player, cheese));
-		
+
 		cheese.setBoundTo("bob");
-		
+
 		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
 		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
-		
-		
 	}
-
 }

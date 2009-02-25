@@ -3,8 +3,8 @@ package games.stendhal.server.maps.semos.bakery;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Arrays;

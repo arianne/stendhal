@@ -1,7 +1,8 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.NAME;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -22,7 +23,7 @@ import marauroa.common.game.RPObject;
 public class DestroyAction extends AdministrationAction {
 
 
-	private static final String _ATTR_NAME = "name";
+	
 
 	public static void register() {
 		CommandCenter.register("destroy", new DestroyAction(), 700);
@@ -44,8 +45,8 @@ public class DestroyAction extends AdministrationAction {
 		String clazz = inspected.getRPClass().getName();
 		String name = "";
 		 
-		if (inspected.has(_ATTR_NAME)) {
-                      name = inspected.get(_ATTR_NAME);
+		if (inspected.has(NAME)) {
+                      name = inspected.get(NAME);
 		} 
 		
 if (inspected.isContained()) {
@@ -110,7 +111,7 @@ if (inspected.isContained()) {
 				name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
-		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(WellKnownActionConstants.TARGET));
+		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(TARGET));
 	}
 }
 

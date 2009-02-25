@@ -9,8 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import marauroa.common.game.RPAction;
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Door;
@@ -20,6 +18,8 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 import java.util.Map;
+
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a door.

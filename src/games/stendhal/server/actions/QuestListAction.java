@@ -1,15 +1,16 @@
 package games.stendhal.server.actions;
 
+import static games.stendhal.common.constants.Actions.LISTQUESTS;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 public class QuestListAction implements ActionListener {
-	private static final String _LISTQUESTS = "listquests";
+	
 
 	public static void register() {
-		CommandCenter.register(_LISTQUESTS, new QuestListAction());
+		CommandCenter.register(LISTQUESTS, new QuestListAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {

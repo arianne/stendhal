@@ -7,8 +7,9 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * a box which can be unwrapped.

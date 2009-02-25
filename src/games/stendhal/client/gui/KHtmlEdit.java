@@ -19,8 +19,8 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import javax.swing.JTextPane;
-import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;

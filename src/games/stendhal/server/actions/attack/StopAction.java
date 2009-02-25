@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.attack;
 
+import static games.stendhal.common.constants.Actions.ATTACK;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
@@ -19,7 +20,7 @@ import marauroa.common.game.RPAction;
 
 public class StopAction implements ActionListener {
 
-	private static final String _ATTACK = "attack";
+
 
 	public static void register() {
 		CommandCenter.register("stop", new StopAction());
@@ -29,7 +30,7 @@ public class StopAction implements ActionListener {
 
 		player.stop();
 
-		if (action.has(_ATTACK)) {
+		if (action.has(ATTACK)) {
 			player.stopAttack();
 		}
 

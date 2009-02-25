@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WHERE;
+import static games.stendhal.common.constants.Actions.WHO;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -30,17 +32,16 @@ import marauroa.common.game.RPAction;
 
 public class PlayersQuery implements ActionListener {
 
-	private static final String _WHERE = "where";
-	private static final String _WHO = "who";
+	
 
 	public static void register() {
 		final PlayersQuery query = new PlayersQuery();
-		CommandCenter.register(_WHO, query);
-		CommandCenter.register(_WHERE, query);
+		CommandCenter.register(WHO, query);
+		CommandCenter.register(WHERE, query);
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-		if (action.get(TYPE).equals(_WHO)) {
+		if (action.get(TYPE).equals(WHO)) {
 			onWho(player, action);
 		} else {
 			onWhere(player, action);
@@ -101,7 +102,7 @@ public class PlayersQuery implements ActionListener {
 
 			final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 
-			rules.addGameEvent(player.getName(), _WHERE, whoName);
+			rules.addGameEvent(player.getName(), WHERE, whoName);
 
 			final Player who = rules.getPlayer(whoName);
 			final DomesticAnimal animal = player.searchAnimal(whoName, false);

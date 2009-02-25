@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.common.constants.Actions.DIR;
+import static games.stendhal.common.constants.Actions.MOVE;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -21,17 +23,16 @@ import marauroa.common.game.RPAction;
 
 public class MoveAction implements ActionListener {
 
-	private static final String _DIR = "dir";
-	private static final String _MOVE = "move";
+	
 
 	public static void register() {
 		final MoveAction move = new MoveAction();
-		CommandCenter.register(_MOVE, move);
+		CommandCenter.register(MOVE, move);
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-		if (action.has(_DIR)) {
-			final int dirval = action.getInt(_DIR);
+		if (action.has(DIR)) {
+			final int dirval = action.getInt(DIR);
 
 			if (dirval < 0) {
 				player.removeClientDirection(Direction.build(-dirval));

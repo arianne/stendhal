@@ -18,8 +18,9 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an item.

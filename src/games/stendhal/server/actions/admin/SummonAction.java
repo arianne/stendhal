@@ -1,7 +1,9 @@
 package games.stendhal.server.actions.admin;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.X;
-import static games.stendhal.server.actions.WellKnownActionConstants.Y;
+import static games.stendhal.common.constants.Actions.CREATURE;
+import static games.stendhal.common.constants.Actions.SUMMON;
+import static games.stendhal.common.constants.Actions.X;
+import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,11 +22,10 @@ import marauroa.common.game.RPAction;
 
 public class SummonAction extends AdministrationAction {
 	private static final String USAGE = "Usage: /summon <whatToSummon> [<x> <y>]";
-	private static final String _CREATURE = "creature";
-	private static final String _SUMMON = "summon";
+	
 
 	public static void register() {
-		CommandCenter.register(_SUMMON, new SummonAction(), 800);
+		CommandCenter.register(SUMMON, new SummonAction(), 800);
 	}
 
 	/**
@@ -84,7 +85,7 @@ public class SummonAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-		if ("gate".equals(action.get(_CREATURE))) {
+		if ("gate".equals(action.get(CREATURE))) {
 			final Gate gate = new Gate();
 			gate.setPosition(action.getInt(X), action.getInt(Y));
 			player.getZone().add(gate);
@@ -92,7 +93,7 @@ public class SummonAction extends AdministrationAction {
 		}
 		System.out.println(action);
 		try {
-			if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
+			if (action.has(CREATURE) && action.has(X) && action.has(Y)) {
 				final StendhalRPZone zone = player.getZone();
 				final int x = action.getInt(X);
 				final int y = action.getInt(Y);
@@ -115,7 +116,7 @@ public class SummonAction extends AdministrationAction {
 								entityToBePlaced = entity;
 							}
 							StendhalRPAction.placeat(zone, entityToBePlaced, x, y);
-							SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
+							SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), SUMMON, type);
 							// We found what we are searching for.
 							searching = false;
 						}
@@ -129,7 +130,7 @@ public class SummonAction extends AdministrationAction {
 						}
 					};
 
-					final String typeName = action.get(_CREATURE);
+					final String typeName = action.get(CREATURE);
 					String type = typeName;
 					
 					

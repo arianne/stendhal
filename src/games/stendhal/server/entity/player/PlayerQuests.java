@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+
 import java.util.LinkedList;
 import java.util.List;
 

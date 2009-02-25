@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions.chat;
 
+import static games.stendhal.common.constants.Actions.ANSWER;
+import static games.stendhal.common.constants.Actions.CHAT;
+import static games.stendhal.common.constants.Actions.EMOTE;
+import static games.stendhal.common.constants.Actions.SUPPORT;
+import static games.stendhal.common.constants.Actions.TELL;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
@@ -24,21 +29,16 @@ import marauroa.common.game.RPAction;
  */
 public class ChatAction {
 
-	private static final String _SUPPORT = "support";
-	private static final String _TELL = "tell";
-	private static final String _CHAT = "chat";
-	private static final String _ANSWER = "answer";
-	private static final String _EMOTE = "emote";
 
 	/**
 	 * Registers AnswerAction ChatAction TellAction and SupportAction.
 	 */
 	public static void register() {
-		CommandCenter.register(_ANSWER, new AnswerAction());
-		CommandCenter.register(_CHAT, new PublicChatAction());
-		CommandCenter.register(_TELL, new TellAction());
-		CommandCenter.register(_SUPPORT, new AskForSupportAction());
-		CommandCenter.register(_EMOTE, new EmoteAction());
+		CommandCenter.register(ANSWER, new AnswerAction());
+		CommandCenter.register(CHAT, new PublicChatAction());
+		CommandCenter.register(TELL, new TellAction());
+		CommandCenter.register(SUPPORT, new AskForSupportAction());
+		CommandCenter.register(EMOTE, new EmoteAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {

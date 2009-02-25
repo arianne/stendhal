@@ -13,11 +13,11 @@
 
 package games.stendhal.client.gui;
 
-import games.stendhal.common.Outfits;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Outfits;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -16,9 +16,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.RPObject;
 
 /**
  * A domestic animal can be owned by a player;

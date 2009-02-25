@@ -31,7 +31,7 @@ import games.stendhal.server.maps.deathmatch.Spot;
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 
-import marauroa.common.game.RPObject; 
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 

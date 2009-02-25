@@ -11,7 +11,6 @@ package games.stendhal.server.entity.mapstuff.area;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 

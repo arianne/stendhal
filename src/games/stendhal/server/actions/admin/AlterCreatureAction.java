@@ -1,5 +1,8 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.ALTERCREATURE;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
@@ -8,19 +11,16 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class AlterCreatureAction extends AdministrationAction {
-	private static final String _TEXT = "text";
-	private static final String _TARGET = "target";
-	private static final String _ALTERCREATURE = "altercreature";
 
 	public static void register() {
-		CommandCenter.register(_ALTERCREATURE, new AlterCreatureAction(), 900);
+		CommandCenter.register(ALTERCREATURE, new AlterCreatureAction(), 900);
 
 	}
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
 
-		if (action.has(_TARGET) && action.has(_TEXT)) {
+		if (action.has(TARGET) && action.has(TEXT)) {
 			final Entity changed = getTarget(player, action);
 
 			if (changed == null) {
@@ -32,14 +32,14 @@ public class AlterCreatureAction extends AdministrationAction {
 			/*
 			 * It will contain a string like: name/atk/def/hp/xp
 			 */
-			final String stat = action.get(_TEXT);
+			final String stat = action.get(TEXT);
 
 			final String[] parts = stat.split("/");
 
 			if ((changed instanceof Creature) && (parts.length == 5)) {
 				final Creature creature = (Creature) changed;
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						"alter", action.get(_TARGET), stat);
+						"alter", action.get(TARGET), stat);
 
 				creature.setName(parts[0]);
 				creature.setATK(Integer.parseInt(parts[1]));

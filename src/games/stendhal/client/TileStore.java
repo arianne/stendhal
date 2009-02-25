@@ -20,15 +20,16 @@ import games.stendhal.client.sprite.TilesetAnimationMap;
 import games.stendhal.client.sprite.TilesetGroupAnimationMap;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
+
+import org.apache.log4j.Logger;
 
 /** It is class to get tiles from the tileset. */
 public class TileStore implements Tileset {

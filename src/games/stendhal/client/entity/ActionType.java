@@ -1,10 +1,9 @@
 package games.stendhal.client.entity;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.client.StendhalClient;
-
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * translates the visual representation into server side commands.

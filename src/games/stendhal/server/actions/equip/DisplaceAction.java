@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import static games.stendhal.common.constants.Actions.BASEITEM;
+import static games.stendhal.common.constants.Actions.X;
+import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import static games.stendhal.server.actions.WellKnownActionConstants.*;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -50,12 +52,12 @@ public class DisplaceAction implements ActionListener {
 	 */
 	public void onAction(final Player player, final RPAction action) {
 
-		if (!action.has(_BASEITEM) || !action.has(X) || !action.has(Y)) {
+		if (!action.has(BASEITEM) || !action.has(X) || !action.has(Y)) {
 			logger.error("Incomplete DisplaceAction: " + action);
 			return;
 		}
 
-		final int targetObject = action.getInt(_BASEITEM);
+		final int targetObject = action.getInt(BASEITEM);
 		final StendhalRPZone zone = player.getZone();
 
 		final Entity object = EntityHelper.entityFromZoneByID(targetObject, zone);

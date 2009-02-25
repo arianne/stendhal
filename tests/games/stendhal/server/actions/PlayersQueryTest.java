@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Cat;
@@ -53,13 +54,13 @@ public class PlayersQueryTest {
 			}
 		};
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "who");
+		action.put(Actions.TYPE, "who");
 		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(whoWasExecuted);
 		al.onAction(player, action);
 		assertTrue(whoWasExecuted);
 
-		action.put(WellKnownActionConstants.TYPE, "where");
+		action.put(Actions.TYPE, "where");
 
 		assertFalse(whereWasExecuted);
 		al.onAction(player, action);
@@ -70,7 +71,7 @@ public class PlayersQueryTest {
 	public void testOnWho() {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "who");
+		action.put(Actions.TYPE, "who");
 		final Player player = PlayerTestHelper.createPlayer("player");
 		pq.onWho(player, action);
 		assertThat(player.events().get(0).get("text"), equalTo("0 Players online: "));
@@ -102,7 +103,7 @@ public class PlayersQueryTest {
 	public void testOnWhereNoTarget() {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "where");
+		action.put(Actions.TYPE, "where");
 		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
@@ -114,8 +115,8 @@ public class PlayersQueryTest {
 	public void testOnWhereNotThere() {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "where");
-		action.put(WellKnownActionConstants.TARGET, "NotThere");
+		action.put(Actions.TYPE, "where");
+		action.put(Actions.TARGET, "NotThere");
 
 		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
@@ -128,8 +129,8 @@ public class PlayersQueryTest {
 	public void testOnWhere() {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "where");
-		action.put(WellKnownActionConstants.TARGET, "bob");
+		action.put(Actions.TYPE, "where");
+		action.put(Actions.TARGET, "bob");
 
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -143,7 +144,7 @@ public class PlayersQueryTest {
 		final Player ghosted = PlayerTestHelper.createPlayer("ghosted");
 		zone.add(ghosted);
 		MockStendhalRPRuleProcessor.get().addPlayer(ghosted);
-		action.put(WellKnownActionConstants.TARGET, ghosted.getName());
+		action.put(Actions.TARGET, ghosted.getName());
 		pq.onWhere(player, action);
 		assertThat(player.events().get(0).get("text"), equalTo("ghosted is in zone at (0,0)"));
 		player.clearEvents();
@@ -158,8 +159,8 @@ public class PlayersQueryTest {
 	public void testOnWhereSheep() {
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "where");
-		action.put(WellKnownActionConstants.TARGET, "sheep");
+		action.put(Actions.TYPE, "where");
+		action.put(Actions.TARGET, "sheep");
 
 		final Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
@@ -175,8 +176,8 @@ public class PlayersQueryTest {
 		CatTestHelper.generateRPClasses();
 		final PlayersQuery pq = new PlayersQuery();
 		final RPAction action = new RPAction();
-		action.put(WellKnownActionConstants.TYPE, "where");
-		action.put(WellKnownActionConstants.TARGET, "pet");
+		action.put(Actions.TYPE, "where");
+		action.put(Actions.TARGET, "pet");
 
 		Player player = PlayerTestHelper.createPlayer("player");
 
@@ -204,7 +205,7 @@ public class PlayersQueryTest {
 
 		player.setSheep(testSheep);
 
-		action.put(WellKnownActionConstants.TARGET, "sheep");
+		action.put(Actions.TARGET, "sheep");
 
 		pq.onWhere(player, action);
 		assertThat(player.events().get(0).get("text"), equalTo("Your sheep is at (0,0)"));

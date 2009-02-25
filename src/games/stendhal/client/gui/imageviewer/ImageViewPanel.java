@@ -2,9 +2,11 @@ package games.stendhal.client.gui.imageviewer;
 
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 

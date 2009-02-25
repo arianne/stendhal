@@ -17,10 +17,11 @@ import games.stendhal.server.entity.item.Item;
 
 import java.awt.geom.Rectangle2D;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * This respwan point has to be "used" to get the item. After that, it will

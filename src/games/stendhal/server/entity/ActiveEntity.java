@@ -16,11 +16,12 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 
 import java.awt.geom.Rectangle2D;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * An entity that has speed and direction.

@@ -11,22 +11,21 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions;
-
+import static games.stendhal.common.constants.Actions.SENTENCE;
+import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class SentenceAction implements ActionListener {
 
-	private static final String _VALUE = "value";
-	private static final String _SENTENCE = "sentence";
 
 	public static void register() {
-		CommandCenter.register(_SENTENCE, new SentenceAction());
+		CommandCenter.register(SENTENCE, new SentenceAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-		if (action.has(_VALUE)) {
-			player.setSentence(action.get(_VALUE));
+		if (action.has(VALUE)) {
+			player.setSentence(action.get(VALUE));
 		}
 	}
 }

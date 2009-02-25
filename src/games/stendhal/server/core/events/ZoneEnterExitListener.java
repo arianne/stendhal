@@ -1,7 +1,7 @@
 package games.stendhal.server.core.events;
 
-import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import marauroa.common.game.RPObject;
 
 public interface ZoneEnterExitListener {
 	/**

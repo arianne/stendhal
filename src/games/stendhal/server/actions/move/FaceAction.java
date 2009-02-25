@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.common.constants.Actions.DIR;
+import static games.stendhal.common.constants.Actions.FACE;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -20,18 +22,17 @@ import marauroa.common.game.RPAction;
 
 public class FaceAction implements ActionListener {
 
-	private static final String _DIR = "dir";
-	private static final String _FACE = "face";
+
 
 	public static void register() {
-		CommandCenter.register(_FACE, new FaceAction());
+		CommandCenter.register(FACE, new FaceAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
 
-		if (action.has(_DIR)) {
+		if (action.has(DIR)) {
 			player.stop();
-			player.setDirection(Direction.build(action.getInt(_DIR)));
+			player.setDirection(Direction.build(action.getInt(DIR)));
 			player.notifyWorldAboutChanges();
 		}
 

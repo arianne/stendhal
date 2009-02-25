@@ -20,8 +20,9 @@ import games.stendhal.common.Rand;
 
 import javax.sound.sampled.DataLine;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject.ID;
+
+import org.apache.log4j.Logger;
 
 /**
  * A sound cycle loops on performing a library sound. After each termination of

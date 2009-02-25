@@ -1,7 +1,7 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 

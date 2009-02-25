@@ -11,33 +11,33 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import marauroa.client.ClientFramework;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
+import org.apache.log4j.Logger;
+
 /**
  * Postman.
- * 
+ *
  * @author hendrik
  */
 public class Postman implements Runnable {
 
 	private static final String Y_COORD = "85";
 	private static final String X_COORD = "112";
-	private static final String _0_SEMOS_PLAINS_N = "0_semos_plains_n";
+	private static final String POSTMAN_ZONE = "0_semos_plains_n";
 	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
 	private final Properties messages = new Properties();
 	private final ClientFramework clientManager;
 	private final PostmanIRC postmanIRC;
-	private static final String greeting = "Hi, I am the postman. How can I #help you?";
-	private static final String intro = "I store messages for offline players and deliver them on login.\n";
-	private static final String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
+	private static final String GREETING = "Hi, I am the postman. How can I #help you?";
+	private static final String INTRO = "I store messages for offline players and deliver them on login.\n";
+	private static final String HELP_MESSAGE = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
 
 	/**
 	 * Creates a new postman.
-	 * 
+	 *
 	 * @param clientManager
 	 *            ClientManager
 	 * @param postmanIRC
@@ -104,7 +104,7 @@ public class Postman implements Runnable {
 							cmd = st.nextToken();
 						}
 						if (cmd.equalsIgnoreCase("hi")) {
-							chat(greeting);
+							chat(GREETING);
 						} else if (cmd.equalsIgnoreCase("bye")) {
 							chat("Bye.");
 						} else if (cmd.equalsIgnoreCase("help")
@@ -113,7 +113,7 @@ public class Postman implements Runnable {
 								|| cmd.equalsIgnoreCase("offer")
 								|| cmd.equalsIgnoreCase("letter")
 								|| cmd.equalsIgnoreCase("parcel")) {
-							chat(intro + helpMessage);
+							chat(INTRO + HELP_MESSAGE);
 						} else if (cmd.equalsIgnoreCase("msg")
 								|| cmd.equalsIgnoreCase("tell")) {
 							onTell(playerName, st);
@@ -175,20 +175,20 @@ public class Postman implements Runnable {
 								|| cmd.equalsIgnoreCase("/msg")) {
 							onTell(from, st);
 						} else if (cmd.equalsIgnoreCase("hi")) {
-							tell(from, greeting);
+							tell(from, GREETING);
 						} else if (cmd.equalsIgnoreCase("help")
 								|| cmd.equalsIgnoreCase("info")
 								|| cmd.equalsIgnoreCase("job")
 								|| cmd.equalsIgnoreCase("letter")
 								|| cmd.equalsIgnoreCase("offer")
 								|| cmd.equalsIgnoreCase("parcel")) {
-							tell(from, intro + helpMessage);
+							tell(from, INTRO + HELP_MESSAGE);
 						} else if (cmd.equalsIgnoreCase("where")) {
 							onWhere();
 						} else {
 							tell(from,
 									"Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
-											+ helpMessage);
+											+ HELP_MESSAGE);
 						}
 					} else if (arianneCmd.equals("Players")) {
 						onWhoResponse(st);
@@ -325,7 +325,7 @@ public class Postman implements Runnable {
 		final RPAction teleport = new RPAction();
 		teleport.put("type", "teleport");
 		teleport.put("target", "postman");
-		teleport.put("zone", _0_SEMOS_PLAINS_N);
+		teleport.put("zone", POSTMAN_ZONE);
 		teleport.put("x", X_COORD);
 		teleport.put("y", Y_COORD);
 		send(teleport);

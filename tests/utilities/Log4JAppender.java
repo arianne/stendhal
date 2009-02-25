@@ -7,7 +7,7 @@ import org.apache.log4j.spi.LoggingEvent;
 
 public class Log4JAppender extends AppenderSkeleton {
 	private static List<String> messages = new ArrayList<String>();
-	public static final Log4JAppender instance = new Log4JAppender();
+	public static final Log4JAppender INSTANCE = new Log4JAppender();
 
 	@Override
 	protected void append(final LoggingEvent event) {

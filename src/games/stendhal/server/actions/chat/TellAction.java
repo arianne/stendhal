@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.chat;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.admin.AdministrationAction;

@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.X;
-import static games.stendhal.server.actions.WellKnownActionConstants.Y;
+import static games.stendhal.common.constants.Actions.MOVETO;
+import static games.stendhal.common.constants.Actions.TELECLICKMODE;
+import static games.stendhal.common.constants.Actions.X;
+import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -28,12 +30,10 @@ import marauroa.common.game.RPAction;
 
 public class MoveToAction implements ActionListener {
 
-	private static final String _MOVETO = "moveto";
-	private static final String _TELECLICKMODE = "teleclickmode";
 
 	public static void register() {
 		final MoveToAction moveTo = new MoveToAction();
-		CommandCenter.register(_MOVETO, moveTo);
+		CommandCenter.register(MOVETO, moveTo);
 	}
 
 	public void onAction(final Player player, final RPAction action) {
@@ -55,7 +55,7 @@ public class MoveToAction implements ActionListener {
 				&& action.has(Y)) {
 			final int x = action.getInt(X);
 			final int y = action.getInt(Y);
-			if (player.has(_TELECLICKMODE)) {
+			if (player.has(TELECLICKMODE)) {
 				// Teleport
 				final StendhalRPZone zone = player.getZone();
 				player.teleport(zone, x, y, null, null);

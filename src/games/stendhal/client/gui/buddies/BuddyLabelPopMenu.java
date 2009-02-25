@@ -1,10 +1,10 @@
 package games.stendhal.client.gui.buddies;
 
 
-import javax.swing.JMenuItem;
-
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+
+import javax.swing.JMenuItem;
 
 @SuppressWarnings("serial")
 class BuddyLabelPopMenu extends StyledJPopupMenu {

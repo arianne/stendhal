@@ -5,7 +5,10 @@
  */
 
 package games.stendhal.server.actions.guild;
-
+import static games.stendhal.common.constants.Actions.CREATEGUILD;
+import static games.stendhal.common.constants.Actions.GUILD;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
@@ -16,10 +19,6 @@ import marauroa.common.game.RPAction;
  */
 public class CreateGuildAction implements ActionListener {
 
-	private static final String _CREATEGUILD = "createguild";
-	private static final String TYPE = "type";
-	private static final String _VALUE = "value";
-	private static final String _ATTR_GUILD = "guild";
 
 	/**
 	 * Registers action.
@@ -40,13 +39,13 @@ public class CreateGuildAction implements ActionListener {
 
 		// now we see if the player is in a guild. If not, put them in the
 		// requested one.
-		if (player.get(_ATTR_GUILD) != null) {
+		if (player.get(GUILD) != null) {
 			player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
 		} else {
-			player.put(_ATTR_GUILD, action.get(_VALUE));
+			player.put(GUILD, action.get(VALUE));
 			final String description = "You see " + player.getTitle() + ".\n"
 					+ player.getTitle() + " is level " + player.getLevel()
-					+ " and is a member of the " + action.get(_VALUE)
+					+ " and is a member of the " + action.get(VALUE)
 					+ " guild.";
 			player.setDescription(description);
 		}
@@ -66,7 +65,7 @@ public class CreateGuildAction implements ActionListener {
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (action.get(TYPE).equals(_CREATEGUILD)) {
+		if (action.get(TYPE).equals(CREATEGUILD)) {
 			joinGuild(player, action);
 		}
 	}

@@ -8,9 +8,9 @@ package games.stendhal.server.extension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.RPAction;
 
 /**
  *  # load StendhalServerExtension(s).

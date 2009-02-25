@@ -19,8 +19,9 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a grain field.

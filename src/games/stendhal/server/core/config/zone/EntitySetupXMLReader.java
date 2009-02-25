@@ -12,9 +12,9 @@ package games.stendhal.server.core.config.zone;
 import games.stendhal.server.core.config.XMLUtil;
 
 import java.util.List;
-import org.w3c.dom.Element;
 
 import org.apache.log4j.Logger;
+import org.w3c.dom.Element;
 
 /**
  * A generic entity setup xml reader.

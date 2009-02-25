@@ -1,12 +1,12 @@
 package games.stendhal.server.maps.semos.city;
 
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
+
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 /**
  * Configures ground to be fertile in zone. usage in zones.xml.

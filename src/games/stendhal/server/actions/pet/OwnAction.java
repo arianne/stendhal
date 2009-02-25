@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.pet;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.common.constants.Actions.OWN;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.pathfinder.Node;
@@ -30,10 +31,9 @@ import marauroa.common.game.RPAction;
 
 public class OwnAction implements ActionListener {
 
-	private static final String _OWN = "own";
 
 	public static void register() {
-		CommandCenter.register(_OWN, new OwnAction());
+		CommandCenter.register(OWN, new OwnAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {

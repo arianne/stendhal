@@ -38,8 +38,8 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.UseableItem;
+import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.entity.WellSource;
 

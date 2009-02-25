@@ -1,6 +1,5 @@
 package games.stendhal.server.core.engine;
 
-import marauroa.server.game.db.IDatabase;
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.QuestsXMLLoader;
 import games.stendhal.server.core.events.LoginNotifier;
@@ -17,6 +16,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
+import marauroa.server.game.db.IDatabase;
 
 
 /**

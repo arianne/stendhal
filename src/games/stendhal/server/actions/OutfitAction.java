@@ -12,18 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.common.constants.Actions.OUTFIT;
+import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+
 public class OutfitAction implements ActionListener {
 
-	private static final String _VALUE = "value";
-	private static final String _OUTFIT = "outfit";
 
 	public static void register() {
-		CommandCenter.register(_OUTFIT, new OutfitAction());
+		CommandCenter.register(OUTFIT, new OutfitAction());
 	}
 
 	/**
@@ -32,10 +33,10 @@ public class OutfitAction implements ActionListener {
 	 * @param action the action containing the outfit info in the attribute 'value'. Must not be <code>null</code>.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (action.has(_VALUE)) {
+		if (action.has(VALUE)) {
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					_OUTFIT, action.get(_VALUE));
-			final Outfit outfit = new Outfit(action.getInt(_VALUE));
+					OUTFIT, action.get(VALUE));
+			final Outfit outfit = new Outfit(action.getInt(VALUE));
 			if (outfit.isChoosableByPlayers()) {
 				player.setOutfit(outfit, false);
 			}

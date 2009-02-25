@@ -7,9 +7,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.RPAction;
 
 /**
  * Stendhal TeleportSend Extenstion

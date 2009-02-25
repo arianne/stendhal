@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.creature.impl;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
+
+import org.apache.log4j.Logger;
 
 public class PoisonerFactory {
 	static final Attacker nonpoisonous = new NonPoisoner();

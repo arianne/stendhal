@@ -20,8 +20,9 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a player.

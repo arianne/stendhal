@@ -18,6 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 /**

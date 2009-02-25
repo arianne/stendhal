@@ -17,10 +17,11 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
+
+import org.apache.log4j.Logger;
 
 /**
  * A cat is a domestic animal that can be owned by a player.

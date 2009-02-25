@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Creates the cadet npcs in townhall
+ * Creates the cadet npcs in townhall.
  *
  * @author kymara
  */

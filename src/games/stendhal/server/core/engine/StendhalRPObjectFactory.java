@@ -1,14 +1,15 @@
 package games.stendhal.server.core.engine;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.FlowerGrowerTransFormer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.rp.RPObjectFactory;

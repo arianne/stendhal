@@ -4,9 +4,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Represents a member of a Guild. A guild member consists of a player, a guild, 

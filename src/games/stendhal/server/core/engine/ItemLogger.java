@@ -1,19 +1,20 @@
 package games.stendhal.server.core.engine;
 
-import java.sql.SQLException;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+
+import java.sql.SQLException;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.StringChecker;
 import marauroa.server.game.db.Transaction;
+
+import org.apache.log4j.Logger;
 
 /**
  * Item Logger.

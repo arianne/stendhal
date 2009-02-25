@@ -1,9 +1,10 @@
 package games.stendhal.server.actions;
 
+import games.stendhal.server.entity.player.Player;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class InfoAction implements ActionListener {

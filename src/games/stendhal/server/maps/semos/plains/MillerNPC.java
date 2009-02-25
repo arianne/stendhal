@@ -3,9 +3,7 @@ package games.stendhal.server.maps.semos.plains;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
-//import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-//import games.stendhal.server.entity.npc.behaviour.impl.SeedSellerBehaviour;
 
 import java.util.Map;
 import java.util.TreeMap;

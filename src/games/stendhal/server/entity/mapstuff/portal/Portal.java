@@ -18,11 +18,11 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * A portal which teleports the player to another portal if used.

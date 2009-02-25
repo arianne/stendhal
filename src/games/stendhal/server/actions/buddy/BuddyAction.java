@@ -12,22 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server.actions.buddy;
 
+import static games.stendhal.common.constants.Actions.ADDBUDDY;
+import static games.stendhal.common.constants.Actions.GRUMPY;
+import static games.stendhal.common.constants.Actions.IGNORE;
+import static games.stendhal.common.constants.Actions.REMOVEBUDDY;
+import static games.stendhal.common.constants.Actions.UNIGNORE;
 import games.stendhal.server.actions.CommandCenter;
-
 public class BuddyAction {
 
-	private static final String _GRUMPY = "grumpy";
-	private static final String _UNIGNORE = "unignore";
-	private static final String _REMOVEBUDDY = "removebuddy";
-	private static final String _IGNORE = "ignore";
-	private static final String _ADDBUDDY = "addbuddy";
-
+	
 	public static void register() {
-		CommandCenter.register(_ADDBUDDY, new AddBuddyAction());
-		CommandCenter.register(_IGNORE, new IgnoreAction());
-		CommandCenter.register(_REMOVEBUDDY, new RemoveBuddyAction());
-		CommandCenter.register(_UNIGNORE, new UnignoreAction());
-		CommandCenter.register(_GRUMPY, new GrumpyAction());
+		CommandCenter.register(ADDBUDDY, new AddBuddyAction());
+		CommandCenter.register(IGNORE, new IgnoreAction());
+		CommandCenter.register(REMOVEBUDDY, new RemoveBuddyAction());
+		CommandCenter.register(UNIGNORE, new UnignoreAction());
+		CommandCenter.register(GRUMPY, new GrumpyAction());
 	}
 
 }

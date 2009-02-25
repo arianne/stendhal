@@ -1,9 +1,18 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.ADD;
+import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.ALTER;
+import static games.stendhal.common.constants.Actions.ATTR_HP;
+import static games.stendhal.common.constants.Actions.MODE;
+import static games.stendhal.common.constants.Actions.SET;
+import static games.stendhal.common.constants.Actions.STAT;
+import static games.stendhal.common.constants.Actions.SUB;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TITLE;
+import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -14,20 +23,9 @@ import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 public class AlterAction extends AdministrationAction {
-	private static final String _ATTR_HP = "hp";
-	private static final String _SUB = "sub";
-	private static final String _ADD = "add";
-	private static final String _SET = "set";
-	private static final String ATTR_TITLE = "title";
-	private static final String ATTR_ADMINLEVEL = "adminlevel";
-	private static final String _VALUE = "value";
-	private static final String _MODE = "mode";
-	private static final String _STAT = "stat";
 	
-	private static final String _ALTER = "alter";
-
 	public static void register() {
-		CommandCenter.register(_ALTER, new AlterAction(), 900);
+		CommandCenter.register(ALTER, new AlterAction(), 900);
 	}
 
 	@Override
@@ -41,7 +39,7 @@ public class AlterAction extends AdministrationAction {
 				return;
 			}
 
-			final String stat = action.get(_STAT);
+			final String stat = action.get(STAT);
 
 			if ("name".equals(stat) && (changed instanceof Player)) {
 				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(TARGET)
@@ -50,12 +48,12 @@ public class AlterAction extends AdministrationAction {
 				return;
 			}
 
-			if (ATTR_ADMINLEVEL.equals(stat)) {
+			if (ADMINLEVEL.equals(stat)) {
 				player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
 				return;
 			}
 
-			if (ATTR_TITLE.equals(stat) && (changed instanceof Player)) {
+			if (TITLE.equals(stat) && (changed instanceof Player)) {
 				player.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
@@ -69,11 +67,11 @@ public class AlterAction extends AdministrationAction {
 						+ changed.getRPClass().getName() + ")");
 				return;
 			} else {
-				final String value = action.get(_VALUE);
-				final String mode = action.get(_MODE);
+				final String value = action.get(VALUE);
+				final String mode = action.get(MODE);
 
-				if ((mode.length() > 0) && !mode.equalsIgnoreCase(_ADD) 
-						&& !mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
+				if ((mode.length() > 0) && !mode.equalsIgnoreCase(ADD) 
+						&& !mode.equalsIgnoreCase(SUB) && !mode.equalsIgnoreCase(SET)) {
 					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
 					return;
 				}
@@ -88,22 +86,22 @@ public class AlterAction extends AdministrationAction {
 						return;
 					}
 
-					if (mode.equalsIgnoreCase(_ADD)) {
+					if (mode.equalsIgnoreCase(ADD)) {
 						numberValue = changed.getInt(stat) + numberValue;
 					}
 
-					if (mode.equalsIgnoreCase(_SUB)) {
+					if (mode.equalsIgnoreCase(SUB)) {
 						numberValue = changed.getInt(stat) - numberValue;
 					}
 
-					if (_ATTR_HP.equals(stat) && (changed.getInt("base_hp") < numberValue)) {
+					if (ATTR_HP.equals(stat) && (changed.getInt("base_hp") < numberValue)) {
 						logger.info("Admin " + player.getName() + " trying to set entity "
 								+ Grammar.suffix_s(action.get(TARGET)) + " HP over its Base HP, "
 								+ "we instead restored entity " + action.get(TARGET) + " to full health.");
 						numberValue = changed.getInt("base_hp");
 					}
 
-					if (_ATTR_HP.equals(stat) && (numberValue <= 0)) {
+					if (ATTR_HP.equals(stat) && (numberValue <= 0)) {
 						logger.error("DENIED: Admin " + player.getName() + " trying to set entity "
 								+ Grammar.suffix_s(action.get(TARGET)) + " HP to 0, making it so unkillable.");
 						return;
@@ -135,16 +133,16 @@ public class AlterAction extends AdministrationAction {
 					}
 
 					SingletonRepository.getRuleProcessor().addGameEvent(
-							player.getName(), _ALTER, action.get(TARGET),
+							player.getName(), ALTER, action.get(TARGET),
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
-					if (mode.equalsIgnoreCase(_SET)) {
+					if (mode.equalsIgnoreCase(SET)) {
 						SingletonRepository.getRuleProcessor().addGameEvent(
-								player.getName(), _ALTER, action.get(TARGET),
-								stat, action.get(_VALUE));
-						changed.put(stat, action.get(_VALUE));
+								player.getName(), ALTER, action.get(TARGET),
+								stat, action.get(VALUE));
+						changed.put(stat, action.get(VALUE));
 					}
 				}
 
@@ -163,8 +161,8 @@ public class AlterAction extends AdministrationAction {
 	}
 
 	protected boolean hasNeededAttributes(final RPAction action) {
-		return action.has(TARGET) && action.has(_STAT) && action.has(_MODE)
-				&& action.has(_VALUE);
+		return action.has(TARGET) && action.has(STAT) && action.has(MODE)
+				&& action.has(VALUE);
 	}
 
 }

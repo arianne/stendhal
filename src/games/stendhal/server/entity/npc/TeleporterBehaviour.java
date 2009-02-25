@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
+
+import org.apache.log4j.Logger;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world and causes

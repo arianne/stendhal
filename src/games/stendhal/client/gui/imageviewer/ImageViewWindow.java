@@ -3,6 +3,7 @@ package games.stendhal.client.gui.imageviewer;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import java.net.URL;

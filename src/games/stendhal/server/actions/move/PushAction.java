@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.common.constants.Actions.PUSH;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -24,9 +25,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
-import marauroa.common.game.RPAction;
 
 import java.util.Set;
+
+import marauroa.common.game.RPAction;
 
 /**
  * Pushes an entity which is next to the player one field forward.
@@ -34,11 +36,10 @@ import java.util.Set;
  * for instance.
  */
 public class PushAction implements ActionListener {
-	private static final String _PUSH = "push";
 
 	public static void register() {
 		final PushAction push = new PushAction();
-		CommandCenter.register(_PUSH, push);
+		CommandCenter.register(PUSH, push);
 	}
 
 	public void onAction(final Player player, final RPAction action) {

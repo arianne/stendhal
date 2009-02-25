@@ -2,8 +2,10 @@ package games.stendhal.server.core.rp.guilds;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+
 import java.util.LinkedList;
 import java.util.List;
+
 import marauroa.common.game.RPObject;
 
 /**

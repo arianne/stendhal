@@ -1,9 +1,9 @@
 package games.stendhal.server.actions.buddy;
 
-import marauroa.common.game.RPAction;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import marauroa.common.game.RPAction;
 
 class UnignoreAction implements ActionListener {
 

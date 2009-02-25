@@ -3,6 +3,7 @@ package games.stendhal.server.entity.mapstuff.spawner;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.core.engine.StendhalRPObjectFactory;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;

@@ -142,8 +142,8 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP:${xp}\n" +
-				"Level: ${level} (${xptonextlevel})\nMoney: $${money}",
+				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP:${xp}\n"
+				+ "Level: ${level} (${xptonextlevel})\nMoney: $${money}",
 				gameScreen);
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);

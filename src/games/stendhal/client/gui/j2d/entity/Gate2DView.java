@@ -1,18 +1,18 @@
 package games.stendhal.client.gui.j2d.entity;
 
-import java.awt.Graphics2D;
-import java.util.List;
-
-import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+
+import java.awt.Graphics2D;
+import java.util.List;
+
+import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 public class Gate2DView extends Entity2DView {
 	static final Sprite horizontalClosedGate;

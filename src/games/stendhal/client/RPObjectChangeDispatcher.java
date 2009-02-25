@@ -9,12 +9,11 @@ package games.stendhal.client;
 //
 //
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.client.events.RPObjectChangeListener;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * A dispatcher for RPObjectChangeListeners. This normalizes the tree deltas

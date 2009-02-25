@@ -1,14 +1,15 @@
 package games.stendhal.server.actions.buddy;
 
-import marauroa.common.game.RPAction;
+import static games.stendhal.common.constants.Actions.DURATION;
+import static games.stendhal.common.constants.Actions.REASON;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import marauroa.common.game.RPAction;
 
 class IgnoreAction implements ActionListener {
 
-	private static final String _REASON = "reason";
-	private static final String _DURATION = "duration";
+
 
 	public void onAction(final Player player, final RPAction action) {
 		int duration;
@@ -17,14 +18,14 @@ class IgnoreAction implements ActionListener {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
 
-			if (action.has(_DURATION)) {
-				duration = action.getInt(_DURATION);
+			if (action.has(DURATION)) {
+				duration = action.getInt(DURATION);
 			} else {
 				duration = 0;
 			}
 
-			if (action.has(_REASON)) {
-				reason = action.get(_REASON);
+			if (action.has(REASON)) {
+				reason = action.get(REASON);
 			} else {
 				reason = null;
 			}

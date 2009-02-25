@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.common.constants.Actions.LOOK;
+import static games.stendhal.common.constants.Actions.NAME;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -23,20 +27,17 @@ import marauroa.common.game.RPAction;
 
 public class LookAction implements ActionListener {
 
-	private static final String ATTR_NAME = "name";
-	private static final String ATTR_TYPE = "type";
-	private static final String _TARGET = "target";
-	private static final String _LOOK = "look";
+	
 
 	public static void register() {
-		CommandCenter.register(_LOOK, new LookAction());
+		CommandCenter.register(LOOK, new LookAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
 		if (entity == null) {
-			entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player);
+			entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 		}
 
 		if (entity != null) {
@@ -47,11 +48,11 @@ public class LookAction implements ActionListener {
 				}
 			}
 
-			String name = entity.get(ATTR_TYPE);
-			if (entity.has(ATTR_NAME)) {
-				name = entity.get(ATTR_NAME);
+			String name = entity.get(TYPE);
+			if (entity.has(NAME)) {
+				name = entity.get(NAME);
 			}
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _LOOK, name);
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), LOOK, name);
 			final String text = entity.describe();
 
 			if (entity instanceof Sign) {

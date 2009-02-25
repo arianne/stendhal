@@ -1,6 +1,7 @@
 package games.stendhal.tools.loganalyser.itemlog.consistency;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

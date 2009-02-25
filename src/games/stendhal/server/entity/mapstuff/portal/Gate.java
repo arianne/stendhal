@@ -1,13 +1,12 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.events.UseListener;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
-
-import games.stendhal.server.core.events.UseListener;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 
 public class Gate extends Entity implements UseListener {
 

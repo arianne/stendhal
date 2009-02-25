@@ -1,6 +1,10 @@
 package games.stendhal.server.actions.admin;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.common.constants.Actions.AMOUNT;
+import static games.stendhal.common.constants.Actions.ITEM;
+import static games.stendhal.common.constants.Actions.SLOT;
+import static games.stendhal.common.constants.Actions.SUMMONAT;
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
@@ -10,20 +14,15 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class SummonAtAction extends AdministrationAction {
-	private static final String _AMOUNT = "amount";
-	private static final String _ITEM = "item";
-	private static final String _SLOT = "slot";
-
-	private static final String _SUMMONAT = "summonat";
 
 	public static void register() {
-		CommandCenter.register(_SUMMONAT, new SummonAtAction(), 800);
+		CommandCenter.register(SUMMONAT, new SummonAtAction(), 800);
 	}
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
 
-		if (action.has(TARGET) && action.has(_SLOT) && action.has(_ITEM)) {
+		if (action.has(TARGET) && action.has(SLOT) && action.has(ITEM)) {
 			final String name = action.get(TARGET);
 			final Player changed = SingletonRepository.getRuleProcessor().getPlayer(name);
 
@@ -33,7 +32,7 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			final String slotName = action.get(_SLOT);
+			final String slotName = action.get(SLOT);
 			if (!changed.hasSlot(slotName)) {
 				logger.debug("Player \"" + name
 						+ "\" does not have an RPSlot named \"" + slotName
@@ -45,16 +44,16 @@ public class SummonAtAction extends AdministrationAction {
 			}
 
 			final EntityManager manager = SingletonRepository.getEntityManager();
-			final String type = action.get(_ITEM);
+			final String type = action.get(ITEM);
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
 				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						_SUMMONAT, changed.getName(), slotName, type);
+						SUMMONAT, changed.getName(), slotName, type);
 				final Item item = manager.getItem(type);
 
-				if (action.has(_AMOUNT) && (item instanceof StackableItem)) {
-					((StackableItem) item).setQuantity(action.getInt(_AMOUNT));
+				if (action.has(AMOUNT) && (item instanceof StackableItem)) {
+					((StackableItem) item).setQuantity(action.getInt(AMOUNT));
 				}
 
 				if (!changed.equip(slotName, item)) {
