@@ -97,13 +97,14 @@ public class AlterAction extends AdministrationAction {
 					}
 
 					if (_ATTR_HP.equals(stat) && (changed.getInt("base_hp") < numberValue)) {
-						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
-								+ Grammar.suffix_s(action.get(TARGET)) + " HP over its Base HP");
-						return;
+						logger.info("Admin " + player.getName() + " trying to set entity "
+								+ Grammar.suffix_s(action.get(TARGET)) + " HP over its Base HP, "
+								+ "we instead restored entity " + action.get(TARGET) + " to full health.");
+						numberValue = changed.getInt("base_hp");
 					}
 
 					if (_ATTR_HP.equals(stat) && (numberValue <= 0)) {
-						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
+						logger.error("DENIED: Admin " + player.getName() + " trying to set entity "
 								+ Grammar.suffix_s(action.get(TARGET)) + " HP to 0, making it so unkillable.");
 						return;
 					}
