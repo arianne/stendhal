@@ -125,7 +125,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final boolean type = outfitPair.second();
 						if (type) {
-							if (player.getOutfit().getBase() > 94
+							if (player.getOutfit().getBase() > 80
 									&& player.getOutfit().getBase() < 99) {
 								seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 								return false;
