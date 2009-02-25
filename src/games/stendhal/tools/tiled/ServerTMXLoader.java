@@ -208,6 +208,13 @@ public class ServerTMXLoader {
 			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);
 			factory.setExpandEntityReferences(false);
+			// Xerces normally tries to retrieve the dtd, even when it's not used - and 
+			// dies if it fails. 
+			try {
+				factory.setAttribute("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+			} catch (final IllegalArgumentException e) {
+			}
+			
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(in, xmlPath);
 		} catch (final SAXException e) {
