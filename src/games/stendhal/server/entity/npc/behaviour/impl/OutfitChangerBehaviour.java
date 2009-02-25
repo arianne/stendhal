@@ -61,7 +61,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 
 		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, null, null),
 				new Outfit(0, 81, null, null), new Outfit(0, 82, null, null),
-				new Outfit(0, 83, null, null), new Outfit(0, 84, null, null)));
+				new Outfit(0, 83, null, null), new Outfit(0, 84, null, null),
+				new Outfit(0, 85, null, null)));
 
 		// wedding dress for brides
 		// it seems this must be an array as list even though it's only one item
