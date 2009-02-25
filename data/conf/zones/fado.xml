@@ -1201,7 +1201,9 @@ chocolate shake 110
 			</implementation>
 
 			<attribute name="class">chaos_sorcerornpc</attribute>
-			<attribute name="hp">95</attribute>
+			<attribute name="description">You see Haastaja, the Challenger. He is a mighty Chaos Sorcerer.</attribute>
+			<attribute name="level">600</attribute>
+			<attribute name="hp">75</attribute>
 	</entity>
 		
 </zone>
