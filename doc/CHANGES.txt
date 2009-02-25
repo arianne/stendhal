@@ -2,6 +2,11 @@ Changelog
 ---------
 0.xx
 - buddy panel is no free floating window anymore
+- adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
+- rare monsters that do not appear in DM or daily quests: pegasus and centaur
+- lord durin, a high level boss in ados abandoned keep
+- bugfix to /alter, now doesn't reject a heal which takes hp over base hp, instead sets hp to full
+- new npc condition and action for events with any kind of delay to be checked
 
 0.72
 *Features*
