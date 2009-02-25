@@ -108,6 +108,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			int cost =  (int)  COST_FACTOR*player.getLevel();
 			if (!player.isEquipped("money", cost)) {
 				npc.say("You don't have enough money with you, the fee at your level is " + cost + " money.");
+				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
 			final StendhalRPZone Challengezone = (StendhalRPZone) SingletonRepository
