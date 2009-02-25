@@ -10306,6 +10306,39 @@
     </ai>
   </creature>
 
+ <creature name="Lord Durin">
+    <type class="huge_animal" subclass="lord_durin" tileid="huge_animal.png:13"/>
+    <description>You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.</description>
+    <attributes>
+      <atk value="1855"/>
+      <def value="180"/>
+      <hp value="6500"/>
+      <speed value="0.5"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="325"/>
+    <experience value="300000"/>
+    <respawn value="75000"/>
+    <drops>
+      <item value="mega potion" quantity="[1,4]" probability="20.0"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.25"/>
+      <item value="durin axe" quantity="[1,1]" probability="1.0"/>
+      <item value="pie" quantity="[2,4]" probability="10.0"/>
+      <item value="money" quantity="[3000,8000]" probability="100.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="durin axe" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Don't call me Friend."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
  <creature name="archangel">
     <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
     <description/>

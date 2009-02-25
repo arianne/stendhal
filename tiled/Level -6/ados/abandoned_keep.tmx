@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="grey green wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
@@ -75,7 +76,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDwwjXGgXTAK6A2OY4lzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYK2MgIwUMZAABTztXWABAAAA==
+   H4sIAAAAAAAAAGNgGAWjgDwwlXGgXTAK6A2OY4lzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYK2MgIwUMZAAC9RXV4ABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">
