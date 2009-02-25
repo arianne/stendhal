@@ -5283,7 +5283,7 @@
   </creature>
 
   <creature name="unicorn">
-    <type class="animal" subclass="unicorn" tileid="animal.png:27"/>
+    <type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
     <description>You see a rare unicorn. They are widely believed to be only a myth.</description>
     <attributes>
       <atk value="308"/>
