@@ -10557,6 +10557,33 @@
     </ai>
   </creature>
   
+  <creature name="gashadokuro">
+    <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
+    <description/>
+    <attributes>
+      <atk value="2000"/>
+      <def value="171"/>
+      <hp value="18000"/>
+      <speed value="0.7"/>
+      <size value="4,3"/>
+    </attributes>
+    <level value="500"/>
+    <experience value="750000"/>
+    <respawn value="300000"/>
+    <drops>
+      <item value="money" quantity="[5000,30000]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="15,100"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  
 <!-- These chess pieces are given a high level to keep them out of deathmatch
     and the mayor's daily quest. They all reward 0 XP to deter people from
     killing them. And a token amount of money. Of course they have to be
