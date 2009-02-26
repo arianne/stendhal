@@ -62,6 +62,12 @@ public class BuyerAdder {
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 	    									+ price + ". Do you want to sell "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+								} else {
+									engine.say("Sorry, " 
+											+ Grammar.thatthose(behaviour.getAmount()) + " " 
+											+ Grammar.plnoun(behaviour.getAmount(), behaviour.getChosenItemName())
+	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth nothing.");
+									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
 								engine.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to sell?!");
