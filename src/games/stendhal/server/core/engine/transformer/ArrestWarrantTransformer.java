@@ -5,7 +5,7 @@ import marauroa.common.game.RPObject;
 
 public class ArrestWarrantTransformer implements Transformer {
 
-	public RPObject transform(RPObject object) {
+	public RPObject transform(final RPObject object) {
 		return new ArrestWarrant(object);
 	}
 

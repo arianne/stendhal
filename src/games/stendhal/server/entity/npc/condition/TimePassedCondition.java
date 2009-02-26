@@ -38,12 +38,12 @@ public class TimePassedCondition implements ChatCondition {
 	 * 
 	 * @param questname
 	 *            name of quest-slot
-	 * @param delay
+	 * @param delayInMinutes
 	 *            delay in minutes
 	 */
-	public TimePassedCondition(final String questname, final int delay) {
+	public TimePassedCondition(final String questname, final int delayInMinutes) {
 		this.questname = questname;
-		this.delay = delay;
+		this.delay = delayInMinutes;
 		this.arg = 0;
 	}
 

@@ -36,7 +36,8 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class ChallengerNPC extends SpeakerNPCFactory {
- /** how many creatures will be spawned.*/
+ private static final int MINUTES_IN_DAYS = 24 * 60;
+/** how many creatures will be spawned.*/
  private static final int NUMBER_OF_CREATURES = 5;
  /** lowest level allowed to island.*/
  private static final int MIN_LEVEL = 50;
@@ -75,17 +76,17 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
-				if (!(entity instanceof Player)){
+				if (!(entity instanceof Player)) {
 					return;
 				}
-			    if(zone.getPlayers().size() == 1) {
+			    if (zone.getPlayers().size() == 1) {
 			    	// since we are about to destroy the arena, change the player zoneid to semos bank so that 
 			    	// if they are relogging, 
 			    	// they can enter back to the bank (not the default zone of PlayerRPClass). 
 			    	// If they are scrolling out or walking out the portal it works as before.
-			    	entity.put("zoneid","int_magic_house1");
-					entity.put("x","12");
-					entity.put("y","3");
+			    	entity.put("zoneid", "int_magic_house1");
+					entity.put("x", "12");
+					entity.put("y", "3");
 					// iterate through all items left in the zone and for the listeners, stop them listening before we remove the zone
 					for (RPObject inspected : zone) {				
 						if (inspected instanceof TurnListener) {
@@ -105,7 +106,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 		}
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-			int cost =  (int)  COST_FACTOR*player.getLevel();
+			int cost =  (int)  COST_FACTOR * player.getLevel();
 			if (!player.isEquipped("money", cost)) {
 				npc.say("You don't have enough money with you, the fee at your level is " + cost + " money.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
@@ -125,10 +126,10 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			int count = 0;
 			// max ALLOWED_FAILS fails to place all creatures before we give up
 			while (i < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
-				int level = Rand.randUniform((int) (player.getLevel()*LEVEL_RATIO),player.getLevel()); 
+				int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel()); 
 				CreatureSpawner creatureSpawner = new CreatureSpawner();
 				Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
-				if (StendhalRPAction.placeat(zone, creature, Rand.randUniform(MIN_X,MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
+				if (StendhalRPAction.placeat(zone, creature, Rand.randUniform(MIN_X, MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
 					i++;
 				} else {
 					logger.info(" could not add a creature to adventure island: " + creature);
@@ -136,9 +137,9 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				}
 			}
 			String message;
-			if (count>=ALLOWED_FAILS) {
+			if (count >= ALLOWED_FAILS) {
 				// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
-				cost =  cost*(i/NUMBER_OF_CREATURES);
+				cost =  cost * (i / NUMBER_OF_CREATURES);
 				message = "Haastaja bellows from below: I could only fit " + i + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
 				logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
 			} else { 
@@ -158,32 +159,35 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("And so, the hero has come.");
-		npc.addQuest("Pay the #fee and you can #fight my trained magical creatures. There will be " + NUMBER_OF_CREATURES + " in all, at a level to challenge you. Your life force is the power holding the spell - if you die, the island and your corpse and items are all lost." );
+		npc.addQuest("Pay the #fee and you can #fight my trained magical creatures. There will be " + NUMBER_OF_CREATURES + " in all, at a level to challenge you. Your life force is the power holding the spell - if you die, the island and your corpse and items are all lost.");
 		npc.addHelp("If you are strong enough and will pay the #fee, you can #fight " + NUMBER_OF_CREATURES + " of my animals on a private adventure island. I summon it magically and it is held there by your energy; if you die, it vanishes and your corpse and items will be lost there, forever.");
 		npc.addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical island.");
 		npc.addOffer("To fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge. Just know that if you die inside while on the island your corpse and items are lost forever.");		
 		npc.addGoodbye("Bye.");
-		npc.add(ConversationStates.ANY,"fee",new LevelGreaterThanCondition(MIN_LEVEL - 1), ConversationStates.ATTENDING, null,
+		npc.add(ConversationStates.ANY, "fee", new LevelGreaterThanCondition(MIN_LEVEL - 1), ConversationStates.ATTENDING, null,
 				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						npc.say("The fee is your current level, multiplied by " + COST_FACTOR + " and payable in cash. At your level of " + player.getLevel() + " the fee is " + COST_FACTOR*player.getLevel() + " money.");			
+						npc.say("The fee is your current level, multiplied by " + COST_FACTOR + " and payable in cash. At your level of " + player.getLevel() + " the fee is " + COST_FACTOR * player.getLevel() + " money.");			
 				}
 		});
 			
 		// player meets conditions, first remind them of the dangers and wait for a 'yes'
-		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT*24*60)) , ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.ANY, 
+				Arrays.asList("challenge", "fight", "battle"), 
+				new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
+				ConversationStates.QUEST_OFFERED, 
 				"I accept your challenge. Remember if you die inside you CANNOT return to your corpse to retrieve any items you lost. Likewise if you leave and have left items on the ground, you lose them. Are you still sure you want to enter the adventure island?", 
 				null);
 		// player returns within DAYS_BEFORE_REPEAT days
-		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT*24*60)), ConversationStates.ATTENDING, null, 
-				new StateTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT*24*60));
+		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle"), new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), ConversationStates.ATTENDING, null, 
+				new StateTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS));
 		// player below MIN_LEVEL
 		npc.add(ConversationStates.ANY, Arrays.asList("challenge", "fight", "battle", "fee"), new LevelLessThanCondition(MIN_LEVEL), ConversationStates.ATTENDING, "You are too weak to fight against " + NUMBER_OF_CREATURES  + " at once. Come back when you are at least Level " + MIN_LEVEL + ".", null);
 		// all conditions are met and player says yes he wants to fight
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, new LevelGreaterThanCondition(MIN_LEVEL - 1) , ConversationStates.IDLE, null, 
 				new ChallengeChatAction());
 		// player was reminded of dangers and he doesn't want to fight
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "Fair enough.",null);	
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "Fair enough.", null);	
 	}
 
 	
