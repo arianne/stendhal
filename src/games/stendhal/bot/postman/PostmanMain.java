@@ -34,16 +34,8 @@ import marauroa.common.net.message.TransferContent;
  */
 public class PostmanMain extends Thread {
 
-	private final String host;
-
-	private final String username;
-
-	private final String password;
-
 	protected String character;
-
-	private final String port;
-
+	
 	protected Postman postman;
 
 	protected long lastPerceptionTimestamp;
@@ -53,6 +45,18 @@ public class PostmanMain extends Thread {
 	protected marauroa.client.ClientFramework clientManager;
 
 	protected PerceptionHandler handler;
+	
+	private final String host;
+
+	private final String username;
+
+	private final String password;
+
+	
+
+	private final String port;
+
+	
 
 	/**
 	 * Creates a PostmanMain.

@@ -17,20 +17,20 @@ import org.jibble.pircbot.PircBot;
  */
 public class PostmanIRC extends PircBot {
 
+	public static List<String> channels = new LinkedList<String>();
+	
 	private static final String STENDHAL_POSTMAN_CONF = ".stendhal-postman-conf.xml";
+	
+	private static final Logger LOGGER = Logger.getLogger(PostmanIRC.class);
+	
+	private static String SUPPORT_CHANNEL;
 
-	private static Logger logger = Logger.getLogger(PostmanIRC.class);
+	private static String MAIN_CHANNEL;
 
 	private final Properties prop = new Properties();
 
 	private final String gameServer;
 
-	private static String SUPPORT_CHANNEL;
-
-	private static String MAIN_CHANNEL;
-
-	public static List<String> channels = new LinkedList<String>();
-	
 	/**
 	 * Creates a new PostmanIRC.
 	 * 
@@ -47,7 +47,7 @@ public class PostmanIRC extends PircBot {
 			channels.add(MAIN_CHANNEL);
 			channels.remove(null);
 		} catch (final Exception e) {
-			logger.error(e, e);
+			LOGGER.error(e, e);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class PostmanIRC extends PircBot {
 					Thread.sleep(60 * 1000);
 					connect();
 				} catch (final Exception e) {
-					logger.error(e, e);
+					LOGGER.error(e, e);
 				}
 			}
 		};

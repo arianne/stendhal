@@ -76,7 +76,7 @@ public class Player extends RPEntity {
 	 * The teleclick mode attribute name.
 	 */
 	protected static final String ATTR_TELECLICKMODE = "teleclickmode";
-
+	
 	private static final String LASTPLAYERKILL = "last_player_kill_time";
 
 	/** the logger instance. */
@@ -91,42 +91,7 @@ public class Player extends RPEntity {
 	 * A random generator (for karma payout).
 	 */
 	private static final Random KARMA_RANDOMIZER = new Random();
-
-	private final PlayerQuests quests = new PlayerQuests(this);
-	private final PlayerDieer  dieer  = new PlayerDieer(this);
-	private final KillRecording killRec = new KillRecording(this);
-	private final PetOwner petOwner = new PetOwner(this);
-
-	/**
-	 * The number of minutes that this player has been logged in on the server.
-	 */
-	private int age;
-
-	/**
-	 * Food, drinks etc. that the player wants to consume and has not finished
-	 * with.
-	 */
-	List<ConsumableItem> itemsToConsume;
-
-	/**
-	 * Poisonous items that the player still has to consume. This also includes
-	 * poison that was the result of fighting against a poisonous creature.
-	 */
-	List<ConsumableItem> poisonToConsume;
-
-	/**
-	 * Shows if this player is currently under the influence of an antidote, and
-	 * thus immune from poison.
-	 */
-	private boolean isImmune;
-
-	/**
-	 * The last player who privately talked to this player using the /tell
-	 * command. It needs to be stored non-persistently so that /answer can be
-	 * used.
-	 */
-	private String lastPrivateChatterName;
-
+	
 	/**
 	 * Currently active client directions (in oldest-newest order).
 	 */
@@ -143,9 +108,48 @@ public class Player extends RPEntity {
 	protected FeatureList features;
 
 	/**
-	 * A list of away replys sent to players.
+	 * A list of away replies sent to players.
 	 */
 	protected HashMap<String, Long> awayReplies;
+	
+	/**
+	 * Food, drinks etc. that the player wants to consume and has not finished
+	 * with.
+	 */
+	List<ConsumableItem> itemsToConsume;
+
+	/**
+	 * Poisonous items that the player still has to consume. This also includes
+	 * poison that was the result of fighting against a poisonous creature.
+	 */
+	List<ConsumableItem> poisonToConsume;
+
+
+	private final PlayerQuests quests = new PlayerQuests(this);
+	private final PlayerDieer  dieer  = new PlayerDieer(this);
+	private final KillRecording killRec = new KillRecording(this);
+	private final PetOwner petOwner = new PetOwner(this);
+
+	/**
+	 * The number of minutes that this player has been logged in on the server.
+	 */
+	private int age;
+
+
+	/**
+	 * Shows if this player is currently under the influence of an antidote, and
+	 * thus immune from poison.
+	 */
+	private boolean isImmune;
+
+	/**
+	 * The last player who privately talked to this player using the /tell
+	 * command. It needs to be stored non-persistently so that /answer can be
+	 * used.
+	 */
+	private String lastPrivateChatterName;
+
+	
 
 	public static void generateRPClass() {
 		try {

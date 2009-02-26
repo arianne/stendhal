@@ -53,6 +53,10 @@ import org.apache.log4j.Logger;
  */
 class PlayerRPClass {
 
+	public static final String DEFAULT_ENTRY_ZONE = "int_semos_guard_house";
+	public static final String RESET_ENTRY_ZONE = "int_semos_townhall";
+
+	
 	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
 	/** list of super admins read from admins.list. */
@@ -66,8 +70,6 @@ class PlayerRPClass {
 			"dungeon silver key", "lich gold key", "trophy helmet",
 			"lucky charm");
 
-	public static final String DEFAULT_ENTRY_ZONE = "int_semos_guard_house";
-	public static final String RESET_ENTRY_ZONE = "int_semos_townhall";
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.

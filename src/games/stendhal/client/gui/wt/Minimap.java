@@ -53,6 +53,10 @@ import org.apache.log4j.Logger;
  */
 
 public class Minimap extends WtPanel implements PositionChangeListener {
+	
+	/** the logger instance. */
+	private static final Logger LOGGER = Logger.getLogger(Minimap.class);
+		
 	/**
 	 * The color of the background (palest grey).
 	 */
@@ -140,8 +144,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	private CollisionDetection collisiondetection;
 
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(Minimap.class);
+	
 
 	/**
 	 * Creates a new instance of Minimap.
@@ -299,8 +302,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				pathfind.pathJumpNode();
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: To waypoint: "
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug("Pathfind: To waypoint: "
 							+ pathfind.nodeGetX() + " " + pathfind.nodeGetY());
 				}
 				final RPAction action = new RPAction();
@@ -573,10 +576,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				pathfind.pathJumpNode();
 				nodo_actual = pathfind.final_path_index;
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: Found, size: "
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug("Pathfind: Found, size: "
 							+ pathfind.final_path_index);
-					logger.debug("Pathfind: First waypoint: "
+					LOGGER.debug("Pathfind: First waypoint: "
 							+ pathfind.nodeGetX() + "," + pathfind.nodeGetY());
 				}
 
@@ -588,13 +591,13 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				client.send(action);
 
 			} else {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: unreacheable.");
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug("Pathfind: unreacheable.");
 				}
 			}
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfind: calculation time: "
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Pathfind: calculation time: "
 						+ (System.currentTimeMillis() - computation_time)
 						+ "ms");
 			}

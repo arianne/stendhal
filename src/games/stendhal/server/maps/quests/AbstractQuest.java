@@ -14,8 +14,16 @@ import java.util.List;
  */
 public abstract class AbstractQuest implements IQuest {
 
+	
+	private static final List<String> EMPTY_LIST = new ArrayList<String>();
+	
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name;
+
+	
+	
+	/** NPCList. */
+	protected NPCList npcs = SingletonRepository.getNPCList();
 
 	/** 
 	 * The slot-name in !quests. 
@@ -24,11 +32,6 @@ public abstract class AbstractQuest implements IQuest {
 	 */
 	public abstract String getSlotName();
 	
-	/** NPCList. */
-	protected NPCList npcs = SingletonRepository.getNPCList();
-
-	private static final List<String> EMPTY_LIST = new ArrayList<String>();
-
 	/**
 	 * Inits this quest by specifying the name.
 	 * <p>

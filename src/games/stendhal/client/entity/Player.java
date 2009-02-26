@@ -17,7 +17,7 @@ import marauroa.common.game.RPObject;
 
 /** A Player entity. */
 public class Player extends RPEntity {
-	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
+	
 	/**
 	 * Away property.
 	 */
@@ -26,6 +26,10 @@ public class Player extends RPEntity {
 	 * Grumpy property.
 	 */
 	public static final Property PROP_GRUMPY = new Property();
+	
+	
+	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
+	
 	/**
 	 * The away message of this player.
 	 */

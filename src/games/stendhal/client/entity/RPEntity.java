@@ -42,7 +42,6 @@ import org.apache.log4j.Logger;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
-	private static final Logger logger = Logger.getLogger(RPEntity.class);
 
 	
 
@@ -75,18 +74,32 @@ public abstract class RPEntity extends ActiveEntity {
 	 * The value of an outfit that isn't set.
 	 */
 	public static final int OUTFIT_UNSET = -1;
+	
+	private static final Logger LOGGER = Logger.getLogger(RPEntity.class);
 
-	private boolean showBladeStrike;
+	/**
+	 * Entity we are attacking. (need to reconsile this with 'attacking')
+	 */
+	protected RPEntity attackTarget;
 
+	/**
+	 * The entities attacking this entity.
+	 */
+	protected List<Entity> attackers;
+	
 	String[] attackSounds = { "punch-1.wav", "punch-2.wav", "punch-3.wav",
 			"punch-4.wav", "punch-5.wav", "punch-6.wav", "swingaxe-1.wav",
 			"slap-1.wav", "arrow-1.wav" };
+	
+	private boolean showBladeStrike;
 
 	public enum Resolution {
 		HIT,
 		BLOCKED,
 		MISSED;
 	};
+	
+	
 
 	private int atk;
 
@@ -131,15 +144,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private String titleType;
 
-	/**
-	 * Entity we are attacking. (need to reconsile this with 'attacking')
-	 */
-	protected RPEntity attackTarget;
-
-	/**
-	 * The entities attacking this entity.
-	 */
-	protected List<Entity> attackers;
+	
 
 	/**
 	 * The type of effect to show.
@@ -517,7 +522,7 @@ public abstract class RPEntity extends ActiveEntity {
 		try {
 			type = NotificationType.valueOf(texttype);
 		} catch (final RuntimeException e) {
-			logger.error("Unkown texttype: ", e);
+			LOGGER.error("Unkown texttype: ", e);
 			type = NotificationType.PRIVMSG;
 		}
 
