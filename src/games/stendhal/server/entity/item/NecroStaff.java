@@ -34,8 +34,15 @@ import org.apache.log4j.Logger;
  */
 public class NecroStaff extends Item implements UseListener {
 
+	/** the max number of entities we want in a zone, for performance reasons */
 	private static final int MAX_ZONE_NPCS = 50;
-
+	/** max level of creature the staff can summon */
+	private static final int MAX_LEVEL = 26;
+	/** How near the player must stand to the corpse */
+	private static final int SQUARED_RANGE = 16;
+	/** HP_FACTOR*creature level HP is lost when a creature is summoned */
+	private static final int HP_FACTOR = 1;
+	
 	private static final Logger logger = Logger.getLogger(NecroStaff.class);
 
 	/**
@@ -60,7 +67,35 @@ public class NecroStaff extends Item implements UseListener {
 	public NecroStaff(final NecroStaff item) {
 		super(item);
 	}
- 
+	
+	/**
+	 * Pick a random undead creature below a level threshold
+	 * 
+	 */
+	private AttackableCreature pickSuitableCreature() {
+		final EntityManager manager = SingletonRepository.getEntityManager();
+
+		Creature pickedCreature = null;
+
+		final Collection<Creature> creatures = manager.getCreatures();
+			final List<Creature> possibleCreatures = new ArrayList<Creature>();
+			for (final Creature creature : creatures) {
+				if (creature.getLevel() <= MAX_LEVEL && creature.get("class").equals("undead") 
+						&& !creature.isRare()) {
+					
+					possibleCreatures.add(creature);
+				}
+			}
+			
+		final int pickedIdx = (int) (Math.random() * possibleCreatures.size());
+		pickedCreature = possibleCreatures.get(pickedIdx);
+			
+		//		 create it
+		final AttackableCreature creature = new AttackableCreature(pickedCreature);
+		
+		return creature;
+	}
+	
 	/**
 	 * Is invoked when the necromancer staff is used.
 	 * 
@@ -80,40 +115,22 @@ public class NecroStaff extends Item implements UseListener {
 
 		if (zone.getNPCList().size() >= MAX_ZONE_NPCS) {
 			user.sendPrivateText("Mysteriously, the staff does not function! Perhaps this area is too crowded...");
-			logger.error("too many npcs");
+			logger.warn(user.getName() + " is trying to use the necromancer staff but there are too many npcs in " + zone.getName() );
 			return false;
 		}
 
-		// Pick a random undead creature.
-		final EntityManager manager = SingletonRepository.getEntityManager();
-
-		Creature pickedCreature = null;
-
-			final Collection<Creature> creatures = manager.getCreatures();
-			final int magiclevel = 26;
-			final List<Creature> possibleCreatures = new ArrayList<Creature>();
-			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= magiclevel && creature.get("class").equals("undead")) {
-					
-					possibleCreatures.add(creature);
-				}
-			}
-			
-		final int pickedIdx = (int) (Math.random() * possibleCreatures.size());
-		pickedCreature = possibleCreatures.get(pickedIdx);
-			
-		if (pickedCreature == null) {
-			user.sendPrivateText("This staff does not seem to work. Maybe it has lost its unholy power.");
-			
-		}
-		
 		//Pick a corpse within the staff's range.
 		for (RPObject inspected : zone) {
-			if (inspected instanceof Corpse && user.squaredDistance(Integer.parseInt(inspected.get("x")), Integer.parseInt(inspected.get("y"))) <= 16) {
+			if (inspected instanceof Corpse 
+					&& user.squaredDistance(Integer.parseInt(inspected.get("x")), Integer.parseInt(inspected.get("y"))) <= SQUARED_RANGE) {
 				
-				// create it
-				final AttackableCreature creature = new AttackableCreature(pickedCreature);
-
+				AttackableCreature creature = pickSuitableCreature();
+				
+				if (creature == null) {
+					user.sendPrivateText("This staff does not seem to work. Maybe it has lost its unholy power.");
+					return false;
+				}
+				
 				StendhalRPAction.placeat(zone, creature, Integer.parseInt(inspected.get("x")), Integer.parseInt(inspected.get("y")));
 				zone.remove(inspected);
 				creature.init();
@@ -122,16 +139,16 @@ public class NecroStaff extends Item implements UseListener {
 				creature.put("title_type", "friend");
 				
 				//Suck some of the summoners HP depending on the summoned creature's level.
-				user.setHP(user.getHP()-pickedCreature.getLevel());
+				user.setHP(user.getHP()-HP_FACTOR*creature.getLevel());
 				return true;
 			}
 
 		}
 		
-		//No corpses in range.
+		// No corpses in range.
 		user.sendPrivateText("Step closer to corpses to awake them.");
+		return false;
 		
-		return true;
 	}
 }
 
