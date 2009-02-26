@@ -210,7 +210,7 @@ public class User extends Player {
 									+ serverVersion
 									+ " but your client is version "
 									+ stendhal.VERSION
-									+ ".\nPlease download the new version from http://arianne.sourceforge.net",
+									+ ".\nYou can download version " + serverVersion + " from http://arianne.sourceforge.net ",
 							NotificationType.ERROR));
 				}
 			}

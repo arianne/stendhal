@@ -212,7 +212,7 @@ client = this;
 								+ version
 								+ " but your client is version "
 								+ stendhal.VERSION
-								+ ".\nPlease download the new version from http://arianne.sourceforge.net ",
+								+ ".\nYou can download version " + version + " from http://arianne.sourceforge.net ",
 						"Version Mismatch With Server",
 						JOptionPane.WARNING_MESSAGE);
 			}
