@@ -543,7 +543,10 @@
 		</copy>
 
 		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
-
+		<copy todir="${buildroot}/stendhal-${version}-src/libs">
+					<fileset dir="libs"/>
+		</copy>
+		
 		<copy todir="${buildroot}/stendhal-${version}-src/tests">
 			<fileset dir="tests"/>
 		</copy>
