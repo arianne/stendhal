@@ -26,13 +26,15 @@ import org.apache.log4j.Logger;
  * the owner is looking at his items. 
  */
 public class PersonalChest extends Chest {
-	private static Logger logger = Logger.getLogger(PersonalChest.class);
-
+	
 	/**
 	 * The default bank slot name.
 	 */
 	public static final String DEFAULT_BANK = "bank";
 
+	private static Logger LOGGER = Logger.getLogger(PersonalChest.class);
+
+	
 	private RPEntity attending;
 
 	private final String bankName;
@@ -97,7 +99,7 @@ public class PersonalChest extends Chest {
 	 */
 	public RPSlot getBankSlot() {
 		if (attending == null) {
-			logger.error("Calling getBankSlot on non-attending PersonalChest " + this, new Throwable());
+			LOGGER.error("Calling getBankSlot on non-attending PersonalChest " + this, new Throwable());
 			return null;
 		}
 		return attending.getSlot(bankName);
@@ -132,7 +134,7 @@ public class PersonalChest extends Chest {
 					try {
 						content.addPreservingId(cloneItem(item));
 					} catch (final Exception e) {
-						logger.error("Cannot clone item " + item, e);
+						LOGGER.error("Cannot clone item " + item, e);
 					}
 				}
 
@@ -165,7 +167,7 @@ public class PersonalChest extends Chest {
 			try {
 				content.addPreservingId(cloneItem(item));
 			} catch (final Exception e) {
-				logger.error("Cannot clone item " + item, e);
+				LOGGER.error("Cannot clone item " + item, e);
 			}
 		}
 

@@ -37,12 +37,6 @@ import org.apache.log4j.Logger;
  *
  */
 public abstract class Pet extends DomesticAnimal {
-
-	private static final int START_HUNGER_VALUE = 0;
-
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(Pet.class);
-
 	/**
 	 * The amount of hunger that indicates hungry.
 	 */
@@ -52,6 +46,14 @@ public abstract class Pet extends DomesticAnimal {
 	 * The amount of hunger that indicates starvation.
 	 */
 	protected static final int HUNGER_STARVATION = 750;
+	
+
+	private static final int START_HUNGER_VALUE = 0;
+
+	/** the logger instance. */
+	private static final Logger LOGGER = Logger.getLogger(Pet.class);
+
+	
 
 	/**
 	 * The weight at which the pet will stop eating.
@@ -78,18 +80,7 @@ public abstract class Pet extends DomesticAnimal {
 	protected int hunger;
 
 	
-	protected abstract List<String> getFoodNames();
 	
-	public static void generateRPClass() {
-		try {
-			final RPClass pet = new RPClass("pet");
-			pet.isA("creature");
-			pet.addAttribute("weight", Type.BYTE);
-			pet.addAttribute("eat", Type.FLAG);
-		} catch (final SyntaxException e) {
-			logger.error("cannot generate RPClass", e);
-		}
-	}
 
 	/**
 	 * Creates a new wild Pet.
@@ -127,6 +118,19 @@ public abstract class Pet extends DomesticAnimal {
 		baseSpeed = 0.5;
 		hunger = START_HUNGER_VALUE;
 	}
+	
+	protected abstract List<String> getFoodNames();
+	
+	public static void generateRPClass() {
+		try {
+			final RPClass pet = new RPClass("pet");
+			pet.isA("creature");
+			pet.addAttribute("weight", Type.BYTE);
+			pet.addAttribute("eat", Type.FLAG);
+		} catch (final SyntaxException e) {
+			LOGGER.error("cannot generate RPClass", e);
+		}
+	}
 
 	/**
 	 * Is called when the pet dies. Removes the dead pet from the owner.
@@ -145,7 +149,7 @@ public abstract class Pet extends DomesticAnimal {
 			if (owner.hasPet()) {
 				owner.removePet(this);
 			} else {
-				logger.warn("INCOHERENCE: Pet " + this + " isn't owned by " + owner);
+				LOGGER.warn("INCOHERENCE: Pet " + this + " isn't owned by " + owner);
 			}
 		}
 	}
@@ -227,13 +231,13 @@ public abstract class Pet extends DomesticAnimal {
 
 			if ((food != null)) {
 				if (nextTo(food)) {
-					logger.debug("Pet eats");
+					LOGGER.debug("Pet eats");
 					setIdea("eat");
 					eat(food);
 					clearPath();
 					stop();
 				} else {
-					logger.debug("Pet moves to food");
+					LOGGER.debug("Pet moves to food");
 					setIdea("food");
 					setMovement(food, 0, 0, 20);
 					// setAsynchonousMovement(food,0,0);
@@ -247,7 +251,7 @@ public abstract class Pet extends DomesticAnimal {
 				 if (owner != null) {
 					 owner.sendPrivateText("Your pet is starving!");
 				 }
-				logger.debug("Pet starves");
+				LOGGER.debug("Pet starves");
 				if (weight > 0) {
 					setWeight(weight - 1);
 				} else {
@@ -264,24 +268,24 @@ public abstract class Pet extends DomesticAnimal {
 				// so, here, we follow owner, if we have one
 				// and if we don't, we do the other stuff
 				if (owner == null) {
-					logger.debug("Pet (ownerless and hungry but not starving) moves randomly");
+					LOGGER.debug("Pet (ownerless and hungry but not starving) moves randomly");
 					moveRandomly();
 				} else if ((owner != null) && !nextTo(owner)) {
 					moveToOwner();
 				} else {
-					logger.debug("Pet has nothing to do and is hungry but not starving");
+					LOGGER.debug("Pet has nothing to do and is hungry but not starving");
 					stop();
 					clearPath();
 				}
 			}
 		} else {
 			if (owner == null) {
-				logger.debug("Pet (ownerless) moves randomly");
+				LOGGER.debug("Pet (ownerless) moves randomly");
 				moveRandomly();
 			} else if ((owner != null) && !nextTo(owner)) {
 				moveToOwner();
 			} else {
-				logger.debug("Pet has nothing to do");
+				LOGGER.debug("Pet has nothing to do");
 				setIdea(null);
 				stop();
 				clearPath();

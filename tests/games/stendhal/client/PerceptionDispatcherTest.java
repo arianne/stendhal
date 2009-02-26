@@ -16,9 +16,11 @@ public class PerceptionDispatcherTest {
 	private final String DISPATCHED = "dispatched";;
 
 	private final class ObjectChangeperception implements IPerceptionListener {
-		private final String dispatched;
 		boolean cleared;
 		boolean onExceptionCalled;
+		
+		private final String dispatched;
+	
 		private int byteparam;
 
 		private ObjectChangeperception(final String dispatched) {

@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 class PetOwner {
-	private static Logger logger = Logger.getLogger(PetOwner.class);
+	
 
 	/**
 	 * The pet ID attribute name.
@@ -24,6 +24,8 @@ class PetOwner {
 	 * The sheep ID attribute name.
 	 */
 	protected static final String ATTR_SHEEP = "sheep";
+	
+	private static Logger LOGGER = Logger.getLogger(PetOwner.class);
 	
 	private final Player player;
 
@@ -45,7 +47,7 @@ class PetOwner {
 		if (player.has(ATTR_SHEEP)) {
 			player.remove(ATTR_SHEEP);
 		} else {
-			logger.warn("Called removeSheep but player has not sheep: " + this);
+			LOGGER.warn("Called removeSheep but player has not sheep: " + this);
 		}
 	}
 
@@ -57,7 +59,7 @@ class PetOwner {
 		if (player.has(ATTR_PET)) {
 			player.remove(ATTR_PET);
 		} else {
-			logger.warn("Called removePet but player has not pet: " + this);
+			LOGGER.warn("Called removePet but player has not pet: " + this);
 		}
 	}
 
@@ -102,7 +104,7 @@ class PetOwner {
 				return (Sheep) SingletonRepository.getRPWorld().get(
 						new RPObject.ID(player.getInt(ATTR_SHEEP), player.get("zoneid")));
 			} catch (final Exception e) {
-				logger.error("Pre 1.00 Marauroa sheep bug. (player = "
+				LOGGER.error("Pre 1.00 Marauroa sheep bug. (player = "
 						+ player.getName() + ")", e);
 
 				if (player.has(ATTR_SHEEP)) {
@@ -130,7 +132,7 @@ class PetOwner {
 			}
 		} catch (final ClassCastException e) {
 			player.remove(ATTR_PET);
-			logger.error("removed pets attribute" + e);
+			LOGGER.error("removed pets attribute" + e);
 			return null;
 		}
 	}

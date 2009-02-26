@@ -56,7 +56,7 @@ import org.apache.log4j.Logger;
 public class OutfitDialog extends JDialog {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(OutfitDialog.class);
+	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
 
 	private static final long serialVersionUID = 4628210176721975735L;
 
@@ -93,6 +93,38 @@ public class OutfitDialog extends JDialog {
 	private final SpriteStore store = SpriteStore.get();
 
 	private final OutfitStore ostore = OutfitStore.get();
+	
+	private JButton jbtLeftBodies;
+
+	private JButton jbtLeftClothes;
+
+	private JButton jbtLeftHairs;
+
+	private JButton jbtLeftHeads;
+
+	private JButton jbtOK;
+
+	private JButton jbtRightBodies;
+
+	private JButton jbtRightClothes;
+
+	private JButton jbtRightHairs;
+
+	private JButton jbtRightHeads;
+
+	private JLabel jlblBodies;
+
+	private JLabel jlblClothes;
+
+	private JLabel jlblFinalResult;
+
+	private JLabel jlblHairs;
+
+	private JLabel jlblHeads;
+
+	private JPanel jpanel;
+
+	private JSlider jsliderDirection;
 
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
 		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
@@ -651,37 +683,7 @@ public class OutfitDialog extends JDialog {
 		client.send(rpaction);
 	}
 
-	private JButton jbtLeftBodies;
-
-	private JButton jbtLeftClothes;
-
-	private JButton jbtLeftHairs;
-
-	private JButton jbtLeftHeads;
-
-	private JButton jbtOK;
-
-	private JButton jbtRightBodies;
-
-	private JButton jbtRightClothes;
-
-	private JButton jbtRightHairs;
-
-	private JButton jbtRightHeads;
-
-	private JLabel jlblBodies;
-
-	private JLabel jlblClothes;
-
-	private JLabel jlblFinalResult;
-
-	private JLabel jlblHairs;
-
-	private JLabel jlblHeads;
-
-	private JPanel jpanel;
-
-	private JSlider jsliderDirection;
+	
 
 
 	/**
@@ -724,7 +726,7 @@ public class OutfitDialog extends JDialog {
 								ImageIO.write((RenderedImage) image, "png",
 										file);
 							} catch (final Exception e) {
-								logger.error(e, e);
+								LOGGER.error(e, e);
 							}
 						}
 					}

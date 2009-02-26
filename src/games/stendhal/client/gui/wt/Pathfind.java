@@ -18,6 +18,10 @@ import java.util.PriorityQueue;
  */
 
 public class Pathfind {
+	private static Rectangle search_area;
+	private static List<Node> closed_list = new ArrayList<Node>();
+	private static LinkedList<Node> final_path = new LinkedList<Node>();
+	int final_path_index = 0;
 
 	private final HashMap<Integer, Node> nodeRegistry = new HashMap<Integer, Node>();
 	private final HashMap<Integer, Node> nodeRegistryclose = new HashMap<Integer, Node>();
@@ -30,11 +34,9 @@ public class Pathfind {
 				}
 			});
 
-	private static Rectangle search_area;
-	private static List<Node> closed_list = new ArrayList<Node>();
-	private static LinkedList<Node> final_path = new LinkedList<Node>();
+
 	private Node current_node;
-	int final_path_index = 0;
+	
 
 	private static int collision(final CollisionDetection collisiondetection, final int x1, final int y1) {
 //		if (x1 < 0)
