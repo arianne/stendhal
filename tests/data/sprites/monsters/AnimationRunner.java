@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 
 public class AnimationRunner implements ActionListener {
+	
+	private int direction = 1;
+	
 	private Timer timer;
 
 	private BufferedImage[] frames;
@@ -39,7 +42,7 @@ public class AnimationRunner implements ActionListener {
 
 	}
 
-	int direction = 1;
+	
 
 	public void actionPerformed(final ActionEvent e) {
 		ivs.setImage(frames[currentframe]);

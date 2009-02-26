@@ -26,14 +26,17 @@ import java.util.List;
  */
 public final class AthorFerry implements TurnListener {
 
-	private Status current;
-
-	public Status getState() {
-		return current;
-	}
-
+	/** How much it costs to board the ferry. */
+	public static final int PRICE = 25;
+	
 	/** The Singleton instance. */
 	private static AthorFerry instance;
+	
+	private Status current;
+
+	
+
+	
 
 	/**
 	 * A list of non-player characters that get notice when the ferry arrives or
@@ -41,8 +44,7 @@ public final class AthorFerry implements TurnListener {
 	 */
 	private final List<IFerryListener> listeners;
 
-	/** How much it costs to board the ferry. */
-	public static final int PRICE = 25;
+	
 
 	private AthorFerry() {
 		listeners = new LinkedList<IFerryListener>();
@@ -63,6 +65,10 @@ public final class AthorFerry implements TurnListener {
 		return instance;
 	}
 
+	public Status getState() {
+		return current;
+	}
+	
 	/**
 	 * Gets a textual description of the ferry's status.
 	 *

@@ -124,25 +124,28 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)), ConversationStates.QUEST_OFFERED,
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)), 
+			ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special soup?",
 			null);
 
 		// player returns after finishing the quest (it is repeatable) before
 		// the time as finished
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)))
-			, ConversationStates.ATTENDING, null,
-			new StateTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES ,1)
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))), 
+				ConversationStates.ATTENDING, 
+				null,
+				new StateTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES , 1)
 			);
 
 		// player responds to word 'revive'
-		npc.add(ConversationStates.INFORMATION_1, "revive",
-			new QuestNotStartedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
+		npc.add(ConversationStates.INFORMATION_1, 
+				"revive",
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED, 
+				null,
+				new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
 						// to be honest i don't understand when this

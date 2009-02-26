@@ -29,14 +29,18 @@ import org.apache.log4j.Logger;
  * Most /commands for admins are handled here.
  */
 public abstract class AdministrationAction implements ActionListener {
-
+	
+	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
+	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
+	
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
 
-	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
+	
+	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
-	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
+	
+	
 
-	protected static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
 	public static void register() {
 		InspectAction.register();

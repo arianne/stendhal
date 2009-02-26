@@ -205,15 +205,16 @@ public class AdosDeathmatch extends AbstractQuest {
 					    for (Player dmplayer : dmplayers) {
 						dmplayernames.add(dmplayer.getName());
 					    }
-					    if (dmplayers.size() == 0){
-						// No players inside so continue as normal
-						npc.say("Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.");
-					    } else {
-						// List the players inside deathmatch
-						npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
-							+ Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
-					    }
-					}});
+					    if (dmplayers.size() == 0) {
+							// No players inside so continue as normal
+							npc.say("Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.");
+						    } else {
+							// List the players inside deathmatch
+							npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
+								+ Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
+						    }
+						}
+					});
 	}
 
 	@Override

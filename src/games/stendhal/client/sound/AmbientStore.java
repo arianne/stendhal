@@ -19,9 +19,10 @@ package games.stendhal.client.sound;
  */
 class AmbientStore {
 
+	public static final String BLACKBIRD_1 = "blackbird-1";
 	private static final String BUSHBIRD_MIX_1 = "bushbird-mix-1";
 	private static final String BLACKBIRD_MIX = "blackbird-mix";
-	public static final String BLACKBIRD_1 = "blackbird-1";
+	
 
 	/**
 	 * create an Ambient sound by its name.

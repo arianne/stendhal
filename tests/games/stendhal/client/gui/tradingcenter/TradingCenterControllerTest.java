@@ -15,8 +15,8 @@ public class TradingCenterControllerTest {
 	public void testAddToZone() throws Exception {
 		TradingCenterController controller = new TradingCenterController();
 		RPObject object = new RPObject();
-		ID arg0 = new ID(1,"zone");
-		object.setID(arg0 );
+		ID arg0 = new ID(1, "zone");
+		object.setID(arg0);
 		object.addSlot(new RPSlot("goods"));
 		object.put("price", 5);
 		assertFalse(controller.contains(object));

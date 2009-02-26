@@ -43,16 +43,16 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 					final int oldY) {
-				if (!(entity instanceof Player)){
+				if (!(entity instanceof Player)) {
 					return;
 				}
-			    if(zone.getPlayers().size() == 1) {
+			    if (zone.getPlayers().size() == 1) {
 				final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
 				    // ignore items which are in the wastebin
-				    if (!(item.getX()==2 && item.getY()==5)) {
+				    if (!(item.getX() == 2 && item.getY() == 5)) {
 					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
 					if (equippedToBag) {
 					    // player may not have been online so use postman to send info message
@@ -69,7 +69,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 						    postman.sendPrivateText("Dagobert tells you: tell " + ((RPEntity) entity).getName() + " The "
 									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									    + " which you left on the floor in the vault have been automatically "
-									    + "returned to your bank chest." );
+									    + "returned to your bank chest.");
 						}	
 					    } else {
 						// the player lost their items
@@ -78,7 +78,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									    + Grammar.quantityplnoun(item.getQuantity(), item.getName()) 
 									    + " which you left on the floor in the vault have been thrown into "
 									    + "the void, because there was no space to fit them into either your "
-									    + "bank chest or your bag." );
+									    + "bank chest or your bag.");
 						} 
 					    }
 					}
@@ -87,9 +87,9 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 				// since we are about to destroy the vault, change the player zoneid to semos bank so that if they are relogging, 
 				// they can enter back to the bank (not the default zone of PlayerRPClass). 
 				// If they are scrolling out or walking out the portal it works as before.
-				entity.put("zoneid","int_semos_bank");
-				entity.put("x","9");
-				entity.put("y","27");
+				entity.put("zoneid", "int_semos_bank");
+				entity.put("x", "9");
+				entity.put("y", "27");
 				SingletonRepository.getRPWorld().removeZone(zone);
 			    }
 			}

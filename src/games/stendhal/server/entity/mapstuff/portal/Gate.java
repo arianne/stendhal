@@ -17,7 +17,7 @@ public class Gate extends Entity implements UseListener {
 
 	public static void generateGateRPClass() {
 		if (!RPClass.hasRPClass("gate")) {
-			RPClass gate = new RPClass("gate");
+			final RPClass gate = new RPClass("gate");
 			gate.isA("entity");
 			gate.addAttribute(ORIENTATION, Type.STRING);
 		}
@@ -37,8 +37,8 @@ public class Gate extends Entity implements UseListener {
 		this(VERTICAL);
 	}
 
-	private void setOrientation(String orientation) {
-		if(HORIZONTAL.equals(orientation)){
+	private void setOrientation(final String orientation) {
+		if (HORIZONTAL.equals(orientation)) {
 			put(ORIENTATION, HORIZONTAL);
 		} else {
 			put(ORIENTATION, VERTICAL);

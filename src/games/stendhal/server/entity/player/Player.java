@@ -72,12 +72,12 @@ public class Player extends RPEntity {
 	 * The grumpy attribute name.
 	 */
 	protected static final String ATTR_GRUMPY = "grumpy";
-	
-	private static final String LASTPLAYERKILL = "last_player_kill_time";
 	/**
 	 * The teleclick mode attribute name.
 	 */
 	protected static final String ATTR_TELECLICKMODE = "teleclickmode";
+
+	private static final String LASTPLAYERKILL = "last_player_kill_time";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
@@ -95,7 +95,7 @@ public class Player extends RPEntity {
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer  dieer  = new PlayerDieer(this);
 	private final KillRecording killRec = new KillRecording(this);
-	PetOwner petOwner = new PetOwner(this);
+	private final PetOwner petOwner = new PetOwner(this);
 
 	/**
 	 * The number of minutes that this player has been logged in on the server.
@@ -265,7 +265,7 @@ public class Player extends RPEntity {
 	}
 
 	public static void destroy(final Player player) {
-		player.petOwner.destroy();
+		player.getPetOwner().destroy();
 		player.stop();
 		player.stopAttack();
 
@@ -989,19 +989,19 @@ public class Player extends RPEntity {
 	}
 
 	public void removeSheep(final Sheep sheep) {
-		petOwner.removeSheep(sheep);
+		getPetOwner().removeSheep(sheep);
 	}
 
 	public void removePet(final Pet pet) {
-		petOwner.removePet(pet);
+		getPetOwner().removePet(pet);
 	}
 
 	public boolean hasSheep() {
-		return petOwner.hasSheep();
+		return getPetOwner().hasSheep();
 	}
 
 	public boolean hasPet() {
-		return petOwner.hasPet();
+		return getPetOwner().hasPet();
 	}
 
 	/**
@@ -1011,7 +1011,7 @@ public class Player extends RPEntity {
 	 *            The pet.
 	 */
 	public void setPet(final Pet pet) {
-		petOwner.setPet(pet);
+		getPetOwner().setPet(pet);
 	}
 
 	/**
@@ -1021,7 +1021,7 @@ public class Player extends RPEntity {
 	 *            The sheep.
 	 */
 	public void setSheep(final Sheep sheep) {
-		petOwner.setSheep(sheep);
+		getPetOwner().setSheep(sheep);
 	}
 
 	/**
@@ -1030,11 +1030,11 @@ public class Player extends RPEntity {
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {
-		return petOwner.getSheep();
+		return getPetOwner().getSheep();
 	}
 
 	public Pet getPet() {
-		return petOwner.getPet();
+		return getPetOwner().getPet();
 	}
 
 	/**
@@ -1958,5 +1958,10 @@ public class Player extends RPEntity {
 		}
 		super.equip(item); 
 		
+	}
+
+
+	public PetOwner getPetOwner() {
+		return petOwner;
 	}
 }

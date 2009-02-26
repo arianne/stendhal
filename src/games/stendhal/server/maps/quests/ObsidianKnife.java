@@ -62,6 +62,8 @@ import java.util.List;
  */
 public class ObsidianKnife extends AbstractQuest {
 
+	private static final int MINUTES_IN_DAYS = 24 * 60;
+
 	private static final int REQUIRED_FOOD = 100;
 	
 	// Required level to move from the finished reading stage to 
@@ -283,14 +285,14 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_DAYS*24*60,1))),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_DAYS * MINUTES_IN_DAYS, 1))),
 				ConversationStates.IDLE, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS*24*60,1));
+				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS * MINUTES_IN_DAYS, 1));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT,REQUIRED_DAYS*24*60,1)),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT, REQUIRED_DAYS * MINUTES_IN_DAYS, 1)),
 				ConversationStates.QUEST_2_OFFERED, 
 				"I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", 
 				new SetQuestAction(QUEST_SLOT, "book_read"));
@@ -386,19 +388,19 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1))),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
 				ConversationStates.IDLE, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT,"I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
+				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(10000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-		reward.add(new EquipItemAction("obsidian knife",1,true));
+		reward.add(new EquipItemAction("obsidian knife", 1, true));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
 				ConversationStates.IDLE, 
 				"The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!",
 				new MultipleActions(reward));

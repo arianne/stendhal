@@ -407,7 +407,7 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(90, pl.getHP());
 		CommandCenter.execute(pl, action);
-		assertEquals(90, pl.getHP());
+		assertEquals("set to max base_hp", 100, pl.getHP());
 	}
 
 	@Test

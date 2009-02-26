@@ -86,7 +86,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 						 + " Just remember, you must be stood next to the token to move it.");
 				
 				// friends
-				add(ConversationStates.ATTENDING, Arrays.asList("friend","friends","friendship"),
+				add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends", "friendship"),
 					new QuestInStateCondition("susi", "friends"), 
 					ConversationStates.ATTENDING,
 					"We are friends.", null);

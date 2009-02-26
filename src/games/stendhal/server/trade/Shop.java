@@ -28,7 +28,7 @@ public class Shop {
 	public void acceptOffer(final Offer offer, final Player player) {
 		
 		if (offers.contains(offer)) {
-			if(	player.drop("money", offer.getPrice().intValue())){
+			if (player.drop("money", offer.getPrice().intValue())) {
 				player.equip(offer.getItem(), true);
 				earnings.put(offer.getOffererName(), offer.getPrice());
 			}

@@ -152,7 +152,7 @@ public class AlterActionTest {
 	@Test
 	public final void testValidAttributeValidNumber() {
 		Player player = PlayerTestHelper.createPlayer("bob");
-		player.put("base_hp", 10);
+		player.put("base_hp", 100);
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		zone.add(player);
 		AlterAction action = new AlterAction();
@@ -163,8 +163,10 @@ public class AlterActionTest {
 		rpAction.put("value", "50");
 		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(100, player.getHP());
+		assertEquals(50, player.getHP());
 		
+		
+		player.setHP(100);
 		rpAction.put("value", "-10");
 		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
@@ -195,8 +197,9 @@ public class AlterActionTest {
 		rpAction.put("value", "50");
 		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
-		assertEquals(100, player.getHP());
+		assertEquals("reset to base", 10, player.getHP());
 		
+		player.setHP(100);
 		rpAction.put("value", "-10");
 		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
@@ -234,8 +237,9 @@ public class AlterActionTest {
 		rpAction.put("value", "50");
 		assertEquals(100, playerAway.getHP());
 		action.perform(player, rpAction);
-		assertEquals(100, playerAway.getHP());
+		assertEquals("reset to base", 10, playerAway.getHP());
 		
+		playerAway.setHP(100);
 		rpAction.put("value", "-10");
 		assertEquals(100, playerAway.getHP());
 		action.perform(player, rpAction);

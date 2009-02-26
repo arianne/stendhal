@@ -269,7 +269,7 @@ class PlayerRPClass {
 		}
 
 		// load sheep
-		final Sheep sheep = player.petOwner.retrieveSheep();
+		final Sheep sheep = player.getPetOwner().retrieveSheep();
 
 		if (sheep != null) {
 			logger.debug("Player has a sheep");
@@ -290,7 +290,7 @@ class PlayerRPClass {
 		}
 
 		// load pet
-		final Pet pet = player.petOwner.retrievePet();
+		final Pet pet = player.getPetOwner().retrievePet();
 
 		if (pet != null) {
 			logger.debug("Player has a pet");

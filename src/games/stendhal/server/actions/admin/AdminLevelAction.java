@@ -24,7 +24,6 @@ public class AdminLevelAction extends AdministrationAction {
 			final Player target = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if ((target == null) || (target.isGhost() && !isAllowedtoSeeGhosts(player))) {
-				logger.debug("Player \"" + name + "\" not found");
 				player.sendPrivateText("Player \"" + name + "\" not found");
 				return;
 			}
