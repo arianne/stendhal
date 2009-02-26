@@ -27,7 +27,7 @@ import java.util.List;
  * REPETITIONS: - None.
  */
 public class NewsFromHackim extends AbstractQuest {
-	private static final String QUEST_SLOT = "campfire";
+	private static final String QUEST_SLOT = "news_hackim";
 
 	@Override
 	public void init(final String name) {
