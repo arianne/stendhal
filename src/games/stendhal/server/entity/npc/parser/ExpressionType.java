@@ -5,8 +5,7 @@ import java.util.List;
 
 public final class ExpressionType {
 
-    private final String typeString;
-
+    
     // Expression type string constants
     
     /** String constant representing verb form. */
@@ -102,6 +101,8 @@ public final class ExpressionType {
             SUFFIX_GERUND, SUFFIX_COLOR, SUFFIX_CONDITIONAL, SUFFIX_NEGATED, SUFFIX_PRONOUN, SUFFIX_FOOD,
             SUFFIX_OBSESSIONAL, SUFFIX_FLUID, SUFFIX_ANIMAL, SUFFIX_NAME, SUFFIX_PLURAL);
 
+    private final String typeString;
+
     public ExpressionType(final String s) {
         typeString = s;
     }
@@ -133,8 +134,7 @@ public final class ExpressionType {
 	 * @return true if length() is 0, otherwise false
 	 */
     public boolean isEmpty() {
-    	//TODO: use string.isEmpty()
-        return typeString.length() == 0;
+    	return typeString.length() == 0;
     }
 
     /**
