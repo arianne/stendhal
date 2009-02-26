@@ -28,7 +28,7 @@ public class TilesetGroupAnimationMap {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(TilesetGroupAnimationMap.class);
+	private static final Logger LOGGER = Logger.getLogger(TilesetGroupAnimationMap.class);
 
 	/**
 	 * The map of tileset animation maps.
@@ -123,7 +123,7 @@ public class TilesetGroupAnimationMap {
 		 * Tileset name
 		 */
 		if (!st.hasMoreTokens()) {
-			logger.warn("Invalid map entry: " + line);
+			LOGGER.warn("Invalid map entry: " + line);
 			return;
 		}
 
@@ -133,7 +133,7 @@ public class TilesetGroupAnimationMap {
 		 * Tile index
 		 */
 		if (!st.hasMoreTokens()) {
-			logger.error("Invalid map entry: " + line);
+			LOGGER.error("Invalid map entry: " + line);
 			return;
 		}
 
@@ -146,7 +146,7 @@ public class TilesetGroupAnimationMap {
 			try {
 				defaultDelay = Integer.parseInt(val);
 			} catch (final NumberFormatException ex) {
-				logger.error("Invalid default delay: " + val);
+				LOGGER.error("Invalid default delay: " + val);
 				return;
 			}
 		} else {
@@ -157,7 +157,7 @@ public class TilesetGroupAnimationMap {
 		 * Frame indexes
 		 */
 		if (!st.hasMoreTokens()) {
-			logger.error("Invalid map entry: " + line);
+			LOGGER.error("Invalid map entry: " + line);
 			return;
 		}
 
@@ -185,7 +185,7 @@ public class TilesetGroupAnimationMap {
 				try {
 					frameDelays[i] = Integer.parseInt(val);
 				} catch (final NumberFormatException ex) {
-					logger.error("Invalid delay #" + (i + 1) + " <" + val
+					LOGGER.error("Invalid delay #" + (i + 1) + " <" + val
 							+ ">: " + line);
 					return;
 				}
@@ -199,7 +199,7 @@ public class TilesetGroupAnimationMap {
 			try {
 				frameIndexes[i] = Integer.parseInt(frameIndex);
 			} catch (final NumberFormatException ex) {
-				logger.error("Invalid frame #" + (i + 1) + " <" + frameIndex
+				LOGGER.error("Invalid frame #" + (i + 1) + " <" + frameIndex
 						+ ">: " + line);
 				return;
 			}
@@ -214,7 +214,7 @@ public class TilesetGroupAnimationMap {
 			try {
 				add(name, Integer.parseInt(index), frameIndexes, frameDelays);
 			} catch (final NumberFormatException ex) {
-				logger.error("Invalid tile index: " + line);
+				LOGGER.error("Invalid tile index: " + line);
 				return;
 			}
 		}

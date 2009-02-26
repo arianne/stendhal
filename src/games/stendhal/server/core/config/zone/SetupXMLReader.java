@@ -23,7 +23,7 @@ public abstract class SetupXMLReader {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Logger.getLogger(SetupXMLReader.class);
+	private static final Logger LOGGER = Logger.getLogger(SetupXMLReader.class);
 
 	//
 	// SetupXMLReader
@@ -56,7 +56,7 @@ public abstract class SetupXMLReader {
 				desc.setParameter(param.getAttribute("name"), XMLUtil.getText(
 						param).trim());
 			} else {
-				logger.error("Unnamed parameter");
+				LOGGER.error("Unnamed parameter");
 			}
 		}
 	}

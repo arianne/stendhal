@@ -19,7 +19,7 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Logger.getLogger(ConfiguratorXMLReader.class);
+	private static final Logger LOGGER = Logger.getLogger(ConfiguratorXMLReader.class);
 
 	//
 	// ConfiguratorXMLReader
@@ -63,7 +63,7 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 
 			return desc;
 		} else {
-			logger.error("Implmentation without class-name");
+			LOGGER.error("Implmentation without class-name");
 			return null;
 		}
 	}

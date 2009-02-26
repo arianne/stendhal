@@ -23,7 +23,7 @@ public class SpriteCache {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Logger.getLogger(SpriteCache.class);
+	private static final Logger LOGGER = Logger.getLogger(SpriteCache.class);
 
 	/**
 	 * The singleton.
@@ -70,7 +70,7 @@ public class SpriteCache {
 	public void add(final Object key, final Sprite sprite) {
 		if (key != null) {
 			sprites.put(key, new SoftReference<Sprite>(sprite));
-			logger.debug("SpriteCache - add: " + key);
+			LOGGER.debug("SpriteCache - add: " + key);
 		}
 	}
 
@@ -99,17 +99,17 @@ public class SpriteCache {
 		final Reference<Sprite> ref = sprites.get(key);
 
 		if (ref == null) {
-			logger.debug("SpriteCache - miss: " + key);
+			LOGGER.debug("SpriteCache - miss: " + key);
 			return null;
 		}
 
 		final Sprite sprite = ref.get();
 
 		if (sprite == null) {
-			logger.debug("SpriteCache - GC'd miss: " + key);
+			LOGGER.debug("SpriteCache - GC'd miss: " + key);
 			sprites.remove(key);
 		} else {
-			logger.debug("SpriteCache - hit: " + key);
+			LOGGER.debug("SpriteCache - hit: " + key);
 		}
 
 		return sprite;

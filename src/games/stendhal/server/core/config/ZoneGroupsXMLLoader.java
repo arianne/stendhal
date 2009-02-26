@@ -20,7 +20,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 
-	private static final Logger logger = Logger.getLogger(ZoneGroupsXMLLoader.class);
+	private static final Logger LOGGER = Logger.getLogger(ZoneGroupsXMLLoader.class);
 
 	/** The main zone configuration file. */
 	protected URI uri;
@@ -53,16 +53,16 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		// Load each group
 		for (final URI tempUri : zoneGroups) {
 			if (tempUri.toString().matches(regex)) {
-				logger.debug("Loading zone group [" + tempUri + "]");
+				LOGGER.debug("Loading zone group [" + tempUri + "]");
 	
 				final ZonesXMLLoader loader = new ZonesXMLLoader(tempUri);
 	
 				try {
 					loader.load();
 				} catch (final SAXException ex) {
-					logger.error("Error loading zone group: " + tempUri, ex);
+					LOGGER.error("Error loading zone group: " + tempUri, ex);
 				} catch (final IOException ex) {
-					logger.error("Error loading zone group: " + tempUri, ex);
+					LOGGER.error("Error loading zone group: " + tempUri, ex);
 				}
 			}
 		}

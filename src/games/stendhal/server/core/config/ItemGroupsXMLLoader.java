@@ -17,7 +17,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ItemGroupsXMLLoader extends DefaultHandler {
 
 	
-	private static final Logger logger = Logger.getLogger(ItemGroupsXMLLoader.class);
+	private static final Logger LOGGER = Logger.getLogger(ItemGroupsXMLLoader.class);
 
 	/** The main item configuration file. */
 	protected URI uri;
@@ -48,7 +48,7 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 		final ItemsXMLLoader loader = new ItemsXMLLoader();
 		final List<DefaultItem> list = new LinkedList<DefaultItem>();
 		for (final URI groupUri : groups) {
-			logger.debug("Loading item group [" + groupUri + "]");
+			LOGGER.debug("Loading item group [" + groupUri + "]");
 			list.addAll(loader.load(groupUri));
 		}
 

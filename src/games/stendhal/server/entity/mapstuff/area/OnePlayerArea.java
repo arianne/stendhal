@@ -24,7 +24,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Logger.getLogger(OnePlayerArea.class);
+	private static final Logger LOGGER = Logger.getLogger(OnePlayerArea.class);
 
 	/**
 	 * The reference to the entity currently in the area.
@@ -140,7 +140,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 				return ((entity != occupant) && !contains(entity));
 			}
 
-			logger.warn("Occupant vanished: " + occupant.getName());
+			LOGGER.warn("Occupant vanished: " + occupant.getName());
 			clearOccupant();
 		}
 
@@ -230,7 +230,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 				if (occupant.isGhost()) {
 					clearOccupant();
 				}
-				logger.error("Existing occupant: " + occupant.getName());
+				LOGGER.error("Existing occupant: " + occupant.getName());
 			}
 
 			setOccupant((Player) entity);

@@ -29,7 +29,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 	}
 
 
-	protected Status ferryState;
+	private Status ferryState;
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {

@@ -21,7 +21,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Logger.getLogger(ConfiguratorDescriptor.class);
+	private static final Logger LOGGER = Logger.getLogger(ConfiguratorDescriptor.class);
 
 	/**
 	 * The class name of the configurator.
@@ -74,7 +74,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		try {
 			clazz = Class.forName(classNameTemp);
 		} catch (final ClassNotFoundException ex) {
-			logger.error("Unable to find zone configurator: " + classNameTemp);
+			LOGGER.error("Unable to find zone configurator: " + classNameTemp);
 
 			return;
 		}
@@ -85,12 +85,12 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		try {
 			obj = clazz.newInstance();
 		} catch (final InstantiationException ex) {
-			logger.error("Error creating zone configurator: " + classNameTemp,
+			LOGGER.error("Error creating zone configurator: " + classNameTemp,
 					ex);
 
 			return;
 		} catch (final IllegalAccessException ex) {
-			logger.error("Error accessing zone configurator: " + classNameTemp,
+			LOGGER.error("Error accessing zone configurator: " + classNameTemp,
 					ex);
 
 			return;
@@ -100,12 +100,12 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 * Apply class
 		 */
 		if (obj instanceof ZoneConfigurator) {
-			logger.info("Configuring zone [" + zone.getName() + "] with: "
+			LOGGER.info("Configuring zone [" + zone.getName() + "] with: "
 					+ classNameTemp);
 
 			((ZoneConfigurator) obj).configureZone(zone, getParameters());
 		} else {
-			logger.warn("Unsupported zone configurator: " + classNameTemp);
+			LOGGER.warn("Unsupported zone configurator: " + classNameTemp);
 		}
 	}
 }

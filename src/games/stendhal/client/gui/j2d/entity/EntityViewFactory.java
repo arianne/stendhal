@@ -56,7 +56,7 @@ public class EntityViewFactory {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Logger.getLogger(EntityViewFactory.class);
+	private static final Logger LOGGER = Logger.getLogger(EntityViewFactory.class);
 
 	/**
 	 * The shared instance.
@@ -105,22 +105,22 @@ public class EntityViewFactory {
 			return view;
 		} catch (final SecurityException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		} catch (final NoSuchMethodException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		} catch (final IllegalArgumentException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		} catch (final InstantiationException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		} catch (final IllegalAccessException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		} catch (final InvocationTargetException e) {
 
-			logger.error(e);
+			LOGGER.error(e);
 		}
 		return null;
 

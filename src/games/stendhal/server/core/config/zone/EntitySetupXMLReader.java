@@ -23,7 +23,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Logger.getLogger(EntitySetupXMLReader.class);
+	private static final Logger LOGGER = Logger.getLogger(EntitySetupXMLReader.class);
 
 	//
 	// EntitySetupXMLReader
@@ -63,7 +63,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 				desc.setAttribute(attr.getAttribute("name"), XMLUtil.getText(
 						attr).trim());
 			} else {
-				logger.error("Unnamed attribute");
+				LOGGER.error("Unnamed attribute");
 			}
 		}
 	}
@@ -81,7 +81,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		if (element.hasAttribute("class-name")) {
 			desc.setImplementation(element.getAttribute("class-name"));
 		} else {
-			logger.error("Implmentation without class-name");
+			LOGGER.error("Implmentation without class-name");
 		}
 
 		readParameters(desc, element);
@@ -110,11 +110,11 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 			try {
 				x = Integer.parseInt(s);
 			} catch (final NumberFormatException ex) {
-				logger.error("Invalid entity 'x' coordinate: " + s);
+				LOGGER.error("Invalid entity 'x' coordinate: " + s);
 				return null;
 			}
 		} else {
-			logger.error("Entity without 'x' coordinate");
+			LOGGER.error("Entity without 'x' coordinate");
 			return null;
 		}
 
@@ -124,11 +124,11 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 			try {
 				y = Integer.parseInt(s);
 			} catch (final NumberFormatException ex) {
-				logger.error("Invalid entity 'y' coordinate: " + s);
+				LOGGER.error("Invalid entity 'y' coordinate: " + s);
 				return null;
 			}
 		} else {
-			logger.error("Entity without 'y' coordinate");
+			LOGGER.error("Entity without 'y' coordinate");
 			return null;
 		}
 
@@ -138,7 +138,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 		if (!list.isEmpty()) {
 			if (list.size() > 1) {
-				logger.warn("More than one implementation specified");
+				LOGGER.warn("More than one implementation specified");
 			}
 
 			readImplementation(desc, list.get(0));

@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 public class Outfit {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(Outfit.class);
+	private static final Logger LOGGER = Logger.getLogger(Outfit.class);
 
 	/** The hair index, as a value between 0 and 99, or null. */
 	private Integer hair;
@@ -230,7 +230,7 @@ public class Outfit {
 		final int newHead = Rand.randUniform(1, 15);
 		final int newDress = Rand.randUniform(1, 16);
 		final int newBase = Rand.randUniform(1, 5);
-		logger.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
+		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(newHair, newHead, newDress, newBase);
 	}
 }

@@ -25,7 +25,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Logger.getLogger(EntitySetupDescriptor.class);
+	private static final Logger LOGGER = Logger.getLogger(EntitySetupDescriptor.class);
 
 	/**
 	 * The entity's X coordinate.
@@ -140,7 +140,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 		final String classNameTemp = getImplementation();
 
 		if (classNameTemp == null) {
-			logger.error("Entity without factory at " + zone.getName() + "["
+			LOGGER.error("Entity without factory at " + zone.getName() + "["
 					+ getX() + "," + getY() + "]");
 			return;
 		}
@@ -150,7 +150,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 					getParameters(), getAttributes());
 
 			if (entity == null) {
-				logger.warn("Unable to create entity: " + classNameTemp);
+				LOGGER.warn("Unable to create entity: " + classNameTemp);
 
 				return;
 			}
@@ -159,7 +159,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 			zone.add(entity);
 		} catch (final IllegalArgumentException ex) {
-			logger.error("Error with entity factory", ex);
+			LOGGER.error("Error with entity factory", ex);
 		}
 	}
 }

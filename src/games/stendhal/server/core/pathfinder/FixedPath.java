@@ -23,7 +23,7 @@ public class FixedPath {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(FixedPath.class);
+	private static final Logger LOGGER = Logger.getLogger(FixedPath.class);
 
 	/**
 	 * The current goal node.
@@ -148,14 +148,14 @@ public class FixedPath {
 		 */
 		if ((currentGoal.getX() == entity.getX())
 				&& (currentGoal.getY() == entity.getY())) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Completed waypoint #" + pos + "@" + currentGoal
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Completed waypoint #" + pos + "@" + currentGoal
 						+ " on Path");
 			}
 
 			if (++pos >= nodes.size()) {
 				if (!isLoop()) {
-					logger.debug("Completed path");
+					LOGGER.debug("Completed path");
 					return false;
 				}
 
@@ -165,8 +165,8 @@ public class FixedPath {
 			currentGoal = nodes.get(pos);
 		}
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("Moving to waypoint #" + pos + "@" + currentGoal
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("Moving to waypoint #" + pos + "@" + currentGoal
 					+ " on Path from (" + entity.getX() + "," + entity.getY()
 					+ ")");
 		}

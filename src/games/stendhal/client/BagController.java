@@ -11,10 +11,10 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class BagController implements PropertyChangeListener {
-	
-	private DefaultListModel dlm = new DefaultListModel();
-	JList list = new JList(dlm);
 	private static JFrame frame; 
+	private DefaultListModel dlm = new DefaultListModel();
+	private JList list = new JList(dlm);
+	
 	BagController() {
 		getBagGui();
 			
@@ -54,9 +54,7 @@ public class BagController implements PropertyChangeListener {
 				dlm.removeElement(item.getID().getObjectID());
 				
 			}
-		} else {
-			//System.out.println(evt.getOldValue() + "is no RPSlot" + evt.getNewValue().getClass());
-		}
+		} 
 	}
 
 	private void processAdded(final PropertyChangeEvent evt) {
@@ -73,9 +71,7 @@ public class BagController implements PropertyChangeListener {
 				}
 				
 			}
-		} else {
-			//System.out.println(evt.getNewValue() + "is no RPSlot" + evt.getNewValue().getClass());
-		}
+		} 
 	}
 
 	private void processDeleted() {

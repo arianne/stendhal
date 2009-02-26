@@ -60,7 +60,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
  /** The name of the quest slot where we store the time last visited. */
  private static final String QUEST_SLOT = "adventure_island";
  
- static final Logger logger = Logger.getLogger(ChallengerNPC.class);
+ private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 	private final class ChallengeChatAction implements ChatAction {
 
 		private final class ChallengeMovementListener implements
