@@ -16,7 +16,7 @@
       <slot name="bag"/>
     </equipable>
   </item>
-
+  
   <item name="staff">
     <type class="club" subclass="staff" tileid="-1"/>
     <description>You see a staff. This is a seldom seen or used weapon.</description>
@@ -264,6 +264,25 @@
     </equipable>
   </item>
 
+  <item name="necromancers staff">
+	<type class="club" subclass="wizard_staff" tileid="-1"/>
+	<description>You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.</description>
+	<implementation class-name="games.stendhal.server.entity.item.NecroStaff"/>
+
+	<attributes>
+		<atk value="8"/>
+		<rate value="5"/>
+	</attributes>
+	<weight value="0.2"/>
+	<value value="8533"/>
+
+	<equipable>
+		<slot name="bag"/>
+		<slot name="lhand"/>
+		<slot name="rhand"/>
+	</equipable>
+  </item> 
+  
   <item name="rod of the gm">
     <type class="club" subclass="rod_of_the_gm" tileid="-1"/>
     <description>You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.</description>

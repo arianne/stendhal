@@ -201,7 +201,8 @@ public final class EntityMap {
 		register("item", "container", null, StackableItem.class);
         register("item", "special", null, StackableItem.class);
         register("item", "special", "mithril clasp", Item.class);
-		register("item", "misc", "seed", UseableItem.class);
+		register("item", "club", "wizard_staff", UseableItem.class);
+        register("item", "misc", "seed", UseableItem.class);
 
 		register("item", "resource", null, StackableItem.class);
 
