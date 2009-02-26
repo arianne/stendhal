@@ -15,24 +15,30 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public final class ConversationParser extends ErrorBuffer {
-
-    private static final Logger logger = Logger.getLogger(ConversationParser.class);
-
-    private final StringTokenizer tokenizer;
-
-    final String originalText;
+	 
+	private static final Logger LOGGER = Logger.getLogger(ConversationParser.class);
+	   /** A cache to hold pre-parsed trigger Expressions. */
+    private static Map<String, Expression> triggerExpressionsCache = new HashMap<String, Expression>();
 
     /**
-     * @return the original parsed text.
+     *  A cache to hold pre-parsed matching Sentences.
      */
-    public String getOriginalText() {
-        return originalText;
-    }
+    private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
+    
+	final String originalText;
+	
+    
+    private final StringTokenizer tokenizer;
+
+  
+
+
+   
     /**
      * Create a new conversation parser and initialize with the given text string.
      *
-     * @param text
+     * @param text the text to parse
      */
     public ConversationParser(final String text) {
 		if (text == null) {
@@ -49,6 +55,14 @@ public final class ConversationParser extends ErrorBuffer {
 		tokenizer = new StringTokenizer(originalText);
     }
 
+    
+    /**
+     * @return the original parsed text.
+     */
+    public String getOriginalText() {
+        return originalText;
+    }
+
     /**
      *
      * @param text
@@ -58,9 +72,7 @@ public final class ConversationParser extends ErrorBuffer {
         return parse(text).getNormalized();
     }
 
-    /** A cache to hold pre-parsed trigger Expressions. */
-    private static Map<String, Expression> triggerExpressionsCache = new HashMap<String, Expression>();
-
+ 
     /**
      * Create trigger expression to match the parsed user input in the FSM engine.
      *
@@ -87,7 +99,7 @@ public final class ConversationParser extends ErrorBuffer {
      * @param matcher
      * @return Expression
      */
-    public static Expression createTriggerExpression(final String text, ExpressionMatcher matcher) {
+    public static Expression createTriggerExpression(final String text, final ExpressionMatcher matcher) {
         // prepare context for matching
         final ConversationContext ctx = new ConvCtxForMatcher();
 
@@ -105,9 +117,9 @@ public final class ConversationParser extends ErrorBuffer {
                 // If the trigger type string is not the same as that of the normalized form,
                 // associate an ExpressionMatcher in typeMatching mode.
                 if ((norm != null) && !expr.getTypeString().equals(norm.getTypeString())) {
-                    matcher = new ExpressionMatcher();
-                    matcher.setTypeMatching(true);
-                    expr.setMatcher(matcher);
+                    ExpressionMatcher newMatcher = new ExpressionMatcher();
+                    newMatcher.setTypeMatching(true);
+                    expr.setMatcher(newMatcher);
                 }
             }
 
@@ -125,11 +137,7 @@ public final class ConversationParser extends ErrorBuffer {
         return parse(text, new ConversationContext());
     }
 
-    /**
-     *  A cache to hold pre-parsed matching Sentences.
-     */
-    private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
-
+  
     /**
      * Parse the given text sentence to be used for sentence matching.
      *
@@ -236,7 +244,7 @@ public final class ConversationParser extends ErrorBuffer {
 
             sentence.setError(parser.getErrorString());
         } catch (final Exception e) {
-            logger.error("ConversationParser.parse(): catched Exception while parsing '" + text + '\'');
+            LOGGER.error("ConversationParser.parse(): catched Exception while parsing '" + text + '\'');
             sentence.setError(e.getMessage());
             e.printStackTrace();
         }
@@ -265,20 +273,21 @@ public final class ConversationParser extends ErrorBuffer {
      * @param sentence where the type is to be set
      * @return text without trailing or leading punctuation
      */
-    public static String getSentenceType(String text, final Sentence sentence) {
+    public static String getSentenceType(final String text, final Sentence sentence) {
         final PunctuationParser punct = new PunctuationParser(text);
 
         final String trailing = punct.getTrailingPunctuation();
-
+        
+        
         if (trailing.contains("?")) {
             sentence.setType(Sentence.SentenceType.QUESTION);
-            text = punct.getText();
+            return punct.getText();
         } else if (trailing.contains("!")) {
             sentence.setType(Sentence.SentenceType.IMPERATIVE);
-            text = punct.getText();
+            return punct.getText();
         } else if (trailing.contains(".")) {
             sentence.setType(Sentence.SentenceType.STATEMENT);
-            text = punct.getText();
+            return punct.getText();
         }
 
         return text;

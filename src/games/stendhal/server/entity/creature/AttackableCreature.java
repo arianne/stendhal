@@ -50,7 +50,7 @@ public class AttackableCreature extends Creature {
 	}
 
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new AttackableCreature(this);
 	}
 

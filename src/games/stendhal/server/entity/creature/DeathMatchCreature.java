@@ -38,7 +38,7 @@ public class DeathMatchCreature extends Creature {
 	}
 	
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new DeathMatchCreature(this);
 	}
 

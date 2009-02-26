@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
  * @author Martin Fuchs
  */
 public class ExpressionMatcher {
+    public static final String PM_SEPARATOR = "|";
 
     // There are some patterns that can be used as leading flags in expression strings, e.g. "|EXACT|":
     static final String PM_TYPE_MATCH = "TYPE";
@@ -17,7 +18,6 @@ public class ExpressionMatcher {
     static final String PM_ICASE_MATCH = "ICASE";
     static final String PM_JOKER_MATCH = "JOKER";
 
-    public static final String PM_SEPARATOR = "|";
 
     /** Flag to enable type string matching. */
     protected boolean typeMatching = false;

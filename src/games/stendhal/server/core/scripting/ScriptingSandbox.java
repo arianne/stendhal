@@ -93,7 +93,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Creature add(final Creature template, final int x, final int y) {
-		Creature creature = template.getInstance();
+		Creature creature = template.getNewInstance();
 		if (zone != null) {
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
 				loadedNPCs.put(creature, null);

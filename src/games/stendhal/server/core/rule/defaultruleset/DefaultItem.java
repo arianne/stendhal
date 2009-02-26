@@ -31,6 +31,9 @@ public class DefaultItem {
 
 	private static final Logger logger = Logger.getLogger(DefaultItem.class);
 
+	/** Implementation creator. */
+	protected Creator creator;
+	
 	/** items class. */
 	private String clazz;
 
@@ -54,9 +57,6 @@ public class DefaultItem {
 
 	/** Attributes of the item.*/
 	private Map<String, String> attributes;
-
-	/** Implementation creator. */
-	protected Creator creator;
 
 	private Class< ? > implementation;
 

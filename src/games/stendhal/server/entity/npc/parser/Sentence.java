@@ -163,7 +163,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         if (expressions.size() > 0) {
             return expressions.get(0);
         } else {
-            return Expression.emptyExpression;
+            return Expression.EMPTY_EXPRESSION;
         }
     }
 

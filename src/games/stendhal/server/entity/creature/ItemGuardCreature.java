@@ -73,7 +73,7 @@ public class ItemGuardCreature extends Creature {
 	}
 
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new ItemGuardCreature(this, itemType, questSlot);
 	}
 

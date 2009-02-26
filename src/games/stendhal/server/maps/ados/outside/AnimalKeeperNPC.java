@@ -64,7 +64,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public Creature getInstance() {
+		public Creature getNewInstance() {
 			return new AdosAttackableCreature(this);
 		}
 

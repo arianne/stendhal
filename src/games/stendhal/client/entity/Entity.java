@@ -23,34 +23,27 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class Entity implements RPObjectChangeListener, IEntity {
-	/**
-	 * an array of sounds. out of these randomnly chosen sounds are played while
-	 * moving.
-	 */
-	protected String[] moveSounds;
-
+	
 	/**
 	 * session wide instance identifier for this class.
 	 * TODO: get rid of this only used by Soundsystem
 	 * 
 	 */
 	public final byte[] ID_Token = new byte[0];
+	
+	/**
+	 * an array of sounds. out of these randomnly chosen sounds are played while
+	 * moving.
+	 */
+	protected String[] moveSounds;
+
+	
 
 	/** The current x location of this entity. */
 	protected double x;
 
 	/** The current y location of this entity. */
 	protected double y;
-
-	/**
-	 * The entity width.
-	 */
-	private double width;
-
-	/**
-	 * The entity height.
-	 */
-	private double height;
 
 	/**
 	 * Amount of entity-to-entity resistance (0-100).
@@ -106,6 +99,18 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * TODO: get rid off inAdd variable.
 	 */
 	protected boolean inAdd;
+	
+	/**
+	 * The entity width.
+	 */
+	private double width;
+
+	/**
+	 * The entity height.
+	 */
+	private double height;
+
+
 
 	Entity() {
 		clazz = null;

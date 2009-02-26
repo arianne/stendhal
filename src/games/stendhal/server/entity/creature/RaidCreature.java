@@ -19,7 +19,7 @@ public class RaidCreature extends Creature {
 	}
 
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new RaidCreature(this);
 	}
 }

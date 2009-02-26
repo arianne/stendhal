@@ -43,7 +43,7 @@ public class ArenaCreature extends Creature {
 	}
 
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new ArenaCreature(this, arena);
 	}
 

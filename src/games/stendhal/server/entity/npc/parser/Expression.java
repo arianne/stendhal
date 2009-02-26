@@ -11,6 +11,11 @@ import java.util.regex.Pattern;
  * @author Martin Fuchs
  */
 public final class Expression {
+	  /** Instance of an empty Expression. */
+    public static final Expression EMPTY_EXPRESSION = new Expression("", "");
+
+    /** JOKER is a joker String used in pattern matches. */
+    protected static final String JOKER = "*";
 
     /** Original, un-normalized string expression. */
     private String original;
@@ -33,11 +38,7 @@ public final class Expression {
     /** Expression matcher for comparing expressions in various modes. */
     private ExpressionMatcher matcher = null;
 
-    /** Instance of an empty Expression. */
-    public static final Expression emptyExpression = new Expression("", "");
-
-    /** JOKER is a joker String used in pattern matches. */
-    protected static final String JOKER = "*";
+  
 
     /**
      * Create an Expression from the given original string. Normalized form, main word and type are
@@ -63,7 +64,8 @@ public final class Expression {
     }
 
     /**
-     * Parse the given numeric expression and assign the value to 'amount'. TODO mf - We may switch from Integer to Long
+     * Parse the given numeric expression and assign the value to 'amount'.
+     *  TODO mf - We may switch from Integer to Long
      * if we extend the column type in table 'words'
      *
      * @param str

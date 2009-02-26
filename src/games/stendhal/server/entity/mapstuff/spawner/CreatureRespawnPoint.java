@@ -181,7 +181,7 @@ public class CreatureRespawnPoint implements TurnListener {
 
 		try {
 			// clone the prototype creature
-			final Creature newentity = prototypeCreature.getInstance();
+			final Creature newentity = prototypeCreature.getNewInstance();
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)

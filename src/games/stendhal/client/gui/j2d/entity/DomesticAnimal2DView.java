@@ -47,6 +47,11 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	protected static final String STATE_BIG_RIGHT = "big:move_right";
 
 	/**
+	 * The idea property changed.
+	 */
+	protected boolean ideaChanged;
+	
+	/**
 	 * The entity this view is for.
 	 */
 	private final DomesticAnimal animal;
@@ -56,10 +61,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	private Sprite ideaSprite;
 
-	/**
-	 * The idea property changed.
-	 */
-	protected boolean ideaChanged;
+
 
 	/**
 	 * Create a 2D view of a animal.

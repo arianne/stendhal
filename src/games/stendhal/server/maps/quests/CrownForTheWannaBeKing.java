@@ -48,6 +48,11 @@ import java.util.Map;
 public class CrownForTheWannaBeKing extends AbstractQuest {
 
 	/**
+	 * required items for the quest.
+	 */
+	protected static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1";
+
+	/**
 	 * Name of the main NPC for this quest.
 	 */
 	private static final String NPC_NAME = "Ivan Abe";
@@ -56,11 +61,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * Name of the NPC giving the reward.
 	 */
 	private static final String REWARD_NPC_NAME = "Kendra Mattori";
-
-	/**
-	 * required items for the quest.
-	 */
-	protected static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1";
 
 	/**
 	 * Name of the slot used for this quest.

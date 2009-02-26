@@ -7,6 +7,7 @@ package games.stendhal.server.entity.npc.parser;
  */
 public class ConversationContext {
 
+	
     // conversation context states
 	
 	/** no current conversation context. */
@@ -18,8 +19,7 @@ public class ConversationContext {
     /** Conversation Context wait for a named object. */
     static final int CCS_WAIT_FOR_OBJECT = 2; 
 
-    /** stores current Conversation state. */
-    private int state = CCS_NONE; 
+  
 
     /** Flag for sentences to be used for matching. */
     protected boolean forMatching = false;
@@ -32,6 +32,9 @@ public class ConversationContext {
     
     /** Flag to enable ignoring of words marked with the type IGN. */
     protected boolean ignoreIgnorable = true; 
+    
+    /** stores current Conversation state. */
+    private int state = CCS_NONE; 
 
     public void setState(final int state) {
         this.state = state;

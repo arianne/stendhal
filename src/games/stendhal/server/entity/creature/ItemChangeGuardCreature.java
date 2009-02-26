@@ -57,7 +57,7 @@ public class ItemChangeGuardCreature extends Creature {
 	}
 
 	@Override
-	public Creature getInstance() {
+	public Creature getNewInstance() {
 		return new ItemChangeGuardCreature(this, oldItemType, itemType);
 	}
 

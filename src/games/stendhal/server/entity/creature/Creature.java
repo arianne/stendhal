@@ -66,16 +66,8 @@ import org.apache.log4j.Logger;
  * The ai
  */
 public class Creature extends NPC {
-
-
-	public HealerBehavior healer = Healingbehaviourfactory.get(null);
-
-	public AttackStrategy strategy;
-
-
-	
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(Creature.class);
+	private static final Logger LOGGER = Logger.getLogger(Creature.class);
 
 	/**
 	 * The higher the number the less items are dropped. To use numbers
@@ -83,8 +75,11 @@ public class Creature extends NPC {
 	 */
 	private static final double SERVER_DROP_GENEROSITY = 1;
 
-	private CreatureRespawnPoint point;
-	boolean isRespawned;
+	public HealerBehavior healer = Healingbehaviourfactory.get(null);
+
+	public AttackStrategy strategy;
+
+
 	
 	/**
 	 * Ths list of item names this creature may drop Note; per default this list
@@ -102,6 +97,12 @@ public class Creature extends NPC {
 	 * List of things this creature should say.
 	 */
 	protected List<String> noises;
+	
+	boolean isRespawned;
+	
+
+
+	private CreatureRespawnPoint point;
 
 	private int respawnTime;
 
@@ -116,35 +117,6 @@ public class Creature extends NPC {
 	private final int attackTurn = Rand.rand(5);
 
 	private boolean isIdle; 
-
-	public boolean isSpawned() {
-		return isRespawned;
-	}
-
-	public void setRespawned(final boolean isRespawned) {
-		this.isRespawned = isRespawned;
-	}
-
-	public int getAttackTurn() {
-		return attackTurn;
-	}
-	
-	public boolean isAttackTurn(final int turn) {
-		return ((turn + attackTurn) % getAttackRate() == 0);
-	}
-
-
-	public static void generateRPClass() {
-		try {
-			final RPClass npc = new RPClass("creature");
-			npc.isA("npc");
-			npc.addAttribute("debug", Type.VERY_LONG_STRING,
-					Definition.VOLATILE);
-			npc.addAttribute("metamorphosis", Type.STRING, Definition.VOLATILE);
-		} catch (final SyntaxException e) {
-			logger.error("cannot generate RPClass", e);
-		}
-	}
 
 	public Creature(final RPObject object) {
 		super(object);
@@ -201,16 +173,13 @@ public class Creature extends NPC {
 		update();
 
 		stop();
-		if (logger.isDebugEnabled()) {
-			logger.debug(getIDforDebug() + " Created " + get("class") + ":"
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(getIDforDebug() + " Created " + get("class") + ":"
 					+ this);
 		}
 	}
 
-	public Creature getInstance() {
-		return new Creature(this);
-	}
-
+	
 	/**
 	 * creates a new creature without properties. These must be set in the
 	 * deriving class
@@ -296,17 +265,51 @@ public class Creature extends NPC {
 		setLevel(level);
 
 		if (Level.getLevel(xp) != level) {
-			logger.debug("Wrong level for xp [" + name + "]: " + xp + " -> "
+			LOGGER.debug("Wrong level for xp [" + name + "]: " + xp + " -> "
 					+ Level.getLevel(xp) + " (!" + level + ")");
 		}
 
 		update();
 
 		stop();
-		if (logger.isDebugEnabled()) {
-			logger.debug(getIDforDebug() + " Created " + clazz + ":" + this);
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(getIDforDebug() + " Created " + clazz + ":" + this);
 		}
 	}
+
+	public Creature getNewInstance() {
+		return new Creature(this);
+	}
+
+	public boolean isSpawned() {
+		return isRespawned;
+	}
+
+	public void setRespawned(final boolean isRespawned) {
+		this.isRespawned = isRespawned;
+	}
+
+	public int getAttackTurn() {
+		return attackTurn;
+	}
+	
+	public boolean isAttackTurn(final int turn) {
+		return ((turn + attackTurn) % getAttackRate() == 0);
+	}
+
+
+	public static void generateRPClass() {
+		try {
+			final RPClass npc = new RPClass("creature");
+			npc.isA("npc");
+			npc.addAttribute("debug", Type.VERY_LONG_STRING,
+					Definition.VOLATILE);
+			npc.addAttribute("metamorphosis", Type.STRING, Definition.VOLATILE);
+		} catch (final SyntaxException e) {
+			LOGGER.error("cannot generate RPClass", e);
+		}
+	}
+
 
 	public RPObject.ID getIDforDebug() {
 		return getID();
@@ -580,7 +583,7 @@ public class Creature extends NPC {
 			if (probability <= (dropped.probability / SERVER_DROP_GENEROSITY)) {
 				final Item item = defaultEntityManager.getItem(dropped.name);
 				if (item == null) {
-					logger.error("Unable to create item: " + dropped.name);
+					LOGGER.error("Unable to create item: " + dropped.name);
 					continue;
 				}
 

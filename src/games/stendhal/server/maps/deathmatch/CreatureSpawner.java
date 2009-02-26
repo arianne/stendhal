@@ -144,7 +144,7 @@ public class CreatureSpawner implements TurnListener {
 	 */
 	DeathMatchCreature spawnNewCreature(final Creature template, final Player player, final DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
-		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
+		        new ArenaCreature(template.getNewInstance(), deathmatchInfo.getArena().getShape()));
 
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();
