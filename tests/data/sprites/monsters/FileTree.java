@@ -61,10 +61,35 @@ public class FileTree extends JTree {
 	// Inner class that represents a node in this
 	// file system tree
 	protected class FileTreeNode extends DefaultMutableTreeNode {
-		/**
-		 * 
-		 */
+		
 		private static final long serialVersionUID = 3223106240309250204L;
+		
+		/**
+		 * File object for this node.
+		 */
+		protected File file;
+
+		/**
+		 * Name of this node.
+		 */
+		protected String name;
+		/**
+		 * true if we have been populated.
+		 */
+		protected boolean populated;
+		/**
+		 * true if we are in interim state.
+		 */
+
+		protected boolean interim;
+		/**
+		 * true if this is a directory.
+		 */
+
+		protected boolean isDir;
+		
+		
+		
 
 		public FileTreeNode(final File parent, final String name) throws FileNotFoundException {
 			this.name = name;
@@ -155,29 +180,7 @@ public class FileTree extends JTree {
 			return addedNodes;
 		}
 
-		/**
-		 * File object for this node.
-		 */
-		protected File file;
-
-		/**
-		 * Name of this node.
-		 */
-		protected String name;
-		/**
-		 * true if we have been populated.
-		 */
-		protected boolean populated;
-		/**
-		 * true if we are in interim state.
-		 */
-
-		protected boolean interim;
-		/**
-		 * true if this is a directory.
-		 */
-
-		protected boolean isDir;
+		
 	}
 
 	// Inner class that handles Tree Expansion Events

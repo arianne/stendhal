@@ -57,7 +57,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	 * literals for line starts. %s is replaced with singular creature name, %S
 	 * plural.
 	 */
-	static final String[] LINE_STARTS = new String[] { "Oh yes I know %s!",
+	private static final String[] LINE_STARTS = new String[] { "Oh yes I know %s!",
 			"When I was your age, I killed many %S!",
 			"Those %S are one of my favorites!",
 			"Let me think...%s...now I remember!",
@@ -109,34 +109,34 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	/**
 	 * %1 = time to respawn.
 	 */
-	static final String[] RESPAWN_TEXTS = new String[] {
+	private static final String[] RESPAWN_TEXTS = new String[] {
 			"If you waited in the right place for %1, you would be likely to see one.",
 			"It can take %1 to find one.", "Hunting them for %1 gives you a good chance of finding one." };
 
 	/**
 	 * %1 = list of items dropped.
 	 */
-	static final String[] CARRY_TEXTS = new String[] { "They carry %1.",
+	private static final String[] CARRY_TEXTS = new String[] { "They carry %1.",
 			"Dead ones have %1.", "The corpses contain %1." };
 
 	/**
 	 * no attributes.
 	 */
-	static final String[] CARRY_NOTHING_TEXTS = new String[] {
+	private static final String[] CARRY_NOTHING_TEXTS = new String[] {
 			"I don't know if they carry anything.",
 			"None of the ones I've seen carried anything." };
 
 	/**
 	 * %1 = list of locations.
 	 */
-	static final String[] LOCATION_TEXTS = new String[] {
+	private static final String[] LOCATION_TEXTS = new String[] {
 			"I have seen them %1.", "You should be able to find them %1.",
 			"I have killed few of those %1." };
 
 	/**
 	 * %1 = name of the creature.
 	 */
-	static final String[] LOCATION_UNKNOWN_TEXTS = new String[] { "I don't know of any place where you could find %1." };
+	private static final String[] LOCATION_UNKNOWN_TEXTS = new String[] { "I don't know of any place where you could find %1." };
 
 	private static CreatureInfo creatureInfo = new CreatureInfo(probabilityLiterals,
 																amountLiterals, dangerLiterals, LINE_STARTS, RESPAWN_TEXTS,

@@ -40,7 +40,11 @@ import org.apache.log4j.Logger;
  * 
  */
 public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
-	private static Logger logger = Logger.getLogger(PassiveEntityRespawnPoint.class);
+	private static Logger LOGGER = Logger.getLogger(PassiveEntityRespawnPoint.class);
+	/**
+	 * Tells how many turns it takes in average for a new fruit to become ripe.
+	 */
+	protected int meanTurnsForRegrow;
 
 	/**
 	 * Is there still a fruit that has not yet been picked up?
@@ -51,15 +55,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 * The name of the fruit (Item) that is grown by the PlantGrower.
 	 */
 	private final String growingItemName;
-
-	/**
-	 * Remember which turn we were called last to compute the ripeness
-	 */
-	// private int lastTurn = 0;
-	/**
-	 * Tells how many turns it takes in average for a new fruit to become ripe.
-	 */
-	protected int meanTurnsForRegrow;
 
 	public PassiveEntityRespawnPoint(final RPObject object, final String growingItemName,
 			final int meanTurnsForRegrow) {
@@ -119,7 +114,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 */
 	protected void growNewFruit() {
 		if (!hasPickableFruit) {
-			logger.debug("Growing " + growingItemName);
+			LOGGER.debug("Growing " + growingItemName);
 
 			final StendhalRPWorld world = SingletonRepository.getRPWorld();
 			final StendhalRPZone zone = world.getZone(getID().getZoneID());

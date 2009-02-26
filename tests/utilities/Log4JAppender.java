@@ -6,8 +6,11 @@ import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 
 public class Log4JAppender extends AppenderSkeleton {
-	private static List<String> messages = new ArrayList<String>();
+	
 	public static final Log4JAppender INSTANCE = new Log4JAppender();
+	
+	private static List<String> messages = new ArrayList<String>();
+	
 
 	@Override
 	protected void append(final LoggingEvent event) {

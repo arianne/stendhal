@@ -42,31 +42,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * The entity this view is for.
 	 */
 	protected IEntity entity;
-
-	/**
-	 * The entity image (or current one at least).
-	 */
-	private Sprite sprite;
-
+	
 	/**
 	 * The entity drawing composite.
 	 */
 	protected Composite entityComposite;
-
-	/**
-	 * Whether this view is contained.
-	 */
-	private boolean contained;
-
+	
 	/**
 	 * Model values affecting animation.
 	 */
 	protected boolean animatedChanged;
-
-	/**
-	 * Some model value changed.
-	 */
-	private boolean changed;
 
 	/**
 	 * The position value changed.
@@ -82,7 +67,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * The visibility value changed.
 	 */
 	protected boolean visibilityChanged;
-
+	
 	/**
 	 * The screen X coordinate.
 	 */
@@ -102,6 +87,21 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * The Y alignment offset.
 	 */
 	protected int yoffset;
+
+	/**
+	 * The entity image (or current one at least).
+	 */
+	private Sprite sprite;
+
+	/**
+	 * Whether this view is contained.
+	 */
+	private boolean contained;
+	
+	/**
+	 * Some model value changed.
+	 */
+	private boolean changed;
 
 	/**
 	 * Create a 2D view of an entity.
@@ -564,8 +564,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The inspector.
 	 */
 	public void setInspector(final Inspector inspector) {
-
-		// TODO: replace by interface instpectable
 	}
 
 	/**

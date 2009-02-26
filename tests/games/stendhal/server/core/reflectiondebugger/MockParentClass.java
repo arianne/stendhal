@@ -6,9 +6,10 @@ package games.stendhal.server.core.reflectiondebugger;
  * @author hendrik
  */
 public class MockParentClass {
-
+	public String parentPublicString = "text";
+	
 	// this class is used by reflection
 	@SuppressWarnings("unused")
 	private int parentPrivateInt = 1;
-	public String parentPublicString = "text";
+	
 }

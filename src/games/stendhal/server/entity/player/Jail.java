@@ -33,10 +33,30 @@ import org.apache.log4j.Logger;
  * @author daniel
  */
 public class Jail implements ZoneConfigurator, LoginListener {
-
-	private static final Logger logger = Logger.getLogger(Jail.class);
-
+	
 	static StendhalRPZone jailzone;
+	
+
+	private static final Logger LOGGER = Logger.getLogger(Jail.class);
+	private static final List<Point> cellEntryPoints = Arrays.asList(
+			new Point(3, 3),
+			new Point(8, 3),
+			// elf cell(13, 3),
+			new Point(18, 3), 
+			new Point(23, 3), 
+			new Point(28, 3), 
+			new Point(8, 11),
+			new Point(13, 11),
+			new Point(18, 11),
+			new Point(23, 11),
+			new Point(28, 11)
+		);
+
+		private static final Rectangle[] cellBlocks = { 
+			new Rectangle(1, 1, 30, 3),
+			new Rectangle(7, 10, 30, 3)
+		};
+	
 	private ArrestWarrantList arrestWarrants;
 
 	private List<Cell> cells = new LinkedList<Cell>();
@@ -45,7 +65,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 
 		public void onEntered(final RPObject object, final StendhalRPZone zone) {
 			if (object.getRPClass().subclassOf("player")) {
-				
+				//TODO: could this be a bug ? (durkham)
 				
 			}
 			
@@ -63,24 +83,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		}
 	};
 
-	private static List<Point> cellEntryPoints = Arrays.asList(
-		new Point(3, 3),
-		new Point(8, 3),
-		// elf cell(13, 3),
-		new Point(18, 3), 
-		new Point(23, 3), 
-		new Point(28, 3), 
-		new Point(8, 11),
-		new Point(13, 11),
-		new Point(18, 11),
-		new Point(23, 11),
-		new Point(28, 11)
-	);
 
-	private static Rectangle[] cellBlocks = { 
-		new Rectangle(1, 1, 30, 3),
-		new Rectangle(7, 10, 30, 3)
-	};
 
 	private final class Jailer implements TurnListener {
 
@@ -137,7 +140,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		if (criminal == null) {
 			final String text = "Player " + criminalName + " is not online, but the arrest warrant has been recorded anyway.";
 			policeman.sendPrivateText(text);
-			logger.debug(text);
+			LOGGER.debug(text);
 		} else {
 			arrestWarrant.setStarted();
 			imprison(criminal, policeman, minutes);
@@ -155,7 +158,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		if (jailzone == null) {
 			final String text = "No zone has been configured to be Jailzone";
 			policeman.sendPrivateText(text);
-			logger.debug(text);
+			LOGGER.debug(text);
 			return;
 		} 
 		final boolean successful = teleportToAvailableCell(criminal, policeman);
@@ -200,7 +203,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	public boolean release(final String inmateName) {
 		final Player inmate = SingletonRepository.getRuleProcessor().getPlayer(inmateName);
 		if (inmate == null) {
-			logger.debug("Jailed player " + inmateName + "has logged out.");
+			LOGGER.debug("Jailed player " + inmateName + "has logged out.");
 			return false;
 		}
 
@@ -215,13 +218,13 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		if (isInJail(inmate)) {
 			final IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
-				logger.debug("Zone " + zoneid + " not found");
+				LOGGER.debug("Zone " + zoneid + " not found");
 			}
 			final StendhalRPZone exitZone = (StendhalRPZone) world.getRPZone(zoneid);
 
 			inmate.teleport(exitZone, 6, 3, Direction.RIGHT, null);
 			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
-			logger.debug("Player " + inmate.getName() + "released from jail.");
+			LOGGER.debug("Player " + inmate.getName() + "released from jail.");
 		}
 
 		// The player completed his sentence and did not logout

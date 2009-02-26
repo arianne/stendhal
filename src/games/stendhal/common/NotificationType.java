@@ -16,6 +16,8 @@ import java.awt.Color;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
+	
+	
 	CLIENT("client") {
 		@Override
 		public Color getColor() {
@@ -88,7 +90,30 @@ public enum NotificationType {
 			return COLOR_TUTORIAL;
 		}
 	};
+	public static final Color COLOR_CLIENT = Color.gray;
 
+	public static final Color COLOR_ERROR = Color.red;
+
+	public static final Color COLOR_INFORMATION = Color.orange;
+
+	public static final Color COLOR_NEGATIVE = Color.red;
+
+	public static final Color COLOR_NORMAL = Color.black;
+
+	public static final Color COLOR_POSITIVE = Color.green;
+	
+	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
+
+	public static final Color COLOR_PRIVMSG = Color.darkGray;
+
+	public static final Color COLOR_RESPONSE = new Color(0x006400);
+
+	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
+
+	public static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
+			105, 225);
+
+	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 	/**
 	 * The mapping mnemonic.
 	 */
@@ -125,30 +150,7 @@ public enum NotificationType {
 	public Color getColor() {
 					return COLOR_NORMAL;
 	}
-	public static final Color COLOR_CLIENT = Color.gray;
 
-	public static final Color COLOR_ERROR = Color.red;
-
-	public static final Color COLOR_INFORMATION = Color.orange;
-
-	public static final Color COLOR_NEGATIVE = Color.red;
-
-	public static final Color COLOR_NORMAL = Color.black;
-
-	public static final Color COLOR_POSITIVE = Color.green;
-	
-	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
-
-	public static final Color COLOR_PRIVMSG = Color.darkGray;
-
-	public static final Color COLOR_RESPONSE = new Color(0x006400);
-
-	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
-
-	public static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
-			105, 225);
-
-	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 
 }

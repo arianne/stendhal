@@ -64,9 +64,7 @@ import org.apache.log4j.Logger;
  */
 public class GameScreen implements PositionChangeListener, IGameScreen {
 
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(GameScreen.class);
-
+	
 	/**
 	 * Comparator used to sort entities to display.
 	 */
@@ -76,6 +74,33 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * A scale factor for panning delta (to allow non-float precision).
 	 */
 	protected static final int PAN_SCALE = 8;
+	
+	/** the logger instance. */
+	private static final Logger LOGGER = Logger.getLogger(GameScreen.class);
+
+	private static final Sprite offlineIcon;
+
+	/** the singleton instance. */
+	private static IGameScreen screen;
+
+	/**
+	 * Static game layers.
+	 */
+	protected StaticGameLayers gameLayers;
+	
+	/**
+	 * The entity views.
+	 */
+	protected List<EntityView> views;
+
+	/**
+	 * The entity to view map.
+	 */
+	protected Map<IEntity, EntityView> entities;
+
+	/** Actual size of the world in world units. */
+	protected int ww;
+	protected int wh;
 
 	private final BufferStrategy strategy;
 
@@ -86,10 +111,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	private final GroundContainer ground;
 
-	/**
-	 * Static game layers.
-	 */
-	protected StaticGameLayers gameLayers;
+	
 
 	/**
 	 * The text bubbles.
@@ -101,18 +123,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	private final List<Text> textsToRemove;
 
-	/**
-	 * The entity views.
-	 */
-	protected List<EntityView> views;
-
-	/**
-	 * The entity to view map.
-	 */
-	protected Map<IEntity, EntityView> entities;
-
-	private static Sprite offlineIcon;
-
+	
+	
 	private boolean offline;
 
 	private int blinkOffline;
@@ -131,12 +143,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private final int sw;
 	private final int sh;
 
-	/** Actual size of the world in world units. */
-	protected int ww;
-	protected int wh;
+	
 
-	/** the singleton instance. */
-	private static IGameScreen screen;
 
 	/**
 	 * The difference between current and target screen view X.
@@ -167,38 +175,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-	/**
-	 * Set the default [singleton] screen.
-	 *
-	 * @param screen
-	 *            The screen.
-	 */
-	public static void setDefaultScreen(final IGameScreen screen) {
-		GameScreen.screen = screen;
-	}
 
-	/** @return the GameScreen object. */
-	public static IGameScreen get() {
-		return screen;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getViewWidth()
-	 */
-	public double getViewWidth() {
-		return sw / SIZE_UNIT_PIXELS;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getViewHeight()
-	 */
-	public double getViewHeight() {
-		return sh / SIZE_UNIT_PIXELS;
-	}
 
 	/**
 	 * Create a game screen.
@@ -245,6 +222,39 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
+	/**
+	 * Set the default [singleton] screen.
+	 *
+	 * @param screen
+	 *            The screen.
+	 */
+	public static void setDefaultScreen(final IGameScreen screen) {
+		GameScreen.screen = screen;
+	}
+
+	/** @return the GameScreen object. */
+	public static IGameScreen get() {
+		return screen;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see games.stendhal.client.IGameScreen#getViewWidth()
+	 */
+	public double getViewWidth() {
+		return sw / SIZE_UNIT_PIXELS;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see games.stendhal.client.IGameScreen#getViewHeight()
+	 */
+	public double getViewHeight() {
+		return sh / SIZE_UNIT_PIXELS;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -605,7 +615,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				text.draw(this);
 			}
 		} catch (final ConcurrentModificationException e) {
-			logger.error("cannot draw text", e);
+			LOGGER.error("cannot draw text", e);
 		}
 	}
 
@@ -1213,7 +1223,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// Workaround for X-Windows not supporting images of height 0 pixel.
 		if (imageHeight == 0) {
 			imageHeight = 1;
-			logger.warn("Created textbox for empty text");
+			LOGGER.warn("Created textbox for empty text");
 		}
 
 		final Image image = gc.createCompatibleImage(imageWidth, imageHeight,

@@ -35,8 +35,14 @@ import org.apache.log4j.Logger;
 
 
 public class KTextEdit extends JPanel {
+	protected static final int TEXT_SIZE = 11;
+
+	protected static final Color HEADER_COLOR = Color.gray;
+
 	private static final String GAME_LOG_FILE = System.getProperty("user.home")
 	+ "/" + stendhal.STENDHAL_FOLDER + "gamechat.log";
+	
+	
 	private final class TextPaneMouseListener extends MouseAdapter {
 		public void mousePressed(final MouseEvent e) {
 	        maybeShowPopup(e);
@@ -67,10 +73,7 @@ public class KTextEdit extends JPanel {
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 
-	protected static final int TEXT_SIZE = 11;
-
-	protected static final Color HEADER_COLOR = Color.gray;
-
+	
 	protected JTextPane textPane;
 
 	

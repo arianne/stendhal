@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -38,6 +39,10 @@ import marauroa.common.game.Definition.Type;
  */
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
+	// 10 minutes
+	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE; 
+
+	
 	/** list of possible slots for this item. */
 	private List<String> possibleSlots;
 
@@ -47,8 +52,59 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * picked.
 	 */
 	private PassiveEntityRespawnPoint plantGrower;
-	// 10 minutes
-	public static final int DEGRADATION_TIMEOUT = 10 * 60; 
+	
+	
+	/**
+	 * 
+	 * Creates a new Item.
+	 * 
+	 * @param name
+	 *            name of item
+	 * @param clazz
+	 *            class (or type) of item
+	 * @param subclass
+	 *            subclass of this item
+	 * @param attributes
+	 *            attributes (like attack). may be empty or <code>null</code>
+	 */
+	public Item(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
+		this();
+
+		setEntityClass(clazz);
+		setEntitySubClass(subclass);
+
+		put("name", name);
+
+		if (attributes != null) {
+			// store all attributes
+			for (final Entry<String, String> entry : attributes.entrySet()) {
+				put(entry.getKey(), entry.getValue());
+			}
+		}
+
+		update();
+	}
+
+	/** no public 'default' item. */
+	private Item() {
+		setRPClass("item");
+		put("type", "item");
+		possibleSlots = new LinkedList<String>();
+		update();
+	}
+
+	/**
+	 * copy constructor.
+	 * 
+	 * @param item
+	 *            item to copy
+	 */
+	public Item(final Item item) {
+		super(item);
+		setRPClass("item");
+		possibleSlots = new ArrayList<String>(item.possibleSlots);
+	}
 
 	public static void generateRPClass() {
 		final RPClass entity = new RPClass("item");
@@ -116,58 +172,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
 	}
 
-	/**
-	 * 
-	 * Creates a new Item.
-	 * 
-	 * @param name
-	 *            name of item
-	 * @param clazz
-	 *            class (or type) of item
-	 * @param subclass
-	 *            subclass of this item
-	 * @param attributes
-	 *            attributes (like attack). may be empty or <code>null</code>
-	 */
-	public Item(final String name, final String clazz, final String subclass,
-			final Map<String, String> attributes) {
-		this();
-
-		setEntityClass(clazz);
-		setEntitySubClass(subclass);
-
-		put("name", name);
-
-		if (attributes != null) {
-			// store all attributes
-			for (final Entry<String, String> entry : attributes.entrySet()) {
-				put(entry.getKey(), entry.getValue());
-			}
-		}
-
-		update();
-	}
-
-	/** no public 'default' item. */
-	private Item() {
-		setRPClass("item");
-		put("type", "item");
-		possibleSlots = new LinkedList<String>();
-		update();
-	}
-
-	/**
-	 * copy constructor.
-	 * 
-	 * @param item
-	 *            item to copy
-	 */
-	public Item(final Item item) {
-		super(item);
-		setRPClass("item");
-		possibleSlots = new ArrayList<String>(item.possibleSlots);
-	}
-
+	
 	/**
 	 * on which slots may this item be equipped.
 	 * 

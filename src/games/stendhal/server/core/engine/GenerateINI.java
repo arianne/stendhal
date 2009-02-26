@@ -12,13 +12,38 @@ import marauroa.common.crypto.RSAKey;
 
 public class GenerateINI {
 
-	/** Where data is read from. */
-	private static BufferedReader in = new BufferedReader(
-			new InputStreamReader(System.in));
-
 	/** The name of the output file. */
 	static final String FILENAME = "server.ini";
 
+	
+	/** Where data is read from. */
+	private static BufferedReader in = new BufferedReader(
+			new InputStreamReader(System.in));
+	private static String gameName;
+
+	private static String databaseName;
+
+	private static String databaseHost;
+
+	private static String databaseUsername;
+
+	private static String databasePassword;
+
+	private static String databaseImplementation;
+
+	private static String tcpPort;
+
+	private static String worldImplementation;
+
+	private static String ruleprocessorImplementation;
+
+	private static String turnLength;
+
+	private static String statisticsFilename;
+
+	private static RSAKey rsakey;
+
+	
 	/**
 	 * reads a String from the input. When no String is chosen the defaultValue
 	 * is used.
@@ -90,29 +115,6 @@ public class GenerateINI {
 		return source;
 	}
 
-	private static String gameName;
-
-	private static String databaseName;
-
-	private static String databaseHost;
-
-	private static String databaseUsername;
-
-	private static String databasePassword;
-
-	private static String databaseImplementation;
-
-	private static String tcpPort;
-
-	private static String worldImplementation;
-
-	private static String ruleprocessorImplementation;
-
-	private static String turnLength;
-
-	private static String statisticsFilename;
-
-	private static RSAKey rsakey;
 
 	public static void main(final String[] args) throws FileNotFoundException {
 		gameName = "stendhal";

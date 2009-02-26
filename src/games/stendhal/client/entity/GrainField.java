@@ -32,14 +32,16 @@ public class GrainField extends Entity {
 	public static final Property PROP_RIPENESS = new Property();
 
 	/**
+	 * The maximum ripeness.
+	 */
+	protected int maxRipeness;
+	
+	/**
 	 * Current ripeness.
 	 */
 	private int ripeness;
 
-	/**
-	 * The maximum ripeness.
-	 */
-	protected int maxRipeness;
+	
 
 	/**
 	 * Create a grain field.

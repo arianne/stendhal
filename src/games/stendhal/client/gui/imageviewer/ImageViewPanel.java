@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class ImageViewPanel extends StyledJPanel {
 
+	public static final String FONT_COLOR = "#FFFFFF";
+	public static final String FONT_SIZE = "5";
 	/**
 	 * The image to be displayed.
 	 */
@@ -27,8 +29,7 @@ public class ImageViewPanel extends StyledJPanel {
 	private final String alt;
 	private final ImageViewWindow imw;
 
-	public static final String FONT_COLOR = "#FFFFFF";
-	public static final String FONT_SIZE = "5";
+	
 
 	public ImageViewPanel(final ImageViewWindow imw, final URL url, final String alt) {
 		super(WoodStyle.getInstance());

@@ -23,8 +23,10 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
+	private static final Logger LOGGER = Logger.getLogger(ItemsXMLLoader.class);
 
+	protected Class< ? > implementation;
+	
 	private String name;
 
 	private String clazz;
@@ -49,7 +51,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	private boolean attributesTag;
 
-	protected Class< ? > implementation;
+	
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
@@ -67,9 +69,9 @@ public class ItemsXMLLoader extends DefaultHandler {
 			}
 			saxParser.parse(is, this);
 		} catch (final ParserConfigurationException t) {
-			logger.error(t);
+			LOGGER.error(t);
 		} catch (final IOException e) {
-			logger.error(e);
+			LOGGER.error(e);
 			throw new SAXException(e);
 		}
 
@@ -106,7 +108,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			try {
 				implementation = Class.forName(className);
 			} catch (final ClassNotFoundException ex) {
-				logger.error("Unable to load class: " + className);
+				LOGGER.error("Unable to load class: " + className);
 			}
 		} else if (qName.equals("weight")) {
 			weight = Double.parseDouble(attrs.getValue("value"));
@@ -132,7 +134,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			item.setValue(value);
 
 			if (implementation == null) {
-				logger.error("Item without defined implementation: " + name);
+				LOGGER.error("Item without defined implementation: " + name);
 				return;
 			}
 

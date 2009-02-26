@@ -56,9 +56,11 @@ import org.apache.log4j.Logger;
  * 
  */
 public class LoginDialog extends JDialog {
-
+	
 	private static final long serialVersionUID = -1182930046629241075L;
 
+	protected ProfileList profiles;
+	
 	private JComboBox profilesComboBox;
 
 	private JCheckBox saveLoginBox;
@@ -82,7 +84,7 @@ public class LoginDialog extends JDialog {
 
 	private final Frame owner;
 
-	protected ProfileList profiles;
+
 
 	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);

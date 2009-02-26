@@ -33,6 +33,9 @@ public abstract class Entity extends RPObject {
 	 */
 	private static final Logger logger = Logger.getLogger(Entity.class);
 
+	
+	protected Rectangle2D area = new Rectangle.Double();
+	
 	private int x;
 
 	private int y;
@@ -56,48 +59,6 @@ public abstract class Entity extends RPObject {
 
 	private StendhalRPZone zone;
 	private StendhalRPZone lastZone;
-
-	protected Rectangle2D area = new Rectangle.Double();
-
-	public static void generateRPClass() {
-		final RPClass entity = new RPClass("entity");
-
-		// Some things may have a textual description
-		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
-
-		// TODO: Try to remove this attribute later (at DB reset?)
-		entity.addAttribute("type", Type.STRING);
-
-		/**
-		 * Resistance to other entities (0-100). 0=Phantom, 100=Obstacle.
-		 */
-		entity.addAttribute("resistance", Type.BYTE, Definition.VOLATILE);
-
-		entity.addAttribute("x", Type.SHORT);
-		entity.addAttribute("y", Type.SHORT);
-
-		/*
-		 * The size of the entity (in world units).
-		 */
-		entity.addAttribute("width", Type.SHORT, Definition.VOLATILE);
-		entity.addAttribute("height", Type.SHORT, Definition.VOLATILE);
-
-		/*
-		 * If this is set, the client will discard/ignore entity
-		 */
-		entity.addAttribute("server-only", Type.FLAG, Definition.VOLATILE);
-
-		/*
-		 * The current overlayed client effect.
-		 */
-		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
-
-		/*
-		 * The visibility of the entity drawn on client (0-100). 0=Invisible,
-		 * 100=Solid. Useful when mixed with effect.
-		 */
-		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
-	}
 
 	public Entity(final RPObject object) {
 		super(object);
@@ -142,6 +103,45 @@ public abstract class Entity extends RPObject {
 		setVisibility(100);
 	}
 
+	public static void generateRPClass() {
+		final RPClass entity = new RPClass("entity");
+
+		// Some things may have a textual description
+		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
+
+		// TODO: Try to remove this attribute later (at DB reset?)
+		entity.addAttribute("type", Type.STRING);
+
+		/**
+		 * Resistance to other entities (0-100). 0=Phantom, 100=Obstacle.
+		 */
+		entity.addAttribute("resistance", Type.BYTE, Definition.VOLATILE);
+
+		entity.addAttribute("x", Type.SHORT);
+		entity.addAttribute("y", Type.SHORT);
+
+		/*
+		 * The size of the entity (in world units).
+		 */
+		entity.addAttribute("width", Type.SHORT, Definition.VOLATILE);
+		entity.addAttribute("height", Type.SHORT, Definition.VOLATILE);
+
+		/*
+		 * If this is set, the client will discard/ignore entity
+		 */
+		entity.addAttribute("server-only", Type.FLAG, Definition.VOLATILE);
+
+		/*
+		 * The current overlayed client effect.
+		 */
+		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
+
+		/*
+		 * The visibility of the entity drawn on client (0-100). 0=Invisible,
+		 * 100=Solid. Useful when mixed with effect.
+		 */
+		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
+	}
 	public void update() {
 		final int oldX = x;
 		final int oldY = y;
