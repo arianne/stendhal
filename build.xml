@@ -1,5 +1,4 @@
-<?xml version='1.0'?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="stendhal" default="compile" basedir=".">
 	<!--
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
@@ -42,62 +41,35 @@
 		<mkdir dir="${lib}"/>
 
 		<!-- We update the version number -->
-		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
-			match="String VERSION ?= ?&quot;.*&quot;;"
-			replace="String VERSION = &quot;${version}&quot;;"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/Version.java"
-			match="public static final String VERSION ?= ?&quot;.*&quot;;"
-			replace="public static final String VERSION = &quot;${version}&quot;;"
-			byline="true"/>
-		<replaceregexp file="web/html/stendhal.version"
-			match=".*"
-			replace="${version}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
-			match="out.println\(&quot;server_version=.*&quot;\);"
-			replace="out.println(&quot;server_version=${version}&quot;);"
-			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/common/Debug.java" match="String VERSION ?= ?&quot;.*&quot;;" replace="String VERSION = &quot;${version}&quot;;" byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/Version.java" match="public static final String VERSION ?= ?&quot;.*&quot;;" replace="public static final String VERSION = &quot;${version}&quot;;" byline="true"/>
+		<replaceregexp file="web/html/stendhal.version" match=".*" replace="${version}" byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java" match="out.println\(&quot;server_version=.*&quot;\);" replace="out.println(&quot;server_version=${version}&quot;);" byline="true"/>
 
 		<!-- Update location of resources -->
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="GAME_NAME=.*"
-			replace="GAME_NAME=${game_name}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="DEFAULT_SERVER=.*"
-			replace="DEFAULT_SERVER=${default_server}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="UPDATE_SERVER_FOLDER=.*"
-			replace="UPDATE_SERVER_FOLDER=${updates_server}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="UPDATE_VERSION_CHECK=.*"
-			replace="UPDATE_VERSION_CHECK=${version_server}"
-			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties" match="GAME_NAME=.*" replace="GAME_NAME=${game_name}" byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties" match="DEFAULT_SERVER=.*" replace="DEFAULT_SERVER=${default_server}" byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties" match="UPDATE_SERVER_FOLDER=.*" replace="UPDATE_SERVER_FOLDER=${updates_server}" byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties" match="UPDATE_VERSION_CHECK=.*" replace="UPDATE_VERSION_CHECK=${version_server}" byline="true"/>
 
-		<replaceregexp file="stendhal.jnlp"
-			match="-0\..*\.jar&quot;"
-			replace="-${version}.jar&quot;"
-			byline="true"/>
+		<replaceregexp file="stendhal.jnlp" match="-0\..*\.jar&quot;" replace="-${version}.jar&quot;" byline="true"/>
 	</target>
 
 	<target name="clean">
-		<delete dir="${lib}" />
-		<delete dir="${build_client}" />
-		<delete dir="${buildroot}/build_client_data" />
-		<delete dir="${build_server}" />
-		<delete dir="${build_server_maps}" />
-		<delete dir="${build_server_script}" />
-		<delete dir="${buildroot}/build_server_quests" />
-		<delete dir="${buildroot}/build_server_xmlconf" />
-		<delete dir="${build_tests}" />
-		<delete dir="${build_tools}" />
-		<delete dir="${build_tiled}" />
-		<delete dir="${buildroot}/build_stendhaltools" />
-		<delete dir="${buildroot}/buildbot" />
-		<delete dir="${build_tests_report}" />
+		<delete dir="${lib}"/>
+		<delete dir="${build_client}"/>
+		<delete dir="${buildroot}/build_client_data"/>
+		<delete dir="${build_server}"/>
+		<delete dir="${build_server_maps}"/>
+		<delete dir="${build_server_script}"/>
+		<delete dir="${buildroot}/build_server_quests"/>
+		<delete dir="${buildroot}/build_server_xmlconf"/>
+		<delete dir="${build_tests}"/>
+		<delete dir="${build_tools}"/>
+		<delete dir="${build_tiled}"/>
+		<delete dir="${buildroot}/build_stendhaltools"/>
+		<delete dir="${buildroot}/buildbot"/>
+		<delete dir="${build_tests_report}"/>
 		<delete>
 					<fileset dir=".">
 						<include name="TEST-*.xml"/>
@@ -107,7 +79,7 @@
 
 
 
-	<target name = "postman">
+	<target name="postman">
 		<mkdir dir="${buildroot}/buildbot"/>
 		<javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/bot/postman/*.java"/>
@@ -234,7 +206,7 @@
 
 		<mkdir dir="${build_server_script}"/>
 
-		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/server/script/*.java"/>
 
 			<compilerarg value="-encoding"/>
@@ -284,7 +256,7 @@
 	</target>
 
 	<!-- Netbeans won't let you choose ant options, so this does it for us-->
-	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
+	<target name="run" depends="client_run" description="Runs client for netbeans trick"/>
 
 	<!-- Runs the server -->
 	<target name="server_run" depends="server_build" description="Runs the server">
@@ -369,7 +341,7 @@
 
 		<copy todir="${build_client_data}/data/sprites">
 			<fileset dir="${sprites}">
-				<exclude name="**/*.xcf" />
+				<exclude name="**/*.xcf"/>
 			</fileset>
 		</copy>
 
@@ -411,14 +383,7 @@
 	</target>
 
 	<target name="docs" depends="server_build, client_build" description="Build javadocs for Stendhal">
-		<javadoc packagenames="games.stendhal.*"
-		   defaultexcludes="yes"
-		   destdir="${docs}"
-		   author="true"
-		   version="true"
-		   use="true"
-		   classpath="${classpath}"
-		   windowtitle="Stendhal API Documentation Version: ${version}">
+		<javadoc packagenames="games.stendhal.*" defaultexcludes="yes" destdir="${docs}" author="true" version="true" use="true" classpath="${classpath}" windowtitle="Stendhal API Documentation Version: ${version}">
 			<fileset dir="${src}">
 				<include name="**/*.java"/>
 			</fileset>
@@ -476,8 +441,7 @@
 			<fileset dir="doc"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
-		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
-			basedir="${buildroot}/stendhal-server-${version}"/>
+		<zip destfile="${buildroot}/stendhal-server-${version}.zip" basedir="${buildroot}/stendhal-server-${version}"/>
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
 
@@ -494,11 +458,10 @@
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
+		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
-			basedir="${buildroot}/stendhal-${version}"/>
+		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip" basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -514,11 +477,10 @@
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
+		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-${version}.zip"
-			basedir="${buildroot}/stendhal-${version}"/>
+		<zip destfile="${buildroot}/stendhal-${version}.zip" basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -530,8 +492,7 @@
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-starter-${version}.zip"
-			basedir="${buildroot}/stendhal-${version}"/>
+		<zip destfile="${buildroot}/stendhal-starter-${version}.zip" basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -543,6 +504,9 @@
 		</copy>
 
 		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
+                <copy todir="${buildroot}/stendhal-${version}-src/libs">
+                        <fileset dir="libs"/>
+                </copy>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/tests">
 			<fileset dir="tests"/>
@@ -565,8 +529,8 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
 			<fileset dir="${tiled}">
-				<exclude name="miragetilesets/**" />
-				<exclude name="world/**" />
+				<exclude name="miragetilesets/**"/>
+				<exclude name="world/**"/>
 			</fileset>
 		</copy>
 
@@ -735,7 +699,7 @@
 	</target>
 
 	<target name="report_test" description="Aggregate Testresults">
-		<mkdir dir="${build_tests_report}" />
+		<mkdir dir="${build_tests_report}"/>
 		<junitreport todir="." tofile="${build_tests_report}/testresults.xml">
 			<fileset dir="${build_tests_report}">
 				<include name="TEST-*.xml"/>
@@ -771,14 +735,7 @@
 	</target>
 
 	<target name="java_doc" description="Build javadoc">
-		<javadoc packagenames="games.*"
-			sourcepath="src"
-			defaultexcludes="yes"
-			destdir="api"
-			author="true"
-	        version="true"
-	        use="true"
-	        windowtitle="Stendhal API">
+		<javadoc packagenames="games.*" sourcepath="src" defaultexcludes="yes" destdir="api" author="true" version="true" use="true" windowtitle="Stendhal API">
 
 		</javadoc>
 	</target>
