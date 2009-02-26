@@ -464,7 +464,7 @@ public class CreatureInfo {
 	/**
 	 * utility method for turning numeric value into a literal string from a
 	 * list.
-	 * @param <T> 
+	 * @param <T>
 	 *
 	 * @param literals
 	 *            map of the literal strings

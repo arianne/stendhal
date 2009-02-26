@@ -118,7 +118,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * To avoid using karma for damage calculations when the natural ability
 	 * of the fighters would mean they need no luck, we only use karma 
-	 * when the levels are significantly different
+	 * when the levels are significantly different.
 	 */
 	private static final int LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA = 20;
 	
@@ -136,9 +136,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	private static final double LEVEL_ATK = 0.03;
 	/** Adjusts the weight of level. Larger means weight more */
 	private static final double LEVEL_DEF = 0.03;
-	/** General parameter for damage. Larger means more damage */
+	/** General parameter for damage. Larger means more damage. */
 	private static final double WEIGHT_ATK = 8.0;
-	/** the level where relative damage curves start being linear */ 
+	/** the level where relative damage curves start being linear. */ 
 	private static final double EVEN_POINT = 1.2;
 	/** 
 	 * Steepness of the damage vs level curves. The maximum 

@@ -36,7 +36,7 @@ public class CreatureSpawner implements TurnListener {
 	private final List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
 
 	/**
-	 * Creates a new CreatureSpawner
+	 * Creates a new CreatureSpawner.
 	 */
 	public CreatureSpawner() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();

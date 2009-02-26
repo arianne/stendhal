@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 /**
- * Represents a stackable item for which we do not want 'Stats' to show in description
+ * Represents a stackable item for which we do not want 'Stats' to show in description.
  * 
  * @author kymara
  */

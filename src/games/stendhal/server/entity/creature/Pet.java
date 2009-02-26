@@ -59,7 +59,7 @@ public abstract class Pet extends DomesticAnimal {
 	public final int MAX_WEIGHT = 100;
 
 	/**
-	 * Approximately how much slower he gets hungry if he's full weight
+	 * Approximately how much slower he gets hungry if he's full weight.
 	 */
 	public final int FAT_FACTOR = 5;
 

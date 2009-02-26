@@ -79,7 +79,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private static final Color COLOR_NORTH = new Color(0.0f, 0.0f, 0.0f);
 
 	/**
-	 * The colour of walk blockers (dark pink) 
+	 * The colour of walk blockers (dark pink) .
 	 */
     private static final Color COLOR_WALKBLOCKER = new Color(209, 144, 224);
 

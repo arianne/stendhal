@@ -19,7 +19,7 @@ public class TimePassedCondition implements ChatCondition {
 	private final int arg;
 	
 	/**
-	 * Creates a new TimePassedCondition 
+	 * Creates a new TimePassedCondition .
 	 * 
 	 * @param questname
 	 *            name of quest-slot
@@ -34,7 +34,7 @@ public class TimePassedCondition implements ChatCondition {
 		this.arg = arg;
 	}
 	/**
-	 * Creates a new TimePassedCondition, where the timestamp alone is stored in the quest state
+	 * Creates a new TimePassedCondition, where the timestamp alone is stored in the quest state.
 	 * 
 	 * @param questname
 	 *            name of quest-slot

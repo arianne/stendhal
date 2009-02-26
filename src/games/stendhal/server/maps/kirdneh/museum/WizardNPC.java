@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a wizard npc, an expert in textiles
+ * Builds a wizard npc, an expert in textiles.
  *
  * @author kymara 
  */

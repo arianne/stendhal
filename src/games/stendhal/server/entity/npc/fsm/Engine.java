@@ -103,7 +103,7 @@ public class Engine {
 	/**
 	 * Adds a new transition with explicit ExpressionMatcher to FSM.
 	 *
-	 * @param state
+	 * @param state 
 	 * @param triggerString
 	 * @param matcher
 	 * @param condition

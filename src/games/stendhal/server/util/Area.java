@@ -66,7 +66,7 @@ public class Area {
 	}
 
 	/**
-	 * Gets a list of players in the area
+	 * Gets a list of players in the area.
 	 * 
 	 * @return  A list of all players in the area.
 	 */

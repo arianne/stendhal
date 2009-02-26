@@ -176,7 +176,7 @@ public class ItemLogger {
 	}
 
 	/**
-	 * Logs the name of the item on first
+	 * Logs the name of the item on first.
 	 * @param transaction
 	 * @param item
 	 * @throws SQLException
@@ -203,7 +203,7 @@ public class ItemLogger {
 		transaction.getAccessor().execute(query);
 	}
 	/**
-	 * gets an optional attribute 
+	 * gets an optional attribute .
 	 *
 	 * @param object object to read the optional attribute from
 	 * @param attribute 

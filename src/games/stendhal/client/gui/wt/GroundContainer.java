@@ -246,18 +246,19 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	//
 
 	public EntityContainer inspectMe(final IEntity suspect, final RPSlot content,
-			EntityContainer container, final int width, final int height,
+			final EntityContainer container, final int width, final int height,
 			final IGameScreen gameScreen) {
-		if ((container == null) || !container.isVisible()) {
-			container = new EntityContainer(suspect.getType(), width, height,
+		if ((container != null) && container.isVisible()) {
+			return container;
+		} else {
+			EntityContainer newContainer = new EntityContainer(suspect.getType(), width, height,
 					gameScreen);
 
-			addChild(container);
+			addChild(newContainer);
 
-			container.setSlot(suspect, content.getName(), gameScreen);
-			container.setVisible(true);
+			newContainer.setSlot(suspect, content.getName(), gameScreen);
+			newContainer.setVisible(true);
+			return newContainer;
 		}
-
-		return container;
 	}
 }

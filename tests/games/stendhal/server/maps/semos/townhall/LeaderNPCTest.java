@@ -22,7 +22,7 @@ import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 /**
- * Test for LeaderNPC - excepting his idle conversations with cadets
+ * Test for LeaderNPC - excepting his idle conversations with cadets.
  *
  * @author kymara
  */

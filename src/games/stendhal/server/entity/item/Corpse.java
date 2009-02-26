@@ -50,7 +50,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60;
 	
-	/** number of degradation steps */
+	/** number of degradation steps. */
 	private static final int MAX_STAGE = 5; 
 
 	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT

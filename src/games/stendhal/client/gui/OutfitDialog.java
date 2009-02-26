@@ -685,7 +685,7 @@ public class OutfitDialog extends JDialog {
 
 
 	/**
-	 * Private class that handles the update (repaint) of jLabels
+	 * Private class that handles the update (repaint) of jLabels.
 	 */
 	private class AnimationTask extends TimerTask {
 

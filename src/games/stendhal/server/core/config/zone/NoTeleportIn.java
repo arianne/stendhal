@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class NoTeleportIn implements ZoneConfigurator {
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		zone.disallowIn();
 
 	}

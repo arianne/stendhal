@@ -12,24 +12,20 @@ import marauroa.common.game.RPAction;
 
 public class AcceptTradeOfferAction implements ActionListener {
 	
-	private String item;
+	private final String item;
 	
-	private int price;
+	private final int price;
 
-	/**
-	 * @param item
-	 * @param price
-	 */
-	public AcceptTradeOfferAction(String item, int price) {
+	public AcceptTradeOfferAction(final String item, final int price) {
 		this.item = item;
 		this.price = price;
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		RPAction action = new RPAction();
-		action.put(ACTION_TYPE,ACCEPT_OFFER_TYPE);
-		action.put(ACCEPT_OFFER_ITEM,item);
-		action.put(ACCEPT_OFFER_PRICE,price);
+	public void actionPerformed(final ActionEvent e) {
+		final RPAction action = new RPAction();
+		action.put(ACTION_TYPE, ACCEPT_OFFER_TYPE);
+		action.put(ACCEPT_OFFER_ITEM, item);
+		action.put(ACCEPT_OFFER_PRICE, price);
 		System.out.println(action);
 		//StendhalClient.get().send(action);
 	}

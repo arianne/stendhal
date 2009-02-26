@@ -9,9 +9,9 @@ import javax.swing.JPopupMenu;
 
 public final class OrderPanelMouseListener extends MouseAdapter {
 
-	final private AcceptTradeOfferAction acceptAction;
+	private final AcceptTradeOfferAction acceptAction;
 
-	public OrderPanelMouseListener(AcceptTradeOfferAction acceptTradeOfferAction) {
+	public OrderPanelMouseListener(final AcceptTradeOfferAction acceptTradeOfferAction) {
 		this.acceptAction = acceptTradeOfferAction;
 	}
 

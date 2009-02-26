@@ -9,7 +9,7 @@ import marauroa.common.Pair;
 import org.apache.log4j.Logger;
 
 /**
- * Lists the contents all fields of a class and its super classes
+ * Lists the contents all fields of a class and its super classes.
  *
  * @author hendrik
  */
@@ -21,7 +21,7 @@ public class FieldLister {
 	private Object object = null;
 
 	/**
-	 * Creates a new FieldLister
+	 * Creates a new FieldLister.
 	 *
 	 * @param object object to inspect
 	 */

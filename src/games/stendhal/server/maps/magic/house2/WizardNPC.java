@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds a wizard npc, an expert in textiles
+ * Builds a wizard npc, an expert in textiles.
  *
  * @author kymara 
  */

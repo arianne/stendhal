@@ -17,7 +17,7 @@ public class Offer {
 	/**
 	 * @param item
 	 */
-	public Offer(Item item, Integer price, String offererName) {
+	public Offer(final Item item, final Integer price, final String offererName) {
 		super();
 		this.item = item;
 		this.price = price;

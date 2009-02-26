@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Writes an update.properties file
+ * Writes an update.properties file.
  *
  * @author hendrik
  */
@@ -16,7 +16,7 @@ public class UpdatePropertiesWriter {
 	private PrintStream ps;
 
 	/**
-	 * Creates a new UpdatePropertiesWriter
+	 * Creates a new UpdatePropertiesWriter.
 	 *
 	 * @param prop properties to write
 	 * @param ps   output stream

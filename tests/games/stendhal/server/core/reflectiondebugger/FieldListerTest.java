@@ -10,7 +10,7 @@ import marauroa.common.Pair;
 import org.junit.Test;
 
 /**
- * tests for the field tester
+ * tests for the field tester.
  *
  * @author hendrik
  */

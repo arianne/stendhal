@@ -68,7 +68,7 @@ public class PersonalChest extends Chest {
 	}
 
 	/**
-	 * Copies an item
+	 * Copies an item.
 	 * 
 	 * 
 	 * @param item

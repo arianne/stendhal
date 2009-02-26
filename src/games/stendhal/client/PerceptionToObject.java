@@ -22,7 +22,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	private ObjectFactory of;
 
 	/**
-	 * sets Objectfactory for callback 
+	 * sets Objectfactory for callback .
 	 * @param of
 	 */
 	public void setObjectFactory(final ObjectFactory of) {

@@ -36,27 +36,27 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class ChallengerNPC extends SpeakerNPCFactory {
- /** how many creatures will be spawned */
+ /** how many creatures will be spawned.*/
  private static final int NUMBER_OF_CREATURES = 5;
- /** lowest level allowed to island*/
+ /** lowest level allowed to island.*/
  private static final int MIN_LEVEL = 50;
- /** Cost multiplier for getting to island */
+ /** Cost multiplier for getting to island. */
  private static final int COST_FACTOR = 300;
- /** island coordinates for placing monsters */
+ /** island coordinates for placing monsters. */
  private static final int MIN_X = 10;
- /** island coordinates for placing monsters */
+ /** island coordinates for placing monsters. */
  private static final int MIN_Y = 10;
- /** island coordinates for placing monsters */
+ /** island coordinates for placing monsters. */
  private static final int MAX_X = 25;
- /** island coordinates for placing monsters */
+ /** island coordinates for placing monsters. */
  private static final int MAX_Y = 25;
- /** max numbers of fails to place a creature before we just make the island as it is */
+ /** max numbers of fails to place a creature before we just make the island as it is. */
  private static final int ALLOWED_FAILS = 5;
- /** The creatures spawned are between player level * ratio and player level */
+ /** The creatures spawned are between player level * ratio and player level. */
  private static final double LEVEL_RATIO = 0.75;
- /** How long to wait before visiting island again */
+ /** How long to wait before visiting island again. */
  private static final int DAYS_BEFORE_REPEAT = 3;
- /** The name of the quest slot where we store the time last visited */
+ /** The name of the quest slot where we store the time last visited. */
  private static final String QUEST_SLOT = "adventure_island";
  
  static final Logger logger = Logger.getLogger(ChallengerNPC.class);

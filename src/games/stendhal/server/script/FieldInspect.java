@@ -8,7 +8,7 @@ import games.stendhal.server.util.EntityHelper;
 import java.util.List;
 
 /**
- * inspects the java fields of an object 
+ * inspects the java fields of an object .
  * 
  * @author hendrik
  */

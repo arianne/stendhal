@@ -6,7 +6,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.entity.WalkBlocker;
 
 /**
- * The 2D view of a walk blocker
+ * The 2D view of a walk blocker.
  */
 class WalkBlocker2DView extends InvisibleEntity2DView {
 	/**

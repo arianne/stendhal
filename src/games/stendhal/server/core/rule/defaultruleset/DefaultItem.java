@@ -43,7 +43,7 @@ public class DefaultItem {
 	/** optional item description. */
 	private String description;
 
-	/** weight of this item */
+	/** weight of this item. */
 	private double weight;
 
 	/** slots where this item can be equipped. */
@@ -52,7 +52,7 @@ public class DefaultItem {
 	/** Map Tile Id. */
 	private int tileid;
 
-	/** Attributes of the item .*/
+	/** Attributes of the item.*/
 	private Map<String, String> attributes;
 
 	/** Implementation creator. */

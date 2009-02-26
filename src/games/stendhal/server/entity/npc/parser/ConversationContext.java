@@ -9,13 +9,13 @@ public class ConversationContext {
 
     // conversation context states
 	
-	/** no current conversation context */
+	/** no current conversation context. */
     static final int CCS_NONE = 0; 
     
-    /** Conversation Context wait for a yes/no answer */
+    /** Conversation Context wait for a yes/no answer. */
     static final int CCS_WAIT_FOR_YES_NO = 1; 
     
-    /** Conversation Context wait for a named object */
+    /** Conversation Context wait for a named object. */
     static final int CCS_WAIT_FOR_OBJECT = 2; 
 
     /** stores current Conversation state. */

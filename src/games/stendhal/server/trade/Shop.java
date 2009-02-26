@@ -13,13 +13,13 @@ import java.util.Map;
 public class Shop {
 	
 	// TODO Map<String, Set<Earning>> Earning knows offered item
-	private Map<String, Integer> earnings = new HashMap<String, Integer>();
-	private List<Offer> offers = new LinkedList<Offer>();
+	private final Map<String, Integer> earnings = new HashMap<String, Integer>();
+	private final List<Offer> offers = new LinkedList<Offer>();
 
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
 		offerer.drop(item);
-		Offer offer = new Offer(item, money, offerer.getName());
+		final Offer offer = new Offer(item, money, offerer.getName());
 		offers.add(offer);
 		
 		return offer;
@@ -35,9 +35,9 @@ public class Shop {
 		}
 	}
 
-	public void fetchEarnings(Player earner) {
+	public void fetchEarnings(final Player earner) {
 		if (earnings.containsKey(earner.getName())) {
-			StackableItem item = (StackableItem) SingletonRepository
+			final StackableItem item = (StackableItem) SingletonRepository
 					.getEntityManager().getItem("money");
 			item.setQuantity(earnings.get(earner.getName()));
 			earner.equip(item);

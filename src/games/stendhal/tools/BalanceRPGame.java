@@ -32,7 +32,7 @@ import marauroa.common.Pair;
 
 public class BalanceRPGame {
 	/** 
-	 * A Simple (dumb) optimizer to adjust creature stats
+	 * A Simple (dumb) optimizer to adjust creature stats.
 	 */
 	private static class Optimizer {
 		Creature creature;

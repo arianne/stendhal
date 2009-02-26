@@ -125,7 +125,7 @@ public class StendhalRPAction {
 	}
 	
 	/**
-	 * Check that the victim has high enough level compared to the attacker
+	 * Check that the victim has high enough level compared to the attacker.
 	 * 
 	 * @param player The player trying to attack
 	 * @param victim The entity being attacked

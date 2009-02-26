@@ -3,7 +3,8 @@ package games.stendhal.server.entity.creature.impl;
 import games.stendhal.server.entity.creature.Creature;
 
 /**
- * 
+ *  Implements the ai-profile stupid coward.
+ *  <p>
  * &lt;ai&gt;
  * <p>
  * &lt;profile name="stupid coward"/&gt;

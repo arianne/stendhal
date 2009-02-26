@@ -62,7 +62,7 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Create a buddy list panel.
-	 * @param ui 
+	 * @param ui the user Interface
 	 */
 	public BuddyListPanel(final StendhalUI ui) {
 		this.ui = ui;
@@ -174,36 +174,25 @@ public class BuddyListPanel extends JPanel {
 	}
 
 	/**
-	 * Handle a choosen popup item.
+	 * Handle a chosen popup item.
 	 *
 	 * @param command
 	 *            The command mnemonic selected.
 	 * @param buddieName
 	 *            The buddy name to act on.
 	 */
-	protected void doAction(final String command, String buddieName) {
+	protected void doAction(final String command, final String buddieName) {
 		final StendhalClient client = ui.getClient();
 
 		if ("talk".equals(command)) {
-			/*
-			 * Compatibility to grandfathered accounts with spaces. New accounts
-			 * cannot contain spaces.
-			 */
-			if (buddieName.indexOf(' ') > -1) {
-				buddieName = "'" + buddieName + "'";
-			}
+			
+			String tempBuddieName = addApostrophes(buddieName);
 
-			ui.setChatLine("/tell " + buddieName + " ");
+			ui.setChatLine("/tell " + tempBuddieName + " ");
 		} else if ("leave-message".equals(command)) {
-			/*
-			 * Compatibility to grandfathered accounts with spaces. New accounts
-			 * cannot contain spaces.
-			 */
-			if (buddieName.indexOf(' ') > -1) {
-				buddieName = "'" + buddieName + "'";
-			}
+			String tempBuddieName = addApostrophes(buddieName);
 
-			ui.setChatLine("/msg postman tell " + buddieName + " ");
+			ui.setChatLine("/msg postman tell " + tempBuddieName + " ");
 		} else if ("where".equals(command)) {
 			final RPAction where = new RPAction();
 			where.put("type", "where");
@@ -215,6 +204,20 @@ public class BuddyListPanel extends JPanel {
 			where.put("target", buddieName);
 			client.send(where);
 		}
+	}
+
+	/**
+	 * Surrounds string with apostrophes if the string contains spaces.
+	 * Compatibility to grandfathered accounts with spaces. New accounts
+	 * cannot contain spaces.
+	 * @param buddieName the string to check 
+	 * @return the string with or without apostrophes.
+	 */
+	private String addApostrophes(final String buddieName) {
+		if (buddieName.indexOf(' ') > -1) {
+			return "'" + buddieName + "'";
+		}
+		return buddieName;
 	}
 
 	//
@@ -343,6 +346,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Track mouse presses.
+		 *  @param ev the mouse event
 		 */
 		@Override
 		public void mousePressed(final MouseEvent ev) {
@@ -353,6 +357,7 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Track mouse releases.
+		 *  @param ev the mouse event
 		 */
 		@Override
 		public void mouseReleased(final MouseEvent ev) {

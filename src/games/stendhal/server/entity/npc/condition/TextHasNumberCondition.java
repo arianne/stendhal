@@ -26,7 +26,7 @@ public class TextHasNumberCondition implements ChatCondition {
 
 	/**
 	 * Creates a new TextHasNumberCondition which checks if there is a number 
-	 * and if it is in range
+	 * and if it is in range.
 	 *
 	 * @param min minimal accepted number
 	 * @param max maximal accepted number

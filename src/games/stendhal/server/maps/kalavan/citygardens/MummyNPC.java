@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds the mother of Annie Jones
+ * Builds the mother of Annie Jones.
  *
  * @author kymara
  */

@@ -7,19 +7,19 @@ import java.awt.Component;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class OrderPanelController implements ObjectChangeListener{
+public class OrderPanelController implements ObjectChangeListener {
 
 	private Component component;
 
-	public OrderPanelController(RPObject object) {
+	public OrderPanelController(final RPObject object) {
 		initialize(object);
 		
 	}
 
-	private boolean initialize(RPObject object) {
+	private boolean initialize(final RPObject object) {
 		String itemname = null;
 		if (object.hasSlot("goods")) {
-			RPSlot slot = object.getSlot("goods");
+			final RPSlot slot = object.getSlot("goods");
 			if (slot.getFirst() != null) {
 				itemname = slot.getFirst().get("name");
 			}
@@ -29,9 +29,9 @@ public class OrderPanelController implements ObjectChangeListener{
 			return false;
 		}
 		
-		int price = object.getInt("price");
+		final int price = object.getInt("price");
 		component = new OrderPanel(itemname, price);
-		OrderPanelMouseListener listener = new OrderPanelMouseListener(new AcceptTradeOfferAction(itemname,price));
+		final OrderPanelMouseListener listener = new OrderPanelMouseListener(new AcceptTradeOfferAction(itemname, price));
 		
 
 		component.addMouseListener(listener);
@@ -43,15 +43,15 @@ public class OrderPanelController implements ObjectChangeListener{
 		
 	}
 
-	public void modifiedAdded(RPObject changes) {
+	public void modifiedAdded(final RPObject changes) {
 		
 	}
 
-	public void modifiedDeleted(RPObject changes) {
+	public void modifiedDeleted(final RPObject changes) {
 		
 	}
 	
-	public Component getComponent(){
+	public Component getComponent() {
 		return component;
 		
 	}

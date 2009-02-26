@@ -2,7 +2,7 @@ package games.stendhal.common;
 
 
 /**
- * class to store the max outfit numbers for player available outfits
+ * class to store the max outfit numbers for player available outfits.
  * @author kymara
  */
 public class Outfits {

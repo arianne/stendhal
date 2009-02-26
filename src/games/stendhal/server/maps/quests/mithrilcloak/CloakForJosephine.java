@@ -24,11 +24,11 @@ import java.util.Arrays;
 
 class CloakForJosephine {
 	
-	private MithrilCloakQuestInfo mithrilcloak;
+	private final MithrilCloakQuestInfo mithrilcloak;
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
-	public CloakForJosephine(MithrilCloakQuestInfo mithrilcloak) {
+	public CloakForJosephine(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
 

@@ -23,7 +23,7 @@ public class UpdatePropUpdater {
 	private Properties prop;
 	
 	/**
-	 * Creates a new UpdatePropUpdater
+	 * Creates a new UpdatePropUpdater.
 	 *
 	 * @param oldFile    name of old file
 	 * @param newFile    name of new file
@@ -38,7 +38,7 @@ public class UpdatePropUpdater {
 	}
 
 	/**
-	 * Updates the update.properties file
+	 * Updates the update.properties file.
 	 * @throws IOException 
 	 */
 	public void process() throws IOException {

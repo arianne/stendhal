@@ -8,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * Puts the Deathmatch slot of a player into victory format
+ * Puts the Deathmatch slot of a player into victory format.
  * 
  * @author kymara
  */
