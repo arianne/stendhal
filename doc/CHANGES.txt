@@ -7,6 +7,9 @@ Changelog
 - lord durin, a high level boss in ados abandoned keep
 - bugfix to /alter, now doesn't reject a heal which takes hp over base hp, instead sets hp to full
 - new npc condition and action for events with any kind of delay to be checked
+- replace mountain orcs in -2 semos mines n e3 with chaos creatures
+- added high level boss, gashadokuro, based on japanese legend
+- new outfit lender in magic clothing boutique who lends costumes including slime and goblin face
 
 0.72
 *Features*
