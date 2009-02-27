@@ -147,8 +147,7 @@ public class NecroStaff extends Item implements UseListener {
 				creature.put("title_type", "friend");
 				
 				//Suck some of the summoners HP depending on the summoned creature's level.
-				user.setHP(user.getHP()-HP_FACTOR*creature.getLevel());
-				// TODO: ensure that player dies correctly if HP gets to 0.
+				user.damage(HP_FACTOR*creature.getLevel(),this);
 				return true;
 			}
 
