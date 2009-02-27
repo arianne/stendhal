@@ -30,6 +30,8 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	public MessagingArea(final boolean coversZone, final int width, final int height, final String enterMessage, 
 			final String leaveMessage) {
 		super(width, height);
+		put("server-only", 1);
+		
 		this.coversZone = coversZone;
 		this.enterMessage = enterMessage;
 		this.leaveMessage = leaveMessage;
