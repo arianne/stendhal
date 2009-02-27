@@ -83,7 +83,7 @@
   
     <item name="mithril bow">
     <type class="ranged" subclass="mithril_bow" tileid="-1"/>
-   <description>You see a light and string mithril bow, with incredible accuracy to improve your attack.</description>
+   <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="28"/>
       <range value="4"/>
