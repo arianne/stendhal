@@ -10353,11 +10353,13 @@
     <experience value="363000"/>
     <respawn value="40000"/>
     <drops>
-      <item value="mega potion" quantity="[1,5]" probability="40.0"/>
+      <item value="mega potion" quantity="[1,4]" probability="40.0"/>
       <item value="soup" quantity="[1,3]" probability="30.0"/>
       <item value="giant heart" quantity="[1,1]" probability="90.0"/>
-      <item value="mithril legs" quantity="[1,1]" probability="0.5"/>
-      <item value="money" quantity="[5000,10000]" probability="100.0"/>
+      <item value="mithril legs" quantity="[1,1]" probability="0.3"/>
+      <item value="power arrow" quantity="[10,30]" probability="7.0"/>
+      <item value="mithril bow" quantity="[1,1]" probability="0.2"/>
+      <item value="money" quantity="[4000,9000]" probability="100.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
@@ -10537,7 +10539,9 @@
       <item value="soup" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="90.0"/>
       <item value="mithril boots" quantity="[1,1]" probability="1.0"/>
-      <item value="money" quantity="[5000,30000]" probability="100.0"/>
+      <item value="power arrow" quantity="[10,30]" probability="5.0"/>
+      <item value="mithril bow" quantity="[1,1]" probability="0.5"/>
+      <item value="money" quantity="[5000,25000]" probability="100.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
