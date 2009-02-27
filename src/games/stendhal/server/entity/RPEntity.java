@@ -671,6 +671,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 	/**
 	 * Set the HP.
+	 * <br>
+	 * DO NOT USE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING.
+	 * <br>
+	 * Use the appropriate damage(), and heal() methods instead.
 	 * 
 	 * @param hp
 	 *            The HP to set.
