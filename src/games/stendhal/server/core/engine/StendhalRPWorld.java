@@ -212,7 +212,7 @@ public class StendhalRPWorld extends RPWorld {
 		//guilds
 		Guild.generateRPClass();
 		GuildMember.generateRPClass();
-		//GuildPermission.generateRPClass();
+		GuildPermission.generateRPClass();
 
 		createChatActionRPClass();
 
