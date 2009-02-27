@@ -25,6 +25,7 @@ class GMHelpScriptAction implements SlashAction {
 			    "All scripts are ran using: /script scriptname [params]. After running a script you can remove any traces of it with /script -unload scriptname, this would remove any summoned creatures, for example. It's good practise to do this every time you are finished using a script.",
 				"#/script #AdminMaker.class : For test servers only, summons an adminmaker to aid testing.",
 				"#/script #AdminSign.class #zone #x #y #text : Makes an AdminSign in zone at (x,y) with text. To put it next to you do /script AdminSign.class - - - text.",
+				"#/script #AlterQuest.class #player #questname #state : Update the quest for a player to be in a certain state. Omit #state to remove the quest.",
 				"#/script #DeepInspect.class #player : Deep inspects a player and all his/her items.",
 				"#/script #DropPlayerItems.class #player #[amount] #item : Drop the specified amount of items from the player if they are equipped in the bag or body.",
 				"#/script #EntitySearch.class #nonrespawn : Shows the locations of all creatures that don't respawn, for example creatures that were summoned by a GM, deathmatch creatures, etc.",
