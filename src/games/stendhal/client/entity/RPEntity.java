@@ -529,8 +529,11 @@ public abstract class RPEntity extends ActiveEntity {
 		
 		StendhalUI.get().addEventLine(new HeaderLessEventLine(text, type));
 
-		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
-				text.replace("|", ""), type, false);
+		// Scene settings messages should not disturb playing, just create some atmosphere
+		if (type != NotificationType.SCENE_SETTING) {
+			GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
+					text.replace("|", ""), type, false);
+		}
 	}
 
 	// When this entity stops attacking

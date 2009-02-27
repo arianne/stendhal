@@ -72,6 +72,12 @@ public enum NotificationType {
 			return COLOR_RESPONSE;
 		}
 	},
+	SCENE_SETTING("scene_setting") {
+		@Override
+		public Color getColor() {
+			return COLOR_SCENE_SETTING;
+		}
+	},
 	SIGNIFICANT_NEGATIVE("significant_negative") {
 		@Override
 		public Color getColor() {
@@ -107,6 +113,8 @@ public enum NotificationType {
 	public static final Color COLOR_PRIVMSG = Color.darkGray;
 
 	public static final Color COLOR_RESPONSE = new Color(0x006400);
+	
+	public static final Color COLOR_SCENE_SETTING = new Color(0x572002);
 
 	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
 
