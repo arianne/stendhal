@@ -36,12 +36,12 @@ public class NecroStaff extends Item implements UseListener {
 
 	/** the max number of entities we want in a zone, for performance reasons */
 	private static final int MAX_ZONE_NPCS = 50;
-	/** max level of creature the staff can summon */
-	private static final int MAX_LEVEL = 26;
+	/** max level spawned by staff is player level * this factor*/
+	private static final double LEVEL_FACTOR = 0.25;
 	/** How near the player must stand to the corpse */
 	private static final int SQUARED_RANGE = 16;
 	/** HP_FACTOR*creature level HP is lost when a creature is summoned */
-	private static final int HP_FACTOR = 1;
+	private static final int HP_FACTOR = 3;
 	
 	private static final Logger logger = Logger.getLogger(NecroStaff.class);
 
@@ -71,8 +71,12 @@ public class NecroStaff extends Item implements UseListener {
 	/**
 	 * Pick a random undead creature below a level threshold
 	 * 
+	 * @param playerlevel
+	 *            The level of the player who used the staff
+	 * @return creature the chosen undead creature
+	 * 
 	 */
-	private AttackableCreature pickSuitableCreature() {
+	private AttackableCreature pickSuitableCreature(int playerlevel) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		Creature pickedCreature = null;
@@ -80,7 +84,7 @@ public class NecroStaff extends Item implements UseListener {
 		final Collection<Creature> creatures = manager.getCreatures();
 			final List<Creature> possibleCreatures = new ArrayList<Creature>();
 			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= MAX_LEVEL && creature.get("class").equals("undead") 
+				if (creature.getLevel() <= LEVEL_FACTOR*playerlevel && creature.get("class").equals("undead") 
 						&& !creature.isRare()) {
 					
 					possibleCreatures.add(creature);
@@ -99,13 +103,17 @@ public class NecroStaff extends Item implements UseListener {
 	/**
 	 * Is invoked when the necromancer staff is used.
 	 * 
-	 * @param player
+	 * @param user
 	 *            The player who used the staff
 	 * @return true iff summoning was successful
 	 */
 	
 	//@Override
 	public boolean onUsed(final RPEntity user) {
+		if(!this.isContained()) {
+			user.sendPrivateText("The staff must be wielded.");
+			return false;
+		}
 		final StendhalRPZone zone = user.getZone();
 
 		if (zone.isInProtectionArea(user)) {
@@ -124,7 +132,7 @@ public class NecroStaff extends Item implements UseListener {
 			if (inspected instanceof Corpse 
 					&& user.squaredDistance(Integer.parseInt(inspected.get("x")), Integer.parseInt(inspected.get("y"))) <= SQUARED_RANGE) {
 				
-				AttackableCreature creature = pickSuitableCreature();
+				AttackableCreature creature = pickSuitableCreature(user.getLevel());
 				
 				if (creature == null) {
 					user.sendPrivateText("This staff does not seem to work. Maybe it has lost its unholy power.");
@@ -140,6 +148,7 @@ public class NecroStaff extends Item implements UseListener {
 				
 				//Suck some of the summoners HP depending on the summoned creature's level.
 				user.setHP(user.getHP()-HP_FACTOR*creature.getLevel());
+				// TODO: ensure that player dies correctly if HP gets to 0.
 				return true;
 			}
 
