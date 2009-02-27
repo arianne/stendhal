@@ -20,6 +20,9 @@ import marauroa.common.game.Definition.Type;
  */
 public class GuildPermission extends Entity {
 
+	//TODO: refactor this (durkham)
+	private static boolean RPCLASS_GENERATED = false;
+	
 	/**
 	 * Only a single user can be given this rank. It should have exactly the 
 	 * same permissions as Admin, but show importance to the creator.
@@ -49,12 +52,6 @@ public class GuildPermission extends Entity {
 	 */
 	public static final GuildPermission DEFAULT = new GuildPermission("Normal", 100);
 	
-	private static boolean RPCLASS_GENERATED = false;
-	
-	private static final String RPCLASS = "guild_permission";
-	private static final String ATTR_ID = "identifier";
-	private static final String ATTR_RANK = "rank";
-	private static final String ATTR_GUILD = "guild";
 	/**
 	 * The permission name. Mainly used for display.
 	 */
@@ -71,7 +68,10 @@ public class GuildPermission extends Entity {
 	 */
 	private String guild;
 	
-
+	private static final String RPCLASS = "guild_permission";
+	private static final String ATTR_ID = "identifier";
+	private static final String ATTR_RANK = "rank";
+	private static final String ATTR_GUILD = "guild";
 
 	public GuildPermission(final String id, final int rank) {
 		this.id = id;
