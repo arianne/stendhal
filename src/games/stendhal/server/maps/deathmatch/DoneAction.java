@@ -74,8 +74,14 @@ public class DoneAction implements ChatAction {
 				                + maxdefense);
 			} else {
 				helmet.put("def", defense);
+				String message;
+				if (defense == maxdefense) {
+					message = "And your helmet has been magically strengthened to the maximum defense for your level, " + defense;
+				} else {
+					message = "And your helmet has been magically strengthened to a defense of " + defense;
+				}
 				engine.say("Congratulations, your score is now " + points
-				        + "! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
+				        + "! " + message + ". Now, tell me if you want to #leave.");
 			}
 		}
 		player.updateItemAtkDef();
