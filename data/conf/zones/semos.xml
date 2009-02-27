@@ -1800,6 +1800,13 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-2_semos_mine_n_e3" level="-2" x="500384" y="499744"
 		file="Level -2/semos/mine_n_e3.tmx">
+		<entity x="56" y="18">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="width">51</parameter>
+				<parameter name="height">25</parameter>
+				<parameter name="enterMessage">Your ears are ringing. Something is really wrong here.</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-2_semos_mine_e" level="-2" x="500128" y="499872"
