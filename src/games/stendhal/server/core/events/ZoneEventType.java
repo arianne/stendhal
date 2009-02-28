@@ -13,8 +13,6 @@ public enum ZoneEventType {
 			"Your sense of foreboding grows as you enter deeper to the catacombs. You spy some lethal looking spikes and vow to be careful of them."),
 	VISIT_KIKAREUKIN_CAVE(
 			"Your head spins as the portal lifts you high into the air, past clouds and birds. You're sucked towards a floating group of islands. You're pulled through layers of rock and finally you land in a vast network of caves."),
-	VISIT_KIKAREUKIN_ISLANDS(
-			"After your long journey through the caves of the floating islands you finally reach fresh air again, and marvel at the clouds around you, and how high up you are."),
 	VISIT_KANMARARN_PRISON(
 			"PRISON BREAKOUT! You've stumbled into a heist. It looks like the duergars have come to break their leaders and heroes free from their imprisonment by the dwarves."),
 	VISIT_IMPERIAL_CAVES(
@@ -22,17 +20,11 @@ public enum ZoneEventType {
 	VISIT_MAGIC_CITY_N(
 			"Your skin prickles as you explore further. There is definitely magic here."),
 	VISIT_MAGIC_CITY(
-			"You now sense a strong magical presence. Perhaps sorcerers are nearby, or some strong enchantments?"),
-	VISIT_DREAMSCAPE(
-			"You start to hallucinate. You think you're in a new land, somewhere unknown, with strange, terrible creatures and fantastic sights."),
+			"You now sense a strong magical presence. Perhaps sorcerers are nearby, or some strong enchantments?"),	
 	VISIT_SEMOS_CAVES(
 			"The ground in this cave trembles from the footfalls of GIANTS! The weak should explore no further here. Turn around and run away!"),
 	VISIT_ADOS_CASTLE(
-					  "You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away."),
-	VISIT_HELL(
-			   "You fall down a deep chasm into the fires of hell. You can hear screaming of some poor soul being tortured, and the roars of fearsome creatures."),
-	VISIT_KIKAREUKIN_CLOUDS(
-							"The balloon lifts you into the air and through dark grey clouds. You land on a cloud that seems quite firm, and realise you can walk across the grey clouds ... but not for very long.");
+			  "You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away.");
 
 	private String message;
 

@@ -2222,6 +2222,12 @@ Mature sheep wanted: please speak to Sato
 		<portal x="76" y="115" ref="exit3">
 			<destination zone="0_semos_plains_s" ref="dream_exit3" />
 		</portal>
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="coversZone">true</parameter>
+				<parameter name="enterMessage">You start to hallucinate. You think you're in a new land, somewhere unknown, with strange, terrible creatures and fantastic sights.</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<!--  Level 2 -->
