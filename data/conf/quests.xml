@@ -226,6 +226,55 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="DONE">I have my obsidian knife! It is awesome!</entry>
 		</history>
 	</quest>
+	
+	<quest name="HungryJoshua">
+		<title>Hungry Joshua</title>
+		<repeatable done="false" />
+		<description>
+			"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supples."
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have asked Xoderos at Semos blacksmith if he has a quest for me.</entry>
+			<entry name="QUEST_REJECTED">I do not want to help Xoderos and Joshua.</entry>
+			<entry name="QUEST_ACCEPTED">I agreed to take 5 sandwiches to Joshua and tell him that I have his #food.</entry>
+			<entry name="FOUND_ITEM">I got five sandwiches to take Joshua.</entry>
+			<entry name="BROUGHT_ITEM">I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying #Joshua.</entry>
+			<entry name="DONE">I passed the message to Xoderos and he has fixed my keyring for me.</entry>
+		</history>
+	</quest>
+	
+	<quest name="LearnAboutKarma">
+		<title>Learn About Karma</title>
+		<repeatable done="false" />
+		<description>
+			"Sarzina will teach about Karma."
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Sarzina in a hut in Fado and asked about a quest.</entry>
+			<entry name="DONE">Sarzina told me about karma and that I can come back to be reminded of how it works any time.</entry>
+		</history>
+	</quest>
+	
+	<quest name="SuntanCreamForZara">
+		<title>Suntan Cream For Zara</title>
+		<repeatable done="false" />
+		<description>
+			"Zara is burning under the hot Athor sun."
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Zara on Athor Island.</entry>
+			<entry name="QUEST_REJECTED">I do not want to help Zara. She can burn.</entry>
+			<entry name="QUEST_ACCEPTED">I want to help Zara soothe her skin. I need to get suntan cream from the lifeguards.</entry>
+			<entry name="FOUND_ITEM">I got the suntan cream.</entry>
+			<entry name="DONE">I took the suntan cream to Zara and she let me have a key to her house in Ados City North. She says it is the one at the far end of the lower row.</entry>
+		</history>
+		<hints>
+			<entry name="WHERE_IS_KOKUDA">There are legends of minotaurs living in a labyrinth below Athor Island. They guard the kokuda.</entry>
+			<entry name="WHERE_IS_LABYRINTH">There are rumours of a labyrinth under the east side of Athor Island. Perhaps you can get to it from the underground caves.</entry>
+	    	<entry name="WHERE_IS_QUICKSAND">There is a dangerous patch of quicksand near lots of snakes and stone creatures.</entry>
+		</hints>
+	</quest>
+	
 <!--
 A fill-in-the-blank template
 	<quest name=" ">

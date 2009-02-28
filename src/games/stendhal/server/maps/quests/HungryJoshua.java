@@ -85,11 +85,7 @@ public class HungryJoshua extends AbstractQuest {
 				|| questState.equals("done")) {
 			res.add("FOUND_ITEM");
 		}
-		if (questState.equals("start")
-				&& !player.isEquipped("sandwich", FOOD_AMOUNT)) {
-			res.add("LOST_ITEM");
-		}
-		if (questState.equals("joshua")) {
+		if (questState.equals("joshua") || questState.equals("done")) {
 			res.add("BROUGHT_ITEM");
 		}
 		if (questState.equals("done")) {

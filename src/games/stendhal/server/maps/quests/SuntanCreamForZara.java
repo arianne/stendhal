@@ -47,18 +47,22 @@ public class SuntanCreamForZara extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		if (player.hasQuest("Zara")) {
-			res.add("FIRST_CHAT");
-		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("GET_SUNTAN_CREAM");
-		if (player.isEquipped("suntan cream")
-				|| player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("GOT_SUNTAN_CREAM");
+		res.add("FIRST_CHAT");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
 		}
-		if (player.isQuestCompleted(QUEST_SLOT)) {
+		if (questState.equals("start") ||  questState.equals("done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((player.isEquipped("suntan cream") && questState.equals("start"))
+				|| questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (questState.equals("done")) {
 			res.add("DONE");
 		}
 		return res;
