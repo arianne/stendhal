@@ -658,9 +658,17 @@ black halberd     12000
 <zone name="0_fado_forest_e" level="0" x="499872" y="500512" file="Level 0/fado/forest_e.tmx">
   <portal x="65" y="68" ref="palace_entrance_left">
    <destination zone="int_oni_palace_0" ref="entrance1_right"/>
+   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	    <parameter name="minimum-level">67</parameter>
+		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
+	   </implementation>
   </portal>
   <portal x="75" y="68" ref="palace_entrance_right">
    <destination zone="int_oni_palace_0" ref="entrance2_right"/>
+   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	    <parameter name="minimum-level">67</parameter>
+		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
+	   </implementation>
   </portal>
 </zone>
 
