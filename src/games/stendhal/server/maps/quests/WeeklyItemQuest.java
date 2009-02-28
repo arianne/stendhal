@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -203,7 +204,42 @@ public class WeeklyItemQuest extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
+			final String[] tokens = (questState + ";0;0;0").split(";");
+			final String questItem = tokens[0];
+			if (!player.isEquipped(questItem)) {
+				res.add("QUEST_ACTIVE");
+			} else {
+				res.add("QUEST_UNCLAIMED");
+			}
+		}
+		if (player.isQuestCompleted(QUEST_SLOT)) {
+			final String[] tokens = (questState + ";0;0;0").split(";");
+			final String questLast = tokens[1];
+			final long timeRemaining = (Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_WEEK)
+			- System.currentTimeMillis();
 
+			if (timeRemaining > 0L) {
+				res.add("DONE_THIS_WEEK");
+			} else {
+				res.add("DONE_REPEATABLE");
+			}
+		}
+		return res;
+	}
+	
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Hazel");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task", "exhibits"),

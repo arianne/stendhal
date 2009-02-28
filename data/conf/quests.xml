@@ -17,7 +17,7 @@ State: EXPERIMENTAL to help me think about a quest system
 		<repeatable done="false" rejected="true" />
 		<description>
 			Dagobert, the consultant at the bank of Semos, asked me to 
-			find a leather_cuirass for him.
+			find a leather cuirass for him.
 		</description>
 		<history>
 			<entry name="FIRST_CHAT">I have met Dagobert. He is the consultant at the bank in Semos.</entry>
@@ -70,7 +70,7 @@ State: EXPERIMENTAL to help me think about a quest system
 		<title>Beer for Hayunn</title>
 		<repeatable done="false" />
 		<description>
-			Hayunn, the great warrior outside the rat dungeon, wants a beer
+			Hayunn Naratha, the great warrior in Semso Guard House, wants a beer
 		</description>
 		<history>
 			<entry name="FIRST_CHAT">I have talked to Hayunn.</entry>
@@ -120,7 +120,7 @@ State: EXPERIMENTAL to help me think about a quest system
 			Ceryl wants a old book that was checked out
 		</description>
 		<history>
-			<entry name="FIRST_CHAT">I have met Ceryl at the library, she's the libraian there</entry>
+			<entry name="FIRST_CHAT">I have met Ceryl at the library, he's the librarian there</entry>
 			<entry name="QUEST_REJECTED">I do not want to find the book</entry>
 			<entry name="QUEST_ACCEPTED">I do want the find the black book</entry>
 			<entry name="FOUND_ITEM">I have talked to Jynath, and have the book</entry>
@@ -187,23 +187,70 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="FORGING">I took 10 iron and the goblet to Hogart. Now he's forging my sword.</entry>
 		<entry name="DONE">Finally I earned the vampire sword.</entry>
 		</history>
+		<hints>
+			<entry name="WHERE_ARE_CATACOMBS">There is an entrance to Semos catacombs in the graveyard in semos plains north.</entry>
+			<entry name="HOW_TO_PASS_CATACOMBS">The invisible wall is a puzzle, look around and walk on every thing special looking (mind the spikes, though!)</entry>
+		</hints>
 	</quest>
 
 	<quest name="DailyMonsterQuest">
 		<title>Daily Monster Quest</title>
 		<repeatable done="true" />
 		<description>
-			"Mayor Sakhs needs warriors to keep Semos city sfae"
+			"Mayor Sakhs needs warriors to keep Semos city safe"
 		</description>
 		<history>
 			<entry name="FIRST_CHAT">I have met Mayor Sakhs in Semos Townhall</entry>
 			<entry name="QUEST_REJECTED">I do not want to help Semos.</entry>
-			<entry name="QUEST_ACCEPTED">I do want to help Semos.</entry>
-			<entry name="QUEST_ACTIVE">I have been asked to kill a creature to help Semos.</entry>
+			<entry name="QUEST_ACCEPTED">I want to help Semos.</entry>
+			<entry name="QUEST_ACTIVE">I have been asked to kill a creature to help Semos. I haven't killed it yet.</entry>
 			<entry name="QUEST_UNCLAIMED">I have killed the creature to help Semos.</entry>
 			<entry name="DONE_TODAY">I killed the last creature the mayor asked me to kill and claimed my reward within the last 24 hours.</entry>
 		    <entry name="DONE_REPEATABLE">I killed the last creature the mayor asked me to kill and now Semos needs my help again.</entry>
 		</history>
+		<hints>
+			<entry name="WHERE_IS_THE_CREATURE">Starkad knows all about creatures, you can ask him where to find anything you need.</entry>
+		</hints>
+	</quest>
+	
+	<quest name="DailyItemQuest">
+		<title>Daily Item Quest</title>
+		<repeatable done="true" />
+		<description>
+			"Mayor Chalmers needs supplies for Ados City."
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Mayor Chalmers in Ados Townhall</entry>
+			<entry name="QUEST_REJECTED">I do not want to help Ados.</entry>
+			<entry name="QUEST_ACCEPTED">I want to help Ados.</entry>
+			<entry name="QUEST_ACTIVE">I have been asked to fetch an item to help Ados. I haven't got it yet.</entry>
+			<entry name="QUEST_UNCLAIMED">I have found the item to help Ados and need to take it.</entry>
+			<entry name="DONE_TODAY">I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.</entry>
+		    <entry name="DONE_REPEATABLE">I fetched the last item the mayor asked me to find and now Ados needs supplies again.</entry>
+		</history>
+		<hints>
+			<entry name="WHERE_IS_THE_ITEM">If you want to learn which creatures drop an item look it up on http://stendhal.game-host.org</entry>
+		</hints>
+	</quest>
+	
+		<quest name="WeeklyItemQuest">
+		<title>Weekly Item Quest</title>
+		<repeatable done="true" />
+		<description>
+			"Hazel wants Kirdneh museum to have the best rarest items."
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Hazel, the curator of Kirdneh museum.</entry>
+			<entry name="QUEST_REJECTED">I do not want to help Kirdneh museum become the greatest in the land.</entry>
+			<entry name="QUEST_ACCEPTED">I want to help Kirdneh museum become the greatest in the land.</entry>
+			<entry name="QUEST_ACTIVE">I have been asked to find a rare item for Kirdneh museum.</entry>
+			<entry name="QUEST_UNCLAIMED">I have the rare item for Kirdneh museum and need to take it.</entry>
+			<entry name="DONE_THIS_WEEK">I took the valuable item to Hazel within the last 7 days.</entry>
+		    <entry name="DONE_REPEATABLE">I took the valuable item to Hazel and the museum can now afford to send me to find another.</entry>
+		</history>
+		<hints>
+			<entry name="WHERE_IS_THE_ITEM">If you want to learn which creatures drop an item look it up on http://stendhal.game-host.org</entry>
+		</hints>
 	</quest>
 	
 	<quest name="ObsidianKnife">
