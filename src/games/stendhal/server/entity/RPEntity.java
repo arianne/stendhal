@@ -50,6 +50,21 @@ import marauroa.server.game.Statistics;
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity implements Constants {
+	
+	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
+
+	private static final float BOOTS_DEF_MULTIPLIER = 1.0f;
+
+	private static final float LEG_DEF_MULTIPLIER = 1.0f;
+
+	private static final float HELMET_DEF_MULTIPLIER = 1.0f;
+
+	private static final float CLOAK_DEF_MULTIPLIER = 1.5f;
+
+	private static final float ARMOR_DEF_MULTIPLIER = 2.0f;
+
+	private static final float SHIELD_DEF_MULTIPLIER = 4.0f;
+
 	/**
 	 * The title attribute name.
 	 */
@@ -116,20 +131,20 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
 
 	/**
-	 * To avoid using karma for damage calculations when the natural ability
-	 * of the fighters would mean they need no luck, we only use karma 
-	 * when the levels are significantly different.
+	 * To avoid using karma for damage calculations when the natural ability of
+	 * the fighters would mean they need no luck, we only use karma when the
+	 * levels are significantly different.
 	 */
 	private static final int LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA = 20;
-	
-	/** 
-	 * Level bonus for defence given to everyone. Prevents newbies 
-	 * killing each other too fast.
-	 */ 
+
+	/**
+	 * Level bonus for defence given to everyone. Prevents newbies killing each
+	 * other too fast.
+	 */
 	private static final double NEWBIE_DEF = 10.0;
-	/** 
-	 * Armor value of no armor. Prevents unarmored or lightly armored
-	 * entities from being completely helpless
+	/**
+	 * Armor value of no armor. Prevents unarmored or lightly armored entities
+	 * from being completely helpless
 	 */
 	private static final double SKIN_DEF = 10.0;
 	/** Adjusts the weight of level. Larger means weight more */
@@ -138,15 +153,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	private static final double LEVEL_DEF = 0.03;
 	/** General parameter for damage. Larger means more damage. */
 	private static final double WEIGHT_ATK = 8.0;
-	/** the level where relative damage curves start being linear. */ 
+	/** the level where relative damage curves start being linear. */
 	private static final double EVEN_POINT = 1.2;
-	/** 
-	 * Steepness of the damage vs level curves. The maximum 
-	 * bonus/penalty with weak enemies
-	 */ 
+	/**
+	 * Steepness of the damage vs level curves. The maximum bonus/penalty with
+	 * weak enemies
+	 */
 	private static final double WEIGHT_EFFECT = 0.5;
-	
-
 
 	@Override
 	protected boolean handlePortal(final Portal portal) {
@@ -288,7 +301,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
-	public double useKarma(final double negLimit, final double posLimit, final double granularity) {
+	public double useKarma(final double negLimit, final double posLimit,
+			final double granularity) {
 		// No impact
 		return 0.0;
 	}
@@ -335,7 +349,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public int heal(final int amount, final boolean tell) {
 		int tempHp = getHP();
 		int given = 0;
-		
+
 		// Avoid creating zombies out of dead creatures
 		if (tempHp > 0) {
 			given = Math.min(amount, getBaseHP() - tempHp);
@@ -405,11 +419,12 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 	/**
 	 * Register the new name in the conversation parser word list.
-	 *
+	 * 
 	 * @param newName
 	 * @param oldName
 	 */
-	private static void registerNewName(final String newName, final String oldName) {
+	private static void registerNewName(final String newName,
+			final String oldName) {
 		if ((oldName != null) && !oldName.equals(newName)) {
 			WordList.getInstance().unregisterSubjectName(oldName);
 		}
@@ -420,10 +435,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Is called when this has hit the given defender. Determines
-	 * how much hitpoints the defender will lose, based on this's ATK
-	 * experience and weapon(s), the defender's DEF experience and defensive
-	 * items, and a random generator.
+	 * Is called when this has hit the given defender. Determines how much
+	 * hitpoints the defender will lose, based on this's ATK experience and
+	 * weapon(s), the defender's DEF experience and defensive items, and a
+	 * random generator.
 	 * 
 	 * @param defender
 	 *            The defender.
@@ -431,82 +446,83 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         attack was completely blocked by the defender.
 	 */
 	public int damageDone(final RPEntity defender) {
-		// Don't start from 0 to mitigate weird behaviour at very low levels 
+		// Don't start from 0 to mitigate weird behaviour at very low levels
 		final int effectiveAttackerLevel = getLevel() + 5;
 		final int effectiveDefenderLevel = defender.getLevel() + 5;
-		
+
 		// Defending side
 		final double armor = defender.getItemDef();
 		final int targetDef = defender.getDEF();
 		// Even strong players are vulnerable without any armor.
 		// Armor def gets much higher with high level players unlike
-		// weapon atk, so it can not be treated similarly. Using geometric 
-		/// mean to balance things a bit.  
-		final double maxDefence = Math.sqrt(targetDef * (SKIN_DEF + armor)) 
-			* (NEWBIE_DEF + LEVEL_DEF * effectiveDefenderLevel);
-		
+		// weapon atk, so it can not be treated similarly. Using geometric
+		// / mean to balance things a bit.
+		final double maxDefence = Math.sqrt(targetDef * (SKIN_DEF + armor))
+				* (NEWBIE_DEF + LEVEL_DEF * effectiveDefenderLevel);
+
 		double defence = Rand.rand() * maxDefence;
 		/*
-		 * Account for karma (+/-10%)
-		 * But, the defender doesn't need luck to help him defend if he's a much 
-		 * higher level than this attacker
+		 * Account for karma (+/-10%) But, the defender doesn't need luck to
+		 * help him defend if he's a much higher level than this attacker
 		 */
 		if (!(effectiveDefenderLevel - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
 		}
-		
+
 		// Attacking
 		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + getATK()
-					+ " and uses a weapon of " + getItemAtk());
+			logger.debug("attacker has " + getATK() + " and uses a weapon of "
+					+ getItemAtk());
 		}
 		final int sourceAtk = getATK();
-		
-		// Make fast weapons efficient against weak enemies, and heavy 
-		// better against strong enemies. 
+
+		// Make fast weapons efficient against weak enemies, and heavy
+		// better against strong enemies.
 		// Half a parabola; desceding for rate < 5; ascending for > 5
 		double speedEffect = 1.0;
 		if (effectiveDefenderLevel < EVEN_POINT * effectiveAttackerLevel) {
-			final double levelPart = 1.0 - effectiveDefenderLevel / (EVEN_POINT * effectiveAttackerLevel);
+			final double levelPart = 1.0 - effectiveDefenderLevel
+					/ (EVEN_POINT * effectiveAttackerLevel);
 			// Gets values -1 at rate = 1, 0 at rate = 5,
 			// and approaches 1 when rate approaches infinity.
-			// We can't use a much simpler function as long as we need 
+			// We can't use a much simpler function as long as we need
 			// to deal with open ended rate values.
 			final double speedPart = 1 - 8 / (getAttackRate() + 3.0);
-			
-			speedEffect = 1.0 - WEIGHT_EFFECT * speedPart * levelPart * levelPart;
+
+			speedEffect = 1.0 - WEIGHT_EFFECT * speedPart * levelPart
+					* levelPart;
 		}
-		
+
 		final double weaponComponent = 1.0 + getItemAtk();
-		final double maxAttack = sourceAtk * weaponComponent * (1 + LEVEL_ATK * effectiveAttackerLevel) * speedEffect;
+		final double maxAttack = sourceAtk * weaponComponent
+				* (1 + LEVEL_ATK * effectiveAttackerLevel) * speedEffect;
 		double attack = Rand.rand() * maxAttack;
 
 		/*
-		 * Account for karma (+/-10%)
-		 * But, don't need luck to help you attack if you're a much 
-		 * higher level than what you attack
+		 * Account for karma (+/-10%) But, don't need luck to help you attack if
+		 * you're a much higher level than what you attack
 		 */
 		if (!(effectiveAttackerLevel - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > effectiveDefenderLevel)) {
 			attack += attack * useKarma(0.1);
 		}
-		
-		
+
 		if (logger.isDebugEnabled()) {
-			logger.debug("DEF MAX: " + maxDefence + "\t DEF VALUE: "
-					+ defence);
+			logger.debug("DEF MAX: " + maxDefence + "\t DEF VALUE: " + defence);
 		}
 
-		int damage = (int) ((WEIGHT_ATK * attack - defence) / maxDefence); 
+		int damage = (int) ((WEIGHT_ATK * attack - defence) / maxDefence);
 
 		if (canDoRangeAttack(defender)) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
-			damage = applyDistanceAttackModifiers(damage, squaredDistance(defender));
+			damage = applyDistanceAttackModifiers(damage,
+					squaredDistance(defender));
 		}
 
 		return damage;
 	}
+
 	/**
 	 * Calculates the damage that will be done in a distance attack (bow and
 	 * arrows, spear, etc.).
@@ -514,26 +530,29 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param damage
 	 *            The damage that would have been done if there would be no
 	 *            modifiers for distance attacks.
-	 * @param squareDistance the distance
+	 * @param squareDistance
+	 *            the distance
 	 * @return The damage that will be done with the distance attack.
 	 */
-	public static int applyDistanceAttackModifiers(final int damage, final double squareDistance) {
+	public static int applyDistanceAttackModifiers(final int damage,
+			final double squareDistance) {
 		final double maxrange = 7;
 		final double maxrangeSquared = maxrange * maxrange;
 		if (maxrangeSquared < squareDistance) {
 			return 0;
 		} else if (squareDistance == 0) {
-			// as a special case, make archers switch to melee when the enemy is next to them
+			// as a special case, make archers switch to melee when the enemy is
+			// next to them
 			return (int) (0.8 * damage);
 		}
-		
+
 		final double outOfRange = maxrange + 1;
 		final double distance = Math.sqrt(squareDistance);
-		
-		// a downward parabola with zero points at 0 and outOfRange
-		return (int) (damage * ((distance * 4) / outOfRange - 4 * squareDistance / (outOfRange * outOfRange)));
-	}
 
+		// a downward parabola with zero points at 0 and outOfRange
+		return (int) (damage * ((distance * 4) / outOfRange - 4
+				* squareDistance / (outOfRange * outOfRange)));
+	}
 
 	/**
 	 * Set the entity's name.
@@ -595,8 +614,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setATK(this.atk + (int) Math.signum(levels) * 1);
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "atk",
-					Integer.toString(getATK()));
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
+					"atk", Integer.toString(getATK()));
 		}
 
 		return atk_xp;
@@ -631,8 +650,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDEF(this.def + (int) Math.signum(levels) * 1);
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "def",
-					Integer.toString(getDEF()));
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
+					"def", Integer.toString(getDEF()));
 		}
 
 		return def_xp;
@@ -670,10 +689,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Set the HP.
-	 * <br>
-	 * DO NOT USE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING.
-	 * <br>
+	 * Set the HP. <br>
+	 * DO NOT USE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING. <br>
 	 * Use the appropriate damage(), and heal() methods instead.
 	 * 
 	 * @param hp
@@ -757,7 +774,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	public void addXP(final int newxp) {
-		
+
 		if (Integer.MAX_VALUE - this.xp <= newxp) {
 			return;
 		}
@@ -765,8 +782,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		this.xp += newxp;
 		put("xp", xp);
 
-		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "added xp",
-				Integer.toString(newxp));
+		SingletonRepository.getRuleProcessor().addGameEvent(getName(),
+				"added xp", Integer.toString(newxp));
 		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "xp",
 				Integer.toString(xp));
 
@@ -778,8 +795,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
 
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "level",
-					Integer.toString(newLevel));
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
+					"level", Integer.toString(newLevel));
 			setLevel(newLevel);
 		}
 	}
@@ -799,8 +816,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return true;
 	}
 
-	/** Modify the entity to order to attack the target entity. 
-	 * @param target 
+	/**
+	 * Modify the entity to order to attack the target entity.
+	 * 
+	 * @param target
 	 */
 	public void setTarget(final RPEntity target) {
 		put("target", target.getID().getObjectID());
@@ -828,7 +847,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 
-			//remove opponent here to avoid memory leak
+			// remove opponent here to avoid memory leak
 			enemiesThatGiveFightXP.remove(attackTarget);
 
 			attackTarget = null;
@@ -840,14 +859,14 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (turnWhenLastDamaged == null) {
 			return false;
 		}
-		final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
+		final int currentTurn = SingletonRepository.getRuleProcessor()
+				.getTurn();
 		if (currentTurn - turnWhenLastDamaged > TURNS_WHILE_FIGHT_XP_INCREASES) {
 			enemiesThatGiveFightXP.remove(enemy);
 			return false;
 		}
 		return true;
 	}
-
 
 	public void stopAttacking(final Entity attacker) {
 		if (attacker.has("target")) {
@@ -882,15 +901,17 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * This method is called when this entity has been attacked by Entity
 	 * attacker and it has been damaged with damage points.
-	 * @param attacker 
-	 * @param damage 
+	 * 
+	 * @param attacker
+	 * @param damage
 	 */
 	public void onDamaged(final Entity attacker, final int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
 
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
-			final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
+			final int currentTurn = SingletonRepository.getRuleProcessor()
+					.getTurn();
 			enemiesThatGiveFightXP.put((RPEntity) attacker, currentTurn);
 		}
 
@@ -1010,7 +1031,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final int xpReward = (int) (oldXP * 0.05);
 
 		for (final String killerName : playersToReward) {
-			final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
+			final Player killer = SingletonRepository.getRuleProcessor()
+					.getPlayer(killerName);
 			// check logout
 			if (killer == null) {
 				continue;
@@ -1037,9 +1059,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 			final int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
-			
-
-			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t");
+			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
+					+ totalDamageReceived + "\t");
 
 			int reward = xpEarn;
 
@@ -1085,8 +1106,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * This method is called when the entity has been killed ( hp==0 ).
 	 * 
 	 * @param killerName
-	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
-	 *				<em>killerName</em>".
+	 *            The killer's name (a phrase suitable in the expression "
+	 *            <code>by</code> <em>killerName</em>".
 	 */
 	public final void onDead(final String killerName) {
 		onDead(killerName, true);
@@ -1106,10 +1127,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final String killerName = killer.getTitle();
 
 		if (killer instanceof RPEntity) {
-			SingletonRepository.getRuleProcessor().addGameEvent(killerName, "killed",
-					getName());
+			SingletonRepository.getRuleProcessor().addGameEvent(killerName,
+					"killed", getName());
 		}
-		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).logKill(this, killer);
+		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase())
+				.logKill(this, killer);
 
 		onDead(killerName, remove);
 	}
@@ -1118,14 +1140,14 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * This method is called when this entity has been killed (hp == 0).
 	 * 
 	 * @param killerName
-	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
-	 *				<em>killerName</em>".
+	 *            The killer's name (a phrase suitable in the expression "
+	 *            <code>by</code> <em>killerName</em>".
 	 * @param remove
 	 *            <code>true</code> to remove entity from world.
 	 */
 	protected final void onDead(final String killerName, final boolean remove) {
 		stopAttack();
-		
+
 		final int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
@@ -1171,23 +1193,28 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return false;
 	}
 
-	/** Return true if this entity is attacked. 
-	 * @return true if no attack sources found 
+	/**
+	 * Return true if this entity is attacked.
+	 * 
+	 * @return true if no attack sources found
 	 */
 	public boolean isAttacked() {
 		return !attackSources.isEmpty();
 	}
 
-	/** 
-	 * Returns the Entities that are attacking this character. 
+	/**
+	 * Returns the Entities that are attacking this character.
+	 * 
 	 * @return list of all attacking entities
 	 */
 	public List<Entity> getAttackSources() {
 		return attackSources;
 	}
 
-	/** Returns the RPEntities that are attacking this character. 
-	 * @return  list of all attacking RPEntities
+	/**
+	 * Returns the RPEntities that are attacking this character.
+	 * 
+	 * @return list of all attacking RPEntities
 	 */
 	public List<RPEntity> getAttackingRPEntities() {
 		final List<RPEntity> list = new ArrayList<RPEntity>();
@@ -1200,10 +1227,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return list;
 	}
 
-	
 	/**
-	 *  Checks whether the attacktarget is null.
-	 *  Sets attacktarget to null if hp of attacktarget <=0; 
+	 * Checks whether the attacktarget is null. Sets attacktarget to null if hp
+	 * of attacktarget <=0;
+	 * 
 	 * @return true if attacktarget != null and not dead
 	 */
 	public boolean isAttacking() {
@@ -1217,8 +1244,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return attackTarget != null;
 	}
 
-	/** Return the RPEntity that this entity is attacking. 
-	 * @return the attack target of this 
+	/**
+	 * Return the RPEntity that this entity is attacking.
+	 * 
+	 * @return the attack target of this
 	 */
 	public RPEntity getAttackTarget() {
 		return attackTarget;
@@ -1248,7 +1277,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            put it on ground if it cannot equipped.
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(final Item item, final boolean putOnGroundIfItCannotEquiped) {
+	public boolean equip(final Item item,
+			final boolean putOnGroundIfItCannotEquiped) {
 		final ActionManager manager = SingletonRepository.getActionManager();
 
 		final String slot = manager.getSlotNameToEquip(this, item);
@@ -1280,7 +1310,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public boolean equip(final String slotName, final Item item) {
 		if (hasSlot(slotName)) {
-			final ActionManager manager = SingletonRepository.getActionManager();
+			final ActionManager manager = SingletonRepository
+					.getActionManager();
 			if (manager.onEquip(this, slotName, item)) {
 				updateItemAtkDef();
 				return true;
@@ -1302,7 +1333,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return true iff dropping the desired amount was successful.
 	 */
 	public boolean drop(final String name, final int amount) {
-		// first of all we check that this RPEntity has enough of the 
+		// first of all we check that this RPEntity has enough of the
 		// specified item. We need to do this to ensure an atomic transaction
 		// semantic later on because the required amount may be distributed
 		// to several stacks.
@@ -1540,8 +1571,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
 	 * returns true if it is, else false.
-	 * @param slot 
-	 * @param clazz 
+	 * 
+	 * @param slot
+	 * @param clazz
 	 * @return true if so false otherwise
 	 */
 	public boolean isEquippedItemClass(final String slot, final String clazz) {
@@ -1562,9 +1594,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * Finds the first item of class <i>clazz</i> from the slot.
 	 * 
-	 * @param slot 
-	 * @param clazz 
-	 * @return the item or <code>null</code> if there is no item with the requested clazz.
+	 * @param slot
+	 * @param clazz
+	 * @return the item or <code>null</code> if there is no item with the
+	 *         requested clazz.
 	 */
 	public Item getEquippedItemClass(final String slot, final String clazz) {
 		if (hasSlot(slot)) {
@@ -1593,8 +1626,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         left hand.
 	 */
 	public Item getWeapon() {
-		
-		final String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
+
+		final String[] weaponsClasses = { "club", "sword", "axe", "ranged",
+				"missile" };
 
 		for (final String weaponClass : weaponsClasses) {
 			final String[] slots = { "lhand", "rhand" };
@@ -1609,8 +1643,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	public List<Item> getWeapons() {
-		
-		
+
 		final List<Item> weapons = new ArrayList<Item>();
 		Item weaponItem = getWeapon();
 		if (weaponItem != null) {
@@ -1670,8 +1703,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final String[] slots = { "lhand", "rhand" };
 
 		for (final String slot : slots) {
-			final StackableItem item = (StackableItem) getEquippedItemClass(slot,
-					"ammunition");
+			final StackableItem item = (StackableItem) getEquippedItemClass(
+					slot, "ammunition");
 			if (item != null) {
 				return item;
 			}
@@ -1808,7 +1841,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				}
 			}
 		}
-		
+
 		return weapon;
 	}
 
@@ -1850,8 +1883,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			weapon += weaponItem.getDefense();
 		}
 
-		return 4.0f * shield + 2.0f * armor + 1.5f * cloak + 1.0f * helmet
-				+ 1.0f * legs + 1.0f * boots + 4.0f * weapon;
+		return SHIELD_DEF_MULTIPLIER * shield + ARMOR_DEF_MULTIPLIER * armor
+				+ CLOAK_DEF_MULTIPLIER * cloak + HELMET_DEF_MULTIPLIER * helmet
+				+ LEG_DEF_MULTIPLIER * legs + BOOTS_DEF_MULTIPLIER * boots
+				+ WEAPON_DEF_MULTIPLIER * weapon;
 	}
 
 	/**
@@ -1865,7 +1900,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 	/**
 	 * Can this entity do a distance attack on the given target?
-	 * @param target 
+	 * 
+	 * @param target
 	 * 
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
@@ -1945,8 +1981,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * the player.
 	 * 
 	 * @param definite
-	 *            <code>true</code> for "the", and <code>false</code> for
-	 *            "a/an" in case the entity has no name.
+	 *            <code>true</code> for "the", and <code>false</code> for "a/an"
+	 *            in case the entity has no name.
 	 * 
 	 * @return The description name.
 	 */
@@ -1980,11 +2016,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public abstract void logic();
 
-
 	/**
-	 * Chooses randomly if this has hit the defender, or if this missed
-	 * him. Note that, even if this method returns true, the damage done might
-	 * be 0 (if the defender blocks the attack).
+	 * Chooses randomly if this has hit the defender, or if this missed him.
+	 * Note that, even if this method returns true, the damage done might be 0
+	 * (if the defender blocks the attack).
 	 * 
 	 * @param defender
 	 *            The attacked RPEntity.
@@ -1995,40 +2030,40 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getDEF();
 		final int attackerATK = this.getATK();
-	
+
 		/*
-		 * Use some karma unless attacker is much stronger than
-		 * defender, in which case attacker doesn't need luck to help 
-		 * him hit.
+		 * Use some karma unless attacker is much stronger than defender, in
+		 * which case attacker doesn't need luck to help him hit.
 		 */
-		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender.getLevel())) {
+		if (!(getLevel() - LEVEL_DIFFERENCE_TO_NOT_NEED_KARMA > defender
+				.getLevel())) {
 			final double karma = this.useKarma(0.1);
-		
+
 			roll -= roll * karma;
 		}
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
-		
-	
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("attack from " + this + " to " + defender
 					+ ": Risk to strike: " + risk);
 		}
-	
+
 		if (risk < 0) {
 			risk = 0;
 		}
-	
+
 		if (risk > 1) {
 			risk = 1;
 		}
-	
+
 		this.put("risk", risk);
-		
+
 		return (risk != 0);
 	}
 
-	int calculateRiskForCanHit(final int roll, final int defenderDEF, final int attackerATK) {
-		return 20 * attackerATK - roll * defenderDEF;  
+	int calculateRiskForCanHit(final int roll, final int defenderDEF,
+			final int attackerATK) {
+		return 20 * attackerATK - roll * defenderDEF;
 	}
 
 	/**
@@ -2037,10 +2072,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return the attack rate
 	 */
 	public int getAttackRate() {
-		
-		
+
 		final List<Item> weapons = getWeapons();
-	
+
 		if (weapons.isEmpty()) {
 			return 5;
 		}
@@ -2051,10 +2085,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				best = res;
 			}
 		}
-	
+
 		return best;
 	}
-	
+
 	/**
 	 * Lets the attacker attack its target.
 	 * 
@@ -2063,17 +2097,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public boolean attack() {
 		boolean result = false;
-		 final RPEntity defender = this.getAttackTarget();
-//		isInZoneandNotDead(defender);
+		final RPEntity defender = this.getAttackTarget();
+		// isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
-		
+
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
 			int damage = this.damageDone(defender);
-			
-			
+
 			if (damage > 0) {
 
 				// limit damage to target HP
@@ -2092,7 +2125,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-		} else { 
+		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
@@ -2131,7 +2164,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// Creature with lifesteal profile?
 		if (attacker instanceof Creature) {
 			sumAll = 1;
-			final String value = ((Creature) attacker).getAIProfile("lifesteal");
+			final String value = ((Creature) attacker)
+					.getAIProfile("lifesteal");
 			if (value == null) {
 				// The creature doesn't steal life.
 				return;
