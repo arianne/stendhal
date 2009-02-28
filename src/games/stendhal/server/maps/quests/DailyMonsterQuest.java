@@ -141,11 +141,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			if ("bat".equals(creatureName)) {
 				creatureName = "rat";
 			}
-			// twilight slime is only found in a special zone so if it is picked,
-			// select giant (closest level) instead
-			if ("twilight slime".equals(creatureName)) {
-				creatureName = "giant";
-			}
+			
 			engine.say("Semos is in need of help. Go kill a " + creatureName
 					+ " and say #complete, once you're done.");
 			player.removeKill(creatureName);
