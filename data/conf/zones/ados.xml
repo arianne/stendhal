@@ -58,6 +58,14 @@ West: Semos
    </attribute>
   </entity>
 
+  <entity x="53" y="92">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+		<parameter name="width">7</parameter>
+		<parameter name="height">7</parameter>
+		<parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes withing.</parameter>
+	</implementation>
+  </entity>
+
   <portal x="75" y="50" ref="magician_house_entrance">
    <destination zone="int_ados_magician_house" ref="entrance"/>
   </portal>
@@ -1609,6 +1617,13 @@ Northeast: Ados
 Southeast: Docks
      </attribute>
      <attribute name="class">signpost</attribute>
+    </entity>
+    <entity x="62" y="78">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+		<parameter name="width">6</parameter>
+		<parameter name="height">4</parameter>
+		<parameter name="enterMessage">You see massive footprints around the entrance.</parameter>
+	</implementation>
     </entity>
    </zone>
    

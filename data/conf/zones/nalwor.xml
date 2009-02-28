@@ -737,6 +737,13 @@
 
 	<zone name="0_nalwor_river_s" level="0" x="500256" y="500384"
 		file="Level 0/nalwor/river_s.tmx">
+		<entity x="98" y="88">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="width">5</parameter>
+				<parameter name="height">5</parameter>
+				<parameter name="enterMessage">You hear faintly incantations of dark magic from below. The place reeks of danger.</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="0_nalwor_river_se" level="0" x="500384" y="500384"
