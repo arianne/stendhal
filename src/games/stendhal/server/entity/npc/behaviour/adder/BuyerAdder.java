@@ -44,17 +44,18 @@ public class BuyerAdder {
 
 						if (behaviour.parseRequest(sentence)) {
 							if (behaviour.getAmount() > 1000) {
-								logger.warn("Decreasing very large amount of "
+								logger.warn("Refusing to buy very large amount of "
 										+ behaviour.getAmount()
 										+ " " + behaviour.getChosenItemName()
-										+ " to 1 for player "
+										+ " from player "
 										+ player.getName() + " talking to "
 										+ engine.getName() + " saying "
 										+ sentence);
-								behaviour.setAmount(1);
-							}
-
-							if (behaviour.getAmount() > 0) {
+								engine.say("Sorry, the maximum number of " 
+										+ behaviour.getChosenItemName() 
+										+ " which I can buy at once is 1000.");
+								engine.setCurrentState(ConversationStates.ATTENDING);
+							} else if (behaviour.getAmount() > 0) {
 								final int price = behaviour.getCharge(engine, player);
 
 								if (price != 0) {

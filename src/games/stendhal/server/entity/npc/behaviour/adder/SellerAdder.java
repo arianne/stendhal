@@ -50,17 +50,18 @@ public class SellerAdder {
     							// find out if the NPC sells this item, and if so,
     							// how much it costs.
     							if (behaviour.getAmount() > 1000) {
-    								logger.warn("Decreasing very large amount of "
+    								logger.warn("Refusing to sell very large amount of "
     										+ behaviour.getAmount()
     										+ " " + behaviour.getChosenItemName()
-    										+ " to 1 for player "
+    										+ " to player "
     										+ player.getName() + " talking to "
     										+ engine.getName() + " saying "
     										+ sentence);
-    								behaviour.setAmount(1);
-    							}
-
-    							if (behaviour.getAmount() > 0) {
+    								engine.say("Sorry, the maximum number of " 
+    										+ behaviour.getChosenItemName() 
+    										+ " which I can sell at once is 1000.");
+    								engine.setCurrentState(ConversationStates.ATTENDING);
+    							} else if (behaviour.getAmount() > 0) {
 	    							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 	    									* behaviour.getAmount();
 
