@@ -10,7 +10,6 @@ import org.junit.Test;
 
 public class TradingCenterControllerTest {
 
-	@Ignore
 	@Test
 	public void testAddToZone() throws Exception {
 		TradingCenterController controller = new TradingCenterController();

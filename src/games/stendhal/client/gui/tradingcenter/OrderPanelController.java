@@ -10,10 +10,12 @@ import marauroa.common.game.RPSlot;
 public class OrderPanelController implements ObjectChangeListener {
 
 	private Component component;
+	
+	private final RPObject object;
 
-	public OrderPanelController(final RPObject object) {
-		initialize(object);
-		
+    public OrderPanelController(RPObject object) {
+    	this.object = object;
+		initialize(this.object);
 	}
 
 	private boolean initialize(final RPObject object) {
@@ -54,6 +56,13 @@ public class OrderPanelController implements ObjectChangeListener {
 	public Component getComponent() {
 		return component;
 		
+	}
+
+	/**
+	 * @return the object
+	 */
+	public RPObject getObject() {
+		return object;
 	}
 
 }
