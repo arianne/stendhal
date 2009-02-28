@@ -66,7 +66,7 @@ public class HatForMonogenes extends AbstractQuest {
 			return res;
 		}
 		res.add("GET_HAT");
-		if (player.isEquipped("leather hat")
+		if ((player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("leather helmet"))
 				|| player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("GOT_HAT");
 		}

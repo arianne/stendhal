@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -91,6 +92,52 @@ public class ObsidianKnife extends AbstractQuest {
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		} else {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("seeking_book"))
+				|| questState.equals("done")) {
+			res.add("SEEKING_BOOK");
+		}
+		if ((questState.equals("got_book"))
+				|| questState.equals("done")) {
+			res.add("FOUND_BOOK");
+		}
+		if (questState.startsWith("reading")) {
+			res.add("READING");
+		}
+		if ((questState.equals("knife_offered")
+		&& !player.hasKilled("black dragon"))|| questState.equals("done")) {
+			res.add("ITEM_OFFERED");
+		}
+		if ((questState.equals("knife_offered")
+				&& player.hasKilled("black dragon"))|| questState.equals("done")) {
+			res.add("DRAGON_KILLED");
+		}
+		if ((questState.equals("knife_offered")
+				&& player.isEquipped("obsidian")
+				&& player.isEquipped(FISH))|| questState.equals("done") ) {
+			res.add("FOUND_ITEMS");
+		}
+		if (questState.startsWith("forging")) {
+			res.add("FORGING");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
 	}
 	
 	private void prepareQuestOfferingStep() {

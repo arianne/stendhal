@@ -16,7 +16,9 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +32,7 @@ import java.util.List;
  * STEPS:
  * <li> Eonna asks you to clean her storage space.
  * <li> You go kill at least a rat, a cave rat and a cobra.
- * <li> Eoanna checks your kills and then thanks you.
+ * <li> Eonna checks your kills and then thanks you.
  * <p>
  * REWARD:
  * <li> 100 XP, karma
@@ -44,6 +46,29 @@ public class CleanStorageSpace extends AbstractQuest {
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if (("start".equals(questState) && player.hasKilled("rat") && player.hasKilled("cave rat") && player.hasKilled("snake")) || "done".equals(questState)) {
+			res.add("CLEANED_SPACE");
+		}
+		if ("done".equals(questState)) {
+			res.add("DONE");
+		}
+		return res;
 	}
 	
 	private void step_1() {
