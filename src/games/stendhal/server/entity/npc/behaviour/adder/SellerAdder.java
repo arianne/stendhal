@@ -14,7 +14,9 @@ import org.apache.log4j.Logger;
 
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
+	
 
+	
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);
 	}
@@ -62,10 +64,15 @@ public class SellerAdder {
     										+ " which I can sell at once is 1000.");
     								engine.setCurrentState(ConversationStates.ATTENDING);
     							} else if (behaviour.getAmount() > 0) {
-	    							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+	    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 	    									* behaviour.getAmount();
-
-	    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
+	    							String message = "";
+	    							if (player.isBadBoy()) {
+	    								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY*price);
+	    								
+	    								message = "To friends I charge less, but you seem like you have played unfairly here. So,  ";
+	    							}
+	    							engine.say(message + Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
 	    									+ " will cost " + price
 	    									+ ". Do you want to buy "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");

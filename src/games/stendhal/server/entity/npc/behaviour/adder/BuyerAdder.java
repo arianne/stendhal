@@ -41,7 +41,12 @@ public class BuyerAdder {
 							engine.setCurrentState(ConversationStates.ATTENDING);
 							return;
 						}
-
+						if (player.isBadBoy()) {
+							// don't buy from player killers at all
+							engine.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");
+							engine.setCurrentState(ConversationStates.IDLE);
+							return;
+						}
 						if (behaviour.parseRequest(sentence)) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Refusing to buy very large amount of "

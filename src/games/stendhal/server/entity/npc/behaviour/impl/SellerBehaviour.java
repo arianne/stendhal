@@ -31,7 +31,10 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SellerBehaviour.class);
-
+	
+	/** the factor extra that player killers pay for items. should be > 1 always */
+	public static final double BAD_BOY_BUYING_PENALTY = 1.5;
+	
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.
 	 */
@@ -64,7 +67,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
 		final Item item = getAskedItem(chosenItemName);
 		if (item == null) {
-			logger.error("Trying to sell an nonexistant item: " + getChosenItemName());
+			logger.error("Trying to sell an nonexistent item: " + getChosenItemName());
 			return false;
 		}
 
@@ -84,10 +87,14 @@ public class SellerBehaviour extends MerchantBehaviour {
 			seller.say("Sorry, you must buy at least one item.");
 			return false;
 		}
-
-		if (player.isEquipped("money", getCharge(seller, player))) {
+		
+		int price = getCharge(seller, player);
+		if (player.isBadBoy()) {
+			price = (int) (BAD_BOY_BUYING_PENALTY*price);
+		}
+		if (player.isEquipped("money", price)) {
 			if (player.equip(item)) {
-				player.drop("money", getCharge(seller, player));
+				player.drop("money", price);
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(getAmount()) + " your "
 						+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
