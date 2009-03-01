@@ -11,28 +11,30 @@ public abstract class FormatTextParser {
 
 		int i = 0;
 		for (String pieces : parts) {
-			if (i > 0) {
-				char terminator = ' ';
-
-				// color quoted compound words like "#'iron sword'"
-				if (pieces.charAt(0) == '\'') {
-					terminator = '\'';
-					pieces = pieces.substring(1);
+				if (i > 0) {
+					if (pieces.length()> 0) {
+						char terminator = ' ';
+		
+						// color quoted compound words like "#'iron sword'"
+						if (pieces.charAt(0) == '\'') {
+							terminator = '\'';
+							pieces = pieces.substring(1);
+						}
+		
+						int index = pieces.indexOf(terminator);
+						if (index == -1) {
+							index = pieces.length();
+						}
+		
+						colorText(pieces.substring(0, index));
+		
+						if ((terminator == '\'') && (index < pieces.length())) {
+							++index;
+						}
+		
+						pieces = pieces.substring(index);
+					}
 				}
-
-				int index = pieces.indexOf(terminator);
-				if (index == -1) {
-					index = pieces.length();
-				}
-
-				colorText(pieces.substring(0, index));
-
-				if ((terminator == '\'') && (index < pieces.length())) {
-					++index;
-				}
-
-				pieces = pieces.substring(index);
-			}
 
 			normalText(pieces);
 

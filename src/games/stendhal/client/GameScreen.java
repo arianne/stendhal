@@ -1118,17 +1118,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		try {
 			// recreate the string without the # characters
 			final StringBuilder temp = new StringBuilder();
-			FormatTextParser parser = new FormatTextParser() {
-				@Override
-				public void normalText(final String tok) {
-					temp.append(tok + " ");
-				}
-
-				@Override
-				public void colorText(final String tok) {
-					temp.append(tok + " ");
-				}
-			};
+			FormatTextParser parser = new FormatTextParserExtension(temp);
 			parser.format(line);
 
 			// create the attribute string including formating
