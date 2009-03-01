@@ -14,7 +14,7 @@ public class TradePanel {
 	}
 
 	public boolean contains(RPObject object) {
-		for(OrderPanelController opc : this.opcs) {
+		for (OrderPanelController opc : this.opcs) {
 			if (opc.getObject().equals(object)) {
 				return true;
 			}

@@ -262,7 +262,7 @@ public class ResultSetIteratorTest {
 		
 		replay(localResultSet);
 		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
-																		localResultSet ) {
+																		localResultSet) {
 			protected String object = "";
 
 			@Override
@@ -295,7 +295,7 @@ public class ResultSetIteratorTest {
 		replay(resultSetClose);
 		replay(statement);
 		
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(statement, resultSetClose );
+		final ResultSetIterator<String> iter = new ResultSetIterImplentation(statement, resultSetClose);
 		iter.next();
 		verify(resultSetClose);
 		verify(statement);
@@ -309,7 +309,7 @@ public class ResultSetIteratorTest {
 		expectLastCall().andThrow(new SQLException());
 		replay(resultsetdelteThrowsException);
 		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
-				resultsetdelteThrowsException );
+				resultsetdelteThrowsException);
 		iter.remove();
 		assertTrue("no exception thrown", true);
 		verify(resultsetdelteThrowsException);

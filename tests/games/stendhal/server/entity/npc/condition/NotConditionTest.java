@@ -37,12 +37,12 @@ public class NotConditionTest {
 	private ChatCondition falsecondition;
 
 	@BeforeClass
-	public static void setupClass(){
+	public static void setupClass() {
 		MockStendlRPWorld.get();
 	}
 	
 	@AfterClass
-	public static void tearDownClass(){
+	public static void tearDownClass() {
 		MockStendlRPWorld.get();
 	}
 	

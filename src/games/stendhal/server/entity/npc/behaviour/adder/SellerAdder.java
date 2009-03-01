@@ -68,7 +68,7 @@ public class SellerAdder {
 	    									* behaviour.getAmount();
 	    							String message = "";
 	    							if (player.isBadBoy()) {
-	    								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY*price);
+	    								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
 	    								
 	    								message = "To friends I charge less, but you seem like you have played unfairly here. So,  ";
 	    							}

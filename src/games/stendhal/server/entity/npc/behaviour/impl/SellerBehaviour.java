@@ -90,7 +90,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 		
 		int price = getCharge(seller, player);
 		if (player.isBadBoy()) {
-			price = (int) (BAD_BOY_BUYING_PENALTY*price);
+			price = (int) (BAD_BOY_BUYING_PENALTY * price);
 		}
 		if (player.isEquipped("money", price)) {
 			if (player.equip(item)) {

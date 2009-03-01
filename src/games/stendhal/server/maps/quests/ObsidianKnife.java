@@ -119,16 +119,16 @@ public class ObsidianKnife extends AbstractQuest {
 			res.add("READING");
 		}
 		if ((questState.equals("knife_offered")
-		&& !player.hasKilled("black dragon"))|| questState.equals("done")) {
+		&& !player.hasKilled("black dragon")) || questState.equals("done")) {
 			res.add("ITEM_OFFERED");
 		}
 		if ((questState.equals("knife_offered")
-				&& player.hasKilled("black dragon"))|| questState.equals("done")) {
+				&& player.hasKilled("black dragon")) || questState.equals("done")) {
 			res.add("DRAGON_KILLED");
 		}
 		if ((questState.equals("knife_offered")
 				&& player.isEquipped("obsidian")
-				&& player.isEquipped(FISH))|| questState.equals("done") ) {
+				&& player.isEquipped(FISH)) || questState.equals("done")) {
 			res.add("FOUND_ITEMS");
 		}
 		if (questState.startsWith("forging")) {

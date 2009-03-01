@@ -84,7 +84,7 @@ public class NecroStaff extends Item implements UseListener {
 		final Collection<Creature> creatures = manager.getCreatures();
 			final List<Creature> possibleCreatures = new ArrayList<Creature>();
 			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= LEVEL_FACTOR*playerlevel && creature.get("class").equals("undead") 
+				if (creature.getLevel() <= LEVEL_FACTOR * playerlevel && creature.get("class").equals("undead") 
 						&& !creature.isRare()) {
 					
 					possibleCreatures.add(creature);
@@ -110,7 +110,7 @@ public class NecroStaff extends Item implements UseListener {
 	
 	//@Override
 	public boolean onUsed(final RPEntity user) {
-		if(!this.isContained()) {
+		if (!this.isContained()) {
 			user.sendPrivateText("The staff must be wielded.");
 			return false;
 		}
@@ -123,7 +123,7 @@ public class NecroStaff extends Item implements UseListener {
 
 		if (zone.getNPCList().size() >= MAX_ZONE_NPCS) {
 			user.sendPrivateText("Mysteriously, the staff does not function! Perhaps this area is too crowded...");
-			logger.warn(user.getName() + " is trying to use the necromancer staff but there are too many npcs in " + zone.getName() );
+			logger.warn(user.getName() + " is trying to use the necromancer staff but there are too many npcs in " + zone.getName());
 			return false;
 		}
 
@@ -147,7 +147,7 @@ public class NecroStaff extends Item implements UseListener {
 				creature.put("title_type", "friend");
 				
 				//Suck some of the summoners HP depending on the summoned creature's level.
-				user.damage(HP_FACTOR*creature.getLevel(),this);
+				user.damage(HP_FACTOR * creature.getLevel(), this);
 				return true;
 			}
 
