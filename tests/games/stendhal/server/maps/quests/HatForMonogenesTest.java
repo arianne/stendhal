@@ -180,8 +180,9 @@ public class HatForMonogenesTest {
 		history.add("FIRST_CHAT");
 		history.add("GET_HAT");
 		assertEquals(history, quest.getHistory(player));
-
-		player.equip("bag", ItemTestHelper.createItem("leather hat"));
+		
+		player.setQuest("hat_monogenes", "start");
+		player.equip("bag", ItemTestHelper.createItem("leather helmet"));
 		history.add("GOT_HAT");
 
 		assertEquals(history, quest.getHistory(player));

@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -12,6 +14,11 @@ import utilities.SpeakerNPCTestHelper;
 
 public class AdminConditionTest extends PlayerTestHelper {
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
+	}
+	
 	@Test
 	public void testConstructor() throws Throwable {
 		final AdminCondition adminCondition = new AdminCondition();

@@ -133,9 +133,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
         assertEquals("Ok, how else may I help you?", npc.get("text"));
 
 		assertTrue(en.step(player, "buy 10000 ham"));
-		assertEquals("1 piece of ham will cost 80. Do you want to buy it?", npc.get("text"));
-        assertTrue(en.step(player, "no"));
-        assertEquals("Ok, how else may I help you?", npc.get("text"));
+		assertEquals("Sorry, the maximum number of ham which I can sell at once is 1000.", npc.get("text"));
 	}
 
 	@Test
