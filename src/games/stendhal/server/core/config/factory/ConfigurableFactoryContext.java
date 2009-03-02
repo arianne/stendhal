@@ -21,20 +21,6 @@ public class ConfigurableFactoryContext {
 	}
 
 	/**
-	 * Get an attribute.
-	 * 
-	 * @param name
-	 *            The attribute name.
-	 * 
-	 * @return The value of the attribute, or <code>null</code> if not set.
-	 * @deprecated use type safe methods
-	 */
-	@Deprecated
-	public String getAttribute(final String name) {
-		return attributes.get(name);
-	}
-
-	/**
 	 * Extracts a boolean value from a string.
 	 * 
 	 * @param name
@@ -67,7 +53,7 @@ public class ConfigurableFactoryContext {
 	 *            the default value it case it is not defined
 	 * @return the value of the attribute
 	 * @throws IllegalArgumentException
-	 *             in case the value is not a valid integer
+	 *             in case the value is not a valid boolean
 	 */
 	public boolean getBoolean(final String name, final boolean defaultValue) {
 		final String value = attributes.get(name);
@@ -85,7 +71,7 @@ public class ConfigurableFactoryContext {
 	 *            the attribute name.
 	 * @return the value of the attribute
 	 * @throws IllegalArgumentException
-	 *             in case the value is not a valid integer or is missing
+	 *             in case the value is not a valid boolean or is missing
 	 */
 	public boolean getRequiredBoolean(final String name) {
 		final String value = this.getRequiredString(name);
