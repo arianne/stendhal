@@ -10,6 +10,8 @@ Changelog
 - replace mountain orcs in -2 semos mines n e3 with chaos creatures
 - added high level boss, gashadokuro, based on japanese legend
 - new outfit lender in magic clothing boutique who lends costumes including slime and goblin face
+- messaging areas to give atmospheric messages to players entering or leaving them
+- quoting #-characters
 
 0.72
 *Features*
