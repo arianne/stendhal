@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class LowerCaseMap<V> implements Map<String, V> {
-	public Map<String, V> data;
+	private Map<String, V> data;
 
 	public LowerCaseMap() {
 		data = new HashMap<String, V>();
