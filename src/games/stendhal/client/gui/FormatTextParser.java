@@ -25,7 +25,7 @@ public abstract class FormatTextParser {
 		int startIndex = 0;
 		int unquotedIndex, quotedIndex;
 		
-		while (!text.isEmpty()) {
+		while (text.length() > 0)  {
 			unquotedIndex = text.indexOf('#', startIndex);
 			if (unquotedIndex == -1) {
 				writeText(text, false);
