@@ -38,13 +38,10 @@ import org.apache.log4j.Logger;
 public class DefaultEntityManager implements EntityManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(DefaultEntityManager.class);
+	private static final Logger LOGGER = Logger.getLogger(DefaultEntityManager.class);
 
 	/** maps the tile ids to the classes. */
 	private final Map<String, String> idToClass;
-
-	/** maps the creature tile-ids to the actual creature enums . */
-	private final Map<String, DefaultCreature> classToCreature;
 
 	/** maps the item names to the actual item enums. */
 	private final Map<String, DefaultItem> classToItem;
@@ -54,6 +51,8 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** lists all items that are being used at least once . */
 	private final Map<String, Item> createdItem;
+
+	private LowerCaseMap<DefaultCreature> classToCreature;
 
 	/** no public constructor. */
 	public DefaultEntityManager() {
@@ -71,7 +70,7 @@ public class DefaultEntityManager implements EntityManager {
 				final String clazz = item.getItemName();
 
 				if (classToItem.containsKey(clazz)) {
-					logger.warn("Repeated item name: " + clazz);
+					LOGGER.warn("Repeated item name: " + clazz);
 				}
 
 				classToItem.put(clazz, item);
@@ -79,11 +78,11 @@ public class DefaultEntityManager implements EntityManager {
 				WordList.getInstance().registerName(item.getItemName(), ExpressionType.OBJECT);
 			}
 		} catch (final Exception e) {
-			logger.error("items.xml could not be loaded", e);
+			LOGGER.error("items.xml could not be loaded", e);
 		}
 
 		// Build the creatures tables
-		classToCreature = new HashMap<String, DefaultCreature>();
+		classToCreature = new LowerCaseMap<DefaultCreature>();
 		createdCreature = new HashMap<String, Creature>();
 
 		try {
@@ -95,11 +94,11 @@ public class DefaultEntityManager implements EntityManager {
 				final String clazz = creature.getCreatureName();
 
 				if (classToCreature.containsKey(clazz)) {
-					logger.warn("Repeated creature name: " + clazz);
+					LOGGER.warn("Repeated creature name: " + clazz);
 				}
 
 				if (!creature.verifyItems(this)) {
-					logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
+					LOGGER.warn("Items dropped by creature name: " + clazz + " doesn't exists");
 				}
 
 				classToCreature.put(clazz, creature);
@@ -116,7 +115,7 @@ public class DefaultEntityManager implements EntityManager {
 		final String clazz = item.getItemName();
 
 		if (classToItem.containsKey(clazz)) {
-			logger.warn("Repeated item name: " + clazz);
+			LOGGER.warn("Repeated item name: " + clazz);
 			return false;
 		}
 
@@ -130,13 +129,12 @@ public class DefaultEntityManager implements EntityManager {
 		final String clazz = creature.getCreatureName();
 
 		if (classToCreature.containsKey(clazz)) {
-			logger.warn("Repeated creature name: " + clazz);
+			LOGGER.warn("Repeated creature name: " + clazz);
 		}
 
 		if (!creature.verifyItems(this)) {
-			logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
+			LOGGER.warn("Items dropped by creature name: " + clazz + " doesn't exists");
 		}
-
 		classToCreature.put(clazz, creature);
 		idToClass.put(id, clazz);
 
