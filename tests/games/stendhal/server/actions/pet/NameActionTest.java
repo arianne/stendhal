@@ -21,6 +21,7 @@ public class NameActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@AfterClass

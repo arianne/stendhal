@@ -5,9 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -15,6 +17,11 @@ import utilities.RPClass.ItemTestHelper;
 
 public class PlayerHasItemWithHimConditionTest {
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 	}

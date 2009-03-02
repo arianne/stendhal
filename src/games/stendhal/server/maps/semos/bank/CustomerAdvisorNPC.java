@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
@@ -90,6 +91,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 				entity.put("zoneid", "int_semos_bank");
 				entity.put("x", "9");
 				entity.put("y", "27");
+				
 				SingletonRepository.getRPWorld().removeZone(zone);
 			    }
 			}

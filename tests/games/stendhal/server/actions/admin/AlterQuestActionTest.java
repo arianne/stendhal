@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
@@ -18,7 +19,9 @@ public class AlterQuestActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
 		Log4J.init();
+		MockStendlRPWorld.get();
 		AlterQuestAction.register();
 	}
 

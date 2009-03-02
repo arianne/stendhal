@@ -68,6 +68,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private final List<Pair<RPEntity, Entity>> entityToKill;
 
+	private List<StendhalRPZone> zonesToRemove = new LinkedList<StendhalRPZone>();
+
 	public PlayerList getOnlinePlayers() {
 		return onlinePlayers;
 	}
@@ -265,6 +267,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		debugOutput();
 
 		try {
+			
+			destroyObsoleteZones();
+			
 			logNumberOfPlayersOnline();
 
 			handleKilledEntities();
@@ -280,6 +285,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} finally {
 			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
 		}
+	}
+
+	private void destroyObsoleteZones() {
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		for (StendhalRPZone zone : zonesToRemove) {
+			world.removeZone(zone);
+		}
+		
 	}
 
 	protected void logNumberOfPlayersOnline() {
@@ -530,6 +543,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				});
 			}
 		}
+	}
+
+	public void removeZone(StendhalRPZone zone) {
+		zonesToRemove.add(zone);
 	}
 
 }

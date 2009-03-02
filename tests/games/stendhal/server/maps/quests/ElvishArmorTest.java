@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.List;
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class ElvishArmorTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 
+		MockStendlRPWorld.get();
 		PlayerTestHelper.generateNPCRPClasses();
 		npc = new SpeakerNPC("Lupos");
 		npcEngine = npc.getEngine();
