@@ -54,7 +54,8 @@ public class PlayerSheepManager {
 				final RPObject object = slot.getFirst();
 				slot.remove(object.getID());
 				player.removeSlot("#flock");
-
+				object.put("x", player.getX());
+				object.put("y", player.getY());
 				return new Sheep(object, player);
 			}
 		}
