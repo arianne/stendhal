@@ -12,7 +12,7 @@ public abstract class FormatTextParser {
 		int i = 0;
 		for (String pieces : parts) {
 				if (i > 0) {
-					if (pieces.length()> 0) {
+					if (pieces.length() > 0) {
 						char terminator = ' ';
 		
 						// color quoted compound words like "#'iron sword'"
