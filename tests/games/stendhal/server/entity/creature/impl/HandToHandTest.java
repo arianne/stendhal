@@ -17,6 +17,9 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,7 +39,6 @@ public class HandToHandTest {
 	public void tearDown() throws Exception {
 	}
 
-	
 	@Test
 	public void testAttack() throws Exception {
 		MockStendhalRPRuleProcessor.get();
@@ -49,7 +51,7 @@ public class HandToHandTest {
 		hth.attack(creature);
 		verify(creature);
 	}
-	
+
 	@Test
 	public void testNotAttackTurnAttack() throws Exception {
 		MockStendhalRPRuleProcessor.get();
@@ -60,22 +62,22 @@ public class HandToHandTest {
 		hth.attack(creature);
 		verify(creature);
 	}
-	
+
 	@Test
 	public void testCanAttackNow() {
 		final HandToHand hth = new HandToHand();
-		final Creature creature = new Creature();	
+		final Creature creature = new Creature();
 		assertFalse("no target yet", hth.canAttackNow(creature));
 		final RPEntity victim = new RPEntity() {
 
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
-				
+
 			}
 
 			@Override
 			public void logic() {
-				
+
 			}
 		};
 		victim.put("id", 1);
@@ -83,12 +85,9 @@ public class HandToHandTest {
 		assertTrue("new ones stand on same positon", hth.canAttackNow(creature));
 		victim.setPosition(10, 10);
 		assertFalse("too far away", hth.canAttackNow(creature));
-		
-		
+
 	}
-	
-	
-	
+
 	@Test
 	public void testCanAttackNowBigCreature() {
 		final StendhalRPZone zone = new StendhalRPZone("hthtest");
@@ -104,7 +103,7 @@ public class HandToHandTest {
 		zone.add(creature);
 		zone.add(victim);
 		creature.setTarget(victim);
-		
+
 		for (int i = 9; i < 12; i++) {
 			for (int j = 9; j < 13; j++) {
 				victim.setPosition(i, j);
@@ -113,98 +112,120 @@ public class HandToHandTest {
 				assertTrue("can attack now (" + i + "," + j + ")", hth.canAttackNow(creature));
 			}
 		}
-		
-		
+
 		victim.setPosition(8, 13);
 		assertFalse(creature.nextTo(victim));
 		assertFalse(victim.nextTo(creature));
 		assertFalse("can attack now ", hth.canAttackNow(creature));
 
-		
-		
 	}
 
-	
 	private static boolean mockinvisible;
 
 	@Test
 	public void testhasValidTargetNonAttacker() {
 		HandToHand hth = new HandToHand();
-		
+
 		Creature nonAttacker = createMock(Creature.class);
 		expect(nonAttacker.isAttacking()).andReturn(false);
 		replay(nonAttacker);
-		
-		assertFalse(hth.hasValidTarget(nonAttacker));
+
+		assertFalse("attacker has no target", hth.hasValidTarget(nonAttacker));
 		verify(nonAttacker);
 	}
-	
+
 	@Test
-		public void testhasValidTargetInvisibleVictim() {
-		
+	public void testhasValidTargetInvisibleVictim() {
+
 		Creature victim = createMock(Creature.class);
 		expect(victim.isInvisibleToCreatures()).andReturn(true);
-		
-		
+
 		Creature attacker = createMock(Creature.class);
 		expect(attacker.isAttacking()).andReturn(true);
 		expect(attacker.getAttackTarget()).andReturn(victim);
-		
-		
+
 		replay(victim);
 		replay(attacker);
-		
+
 		HandToHand hth = new HandToHand();
-		assertFalse(hth.hasValidTarget(attacker));
-		
+		assertFalse("victim is invisible to attacker", hth
+				.hasValidTarget(attacker));
+
 	}
+
+	@Test
+	public void testhasValidTargetDifferentZones() {
+
+		StendhalRPZone zoneA = new StendhalRPZone("A");
+		StendhalRPZone zoneB = new StendhalRPZone("B");
+
+		RPEntity victim = createMock(RPEntity.class);
+		expect(victim.isInvisibleToCreatures()).andReturn(false);
+		expect(victim.getZone()).andReturn(zoneA);
+
+		Creature attacker = createMock(Creature.class);
+		expect(attacker.isAttacking()).andReturn(true);
+		expect(attacker.getAttackTarget()).andReturn(victim);
+
+		expect(attacker.getZone()).andReturn(zoneB);
+
+		replay(victim);
+		replay(attacker);
+
+		HandToHand hth = new HandToHand();
+		assertFalse("attacker and victim are in different zones", hth.hasValidTarget(attacker));
+
+	}
+
 	@Test
 	public void testhasValidTargetvisibleVictim() {
-	
-	StendhalRPZone zoneA = new StendhalRPZone("A");
-	StendhalRPZone zoneB = new StendhalRPZone("B");
-		
-		
-	RPEntity victim = createMock(RPEntity.class);
-	expect(victim.isInvisibleToCreatures()).andReturn(false);
-	expect(victim.getZone()).andReturn(zoneA);
-	
-	Creature attacker = createMock(Creature.class);
-	expect(attacker.isAttacking()).andReturn(true);
-	expect(attacker.getAttackTarget()).andReturn(victim);
-	
-	expect(attacker.getZone()).andReturn(zoneB);
-	
-	replay(victim);
-	replay(attacker);
-	
-	HandToHand hth = new HandToHand();
-	assertFalse(hth.hasValidTarget(attacker));
-	
-}
-	
-	
+		ID id = new RPObject.ID(1, "zone");
+		StendhalRPZone zone = createMock(StendhalRPZone.class);
+		expect(zone.has(id)).andReturn(false);
+
+		RPEntity victim = createMock(RPEntity.class);
+		expect(victim.isInvisibleToCreatures()).andReturn(false);
+		expect(victim.getZone()).andReturn(zone);
+		expect(victim.getID()).andReturn(id);
+
+		Creature attacker = createMock(Creature.class);
+		expect(attacker.isAttacking()).andReturn(true);
+		expect(attacker.getAttackTarget()).andReturn(victim);
+
+		expect(attacker.getZone()).andReturn(zone).times(2);
+
+		replay(victim);
+		replay(attacker);
+		replay(zone);
+
+		HandToHand hth = new HandToHand();
+		assertFalse("victims id is not in attacker's zone", hth
+				.hasValidTarget(attacker));
+
+	}
+
 	@Test
 	public void testHasValidTarget() {
 		final StendhalRPZone zone = new StendhalRPZone("hthtest");
-		
+
 		final HandToHand hth = new HandToHand();
-		final Creature creature = new Creature();	
+		final Creature creature = new Creature();
 		assertFalse("is not attacking", hth.hasValidTarget(creature));
 		final RPEntity victim = new RPEntity() {
-		
+
 			@Override
 			public boolean isInvisibleToCreatures() {
 				return mockinvisible;
 			}
+
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
-				
+
 			}
 
 			@Override
 			public void logic() {
-				
+
 			}
 		};
 		victim.put("id", 1);
@@ -218,7 +239,7 @@ public class HandToHandTest {
 		assertFalse("not in same zone", hth.hasValidTarget(creature));
 		zone.add(creature);
 		assertFalse("in same zone, on same spot and dead", hth.hasValidTarget(creature));
-		
+
 		creature.setTarget(victim);
 		victim.setHP(1);
 		assertTrue("in same zone, on same spot", hth.hasValidTarget(creature));
@@ -227,10 +248,9 @@ public class HandToHandTest {
 		assertTrue("in same zone, not too far away", hth.hasValidTarget(creature));
 		victim.setPosition(13, 0);
 		assertFalse("in same zone, too far away", hth.hasValidTarget(creature));
-		
 
 	}
-	
+
 	@Test
 	public void testFindNewtarget() throws Exception {
 		MockStendhalRPRuleProcessor.get();
@@ -239,13 +259,12 @@ public class HandToHandTest {
 		assertFalse(lonesomeCreature.isAttacking());
 		hth.findNewTarget(lonesomeCreature);
 		assertFalse(lonesomeCreature.isAttacking());
-		
-		
+
 		final Creature creature = createMock(Creature.class);
 		expect(creature.getNearestEnemy(7)).andReturn(creature);
 		creature.setTarget(creature);
 		replay(creature);
-		
+
 		hth.findNewTarget(creature);
 
 		verify(creature);
