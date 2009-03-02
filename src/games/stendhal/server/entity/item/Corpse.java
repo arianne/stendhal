@@ -15,6 +15,7 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
@@ -33,7 +34,7 @@ import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
-public class Corpse extends PassiveEntity implements TurnListener,
+public class Corpse extends PassiveEntity implements 
 		EquipListener {
 	/**
 	 * The killer's name attribute name.
@@ -57,6 +58,24 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			/ MAX_STAGE;
 
 	private int stage;
+
+	private TurnListener turnlistener = new TurnListener() {
+
+		public void onTurnReached(final int currentTurn) {
+			
+			Corpse.this.onTurnReached(currentTurn);
+			
+		}
+		
+		
+	};
+	
+	@Override
+	public void onRemoved(final StendhalRPZone zone) {
+		System .out.println("onremoved called");
+		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
+		super.onRemoved(zone);
+	}
 
 	public static void generateRPClass() {
 		final RPClass entity = new RPClass("corpse");
@@ -164,7 +183,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
 				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
-		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this.turnlistener);
 		stage = 0;
 		put("stage", stage);
 
@@ -254,7 +273,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			}
 
 		} else {
-			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
+			
+			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this.turnlistener);
 		}
 	}
 

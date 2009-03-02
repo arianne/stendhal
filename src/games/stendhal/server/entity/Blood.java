@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
@@ -23,7 +24,7 @@ import marauroa.common.game.Definition.Type;
  * Represents a blood puddle that is left on the ground after an entity was
  * injured or killed.
  */
-public class Blood extends PassiveEntity implements TurnListener {
+public class Blood extends PassiveEntity {
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
@@ -36,6 +37,21 @@ public class Blood extends PassiveEntity implements TurnListener {
 		blood.addAttribute("amount", Type.BYTE);
 	}
 
+	private TurnListener turnlistener = new TurnListener() {
+
+		public void onTurnReached(final int currentTurn) {
+			Blood.this.onTurnReached(currentTurn);
+			
+		}
+		
+	};
+
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
+		super.onRemoved(zone);
+	}
+	
 	/**
 	 * Create a blood entity.
 	 */
@@ -57,7 +73,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		setEntityClass(clazz);
 		put("amount", amount);
 
-		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this.turnlistener);
 	}
 
 	//
