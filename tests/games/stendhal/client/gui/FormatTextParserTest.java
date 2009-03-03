@@ -1,8 +1,6 @@
 package games.stendhal.client.gui;
 
-import static org.junit.Assert.*;
 import games.stendhal.client.FormatTextParserExtension;
-import games.stendhal.client.GameScreen;
 
 import org.junit.After;
 import org.junit.AfterClass;
