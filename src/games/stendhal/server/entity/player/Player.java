@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import static games.stendhal.common.constants.Actions.*;
+
 import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
@@ -48,36 +50,8 @@ import marauroa.common.game.SyntaxException;
 import org.apache.log4j.Logger;
 
 public class Player extends RPEntity {
-	/**
-	 * The admin level attribute name.
-	 */
-	protected static final String ATTR_ADMINLEVEL = "adminlevel";
-
-	/**
-	 * The away message attribute name.
-	 */
-	protected static final String ATTR_AWAY = "away";
-
-	/**
-	 * The ghostmode attribute name.
-	 */
-	protected static final String ATTR_GHOSTMODE = "ghostmode";
-
-	/**
-	 * The attack invisible attribute name.
-	 */
-	protected static final String ATTR_INVISIBLE = "invisible";
-
-	/**
-	 * The grumpy attribute name.
-	 */
-	protected static final String ATTR_GRUMPY = "grumpy";
-	/**
-	 * The teleclick mode attribute name.
-	 */
-	protected static final String ATTR_TELECLICKMODE = "teleclickmode";
 	
-	private static final String LASTPLAYERKILL = "last_player_kill_time";
+	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
@@ -169,13 +143,13 @@ public class Player extends RPEntity {
 		player.stop();
 		player.stopAttack();
 
-		if (player.has(ATTR_AWAY)) {
-			player.remove(ATTR_AWAY);
+		if (player.has(AWAY)) {
+			player.remove(AWAY);
 		}
 		// remove grumpy on login to give postman a chance to deliver messages
 		// (and in the hope that player is receptive now)
-		if (player.has(ATTR_GRUMPY)) {
-			player.remove(ATTR_GRUMPY);
+		if (player.has(GRUMPY)) {
+			player.remove(GRUMPY);
 		}
 
 		PlayerRPClass.readAdminsFromFile(player);
@@ -395,8 +369,8 @@ public class Player extends RPEntity {
 	 * @return The away message, or <code>null</code> if unset.
 	 */
 	public String getAwayMessage() {
-		if (has(ATTR_AWAY)) {
-			return get(ATTR_AWAY);
+		if (has(AWAY)) {
+			return get(AWAY);
 		} else {
 			return null;
 		}
@@ -410,9 +384,9 @@ public class Player extends RPEntity {
 	 */
 	public void setAwayMessage(final String message) {
 		if (message != null) {
-			put(ATTR_AWAY, message);
-		} else if (has(ATTR_AWAY)) {
-			remove(ATTR_AWAY);
+			put(AWAY, message);
+		} else if (has(AWAY)) {
+			remove(AWAY);
 		}
 
 		resetAwayReplies();
@@ -458,8 +432,8 @@ public class Player extends RPEntity {
 	 * @return The grumpy message, or <code>null</code> if unset.
 	 */
 	public String getGrumpyMessage() {
-		if (has(ATTR_GRUMPY)) {
-			return get(ATTR_GRUMPY);
+		if (has(GRUMPY)) {
+			return get(GRUMPY);
 		} else {
 			return null;
 		}
@@ -473,9 +447,9 @@ public class Player extends RPEntity {
 	 */
 	public void setGrumpyMessage(final String message) {
 		if (message != null) {
-			put(ATTR_GRUMPY, message);
-		} else if (has(ATTR_GRUMPY)) {
-			remove(ATTR_GRUMPY);
+			put(GRUMPY, message);
+		} else if (has(GRUMPY)) {
+			remove(GRUMPY);
 		}
 
 	}
@@ -890,7 +864,7 @@ public class Player extends RPEntity {
 	 */
 	@Override
 	public boolean isInvisibleToCreatures() {
-		return has(ATTR_INVISIBLE);
+		return has(INVISIBLE);
 	}
 
 	/**
@@ -901,9 +875,9 @@ public class Player extends RPEntity {
 	 */
 	public void setInvisible(final boolean invisible) {
 		if (invisible) {
-			put(ATTR_INVISIBLE, "");
-		} else if (has(ATTR_INVISIBLE)) {
-			remove(ATTR_INVISIBLE);
+			put(INVISIBLE, "");
+		} else if (has(INVISIBLE)) {
+			remove(INVISIBLE);
 		}
 	}
 
@@ -959,10 +933,10 @@ public class Player extends RPEntity {
 	 */
 	public int getAdminLevel() {
 		// normal user are adminlevel 0.
-		if (!has(ATTR_ADMINLEVEL)) {
+		if (!has(ADMINLEVEL)) {
 			return 0;
 		}
-		return getInt(ATTR_ADMINLEVEL);
+		return getInt(ADMINLEVEL);
 	}
 
 	/**
@@ -972,7 +946,7 @@ public class Player extends RPEntity {
 	 *            The new admin level.
 	 */
 	public void setAdminLevel(final int adminlevel) {
-		put(ATTR_ADMINLEVEL, adminlevel);
+		put(ADMINLEVEL, adminlevel);
 	}
 
 	@Override
@@ -1687,7 +1661,7 @@ public class Player extends RPEntity {
 	 */
 	@Override
 	public boolean isGhost() {
-		return has(ATTR_GHOSTMODE);
+		return has(GHOSTMODE);
 	}
 
 	/**
@@ -1698,9 +1672,9 @@ public class Player extends RPEntity {
 	 */
 	public void setGhost(final boolean ghost) {
 		if (ghost) {
-			put(ATTR_GHOSTMODE, "");
-		} else if (has(ATTR_GHOSTMODE)) {
-			remove(ATTR_GHOSTMODE);
+			put(GHOSTMODE, "");
+		} else if (has(GHOSTMODE)) {
+			remove(GHOSTMODE);
 		}
 	}
 
@@ -1710,7 +1684,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if teleclick is enabled.
 	 */
 	public boolean isTeleclickEnabled() {
-		return has(ATTR_TELECLICKMODE);
+		return has(TELECLICKMODE);
 	}
 
 	/**
@@ -1721,9 +1695,9 @@ public class Player extends RPEntity {
 	 */
 	public void setTeleclickEnabled(final boolean teleclick) {
 		if (teleclick) {
-			put(ATTR_TELECLICKMODE, "");
-		} else if (has(ATTR_TELECLICKMODE)) {
-			remove(ATTR_TELECLICKMODE);
+			put(TELECLICKMODE, "");
+		} else if (has(TELECLICKMODE)) {
+			remove(TELECLICKMODE);
 		}
 	}
 
@@ -1912,11 +1886,11 @@ public class Player extends RPEntity {
 		return isImmune;
 	}
 	void setLastPlayerKill(final long milliseconds) {
-		put(LASTPLAYERKILL, milliseconds);
+		put(LAST_PLAYER_KILL_TIME, milliseconds);
 	}
 
 	public boolean isBadBoy() {
-		return has(LASTPLAYERKILL);
+		return has(LAST_PLAYER_KILL_TIME);
 	}
 
 	/**
@@ -1925,14 +1899,14 @@ public class Player extends RPEntity {
 	 * @return time in milliseconds
 	 */
 	public long getLastPlayerKillTime() {
-		if (has(LASTPLAYERKILL)) {
-			return (long) Float.parseFloat(get(LASTPLAYERKILL));
+		if (has(LAST_PLAYER_KILL_TIME)) {
+			return (long) Float.parseFloat(get(LAST_PLAYER_KILL_TIME));
 		}
 		return -1;
 	}
 
 	public void rehabilitate() {
-		remove(LASTPLAYERKILL);
+		remove(LAST_PLAYER_KILL_TIME);
 		
 	}
 	
