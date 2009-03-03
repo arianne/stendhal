@@ -47,7 +47,7 @@ public class Blood extends PassiveEntity {
 	};
 
 	@Override
-	public void onRemoved(StendhalRPZone zone) {
+	public void onRemoved(final StendhalRPZone zone) {
 		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
 		super.onRemoved(zone);
 	}

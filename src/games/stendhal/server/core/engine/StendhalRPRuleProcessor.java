@@ -290,8 +290,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private void destroyObsoleteZones() {
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (StendhalRPZone zone : zonesToRemove) {
+			zone.onRemoved();
 			world.removeZone(zone);
 		}
+		zonesToRemove.clear();
 		
 	}
 
@@ -545,7 +547,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	public void removeZone(StendhalRPZone zone) {
+	public void removeZone(final StendhalRPZone zone) {
 		zonesToRemove.add(zone);
 	}
 

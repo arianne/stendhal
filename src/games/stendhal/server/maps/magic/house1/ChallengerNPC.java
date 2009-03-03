@@ -5,8 +5,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -31,7 +29,6 @@ import games.stendhal.server.maps.deathmatch.Spot;
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -88,13 +85,8 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 					entity.put("x", "12");
 					entity.put("y", "3");
 					// iterate through all items left in the zone and for the listeners, stop them listening before we remove the zone
-					for (RPObject inspected : zone) {				
-						if (inspected instanceof TurnListener) {
-							TurnListener listener = (TurnListener) inspected;
-							TurnNotifier.get().dontNotify(listener);
-						}
-					}
-					SingletonRepository.getRPWorld().removeZone(zone);
+					
+					SingletonRepository.getRuleProcessor().removeZone(zone);
 
 			    }
 			}

@@ -158,7 +158,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		collisionMap.init(width, height);
 	}
 
-	public StendhalRPZone(String name, StendhalRPZone zone) {
+	public StendhalRPZone(final String name, final StendhalRPZone zone) {
 		this(name);
 		contents.addAll(zone.contents);
 		collisionMap = zone.collisionMap;
@@ -1284,6 +1284,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void disallowOut() {
 		teleRules.disallowOut();
 		
+	}
+
+	public void onRemoved() {
+		for (RPObject inspected : this) {
+			if (inspected instanceof ActiveEntity) {
+				((ActiveEntity) inspected).onRemoved(this);
+			}
+		}
 	}
 	
 }
