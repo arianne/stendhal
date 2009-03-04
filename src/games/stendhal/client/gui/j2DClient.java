@@ -66,7 +66,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -113,7 +112,7 @@ public class j2DClient {
 
 	private GameScreen screen;
 
-	private Canvas ground;
+	private Canvas groundCanvas;
 
 	private JLayeredPane pane;
 
@@ -201,11 +200,12 @@ public class j2DClient {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
+		
+		
 		mainFrame = new MainFrame();
 
-		positionChangeListener = new PositionChangeMulticaster();
-
-		final Container content = mainFrame.getMainFrame().getContentPane();
+	
+		final Container mainFrameContentPane = mainFrame.getMainFrame().getContentPane();
 
 
 		/*
@@ -219,10 +219,10 @@ public class j2DClient {
 		/*
 		 * Wrap canvas in panel that can has setPreferredSize()
 		 */
-		final JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setPreferredSize(stendhal.screenSize);
-		pane.add(panel, JLayeredPane.DEFAULT_LAYER);
+		final JPanel groundPanel = new JPanel();
+		groundPanel.setLayout(null);
+		groundPanel.setPreferredSize(stendhal.screenSize);
+		pane.add(groundPanel, JLayeredPane.DEFAULT_LAYER);
 
 		/*
 		 * Setup our rendering canvas
@@ -230,24 +230,25 @@ public class j2DClient {
 
 	
 	
-			ground = new Canvas();
-			ground.setBounds(0, 0, getWidth(), getHeight());
+			groundCanvas = new Canvas();
+			groundCanvas.setBounds(0, 0, getWidth(), getHeight());
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
-		ground.setIgnoreRepaint(true);
-		panel.add(ground);
-		panel.validate();
-		content.add(pane, BorderLayout.CENTER);
+		groundCanvas.setIgnoreRepaint(true);
+		groundPanel.add(groundCanvas);
+		groundPanel.validate();
+		mainFrameContentPane.add(pane, BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
+		
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		content.add(chatText.getPlayerChatText(), BorderLayout.SOUTH);
-		content.validate();
+		mainFrameContentPane.add(chatText.getPlayerChatText(), BorderLayout.SOUTH);
+		mainFrameContentPane.validate();
 		/*
 		 * Always redirect focus to chat field
 		 */
-		ground.addFocusListener(new FocusListener() {
+		groundCanvas.addFocusListener(new FocusListener() {
 			public void focusGained(final FocusEvent e) {
 				chatText.getPlayerChatText().requestFocus();
 			}
@@ -294,67 +295,56 @@ public class j2DClient {
 		gameLog = new KTextEdit();
 		gameLog.setPreferredSize(new Dimension(getWidth(), 171));
 
-		if (System.getProperty("stendhal.onewindow") != null) {
-			content.add(gameLog);
-			mainFrame.getMainFrame().pack();
-		} else if ((System.getProperty("stendhal.onewindowtitle") != null)
-				|| (System.getProperty("stendhal.refactoringguiui") != null)) {
-			final JLabel header = new JLabel();
-			header.setText("Game Chat and Events Log");
-			header.setFont(new java.awt.Font("Dialog", 3, 14));
-			content.add(header);
-			content.add(gameLog);
-			mainFrame.getMainFrame().pack();
-		} else {
-			/*
-			 * In own window
-			 */
-			final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
-					"Game chat and events log");
+	
+		/*
+		 * In own window
+		 */
+		final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
+				"Game chat and events log");
 
-			final Container dialogContent = dialog.getContentPane();
-			dialogContent.setLayout(new BoxLayout(dialogContent, BoxLayout.Y_AXIS));
-			dialogContent.add(gameLog);
+		final Container dialogContent = dialog.getContentPane();
+		dialogContent.setLayout(new BoxLayout(dialogContent, BoxLayout.Y_AXIS));
+		dialogContent.add(gameLog);
 
-			dialog.addFocusListener(new FocusListener() {
-				public void focusGained(final FocusEvent e) {
-					chatText.getPlayerChatText().requestFocus();
-				}
+		dialog.addFocusListener(new FocusListener() {
+			public void focusGained(final FocusEvent e) {
+				chatText.getPlayerChatText().requestFocus();
+			}
 
-				public void focusLost(final FocusEvent e) {
-				}
-			});
+			public void focusLost(final FocusEvent e) {
+			}
+		});
 
-			dialog.pack();
+		dialog.pack();
 
-			/*
-			 * Move tracker
-			 */
-			mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
-				@Override
-				public void componentShown(final ComponentEvent e) {
-					final Rectangle bounds = mainFrame.getMainFrame().getBounds();
+		/*
+		 * Move tracker
+		 */
+		mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(final ComponentEvent e) {
+				final Rectangle bounds = mainFrame.getMainFrame().getBounds();
 
-					dialog.setLocation(bounds.x, bounds.y + bounds.height);
+				dialog.setLocation(bounds.x, bounds.y + bounds.height);
 
-					dialog.setVisible(true);
-				}
+				dialog.setVisible(true);
+			}
 
-				@Override
-				public void componentMoved(final ComponentEvent e) {
-					final Rectangle bounds = mainFrame.getMainFrame().getBounds();
+			@Override
+			public void componentMoved(final ComponentEvent e) {
+				final Rectangle bounds = mainFrame.getMainFrame().getBounds();
 
-					dialog.setLocation(bounds.x, bounds.y + bounds.height);
-				}
-			});
-		}
+				dialog.setLocation(bounds.x, bounds.y + bounds.height);
+			}
+		});
+		
 
 		final KeyListener keyListener = new GameKeyHandler();
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		chatText.addKeyListener(keyListener);
-		ground.addKeyListener(keyListener);
+		groundCanvas.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
@@ -368,14 +358,15 @@ public class j2DClient {
 
 		
 
-		screen = new GameScreen(client, ground);
+		screen = new GameScreen(client, groundCanvas);
 
 		GameScreen.setDefaultScreen(screen);
 		client.setScreen(screen);
+		positionChangeListener = new PositionChangeMulticaster();
 
 		positionChangeListener.add(screen);
 
-		mainFrame.getMainFrame().toFront();
+	
 
 		/*
 		 * In-screen dialogs
@@ -403,7 +394,7 @@ public class j2DClient {
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 		
 		createAndAddOldBuddies(gameScreen);
-		createAndAddNewBuddy(content);
+		createAndAddNewBuddy(mainFrameContentPane);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -413,6 +404,7 @@ public class j2DClient {
 		mainFrame.getMainFrame().pack();
 		mainFrame.getMainFrame().setVisible(true);
 		mainFrame.getMainFrame().setResizable(false);
+		mainFrame.getMainFrame().toFront();
 		directionRelease = null;
 	
 
