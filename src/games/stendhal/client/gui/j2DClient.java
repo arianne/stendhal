@@ -18,7 +18,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.PerceptionListenerImpl;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.World;
 import games.stendhal.client.stendhal;
@@ -79,7 +78,30 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient extends StendhalUI {
+public class j2DClient {
+	/**
+	 * A shared [singleton] copy.
+	 */
+	private static j2DClient sharedUI;
+	
+	/**
+	 * Get the default UI.
+	 * @return  the instance
+	 *
+	 *
+	 */
+	public static j2DClient get() {
+		return sharedUI;
+	}
+	/**
+	 * Set the shared [singleton] value.
+	 *
+	 * @param sharedUI
+	 *            The stendhal UI.
+	 */
+	public static void setDefault(final j2DClient sharedUI) {
+		j2DClient.sharedUI = sharedUI;
+	}
 
 
 	private static final long serialVersionUID = 3356310866399084117L;
@@ -144,7 +166,6 @@ public class j2DClient extends StendhalUI {
 
 	private final IPerceptionListener perceptionListener = new PerceptionListenerImpl() {
 		int times;
-		@Override
 		public void onSynced() {
 			setOffline(false);
 			times = 0;
@@ -154,7 +175,6 @@ public class j2DClient extends StendhalUI {
 			
 		}
 		
-		@Override
 		public void onUnsynced() {
 			times++;
 
@@ -167,18 +187,23 @@ public class j2DClient extends StendhalUI {
 		}
 	};
 
+	/**
+	 * The stendhal client.
+	 */
+	protected StendhalClient client;
+
 	private static final boolean newCode = (System.getProperty("stendhal.newgui") != null);
 
 	/**
 	 * A constructor for JUnit tests.
 	 */
 	public j2DClient() {
-		super(null);
+		
 		setDefault(this);
 	}
 
 	public j2DClient(final StendhalClient client, final IGameScreen gameScreen, final UserContext userContext) {
-		super(client);
+		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
 		mainFrame = new MainFrame();
@@ -240,12 +265,10 @@ public class j2DClient extends StendhalUI {
 		 * Handle focus assertion and window closing
 		 */
 		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
-			@Override
 			public void windowOpened(final WindowEvent ev) {
 				chatText.getPlayerChatText().requestFocus();
 			}
 
-			@Override
 			public void windowActivated(final WindowEvent ev) {
 				chatText.getPlayerChatText().requestFocus();
 			}
@@ -773,7 +796,6 @@ public class j2DClient extends StendhalUI {
 	/**
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
-	@Override
 	public void shutdown() {
 		gameRunning = false;
 
@@ -794,7 +816,6 @@ public class j2DClient extends StendhalUI {
 	 * @throws IllegalArgumentException
 	 *             If an unsupported ManagedWindow is given.
 	 */
-	@Override
 	public void addWindow(final ManagedWindow mw) {
 		if (mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
@@ -811,7 +832,6 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return Returns <code>true</code> if down.
 	 */
-	@Override
 	public boolean isAltDown() {
 		return altDown;
 	}
@@ -821,7 +841,6 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return Returns <code>true</code> if down.
 	 */
-	@Override
 	public boolean isCtrlDown() {
 		return ctrlDown;
 	}
@@ -831,20 +850,18 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return Returns <code>true</code> if down.
 	 */
-	@Override
 	public boolean isShiftDown() {
 		return shiftDown;
 	}
 
 	//
-	// StendhalUI
+	// j2DClient
 	//
 
 	/**
 	 * Add an event line.
 	 *
 	 */
-	@Override
 	public void addEventLine(final EventLine line) {
 		gameLog.addLine(line);
 	}
@@ -852,7 +869,6 @@ public class j2DClient extends StendhalUI {
 	/**
 	 * Initiate outfit selection by the user.
 	 */
-	@Override
 	public void chooseOutfit() {
 		int outfit;
 
@@ -869,7 +885,6 @@ public class j2DClient extends StendhalUI {
 		dialog.setVisible(true);
 	}
 
-	@Override
 	public void manageGuilds() {
 		final GuildManager gm = new GuildManager();
 		gm.setVisible(true);
@@ -880,7 +895,6 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return The height.
 	 */
-	@Override
 	public int getHeight() {
 		return (int) stendhal.screenSize.getHeight();
 	}
@@ -890,7 +904,6 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return The game screen.
 	 */
-	@Override
 	public IGameScreen getScreen() {
 		return screen;
 	}
@@ -900,7 +913,6 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return The width.
 	 */
-	@Override
 	public int getWidth() {
 		return (int) stendhal.screenSize.getWidth();
 	}
@@ -913,7 +925,6 @@ public class j2DClient extends StendhalUI {
 	 * @param text
 	 *            The text.
 	 */
-	@Override
 	public void setChatLine(final String text) {
 		chatText.setChatLine(text);
 		
@@ -931,7 +942,6 @@ public class j2DClient extends StendhalUI {
 	 * @param y
 	 *            The user's Y coordinate.
 	 */
-	@Override
 	public void setPosition(final double x, final double y, final IGameScreen gameSreen) {
 		positionChangeListener.positionChanged(x, y);
 	}
@@ -942,7 +952,6 @@ public class j2DClient extends StendhalUI {
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
-	@Override
 	public void setOffline(final boolean offline) {
 		screen.setOffline(offline);
 	}
@@ -1058,7 +1067,6 @@ public class j2DClient extends StendhalUI {
 
 
 
-	@Override
 	public void requestQuit() {
 		quitDialog.requestQuit();
 
@@ -1067,5 +1075,14 @@ public class j2DClient extends StendhalUI {
 	public IPerceptionListener getPerceptionListener() {
 		
 		return perceptionListener;
+	}
+
+	/**
+	 * Get the client.
+	 *
+	 * @return The client.
+	 */
+	public StendhalClient getClient() {
+		return client;
 	}
 }

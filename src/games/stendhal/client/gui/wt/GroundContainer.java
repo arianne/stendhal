@@ -15,7 +15,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
@@ -46,7 +46,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	/**
 	 * The UI.
 	 */
-	private final StendhalUI ui;
+	private final j2DClient ui;
 
 	/** the game screen. */
 	private final IGameScreen screen;
@@ -66,7 +66,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		this.client = client;
 		this.screen = gameScreen;
 
-		ui = StendhalUI.get();
+		ui = j2DClient.get();
 	}
 
 	/** drags an item from the ground . */

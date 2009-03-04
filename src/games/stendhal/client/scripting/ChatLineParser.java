@@ -1,7 +1,7 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
@@ -33,7 +33,7 @@ public abstract class ChatLineParser {
 			final String[] params = command.getParams();
 
 			if (command.hasError()) {
-				StendhalUI.get().addEventLine(new HeaderLessEventLine(command.getErrorString(),
+				j2DClient.get().addEventLine(new HeaderLessEventLine(command.getErrorString(),
 						NotificationType.ERROR));
 				return false;
 			}

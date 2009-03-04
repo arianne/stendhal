@@ -6,7 +6,7 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.HelpDialog;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
@@ -25,7 +25,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	 * @param gbh 
 	 * @param ui */
 	public GameButtonHelperContent(final SettingsPanel sp, final GameButtonHelper gbh,
-			final StendhalUI ui) { 
+			final j2DClient ui) { 
 		// settings panel for the setVisable stuff
 		initComponents();
 		

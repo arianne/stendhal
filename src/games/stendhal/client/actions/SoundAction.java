@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
@@ -40,7 +40,7 @@ class SoundAction implements SlashAction {
 			}
 
 			if ((vol < 0) || (vol > 100)) {
-				StendhalUI.get().addEventLine(new StandardEventLine(
+				j2DClient.get().addEventLine(new StandardEventLine(
 						"Volume must be an integer between 0 and 100"));
 			} else {
 				WtWindowManager.getInstance().setProperty("sound.volume",

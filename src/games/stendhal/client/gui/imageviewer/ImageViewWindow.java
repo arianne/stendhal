@@ -1,6 +1,6 @@
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 
@@ -43,7 +43,7 @@ public class ImageViewWindow extends InternalManagedDialog {
 	public void init() {
 		final ImageViewPanel ivp = new ImageViewPanel(this, url, alt);
 		setContent(ivp);
-		StendhalUI.get().addWindow(this);
+		j2DClient.get().addWindow(this);
 		final Point center = genCenterPoint();
 		this.moveTo(center.x, center.y);
 		view();

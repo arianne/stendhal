@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 
 /**
  * Quit the client.
@@ -18,7 +18,7 @@ class QuitAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		StendhalUI.get().requestQuit();
+		j2DClient.get().requestQuit();
 
 		return true;
 	}

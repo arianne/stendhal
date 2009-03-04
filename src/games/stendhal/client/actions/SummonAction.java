@@ -1,7 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.NameBuilder;
@@ -50,7 +50,7 @@ class SummonAction implements SlashAction {
         					nameBuilder.append(str);
         				}
         			} catch (final NumberFormatException e) {
-        				StendhalUI.get().addEventLine(new StandardEventLine("Invalid number: " + str));
+        				j2DClient.get().addEventLine(new StandardEventLine("Invalid number: " + str));
         				return true;
         			}
     			} else {

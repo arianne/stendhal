@@ -18,7 +18,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -44,7 +44,7 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Buddies extends WtPanel {
-	private final StendhalUI ui;
+	private final j2DClient ui;
 
 	// private StendhalClient client;
 
@@ -59,7 +59,7 @@ public class Buddies extends WtPanel {
 	 * @param gameScreen 
 	 * 			 The gameScreen to paint on.
 	 */
-	public Buddies(final StendhalUI ui, final IGameScreen gameScreen) {
+	public Buddies(final j2DClient ui, final IGameScreen gameScreen) {
 		super("buddies", ui.getWidth() - 132, 265, 132, 200, gameScreen);
 
 		this.ui = ui;

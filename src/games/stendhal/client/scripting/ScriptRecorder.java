@@ -1,6 +1,6 @@
 package games.stendhal.client.scripting;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 
@@ -34,7 +34,7 @@ public class ScriptRecorder {
 		this.classname = classname;
 		filename = System.getProperty("java.io.tmpdir") + "/" + classname
 				+ ".java";
-		StendhalUI.get().addEventLine(new StandardEventLine("Starting recoding to " + filename));
+		j2DClient.get().addEventLine(new StandardEventLine("Starting recoding to " + filename));
 		lastTimestamp = 0;
 		ps = new PrintStream(filename);
 	}
@@ -97,6 +97,6 @@ public class ScriptRecorder {
 		ps.println("\t}");
 		ps.println("}");
 		ps.close();
-		StendhalUI.get().addEventLine(new StandardEventLine("Stopping recoding to " + filename));
+		j2DClient.get().addEventLine(new StandardEventLine("Stopping recoding to " + filename));
 	}
 }

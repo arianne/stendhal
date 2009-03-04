@@ -10,7 +10,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.EntityChangeListener;
@@ -745,7 +745,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			break;
 
 		case ADMIN_ALTER:
-			StendhalUI.get().setChatLine("/alter #" + id + " ");
+			j2DClient.get().setChatLine("/alter #" + id + " ");
 			break;
 
 		default:

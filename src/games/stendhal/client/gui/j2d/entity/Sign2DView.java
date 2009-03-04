@@ -154,9 +154,9 @@ class Sign2DView extends Entity2DView {
 		 * 
 		 * if (text.contains("\n")) { // The sign's text has multiple lines. Add
 		 * a linebreak after // "you read" so that it is easier readable.
-		 * StendhalUI.get().addEventLine("You read:\n\"" + text + "\"",
+		 * j2DClient.get().addEventLine("You read:\n\"" + text + "\"",
 		 * NotificationType.RESPONSE); } else {
-		 * StendhalUI.get().addEventLine("You read: \"" + text + "\"",
+		 * j2DClient.get().addEventLine("You read: \"" + text + "\"",
 		 * NotificationType.RESPONSE); } break;
 		 */
 

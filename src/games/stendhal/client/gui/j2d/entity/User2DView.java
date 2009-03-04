@@ -7,7 +7,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
@@ -102,7 +102,7 @@ class User2DView extends Player2DView {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_POSITION) {
-			StendhalUI.get().setPosition(user.getX(), user.getY(),
+			j2DClient.get().setPosition(user.getX(), user.getY(),
 					GameScreen.get());
 		}
 	}
@@ -123,11 +123,11 @@ class User2DView extends Player2DView {
 
 		switch (at) {
 		// case JOIN_GUILD:
-		// StendhalUI.get().manageGuilds();
+		// j2DClient.get().manageGuilds();
 		// break;
 
 		case SET_OUTFIT:
-			StendhalUI.get().chooseOutfit();
+			j2DClient.get().chooseOutfit();
 			break;
 
 		case LEAVE_SHEEP:

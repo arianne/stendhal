@@ -10,7 +10,7 @@ package games.stendhal.client.gui.wt;
 //
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 import games.stendhal.client.sprite.Sprite;
@@ -43,7 +43,7 @@ public class BuddyListPanel extends JPanel {
 	/**
 	 * The UI.
 	 */
-	protected StendhalUI ui;
+	protected j2DClient ui;
 
 	/**
 	 * The online icon image.
@@ -64,7 +64,7 @@ public class BuddyListPanel extends JPanel {
 	 * Create a buddy list panel.
 	 * @param ui the user Interface
 	 */
-	public BuddyListPanel(final StendhalUI ui) {
+	public BuddyListPanel(final j2DClient ui) {
 		this.ui = ui;
 
 		setOpaque(false);

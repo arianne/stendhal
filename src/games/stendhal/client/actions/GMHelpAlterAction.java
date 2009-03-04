@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
@@ -29,7 +29,7 @@ class GMHelpAlterAction implements SlashAction {
 				"This will make <testplayer> look like danter" };
 
 		for (final String line : lines) {
-			StendhalUI.get().addEventLine(new HeaderLessEventLine(line, NotificationType.CLIENT));
+			j2DClient.get().addEventLine(new HeaderLessEventLine(line, NotificationType.CLIENT));
 		}
 
 		return true;

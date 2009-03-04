@@ -20,7 +20,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
@@ -78,7 +78,7 @@ public class Character extends WtPanel {
 	 * @param gameScreen 
 	 * 			 The gameScreen to paint on.
 	 */
-	public Character(final StendhalUI ui, final IGameScreen gameScreen) {
+	public Character(final j2DClient ui, final IGameScreen gameScreen) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
 				PANEL_HEIGHT, gameScreen);
 

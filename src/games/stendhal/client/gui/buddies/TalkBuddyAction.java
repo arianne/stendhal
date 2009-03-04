@@ -1,6 +1,6 @@
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ class TalkBuddyAction implements ActionListener {
 	}
 
 	public void actionPerformed(final ActionEvent e) {
-		StendhalUI.get().setChatLine("/tell " + buddyName + " ");
+		j2DClient.get().setChatLine("/tell " + buddyName + " ");
 
 	}
 

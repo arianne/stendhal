@@ -46,8 +46,6 @@ import org.apache.log4j.Logger;
  * This class is the glue to Marauroa, it extends ClientFramework and allow us
  * to easily connect to an marauroa server and operate it easily.
  * 
- * This class should be limited to functionality independant of the UI (that
- * goes in StendhalUI or a subclass).
  */
 public class StendhalClient extends ClientFramework {
 

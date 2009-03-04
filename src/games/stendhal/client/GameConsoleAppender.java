@@ -7,6 +7,7 @@
 
 package games.stendhal.client;
 
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
@@ -35,7 +36,7 @@ public class GameConsoleAppender extends AppenderSkeleton {
 			}
 		}
 
-		StendhalUI.get().addEventLine(new HeaderLessEventLine(buf.toString(), NotificationType.CLIENT));
+		j2DClient.get().addEventLine(new HeaderLessEventLine(buf.toString(), NotificationType.CLIENT));
 	}
 
 	public void close() {
