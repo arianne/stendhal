@@ -1,6 +1,6 @@
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.StendhalGUI;
+import games.stendhal.client.StendhalUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ class LeaveBuddyMessageAction implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		
 
-		StendhalGUI.get().setChatLine("/msg postman tell " + buddyName + " ");
+		StendhalUI.get().setChatLine("/msg postman tell " + buddyName + " ");
 
 	}
 
