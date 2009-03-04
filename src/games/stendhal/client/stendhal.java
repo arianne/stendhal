@@ -25,7 +25,7 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-public class stendhal extends Thread {
+public class stendhal {
 
 	private static final Logger logger = Logger.getLogger(stendhal.class);
 
