@@ -32,7 +32,6 @@ import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.Buddies;
-import games.stendhal.client.gui.wt.BuddyListDialog;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -114,7 +113,7 @@ public class j2DClient {
 
 	private GameScreen screen;
 
-	private Canvas canvas;
+	private Canvas ground;
 
 	private JLayeredPane pane;
 
@@ -140,9 +139,6 @@ public class j2DClient {
 
 	/** the Key ring panel. */
 	private KeyRing keyring;
-
-	/** the buddy list panel. */
-	private BuddyListDialog nbuddies;
 
 	private ManagedWindow buddies;
 
@@ -192,7 +188,6 @@ public class j2DClient {
 	 */
 	protected StendhalClient client;
 
-	private static final boolean newCode = (System.getProperty("stendhal.newgui") != null);
 
 	/**
 	 * A constructor for JUnit tests.
@@ -235,12 +230,12 @@ public class j2DClient {
 
 	
 	
-			canvas = new Canvas();
-			canvas.setBounds(0, 0, getWidth(), getHeight());
+			ground = new Canvas();
+			ground.setBounds(0, 0, getWidth(), getHeight());
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
-		canvas.setIgnoreRepaint(true);
-		panel.add(canvas);
+		ground.setIgnoreRepaint(true);
+		panel.add(ground);
 		panel.validate();
 		content.add(pane, BorderLayout.CENTER);
 		// register the slash actions in the client side command line parser
@@ -252,7 +247,7 @@ public class j2DClient {
 		/*
 		 * Always redirect focus to chat field
 		 */
-		canvas.addFocusListener(new FocusListener() {
+		ground.addFocusListener(new FocusListener() {
 			public void focusGained(final FocusEvent e) {
 				chatText.getPlayerChatText().requestFocus();
 			}
@@ -359,7 +354,7 @@ public class j2DClient {
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		chatText.addKeyListener(keyListener);
-		canvas.addKeyListener(keyListener);
+		ground.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
@@ -373,7 +368,7 @@ public class j2DClient {
 
 		
 
-		screen = new GameScreen(client, canvas);
+		screen = new GameScreen(client, ground);
 
 		GameScreen.setDefaultScreen(screen);
 		client.setScreen(screen);
@@ -511,12 +506,7 @@ public class j2DClient {
 			final User user = User.get();
 
 			if (user != null) {
-				if (newCode) {
 				
-					if (nbuddies.isVisible()) {
-						nbuddies.update();
-					}
-				}
 
 				// check if the player object has changed.
 				// Note: this is an exact object reference check
