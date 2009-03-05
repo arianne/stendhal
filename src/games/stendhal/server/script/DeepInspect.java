@@ -27,6 +27,10 @@ public class DeepInspect extends ScriptImpl {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Inspecting " + player.getName() + "\n");
 
+		for ( final String value : player) {
+			sb.append( value + ": " + player.get(value) + "\n");
+		}
+		
 		// inspect slots
 		for (final RPSlot slot : player.slots()) {
 			// don't return buddy-list for privacy reasons
