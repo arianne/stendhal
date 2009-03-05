@@ -12,7 +12,7 @@ public boolean execute(final String[] params, final String remainder) {
 			action.put("target", params[0]);
 			if (params.length > 1) {
 				if (params[1] != null) {
-					action.put("reason", params[1]);
+					action.put("reason", params[1] + " " + remainder);
 				}
 			}
 
