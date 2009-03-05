@@ -332,6 +332,8 @@
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${pagelayout_jar}"/>
+				
 			</classpath>
 		</javac>
 

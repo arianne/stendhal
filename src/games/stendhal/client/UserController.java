@@ -1,5 +1,6 @@
 package games.stendhal.client;
 
+import games.stendhal.client.gui.bag.BagPanelControler;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 
 import java.beans.PropertyChangeListener;
@@ -17,6 +18,7 @@ public class UserController implements ObjectChangeListener {
 	
 	public UserController() {
 		pcs.addPropertyChangeListener("!buddy", BuddyPanelControler.get());
+		pcs.addPropertyChangeListener("bag", BagPanelControler.get());
 
 	}
 

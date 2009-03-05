@@ -25,6 +25,7 @@ import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeMulticaster;
+import games.stendhal.client.gui.bag.BagPanelControler;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -384,10 +385,9 @@ public class j2DClient {
 		addWindow(character);
 		settings.add(character, "Enable Character", gameScreen);
 
-		inventory = new EntityContainer("bag", 3, 4, gameScreen);
-		addWindow(inventory);
-		settings.add(inventory, "Enable Bag", gameScreen);
-
+		createAndAddOldBag(gameScreen);
+		//createAndAddNewBag(mainFrameContentPane);
+		
 		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
@@ -409,11 +409,24 @@ public class j2DClient {
 	
 
 	} // constructor
+	private void createAndAddOldBag(final IGameScreen gameScreen) {
+		inventory = new EntityContainer("bag", 3, 4, gameScreen);
+		addWindow(inventory);
+		settings.add(inventory, "Enable Bag", gameScreen);
+	}
 
 	private void createAndAddNewBuddy(final Container content) {
 		final BuddyPanelControler buddy = new BuddyPanelControler();
 		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
 		content.add(buddy.getComponent(), BorderLayout.WEST);
+		
+	}
+	
+	private void createAndAddNewBag(final Container content) {
+		final BagPanelControler bag = new BagPanelControler();
+		bag.getComponent().setPreferredSize(new Dimension(200, getHeight()));
+		content.add(bag.getComponent(), BorderLayout.EAST);
+		
 	}
 
 	private void createAndAddOldBuddies(final IGameScreen gameScreen) {
