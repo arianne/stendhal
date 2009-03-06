@@ -386,7 +386,7 @@ public class j2DClient {
 		settings.add(character, "Enable Character", gameScreen);
 
 		createAndAddOldBag(gameScreen);
-		//createAndAddNewBag(mainFrameContentPane);
+		createAndAddNewBag(mainFrameContentPane);
 		
 		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
