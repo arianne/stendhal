@@ -957,7 +957,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
       <item value="pie" quantity="[1,1]" probability="1.0"/>
@@ -993,7 +993,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
       <item value="leather legs" quantity="[1,1]" probability="10.0"/>
@@ -1029,7 +1029,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="meat" quantity="[1,10]" probability="100.0"/>
       <item value="ham" quantity="[2,8]" probability="70.0"/>
@@ -1059,7 +1059,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="100.0"/>
       <item value="cheese" quantity="[1,3]" probability="50.0"/>
@@ -1088,7 +1088,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="meat" quantity="[1,6]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
@@ -1117,7 +1117,7 @@
     </attributes>
     <level value="5"/>
     <experience value="50"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[4,10]" probability="70.0"/>
       <item value="carrot" quantity="[2,10]" probability="20.0"/>
@@ -1150,7 +1150,7 @@
     </attributes>
     <level value="5"/>
     <experience value="55"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[6,14]" probability="70.0"/>
       <item value="chain boots" quantity="[1,1]" probability="15.0"/>
@@ -1182,7 +1182,7 @@
     </attributes>
     <level value="6"/>
     <experience value="60"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
@@ -1217,7 +1217,7 @@
     </attributes>
     <level value="6"/>
     <experience value="60"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
     </drops>
@@ -1242,7 +1242,7 @@
     </attributes>
     <level value="6"/>
     <experience value="60"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
     </drops>
@@ -1270,7 +1270,7 @@
     </attributes>
     <level value="7"/>
     <experience value="70"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="100.0"/>
       <item value="cheese" quantity="[2,5]" probability="50.0"/>
@@ -1302,7 +1302,7 @@
     </attributes>
     <level value="7"/>
     <experience value="70"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[4,11]" probability="90.0"/>
       <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
@@ -1338,7 +1338,7 @@
     </attributes>
     <level value="7"/>
     <experience value="70"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,11]" probability="90.0"/>
       <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
@@ -1374,7 +1374,7 @@
     </attributes>
     <level value="7"/>
     <experience value="70"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="bat entrails" quantity="[1,1]" probability="60.0"/>
@@ -1400,7 +1400,7 @@
     </attributes>
     <level value="8"/>
     <experience value="80"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -1426,7 +1426,7 @@
     </attributes>
     <level value="8"/>
     <experience value="80"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
@@ -1462,7 +1462,7 @@
     </attributes>
     <level value="8"/>
     <experience value="80"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="meat" quantity="[3,12]" probability="60.0"/>
       <item value="ham" quantity="[2,4]" probability="40.0"/>
@@ -1491,7 +1491,7 @@
     </attributes>
     <level value="8"/>
     <experience value="80"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[4,12]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="30.0"/>
@@ -1517,7 +1517,7 @@
     </attributes>
     <level value="8"/>
     <experience value="80"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
       <item value="cheese" quantity="[1,3]" probability="50.0"/>
@@ -1544,7 +1544,7 @@
     </attributes>
     <level value="9"/>
     <experience value="90"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="30.0"/>
       <item value="sandwich" quantity="[1,1]" probability="2.0"/>
@@ -1576,7 +1576,7 @@
     </attributes>
     <level value="9"/>
     <experience value="90"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[6,13]" probability="100.0"/>
       <item value="chain armor" quantity="[1,1]" probability="1.0"/>
@@ -1607,7 +1607,7 @@
     </attributes>
     <level value="9"/>
     <experience value="90"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[6,13]" probability="100.0"/>
     </drops>
@@ -1632,7 +1632,7 @@
     </attributes>
     <level value="9"/>
     <experience value="90"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[4,13]" probability="90.0"/>
       <item value="plate shield" quantity="[1,1]" probability="5.0"/>
@@ -1667,7 +1667,7 @@
     </attributes>
     <level value="9"/>
     <experience value="90"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,13]" probability="90.0"/>
       <item value="wooden shield" quantity="[1,1]" probability="10.0"/>
@@ -1701,7 +1701,7 @@
     </attributes>
     <level value="10"/>
     <experience value="110"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1730,7 +1730,7 @@
     </attributes>
     <level value="10"/>
     <experience value="110"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1759,7 +1759,7 @@
     </attributes>
     <level value="10"/>
     <experience value="110"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1787,7 +1787,7 @@
     </attributes>
     <level value="11"/>
     <experience value="120"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="fairy cake" quantity="[1,2]" probability="20.0"/>
@@ -1813,7 +1813,7 @@
     </attributes>
     <level value="12"/>
     <experience value="130"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[6,19]" probability="100.0"/>
       <item value="hammer" quantity="[1,1]" probability="7.0"/>
@@ -1844,7 +1844,7 @@
     </attributes>
     <level value="12"/>
     <experience value="130"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="studded armor" quantity="[1,1]" probability="10.0"/>
@@ -1872,7 +1872,7 @@
     </attributes>
     <level value="12"/>
     <experience value="130"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="50.0"/>
       <item value="beer" quantity="[2,5]" probability="10.0"/>
@@ -1905,7 +1905,7 @@
     </attributes>
     <level value="12"/>
     <experience value="130"/>
-    <respawn value="910"/>
+    <respawn value="1210"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="8.0"/>
@@ -1940,7 +1940,7 @@
     </attributes>
     <level value="13"/>
     <experience value="150"/>
-    <respawn value="920"/>
+    <respawn value="1220"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="8.0"/>
@@ -1976,7 +1976,7 @@
     </attributes>
     <level value="14"/>
     <experience value="160"/>
-    <respawn value="920"/>
+    <respawn value="1220"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="3.0"/>
@@ -2007,7 +2007,7 @@
     </attributes>
     <level value="14"/>
     <experience value="160"/>
-    <respawn value="920"/>
+    <respawn value="1220"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="4.0"/>
@@ -2038,7 +2038,7 @@
     </attributes>
     <level value="14"/>
     <experience value="160"/>
-    <respawn value="920"/>
+    <respawn value="1220"/>
     <drops>
       <item value="money" quantity="[2,15]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="2.0"/>
@@ -2072,7 +2072,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[4,23]" probability="100.0"/>
     </drops>
@@ -2101,7 +2101,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
@@ -2129,7 +2129,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
@@ -2161,7 +2161,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="900"/>
+    <respawn value="1200"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
@@ -2194,7 +2194,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[9,22]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2226,7 +2226,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
@@ -2263,7 +2263,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
@@ -2298,7 +2298,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="30.0"/>
@@ -2324,7 +2324,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[3,12]" probability="100.0"/>
       <item value="meat" quantity="[3,7]" probability="80.0"/>
@@ -2356,7 +2356,7 @@
     </attributes>
     <level value="15"/>
     <experience value="180"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
@@ -2386,7 +2386,7 @@
     </attributes>
     <level value="16"/>
     <experience value="200"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -2412,7 +2412,7 @@
     </attributes>
     <level value="16"/>
     <experience value="200"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="90.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2443,7 +2443,7 @@
     </attributes>
     <level value="16"/>
     <experience value="200"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2475,7 +2475,7 @@
     </attributes>
     <level value="16"/>
     <experience value="200"/>
-    <respawn value="930"/>
+    <respawn value="1230"/>
     <drops>
       <item value="money" quantity="[3,17]" probability="90.0"/>
       <item value="scale armor" quantity="[1,1]" probability="3.0"/>
@@ -2504,7 +2504,7 @@
     </attributes>
     <level value="17"/>
     <experience value="210"/>
-    <respawn value="940"/>
+    <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[6,27]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="4.0"/>
@@ -2533,7 +2533,7 @@
     </attributes>
     <level value="17"/>
     <experience value="210"/>
-    <respawn value="940"/>
+    <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[3,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="5.0"/>
@@ -2566,7 +2566,7 @@
     </attributes>
     <level value="18"/>
     <experience value="230"/>
-    <respawn value="940"/>
+    <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="9.0"/>
@@ -2598,7 +2598,7 @@
     </attributes>
     <level value="18"/>
     <experience value="230"/>
-    <respawn value="940"/>
+    <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="7.0"/>
@@ -2632,7 +2632,7 @@
     </attributes>
     <level value="18"/>
     <experience value="230"/>
-    <respawn value="940"/>
+    <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[9,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="7.0"/>
@@ -2666,7 +2666,7 @@
     </attributes>
     <level value="19"/>
     <experience value="250"/>
-    <respawn value="950"/>
+    <respawn value="1250"/>
     <drops>
       <item value="money" quantity="[15,20]" probability="100.0"/>
       <item value="elvish legs" quantity="[1,1]" probability="5.0"/>
@@ -2701,7 +2701,7 @@
     </attributes>
     <level value="19"/>
     <experience value="250"/>
-    <respawn value="950"/>
+    <respawn value="1250"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="4.0"/>
@@ -2729,7 +2729,7 @@
     </attributes>
     <level value="20"/>
     <experience value="280"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[9,30]" probability="100.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="5.0"/>
@@ -2762,7 +2762,7 @@
     </attributes>
     <level value="20"/>
     <experience value="280"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="75.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -2791,7 +2791,7 @@
     </attributes>
     <level value="20"/>
     <experience value="280"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[10,40]" probability="70.0"/>
       <item value="pie" quantity="[1,1]" probability="5.0"/>
@@ -2826,7 +2826,7 @@
     </attributes>
     <level value="20"/>
     <experience value="280"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[10,20]" probability="75.0"/>
     </drops>
@@ -2850,7 +2850,7 @@
     </attributes>
     <level value="20"/>
     <experience value="280"/>
-    <respawn value="3000"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="0.5"/>
@@ -2910,7 +2910,7 @@
     </attributes>
     <level value="21"/>
     <experience value="300"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="8.0"/>
@@ -2944,7 +2944,7 @@
     </attributes>
     <level value="21"/>
     <experience value="300"/>
-    <respawn value="960"/>
+    <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="10.0"/>
@@ -2971,7 +2971,7 @@
     </attributes>
     <level value="22"/>
     <experience value="320"/>
-    <respawn value="970"/>
+    <respawn value="1270"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
       <item value="battle axe" quantity="[1,1]" probability="2.0"/>
@@ -2998,7 +2998,7 @@
     </attributes>
     <level value="23"/>
     <experience value="350"/>
-    <respawn value="980"/>
+    <respawn value="1280"/>
     <drops>
       <item value="money" quantity="[5,29]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="4.0"/>
@@ -3031,7 +3031,7 @@
     </attributes>
     <level value="23"/>
     <experience value="350"/>
-    <respawn value="980"/>
+    <respawn value="1280"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="90.0"/>
       <item value="sandwich" quantity="[1,1]" probability="40.0"/>
@@ -3062,7 +3062,7 @@
     </attributes>
     <level value="24"/>
     <experience value="370"/>
-    <respawn value="990"/>
+    <respawn value="1290"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
     </drops>
@@ -3088,7 +3088,7 @@
     </attributes>
     <level value="24"/>
     <experience value="370"/>
-    <respawn value="990"/>
+    <respawn value="1290"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="wood" quantity="[1,2]" probability="15.0"/>
@@ -3116,7 +3116,7 @@
     </attributes>
     <level value="24"/>
     <experience value="370"/>
-    <respawn value="990"/>
+    <respawn value="1290"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="3.0"/>
@@ -3145,7 +3145,7 @@
     </attributes>
     <level value="24"/>
     <experience value="370"/>
-    <respawn value="990"/>
+    <respawn value="1290"/>
     <drops>
       <item value="money" quantity="[3,37]" probability="100.0"/>
       <item value="onion" quantity="[1,1]" probability="18.0"/>
@@ -3178,7 +3178,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="10.0"/>
@@ -3215,7 +3215,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="4.5"/>
@@ -3247,7 +3247,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
       <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
@@ -3277,7 +3277,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="5.0"/>
@@ -3306,7 +3306,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="greater poison" quantity="[1,1]" probability="10.0"/>
@@ -3335,7 +3335,7 @@
     </attributes>
     <level value="25"/>
     <experience value="400"/>
-    <respawn value="1000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="meat" quantity="[1,5]" probability="10.0"/>
@@ -3369,7 +3369,7 @@
     </attributes>
     <level value="26"/>
     <experience value="430"/>
-    <respawn value="1010"/>
+    <respawn value="1310"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="trout" quantity="[1,1]" probability="10.0"/>
@@ -3396,7 +3396,7 @@
     </attributes>
     <level value="26"/>
     <experience value="430"/>
-    <respawn value="1010"/>
+    <respawn value="1310"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="5.0"/>
@@ -3429,7 +3429,7 @@
     </attributes>
     <level value="26"/>
     <experience value="430"/>
-    <respawn value="1010"/>
+    <respawn value="1310"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="cherry" quantity="[1,2]" probability="30.0"/>
@@ -3455,7 +3455,7 @@
     </attributes>
     <level value="27"/>
     <experience value="460"/>
-    <respawn value="1020"/>
+    <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="80.0"/>
       <item value="potion" quantity="[1,1]" probability="50.0"/>
@@ -3489,7 +3489,7 @@
     </attributes>
     <level value="27"/>
     <experience value="460"/>
-    <respawn value="1020"/>
+    <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[3,35]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="15.0"/>
@@ -3521,7 +3521,7 @@
     </attributes>
     <level value="28"/>
     <experience value="490"/>
-    <respawn value="1030"/>
+    <respawn value="1330"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="home scroll" quantity="[1,1]" probability="10.0"/> 
@@ -3547,7 +3547,7 @@
     </attributes>
     <level value="28"/>
     <experience value="490"/>
-    <respawn value="3000"/>
+    <respawn value="1300"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="dagger" quantity="[1,1]" probability="3.0"/>
@@ -3573,7 +3573,7 @@
     </attributes>
     <level value="29"/>
     <experience value="530"/>
-    <respawn value="1040"/>
+    <respawn value="1340"/>
     <drops>
       <item value="money" quantity="[3,33]" probability="90.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.025"/>
@@ -3601,7 +3601,7 @@
     </attributes>
     <level value="29"/>
     <experience value="530"/>
-    <respawn value="1010"/>
+    <respawn value="1310"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="cloak" quantity="[1,1]" probability="10.0"/>
@@ -3628,7 +3628,7 @@
     </attributes>
     <level value="30"/>
     <experience value="570"/>
-    <respawn value="1050"/>
+    <respawn value="1350"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="2.5"/>
@@ -3690,7 +3690,7 @@
     </attributes>
     <level value="30"/>
     <experience value="570"/>
-    <respawn value="1050"/>
+    <respawn value="1350"/>
     <drops>
       <item value="money" quantity="[5,35]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="2.0"/>
@@ -3724,7 +3724,7 @@
     </attributes>
     <level value="30"/>
     <experience value="570"/>
-    <respawn value="1050"/>
+    <respawn value="1350"/>
     <drops>
       <item value="money" quantity="[5,39]" probability="100.0"/>
       <item value="wooden spear" quantity="[1,3]" probability="40.0"/>
@@ -3754,7 +3754,7 @@
     </attributes>
     <level value="31"/>
     <experience value="600"/>
-    <respawn value="1070"/>
+    <respawn value="1370"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="12.0"/>
@@ -3787,7 +3787,7 @@
     </attributes>
     <level value="31"/>
     <experience value="600"/>
-    <respawn value="1070"/>
+    <respawn value="1370"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="100.0"/>
       <item value="studded boots" quantity="[1,1]" probability="20.0"/>
@@ -3815,7 +3815,7 @@
     </attributes>
     <level value="32"/>
     <experience value="640"/>
-    <respawn value="1080"/>
+    <respawn value="1380"/>
     <drops>
       <item value="money" quantity="[5,27]" probability="100.0"/>
       <item value="stone cloak" quantity="[1,1]" probability="2.5"/>
@@ -3845,7 +3845,7 @@
     </attributes>
     <level value="32"/>
     <experience value="640"/>
-    <respawn value="1080"/>
+    <respawn value="1380"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -3876,7 +3876,7 @@
     </attributes>
     <level value="33"/>
     <experience value="640"/>
-    <respawn value="1080"/>
+    <respawn value="1380"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
     </drops>
@@ -3901,7 +3901,7 @@
     </attributes>
     <level value="33"/>
     <experience value="640"/>
-    <respawn value="1080"/>
+    <respawn value="1380"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,1]" probability="30.0"/>
@@ -3930,7 +3930,7 @@
     </attributes>
     <level value="34"/>
     <experience value="730"/>
-    <respawn value="1110"/>
+    <respawn value="1410"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="axe" quantity="[1,1]" probability="20.0"/>
@@ -3958,7 +3958,7 @@
     </attributes>
     <level value="34"/>
     <experience value="730"/>
-    <respawn value="1110"/>
+    <respawn value="1410"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="cod" quantity="[1,4]" probability="20.0"/>
@@ -3984,7 +3984,7 @@
     </attributes>
     <level value="35"/>
     <experience value="770"/>
-    <respawn value="1120"/>
+    <respawn value="1420"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
       <item value="blue elf cloak" quantity="[1,1]" probability="1.0"/>
@@ -4017,7 +4017,7 @@
     </attributes>
     <level value="35"/>
     <experience value="770"/>
-    <respawn value="1120"/>
+    <respawn value="1420"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="8.0"/>
@@ -4051,7 +4051,7 @@
     </attributes>
     <level value="35"/>
     <experience value="770"/>
-    <respawn value="1120"/>
+    <respawn value="1420"/>
     <drops>
       <item value="money" quantity="[8,35]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4083,7 +4083,7 @@
     </attributes>
     <level value="35"/>
     <experience value="770"/>
-    <respawn value="1120"/>
+    <respawn value="1420"/>
     <drops>
       <item value="money" quantity="[7,48]" probability="100.0"/>
       <item value="potion" quantity="[1,3]" probability="20.0"/>
@@ -4114,7 +4114,7 @@
     </attributes>
     <level value="36"/>
     <experience value="850"/>
-    <respawn value="1080"/>
+    <respawn value="1380"/>
     <drops>
       <item value="money" quantity="[3,50]" probability="90.0"/>
       <item value="aventail" quantity="[1,1]" probability="10.0"/>
@@ -4140,7 +4140,7 @@
     </attributes>
     <level value="36"/>
     <experience value="810"/>
-    <respawn value="1220"/>
+    <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4170,7 +4170,7 @@
     </attributes>
     <level value="37"/>
     <experience value="870"/>
-    <respawn value="1160"/>
+    <respawn value="1460"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4202,7 +4202,7 @@
     </attributes>
     <level value="37"/>
     <experience value="870"/>
-    <respawn value="1160"/>
+    <respawn value="1460"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="pauldroned leather cuirass" quantity="[1,1]" probability="20.0"/>
@@ -4230,7 +4230,7 @@
     </attributes>
     <level value="37"/>
     <experience value="900"/>
-    <respawn value="3000"/>
+    <respawn value="1500"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="5.0"/>
@@ -4289,7 +4289,7 @@
     </attributes>
     <level value="38"/>
     <experience value="920"/>
-    <respawn value="1180"/>
+    <respawn value="1480"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="morning star" quantity="[1,1]" probability="2.0"/>
@@ -4322,7 +4322,7 @@
     </attributes>
     <level value="38"/>
     <experience value="920"/>
-    <respawn value="1160"/>
+    <respawn value="1460"/>
     <drops>
       <item value="money" quantity="[4,40]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
@@ -4352,7 +4352,7 @@
     </attributes>
     <level value="39"/>
     <experience value="980"/>
-    <respawn value="1200"/>
+    <respawn value="1500"/>
     <drops>
       <item value="money" quantity="[5,20]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="10.0"/>
@@ -4383,7 +4383,7 @@
     </attributes>
     <level value="39"/>
     <experience value="990"/>
-    <respawn value="1200"/>
+    <respawn value="1500"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,3]" probability="10.0"/>
@@ -4412,7 +4412,7 @@
     </attributes>
     <level value="40"/>
     <experience value="1040"/>
-    <respawn value="1220"/>
+    <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -4442,7 +4442,7 @@
     </attributes>
     <level value="40"/>
     <experience value="1040"/>
-    <respawn value="1220"/>
+    <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[10,20]" probability="100.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="0.5"/>
@@ -4471,7 +4471,7 @@
     </attributes>
     <level value="40"/>
     <experience value="900"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="steel arrow" quantity="[1,15]" probability="10.0"/>
@@ -4503,7 +4503,7 @@
     </attributes>
     <level value="40"/>
     <experience value="900"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="golden arrow" quantity="[5,15]" probability="5.0"/>
@@ -4534,7 +4534,7 @@
     </attributes>
     <level value="40"/>
     <experience value="920"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[10,40]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="10.5"/>
@@ -4569,7 +4569,7 @@
     </attributes>
     <level value="41"/>
     <experience value="1090"/>
-    <respawn value="1240"/>
+    <respawn value="1640"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
       <item value="ugmash" quantity="[1,1]" probability="0.001"/>
@@ -4598,7 +4598,7 @@
     </attributes>
     <level value="41"/>
     <experience value="1090"/>
-    <respawn value="1400"/>
+    <respawn value="1640"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="sandwich" quantity="[1,1]" probability="5.0"/>
@@ -4626,7 +4626,7 @@
     </attributes>
     <level value="41"/>
     <experience value="1090"/>
-    <respawn value="1240"/>
+    <respawn value="1640"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>      
       <item value="enhanced mace" quantity="[1,1]" probability="15.5"/>
@@ -4654,7 +4654,7 @@
     </attributes>
     <level value="42"/>
     <experience value="1160"/>
-    <respawn value="1260"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="demon sword" quantity="[1,1]" probability="1.0"/>
@@ -4685,7 +4685,7 @@
     </attributes>
     <level value="42"/>
     <experience value="1160"/>
-    <respawn value="1260"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
     </drops>
@@ -4714,7 +4714,7 @@
     </attributes>
     <level value="42"/>
     <experience value="960"/>
-    <respawn value="1430"/>
+    <respawn value="1630"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="90.0"/>
       <item value="studded armor" quantity="[1,1]" probability="2.0"/>
@@ -4746,7 +4746,7 @@
     </attributes>
     <level value="42"/>
     <experience value="1100"/>
-    <respawn value="1420"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
@@ -4775,7 +4775,7 @@
     </attributes>
     <level value="43"/>
     <experience value="1220"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="5.0"/>
@@ -4803,7 +4803,7 @@
     </attributes>
     <level value="43"/>
     <experience value="1220"/>
-    <respawn value="1280"/>
+    <respawn value="1680"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
       <item value="elvish armor" quantity="[1,1]" probability="0.05"/>
@@ -4833,7 +4833,7 @@
     </attributes>
     <level value="43"/>
     <experience value="1120"/>
-    <respawn value="1180"/>
+    <respawn value="1680"/>
     <drops>
       <item value="money" quantity="[10,45]" probability="100.0"/>
       <item value="meat" quantity="[2,6]" probability="22.5"/>
@@ -4866,7 +4866,7 @@
     </attributes>
     <level value="43"/>
     <experience value="1100"/>
-    <respawn value="1420"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
@@ -4896,7 +4896,7 @@
     </attributes>
     <level value="44"/>
     <experience value="1290"/>
-    <respawn value="3000"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="antidote" quantity="[1,2]" probability="30.0"/>
@@ -4922,7 +4922,7 @@
     </attributes>
     <level value="44"/>
     <experience value="1290"/>
-    <respawn value="3060"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="50.0"/>
@@ -4950,7 +4950,7 @@
     </attributes>
     <level value="44"/>
     <experience value="1290"/>
-    <respawn value="1300"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -4979,7 +4979,7 @@
     </attributes>
     <level value="45"/>
     <experience value="1360"/>
-    <respawn value="1320"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[5,27]" probability="100.0"/>
       <item value="snowball" quantity="[1,4]" probability="75"/>
@@ -5009,7 +5009,7 @@
     </attributes>
     <level value="45"/>
     <experience value="1360"/>
-    <respawn value="1320"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[4,55]" probability="100.0"/>
       <item value="blue elf cloak" quantity="[1,1]" probability="2.5"/>
@@ -5038,7 +5038,7 @@
     </attributes>
     <level value="45"/>
     <experience value="1360"/>
-    <respawn value="1320"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[3,46]" probability="100.0"/>
       <item value="empty scroll" quantity="[1,1]" probability="1.0"/>
@@ -5071,7 +5071,7 @@
     </attributes>
     <level value="45"/>
     <experience value="1400"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[20,50]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="15.5"/>
@@ -5107,7 +5107,7 @@
     </attributes>
     <level value="46"/>
     <experience value="1430"/>
-    <respawn value="1350"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.25"/>
@@ -5136,7 +5136,7 @@
     </attributes>
     <level value="46"/>
     <experience value="1430"/>
-    <respawn value="1350"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="golden boots" quantity="[1,1]" probability="0.9"/>
@@ -5167,7 +5167,7 @@
     </attributes>
     <level value="47"/>
     <experience value="1500"/>
-    <respawn value="1370"/>
+    <respawn value="1670"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
       <item value="longbow" quantity="[1,1]" probability="0.5"/>
@@ -5206,7 +5206,7 @@
     </attributes>
     <level value="48"/>
     <experience value="1580"/>
-    <respawn value="1410"/>
+    <respawn value="1610"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="broadsword" quantity="[1,1]" probability="5.0"/>
@@ -5234,7 +5234,7 @@
     </attributes>
     <level value="48"/>
     <experience value="1580"/>
-    <respawn value="1410"/>
+    <respawn value="1610"/>
     <drops>
       <item value="money" quantity="[8,43]" probability="100.0"/>
       <item value="nalwor city scroll" quantity="[1,1]" probability="5.0"/>
@@ -5262,7 +5262,7 @@
     </attributes>
     <level value="48"/>
     <experience value="1580"/>
-    <respawn value="1400"/>
+    <respawn value="1600"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -5323,7 +5323,7 @@
     </attributes>
     <level value="49"/>
     <experience value="1660"/>
-    <respawn value="1430"/>
+    <respawn value="1630"/>
     <drops>
       <item value="money" quantity="[15,50]" probability="100.0"/>
       <item value="elvish armor" quantity="[1,1]" probability="5.0"/>
@@ -5357,7 +5357,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1760"/>
-    <respawn value="1320"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[10,55]" probability="100.0"/>
       <item value="golden helmet" quantity="[1,1]" probability="0.5"/>
@@ -5388,7 +5388,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1700"/>
-    <respawn value="1350"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[40,155]" probability="80.0"/>
       <item value="iron" quantity="[1,3]" probability="5.0"/>
@@ -5420,7 +5420,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1700"/>
-    <respawn value="1350"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[40,155]" probability="80.0"/>
       <item value="wine" quantity="[3,10]" probability="40.0"/>
@@ -5453,7 +5453,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="20.0"/>
@@ -5481,7 +5481,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5508,7 +5508,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5538,7 +5538,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="10.0"/>
@@ -5565,7 +5565,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5594,7 +5594,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="50.0"/>
@@ -5628,7 +5628,7 @@
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
-    <respawn value="1460"/>
+    <respawn value="1660"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[2,4]" probability="8.0"/>
@@ -5659,7 +5659,7 @@
     </attributes>
     <level value="51"/>
     <experience value="1830"/>
-    <respawn value="1490"/>
+    <respawn value="1690"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="5.0"/>
@@ -5688,7 +5688,7 @@
     </attributes>
     <level value="51"/>
     <experience value="1830"/>
-    <respawn value="1490"/>
+    <respawn value="1690"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="empty scroll" quantity="[1,1]" probability="3.5"/>
@@ -5715,7 +5715,7 @@
     </attributes>
     <level value="52"/>
     <experience value="1920"/>
-    <respawn value="1520"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[4,60]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
@@ -5747,7 +5747,7 @@
     </attributes>
     <level value="52"/>
     <experience value="1920"/>
-    <respawn value="1520"/>
+    <respawn value="1620"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="great sword" quantity="[1,1]" probability="2.0"/>
@@ -5778,7 +5778,7 @@
     </attributes>
     <level value="53"/>
     <experience value="2010"/>
-    <respawn value="1550"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -5804,7 +5804,7 @@
     </attributes>
     <level value="53"/>
     <experience value="2010"/>
-    <respawn value="1510"/>
+    <respawn value="1610"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="5.0"/>
@@ -5832,7 +5832,7 @@
     </attributes>
     <level value="54"/>
     <experience value="2110"/>
-    <respawn value="1580"/>
+    <respawn value="1680"/>
     <drops>
       <item value="money" quantity="[20,52]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -5891,7 +5891,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1610"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[5,50]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -5922,7 +5922,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1610"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="axe" quantity="[1,1]" probability="15.0"/>
@@ -5950,7 +5950,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1610"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
@@ -5984,7 +5984,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1610"/>
+    <respawn value="1650"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -6043,7 +6043,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1610"/>
+    <respawn value="1650"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="30.0"/>
       <item value="money" quantity="[10,70]" probability="100.0"/>
@@ -6073,7 +6073,7 @@
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
-    <respawn value="1500"/>
+    <respawn value="1600"/>
     <drops>
       <item value="elf cloak" quantity="[1,1]" probability="2.5"/> 
 
@@ -6134,7 +6134,7 @@
     </attributes>
     <level value="56"/>
     <experience value="2400"/>
-    <respawn value="3000"/>
+    <respawn value="1700"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
