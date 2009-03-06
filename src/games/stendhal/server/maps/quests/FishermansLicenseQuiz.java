@@ -76,13 +76,10 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		if (player.hasQuest(QUEST_SLOT)) {
-			res.add("FIRST_CHAT");
-		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FISHERMANS_LICENSE1");
+		res.add("FIRST_CHAT");
 		if (player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("DONE");
 		}
