@@ -18,23 +18,32 @@ public class ItemImageLoader {
 			final String clazz = object.get("class");
 			final String subClass = object.get("subclass");
 			final String path = "/data/sprites/items/" + clazz + "/" + subClass + ".png";
+			
+				
 			return loadFromPath(path);
 	}
 	
 	
 public  BufferedImage loadFromPath(final String path)  {
-		
+	BufferedImage img = ImageMap.get(path);
+	if (img != null) {
+		return img;
+	} else {
+	
+	
 		try {
 			URL resource = getClass().getResource(path);
 			if (resource != null) {
-				return read(resource);
+				img = read(resource);
+				ImageMap.put(path, img);
 			} else {
 				System.out.println("file not found :" +  path);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+	}
+		return img;
 	}
 	
 	public static void main(final String[] args) {
