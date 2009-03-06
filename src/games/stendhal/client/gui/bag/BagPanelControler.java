@@ -25,11 +25,11 @@ public class BagPanelControler implements PropertyChangeListener {
 		instance = this;	
 	}
 	
-	public void propertyChange(PropertyChangeEvent evt) {
+	public void propertyChange(final PropertyChangeEvent evt) {
 		if (evt == null) {
 			return;
 		}
-		System.out.println(evt.getPropertyName() +" was: " + evt.getOldValue() +" now:" +evt.getNewValue() );
+		System.out.println(evt.getPropertyName() + " was: " + evt.getOldValue() + " now:" + evt.getNewValue());
 		RPSlot bagslotOld = (RPSlot) evt.getOldValue();
 		if (bagslotOld != null) {
 			for (RPObject object : bagslotOld) {

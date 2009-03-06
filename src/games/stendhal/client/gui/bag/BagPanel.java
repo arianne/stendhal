@@ -1,36 +1,35 @@
 package games.stendhal.client.gui.bag;
 
-import java.awt.Container;
+import static pagelayout.EasyCell.eol;
+import static pagelayout.EasyCell.grid;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
+
 import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import pagelayout.CellGrid;
-
 import marauroa.common.game.RPObject;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
-import static pagelayout.EasyCell.*;
+import pagelayout.CellGrid;
 
 public class BagPanel extends StyledJPanel {
 
-	private static final Dimension PREFERRED_SIZE = new Dimension(40,40);
+	private static final Dimension PREFERRED_SIZE = new Dimension(40, 40);
 	ItemPanel[] panels = new ItemPanel[12];
 	private Map<String, ItemPanel> panelItemMap = new HashMap<String, ItemPanel>();
-	public BagPanel(Style instance) {
+	public BagPanel(final Style instance) {
 		super(instance);
-		for (int i = 0 ; i<12; i++){
-			panels[i]= new ItemPanel();
+		for (int i = 0; i < 12; i++) {
+			panels[i] = new ItemPanel();
 			panels[i].setPreferredSize(PREFERRED_SIZE);
 		}
 		
-		CellGrid baggrid = grid(	panels[0],panels[1],panels[2],eol(),
-				panels[3],panels[4],panels[5],eol(),
-				panels[6],panels[7],panels[8],eol(),
-				panels[9],panels[10],panels[11],eol());
+		CellGrid baggrid = 
+			grid(panels[0], panels[1], panels[2], eol(),
+				panels[3], panels[4], panels[5], eol(),
+				panels[6], panels[7], panels[8], eol(),
+				panels[9], panels[10], panels[11], eol());
+		baggrid.setFixedWidth(panels, true);
 		baggrid.createLayout(this);
 		
 	}
@@ -58,15 +57,15 @@ public class BagPanel extends StyledJPanel {
 	}
 
 	private ItemPanel findEmptyPanel() {
-		for (ItemPanel panel : panels ){
-			if (panel.isEmpty()){
+		for (ItemPanel panel : panels) {
+			if (panel.isEmpty()) {
 				return panel;
 			}
 		}
 		return panels[0];
 	}
 
-	public void removeItem(RPObject object) {
+	public void removeItem(final RPObject object) {
 		ItemPanel panel = panelItemMap.get(object.get("id"));
 		panel.removeItem(object);
 		
