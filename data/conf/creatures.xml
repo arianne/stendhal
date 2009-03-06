@@ -3646,7 +3646,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+<!--
   <creature name="buccaneer">
     <type class="lutin" subclass="lutin_outlaw" tileid="animal.png:100"/>
     <description/>
@@ -3677,7 +3677,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+-->
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
     <description/>
@@ -4245,7 +4245,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+<!--
  <creature name="smuggler">
     <type class="lutin" subclass="lutin_king" tileid="animal.png:100"/>
     <description/>
@@ -4276,7 +4276,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+-->
   <creature name="elder sheepman">
     <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
     <description/>
