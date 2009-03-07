@@ -30,12 +30,13 @@ public class BagPanel extends StyledJPanel {
 				panels[6], panels[7], panels[8], eol(),
 				panels[9], panels[10], panels[11], eol());
 		baggrid.setFixedWidth(panels, true);
+		baggrid.setFixedHeight(panels, true);
 		baggrid.createLayout(this);
 		
 	}
 	
 	void addItem(final RPObject object) {
-		System.out.println(object.getInt("id") + ":" + object.get("class"));
+		//System.out.println(object.getInt("id") + ":" + object.get("class"));
 		
 		 try {
 			ItemPanel panel = panelItemMap.get(object.get("id"));
