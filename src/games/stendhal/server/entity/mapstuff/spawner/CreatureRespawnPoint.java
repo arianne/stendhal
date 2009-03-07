@@ -37,8 +37,11 @@ import org.apache.log4j.Logger;
  * creatures.
  */
 public class CreatureRespawnPoint implements TurnListener {
-	// half a year
+	/** longest possible respawn time. half a year - should be longer than the 
+	 * server is up in one phase */
 	private static final int MAX_RESPAWN_TIME = 200 * 60 * 24 * 30 * 6;
+	/** minimum respawn time in seconds. about 10s */
+	private static final int MIN_RESPAWN_TIME = 33;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
@@ -148,7 +151,6 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (creatures.size() == maximum) {
 			respawning = false;
 		} else {
-			
 			SingletonRepository.getTurnNotifier().notifyInTurns(
 					calculateNextRespawnTurn(), this);
 		}
@@ -159,10 +161,10 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @return the amount of turns calculated
 	 */
 	private int calculateNextRespawnTurn() {
-		int time = Rand.randExponential(respawnTime);
+		final int time = Rand.randExponential(respawnTime);
 		
-		// limit to maximum allowed
-		return Math.min(time, MAX_RESPAWN_TIME);
+		// limit between MAX_ and MIN_
+		return Math.max(Math.min(time, MAX_RESPAWN_TIME), MIN_RESPAWN_TIME);
 	}
 
 	/**
@@ -200,5 +202,4 @@ public class CreatureRespawnPoint implements TurnListener {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
 	}
-
 }
