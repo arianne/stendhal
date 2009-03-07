@@ -14,7 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.events.PositionChangeListener;
-import games.stendhal.client.gui.FormatTextParser;
+import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -26,11 +26,8 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
 
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -38,12 +35,8 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
 import java.awt.Transparency;
-import java.awt.font.TextAttribute;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
@@ -175,7 +168,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-
+	private TextBoxFactory chatBubbleFactory;
 
 	/**
 	 * Create a game screen.
@@ -220,6 +213,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		strategy = canvas.getBufferStrategy();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
+		
+		chatBubbleFactory = new TextBoxFactory(g);
 	}
 
 	/**
@@ -495,6 +490,16 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	public EntityView createView(final IEntity entity) {
 		return  EntityViewFactory.get().create(entity);
+	}
+	
+	public Sprite createTextBox(String text, final int width, final Color textColor,
+			final Color fillColor, final boolean isTalking) {
+		return chatBubbleFactory.createTextBox(text, width, textColor, fillColor, isTalking);
+	}
+	
+	public AttributedString formatLine(final String line,
+			final Font fontNormal, final Color colorNormal) {
+		return chatBubbleFactory.formatLine(line, fontNormal, colorNormal);
 	}
 
 	/*
@@ -1071,227 +1076,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		g.setColor(textColor);
 		g.drawString(text, x, y);
 	}
-
-	private int positionStringOfSize(final String text, final int width) {
-		final String[] words = text.split("\\s+");
-
-		int i = 1;
-		// Bugfix: Prevent NPE for empty text intensifly@gmx.com
-		String textUnderWidth = "";
-		if (words != null) {
-			textUnderWidth = words[0];
-		}
-
-		while ((i < words.length)
-				&& (g.getFontMetrics().stringWidth(
-						textUnderWidth + " " + words[i]) < width)) {
-			textUnderWidth = textUnderWidth + " " + words[i];
-			i++;
-		}
-
-		if ((textUnderWidth.length() == 0) && (words.length > 1)) {
-			textUnderWidth = words[1];
-		}
-
-		if (g.getFontMetrics().stringWidth(textUnderWidth) > width) {
-			return (int) ((float) width
-					/ (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth.length());
-		}
-
-		return textUnderWidth.length();
-	}
-
-	// Added support formatted text displaying #keywords in another color
-	// intensifly@gmx.com
-	// ToDo: optimize the alghorithm, it's a little long ;)
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#formatLine(java.lang.String,
-	 *      java.awt.Font, java.awt.Color)
-	 */
-	public AttributedString formatLine(final String line,
-				final Font fontNormal, final Color colorNormal) {
-		final Font specialFont = fontNormal.deriveFont(Font.ITALIC);
-
-		try {
-			// recreate the string without the # characters
-			final StringBuilder temp = new StringBuilder();
-			FormatTextParser parser = new FormatTextParserExtension(temp);
-			parser.format(line);
-
-			// create the attribute string including formating
-			final AttributedString aStyledText = new AttributedString(temp.toString());
-
-			parser = new FormatTextParser() {
-				private int s = 0;
-
-				@Override
-				public void normalText(final String tok) {
-					aStyledText.addAttribute(TextAttribute.FONT, fontNormal, s, s
-							+ tok.length() + 1);
-					aStyledText.addAttribute(TextAttribute.FOREGROUND, colorNormal, s, s
-							+ tok.length() + 1);
-					s += tok.length() + 1;
-				}
-
-				@Override
-				public void colorText(final String tok) {
-					aStyledText.addAttribute(TextAttribute.FONT, specialFont, s, s
-							+ tok.length() + 1);
-					aStyledText.addAttribute(TextAttribute.FOREGROUND, Color.blue, s, s
-							+ tok.length() + 1);
-					s += tok.length() + 1;
-				}
-			};
-			parser.format(line);
-
-			return aStyledText;
-		} catch (final Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#createTextBox(java.lang.String,
-	 *      int, java.awt.Color, java.awt.Color, boolean)
-	 */
-	public Sprite createTextBox(String text, final int width, final Color textColor,
-			final Color fillColor, final boolean isTalking) {
-		final java.util.List<String> lines = new java.util.LinkedList<String>();
-
-		int i = 0;
-		// Added support for speech balloons. If drawn, they take 10 pixels from
-		// the left. intensifly@gmx.com
-
-		int delta = 0;
-
-		if (fillColor != null) {
-			delta = 10;
-		}
-		text = text.trim();
-		while (text.length() > 0) {
-			int pos = positionStringOfSize(text, width - delta);
-
-			/*
-			 * Hard line breaks
-			 */
-			final int nlpos = text.indexOf('\n', 1);
-			if ((nlpos != -1) && (nlpos < pos)) {
-				pos = nlpos;
-			}
-
-			lines.add(text.substring(0, pos).trim());
-			text = text.substring(pos);
-			i++;
-		}
-
-		final int numLines = lines.size();
-		int lineLengthPixels = 0;
-
-		for (final String line : lines) {
-			final int lineWidth = g.getFontMetrics().stringWidth(line);
-			if (lineWidth > lineLengthPixels) {
-				lineLengthPixels = lineWidth;
-			}
-		}
-
-		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		final int imageWidth;
-		if (lineLengthPixels + delta < width) {
-			imageWidth = (lineLengthPixels + delta) + 4;
-		} else {
-			imageWidth = width + 4;
-		}
-		
-		int imageHeight = 16 * numLines;
-
-		// Workaround for X-Windows not supporting images of height 0 pixel.
-		if (imageHeight == 0) {
-			imageHeight = 1;
-			LOGGER.warn("Created textbox for empty text");
-		}
-
-		final Image image = gc.createCompatibleImage(imageWidth, imageHeight,
-				Transparency.BITMASK);
-
-		final Graphics2D g2d = (Graphics2D) image.getGraphics();
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-
-		if (fillColor != null) {
-			final Composite xac = g2d.getComposite();
-			final AlphaComposite ac = AlphaComposite.getInstance(
-					AlphaComposite.SRC_OVER, 0.8f);
-			g2d.setComposite(ac);
-			g2d.setColor(fillColor);
-			
-			g2d.fillRoundRect(
-					10,
-					0,
-					Math.min(width, lineLengthPixels) + 3,
-					16 * numLines - 1, 4, 4);
-			g2d.setColor(textColor);
-			if (isTalking) {
-				g2d.drawRoundRect(
-						10,
-						0,
-						Math.min(width, lineLengthPixels) + 3,
-						16 * numLines - 1, 4, 4);
-			} else {
-				final float[] dash = { 4, 2 };
-				final BasicStroke newStroke = new BasicStroke(2,
-						BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash,
-						0);
-				final Stroke oldStroke = g2d.getStroke();
-				g2d.setStroke(newStroke);
-				g2d.drawRect(
-						10,
-						0,
-						Math.min(width, lineLengthPixels) + 3,
-						16 * numLines - 1);
-				g2d.setStroke(oldStroke);
-			}
-			g2d.setComposite(xac);
-			if (isTalking) {
-				g2d.setColor(fillColor);
-				final Polygon p = new Polygon();
-				p.addPoint(10, 3);
-				p.addPoint(0, 16);
-				p.addPoint(11, 12);
-				g2d.fillPolygon(p);
-				g2d.setColor(textColor);
-				p.addPoint(0, 16);
-				g2d.drawPolygon(p);
-			}
-		}
-
-		i = 0;
-		for (final String line : lines) {
-			final AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
-
-			if (fillColor == null) {
-				g2d.setColor(Color.black);
-				g2d.drawString(aStyledText.getIterator(), 1, 2 + i * 16 + 9);
-				g2d.drawString(aStyledText.getIterator(), 1, 2 + i * 16 + 11);
-				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 9);
-				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 11);
-			}
-
-			g2d.setColor(textColor);
-
-			g2d.drawString(aStyledText.getIterator(), 2 + delta,
-					2 + i * 16 + 10);
-			i++;
-		}
-
-		return new ImageSprite(image);
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 *

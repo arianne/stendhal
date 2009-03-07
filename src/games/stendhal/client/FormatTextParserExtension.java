@@ -14,11 +14,11 @@ public final class FormatTextParserExtension extends FormatTextParser {
 
 	@Override
 	public void normalText(final String tok) {
-		temp.append(tok + " ");
+		temp.append(tok);
 	}
 
 	@Override
 	public void colorText(final String tok) {
-		temp.append(tok + " ");
+		temp.append(tok);
 	}
 }
