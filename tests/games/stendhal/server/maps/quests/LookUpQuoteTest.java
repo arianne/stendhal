@@ -179,13 +179,13 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(quest.getHistory(player).isEmpty());
 
 		player.setQuest(QUEST_SLOT, "fisherman Bully");
-		assertEquals(2, quest.getHistory(player).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "GET_FISHING_ROD"),
+		assertEquals(1, quest.getHistory(player).size());
+		assertEquals(Arrays.asList("FIRST_CHAT"),
 				quest.getHistory(player));
 
 		player.setQuest(QUEST_SLOT, "done");
-		assertEquals(3, quest.getHistory(player).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "GET_FISHING_ROD", "DONE"),
+		assertEquals(2, quest.getHistory(player).size());
+		assertEquals(Arrays.asList("FIRST_CHAT", "DONE"),
 				quest.getHistory(player));
 	}
 
