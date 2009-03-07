@@ -5,17 +5,30 @@ import games.stendhal.client.gui.styled.WoodStyle;
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class BagPanelControler implements PropertyChangeListener {
+	
+	private final Map<String, ItemPanelControler> panelItemMap = new HashMap<String, ItemPanelControler>();
 
+	private static final int CAPACITY = 12;
 	private final BagPanel bagPanel;
 	private static BagPanelControler instance;
-
+	ItemPanelControler[] itempanels = new ItemPanelControler[CAPACITY];
 	public BagPanelControler() {
-		bagPanel = new BagPanel(WoodStyle.getInstance());
+		Component[] panels = new Component[CAPACITY];
+		for (int i = 0; i < CAPACITY; i++) {
+			
+			itempanels[i] = new ItemPanelControler();
+			
+			panels[i]=itempanels[i].getComponent();
+			
+		}
+		bagPanel = new BagPanel(WoodStyle.getInstance(),panels);
 		bagPanel.setSize(200, 200);
 		bagPanel.setVisible(true);
 		instance = this;
@@ -29,7 +42,7 @@ public class BagPanelControler implements PropertyChangeListener {
 		final RPSlot bagslotOld = (RPSlot) evt.getOldValue();
 		if (bagslotOld != null) {
 			for (final RPObject object : bagslotOld) {
-				bagPanel.removeItem(object);
+				removeItem(object);
 
 			}
 		}
@@ -37,7 +50,7 @@ public class BagPanelControler implements PropertyChangeListener {
 		final RPSlot bagslot = (RPSlot) evt.getNewValue();
 		if (bagslot != null) {
 			for (final RPObject object : bagslot) {
-				bagPanel.addItem(object);
+				addItem(object);
 			}
 		}
 	}
@@ -48,6 +61,40 @@ public class BagPanelControler implements PropertyChangeListener {
 
 	public static PropertyChangeListener get() {
 		return instance;
+	}
+	
+	void addItem(final RPObject object) {
+
+		try {
+			ItemPanelControler panelControler = panelItemMap.get(object.get("id"));
+
+			if (panelControler == null) {
+				panelControler = findEmptyPanel();
+				panelItemMap.put(object.get("id"), panelControler);
+				panelControler.addNew(object);
+
+			} else {
+				panelControler.updateValues(object);
+			}
+
+		} catch (final Exception e) {
+			System.out.println(e);
+		}
+
+	}
+
+	private ItemPanelControler findEmptyPanel() {
+		for (final ItemPanelControler panel : itempanels) {
+			if (panel.isEmpty()) {
+				return panel;
+			}
+		}
+		return itempanels[0];
+	}
+
+	public void removeItem(final RPObject object) {
+		final ItemPanelControler panel = panelItemMap.get(object.get("id"));
+		panel.removeItem(object);
 	}
 
 }
