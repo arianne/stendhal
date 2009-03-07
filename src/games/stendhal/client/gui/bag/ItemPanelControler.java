@@ -31,14 +31,12 @@ public class ItemPanelControler {
 	public void addNew(final RPObject object) {
 		isEmpty = false;
 		ITEM_PANEL.setImage(new ItemImageLoader().loadItemImageFromObject(object));
-		String amount = "";
-		if (object.has("quantity")) {
-			amount = object.get("quantity");
-		}
+		updateValues(object);
 	}
 
 	public void updateValues(final RPObject object) {
-		if (object.has("quantity")) {
+		if(object.has("quantity")){
+			ITEM_PANEL.setQuantity(object.getInt("quantity"));
 		}
 	}
 }

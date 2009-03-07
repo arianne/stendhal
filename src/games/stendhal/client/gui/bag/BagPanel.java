@@ -6,13 +6,9 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 import java.awt.Component;
-import java.awt.Dimension;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import marauroa.common.game.RPObject;
 import pagelayout.CellGrid;
 
 public class BagPanel extends StyledJPanel {
