@@ -4,42 +4,42 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import marauroa.common.game.RPObject;
 
 public class ItemPanel extends JPanel {
+	public ItemPanel() {
+	 this.setOpaque(false);
+	}
 	
 	static BufferedImage background = new ItemImageLoader().loadFromPath("/data/gui/slot.png");
 	private ItemImage itemImage;
+	private boolean isEmpty = true;
 	
 
 	public boolean isEmpty() {
-		return getComponentCount() == 0;
+		return isEmpty;
 	}
 
 	public void addNew(final RPObject object) {
+		isEmpty = false;
 		itemImage = new ItemImageLoader().loadItemImageFromObject(object);
 		 String amount = "";	
 		if (object.has("quantity")) {
 			amount = object.get("quantity");	
 			}
 			 
-			final JTextArea textArea = new JTextArea(amount);
-			this.add(textArea);
-		
 		revalidate();
 		repaint();
 	}
 
 	public void updateValues(final RPObject object) {
-		JTextArea field = (JTextArea) this.getComponent(0);
 		if (object.has("quantity")) {
-			field.setText(object.get("quantity"));	
 			}
 	}
 
 	public void removeItem(final RPObject object) {
+		this.isEmpty  = true;
 		this.removeAll();
 		revalidate();
 		repaint();
