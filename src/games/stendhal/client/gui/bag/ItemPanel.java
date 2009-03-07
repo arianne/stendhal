@@ -29,8 +29,8 @@ public class ItemPanel extends JPanel {
 			amount = object.get("quantity");	
 			}
 			 
-		revalidate();
-		repaint();
+//		revalidate();
+//		repaint();
 	}
 
 	public void updateValues(final RPObject object) {
@@ -40,10 +40,10 @@ public class ItemPanel extends JPanel {
 
 	public void removeItem(final RPObject object) {
 		this.isEmpty  = true;
-		this.removeAll();
-		revalidate();
-		repaint();
-		
+	//	this.removeAll();
+//		revalidate();
+//		repaint();
+//		
 	}
 	
 	@Override
@@ -52,8 +52,10 @@ public class ItemPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, this);
 		if (!isEmpty()) {
+			if (itemImage != null) {
 			g.drawImage(itemImage.getNiceNames()[0].getCurrent(), 5, 5, this);
 			itemImage.getNiceNames()[0].moveNext();
+			}
 		}
 	}
 

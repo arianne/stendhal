@@ -19,7 +19,7 @@ public class ItemImage {
 		for (int i = 0; i < states; i++) {
 			niceNames[i] = new CircledCollection<BufferedImage>();
 			for (int j = 0; j < sequence; j++) {
-				niceNames[i].add(image.getSubimage(j, i, 32, 32));
+				niceNames[i].add(image.getSubimage(j*32, i, 32, 32));
 				
 			}
 		}
