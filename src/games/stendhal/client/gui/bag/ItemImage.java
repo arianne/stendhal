@@ -12,23 +12,16 @@ public class ItemImage {
 	}
 
 	CircledCollection<BufferedImage>[] init(final BufferedImage image) {
-		int sequence = image.getWidth() / 32;
-		int states = image.getHeight() / 32;
+		final int sequence = image.getWidth() / 32;
+		final int states = image.getHeight() / 32;
 		
 		niceNames = TEMPLATE.newArray(states);
 		for (int i = 0; i < states; i++) {
 			niceNames[i] = new CircledCollection<BufferedImage>();
 			for (int j = 0; j < sequence; j++) {
 				niceNames[i].add(image.getSubimage(j*32, i, 32, 32));
-				
 			}
 		}
 		return niceNames;
 	}
-	
-	
-	
-	
-	
-
 }

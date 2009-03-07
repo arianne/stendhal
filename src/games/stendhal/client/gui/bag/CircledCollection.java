@@ -1,6 +1,5 @@
 package games.stendhal.client.gui.bag;
 
-
 public class CircledCollection<T> {
 	private final Node EMPTY_NODE = new Node();
 	private Node head = EMPTY_NODE;
@@ -16,19 +15,16 @@ public class CircledCollection<T> {
 		private Node(final T object) {
 			this();
 			this.value = object;
-
 		}
 
 		private Node() {
 			this.next = this;
-
 		}
 
 	}
 
 	public void add(final T object) {
 		add(new Node(object));
-
 	}
 
 	protected void add(final Node newNode) {
@@ -45,9 +41,7 @@ public class CircledCollection<T> {
 			tail = newNode;
 			break;
 		}
-
 		size++;
-
 	}
 
 	public int size() {
@@ -55,7 +49,6 @@ public class CircledCollection<T> {
 	}
 
 	public T getCurrent() {
-
 		return current.value;
 	}
 

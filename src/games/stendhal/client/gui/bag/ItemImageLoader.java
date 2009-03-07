@@ -13,62 +13,58 @@ import marauroa.common.game.RPObject;
 public class ItemImageLoader {
 
 	static final ConcurrentMap<String, BufferedImage> ImageMap = new ConcurrentHashMap<String, BufferedImage>();
-	
-	public  BufferedImage loadFromObject(final RPObject object)  {
-			final String path = extractPathFromObject(object);
-			return loadFromPath(path);
-	}
 
+	public BufferedImage loadFromObject(final RPObject object) {
+		final String path = extractPathFromObject(object);
+		return loadFromPath(path);
+	}
 
 	private String extractPathFromObject(final RPObject object) {
 		final String clazz = object.get("class");
 		final String subClass = object.get("subclass");
-		final String path = "/data/sprites/items/" + clazz + "/" + subClass + ".png";
+		final String path = "/data/sprites/items/" + clazz + "/" + subClass
+				+ ".png";
 		return path;
 	}
-	
-	
-public  BufferedImage loadFromPath(final String path)  {
-	BufferedImage img = ImageMap.get(path);
-	if (img != null) {
-		return img;
-	} else {
-	
-	
-		try {
-			URL resource = getClass().getResource(path);
-			if (resource != null) {
-				img = read(resource);
-				ImageMap.put(path, img);
-			} else {
-				System.out.println("file not found :" +  path);
+
+	public BufferedImage loadFromPath(final String path) {
+		BufferedImage img = ImageMap.get(path);
+		if (img != null) {
+			return img;
+		} else {
+			try {
+				final URL resource = getClass().getResource(path);
+				if (resource != null) {
+					img = read(resource);
+					ImageMap.put(path, img);
+				} else {
+					System.out.println("file not found :" + path);
+				}
+			} catch (final IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-	}
 		return img;
 	}
-	
+
 	public static void main(final String[] args) {
-		RPObject object = new RPObject();
+		final RPObject object = new RPObject();
 		new ItemImageLoader().loadFromObject(object);
 	}
-	
+
 	public ItemImage loadItemImageFromPath(final String path) {
-		
-		ItemImage itemImage = new ItemImage();
+		final ItemImage itemImage = new ItemImage();
 		itemImage.init(loadFromPath(path));
 		return itemImage;
 
 	}
+
 	public ItemImage loadItemImageFromObject(final RPObject object) {
-		
-		ItemImage itemImage = new ItemImage();
-		String path = extractPathFromObject(object);
+		final ItemImage itemImage = new ItemImage();
+		final String path = extractPathFromObject(object);
 		itemImage.init(loadFromPath(path));
 		return itemImage;
 
 	}
-	
+
 }
