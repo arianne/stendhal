@@ -6,8 +6,10 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 import java.awt.Component;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import pagelayout.CellGrid;
 
@@ -15,21 +17,22 @@ public class BagPanel extends StyledJPanel {
 
 	private static final int FRAMES_PER_SECOND = 10;
 
-	static final Timer timer = new Timer("animationticker", true);
+	final ActionListener timerTask = new ActionListener(){
 
-	TimerTask timerTask = new TimerTask() {
-
-		@Override
-		public void run() {
+		public void actionPerformed(ActionEvent e) {
 			BagPanel.this.repaint();
-
+			
 		}
+		
 	};
+	
+	private static Timer timer;
 
+	
 	public BagPanel(final Style instance, Component[] panels) {
 		super(instance);
-		timer.schedule(timerTask, 0, 1000 / FRAMES_PER_SECOND);
-		
+		timer = new Timer(1000 / FRAMES_PER_SECOND,timerTask);	
+		timer.start();
 
 		final CellGrid baggrid = grid(panels[0], panels[1], panels[2], eol(),
 				panels[3], panels[4], panels[5], eol(), panels[6], panels[7],

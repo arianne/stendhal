@@ -13,6 +13,7 @@ public class ItemPanel extends JPanel {
 			.loadFromPath("/data/gui/slot.png");
 	private ItemImage itemImage;
 	JTextField field = new JTextField();
+	private CircledCollection<BufferedImage> circledColl;
 	public ItemPanel() {
 		
 		field.setOpaque(false);
@@ -24,20 +25,20 @@ public class ItemPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(final Graphics g) {
-
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, this);
 		
 		if (itemImage != null) {
-			g.drawImage(itemImage.getCircledCollectionArray()[0].getCurrent(), 5, 5,
+			g.drawImage(circledColl.getCurrent(), 5, 5,
 					this);
-			itemImage.getCircledCollectionArray()[0].moveNext();
+			circledColl.moveNext();
 		}
 	
 	}
 
 	public void setImage(ItemImage image) {
 		itemImage = image;
+		circledColl = image.getCircledCollectionArray()[0];
 		
 	}
 
