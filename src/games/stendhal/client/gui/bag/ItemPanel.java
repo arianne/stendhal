@@ -47,9 +47,9 @@ public class ItemPanel extends JPanel {
 		g.drawImage(background, 0, 0, this);
 		if (!isEmpty()) {
 			if (itemImage != null) {
-				g.drawImage(itemImage.getNiceNames()[0].getCurrent(), 5, 5,
+				g.drawImage(itemImage.getCircledCollectionArray()[0].getCurrent(), 5, 5,
 						this);
-				itemImage.getNiceNames()[0].moveNext();
+				itemImage.getCircledCollectionArray()[0].moveNext();
 			}
 		}
 	}
