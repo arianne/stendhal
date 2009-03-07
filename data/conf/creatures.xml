@@ -6018,7 +6018,7 @@
     <drops>
       <item value="money" quantity="[10,100]" probability="70.0"/>
       <item value="greater potion" quantity="[1,4]" probability="30.0"/>
-      <item value="spear" quantity="[20,40]" probability="30.0"/>
+      <item value="wooden spear" quantity="[20,40]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
