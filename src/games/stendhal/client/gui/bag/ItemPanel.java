@@ -38,8 +38,11 @@ public class ItemPanel extends JPanel {
 
 	public void setImage(ItemImage image) {
 		itemImage = image;
-		circledColl = image.getCircledCollectionArray()[0];
-		
+		if (image!= null) {
+			circledColl = image.getCircledCollectionArray()[0];
+		} else {
+			field.setText(null);
+		}
 	}
 
 	public void setQuantity(int amount) {
