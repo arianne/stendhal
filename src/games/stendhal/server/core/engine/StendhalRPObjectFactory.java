@@ -3,6 +3,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.FlowerGrowerTransFormer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
+import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
@@ -33,6 +34,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put("growing_entity_spawner", new FlowerGrowerTransFormer());
 		transformerMap.put(ArrestWarrant.RPCLASS_NAME, new ArrestWarrantTransformer());
 		transformerMap.put(RentedSign.RPCLASS_NAME, new RentedSignTransformer());
+		transformerMap.put("chest", new StoredChestTransformer());
 	}
 	
 	
