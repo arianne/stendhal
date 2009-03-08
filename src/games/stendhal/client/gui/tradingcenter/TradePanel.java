@@ -9,12 +9,12 @@ public class TradePanel {
 	
 	private final List<OrderPanelController> opcs = new LinkedList<OrderPanelController>();
 
-	public void add(OrderPanelController orderPanelController) {
+	public void add(final OrderPanelController orderPanelController) {
 		this.opcs.add(orderPanelController);
 	}
 
-	public boolean contains(RPObject object) {
-		for (OrderPanelController opc : this.opcs) {
+	public boolean contains(final RPObject object) {
+		for (final OrderPanelController opc : this.opcs) {
 			if (opc.getObject().equals(object)) {
 				return true;
 			}

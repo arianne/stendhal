@@ -18,7 +18,7 @@ public class PopupMenuListener extends MouseAdapter {
 		}
 	}
 
-	protected void createAndShowPopup(MouseEvent e) {
+	protected void createAndShowPopup(final MouseEvent e) {
 		
 	}
 }

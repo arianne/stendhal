@@ -13,7 +13,7 @@ public class OrderPanelController implements ObjectChangeListener {
 	
 	private final RPObject object;
 
-    public OrderPanelController(RPObject object) {
+    public OrderPanelController(final RPObject object) {
     	this.object = object;
 		initialize(this.object);
 	}

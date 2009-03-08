@@ -36,9 +36,9 @@ public class ItemPanel extends JPanel {
 	
 	}
 
-	public void setImage(ItemImage image) {
+	public void setImage(final ItemImage image) {
 		itemImage = image;
-		if (image!= null) {
+		if (image != null) {
 			
 			circledColl = image.getCircledCollectionArray()[0];
 		} else {
@@ -47,19 +47,19 @@ public class ItemPanel extends JPanel {
 		
 	}
 
-	public void setQuantity(int amount) {
+	public void setQuantity(final int amount) {
 		
-		String text = format(amount);
-		field.setText(text );
+		final String text = format(amount);
+		field.setText(text);
 		
 		revalidate();
 	}
 
-	private String format(long value) {
-		if (value > 1000000){
+	private String format(final long value) {
+		if (value > 1000000) {
 			return String.valueOf(value / 1000000) + "M";
 		}
-		if (value > 1000){
+		if (value > 1000) {
 			return String.valueOf(value / 1000) + "K";
 		}
 		return String.valueOf(value);

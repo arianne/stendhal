@@ -12,11 +12,11 @@ import games.stendhal.server.entity.player.Player;
  */
 public class MessagingArea extends AreaEntity implements MovementListener {
 	/** true if the area should cover the whole zone */
-	private boolean coversZone;
+	private final boolean coversZone;
 	/** message sent to the players entering the area */
-	private String enterMessage;
+	private final String enterMessage;
 	/** message sent to the players leaving the area */
-	private String leaveMessage;
+	private final String leaveMessage;
 	
 	/**
 	 * Create a MessagingArea
@@ -37,20 +37,20 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 		this.leaveMessage = leaveMessage;
 	}
 	
-	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
+	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((enterMessage != null) && (entity instanceof Player)) {
 			((Player) entity).sendPrivateText(NotificationType.SCENE_SETTING, enterMessage);
 		}
 	}
 	
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
+	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((leaveMessage != null) && (entity instanceof Player)) {
 			// needs to be delayed since normal messages get lost in case the player leaves zone
 			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.SCENE_SETTING, 1);
 		}
 	}
 	
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
+	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX, final int oldY, final int newX, final int newY) {
 	}
 	
 	/**

@@ -17,9 +17,9 @@ public class BagPanel extends StyledJPanel {
 
 	private static final int FRAMES_PER_SECOND = 10;
 
-	final ActionListener timerTask = new ActionListener(){
+	final ActionListener timerTask = new ActionListener() {
 
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			BagPanel.this.repaint();
 			
 		}
@@ -29,9 +29,9 @@ public class BagPanel extends StyledJPanel {
 	private static Timer timer;
 
 	
-	public BagPanel(final Style instance, Component[] panels) {
+	public BagPanel(final Style instance, final Component[] panels) {
 		super(instance);
-		timer = new Timer(1000 / FRAMES_PER_SECOND,timerTask);	
+		timer = new Timer(1000 / FRAMES_PER_SECOND, timerTask);	
 		timer.start();
 
 		final CellGrid baggrid = grid(panels[0], panels[1], panels[2], eol(),

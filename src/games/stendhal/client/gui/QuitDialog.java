@@ -2,7 +2,6 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;

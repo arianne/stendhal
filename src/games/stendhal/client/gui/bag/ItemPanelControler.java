@@ -13,7 +13,7 @@ public class ItemPanelControler {
 	
 	public ItemPanelControler() {
 		ITEM_PANEL.setPreferredSize(PREFERRED_SIZE);
-		ITEM_PANEL.addMouseListener(new PopupMenuListener(){
+		ITEM_PANEL.addMouseListener(new PopupMenuListener() {
 			
 		});
 	}
@@ -22,7 +22,7 @@ public class ItemPanelControler {
 		return ITEM_PANEL;
 	}
 
-	public void removeItem(RPObject object) {
+	public void removeItem(final RPObject object) {
 		ITEM_PANEL.setImage(null);
 		this.isEmpty = true;
 	}
@@ -38,7 +38,7 @@ public class ItemPanelControler {
 	}
 
 	public void updateValues(final RPObject object) {
-		if(object.has("quantity")){
+		if (object.has("quantity")) {
 			ITEM_PANEL.setQuantity(object.getInt("quantity"));
 		}
 	}

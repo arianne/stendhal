@@ -25,10 +25,10 @@ public class BagPanelControler implements PropertyChangeListener {
 			
 			itempanels[i] = new ItemPanelControler();
 			
-			panels[i]=itempanels[i].getComponent();
+			panels[i] = itempanels[i].getComponent();
 			
 		}
-		bagPanel = new BagPanel(WoodStyle.getInstance(),panels);
+		bagPanel = new BagPanel(WoodStyle.getInstance(), panels);
 		bagPanel.setSize(200, 200);
 		bagPanel.setVisible(true);
 		instance = this;

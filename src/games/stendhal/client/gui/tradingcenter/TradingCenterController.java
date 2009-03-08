@@ -9,13 +9,13 @@ public class TradingCenterController {
 	TradePanel tradePanel = new TradePanel();
 	
 	
-	public void onAdded(RPObject object) {
-		OrderPanelController orderPanelController = new OrderPanelController(object); 
+	public void onAdded(final RPObject object) {
+		final OrderPanelController orderPanelController = new OrderPanelController(object); 
 		pto.register(object, orderPanelController);
 		tradePanel.add(orderPanelController);
 	}
 
-	public boolean contains(RPObject object) {
+	public boolean contains(final RPObject object) {
 		return tradePanel.contains(object);
 	}
 

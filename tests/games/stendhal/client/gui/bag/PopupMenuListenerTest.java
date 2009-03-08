@@ -19,7 +19,7 @@ public class PopupMenuListenerTest {
 	
 	private final class PopupMenuListenerExtension extends PopupMenuListener {
 		@Override
-		protected void createAndShowPopup(MouseEvent e) {
+		protected void createAndShowPopup(final MouseEvent e) {
 			called = true;
 			
 		}
@@ -47,8 +47,8 @@ public class PopupMenuListenerTest {
 	@Test
 	public final void testMousePressedMouseEvent() {
 		
-		PopupMenuListener  listener = new PopupMenuListenerExtension();
-		MouseEvent e = createMock(MouseEvent.class);
+		final PopupMenuListener  listener = new PopupMenuListenerExtension();
+		final MouseEvent e = createMock(MouseEvent.class);
 		expect(e.isPopupTrigger()).andReturn(false);
 		replay(e);
 		listener.mousePressed(e);
@@ -58,8 +58,8 @@ public class PopupMenuListenerTest {
 	
 	@Test
 	public final void testMousePressedMouseEventIsTrigger() {
-		PopupMenuListener  listener = new PopupMenuListenerExtension();
-		MouseEvent e = createMock(MouseEvent.class);
+		final PopupMenuListener  listener = new PopupMenuListenerExtension();
+		final MouseEvent e = createMock(MouseEvent.class);
 		expect(e.isPopupTrigger()).andReturn(true);
 		replay(e);
 		listener.mousePressed(e);
@@ -69,8 +69,8 @@ public class PopupMenuListenerTest {
 
 	@Test
 	public final void testMouseReleasedMouseEvent() {
-		PopupMenuListener  listener = new PopupMenuListenerExtension();
-		MouseEvent e = createMock(MouseEvent.class);
+		final PopupMenuListener  listener = new PopupMenuListenerExtension();
+		final MouseEvent e = createMock(MouseEvent.class);
 		expect(e.isPopupTrigger()).andReturn(false);
 		replay(e);
 		listener.mouseReleased(e);
@@ -81,8 +81,8 @@ public class PopupMenuListenerTest {
 
 	@Test
 	public final void testMouseReleasedMouseEventIsTrigger() {
-		PopupMenuListener  listener = new PopupMenuListenerExtension();
-		MouseEvent e = createMock(MouseEvent.class);
+		final PopupMenuListener  listener = new PopupMenuListenerExtension();
+		final MouseEvent e = createMock(MouseEvent.class);
 		expect(e.isPopupTrigger()).andReturn(true);
 		replay(e);
 		listener.mouseReleased(e);
