@@ -28,7 +28,7 @@ public class ConversationContext {
     protected boolean mergeExpressions = true;
     
     /** Flag to enable storing new words into the database. */
-    protected boolean persistNewWords = true; 
+    protected boolean persistNewWords = false; 
     
     /** Flag to enable ignoring of words marked with the type IGN. */
     protected boolean ignoreIgnorable = true; 
