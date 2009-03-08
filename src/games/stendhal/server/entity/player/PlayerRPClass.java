@@ -525,14 +525,14 @@ class PlayerRPClass {
 
 	/**
 	 * send a welcome message to the player which can be configured in
-	 * marauroa.ini file as "server_welcome". If the value is an http:// adress,
-	 * the first line of that adress is read and used as the message
+	 * marauroa.ini file as "server_welcome". If the value is an http:// address,
+	 * the first line of that address is read and used as the message
 	 * 
 	 * @param player
 	 *            Player
 	 */
 	static void welcome(final Player player) {
-		String msg = "This release is EXPERIMENTAL. Need help? #http://arianne.sourceforge.net/wiki/index.php?title=AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
+		String msg = "This release is EXPERIMENTAL. Need help? #http://stendhal.game-host.org/wiki/index.php/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 		try {
 			final Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome")) {
