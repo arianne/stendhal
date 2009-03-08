@@ -13,6 +13,9 @@ public class ItemPanelControler {
 	
 	public ItemPanelControler() {
 		ITEM_PANEL.setPreferredSize(PREFERRED_SIZE);
+		ITEM_PANEL.addMouseListener(new PopupMenuListener(){
+			
+		});
 	}
 	
 	public Component getComponent() {
