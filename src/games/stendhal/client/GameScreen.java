@@ -168,7 +168,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-	private TextBoxFactory chatBubbleFactory;
+	private TextBoxFactory textBoxFactory;
 
 	/**
 	 * Create a game screen.
@@ -214,7 +214,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 		
-		chatBubbleFactory = new TextBoxFactory(g);
+		textBoxFactory = new TextBoxFactory(g);
 	}
 
 	/**
@@ -494,12 +494,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	
 	public Sprite createTextBox(String text, final int width, final Color textColor,
 			final Color fillColor, final boolean isTalking) {
-		return chatBubbleFactory.createTextBox(text, width, textColor, fillColor, isTalking);
+		return textBoxFactory.createTextBox(text, width, textColor, fillColor, isTalking);
 	}
 	
 	public AttributedString formatLine(final String line,
 			final Font fontNormal, final Color colorNormal) {
-		return chatBubbleFactory.formatLine(line, fontNormal, colorNormal);
+		return textBoxFactory.formatLine(line, fontNormal, colorNormal);
 	}
 
 	/*
@@ -705,7 +705,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	public void addText(int sx, int sy, final String text, final Color color,
 			final boolean isTalking) {
-		final Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
+		final Sprite sprite = textBoxFactory.createTextBox(text, 240, color, Color.white, isTalking);
 
 		if (isTalking) {
 			// Point alignment: left, bottom

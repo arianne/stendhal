@@ -411,9 +411,11 @@ public interface IGameScreen {
 	 *            normal color (for non-special text)
 	 * @return the formatted string
 	 */
+	@Deprecated
 	AttributedString formatLine(String line, Font fontNormal,
 			Color colorNormal);
 
+	@Deprecated
 	Sprite createTextBox(String text, int width,
 			Color textColor, Color fillColor, boolean isTalking);
 
