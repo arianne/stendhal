@@ -84,6 +84,11 @@ public class WeddingRing extends Ring {
 	 *            The ring's owner.
 	 */
 	private void teleportToSpouse(final Player player) {
+		if (!player.isZoneChangeAllowed()) {
+			player.sendPrivateText("You were told to watch your pet, weren't you ?");
+			return;
+		}
+
 		final String spouseName = getInfoString();
 
 		if (spouseName == null) {
