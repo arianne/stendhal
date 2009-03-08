@@ -13,7 +13,7 @@ public abstract class FormatTextParser {
 	 * @param color true if the text should be coloured
 	 * @throws Exception
 	 */
-	private void writeText(final String text, boolean color) throws Exception {
+	private void writeText(final String text, final boolean color) throws Exception {
 		if (color) {
 			colorText(text.replaceAll("\\\\#", "#"));
 		} else {
@@ -24,12 +24,13 @@ public abstract class FormatTextParser {
 	public void format(String text) throws Exception {
 		int startIndex = 0;
 		int unquotedIndex, quotedIndex;
+		boolean done = false;
 		
-		while (text.length() > 0)  {
+		while (!done && text.length() > 0)  {
 			unquotedIndex = text.indexOf('#', startIndex);
 			if (unquotedIndex == -1) {
 				writeText(text, false);
-				text = "";
+				done = true;
 			} else {
 				quotedIndex = text.indexOf("\\#", startIndex);
 				if (quotedIndex != -1 && quotedIndex == (unquotedIndex - 1)) {
@@ -52,11 +53,11 @@ public abstract class FormatTextParser {
 					}
 					// skip the #, and possible quoting
 					text = text.substring(unquotedIndex + 1 + shift);
-					int stopAt = text.indexOf(endMarker);
+					final int stopAt = text.indexOf(endMarker);
 					if (stopAt  == -1) {
 						// No end marker found. the rest is colored (colors improperly quoted strings) 
 						writeText(text, true);
-						text = "";
+						done = true;
 					} else {
 						// color until the endMarker, and skip the possible quoting
 						writeText(text.substring(0, stopAt), true);
