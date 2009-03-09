@@ -17,8 +17,6 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a spell.
  */
@@ -140,13 +138,9 @@ class Spell2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
+
 
 		default:
 			super.onAction(at);

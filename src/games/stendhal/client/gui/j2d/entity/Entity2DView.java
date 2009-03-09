@@ -10,13 +10,13 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -718,30 +718,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		switch (at) {
 		case LOOK:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			entity.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case ADMIN_INSPECT:
-			rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			// fillTargetInfo(rpaction);
-			entity.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case ADMIN_DESTROY:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-
-			entity.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case ADMIN_ALTER:

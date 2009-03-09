@@ -2,6 +2,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -26,8 +27,22 @@ public enum ActionType {
 	PROSPECT("use", "Prospect"),
 	FISH("use", "Fish"),
 	WISH("use", "Make a Wish"),
-	LEAVE_SHEEP("forsake", "Leave sheep"),
-	LEAVE_PET("forsake", "Leave pet"),
+	LEAVE_SHEEP("forsake", "Leave sheep") {
+		@Override
+		public RPAction fillTargetInfo(final RPObject arg0) {
+			RPAction rpaction = super.fillTargetInfo(arg0);
+			rpaction.put("species", "sheep");
+			return rpaction;
+		}
+	},
+	LEAVE_PET("forsake", "Leave pet") {
+		@Override
+		public RPAction fillTargetInfo(final RPObject arg0) {
+			RPAction rpaction = super.fillTargetInfo(arg0);
+			rpaction.put("species", "pet");
+			return rpaction;
+		}
+	},
 	ADD_BUDDY("addbuddy", "Add to Buddies"),
 	ADMIN_INSPECT("inspect", "(*)Inspect"),
 	ADMIN_DESTROY("destroy", "(*)Destroy"),
@@ -102,4 +117,28 @@ public enum ActionType {
 	public void send(final RPAction rpaction) {
 		StendhalClient.get().send(rpaction);
 	}
+	
+	public RPAction fillTargetInfo(final RPObject rpObject) {
+		
+		RPAction rpaction = new RPAction();
+		
+		rpaction.put("type", toString());
+		final int id = rpObject.getID().getObjectID();
+
+		if (rpObject.isContained()) {
+			rpaction.put("baseobject",
+					rpObject.getContainer().getID().getObjectID());
+			rpaction.put("baseslot", rpObject.getContainerSlot().getName());
+			rpaction.put("baseitem", id);
+		} else {
+			StringBuilder target;
+			target = new StringBuilder("#");
+			target.append(Integer.toString(id));
+			rpaction.put("target", target.toString());
+		}
+		
+		return rpaction;
+	}
+	
+	
 }

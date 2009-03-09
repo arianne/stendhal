@@ -20,7 +20,6 @@ import games.stendhal.common.Direction;
 import java.awt.Graphics2D;
 import java.util.Map;
 
-import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a domestic animal.
@@ -269,12 +268,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case OWN:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			animal.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(animal.getRPObject()));
 			break;
 
 		default:

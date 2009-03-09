@@ -10,8 +10,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 public class Gate2DView extends Entity2DView {
@@ -66,15 +64,11 @@ public class Gate2DView extends Entity2DView {
 			return;
 		}
 
-		RPAction rpaction;
+		
 
 		switch (at) {
 		case USE:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			entity.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 		default:
 			super.onAction(at);

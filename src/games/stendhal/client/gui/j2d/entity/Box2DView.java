@@ -14,8 +14,6 @@ import games.stendhal.client.entity.Box;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a box.
  */
@@ -71,12 +69,7 @@ class Box2DView extends Item2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case OPEN:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

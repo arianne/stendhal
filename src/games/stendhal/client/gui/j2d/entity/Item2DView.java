@@ -18,8 +18,6 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -165,18 +163,7 @@ class Item2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			final RPAction rpaction = new RPAction();
-			final IEntity entity = getEntity();
-
-			rpaction.put("type", at.toString());
-
-			if (entity != null) {
-				getEntity().fillTargetInfo(rpaction);
-			} else {
-				logger.error("entity is null, action type: " + at.toString());
-			}
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

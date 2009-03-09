@@ -14,8 +14,6 @@ import games.stendhal.client.entity.CarrotGrower;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a grower.
  */
@@ -71,12 +69,7 @@ class CarrotGrower2DView extends GrainField2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case PICK:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class UseableRing2DView extends Ring2DView {
 
-	public UseableRing2DView(UseableRing ring) {
+	public UseableRing2DView(final UseableRing ring) {
 		super(ring);
 	}
 	/**

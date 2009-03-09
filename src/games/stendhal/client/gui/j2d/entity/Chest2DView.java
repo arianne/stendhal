@@ -22,8 +22,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a chest.
  */
@@ -238,12 +236,8 @@ class Chest2DView extends StateEntity2DView {
 			/* no break */
 
 		case CLOSE:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			chest.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

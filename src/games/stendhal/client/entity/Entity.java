@@ -18,7 +18,6 @@ import games.stendhal.client.sound.SoundSystem;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -143,28 +142,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		changeListeners = newListeners;
 	}
 
-	/* (non-Javadoc)
-	 * @see games.stendhal.client.entity.IEntity#fillTargetInfo(marauroa.common.game.RPAction)
-	 */
-	public void fillTargetInfo(final RPAction action) {
-		final int id = rpObject.getID().getObjectID();
 
-		if (rpObject.isContained()) {
-			action.put("baseobject",
-					rpObject.getContainer().getID().getObjectID());
-			action.put("baseslot", rpObject.getContainerSlot().getName());
-			action.put("baseitem", id);
-		} else {
-			StringBuilder target;
-		
-				
-			target = new StringBuilder("#");
-		
-			target.append(Integer.toString(id));
-
-			action.put("target", target.toString());
-		}
-	}
 
 	/**
 	 * Fire change to all registered listeners.

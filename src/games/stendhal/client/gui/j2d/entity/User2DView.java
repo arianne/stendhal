@@ -7,14 +7,12 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2DClient;
 
 import java.util.List;
-
-import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a user.
@@ -119,33 +117,18 @@ class User2DView extends Player2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
-		RPAction rpaction;
 
 		switch (at) {
-		// case JOIN_GUILD:
-		// j2DClient.get().manageGuilds();
-		// break;
-
 		case SET_OUTFIT:
 			j2DClient.get().chooseOutfit();
 			break;
 
 		case LEAVE_SHEEP:
-			rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			rpaction.put("species", "sheep");
-			
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case LEAVE_PET:
-			rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			rpaction.put("species", "pet");
-			
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

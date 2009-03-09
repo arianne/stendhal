@@ -2,7 +2,6 @@ package games.stendhal.client.entity;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
@@ -24,26 +23,6 @@ public class Gate implements IEntity {
 
 	public void addChangeListener(final EntityChangeListener listener) {
 		
-	}
-
-	public void fillTargetInfo(final RPAction action) {
-		final int id = rpObject.getID().getObjectID();
-
-		if (rpObject.isContained()) {
-			action.put("baseobject",
-					rpObject.getContainer().getID().getObjectID());
-			action.put("baseslot", rpObject.getContainerSlot().getName());
-			action.put("baseitem", id);
-		} else {
-			StringBuilder target;
-		
-				
-			target = new StringBuilder("#");
-		
-			target.append(Integer.toString(id));
-
-			action.put("target", target.toString());
-		}
 	}
 
 	public Rectangle2D getArea() {

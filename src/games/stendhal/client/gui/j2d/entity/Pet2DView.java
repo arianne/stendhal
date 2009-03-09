@@ -15,8 +15,6 @@ import games.stendhal.client.entity.User;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a pet.
  */
@@ -89,14 +87,7 @@ class Pet2DView extends DomesticAnimal2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case LEAVE_PET:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-
-			rpaction.put("species", "pet");
-			
-			at.send(rpaction);
-			break;
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 
 		default:
 			super.onAction(at);

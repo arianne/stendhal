@@ -15,8 +15,6 @@ import games.stendhal.client.entity.User;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a sheep.
  */
@@ -88,13 +86,7 @@ class Sheep2DView extends DomesticAnimal2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case LEAVE_SHEEP:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-
-			rpaction.put("species", "sheep");
-			
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

@@ -2,7 +2,6 @@ package games.stendhal.client.entity;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -48,17 +47,6 @@ public interface IEntity {
 	 *            The listener.
 	 */
 	void addChangeListener(final EntityChangeListener listener);
-
-	/**
-	 * Fill the action with the entity's target info. This will set the
-	 * <code>baseobject</code>, <code>baseslot</code> and
-	 * <code>baseitem</code> respective the <code>target</code> attributes
-	 * for uncontained objects.
-	 * 
-	 * @param action
-	 *            The RP action.
-	 */
-	void fillTargetInfo(final RPAction action);
 
 	/**
 	 * Get the area the entity occupies.

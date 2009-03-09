@@ -19,8 +19,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -218,12 +216,7 @@ class GrainField2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case HARVEST:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			GRAIN_FIELD.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

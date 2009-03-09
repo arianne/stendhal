@@ -20,8 +20,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -196,16 +194,9 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
-		RPAction rpaction;
-
 		switch (at) {
 		case ADD_BUDDY:
-			rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			rpaction.put("target", player.getName());
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

@@ -19,8 +19,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a door.
  */
@@ -227,12 +225,8 @@ class Door2DView extends StateEntity2DView {
 		switch (at) {
 		case OPEN:
 		case CLOSE:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			door.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			
+			at.send(at.fillTargetInfo(door.getRPObject()));
 			break;
 
 		default:

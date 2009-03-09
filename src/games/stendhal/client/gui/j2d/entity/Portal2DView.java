@@ -14,8 +14,6 @@ import games.stendhal.client.entity.Portal;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a portal.
  */
@@ -82,12 +80,8 @@ class Portal2DView extends InvisibleEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			final RPAction rpaction = new RPAction();
 
-			rpaction.put("type", at.toString());
-			portal.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(portal.getRPObject()));
 			break;
 
 		default:

@@ -14,8 +14,6 @@ import games.stendhal.client.entity.GoldSource;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a gold source.
  */
@@ -69,13 +67,9 @@ class GoldSource2DView extends AnimatedLoopEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case PROSPECT:
-			final RPAction rpaction = new RPAction();
-
-			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
+
 
 		default:
 			super.onAction(at);

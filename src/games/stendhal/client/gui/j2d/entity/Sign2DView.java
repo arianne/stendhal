@@ -17,8 +17,6 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * The 2D view of a sign.
  */
@@ -137,28 +135,8 @@ class Sign2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case READ:
-			final RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			entity.fillTargetInfo(rpaction);
-
-			at.send(rpaction);
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
-
-		/*
-		 * String text = sign.getText();
-		 * 
-		 * Rectangle area = getArea();
-		 * 
-		 * screen.addText(area.x + (area.width / 2), area.y, text,
-		 * NotificationType.RESPONSE, false);
-		 * 
-		 * if (text.contains("\n")) { // The sign's text has multiple lines. Add
-		 * a linebreak after // "you read" so that it is easier readable.
-		 * j2DClient.get().addEventLine("You read:\n\"" + text + "\"",
-		 * NotificationType.RESPONSE); } else {
-		 * j2DClient.get().addEventLine("You read: \"" + text + "\"",
-		 * NotificationType.RESPONSE); } break;
-		 */
 
 		default:
 			super.onAction(at);
