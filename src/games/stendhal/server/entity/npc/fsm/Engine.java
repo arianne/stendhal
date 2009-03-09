@@ -328,7 +328,7 @@ public class Engine {
 			it = conditionTransitions.iterator();
 
 			if (conditionTransitions.size() > 1) {
-				logger.warn("Chosing random action because of "
+				logger.warn("Choosing random action because of "
 						+ conditionTransitions.size() + " entries in conditionTransitions: "
 						+ conditionTransitions);
 
@@ -341,7 +341,7 @@ public class Engine {
 			it = conditionlessTransitions.iterator();
 
 			if (conditionlessTransitions.size() > 1) {
-				logger.warn("Chosing random action because of "
+				logger.warn("Choosing random action because of "
 						+ conditionlessTransitions.size()
 						+ " entries in conditionlessTransitions: " + conditionlessTransitions);
 
