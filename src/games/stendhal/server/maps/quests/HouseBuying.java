@@ -85,6 +85,93 @@ public class HouseBuying extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
+	private final class BuyHouseChatAction implements ChatAction {
+
+		private final String storage_slot;
+		private final int cost;
+
+		/**
+		 * Creates a new BuyHouseChatAction.
+		 * 
+		 * @param storage_slot
+		 *            name of quest-slot which postman stores these houses in
+		 * @param cost
+		 *            cost of these houses
+		 */
+		private BuyHouseChatAction(final String storage_slot, final int cost) {
+			this.storage_slot = storage_slot;
+			this.cost = cost;
+		}
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+																					"postman");
+			// is postman online?
+			if (postman != null) {
+				// First, check if anyone has bought a
+				// house from this NPC yet
+				if (!postman.hasQuest(storage_slot)) {
+					postman.setQuest(storage_slot, POSTMAN_SLOT_INIT);
+				}
+				final String postmanslot = postman.getQuest(storage_slot);
+				final String[] boughthouses = postmanslot.split(";");
+				final List<String> doneList = Arrays.asList(boughthouses);
+				final String itemName = Integer.toString(sentence.getNumeral().getAmount());
+								// now check if the house they said is free
+				if (!doneList.contains(itemName)) {
+					// it's available, so take money
+					if (player.isEquipped("money", cost)) {
+						final Item key = SingletonRepository.getEntityManager().getItem(
+																						"private key " + itemName);
+						engine.say("Congratulations, here is your key to house "
+								   + itemName
+								   + "! Do you want to buy a spare key, at a price of "
+								   + COST_OF_SPARE_KEY + " money?");
+						key.setUndroppableOnDeath(true);
+						if (player.equip(key)) {
+							player.drop("money", cost);
+							// remember what house they own
+							player.setQuest(QUEST_SLOT, itemName);
+							postman.setQuest(storage_slot, postmanslot + ";" + itemName);
+							engine.setCurrentState(ConversationStates.QUESTION_1);
+										} else {
+											engine.say("Sorry, you can't carry more keys!");
+										}
+					} else {
+						engine.say("You do not have enough money to buy a house!");
+					}
+				} else {
+					engine.say("Sorry, house " + itemName
+							   + " is sold, please give me the number of another.");
+					engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+				}
+			} else {
+				// postman is offline!
+				engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+			}
+		}
+	}
+
+	private final class BuySpareKeyChatAction implements ChatAction {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+				final String house = player.getQuest(QUEST_SLOT);
+				final Item key = SingletonRepository.getEntityManager().getItem(
+																				"private key " + house);
+				key.setUndroppableOnDeath(true);
+				if (player.equip(key)) {
+					player.drop("money", COST_OF_SPARE_KEY);
+					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+				} else {
+					engine.say("Sorry, you can't carry more keys!");
+				}
+			} else {
+				engine.say("You do not have enough money for another key!");
+			}
+		}
+	}
+
+
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
 			@Override
@@ -151,55 +238,7 @@ public class HouseBuying extends AbstractQuest {
 					new TextHasNumberCondition(1, 25),
 					ConversationStates.ATTENDING,
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-									"postman");
-							// is postman online?
-							if (postman != null) {
-								// First, check if anyone has bought a
-								// house from this NPC yet
-								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
-									postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
-								}
-								final String postmanslot = postman.getQuest(QUEST_SLOT);
-								final String[] boughthouses = postmanslot.split(";");
-								final List<String> doneList = Arrays.asList(boughthouses);
-								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
-								// now check if the house they said is free
-								if (!doneList.contains(itemName)) {
-									// it's available, so take money
-									if (player.isEquipped("money", COST)) {
-										final Item key = SingletonRepository.getEntityManager().getItem(
-												"private key " + itemName);
-										engine.say("Congratulations, here is your key to house "
-												+ itemName
-												+ "! Do you want to buy a spare key, at a price of "
-												+ COST_OF_SPARE_KEY + " money?");
-										key.setUndroppableOnDeath(true);
-										if (player.equip(key)) {
-											player.drop("money", COST);
-											// remember what house they own
-											player.setQuest(QUEST_SLOT, itemName);
-											postman.setQuest(QUEST_SLOT, postmanslot + ";" + itemName);
-											engine.setCurrentState(ConversationStates.QUESTION_1);
-										} else {
-											engine.say("Sorry, you can't carry more keys!");
-										}
-									} else {
-										engine.say("You do not have enough money to buy a house!");
-									}
-								} else {
-									engine.say("Sorry, house " + itemName
-											+ " is sold, please give me the number of another.");
-									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-								}
-							} else {
-								// postman is offline!
-								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
-							}
-						}
-					});
+					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_1, COST));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -217,24 +256,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								final String house = player.getQuest(QUEST_SLOT);
-								final Item key = SingletonRepository.getEntityManager().getItem(
-										"private key " + house);
-								key.setUndroppableOnDeath(true);
-								if (player.equip(key)) {
-									player.drop("money", COST_OF_SPARE_KEY);
-									engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
-								} else {
-									engine.say("Sorry, you can't carry more keys!");
-								}
-							} else {
-								engine.say("You do not have enough money for another key!");
-							}
-						}
-					});
+					new BuySpareKeyChatAction());
 
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
@@ -349,55 +371,7 @@ public class HouseBuying extends AbstractQuest {
 					new TextHasNumberCondition(50, 68),
 					ConversationStates.ATTENDING, 
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-									"postman");
-							// is postman online?
-							if (postman != null) {
-								// First, check if anyone has bought a
-								// house from this NPC yet
-								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
-									postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
-								}
-								final String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
-								final String[] boughthouses = postmanslot.split(";");
-								final List<String> doneList = Arrays.asList(boughthouses);
-								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
-								// now check if the house they said is free
-								if (!doneList.contains(itemName)) {
-									// it's available, so take money
-									if (player.isEquipped("money", COST_ADOS)) {
-										final Item key = SingletonRepository.getEntityManager().getItem(
-												"private key " + itemName);
-										engine.say("Congratulations, here is your key to house "
-												+ itemName
-												+ "! Do you want to buy a spare key, at a price of "
-												+ COST_OF_SPARE_KEY + " money?");
-										key.setUndroppableOnDeath(true);
-										if (player.equip(key)) {
-											player.drop("money", COST_ADOS);
-											// remember what house they own
-											player.setQuest(QUEST_SLOT, itemName);
-											postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + itemName);
-											engine.setCurrentState(ConversationStates.QUESTION_1);
-										} else {
-											engine.say("Sorry, you can't carry more keys!");
-										}
-									} else {
-										engine.say("You do not have enough money to buy a house!");
-									}
-								} else {
-									engine.say("Sorry, house " + itemName
-											+ " is sold, please give me the number of another.");
-									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-								}
-							} else {
-								// postman is offline!
-								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
-							}
-						}
-					});
+					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_2, COST_ADOS));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -415,24 +389,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								final String house = player.getQuest(QUEST_SLOT);
-								final Item key = SingletonRepository.getEntityManager().getItem(
-										"private key " + house);
-								key.setUndroppableOnDeath(true);
-								if (player.equip(key)) {
-									player.drop("money", COST_OF_SPARE_KEY);
-									engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
-								} else {
-									engine.say("Sorry, you can't carry more keys!");
-								}
-							} else {
-								engine.say("You do not have enough money for another key!");
-							}
-						}
-					});
+					new BuySpareKeyChatAction());
 
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
@@ -520,55 +477,7 @@ public class HouseBuying extends AbstractQuest {
 					new TextHasNumberCondition(26, 49),
 					ConversationStates.ATTENDING, 
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-									"postman");
-							// is postman online?
-							if (postman != null) {
-								// First, check if anyone has bought a
-								// house from this NPC yet
-								if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
-									postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
-								}
-								final String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
-								final String[] boughthouses = postmanslot.split(";");
-								final List<String> doneList = Arrays.asList(boughthouses);
-								final String itemName = Integer.toString(sentence.getNumeral().getAmount());
-								// now check if the house they said is free
-								if (!doneList.contains(itemName)) {
-									// it's available, so take money
-									if (player.isEquipped("money", COST_KIRDNEH)) {
-										final Item key = SingletonRepository.getEntityManager().getItem(
-												"private key " + itemName);
-										engine.say("Congratulations, here is your key to house "
-												+ itemName
-												+ "! Do you want to buy a spare key, at a price of "
-												+ COST_OF_SPARE_KEY + " money?");
-										key.setUndroppableOnDeath(true);
-										if (player.equip(key)) {
-											player.drop("money", COST_KIRDNEH);
-											// remember what house they own
-											player.setQuest(QUEST_SLOT, itemName);
-											postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + itemName);
-											engine.setCurrentState(ConversationStates.QUESTION_1);
-										} else {
-											engine.say("Sorry, you can't carry more keys!");
-										}
-									} else {
-										engine.say("You do not have enough money to buy a house!");
-									}
-								} else {
-									engine.say("Sorry, house " + itemName
-											+ " is sold, please give me the number of another, from 26 to 49.");
-									engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-								}
-							} else {
-								// postman is offline!
-								engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
-							}
-						}
-					});
+					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_3, COST_KIRDNEH));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -586,24 +495,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-								final String house = player.getQuest(QUEST_SLOT);
-								final Item key = SingletonRepository.getEntityManager().getItem(
-										"private key " + house);
-								key.setUndroppableOnDeath(true);
-								if (player.equip(key)) {
-									player.drop("money", COST_OF_SPARE_KEY);
-									engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
-								} else {
-									engine.say("Sorry, you can't carry more keys!");
-								}
-							} else {
-								engine.say("You do not have enough money for another key!");
-							}
-						}
-					});
+					new BuySpareKeyChatAction());
 
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
