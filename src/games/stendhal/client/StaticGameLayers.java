@@ -217,8 +217,6 @@ public class StaticGameLayers {
 	 * @param area the areas name
 	 */
 	public void setAreaName(final String area) {
-		logger.info("Area: " + area);
-
 		this.area = area;
 		this.areaChanged = true;
 		invalidate();
