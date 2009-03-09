@@ -168,13 +168,15 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 				portal.setDestination(getDestinationZone(), destIdentifier);
 			}
 
-			if (isReplacing()) {
-				final Portal oportal = zone.getPortal(getX(), getY());
-
-				if (oportal != null) {
+			// Check for an existing portal at the location
+			final Portal oportal = zone.getPortal(getX(), getY());
+			if (oportal != null) {
+				if (isReplacing()) {
 					LOGGER.debug("Replacing portal: " + oportal);
-
 					zone.remove(oportal);
+				} else {
+					// reserved, and told not to replace it. just discard the portal
+					return;
 				}
 			}
 

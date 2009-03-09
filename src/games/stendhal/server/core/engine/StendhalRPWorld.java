@@ -35,6 +35,7 @@ import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.portal.Door;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
+import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -175,6 +176,7 @@ public class StendhalRPWorld extends RPWorld {
 		Sign.generateRPClass();
 		Spell.generateRPClass();
 		WalkBlocker.generateRPClass();
+		HousePortal.generateRPClass();
 
 		// ActiveEntity sub-classes
 		RPEntity.generateRPClass();

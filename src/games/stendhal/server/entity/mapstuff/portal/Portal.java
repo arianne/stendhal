@@ -19,6 +19,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
@@ -61,6 +62,13 @@ public class Portal extends Entity implements UseListener {
 		setRPClass("portal");
 		put("type", "portal");
 
+		isDestinationSet = false;
+	}
+	
+	public Portal(final RPObject object) {
+		super(object);
+		setRPClass("portal");
+		put("type", "portal");
 		isDestinationSet = false;
 	}
 

@@ -6,6 +6,7 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
+import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
@@ -28,6 +29,10 @@ public abstract class AccessCheckingPortal extends Portal {
 	 */
 	public AccessCheckingPortal(final String rejectMessage) {
 		this.rejectMessage = rejectMessage;
+	}
+	
+	public AccessCheckingPortal(final RPObject object) {
+		super(object);
 	}
 
 	/**

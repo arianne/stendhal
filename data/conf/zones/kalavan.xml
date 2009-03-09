@@ -225,8 +225,8 @@
   </portal>
   <portal x="9" y="60" ref="house_20_entrance">
    <destination zone="int_kalavan_house_20" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private key 20</parameter>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+      <parameter name="doorId">kalavan house 20</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
