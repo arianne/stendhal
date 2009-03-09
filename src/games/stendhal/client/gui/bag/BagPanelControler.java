@@ -8,6 +8,8 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -78,7 +80,7 @@ public class BagPanelControler implements PropertyChangeListener {
 			}
 
 		} catch (final Exception e) {
-			System.out.println(e);
+			Logger.getLogger(BagPanelControler.class).error(e);
 		}
 
 	}

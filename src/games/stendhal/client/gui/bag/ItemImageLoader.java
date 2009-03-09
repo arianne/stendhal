@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 
 public class ItemImageLoader {
@@ -38,7 +40,7 @@ public class ItemImageLoader {
 					img = read(resource);
 					ImageMap.put(path, img);
 				} else {
-					System.out.println("file not found :" + path);
+					Logger.getLogger(ItemImageLoader.class).error("file not found :" + path);
 				}
 			} catch (final IOException e) {
 				e.printStackTrace();

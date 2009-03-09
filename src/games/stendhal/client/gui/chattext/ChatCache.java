@@ -111,7 +111,7 @@ public class ChatCache {
 			current--;
 			return current();
 		} catch (final IndexOutOfBoundsException e) {
-			System.out.println(e.getMessage());
+			Logger.getLogger(ChatCache.class).error(e.getMessage());
 			current++;
 			throw new NoSuchElementException();
 		}
