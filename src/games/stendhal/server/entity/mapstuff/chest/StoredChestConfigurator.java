@@ -2,10 +2,8 @@ package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +25,7 @@ public class StoredChestConfigurator implements ZoneConfigurator {
 	}
 
 	private void buildStoredChest(final StendhalRPZone zone, final int x, final int y) {
-		if (!chestAt(zone, x,y)) {
+		if (!chestAt(zone, x, y)) {
 			final StoredChest chest = new StoredChest();
 			chest.setPosition(x, y);
 			zone.add(chest);
@@ -35,7 +33,7 @@ public class StoredChestConfigurator implements ZoneConfigurator {
 	}
 
 	private boolean chestAt(final StendhalRPZone zone, final int x, final int y) {
-		final List<Entity> list = zone.getEntitiesAt(x,y);
+		final List<Entity> list = zone.getEntitiesAt(x, y);
 		for (Entity entity : list) {
 			if (entity instanceof StoredChest) {
 				// Don't put a stored chest over a previously stored one
