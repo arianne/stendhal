@@ -67,7 +67,6 @@ public class RPObjectChangeDispatcher {
 	public void dispatchAdded(final RPObject object) {
 		try {
 			logger.debug("Object(" + object.getID() + ") added to client");
-			fixContainers(object);
 			fireAdded(object);
 		} catch (final Exception e) {
 			logger.error("dispatchAdded failed, object is " + object, e);
@@ -83,7 +82,6 @@ public class RPObjectChangeDispatcher {
 	public void dispatchRemoved(final RPObject object) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from client");
-			fixContainers(object);
 			fireRemoved(object);
 		} catch (final Exception e) {
 			logger.error(
@@ -103,8 +101,6 @@ public class RPObjectChangeDispatcher {
 			final RPObject changes) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
-			fixContainers(object);
-			fixContainers(changes);
 			fireChangedAdded(object, changes);
 			object.applyDifferences(changes, null);
 		} catch (final Exception e) {
@@ -128,8 +124,6 @@ public class RPObjectChangeDispatcher {
 				logger.debug("Object(" + object.getID() + ") modified in client");
 				logger.debug("Original(" + object + ") modified in client");
 
-				fixContainers(object);
-				fixContainers(changes);
 				fireChangedRemoved(object, changes);
 				object.applyDifferences(null, changes);
 
@@ -156,24 +150,6 @@ public class RPObjectChangeDispatcher {
 		}
 
 		sbuf.append(object.getID().getObjectID());
-	}
-
-	/**
-	 * Fix parent <-> child linkage. TODO: Remove once containers are set right
-	 * on creation.
-	 * @param object whose slots shall be fixed.
-	 */
-	protected void fixContainers(final RPObject object) {
-		for (final RPSlot slot : object.slots()) {
-			for (final RPObject sobject : slot) {
-				if (!sobject.isContained()) {
-					logger.debug("Fixing container: " + slot);
-					sobject.setContainer(object, slot);
-				}
-
-				fixContainers(sobject);
-			}
-		}
 	}
 
 	/**
