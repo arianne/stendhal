@@ -9,6 +9,13 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.AgeGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -152,6 +159,7 @@ public class HouseBuying extends AbstractQuest {
 		}
 	}
 
+	/** The sale of a spare key has been agreed, here is the action to do it */
 	private final class BuySpareKeyChatAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
@@ -171,7 +179,24 @@ public class HouseBuying extends AbstractQuest {
 		}
 	}
 
+	/** House owners are offered the chance to buy a spare key when the seller greets them. Others are just greeted with their name. */
+	private final class HouseSellerGreetingAction implements ChatAction {
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			String reply;
+			if (player.hasQuest(QUEST_SLOT)) {
+				reply = " At the cost of "
+					+ COST_OF_SPARE_KEY
+					+ " money you can purchase a spare key for your house. Do you want to buy one now?";
+				engine.setCurrentState(ConversationStates.QUESTION_1);
+			} else {
+				reply = "";
+			}
+			engine.say("Hello, " + player.getTitle() + "." + reply);
+		}
+	}
 
+
+	/** The NPC for Kalavan Houses */
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
 			@Override
@@ -193,43 +218,58 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						String reply;
-						if (player.hasQuest(QUEST_SLOT)) {
-							reply = " At the cost of "
-									+ COST_OF_SPARE_KEY
-									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-							engine.setCurrentState(ConversationStates.QUESTION_1);
-						} else {
-							reply = "";
-						}
-						engine.say("Hello, " + player.getTitle() + "." + reply);
-					}
-				});
+				addGreeting(null, new HouseSellerGreetingAction());
 
-				addReply("cost", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (player.getAge() < REQUIRED_AGE) {
-							engine.say("The cost of a new house is "
-									+ COST
-									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!player.isQuestCompleted(PRINCESS_QUEST_SLOT)) {
-							engine.say("The cost of a new house is "
-									+ COST
-									+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.");
-						} else if (!player.hasQuest(QUEST_SLOT)) {
-							engine.say("The cost of a new house is "
-									+ COST
-									+ " money. If you have a house in mind, please tell me the number now. I will check availability.");
-							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else {
-							engine.say("As you already know, the cost of a new house is "
-									+ COST
-									+ " money. But you cannot own more than one house, the market is too demanding for that!");
-						}
-					}
-				});
+				// quest slot 'house' is started so player owns a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new QuestStartedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, 
+					"As you already know, the cost of a new house is "
+					+ COST
+					+ " money. But you cannot own more than one house, the market is too demanding for that!",
+					null);
+
+				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
+				// For definiteness we will check these conditions in a set order. 
+				// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
+
+				// player has not done required quest, hasn't got a house at all
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(PRINCESS_QUEST_SLOT)),
+					ConversationStates.ATTENDING, 
+					"The cost of a new house is "
+					+ COST
+					+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find "
+					+ " north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.",
+					null);
+
+					// player is not old enough but they have doen princess quest 
+				// (don't need to check if they have a house, they can't as they're not old enough)
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(
+									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT),
+									 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE))),
+					ConversationStates.ATTENDING, 
+					"The cost of a new house is "
+					+ COST
+					+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
+					+ Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+					null);
+
+				// player is eligible to buy a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
+									 new AgeGreaterThanCondition(REQUIRED_AGE), 
+									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT)),
+					ConversationStates.QUEST_OFFERED, 
+					"The cost of a new house is "
+					+ COST
+					+ " money. If you have a house in mind, please tell me the number now. I will check availability.",
+					null);
 
 				// handle house numbers 1 to 25
 				add(ConversationStates.QUEST_OFFERED,
@@ -257,19 +297,23 @@ public class HouseBuying extends AbstractQuest {
 					ConversationStates.ATTENDING, 
 					null,
 					new BuySpareKeyChatAction());
-
+				
+				// refused offer to buy spare key for security reasons
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
 					null);
+
+				// refused offer to buy spare key 
 				add(ConversationStates.QUESTION_1,
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"No problem! If I can help you with anything else, just ask.",
 					null);
+
 				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply("citizenship",
 						"The royalty in Kalavan Castle decide that.");
@@ -291,7 +335,8 @@ public class HouseBuying extends AbstractQuest {
 		npc.initHP(100);
 		zone.add(npc);
 	}
-	
+
+	/** The NPC for Ados Houses */
 	private void createNPC2() {
 		npc2 = new SpeakerNPC("Reg Denson") {
 			@Override
@@ -321,48 +366,70 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						String reply;
-						if (player.hasQuest(QUEST_SLOT)) {
-							reply = " At the cost of "
-									+ COST_OF_SPARE_KEY
-									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-							engine.setCurrentState(ConversationStates.QUESTION_1);
-						} else {
-							reply = "";
-						}
-						engine.say("Hello, " + player.getTitle() + "." + reply);
-					}
-				});
+				addGreeting(null, new HouseSellerGreetingAction());
+				
+				// quest slot 'house' is started so player owns a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new QuestStartedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, 
+					"As you already know, the cost of a new house in Ados is "
+					+ COST_ADOS
+					+ " money. But you cannot own more than one house, the market is too demanding for that!",
+					null);
 
-				addReply("cost", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (player.getAge() < REQUIRED_AGE) {
-							engine.say("The cost of a new house in Ados is "
-									+ COST_ADOS
-									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!(player.isQuestCompleted(DAILY_ITEM_QUEST_SLOT)
-								     && player.isQuestCompleted(ANNA_QUEST_SLOT)
-								     && player.isQuestCompleted(KEYRING_QUEST_SLOT)
-								     && player.isQuestCompleted(FISHROD_QUEST_SLOT)
-								     && player.isQuestCompleted(GHOSTS_QUEST_SLOT)
-								     && player.isQuestCompleted(ZARA_QUEST_SLOT))) {
-							engine.say("The cost of a new house in Ados is "
-									+ COST_ADOS
-									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
-						} else if (!player.hasQuest(QUEST_SLOT)) {
-							engine.say("The cost of a new house in Ados is "
-									+ COST_ADOS
-									+ " money. If you have a house in mind, please tell me the number now. I will check availability. The Ados houses are numbered from 50 to 68.");
-							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else {
-							engine.say("The in Ados cost of a new house is "
-									+ COST_ADOS
-									+ " money. But you cannot own more than one house on the island, the market is too demanding for that!");
-						}
-					}
-				});
+				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
+				// For definiteness we will check these conditions in a set order. 
+				// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
+
+				// player is not old enough
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
+					ConversationStates.ATTENDING,
+					"The cost of a new house in Ados is "
+					+ COST_ADOS
+					+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
+					+ Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+					null);
+
+
+				// player doesn't have a house and is old enough but has not done required quests
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
+									 new QuestNotStartedCondition(QUEST_SLOT),
+									 new NotCondition(
+													  new AndCondition(
+																	   new QuestCompletedCondition(DAILY_ITEM_QUEST_SLOT),
+																	   new QuestCompletedCondition(ANNA_QUEST_SLOT),
+																	   new QuestCompletedCondition(KEYRING_QUEST_SLOT),
+																	   new QuestCompletedCondition(FISHROD_QUEST_SLOT),
+																	   new QuestCompletedCondition(GHOSTS_QUEST_SLOT),
+																	   new QuestCompletedCondition(ZARA_QUEST_SLOT)))),
+					ConversationStates.ATTENDING, 
+					"The cost of a new house in Ados is "
+					+ COST_ADOS
+					+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.",
+					null);
+
+				// player is eligible to buy a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
+									 new AgeGreaterThanCondition(REQUIRED_AGE), 
+									 new QuestCompletedCondition(DAILY_ITEM_QUEST_SLOT),
+									 new QuestCompletedCondition(ANNA_QUEST_SLOT),
+									 new QuestCompletedCondition(KEYRING_QUEST_SLOT),
+									 new QuestCompletedCondition(FISHROD_QUEST_SLOT),
+									 new QuestCompletedCondition(GHOSTS_QUEST_SLOT),
+									 new QuestCompletedCondition(ZARA_QUEST_SLOT)),
+					ConversationStates.QUEST_OFFERED, 
+					"The cost of a new house in Ados is "
+					+ COST_ADOS
+					+ " money. If you have a house in mind, please tell me the number now. I will check availability. "
+					+ "The Ados houses are numbered from 50 to 68.",
+					null);
 
 				// handle house numbers 50 to 68
 				add(ConversationStates.QUEST_OFFERED,
@@ -391,6 +458,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new BuySpareKeyChatAction());
 
+				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
 					null,
@@ -398,6 +466,7 @@ public class HouseBuying extends AbstractQuest {
 					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
 					null);
 
+				// Refused the offer to buy a spare key
 				add(ConversationStates.QUESTION_1,
 					ConversationPhrases.NO_MESSAGES,
 					null,
@@ -423,6 +492,7 @@ public class HouseBuying extends AbstractQuest {
 		zone2.add(npc2);
 	}
 
+	/** The NPC for Kirdneh Houses */
 	private void createNPC3() {
 		npc3 = new SpeakerNPC("Roger Frampton") {
 			@Override
@@ -432,43 +502,57 @@ public class HouseBuying extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						String reply;
-						if (player.hasQuest(QUEST_SLOT)) {
-							reply = " At the cost of "
-									+ COST_OF_SPARE_KEY
-									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-							engine.setCurrentState(ConversationStates.QUESTION_1);
-						} else {
-							reply = "";
-						}
-						engine.say("Hello, " + player.getTitle() + "." + reply);
-					}
-				});
+				addGreeting(null, new HouseSellerGreetingAction());
 
-				addReply("cost", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (player.getAge() < REQUIRED_AGE) {
-							engine.say("The cost of a new house in Kirdneh is "
-									+ COST_KIRDNEH
-									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.");
-						} else if (!player.isQuestCompleted(KIRDNEH_QUEST_SLOT)) {
-							engine.say("The cost of a new house in Kirdneh is "
-									+ COST_KIRDNEH
-									+ " money. But my principle is never to sell a house without establishing first the good #reputation of the prospective buyer.");
-						} else if (!player.hasQuest(QUEST_SLOT)) {
-							engine.say("The cost of a new house in Kirdneh is "
-									+ COST_KIRDNEH
-									+ " money. If you have a house in mind, please tell me the number now. I will check availability. The Kirdneh houses are numbered from 26 to 49.");
-							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else {
-							engine.say("In Kirdneh the cost of a new house is "
-									+ COST_KIRDNEH
-									+ " money. But you cannot own more than one house on the island, the market is too demanding for that!");
-						}
-					}
-				});
+				// quest slot 'house' is started so player owns a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new QuestStartedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, 
+					"In Kirdneh the cost of a new house is "
+					+ COST_KIRDNEH
+					+ " money. But you cannot own more than one house on the island, the market is too demanding for that!",
+					null);
+
+				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
+				// For definiteness we will check these conditions in a set order. 
+				// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
+
+				// player is not old enough
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
+					ConversationStates.ATTENDING, 
+					"The cost of a new house in Kirdneh is "
+					+ COST_KIRDNEH
+					+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " 
+					+ Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+					null);
+
+				// player is old enough and hasn't got a house but has not done required quest
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
+									 new QuestNotCompletedCondition(KIRDNEH_QUEST_SLOT), 
+									 new QuestNotStartedCondition(QUEST_SLOT)),
+					ConversationStates.ATTENDING, 
+					"The cost of a new house in Kirdneh is "
+					+ COST_KIRDNEH
+					+ " money. But my principle is never to sell a house without establishing first the good #reputation of the prospective buyer.",
+					null);
+
+				// player is eligible to buy a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("cost","house"),
+					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
+									 new AgeGreaterThanCondition(REQUIRED_AGE), 
+									 new QuestCompletedCondition(KIRDNEH_QUEST_SLOT)),
+					ConversationStates.QUEST_OFFERED, 
+					"The cost of a new house is "
+					+ COST
+					+ " money. If you have a house in mind, please tell me the number now. I will check availability. "
+					+ "Kirdneh Houses are numbered 26 to 49.",
+					null);
 
 				// handle house numbers 26 to 49
 				add(ConversationStates.QUEST_OFFERED,
@@ -497,6 +581,7 @@ public class HouseBuying extends AbstractQuest {
 					null,
 					new BuySpareKeyChatAction());
 
+				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
 					null,
@@ -504,6 +589,7 @@ public class HouseBuying extends AbstractQuest {
 					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
 					null);
 
+				// Refused the offer to buy a spare key
 				add(ConversationStates.QUESTION_1,
 					ConversationPhrases.NO_MESSAGES,
 					null,
