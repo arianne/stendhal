@@ -2,6 +2,8 @@ Changelog
 ---------
 0.xx
 - buddy panel is no free floating window anymore
+
+0.73
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - rare monsters that do not appear in DM or daily quests: pegasus and centaur
 - lord durin, a high level boss in ados abandoned keep
@@ -12,6 +14,15 @@ Changelog
 - new outfit lender in magic clothing boutique who lends costumes including slime and goblin face
 - messaging areas to give atmospheric messages to players entering or leaving them
 - quoting #-characters
+- fixed chat bubbles
+- semos community chest stored between server restarts
+- levels 5 - 60 respawn time slightly increased
+- min respawn time for creatures (10 seconds)
+- NPCs will not buy items from a player killer at all
+- NPCs will sell to a player killer but they charge 1.5 times the normal price
+- doors into the oni palace now a level checking portal 
+- fix feedback of buyer/seller npcs asked to transact large numbers of items
+- Thanatos says the new def of trophy helmet, and says if it is at max, as he changes it
 
 0.72
 *Features*
