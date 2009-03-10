@@ -75,7 +75,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.", npc.get("text"));
 
 		assertTrue(en.step(player, "cost"));
-		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.", npc.get("text"));
+		assertTrue(npc.get("text").startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
 
 		assertTrue(en.step(player, "buy dog"));
 		assertEquals("You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.", npc.get("text"));
@@ -118,8 +118,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("That's right, really, really, really. Really.", npc.get("text"));
 
 		assertTrue(en.step(player, "cost"));
-		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.", npc.get("text"));
-
+		assertTrue(npc.get("text").startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
 		assertFalse(en.step(player, "ok"));
 	}
 
