@@ -70,6 +70,7 @@ public class HousePortal extends AccessCheckingPortal {
 		
 		super.setDestination(get(DESTINATION_ZONE), idToObject(DESTINATION_ID));
 		super.setIdentifier(idToObject(PORTAL_REFERENCE));
+		setRejectedMessage("The door is locked.");
 		
 		store();
 	}
