@@ -15,12 +15,14 @@ import marauroa.common.game.RPSlot;
 
 public class BagPanelControler implements PropertyChangeListener {
 	
-	private final Map<String, ItemPanelControler> panelItemMap = new HashMap<String, ItemPanelControler>();
 
 	private static final int CAPACITY = 12;
-	private final BagPanel bagPanel;
 	private static BagPanelControler instance;
-	ItemPanelControler[] itempanels = new ItemPanelControler[CAPACITY];
+
+	private final Map<String, ItemPanelControler> panelItemMap = new HashMap<String, ItemPanelControler>();
+	private final BagPanel bagPanel;
+	private ItemPanelControler[] itempanels = new ItemPanelControler[CAPACITY];
+	
 	public BagPanelControler() {
 		Component[] panels = new Component[CAPACITY];
 		for (int i = 0; i < CAPACITY; i++) {

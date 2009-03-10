@@ -16,7 +16,8 @@ import pagelayout.CellGrid;
 public class BagPanel extends StyledJPanel {
 
 	private static final int FRAMES_PER_SECOND = 10;
-
+	private static Timer timer;
+	
 	final ActionListener timerTask = new ActionListener() {
 
 		public void actionPerformed(final ActionEvent e) {
@@ -26,7 +27,7 @@ public class BagPanel extends StyledJPanel {
 		
 	};
 	
-	private static Timer timer;
+
 
 	
 	public BagPanel(final Style instance, final Component[] panels) {
