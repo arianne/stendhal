@@ -143,8 +143,8 @@ public class HousePortal extends AccessCheckingPortal {
 				}
 
 				final HouseKey key = (HouseKey) object;
-				if (key.getName().equals("house key")) {
-					return key.matches(getDoorId(), getLockNumber());
+				if (key.matches(getDoorId(), getLockNumber())) {
+					return true;
 				}
 			}
 		}
