@@ -44,18 +44,6 @@ class Item2DView extends Entity2DView {
 	//
 
 	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		super.buildActions(list);
-	}
-
-	/**
 	 * Build the visual representation of this entity.
 	 */
 	@Override
