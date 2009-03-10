@@ -422,7 +422,7 @@ class PlayerRPClass {
 				if (item.get("type").equals("item")) {
 
 					final String name = UpdateConverter.updateItemName(item.get("name"));
-					final Item entity = SingletonRepository.getEntityManager().getItem(name);
+					final Item entity = UpdateConverter.updateItem(name);
 
 					// log removed items
 					if (entity == null) {

@@ -1,9 +1,12 @@
+
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.item.HouseKey;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 
@@ -67,6 +70,47 @@ public abstract class UpdateConverter {
 		}
 
 		return name;
+	}
+
+	public static Item updateItem(String name) {
+		// process the old keys for houses, now that we have change locks implemented
+		Item item;
+		if (name.startsWith("private key ")) {
+			// which zone the house is in
+			final String zoneName;
+			final String doorId;
+			// number tracks the lock changes
+			final int number = 0;
+			final String[] parts = name.split(" ");
+			if (parts.length > 2) {
+			   	try {
+					// house number
+					final int id;
+					id = Integer.parseInt(parts[2]);
+					if (id < 26) {
+						zoneName = "kalavan";
+					} else if (id < 50) {
+						zoneName = "kirdneh";
+					} else {
+						zoneName = "ados";
+					}
+					doorId = zoneName + " house " + Integer.toString(id);
+					// now set the infostring of the house key to doorId;number;
+					item = SingletonRepository.getEntityManager().getItem("house key");
+					((HouseKey) item).setup(doorId, number, null);
+				} catch (final NumberFormatException e) {
+					// shouldn't happen - give up and this will generate a warning
+					item = SingletonRepository.getEntityManager().getItem(name);
+				}
+			} else {
+				// shouldn't happen - give up and this will generate a warning
+				item = SingletonRepository.getEntityManager().getItem(name);
+			}
+		} else {
+			// item wasn't private key, just make it as normal
+			item = SingletonRepository.getEntityManager().getItem(name);
+		}
+		return item;
 	}
 
 	/**
