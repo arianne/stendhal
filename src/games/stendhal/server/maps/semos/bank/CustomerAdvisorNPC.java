@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.bank;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
@@ -22,7 +23,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.deathmatch.Spot;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Set;

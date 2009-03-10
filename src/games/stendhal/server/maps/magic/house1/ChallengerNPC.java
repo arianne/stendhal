@@ -3,6 +3,7 @@ package games.stendhal.server.maps.magic.house1;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -24,7 +25,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.CreatureSpawner;
-import games.stendhal.server.maps.deathmatch.Spot;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;

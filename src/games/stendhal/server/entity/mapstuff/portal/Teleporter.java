@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.deathmatch.Spot;
 
 public class Teleporter extends Portal {
 	

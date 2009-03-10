@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;

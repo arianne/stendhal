@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -17,7 +18,6 @@ import games.stendhal.server.maps.deathmatch.BailAction;
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
 import games.stendhal.server.maps.deathmatch.LeaveAction;
-import games.stendhal.server.maps.deathmatch.Spot;
 import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.util.Area;
 
