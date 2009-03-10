@@ -84,6 +84,7 @@ public class WeddingRing extends Ring {
 	 *            The ring's owner.
 	 */
 	private void teleportToSpouse(final Player player) {
+		// check if pets and sheep are near
 		if (!player.isZoneChangeAllowed()) {
 			player.sendPrivateText("You were told to watch your pet, weren't you ?");
 			return;
@@ -140,6 +141,14 @@ public class WeddingRing extends Ring {
 		final StendhalRPZone destinationZone = spouse.getZone();
 		if (!destinationZone.isTeleportInAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in the destination area prevents the wedding ring from working!");
+			return;
+		}
+
+		final String zoneName =  destinationZone.getName();
+		// check if player has visited zone before
+		if (player.getKeyedSlot("!visited", zoneName) == null) {
+			player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
+								+ "you cannot join  " + spouseName + " there because it is still an unknown place for you.");
 			return;
 		}
 
