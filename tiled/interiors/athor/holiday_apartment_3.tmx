@@ -84,14 +84,23 @@
  <tileset name="jacuzzi roof part" firstgid="248" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
+ <tileset name="rug" firstgid="266" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/carpet_red_purple.png"/>
+ </tileset>
+ <tileset name="bluecarpet" firstgid="275" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+ </tileset>
+ <tileset name="blue rug" firstgid="284" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/royalblue.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvMwMCweBSPYjR8BYivDQJ3YMPLyNSDjIeaflphAL1WQ68ABAAA
+   H4sIAAAAAAAAAFvMwMCweAhgGUYGBlkgVgBiOUbS9ctD9YKw4gDoVwLqUYZiFTL00xtfAeJrg8Ad2PAyMvUg46Gmn1YYAJsjwmcABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ2SSQoCQQxFa9XH8BwexQF1Z4vaDu1wHYeN40botWcRRVG8hD+YQAxdrW3gQVUqr0iR6jjnRn/SBRNQBTUPdc855afsN0AJlEHFfUaTzylWYK3y2pc4MGn+Bmy/+DaGIOb1Duxz+r741Y9A74sfgpaqi3hPtPn+Y4Yv85F30puXYOHecyI/ydn/DMy5TvrTPVr/BM7mjiLX6f8T5/ClLq0/61/A1dQUlH8D9wzfF+I/wJNziUufHxGotcwvNDnJk98HY0Vg9lkMwAuZ999sAAQAAA==
+   H4sIAAAAAAAAAJ2SSQrCQBBFK5ss1IV6AM/hURxQd0bUOMThOg4bx42QtWcRBVG8hL9JNZRtBmPBg+7qep1qKj0imvxJH8xAHTQiaEacq/yc/RaogCqo0We0+VzFBmxFXvo6TkyYvwP7BN+MMfB4fQDHlH5U/Oq7YJDgO6Aj6lzeK7p8/znG1/PR71RvXoMVBXNSvp+y/wVYcp3uT/Zo+hdwNe4oc538f7wUvq4L68/0byBjEWVBzgpqSsK/g0fC+/PwCqBofX//CV6c8yl8fgpbrPX8HCOn88ofgqnANvZxjMAboWaMcAAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
