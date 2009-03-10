@@ -64,7 +64,6 @@ public class EmptyScroll extends Scroll {
 					"marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());
-			markedScroll.setBoundTo(player.getName());
 			player.equip(markedScroll, true);
 			return true;
 		} else {

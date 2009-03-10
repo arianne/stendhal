@@ -70,6 +70,10 @@ class PlayerRPClass {
 			"dungeon silver key", "lich gold key", "trophy helmet",
 			"lucky charm");
 
+	/** these items should be unbound.*/
+	private static final List<String> ITEMS_TO_UNBIND = Arrays.asList(
+																	"marked scroll");
+
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -512,8 +516,13 @@ class PlayerRPClass {
 	 *            Item
 	 */
 	private static void boundOldItemsToPlayer(final Player player, final Item item) {
+		if (ITEMS_TO_UNBIND.contains(item.getName())) {
+			item.setBoundTo(null);
+			return;
+		}
 
 		// No special processing needed, if the item is already bound
+		// and we didn't want to unbind it
 		if (item.isBound()) {
 			return;
 		}
@@ -521,6 +530,7 @@ class PlayerRPClass {
 		if (ITEMS_TO_BIND.contains(item.getName())) {
 			item.setBoundTo(player.getName());
 		}
+
 	}
 
 	/**
