@@ -33,7 +33,18 @@ import org.apache.log4j.Logger;
 public class AdminMaker extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(AdminMaker.class);
+	private static final String TELE_QUEST_SLOT = "AdminMakerTele";
 
+	private final List<String> itemsSingle = Arrays.asList("rod of the gm",
+			"golden shield", "golden armor", "golden cloak",
+			"golden helmet", "golden legs", "golden boots",
+			"hunter crossbow");
+
+	private final List<String> itemsStack = Arrays.asList("money",
+			"greater potion", "greater antidote", "power arrow",
+			"deadly poison");
+	
+	
 	protected class UpgradeAction implements ChatAction {
 
 		private void xpGain(final Player player) {
@@ -63,14 +74,7 @@ public class AdminMaker extends ScriptImpl {
 			player.incDEFXP();
 		}
 
-		private final List<String> itemsSingle = Arrays.asList("rod of the gm",
-				"golden shield", "golden armor", "golden cloak",
-				"golden helmet", "golden legs", "golden boots",
-				"hunter crossbow");
 
-		private final List<String> itemsStack = Arrays.asList("money",
-				"greater potion", "greater antidote", "power arrow",
-				"deadly poison");
 
 		private void equip(final Player player) {
 
@@ -114,6 +118,17 @@ public class AdminMaker extends ScriptImpl {
 	}
 
 	protected class TeleportAction implements ChatAction {
+		private class Destination {
+			private final String zone;
+			private final int x;
+			private final int y;
+
+			Destination(final String zone, final int x, final int y) {
+				this.zone = zone;
+				this.x = x;
+				this.y = y;
+			}
+		}
 
 		private final List<Destination> DESTINATIONS = Arrays.asList(
 			new Destination("0_nalwor_city", 88, 85),
@@ -142,8 +157,7 @@ public class AdminMaker extends ScriptImpl {
 			new Destination("int_mithrilbourgh_stores", 6, 5)
 		);
 
-		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
-
+	
 		private boolean randomTeleport(final Player player) {
 			// Destination selection: random for first, then go in order
 			// todo: maybe mix in a second kind of random like bunny/santa?
@@ -172,18 +186,7 @@ public class AdminMaker extends ScriptImpl {
 			return true;
 		}
 
-		private class Destination {
-			private final String zone;
-			private final int x;
-			private final int y;
-
-			Destination(final String zone, final int x, final int y) {
-				this.zone = zone;
-				this.x = x;
-				this.y = y;
-			}
-		}
-
+	
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
 			// before we send the player off into the unknown give a marked
@@ -212,7 +215,7 @@ public class AdminMaker extends ScriptImpl {
 	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		super.load(admin, args, sandbox);
-
+		
 		// Require parameter -Dstendhal.testserver=junk
 		if (System.getProperty("stendhal.testserver") == null) {
 			final String msg = "Server must be started with this vm parameter: -Dstendhal.testserver=junk";
@@ -224,11 +227,13 @@ public class AdminMaker extends ScriptImpl {
 			return;
 		}
 
+		
+		
 		// create npc
 		ScriptingNPC npc;
 		npc = new ScriptingNPC("Admin Maker");
 		npc.setEntityClass("tavernbarmaidnpc");
-
+		
 		// Place NPC in int_admin_playground on server start
 		final String myZone = "0_semos_city";
 		sandbox.setZone(myZone);
