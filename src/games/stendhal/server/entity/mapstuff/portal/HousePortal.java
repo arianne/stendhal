@@ -5,6 +5,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.HouseKey;
 
@@ -72,7 +73,7 @@ public class HousePortal extends AccessCheckingPortal {
 		super.setIdentifier(idToObject(PORTAL_REFERENCE));
 		setRejectedMessage("The door is locked.");
 		
-		store();
+	   	store();
 	}
 	
 	/**
@@ -160,6 +161,22 @@ public class HousePortal extends AccessCheckingPortal {
 	 */
 	public String getDoorId() {
 		return get(DOOR_ID);
+	}
+
+	
+	/**
+	 * Get the house number of this portal.
+	 * 
+	 * @return the house number, or 0 if house number not found
+	 */
+	public int getPortalNumber() {
+		final String doorId = getDoorId();
+		final String[] parts = doorId.split(" ");
+		int id = 0;
+		if (parts.length > 2) {
+			id = MathHelper.parseIntDefault(parts[2],0);
+		} 
+		return id;
 	}
 	
 	/**
