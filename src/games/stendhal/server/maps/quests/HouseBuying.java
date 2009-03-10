@@ -1,10 +1,14 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -25,13 +29,19 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Controls house buying.
  *
  * @author kymara
  */
 
-public class HouseBuying extends AbstractQuest {
+public class HouseBuying extends AbstractQuest implements LoginListener {
+
+
+	/** the logger instance. */
+	private static final Logger logger = Logger.getLogger(HouseBuying.class);
 
 	// constants
 	private static final String QUEST_SLOT = "house";
@@ -71,17 +81,25 @@ public class HouseBuying extends AbstractQuest {
 	private static final String POSTMAN_STORAGE_SLOT_2 = "ados_house";
 	private static final String POSTMAN_STORAGE_SLOT_3 = "kirdneh_house";
 	
-	private static final String ZONE_NAME = "0_kalavan_city";
-	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
-	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
+	private static final String KALAVAN_CITY = "0_kalavan_city";
+	private static final String KIRDNEH_CITY = "0_kirdneh_city";
+	private static final String ADOS_CITY_N = "0_ados_city_n";
+	private static final String ADOS_CITY = "0_ados_city";
+	private static final String ADOS_TOWNHALL = "int_ados_town_hall_3";
+	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
 	protected SpeakerNPC npc;
 	protected SpeakerNPC npc2;
 	protected SpeakerNPC npc3;
 
-	protected StendhalRPZone zone;
-	protected StendhalRPZone zone2;
-	protected StendhalRPZone zone3;
+	protected StendhalRPZone kalavan_city_zone;
+	protected StendhalRPZone kirdneh_city_zone;
+	protected StendhalRPZone ados_city_zone;
+	protected StendhalRPZone ados_city_n_zone;
+	protected StendhalRPZone ados_townhall_zone;
+	protected StendhalRPZone kirdneh_townhall_zone;
+
+	private List<HousePortal> allHousePortals = null;
 
 	@Override
 	public void init(final String name) {
@@ -117,6 +135,7 @@ public class HouseBuying extends AbstractQuest {
 			if (postman != null) {
 				// First, check if anyone has bought a
 				// house from this NPC yet
+				// TODO: update to use house portals
 				if (!postman.hasQuest(storage_slot)) {
 					postman.setQuest(storage_slot, POSTMAN_SLOT_INIT);
 				}
@@ -124,21 +143,22 @@ public class HouseBuying extends AbstractQuest {
 				final String[] boughthouses = postmanslot.split(";");
 				final List<String> doneList = Arrays.asList(boughthouses);
 				final String itemName = Integer.toString(sentence.getNumeral().getAmount());
-								// now check if the house they said is free
+				// now check if the house they said is free
 				if (!doneList.contains(itemName)) {
 					// it's available, so take money
 					if (player.isEquipped("money", cost)) {
 						final Item key = SingletonRepository.getEntityManager().getItem(
-																						"private key " + itemName);
+																						"house key");
+						// TODO: set the infostring using correct method
 						engine.say("Congratulations, here is your key to house "
 								   + itemName
 								   + "! Do you want to buy a spare key, at a price of "
 								   + COST_OF_SPARE_KEY + " money?");
-						key.setUndroppableOnDeath(true);
 						if (player.equip(key)) {
 							player.drop("money", cost);
 							// remember what house they own
 							player.setQuest(QUEST_SLOT, itemName);
+							// TODO: postman will not be used in future for remembering
 							postman.setQuest(storage_slot, postmanslot + ";" + itemName);
 							engine.setCurrentState(ConversationStates.QUESTION_1);
 										} else {
@@ -165,8 +185,8 @@ public class HouseBuying extends AbstractQuest {
 			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 				final String house = player.getQuest(QUEST_SLOT);
 				final Item key = SingletonRepository.getEntityManager().getItem(
-																				"private key " + house);
-				key.setUndroppableOnDeath(true);
+																				"house key");
+				// TODO: set the infostring using correct method
 				if (player.equip(key)) {
 					player.drop("money", COST_OF_SPARE_KEY);
 					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
@@ -184,6 +204,7 @@ public class HouseBuying extends AbstractQuest {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			String reply;
 			if (player.hasQuest(QUEST_SLOT)) {
+				// TODO: player may not own the house any more - check lock status!
 				reply = " At the cost of "
 					+ COST_OF_SPARE_KEY
 					+ " money you can purchase a spare key for your house. Do you want to buy one now?";
@@ -333,7 +354,7 @@ public class HouseBuying extends AbstractQuest {
 		npc.setEntityClass("estateagentnpc");
 		npc.setPosition(55, 94);
 		npc.initHP(100);
-		zone.add(npc);
+		kalavan_city_zone.add(npc);
 	}
 
 	/** The NPC for Ados Houses */
@@ -489,7 +510,7 @@ public class HouseBuying extends AbstractQuest {
 		npc2.setEntityClass("estateagent2npc");
 		npc2.setPosition(37, 13);
 		npc2.initHP(100);
-		zone2.add(npc2);
+		ados_townhall_zone.add(npc2);
 	}
 
 	/** The NPC for Kirdneh Houses */
@@ -612,20 +633,73 @@ public class HouseBuying extends AbstractQuest {
 		npc3.setEntityClass("man_004_npc");
 		npc3.setPosition(31, 4);
 		npc3.initHP(100);
-		zone3.add(npc3);
+		kirdneh_townhall_zone.add(npc3);
+	}
+
+	// we'd like to update houses sold before release of 0.73 with the owner name
+	// when a player logs in we see if they own a house and we get the number from the house slot
+	public void onLoggedIn(final Player player) {
+		final String name = player.getName();
+		if (player.hasQuest(QUEST_SLOT) && !"postman".equals(name)) {
+			
+			// note we default to a DIFFERENT value than the default house number incase neither found for some bad reasons
+			int id = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT), -1);
+			logger.debug("Found that " + name + " owns house " + Integer.toString(id));
+			// Now look for the house portal which matches this and update it to have the player name on it
+			final List<HousePortal> portals =  getHousePortals();
+			for (HousePortal houseportal : portals) {
+				String owner = houseportal.getOwner();
+				if ("an unknown owner".equals(owner)) {
+					int number = houseportal.getPortalNumber();
+					if (number == id) {
+						houseportal.setOwner(name);
+						logger.debug(name + " owns house " + Integer.toString(id) + " and we labelled the house");
+						return;
+					}
+				}
+			}
+		}
+	}
+
+	private	List<HousePortal> getHousePortals() {
+		if (allHousePortals == null) {
+			// this is only done once per server run
+			allHousePortals = new LinkedList<HousePortal>();
+			final List<Portal> kalavanportals = kalavan_city_zone.getPortals();
+			final List<Portal> kirdnehportals = kirdneh_city_zone.getPortals();
+			final List<Portal> adosportals = ados_city_zone.getPortals();
+			final List<Portal> adosNportals = ados_city_n_zone.getPortals();
+			final List<List<Portal>> megalist = Arrays.asList(kalavanportals,kirdnehportals,adosportals,adosNportals);
+			for (List<Portal> zoneportals : megalist) {
+				for (Portal portal : zoneportals) {
+					if (portal instanceof HousePortal) {
+						allHousePortals.add((HousePortal) portal);
+					}
+				}
+		  	}
+		}
+		final int size = allHousePortals.size();
+		logger.debug("Number of house portals in world is " + Integer.toString(size));
+		return allHousePortals;
 	}
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 
-		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
+		kirdneh_city_zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_CITY);
+		ados_city_zone = SingletonRepository.getRPWorld().getZone(ADOS_CITY);
+		ados_city_n_zone = SingletonRepository.getRPWorld().getZone(ADOS_CITY_N);
+		
+		kalavan_city_zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
 		createNPC();
 
-		zone2 = SingletonRepository.getRPWorld().getZone(ZONE_NAME2);
+		ados_townhall_zone = SingletonRepository.getRPWorld().getZone(ADOS_TOWNHALL);
 		createNPC2();
 
-		zone3 = SingletonRepository.getRPWorld().getZone(ZONE_NAME3);
+		kirdneh_townhall_zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_TOWNHALL);
 		createNPC3();
+
+		SingletonRepository.getLoginNotifier().addListener(this);
 	}
 }
