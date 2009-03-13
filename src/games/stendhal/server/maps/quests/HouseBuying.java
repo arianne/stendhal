@@ -7,6 +7,7 @@ import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -56,12 +57,14 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
 
 	// Cost to buy house (lots!)
-	private static final int COST = 100000;
+	private static final int COST_KALAVAN = 100000;
 	private static final int COST_ADOS = 120000;
 	private static final int COST_KIRDNEH = 120000;
 
 	// Cost to buy spare keys
 	private static final int COST_OF_SPARE_KEY = 1000;
+
+	private static final int MONTHS_BEFORE_EXPIRY = 6;
 
 	/*
 	 * age required to buy a house. Note, age is in minutes, not seconds! So
@@ -69,18 +72,6 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 	 */
 	private static final int REQUIRED_AGE = 300 * 60;
 
-	/*
-	 * POSTMAN_STORAGE_SLOT_1 is the initial postman quest slot. It would be around 75 long
-	 * when all 25 houses in Kalavan full. As more houses get added (in other zones?) then we
-	 * must always make sure this postman quest slot stays under 255 characters
-	 * There are 18 Ados houses, taking us to 129 in house slot. 
-	 * So we worry about the limit and put it to a new one, ados_house
-	 */
-	private static final String POSTMAN_SLOT_INIT = ";";
-	private static final String POSTMAN_STORAGE_SLOT_1 = "house";
-	private static final String POSTMAN_STORAGE_SLOT_2 = "ados_house";
-	private static final String POSTMAN_STORAGE_SLOT_3 = "kirdneh_house";
-	
 	private static final String KALAVAN_CITY = "0_kalavan_city";
 	private static final String KIRDNEH_CITY = "0_kirdneh_city";
 	private static final String ADOS_CITY_N = "0_ados_city_n";
@@ -112,81 +103,130 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 	private final class BuyHouseChatAction implements ChatAction {
 
-		private final String storage_slot;
-		private final int cost;
+		private final String location;
 
 		/**
 		 * Creates a new BuyHouseChatAction.
 		 * 
-		 * @param storage_slot
-		 *            name of quest-slot which postman stores these houses in
-		 * @param cost
-		 *            cost of these houses
+		 * @param location
+		 *            where are the houses?
 		 */
-		private BuyHouseChatAction(final String storage_slot, final int cost) {
-			this.storage_slot = storage_slot;
-			this.cost = cost;
+		private BuyHouseChatAction(final String location) {
+			this.location = location;
 		}
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-																					"postman");
-			// is postman online?
-			if (postman != null) {
-				// First, check if anyone has bought a
-				// house from this NPC yet
-				// TODO: update to use house portals
-				if (!postman.hasQuest(storage_slot)) {
-					postman.setQuest(storage_slot, POSTMAN_SLOT_INIT);
-				}
-				final String postmanslot = postman.getQuest(storage_slot);
-				final String[] boughthouses = postmanslot.split(";");
-				final List<String> doneList = Arrays.asList(boughthouses);
-				final String itemName = Integer.toString(sentence.getNumeral().getAmount());
-				// now check if the house they said is free
-				if (!doneList.contains(itemName)) {
-					// it's available, so take money
-					if (player.isEquipped("money", cost)) {
-						final Item key = SingletonRepository.getEntityManager().getItem(
-																						"house key");
-						// TODO: set the infostring using correct method
-						engine.say("Congratulations, here is your key to house "
-								   + itemName
-								   + "! Do you want to buy a spare key, at a price of "
-								   + COST_OF_SPARE_KEY + " money?");
-						if (player.equip(key)) {
-							player.drop("money", cost);
-							// remember what house they own
-							player.setQuest(QUEST_SLOT, itemName);
-							// TODO: postman will not be used in future for remembering
-							postman.setQuest(storage_slot, postmanslot + ";" + itemName);
-							engine.setCurrentState(ConversationStates.QUESTION_1);
-										} else {
-											engine.say("Sorry, you can't carry more keys!");
-										}
+
+			final int cost = getCost(location);
+			final int number = sentence.getNumeral().getAmount();
+			// now check if the house they said is free
+			final String itemName = Integer.toString(number);
+
+			HousePortal houseportal = getHousePortal(number);
+
+			if (houseportal == null) {
+				// something bad happened
+				engine.say("Sorry I did not understand you, could you try saying the house number you want again please?");
+				engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+				return;
+			}
+
+			String owner = houseportal.getOwner();
+			if (owner.length() == 0) {
+				
+				// it's available, so take money
+				if (player.isEquipped("money", cost)) {
+					final Item key = SingletonRepository.getEntityManager().getItem(
+																					"house key");
+					final String doorId = location + " house " + itemName;
+
+					final int locknumber = houseportal.getLockNumber() + 1;
+					((HouseKey) key).setup(doorId, locknumber, player.getName());
+					
+					engine.say("Congratulations, here is your key to house "
+							   + itemName
+							   + "! Do you want to buy a spare key, at a price of "
+							   + COST_OF_SPARE_KEY + " money?");
+				
+					if (player.equip(key)) {
+						player.drop("money", cost);
+						// remember what house they own
+						player.setQuest(QUEST_SLOT, itemName);
+
+					    // set the lock to change in 'MONTHS_BEFORE_EXPIRY' months
+						long time = System.currentTimeMillis();
+						//  ms -> s -> min ->h -> d -> months * MONTHS_BEFORE_EXPIRY  
+						time += 1000 * 60 * 60 * 24 * 30 * MONTHS_BEFORE_EXPIRY;
+						//houseportal.setExpireTime(time);
+						//houseportal.changeLock();
+
+						houseportal.setOwner(player.getName());
+						engine.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
-						engine.say("You do not have enough money to buy a house!");
+						engine.say("Sorry, you can't carry more keys!");
 					}
+				
 				} else {
-					engine.say("Sorry, house " + itemName
-							   + " is sold, please give me the number of another.");
-					engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+					engine.say("You do not have enough money to buy a house!");
 				}
+			
 			} else {
-				// postman is offline!
-				engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+				engine.say("Sorry, house " + itemName
+						   + " is sold, please give me the number of another.");
+				engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 			}
 		}
 	}
 
-	/** The sale of a spare key has been agreed, here is the action to do it */
+	private final int getCost(String location) {
+		// TODO: think how to do this nicely, or remove this TODO
+		if ("ados".equals(location)) {
+			return COST_ADOS;
+		} else if ("kalavan".equals(location)) {
+			return COST_KALAVAN;
+		} else if ("kirdneh".equals(location)) {
+			return COST_KIRDNEH;
+		} else {
+			logger.error("getCost got passed a bad location, " + location);
+			return COST_KIRDNEH;
+		}
+	}
+
+	/** The sale of a spare key has been agreed, player meets conditions, here is the action to simply sell it */
 	private final class BuySpareKeyChatAction implements ChatAction {
+	
+		private final String location;
+
+		/**
+		 * Creates a new  BuySpareKeyChatAction.
+		 * 
+		 * @param location
+		 *            where are the houses?
+		 */
+		private BuySpareKeyChatAction(final String location) {
+			this.location = location;
+		}
+
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-				final String house = player.getQuest(QUEST_SLOT);
+
+				final String housenumber = player.getQuest(QUEST_SLOT);
 				final Item key = SingletonRepository.getEntityManager().getItem(
 																				"house key");
-				// TODO: set the infostring using correct method
+				final String doorId = location + " house " + housenumber;
+				final int number = MathHelper.parseInt(housenumber);
+				HousePortal houseportal = getHousePortal(number);
+
+				if (houseportal == null) {
+					// something bad happened
+					engine.say("Sorry something bad happened. I'm terribly embarassed.");
+					return;
+				}
+				
+				final int locknumber = houseportal.getLockNumber();
+
+				((HouseKey) key).setup(doorId, locknumber, player.getName());
+
 				if (player.equip(key)) {
 					player.drop("money", COST_OF_SPARE_KEY);
 					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
@@ -204,7 +244,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			String reply;
 			if (player.hasQuest(QUEST_SLOT)) {
-				// TODO: player may not own the house any more - check lock status!
+				// TODO: player may not own the house any more - check lock status before we continue!!!
 				reply = " At the cost of "
 					+ COST_OF_SPARE_KEY
 					+ " money you can purchase a spare key for your house. Do you want to buy one now?";
@@ -214,6 +254,33 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 			}
 			engine.say("Hello, " + player.getTitle() + "." + reply);
 		}
+	}
+
+	// this will be ideal for a seller to list all unbought houses
+	// using Grammar.enumerateCollection
+	private final List<String> getUnboughtHouses() {
+	    List<String> unbought = new LinkedList<String>();
+		final List<HousePortal> portals =  getHousePortals();
+		for (HousePortal houseportal : portals) {
+			String owner = houseportal.getOwner();
+			if (owner.length() == 0) {
+				unbought.add(houseportal.getDoorId());
+			}
+		}
+		return unbought;
+	}
+
+	private final HousePortal getHousePortal(int id) {
+		final List<HousePortal> portals =  getHousePortals();
+		for (HousePortal houseportal : portals) {
+			int number = houseportal.getPortalNumber();
+			if (number == id) {
+				return houseportal;
+			}
+		}
+		// if we got this far, we didn't find a match
+		logger.error("getHousePortal was given a number (" + Integer.toString(id) + ") it couldn't match a house portal for - how did that happen?!");
+		return null;
 	}
 
 
@@ -247,7 +314,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					new QuestStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house is "
-					+ COST
+					+ COST_KALAVAN
 					+ " money. But you cannot own more than one house, the market is too demanding for that!",
 					null);
 
@@ -261,7 +328,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(PRINCESS_QUEST_SLOT)),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house is "
-					+ COST
+					+ COST_KALAVAN
 					+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find "
 					+ " north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.",
 					null);
@@ -275,7 +342,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 									 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE))),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house is "
-					+ COST
+					+ COST_KALAVAN
 					+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
 					+ Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 					null);
@@ -288,7 +355,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT)),
 					ConversationStates.QUEST_OFFERED, 
 					"The cost of a new house is "
-					+ COST
+					+ COST_KALAVAN
 					+ " money. If you have a house in mind, please tell me the number now. I will check availability.",
 					null);
 
@@ -299,7 +366,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					new TextHasNumberCondition(1, 25),
 					ConversationStates.ATTENDING,
 					null,
-					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_1, COST));
+					new BuyHouseChatAction("kalavan"));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -317,7 +384,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction());
+					new BuySpareKeyChatAction("kalavan"));
 				
 				// refused offer to buy spare key for security reasons
 				add(ConversationStates.QUESTION_2,
@@ -459,7 +526,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					new TextHasNumberCondition(50, 68),
 					ConversationStates.ATTENDING, 
 					null,
-					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_2, COST_ADOS));
+					new BuyHouseChatAction("ados"));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -477,7 +544,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction());
+					new BuySpareKeyChatAction("ados"));
 
 				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
@@ -570,7 +637,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 									 new QuestCompletedCondition(KIRDNEH_QUEST_SLOT)),
 					ConversationStates.QUEST_OFFERED, 
 					"The cost of a new house is "
-					+ COST
+					+ COST_KIRDNEH
 					+ " money. If you have a house in mind, please tell me the number now. I will check availability. "
 					+ "Kirdneh Houses are numbered 26 to 49.",
 					null);
@@ -582,7 +649,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					new TextHasNumberCondition(26, 49),
 					ConversationStates.ATTENDING, 
 					null,
-					new BuyHouseChatAction(POSTMAN_STORAGE_SLOT_3, COST_KIRDNEH));
+					new BuyHouseChatAction("kirdneh"));
 
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
@@ -600,7 +667,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction());
+					new BuySpareKeyChatAction("kirdneh"));
 
 				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
