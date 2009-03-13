@@ -122,7 +122,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 			// now check if the house they said is free
 			final String itemName = Integer.toString(number);
 
-			HousePortal houseportal = getHousePortal(number);
+			final HousePortal houseportal = getHousePortal(number);
 
 			if (houseportal == null) {
 				// something bad happened
@@ -131,7 +131,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 				return;
 			}
 
-			String owner = houseportal.getOwner();
+			final String owner = houseportal.getOwner();
 			if (owner.length() == 0) {
 				
 				// it's available, so take money
@@ -154,7 +154,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 						player.setQuest(QUEST_SLOT, itemName);
 
 						// set the time so that the taxman can start harassing the player
-						long time = System.currentTimeMillis();
+						final long time = System.currentTimeMillis();
 						houseportal.setExpireTime(time);
 						houseportal.changeLock();
 
@@ -176,7 +176,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 		}
 	}
 
-	private final int getCost(String location) {
+	private int getCost(final String location) {
 		// TODO: think how to do this nicely, or remove this TODO
 		if ("ados".equals(location)) {
 			return COST_ADOS;
@@ -213,7 +213,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 																				"house key");
 				final String doorId = location + " house " + housenumber;
 				final int number = MathHelper.parseInt(housenumber);
-				HousePortal houseportal = getHousePortal(number);
+				final HousePortal houseportal = getHousePortal(number);
 
 				if (houseportal == null) {
 					// something bad happened
@@ -260,15 +260,15 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 			final String claimedHouse = player.getQuest(QUEST_SLOT);
 			
 			try {
-				int id = Integer.parseInt(claimedHouse);
-				HousePortal portal = getHousePortal(id);
+				final int id = Integer.parseInt(claimedHouse);
+				final HousePortal portal = getHousePortal(id);
 				
 				if (portal != null) { 
 					return player.getName().equals(portal.getOwner());
 				} else {
 					logger.error("Player " + player.getName() + " claims to own a nonexistent house " + id);
 				}
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 					logger.error("Invalid number in house slot", e);
 			}
 			
@@ -278,11 +278,11 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 	// this will be ideal for a seller to list all unbought houses
 	// using Grammar.enumerateCollection
-	private final List<String> getUnboughtHouses() {
-	    List<String> unbought = new LinkedList<String>();
+	private List<String> getUnboughtHouses() {
+	    final List<String> unbought = new LinkedList<String>();
 		final List<HousePortal> portals =  getHousePortals();
-		for (HousePortal houseportal : portals) {
-			String owner = houseportal.getOwner();
+		for (final HousePortal houseportal : portals) {
+			final String owner = houseportal.getOwner();
 			if (owner.length() == 0) {
 				unbought.add(houseportal.getDoorId());
 			}
@@ -290,10 +290,10 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 		return unbought;
 	}
 
-	private final HousePortal getHousePortal(int id) {
+	private HousePortal getHousePortal(final int id) {
 		final List<HousePortal> portals =  getHousePortals();
-		for (HousePortal houseportal : portals) {
-			int number = houseportal.getPortalNumber();
+		for (final HousePortal houseportal : portals) {
+			final int number = houseportal.getPortalNumber();
 			if (number == id) {
 				return houseportal;
 			}
@@ -330,7 +330,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new QuestStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house is "
@@ -344,7 +344,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player has not done required quest, hasn't got a house at all
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(PRINCESS_QUEST_SLOT)),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house is "
@@ -356,7 +356,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					// player is not old enough but they have doen princess quest 
 				// (don't need to check if they have a house, they can't as they're not old enough)
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(
 									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT),
 									 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE))),
@@ -369,7 +369,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT)),
@@ -478,7 +478,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 				
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new QuestStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house in Ados is "
@@ -492,7 +492,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is not old enough
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
 					ConversationStates.ATTENDING,
 					"The cost of a new house in Ados is "
@@ -504,7 +504,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player doesn't have a house and is old enough but has not done required quests
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestNotStartedCondition(QUEST_SLOT),
 									 new NotCondition(
@@ -523,7 +523,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(DAILY_ITEM_QUEST_SLOT),
@@ -614,7 +614,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new QuestStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING, 
 					"In Kirdneh the cost of a new house is "
@@ -628,7 +628,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is not old enough
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house in Kirdneh is "
@@ -639,7 +639,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is old enough and hasn't got a house but has not done required quest
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestNotCompletedCondition(KIRDNEH_QUEST_SLOT), 
 									 new QuestNotStartedCondition(QUEST_SLOT)),
@@ -651,7 +651,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost","house"),
+					Arrays.asList("cost", "house"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(KIRDNEH_QUEST_SLOT)),
@@ -730,14 +730,14 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 		if (player.hasQuest(QUEST_SLOT) && !"postman".equals(name)) {
 			
 			// note we default to a DIFFERENT value than the default house number incase neither found for some bad reasons
-			int id = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT), -1);
+			final int id = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT), -1);
 			logger.debug("Found that " + name + " owns house " + Integer.toString(id));
 			// Now look for the house portal which matches this and update it to have the player name on it
 			final List<HousePortal> portals =  getHousePortals();
-			for (HousePortal houseportal : portals) {
-				String owner = houseportal.getOwner();
+			for (final HousePortal houseportal : portals) {
+				final String owner = houseportal.getOwner();
 				if ("an unknown owner".equals(owner)) {
-					int number = houseportal.getPortalNumber();
+					final int number = houseportal.getPortalNumber();
 					if (number == id) {
 						houseportal.setOwner(name);
 						logger.debug(name + " owns house " + Integer.toString(id) + " and we labelled the house");
@@ -756,9 +756,9 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 			final List<Portal> kirdnehportals = kirdneh_city_zone.getPortals();
 			final List<Portal> adosportals = ados_city_zone.getPortals();
 			final List<Portal> adosNportals = ados_city_n_zone.getPortals();
-			final List<List<Portal>> megalist = Arrays.asList(kalavanportals,kirdnehportals,adosportals,adosNportals);
-			for (List<Portal> zoneportals : megalist) {
-				for (Portal portal : zoneportals) {
+			final List<List<Portal>> megalist = Arrays.asList(kalavanportals, kirdnehportals, adosportals, adosNportals);
+			for (final List<Portal> zoneportals : megalist) {
+				for (final Portal portal : zoneportals) {
 					if (portal instanceof HousePortal) {
 						allHousePortals.add((HousePortal) portal);
 					}

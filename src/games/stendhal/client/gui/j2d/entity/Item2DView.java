@@ -16,8 +16,6 @@ import games.stendhal.client.entity.Item;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 /**

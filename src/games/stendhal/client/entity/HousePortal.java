@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.RPObject;
 
 /**
  * A house portal which can be "used" by the player.

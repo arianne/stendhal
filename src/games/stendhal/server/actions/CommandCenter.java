@@ -2,7 +2,6 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Actions;
-import games.stendhal.server.actions.KnockAction;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.BanAction;
 import games.stendhal.server.actions.attack.AttackAction;

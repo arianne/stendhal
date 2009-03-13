@@ -13,18 +13,12 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.KNOCK;
 import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
-
-import java.util.Set;
-
 import marauroa.common.game.RPAction;
 
 /**

@@ -50,7 +50,7 @@ public class HousePortal extends AccessCheckingPortal {
 	 * 
 	 * @param doorId the door identifier
 	 */
-	public HousePortal(String doorId) {
+	public HousePortal(final String doorId) {
 		super("The door is locked.");
 		setRPClass(RPCLASS_NAME);
 		put("type", "house_portal");
@@ -65,7 +65,7 @@ public class HousePortal extends AccessCheckingPortal {
 	 * 
 	 * @param object the corresponding <code>RPObject</code>
 	 */
-	public HousePortal(RPObject object) {
+	public HousePortal(final RPObject object) {
 		super(object);
 		setRPClass(RPCLASS_NAME);
 		put("type", "house_portal");
@@ -81,7 +81,7 @@ public class HousePortal extends AccessCheckingPortal {
 	 * 
 	 * @param owner name of the owner.
 	 */
-	public void setOwner(String owner) {
+	public void setOwner(final String owner) {
 		put(OWNER, owner);
 	}
 	
@@ -93,8 +93,8 @@ public class HousePortal extends AccessCheckingPortal {
 	 * 
 	 * @return portal reference in the form that <code>Portal</code> accepts it
 	 */
-	private Object idToObject(String attribute) {
-		String idString = get(attribute);
+	private Object idToObject(final String attribute) {
+		final String idString = get(attribute);
 		Object id;
 		try {
 			id = Integer.valueOf(idString);
@@ -114,7 +114,7 @@ public class HousePortal extends AccessCheckingPortal {
 	}
 	
 	@Override
-	public void setIdentifier(Object id) {
+	public void setIdentifier(final Object id) {
 		super.setIdentifier(id);
 		// Save the reference name of this portal. Needed when restoring from the db.
 		put(PORTAL_REFERENCE, id.toString());
@@ -134,7 +134,7 @@ public class HousePortal extends AccessCheckingPortal {
 	}
 	
 	@Override
-	protected boolean isAllowed(RPEntity user) {
+	protected boolean isAllowed(final RPEntity user) {
 		// check if the player is carrying a matching HouseKey
 		for (final String slotName : RPEntity.CARRYING_SLOTS) {
 			final RPSlot slot = user.getSlot(slotName);
@@ -174,7 +174,7 @@ public class HousePortal extends AccessCheckingPortal {
 		final String[] parts = doorId.split(" ");
 		int id = 0;
 		if (parts.length > 2) {
-			id = MathHelper.parseIntDefault(parts[2],0);
+			id = MathHelper.parseIntDefault(parts[2], 0);
 		} 
 		return id;
 	}
@@ -218,7 +218,7 @@ public class HousePortal extends AccessCheckingPortal {
 	 * 
 	 * @param time time in milliseconds
 	 */
-	public void setExpireTime(long time) {
+	public void setExpireTime(final long time) {
 		put(EXPIRES, Long.toString(time));
 	}
 }
