@@ -153,10 +153,8 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 						// remember what house they own
 						player.setQuest(QUEST_SLOT, itemName);
 
-					    // set the lock to change in 'MONTHS_BEFORE_EXPIRY' months
+						// set the time so that the taxman can start harassing the player
 						long time = System.currentTimeMillis();
-						//  ms -> s -> min ->h -> d -> months * MONTHS_BEFORE_EXPIRY  
-						time += 1000 * 60 * 60 * 24 * 30 * MONTHS_BEFORE_EXPIRY;
 						houseportal.setExpireTime(time);
 						houseportal.changeLock();
 
@@ -242,17 +240,39 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 	/** House owners are offered the chance to buy a spare key when the seller greets them. Others are just greeted with their name. */
 	private final class HouseSellerGreetingAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			String reply;
+			String reply = "";
 			if (player.hasQuest(QUEST_SLOT)) {
-				// TODO: player may not own the house any more - check lock status before we continue!!!
-				reply = " At the cost of "
-					+ COST_OF_SPARE_KEY
-					+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-				engine.setCurrentState(ConversationStates.QUESTION_1);
-			} else {
-				reply = "";
+				if (playerOwnsHouse(player)) {
+					reply = " At the cost of "
+						+ COST_OF_SPARE_KEY
+						+ " money you can purchase a spare key for your house. Do you want to buy one now?";
+					engine.setCurrentState(ConversationStates.QUESTION_1);
+				} else {
+					// the player has lost the house. clear the slot so that he can buy a new one if he wants
+					player.removeQuest(QUEST_SLOT);
+				}
 			}
+			
 			engine.say("Hello, " + player.getTitle() + "." + reply);
+		}
+		
+		private boolean playerOwnsHouse(final Player player) {
+			final String claimedHouse = player.getQuest(QUEST_SLOT);
+			
+			try {
+				int id = Integer.parseInt(claimedHouse);
+				HousePortal portal = getHousePortal(id);
+				
+				if (portal != null) { 
+					return player.getName().equals(portal.getOwner());
+				} else {
+					logger.error("Player " + player.getName() + " claims to own a nonexistent house " + id);
+				}
+			} catch (NumberFormatException e) {
+					logger.error("Invalid number in house slot", e);
+			}
+			
+			return false;
 		}
 	}
 
