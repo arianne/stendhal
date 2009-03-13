@@ -39,7 +39,7 @@ public class HousePortal extends AccessCheckingPortal {
 		entity.addAttribute(DOOR_ID, Type.STRING);
 		entity.addAttribute(OWNER, Type.STRING);
 		entity.addAttribute(LOCK_NUMBER, Type.INT);
-		entity.addAttribute(EXPIRES, Type.INT);
+		entity.addAttribute(EXPIRES, Type.STRING);
 		entity.addAttribute(DESTINATION_ZONE, Type.STRING);
 		entity.addAttribute(DESTINATION_ID, Type.STRING);
 		entity.addAttribute(PORTAL_REFERENCE, Type.STRING);
@@ -195,5 +195,30 @@ public class HousePortal extends AccessCheckingPortal {
 	 */
 	public int getLockNumber() {
 		return this.getInt(LOCK_NUMBER);
+	}
+	
+	/**
+	 * Increase the lock number by one.
+	 */
+	public void changeLock() {
+		put(LOCK_NUMBER, getInt(LOCK_NUMBER) + 1);
+	}
+	
+	/**
+	 * Get the expiration time of the portal.
+	 * 
+	 * @return time in milliseconds
+	 */
+	public long getExpireTime() {
+		return Long.parseLong(get(EXPIRES));
+	}
+	
+	/**
+	 * Set the expiration time of the portal.
+	 * 
+	 * @param time time in milliseconds
+	 */
+	public void setExpireTime(long time) {
+		put(EXPIRES, Long.toString(time));
 	}
 }
