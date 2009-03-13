@@ -157,8 +157,8 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 						long time = System.currentTimeMillis();
 						//  ms -> s -> min ->h -> d -> months * MONTHS_BEFORE_EXPIRY  
 						time += 1000 * 60 * 60 * 24 * 30 * MONTHS_BEFORE_EXPIRY;
-						//houseportal.setExpireTime(time);
-						//houseportal.changeLock();
+						houseportal.setExpireTime(time);
+						houseportal.changeLock();
 
 						houseportal.setOwner(player.getName());
 						engine.setCurrentState(ConversationStates.QUESTION_1);
