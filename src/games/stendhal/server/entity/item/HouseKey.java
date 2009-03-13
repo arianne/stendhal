@@ -1,16 +1,34 @@
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Grammar;
+
 import java.util.Map;
 
 /**
  * A key that matches if the identifier and lock number are the right. 
  */
 public class HouseKey extends Item {
+	private static String[] imageNames = {
+			"purple",
+			"turquoise",
+			"yellow",
+			"lime",
+			"pink",
+			"red",
+			"orange",
+			"navy",
+			"brown",
+			"green",
+			"grey",
+			"lilac"
+	};
+	
 	public HouseKey(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
 		setInfoString("nowhere;0;");
+		setPersistent(true);
 	}
 
 	/**
@@ -24,7 +42,12 @@ public class HouseKey extends Item {
 	
 	@Override
 	public String describe() {
-		return "You see a key to " + getId() + ".";
+		final String[] info = getInfoString().split(";", -1);
+		if (info[2].length() > 0) {
+			return "You see a key to " + Grammar.suffix_s(info[2]) + " property, " + info[0] + ".";
+		} else {
+			return "You see a key to " + info[0] + ".";
+		}
 	}
 	
 	/**
@@ -39,7 +62,7 @@ public class HouseKey extends Item {
 			owner = "";
 		}
 		setInfoString(id + ";" + lockNumber + ";" + owner);
-		// TODO: decide the sprite name
+		chooseImage();
 	}
 	
 	/**
@@ -57,13 +80,13 @@ public class HouseKey extends Item {
 	}
 	
 	/**
-	 * Get the portal identifier.
-	 *  
-	 * @return the identifier of the portal
+	 * Choose an image for the key, depending on door identifier and lock number.
+	 * Ignores the owner, even if it's set.
 	 */
-	private String getId() {
+	private void chooseImage() {
 		final String[] info = getInfoString().split(";");
 		
-		return info[0];
-	} 
+		put("subclass", imageNames[(info[0].hashCode() + info[1].hashCode()) % imageNames.length]);
+		notifyWorldAboutChanges();
+	}
 }
