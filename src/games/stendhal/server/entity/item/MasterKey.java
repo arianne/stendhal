@@ -11,11 +11,16 @@ public class MasterKey extends HouseKey {
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
-		setInfoString("anywhere;0;");
+		setInfoString("any player's house;0;");
 	}
 	
 	// Open any door that can be opened with HouseKeys
 	public boolean matches(final String houseId, final int number) {
 		return true;
+	}
+
+	// Ignore any setup requests
+	@Override
+	public void setup(final String id, final int lockNumber, String owner) {
 	}
 }

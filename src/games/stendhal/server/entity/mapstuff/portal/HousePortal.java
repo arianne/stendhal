@@ -146,6 +146,12 @@ public class HousePortal extends AccessCheckingPortal {
 
 				final HouseKey key = (HouseKey) object;
 				if (key.matches(getDoorId(), getLockNumber())) {
+					// TODO: Remove the key naming support, and just return.  
+					// The renaming code does not need to be here forever, just some
+					// months, so that most of the player's keys get tagged with
+					// an owner. Comment added 2009-03-13 
+					key.setup(getDoorId(), getLockNumber(), getOwner());
+					
 					return true;
 				}
 			}
