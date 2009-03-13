@@ -88,7 +88,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKXQuQ5BQRSA4WnsXsC+NpZQoEMhxFJYO/EeHsijUFgqsTW8i/8mI5iYIe5JvuZM/tw7ExFCBH9QRQ31l10UYSSQ1yigiD4GGMp9EiHZZ+GH22CEMSbwIaP0TqyxkawpoYyKeB+Hpt/iKJ2Efkz9t5nb7E3fX4rn/R9WSrsz9AfxvL/pHXT9AlPM/vz/b3PGxUZ/xc1Gb81e03vhUjRk01T2HqVPIfdBS/btD2dp2ccQ0Oigi57mPI47vxsfLAAEAAA=
+   H4sIAAAAAAAAAKXQuQ4BQRjA8WncXsB9No5QoEMhxFE4O/EeHsijUDgqQce7+EtGlsnO2Kwv+TXf5J/Z2YQQIupAEy20P3ZJxJFBWaOCKsaYYCr3WcRkX0QYfoMZ5lgghILSe7HHQXpNDXU0xPd4NP0RV+km9GPqf836z950/1ZY73/bKe3J0F+E9X7Tf9D1Gyyxcvn9Tsdtf8fjz/vPmj4In6Ijm66yDyh9DiUbPdn3bc7ysk8hojHAECPNeRpPIxYfOwAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -98,7 +98,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB4UkaB2uIKygXbAKBgFVAQAd4f/jQAEAAA=
+   H4sIAAAAAAAAAGNgIB4UkaB2uIKygXbACAbXgPj6QDtimAEA64r/mgAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
