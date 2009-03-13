@@ -20,6 +20,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
@@ -394,8 +395,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				if (!portal.isHidden()) {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
 				}
-			}  else if (entity instanceof WalkBlocker) {
-				    drawEntity(vg, entity, COLOR_WALKBLOCKER);
+			} else if (entity instanceof HousePortal) {
+				drawEntity(vg, entity, Color.WHITE, Color.BLACK);
+			} else if (entity instanceof WalkBlocker) {
+				drawEntity(vg, entity, COLOR_WALKBLOCKER);
 			} else if (mininps && User.isAdmin()) {
 				// Enabled with -Dstendhal.superman=x.
 
