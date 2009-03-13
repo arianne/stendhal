@@ -123,17 +123,17 @@
  <tileset name="Untitled" firstgid="312" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_centred.png"/>
  </tileset>
- <layer name="0_floor" width="25" height="25" visible="0">
+ <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SOQqAMBCF4bjGBU/h9dz1oHb2WugxfILFECSCJO7FV4XhJ8PYjDH7wwwwJSwFDQdcCa6x4Z3QUPkPHwKJcGMmFqi8D28VCTh5Ex1tLFpCV6MjxIaKXSWQEpmGRg4FUb6oMcIEPQx/4/LGW+7qiY0KaqLR0Nhz98YMCL54EsQJAAA=
   </data>
  </layer>
- <layer name="1_terrain" width="25" height="25" visible="0">
+ <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALXVOUsDQRjG8dlWNAqe4H37AVQ0ETwK70ZtPVKJfgD9AEkaK7UQOwUP8L5v7RW0sLPXQns7K/9LZiFMdtkddveFH9nZvO88s2EhZUKISIhKUYAWNISgGfkyow7LWMEq9qR94a9qlQyrDnAoHbnskXkus+awgEWXDLVmdQ6ulNcM3So0hCgy7DPmfe49qayXlIwmeb8VbWhHfQAaZUYJ8mRGFDF0yXtBKMYxTvCOYX7HEYwa6fUpzpQeHdb8OS7wgTH2HseEkV5f4krp0WHNf+JLZJf5zn7jJ6NnDevYwrbNzAY2kcsZI0b2vF059exg12HGqhyfGV7Ly3wHZ+lEFDEjnIxu9u1BL/psMqYc5hIBZZSzrpAqle+SiHvM6Gd2AIMYcsmIKxleniPh0uP0HDNIecxIuvRUsW+1VOPwPvjNMGta+dTNSHnocSt13u7/I6iMa9zgF894kdemW9wpPTqs+Xs84A+veJPXpkc8KT06rPl/tgmhXsQJAAA=
   </data>
  </layer>
- <layer name="2_object" width="25" height="25" visible="0">
+ <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGHgQDqVnAPFMKpm5HI0fBaVnAfFsKtmBD6RTqH8VEK+hhkNoAKIH2gGjAA50GBkYdIFYj5F2dhgCzdYHYgMi7aghww5NoNnqQKwFxGFk6M/CIY5slgnQbFMgNiPSH0lEqCHHrcjAnIbxBgPxVDSrEYd4IonmqEL93QrEbUTqITesVLDoa8Chlpg4RwfKJLoLPT46ybCTEECPjw4a2EFMfCSTYF43me4IJdKebgrsGMwAALP9e2fECQAA
   </data>
