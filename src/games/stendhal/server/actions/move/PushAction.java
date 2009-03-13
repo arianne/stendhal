@@ -114,9 +114,14 @@ public class PushAction implements ActionListener {
 			return false;
 		}
 
-		// the number of pushes is limited per time and the player
-		// must be in range. 
-		return (player.canPush(rpEntity) && player.nextTo(rpEntity));
+		// the number of pushes is limited per time 
+		if (!player.canPush(rpEntity)) {
+			player.sendPrivateText("Give yourself a breather before you start pushing again.");
+			return false;
+		}
+
+		// the player must be in range. 
+		return (player.nextTo(rpEntity));
 	}
 
 	/**
