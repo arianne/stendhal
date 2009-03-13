@@ -74,8 +74,7 @@ public class AdosDeathmatch extends AbstractQuest {
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
 		helmet.setPosition(x, y);
-		helmet.setPersistent(true);
-		zone.add(helmet);
+		zone.add(helmet, false);
 	}
 
 	public void createNPC(final String name, final int x, final int y) {

@@ -444,18 +444,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 		Persistent attribute can override this. 
 	 */
 	public void onPutOnGround(final boolean expire) {
-		// persistent items don't degrade
-		if (expire && !isPersistent()) {
+		if (expire) {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 		}
 	}
 
 	public void onRemoveFromGround() {
-		// persistent items don't degrade
-		if (!isPersistent()) {
-			// stop the timer so that the item won't degrade anymore
-			SingletonRepository.getTurnNotifier().dontNotify(this);
-		}
+		// stop the timer so that the item won't degrade anymore
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 		if (plantGrower != null) {
 			plantGrower.onFruitPicked(this);
 		}
@@ -464,11 +460,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on
 		// the ground
-		if (!isPersistent()) {
-			if (getZone() != null) {
-				getZone().remove(getID());
-				new ItemLogger().timeout(this);
-			}
+		if (getZone() != null) {
+			getZone().remove(getID());
+			new ItemLogger().timeout(this);
 		}
 	}
 

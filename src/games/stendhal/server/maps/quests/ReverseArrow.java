@@ -264,9 +264,8 @@ public class ReverseArrow extends AbstractQuest implements
 	private void addTokenToWorld(final int x, final int y) {
 		final Token token = (Token) SingletonRepository.getEntityManager().getItem("token");
 		token.setPosition(x, y);
-		token.setPersistent(true);
 		token.setTokenMoveListener(this);
-		zone.add(token);
+		zone.add(token, false);
 		tokens.add(token);
 	}
 

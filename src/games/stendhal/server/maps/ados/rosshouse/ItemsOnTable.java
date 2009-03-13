@@ -25,8 +25,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 	private Item addPersistentItem(final String name, final StendhalRPZone zone, final int x, final int y) {
 		final Item item = SingletonRepository.getEntityManager().getItem(name);
 		item.setPosition(x, y);
-		item.setPersistent(true);
-		zone.add(item);
+		zone.add(item, false);
+		
 		return item;
 	}
 }
