@@ -17,7 +17,10 @@ public final class Actions {
 	//push
 	public static final String PUSH = "push";
 
-	
+		
+	//knock
+	public static final String KNOCK = "knock";
+
 	//own
 	public static final String OWN = "own";
 
