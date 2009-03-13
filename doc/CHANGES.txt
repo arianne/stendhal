@@ -14,7 +14,7 @@ Changelog
 - new outfit lender in magic clothing boutique who lends costumes including slime and goblin face
 - messaging areas to give atmospheric messages to players entering or leaving them
 - quoting #-characters
-- fixed chat bubbles
+- fixed chat bubbles and changed appearance to be more bubbly
 - semos community chest stored between server restarts
 - levels 5 - 60 respawn time slightly increased
 - min respawn time for creatures (10 seconds)
@@ -22,7 +22,22 @@ Changelog
 - NPCs will sell to a player killer but they charge 1.5 times the normal price
 - doors into the oni palace now a level checking portal 
 - fix feedback of buyer/seller npcs asked to transact large numbers of items
-- Thanatos says the new def of trophy helmet, and says if it is at max, as he changes it
+- Thanatos says the new def of trophy helmet, and says if it is at max, as he
+changes it
+- marked scrolls don't get player bound (old ones to be unbound)
+- wedding ring checks !visited and pet distance
+- push action sends a feedback message to player if pushing is not allowed
+because of the time limit
+* Player houses*
+- house doors remember lock number and expiry time
+- house keys only open door if lock number and house number match
+- player can look at house door to see owner and knock on it which sends message
+to players inside
+- house keys show who owns the house
+- chests which are accessible to everyone in the zone inside each house
+- houses made no teleport In
+- postman no longer used to remember which houses are bought
+
 
 0.72
 *Features*
