@@ -43,7 +43,6 @@ public class PizzaDeliveryTest {
 	private static String questSlot = "pizza_delivery";
 	
 	private Player player = null;
-	private SpeakerNPC npc = null;
 	private Engine en = null;
 
 	@BeforeClass
@@ -116,22 +115,22 @@ public class PizzaDeliveryTest {
 	public void testQuest() {
 		// first the basics, get a task, and deliver the pizza
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		final SpeakerNPC leander = SingletonRepository.getNPCList().get("Leander");
+		en = leander.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", leander.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", leander.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", leander.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(leander.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "eliza");
 		assertTrue(player.isEquipped("pizza"));
-		assertEquals("Eliza works for the Athor Island ferry service. You'll find her at the docks south of the Ados swamps.", npc.get("text"));
+		assertEquals("Eliza works for the Athor Island ferry service. You'll find her at the docks south of the Ados swamps.", leander.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", leander.get("text"));
 		assertTrue(player.hasQuest(questSlot));
 		
 		// we choose to make it so that he had asked us to take a pizza to a specific npc so we have to remove the 
@@ -142,61 +141,61 @@ public class PizzaDeliveryTest {
 		item.setInfoString("Pizza del Mare");	
 		player.getSlot("bag").add(item);
 		
-		npc = SingletonRepository.getNPCList().get("Eliza");
-		en = npc.getEngine();
+		final SpeakerNPC eliza = SingletonRepository.getNPCList().get("Eliza");
+		en = eliza.getEngine();
 		int xp = player.getXP();
 		player.setQuest(questSlot, "Eliza;" + System.currentTimeMillis());
 		en.step(player, "hi");
-		assertEquals("Welcome to the #ferry service to #Athor #island! How can I #help you?", npc.get("text"));
+		assertEquals("Welcome to the #ferry service to #Athor #island! How can I #help you?", eliza.get("text"));
 		en.step(player, "pizza");
 		// [16:55] kymara earns 30 experience points.
-		assertEquals("Incredible! It's still hot! Here, buy something nice from these 170 pieces of gold!", npc.get("text"));
+		assertEquals("Incredible! It's still hot! Here, buy something nice from these 170 pieces of gold!", eliza.get("text"));
 		assertFalse(player.isEquipped("pizza"));
 		assertTrue(player.isEquipped("money"));
 		assertThat(player.getXP(), greaterThan(xp));
 		en.step(player, "bye");
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", eliza.get("text"));
 		
 		// try saying pizza when you don't have one nor a quest for one
 		en.step(player, "hi");
-		assertEquals("Welcome to the #ferry service to #Athor #island! How can I #help you?", npc.get("text"));
+		assertEquals("Welcome to the #ferry service to #Athor #island! How can I #help you?", eliza.get("text"));
 		en.step(player, "pizza");
-		assertEquals("A pizza? Where?", npc.get("text"));
+		assertEquals("A pizza? Where?", eliza.get("text"));
 		en.step(player, "bye");
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", eliza.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		SpeakerNPC npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		// test rejecting quest
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "no");
-		assertEquals("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.", npc.get("text"));
+		assertEquals("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.", npc1.get("text"));
 		en.step(player, "sally");
-		assertEquals("My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.", npc.get("text"));
+		assertEquals("My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.", npc1.get("text"));
 		en.step(player, "bye.");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "jenny");
-		assertEquals("Jenny owns a mill in the plains north and a little east of Semos.", npc.get("text"));
+		assertEquals("Jenny owns a mill in the plains north and a little east of Semos.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		assertTrue(player.hasQuest(questSlot));
 		
-		npc = SingletonRepository.getNPCList().get("Jenny");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Jenny");
+		en = npc1.getEngine();
 		xp = player.getXP();
 		// testing taking too long to bring the pizza
 		player.setQuest(questSlot, "Jenny;0");
@@ -208,34 +207,34 @@ public class PizzaDeliveryTest {
 		player.getSlot("bag").add(item);
 		
 		en.step(player, "hi");
-		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc1.get("text"));
 		en.step(player, "pizza");
 		assertFalse(player.isEquipped("pizza"));
 		assertFalse(player.hasQuest(questSlot));
 		assertThat(player.getXP(), greaterThan(xp));
 		// [16:58] kymara earns 5 experience points.
-		assertEquals("It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner.", npc.get("text"));
+		assertEquals("It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
 		
 		// ok, we've already tested getting pizza orders but now we're trying different npcs
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Katinka");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Katinka");
+		en = npc1.getEngine();
 		player.setQuest(questSlot, "Katinka;" + System.currentTimeMillis());
 		// we choose to make it so that he had asked us to take a pizza to a DIFFERENT npc than Katinka
 		// so we have to remove the 
@@ -247,11 +246,11 @@ public class PizzaDeliveryTest {
 		
 		// on time
 		en.step(player, "hi");
-		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc.get("text"));
+		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("No, thanks. I like Pizza Vegetale better.", npc.get("text"));
+		assertEquals("No, thanks. I like Pizza Vegetale better.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", npc1.get("text"));
 		
 		// player find correct pizza
 		player.drop("pizza");
@@ -260,43 +259,43 @@ public class PizzaDeliveryTest {
 		player.getSlot("bag").add(item);
 		
 		en.step(player, "hi");
-		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc.get("text"));
+		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("Yay! My Pizza Vegetale! Here, you can have 100 pieces of gold as a tip!", npc.get("text"));
+		assertEquals("Yay! My Pizza Vegetale! Here, you can have 100 pieces of gold as a tip!", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "fidorea");
-		assertEquals("Fidorea lives in Ados city. She is a makeup artist. You'll need to walk east from here.", npc.get("text"));
+		assertEquals("Fidorea lives in Ados city. She is a makeup artist. You'll need to walk east from here.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
 		item.setInfoString("Pizza Napoli");	
 		player.getSlot("bag").add(item);
 		
-		npc = SingletonRepository.getNPCList().get("Fidorea");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Fidorea");
+		en = npc1.getEngine();
 		player.setQuest(questSlot, "Fidorea;" + System.currentTimeMillis());
 		// on time
 		en.step(player, "hi");
-		assertEquals("Hi, there. Do you need #help with anything?", npc.get("text"));
+		assertEquals("Hi, there. Do you need #help with anything?", npc1.get("text"));
 		en.step(player, "pizza");
 		// [16:59] kymara earns 20 experience points.
-		assertEquals("Thanks a lot! You're a born pizza deliverer. You can have these 150 pieces of gold as a tip!", npc.get("text"));
+		assertEquals("Thanks a lot! You're a born pizza deliverer. You can have these 150 pieces of gold as a tip!", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye, come back soon.", npc.get("text"));
+		assertEquals("Bye, come back soon.", npc1.get("text"));
 		assertFalse(player.isEquipped("pizza"));
 		
 		// TODO I (kym) commented this out because it fails but I can't see why.
@@ -316,21 +315,21 @@ public class PizzaDeliveryTest {
 //		// put the extra one on the ground now, we don't want it
 //		player.drop("pizza");
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "jenny");
-		assertEquals("Jenny owns a mill in the plains north and a little east of Semos.", npc.get("text"));
+		assertEquals("Jenny owns a mill in the plains north and a little east of Semos.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
 		// we choose to make it so that he had asked us to take a pizza to a specific npc so we have to remove the 
 		// old pizza and add the correct new flavour of pizza
@@ -339,36 +338,36 @@ public class PizzaDeliveryTest {
 		item = ItemTestHelper.createItem("pizza");
 		item.setInfoString("Pizza Margherita");	
 		player.getSlot("bag").add(item);
-		npc = SingletonRepository.getNPCList().get("Jenny");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Jenny");
+		en = npc1.getEngine();
 		player.setQuest(questSlot, "Jenny;" + System.currentTimeMillis());
 		// on time
 		en.step(player, "hi");
-		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc1.get("text"));
 		en.step(player, "pizza");
 		// [17:00] kymara earns 10 experience points.
-		assertEquals("Ah, you brought my Pizza Margherita! Very nice of you! Here, take 20 coins as a tip!", npc.get("text"));
+		assertEquals("Ah, you brought my Pizza Margherita! Very nice of you! Here, take 20 coins as a tip!", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "katinka");
-		assertEquals("Katinka takes care of the animals at the Ados Wildlife Refuge. That's north east of here, on the way to Ados city.", npc.get("text"));
+		assertEquals("Katinka takes care of the animals at the Ados Wildlife Refuge. That's north east of here, on the way to Ados city.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Katinka");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Katinka");
+		en = npc1.getEngine();
 		
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
@@ -378,28 +377,28 @@ public class PizzaDeliveryTest {
 		player.setQuest(questSlot, "Katinka;0");
 		
 		en.step(player, "hi");
-		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc.get("text"));
+		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("Eek. I hate cold pizza. I think I'll feed it to the animals.", npc.get("text"));
+		assertEquals("Eek. I hate cold pizza. I think I'll feed it to the animals.", npc1.get("text"));
 		// [17:10] kymara earns 10 experience points.
 		en.step(player, "bye");
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "cyk");
-		assertEquals("Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.", npc.get("text"));
+		assertEquals("Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		player.setQuest(questSlot, "Cyk;" + System.currentTimeMillis());
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
@@ -407,51 +406,51 @@ public class PizzaDeliveryTest {
 		player.getSlot("bag").add(item);
 		// test ask leander for task again before completing last
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "pizza");
-		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc.get("text"));
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("You still have to deliver a pizza Cyk, and hurry!", npc.get("text"));
+		assertEquals("You still have to deliver a pizza Cyk, and hurry!", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Cyk");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Cyk");
+		en = npc1.getEngine();
 		// on time
 		en.step(player, "hi");
-		assertEquals("Hey there!", npc.get("text"));
+		assertEquals("Hey there!", npc1.get("text"));
 		en.step(player, "pizza");
 		// [17:10] kymara earns 50 experience points.
-		assertEquals("Wow, I never believed you would really deliver this half over the world! Here, take these Pizza Hawaii bucks!", npc.get("text"));
+		assertEquals("Wow, I never believed you would really deliver this half over the world! Here, take these Pizza Hawaii bucks!", npc1.get("text"));
 		
-		npc = SingletonRepository.getNPCList().get("Leander");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
 
 		en.step(player, "hi");
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc1.get("text"));
 		en.step(player, "task");
-		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc.get("text"));
+		assertEquals("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?", npc1.get("text"));
 		en.step(player, "yes");
-		assertTrue(npc.get("text").startsWith("You must bring this Pizza "));
+		assertTrue(npc1.get("text").startsWith("You must bring this Pizza "));
 		en.step(player, "haizen");
-		assertEquals("Haizen is a magician who lives in a hut near the road to Ados. You'll need to walk east and north from here.", npc.get("text"));
+		assertEquals("Haizen is a magician who lives in a hut near the road to Ados. You'll need to walk east and north from here.", npc1.get("text"));
 		
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
 		item.setInfoString("Pizza Diavolo");	
 		player.getSlot("bag").add(item);
 		
-		npc = SingletonRepository.getNPCList().get("Haizen");
-		en = npc.getEngine();
+		npc1 = SingletonRepository.getNPCList().get("Haizen");
+		en = npc1.getEngine();
 		player.setQuest(questSlot, "Haizen;" + System.currentTimeMillis());
 		// on time 
 		en.step(player, "hi");
-		assertEquals("Greetings! How may I help you?", npc.get("text"));
+		assertEquals("Greetings! How may I help you?", npc1.get("text"));
 		en.step(player, "pizza");
 		// [17:11] kymara earns 15 experience points.
-		assertEquals("Ah, my Pizza Diavolo! And it's fresh out of the oven! Take these 80 coins as a tip!", npc.get("text"));
+		assertEquals("Ah, my Pizza Diavolo! And it's fresh out of the oven! Take these 80 coins as a tip!", npc1.get("text"));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", npc1.get("text"));
 		
 		// TODO: test go back to leander when the time has run out but you didn't take it
 	}
