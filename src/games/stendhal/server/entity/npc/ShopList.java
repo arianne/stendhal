@@ -208,7 +208,7 @@ public class ShopList {
 		shops.add("boots&helm", "chaos boots", 4000);
         shops.add("boots&helm", "green thing boots", 6000);
         shops.add("boots&helm", "xeno boots", 8000);
-
+ 
 		// helmet shop (mithrilbourgh)
 		// Note the shop sign is done by hand in
 		// games.stendhal.server.maps.mithrilbourgh.stores
@@ -298,6 +298,7 @@ public class ShopList {
 		shops.add("buyarcherstuff", "hunter crossbow", 800);	
 		
 		// assassinhq chief falatheen the dishwasher and veggie buyer)
+		// sign is hard coded so if you change this change the sign
 		shops.add("buyveggiesandherbs", "carrot", 5);
 		shops.add("buyveggiesandherbs", "salad", 10);
 		shops.add("buyveggiesandherbs", "leek", 25);
@@ -305,6 +306,7 @@ public class ShopList {
 		shops.add("buyveggiesandherbs", "courgette", 10);
 		shops.add("buyveggiesandherbs", "cauliflower", 30);
 		shops.add("buyveggiesandherbs", "tomato", 20);
+		shops.add("buyveggiesandherbs", "onion", 20);
 		shops.add("buyveggiesandherbs", "arandula", 10);
 		shops.add("buyveggiesandherbs", "kokuda", 200);	
 		shops.add("buyveggiesandherbs", "kekik", 25);
