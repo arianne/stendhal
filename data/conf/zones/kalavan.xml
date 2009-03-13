@@ -332,31 +332,61 @@
 <!-- These are the houses which players can own. Comment out the common chests
    	until zone memory is possible, or players will lose their stuff -->
  <zone name="int_kalavan_house_1" file="interiors/kalavan/house_1.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">10</parameter>
+	<parameter name="y">13</parameter>
+  </configurator>
   <portal x="8" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_1_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_2" file="interiors/kalavan/house_2.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="12" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_2_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_3" file="interiors/kalavan/house_3.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="5" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_3_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_4" file="interiors/kalavan/house_4.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_4_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_5" file="interiors/kalavan/house_5.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="18" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_5_entrance"/>
   </portal>
@@ -365,25 +395,49 @@
   </portal>
  </zone>
  <zone name="int_kalavan_house_6" file="interiors/kalavan/house_6.tmx">
- <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_6_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_7" file="interiors/kalavan/house_7.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> --> 
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_7_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_8" file="interiors/kalavan/house_8.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> --> 
+   <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
    <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_8_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_9" file="interiors/kalavan/house_9.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="3" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_9_entrance"/>
   </portal>
@@ -392,7 +446,13 @@
   </portal>
  </zone>
  <zone name="int_kalavan_house_10" file="interiors/kalavan/house_10.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="3" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_10_entrance"/>
   </portal>
@@ -401,49 +461,97 @@
   </portal>
  </zone>
  <zone name="int_kalavan_house_11" file="interiors/kalavan/house_11.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_11_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_12" file="interiors/kalavan/house_12.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+   <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="6" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_12_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_13" file="interiors/kalavan/house_13.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+   <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_13_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_14" file="interiors/kalavan/house_14.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="8" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_14_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_15" file="interiors/kalavan/house_15.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="6" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_15_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_16" file="interiors/kalavan/house_16.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="16" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_16_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_17" file="interiors/kalavan/house_17.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_17_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="16" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_18_entrance"/>
   </portal>
@@ -452,43 +560,85 @@
   </portal>
  </zone>
  <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">6</parameter>
+	<parameter name="y">14</parameter>
+  </configurator>
    <portal x="6" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_19_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_20" file="interiors/kalavan/house_20.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> --> 
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">21</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_20_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_21" file="interiors/kalavan/house_21.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> --> 
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_21_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_22" file="interiors/kalavan/house_22.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_22_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_23" file="interiors/kalavan/house_23.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">22</parameter>
+	<parameter name="y">2</parameter>
+  </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_23_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_24" file="interiors/kalavan/house_24.tmx">
-   <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">29</parameter>
+	<parameter name="y">25</parameter>
+  </configurator>
   <portal x="18" y="30" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_24_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_25" file="interiors/kalavan/house_25.tmx">
-  <!-- <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/> -->
+  <configurator
+   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator
+			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">29</parameter>
+	<parameter name="y">25</parameter>
+  </configurator>
   <portal x="18" y="30" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_25_entrance"/>
   </portal>
