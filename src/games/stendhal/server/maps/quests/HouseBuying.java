@@ -11,6 +11,7 @@ import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -56,27 +57,38 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
 
-	// Cost to buy house (lots!)
+	/** Cost to buy house in kalavan */
 	private static final int COST_KALAVAN = 100000;
+	/** Cost to buy house in ados */
 	private static final int COST_ADOS = 120000;
+	/** Cost to buy house in kirdneh */
 	private static final int COST_KIRDNEH = 120000;
 
-	// Cost to buy spare keys
+	/** Cost to buy spare keys */
 	private static final int COST_OF_SPARE_KEY = 1000;
 
 	private static final int MONTHS_BEFORE_EXPIRY = 6;
 
-	/*
+	/** percentage of initial cost refunded when you resell a house*/
+	private static final int DEPRECIATION_PERCENTAGE = 40;
+	
+	/**
 	 * age required to buy a house. Note, age is in minutes, not seconds! So
 	 * this is 300 hours
 	 */
 	private static final int REQUIRED_AGE = 300 * 60;
 
+	/** Zone name */
 	private static final String KALAVAN_CITY = "0_kalavan_city";
+	/** Zone name */
 	private static final String KIRDNEH_CITY = "0_kirdneh_city";
+	/** Zone name */
 	private static final String ADOS_CITY_N = "0_ados_city_n";
+	/** Zone name */
 	private static final String ADOS_CITY = "0_ados_city";
+	/** Zone name */
 	private static final String ADOS_TOWNHALL = "int_ados_town_hall_3";
+	/** Zone name */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
 	protected SpeakerNPC npc;
@@ -237,28 +249,60 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 		}
 	}
 
+	private final class ResellHouseAction implements ChatAction {
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+
+			// we need to find out where this house is so we know how much to refund them
+			String location = "";
+			final String claimedHouse = player.getQuest(QUEST_SLOT);
+		
+			try {
+				final int id = Integer.parseInt(claimedHouse);
+				final HousePortal portal = getHousePortal(id);
+				final String doorId = portal.getDoorId();
+				final String[] parts = doorId.split(" ");
+				location = parts[0];
+				final int cost = getCost(location);
+				// TODO: refund cost*ratio minus owed taxes.
+				portal.changeLock();
+				portal.setOwner("");
+				// the player has sold the house. clear the slot
+				player.removeQuest(QUEST_SLOT);
+				// TODO: say something better like how much money they got back
+				engine.say("Thanks. You don't own a house now.");
+			} catch (final NumberFormatException e) {
+				logger.error("Invalid number in house slot", e);
+				engine.say("Sorry something bad happened. I'm terribly embarassed.");
+				return;
+			}
+		}
+	}
+
 	/** House owners are offered the chance to buy a spare key when the seller greets them. Others are just greeted with their name. */
 	private final class HouseSellerGreetingAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			String reply = "";
-			if (player.hasQuest(QUEST_SLOT)) {
-				if (playerOwnsHouse(player)) {
-					reply = " At the cost of "
-						+ COST_OF_SPARE_KEY
-						+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-					engine.setCurrentState(ConversationStates.QUESTION_1);
-				} else {
-					// the player has lost the house. clear the slot so that he can buy a new one if he wants
-					player.removeQuest(QUEST_SLOT);
-				}
+			if (playerOwnsHouse(player)) {
+				reply = " At the cost of "
+					+ COST_OF_SPARE_KEY
+					+ " money you can purchase a spare key for your house. Do you want to buy one now?";
+				engine.setCurrentState(ConversationStates.QUESTION_1);
+			} else if (player.hasQuest(QUEST_SLOT)) {
+				// the player has lost the house. clear the slot so that he can buy a new one if he wants
+				player.removeQuest(QUEST_SLOT);
 			}
 			
 			engine.say("Hello, " + player.getTitle() + "." + reply);
 		}
 		
-		private boolean playerOwnsHouse(final Player player) {
+	}
+
+	
+	private boolean playerOwnsHouse(final Player player) {
+		if (player.hasQuest(QUEST_SLOT)) {
 			final String claimedHouse = player.getQuest(QUEST_SLOT);
-			
+		
 			try {
 				final int id = Integer.parseInt(claimedHouse);
 				final HousePortal portal = getHousePortal(id);
@@ -269,10 +313,15 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					logger.error("Player " + player.getName() + " claims to own a nonexistent house " + id);
 				}
 			} catch (final NumberFormatException e) {
-					logger.error("Invalid number in house slot", e);
+				logger.error("Invalid number in house slot", e);
 			}
-			
-			return false;
+		}
+		return false;
+	}
+
+	class PlayerOwnsHouseCondition implements ChatCondition {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			return playerOwnsHouse(player);
 		}
 	}
 
@@ -331,11 +380,11 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("cost", "house"),
-					new QuestStartedCondition(QUEST_SLOT),
+					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house is "
 					+ COST_KALAVAN
-					+ " money. But you cannot own more than one house, the market is too demanding for that!",
+					+ " money. But you cannot own more than one house, the market is too demanding for that! You cannot own another house until you #resell the one you already own.",
 					null);
 
 				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
@@ -419,7 +468,41 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything else, just ask.",
+					"No problem! If I can help you with anything, just ask. Just so you know, you can #resell your house to me if you want to.",
+					null);
+
+				// player is eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.QUESTION_3, 
+					"The state will pay you "
+					+ Integer.toString(DEPRECIATION_PERCENTAGE)
+					+ " percent of the price you paid for your house, minus any taxes you owe. You should remember to collect any belongings from your house before you sell it. Do you really want to sell your house to the state?",
+					null);
+
+				// player is eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					null);
+
+				// accepted offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ResellHouseAction());
+
+				// refused offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"Well, I'm glad you changed your mind.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
@@ -479,11 +562,11 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("cost", "house"),
-					new QuestStartedCondition(QUEST_SLOT),
+					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house in Ados is "
 					+ COST_ADOS
-					+ " money. But you cannot own more than one house, the market is too demanding for that!",
+					+ " money. But you cannot own more than one house, the market is too demanding for that! You cannot own another house until you #resell the one you already own.",
 					null);
 
 				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
@@ -579,7 +662,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything else, just ask.",
+					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
@@ -615,11 +698,11 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("cost", "house"),
-					new QuestStartedCondition(QUEST_SLOT),
+					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"In Kirdneh the cost of a new house is "
 					+ COST_KIRDNEH
-					+ " money. But you cannot own more than one house on the island, the market is too demanding for that!",
+					+ " money. But you cannot own another house until you #resell the one you already own.",
 					null);
 
 				// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
@@ -702,7 +785,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything else, just ask.",
+					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
@@ -725,6 +808,9 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 	// we'd like to update houses sold before release of 0.73 with the owner name
 	// when a player logs in we see if they own a house and we get the number from the house slot
+	// this can be removed after all previously owned portals would have expired unless player haslogged in to pay tax 
+	// as by then unclaimed houses will be recalimed by state
+	// this will be 6? months after release of 0.73
 	public void onLoggedIn(final Player player) {
 		final String name = player.getName();
 		if (player.hasQuest(QUEST_SLOT) && !"postman".equals(name)) {
