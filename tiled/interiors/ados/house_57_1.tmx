@@ -48,9 +48,12 @@
  <tileset name="sofa" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/sofa_red.png"/>
  </tileset>
+ <tileset name="floor" firstgid="101" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/purple_tile.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgHMWjeBSPSAwAbLh3cwAEAAA=
+   H4sIAAAAAAAAAMtmYGDIHsWjeBSPSAwAlvuqagAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
