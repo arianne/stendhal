@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+	
+	<item name="apple juice">
+    <type class="drink" subclass="red_juice" tileid="-1"/>
+    <description>You see apple juice.  On a hot summer day, it would taste great.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+       <amount value="30"/>
+      <frequency value="12"/>
+      <quantity value="1"/>
+      <regen value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+	
   <item name="beer">
     <type class="drink" subclass="beer" tileid="-1"/>
     <description>You see a beer.  On a hot summer day, it would taste great.</description>
