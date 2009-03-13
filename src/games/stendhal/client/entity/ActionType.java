@@ -48,7 +48,8 @@ public enum ActionType {
 	ADMIN_DESTROY("destroy", "(*)Destroy"),
 	ADMIN_ALTER("alter", "(*)Alter"),
 	SET_OUTFIT("outfit", "Set outfit"),
-	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions");
+	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions"),
+	KNOCK("knock", "Knock");
 	// JOIN_GUILD("guild", "Manage Guilds");
 
 	/**
