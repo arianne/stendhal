@@ -86,6 +86,6 @@ public class HouseKey extends Item {
 	private void chooseImage() {
 		final String[] info = getInfoString().split(";");
 		
-		put("subclass", imageNames[(info[0].hashCode() + info[1].hashCode()) % imageNames.length]);
+		put("subclass", imageNames[Math.abs((info[0].hashCode() + info[1].hashCode()) % imageNames.length)]);
 	}
 }
