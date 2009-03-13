@@ -53,7 +53,7 @@ public class HousePortal extends AccessCheckingPortal {
 	public HousePortal(String doorId) {
 		super("The door is locked.");
 		setRPClass(RPCLASS_NAME);
-		
+		put("type", "house_portal");
 		put(DOOR_ID, doorId);
 		setOwner("");
 		put(LOCK_NUMBER, 0);
@@ -68,7 +68,7 @@ public class HousePortal extends AccessCheckingPortal {
 	public HousePortal(RPObject object) {
 		super(object);
 		setRPClass(RPCLASS_NAME);
-		
+		put("type", "house_portal");
 		super.setDestination(get(DESTINATION_ZONE), idToObject(DESTINATION_ID));
 		super.setIdentifier(idToObject(PORTAL_REFERENCE));
 		setRejectedMessage("The door is locked.");
