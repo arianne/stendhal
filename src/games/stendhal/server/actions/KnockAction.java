@@ -45,8 +45,14 @@ public class KnockAction implements ActionListener {
 			player.sendPrivateText("Hmm, that's not something you can knock on effectively.");
 			return;
 		}
-		final HousePortal houseportal = (HousePortal) entity;
 
+		if(!player.nextTo(entity)) {
+			player.sendPrivateText("You can't reach to knock from here.");
+			return;
+		}
+
+		final HousePortal houseportal = (HousePortal) entity;
+   
 		knock(player, houseportal);
 	}
 
