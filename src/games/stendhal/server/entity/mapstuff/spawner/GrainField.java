@@ -74,7 +74,7 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 					onFruitPicked(null);
 					final Item grain = SingletonRepository.getEntityManager().getItem(
 							"grain");
-					entity.equip(grain, true);
+					entity.equipOrPutOnGround(grain);
 					return true;
 				} else if (entity instanceof Player) {
 					entity.sendPrivateText("You need a scythe to harvest grain fields.");

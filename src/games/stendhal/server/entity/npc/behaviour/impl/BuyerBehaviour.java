@@ -40,7 +40,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"money");
 		money.setQuantity(getCharge(buyerNPC, player));
-		player.equip(money, true);
+		player.equipOrPutOnGround(money);
 	}
 
 	/**

@@ -170,7 +170,7 @@ class Engagement {
 		// perhaps change this to a hotel room where they can get dressed into
 		// wedding outfits?
 		// then they walk to the church?
-		player.equip(invite, true);
+		player.equipOrPutOnGround(invite);
 	}
 
 	private void finishEngagement() {

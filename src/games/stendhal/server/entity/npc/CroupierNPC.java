@@ -64,7 +64,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 
 			say("Congratulations, " + player.getTitle() + ", you have "
 					+ sum + " points. " + text);
-			player.equip(prize, true);
+			player.equipOrPutOnGround(prize);
 		} else {
 			say("Sorry, "
 					+ player.getTitle()

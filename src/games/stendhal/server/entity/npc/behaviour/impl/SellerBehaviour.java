@@ -93,7 +93,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			price = (int) (BAD_BOY_BUYING_PENALTY * price);
 		}
 		if (player.isEquipped("money", price)) {
-			if (player.equip(item)) {
+			if (player.equipToInventoryOnly(item)) {
 				player.drop("money", price);
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(getAmount()) + " your "

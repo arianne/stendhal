@@ -29,7 +29,7 @@ public class Shop {
 		
 		if (offers.contains(offer)) {
 			if (player.drop("money", offer.getPrice().intValue())) {
-				player.equip(offer.getItem(), true);
+				player.equipOrPutOnGround(offer.getItem());
 				earnings.put(offer.getOffererName(), offer.getPrice());
 			}
 		}
@@ -40,7 +40,7 @@ public class Shop {
 			final StackableItem item = (StackableItem) SingletonRepository
 					.getEntityManager().getItem("money");
 			item.setQuantity(earnings.get(earner.getName()));
-			earner.equip(item);
+			earner.equipToInventoryOnly(item);
 		}
 	}
 

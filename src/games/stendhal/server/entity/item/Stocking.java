@@ -48,7 +48,7 @@ public class Stocking extends Box {
 				itemName);
 		player.sendPrivateText("Congratulations, you've got "
 				+ Grammar.a_noun(itemName));
-		player.equip(item, true);
+		player.equipOrPutOnGround(item);
 		player.notifyWorldAboutChanges();
 		return true;
 	}

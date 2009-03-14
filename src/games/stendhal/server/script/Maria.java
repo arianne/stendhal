@@ -36,7 +36,7 @@ public class Maria extends ScriptImpl {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.drop("coupon")) {
 				final Item beer = sandbox.getItem("beer");
-				player.equip(beer, true);
+				player.equipOrPutOnGround(beer);
 				engine.say("Here is your free beer.");
 				player.setQuest("MariaCoupon", "done");
 			} else {

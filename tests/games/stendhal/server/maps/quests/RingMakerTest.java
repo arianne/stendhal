@@ -139,7 +139,7 @@ public class RingMakerTest {
 		
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		ring.damage();
-		player.equip(ring);
+		player.equipToInventoryOnly(ring);
 		
 		PlayerTestHelper.equipWithMoney(player, 80000);
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 2);
@@ -251,7 +251,7 @@ public class RingMakerTest {
 	public void testgiveBoundRingGetBoundRing() {
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		ring.damage();
-		player.equip(ring);
+		player.equipToInventoryOnly(ring);
 		ring.setBoundTo(player.getName());
 		orderfixandfetchordered(player);
 		final Item ringafter = player.getFirstEquipped("emerald ring");
@@ -315,7 +315,7 @@ public class RingMakerTest {
 	public void testgiveUnboundRingGetUnboundRing() {
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		ring.damage();
-		player.equip(ring);
+		player.equipToInventoryOnly(ring);
 		
 		assertFalse(ring.isBound());
 		orderfixandfetchordered(player);

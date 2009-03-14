@@ -46,7 +46,7 @@ public class VampireSwordTest {
 				((Stackable) item).setQuantity(needed);
 			}
 			
-			player.equip(item);
+			player.equipToInventoryOnly(item);
 		}
 	}
 	
@@ -191,7 +191,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, "start");
 			
 			final Item goblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-			player.equip(goblet);
+			player.equipToInventoryOnly(goblet);
 			
 			en.step(player, hello);
 			assertEquals(hello, "Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!", npc.getText());
@@ -355,13 +355,13 @@ public class VampireSwordTest {
 		final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 		
 		Item item = SingletonRepository.getEntityManager().getItem("empty goblet");
-		player.equip(item);
+		player.equipToInventoryOnly(item);
 		item = SingletonRepository.getEntityManager().getItem("skull ring");
-		player.equip(item);
+		player.equipToInventoryOnly(item);
 		item = SingletonRepository.getEntityManager().getItem("bat entrails");
-		player.equip(item);
+		player.equipToInventoryOnly(item);
 		item = SingletonRepository.getEntityManager().getItem("vampirette entrails");
-		player.equip(item);
+		player.equipToInventoryOnly(item);
 		
 		en.step(player, "fill");
 		String answer = npc.getText();
@@ -499,7 +499,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.IDLE);
 			player.setQuest(questSlot, "start");
 			Item item = SingletonRepository.getEntityManager().getItem("goblet");
-			player.equip(item);
+			player.equipToInventoryOnly(item);
 			
 			en.step(player, hello);
 			assertEquals("You have battled hard to bring that goblet. I will use it to #forge the vampire sword", npc.getText());
@@ -546,10 +546,10 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, "start");
 			
 			Item item = SingletonRepository.getEntityManager().getItem("goblet");
-			player.equip(item);
+			player.equipToInventoryOnly(item);
 			item = SingletonRepository.getEntityManager().getItem("iron");
 			((Stackable) item).setQuantity(10);
-			player.equip(item);
+			player.equipToInventoryOnly(item);
 			
 			en.step(player, hello);
 			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", npc.getText());

@@ -351,7 +351,7 @@ public class PizzaDelivery extends AbstractQuest {
 		pizza.setDescription("You see a " + data.flavor + ".");
 		pizza.setBoundTo(name);
 
-		if (player.equip(pizza)) {
+		if (player.equipToInventoryOnly(pizza)) {
     		npc.say("You must bring this "
     			+ data.flavor
     			+ " to "
@@ -424,7 +424,7 @@ public class PizzaDelivery extends AbstractQuest {
 							final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 									.getItem("money");
 							money.setQuantity(data.tip);
-							player.equip(money, true);
+							player.equipOrPutOnGround(money);
 							player.addXP(data.xp);
 						}
 						player.removeQuest(QUEST_SLOT);

@@ -155,7 +155,7 @@ public class GardenerNPC implements ZoneConfigurator {
 							products.setBoundTo(player.getName());
                         }
 
-                        player.equip(products, true);
+                        player.equipOrPutOnGround(products);
                         npc.say("Welcome back! I've put my lunch inside ready to eat later. In exchange here you have "
 								+ Grammar.quantityplnoun(numberOfProductItems,
                                                         getProductName()) + ".");

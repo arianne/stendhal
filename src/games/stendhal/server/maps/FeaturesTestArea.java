@@ -32,7 +32,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 				final RPEntity killerRPEntity = (RPEntity) killer;
 				if (!killerRPEntity.isEquipped("golden key")) {
 					final Item item = SingletonRepository.getEntityManager().getItem("golden key");
-					killerRPEntity.equip(item, true);
+					killerRPEntity.equipOrPutOnGround(item);
 				}
 			}
 		}

@@ -100,7 +100,7 @@ public class BailActionTest {
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
 		final Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
-		player.equip(helmet);
+		player.equipToInventoryOnly(helmet);
 		assertTrue(player.isEquipped("trophy helmet"));
 		helmet.put("def", 2);
 		assertThat(helmet.getInt("def"), greaterThan(1));

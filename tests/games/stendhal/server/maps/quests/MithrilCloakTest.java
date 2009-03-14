@@ -119,17 +119,17 @@ public class MithrilCloakTest {
 		
 		final Item bobbin = ItemTestHelper.createItem("bobbin");
 		bobbin.setEquipableSlots(Arrays.asList("bag"));
-		player.equip(bobbin);
+		player.equipToInventoryOnly(bobbin);
 		assertTrue(player.isEquipped("bobbin"));
 		
 		final Item oil = ItemTestHelper.createItem("oil");
 		oil.setEquipableSlots(Arrays.asList("bag"));
-		player.equip(oil);
+		player.equipToInventoryOnly(oil);
 		assertTrue(player.isEquipped("oil"));
 		
 		final Item armor = ItemTestHelper.createItem("leather armor");
 		armor.setEquipableSlots(Arrays.asList("bag"));
-		player.equip(armor);
+		player.equipToInventoryOnly(armor);
 		assertTrue(player.isEquipped("leather armor"));
 		
 		en.step(player, "hi");

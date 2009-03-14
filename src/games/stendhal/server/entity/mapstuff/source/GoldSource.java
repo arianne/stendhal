@@ -133,7 +133,7 @@ public class GoldSource extends PlayerActivityEntity {
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
-    			player.equip(item, true);
+    			player.equipOrPutOnGround(item);
     			player.sendPrivateText("You found "
     					+ Grammar.a_noun(item.getTitle()) + ".");
 			} else {

@@ -129,7 +129,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							engine.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
 							final Item mithrilnug = SingletonRepository.getEntityManager()
 									.getItem("mithril nugget");
-							player.equip(mithrilnug, true);
+							player.equipOrPutOnGround(mithrilnug);
 							player.addKarma(5.0);
 							player.addXP(4000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());

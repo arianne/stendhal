@@ -138,7 +138,7 @@ public class FishSource extends PlayerActivityEntity {
 			final Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
 
-			player.equip(item, true);
+			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You caught a fish.");
 		} else {
 			player.sendPrivateText("You didn't get a fish.");

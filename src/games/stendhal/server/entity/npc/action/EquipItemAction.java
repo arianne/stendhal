@@ -68,7 +68,7 @@ public class EquipItemAction implements ChatAction {
     		if (bind) {
     			item.setBoundTo(player.getName());
     		}
-    		player.equip(item, true);
+    		player.equipOrPutOnGround(item);
     		player.notifyWorldAboutChanges();
 		} else {
 			logger.error("Cannot find item '" + itemName + "' to equip", new Throwable());

@@ -94,7 +94,7 @@ public class LeaderNPCTest {
 		weapon.setEquipableSlots(Arrays.asList("lhand"));
 		weapon.put("atk", 6);
 		weapon.put("rate", 4);
-		player.equip(weapon);
+		player.equipToInventoryOnly(weapon);
 
 		assertTrue(player.isEquipped("club"));
 		
@@ -107,7 +107,7 @@ public class LeaderNPCTest {
 		weapon2.setEquipableSlots(Arrays.asList("lhand"));
 		weapon2.put("atk", 29);
 		weapon2.put("rate", 5);
-		player.equip(weapon2);
+		player.equipToInventoryOnly(weapon2);
 		assertTrue(player.isEquipped("ice sword"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -119,7 +119,7 @@ public class LeaderNPCTest {
 		weapon3.put("atk", 22);
 		weapon3.put("rate", 5);
 		weapon3.put("lifesteal", 0.1);
-		player.equip(weapon3);
+		player.equipToInventoryOnly(weapon3);
 		assertTrue(player.isEquipped("vampire sword"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -131,7 +131,7 @@ public class LeaderNPCTest {
 		weapon4.put("atk", 48);
 		weapon4.put("rate", 7);
 		weapon4.put("lifesteal", -0.1);
-		player.equip(weapon4);
+		player.equipToInventoryOnly(weapon4);
 		assertTrue(player.isEquipped("club of thorns"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -140,7 +140,7 @@ public class LeaderNPCTest {
 		
 		final Item weapon5 = new Item("l hand sword", "sword", "subclass", null);
 		weapon5.setEquipableSlots(Arrays.asList("lhand"));
-		player.equip(weapon5);
+		player.equipToInventoryOnly(weapon5);
 		assertTrue(player.isEquipped("l hand sword"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -151,7 +151,7 @@ public class LeaderNPCTest {
 		weapon6.setEquipableSlots(Arrays.asList("lhand"));
 		weapon6.put("atk", 40);
 		weapon6.put("rate", 7);
-		player.equip(weapon6);
+		player.equipToInventoryOnly(weapon6);
 		assertTrue(player.isEquipped("black sword"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -162,7 +162,7 @@ public class LeaderNPCTest {
 		weapon7.setEquipableSlots(Arrays.asList("lhand"));
 		weapon7.put("atk", 4);
 		weapon7.put("rate", 1);
-		player.equip(weapon7);
+		player.equipToInventoryOnly(weapon7);
 		assertTrue(player.isEquipped("obsidian knife"));
 		
 		assertTrue(en.step(player, "weapon"));
@@ -173,7 +173,7 @@ public class LeaderNPCTest {
 		weapon8.setEquipableSlots(Arrays.asList("lhand"));
 		weapon8.put("atk", 6);
 		weapon8.put("rate", 2);
-		player.equip(weapon8);
+		player.equipToInventoryOnly(weapon8);
 		assertTrue(player.isEquipped("assassin dagger"));
 		
 		assertTrue(en.step(player, "weapon"));

@@ -20,6 +20,7 @@ public class SourceObjectTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@Test
@@ -62,7 +63,7 @@ public class SourceObjectTest {
 		final Item dropitem = SingletonRepository.getEntityManager().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
-		assertTrue(bob.equip(dropitem));
+		assertTrue(bob.equipToInventoryOnly(dropitem));
 		assertNotNull(dropitem.getID().getObjectID());
 		final RPAction action = new RPAction();
 		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());
@@ -84,7 +85,7 @@ public class SourceObjectTest {
 		final Item dropitem = SingletonRepository.getEntityManager().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
-		assertTrue(bob.equip(dropitem));
+		assertTrue(bob.equipToInventoryOnly(dropitem));
 		assertNotNull(dropitem.getID().getObjectID());
 		final RPAction action = new RPAction();
 		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());

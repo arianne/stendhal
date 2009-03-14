@@ -699,10 +699,10 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Poisoned
 		 */
-		if (object.has("poisoned")) {
-			// To remove the - sign on poison.
-			// onPoisoned(Math.abs(object.getInt("poisoned")));
-		}
+//		if (object.has("poisoned")) {
+//			// TODO: To remove the - sign on poison.
+//			// onPoisoned(Math.abs(object.getInt("poisoned")));
+//		}
 
 		/*
 		 * Ghost mode feature.

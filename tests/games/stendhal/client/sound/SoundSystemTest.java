@@ -59,11 +59,7 @@ public class SoundSystemTest {
 		assertEquals(100, SoundSystem.get().getVolume());
 	}
 
-	@Test
-	public final void testIsOperative() {
-		assertTrue(SoundSystem.get().isOperative());
-	}
-
+	
 	@Test
 	public final void testGet() {
 		final SoundSystem ss1 = SoundSystem.get();

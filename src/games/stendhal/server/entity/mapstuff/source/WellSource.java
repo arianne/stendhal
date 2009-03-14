@@ -134,7 +134,7 @@ public class WellSource extends PlayerActivityEntity {
 				((StackableItem) item).setQuantity(Rand.roll1D100());
 			}
 
-			player.equip(item, true);
+			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You were lucky and found "
 					+ Grammar.a_noun(itemName));
 		} else {

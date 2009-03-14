@@ -271,7 +271,7 @@ import java.util.Arrays;
 					 final StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					final int goldamount = 20;
 					gold.setQuantity(goldamount);
-					player.equip(gold, true);
+					player.equipOrPutOnGround(gold);
 					player.addKarma(15);
 					player.addXP(50000);
 					npc.say("Thats all! Now I am prepared for my escape! Here is something I have stolen from Princess Esclara! Do not let her know. And now leave me!");

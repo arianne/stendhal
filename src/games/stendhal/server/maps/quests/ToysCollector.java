@@ -150,7 +150,7 @@ public class ToysCollector extends AbstractQuest implements
 		final StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"pie");
 		pie.setQuantity(3);
-		player.equip(pie, true);
+		player.equipOrPutOnGround(pie);
 		player.addXP(100);
 		player.addKarma(10.0);
 	}

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+
 import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
@@ -20,10 +21,10 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
-import games.stendhal.server.core.rule.ActionManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
@@ -1264,8 +1265,58 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the item
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(final Item item) {
-		return equip(item, false);
+	public final boolean equipToInventoryOnly(final Item item) {
+		final String slot = getSlotNameToEquip(item);
+		if (slot != null) {
+			return equipIt(slot, item);
+		} else {
+			return false;
+		}
+	}
+
+	
+	/**
+	 * gets the name of the slot in which the entity can equip the item.
+	 * @param entity 
+	 * @param item 
+	 * 
+	 * @return the slot name for the item or null if there is no matching slot
+	 *         in the entity
+	 */
+	protected final String getSlotNameToEquip(final Item item) {
+		// get all possible slots for this item
+		final List<String> slotNames = item.getPossibleSlots();
+
+		if (item instanceof Stackable) {
+			// first try to put the item on an existing stack
+			final Stackable stackEntity = (Stackable) item;
+			for (final String slotName : slotNames) {
+				if (hasSlot(slotName)) {
+					final RPSlot rpslot = getSlot(slotName);
+					for (final RPObject object : rpslot) {
+						if (object instanceof Stackable) {
+							// found another stackable
+							final Stackable other = (Stackable) object;
+							if (other.isStackable(stackEntity)) {
+								return slotName;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// We can't stack it on another item. Check if we can simply
+		// add it to an empty cell.
+		for (final String slot : slotNames) {
+			if (hasSlot(slot)) {
+				final RPSlot rpslot = getSlot(slot);
+				if (!rpslot.isFull()) {
+					return slot;
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -1277,25 +1328,17 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            put it on ground if it cannot equipped.
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(final Item item,
-			final boolean putOnGroundIfItCannotEquiped) {
-		final ActionManager manager = SingletonRepository.getActionManager();
-
-		final String slot = manager.getSlotNameToEquip(this, item);
-		if (slot != null) {
-			return manager.onEquip(this, slot, item);
-		}
-
-		if (putOnGroundIfItCannotEquiped) {
-			final StendhalRPZone zone = getZone();
+	public final boolean equipOrPutOnGround(final Item item) {
+		if (equipToInventoryOnly(item)) {
+			return true;
+		} else {
 			item.setPosition(getX(), getY());
-			zone.add(item);
+			getZone().add(item);
 			return true;
 		}
-
-		// we cannot equip this item
-		return false;
 	}
+
+	
 
 	/**
 	 * Tries to equip one unit of an item in the given slot. Note: This doesn't
@@ -1308,14 +1351,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            the item
 	 * @return true if the item can be equipped, else false
 	 */
-	public boolean equip(final String slotName, final Item item) {
-		if (hasSlot(slotName)) {
-			final ActionManager manager = SingletonRepository
-					.getActionManager();
-			if (manager.onEquip(this, slotName, item)) {
-				updateItemAtkDef();
-				return true;
-			}
+	public final boolean equip(final String slotName, final Item item) {
+		
+		if (equipIt(slotName, item)) {
+			updateItemAtkDef();
+			return true;
 		}
 		return false;
 	}
@@ -2197,6 +2237,47 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			}
 
 			attacker.notifyWorldAboutChanges();
+		}
+	}
+	
+	/** Equips the item in the specified slot. 
+	 * @param entity 
+	 * @param slotName 
+	 * @param item 
+	 * @return true if successful*/
+	private boolean equipIt(final String slotName, final Item item) {
+		if (!hasSlot(slotName)) {
+			return false;
+		}
+
+		final RPSlot rpslot = getSlot(slotName);
+
+		if (item instanceof StackableItem) {
+			final StackableItem stackEntity = (StackableItem) item;
+			// find a stackable item of the same type
+			for (final RPObject object : rpslot) {
+				if (object instanceof StackableItem) {
+					// found another stackable
+					final StackableItem other = (StackableItem) object;
+					if (other.isStackable(stackEntity)) {
+						// other is the same type...merge them
+						new ItemLogger().merge(this, stackEntity, other);
+						other.add(stackEntity);
+						updateItemAtkDef();
+						return true;
+					}
+				}
+			}
+		}
+
+		// We can't stack it on another item. Check if we can simply
+		// add it to an empty cell.
+		if (rpslot.isFull()) {
+			return false;
+		} else {
+			rpslot.add(item);
+			updateItemAtkDef();
+			return true;
 		}
 	}
 }

@@ -151,7 +151,7 @@ class GettingTools {
 					final Item scissors = SingletonRepository.getEntityManager().getItem(
 									"magical scissors");
 					scissors.setBoundTo(player.getName());
-					player.equip(scissors, true);
+					player.equipOrPutOnGround(scissors);
 					player.setQuest(mithrilcloak.getQuestSlot(), "got_scissors");
 					player.notifyWorldAboutChanges();
 				}

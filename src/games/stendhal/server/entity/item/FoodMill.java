@@ -40,7 +40,7 @@ public class FoodMill extends Item implements UseListener {
 						
 							user.drop("apple");
 							user.drop("flask");
-							user.equip(item, true);
+							user.equipOrPutOnGround(item);
 						}
 					}
 				}

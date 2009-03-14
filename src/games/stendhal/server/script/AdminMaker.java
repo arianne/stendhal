@@ -82,7 +82,7 @@ public class AdminMaker extends ScriptImpl {
 			for (final String itemName : itemsSingle) {
 				if (!player.isEquipped(itemName)) {
 					final Item itemObj = sandbox.getItem(itemName);
-					player.equip(itemObj, true);
+					player.equipOrPutOnGround(itemObj);
 				}
 			}
 
@@ -93,7 +93,7 @@ public class AdminMaker extends ScriptImpl {
 				if (item instanceof StackableItem) {
 					final StackableItem stackableItem = (StackableItem) item;
 					stackableItem.setQuantity(5000);
-					player.equip(stackableItem);
+					player.equipToInventoryOnly(stackableItem);
 				}
 			}
 			// turn on their keyring for them
@@ -196,7 +196,7 @@ public class AdminMaker extends ScriptImpl {
 					+ player.getX() + " " + player.getY());
 			markedScroll.setBoundTo(player.getName());
 
-			if (player.equip(markedScroll, false)) {
+			if (player.equipToInventoryOnly(markedScroll)) {
 				// Teleport
 				if (randomTeleport(player)) {
 					// todo: priv msg doesn't work

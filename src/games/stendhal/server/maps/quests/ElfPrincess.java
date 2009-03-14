@@ -147,7 +147,7 @@ public class ElfPrincess extends AbstractQuest {
 						goldbars.setQuantity(goldamount);
 						// goldbars.setBoundTo(player.getName()); <- not sure
 						// if these should get bound or not.
-						player.equip(goldbars, true);
+						player.equipOrPutOnGround(goldbars);
 						npc.say("Thank you! Take these " + Integer.toString(goldamount) + " gold bars, I have plenty. And, listen: If you'd ever like to get me another, be sure to ask me first. Rose Leigh is superstitious, she won't give the bloom unless she senses you need it.");
 						player.setQuest(QUEST_SLOT, "flower_brought");
 					}

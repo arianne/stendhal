@@ -126,7 +126,7 @@ public class KillSpiders extends AbstractQuest {
 							final Item mythegg = SingletonRepository.getEntityManager()
 									.getItem("mythical egg");
 							mythegg.setBoundTo(player.getName());
-							player.equip(mythegg, true);
+							player.equipOrPutOnGround(mythegg);
 							player.addKarma(5.0);
 							player.addXP(5000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());

@@ -161,7 +161,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 								products.setBoundTo(player.getName());
 							}
 
-							player.equip(products, true);
+							player.equipOrPutOnGround(products);
 							npc.say("I'm done! Here you have "
 									+ Grammar.quantityplnoun(numberOfProductItems,
 															 getProductName()) + ".");

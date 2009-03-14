@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.game.RPAction;
 
@@ -16,7 +17,7 @@ public class GhostModeActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-	
+		MockStendlRPWorld.get();
 	}
 
 	@Test

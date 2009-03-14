@@ -92,7 +92,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
     										engine.say("Ok, I got your money, here's the key.");
     										final Item key = SingletonRepository.getEntityManager().getItem(
     												"sedah gate key");
-    										player.equip(key, true);
+    										player.equipOrPutOnGround(key);
     									} else {
     										// player bribed enough but doesn't have
     										// the cash

@@ -60,7 +60,7 @@ public class Present extends Box {
 		player.sendPrivateText("Congratulations, you've got " 
 				+ Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)));
 
-		player.equip(item, true);
+		player.equipOrPutOnGround(item);
 		player.notifyWorldAboutChanges();
 
 		return true;

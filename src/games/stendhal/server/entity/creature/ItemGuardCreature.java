@@ -86,7 +86,7 @@ public class ItemGuardCreature extends Creature {
 				final Item item = SingletonRepository.getEntityManager().getItem(
 						itemType);
 				item.setBoundTo(killerPlayer.getName());
-				killerPlayer.equip(item, true);
+				killerPlayer.equipOrPutOnGround(item);
 			}
 		}
 		super.onDead(killer, remove);

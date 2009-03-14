@@ -135,7 +135,7 @@ class MakeRings {
 							player.setQuest(marriage.getQuestSlot(), "engaged_with_ring");
 							player.addXP(500);
 						}
-						player.equip(weddingRing, true);
+						player.equipOrPutOnGround(weddingRing);
 						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.INFORMATION_2);
 					}

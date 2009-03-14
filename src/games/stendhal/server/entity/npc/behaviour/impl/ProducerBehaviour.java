@@ -314,7 +314,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 				products.setBoundTo(player.getName());
 			}
 
-			player.equip(products, true);
+			player.equipOrPutOnGround(products);
 			npc.say("Welcome back! I'm done with your order. Here you have "
 					+ Grammar.quantityplnoun(numberOfProductItems,
 							getProductName()) + ".");

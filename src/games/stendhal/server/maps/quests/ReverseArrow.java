@@ -141,7 +141,7 @@ public class ReverseArrow extends AbstractQuest implements
 					final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 									"money");
 					money.setQuantity(50);
-					player.equip(money);
+					player.equipToInventoryOnly(money);
 					player.addXP(100);
 				}
 				player.setQuest(QUEST_SLOT, "done");

@@ -224,11 +224,11 @@ public class WeaponsCollector2 extends AbstractQuest {
 									final Item lhandsword = SingletonRepository.getEntityManager().getItem(
 											"l hand sword");
 									lhandsword.setBoundTo(player.getName());
-									player.equip(lhandsword, true);
+									player.equipOrPutOnGround(lhandsword);
 									final Item rhandsword = SingletonRepository.getEntityManager().getItem(
 											"r hand sword");
 									rhandsword.setBoundTo(player.getName());
-									player.equip(rhandsword, true);
+									player.equipOrPutOnGround(rhandsword);
 									player.addXP(3000);
 									engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
 									player.setQuest(QUEST_SLOT, "done");

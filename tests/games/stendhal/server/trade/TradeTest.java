@@ -35,14 +35,14 @@ public class TradeTest {
 				.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
-		bob.equip(item);
+		bob.equipToInventoryOnly(item);
 		Offer offer = edeka.createOffer(bob, item, price);
 		assertThat(offer.getItem(), is(item));
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(bob.isEquipped(item.getName())),
 				is(Boolean.FALSE));
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
-		ernie.equip(erniesMoney);
+		ernie.equipToInventoryOnly(erniesMoney);
 		assertThat(ernie.isEquipped("money", price), is(Boolean.TRUE));
 		edeka.acceptOffer(offer, ernie);
 		assertThat(Boolean.valueOf(ernie.isEquipped("axe")), is(Boolean.TRUE));
@@ -64,7 +64,7 @@ public class TradeTest {
 		Offer offer = new Offer(item, price, "george");
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
-		ernie.equip(erniesMoney);
+		ernie.equipToInventoryOnly(erniesMoney);
 		assertThat(ernie.isEquipped("money", price), is(Boolean.TRUE));
 		edeka.acceptOffer(offer, ernie);
 		assertThat(Boolean.valueOf(ernie.isEquipped("axe")), is(Boolean.FALSE));
@@ -82,11 +82,11 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		Integer tooFewMoney = price - 1;
 		erniesMoney.setQuantity(tooFewMoney);
-		bob.equip(item);
+		bob.equipToInventoryOnly(item);
 		Offer offer = edeka.createOffer(bob, item, price);
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
-		ernie.equip(erniesMoney);
+		ernie.equipToInventoryOnly(erniesMoney);
 		
 		assertThat(ernie.isEquipped("money", price), is(Boolean.FALSE));
 		edeka.acceptOffer(offer, ernie);

@@ -159,7 +159,7 @@ public class LookUpQuote extends AbstractQuest {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
 						final Item fishingRod = SingletonRepository.getEntityManager().getItem("fishing rod");
 						fishingRod.setBoundTo(player.getName());
-						player.equip(fishingRod, true);
+						player.equipOrPutOnGround(fishingRod);
 						player.addXP(750);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();

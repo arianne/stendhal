@@ -195,7 +195,7 @@ public class RainbowBeans extends AbstractQuest {
 						final Item rainbowBeans = SingletonRepository.getEntityManager().getItem(
 																							 "rainbow beans");
 						rainbowBeans.setBoundTo(player.getName());
-						player.equip(rainbowBeans, true);
+						player.equipOrPutOnGround(rainbowBeans);
 					} else {
 						npc.say("Scammer! You don't have the cash.");
 						npc.setCurrentState(ConversationStates.ATTENDING);

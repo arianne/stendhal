@@ -1928,13 +1928,13 @@ public class Player extends RPEntity {
 	public void equip(final Item item, final int amount) {
 		if (item instanceof Stackable) {
 			((Stackable) item).setQuantity(amount);
-			super.equip(item);
+			super.equipToInventoryOnly(item);
 		} else {
 			for (int i = 1; i <= amount; i++) {
-				super.equip(item, true);
+				super.equipOrPutOnGround(item);
 			}
 		}
-		super.equip(item); 
+		super.equipToInventoryOnly(item); 
 		
 	}
 

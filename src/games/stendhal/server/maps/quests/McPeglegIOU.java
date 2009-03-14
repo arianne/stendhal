@@ -73,7 +73,7 @@ public class McPeglegIOU extends AbstractQuest {
 						final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 								"money");
 						money.setQuantity(250);
-						player.equip(money);
+						player.equipToInventoryOnly(money);
 						player.setQuest(QUEST_SLOT, "done");
 						engine.setCurrentState(1);
 					} else {

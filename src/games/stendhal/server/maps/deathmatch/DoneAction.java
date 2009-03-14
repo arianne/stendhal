@@ -27,7 +27,7 @@ public class DoneAction implements ChatAction {
 		helmet.setPersistent(true);
 		helmet.setDescription("This is " + player.getName()
 		        + "'s grand prize for Deathmatch winners. Wear it with pride.");
-		player.equip(helmet, true);
+		player.equipOrPutOnGround(helmet);
 		return helmet;
 	}
 

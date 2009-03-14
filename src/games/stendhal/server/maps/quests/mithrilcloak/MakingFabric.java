@@ -277,7 +277,7 @@ class MakingFabric {
 							products.setQuantity(numberOfProductItems);
 							products.setBoundTo(player.getName());
 							player.setQuest(mithrilcloak.getQuestSlot(), "got_thread");
-							player.equip(products, true);
+							player.equipOrPutOnGround(products);
 							player.notifyWorldAboutChanges();
 						}
 					}
@@ -356,7 +356,7 @@ class MakingFabric {
 						products.setQuantity(40);
 					
 						products.setBoundTo(player.getName());
-						player.equip(products, true);
+						player.equipOrPutOnGround(products);
 						npc.say("Hello again. The magic is completed. Here you have your 40 spools of mithril thread. Now, you must go to #Whiggins to get the #fabric made.");
 						player.setQuest(mithrilcloak.getQuestSlot(), "got_mithril_thread");
 						// give some XP as a little bonus for industrious workers
@@ -510,7 +510,7 @@ class MakingFabric {
 					final Item fabric = SingletonRepository.getEntityManager().getItem(
 									mithrilcloak.getFabricName());
 					fabric.setBoundTo(player.getName());
-					player.equip(fabric, true);
+					player.equipOrPutOnGround(fabric);
 					player.setQuest(mithrilcloak.getQuestSlot(), "got_fabric");
 					player.notifyWorldAboutChanges();
 				}

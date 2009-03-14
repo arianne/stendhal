@@ -257,7 +257,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					player.addKarma(25);
 					final Item magicSword = SingletonRepository.getEntityManager().getItem("immortal sword");
 					magicSword.setBoundTo(player.getName());
-					player.equip(magicSword, true);
+					player.equipOrPutOnGround(magicSword);
 					player.notifyWorldAboutChanges();
 					player.setQuest(QUEST_SLOT, "done");
 				}

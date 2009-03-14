@@ -149,7 +149,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								.getItem("money");
 				goldamount = 100 * Rand.roll1D6();
 				money.setQuantity(goldamount);
-				player.equip(money, true);
+				player.equipOrPutOnGround(money);
 				engine.say("Wonderful! Here is " + Integer.toString(goldamount) + " money to cover your expenses.");
 				player.addXP(reward);
 				questCount = "" + (Integer.valueOf(questCount) + 1);

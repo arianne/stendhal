@@ -154,7 +154,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	public void rewardPlayer(final Player player) {
 		final Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
-		player.equip(iceSword, true);
+		player.equipOrPutOnGround(iceSword);
 		player.addXP(5000);
 	}
 

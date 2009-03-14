@@ -178,7 +178,7 @@ public class CloaksForBario extends AbstractQuest {
 								final Item goldenShield = SingletonRepository.getEntityManager().getItem(
 										"golden shield");
 								goldenShield.setBoundTo(player.getName());
-								player.equip(goldenShield, true);
+								player.equipOrPutOnGround(goldenShield);
 								player.addXP(15000);
 								player.addKarma(25);
 								player.notifyWorldAboutChanges();

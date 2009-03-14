@@ -8,7 +8,6 @@ import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.guilds.GuildList;
 import games.stendhal.server.core.rp.guilds.GuildPermissionList;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
@@ -121,9 +120,7 @@ public class SingletonRepository {
 		SingletonRepository.entityManager = entityManager;
 	}
 
-	public static DefaultActionManager getActionManager() {
-		return DefaultActionManager.getInstance();
-	}
+	
 
 	
 

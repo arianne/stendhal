@@ -132,11 +132,11 @@ public class BalanceRPGame {
 		player = Player.createEmptyZeroLevelPlayer("Tester");
 
 		//player.equip(weapon);
-		player.equip(shield);
-		player.equip(armor);
-		player.equip(helmet);
-		player.equip(legs);
-		player.equip(boots);
+		player.equipToInventoryOnly(shield);
+		player.equipToInventoryOnly(armor);
+		player.equipToInventoryOnly(helmet);
+		player.equipToInventoryOnly(legs);
+		player.equipToInventoryOnly(boots);
 
 		final boolean found = false;
 

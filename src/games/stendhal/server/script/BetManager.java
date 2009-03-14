@@ -309,7 +309,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 						// bet + win
 						stackableItem.setQuantity(2 * betInfo.amount); 
 					}
-					player.equip(item, true);
+					player.equipOrPutOnGround(item);
 				}
 
 			}

@@ -205,7 +205,7 @@ public class Snowballs extends AbstractQuest {
 						npc.say("Thank you! Here, take some " + rewardClass + "! I do not like to eat them.");
 						final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 						reward.setQuantity(20);
-						player.equip(reward, true);
+						player.equipOrPutOnGround(reward);
 						player.notifyWorldAboutChanges();
 					}
 				});

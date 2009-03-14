@@ -74,7 +74,7 @@ public class DiceGambling extends AbstractQuest {
 					final Dice dice = (Dice) SingletonRepository.getEntityManager()
 							.getItem("dice");
 					dice.setCroupierNPC((CroupierNPC) npc);
-					player.equip(dice, true);
+					player.equipOrPutOnGround(dice);
 				}
 			});
 		

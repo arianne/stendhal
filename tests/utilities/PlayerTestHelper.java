@@ -186,7 +186,7 @@ public abstract class PlayerTestHelper {
 		ItemTestHelper.generateRPClasses();
 		final Item item = SingletonRepository.getEntityManager().getItem(clazz);
 
-		return player.equip(item);
+		return player.equipToInventoryOnly(item);
 	}
 
 	/**
@@ -201,7 +201,7 @@ public abstract class PlayerTestHelper {
 		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(clazz);
 		item.setQuantity(amount);
 
-		return player.equip(item);
+		return player.equipToInventoryOnly(item);
 	}
 
 	/**

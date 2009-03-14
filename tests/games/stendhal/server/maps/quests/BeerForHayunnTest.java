@@ -131,7 +131,7 @@ public class BeerForHayunnTest {
 		history.add("QUEST_ACCEPTED");
 		assertEquals(history, bfh.getHistory(player));
 
-		player.equip(SingletonRepository.getEntityManager().getItem("beer"));
+		player.equipToInventoryOnly(SingletonRepository.getEntityManager().getItem("beer"));
 		history.add("FOUND_ITEM");
 		assertEquals(history, bfh.getHistory(player));
 		player.setQuest("beer_hayunn", "done");

@@ -160,7 +160,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 							   + "! Do you want to buy a spare key, at a price of "
 							   + COST_OF_SPARE_KEY + " money?");
 				
-					if (player.equip(key)) {
+					if (player.equipToInventoryOnly(key)) {
 						player.drop("money", cost);
 						// remember what house they own
 						player.setQuest(QUEST_SLOT, itemName);
@@ -237,7 +237,7 @@ public class HouseBuying extends AbstractQuest implements LoginListener {
 
 				((HouseKey) key).setup(doorId, locknumber, player.getName());
 
-				if (player.equip(key)) {
+				if (player.equipToInventoryOnly(key)) {
 					player.drop("money", COST_OF_SPARE_KEY);
 					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 				} else {

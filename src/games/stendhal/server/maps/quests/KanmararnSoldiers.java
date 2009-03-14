@@ -218,7 +218,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 						"map");
 				map.setInfoString(npc.getName());
 				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
-				player.equip(map);
+				player.equipToInventoryOnly(map);
 				player.setQuest(QUEST_SLOT, "map");
 				npc.setCurrentState(ConversationStates.ATTENDING);
 			} else {
@@ -249,7 +249,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
 				item.setInfoString(npc.getName());
-				player.equip(item);
+				player.equipToInventoryOnly(item);
 				player.setQuest(QUEST_SLOT, "done");
 				npc.setCurrentState(ConversationStates.ATTENDING);
 			} else {

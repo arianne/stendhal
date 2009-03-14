@@ -108,7 +108,7 @@ class MakingClasp {
 					final Item clasp = SingletonRepository.getEntityManager().getItem(
 									"mithril clasp");
 					clasp.setBoundTo(player.getName());
-					player.equip(clasp, true);
+					player.equipOrPutOnGround(clasp);
 					player.setQuest(mithrilcloak.getQuestSlot(), "got_clasp");
 					player.notifyWorldAboutChanges();
 				}

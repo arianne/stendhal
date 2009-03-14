@@ -207,7 +207,7 @@ public class LookBookforCerylTest {
 				"black book");
 		assertNotNull(item);
 		item.setBoundTo(pl.getName());
-		pl.equip(item, true);
+		pl.equipOrPutOnGround(item);
 		assertEquals(3, quest.getHistory(pl).size());
 		assertEquals(
 				Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED", "FOUND_ITEM"),

@@ -407,7 +407,7 @@ public class StuffForBaldemar extends AbstractQuest {
 					player.addKarma(25);
 					final Item mithrilshield = SingletonRepository.getEntityManager().getItem("mithril shield");
 					mithrilshield.setBoundTo(player.getName());
-					player.equip(mithrilshield, true);
+					player.equipOrPutOnGround(mithrilshield);
 					player.notifyWorldAboutChanges();
 					player.setQuest(QUEST_SLOT, "done");
 				}

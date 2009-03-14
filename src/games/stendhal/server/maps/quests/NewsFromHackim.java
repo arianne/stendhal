@@ -123,7 +123,7 @@ public class NewsFromHackim extends AbstractQuest {
 					player.setQuest(QUEST_SLOT, "done");
 
 					final Item item = SingletonRepository.getEntityManager().getItem("leather legs");
-					player.equip(item, true);
+					player.equipOrPutOnGround(item);
 					player.addXP(10);
 
 					player.notifyWorldAboutChanges();

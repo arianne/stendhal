@@ -64,7 +64,7 @@ public class EmptyScroll extends Scroll {
 					"marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());
-			player.equip(markedScroll, true);
+			player.equipOrPutOnGround(markedScroll);
 			return true;
 		} else {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");

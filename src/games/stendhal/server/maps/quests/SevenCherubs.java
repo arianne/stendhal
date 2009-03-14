@@ -160,7 +160,7 @@ public class SevenCherubs extends AbstractQuest {
 								final Item item = SingletonRepository.getEntityManager()
 									.getItem(items[Rand.rand(items.length)]);
 								item.setBoundTo(player.getName());
-								player.equip(item, true);
+								player.equipOrPutOnGround(item);
 								player.addXP(2000);
 							}
 						}

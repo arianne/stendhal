@@ -265,7 +265,7 @@ public class CloakCollector2 extends AbstractQuest {
 									player.setQuest(QUEST_SLOT, "done;rewarded");
 									final Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
 									boots.setBoundTo(player.getName());
-									player.equip(boots, true);
+									player.equipOrPutOnGround(boots);
 									player.notifyWorldAboutChanges();
 									engine.setCurrentState(ConversationStates.ATTENDING);
 								} else {

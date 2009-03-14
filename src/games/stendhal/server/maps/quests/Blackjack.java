@@ -262,7 +262,7 @@ public class Blackjack extends AbstractQuest {
 	private String payOff(final Player player, final int factor) {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(factor * stake);
-		player.equip(money, true);
+		player.equipOrPutOnGround(money);
 		if (factor == 1) {
 			return "You get your stake back.";
 		} else {

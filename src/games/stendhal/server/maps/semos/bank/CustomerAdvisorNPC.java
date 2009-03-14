@@ -6,7 +6,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
-import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -53,7 +52,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 				for (Item item : itemsOnGround) {
 				    // ignore items which are in the wastebin
 				    if (!(item.getX() == 2 && item.getY() == 5)) {
-					boolean equippedToBag = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bag", item);
+					boolean equippedToBag = ((RPEntity) entity).equip("bag", item);
 					if (equippedToBag) {
 					    // player may not have been online so use postman to send info message
 					    if (postman != null) {
@@ -63,7 +62,7 @@ public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 									+ "returned to your bag.");
 						}
 					} else {
-					    boolean equippedToBank = DefaultActionManager.getInstance().onEquip((RPEntity) entity, "bank", item);
+					    boolean equippedToBank = ((RPEntity) entity).equip("bank", item);
 					    if (equippedToBank) {
 						if (postman != null) {
 						    postman.sendPrivateText("Dagobert tells you: tell " + ((RPEntity) entity).getName() + " The "

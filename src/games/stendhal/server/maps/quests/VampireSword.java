@@ -109,7 +109,7 @@ public class VampireSword extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
 					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-					player.equip(emptygoblet, true);
+					player.equipOrPutOnGround(emptygoblet);
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5);
 				}
@@ -217,7 +217,7 @@ public class VampireSword extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
 					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-					player.equip(emptygoblet, true);
+					player.equipOrPutOnGround(emptygoblet);
 				}
 			});
 
@@ -249,7 +249,7 @@ public class VampireSword extends AbstractQuest {
 					final Item vampireSword = SingletonRepository.getEntityManager().getItem(
 									"vampire sword");
 					vampireSword.setBoundTo(player.getName());
-					player.equip(vampireSword, true);
+					player.equipOrPutOnGround(vampireSword);
 					player.setQuest(QUEST_SLOT, "done");
 					player.notifyWorldAboutChanges();
 				}

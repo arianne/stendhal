@@ -167,7 +167,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 					final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					goldbars.setQuantity(GOLD_AMOUNT);
 					goldbars.setBoundTo(player.getName());
-					player.equip(goldbars, true);
+					player.equipOrPutOnGround(goldbars);
 				}
 			});
 
@@ -209,7 +209,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 						final Item nalworkey = SingletonRepository.getEntityManager()
 								.getItem("nalwor bank key");
 						nalworkey.setBoundTo(player.getName());
-						player.equip(nalworkey);
+						player.equipToInventoryOnly(nalworkey);
 						player.addXP(200);
 						player.addKarma(10.0);
 

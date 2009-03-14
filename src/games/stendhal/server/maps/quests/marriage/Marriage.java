@@ -214,7 +214,7 @@ class Marriage {
 				"wedding ring");
 		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
-		player.equip(ring, true);
+		player.equipOrPutOnGround(ring);
 	}
 
 	private void exchangeRings() {

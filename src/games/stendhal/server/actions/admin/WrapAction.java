@@ -46,15 +46,14 @@ public class WrapAction implements ActionListener {
 		final Item item = player.getFirstEquipped(itemName);
 
 		if (item != null) {
-			final String slot = "bag";
     	  
     	    final Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
     	    present.setContent(itemName);
-    	    player.equip(slot, present);
-
     	    player.drop(itemName);
+    	    player.equipToInventoryOnly(present);
+	    
 
-    	    SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "wrap", itemName, slot);
+    	    SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "wrap", itemName);
 
     	    player.updateItemAtkDef();
 	    } else {

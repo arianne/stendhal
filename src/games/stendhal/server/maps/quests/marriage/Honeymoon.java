@@ -101,7 +101,7 @@ class Honeymoon {
                             // 
 							invite1.setInfoString("honeymoon," + partnerName);
 							invite2.setInfoString("honeymoon," + husband.getTitle());
-							if (wife.equip(invite1) &&  husband.equip(invite2)) {
+							if (wife.equipToInventoryOnly(invite1) &&  husband.equipToInventoryOnly(invite2)) {
 								npc.say("Great choice! I will arrange that now."); 
 								husband.setQuest(marriage.getQuestSlot(), "done");
 								wife.setQuest(marriage.getQuestSlot(), "done");

@@ -163,7 +163,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 					final Item zaraKey = SingletonRepository.getEntityManager()
 							.getItem("small key");
 					zaraKey.setBoundTo(player.getName());
-					player.equip(zaraKey, true);
+					player.equipOrPutOnGround(zaraKey);
 					player.addXP(1000);
 					player.addKarma(15);
 					player.setQuest(QUEST_SLOT, "done");

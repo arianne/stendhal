@@ -144,7 +144,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 					player.addKarma(10.0);
 					player.addXP(500);
 					final Item item = SingletonRepository.getEntityManager().getItem("present");
-					player.equip(item, true);
+					player.equipOrPutOnGround(item);
 				} else {
 					npc.say("Hey, where's my icecream gone?!");
 				}
