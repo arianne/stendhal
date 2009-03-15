@@ -1,14 +1,12 @@
 package games.stendhal.tools;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -86,10 +84,7 @@ public class BalanceRPGame {
 	private static Player player;
 
 	public static void main(final String[] args) throws Exception {
-		final StendhalRPWorld world = MockStendlRPWorld.get();
-		final StendhalRPZone zone = new StendhalRPZone("test");
-		world.addRPZone(zone);
-
+		new RPClassGenerator().createRPClasses();
 		final List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
 				"data/conf/creatures.xml");
 
@@ -112,22 +107,16 @@ public class BalanceRPGame {
 
 		final EntityManager em = SingletonRepository.getEntityManager();
 		final Item weapon = em.getItem("club");
-		zone.assignRPObjectID(weapon);
 
 		final Item shield = em.getItem("wooden shield");
-		zone.assignRPObjectID(shield);
 
 		final Item armor = em.getItem("dress");
-		zone.assignRPObjectID(armor);
 
 		final Item helmet = em.getItem("leather helmet");
-		zone.assignRPObjectID(helmet);
 
 		final Item legs = em.getItem("leather legs");
-		zone.assignRPObjectID(legs);
 
 		final Item boots = em.getItem("leather boots");
-		zone.assignRPObjectID(boots);
 
 		player = Player.createEmptyZeroLevelPlayer("Tester");
 

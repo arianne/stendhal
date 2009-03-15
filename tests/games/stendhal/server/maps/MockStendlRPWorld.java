@@ -23,7 +23,7 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	}
 
 	
-	@Override
+	
 	protected void createRPClasses() {
 		
 		PassiveEntityRespawnPointTestHelper.generateRPClasses();
