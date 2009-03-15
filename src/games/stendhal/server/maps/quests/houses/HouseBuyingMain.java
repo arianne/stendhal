@@ -8,6 +8,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.HouseKey;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -98,6 +99,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	protected StendhalRPZone ados_city_n_zone;
 	protected StendhalRPZone ados_townhall_zone;
 	protected StendhalRPZone kirdneh_townhall_zone;
+	
+	private HouseTax houseTax;
 
 	@Override
 	public void init(final String name) {
@@ -163,7 +166,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 						// set the time so that the taxman can start harassing the player
 						final long time = System.currentTimeMillis();
 						houseportal.setExpireTime(time);
-						houseportal.changeLock();
 
 						houseportal.setOwner(player.getName());
 						engine.setCurrentState(ConversationStates.QUESTION_1);
@@ -257,9 +259,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				final HousePortal portal = HouseUtilities.getHousePortal(id);
 				final String doorId = portal.getDoorId();
 				final String[] parts = doorId.split(" ");
+				
 				location = parts[0];
-				final int cost = getCost(location);
-				// TODO: refund cost*ratio minus owed taxes.
+				final int cost = (getCost(location) * DEPRECIATION_PERCENTAGE) / 100 - houseTax.getTaxDebt(portal);
+				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+				money.setQuantity(cost);
+				player.equipOrPutOnGround(money);
+		
 				portal.changeLock();
 				portal.setOwner("");
 				// the player has sold the house. clear the slot
@@ -814,6 +820,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		SingletonRepository.getLoginNotifier().addListener(this);
 		
 		// Start collecting taxes as well
-		new HouseTax();
+		houseTax = new HouseTax();
 	}
 }
