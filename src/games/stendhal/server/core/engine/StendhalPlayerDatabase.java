@@ -37,13 +37,14 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 	private static TimerTask task = new TimerTask() {
 
-		
+		ItemLogger itemLogger = new ItemLogger();
 
 		@Override
 		public void run() {
 			
 			try {
 				((StendhalPlayerDatabase) StendhalPlayerDatabase.database).processGameEvents();
+				itemLogger.processEntries();
 			} catch (SQLException e) {
 				
 				e.printStackTrace();

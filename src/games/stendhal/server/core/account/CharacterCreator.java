@@ -73,7 +73,11 @@ public class CharacterCreator {
 			}
 
 			final Player object = Player.createEmptyZeroLevelPlayer(character);
-
+		       // monitor new account names
+	        final String text = "Support: A new character has just been created called " + character + ".";
+	 
+		    SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
+			
 			/*
 			 * Finally we add it to database.
 			 */

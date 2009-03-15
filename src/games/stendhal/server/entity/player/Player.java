@@ -219,10 +219,7 @@ public class Player extends RPEntity {
         slot = player.getSlot("rhand");
         slot.add(entity);
         
-        // monitor new account names
-        final String text = "Support: A new character has just been created called " + characterName + ".";
-        SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
-		
+   	
         return player;
 	}
 

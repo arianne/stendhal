@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -26,7 +27,20 @@ public class ItemLogger {
 	private static final String ATTR_ITEM_LOGID = "logid";
 	private static final Logger logger = Logger.getLogger(ItemLogger.class);
 	
+static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentLinkedQueue<ItemLogEntry>();
+	
+	public void addItemLogEntry(final ItemLogEntry logEntry) {
+		logEntryQueue.add(logEntry);
+		
+	}
 
+	void processEntries() {
+		for (ItemLogEntry logEntry = logEntryQueue.poll(); logEntry != null; logEntry = logEntryQueue.poll()) {
+			itemLog(logEntry);
+		}
+	}
+	
+	
 	private String getQuantity(final RPObject item) {
 		int quantity = 1;
 		if (item.has("quantity")) {
@@ -39,31 +53,36 @@ public class ItemLogger {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
-		itemLog(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
+		addItemLogEntry(new ItemLogEntry(item, player, "create", item.get("name"), getQuantity(item), "olditem",
+				slot.getName()));
 	}
 
 	public void destroyOnLogin(final Player player, final RPSlot slot, final RPObject item) {
-		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
+		addItemLogEntry(new ItemLogEntry(item, player, "destroy", item.get("name"), getQuantity(item), "on login",
+				slot.getName()));
     }
 
 	public void destroy(final RPEntity entity, final RPSlot slot, final RPObject item) {
-		itemLog(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
+		addItemLogEntry(new ItemLogEntry(item, entity, "destroy", item.get("name"), getQuantity(item), "quest",
+				slot.getName()));
     }
 
 	public void dropQuest(final Player player, final Item item) {
-		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
+		addItemLogEntry(new ItemLogEntry(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null));
     }
 
 	public void timeout(final Item item) {
-		itemLog(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
+		addItemLogEntry(new ItemLogEntry(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY()));
     }
 
 	public void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int x, final int y) {
-		itemLog(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
+		addItemLogEntry(new ItemLogEntry(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(),
+				zone.getID().getID(), x + " " + y));
     }
 
 	public void equipAction(final Player player, final Entity entity, final String[] sourceInfo, final String[] destInfo) {
-	    itemLog(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
+	    addItemLogEntry(new ItemLogEntry(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1],
+				sourceInfo[2], destInfo[1], destInfo[2]));
     }
 
 	public void merge(final RPEntity entity, final Item oldItem, final Item outlivingItem) {
@@ -76,14 +95,16 @@ public class ItemLogger {
 		final String oldQuantity = getQuantity(oldItem);
 		final String oldOutlivingQuantity = getQuantity(outlivingItem);
 		final String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
-	    itemLog(oldItem, player, "merge in", outlivingItem.get(ATTR_ITEM_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
-	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
+	    addItemLogEntry(new ItemLogEntry(oldItem, player, "merge in", outlivingItem.get(ATTR_ITEM_LOGID), oldQuantity, oldOutlivingQuantity,
+				newQuantity));
+	    addItemLogEntry(new ItemLogEntry(outlivingItem, player, "merged in", oldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, oldQuantity,
+				newQuantity));
     }
 
 	public void splitOff(final RPEntity player, final Item item, final int quantity) {
 		final String oldQuantity = getQuantity(item);
 		final String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
-	    itemLog(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
+	    addItemLogEntry(new ItemLogEntry(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity)));
     }
 
 	
@@ -93,20 +114,22 @@ public class ItemLogger {
 		final String outlivingQuantity = getQuantity(item);
 		final String newQuantity = getQuantity(newItem);
 		final String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
-	    itemLog(item, player, "split out", newItem.get(ATTR_ITEM_LOGID), oldQuantity, outlivingQuantity, newQuantity);
-	    itemLog(newItem, player, "splitted out", item.get(ATTR_ITEM_LOGID), oldQuantity, newQuantity, outlivingQuantity);
+	    addItemLogEntry(new ItemLogEntry(item, player, "split out", newItem.get(ATTR_ITEM_LOGID), oldQuantity, outlivingQuantity,
+				newQuantity));
+	    addItemLogEntry(new ItemLogEntry(newItem, player, "splitted out", item.get(ATTR_ITEM_LOGID), oldQuantity, newQuantity,
+				outlivingQuantity));
     }
 
-	public void itemLog(final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) {
-		if (!item.getRPClass().subclassOf("item")) {
+	private void itemLog(final ItemLogEntry logEntry) {
+		if (!logEntry.item.getRPClass().subclassOf("item")) {
 			return;
 		}
 	
 		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 	
-			itemLogAssignIDIfNotPresent(transaction, item);
-			itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
+			itemLogAssignIDIfNotPresent(transaction, logEntry.item);
+			itemLogWriteEntry(transaction, logEntry.item, logEntry.player, logEntry.event, logEntry.param1, logEntry.param2, logEntry.param3, logEntry.param4);
 	
 			transaction.commit();
 		} catch (final SQLException e) {
@@ -124,7 +147,7 @@ public class ItemLogger {
 	 *
 	 * @param items item
 	 */
-	public void itemLogAssignIDIfNotPresent(final RPObject... items) {
+	private void itemLogAssignIDIfNotPresent(final RPObject... items) {
 		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 			for (final RPObject item : items) {
