@@ -16,6 +16,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
@@ -615,8 +616,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setATK(this.atk + (int) Math.signum(levels) * 1);
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
-					"atk", Integer.toString(getATK()));
+			new GameEvent(getName(), "atk", Integer.toString(getATK())).raise();
 		}
 
 		return atk_xp;
@@ -651,8 +651,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDEF(this.def + (int) Math.signum(levels) * 1);
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
-					"def", Integer.toString(getDEF()));
+			new GameEvent(getName(), "def", Integer.toString(getDEF())).raise();
 		}
 
 		return def_xp;
@@ -782,11 +781,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// Increment experience points
 		this.xp += newxp;
 		put("xp", xp);
+		String[] params = { Integer.toString(newxp) };
 
-		SingletonRepository.getRuleProcessor().addGameEvent(getName(),
-				"added xp", Integer.toString(newxp));
-		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "xp",
-				Integer.toString(xp));
+		new GameEvent(getName(), "added xp", params).raise();
+		new GameEvent(getName(), "xp", String.valueOf(xp)).raise();
+		
 
 		final int newLevel = Level.getLevel(getXP());
 		final int levels = newLevel - getLevel();
@@ -795,9 +794,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
-
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(),
-					"level", Integer.toString(newLevel));
+			new GameEvent(getName(), "level", Integer.toString(newLevel)).raise();
 			setLevel(newLevel);
 		}
 	}
@@ -1128,8 +1125,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final String killerName = killer.getTitle();
 
 		if (killer instanceof RPEntity) {
-			SingletonRepository.getRuleProcessor().addGameEvent(killerName,
-					"killed", getName());
+			new GameEvent(killerName, "killed", getName()).raise();
 		}
 		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase())
 				.logKill(this, killer);

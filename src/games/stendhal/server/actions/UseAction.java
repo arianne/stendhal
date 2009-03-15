@@ -17,7 +17,7 @@ import static games.stendhal.common.constants.Actions.BASEOBJECT;
 import static games.stendhal.common.constants.Actions.BASESLOT;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.USE;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
@@ -149,8 +149,7 @@ public class UseAction implements ActionListener {
 			infostring = object.get("infostring");
 		}
 
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), USE,
-				name, infostring);
+		new GameEvent(player.getName(), USE, name, infostring).raise();
 		
 	}
 }

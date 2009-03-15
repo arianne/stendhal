@@ -1,5 +1,6 @@
 package games.stendhal.server.core.scripting;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -105,10 +106,9 @@ public abstract class ScriptingSandbox {
 		}
 		return (creature);
 	}
-
+//TODO  : inline this
 	public void addGameEvent(final String source, final String event, final List<String> params) {
-		SingletonRepository.getRuleProcessor().addGameEvent(source, event,
-				params.toArray(new String[params.size()]));
+		new GameEvent(source, event, params.toArray(new String[params.size()])).raise();
 	}
 
 	public void modify(final RPEntity entity) {

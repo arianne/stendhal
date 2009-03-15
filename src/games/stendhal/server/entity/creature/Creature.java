@@ -14,6 +14,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -552,7 +553,7 @@ public class Creature extends NPC {
 		
 		final RPEntity entity = getAttackTarget();
 		if (poisoner.attack(entity)) {
-			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "poison", entity.getName());
+			new GameEvent(getName(), "poison", entity.getName()).raise();
 			entity.sendPrivateText("You have been poisoned by a " + getName());
 		}
 	}

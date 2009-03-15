@@ -17,7 +17,7 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -133,9 +133,7 @@ public class PushAction implements ActionListener {
 	 * @param y new y-position
 	 */
 	private void move(final Player player, final RPEntity rpEntity, final int x, final int y) {
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-			"push", rpEntity.getName(), rpEntity.getZone().getName(), 
-			rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
+		new GameEvent(player.getName(), "push", rpEntity.getName(), rpEntity.getZone().getName(), rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y).raise();
 		rpEntity.setPosition(x, y);
 		rpEntity.notifyWorldAboutChanges();
 		player.onPush(rpEntity);

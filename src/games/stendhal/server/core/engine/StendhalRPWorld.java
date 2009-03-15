@@ -275,7 +275,15 @@ public class StendhalRPWorld extends RPWorld {
 	@Override
 	public void onFinish() {
 		super.onFinish();
-		SingletonRepository.getRuleProcessor().addGameEvent("server system", "shutdown");
+		new GameEvent("server system", "shutdown").raise();
+		try {
+			//TODO: find a more appropriate way to do this
+			// give gameevents a chance to be processed;
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			//do nothing
+		}
+		
 	}
 
 	protected void validatePortal(final Portal portal) {

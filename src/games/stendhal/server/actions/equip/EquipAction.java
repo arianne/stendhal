@@ -2,7 +2,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -64,9 +64,7 @@ public class EquipAction extends EquipmentAction {
 			if (entity instanceof StackableItem) {
 				amount = ((StackableItem) entity).getQuantity();
 			}
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "equip",
-					itemName, source.getSlot(), dest.getSlot(),
-					Integer.toString(amount));
+			new GameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
 	
 			player.updateItemAtkDef();
 		}

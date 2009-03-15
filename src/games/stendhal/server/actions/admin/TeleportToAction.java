@@ -3,6 +3,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TELEPORTTO;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
@@ -39,9 +40,7 @@ public class TeleportToAction extends AdministrationAction {
 			final int y = teleported.getY();
 
 			player.teleport(zone, x, y, null, player);
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					TELEPORTTO, action.get(TARGET), zone.getName(),
-					Integer.toString(x), Integer.toString(y));
+			new GameEvent(player.getName(), TELEPORTTO, action.get(TARGET), zone.getName(), Integer.toString(x), Integer.toString(y)).raise();
 		}
 	}
 

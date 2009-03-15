@@ -2,7 +2,7 @@ package games.stendhal.server.actions.buddy;
 
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -14,8 +14,7 @@ class RemoveBuddyAction implements ActionListener {
 
 			player.setKeyedSlot("!buddy", "_" + who, null);
 
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					"buddy", "remove", who);
+			new GameEvent(player.getName(), "buddy", "remove", who).raise();
 
 			// TEMP! Supreceeded by /unignore
 			player.removeIgnore(who);

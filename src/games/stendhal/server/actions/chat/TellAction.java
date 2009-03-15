@@ -5,6 +5,7 @@ import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
@@ -143,9 +144,7 @@ public class TellAction implements ActionListener {
 		tellAboutAwayStatusIfNeccessary();
 
 		receiver.setLastPrivateChatter(senderName);
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "chat",
-			receiverName, Integer.toString(text.length()),
-			text.substring(0, Math.min(text.length(), 1000)));
+		new GameEvent(player.getName(), "chat", receiverName, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 	}
 
 	private boolean checkGrumpy() {

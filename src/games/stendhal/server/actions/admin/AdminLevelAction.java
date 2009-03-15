@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.NEWLEVEL;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -54,10 +55,7 @@ public class AdminLevelAction extends AdministrationAction {
 							+ " to change adminlevel.";
 				} else {
 
-					// OK, do the change
-					SingletonRepository.getRuleProcessor().addGameEvent(
-							player.getName(), ADMINLEVEL, target.getName(),
-							ADMINLEVEL, action.get(NEWLEVEL));
+					new GameEvent(player.getName(), ADMINLEVEL, target.getName(), ADMINLEVEL, action.get(NEWLEVEL)).raise();
 					target.setAdminLevel(newlevel);
 					target.update();
 					target.notifyWorldAboutChanges();

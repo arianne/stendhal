@@ -8,7 +8,7 @@ import games.stendhal.common.ErrorDrain;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 
@@ -182,8 +182,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 			final List<String> args = parser.readAllParameters(errors);
 
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					"script", script, mode, args.toString());
+			new GameEvent(player.getName(), "script", script, mode, args.toString()).raise();
 
 			// execute script
 			script = script.trim();

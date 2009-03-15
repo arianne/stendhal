@@ -4,7 +4,7 @@ import static games.stendhal.common.constants.Actions.ALTERCREATURE;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
@@ -38,8 +38,7 @@ public class AlterCreatureAction extends AdministrationAction {
 
 			if ((changed instanceof Creature) && (parts.length == 5)) {
 				final Creature creature = (Creature) changed;
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						"alter", action.get(TARGET), stat);
+				new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
 
 				creature.setName(parts[0]);
 				creature.setATK(Integer.parseInt(parts[1]));

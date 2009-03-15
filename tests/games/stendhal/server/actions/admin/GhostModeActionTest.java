@@ -25,7 +25,7 @@ public class GhostModeActionTest {
 		final Player hugo = PlayerTestHelper.createPlayer("hugo");
 		hugo.put("adminlevel", 5000);
 		
-		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player bob = PlayerTestHelper.createPlayer("bob21233");
 		bob.setKeyedSlot("!buddy", "_" + hugo.getName(), "1");
 
 		final Player jack = PlayerTestHelper.createPlayer("jack");

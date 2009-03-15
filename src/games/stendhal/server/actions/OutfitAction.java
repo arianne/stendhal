@@ -14,7 +14,7 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.OUTFIT;
 import static games.stendhal.common.constants.Actions.VALUE;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -34,8 +34,7 @@ public class OutfitAction implements ActionListener {
 	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					OUTFIT, action.get(VALUE));
+			new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 			final Outfit outfit = new Outfit(action.getInt(VALUE));
 			if (outfit.isChoosableByPlayers()) {
 				player.setOutfit(outfit, false);

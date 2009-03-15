@@ -17,8 +17,8 @@ import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -126,9 +126,7 @@ public class DisplaceAction implements ActionListener {
 	 * @param entity entity to move
 	 */
 	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
-		SingletonRepository.getRuleProcessor().addGameEvent(
-				player.getName(), "displace",
-				entity.get("type"));
+		new GameEvent(player.getName(), "displace", entity.get("type")).raise();
 
 		entity.setPosition(x, y);
 		entity.notifyWorldAboutChanges();

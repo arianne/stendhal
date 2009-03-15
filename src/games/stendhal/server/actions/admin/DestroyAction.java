@@ -3,7 +3,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.NAME;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -52,9 +52,7 @@ public class DestroyAction extends AdministrationAction {
 if (inspected.isContained()) {
 	RPObject slot = inspected.getContainer();
 	
-	SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
-			name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()),
-			Integer.toString(inspected.getY()));
+	new GameEvent(player.getName(), "removed", name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
 
 	String slotname = inspected.getContainerSlot().getName();
 	int objectID = inspected.getID().getObjectID();
@@ -104,12 +102,8 @@ if (inspected.isContained()) {
 			TurnListener listener = (TurnListener) inspected;
 			TurnNotifier.get().dontNotify(listener);
 		}
-	
-		
 
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
-				name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()),
-				Integer.toString(inspected.getY()));
+		new GameEvent(player.getName(), "removed",  name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
 
 		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(TARGET));
 	}

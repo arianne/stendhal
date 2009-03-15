@@ -18,7 +18,7 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
@@ -52,7 +52,7 @@ public class LookAction implements ActionListener {
 			if (entity.has(NAME)) {
 				name = entity.get(NAME);
 			}
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), LOOK, name);
+			new GameEvent(player.getName(), LOOK, name).raise();
 			final String text = entity.describe();
 
 			if (entity instanceof Sign) {

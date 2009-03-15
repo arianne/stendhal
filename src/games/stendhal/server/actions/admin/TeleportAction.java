@@ -6,6 +6,7 @@ import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
 import static games.stendhal.common.constants.Actions.ZONE;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
@@ -57,10 +58,7 @@ public class TeleportAction extends AdministrationAction {
 					zoneid);
 			final int x = action.getInt(X);
 			final int y = action.getInt(Y);
-
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					TELEPORT, action.get(TARGET), zone.getName(),
-					Integer.toString(x), Integer.toString(y));
+			new GameEvent(player.getName(), TELEPORT, action.get(TARGET), zone.getName(), Integer.toString(x), Integer.toString(y)).raise();
 			teleported.teleport(zone, x, y, null, player);
 			
 			SingletonRepository.getJail().grantParoleIfPlayerWasAPrisoner(teleported);

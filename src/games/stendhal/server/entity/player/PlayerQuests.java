@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.player;
 
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -78,8 +78,7 @@ class PlayerQuests {
 		final String oldStatus = player.getKeyedSlot("!quests", name);
 		player.setKeyedSlot("!quests", name, status);
 		if ((status == null) || !status.equals(oldStatus)) {
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "quest",
-					name, status);
+			new GameEvent(player.getName(), "quest", name, status).raise();
 		}
 	}
 

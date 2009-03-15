@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -115,8 +116,7 @@ public class StendhalRPAction {
 			logger.info(player.getName() + " is attacking " + victim.getName());
 		}
 
-		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "attack",
-				victim.getName());
+		new GameEvent(player.getName(), "attack", victim.getName()).raise();
 
 		player.setTarget(victim);
 		player.faceToward(victim);
@@ -563,8 +563,7 @@ public class StendhalRPAction {
 					final String source = oldZone.getName();
 					final String destination = zone.getName();
 
-					SingletonRepository.getRuleProcessor().addGameEvent(
-							player.getName(), "change zone", destination);
+					new GameEvent(player.getName(), "change zone", destination).raise();
 
 					TutorialNotifier.zoneChange(player, source, destination);
 					ZoneNotifier.zoneChange(player, source, destination);

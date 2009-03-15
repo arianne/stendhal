@@ -1,5 +1,6 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
@@ -82,8 +83,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 					String message = player.getName() + " has a large amount of items";
 					if (caught) {
 
-						SingletonRepository.getRuleProcessor().addGameEvent("bug inspect", "jail", player.getName(),
-								Integer.toString(-1), "possible bug abuse");
+						new GameEvent("bug inspect", "jail", player.getName(), Integer.toString(-1), "possible bug abuse").raise();
 						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible bug abuse");
 						player.sendPrivateText("Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
 						player.notifyWorldAboutChanges();
@@ -93,7 +93,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 					if (warn || caught) {
 
-						SingletonRepository.getRuleProcessor().addGameEvent("bug inspect", "support", message);
+						new GameEvent("bug inspect", "support", message).raise();
 						SingletonRepository.getRuleProcessor().sendMessageToSupporters("bug inspect", message);
 						logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
 					}

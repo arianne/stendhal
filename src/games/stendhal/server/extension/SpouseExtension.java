@@ -10,6 +10,7 @@ package games.stendhal.server.extension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -145,8 +146,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 					+ "\". You can use #/spouse if you want to be together.");
 			text = "You have successfully married \"" + name1 + "\" and \""
 					+ name2 + "\".";
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					"marry", name1 + " + " + name2);
+			new GameEvent(player.getName(), "marry",  name1 + " + " + name2).raise();
 		}
 
 		player.sendPrivateText(text.trim());
@@ -173,8 +173,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 			// TODO: use Player.teleport()
 
 			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						"teleportto", teleported.getName() + "(spouse)");
+				new GameEvent(player.getName(), "teleportto", teleported.getName() + "(spouse)").raise();
 			}
 
 			player.notifyWorldAboutChanges();

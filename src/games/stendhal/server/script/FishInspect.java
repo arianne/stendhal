@@ -1,5 +1,6 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
@@ -87,8 +88,7 @@ public class FishInspect extends ScriptImpl implements TurnListener {
 					String message = player.getName() + " has a large amount of items";
 					if (caught) {
 
-						SingletonRepository.getRuleProcessor().addGameEvent("fish inspect", "jail", player.getName(),
-								Integer.toString(-1), "possible macro use to get fish");
+						new GameEvent("fish inspect", "jail", player.getName(), Integer.toString(-1), "possible macro use to get fish").raise();
 						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible macro use to get fish");
 						player.sendPrivateText("Please use /support to talk to an admin about your large amount of fish which may have been obtained illegally.");
 						player.notifyWorldAboutChanges();
@@ -98,7 +98,7 @@ public class FishInspect extends ScriptImpl implements TurnListener {
 
 					if (warn || caught) {
 
-						SingletonRepository.getRuleProcessor().addGameEvent("fish inspect", "support", message);
+						new GameEvent("fish inspect", "support", message).raise();
 						SingletonRepository.getRuleProcessor().sendMessageToSupporters("fish inspect", message);
 						logger.warn("User with large amount of fish: " + message + "\r\n" + sb.toString());
 					}

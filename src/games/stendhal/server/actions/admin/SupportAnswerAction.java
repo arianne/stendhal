@@ -5,6 +5,7 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -24,8 +25,7 @@ public class SupportAnswerAction extends AdministrationAction {
 			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + action.get(TEXT);
 
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), SUPPORTANSWER, action.get(TARGET),
-					action.get(TEXT));
+			new GameEvent(player.getName(), SUPPORTANSWER, action.get(TARGET), action.get(TEXT)).raise();
 			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 

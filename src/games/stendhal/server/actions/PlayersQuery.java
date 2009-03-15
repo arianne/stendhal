@@ -19,6 +19,7 @@ import static games.stendhal.common.constants.Actions.WHO;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -101,8 +102,9 @@ public class PlayersQuery implements ActionListener {
 			final String whoName = action.get(TARGET);
 
 			final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+			String[] params = { whoName };
 
-			rules.addGameEvent(player.getName(), WHERE, whoName);
+			new GameEvent(player.getName(), WHERE, params).raise();
 
 			final Player who = rules.getPlayer(whoName);
 			final DomesticAnimal animal = player.searchAnimal(whoName, false);

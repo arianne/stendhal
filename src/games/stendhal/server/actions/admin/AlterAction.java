@@ -13,7 +13,7 @@ import static games.stendhal.common.constants.Actions.TITLE;
 import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
@@ -131,17 +131,13 @@ public class AlterAction extends AdministrationAction {
 							// we switch over an enum
 							break;
 					}
-
-					SingletonRepository.getRuleProcessor().addGameEvent(
-							player.getName(), ALTER, action.get(TARGET),
-							stat, Integer.toString(numberValue));
+					
+					new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, Integer.toString(numberValue)).raise();
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
 					if (mode.equalsIgnoreCase(SET)) {
-						SingletonRepository.getRuleProcessor().addGameEvent(
-								player.getName(), ALTER, action.get(TARGET),
-								stat, action.get(VALUE));
+						new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, action.get(VALUE)).raise();
 						changed.put(stat, action.get(VALUE));
 					}
 				}

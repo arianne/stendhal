@@ -3,7 +3,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
@@ -21,17 +21,17 @@ public class GhostModeAction extends AdministrationAction {
 
 		if (player.isGhost()) {
 			player.setGhost(false);
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), GHOSTMODE, "off");
+			new GameEvent(player.getName(), GHOSTMODE, "off").raise();
 
 		} else {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
 			 */
 			player.setInvisible(true);
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), INVISIBLE, "on");
+			new GameEvent(player.getName(), INVISIBLE, "on").raise();
 
 			player.setGhost(true);
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), GHOSTMODE, "on");
+			new GameEvent(player.getName(), GHOSTMODE, "on").raise();
 	
 			
 		}
@@ -40,7 +40,7 @@ public class GhostModeAction extends AdministrationAction {
 		database.setOnlineStatus(player, !player.isGhost());
 		
 		/* Notify players about admin going into ghost mode. */
-		StendhalRPRuleProcessor.notifyOnlineStatus(!player.isGhost(), player.getName());
+		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player.getName());
 		
 		player.notifyWorldAboutChanges();
 	}

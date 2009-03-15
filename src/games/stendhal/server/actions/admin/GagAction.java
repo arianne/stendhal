@@ -5,6 +5,7 @@ import static games.stendhal.common.constants.Actions.MINUTES;
 import static games.stendhal.common.constants.Actions.REASON;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -28,8 +29,7 @@ public class GagAction extends AdministrationAction {
 			}
 			try {
 				final int minutes = action.getInt(MINUTES);
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						GAG, target, Integer.toString(minutes), reason);
+				new GameEvent(player.getName(), GAG, target, Integer.toString(minutes), reason).raise();
 				SingletonRepository.getGagManager().gag(target, player, minutes, reason);
 			} catch (final NumberFormatException e) {
 				player.sendPrivateText(USAGE_GAG_NAME_MINUTES_REASON);

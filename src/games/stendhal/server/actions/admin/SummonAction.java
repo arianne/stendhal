@@ -6,6 +6,7 @@ import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -116,7 +117,7 @@ public class SummonAction extends AdministrationAction {
 								entityToBePlaced = entity;
 							}
 							StendhalRPAction.placeat(zone, entityToBePlaced, x, y);
-							SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), SUMMON, type);
+							new GameEvent(player.getName(), SUMMON, type).raise();
 							// We found what we are searching for.
 							searching = false;
 						}

@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
@@ -31,8 +32,7 @@ public class BanAction extends AdministrationAction {
 
 				// logging
 				Logger.getLogger(BanAction.class).info(player.getName() + " has banned " + bannedName + " for: " + reason);
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "ban",
-						bannedName, reason);				
+				new GameEvent(player.getName(), "ban",  bannedName, reason).raise();				
 				
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 						player.getName() + " banned " + bannedName

@@ -84,7 +84,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		database = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
 
 		instance = this;
-		addGameEvent("server system", "startup");
+		String[] params = {};
+		new GameEvent("server system", "startup", params).raise();
 	}
 
 	public static StendhalRPRuleProcessor get() {
@@ -93,14 +94,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			instance.init();
 		}
 		return instance;
-	}
-
-	public void addGameEvent(final String source, final String event, final String... params) {
-		try {
-			database.addGameEvent(source, event, params);
-		} catch (final Exception e) {
-			logger.warn("Can't store game event", e);
-		}
 	}
 
 	/**
@@ -410,8 +403,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				database.setOnlineStatus(player, true);
 
 			}
+			String[] params = {};
 
-			addGameEvent(player.getName(), "login");
+			new GameEvent(player.getName(), "login", params).raise();
 			SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
 
@@ -438,8 +432,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			getOnlinePlayers().remove(player);
 
 			database.setOnlineStatus(player, false);
+			String[] params = {};
 			
-			addGameEvent(player.getName(), "logout");
+			new GameEvent(player.getName(), "logout", params).raise();
 			logger.debug("removed player " + player);
 
 			return true;

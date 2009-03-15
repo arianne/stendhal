@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
@@ -122,7 +123,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 						if (postman != null) {
 							postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
 						}
-						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "rent", text);
+						new GameEvent(player.getName(), "sign", "rent", text).raise();
 					} else {
 						npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
 					}
@@ -164,7 +165,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					if (rentedSignList.removeByName(playerName)) {
 						final String message = player.getName() + " deleted sign from " + playerName;
 						SingletonRepository.getRuleProcessor().sendMessageToSupporters("SignLessorNPC", message);
-						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "deleted", playerName);
+						new GameEvent(player.getName(), "sign", "deleted", playerName).raise();
 					} else {
 						player.sendPrivateText("I could not find a sign by " + playerName);
 					}

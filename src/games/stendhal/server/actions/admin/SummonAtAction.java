@@ -6,6 +6,7 @@ import static games.stendhal.common.constants.Actions.SLOT;
 import static games.stendhal.common.constants.Actions.SUMMONAT;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
@@ -48,8 +49,7 @@ public class SummonAtAction extends AdministrationAction {
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
-				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-						SUMMONAT, changed.getName(), slotName, type);
+				new GameEvent(player.getName(), SUMMONAT, changed.getName(), slotName, type).raise();
 				final Item item = manager.getItem(type);
 
 				if (action.has(AMOUNT) && (item instanceof StackableItem)) {

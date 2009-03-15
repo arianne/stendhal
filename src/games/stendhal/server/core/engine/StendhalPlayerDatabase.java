@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
@@ -30,7 +32,28 @@ import org.apache.log4j.Logger;
 public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Iterable<RPObject> {
 
+	private static boolean shouldStop;
+	
 	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
+	private static TimerTask task = new TimerTask() {
+
+		
+
+		@Override
+		public void run() {
+			
+			try {
+				((StendhalPlayerDatabase) StendhalPlayerDatabase.database).processGameEvents();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+			if (shouldStop && GameEventQueue.queue.isEmpty()) {
+				this.cancel();
+			}
+		}
+	};
 	
 	
 	
@@ -44,6 +67,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			if (database == null) {
 				logger.info("Starting Stendhal JDBC Database");
 				database = newConnection();
+				new Timer().schedule(task , 2000, 300);
 			}
 
 			return database;
@@ -401,10 +425,18 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	public void addGameEvent(final String source, final String event, final String[] params)
-			throws SQLException {
+
+	private void processGameEvents() throws SQLException {
+		
 		final Transaction transaction = getTransaction();
-		addGameEvent(transaction, source, event, params);
+		for (GameEvent current = GameEventQueue.getGameEvents().poll();
+			current != null; current = GameEventQueue.getGameEvents().poll()) {
+			addGameEvent(transaction, current.source, current.event, current.params);
+			if ("server system".equals(current.source) && "shutdown".equals(current.event)) {
+				shouldStop = true;
+			}
+		}
+		
 		transaction.commit();
 	}
 

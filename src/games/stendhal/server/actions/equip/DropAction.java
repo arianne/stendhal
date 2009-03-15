@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -50,9 +50,7 @@ public class DropAction extends EquipmentAction {
 			}
 			
 			final int amount = source.getQuantity();
-			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "drop",
-					itemName, source.getSlot(), dest.getSlot(),
-					Integer.toString(amount));
+			new GameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
 			player.updateItemAtkDef();
 		}
 	}

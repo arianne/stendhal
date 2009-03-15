@@ -3,6 +3,7 @@ package games.stendhal.server.actions.admin;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Present;
@@ -51,9 +52,8 @@ public class WrapAction implements ActionListener {
     	    present.setContent(itemName);
     	    player.drop(itemName);
     	    player.equipToInventoryOnly(present);
-	    
 
-    	    SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "wrap", itemName);
+    	    new GameEvent(player.getName(), "wrap", itemName).raise();
 
     	    player.updateItemAtkDef();
 	    } else {

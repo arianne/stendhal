@@ -17,11 +17,6 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	}
 
 	@Override
-	public void addGameEvent(final String source, final String event, final String... params) {
-		// do not log to database during test
-	}
-
-	@Override
 	public int getTurn() {
 		return 0;
 	}
