@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -32,6 +33,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);
 		setupZone(ZONE_NAME3);
+		
+		SpeakerNPC taxman = new SpeakerNPC("Mr Taxman");
+		SingletonRepository.getNPCList().add(taxman);
 
 		new HouseBuying().addToWorld();
 	}
@@ -41,7 +45,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	public HouseBuyingTest() {
-		super(ZONE_NAME, "Barrett Holmes", "Reg Denson");
+		super(ZONE_NAME, "Barrett Holmes", "Reg Denson", "Mr Taxman");
 	}
 
 	@Test
