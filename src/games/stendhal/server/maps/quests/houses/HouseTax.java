@@ -151,7 +151,7 @@ public class HouseTax implements TurnListener {
 			final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 
 			if (postman != null) {
-				postman.sendPrivateText("Taxman tells you: tell " + owner + " " + message);
+				postman.sendPrivateText("Mr Taxman tells you: tell " + owner + " " + message);
 			} else {
 				logger.warn("could not use postman to deliver the message");
 			}
