@@ -47,11 +47,11 @@ public class GenerateMonsterUsage {
 			}
 		}
 
+		Integer total = Integer.valueOf(0);
 		for (final Map.Entry<String, Integer> e : count.entrySet()) {
-			if (e.getValue() == 0) {
 				System.out.println(e.getKey() + ";" + e.getValue());
-			}
+				total += e.getValue(); 
 		}
-
+		System.out.println("total amount of respawners: " + total);
 	}
 }
