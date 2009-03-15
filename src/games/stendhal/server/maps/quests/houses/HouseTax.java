@@ -42,6 +42,16 @@ public class HouseTax implements TurnListener {
 	}
 	
 	/**
+	 * Get the amount of unpaid taxes for a portal.
+	 * 
+	 * @param portal the portal to be checked
+	 * @return the amount of taxes to be paid
+	 */
+	public int getTaxDebt(HousePortal portal) {
+		return getTaxDebt(getUnpaidTaxPeriods(portal));
+	}
+	
+	/**
 	 * Get the amount of money a player owes to the state.
 	 * 
 	 * @param periods the number of months the player has to pay at once
@@ -51,7 +61,7 @@ public class HouseTax implements TurnListener {
 		int debt = 0; 
 		
 		for (int i = 0; i < periods; i++) {
-			debt += BASE_TAX * Math.pow(1 + INTEREST_RATE, 0);
+			debt += BASE_TAX * Math.pow(1 + INTEREST_RATE, i);
 		}
 		
 		return debt;
@@ -68,11 +78,22 @@ public class HouseTax implements TurnListener {
 		int payments = 0;
 
 		if (portal != null) {
-			final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
-			payments = Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
+			payments = getUnpaidTaxPeriods(portal);
 		}
 
 		return payments;
+	}
+	
+	/**
+	 * Get the number of tax periods for a given portal.
+	 * 
+	 * @param portal the portal to be checked
+	 * @return number of periods
+	 */
+	private int getUnpaidTaxPeriods(HousePortal portal) {
+		final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
+		
+		return Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
 	}
 	
 	private void setTaxesPaid(Player player, int periods) {
