@@ -191,7 +191,7 @@
 
 		<mkdir dir="${build_server_maps}"/>
 
-		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.6" target="1.6" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/server/maps/*.java"/>
 			<exclude name="games/stendhal/server/maps/ZoneConfigurator.java"/>
 			<include name="games/stendhal/server/maps/**/*.java"/>
@@ -363,7 +363,7 @@
 			<fileset dir="${build_client}"/>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/${client_data} lib/${client_sound_data}"/>
+				<attribute name="Class-path" value="lib/*"/>
 			</manifest>
 		</jar>
 
@@ -613,6 +613,7 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
+				<pathelement path="${build_tests}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -704,6 +705,7 @@
 	</target>
 
 	<target name="run_tests" description="Run tests">
+		<mkdir dir="${build_tests_report}"/>
 		<junit printsummary="yes" fork="no">
 			<classpath>
 				<pathelement path="${build_tests}"/>
