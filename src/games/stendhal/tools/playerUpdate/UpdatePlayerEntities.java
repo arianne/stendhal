@@ -12,48 +12,48 @@ import java.util.Iterator;
 import marauroa.common.game.RPObject;
 
 /**
- * Loads all Players from the database, performs update operations and saves afterwards 
+ * Loads all Players from the database, performs update operations and saves afterwards. 
  * @author madmetzger
  */
 public class UpdatePlayerEntities {
 
-    private StendhalPlayerDatabase spdb;
+    private final StendhalPlayerDatabase spdb;
 
-    public UpdatePlayerEntities() {
+    private UpdatePlayerEntities() {
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
     	MockStendlRPWorld.get();
     }
     
 	private void loadAndUpdatePlayers() {
-    	Iterator<RPObject> i = spdb.iterator();
-    	while(i.hasNext()) {
+    	final Iterator<RPObject> i = spdb.iterator();
+    	while (i.hasNext()) {
     		try {
-	    		RPObject next = i.next();
-	    		Player p = createPlayerFromRPO(next);
-	    		updateAndSavePlayer(p);
-			} catch (SQLException e) {
+	    		final RPObject next = i.next();
+	    		final Player p = createPlayerFromRPO(next);
+	    		savePlayer(p);
+			} catch (final SQLException e) {
 				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
     	}
     }
 
-	public Player createPlayerFromRPO(RPObject next) {
-		Player p = Player.create(next);
+	private Player createPlayerFromRPO(final RPObject next) {
+		final Player p = Player.create(next);
 		return p;
 	}
 
-	public void updateAndSavePlayer(Player p)
+	private void savePlayer(final Player p)
 			throws SQLException, IOException {
-		spdb.storeCharacter(spdb.getTransaction(),p.getName(),p.getName(),p);
+		spdb.storeCharacter(spdb.getTransaction(), p.getName(), p.getName(), p);
 	}
     
-    public void doUpdate() {
+    private void doUpdate() {
 		this.loadAndUpdatePlayers();
 	}
     
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
         new UpdatePlayerEntities().doUpdate();
     }
 
