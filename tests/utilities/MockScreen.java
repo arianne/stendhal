@@ -12,16 +12,12 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.text.AttributedString;
 
 public class MockScreen implements IGameScreen {
 
@@ -80,22 +76,12 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
-	public Point convertWorldToScreenView(final Point2D pos) {
-		return null;
-	}
-
 	public Sprite createString(final String text, final NotificationType type) {
 
 		return null;
 	}
 
 	public Sprite createString(final String text, final Color textColor) {
-
-		return null;
-	}
-
-	public Sprite createTextBox(final String text, final int width, final Color textColor,
-			final Color fillColor, final boolean isTalking) {
 
 		return null;
 	}
@@ -119,38 +105,6 @@ public class MockScreen implements IGameScreen {
 	public Graphics2D expose() {
 		return null;
 	}
-
-	public AttributedString formatLine(final String line, final Font fontNormal, final Color colorNormal) {
-		return null;
-	}
-
-	public Dimension convertWorldToScreen(final Dimension2D d) {
-	    return null;
-    }
-
-	public Dimension convertWorldXToScreenView(final Dimension s) {
-	    return null;
-    }
-
-	public Dimension getScreenSize() {
-	    return null;
-    }
-
-	public Point getScreenViewPos() {
-	    return null;
-    }
-
-	public Dimension getScreenViewSize() {
-	    return null;
-    }
-
-	public Point2D getViewPos() {
-	    return null;
-    }
-
-	public Dimension getViewSize() {
-	    return null;
-    }
 
 	public Text getTextAt(final double x, final double y) {
 		return null;

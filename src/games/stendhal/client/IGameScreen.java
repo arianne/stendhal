@@ -8,14 +8,12 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.text.AttributedString;
 
 public interface IGameScreen {
 
@@ -398,26 +396,6 @@ public interface IGameScreen {
 	void drawOutlineString(final Graphics g,
 			final Color textColor, final Color outlineColor, final String text,
 			final int x, final int y);
-
-	/**
-	 * Formats a text by changing the color of words starting with
-	 * #.
-	 *
-	 * @param line
-	 *            the text
-	 * @param fontNormal
-	 *            the font
-	 * @param colorNormal
-	 *            normal color (for non-special text)
-	 * @return the formatted string
-	 */
-	@Deprecated
-	AttributedString formatLine(String line, Font fontNormal,
-			Color colorNormal);
-
-	@Deprecated
-	Sprite createTextBox(String text, int width,
-			Color textColor, Color fillColor, boolean isTalking);
 
 	/**
 	 * Convert a world unit value to a screen unit value.

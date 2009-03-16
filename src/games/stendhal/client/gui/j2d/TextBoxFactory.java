@@ -25,13 +25,13 @@ import java.util.List;
 public class TextBoxFactory {
 	private Graphics2D graphics;
 	
-	/** space to be left at the beginning and end of line in pixels */
+	/** space to be left at the beginning and end of line in pixels. */
 	private static final int MARGIN_WIDTH = 3;
-	/** height of text lines in pixels */
+	/** height of text lines in pixels. */
 	private static final int LINE_HEIGHT = 16;
-	/** space needed for the bubble "handle" in pixels */
+	/** space needed for the bubble "handle" in pixels. */
 	private static final int BUBBLE_OFFSET = 10;
-	/** the diameter of the arc of the rounded bubble corners */
+	/** the diameter of the arc of the rounded bubble corners. */
 	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH;
 	
 	public TextBoxFactory(final Graphics2D graphics) {
@@ -39,7 +39,7 @@ public class TextBoxFactory {
 	}
 	
 	/**
-	 * Creates a text box sprite
+	 * Creates a text box sprite.
 	 * 
 	 * @param text the text inside the box
 	 * @param width maximum width of the text in the box in pixels
@@ -49,12 +49,11 @@ public class TextBoxFactory {
 	 * 
 	 * @return sprite of the text box
 	 */
-	public Sprite createTextBox(String text, final int width, final Color textColor,
+	public Sprite createTextBox(final String text, final int width, final Color textColor,
 			final Color fillColor, final boolean isTalking) {
-		text = text.trim();
 
 		// Format before splitting to get the coloring right
-		final AttributedString formattedString = formatLine(text, graphics.getFont(), textColor);
+		final AttributedString formattedString = formatLine(text.trim(), graphics.getFont(), textColor);
 		// split it to max width long pieces
 		final List<AttributedCharacterIterator> formattedLines = splitFormatted(formattedString, width);
 		
@@ -91,7 +90,7 @@ public class TextBoxFactory {
 	}
 	
 	 /**
-	  * Draw a chat bubble  
+	  * Draw a chat bubble.  
 	  *
 	  * @param g2d 
 	  * @param fillColor the bacground color of the bubble 
@@ -176,7 +175,7 @@ public class TextBoxFactory {
 	}
 	
 	/**
-	 * split a text to lines with specified maximum width, preserving the line breaks in the original
+	 * splits a text to lines with specified maximum width, preserving the line breaks in the original.
 	 * 
 	 * @param text the text to be split
 	 * @param width maximum line length in pixels

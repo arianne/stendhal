@@ -14,8 +14,8 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.events.PositionChangeListener;
-import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
@@ -28,7 +28,6 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -40,7 +39,6 @@ import java.awt.Transparency;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
-import java.text.AttributedString;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
@@ -168,7 +166,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-	private TextBoxFactory textBoxFactory;
+	private final TextBoxFactory textBoxFactory;
 
 	/**
 	 * Create a game screen.
@@ -492,16 +490,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return  EntityViewFactory.get().create(entity);
 	}
 	
-	public Sprite createTextBox(String text, final int width, final Color textColor,
-			final Color fillColor, final boolean isTalking) {
-		return textBoxFactory.createTextBox(text, width, textColor, fillColor, isTalking);
-	}
-	
-	public AttributedString formatLine(final String line,
-			final Font fontNormal, final Color colorNormal) {
-		return textBoxFactory.formatLine(line, fontNormal, colorNormal);
-	}
-
 	/*
 	 * Draw the screen.
 	 */
