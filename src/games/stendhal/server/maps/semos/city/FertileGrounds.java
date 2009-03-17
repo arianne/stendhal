@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  * <p>
  * &lt;parameter name="x"&gt;15&lt;/parameter&gt;
  * <p>
- * &lt;parameter name="y"&gt;25</parameter&gt;
+ * &lt;parameter name="y"&gt;25&lt;/parameter&gt;
  * <p>
  * &lt;parameter name="width"&gt;10&lt;/parameter&gt; &lt;
  * <p>
