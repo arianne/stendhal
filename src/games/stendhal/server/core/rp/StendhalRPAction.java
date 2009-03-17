@@ -30,6 +30,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
@@ -88,7 +89,7 @@ public class StendhalRPAction {
 				logger.info("REJECTED. " + victim.getName()
 						+ " is in a protection zone");
 
-				String name = getNiceVictimName(victim);				
+				final String name = getNiceVictimName(victim);				
 
 				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
 						+ name + ".");
@@ -105,7 +106,7 @@ public class StendhalRPAction {
 				}
 			} else {
 				// Only allow owners, if there is one, to attack the pet
-				Player owner = ((DomesticAnimal) victim).getOwner();
+				final Player owner = ((DomesticAnimal) victim).getOwner();
 				if ((owner != null) && (owner != player)) {
 					player.sendPrivateText("You pity " + getNiceVictimName(victim) + " too much to kill it.");
 					
@@ -348,6 +349,11 @@ public class StendhalRPAction {
 		return placeat(zone, entity, x, y, null);
 	}
 
+	
+	// the total area checked is 2n(n+1) + 1 ; choose n so that it's about
+	// the same as in the old algorithm 36 => 2665 squares vs the old 2601
+	/** maximum walking distance from the center */
+	private static final int maxDisplacement = 36;
 	/**
 	 * Places an entity at a specified position in a specified zone. This will
 	 * remove the entity from any existing zone and add it to the target zone if
@@ -365,11 +371,12 @@ public class StendhalRPAction {
 	 *            only search within this area for a possible new position
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(final StendhalRPZone zone, final Entity entity, final int x,
-			final int y, final Shape allowedArea) {
+	public static boolean placeat(final StendhalRPZone zone, final Entity entity, int x,
+			int y, final Shape allowedArea) {
 		if (zone == null) {
 			return false;
 		}
+		
 		// check in case of players that that they are still in game
 		// because the entity is added to the world again otherwise.
 		if (entity instanceof Player) {
@@ -378,89 +385,28 @@ public class StendhalRPAction {
 				return true;
 			}
 		}
-
-		// Look for new position
-		int nx = x;
-		int ny = y;
-
+		
 		if (zone.collides(entity, x, y)) {
 			boolean checkPath = true;
-
-			if (zone.collides(entity, x, y, false)
-					&& (entity instanceof Player)) {
-				// something nasty happened. The player should be put on a spot
-				// with a real collision (not caused by objects).
+			if (zone.collides(entity, x, y, false) && (entity instanceof Player)) {
+				// Trying to place a player on a spot with a real collision 
+				// (not caused by objects). Can happen with teleport. 
 				// Try to put him anywhere possible without checking the path.
 				checkPath = false;
 			}
-
-			boolean found = false;
-
-			// We cannot place the entity on the orginal spot. Let's search
-			// for a new destination up to maxDestination tiles in every way.
-			final int maxDestination = 20;
-
-			outerLoop: for (int k = 1; k <= maxDestination; k++) {
-				for (int i = -k; i <= k; i++) {
-					for (int j = -k; j <= k; j++) {
-						if ((Math.abs(i) == k) || (Math.abs(j) == k)) {
-							nx = x + i;
-							ny = y + j;
-							if (!zone.collides(entity, nx, ny)) {
-
-								// OK, we may place the entity on this spot.
-
-								// Check the possibleArea now. This is a
-								// performance
-								// optimization because the next step
-								// (pathfinding)
-								// is very expensive. (5 seconds for a
-								// unplaceable
-								// black dragon in deathmatch on 0_ados_wall_n)
-								if ((allowedArea != null)
-										&& (!allowedArea.contains(nx, ny))) {
-									continue;
-								}
-
-								// We verify that there is a walkable path
-								// between the original
-								// spot and the new destination. This is to
-								// prevent players to
-								// enter not allowed places by logging in on top
-								// of other players.
-								// Or monsters to spawn on the other side of a
-								// wall.
-
-								final List<Node> path = Path.searchPath(entity, zone,
-										x, y, new Rectangle(nx, ny, 1, 1),
-										maxDestination * maxDestination, false);
-								if (!checkPath || !path.isEmpty()) {
-
-									// We found a place!
-
-									found = true;
-									
-									// break all for-loops
-									break outerLoop; 
-									
-								}
-							}
-						}
-					}
-				}
-			}
-
-			if (!found) {
+			
+			final Point newLocation = findLocation(zone, entity, allowedArea, x, y, checkPath);
+			
+			if (newLocation == null) {
 				logger.info("Unable to place " + entity.getTitle() + " at "
 						+ zone.getName() + "[" + x + "," + y + "]");
 				return false;
 			}
+			
+			x = newLocation.x;
+			y = newLocation.y;
 		}
-
-		//
-		// At this point the valid position [nx,ny] has been found
-		//
-
+		
 		final StendhalRPZone oldZone = entity.getZone();
 		final boolean zoneChanged = (oldZone != zone);
 
@@ -515,7 +461,7 @@ public class StendhalRPAction {
 		/*
 		 * [Re]position (possibly while between zones)
 		 */
-		entity.setPosition(nx, ny);
+		entity.setPosition(x, y);
 
 		/*
 		 * Place in new zone (if needed)
@@ -534,7 +480,7 @@ public class StendhalRPAction {
 			 * Move and re-add removed dependents
 			 */
 			if (sheep != null) {
-				if (placeat(zone, sheep, nx, ny)) {
+				if (placeat(zone, sheep, x, y)) {
 					player.setSheep(sheep);
 					sheep.setOwner(player);
 				} else {
@@ -544,7 +490,7 @@ public class StendhalRPAction {
 			}
 
 			if (pet != null) {
-				if (placeat(zone, pet, nx, ny)) {
+				if (placeat(zone, pet, x, y)) {
 					player.setPet(pet);
 					pet.setOwner(player);
 				} else {
@@ -573,9 +519,145 @@ public class StendhalRPAction {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("Placed " + entity.getTitle() + " at "
-					+ zone.getName() + "[" + nx + "," + ny + "]");
+					+ zone.getName() + "[" + x + "," + y + "]");
 		}
 
 		return true;
+	}
+	
+	/**
+	 * Find a new place for entity
+	 * @param zone zone to place the entity in
+	 * @param entity the entity to place
+	 * @param allowedArea only search within this area for a possible new position,
+	 * 	or null if the whole normal search area should be used
+	 * @param x the x coordinate of the search center
+	 * @param y the y coordinate of the search center
+	 * @param checkPath if true, check that there's a valid path to the center
+	 * 
+	 * @return location of the new placement, or null if no suitable place was found
+	 */
+	private static Point findLocation(final StendhalRPZone zone, final Entity entity, 
+			final Shape allowedArea, final int x, final int y, final boolean checkPath) {
+		/*
+		 * Minimum Euclidean distance within minimum walking distance
+		 */
+		for (int totalShift = 1; totalShift <= maxDisplacement; totalShift++) {
+			for (int tilt = (totalShift + 1)/ 2; tilt > 0; tilt--) {
+				final int spread = totalShift - tilt;
+				
+				int tmpx = x - tilt;
+				int tmpy = y - spread;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpx = x + tilt;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpy = y + spread;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpx = x - tilt;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				
+				// center spots of the equidistance rectangle. 
+				if (spread == tilt) {
+					continue;
+				}
+				
+				tmpx = x - spread;
+				tmpy = y - tilt;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpx = x + spread;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpy = y + tilt;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+				tmpx = x - spread;
+				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+					return new Point(tmpx, tmpy);
+				}
+			}
+			
+			// Do tilt = 0 case here, since it takes only 4 checks
+			int tmpx = x;
+			int tmpy = y - totalShift;
+			if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+				return new Point(tmpx, tmpy);
+			}
+			tmpy = y + totalShift;
+			if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+				return new Point(tmpx, tmpy);
+			}
+			tmpy = y;
+			tmpx = x - totalShift;
+			if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+				return new Point(tmpx, tmpy);
+			}
+			tmpx = x + totalShift;
+			if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
+				return new Point(tmpx, tmpy);
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Check if a new placement for an entity is valid
+	 * 
+	 * @param zone the zone where the entity should be placed
+	 * @param entity the entity to place
+	 * @param allowedArea if specified, restrict placement within this area
+	 * @param oldX the x coordinate from where the entity was displaced 
+	 * @param oldY the y coordinate from where the entity was displaced
+	 * @param newX the x coordinate of the new placement
+	 * @param newY the y coordinate of the new placement
+	 * @param checkPath if true, check that there is a path from <code>(newX, newY)</code>
+	 * to <code>(oldX, oldY)</code>
+	 * 
+	 * @return true if placing is possible, false otherwise
+	 */
+	private static boolean isValidPlacement(final StendhalRPZone zone, final Entity entity,
+			final Shape allowedArea, final int oldX, final int oldY, 
+			final int newX, final int newY, final boolean checkPath) {
+		if (!zone.collides(entity, newX, newY)) {
+			// Check the possibleArea now. This is a
+			// performance
+			// optimization because the pathfinding
+			// is very expensive. 
+			if ((allowedArea != null) && (!allowedArea.contains(newX, newY))) {
+				return false;
+			}
+			if (!checkPath) {
+				return true;
+			}
+			
+			// We verify that there is a walkable path
+			// between the original
+			// spot and the new destination. This is to
+			// prevent players to
+			// enter not allowed places by logging in on top
+			// of other players.
+			// Or monsters to spawn on the other side of a
+			// wall.
+			final List<Node> path = Path.searchPath(entity, zone,
+					oldX, oldY, new Rectangle(newX, newY, 1, 1),
+					400 /* maxDestination * maxDestination */, false);
+			if (!path.isEmpty()) {
+				// We found a place!
+				return true;		
+			}
+		}
+		return false;
 	}
 }
