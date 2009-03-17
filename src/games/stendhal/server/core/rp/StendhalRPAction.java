@@ -480,7 +480,8 @@ public class StendhalRPAction {
 			 * Move and re-add removed dependents
 			 */
 			if (sheep != null) {
-				if (placeat(zone, sheep, x, y)) {
+				// shift the sheep a bit, so that it does not end up exactly in fron of the player
+				if (placeat(zone, sheep, x + 1, y + 1)) {
 					player.setSheep(sheep);
 					sheep.setOwner(player);
 				} else {
@@ -490,7 +491,8 @@ public class StendhalRPAction {
 			}
 
 			if (pet != null) {
-				if (placeat(zone, pet, x, y)) {
+				// shift the pet a bit, so that it does not end up exactly in fron of the player
+				if (placeat(zone, pet, x + 1, y + 1)) {
 					player.setPet(pet);
 					pet.setOwner(player);
 				} else {
