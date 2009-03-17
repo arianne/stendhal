@@ -19,7 +19,7 @@ public class UpdatePlayerEntities {
 
     private final StendhalPlayerDatabase spdb;
 
-    private UpdatePlayerEntities() {
+    UpdatePlayerEntities() {
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
     	MockStendlRPWorld.get();
     }
@@ -39,12 +39,12 @@ public class UpdatePlayerEntities {
     	}
     }
 
-	private Player createPlayerFromRPO(final RPObject next) {
+	Player createPlayerFromRPO(final RPObject next) {
 		final Player p = Player.create(next);
 		return p;
 	}
 
-	private void savePlayer(final Player p)
+	void savePlayer(final Player p)
 			throws SQLException, IOException {
 		spdb.storeCharacter(spdb.getTransaction(), p.getName(), p.getName(), p);
 	}
