@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.WellSource;
 
 import java.util.List;
 
@@ -18,15 +17,6 @@ import java.util.List;
  * The 2D view of a gold source.
  */
 class WellSource2DView extends AnimatedLoopEntity2DView {
-	/**
-	 * Create a 2D view of a well source.
-	 * 
-	 * @param wellSource
-	 *            The entity to render.
-	 */
-	public WellSource2DView(final WellSource wellSource) {
-		super(wellSource);
-	}
 
 	//
 	// Entity2DView

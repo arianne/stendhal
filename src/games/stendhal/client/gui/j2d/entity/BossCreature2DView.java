@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
@@ -20,15 +19,6 @@ import java.util.Map;
  * A 2D view of a boss creature. Boss creatures have 1x2 image layouts.
  */
 class BossCreature2DView extends Creature2DView {
-	/**
-	 * Create a boss creature.
-	 * 
-	 * @param creature
-	 *            The creature to render.
-	 */
-	public BossCreature2DView(final BossCreature creature) {
-		super(creature);
-	}
 
 	//
 	// RPEntity2DView

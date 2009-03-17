@@ -4,7 +4,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.HousePortal;
 
 import java.util.List;
 
@@ -16,22 +15,6 @@ import java.util.List;
 // we want it at the top so we couldn't just add it back in.
 
 class HousePortal2DView extends InvisibleEntity2DView {
-	/**
-	 * The portal entity.
-	 */
-	protected HousePortal portal;
-
-	/**
-	 * Create a 2D view of a portal.
-	 * 
-	 * @param portal
-	 *            The entity to render.
-	 */
-	public HousePortal2DView(final HousePortal portal) {
-		super(portal);
-
-		this.portal = portal;
-	}
 
 	//
 	// Entity2DView
@@ -77,12 +60,12 @@ class HousePortal2DView extends InvisibleEntity2DView {
 		switch (at) {
 		case USE:
 
-			at.send(at.fillTargetInfo(portal.getRPObject()));
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case KNOCK:
 			
-			at.send(at.fillTargetInfo(portal.getRPObject()));
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

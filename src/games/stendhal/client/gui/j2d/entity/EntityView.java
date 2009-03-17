@@ -72,4 +72,6 @@ public interface EntityView {
 
 	void setContained(boolean b);
 
+	void initialize(IEntity entity);
+
 }

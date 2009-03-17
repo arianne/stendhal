@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.FishSource;
 
 import java.util.List;
 
@@ -18,15 +17,6 @@ import java.util.List;
  * The 2D view of a fish source.
  */
 class FishSource2DView extends AnimatedLoopEntity2DView {
-	/**
-	 * Create a 2D view of food.
-	 * 
-	 * @param fishSource
-	 *            The entity to render.
-	 */
-	public FishSource2DView(final FishSource fishSource) {
-		super(fishSource);
-	}
 
 	//
 	// Entity2DView

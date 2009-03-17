@@ -19,24 +19,6 @@ import java.util.List;
  */
 class User2DView extends Player2DView {
 
-	/**
-	 * The user entity.
-	 */
-	private final User user;
-
-	/**
-	 * Create a 2D view of a user.
-	 * 
-	 * @param user
-	 *            The entity to render.
-	 */
-	public User2DView(final User user) {
-		super(user);
-
-		this.user = user;
-
-	}
-
 	//
 	// RPEntity2DView
 	//
@@ -74,11 +56,11 @@ class User2DView extends Player2DView {
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		// list.add(ActionType.JOIN_GUILD.getRepresentation());
 
-		if (user.hasSheep()) {
+		if (((User) entity).hasSheep()) {
 			list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 		}
 
-		if (user.hasPet()) {
+		if (((User) entity).hasPet()) {
 			list.add(ActionType.LEAVE_PET.getRepresentation());
 		}
 	}
@@ -100,7 +82,7 @@ class User2DView extends Player2DView {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_POSITION) {
-			j2DClient.get().setPosition(user.getX(), user.getY(),
+			j2DClient.get().setPosition(entity.getX(), entity.getY(),
 					GameScreen.get());
 		}
 	}

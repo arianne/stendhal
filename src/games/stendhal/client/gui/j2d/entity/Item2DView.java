@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Item;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -27,15 +26,6 @@ class Item2DView extends Entity2DView {
 	 */
 	private static final Logger logger = Logger.getLogger(Item2DView.class);
 
-	/**
-	 * Create a 2D view of an item.
-	 * 
-	 * @param item
-	 *            The entity to render.
-	 */
-	public Item2DView(final Item item) {
-		super(item);
-	}
 
 	//
 	// Entity2DView

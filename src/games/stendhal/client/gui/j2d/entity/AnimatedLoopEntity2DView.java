@@ -10,42 +10,13 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.Fire;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an entity that always loops images.
  */
 class AnimatedLoopEntity2DView extends Entity2DView {
-	/**
-	 * Log4J.
-	 */
-	private static final Logger logger = Logger
-			.getLogger(AnimatedLoopEntity2DView.class);
-
-	/**
-	 * Create a 2D view of an animated loop visual.
-	 * 
-	 * @param entity
-	 *            The entity to render.
-	 */
-	public AnimatedLoopEntity2DView(final IEntity entity) {
-		super(entity);
-	}
-
-	/**
-	 * Create a 2D view of an animated loop visual.
-	 * 
-	 * @param entity
-	 *            The entity to render.
-	 */
-	public AnimatedLoopEntity2DView(final Fire entity) {
-		super(entity);
-	}
 
 	//
 	// Entity2DView
@@ -70,11 +41,7 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 					/ IGameScreen.SIZE_UNIT_PIXELS,
 					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 					100);
-		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getTile(sprite, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
-					IGameScreen.SIZE_UNIT_PIXELS);
-			logger.warn("Multi-row image for: " + translate(entity.getType()));
-		}
+		} 
 
 		setSprite(sprite);
 	}

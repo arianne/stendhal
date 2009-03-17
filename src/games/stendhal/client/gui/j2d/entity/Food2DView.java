@@ -21,30 +21,11 @@ import java.util.Map;
  * The 2D view of food.
  */
 class Food2DView extends StateEntity2DView {
-	/**
-	 * The food entity.
-	 */
-	protected Food food;
 
 	/**
 	 * The number of states.
 	 */
 	protected int states;
-
-	/**
-	 * Create a 2D view of food.
-	 * 
-	 * @param food
-	 *            The entity to render.
-	 * @param states
-	 *            The number of states.
-	 */
-	public Food2DView(final Food food, final int states) {
-		super(food);
-
-		this.food = food;
-		this.states = states;
-	}
 
 	//
 	// StateEntity2DView
@@ -80,7 +61,7 @@ class Food2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return Integer.valueOf(food.getAmount());
+		return Integer.valueOf(((Food) entity).getAmount());
 	}
 
 	//
@@ -120,5 +101,10 @@ class Food2DView extends StateEntity2DView {
 		if (property == Food.PROP_AMOUNT) {
 			proceedChangedState();
 		}
+	}
+
+	public void setStates(final int i) {
+		states = 6;
+		
 	}
 }

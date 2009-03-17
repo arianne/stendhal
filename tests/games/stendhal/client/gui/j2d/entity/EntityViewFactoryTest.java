@@ -1,34 +1,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.entity.Blood;
-import games.stendhal.client.entity.BossCreature;
-import games.stendhal.client.entity.Box;
-import games.stendhal.client.entity.CarrotGrower;
-import games.stendhal.client.entity.Chest;
-import games.stendhal.client.entity.Corpse;
-import games.stendhal.client.entity.Creature;
-import games.stendhal.client.entity.Door;
-import games.stendhal.client.entity.Fire;
-import games.stendhal.client.entity.FishSource;
-import games.stendhal.client.entity.GoldSource;
-import games.stendhal.client.entity.GrainField;
-import games.stendhal.client.entity.InvisibleEntity;
-import games.stendhal.client.entity.Item;
-import games.stendhal.client.entity.NPC;
-import games.stendhal.client.entity.Pet;
-import games.stendhal.client.entity.PlantGrower;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.Portal;
-import games.stendhal.client.entity.Ring;
-import games.stendhal.client.entity.Sheep;
-import games.stendhal.client.entity.SheepFood;
-import games.stendhal.client.entity.Sign;
-import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.entity.WellSource;
 import marauroa.common.Log4J;
 
 import org.junit.Before;
@@ -47,80 +20,82 @@ public class EntityViewFactoryTest {
 
 	@Test
 	public final void testCreate() {
-		assertEquals(EntityViewFactory.get().create(new Blood()).getClass(),
-				Blood2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new BossCreature()).getClass(),
-				BossCreature2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Box()).getClass(),
-				Box2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new CarrotGrower()).getClass(),
-				CarrotGrower2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Chest()).getClass(),
-				Chest2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Corpse()).getClass(),
-				Corpse2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new Creature()).getClass(),
-				Creature2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Door()).getClass(),
-				Door2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("blood", null, null), Blood2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("creature", "boss", null), BossCreature2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("item", "box", null), Box2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("growing_entity_spawner", "items/grower/wood_grower", null), CarrotGrower2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("growing_entity_spawner", "items/grower/carrot_grower", null), CarrotGrower2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("chest", null, null), Chest2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("corpse", null, null), Corpse2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("creature", null, null), Creature2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("door", null, null), Door2DView.class);
+	
+		assertEquals(EntityViewFactory.getViewClass("fire", null, null), AnimatedLoopEntity2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("fish_source", null, null), FishSource2DView.class);
 
-		assertEquals(
-				EntityViewFactory.get().create(new FishSource()).getClass(),
-				FishSource2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new GoldSource()).getClass(),
-				GoldSource2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new GrainField()).getClass(),
-				GrainField2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new InvisibleEntity()).getClass(),
-				InvisibleEntity2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Item()).getClass(),
-				Item2DView.class);
-		assertEquals(EntityViewFactory.get().create(new NPC()).getClass(),
-				NPC2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Pet()).getClass(),
-				Pet2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new PlantGrower()).getClass(),
-				PlantGrower2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Player()).getClass(),
-				Player2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Portal()).getClass(),
-				Portal2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Ring()).getClass(),
-				Ring2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Sheep()).getClass(),
-				Sheep2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new SheepFood()).getClass(),
-				SheepFood2DView.class);
-		assertEquals(EntityViewFactory.get().create(new Sign()).getClass(),
-				Sign2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new StackableItem()).getClass(),
-				StackableItem2DView.class);
-		assertEquals(
-				EntityViewFactory.get().create(new WellSource()).getClass(),
-				WellSource2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("gate", null, null), Gate2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("gold_source", null, null), GoldSource2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("growing_entity_spawner", null, null), GrainField2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("house_portal", null, null), HousePortal2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("area", null, null),  InvisibleEntity2DView.class);
+		
+	    assertEquals(EntityViewFactory.getViewClass("item", "special", "mithril clasp"), Item2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", null, null),  Item2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("npc", null, null), NPC2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("cat", null, null), Pet2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("pet", null, null), Pet2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("baby_dragon", null, null), Pet2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("plant_grower", null, null), PlantGrower2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("player", null, null), Player2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("portal", null, null), Portal2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("item", "ring", "emerald-ring"), Ring2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("sheep", null, null),  Sheep2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("food", null, null), SheepFood2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("sign", null, null),  Sign2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("blackboard", null, null),  Sign2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("item", "jewellery", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "flower", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "resource", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "herb", null), StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "misc", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "money", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "missile", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "ammunition", null),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "container", null),  StackableItem2DView.class);
+        assertEquals(EntityViewFactory.getViewClass("item", "special", null),  StackableItem2DView.class);
+		
+		
+		assertEquals(EntityViewFactory.getViewClass("item", "club", "wizard_staff"),  UseableItem2DView.class);
+        assertEquals(EntityViewFactory.getViewClass("item", "misc", "seed"), UseableItem2DView.class);
 
-	}
+		assertEquals(EntityViewFactory.getViewClass("item", "scroll", null),  UseableItem2DView.class);
 
-	@Test
-	public final void testCreateUser2Dview() {
-		assertNotNull(new User2DView(new User()));
-		assertEquals(EntityViewFactory.get().create(new User()).getClass(),
-				User2DView.class);
-	}
-
-	@Test
-	public final void testCreateFire2Dview() {
-    	assertNotNull(EntityViewFactory.get().create(new Fire()));
-    	assertEquals(EntityViewFactory.get().create(new Fire()).getClass(),
-    			AnimatedLoopEntity2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "food", null), UseableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "drink", null),  UseableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "tool", "foodmill"),  UseableItem2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("item", "ring", null), UseableRing2DView.class);
+		
+		assertEquals(EntityViewFactory.getViewClass("walkblocker", null, null), WalkBlocker2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("well_source", null, null), WellSource2DView.class);
+	
+		
 	}
 }

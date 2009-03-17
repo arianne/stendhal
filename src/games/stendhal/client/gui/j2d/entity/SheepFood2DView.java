@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.entity.SheepFood;
 
 /**
  * The 2D view of sheep food.
@@ -21,8 +20,8 @@ class SheepFood2DView extends Food2DView {
 	 * @param food
 	 *            The entity to render.
 	 */
-	public SheepFood2DView(final SheepFood food) {
-		super(food, 6);
+	public SheepFood2DView() {
+		super.setStates(6);
 	}
 
 	//

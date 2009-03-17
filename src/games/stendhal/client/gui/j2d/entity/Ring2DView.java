@@ -20,10 +20,6 @@ import games.stendhal.client.sprite.SpriteStore;
  * The 2D view of a ring.
  */
 class Ring2DView extends Item2DView {
-	/**
-	 * The ring entity.
-	 */
-	private final Ring ring;
 
 	/**
 	 * The working sprite.
@@ -46,12 +42,18 @@ class Ring2DView extends Item2DView {
 	 * @param ring
 	 *            The entity to render.
 	 */
-	public Ring2DView(final Ring ring) {
-		super(ring);
-		this.ring = ring;
+	public Ring2DView() {
+		super();
+	
 
-		setSprite(getStateSprite());
+	
 		stateChanged = false;
+	}
+	
+	@Override
+	public void initialize(final IEntity entity) {
+		super.initialize(entity);
+		setSprite(getStateSprite());
 	}
 
 	//
@@ -82,7 +84,7 @@ class Ring2DView extends Item2DView {
 	 * @return A sprite.
 	 */
 	protected Sprite getStateSprite() {
-		if (ring.isWorking()) {
+		if (((Ring) entity).isWorking()) {
 			return working;
 		} else {
 			return broken;

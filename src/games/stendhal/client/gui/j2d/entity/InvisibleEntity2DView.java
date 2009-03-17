@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.InvisibleEntity;
 
 import java.awt.Graphics2D;
 
@@ -18,15 +17,6 @@ import java.awt.Graphics2D;
  * The 2D view of an invisible entity.
  */
 class InvisibleEntity2DView extends Entity2DView {
-	/**
-	 * Create a 2D view of an entity.
-	 * 
-	 * @param entity
-	 *            The entity to render.
-	 */
-	public InvisibleEntity2DView(final InvisibleEntity entity) {
-		super(entity);
-	}
 
 	//
 	// Entity2DView

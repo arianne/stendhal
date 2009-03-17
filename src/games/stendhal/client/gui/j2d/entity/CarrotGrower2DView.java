@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.CarrotGrower;
 
 import java.util.List;
 
@@ -18,15 +17,6 @@ import java.util.List;
  * The 2D view of a grower.
  */
 class CarrotGrower2DView extends GrainField2DView {
-	/**
-	 * Create a 2D view of a grower.
-	 * 
-	 * @param grower
-	 *            The entity to render.
-	 */
-	public CarrotGrower2DView(final CarrotGrower grower) {
-		super(grower);
-	}
 
 	//
 	// Entity2DView

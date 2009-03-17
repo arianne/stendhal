@@ -30,8 +30,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -109,7 +107,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param entity
 	 *            The entity to render.
 	 */
-	public Entity2DView(final IEntity entity) {
+	public Entity2DView() {
+		
+		
+	}
+
+	public void initialize(final IEntity entity) {
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
 		}
@@ -714,7 +717,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		}
 
 		final int id = entity.getID().getObjectID();
-		RPAction rpaction;
 
 		switch (at) {
 		case LOOK:

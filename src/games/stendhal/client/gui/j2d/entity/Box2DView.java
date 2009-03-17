@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Box;
 
 import java.util.List;
 
@@ -18,15 +17,6 @@ import java.util.List;
  * The 2D view of a box.
  */
 class Box2DView extends Item2DView {
-	/**
-	 * Create a 2D view of a box.
-	 * 
-	 * @param box
-	 *            The entity to render.
-	 */
-	public Box2DView(final Box box) {
-		super(box);
-	}
 
 	//
 	// Entity2DView

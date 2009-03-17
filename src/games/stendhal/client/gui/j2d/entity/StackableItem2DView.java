@@ -22,10 +22,6 @@ import java.awt.Graphics2D;
  * The 2D view of a stackable item.
  */
 public class StackableItem2DView extends Item2DView {
-	/**
-	 * The entity this view is for.
-	 */
-	private final StackableItem item;
 
 	/**
 	 * The quantity value changed.
@@ -42,21 +38,14 @@ public class StackableItem2DView extends Item2DView {
 	 */
 	protected boolean showQuantity;
 
-	/**
-	 * Create a 2D view of a stackable item.
-	 * 
-	 * @param item
-	 *            The entity to render.
-	 */
-	public StackableItem2DView(final StackableItem item) {
-		super(item);
-
-		this.item = item;
+	@Override
+	public void initialize(final IEntity entity) {
+		super.initialize(entity);
 		quantitySprite = getQuantitySprite(GameScreen.get());
 		quantityChanged = false;
 		showQuantity = true;
 	}
-
+	
 	//
 	// StackableItem2DView
 	//
@@ -72,7 +61,7 @@ public class StackableItem2DView extends Item2DView {
 		int quantity;
 		String label;
 
-		quantity = item.getQuantity();
+		quantity = ((StackableItem) entity).getQuantity();
 
 		if (quantity <= 1) {
 			return null;

@@ -26,10 +26,6 @@ import java.util.List;
  */
 class Corpse2DView extends Entity2DView {
 
-	/**
-	 * The RP entity this view is for.
-	 */
-	private final Corpse corpse;
 
 	/**
 	 * The corpse height.
@@ -57,10 +53,8 @@ class Corpse2DView extends Entity2DView {
 	 * @param corpse
 	 *            The entity to render.
 	 */
-	public Corpse2DView(final Corpse corpse) {
-		super(corpse);
-
-		this.corpse = corpse;
+	public Corpse2DView() {
+		
 
 		height = IGameScreen.SIZE_UNIT_PIXELS;
 		width = IGameScreen.SIZE_UNIT_PIXELS;
@@ -89,8 +83,8 @@ class Corpse2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final IGameScreen gameScreen) {
-		final String clazz = corpse.getEntityClass();
-		String corpseType = corpse.getType();
+		final String clazz = entity.getEntityClass();
+		String corpseType = entity.getType();
 
 		if (clazz != null) {
 			if (clazz.equals("player")) {
@@ -232,8 +226,8 @@ class Corpse2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(corpse,
-					corpse.getContent(), wtEntityContainer, 2, 2, GameScreen
+			wtEntityContainer = inspector.inspectMe(entity,
+					((Corpse) entity).getContent(), wtEntityContainer, 2, 2, GameScreen
 							.get());
 			break;
 

@@ -18,22 +18,6 @@ import games.stendhal.common.Direction;
  */
 abstract class ActiveEntity2DView extends StateEntity2DView {
 
-	/**
-	 * The active entity.
-	 */
-	private final ActiveEntity activeEntity;
-
-	/**
-	 * Create a 2D view of an entity.
-	 * 
-	 * @param activeEntity
-	 *            The entity to render.
-	 */
-	public ActiveEntity2DView(final ActiveEntity activeEntity) {
-		super(activeEntity);
-
-		this.activeEntity = activeEntity;
-	}
 
 	//
 	// ActiveEntity2DView
@@ -65,7 +49,7 @@ abstract class ActiveEntity2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Direction getState() {
-		return getDirectionState(activeEntity.getDirection());
+		return getDirectionState(((ActiveEntity) entity).getDirection());
 	}
 
 	//
@@ -79,7 +63,7 @@ abstract class ActiveEntity2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected boolean isAnimating() {
-		return !activeEntity.stopped();
+		return !((ActiveEntity) entity).stopped();
 	}
 
 	//

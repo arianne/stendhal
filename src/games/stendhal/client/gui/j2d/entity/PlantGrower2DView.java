@@ -9,21 +9,11 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.entity.PlantGrower;
 
 /**
  * The 2D view of a plant grower.
  */
 class PlantGrower2DView extends Entity2DView {
-	/**
-	 * Create a 2D view of a plant grower.
-	 * 
-	 * @param plantGrower
-	 *            The entity to render.
-	 */
-	public PlantGrower2DView(final PlantGrower plantGrower) {
-		super(plantGrower);
-	}
 
 	//
 	// Entity2DView

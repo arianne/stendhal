@@ -12,6 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
@@ -50,11 +51,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static Sprite blockedSprite;
 
 	private static Sprite missedSprite;
-
-	/**
-	 * The RP entity this view is for.
-	 */
-	protected RPEntity rpentity;
 
 	/**
 	 * Blade strike frame.
@@ -119,21 +115,13 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 	}
 
-	/**
-	 * Create a 2D view of an entity.
-	 * 
-	 * @param rpentity
-	 *            The entity to render.
-	 */
-	public RPEntity2DView(final RPEntity rpentity) {
-		super(rpentity);
 
-		this.rpentity = rpentity;
-
+	@Override
+	public void initialize(final IEntity entity) {
+		super.initialize(entity);
 		titleSprite = createTitleSprite(GameScreen.get());
 		titleChanged = false;
 	}
-
 	//
 	// RPEntity2DView
 	//
@@ -196,8 +184,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @return The title sprite.
 	 */
 	protected Sprite createTitleSprite(final IGameScreen gameScreen) {
-		final String titleType = rpentity.getTitleType();
-		final int adminlevel = rpentity.getAdminLevel();
+		final String titleType = ((RPEntity) entity).getTitleType();
+		final int adminlevel = ((RPEntity) entity).getAdminLevel();
 		Color nameColor = null;
 
 		if (titleType != null) {
@@ -275,7 +263,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			final int width, final IGameScreen gameScreen) {
 		final FontMetrics fm = g2d.getFontMetrics();
 
-		final Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
+		final Iterator<RPEntity.TextIndicator> iter = ((RPEntity) entity).getTextIndicators();
 
 		while (iter.hasNext()) {
 			final RPEntity.TextIndicator indicator = iter.next();
@@ -313,7 +301,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		final int bx = x + ((width - barWidth) / 2);
 		final int by = y - 3;
 
-		final float hpRatio = rpentity.getHPRatio();
+		final float hpRatio = ((RPEntity) entity).getHPRatio();
 
 		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		final float g = Math.min(hpRatio * 2.0f, 1.0f);
@@ -382,15 +370,15 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawIdeas(final Graphics2D g2d, final int x,
 			final int y, final int height) {
-		if (rpentity.isEating()) {
-			if (rpentity.isChoking()) {
+		if (((RPEntity) entity).isEating()) {
+			if (((RPEntity) entity).isChoking()) {
 				chokingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			} else {
 				eatingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			}
 		}
 
-		if (rpentity.isPoisoned()) {
+		if (((RPEntity) entity).isPoisoned()) {
 			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2 * ICON_OFFSET);
 		}
 	}
@@ -414,7 +402,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height, final Rectangle srect) {
 
-		if (rpentity.isBeingAttacked()) {
+		if (((RPEntity) entity).isBeingAttacked()) {
 			// Draw red box around 
 
 			g2d.setColor(Color.red);
@@ -422,14 +410,14 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		}
 
-		if (rpentity.isAttacking(User.get())) {
+		if (((RPEntity) entity).isAttacking(User.get())) {
 			// Draw orange box around
 			g2d.setColor(Color.orange);
 			g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4,
 					srect.height - 4);
 		}
 
-		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
+		if (((RPEntity) entity).isAttacking() && ((RPEntity) entity).isBeingStruck()) {
 			if (frameBladeStrike < 3) {
 				final Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
 
@@ -447,7 +435,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				 * Adjust positions to match (or fix images to be
 				 * uniform/centered).
 				 */
-				switch (rpentity.getDirection()) {
+				switch (((ActiveEntity) entity).getDirection()) {
 				case UP:
 					sx = x + ((width - spriteWidth) / 2) + 16;
 					sy = y - 16 - 32;
@@ -475,19 +463,19 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 				sprite.draw(g2d, sx, sy);
 			} else {
-				rpentity.doneStriking();
+				((RPEntity) entity).doneStriking();
 				frameBladeStrike = 0;
 			}
 
 			frameBladeStrike++;
 		}
 
-		if (rpentity.isDefending()) {
+		if (((RPEntity) entity).isDefending()) {
 			// Draw bottom right combat icon
 			final int sx = x + width - 2 * ICON_OFFSET;
 			final int sy = y + height - 2 * ICON_OFFSET;
 
-			switch (rpentity.getResolution()) {
+			switch (((RPEntity) entity).getResolution()) {
 			case BLOCKED:
 				blockedSprite.draw(g2d, sx, sy);
 				break;
@@ -578,7 +566,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (rpentity.isAttackedBy(User.get())) {
+		if (((RPEntity) entity).isAttackedBy(User.get())) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());
@@ -667,7 +655,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		/*
 		 * Hide while in ghostmode.
 		 */
-		if (rpentity.isGhostMode()) {
+		if (((RPEntity) entity).isGhostMode()) {
 			if (isVisibleGhost()) {
 				return super.getVisibility() / 2;
 			} else {

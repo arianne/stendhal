@@ -10,7 +10,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -32,20 +31,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Map of named sprites.
 	 */
-	protected Map<Object, Sprite> sprites;
-
-	/**
-	 * Create a 2D view of an entity.
-	 * 
-	 * @param entity
-	 *            The entity to render.
-	 */
-	public StateEntity2DView(final IEntity entity) {
-		super(entity);
-
-		sprites = new HashMap<Object, Sprite>();
-
-	}
+	protected Map<Object, Sprite> sprites = new HashMap<Object, Sprite>();
 
 	//
 	// StateEntity2DView

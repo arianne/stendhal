@@ -2,8 +2,6 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Gate;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -30,15 +28,9 @@ public class Gate2DView extends Entity2DView {
 
 	private String orientation = "orientation";
 	
-	public Gate2DView(final Gate entity) {
-		this ((IEntity) entity);
+	public Gate2DView() {
 		
-	}
-
-
-	public Gate2DView(final IEntity entity) {
-		super(entity);
-		this.entity = entity;
+		
 	}
 
 	@Override

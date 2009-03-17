@@ -24,16 +24,6 @@ class Pet2DView extends DomesticAnimal2DView {
 	 */
 	protected static final int BIG_WEIGHT = 20;
 
-	/**
-	 * Create a 2D view of a pet.
-	 * 
-	 * @param pet
-	 *            The entity to render.
-	 */
-	public Pet2DView(final Pet pet) {
-		super(pet);
-	}
-
 	//
 	// DomesticAnimal2DView
 	//

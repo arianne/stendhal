@@ -37,11 +37,6 @@ class Chest2DView extends StateEntity2DView {
 	protected static final String STATE_OPEN = "open";
 
 	/**
-	 * The chest entity.
-	 */
-	protected Chest chest;
-
-	/**
 	 * The chest model open value changed.
 	 */
 	protected boolean openChanged;
@@ -67,10 +62,8 @@ class Chest2DView extends StateEntity2DView {
 	 * @param chest
 	 *            The entity to render.
 	 */
-	public Chest2DView(final Chest chest) {
-		super(chest);
-
-		this.chest = chest;
+	public Chest2DView() {
+		
 		openChanged = false;
 		requestOpen = false;
 	}
@@ -105,7 +98,7 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		if (chest.isOpen()) {
+		if (((Chest) entity).isOpen()) {
 			return STATE_OPEN;
 		} else {
 			return STATE_CLOSED;
@@ -127,7 +120,7 @@ class Chest2DView extends StateEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (chest.isOpen()) {
+		if (((Chest) entity).isOpen()) {
 			list.add(ActionType.INSPECT.getRepresentation());
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
@@ -168,10 +161,10 @@ class Chest2DView extends StateEntity2DView {
 		super.update(gameScreen);
 
 		if (openChanged) {
-			if (chest.isOpen()) {
+			if (((Chest) entity).isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest, chest
+					wtEntityContainer = inspector.inspectMe(entity, ((Chest) entity)
 							.getContent(), wtEntityContainer, 5, 6, gameScreen);
 				}
 			} else {
@@ -223,12 +216,12 @@ class Chest2DView extends StateEntity2DView {
 		switch (at) {
 		case INSPECT:
 
-			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
+			wtEntityContainer = inspector.inspectMe(entity, ((Chest) entity).getContent(),
 					wtEntityContainer, 5, 6, GameScreen.get());
 			break;
 
 		case OPEN:
-			if (!chest.isOpen()) {
+			if (!((Chest) entity).isOpen()) {
 				// If it was closed, open it and inspect it...
 				requestOpen = true;
 			}

@@ -27,11 +27,6 @@ import java.util.Map;
  */
 class Creature2DView extends RPEntity2DView {
 
-	/**
-	 * The entity this view is for.
-	 */
-	private final Creature creature;
-
 	/** the patrolpath. */
 	private List<Node> patrolPath;
 
@@ -40,18 +35,6 @@ class Creature2DView extends RPEntity2DView {
 
 	/** the path we got. */
 	private List<Node> moveToTargetPath;
-
-	/**
-	 * Create a 2D view of a creature.
-	 * 
-	 * @param creature
-	 *            The entity to render.
-	 */
-	public Creature2DView(final Creature creature) {
-		super(creature);
-
-		this.creature = creature;
-	}
 
 	//
 	// Creature2DView
@@ -134,7 +117,7 @@ class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		String resource = creature.getMetamorphosis();
+		String resource = ((Creature) entity).getMetamorphosis();
 
 		if (resource == null) {
 			resource = getClassResourcePath();

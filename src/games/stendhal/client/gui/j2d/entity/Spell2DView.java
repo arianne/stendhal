@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Spell;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
@@ -21,15 +20,6 @@ import java.util.List;
  * The 2D view of a spell.
  */
 class Spell2DView extends Entity2DView {
-	/**
-	 * Create a 2D view of a spell.
-	 * 
-	 * @param spell
-	 *            The entity to render.
-	 */
-	public Spell2DView(final Spell spell) {
-		super(spell);
-	}
 
 	//
 	// Entity2DView

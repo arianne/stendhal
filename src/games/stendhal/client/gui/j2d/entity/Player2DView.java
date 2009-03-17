@@ -13,6 +13,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -47,11 +48,6 @@ class Player2DView extends RPEntity2DView {
 	 */
 	private static Sprite skullSprite;
 
-	/**
-	 * The player entity.
-	 */
-	private final Player player;
-
 	static {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite gotAwaySprite = store.getSprite("data/sprites/ideas/away.png");
@@ -66,17 +62,6 @@ class Player2DView extends RPEntity2DView {
 				2000);
 	}
 
-	/**
-	 * Create a 2D view of a player.
-	 * 
-	 * @param player
-	 *            The entity to render.
-	 */
-	public Player2DView(final Player player) {
-		super(player);
-
-		this.player = player;
-	}
 
 	//
 	// RPEntity2DView
@@ -113,7 +98,7 @@ class Player2DView extends RPEntity2DView {
 		final OutfitStore store = OutfitStore.get();
 
 		try {
-			return store.getOutfit(player.getOutfit());
+			return store.getOutfit(((RPEntity) entity).getOutfit());
 		} catch (final Exception e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
@@ -151,7 +136,7 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (!player.isGhostMode()) {
+		if (!((RPEntity) entity).isGhostMode()) {
 			super.buildActions(list);
 
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
@@ -170,13 +155,13 @@ class Player2DView extends RPEntity2DView {
 			final IGameScreen gameScreen) {
 		super.draw(g2d, x, y, width, height, gameScreen);
 
-		if (player.isAway()) {
+		if (((Player) entity).isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
-		if (player.isGrumpy()) {
+		if (((Player) entity).isGrumpy()) {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
-		if (player.isBadBoy()) {
+		if (((Player) entity).isBadBoy()) {
 			skullSprite.draw(g2d, x , y);
 		}
 	

@@ -21,22 +21,6 @@ import java.util.Map;
  * The 2D view of blood.
  */
 class Blood2DView extends StateEntity2DView {
-	/**
-	 * The blood entity.
-	 */
-	protected Blood blood;
-
-	/**
-	 * Create a 2D view of blood.
-	 * 
-	 * @param blood
-	 *            The entity to render.
-	 */
-	public Blood2DView(final Blood blood) {
-		super(blood);
-
-		this.blood = blood;
-	}
 
 	//
 	// StateEntity2DView
@@ -73,7 +57,7 @@ class Blood2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return blood.getAmount();
+		return ((Blood) entity).getAmount();
 	}
 
 	//

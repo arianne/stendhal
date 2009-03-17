@@ -9,42 +9,10 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.entity.Blood;
-import games.stendhal.client.entity.BossCreature;
-import games.stendhal.client.entity.Box;
-import games.stendhal.client.entity.CarrotGrower;
-import games.stendhal.client.entity.Chest;
-import games.stendhal.client.entity.Corpse;
-import games.stendhal.client.entity.Creature;
-import games.stendhal.client.entity.Door;
-import games.stendhal.client.entity.Fire;
-import games.stendhal.client.entity.FishSource;
-import games.stendhal.client.entity.Gate;
-import games.stendhal.client.entity.GoldSource;
-import games.stendhal.client.entity.GrainField;
-import games.stendhal.client.entity.HousePortal;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.Triple;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.InvisibleEntity;
-import games.stendhal.client.entity.Item;
-import games.stendhal.client.entity.NPC;
-import games.stendhal.client.entity.Pet;
-import games.stendhal.client.entity.PlantGrower;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.Portal;
-import games.stendhal.client.entity.Ring;
-import games.stendhal.client.entity.Sheep;
-import games.stendhal.client.entity.SheepFood;
-import games.stendhal.client.entity.Sign;
-import games.stendhal.client.entity.Spell;
-import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.entity.UseableItem;
-import games.stendhal.client.entity.UseableRing;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.entity.WalkBlocker;
-import games.stendhal.client.entity.WellSource;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,21 +27,17 @@ public class EntityViewFactory {
 	 */
 	private static final Logger LOGGER = Logger.getLogger(EntityViewFactory.class);
 
+
+	private static Map<Triple<String, String, String>, Class< ? extends EntityView>> viewMap = new HashMap<Triple<String, String, String>, Class< ? extends EntityView>>();
 	/**
 	 * The shared instance.
 	 */
 	private static final EntityViewFactory sharedInstance = new EntityViewFactory();
 
 	/**
-	 * The model-to-view class map.
-	 */
-	protected Map<Class< ? extends IEntity>, Class< ? extends EntityView>> map;
-
-	/**
 	 * Create an entity view factory.
 	 */
 	public EntityViewFactory() {
-		map = new HashMap<Class< ? extends IEntity>, Class< ? extends EntityView>>();
 
 		configure();
 	}
@@ -82,6 +46,33 @@ public class EntityViewFactory {
 	// Entity2DViewFactory
 	//
 
+	
+	
+	/**
+	 * @param type
+	 *            the type of the entity to be created, such as Item, creature
+	 * @param eclass
+	 *            the subtype of type such as book, drink, food , ,
+	 *            small_animal, huge_animal
+	 * @param subClass
+	 * 
+	 * @return the java class of the Entity belonging to type and eclass
+	 */
+	public static Class< ? extends EntityView> getClass(final String type,
+			final String eclass, final String subClass) {
+		Class< ? extends EntityView> result = viewMap.get(new Triple<String, String, String>(type, eclass, subClass));
+		if (result == null) {
+			result = viewMap.get(new Triple<String, String, String>(type,
+					eclass, null));
+		}
+		if (result == null) {
+			result = viewMap.get(new Triple<String, String, String>(type,
+					null, null));
+		}
+		return result;
+	}
+	
+	
 	/**
 	 * Create an entity view from an entity.
 	 * 
@@ -90,81 +81,164 @@ public class EntityViewFactory {
 	 * 
 	 * @return The corresponding view, or <code>null</code>.
 	 */
-	public EntityView create(final IEntity entity) {
-		final Class< ? extends IEntity> entityClass =  entity.getClass();
-		final Class< ? extends EntityView> viewClass = map.get(entityClass);
+	public static EntityView create(final IEntity entity) {
+		
+		try {
+			final String type = entity.getType();
 
-		if (viewClass == null) {
+			if (type.equals("player") && StendhalClient.get().getAccountUsername().equalsIgnoreCase(
+						entity.getName())) {
+				User2DView user2DView = new User2DView();
+				user2DView.initialize(entity);
+				return user2DView;
+			}
+		
+			String eclass = entity.getEntityClass();
+			String subClass = entity.getEntitySubClass();
+
+			
+			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
+			if (entityClass == null) {
+					return null;
+			}
+
+			final EntityView en = (EntityView) entityClass.newInstance();
+			en.initialize(entity);
+
+			return en;
+		} catch (final Exception e) {
+			LOGGER.error("Error creating entity for object: " + entity, e);
 			return null;
 		}
+		
 
-		try {
-			final Constructor< ? extends EntityView> cns = viewClass
-					.getConstructor(entity.getClass());
-			final EntityView view = cns.newInstance(entity);
 
-			return view;
-		} catch (final SecurityException e) {
-
-			LOGGER.error(e);
-		} catch (final NoSuchMethodException e) {
-
-			LOGGER.error(e);
-		} catch (final IllegalArgumentException e) {
-
-			LOGGER.error(e);
-		} catch (final InstantiationException e) {
-
-			LOGGER.error(e);
-		} catch (final IllegalAccessException e) {
-
-			LOGGER.error(e);
-		} catch (final InvocationTargetException e) {
-
-			LOGGER.error(e);
+	}
+	/**
+	 * @param type
+	 *            the type of the entity to be created, such as Item, creature
+	 * @param eclass
+	 *            the subtype of type such as book, drink, food , ,
+	 *            small_animal, huge_animal
+	 * @param subClass
+	 * 
+	 * @return the java class of the Entity belonging to type and eclass
+	 */
+	public static Class< ? extends EntityView> getViewClass(final String type,
+			final String eclass, final String subClass) {
+		Class< ? extends EntityView> result = viewMap
+				.get(new Triple<String, String, String>(type, eclass, subClass));
+		if (result == null) {
+			result = viewMap.get(new Triple<String, String, String>(type,
+					eclass, null));
 		}
-		return null;
-
+		if (result == null) {
+			result = viewMap.get(new Triple<String, String, String>(type,
+					null, null));
+		}
+		return result;
 	}
 
 	/**
 	 * Configure the view map.
 	 */
 	protected void configure() {
-		register(Blood.class, Blood2DView.class);
-		register(BossCreature.class, BossCreature2DView.class);
-		register(Box.class, Box2DView.class);
-		register(CarrotGrower.class, CarrotGrower2DView.class);
-		register(Chest.class, Chest2DView.class);
-		register(Corpse.class, Corpse2DView.class);
-		register(Creature.class, Creature2DView.class);
-		register(Door.class, Door2DView.class);
-		register(Fire.class, AnimatedLoopEntity2DView.class);
-		register(FishSource.class, FishSource2DView.class);
-		register(Gate.class, Gate2DView.class);
-		register(GoldSource.class, GoldSource2DView.class);
-		register(GrainField.class, GrainField2DView.class);
-		register(HousePortal.class, HousePortal2DView.class);
-		register(InvisibleEntity.class, InvisibleEntity2DView.class);
-		register(Item.class, Item2DView.class);
-		register(NPC.class, NPC2DView.class);
-		register(Pet.class, Pet2DView.class);
-		register(PlantGrower.class, PlantGrower2DView.class);
-		register(Player.class, Player2DView.class);
-		register(Portal.class, Portal2DView.class);
-		register(Ring.class, Ring2DView.class);
-		register(Sheep.class, Sheep2DView.class);
-		register(SheepFood.class, SheepFood2DView.class);
-		register(Sign.class, Sign2DView.class);
-		register(Spell.class, Spell2DView.class);
-		register(StackableItem.class, StackableItem2DView.class);
-		register(UseableItem.class, UseableItem2DView.class);
-		register(UseableRing.class, UseableRing2DView.class);
-		register(User.class, User2DView.class);
-		register(WalkBlocker.class, WalkBlocker2DView.class);
-		register(WellSource.class, WellSource2DView.class);
+		
+		register("blood", null, null, Blood2DView.class);
+		register("creature", "boss", null, BossCreature2DView.class);
+		
+		register("item", "box", null, Box2DView.class);
+		
+		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower2DView.class);
+		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower2DView.class);
+		register("chest", null, null, Chest2DView.class);
+		register("corpse", null, null, Corpse2DView.class);
+		
+		register("creature", null, null, Creature2DView.class);
+		
+		register("door", null, null, Door2DView.class);
+	
+		register("fire", null, null, AnimatedLoopEntity2DView.class);
+		register("fish_source", null, null, FishSource2DView.class);
+
+		
+		register("gate", null, null, Gate2DView.class);
+		
+		register("gold_source", null, null, GoldSource2DView.class);
+		
+		register("growing_entity_spawner", null, null, GrainField2DView.class);
+		
+		register("house_portal", null, null, HousePortal2DView.class);
+		
+		register("area", null, null,  InvisibleEntity2DView.class);
+		
+	    register("item", "special", "mithril clasp", Item2DView.class);
+		register("item", null, null,  Item2DView.class);
+		register("npc", null, null, NPC2DView.class);
+		
+		register("cat", null, null, Pet2DView.class);
+		register("pet", null, null, Pet2DView.class);
+		register("baby_dragon", null, null, Pet2DView.class);
+		
+		register("plant_grower", null, null, PlantGrower2DView.class);
+		
+		register("player", null, null, Player2DView.class);
+		
+		register("portal", null, null, Portal2DView.class);
+		
+		register("item", "ring", "emerald-ring", Ring2DView.class);
+		
+		register("sheep", null, null,  Sheep2DView.class);
+		register("food", null, null, SheepFood2DView.class);
+		
+		register("sign", null, null,  Sign2DView.class);
+		register("blackboard", null, null,  Sign2DView.class);
+		
+		register("item", "jewellery", null,  StackableItem2DView.class);
+		register("item", "flower", null,  StackableItem2DView.class);
+		register("item", "resource", null,  StackableItem2DView.class);
+		register("item", "herb", null, StackableItem2DView.class);
+		register("item", "misc", null,  StackableItem2DView.class);
+		register("item", "money", null,  StackableItem2DView.class);
+		register("item", "missile", null,  StackableItem2DView.class);
+		register("item", "ammunition", null,  StackableItem2DView.class);
+		register("item", "container", null,  StackableItem2DView.class);
+        register("item", "special", null,  StackableItem2DView.class);
+		
+		
+		register("item", "club", "wizard_staff",  UseableItem2DView.class);
+        register("item", "misc", "seed", UseableItem2DView.class);
+
+		register("item", "scroll", null,  UseableItem2DView.class);
+
+		register("item", "food", null, UseableItem2DView.class);
+		register("item", "drink", null,  UseableItem2DView.class);
+		register("item", "tool", "foodmill",  UseableItem2DView.class);
+		
+		register("item", "ring", null, UseableRing2DView.class);
+		
+		register("walkblocker", null, null, WalkBlocker2DView.class);
+		register("well_source", null, null, WellSource2DView.class);
 	}
 
+	/**
+	 * @param type
+	 *            the type of the entity to be created, such as Item, creature
+	 * @param eclass
+	 *            the subtype of type such as book, drink, food , ,
+	 *            small_animal, huge_animal
+	 * @param subClass 
+	 * @param entityClazz
+	 *            the java class of the Entity
+	 */
+	private static void register(final String type, final String eclass,
+			final String subClass, final Class< ? extends EntityView> entityClazz) {
+		viewMap.put(
+				new Triple<String, String, String>(type, eclass, subClass),
+				entityClazz);
+	}
+
+	
 	/**
 	 * Get the shared [singleton] instance.
 	 * 
@@ -174,16 +248,5 @@ public class EntityViewFactory {
 		return sharedInstance;
 	}
 
-	/**
-	 * Register an entity model-to-view mapping.
-	 * 
-	 * @param entityClass
-	 *            The entity model class.
-	 * @param viewClass
-	 *            The entity view class.
-	 */
-	private void register(final Class< ? extends IEntity> entityClass,
-			final Class< ? extends EntityView> viewClass) {
-		map.put(entityClass, viewClass);
-	}
+	
 }

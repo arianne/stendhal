@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
@@ -51,11 +52,6 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	protected boolean ideaChanged;
 	
 	/**
-	 * The entity this view is for.
-	 */
-	private final DomesticAnimal animal;
-
-	/**
 	 * The current idea sprite.
 	 */
 	private Sprite ideaSprite;
@@ -68,10 +64,8 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * @param animal
 	 *            The entity to render.
 	 */
-	public DomesticAnimal2DView(final DomesticAnimal animal) {
-		super(animal);
+	public DomesticAnimal2DView() {
 
-		this.animal = animal;
 		ideaSprite = null;
 		ideaChanged = false;
 	}
@@ -82,10 +76,10 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	@Override
 	protected Sprite getSprite(final Object state) {
-		if (animal.getWeight() < getBigWeight()) {
+		if (((DomesticAnimal) entity).getWeight() < getBigWeight()) {
 			return super.getSprite(state);
 		}
-		switch (rpentity.getDirection()) {
+		switch (((ActiveEntity) entity).getDirection()) {
 		case LEFT:
 			return sprites.get(STATE_BIG_LEFT);
 
@@ -120,7 +114,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * @return The sprite representing the current idea, or null.
 	 */
 	protected Sprite getIdeaSprite() {
-		final String idea = animal.getIdea();
+		final String idea = ((DomesticAnimal) entity).getIdea();
 
 		if (idea == null) {
 			return null;
@@ -268,7 +262,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case OWN:
-			at.send(at.fillTargetInfo(animal.getRPObject()));
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

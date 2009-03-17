@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Sign;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
@@ -22,15 +21,6 @@ import java.util.List;
  */
 class Sign2DView extends Entity2DView {
 
-	/**
-	 * Create a 2D view of a sign.
-	 * 
-	 * @param sign
-	 *            The entity to render.
-	 */
-	public Sign2DView(final Sign sign) {
-		super(sign);
-	}
 
 	//
 	// Entity2DView

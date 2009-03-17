@@ -12,7 +12,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
@@ -33,16 +32,7 @@ class NPC2DView extends RPEntity2DView {
 	 */
 	private static final Logger logger = Logger.getLogger(NPC2DView.class);
 
-	/**
-	 * Create a 2D view of an NPC.
-	 * 
-	 * @param npc
-	 *            The entity to render.
-	 */
-	public NPC2DView(final NPC npc) {
-		super(npc);
-	}
-
+	
 	//
 	// RPEntity2DView
 	//
@@ -57,7 +47,7 @@ class NPC2DView extends RPEntity2DView {
 		final SpriteStore store = SpriteStore.get();
 
 		try {
-			final int code = rpentity.getOutfit();
+			final int code = ((RPEntity) entity).getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
 				return OutfitStore.get().getOutfit(code);

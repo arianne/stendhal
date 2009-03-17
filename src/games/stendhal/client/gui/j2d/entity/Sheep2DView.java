@@ -24,16 +24,6 @@ class Sheep2DView extends DomesticAnimal2DView {
 	 */
 	protected static final int BIG_WEIGHT = 60;
 
-	/**
-	 * Create a 2D view of a sheep.
-	 * 
-	 * @param sheep
-	 *            The entity to render.
-	 */
-	public Sheep2DView(final Sheep sheep) {
-		super(sheep);
-	}
-
 	//
 	// DomesticAnimal2DView
 	//

@@ -37,23 +37,13 @@ class GrainField2DView extends StateEntity2DView {
 	private static final Logger LOGGER = Logger.getLogger(RPEntity2DView.class);
 
 	/**
-	 * The grain field entity.
-	 */
-	private final GrainField GRAIN_FIELD;
-
-	
-
-	/**
 	 * Create a 2D view of a grain field.
 	 * 
 	 * @param grainField
 	 *            The entity to render.
 	 */
-	public GrainField2DView(final GrainField grainField) {
-		super(grainField);
-
-		this.GRAIN_FIELD = grainField;
-
+	public GrainField2DView() {
+		super();
 		states = 0;
 	}
 
@@ -77,7 +67,7 @@ class GrainField2DView extends StateEntity2DView {
 		height = getHeight();
 		width = getWidth();
 
-		clazz = GRAIN_FIELD.getEntityClass();
+		clazz = entity.getEntityClass();
 
 		if (clazz == null) {
 			LOGGER.warn("No entity class set");
@@ -87,7 +77,7 @@ class GrainField2DView extends StateEntity2DView {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(clazz.replace(" ", "_")));
 
-		states = GRAIN_FIELD.getMaximumRipeness() + 1;
+		states = ((GrainField) entity).getMaximumRipeness() + 1;
 
 		final int theight = tiles.getHeight();
 		final int imageStates = theight / height;
@@ -116,7 +106,7 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return Integer.valueOf(GRAIN_FIELD.getRipeness());
+		return Integer.valueOf(((GrainField) entity).getRipeness());
 	}
 
 	//
@@ -144,7 +134,7 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	public int getHeight() {
-		return (int) (GRAIN_FIELD.getHeight() * IGameScreen.SIZE_UNIT_PIXELS);
+		return (int) (entity.getHeight() * IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
@@ -154,7 +144,7 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	public int getWidth() {
-		return (int) (GRAIN_FIELD.getWidth() * IGameScreen.SIZE_UNIT_PIXELS);
+		return (int) (entity.getWidth() * IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
