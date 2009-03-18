@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.EquipListener;
@@ -49,7 +50,7 @@ public class Corpse extends PassiveEntity implements
 	private static final Logger logger = Logger.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
-	private static final int DEGRADATION_TIMEOUT = 15 * 60;
+	private static final int DEGRADATION_TIMEOUT = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
 	
 	/** number of degradation steps. */
 	private static final int MAX_STAGE = 5; 
@@ -230,24 +231,11 @@ public class Corpse extends PassiveEntity implements
 	private void modify() {
 		if (getZone() != null) {
 			if (isContained()) {
-				SingletonRepository.getRPWorld().modify(getBase());
+				SingletonRepository.getRPWorld().modify(getBaseContainer());
 			} else {
 				notifyWorldAboutChanges();
 			}
 		}
-	}
-
-	private RPObject getBase() {
-		RPObject base = getContainer();
-		while (base.isContained()) {
-			if (base == base.getContainer()) {
-				logger.error("A corpse is contained by itself.");
-				break;
-			}
-
-			base = base.getContainer();
-		}
-		return base;
 	}
 
 	private boolean isCompletelyRotten() {
@@ -261,18 +249,8 @@ public class Corpse extends PassiveEntity implements
 
 	public void onTurnReached(final int currentTurn) {
 		if (isCompletelyRotten()) {
-			if (isContained()) {
-				// We modify the base container if the object change.
-
-				SingletonRepository.getRPWorld().modify(getBase());
-
-				getContainerSlot().remove(this.getID());
-			} else {
-				SingletonRepository.getRPWorld().remove(getID());
-			}
-
+				this.getZone().remove(this);
 		} else {
-			
 			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this.turnlistener);
 		}
 	}
