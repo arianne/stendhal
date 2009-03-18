@@ -386,7 +386,7 @@ public class j2DClient {
 		settings.add(character, "Enable Character", gameScreen);
 
 		createAndAddOldBag(gameScreen);
-		createAndAddNewBag(mainFrameContentPane);
+		//createAndAddNewBag(mainFrameContentPane);
 		
 		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
@@ -394,7 +394,7 @@ public class j2DClient {
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 		
 		createAndAddOldBuddies(gameScreen);
-		createAndAddNewBuddy(mainFrameContentPane);
+		//createAndAddNewBuddy(mainFrameContentPane);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
