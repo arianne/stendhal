@@ -72,7 +72,6 @@ public class Corpse extends PassiveEntity implements
 	
 	@Override
 	public void onRemoved(final StendhalRPZone zone) {
-		System .out.println("onremoved called");
 		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
 		super.onRemoved(zone);
 	}
