@@ -2,7 +2,10 @@ package games.stendhal.tools.playerUpdate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.rule.EntityManager;
@@ -14,12 +17,8 @@ import games.stendhal.tools.modifer.PlayerModifier;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import marauroa.common.game.RPObject;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import utilities.PlayerTestHelper;
 
 public class UpdatePlayerEntitiesTest {
 
@@ -31,18 +30,36 @@ public class UpdatePlayerEntitiesTest {
 	@Test
 	public void testDoUpdate() throws SQLException, IOException {
 		StendhalPlayerDatabase spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
-		EntityManager em = SingletonRepository.getEntityManager();
+		
 		PlayerModifier pm = new PlayerModifier();
 		pm.setDatabase(spdb);
-		Player p = PlayerTestHelper.createPlayer("madmetzger");
-		p.equip((Item) em.getEntity("leather armor"), 1);
-		p.getSlot("bag").getFirst().put("name", "leather_armor_+1");
-		pm.savePlayer(p);
+		Player loaded = pm.loadPlayer("george");
+		assertNotNull("pm can only handle existing players, so if this fails first create a player in db by login", loaded);
+		
+		loaded.getSlot("bag").remove(loaded.getSlot("bag").getFirst().getID());
+		assertEquals(null, loaded.getSlot("bag").getFirst());
+		
+		EntityManager em = SingletonRepository.getEntityManager();
+		Item item = (Item) em.getItem("leather armor");
+		item.put("name", "leather_armor_+1");
+		loaded.equipToInventoryOnly(item);
+		assertThat(loaded.getSlot("bag").getFirst().get("name"), is("leather_armor_+1"));
+
+		assertTrue(pm.savePlayer(loaded));
+
 		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
-		updatePlayerEntities.createPlayerFromRPO((RPObject) p);
-		updatePlayerEntities.savePlayer(p);
-		Player loaded = pm.loadPlayer("madmetzger");
-		assertThat(loaded.getSlot("bag").getFirst().get("name"), not(is("leather_armor_+1")));
+		Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
+		updatePlayerEntities.savePlayer(changing);
+		
+		
+		
+		
+		Player secondLoaded = pm.loadPlayer("george");
+		assertNotNull(secondLoaded);
+		
+		assertNotNull(secondLoaded.getSlot("bag"));
+		assertNotNull(secondLoaded.getSlot("bag").getFirst());
+		assertThat(secondLoaded.getSlot("bag").getFirst().get("name"), not(is("leather_armor_+1")));
 	}
 
 }
