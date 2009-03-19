@@ -14,6 +14,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+
 /**
  * House tax, and confiscation of houses
  */
@@ -138,9 +140,20 @@ public class HouseTax implements TurnListener {
 					confiscate(portal);
 				} else if ((payments > 0) && ((timeDiffSeconds % TAX_PAYMENT_PERIOD) < (timeSinceChecked / 1000))) {
 					// a new tax payment period has passed since the last check. notify the player
-					notifyIfNeeded(owner, "You have not paid your house tax for " 
+					String remainder;
+					if (payments == MAX_UNPAID_TAXES) {
+						// Give a final warning if appropriate
+						remainder = " This is your final warning, if you do not pay your taxes within a month then "
+							+ "your house will be made available for others to buy, and the locks will be changed. " 
+							+ "You will be unable to access your house or its chest.";
+
+					} else {
+						remainder = " Pay promptly, as I charge interest on debts owed. And if you fail to pay for " 
+							+ Integer.toString(MAX_UNPAID_TAXES + 1) + " months, your house will be repossessed."; 
+					}
+					notifyIfNeeded(owner, "You owe " +  Integer.toString(getTaxDebt(payments)) + " money in house tax for " 
 							+ Grammar.quantityplnoun(payments, "month") 
-							+ ". Come to Ados townhall to pay your debts to the state.");
+							+ ". You may come to Ados Townhall to pay your debt." + remainder);
 				}
 			}
 		}
@@ -152,8 +165,9 @@ public class HouseTax implements TurnListener {
 	 * @param portal the door of the house to confiscate
 	 */
 	private void confiscate(HousePortal portal) {
-		notifyIfNeeded(portal.getOwner(), "You have negleted your house taxes too long. The house has been confiscated to cover the your debts to the crown.");
-		logger.info("confiscated " + portal.getDoorId() + ", which used to belong to " + portal.getOwner());
+		notifyIfNeeded(portal.getOwner(), "You have neglected to pay your house taxes for too long. "
+					   + "Your house has been repossessed to cover the debt to the state.");
+		logger.info("repossessed " + portal.getDoorId() + ", which used to belong to " + portal.getOwner());
 		portal.changeLock();
 		portal.setOwner("");
 	}
@@ -195,6 +209,18 @@ public class HouseTax implements TurnListener {
 		"Do you want to pay your taxes now?", 
 		null);
 		
+		taxman.add(ConversationStates.ATTENDING,
+				   Arrays.asList("pay", "payment"),
+				   new ChatCondition() {
+					   public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						   return getUnpaidTaxPeriods(player) <= 0;
+					   }
+				   },
+				   ConversationStates.ATTENDING,
+				   "According to my records you don't currently owe any tax. House owners will get notified by "
+				   + "myself through the postman as soon as they owe money.", 
+				   null);
+		
 		taxman.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -207,14 +233,21 @@ public class HouseTax implements TurnListener {
 						if (player.isEquipped("money", cost)) {
 							player.drop("money", cost);
 							setTaxesPaid(player, periods);
-							npc.say("Thank you! You have paid your taxes for last " 
+							npc.say("Thank you! You have paid your taxes of " + Integer.toString(cost) + " money for the last " 
 									+ Grammar.quantityplnoun(periods, "month")
 									+ ".");
 						} else {
 							npc.say("You don't have enough money to pay your taxes. You need at least" 
-									+ cost + ".");
+									+ cost + " money. Don't delay or the interest on what you owe will increase.");
 						}
 				}
 			});
+
+		taxman.add(ConversationStates.QUESTION_1,
+				   ConversationPhrases.NO_MESSAGES,
+				   null,
+				   ConversationStates.ATTENDING,
+				   "Very well, but don't delay too long, as the interest on what you owe will increase.",
+				   null);
 	}
 }
