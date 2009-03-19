@@ -150,7 +150,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 																					"house key");
 					final String doorId = location + " house " + itemName;
 
-					final int locknumber = houseportal.getLockNumber() + 1;
+					final int locknumber = houseportal.getLockNumber();
 					((HouseKey) key).setup(doorId, locknumber, player.getName());
 				
 					if (player.equipToInventoryOnly(key)) {
@@ -270,11 +270,12 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				portal.setOwner("");
 				// the player has sold the house. clear the slot
 				player.removeQuest(QUEST_SLOT);
-				// TODO: say something better like how much money they got back
-				engine.say("Thanks. You don't own a house now.");
+				engine.say("Thanks, here is your " + Integer.toString(cost)
+						   + " money owed, from the house value, minus any owed taxes. Now that you don't own a house "
+						   + "you would be free to buy another if you want to.");
 			} catch (final NumberFormatException e) {
 				logger.error("Invalid number in house slot", e);
-				engine.say("Sorry something bad happened. I'm terribly embarassed.");
+				engine.say("Sorry, something bad happened. I'm terribly embarassed.");
 				return;
 			}
 		}
@@ -447,7 +448,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					+ " percent of the price you paid for your house, minus any taxes you owe. You should remember to collect any belongings from your house before you sell it. Do you really want to sell your house to the state?",
 					null);
 
-				// player is eligible to resell a house
+				// player is not eligible to resell a house
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("resell", "sell"),
 					new NotCondition(new PlayerOwnsHouseCondition()),
@@ -631,6 +632,40 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
 					null);
 
+				// player is eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.QUESTION_3, 
+					"The state will pay you "
+					+ Integer.toString(DEPRECIATION_PERCENTAGE)
+					+ " percent of the price you paid for your house, minus any taxes you owe. You should remember to collect any belongings from your house before you sell it. Do you really want to sell your house to the state?",
+					null);
+
+				// player is not eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					null);
+
+				// accepted offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ResellHouseAction());
+
+				// refused offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"Well, I'm glad you changed your mind.",
+					null);
+
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
                 addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");
 				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
@@ -752,6 +787,40 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING,
 					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
+					null);
+
+				// player is eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.QUESTION_3, 
+					"The state will pay you "
+					+ Integer.toString(DEPRECIATION_PERCENTAGE)
+					+ " percent of the price you paid for your house, minus any taxes you owe. You should remember to collect any belongings from your house before you sell it. Do you really want to sell your house to the state?",
+					null);
+
+				// player is not eligible to resell a house
+				add(ConversationStates.ATTENDING, 
+					Arrays.asList("resell", "sell"),
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					null);
+
+				// accepted offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ResellHouseAction());
+
+				// refused offer to resell a house
+				add(ConversationStates.QUESTION_3,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"Well, I'm glad you changed your mind.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
