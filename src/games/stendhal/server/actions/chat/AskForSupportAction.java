@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 
@@ -27,7 +28,7 @@ public class AskForSupportAction  implements ActionListener {
 				return;
 			}
 
-			if (Jail.isInJail(player)) {
+			if (Jail.isInJail(player) || GagManager.isGagged(player)) {
 				// check if the player sent a support message before
 				if (lastMsg.containsKey(player.getName())) {
 					final Long timeLastMsg = System.currentTimeMillis()
@@ -36,7 +37,7 @@ public class AskForSupportAction  implements ActionListener {
 					// the player have to wait one minute since the last support
 					// message was sent
 					if (timeLastMsg < 60000) {
-						player.sendPrivateText("We only allow inmates one support message per minute.");
+						player.sendPrivateText("Until your sentence is over you may only send one support message per minute.");
 						return;
 					}
 				}
