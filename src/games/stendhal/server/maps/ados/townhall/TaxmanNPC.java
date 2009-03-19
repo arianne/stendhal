@@ -48,7 +48,7 @@ public class TaxmanNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello. What do you want?");
-				addJob("I calculate the duty and taxes owed by each trader in the land. It's the ones who buy weapons that I have to be most careful of.");
+				addJob("I calculate the duty and taxes owed by each trader in the land. It's the ones who buy weapons that I have to be most careful of. I also take #payment of owed house taxes.");
 				addHelp("I expect you are wondering what this chaos here is. Well, each book you see is for a different shop or trade. I can work out how much to tax the shop owner. But don't poke your nose into them, it's private business!");
 				addOffer("Me? Trade? You have it all wrong! I'm the tax man. It's my job to keep an eye on all traders across the land. That's why I have so many books open, I have to know exactly what these shopkeepers are doing.");
 				addQuest("Ask Mayor Chalmers upstairs what Ados needs.");
