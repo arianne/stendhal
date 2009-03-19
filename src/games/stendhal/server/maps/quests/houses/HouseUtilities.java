@@ -18,9 +18,7 @@ public class HouseUtilities {
 		"0_kalavan_city",
 		"0_kirdneh_city",
 		"0_ados_city_n",
-		"0_ados_city",
-		"int_ados_town_hall_3",
-		"int_kirdneh_townhall"
+		"0_ados_city"
 	};
 	
 	private static List<HousePortal> allHousePortals = null;
