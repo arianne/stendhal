@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
@@ -108,5 +111,31 @@ public class HouseUtilities {
 		logger.debug("Number of house portals in world is " + Integer.toString(size));
 		
 		return allHousePortals;
+	}
+
+	/**
+	 * Find a chest corresponding to a house portal.
+	 * 
+	 * @param portal the house portal of the house containing the chest we want to find
+	 * @return the chest in the house, or <code>null</code> if there is no
+	 * chest in the zone which the house portal leads to (Note, then, that chests should be on the 'ground floor')
+	 */
+
+	public static StoredChest findChest(HousePortal portal) {
+		final String zoneName = portal.getDestinationZone();
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
+		
+		final List<Entity> chests = zone.getFilteredEntities(new FilterCriteria<Entity>() {
+			public boolean passes(Entity object) {
+				return (object instanceof StoredChest);
+			}
+		});
+		
+		if (chests.size() != 1) {
+			logger.error(chests.size() + " chests in " + portal.getDoorId());
+			return null;
+		}
+		
+		return (StoredChest) chests.get(0);
 	}
 }
