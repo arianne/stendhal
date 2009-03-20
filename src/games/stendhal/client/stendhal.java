@@ -32,7 +32,7 @@ public class stendhal {
 	public static boolean doLogin;
 
 	public static String STENDHAL_FOLDER;
-
+	public static final String GAME_NAME ;
 	/**
 	 * Just a try to get Webstart working without additional rights.
 	 */
@@ -47,8 +47,8 @@ public class stendhal {
 		}
 
 		/** We set the main game folder to the game name */
-		final String gameName = ClientGameConfiguration.get("GAME_NAME");
-		STENDHAL_FOLDER = "/" + gameName.toLowerCase() + "/";
+		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
+		STENDHAL_FOLDER = "/" + GAME_NAME.toLowerCase() + "/";
 	}
 
 	public static final String VERSION = Version.VERSION;
