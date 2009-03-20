@@ -30,8 +30,6 @@ public class HousesFromPostman extends ScriptImpl {
 		"0_kirdneh_city",
 		"0_ados_city_n",
 		"0_ados_city",
-		"int_ados_town_hall_3",
-		"int_kirdneh_townhall"
 	};
 	
 	private List<HousePortal> portals = null;
@@ -54,11 +52,9 @@ public class HousesFromPostman extends ScriptImpl {
 		for (HousePortal portal : portals) {
 			if (portal.getPortalNumber() == number) {
 				portal.setOwner("an unknown owner");
-				
-				// set the tax to be paid in 10 days
+							
 				long time = System.currentTimeMillis();
-				//  ms -> s -> min ->h -> d * 10;
-				//time += 1000 * 60 * 60 * 24 * 10;
+			
 				portal.setExpireTime(time);
 				
 				fillChest(findChest(portal));
@@ -93,7 +89,9 @@ public class HousesFromPostman extends ScriptImpl {
 		Item item = SingletonRepository.getEntityManager().getItem("note");
 		item.setDescription("INFORMATION TO THE HOUSE OWNER\n"
 				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
-				+ "2. All people who can get in the house can use the chest.\n");
+				+ "2. All people who can get in the house can use the chest.\n"
+				+ "3. Remember to change your locks as soon as the security of your house is compromised.\n"
+				+ "4. You can resell your house to the state if wished (please don't leave me)\n");
 		chest.add(item);
 		
 		item = SingletonRepository.getEntityManager().getItem("wine");
