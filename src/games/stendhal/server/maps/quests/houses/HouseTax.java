@@ -31,7 +31,7 @@ public class HouseTax implements TurnListener {
 	private static final int MAX_UNPAID_TAXES = 5;
 	
 	/** The base amount of tax per month */
-	private static final int BASE_TAX = 1000;
+	public static final int BASE_TAX = 1000;
 	/** Interest rate for unpaid taxes. The taxman does not give free loans. */
 	private static final double INTEREST_RATE = 0.1;
 	
