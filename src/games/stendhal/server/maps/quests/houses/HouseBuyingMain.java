@@ -9,6 +9,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -156,12 +157,15 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					if (player.equipToInventoryOnly(key)) {
 						engine.say("Congratulations, here is your key to house "
 								   + itemName
-								   + "! Do you want to buy a spare key, at a price of "
+								   + "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
 								   + COST_OF_SPARE_KEY + " money?");
 						
 						player.drop("money", cost);
 						// remember what house they own
 						player.setQuest(QUEST_SLOT, itemName);
+
+						// put nice things and a helpful note in the chest
+						fillChest(HouseUtilities.findChest(houseportal));
 
 						// set the time so that the taxman can start harassing the player
 						final long time = System.currentTimeMillis();
@@ -183,6 +187,24 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 			}
 		}
+	}
+	
+	private void fillChest(StoredChest chest) {
+		Item item = SingletonRepository.getEntityManager().getItem("note");
+		item.setDescription("WELCOME TO THE HOUSE OWNER\n"
+				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
+				+ "2. All people who can get in the house can use the chest.\n"
+				+ "3. Remember to change your locks as soon as the security of your house is compromised.\n"
+				+ "4. You can resell your house to the state if wished (please don't leave me)\n");
+		chest.add(item);
+		
+		item = SingletonRepository.getEntityManager().getItem("wine");
+		((StackableItem) item).setQuantity(2);
+		chest.add(item);
+		
+		item = SingletonRepository.getEntityManager().getItem("chocolate bar");
+		((StackableItem) item).setQuantity(2);
+		chest.add(item);
 	}
 
 	private int getCost(final String location) {
@@ -236,7 +258,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				if (player.equipToInventoryOnly(key)) {
 					player.drop("money", COST_OF_SPARE_KEY);
-					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+					engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust! Anyone with a spare key can access your chest, and tell anyone that you give a key to, to let you know if they lose it. If that happens, you should #change your locks.");
 				} else {
 					engine.say("Sorry, you can't carry more keys!");
 				}
@@ -277,6 +299,47 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				logger.error("Invalid number in house slot", e);
 				engine.say("Sorry, something bad happened. I'm terribly embarassed.");
 				return;
+			}
+		}
+	}
+
+	private final class ChangeLockAction implements ChatAction {
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+				// we need to find out which this houseportal is so we can change lock
+				final String claimedHouse = player.getQuest(QUEST_SLOT);
+				
+				try {
+					final int id = Integer.parseInt(claimedHouse);
+					final HousePortal portal = HouseUtilities.getHousePortal(id);
+					// change the lock
+					portal.changeLock();
+					// make a new key for the player, with the new locknumber
+					final String doorId = portal.getDoorId();
+					final Item key = SingletonRepository.getEntityManager().getItem("house key");
+					final int locknumber = portal.getLockNumber();
+
+					((HouseKey) key).setup(doorId, locknumber, player.getName());
+					if (player.equipToInventoryOnly(key)) {
+						player.drop("money", COST_OF_SPARE_KEY);
+						engine.say("The locks have been changed for " + doorId + ", here is your new key. Do you want to buy a spare key, at a price of "
+								   + COST_OF_SPARE_KEY + " money?");
+						engine.setCurrentState(ConversationStates.QUESTION_1);
+					} else {
+						// if the player doesn't have the space for the key, change the locks anyway as a security measure, but don't charge.
+						engine.say("The locks have been changed for " 
+								   + doorId + ", but you do not have space to carry the new key. I haven't charged you for this service. "
+								   + "If you want to go away and make space, come back and I will offer you the chance to buy a spare key. Goodbye.");
+						engine.setCurrentState(ConversationStates.IDLE);
+					}
+				} catch (final NumberFormatException e) {
+					logger.error("Invalid number in house slot", e);
+					engine.say("Sorry, something bad happened. I'm terribly embarassed.");
+					return;
+				}
+			} else { 
+				engine.say("You need to pay " + COST_OF_SPARE_KEY + " money to change the lock and get a new key for your house.");
 			}
 		}
 	}
@@ -392,7 +455,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationStates.QUEST_OFFERED, 
 					"The cost of a new house is "
 					+ COST_KALAVAN
-					+ " money. If you have a house in mind, please tell me the number now. I will check availability.",
+					+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
+					+ " money, every month. If you have a house in mind, please tell me the number now. I will check availability.",
 					null);
 
 				// handle house numbers 1 to 25
@@ -410,7 +474,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.YES_MESSAGES,
 					null,
 					ConversationStates.QUESTION_2,
-					"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
+					"Before we go on, I must warn you that anyone with a key to your house can enter it, and access the items in the chest in your house. Do you still wish to buy a spare key?",
 					null);
 
 				// player wants spare keys and is OK with house being accessible
@@ -435,7 +499,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything, just ask. Just so you know, you can #resell your house to me if you want to.",
+					"No problem! Just so you know, if you need to #change your locks, I can do that, and you can also #resell your house to me if you want to.",
 					null);
 
 				// player is eligible to resell a house
@@ -453,7 +517,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					Arrays.asList("resell", "sell"),
 					new NotCondition(new PlayerOwnsHouseCondition()),
 					ConversationStates.ATTENDING, 
-					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
 					null);
 
 				// accepted offer to resell a house
@@ -470,6 +534,39 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING,
 					"Well, I'm glad you changed your mind.",
+					null);
+
+				// player is eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.SERVICE_OFFERED, 
+					"If you are at all worried about the security of your house or, don't trust anyone you gave a spare key to, "
+					+ "it is wise to change your locks. Do you want me to change your house lock and give you a new key now?",
+					null);
+
+				// player is not eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
+					null);
+
+				// accepted offer to change locks
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ChangeLockAction());
+
+				// refused offer to change locks 
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
@@ -585,7 +682,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationStates.QUEST_OFFERED, 
 					"The cost of a new house in Ados is "
 					+ COST_ADOS
-					+ " money. If you have a house in mind, please tell me the number now. I will check availability. "
+					+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
+					+ " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
 					+ "The Ados houses are numbered from 50 to 68.",
 					null);
 
@@ -604,7 +702,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.YES_MESSAGES,
 					null,
 					ConversationStates.QUESTION_2,
-					"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
+					"Before we go on, I must warn you that anyone with a key to your house can enter it, and access the items in the chest in your house. Do you still wish to buy a spare key?",
 					null);
 
 				// player wants spare keys and is OK with house being accessible
@@ -629,7 +727,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
+					"No problem! Just so you know, if you need to #change your locks, I can do that, and you can also #resell your house to me if you want to.",
 					null);
 
 				// player is eligible to resell a house
@@ -647,7 +745,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					Arrays.asList("resell", "sell"),
 					new NotCondition(new PlayerOwnsHouseCondition()),
 					ConversationStates.ATTENDING, 
-					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
 					null);
 
 				// accepted offer to resell a house
@@ -664,6 +762,39 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING,
 					"Well, I'm glad you changed your mind.",
+					null);
+
+				// player is eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.SERVICE_OFFERED, 
+					"If you are at all worried about the security of your house or, don't trust anyone you gave a spare key to, "
+					+ "it is wise to change your locks. Do you want me to change your house lock and give you a new key now?",
+					null);
+
+				// player is not eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
+					null);
+
+				// accepted offer to change locks
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ChangeLockAction());
+
+				// refused offer to change locks 
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
@@ -742,7 +873,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationStates.QUEST_OFFERED, 
 					"The cost of a new house is "
 					+ COST_KIRDNEH
-					+ " money. If you have a house in mind, please tell me the number now. I will check availability. "
+					+ " money.  Also, you must pay a house tax of " + HouseTax.BASE_TAX
+					+ " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
 					+ "Kirdneh Houses are numbered 26 to 49.",
 					null);
 
@@ -761,7 +893,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.YES_MESSAGES,
 					null,
 					ConversationStates.QUESTION_2,
-					"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
+					"Before we go on, I must warn you that anyone with a key to your house can enter it, and access the items in the chest in your house. Do you still wish to buy a spare key?",
 					null);
 
 				// player wants spare keys and is OK with house being accessible
@@ -786,7 +918,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"No problem! If I can help you with anything else, just ask. Just so you know, you can #resell your house to me if you want to.",
+					"No problem! Just so you know, if you need to #change your locks, I can do that, and you can also #resell your house to me if you want to.",
 					null);
 
 				// player is eligible to resell a house
@@ -804,7 +936,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					Arrays.asList("resell", "sell"),
 					new NotCondition(new PlayerOwnsHouseCondition()),
 					ConversationStates.ATTENDING, 
-					"You don't own any house at the moment. If you want to buy one please ask about the #cost",
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
 					null);
 
 				// accepted offer to resell a house
@@ -821,6 +953,39 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING,
 					"Well, I'm glad you changed your mind.",
+					null);
+
+				// player is eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new PlayerOwnsHouseCondition(),
+					ConversationStates.SERVICE_OFFERED, 
+					"If you are at all worried about the security of your house or, don't trust anyone you gave a spare key to, "
+					+ "it is wise to change your locks. Do you want me to change your house lock and give you a new key now?",
+					null);
+
+				// player is not eligible to change locks
+				add(ConversationStates.ATTENDING, 
+					"change",
+					new NotCondition(new PlayerOwnsHouseCondition()),
+					ConversationStates.ATTENDING, 
+					"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
+					null);
+
+				// accepted offer to change locks
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ChangeLockAction());
+
+				// refused offer to change locks 
+				add(ConversationStates.SERVICE_OFFERED,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
