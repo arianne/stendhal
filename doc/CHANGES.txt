@@ -28,6 +28,7 @@ changes it
 - wedding ring checks !visited and pet distance
 - push action sends a feedback message to player if pushing is not allowed
 because of the time limit
+- gagged players can use /support only once per minute
 * Player houses*
 - house doors remember lock number and expiry time
 - house keys only open door if lock number and house number match
@@ -35,9 +36,14 @@ because of the time limit
 to players inside
 - house keys show who owns the house
 - chests which are accessible to everyone in the zone inside each house
+- chests prefilled with a note and gifts for new house owners
 - houses made no teleport In
 - postman no longer used to remember which houses are bought
-
+- house tax charged monthly, if unpaid for 6 months, house confiscated
+- reselling houses is possible, regain 40% of value minus taxes owed
+- changing locks feature
+- can ask npc what houses are available
+- many houses redecorated inside to use new tiles
 
 0.72
 *Features*
