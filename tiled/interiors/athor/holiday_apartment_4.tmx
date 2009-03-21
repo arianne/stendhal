@@ -90,29 +90,95 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="219" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="walls1" firstgid="220" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/ochre_brick_set.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="244" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tan.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="248" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="266" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="284" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floors_4.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="286" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/gazingball_statue.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="316" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/seahorse.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="328" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/romanic_art2.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="332" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/other/furniture_pine.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="348" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/textile/towels.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="354" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/lights_candle.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="378" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/tall_lamp.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="381" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/torch_top.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="385" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/chair/sofa_chair_grey.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="397" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/large_front_on.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="403" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/large_front_on_top_sheet.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="405" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="429" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/table_linen.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="433" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/torch.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="434" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/green.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="438" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/fire/flames.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="440" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door_s.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONgYGDgGMWjeBSPSAwAuACD0gAEAAA=
+   H4sIAAAAAAAAAJNhZGCQGQL4GwMqJlcfqfoptZ9a+kfxKKYFBgCCYIzUAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKXSuRIBURCF4X4BS4J5AbvELhXaJkOGDJklsSSWF/fLZtqdezFd9UWnuqqrTnsikoyQg+fI0+ihpXSR+jJvyOfUY+Y77HHA0bKfR8GQn3DGBVfLfhkVQ37DHQ88Hfd30FTahnyMCfxAnkUiQkblU8wwD+S2frUFlliJu3+TNTbYirt/1+j++zH3Bxhi9Of+r2PqP9iv/oe3IkoS/g9bv1oVNQn/xwtyRRU3AAQAAA==
+   H4sIAAAAAAAAAK2R2QrCMBBFJ58oPolfoyiK4vonvvok+hsuda9aIb65orc4ISGlpi1eOJDMcJltTkS7jCzAEUzBhWkJorbQ/5mVN+Mn9p9JqwNvV+i/Dw78ziGe51wQ4+8h3zf8pgqIFx1+WxuwBVdwA29wT+EPOP8AT+Zl+T0guY6qKZmlkZdWXPnVftWefIru27X/4Y8Z4uZKMr9SCXsvG3dx+UdMqAF8FVAV33cS/xhM/th/DXXrKfo3FfbcAM2Y/j2K3teFuv8K7DOyBh9HD0deAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2RiwqCQBBF99vqRy3TojC2UsiEtAc90W/qLk60jCNrCNGBg9e5ziqoVI2nPmxVk5GVx0JviOAGpkJ3pz6izPGhhjHcCf2Dek2ZM4FBy3dxip77lTDzrZwJ/dPKh47v+SUhXFHew5zyteP+FK5hwuY3ui4c+zNHv3T0cziAQ7o/wjM8secKxzlvzP6F7ZtZKZz5Df/271/VXoKMAAQAAA==
+   H4sIAAAAAAAAALWRyw5FQBBEx995rLgruSsfhmB9cRPvx78pISGUYEQllUw6daY73UJMqsRerHak+qSmKstbU3ZR0RB+XdPBOLMNwl+RDe4ryZ7pT/5d10y8rdkfkr2za5Zl+x9VoFe56XeUZcrA5hue3WqUi5wH+5I7DsCFcAT/4PjBrRKw6Uu3fksV5q3hRnLuFlwH9zf4AXurU+UABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL7gPBBfoED/RSC+RIH+y0B8hQL9o2AU0BoAANeJtrQABAAA
+   H4sIAAAAAAAAAGNgGFxgMiMDwxRG+ttbh8XOBiQxLiCbG4gFgZiHDPftBeI0oL50RgibXmAT0L7NAxCeyKAWyf56HG5ZQqEbV9BQPygdtANxByP2dAICawY4jMkFAL0+GXwABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjBVwF4mtAfJ1M/TeA+CYQ36Kai0bBQAMAYyjG4AAEAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
@@ -122,7 +188,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvNwMBwe5BgGCBXHp8adEBIPz5AqfsJ+YGQ/ygN48Gon1RAbBogVj8uNbjEaOV+fHK0wABZmqGCAAQAAA==
+   H4sIAAAAAAAAALvNwMBwe5BgdECOXlxmETKbGHWE3EWJ+5HNoDQMqRX+DDjkiLGXkDmE7Ec3lwGNTYp+bIBY/1NDPylxhE+OFhgAy/SAvwAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
