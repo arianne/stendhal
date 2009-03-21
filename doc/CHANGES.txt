@@ -7,28 +7,30 @@ Changelog
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - rare monsters that do not appear in DM or daily quests: pegasus and centaur
 - lord durin, a high level boss in ados abandoned keep
-- bugfix to /alter, now doesn't reject a heal which takes hp over base hp, instead sets hp to full
 - new npc condition and action for events with any kind of delay to be checked
 - replace mountain orcs in -2 semos mines n e3 with chaos creatures
 - added high level boss, gashadokuro, based on japanese legend
 - new outfit lender in magic clothing boutique who lends costumes including slime and goblin face
 - messaging areas to give atmospheric messages to players entering or leaving them
-- quoting #-characters
-- fixed chat bubbles and changed appearance to be more bubbly
 - semos community chest stored between server restarts
-- levels 5 - 60 respawn time slightly increased
 - min respawn time for creatures (10 seconds)
 - NPCs will not buy items from a player killer at all
 - NPCs will sell to a player killer but they charge 1.5 times the normal price
 - doors into the oni palace now a level checking portal 
-- fix feedback of buyer/seller npcs asked to transact large numbers of items
 - Thanatos says the new def of trophy helmet, and says if it is at max, as he
 changes it
 - marked scrolls don't get player bound (old ones to be unbound)
+*Bug fixes*
+- bugfix to /alter, now doesn't reject a heal which takes hp over base hp, instead sets hp to full
+- quoting #-characters
+- fixed chat bubbles and changed appearance to be more bubbly
+- fix feedback of buyer/seller npcs asked to transact large numbers of items
 - wedding ring checks !visited and pet distance
 - push action sends a feedback message to player if pushing is not allowed
 because of the time limit
 - gagged players can use /support only once per minute
+- levels 5 - 60 respawn time slightly increased
+- placeat fixed so that doors do not shift player aside and algorithm is smarter
 * Player houses*
 - house doors remember lock number and expiry time
 - house keys only open door if lock number and house number match
