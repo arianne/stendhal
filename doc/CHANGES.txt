@@ -20,6 +20,7 @@ Changelog
 - Thanatos says the new def of trophy helmet, and says if it is at max, as he
 changes it
 - marked scrolls don't get player bound (old ones to be unbound)
+- postman reports newly created account names to admin
 *Bug fixes*
 - bugfix to /alter, now doesn't reject a heal which takes hp over base hp, instead sets hp to full
 - quoting #-characters
