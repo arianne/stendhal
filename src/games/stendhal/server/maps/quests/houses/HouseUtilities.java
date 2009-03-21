@@ -138,4 +138,32 @@ public class HouseUtilities {
 		
 		return (StoredChest) chests.get(0);
 	}
+
+	// this will be ideal for a seller to list all unbought houses
+	// using Grammar.enumerateCollection
+	public static List<String> getUnboughtHouses() {
+	    final List<String> unbought = new LinkedList<String>();
+		final List<HousePortal> portals =  getHousePortals();
+		for (final HousePortal houseportal : portals) {
+			final String owner = houseportal.getOwner();
+			if (owner.length() == 0) {
+				unbought.add(houseportal.getDoorId());
+			}
+		}
+		return unbought;
+	}
+
+	// this will be ideal for a seller to list all unbought houses in a specific location
+	// using Grammar.enumerateCollection
+	public static List<String> getUnboughtHousesInLocation(String location) {
+		final String regex = location + ".*";
+		final List<String> unbought = new LinkedList<String>();
+		for (String doorId : getUnboughtHouses()) {
+			if (doorId.matches(regex)) {
+				unbought.add(doorId);
+			}
+		}
+		return unbought;
+	}
+
 }
