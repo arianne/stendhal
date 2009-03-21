@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -183,7 +184,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 			
 			} else {
 				engine.say("Sorry, house " + itemName
-						   + " is sold, please give me the number of another.");
+						   + " is sold, please ask for a list of #unsold houses, or give me the number of another house.");
 				engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 			}
 		}
@@ -363,24 +364,29 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		
 	}
 
+	private final class ListUnboughtHousesAction implements ChatAction {
+		private final String location;
+
+		/**
+		 * Creates a new ListUnboughtHousesAction
+		 * 
+		 * @param location
+		 *            where are the houses?
+		 */
+		private ListUnboughtHousesAction(final String location) {
+			this.location = location;
+		}
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			final List<String> unbought = HouseUtilities.getUnboughtHousesInLocation(location);
+			engine.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
+		}
+	}
+
 	class PlayerOwnsHouseCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return HouseUtilities.playerOwnsHouse(player);
 		}
-	}
-
-	// this will be ideal for a seller to list all unbought houses
-	// using Grammar.enumerateCollection
-	private List<String> getUnboughtHouses() {
-	    final List<String> unbought = new LinkedList<String>();
-		final List<HousePortal> portals =  HouseUtilities.getHousePortals();
-		for (final HousePortal houseportal : portals) {
-			final String owner = houseportal.getOwner();
-			if (owner.length() == 0) {
-				unbought.add(houseportal.getDoorId());
-			}
-		}
-		return unbought;
 	}
 
 	/** The NPC for Kalavan Houses */
@@ -409,7 +415,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house is "
@@ -423,7 +429,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player has not done required quest, hasn't got a house at all
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(PRINCESS_QUEST_SLOT)),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house is "
@@ -435,7 +441,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					// player is not old enough but they have doen princess quest 
 				// (don't need to check if they have a house, they can't as they're not old enough)
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(
 									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT),
 									 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE))),
@@ -448,7 +454,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(PRINCESS_QUEST_SLOT)),
@@ -456,7 +462,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					"The cost of a new house is "
 					+ COST_KALAVAN
 					+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
-					+ " money, every month. If you have a house in mind, please tell me the number now. I will check availability.",
+					+ " money, every month. You can ask me which houses are #available. Or, if you have a house specific house in mind, please tell me the number now.",
 					null);
 
 				// handle house numbers 1 to 25
@@ -569,6 +575,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
 
+				add(ConversationStates.ANY,
+					Arrays.asList("available", "unbought", "unsold"), 
+					null, 
+					ConversationStates.ATTENDING,
+					null,
+					new ListUnboughtHousesAction("kalavan"));
+
 				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply("citizenship",
 						"The royalty in Kalavan Castle decide that.");
@@ -625,7 +638,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"As you already know, the cost of a new house in Ados is "
@@ -639,7 +652,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is not old enough
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
 					ConversationStates.ATTENDING,
 					"The cost of a new house in Ados is "
@@ -651,7 +664,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player doesn't have a house and is old enough but has not done required quests
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestNotStartedCondition(QUEST_SLOT),
 									 new NotCondition(
@@ -670,7 +683,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(DAILY_ITEM_QUEST_SLOT),
@@ -797,6 +810,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
 
+				add(ConversationStates.ANY,
+					Arrays.asList("available", "unbought", "unsold"), 
+					null, 
+					ConversationStates.ATTENDING,
+					null,
+					new ListUnboughtHousesAction("ados"));
+
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
                 addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");
 				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
@@ -829,7 +849,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// quest slot 'house' is started so player owns a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new PlayerOwnsHouseCondition(),
 					ConversationStates.ATTENDING, 
 					"In Kirdneh the cost of a new house is "
@@ -843,7 +863,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is not old enough
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
 					ConversationStates.ATTENDING, 
 					"The cost of a new house in Kirdneh is "
@@ -854,7 +874,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is old enough and hasn't got a house but has not done required quest
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestNotCompletedCondition(KIRDNEH_QUEST_SLOT), 
 									 new QuestNotStartedCondition(QUEST_SLOT)),
@@ -866,7 +886,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 				// player is eligible to buy a house
 				add(ConversationStates.ATTENDING, 
-					Arrays.asList("cost", "house"),
+					Arrays.asList("cost", "house", "buy", "purchase"),
 					new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 									 new AgeGreaterThanCondition(REQUIRED_AGE), 
 									 new QuestCompletedCondition(KIRDNEH_QUEST_SLOT)),
@@ -987,6 +1007,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					ConversationStates.ATTENDING,
 					"OK, if you're really sure. Please let me know if I can help with anything else.",
 					null);
+
+				add(ConversationStates.ANY,
+					Arrays.asList("available", "unbought", "unsold"), 
+					null, 
+					ConversationStates.ATTENDING,
+					null,
+					new ListUnboughtHousesAction("kirdneh"));
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
                 addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
