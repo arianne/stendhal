@@ -191,7 +191,7 @@
 
 		<mkdir dir="${build_server_maps}"/>
 
-		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.6" target="1.6" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/server/maps/*.java"/>
 			<exclude name="games/stendhal/server/maps/ZoneConfigurator.java"/>
 			<include name="games/stendhal/server/maps/**/*.java"/>
