@@ -1,9 +1,8 @@
 package games.stendhal.client.gui.tradingcenter;
 
-import static games.stendhal.common.Constants.ACCEPT_OFFER_ITEM;
-import static games.stendhal.common.Constants.ACCEPT_OFFER_PRICE;
-import static games.stendhal.common.Constants.ACCEPT_OFFER_TYPE;
-import static games.stendhal.common.Constants.ACTION_TYPE;
+import static games.stendhal.common.Constants.*;
+
+import games.stendhal.client.StendhalClient;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,9 +15,12 @@ public class AcceptTradeOfferAction implements ActionListener {
 	
 	private final int price;
 
-	public AcceptTradeOfferAction(final String item, final int price) {
+	private final String offererName;
+
+	public AcceptTradeOfferAction(final String item, final int price, final String offererName) {
 		this.item = item;
 		this.price = price;
+		this.offererName = offererName;
 	}
 
 	public void actionPerformed(final ActionEvent e) {
@@ -26,8 +28,8 @@ public class AcceptTradeOfferAction implements ActionListener {
 		action.put(ACTION_TYPE, ACCEPT_OFFER_TYPE);
 		action.put(ACCEPT_OFFER_ITEM, item);
 		action.put(ACCEPT_OFFER_PRICE, price);
-		System.out.println(action);
-		//StendhalClient.get().send(action);
+		action.put(ACCEPT_OFFER_OFFERERNAME, offererName);
+		StendhalClient.get().send(action);
 	}
 
 }

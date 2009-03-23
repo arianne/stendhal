@@ -19,4 +19,6 @@ public interface Constants {
 	String[] CARRYING_SLOTS = { "bag", "head", "rhand",
 			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
 
+	String ACCEPT_OFFER_OFFERERNAME = "offererName";
+
 }
