@@ -12,29 +12,29 @@ import static games.stendhal.common.Constants.*;
 public class AcceptOfferAction implements ActionListener {
 	
 	public static void register() {
-		CommandCenter.register(ACCEPT_OFFER_TYPE,new AcceptOfferAction());
+		CommandCenter.register(ACCEPT_OFFER_TYPE, new AcceptOfferAction());
 	}
 
-	@Override
-	public void onAction(Player player, RPAction action) {
+
+	public void onAction(final Player player, final RPAction action) {
 		// TODO Auto-generated method stub
 		// accept offer at trading center
-		int price = action.getInt(ACCEPT_OFFER_PRICE);
-		String itemName = action.get(ACCEPT_OFFER_ITEM);
-		String offererName = action.get(ACCEPT_OFFER_OFFERERNAME);
-		Shop shop = getShop();
-		Offer offer = createOffer(price,itemName,offererName);
-		shop.acceptOffer(offer ,player);
+		final int price = action.getInt(ACCEPT_OFFER_PRICE);
+		final String itemName = action.get(ACCEPT_OFFER_ITEM);
+		final String offererName = action.get(ACCEPT_OFFER_OFFERERNAME);
+		final Shop shop = getShop();
+		final Offer offer = createOffer(price, itemName, offererName);
+		shop.acceptOffer(offer, player);
 	}
 
-	private Offer createOffer(int price, String itemName, String offererName) {
-		Item item = SingletonRepository.getEntityManager().getItem(itemName);
-		Offer offer = new Offer(item, price,offererName);
+	private Offer createOffer(final int price, final String itemName, final String offererName) {
+		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
+		final Offer offer = new Offer(item, price, offererName);
 		return offer;
 	}
 
 	private Shop getShop() {
-		Shop shop = new Shop();
+		final Shop shop = new Shop();
 		return shop;
 	}
 
