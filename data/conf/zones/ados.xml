@@ -898,7 +898,7 @@ black helmet 10000
     <entity x="4" y="15">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buy4gnomes</parameter>
-      <parameter name="title">-- Garbiddle (Gnome Village - Ados) buys --</parameter>
+      <parameter name="title">-- Garbiddle (Gnome Village - Semos) buys --</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity> 
