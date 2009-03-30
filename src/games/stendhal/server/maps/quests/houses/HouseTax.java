@@ -21,10 +21,8 @@ import java.util.Arrays;
  */
 public class HouseTax implements TurnListener {
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
-	/* TODO: use reasonable times. 
-	 * For now using ridiculously short times to test the expiring code */
 	/** How often the tax should be paid. Time in seconds. */ 
-	private static final int TAX_PAYMENT_PERIOD = 60 * 60; // * 24 * 30;
+	private static final int TAX_PAYMENT_PERIOD = 60 * 60 * 24 * 30;
 	/** How often the payments should be checked. Time in seconds */
 	private static final int TAX_CHECKING_PERIOD = TAX_PAYMENT_PERIOD / 30;
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
