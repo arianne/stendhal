@@ -98,7 +98,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 		}
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-			int cost =  (int)  COST_FACTOR * player.getLevel();
+			int cost = COST_FACTOR * player.getLevel();
 			if (!player.isEquipped("money", cost)) {
 				npc.say("You don't have enough money with you, the fee at your level is " + cost + " money.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
@@ -131,7 +131,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			String message;
 			if (count >= ALLOWED_FAILS) {
 				// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
-				cost =  cost * (i / NUMBER_OF_CREATURES);
+				cost =  (int) (cost * ((float) i / (float) NUMBER_OF_CREATURES));
 				message = "Haastaja bellows from below: I could only fit " + i + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
 				logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
 			} else { 
@@ -142,7 +142,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			player.drop("money", cost);
 			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 			player.teleport(zone, 4, 6, Direction.DOWN, player);
-			// send the text afetr we change zone so that the event is not lost on zone change
+			// send the text after we change zone so that the event is not lost on zone change
 			player.sendPrivateText(message);
 			player.notifyWorldAboutChanges();
 		}
