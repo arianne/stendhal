@@ -99,7 +99,7 @@ public class SummonScroll extends InfoStringScroll {
 			final int magiclevel = 4;
 			final List<Creature> possibleCreatures = new ArrayList<Creature>();
 			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= magiclevel) {
+				if (creature.getLevel() <= magiclevel && !creature.isRare()) {
 					possibleCreatures.add(creature);
 				}
 			}
