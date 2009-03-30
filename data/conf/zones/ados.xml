@@ -62,7 +62,7 @@ West: Semos
     	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
 		<parameter name="width">7</parameter>
 		<parameter name="height">7</parameter>
-		<parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes withing.</parameter>
+		<parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes within.</parameter>
 	</implementation>
   </entity>
 
