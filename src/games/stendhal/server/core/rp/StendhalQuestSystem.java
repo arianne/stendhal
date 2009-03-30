@@ -90,7 +90,7 @@ public class StendhalQuestSystem {
 		loadQuest("KillSpiders");
 		loadQuest("Marriage");
 		// loadQuest("MonogenesCataclysm");
-		// loadQuest("MeetBunny");
+		loadQuest("MeetBunny");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
 		loadQuest("MeetHayunn");
