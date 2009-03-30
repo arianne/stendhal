@@ -41,8 +41,8 @@ public enum TutorialEventType {
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	TIMED_OUTFIT(
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
-	NEW_RELEASE72(
-			"You can check out a couple of new commands (and remind yourself of old ones) by doing #/help. Also, please note that the display on your character's panel has been updated to be more informative and reflect the changes that came in release 0.70. So the actual gameplay of attack, defense and level has not changed in this release, just the display on your character panel. Read about other new things at #http://arianne.sourceforge.net");
+	NEW_RELEASE73(
+			"Hello and thanks for logging in to Stendhal 0.73! You can read about the new things at #http://arianne.sourceforge.net, especially important for you to read if you're a house owner.");
 	private String message;
 
 	/**

@@ -161,6 +161,6 @@ public class TutorialNotifier {
 	 *            Player
 	 */
 	public static void newrelease(final Player player) {
-		process(player, TutorialEventType.NEW_RELEASE72);
+		process(player, TutorialEventType.NEW_RELEASE73);
 	}
 }
