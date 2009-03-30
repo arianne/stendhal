@@ -2,11 +2,16 @@ package games.stendhal.server.trade;
 
 
 import games.stendhal.server.entity.item.Item;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class Offer {
+import simple.http.session.Store;
+
+public class Offer extends RPObject {
 
 	private final Item item;
 	
@@ -14,14 +19,36 @@ public class Offer {
 
 	private final String offererName;
 	
+	public static void generateRPClass() {
+		final RPClass offerRPClass = new RPClass("offer");
+		offerRPClass.isA("entity");
+		offerRPClass.addAttribute("price",Type.INT);
+		offerRPClass.addAttribute("offererName",Type.STRING);
+		offerRPClass.addAttribute("class",Type.STRING);
+		offerRPClass.addRPSlot("item",1);
+	}
+	
 	/**
 	 * @param item
 	 */
 	public Offer(final Item item, final Integer price, final String offererName) {
 		super();
+		setRPClass("offer");
+		this.addSlot("item");
+		this.getSlot("item").add(item);
 		this.item = item;
+		this.put("price",price.intValue());
 		this.price = price;
+		this.put("offererName",offererName);
 		this.offererName = offererName;
+		store();
+	}
+	
+	public Offer(final RPObject object) {
+		this.item = (Item) object.getSlot("item").getFirst();
+		this.price = Integer.valueOf(object.getInt("price"));
+		this.offererName = object.get("offererName");
+		store();
 	}
 
 
