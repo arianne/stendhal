@@ -462,7 +462,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					"The cost of a new house is "
 					+ COST_KALAVAN
 					+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
-					+ " money, every month. You can ask me which houses are #available. Or, if you have a house specific house in mind, please tell me the number now.",
+					+ " money, every month. You can ask me which houses are #available. Or, if you have a specific house in mind, please tell me the number now.",
 					null);
 
 				// handle house numbers 1 to 25
