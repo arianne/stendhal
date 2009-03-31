@@ -239,6 +239,9 @@ tileset/item/furniture/light/dark_torch.png	0	0:2:4:2
 tileset/item/furniture/light/dark_torch.png	2	0:2:4:2
 tileset/item/furniture/light/dark_torch.png	4	0:2:4:2
 
+tileset/item/furniture/light/lights_candle.png	*	4:16
+tileset/item/furniture/light/lights_candle.png	*	5:17
+
 tileset/item/furniture/light/torch_top.png * 0:1:2:3
 
 tileset/ground/water/whirlpool.png	*	0:1:2:3
