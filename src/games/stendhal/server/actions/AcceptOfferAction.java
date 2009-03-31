@@ -16,7 +16,6 @@ public class AcceptOfferAction implements ActionListener {
 		CommandCenter.register(ACCEPT_OFFER_TYPE,new AcceptOfferAction());
 	}
 
-	@Override
 	public void onAction(final Player player, final RPAction action) {
 		// accept offer at trading center
 		final int price = action.getInt(ACCEPT_OFFER_PRICE);

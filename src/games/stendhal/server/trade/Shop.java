@@ -46,7 +46,7 @@ public class Shop implements ZoneConfigurator {
 		}
 	}
 
-	@Override
+
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		// TODO Auto-generated method stub
