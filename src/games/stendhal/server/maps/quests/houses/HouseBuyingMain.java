@@ -259,12 +259,12 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 			addReply(
 					 "buy",
-					 "You should really enquire the #cost before you ask to buy. And check our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+					 "You should really enquire the #cost before you ask to buy. And check our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 			addReply("really",
 					 "That's right, really, really, really. Really.");
-			addOffer("I sell houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
-			addHelp("You may be eligible to buy a house if there are any #available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
-			addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+			addOffer("I sell houses, please look at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
+			addHelp("You may be eligible to buy a house if there are any #available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for pictures inside the houses and more details.");
+			addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 			addGoodbye("Goodbye.");
 		}
 
@@ -623,7 +623,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				null,
 				new BuyHouseChatAction("kalavan"));
 
-		npc.addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+		npc.addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 		npc.addReply("citizenship",
 					 "The royalty in Kalavan Castle decide that.");
 		
@@ -729,7 +729,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				 null,
 				 new BuyHouseChatAction("ados"));
 		
-		npc2.addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+		npc2.addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 		npc2.addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");
 
 		npc2.setDescription("You see a smart looking man.");
@@ -798,7 +798,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				 new BuyHouseChatAction("kirdneh"));
 		
 
-		npc3.addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+		npc3.addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 		npc3.addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
 		
 		npc3.setDescription("You see a smart looking man.");
