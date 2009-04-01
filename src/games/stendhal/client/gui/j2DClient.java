@@ -401,11 +401,18 @@ public class j2DClient {
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 
-		mainFrame.getMainFrame().pack();
-		mainFrame.getMainFrame().setVisible(true);
-		mainFrame.getMainFrame().setResizable(false);
-		mainFrame.getMainFrame().toFront();
-		directionRelease = null;
+		
+	SwingUtilities.invokeLater(new Runnable() {
+
+		public void run() {
+			mainFrame.getMainFrame().pack();
+			mainFrame.getMainFrame().setVisible(true);
+			mainFrame.getMainFrame().setResizable(false);
+			mainFrame.getMainFrame().toFront();
+
+			
+		}});	
+			directionRelease = null;
 	
 
 	} // constructor
