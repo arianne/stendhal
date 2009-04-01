@@ -29,7 +29,8 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		"0_kalavan_city",
 		"0_kirdneh_city",
 		"0_ados_city_n",
-		"0_ados_city" };
+		"0_ados_city",
+		"0_athor_island"	};
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -140,7 +141,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		
 		assertTrue(en.step(player, "buy"));
 		assertTrue(en.step(player, "50"));
-		assertEquals("Congratulations, here is your key to house 50! Make sure you change the locks if you ever lose it."
+		assertEquals("Congratulations, here is your key to ados house 50! Make sure you change the locks if you ever lose it."
 				+ " Do you want to buy a spare key, at a price of 1000 money?", npc.getText());
 
 		assertTrue(player.isEquipped("house key"));
