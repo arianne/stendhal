@@ -150,7 +150,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				if (player.isEquipped("money", cost)) {
 					final Item key = SingletonRepository.getEntityManager().getItem(
 																					"house key");
-					final String doorId = location + " house " + itemName;
+					final String doorId = houseportal.getDoorId();
 
 					final int locknumber = houseportal.getLockNumber();
 					((HouseKey) key).setup(doorId, locknumber, player.getName());
@@ -225,25 +225,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	/** The sale of a spare key has been agreed, player meets conditions, here is the action to simply sell it */
 	private final class BuySpareKeyChatAction implements ChatAction {
 	
-		private final String location;
-
-		/**
-		 * Creates a new  BuySpareKeyChatAction.
-		 * 
-		 * @param location
-		 *            where are the houses?
-		 */
-		private BuySpareKeyChatAction(final String location) {
-			this.location = location;
-		}
-
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 
 				final String housenumber = player.getQuest(QUEST_SLOT);
 				final Item key = SingletonRepository.getEntityManager().getItem(
 																				"house key");
-				final String doorId = location + " house " + housenumber;
+	
 				final int number = MathHelper.parseInt(housenumber);
 				final HousePortal houseportal = HouseUtilities.getHousePortal(number);
 
@@ -252,7 +240,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					engine.say("Sorry something bad happened. I'm terribly embarassed.");
 					return;
 				}
-				
+				final String doorId = houseportal.getDoorId();				
 				final int locknumber = houseportal.getLockNumber();
 
 				((HouseKey) key).setup(doorId, locknumber, player.getName());
@@ -379,7 +367,11 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final List<String> unbought = HouseUtilities.getUnboughtHousesInLocation(location);
-			engine.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
+			if (unbought.size()>0){
+			    engine.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
+			} else {
+			    engine.say("Sorry, there are no houses available for sale in " + Grammar.makeUpperCaseWord(location) + ".");
+			}
 		}
 	}
 
@@ -490,7 +482,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction("kalavan"));
+					new BuySpareKeyChatAction());
 				
 				// refused offer to buy spare key for security reasons
 				add(ConversationStates.QUESTION_2,
@@ -725,7 +717,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction("ados"));
+					new BuySpareKeyChatAction());
 
 				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
@@ -923,7 +915,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 					null,
 					ConversationStates.ATTENDING, 
 					null,
-					new BuySpareKeyChatAction("kirdneh"));
+					new BuySpareKeyChatAction());
 
 				// Refused the offer to buy a spare key for security reasons
 				add(ConversationStates.QUESTION_2,
