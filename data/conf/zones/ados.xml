@@ -1815,17 +1815,17 @@ My fee:
     <destination zone="0_ados_city" ref="house_68"/>
   </portal>
  </zone>
-<!-- fill in the interior portal and chest locations as you uncomment these
  <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+	<parameter name="x">9</parameter>
+	<parameter name="y">10</parameter>
   </configurator>
-  <portal x="" y="" ref="in">
+  <portal x="1" y="15" ref="in">
     <destination zone="0_ados_city" ref="house_69"/>
   </portal>
  </zone>
+<!-- fill in the interior portal and chest locations as you uncomment these
  <zone name="int_ados_house_70" file="interiors/ados/house_70.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -2019,14 +2019,14 @@ Southeast: Docks
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
- <!--   <portal x="50" y="60" ref="house_69">
+  <portal x="50" y="60" ref="house_69">
      <destination zone="int_ados_house_69" ref="in"/>
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
        <parameter name="doorId">ados house 69</parameter>
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
     </portal>
-    <portal x="22" y="113" ref="house_70">
+   <!-- <portal x="22" y="113" ref="house_70">
      <destination zone="int_ados_house_70" ref="in"/>
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
        <parameter name="doorId">ados house 70</parameter>
