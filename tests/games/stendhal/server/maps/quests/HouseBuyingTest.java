@@ -81,11 +81,21 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "cost"));
 		assertTrue(npc.get("text").startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
 
-		assertTrue(en.step(player, "buy dog"));
-		assertEquals("You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.", npc.get("text"));
-
-		assertTrue(en.step(player, "buy house"));
-		assertEquals("You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.", npc.get("text"));
+		player.setAge(3700000);
+		assertTrue(en.step(player, "cost"));
+		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.", npc.getText());
+		
+		// satisfy the rest of the ados conditions
+		player.setQuest("daily_item", "done");
+		player.setQuest("toys_collector", "done");
+		player.setQuest("hungry_joshua", "done");
+		player.setQuest("find_ghosts", "done");
+		player.setQuest("get_fishing_rod", "done");
+		player.setQuest("suntan_cream_zara", "done");
+		assertTrue(en.step(player, "buy"));
+		assertEquals("The cost of a new house in Ados is 120000 money. Also, you must pay a house tax of 1000 money,"
+				+ " every month. If you have a house in mind, please tell me the number now. I will check availability. "
+				+ "The Ados houses are numbered from 50 to 68.", npc.getText());
 
 //TODO mf - finish house buying test
 //		assertTrue(en.step(player, "really"));
