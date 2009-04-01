@@ -62,28 +62,60 @@
      
      <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
        <portal x="57" y="57" ref="apartment_1_entrance">
-         <destination zone="int_athor_holiday_apartment_1" ref="out"/>
+         <destination zone="int_athor_apartment_101" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 101</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="66" y="57" ref="apartment_2_entrance">
-         <destination zone="int_athor_holiday_apartment_2" ref="out"/>
+         <destination zone="int_athor_apartment_102" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 102</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="78" y="63" ref="apartment_3_entrance">
-         <destination zone="int_athor_holiday_apartment_3" ref="out"/>
+         <destination zone="int_athor_apartment_103" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 103</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="78" y="69" ref="apartment_4_entrance">
-         <destination zone="int_athor_holiday_apartment_4" ref="out"/>
+         <destination zone="int_athor_apartment_104" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 104</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="66" y="75" ref="apartment_5_entrance">
-         <destination zone="int_athor_holiday_apartment_5" ref="out"/>
+         <destination zone="int_athor_apartment_105" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 105</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="57" y="75" ref="apartment_6_entrance">
-         <destination zone="int_athor_holiday_apartment_6" ref="out"/>
+         <destination zone="int_athor_apartment_106" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 106</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="47" y="69" ref="apartment_7_entrance">
-         <destination zone="int_athor_holiday_apartment_7" ref="out"/>
+         <destination zone="int_athor_apartment_107" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 107</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="47" y="63" ref="apartment_8_entrance">
-         <destination zone="int_athor_holiday_apartment_8" ref="out"/>
+         <destination zone="int_athor_apartment_108" ref="out"/>
+		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 108</parameter>
+			<parameter name="rejected">The door is locked.</parameter>
+		   </implementation>
        </portal>
        <portal x="123" y="15" ref="labyrinth_hut_entrance">
          <destination zone="int_athor_labyrinth_entrance" ref="out"/>
@@ -166,15 +198,6 @@
          </implementation>
 
          <attribute name="class">swimmer5npc</attribute>
-       </entity>
-
-       <entity x="44" y="40">
-         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.SunbatherNPC">
-           <parameter name="name">Cyk</parameter>
-           <parameter name="direction">down</parameter>
-         </implementation>
-
-         <attribute name="class">swimmer1npc</attribute>
        </entity>
 
        <entity x="67" y="63">
@@ -374,50 +397,90 @@ snowglobe 200
     
      </zone>
      
-     <zone name="int_athor_holiday_apartment_1" file="interiors/athor/holiday_apartment_1.tmx">
+     <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx">
+       <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">2</parameter>
+		<parameter name="y">11</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_1_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_2" file="interiors/athor/holiday_apartment_2.tmx">
+     <zone name="int_athor_apartment_102" file="interiors/athor/holiday_apartment_2.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">13</parameter>
+		<parameter name="y">10</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_2_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_3" file="interiors/athor/holiday_apartment_3.tmx">
+     <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">7</parameter>
+		<parameter name="y">2</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_3_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_4" file="interiors/athor/holiday_apartment_4.tmx">
+     <zone name="int_athor_apartment_104" file="interiors/athor/holiday_apartment_4.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">7</parameter>
+		<parameter name="y">8</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_4_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_5" file="interiors/athor/holiday_apartment_5.tmx">
+     <zone name="int_athor_apartment_105" file="interiors/athor/holiday_apartment_5.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">2</parameter>
+		<parameter name="y">12</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_5_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_6" file="interiors/athor/holiday_apartment_6.tmx">
-       <portal x="4" y="14" ref="out">
+     <zone name="int_athor_apartment_106" file="interiors/athor/holiday_apartment_6.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">2</parameter>
+		<parameter name="y">10</parameter>
+	   </configurator>
+	   <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_6_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_7" file="interiors/athor/holiday_apartment_7.tmx">
+     <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx">
+	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">12</parameter>
+		<parameter name="y">8</parameter>
+	   </configurator>
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_7_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_8" file="interiors/athor/holiday_apartment_8.tmx">
-       <portal x="4" y="14" ref="out">
+     <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx">
+       <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	   	<parameter name="x">2</parameter>
+		<parameter name="y">7</parameter>
+	   </configurator>
+	   <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_8_entrance"/>
        </portal>
      </zone>
