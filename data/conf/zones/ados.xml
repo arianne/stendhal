@@ -588,6 +588,78 @@ in roaches.
     </portal>
   </zone>
 
+ <zone name="int_ados_house_71" file="interiors/ados/house_71.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x">13</parameter>
+	<parameter name="y">9</parameter>
+  </configurator>
+  <portal x="12" y="14" ref="in">
+    <destination zone="0_ados_wall" ref="house_71"/>
+  </portal>
+ </zone>
+<!--  fill in the interior portal and chest locations as you uncomment these
+ <zone name="int_ados_house_72" file="interiors/ados/house_72.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_72"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_73"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_74"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_75"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_76"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_wall" ref="house_77"/>
+  </portal>
+ </zone>-->
+
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
 <!-- originally located in semos townhall hence package here - may move back -->
@@ -1743,8 +1815,27 @@ My fee:
     <destination zone="0_ados_city" ref="house_68"/>
   </portal>
  </zone>
-
-
+<!-- fill in the interior portal and chest locations as you uncomment these
+ <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city" ref="house_69"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_70" file="interiors/ados/house_70.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city" ref="house_70"/>
+  </portal>
+ </zone>-->
   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
    <portal x="21" y="100" ref="farm">
     <destination zone="int_ados_farm_house" ref="in"/>
@@ -1802,6 +1893,56 @@ Southeast: Docks
    </zone>
 
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
+    <portal x="118" y="9" ref="house_71">
+     <destination zone="int_ados_house_71" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 71</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+<!--    <portal x="119" y="23" ref="house_72">
+     <destination zone="int_ados_house_72" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 72</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="119" y="34" ref="house_73">
+     <destination zone="int_ados_house_73" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 73</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="121" y="56" ref="house_74">
+     <destination zone="int_ados_house_74" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 74</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="99" y="91" ref="house_75">
+     <destination zone="int_ados_house_75" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 75</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="108" y="91" ref="house_76">
+     <destination zone="int_ados_house_76" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 76</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="117" y="91" ref="house_77">
+     <destination zone="int_ados_house_77" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 77</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+-->
     <portal x="101" y="22" ref="felina_entrance">
      <destination zone="int_ados_felinas_house" ref="entrance"/>
     </portal>
@@ -1878,7 +2019,20 @@ Southeast: Docks
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
-
+ <!--   <portal x="50" y="60" ref="house_69">
+     <destination zone="int_ados_house_69" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 69</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="22" y="113" ref="house_70">
+     <destination zone="int_ados_house_70" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 70</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>-->
     <portal x="43" y="21" ref="library_entrance_left">
       <destination zone="int_ados_library" ref="entrance_left"/>
     </portal>
@@ -1960,6 +2114,55 @@ Southeast: Docks
   <portal x="53" y="25" ref="church_entrance">
      <destination zone="int_ados_church_0" ref="entrance_right"/>
    </portal>
+ <!--  <portal x="4" y="10" ref="house_78">
+     <destination zone="int_ados_house_78" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 78</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="15" y="10" ref="house_79">
+     <destination zone="int_ados_house_79" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 79</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="25" y="8" ref="house_80">
+     <destination zone="int_ados_house_80" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 80</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="34" y="41" ref="house_81">
+     <destination zone="int_ados_house_81" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 81</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="47" y="41" ref="house_82">
+     <destination zone="int_ados_house_82" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 82</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="34" y="50" ref="house_83">
+     <destination zone="int_ados_house_83" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 83</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>
+    <portal x="47" y="50" ref="house_84">
+     <destination zone="int_ados_house_84" ref="in"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+       <parameter name="doorId">ados house 84</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+    </portal>-->
  </zone>
  
  <zone name="int_ados_church_0" file="interiors/ados/church_0.tmx">
@@ -1997,7 +2200,78 @@ Southeast: Docks
      <destination zone="int_ados_church_0" ref="upstairs"/>
    </portal>
  </zone>
- 
+<!-- fill in the interior portal and chest locations as you uncomment these
+ <zone name="int_ados_house_78" file="interiors/ados/house_78.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_78"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_79" file="interiors/ados/house_79.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_79"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_80" file="interiors/ados/house_80.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_80"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_81" file="interiors/ados/house_81.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_81"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_82" file="interiors/ados/house_82.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_82"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_83" file="interiors/ados/house_83.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_83"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_84" file="interiors/ados/house_84.tmx">
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+	<parameter name="x"></parameter>
+	<parameter name="y"></parameter>
+  </configurator>
+  <portal x="" y="" ref="in">
+    <destination zone="0_ados_city_s" ref="house_84"/>
+  </portal>
+ </zone> -->
+
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
    <entity x="101" y="103">
      <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
