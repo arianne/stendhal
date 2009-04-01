@@ -713,14 +713,14 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				 + COST_ADOS
 				 + " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
 				 + " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				 + "The Ados houses are numbered from 50 to 68.",
+				 + "The Ados houses are numbered from 50 to 69.",
 				 null);
 		
-		// handle house numbers 50 to 68
+		// handle house numbers 50 to 69
 		npc2.add(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
-				 new TextHasNumberCondition(50, 68),
+				 new TextHasNumberCondition(50, 69),
 				 ConversationStates.ATTENDING, 
 				 null,
 				 new BuyHouseChatAction("ados"));
