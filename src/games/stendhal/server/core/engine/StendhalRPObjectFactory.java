@@ -3,6 +3,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.FlowerGrowerTransFormer;
 import games.stendhal.server.core.engine.transformer.HousePortalTransformer;
+import games.stendhal.server.core.engine.transformer.OfferTransformer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
 import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
@@ -37,6 +38,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(RentedSign.RPCLASS_NAME, new RentedSignTransformer());
 		transformerMap.put("chest", new StoredChestTransformer());
 		transformerMap.put("house_portal", new HousePortalTransformer());
+		transformerMap.put("offer",new OfferTransformer());
 	}
 	
 	
