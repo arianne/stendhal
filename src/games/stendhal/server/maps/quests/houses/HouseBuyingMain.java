@@ -173,7 +173,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new BuySpareKeyChatAction(location));
+				new BuySpareKeyChatAction());
 				
 			// refused offer to buy spare key for security reasons
 			add(ConversationStates.QUESTION_2,
@@ -316,13 +316,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				if (player.isEquipped("money", cost)) {
 					final Item key = SingletonRepository.getEntityManager().getItem(
 																					"house key");
-					String building;
-					if ("athor".equals(location)) {
-						building = " apartment ";
-					} else {
-						building = " house ";
-					}
-					final String doorId = location + building + itemName;
+
+					final String doorId = houseportal.getDoorId();
 
 					final int locknumber = houseportal.getLockNumber();
 					((HouseKey) key).setup(doorId, locknumber, player.getName());
@@ -398,17 +393,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	/** The sale of a spare key has been agreed, player meets conditions, here is the action to simply sell it */
 	private final class BuySpareKeyChatAction implements ChatAction {
 	
-		private final String location;
-
-		/**
-		 * Creates a new  BuySpareKeyChatAction.
-		 * 
-		 * @param location
-		 *            where are the houses?
-		 */
-		private BuySpareKeyChatAction(final String location) {
-			this.location = location;
-		}
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
@@ -416,13 +400,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				final String housenumber = player.getQuest(QUEST_SLOT);
 				final Item key = SingletonRepository.getEntityManager().getItem(
 																				"house key");
-				String building;
-				if ("athor".equals(location)) {
-					building = " apartment ";
-				} else {
-					building = " house ";
-				}
-				final String doorId = location + building + housenumber;
 				final int number = MathHelper.parseInt(housenumber);
 				final HousePortal houseportal = HouseUtilities.getHousePortal(number);
 
@@ -433,7 +410,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				}
 				
 				final int locknumber = houseportal.getLockNumber();
-
+				final String doorId = houseportal.getDoorId();
 				((HouseKey) key).setup(doorId, locknumber, player.getName());
 
 				if (player.equipToInventoryOnly(key)) {
