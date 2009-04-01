@@ -5,7 +5,7 @@ import marauroa.common.game.RPObject;
 
 public class OfferTransformer implements Transformer {
 
-	@Override
+	
 	public RPObject transform(RPObject object) {
 		return new Offer(object);
 	}
