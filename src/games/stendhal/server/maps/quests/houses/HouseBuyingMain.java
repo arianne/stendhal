@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -58,6 +59,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
+	private static final String FISHLICENSE2_QUEST_SLOT = "fishermans_license2";
 
 	/** Cost to buy house in kalavan */
 	private static final int COST_KALAVAN = 100000;
@@ -65,6 +67,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	private static final int COST_ADOS = 120000;
 	/** Cost to buy house in kirdneh */
 	private static final int COST_KIRDNEH = 120000;
+	/** Cost to buy house in athor */
+	private static final int COST_ATHOR = 100000;
 
 	/** Cost to buy spare keys */
 	private static final int COST_OF_SPARE_KEY = 1000;
@@ -87,6 +91,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	/** Zone name */
 	private static final String ADOS_CITY = "0_ados_city";
 	/** Zone name */
+	private static final String ATHOR_ISLAND = "0_athor_island";
+	/** Zone name */
 	private static final String ADOS_TOWNHALL = "int_ados_town_hall_3";
 	/** Zone name */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
@@ -94,11 +100,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	protected SpeakerNPC npc;
 	protected SpeakerNPC npc2;
 	protected SpeakerNPC npc3;
+	protected SpeakerNPC npc4;
 
 	protected StendhalRPZone kalavan_city_zone;
 	protected StendhalRPZone kirdneh_city_zone;
 	protected StendhalRPZone ados_city_zone;
 	protected StendhalRPZone ados_city_n_zone;
+	protected StendhalRPZone athor_island_zone;
 	protected StendhalRPZone ados_townhall_zone;
 	protected StendhalRPZone kirdneh_townhall_zone;
 	
@@ -308,14 +316,19 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				if (player.isEquipped("money", cost)) {
 					final Item key = SingletonRepository.getEntityManager().getItem(
 																					"house key");
-					final String doorId = location + " house " + itemName;
+					String building;
+					if ("athor".equals(location)) {
+						building = " apartment ";
+					} else {
+						building = " house ";
+					}
+					final String doorId = location + building + itemName;
 
 					final int locknumber = houseportal.getLockNumber();
 					((HouseKey) key).setup(doorId, locknumber, player.getName());
 				
 					if (player.equipToInventoryOnly(key)) {
-						engine.say("Congratulations, here is your key to house "
-								   + itemName
+						engine.say("Congratulations, here is your key to " + doorId
 								   + "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
 								   + COST_OF_SPARE_KEY + " money?");
 						
@@ -374,6 +387,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 			return COST_KALAVAN;
 		} else if ("kirdneh".equals(location)) {
 			return COST_KIRDNEH;
+		} else if ("athor".equals(location)) {
+			return COST_ATHOR;
 		} else {
 			logger.error("getCost got passed a bad location, " + location);
 			return COST_KIRDNEH;
@@ -401,7 +416,13 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				final String housenumber = player.getQuest(QUEST_SLOT);
 				final Item key = SingletonRepository.getEntityManager().getItem(
 																				"house key");
-				final String doorId = location + " house " + housenumber;
+				String building;
+				if ("athor".equals(location)) {
+					building = " apartment ";
+				} else {
+					building = " house ";
+				}
+				final String doorId = location + building + housenumber;
 				final int number = MathHelper.parseInt(housenumber);
 				final HousePortal houseportal = HouseUtilities.getHousePortal(number);
 
@@ -664,8 +685,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 			}
 		};
 
-		npc2.addGreeting(null, new HouseSellerGreetingAction());
-		
 		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
 		// For definiteness we will check these conditions in a set order. 
 		// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
@@ -808,6 +827,73 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		kirdneh_townhall_zone.add(npc3);
 	}
 
+	/** The NPC for Athor Apartments */
+	private void createNPC4() {
+		final SpeakerNPC npc4 = new HouseSellerNPCBase("Cyk","athor") {
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
+		};
+		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
+		// For definiteness we will check these conditions in a set order. 
+		// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
+		
+		// player is not old enough
+		npc4.add(ConversationStates.ATTENDING, 
+				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
+				 ConversationStates.ATTENDING, 
+				 "The cost of a new apartment in Athor is "
+						 + COST_ATHOR
+				 + " money. But, you'll have to come back when you have spent at least " 
+				 + Integer.toString((REQUIRED_AGE / 60)) + " hours on Faiumoni. Maybe I'll have managed to get a suntan by then.",
+				 null);
+		
+		// player is old enough and hasn't got a house but has not done required quest
+		npc4.add(ConversationStates.ATTENDING, 
+				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
+								  new QuestNotCompletedCondition(FISHLICENSE2_QUEST_SLOT), 
+								  new QuestNotStartedCondition(QUEST_SLOT)),
+				 ConversationStates.ATTENDING, 
+				 "What do you want with an apartment on Athor when you're not even a good #fisherman? We are trying to attract owners who will spend time on the island. Come back when you have proved yourself a better fisherman.",
+				 null);
+		
+		// player is eligible to buy a apartment
+		npc4.add(ConversationStates.ATTENDING, 
+				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
+								  new AgeGreaterThanCondition(REQUIRED_AGE), 
+								  new QuestCompletedCondition(FISHLICENSE2_QUEST_SLOT)),
+					ConversationStates.QUEST_OFFERED, 
+				 "The cost of a new apartment is "
+				 + COST_ATHOR
+				 + " money.  Also, you must pay a monthly tax of " + HouseTax.BASE_TAX
+				 + " money. If you have an apartment in mind, please tell me the number now. I will check availability. "
+				 + "Athor Apartments are numbered 101 to 108.",
+				 null);
+		
+		// handle house numbers 101 to 108
+		npc4.add(ConversationStates.QUEST_OFFERED,
+				 // match for all numbers as trigger expression
+				 "NUM", new JokerExprMatcher(),
+				 new TextHasNumberCondition(101, 108),
+				 ConversationStates.ATTENDING, 
+				 null,
+				 new BuyHouseChatAction("athor"));
+		
+
+		npc4.addJob("Well, I'm actually trying to sunbathe here. But, since you ask, I sell apartments here on Athor. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
+		npc4.addReply("fisherman", "A fishing license from Santiago in Ados is the sign of a good fisherman, he sets two exams. Once you have passed both parts you are a good fisherman.");
+		npc4.setDirection(Direction.DOWN);
+		npc4.setDescription("You see a man trying to catch some sun.");
+		npc4.setEntityClass("swimmer1npc");
+		npc4.setPosition(44, 40);
+		npc4.initHP(100);
+		athor_island_zone.add(npc4);
+	}
+
 	// we'd like to update houses sold before release of 0.73 with the owner name
 	// when a player logs in we see if they own a house and we get the number from the house slot
 	// this can be removed after all previously owned portals would have expired unless player haslogged in to pay tax 
@@ -852,6 +938,9 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 		kirdneh_townhall_zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_TOWNHALL);
 		createNPC3();
+
+		athor_island_zone = SingletonRepository.getRPWorld().getZone(ATHOR_ISLAND);
+		createNPC4();
 
 		SingletonRepository.getLoginNotifier().addListener(this);
 		
