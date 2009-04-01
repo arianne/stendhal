@@ -41,6 +41,7 @@ import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
+import games.stendhal.server.trade.Offer;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
@@ -92,6 +93,7 @@ public class RPClassGenerator {
 		// zone storage
 		ArrestWarrant.generateRPClass();
 		RentedSign.generateRPClass();
+		Offer.generateRPClass();
 
 		// rpevents
 		BuddyLoginEvent.generateRPClass();
