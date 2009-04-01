@@ -21,7 +21,8 @@ public class HouseUtilities {
 		"0_kalavan_city",
 		"0_kirdneh_city",
 		"0_ados_city_n",
-		"0_ados_city"
+		"0_ados_city",
+		"0_athor_island"
 	};
 	
 	private static List<HousePortal> allHousePortals = null;
