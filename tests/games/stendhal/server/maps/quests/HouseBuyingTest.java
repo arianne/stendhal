@@ -30,6 +30,8 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		"0_kirdneh_city",
 		"0_ados_city_n",
 		"0_ados_city",
+		"0_ados_city_s",
+		"0_ados_wall",
 		"0_athor_island"	};
 
 	@BeforeClass
@@ -116,7 +118,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy"));
 		assertEquals("The cost of a new house in Ados is 120000 money. Also, you must pay a house tax of 1000 money,"
 				+ " every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				+ "The Ados houses are numbered from 50 to 68.", npc.getText());
+				+ "The Ados houses are numbered from 50 to 71.", npc.getText());
 		
 		// add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();
@@ -127,7 +129,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		
 		for (String zone : CITY_ZONES) {
 			assertNotNull(zone);
-			HousePortal portal = new HousePortal("Ados house 50");
+			HousePortal portal = new HousePortal("ados house 50");
 			assertNotNull(portal);
 			portal.setDestination(ZONE_NAME, "dest");
 			SingletonRepository.getRPWorld().getRPZone(zone).add(portal);
