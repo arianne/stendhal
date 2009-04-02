@@ -82,32 +82,31 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	 */
 	private static final int REQUIRED_AGE = 300 * 60;
 
-	/** Zone name */
+	/** Kalavan house seller Zone name */
 	private static final String KALAVAN_CITY = "0_kalavan_city";
-	/** Zone name */
-	private static final String KIRDNEH_CITY = "0_kirdneh_city";
-	/** Zone name */
-	private static final String ADOS_CITY_N = "0_ados_city_n";
-	/** Zone name */
-	private static final String ADOS_CITY = "0_ados_city";
-	/** Zone name */
+	/** Athor house seller Zone name */
 	private static final String ATHOR_ISLAND = "0_athor_island";
-	/** Zone name */
+	/** Ados house seller Zone name */
 	private static final String ADOS_TOWNHALL = "int_ados_town_hall_3";
-	/** Zone name */
+	/** Kirdneh house seller Zone name */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
+	/** Kalavan house seller npc */
 	protected SpeakerNPC npc;
+	/** Ados house seller npc */
 	protected SpeakerNPC npc2;
+	/** Kirdneh house seller npc */
 	protected SpeakerNPC npc3;
+	/** Athor apartment seller npc */
 	protected SpeakerNPC npc4;
 
+	/** Kalavan house seller */
 	protected StendhalRPZone kalavan_city_zone;
-	protected StendhalRPZone kirdneh_city_zone;
-	protected StendhalRPZone ados_city_zone;
-	protected StendhalRPZone ados_city_n_zone;
+	/** Athor house seller Zone */
 	protected StendhalRPZone athor_island_zone;
+	/** Ados house seller Zone  */
 	protected StendhalRPZone ados_townhall_zone;
+	/** Kirdneh house seller Zone */
 	protected StendhalRPZone kirdneh_townhall_zone;
 	
 	private HouseTax houseTax;
@@ -713,14 +712,14 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 				 + COST_ADOS
 				 + " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
 				 + " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				 + "The Ados houses are numbered from 50 to 69.",
+				 + "The Ados houses are numbered from 50 to 71.",
 				 null);
 		
-		// handle house numbers 50 to 69
+		// handle house numbers 50 to 71
 		npc2.add(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
 					"NUM", new JokerExprMatcher(),
-				 new TextHasNumberCondition(50, 69),
+				 new TextHasNumberCondition(50, 71),
 				 ConversationStates.ATTENDING, 
 				 null,
 				 new BuyHouseChatAction("ados"));
@@ -873,8 +872,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 	// we'd like to update houses sold before release of 0.73 with the owner name
 	// when a player logs in we see if they own a house and we get the number from the house slot
-	// this can be removed after all previously owned portals would have expired unless player haslogged in to pay tax 
-	// as by then unclaimed houses will be recalimed by state
+	// this can be removed after all previously owned portals would have expired unless player has logged in to pay tax 
+	// as by then unclaimed houses will be reclaimed by state
 	// this will be 6? months after release of 0.73
 	public void onLoggedIn(final Player player) {
 		final String name = player.getName();
@@ -903,10 +902,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	public void addToWorld() {
 		super.addToWorld();
 
-		kirdneh_city_zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_CITY);
-		ados_city_zone = SingletonRepository.getRPWorld().getZone(ADOS_CITY);
-		ados_city_n_zone = SingletonRepository.getRPWorld().getZone(ADOS_CITY_N);
-		
 		kalavan_city_zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
 		createNPC();
 
