@@ -3,6 +3,7 @@ package games.stendhal.server.trade;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -29,7 +30,8 @@ public class TradeTest {
 	@Test
 	public void testSuccessfullTrade() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		Shop edeka = new Shop();
+		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
+		Shop edeka = new Shop(shopZone);
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -55,7 +57,8 @@ public class TradeTest {
 
 	@Test
 	public void testNonExistingOffer() {
-		Shop edeka = new Shop();
+		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
+		Shop edeka = new Shop(shopZone);
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -75,7 +78,8 @@ public class TradeTest {
 	@Test
 	public void testPoorBuyer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		Shop edeka = new Shop();
+		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
+		Shop edeka = new Shop(shopZone);
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
