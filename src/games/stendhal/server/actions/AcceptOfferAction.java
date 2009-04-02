@@ -3,6 +3,7 @@ package games.stendhal.server.actions;
 import marauroa.common.game.RPAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.trade.Offer;
@@ -21,7 +22,7 @@ public class AcceptOfferAction implements ActionListener {
 		final int price = action.getInt(ACCEPT_OFFER_PRICE);
 		final String itemName = action.get(ACCEPT_OFFER_ITEM);
 		final String offererName = action.get(ACCEPT_OFFER_OFFERERNAME);
-		final Shop shop = getShop();
+		final Shop shop = getShop(player);
 		final Offer offer = createOffer(price,itemName,offererName);
 		shop.acceptOffer(offer ,player);
 	}
@@ -32,9 +33,9 @@ public class AcceptOfferAction implements ActionListener {
 		return offer;
 	}
 
-	private Shop getShop() {
-		StendhalRPWorld.get().getRPZone("trading_center");
-		final Shop shop = new Shop();
+	private Shop getShop(final Player player) {
+		final StendhalRPZone shopZone = player.getZone();
+		final Shop shop = new Shop(shopZone);
 		return shop;
 	}
 
