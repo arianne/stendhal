@@ -23,7 +23,6 @@ import java.util.Map;
  */
 public class LittleGirlNPC implements ZoneConfigurator {
 
-	private static final String QUEST_SLOT = "semos_mine_town_revival";
 	/**
 	 * Configure a zone.
 	 *
