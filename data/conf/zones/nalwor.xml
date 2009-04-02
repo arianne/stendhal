@@ -110,40 +110,38 @@
 		<entity x="14" y="3">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				WORLDS FUNNIEST JOKES
+WORLDS FUNNIEST JOKES
 
-				If a man stands in the
-				middle of the forest speaking and there is no
-				woman around to hear
-				him, is he still wrong?
+If a man stands in the middle of the 
+forest speaking and there is no woman 
+around to hear him, is he still wrong?
 
-				Everyone has a photographic memory, some just
-				don't have film.
+Everyone has a photographic memory, 
+some just don't have film.
 
-				Eagles may soar, free and proud, but weasels never
-				get sucked into jet
-				engines.
+Eagles may soar, free and proud, but 
+weasels never get sucked into jet engines.
 
-				There's no future in time travel.
+There's no future in time travel.
 
-				...
-				continued on next page
+...
+continued on next page
       	</attribute>
 			<attribute name="class">transparent</attribute>
 		</entity>
 		<entity x="15" y="3">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				Artificial intelligence is no match for
-				natural stupidity.
+Artificial intelligence is no match for
+natural stupidity.
 
-				Honk if you love peace and quiet.
+Honk if you love peace and quiet.
 
-				Always remember
-				you're unique, just like everyone else.
+Always remember you're unique, 
+just like everyone else.
 
-				Half the people in the world
-				are below average.
+Half the people in the world are 
+below average.
       	</attribute>
 			<attribute name="class">transparent</attribute>
 		</entity>
@@ -207,20 +205,18 @@
 		<entity x="15" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				I buy the following:
+I buy the following:
 
-				steel arrow 5
-				wooden
-				arrow 1
-				power arrow 50
-				golden arrow 20
+steel arrow 5
+wooden arrow 1
+power arrow 50
+golden arrow 20
 
-				longbow 300
-				crossbow 400
-				wooden
-				bow 250
-				composite bow 350
-				hunter crossbow 800
+longbow 300
+crossbow 400
+wooden bow 250
+composite bow 350
+hunter crossbow 800
      </attribute>
 			<attribute name="class">blackboard</attribute>
 		</entity>
@@ -367,28 +363,28 @@
 		<entity x="23" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				I buy vegetables:
+I buy vegetables:
 
-				leek 25
-				salad 10
-				carrot 5
-				onion 20
-				tomato 20
-				broccoli 30
-				courgette 10
-				cauliflower 30
+leek 25
+salad 10
+carrot 5
+onion 20
+tomato 20
+broccoli 30
+courgette 10
+cauliflower 30
      </attribute>
 			<attribute name="class">blackboard</attribute>
 		</entity>
 		<entity x="24" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				I buy herbs:
+I buy herbs:
 
-				kekik 25
-				kokuda 200
-				sclaria 25
-				arandula 10
+kekik 25
+kokuda 200
+sclaria 25
+arandula 10
      </attribute>
 			<attribute name="class">blackboard</attribute>
 		</entity>
@@ -412,17 +408,16 @@
 		<entity x="3" y="10">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-				We Buy Armor and Weapons:
+We Buy Armor and Weapons:
 
-				buckler 20
-				aventail 25
-				robins hat 30
-				leather boots 25
-				dwarf cloak 60
-				dwarvish armor
-				17000
+buckler 20
+aventail 25
+robins hat 30
+leather boots 25
+dwarf cloak 60
+dwarvish armor 17000
 
-				assassin dagger 7000
+assassin dagger 7000
      </attribute>
 			<attribute name="class">blackboard</attribute>
 		</entity>
