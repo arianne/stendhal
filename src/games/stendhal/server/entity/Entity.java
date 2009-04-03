@@ -451,7 +451,7 @@ public abstract class Entity extends RPObject {
 	 * parameter is modified.
 	 * 
 	 * @param rect
-	 *            the area is stored into this paramter
+	 *            the area is stored into this parameter
 	 * @param x
 	 *            x
 	 * @param y
@@ -605,7 +605,7 @@ public abstract class Entity extends RPObject {
 	 * <p>
 	 * This calls <code>onMoved()</code>. <strong>Note: When placing during a
 	 * zone change, this call should be done after being removed from the old
-	 * zone, but before adding to the zone to prevent an erronious position jump
+	 * zone, but before adding to the zone to prevent an erroneous position jump
 	 * in the zone.</strong>
 	 * 
 	 * @param x
