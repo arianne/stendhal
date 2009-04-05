@@ -76,7 +76,7 @@ public class WeaponsCollectorTest {
 		assertEquals(wc.respondToQuest(), npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "collection"));
-		assertEquals(wc.askForMissingItems(wc.getNeededItems()), npc.get("text"));
+		assertEquals(wc.firstAskForMissingItems(wc.getNeededItems()), npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "yes"));
 		assertEquals(wc.respondToQuestAcception(), npc.get("text"));
