@@ -49,7 +49,7 @@ public class CloakCollectorTest {
 		assertEquals(cc.respondToQuest(), npc.get("text"));
 
 		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
-		assertEquals(cc.askForMissingItems(cc.getNeededItems()), npc.get("text"));
+		assertEquals(cc.firstAskForMissingItems(cc.getNeededItems()), npc.get("text"));
 
 		en.stepTest(monica, "no");
 		assertEquals(cc.respondToQuestRefusal(), npc.get("text"));
