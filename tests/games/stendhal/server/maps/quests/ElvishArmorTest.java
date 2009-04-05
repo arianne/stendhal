@@ -21,6 +21,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -73,29 +74,16 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
-			assertThat(playerSays, npc.getText(), is("Greetings, traveller. I see that you have come far to be here. I am interested in anyone who has encountered our kin, the green #elves"));
+			assertThat(playerSays, npc.getText(), is("Greetings, traveller. I see that you have come far to be here. I am interested in anyone who has encountered our kin, the green elves of Nalwor. They guard their #secrets closely."));
 		}
 	}
 
-	@Test
-	public void testAttendingToQuestOffered() {
-		for (final String playerSays : Arrays.asList("elves")) {
-			final Player player = PlayerTestHelper.createPlayer("bob");
-			npcEngine.setCurrentState(ATTENDING);
-			assertThat(player.hasQuest(QUEST_SLOT), is(false));
-
-			npcEngine.step(player, playerSays);
-
-			assertThat(playerSays, npcEngine.getCurrentState(), is(QUEST_OFFERED));
-			assertThat(playerSays, npc.getText(), is("Yes, those that dwell in the forest of Nalwor. They guard their #secrets closely, you know."));
-		}
-	}
 
 	@Test
 	public void testQuestOfferedToQuestOffered() {
 		for (final String playerSays : Arrays.asList("secrets")) {
 			final Player player = PlayerTestHelper.createPlayer("bob");
-			npcEngine.setCurrentState(QUEST_OFFERED);
+			npcEngine.setCurrentState(ATTENDING);
 
 			npcEngine.step(player, playerSays);
 
@@ -137,7 +125,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npcEngine.getCurrentState(), is(QUEST_OFFERED));
+			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
 			assertThat(playerSays, npc.getText(), is("Another unhelpful soul, I see."));
 			assertFalse(playerSays, player.hasQuest(QUEST_SLOT));
 			assertThat(playerSays, player.getKarma(), lessThan(oldkarma));
@@ -160,42 +148,12 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 			assertThat(playerSays, npc.getText(), is("Hello! I hope your search for elvish #equipment is going well?"));
 		}
 	}
 
 
-	/**
-	 * Player asks what exactly is missing.
-	 */
-	@Test
-	public void testQuestion1ToQuestion1() {
-		final String playerSays = "equipment";
-		final Player player = PlayerTestHelper.createPlayer("bob");
-		npcEngine.setCurrentState(QUESTION_1);
-
-		npcEngine.step(player, playerSays);
-
-		assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
-		assertThat(playerSays, npc.getText(), is("I have heard descriptions of 6 items in all. They are: #'elvish armor', #'elvish legs', #'elvish boots', #'elvish sword', #'elvish cloak', and #'elvish shield'. Have you looted any?"));
-	}
-
-	/**
-	 * Player says he has a required item with him.
-	 */
-	@Test
-	public void testQuestion1ToQuestion1Yes() {
-		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
-			final Player player = PlayerTestHelper.createPlayer("bob");
-			npcEngine.setCurrentState(QUESTION_1);
-
-			npcEngine.step(player, playerSays);
-
-			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
-			assertThat(playerSays, npc.getText(), is("Felicitations! What #equipment did you pillage?"));
-		}
-	}
 
 	/**
 	 * Player says he the name of a required item he has not got.
@@ -273,19 +231,20 @@ public class ElvishArmorTest {
 		assertThat(npcEngine.getCurrentState(), is(QUESTION_1));
 		assertThat(npc.getText(), is("I don't think that's a piece of elvish armor..."));
 	}
+	
+    @Ignore 
+    // ignored because removed from quest logic now.
+    public void testQuestion1toIdle() {
+            for (final String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
+                    final Player player = PlayerTestHelper.createPlayer("bob");
+                    npcEngine.setCurrentState(QUESTION_1);
 
-	@Test
-	public void testQuestion1toIdle() {
-		for (final String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
-			final Player player = PlayerTestHelper.createPlayer("bob");
-			npcEngine.setCurrentState(QUESTION_1);
+                    npcEngine.step(player, playerSays);
 
-			npcEngine.step(player, playerSays);
-
-			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
-			assertThat(playerSays, npc.getText(), is("Bye."));
-		}
-	}
+                    assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
+                    assertThat(playerSays, npc.getText(), is("Bye."));
+            }
+    }
 
 	@Test
 	public void testAttendingToAttending() {
@@ -296,7 +255,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
-			assertThat(playerSays, npc.getText(), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
+			assertThat(playerSays, npc.getText(), is("I understand. If there's anything else I can do for you, just say."));
 		}
 	}
 
@@ -313,8 +272,8 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("I see. If there's anything else I can do for you, just say."));
-			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
+			assertThat(playerSays, npc.getText(), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
+			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
 
 		}
 	}
@@ -353,8 +312,9 @@ public class ElvishArmorTest {
 
 	/**
 	 * player returns after finishing the quest and says quest.
+	 * *This is no longer in quest as the general logic doesn't have it in
 	 */
-	@Test
+	@Ignore
 	public void testAttendingtoAttendingDoneQuestmessage() {
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player player = PlayerTestHelper.createPlayer("bob");
@@ -371,8 +331,9 @@ public class ElvishArmorTest {
 
 	/**
 	 * player returns after finishing the quest and says quest.
+	 * *This is no longer in quest as the general logic doesn't have it in
 	 */
-	@Test
+	@Ignore
 	public void testAttendingtoQuestion1NotDoneQuestmessage() {
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player player = PlayerTestHelper.createPlayer("bob");
