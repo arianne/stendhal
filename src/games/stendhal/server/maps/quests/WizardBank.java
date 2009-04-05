@@ -13,6 +13,8 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.Arrays;
+
 import java.lang.ref.WeakReference;
 
 import marauroa.common.game.IRPZone;
@@ -177,7 +179,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("fee", null, new ChatAction() {
+				addReply(Arrays.asList("fee","enter"), null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
@@ -235,7 +237,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.");
+				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee to #enter.");
 
 				addReply("magic",
 						"Have you not heard of magic? It is what makes the grass grow here. Perhaps in time your kind will learn how to use this fine art.");
@@ -243,11 +245,11 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				addOffer("I would have thought that the offer of these #fiscal services is enough for you.");
 
 				addReply("fiscal",
-						"You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.");
+						"You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent. Anyhow, to #enter the bank just ask.");
 
 				addHelp("This bank is suffused with #magic, and as such you may access any vault you own. There will be a #fee to pay for this privilege, as we are not a charity.");
 
-				addQuest("You may only use this bank if you have gained the right to use the chests at Nalwor, and if you have earned the trust of a young woman.");
+				addQuest("To #enter this bank you need only ask.");
 
 				addGoodbye("Goodbye.");
 			}

@@ -136,7 +136,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "fiscal"));
-		assertEquals("You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.", npc.get("text"));
+		assertEquals("You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent. Anyhow, to #enter the bank just ask.", npc.get("text"));
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "help me"));
@@ -145,6 +145,10 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "magic"));
 		assertEquals("Have you not heard of magic? It is what makes the grass grow here. Perhaps in time your kind will learn how to use this fine art.", npc.get("text"));
+		assertTrue(npc.isTalking());
+
+		assertTrue(en.step(player, "task"));
+		assertEquals("To #enter this bank you need only ask.", npc.get("text"));
 		assertTrue(npc.isTalking());
 	}
 
