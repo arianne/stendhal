@@ -108,8 +108,8 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	public String respondToQuest() {
 		return "Although I have collected weapons for such a long time, I "
-				+ "still don't have everything I want. Do you think you can "
-				+ "help me to complete my #collection?";
+				+ "still don't have everything I want. I need "
+				+ "help to complete my #collection.";
 	}
 
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
@@ -132,6 +132,14 @@ public class WeaponsCollector extends AbstractQuest implements
 				+ Grammar.enumerateCollection(missingItems)
 				+ ". Do you have anything of that nature with you?";
 	}
+	public String firstAskForMissingItems(final List<String> missingItems) {
+		return "There " + Grammar.isare(missingItems.size()) + " "
+				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
+				+ " missing from my collection: "
+				+ Grammar.enumerateCollection(missingItems)
+				+ ". Will you bring them to me?";
+	}
+
 
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Let me know as soon as you find "

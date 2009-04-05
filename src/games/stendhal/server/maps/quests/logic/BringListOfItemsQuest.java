@@ -53,6 +53,8 @@ public interface BringListOfItemsQuest {
 
 	String askForMissingItems(List<String> missingItems);
 
+	String firstAskForMissingItems(List<String> missingItems);
+
 	String respondToPlayerSayingHeHasNoItems(List<String> missingItems);
 
 	String askForItemsAfterPlayerSaidHeHasItems();

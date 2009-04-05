@@ -124,7 +124,7 @@ public class BringListOfItemsQuestLogic {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final List<String> missingItems = getListOfStillMissingItems(player, false);
-						engine.say(concreteQuest.askForMissingItems(missingItems));
+						engine.say(concreteQuest.firstAskForMissingItems(missingItems));
 					}
 
 					@Override
