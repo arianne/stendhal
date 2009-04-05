@@ -99,6 +99,24 @@
  <tileset name="trestle" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_trestle.png"/>
  </tileset>
+ <tileset name="base" firstgid="186" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+ </tileset>
+ <tileset name="beers" firstgid="189" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/drink/beers_and_flasks.png"/>
+ </tileset>
+ <tileset name="bottles" firstgid="201" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/drink/bottle_and_glass.png"/>
+ </tileset>
+ <tileset name="bottles" firstgid="202" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/drink/bottles_and_cups.png"/>
+ </tileset>
+ <tileset name="meals" firstgid="218" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/food/rustic_meals.png"/>
+ </tileset>
+ <tileset name="items" firstgid="220" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/items_2.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3NMQ0AAAgEsbeEf3MEEzDQS25uoqmW5/P5fD6fz+fz+Xz+jf+1Bri26acAEAAA
@@ -106,12 +124,12 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2WyUoEMRCGc/A8ICrowQVEx+0pBEFU3EUQt6fQ8RUcHce+elAYmAcQ17ezAhUoqqtMKvY0/vCRTlV3frr5SWfYOTciMKTUrff8xigwASwC8zWwBLwi/noc/RdcWT0cH4FnJKZ+pN8EVpFmxJ/qBeG6YqNWD6P3XEOC/1iCv6ZboA3cKfU2688C64jVvwucs9o90AEelHpH6TvBv0jwv2C1azZqdd7P8S8E/1z1M/yd4G/NHxX372b4W/P3F3//fS5Zrcr8bQM7wD6yS64De2yNKvN3ABxGOBLWyVUV+0+qpBxa/FPyrIlmkeZQ8m8Bb8AHcKOsoeVZUkvwD+tq7/8JfLN1UvKsiT5Ln7N8/5Q8pz6r+fdcvRpE/qVcapnV8ufzQnOSopDbd1fObqjznvb+Pi+WfAX53H65cnZDnffq3H8k/Vf/TeAU2MKRXh9H1tTOAdLc+v7+HH4WuWfDMM/5/jF/7T8szXPOXzF/iwbh7/cB/42lvYP3pPNXOIM9IUEF9k6cvk9b69R/GZirmRX0nwSmCA02n2Y0hJrlHtqbAX4AN77kxAAQAAA=
+   H4sIAAAAAAAAAM2W2UoDQRBF+8HngKigDy4gGrevEARRcRdB3L5C4y8YjXFefVAI5APE3Z/zNlRDU1OVXoyDFw49XTXTlzSXTg8aY4YEBpR66ju9GAZjYB7MVsACeCbs8yj5z5myOjTeg0cipG6gXwfLRD3g7+uJ4Lpgo1Z3o/VcIZz/SIS/pmvQBDdKvcn602CVSPVvg1NWuwUtcKfUW0rfCP5FhP8Zq12yUavzfo5/IfjnqpvhbwT/1Pz54v7tDP/U/P3G3+7POav1M3+bYAvsEtves2OHrdHP/O2B/QAHwjq56sf5Eysphyn+MXnW5GfRz6Hk3wAv4A1cKWtoeZbUEPzdutrvfwefbJ2YPGvyv/W/S9n/mDzHfqv5d0y1+ov8S7nUMqvlz+bFz0mMXG5fTTm7rs572u+3eUnJl5PN7YcpZ9fVea/K80fSf/VfB8dgg0b/+TCwpnYPkOaa/1cPTgL+awnznP0P+Wv/w9I85/4V8k9Rjv9RoG/PAbvH0tnBe9L9y93BHgingnrfRj+nU+u+/yKYqZgl8h8HEx41Np9k1IRayjt+bwr8AH/JK4kAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA1qgLgWyjYFYjMoNsejh1h16KAFiFuhuA1Nbh4UUwpSgDgZilPR5NqBuAOKO3HoX0IF+2EA3X56AFrYPxmIZ9HJ/qVo/GlkmDEKhhcApb0pA+0IGgH09E1p+UMIVBGgR8HAAFD6hqXzmQPojqkDaPcoGAWEQDkeMWxyo4AwqB5oB4yCUTAIQQEQFwJx0QDZXwzEJUBcSqE5AL5GYrsAEAAA
+   H4sIAAAAAAAAAGNgwA1qgLgWyjYFYjMoNsejh1h16KAFiFuhuA0qdgdKz4NiBjRxUkEKECdDcSqaXDsQd0BxJ1TsHpqaJUB8F4s4KfbDALr99ADUtv8WEE8G4llo4oeh9Dkq27+UDD3DCewbaAcMMLiCRQyU9qZgET8JpafRzjk0AfeR2DC3n4XSS2hoL6hMrYKycdG0BOSWqUMJ3CZTHyh9g9I5KE3PJEP/GQZIWT0KRgEhcIqBvLRyHY8cqN6aSp5zSALleMSwyY0CwqB6AO0G1Ul3oeyJA2D/SKiTRgF5oACIC4G4aIDsLwbiEiAupdAcAG/Z8qcAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
@@ -129,9 +147,9 @@
    H4sIAAAAAAAAAO3XMQ0AAAgEsfevBZEsCGCGNjkRl/xSEwAAAGxd+MgG12wbBgAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32" visible="0" opacity="0.31">
+ <layer name="collision" width="32" height="32" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VyxHAIAhE6b8R20wBkc/iKjjJznCQIA9FzRCR8dvURPFpQr4jeVli87X51l5m+R4nwkdjPP6KKvnWeffmscTgV/efzY++SQxVvD9f5Gscz2/lQOq9jX9KO+9Whn9aSP/RfAinG/+UuvK7/n8icbPea+PMunauP7oH3flWTOScibzridSZ8a8aK0+lPfDaNMsAEAAA
+   H4sIAAAAAAAAAO2VXQ7AIAiDuf9FvObemZYfO5iJTUg2wX5OyRwiMm5MQ8D4TCin815Pptj81Xy0l1m+xfHwozUWf0edfNTv1jyWGPzu82fzvf8khr70zvCrVcVfcaxx5BFZ72n8Kt3+959/1C/CYfGj+uv+d/O77h9Uo5+Rp/c9813d9+8JfFTj6TOR93p0LsK1emsnWD6d8QDZSLTQABAAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="32" visible="0" opacity="0.41">
