@@ -1,30 +1,16 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
