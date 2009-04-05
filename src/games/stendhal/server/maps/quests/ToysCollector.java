@@ -125,7 +125,12 @@ public class ToysCollector extends AbstractQuest implements
 	public String respondToQuestRefusal() {
 		return "Oh ... you're mean.";
 	}
-
+	
+	// not used
+	public String firstAskForMissingItems(final List<String> missingItems) {
+		return "I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?";
+	}
+	
 	public String askForMissingItems(final List<String> missingItems) {
 		return "What toys did you bring?";
 	}
