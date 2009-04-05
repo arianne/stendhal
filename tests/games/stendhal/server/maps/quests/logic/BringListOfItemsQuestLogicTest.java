@@ -279,7 +279,11 @@ public class BringListOfItemsQuestLogicTest {
 		public String askForMissingItems(final List<String> missingItems) {
 			return Grammar.enumerateCollection(missingItems);
 		}
-
+		
+		public String firstAskForMissingItems(final List<String> missingItems) {
+			return "firstAskForMissingItems";
+		}
+		
 		public List<String> getAdditionalTriggerPhraseForQuest() {
 			return Arrays.asList(new String[] { "getAdditionalTriggerPhraseForQuest" });
 		}
@@ -390,6 +394,10 @@ public class BringListOfItemsQuestLogicTest {
 		public String askForMissingItems(final List<String> missingItems) {
 			return null;
 		}
+		
+		public String firstAskForMissingItems(final List<String> missingItems) {
+			return null;
+		}		
 
 		public List<String> getAdditionalTriggerPhraseForQuest() {
 			return null;
