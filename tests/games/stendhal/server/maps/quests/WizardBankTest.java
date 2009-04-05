@@ -128,7 +128,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Welcome to the Wizard's Bank, player1.", npc.get("text"));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.", npc.get("text"));
+		assertEquals("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee to #enter.", npc.get("text"));
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "deal"));
