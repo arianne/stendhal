@@ -49,7 +49,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 		};
 
 		stallman.setEntityClass("richardstallmannpc");
-		stallman.setPosition(26, 11);
+		stallman.setPosition(24, 19);
 		stallman.setDirection(Direction.DOWN);
 		stallman.initHP(100);
 		zone.add(stallman);
