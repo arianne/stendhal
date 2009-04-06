@@ -136,7 +136,9 @@ public class TutorialNotifier {
 	 *            playing time
 	 */
 	public static void aged(final Player player, final int age) {
-		if (age >= 30) {
+		if (age >= 60) {
+			process(player, TutorialEventType.TIMED_RULES);
+		} else if (age >= 30) {
 			// this is a new tutorial event, so we check isNew, 
 			// as our older players don't need to know how to change outfit
 			if (player.isNew()) {

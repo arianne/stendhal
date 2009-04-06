@@ -41,6 +41,8 @@ public enum TutorialEventType {
 				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
 	TIMED_OUTFIT(
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
+	TIMED_RULES(
+				    "Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem"),
 	NEW_RELEASE73(
 			"Hello and thanks for logging in to Stendhal 0.73! You can read about the new things at #http://arianne.sourceforge.net, especially important for you to read if you're a house owner.");
 	private String message;
