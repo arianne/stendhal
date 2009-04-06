@@ -84,8 +84,8 @@
  <tileset name="Untitled" firstgid="210" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/mossy_brick_paving.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Untitled" firstgid="219" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/ornamental_border2.png" trans="ff00ff"/>
+ <tileset name="border" firstgid="219" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/ornamental_border.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -94,7 +94,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3SOQ7CMBAFUFPBFeAGrKLiGGlpuQxI0LEWQIpQsAsOFCBhh5yCH2ksjUycGEZ68sSjkR3brhDioHECN6F+hRTUFeHcA+5CHxfqT4omtNh3GzqsvxHRE8754Bmsn4cCVKFGedFgf7JegrKiwupWRK9F9Se8NQJWv1HfS6nH3Q93pP6z+L6/LewVu5j/zkLO4Hx49GnsQo9y2Z+GOSzIEjKs14YRjQMYUs7XX8GabAz39Mv+w3Bg9ke/HZHz/cvz9KnmsTkZY5hQPmXr8/cT0Bj3ptT39QFfgP9nAAQAAA==
+   H4sIAAAAAAAAAJ3SOQ7CMBAFUFPBFeAGrKLiGGlpuQxI0LEWQIpQsAsOBGFJICyn4FsaSyOTxTDSkwePRp5gu0KIQ4QTuAn1M6SgrpF7L3iK6LhQf1I0ocV+t6HD+hshPXLPh8Dg/DwUoAo1yosG86l6CcqaCqtbIb0W1a9wjOCx+o367lo97n64N/U/xPf9bWGv2cV8dxZywvz+ZPRp7UKPctWfhjksyBIyrNeGEa0DGFLOz1/BmmwMZ/plfhkOzP7ot0NyPr/6P32qBWxPxRgmlE/Z+fz9eLTGvSn9fX0AzL0UuQAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -117,7 +117,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONkYGDgpDHGBQjJY1OLrAeXPaTaj00NqfpJDQNyw5HSeKBmvJEaf7jsJ2QmJxqNrp5cQKp+XOmMGH3obGLjCJ9aamAAzjqELgAEAAA=
   </data>
