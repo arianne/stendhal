@@ -45,10 +45,7 @@ public class Offer extends RPObject {
 	}
 	
 	public Offer(final RPObject object) {
-		this.item = (Item) object.getSlot("item").getFirst();
-		this.price = Integer.valueOf(object.getInt("price"));
-		this.offererName = object.get("offererName");
-		store();
+		this((Item) object.getSlot("item").getFirst(),Integer.valueOf(object.getInt("price")),object.get("offererName"));
 	}
 
 
