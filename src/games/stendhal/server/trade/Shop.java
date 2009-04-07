@@ -7,16 +7,18 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import marauroa.common.game.RPObject;
 
 public class Shop {
 	
-	// TODO Map<String, Set<Earning>> Earning knows offered item
-	private final Map<String, Integer> earnings = new HashMap<String, Integer>();
+	private final Map<String, Set<Earning>> earnings = new HashMap<String, Set<Earning>>();
 	private final List<Offer> offers = new LinkedList<Offer>();
 	
 	public Shop(final StendhalRPZone zone) {
@@ -42,7 +44,10 @@ public class Shop {
 		if (offers.contains(offer)) {
 			if (player.drop("money", offer.getPrice().intValue())) {
 				player.equipOrPutOnGround(offer.getItem());
-				earnings.put(offer.getOffererName(), offer.getPrice());
+				if(!earnings.containsKey(offer.getOffererName())) {
+					earnings.put(offer.getOffererName(), new HashSet<Earning>());
+				}
+				earnings.get(offer.getOffererName()).add(new Earning(offer.getItem(),offer.getPrice()));
 			}
 		}
 	}
@@ -51,9 +56,19 @@ public class Shop {
 		if (earnings.containsKey(earner.getName())) {
 			final StackableItem item = (StackableItem) SingletonRepository
 					.getEntityManager().getItem("money");
-			item.setQuantity(earnings.get(earner.getName()));
+			item.setQuantity(this.sumUpEarningsForPlayer(earner));
 			earner.equipToInventoryOnly(item);
+			earnings.remove(earner.getName());
 		}
+	}
+
+	private int sumUpEarningsForPlayer(Player earner) {
+		Set<Earning> earningsForPlayer = earnings.get(earner.getName());
+		int sum = 0;
+		for (Earning earning : earningsForPlayer) {
+			sum += earning.getValue().intValue();
+		}
+		return sum;
 	}
 
 }
