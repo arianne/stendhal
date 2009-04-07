@@ -40,10 +40,10 @@ public class Shop {
 		return offer;
 	}
 
-	public void acceptOffer(final Offer offer, final Player player) {
+	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (offers.contains(offer)) {
-			if (player.drop("money", offer.getPrice().intValue())) {
-				player.equipOrPutOnGround(offer.getItem());
+			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
+				acceptingPlayer.equipOrPutOnGround(offer.getItem());
 				if(!earnings.containsKey(offer.getOffererName())) {
 					earnings.put(offer.getOffererName(), new HashSet<Earning>());
 				}
