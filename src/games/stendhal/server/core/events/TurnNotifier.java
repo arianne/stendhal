@@ -85,16 +85,12 @@ public final class TurnNotifier {
 		}
 
 		if (set != null) {
-			for (final TurnListener event : set) {
-				final TurnListener turnListener = event;
+			for (final TurnListener turnListener : set) {
+				
 				try {
-					if (logger.isDebugEnabled()) {
-						logger.info(turnListener);
-					}
-
 					turnListener.onTurnReached(currentTurn);
 				} catch (final RuntimeException e) {
-					logger.error(e, e);
+					logger.error("Exception in " + turnListener, e);
 				}
 			}
 		}
