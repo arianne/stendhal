@@ -35,8 +35,9 @@ public class UpdatePlayerEntitiesTest {
 		pm.setDatabase(spdb);
 		Player loaded = pm.loadPlayer("george");
 		assertNotNull("pm can only handle existing players, so if this fails first create a player in db by login", loaded);
-		
-		loaded.getSlot("bag").remove(loaded.getSlot("bag").getFirst().getID());
+		if (loaded.getSlot("bag").size() > 0) {
+			loaded.getSlot("bag").remove(loaded.getSlot("bag").getFirst().getID());
+		}
 		assertEquals(null, loaded.getSlot("bag").getFirst());
 		
 		EntityManager em = SingletonRepository.getEntityManager();
