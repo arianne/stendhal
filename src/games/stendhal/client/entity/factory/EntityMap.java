@@ -48,7 +48,6 @@ import games.stendhal.client.entity.WellSource;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Registers the relationship between Type, eclass and java class of entity
  * Objects.
@@ -59,7 +58,7 @@ import java.util.Map;
  * 
  */
 public final class EntityMap {
-	private static Map<Triple<String, String, String>, Class< ? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends IEntity>>();
+	private static Map<Triple<String, String, String>, Class<? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class<? extends IEntity>>();
 
 	static {
 		register();
@@ -104,14 +103,15 @@ public final class EntityMap {
 		register("blood", null, null, Blood.class);
 		register("sign", null, null, Sign.class);
 		register("blackboard", null, null, Sign.class);
+		register("tradecentersign", null, null, Sign.class);
 
 		register("item", null, null, Item.class);
 		register("item", "box", null, Box.class);
 		register("item", "ring", "emerald-ring", Ring.class);
 		register("item", "ring", null, UseableRing.class);
-		
+
 		register("item", "drink", null, UseableItem.class);
-        register("item", "flower", null, StackableItem.class);
+		register("item", "flower", null, StackableItem.class);
 		register("item", "food", null, UseableItem.class);
 		register("item", "tool", "foodmill", UseableItem.class);
 		register("item", "herb", null, StackableItem.class);
@@ -120,10 +120,10 @@ public final class EntityMap {
 		register("item", "missile", null, StackableItem.class);
 		register("item", "ammunition", null, StackableItem.class);
 		register("item", "container", null, StackableItem.class);
-        register("item", "special", null, StackableItem.class);
-        register("item", "special", "mithril clasp", Item.class);
+		register("item", "special", null, StackableItem.class);
+		register("item", "special", "mithril clasp", Item.class);
 		register("item", "club", "wizard_staff", UseableItem.class);
-        register("item", "misc", "seed", UseableItem.class);
+		register("item", "misc", "seed", UseableItem.class);
 
 		register("item", "resource", null, StackableItem.class);
 
@@ -134,7 +134,7 @@ public final class EntityMap {
 		register("house_portal", null, null, HousePortal.class);
 		register("door", null, null, Door.class);
 		register("fire", null, null, Fire.class);
-		
+
 		register("gate", null, null, Gate.class);
 	}
 
@@ -144,12 +144,12 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
-	 * @param subClass 
+	 * @param subClass
 	 * @param entityClazz
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,
-			final String subClass, final Class< ? extends IEntity> entityClazz) {
+			final String subClass, final Class<? extends IEntity> entityClazz) {
 		entityMap.put(
 				new Triple<String, String, String>(type, eclass, subClass),
 				entityClazz);
@@ -165,9 +165,9 @@ public final class EntityMap {
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class< ? extends IEntity> getClass(final String type,
+	public static Class<? extends IEntity> getClass(final String type,
 			final String eclass, final String subClass) {
-		Class< ? extends IEntity> result = entityMap
+		Class<? extends IEntity> result = entityMap
 				.get(new Triple<String, String, String>(type, eclass, subClass));
 		if (result == null) {
 			result = entityMap.get(new Triple<String, String, String>(type,
