@@ -32,7 +32,7 @@ public class ExamineChatAction implements ChatAction {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				StartRecordingKillsAction.class);
+				ExamineChatAction.class);
 	}
 
 	@Override
