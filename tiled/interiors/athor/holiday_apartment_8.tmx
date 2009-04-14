@@ -61,7 +61,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXSTw7BQBSA8ZnESriAqj+xwBrnsJO4AZZihUPZCStiyaF8wxOTycyjEi/5pWmbb6ZNOzfGLH60xAErrAvaYCv9DmVrkhO7tw96N8oSj3vOWOnryNFBAyWvnwpt/yZaoq08S6yvIUsc3VRQ9cT2LzKpfiK0cd8j1vvdpzW+7WdB9zr/x/uHexXdP5MfMNd+xEh/xAlduh769nmuOUt/wVUM6IYY2fc1zQ13LFh0jAAEAAA=
+   H4sIAAAAAAAAALXSTw4BMRTH8U7MSriAMf7EAmucw07iBuII4lB2Mjt7IWFDwjVI2PAtlTST9tGFl3zSNO2vr5PpRim1xTTQDnsccMQs0AlnZFigGClvudaWmFt5XcIRrzVtKOSrSNFCDbGVHxtS/zoaRlO4iytfQeIZdZVQtrj6h5QvPzKk0v/Dlbdz3874NT/J5T7zf3x/vldo/8Q8wFR6iLn8BVes0CbXQTd6zyU33PHQh7F/zdBj7GNg5pICe2I8ATZCdbAABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -84,7 +84,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNlYGBgHSQYF8AmR6oZ6GYR0k+Mm8j1D7H6kc2hxC5i7KdELynhRsh+XHxC4UEqwGUmIXW0sp+UuKYmBgCUupsmAAQAAA==
   </data>
