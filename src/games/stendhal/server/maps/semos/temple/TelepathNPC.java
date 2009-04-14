@@ -59,7 +59,7 @@ public class TelepathNPC implements ZoneConfigurator {
 						        if (player.hasQuest("meet_io")) {
 									if (player.isBadBoy()) {
 										// notice pk icon 
-										engine.say("Hi again, " + player.getTitle() + ". I sense have been branded with the mark of a killer. Do you wish to have it removed?");
+										engine.say("Hi again, " + player.getTitle() + ". I sense you have been branded with the mark of a killer. Do you wish to have it removed?");
 										engine.setCurrentState(ConversationStates.QUESTION_1);
 									} else {
 										engine.say("Hi again, " + player.getTitle()
