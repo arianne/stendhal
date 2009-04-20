@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -83,7 +84,8 @@ class PlayerRPClass {
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 
-		player.addRPEvent("private_text", Definition.PRIVATE);
+		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
+		player.addRPEvent(Events.OPEN_OFFER_PANEL, Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);

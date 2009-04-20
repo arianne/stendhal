@@ -19,11 +19,13 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.client.gui.tradingcenter.TradePanel;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.Events;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -669,8 +671,11 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Private message
 		 */
 		for (final RPEvent event : object.events()) {
-			if (event.getName().equals("private_text")) {
+			if (event.getName().equals(Events.PRIVATE_TEXT)) {
 				onPrivateListen(event.get("texttype"), event.get("text"));
+			}
+			if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
+				onPrivateListen("normal","Open Panel!");
 			}
 		}
 
@@ -862,8 +867,11 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Private message
 			 */
 			for (final RPEvent event : changes.events()) {
-				if (event.getName().equals("private_text")) {
+				if (event.getName().equals(Events.PRIVATE_TEXT)) {
 					onPrivateListen(event.get("texttype"), event.get("text"));
+				}
+				if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
+					j2DClient.get().addDialog(new TradePanel());
 				}
 			}
 	
