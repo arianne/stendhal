@@ -27,6 +27,7 @@ import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
 
 import java.awt.Graphics2D;
@@ -142,7 +143,7 @@ public class Character extends WtPanel {
 				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP:${xp}\n"
+				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP: ${xp}\n"
 				+ "Level: ${level} (${xptonextlevel})\nMoney: $${money}",
 				gameScreen);
 		statsPanel.setFrame(false);
@@ -183,11 +184,9 @@ public class Character extends WtPanel {
 
 		final GameObjects gameObjects = GameObjects.getInstance();
 
-		// taverse all carrying slots
-		final String[] slotsCarrying = {"bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "keyring" };
+		// traverse all carrying slots
 
-		for (final String slotName : slotsCarrying) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = playerEntity.getSlot(slotName);
 
 			if (slot == null) {
