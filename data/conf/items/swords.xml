@@ -132,7 +132,7 @@
 
   <item name="hell dagger">
     <type class="sword" subclass="hell_dagger" tileid="-1"/>
-    <description>You see a hell dagger. Is the colour that of the burning fires of Hell?.</description>
+    <description>You see a hell dagger. Is the colour that of the burning fires of Hell?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="9"/>
       <rate value="2"/>
