@@ -137,7 +137,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
         		quote = "Devout Crustaceans believe in the One True Cod.";
         		break;
         	case HUMPREY_FIRST_LETTER:
-        		quote = "I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'.";
+        		quote = "I don't understand why no-one buys my fish. The sign says 'Biggest Roaches in town'.";
         		break;
         	case MONTY_FIRST_LETTER:
         		quote = "My parrot doesn't like to sit on a perch. He says it smells fishy.";

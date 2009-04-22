@@ -112,7 +112,7 @@ public class MithrilCloakTest {
 		player.setQuest(questSlot, "machine;bobbin");
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		en.step(player, "bobbin");
-		assertEquals("Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.", npc.get("text"));
+		assertEquals("Only dwarf smiths make bobbins, no-one else has nimble enough fingers. Try #Alrak.", npc.get("text"));
 		en.step(player, "ok");
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", npc.get("text"));
@@ -135,7 +135,7 @@ public class MithrilCloakTest {
 		en.step(player, "hi");
 		assertEquals("Hello there.", npc.get("text"));
 		en.step(player, "bobbin");
-		assertEquals("Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.", npc.get("text"));
+		assertEquals("Only dwarf smiths make bobbins, no-one else has nimble enough fingers. Try #Alrak.", npc.get("text"));
 		en.step(player, "alrak");
 		assertEquals("I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...", npc.get("text"));
 		en.step(player, "quest");
@@ -260,7 +260,7 @@ public class MithrilCloakTest {
 		en.step(player, "hi");
 		assertEquals("Welcome, warmly", npc.get("text"));
 		en.step(player, "fabric");
-		assertEquals("I would love to weave you some fabric but I'm afraid my mind is full of other things. I have offended a fellow wizard. I was up all night writing him an apology letter, but I have noone to deliver it to him. Unless ... that is ... would YOU deliver this letter for me?", npc.get("text"));
+		assertEquals("I would love to weave you some fabric but I'm afraid my mind is full of other things. I have offended a fellow wizard. I was up all night writing him an apology letter, but I have no-one to deliver it to him. Unless ... that is ... would YOU deliver this letter for me?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Wonderful! I'm so relieved! Please take this note to Pedinghaus, you will find him in Ados goldsmiths. Tell him you have a #letter for him.", npc.get("text"));
 		en.step(player, "letter");
