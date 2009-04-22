@@ -52,7 +52,7 @@ public class LookUpQuote extends AbstractQuest {
 		quotes.put("fisherman Sody",
 				"Devout Crustaceans believe in the One True Cod.");
 		quotes.put("fisherman Humphrey",
-						"I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'.");
+						"I don't understand why no-one buys my fish. The sign says 'Biggest Roaches in town'.");
 		quotes.put("fisherman Monty",
 						"My parrot doesn't like to sit on a perch. He says it smells fishy.");
 		quotes.put("fisherman Charby",

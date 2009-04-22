@@ -59,7 +59,7 @@ public class TradeManagerNPC extends SpeakerNPCFactory {
 						//finishTrade();
 					}
 				});
-		npc.addReply("exchange", "When you are both ready, swap places. The narrow corridors are designed so that noone else can take the items you have placed. If someone gets in the way you can just go back and remove your items from the table until the area is clear again. If you don't understand anything, try asking another player for a demonstration. Oh, and by the way, we also have #security at the table.");
+		npc.addReply("exchange", "When you are both ready, swap places. The narrow corridors are designed so that no-one else can take the items you have placed. If someone gets in the way you can just go back and remove your items from the table until the area is clear again. If you don't understand anything, try asking another player for a demonstration. Oh, and by the way, we also have #security at the table.");
 		npc.addJob("I manage trade between players.");
 		npc.addGoodbye("Remember, always trade safely!");
 	}

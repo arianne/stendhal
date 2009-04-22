@@ -406,7 +406,7 @@ class MakingFabric {
 				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "task", "quest"),
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_mithril_thread"),
 				ConversationStates.QUEST_OFFERED,
-				"I would love to weave you some fabric but I'm afraid my mind is full of other things. I have offended a fellow wizard. I was up all night writing him an apology letter, but I have noone to deliver it to him. Unless ... that is ... would YOU deliver this letter for me?",
+				"I would love to weave you some fabric but I'm afraid my mind is full of other things. I have offended a fellow wizard. I was up all night writing him an apology letter, but I have no-one to deliver it to him. Unless ... that is ... would YOU deliver this letter for me?",
 				null);
 			
 		// Player says yes they want to help 

@@ -122,7 +122,7 @@ class InitialSteps {
 				null);
 
 		npc.addReply("oil", "The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
-		npc.addReply("bobbin", "Only dwarf smiths make bobbins, noone else has nimble enough fingers. Try #Alrak.");
+		npc.addReply("bobbin", "Only dwarf smiths make bobbins, no-one else has nimble enough fingers. Try #Alrak.");
 		npc.addReply("Alrak", "I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...");
 
 	}
