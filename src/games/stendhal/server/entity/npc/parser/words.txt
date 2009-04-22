@@ -906,6 +906,7 @@ necrosophia	SUB
 ninja	SUB
 nomad	SUB
 noone	SUB
+no-one   SUB
 nymph	SUB
 ogre	SUB	ogres
 oni	SUB
