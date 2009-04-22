@@ -14,12 +14,11 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.client.gui.tradingcenter.TradePanel;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
@@ -870,9 +869,9 @@ public abstract class RPEntity extends ActiveEntity {
 				if (event.getName().equals(Events.PRIVATE_TEXT)) {
 					onPrivateListen(event.get("texttype"), event.get("text"));
 				}
-				if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
-					j2DClient.get().addDialog(new TradePanel());
-				}
+                //				if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
+                //					j2DClient.get().addDialog(new TradePanel());
+                //				}
 			}
 	
 			/*
