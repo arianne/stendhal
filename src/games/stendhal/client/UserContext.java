@@ -440,7 +440,7 @@ public class UserContext implements RPObjectChangeListener {
 		 */
 		if (player != object) {
 			player = object;
-
+			name = object.get("name");
 		}
 	}
 
