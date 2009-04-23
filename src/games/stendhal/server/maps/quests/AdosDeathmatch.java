@@ -7,9 +7,14 @@ import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.TeleportAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -191,29 +196,75 @@ public class AdosDeathmatch extends AbstractQuest {
 		zone.add(npc);
 	}
 
+
+	class DeathMatchEmptyCondition implements ChatCondition {
+		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			final List<Player> dmplayers = arena.getPlayers();
+			return (dmplayers.size() == 0);
+		}
+	}
+
 	private void recruiterInformation() {
 		final SpeakerNPC npc2 = npcs.get("Thonatus");
+		
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status"), 
+				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
+				 null,
+				 new ChatAction() {
+					 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						 final List<Player> dmplayers = arena.getPlayers();
+						 final List<String> dmplayernames = new LinkedList<String>();
+						 for (Player dmplayer : dmplayers) {
+							 dmplayernames.add(dmplayer.getName());
+						 }
+						 // List the players inside deathmatch
+						 npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
+								 + Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
+					 }
+				 });
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , null, ConversationStates.ATTENDING,
-				    null,
-				    new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					    final List<Player> dmplayers = arena.getPlayers();
-					    final List<String> dmplayernames = new LinkedList<String>();
-					    for (Player dmplayer : dmplayers) {
-						dmplayernames.add(dmplayer.getName());
-					    }
-					    if (dmplayers.size() == 0) {
-							// No players inside so continue as normal
-							npc.say("Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.");
-						    } else {
-							// List the players inside deathmatch
-							npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
-								+ Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
-						    }
-						}
-					});
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , new DeathMatchEmptyCondition(), 
+				 ConversationStates.ATTENDING,
+				 "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
+
+		npc2.add(ConversationStates.ATTENDING, "challenge", 
+				 new AndCondition(new LevelGreaterThanCondition(19), new DeathMatchEmptyCondition()), 
+				 ConversationStates.IDLE, null,				 
+				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
+
+
+		npc2.add(ConversationStates.ATTENDING, "challenge", 
+				 new AndCondition(new LevelGreaterThanCondition(19), new NotCondition(new DeathMatchEmptyCondition())), 
+				 ConversationStates.QUESTION_1, null,				 
+				 new ChatAction() {
+					 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						 final List<Player> dmplayers = arena.getPlayers();
+						 final List<String> dmplayernames = new LinkedList<String>();
+						 for (Player dmplayer : dmplayers) {
+							 dmplayernames.add(dmplayer.getName());
+						 }
+						 // List the players inside deathmatch
+						 npc.say("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join "
+								 + Grammar.enumerateCollection(dmplayernames) + "?");
+					 }
+				 });
+
+		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
+				 ConversationStates.IDLE, null,				 
+				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
+
+
+		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
+				 ConversationStates.ATTENDING, "That's a bit cowardly, but never mind. If there's anything else you want, just say.",				 
+				 null);
+
+		npc2.add(ConversationStates.ATTENDING, "challenge",
+				 new LevelLessThanCondition(20), 
+				 ConversationStates.ATTENDING, "Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
+				 null);
 	}
+
+
 
 	@Override
 	public void addToWorld() {

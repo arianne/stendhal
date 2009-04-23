@@ -7,9 +7,6 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.TeleportAction;
-import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
-import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -78,18 +75,8 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
 				        "Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", null);
 				// response to 'heroes' is defined in maps.quests.AdosDeathmatch 
-				// because we need here to know about who is in the deathmatch
+				// because we need here to know about who is in the deathmatch. The teleport action is done there also.
 				addGoodbye("I hope you will enjoy the Ados Deathmatch!");
-
-				add(ConversationStates.ATTENDING, "challenge", 
-					new LevelGreaterThanCondition(19), 
-					ConversationStates.ATTENDING, null,
-					new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
-
-				add(ConversationStates.ATTENDING, "challenge",
-					new LevelLessThanCondition(20), 
-					ConversationStates.ATTENDING, "Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
-					null);
 			}
 		};
 
