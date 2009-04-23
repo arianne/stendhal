@@ -71,8 +71,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	public void createHelmet(final int x, final int y) {
 		final Item helmet = SingletonRepository.getEntityManager()
 				.getItem("trophy helmet");
-		helmet.put("def", "20");
-		helmet.setDescription("This is the grand prize for Deathmatch winners.");
+		helmet.setDescription("This is the grand prize for Deathmatch winners. The defense will increase by 1 for every deathmatch completed.");
 		helmet.setPosition(x, y);
 		zone.add(helmet, false);
 	}
