@@ -22,7 +22,7 @@ class AddBuddyAction implements ActionListener {
 		}
 		player.setKeyedSlot("!buddy", "_" + who, online);
 
-		
+		player.sendPrivateText(who + " was added to your buddy list.");
 		new GameEvent(player.getName(), "buddy", "add", who).raise();
 
 	}

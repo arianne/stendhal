@@ -15,7 +15,7 @@ class RemoveBuddyAction implements ActionListener {
 			player.setKeyedSlot("!buddy", "_" + who, null);
 
 			new GameEvent(player.getName(), "buddy", "remove", who).raise();
-
+			player.sendPrivateText(who + " was removed from your buddy list.");
 			// TEMP! Supreceeded by /unignore
 			player.removeIgnore(who);
 		}
