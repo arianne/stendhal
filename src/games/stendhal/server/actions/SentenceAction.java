@@ -26,6 +26,7 @@ public class SentenceAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
 			player.setSentence(action.get(VALUE));
+			player.sendPrivateText("Your sentence was updated to: " + action.get(VALUE));
 		}
 	}
 }
