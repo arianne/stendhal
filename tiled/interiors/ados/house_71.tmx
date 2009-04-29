@@ -135,7 +135,7 @@
  </layer>
  <layer name="2_object" width="25" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASsjFgEgaAVjd+MxJZF0iOHQ/9fIH4FxCuBmA2o5hKQvgzEV5DUdAKxPRA7QvktSHLySOYq4LCDESj+DkivAWIOHGp2AbETELtglyYI3pOpjxSwHEp/AOKPJOo1B/rbAsnv1kC2DZaweEim20gBu9H4SUAcC8RxONTvpK1zMMAPIP5JhDouYPjVA+laKN8SiK2g2BqL+losYrQEC4A4gsZ2LMYiNo8IfelAnEFlt2yF0r+gdCYQZxGp1xuIfYhQd4JURyEBfyAOQOJHUWCWJpTWpsAMQkAHSuuRqA8AonBSckAGAAA=
+   H4sIAAAAAAAAAGNgwASsjFgEgaAVjd+MxJZF0iOHQ/9fIH4FxCuBmA2o5hKQvgzEV5DUdAKxPRA7QvktSHLySOYq4LCDESj+DkivAWIOHGp2AbETELtglyYI3pOpjxSwHEp/AOKPJOo1B/rbAsnv1kC2DZaweEim20gBu9H4SUAcC8RxONTvpK1zMMAPIP5JhDouYPjVA+laKN8SiK2g2BqL+losYrQEC4A4gsZ2LMYiNo8IfelAnEFlt2yF0r+gdCYQZxGp1xuIfYhQd4JURyEBfyAOQOKHUmCWJpTWpsAMQkAHSuuRqA8AvtyHf0AGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="16">

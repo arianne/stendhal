@@ -105,7 +105,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIAgIA4G4hAofxYDaSAUiMOAOBzKn4MmbwfE9lAaG4gA4rVAvA6K15NoPwhsQGJvIlHvNiDejia2lQT9O4B4J4l24gP47Jan0GwFItTMBeJ5JJh5F4uYGQn6+YFYBU3MCInNDcTT8eg3AGIxEuxDB4+B+CmamCoF5oGAAhLbEohnEFBfDsQVQFxJpn3VQFwDxLUk6AEAHKBEVgAEAAA=
+   H4sIAAAAAAAAAGNggIAgIA4G4hAofxYDaSAUiMOAOBzKn4MmbwfE9lAaG4gA4rVAvA6K15NoPwhsQGJvIlHvNiDejia2lQT9O4B4J4l24gP47Jan0GwFItTMBeJ5JJh5F4uYGQn6+YFYBU3MCInNDcTT8eg3AGIxEuxDB4+B+CmamCoF5oGAAhLbEoinEFBfDsQVQFxJpn3VQFwDxLUk6AEAZxwNZgAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
