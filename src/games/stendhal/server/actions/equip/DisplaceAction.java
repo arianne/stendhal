@@ -20,12 +20,15 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 
+import java.awt.Rectangle;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -89,7 +92,8 @@ public class DisplaceAction implements ActionListener {
 	    return nextTo(player, entity)
 				&& (!isItemBelowOtherPlayer(player, entity))
 				&& destInRange(player,x, y)
-				&& !entityCollides(player, zone, x, y, entity);
+				&& !entityCollides(player, zone, x, y, entity)
+				&& (isGamblingZoneAndIsDice(entity, player) || pathToDest(player, zone, x, y, entity));
 	}
 
     /**
@@ -165,6 +169,32 @@ public class DisplaceAction implements ActionListener {
 			player.sendPrivateText("There is no space there.");		
 		}
 		return zone.simpleCollides(entity, x, y);
+	}
+	
+	/**
+	 * Checks whether there is a path from player to destination
+	 *
+	 * @param player Player attempting the move
+	 * @param zone   Zone
+	 * @param x      x-position
+	 * @param y      y-position
+	 * @param entity entity to move
+	 * @return true, iff allowed
+	 */
+	private boolean pathToDest(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {	
+		final List<Node> path = Path.searchPath(entity, zone,
+				player.getX(), player.getY(), new Rectangle(x, y, 1, 1),
+				64 /* maxDestination * maxDestination */, false);
+		if (path.isEmpty()) {
+			player.sendPrivateText("There is easy path to that place.");		
+		}
+		return !path.isEmpty();
+	}
+	
+	/* returns true if zone is semos tavern and entity is dice */
+	private boolean isGamblingZoneAndIsDice(final Entity entity, final Player player) {
+		final StendhalRPZone zone = player.getZone();
+		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
 	
 	/**

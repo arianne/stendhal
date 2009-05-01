@@ -4,13 +4,17 @@ import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
+import java.awt.Rectangle;
 import java.util.Iterator;
+import java.util.List;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -159,10 +163,26 @@ class DestinationObject extends MoveableObject {
 				player.sendPrivateText("That is too far away.");
 				return false;
 			}
-
+			
+			if (!isGamblingZoneAndIsDice(entity, player)) {
+				// and there is a path there
+				final List<Node> path = Path.searchPath(entity, zone,
+						player.getX(), player.getY(), new Rectangle(x, y, 1, 1),
+						64 /* maxDestination * maxDestination */, false);
+				if (path.isEmpty()) {
+					player.sendPrivateText("There is no easy path to that place.");
+					return false;
+				}
+			}
 		}
 
 		return true;
+	}
+	
+	/* returns true if zone is semos tavern and entity is dice */
+	private boolean isGamblingZoneAndIsDice(final Entity entity, final Player player) {
+		final StendhalRPZone zone = player.getZone();
+		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
 	
 	/* returns true if destination is trading table in semos bank */
