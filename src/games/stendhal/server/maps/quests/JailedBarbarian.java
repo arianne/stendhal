@@ -42,7 +42,7 @@ import java.util.Arrays;
  * <ul>
  * <li>You get 20 gold bars</li>
  * <li>Karma: 15</li>
- * <li>You get 52.000 experince points in all</li>
+ * <li>You get 52,000 experience points in all</li>
  * </ul>
  *
  * REPETITIONS:
