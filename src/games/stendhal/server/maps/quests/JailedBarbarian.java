@@ -34,8 +34,8 @@ import java.util.Arrays;
  * <li>2. You have to ask Princess Esclara for a 'reason'</li>
  * <li>3. You have to bring him an egg</li>
  * <li>4. You have to inform Princess Ylflia</li>
- * <li>5. You have to bring him an barbarian armor</li>
- * <li>6. You get an reward.</li>
+ * <li>5. You have to bring him a barbarian armor</li>
+ * <li>6. You get a reward.</li>
  * </ul>
  *
  * REWARD:
