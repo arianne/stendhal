@@ -248,7 +248,7 @@ public class StuffForBaldemar extends AbstractQuest {
 							+ REQUIRED_IRON
 							+ " iron bars, "
 							+ REQUIRED_BLACK_PEARL
-							+ " black pearls," 
+							+ " black pearls, " 
 							+ REQUIRED_SHURIKEN
 							+ " shuriken, "
 							+ REQUIRED_MARBLES
