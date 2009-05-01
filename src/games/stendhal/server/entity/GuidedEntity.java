@@ -89,7 +89,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 
 	/**
-	 * Determine if the entty has a path.
+	 * Determine if the entity has a path.
 	 * 
 	 * @return <code>true</code> if there is a path.
 	 */
