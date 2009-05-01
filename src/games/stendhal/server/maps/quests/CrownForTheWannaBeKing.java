@@ -23,13 +23,13 @@ import java.util.Map;
  *
  * PARTICIPANTS: 
  * <ul>
- * <li> Ivan Abe, the wannabe king who lives in Kalavan</li>
- * <li> Kendra Mattori, priestess living in Wizard City</li>
+ * <li> Ivan Abe, the wannabe king who lives in Sedah</li>
+ * <li> Kendra Mattori, priestess living in Magic City</li>
  * </ul>
  *
  * STEPS:
  * <ul>
- * <li> Ivan Abe wants you to bring him gems and gold for his crown which he
+ * <li> Ivan Abe wants you to bring him 2 carbuncles, 2 diamonds, 4 emeralds, 2 gold bars, 1 obsidian, and 3 sapphires for his crown which he
  *      believes will help him to become the new king.</li>
  * <li> Kendra Mattori gives the reward after player brought all required items.</li>
  * </ul>
