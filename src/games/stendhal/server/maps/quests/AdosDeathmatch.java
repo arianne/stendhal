@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasPetOrSheepCondition;
 import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -228,13 +229,17 @@ public class AdosDeathmatch extends AbstractQuest {
 				 "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
 
 		npc2.add(ConversationStates.ATTENDING, "challenge", 
-				 new AndCondition(new LevelGreaterThanCondition(19), new DeathMatchEmptyCondition()), 
+				 new AndCondition(new LevelGreaterThanCondition(19), 
+						  new DeathMatchEmptyCondition(),
+						  new NotCondition(new PlayerHasPetOrSheepCondition())), 
 				 ConversationStates.IDLE, null,				 
 				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
 
 		npc2.add(ConversationStates.ATTENDING, "challenge", 
-				 new AndCondition(new LevelGreaterThanCondition(19), new NotCondition(new DeathMatchEmptyCondition())), 
+			 new AndCondition(new LevelGreaterThanCondition(19), 
+					  new NotCondition(new DeathMatchEmptyCondition()),
+					  new NotCondition(new PlayerHasPetOrSheepCondition())), 
 				 ConversationStates.QUESTION_1, null,				 
 				 new ChatAction() {
 					 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
@@ -248,6 +253,13 @@ public class AdosDeathmatch extends AbstractQuest {
 								 + Grammar.enumerateCollection(dmplayernames) + "?");
 					 }
 				 });
+
+		npc2.add(ConversationStates.ATTENDING, "challenge", 
+			 new AndCondition(new LevelGreaterThanCondition(19), 
+					  new PlayerHasPetOrSheepCondition()),
+			 ConversationStates.ATTENDING, "Sorry, but it would be too scary for your pet in there.",
+				 null);
+
 
 		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
 				 ConversationStates.IDLE, null,				 
