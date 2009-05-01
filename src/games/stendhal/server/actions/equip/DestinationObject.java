@@ -128,6 +128,7 @@ class DestinationObject extends MoveableObject {
 				if (!isStackable) {
 					// entity cannot be stacked on top of another...
 					// so the equip is invalid
+					player.sendPrivateText("There is no space in there.");
 					return false;
 				}
 			}
@@ -146,6 +147,7 @@ class DestinationObject extends MoveableObject {
 			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
 				logger.warn("object " + entity + " collides with " + x + "x"
 						+ y);
+				player.sendPrivateText("There is no space on there.");
 				return false;
 			}
 
@@ -154,6 +156,7 @@ class DestinationObject extends MoveableObject {
 					&& (entity.squaredDistance(x, y) > (8 * 8))) {
 				logger.warn("object " + entity + " is too far away from " + x
 						+ "," + y);
+				player.sendPrivateText("That is too far away.");
 				return false;
 			}
 

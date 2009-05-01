@@ -20,8 +20,12 @@ public class DropAction extends EquipmentAction {
 	
 		// get destination and check it
 		final DestinationObject dest = new DestinationObject(action, player);
-		if (!dest.isValid() || !dest.checkDistance(player, 5.0)
-				|| !dest.checkClass(validContainerClassesList)) {
+		if (!dest.checkDistance(player, 5.0)) {
+		    player.sendPrivateText("You cannot throw that far.");
+		    return;
+		}
+		
+		if (!dest.isValid() || !dest.checkClass(validContainerClassesList)) {
 			logger.warn("destination is invalid. action is: " + action);
 			// destination is not valid
 			return;

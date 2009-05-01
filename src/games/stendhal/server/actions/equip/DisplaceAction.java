@@ -86,20 +86,37 @@ public class DisplaceAction implements ActionListener {
 	 * @return true, iff allowed
 	 */
 	private boolean mayDisplace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
-		return player.nextTo(entity)
+	    return nextTo(player, entity)
 				&& (!isItemBelowOtherPlayer(player, entity))
-				&& (player.squaredDistance(x, y) < 8 * 8)
-				&& !zone.simpleCollides(entity, x, y);
+				&& destInRange(player,x, y)
+				&& !entityCollides(player, zone, x, y, entity);
 	}
 
+    /**
+     * Checks whether the player is next to the entity and provides feedback to player if not
+     *                                                                                       
+     * @param player 
+     *            the player doing the displacement
+     * @param entity
+     *            the entity being displaced
+     * @return true, if next to; false otherwise
+     */
+    
+    private boolean nextTo(final Player player, final PassiveEntity entity) {
+    	if (!player.nextTo(entity)) {
+    		player.sendPrivateText("You must be next to something you wish to move.");
+    	}	
+    	return player.nextTo(entity);
+    }
+
 	/**
-	 * Checks whether the item is below <b>another</b> player.
+	 * Checks whether the item is below <b>another</b> player and provides feedback to player
 	 * 
 	 * @param player
 	 *            the player doing the displacement
 	 * @param entity
-	 *            the entity beeing displaced
-	 * @return true, if it cannot be take; false otherwise
+	 *            the entity being displaced
+	 * @return true, if it cannot be taken; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer(final Player player, final Entity entity) {
 		// prevent taking of items which are below other players
@@ -116,6 +133,40 @@ public class DisplaceAction implements ActionListener {
 		return false;
 	}
 
+    /**                                                                                                                                                                                          
+     * Checks whether the destination is in range and provides feedback to player if not
+     *                                                                                                                                                                                           
+     * @param player                                                                                                                                                                             
+     *            the player doing the displacement                                                                                                                                              
+     * @param x      x-position
+     * @param y      y-position
+     * @return true, if in range; false otherwise                                                                                                                                       
+     */
+
+    private boolean destInRange(final Player player, final int x, final int y) {
+    	if (!(player.squaredDistance(x, y) < 8 * 8)) {
+    		player.sendPrivateText("You cannot throw that far.");
+    	}
+    	return (player.squaredDistance(x, y) < 8 * 8);
+    }
+    
+	/**
+	 * Checks whether the destination is a collision.
+	 *
+	 * @param player Player attempting the move
+	 * @param zone   Zone
+	 * @param x      x-position
+	 * @param y      y-position
+	 * @param entity entity to move
+	 * @return true, iff allowed
+	 */
+	private boolean entityCollides(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {	
+		if (zone.simpleCollides(entity, x, y)) {
+			player.sendPrivateText("There is no space there.");		
+		}
+		return zone.simpleCollides(entity, x, y);
+	}
+	
 	/**
 	 * Moves an entity to a new location within the same zone.
 	 *

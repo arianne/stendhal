@@ -203,7 +203,7 @@ class SourceObject extends MoveableObject {
 		}
 
 		if (!dest.isValid() || !dest.preCheck(item, player)) {
-			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(item, player));
+			// no extra logger warning needed here as each is inside the methods called above, where necessary
 			return false;
 		}
 
