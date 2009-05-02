@@ -95,6 +95,12 @@ public enum NotificationType {
 		public Color getColor() {
 			return COLOR_TUTORIAL;
 		}
+	},
+	SUPPORT("support") {
+		@Override
+		public Color getColor() {
+			return COLOR_SUPPORT;
+		}
 	};
 	public static final Color COLOR_CLIENT = Color.gray;
 
@@ -108,20 +114,28 @@ public enum NotificationType {
 
 	public static final Color COLOR_POSITIVE = Color.green;
 	
+	// muted purple
 	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
 
 	public static final Color COLOR_PRIVMSG = Color.darkGray;
 
+	// dark green
 	public static final Color COLOR_RESPONSE = new Color(0x006400);
 	
+	// dark brown 
 	public static final Color COLOR_SCENE_SETTING = new Color(0x572002);
 
 	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
 
+	// bright turquoise blue
 	public static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
 			105, 225);
 
+	// purple
 	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
+	
+	// strong bright orange
+	public static final Color COLOR_SUPPORT = new Color(0xff7200);
 	/**
 	 * The mapping mnemonic.
 	 */
