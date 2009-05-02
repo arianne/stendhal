@@ -400,7 +400,7 @@ public class CreateAccountDialog extends JDialog {
 		final String email = emailField.getText();
 		if (isInvalid(email)) {
 			final String text = "The email you entered appears to be invalid.\n"
-					+ "You must provide a recover a lost password. Are you sure this email is correct? ";
+					+ "You must provide a valid email address recover a lost password. Are you sure this email is correct? ";
 			final int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
 					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, null, 1);
@@ -473,7 +473,7 @@ public class CreateAccountDialog extends JDialog {
 			if (!hasUsername) {
 				// now we'll do some more checks to see if the password
 				// contains more than three letters of the username
-				debug("Checking is password contains a derivitive of the username, trimming from the back...");
+				debug("Checking if password contains a derivative of the username, trimming from the back...");
 				final int min_user_length = 3;
 				for (int i = 1; i < username.length(); i++) {
 					final String subuser = username.substring(0, username.length()
@@ -485,14 +485,14 @@ public class CreateAccountDialog extends JDialog {
 
 					if (password.contains(subuser)) {
 						hasUsername = true;
-						debug("Password contians username!");
+						debug("Password contains username!");
 						break;
 					}
 				}
 
 				if (!hasUsername) {
 					// now from the end of the password..
-					debug("Checking is password contains a derivitive of the username, trimming from the front...");
+					debug("Checking if password contains a derivative of the username, trimming from the front...");
 					for (int i = 0; i < username.length(); i++) {
 						final String subuser = username.substring(i);
 						debug("\tchecking for \"" + subuser + "\"...");
@@ -509,7 +509,7 @@ public class CreateAccountDialog extends JDialog {
 			}
 
 			if (hasUsername) {
-				badPasswordReason = "You have used your username or a derivitive of your username in your password. This is a bad security practice.\n"
+				badPasswordReason = "You have used your username or a derivative of your username in your password. This is a bad security practice.\n"
 						+ " Are you sure that you want to use this password?";
 				return false;
 			}

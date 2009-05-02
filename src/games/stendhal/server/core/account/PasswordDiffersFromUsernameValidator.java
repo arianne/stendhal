@@ -39,7 +39,7 @@ public class PasswordDiffersFromUsernameValidator implements
 		if (!hasUsername) {
 			// now we'll do some more checks to see if the password
 			// contains more than three letters of the username
-			logger.debug("Checking is password contains a derivitive of the username, trimming from the back...");
+			logger.debug("Checking if password contains a derivative of the username, trimming from the back...");
 			final int min_user_length = 3;
 			for (int i = 1; i < username.length(); i++) {
 				final String subuser = username.substring(0, username.length() - i);
@@ -57,7 +57,7 @@ public class PasswordDiffersFromUsernameValidator implements
 
 			if (!hasUsername) {
 				// now from the end of the password..
-				logger.debug("Checking is password contains a derivitive of the username, trimming from the front...");
+				logger.debug("Checking if password contains a derivative of the username, trimming from the front...");
 				for (int i = 0; i < username.length(); i++) {
 					final String subuser = username.substring(i);
 					logger.debug("\tchecking for \"" + subuser + "\"...");
