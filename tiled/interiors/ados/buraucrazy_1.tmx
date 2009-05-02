@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="40" height="19" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="40" height="19" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -87,6 +87,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="protection" firstgid="214" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OKw4AIRCD4RGI9Rh2ee39T0klIXOATqj4koqKP5lZktAeh/fLG/XF6zs3C7aeiAq88BG0eCo06AQtEfsGTPgJWkTkDgue4IWp4AsAAA==
@@ -119,7 +122,7 @@
  </layer>
  <layer name="protection" width="40" height="19" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEofv+pddjKLhqqqrqiwfoBVn74AsAAA==
+   H4sIAAAAAAAAAO3DAQkAAAwEoesf8POsx1Bw1VRV1RcP1c6b8OALAAA=
   </data>
  </layer>
 </map>
