@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="40" height="25" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="40" height="25" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
@@ -103,12 +103,12 @@
    H4sIAAAAAAAAAO3OsQkAIBAEQfvvw3YUtCETg08M5YOfgYMLtzWgshH+TKt4W+HvtAr4q98BALUdGzDcMqAPAAA=
   </data>
  </layer>
- <layer name="objects" width="40" height="25" visible="0">
+ <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XoQ0AAAgEsd/fsy8Gj8PQJjfEJbCrCQAA4MLH/2hjPcdDoA8AAA==
   </data>
  </layer>
- <layer name="collision" width="40" height="25" visible="0" opacity="0.33">
+ <layer name="collision" width="40" height="25" opacity="0.33">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UwQ7AIAhD+f+Tn7yTybKIlhUUEptwmUKfE2ki0m64xFurdW3PKIdZ17wRjfLR81pqV+RD6jF8Hv6IND7WLzPf6h0hOSwfMxssfKhO3S+qzHx/Zq5X/+3ii+w/xqfS/Ubp9p/P/7bk7Z5/3RPlyManfT/NN9tbiY9h/Oay5529XSYia2eNByqw6xGgDwAA
   </data>
