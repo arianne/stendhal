@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="plant" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
@@ -90,10 +90,7 @@
  <tileset name="jacuzzi wading" firstgid="398" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
- <tileset name="bench" firstgid="416" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
- </tileset>
- <tileset name="towels" firstgid="419" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="416" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -108,7 +105,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASngPg0lF2NJqfCyMCgyoiphxWIO6Hsc0B8HsquAWItoHorILYGYjUgVseiHx/QA6q3A2J7INYAYk0S9VMbbB9Y60kGK4DhVQDEhVBcREb4FQP1lEBxKQn6VwHxajSxKSTYuw6I1xOhjhfopgYgLQyk24B0FQl2gMAbKN0KpUnVDwI/oLQsI3n6kYEmlNYmU78ulNYnoA4A/xG1wwAEAAA=
+   H4sIAAAAAAAAAGNgwASngPg0lF2NJqfCyMCgyoiphxWIO6Hsc0B8HsquAWItoHorILYGYjUgVseiHx/QA6q3A2J7INYAYk0S9VMbbB9Y60kGS4HhVQDEhVBcREb4FQP1lEBxKQn6VwHxajSxKSTYuw6I1xOhjhfopgYgLQyk24B0FQl2gMAbKN0KpUnVDwI/oLQsI3n6kYEmlNYmU78ulNYnoA4AdwtDxQAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

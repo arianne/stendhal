@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/brown_paving.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
  </tileset>
@@ -39,15 +39,15 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="132" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="133" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="black " firstgid="133" tilewidth="32" tileheight="32">
+ <tileset name="black " firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/black_hole.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3MoQEAAAgDoHm9b1v8wGIgUKkkBQAAALzU6/oMM7PwtAAQAAA=
+   H4sIAAAAAAAAAO3MoQEAAAgDoPm9Z1v8wGIgUKkkBQAAALzU6/oMB4ngRwAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
@@ -77,7 +77,7 @@
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UUQoAIAhDPbwH7wJZMhWlNvBv7cWkVESU456dPJ6MM5lZ5HP/5Mf2fsuKer2ays/qF+VHvRWazJ+2q4rMyXy0/9/fn9Wl5T2dyegfvTOqV/jsn/wuPvpfRnO6ZwEDDcamABAAAA==
+   H4sIAAAAAAAAAO2UUQoAIAhDvbz37gJZMhWlNvBv7cWkVESU456dPJ6MM5lZ5HP/5Mf2fsuKer2ays/qF+VHvRWazJ+2q4rMyXy0/9/fn9Wl5T2dyegfvTOqV/jsn/wuPvpfRnO6ZwFr65juABAAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="32">

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="plant" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
@@ -64,27 +63,21 @@
  <tileset name="bench" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="towels" firstgid="209" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/textile/towels.png"/>
- </tileset>
- <tileset name="floors" firstgid="215" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
- </tileset>
- <tileset name="stone floor" firstgid="221" tilewidth="32" tileheight="32">
+ <tileset name="stone floor" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/stonefloor.png"/>
  </tileset>
- <tileset name="books" firstgid="230" tilewidth="32" tileheight="32">
+ <tileset name="books" firstgid="218" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/books2.png"/>
  </tileset>
- <tileset name="red chests" firstgid="234" tilewidth="32" tileheight="32">
+ <tileset name="red chests" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chests_red.png"/>
  </tileset>
- <tileset name="cats" firstgid="238" tilewidth="32" tileheight="32">
+ <tileset name="cats" firstgid="226" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/cats.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvBwMCwYxDju0B8D4jvo7GJ1f8AiB8C8SM0NrH6HwPxEyB+isam1P2k+AEbJsUP2DApfhhMOACIp9LBnp1AvAuId5Opfz8QHwDigxS4wYNCPxCjHwBV/hcWAAQAAA==
+   H4sIAAAAAAAAANvBwMCwYxDji0B8CYgvo7GJ1X8FiK8C8TU0NrH6rwPxDSC+icam1P2k+AEbJsUP2DApfhhMOACIp9LBnp1AvAuId5Opfz8QHwDigxS4wYNCPxCjHwDmHiU1AAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -94,7 +87,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAXdUPodlJ4FxLOBOJABP2CCYhDoQhKfA8RzgTgIiFcA8UogXoVFPwcQs0PZL5HE5wHxfCh7DRCvBeJ1eNxxmoA70YEoiepBoAZKi5ChFx94RYHe1wNoNz5QAsSlSHwuIO4gQX8FEFdC2S+wyJMTfzBA7fgjFnASoUYTSmuTYb40EOtC2fpQPi4AAOncGV8ABAAA
+   H4sIAAAAAAAAAGNgQAXdUPoRlJ4FxLOBOJABP2CCYhDoQhKfA8RzgTgIiFcA8UogXoVFPwcQs0PZd5HE5wHxfCh7DRCvBeJ1eNxxmoA70YEoiepBoAZKi5ChFx+4R4He+wNoNz5QAsSlSHwuIO4gQX8FEFdC2XewyJMTfzBA7fgjFnASoUYTSmuTYb40EOtC2fpQPi4AAPChyiQABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

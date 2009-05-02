@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_light_red.png"/>
  </tileset>
@@ -57,56 +57,53 @@
  <tileset name="table" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset name="shelf" firstgid="150" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png"/>
- </tileset>
- <tileset name="tiles" firstgid="156" tilewidth="32" tileheight="32">
+ <tileset name="tiles" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="warmer" firstgid="165" tilewidth="32" tileheight="32">
+ <tileset name="warmer" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/warmer_2.png"/>
  </tileset>
- <tileset name="birdcage" firstgid="171" tilewidth="32" tileheight="32">
+ <tileset name="birdcage" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/birdcage.png"/>
  </tileset>
- <tileset name="birds" firstgid="177" tilewidth="32" tileheight="32">
+ <tileset name="birds" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/birds.png"/>
  </tileset>
- <tileset name="desk" firstgid="181" tilewidth="32" tileheight="32">
+ <tileset name="desk" firstgid="175" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/desk.png"/>
  </tileset>
- <tileset name="flowers" firstgid="185" tilewidth="32" tileheight="32">
+ <tileset name="flowers" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
- <tileset name="plants" firstgid="257" tilewidth="32" tileheight="32">
+ <tileset name="plants" firstgid="251" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/small_flowerpots.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJvDwMAwh8a4lEK92PBI0T+KicO6aHio6R8oDAAXIzSPAAQAAA==
+   H4sIAAAAAAAAAJvGwMAwjca4lEK92PBI0T+KicO6aHio6R8oDABSqoxxAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZYCYiZEBA6RD6WQgVgViNSQ5aTT9IKCFaQROgE0/KYAY/SD3VwNxDRKuA+J6HPq3Umj/egJ6ZEl0PzKYAMQTgXgSmfonA/EUIJ6KQz8zlvhHB3JIbHT9fkg4nAj3oOu/jCTnT4b+N0D8Hkk/Cx7/pKPp5wJiSRIxN1Q/LxDzkYkFgBgAv1wkZQAEAAA=
+   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZYD4DwMmSIfSyUCsCsRqSHLSaPpBQAuLGbgANv2kAGL0g9xfDcQ1SLgOiOtx6F9Pof0rCeiRJdH9yGACEE8E4klk6p8MxFOAeCoO/X+JMEMOiY2u3w8JhxNhFrr+s0hy/mTofwbEL5H0/8OjNx1NPxcQS5KIuaH6eYGYj0wsAMQAECCw/wAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAAmJHYWEGdD2YlArAjESkC8FIiXMRAGOUCcC2UnAbEyEKsA8XIgXkGEfhhgYUTlrwTiVUh8ThLMQgccFOilBVhLof7tVHEFbhAPxH1k6u2gpkOwACZgOnlJhj5s6ec4kXqxpZ9XZLiBWoCfDDUAy4IwzQAEAAA=
+   H4sIAAAAAAAAAGNgQAAmJHYWEGdD2YlArAjESkA8H4gXMBAGOUCcC2UnAbEyEKsA8UIgXkSEfhj4h8ZfDMRLkPicJJiFDjgo0EsLsJxC/Rup4grcIB6I+8jU20FNh2ABf4D4MRn6sKWfg0TqxZZ+npDhBmoBfjLUAABR8pqHAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB1Io6HZ9AAg95cBcTkSrgTiKhzqV1No3yYK9Y8C+oChnq6RAQAHne0RAAQAAA==
+   H4sIAAAAAAAAAGNgoB1Io6HZ9AAg95cBcTkSrgTiKhzql1Jo3xoK9Y8C+oChnq6RAQB7AFJ5AAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX4QBwQ96KJpeBQu4ZCu9ZRqH8UjAJSAQB0OpsYAAQAAA==
+   H4sIAAAAAAAAAGNgGAX4QBwQ96KJpeBQu4xCu1ZQqH8UjAJSAQDmkQ/LAAQAAA==
   </data>
  </layer>
- <layer name="objects" width="16" height="16" visible="0">
+ <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGD6gaKAdMAqGLMgYJGbQGwAAJv9CbgAEAAA=
   </data>

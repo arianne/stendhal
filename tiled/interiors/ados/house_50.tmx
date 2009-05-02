@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/furniture/carpet/carpets.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets.png"/>
  </tileset>
@@ -90,7 +90,7 @@
    H4sIAAAAAAAAAGNgGAXDEZQNtANGwZAAAB/pWbsABAAA
   </data>
  </layer>
- <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
+ <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAACtlYGAoHQQYH6DULGzyuPTgEyNkJgMDqvmk+IkYtfj0Y/MbLv2EwoxS/YTcTyv9hOIfmxg1w5+QfkJ+IDadUjPfAQC9tLqUAAQAAA==
   </data>

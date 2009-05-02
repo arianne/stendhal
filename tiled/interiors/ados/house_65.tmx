@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="23" height="25" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="23" height="25" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
@@ -150,7 +150,7 @@
    H4sIAAAAAAAAAGNgGP5AlpGwmjzaO2MUjIJRMApGwSgYBYMAAADiY3TM/AgAAA==
   </data>
  </layer>
- <layer name="collision" width="23" height="25" visible="0" opacity="0.37">
+ <layer name="collision" width="23" height="25" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAN2SSQ7AIAwD82H+f+21qmI8SXpoQYqECB6bZUXEOrzUuPeJLus/9yk/pVX+ak3xOrkzjfMhbDomWsqc5KZ3TzOQM+40rlfl0v//N/b0vklupX+bnc2dL+k7rw6beLlzV3PTbFU2ecsu22Wu/umdZ5VNs3e4X6sLlTeFD/wIAAA=
   </data>
