@@ -13,6 +13,7 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.common.Debug;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -475,6 +476,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * sends a message to all supporters.
 	 * 
+	 * @param type
+	 * 			  NotificationType
 	 * @param message
 	 *            Support message
 	 */
@@ -484,7 +487,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		new Task<Player>() {
 
 			public void execute(final Player player) {
-				player.sendPrivateText(message);
+				player.sendPrivateText(NotificationType.SUPPORT, message);
 				player.notifyWorldAboutChanges();
 
 			}
@@ -501,7 +504,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		});
 
 	}
-
+	
 	/**
 	 * sends a message to all supporters.
 	 * 
@@ -511,7 +514,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            Support message
 	 */
 	public void sendMessageToSupporters(final String source, final String message) {
-
 		final String text = source + " asks for support to ADMIN: " + message;
 		sendMessageToSupporters(text);
 

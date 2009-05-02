@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -66,7 +67,7 @@ public class SupportAnswerAction extends AdministrationAction {
 			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
-				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
+				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + player.getTitle() + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
