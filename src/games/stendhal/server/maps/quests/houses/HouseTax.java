@@ -63,7 +63,7 @@ public class HouseTax implements TurnListener {
 		for (int i = 0; i < periods; i++) {
 			debt += BASE_TAX * Math.pow(1 + INTEREST_RATE, i);
 		}
-		
+		logger.debug(debt + " was the debt for periods " + periods);
 		return debt;
 	}
 	
@@ -80,7 +80,6 @@ public class HouseTax implements TurnListener {
 		if (portal != null) {
 			payments = getUnpaidTaxPeriods(portal);
 		}
-
 		return payments;
 	}
 	
@@ -92,13 +91,13 @@ public class HouseTax implements TurnListener {
 	 */
 	private int getUnpaidTaxPeriods(HousePortal portal) {
 		final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
-		
 		return Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
 	}
 	
 	private void setTaxesPaid(Player player, int periods) {
 		HousePortal portal = HouseUtilities.getPlayersHouse(player);
-		portal.setExpireTime(portal.getExpireTime() + periods * TAX_PAYMENT_PERIOD * 1000);
+		logger.debug("set portal expire time to " + portal.getExpireTime() + " plus " + ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
+		portal.setExpireTime(portal.getExpireTime() +  ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
 	}
 
 	public void onTurnReached(int turn) {
@@ -184,7 +183,7 @@ public class HouseTax implements TurnListener {
 			final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 
 			if (postman != null) {
-				postman.sendPrivateText("Mr Taxman tells you: tell " + owner + " " + message);
+				postman.sendPrivateText("MrTaxman tells you: tell " + owner + " " + message);
 			} else {
 				logger.warn("could not use postman to deliver the message");
 			}
