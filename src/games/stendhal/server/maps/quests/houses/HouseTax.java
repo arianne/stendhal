@@ -235,7 +235,7 @@ public class HouseTax implements TurnListener {
 									+ Grammar.quantityplnoun(periods, "month")
 									+ ".");
 						} else {
-							npc.say("You don't have enough money to pay your taxes. You need at least" 
+							npc.say("You don't have enough money to pay your taxes. You need at least " 
 									+ cost + " money. Don't delay or the interest on what you owe will increase.");
 						}
 				}
