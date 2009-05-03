@@ -10410,6 +10410,36 @@
     </ai>
   </creature>
 
+  <creature name="arachne">
+    <type class="huge_hybrid" subclass="arachne" tileid="hybrid.png:13"/>
+    <description>You see Arachne, a horrid half woman half spider. With so many legs she can hit you very fast, and her poisonous bite is fierce.</description>
+    <attributes>
+      <atk value="1090"/>
+      <def value="160"/>
+      <hp value="8000"/>
+      <speed value="0.9"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="350"/>
+    <experience value="430000"/>
+    <respawn value="70000"/>
+    <drops>
+      <item value="money" quantity="[2000,10000]" probability="80.0"/>
+      <item value="silk gland" quantity="[1,3]" probability="20.0"/>
+      <item value="mega poison" quantity="[1,2]" probability="10.0"/>
+    </drops>
+    <equips>      
+      <slot name="rhand" item="dark dagger"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="animal"/>
+      <profile name="poisonous" params="4,mega poison"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="balrog">
     <type class="enormous_creature" subclass="balrog" tileid="enormous_creature.png:0"/>
     <description>You see a huge balrog. He is slow hitting, but terribly strong as he stands towering above you.</description>
