@@ -290,10 +290,10 @@ tileset/item/pot/cauldron.png	*@400	33:35:37:39
 tileset/item/pot/cauldron.png	*@600	40:42:44:46
 tileset/item/pot/cauldron.png	*@600	41:43:45:47
 
-tileset/item/candle/menorah.png	0	0:6
-tileset/item/candle/menorah.png	1	1:7
-tileset/item/candle/menorah.png	6	0:6
-tileset/item/candle/menorah.png	7	1:7
+tileset/furniture/light/menorah.png	0	0:6
+tileset/furniture/light/menorah.png	1	1:7
+tileset/furniture/light/menorah.png	6	0:6
+tileset/furniture/light/menorah.png	7	1:7
 
 tileset/furniture/light/xmas_lights.png	*	0:1
 tileset/furniture/light/xmas_lights.png	*	2:3
