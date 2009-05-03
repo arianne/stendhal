@@ -110,6 +110,7 @@ public class StendhalQuestSystem {
 		loadQuest("RingMaker");
 		// loadQuest("SatoCataclysm");
 		// loadQuest("SemosMineTownRevivalWeeks");
+		loadQuest("SolveRiddles");
 		loadQuest("SevenCherubs");
 		loadQuest("Snowballs");
 		loadQuest("Soup");

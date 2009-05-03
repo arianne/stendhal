@@ -60,6 +60,10 @@ public class Reaper2NPC implements ZoneConfigurator {
 				processStep.add(new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						player.subXP(10000);
+						// wipe riddle slot if player decided they couldnt answer it and would take the karma hit
+						if (player.hasQuest("solve_riddles")) {
+							player.removeQuest("solve_riddles");
+						}
 						player.sendPrivateText(NotificationType.NEGATIVE, "The Reaper took 10000 XP and gave you bad karma.");
 					}
 				});
