@@ -12,11 +12,11 @@
  <tileset name="../../tileset/plant/flower/daisy_white.png" firstgid="53" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="61" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="97" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/earth_edges.png" firstgid="121" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/earth_edges.png" trans="ffffff"/>

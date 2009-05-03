@@ -63,23 +63,23 @@
  <tileset name="../../tileset/plant/bush/hedge.png" firstgid="356" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/witch_hut.png" firstgid="391" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/witch_hut.png"/>
+ <tileset name="../../tileset/building/witch_hut.png" firstgid="391" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
  <tileset name="../../tileset/ground/rock/pebbles.png" firstgid="426" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="429" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="429" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="465" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="465" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/fence/fence_chunky.png" firstgid="489" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/church.png" firstgid="498" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/church.png"/>
+ <tileset name="../../tileset/building/church.png" firstgid="498" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/church.png"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_fluffy.png" firstgid="554" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_fluffy.png" trans="ffffff"/>
@@ -87,8 +87,8 @@
  <tileset name="../../tileset/ground/water/water_bubbles.png" firstgid="566" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="582" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="582" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_n.png" firstgid="902" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_n.png"/>

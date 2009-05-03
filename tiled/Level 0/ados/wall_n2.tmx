@@ -6,11 +6,11 @@
  <tileset name="../../tileset/ground/green_paving.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="43" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="43" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="363" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="363" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/ground/indoor/tiles.png" firstgid="375" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
@@ -91,7 +91,7 @@
   <image source="../../tileset/item/postbox_2.png"/>
  </tileset>
  <tileset name="tree stump table" firstgid="1066" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/tree_stump_table.png"/>
+  <image source="../../tileset/furniture/table/tree_stump_table.png"/>
  </tileset>
  <tileset name="int small stump" firstgid="1070" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/int_small_stump.png"/>

@@ -21,11 +21,11 @@
  <tileset name="../../tileset/plant/leaves.png" firstgid="151" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/leaves.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="159" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="159" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="195" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="195" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/roof/blue.png" firstgid="219" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/blue.png"/>
@@ -109,7 +109,7 @@
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
  <tileset name="bench" firstgid="472" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">

@@ -6,8 +6,8 @@
  <tileset name="../../tileset/ground/rock/pebbles.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="37" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_white.png" firstgid="73" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
@@ -76,7 +76,7 @@
   <image source="../../tileset/ground/green_paving_2.png"/>
  </tileset>
  <tileset name="bench wooden" firstgid="790" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_wooden.png"/>
+  <image source="../../tileset/furniture/chair/bench_wooden.png"/>
  </tileset>
  <tileset name="pool" firstgid="798" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>
@@ -91,7 +91,7 @@
   <image source="../../tileset/object/birds.png"/>
  </tileset>
  <tileset name="gazebo" firstgid="817" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/gazebo.png"/>
+  <image source="../../tileset/building/gazebo.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="256">
   <data encoding="base64" compression="gzip">

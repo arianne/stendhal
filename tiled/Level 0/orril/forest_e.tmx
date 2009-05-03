@@ -27,8 +27,8 @@
  <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_2.png" firstgid="99" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_2.png" firstgid="99" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>
@@ -94,7 +94,7 @@
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <tileset name="grass_2_edges" firstgid="370" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2_edges.png"/>
+  <image source="../../tileset/ground/grass_2_edges.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

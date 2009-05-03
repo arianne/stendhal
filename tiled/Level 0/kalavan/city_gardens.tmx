@@ -55,10 +55,10 @@
   <image source="../../tileset/building/decoration/pool.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="196" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="water" firstgid="232" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
@@ -109,13 +109,13 @@
   <image source="../../tileset/object/rowing_boats.png"/>
  </tileset>
  <tileset name="bench white" firstgid="1132" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_white.png"/>
+  <image source="../../tileset/furniture/chair/bench_white.png"/>
  </tileset>
  <tileset name="bench iron" firstgid="1140" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron.png"/>
  </tileset>
  <tileset name="bench iron reverse" firstgid="1144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron_reverse.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron_reverse.png"/>
  </tileset>
  <tileset name="polyanthus" firstgid="1148" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/polyanthus.png"/>
@@ -142,7 +142,7 @@
   <image source="../../tileset/item/statue/urn_with_flowers.png"/>
  </tileset>
  <tileset name="greenhouse" firstgid="1194" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/greenhouse.png"/>
+  <image source="../../tileset/building/greenhouse.png"/>
  </tileset>
  <tileset name="hothouse flowers" firstgid="1244" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
@@ -154,13 +154,13 @@
   <image source="../../tileset/building/roof/stall_roof.png"/>
  </tileset>
  <tileset name="square table" firstgid="1380" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square.png"/>
+  <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="taller trees" firstgid="1381" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/taller_trees.png"/>
  </tileset>
  <tileset name="rustic chair" firstgid="1413" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_rustic.png"/>
+  <image source="../../tileset/furniture/chair/wooden_rustic.png"/>
  </tileset>
  <tileset name="old wood" firstgid="1421" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/old_wood.png"/>

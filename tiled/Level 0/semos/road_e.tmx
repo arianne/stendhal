@@ -12,8 +12,8 @@
  <tileset name="../../tileset/plant/grasses.png" firstgid="55" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="58" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="58" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_green.png" firstgid="94" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff"/>
@@ -136,7 +136,7 @@
   <image source="../../tileset/logic/creature/farm_animal.png"/>
  </tileset>
  <tileset name="hay" firstgid="446" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items1.png"/>
+  <image source="../../tileset/item/food/fish_crates.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="64">
   <data encoding="base64" compression="gzip">

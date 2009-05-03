@@ -64,7 +64,7 @@
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="219" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="rocks 3" firstgid="255" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png"/>

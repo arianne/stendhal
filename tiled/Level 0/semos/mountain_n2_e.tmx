@@ -94,7 +94,7 @@
   <image source="../../tileset/building/museum.png"/>
  </tileset>
  <tileset name="bench white" firstgid="368" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_white.png"/>
+  <image source="../../tileset/furniture/chair/bench_white.png"/>
  </tileset>
  <tileset name="stone doorway" firstgid="376" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/stone_doorway.png"/>

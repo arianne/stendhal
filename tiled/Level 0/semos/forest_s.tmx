@@ -3,8 +3,8 @@
  <tileset name="../../tileset/ground/ground.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_2.png" firstgid="34" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_2.png" firstgid="34" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/green_paving.png" firstgid="46" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png" trans="ffffff"/>
@@ -15,11 +15,11 @@
  <tileset name="../../tileset/ground/green_paving_2.png" firstgid="58" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_2.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="62" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="62" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="122" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>
@@ -73,7 +73,7 @@
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <tileset name="grass_2_edges" firstgid="365" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2_edges.png"/>
+  <image source="../../tileset/ground/grass_2_edges.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

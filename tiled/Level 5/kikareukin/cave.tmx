@@ -40,10 +40,10 @@
   <image source="../../tileset/logic/creature/human.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="92" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>

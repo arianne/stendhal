@@ -39,11 +39,11 @@
  <tileset name="../../tileset/ground/earth_edges.png" firstgid="277" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="295" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="295" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="331" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="331" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="355" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

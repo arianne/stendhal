@@ -9,11 +9,11 @@
  <tileset name="../../tileset/ground/ridge/earth_dark.png" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="202" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="202" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="238" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="238" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_blue.png" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>
@@ -36,11 +36,11 @@
  <tileset name="../../tileset/plant/stump/stump_brown.png" firstgid="375" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_brown.png"/>
  </tileset>
- <tileset name="../../tileset/object/witch_hut.png" firstgid="379" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/witch_hut.png"/>
+ <tileset name="../../tileset/building/witch_hut.png" firstgid="379" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="414" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/hut.png"/>
+  <image source="../../tileset/building/hut.png"/>
  </tileset>
  <tileset name="cauldron" firstgid="449" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/cauldron.png"/>

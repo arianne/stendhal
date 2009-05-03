@@ -18,32 +18,32 @@
  <tileset name="../../tileset/ground/ladder/vertical_dark.png" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/vertical_dark.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="128" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="448" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="449" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
+ <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="449" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets_2.png"/>
  </tileset>
  <tileset name="deep pool" firstgid="461" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool_deep.png"/>
  </tileset>
  <tileset name="bazar table 1" firstgid="533" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bazar_table_1.png"/>
+  <image source="../../tileset/furniture/table/bazar_table_1.png"/>
  </tileset>
  <tileset name="bazzar table 2" firstgid="537" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bazar_table_2.png"/>
+  <image source="../../tileset/furniture/table/bazar_table_2.png"/>
  </tileset>
  <tileset name="bazzar table 3" firstgid="543" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bazar_table_3.png"/>
+  <image source="../../tileset/furniture/table/bazar_table_3.png"/>
  </tileset>
  <tileset name="bazzar table 4" firstgid="549" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bazar_table_4.png"/>
+  <image source="../../tileset/furniture/table/bazar_table_4.png"/>
  </tileset>
  <tileset name="bazzar table 5" firstgid="555" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bazar_table_5.png"/>
+  <image source="../../tileset/furniture/table/bazar_table_5.png"/>
  </tileset>
  <tileset name="awning 1" firstgid="561" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/awning_1.png"/>
@@ -52,7 +52,7 @@
   <image source="../../tileset/item/awnng_2.png"/>
  </tileset>
  <tileset name="items1" firstgid="578" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items1.png"/>
+  <image source="../../tileset/item/food/fish_crates.png"/>
  </tileset>
  <tileset name="items 3" firstgid="586" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/bazar_items3.png"/>
@@ -82,16 +82,16 @@
   <image source="../../tileset/item/pot/wooden_crates.png"/>
  </tileset>
  <tileset name="beer kegs" firstgid="650" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items_2.png"/>
+  <image source="../../tileset/item/drink/casks.png"/>
  </tileset>
  <tileset name="vendors table" firstgid="654" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/vendors_table.png"/>
+  <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
  <tileset name="bottles and cups" firstgid="675" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
  <tileset name="brick base" firstgid="691" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="grill top" firstgid="694" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/grill_top.png"/>
@@ -100,7 +100,7 @@
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
  <tileset name="flames" firstgid="722" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="steak" firstgid="728" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/steak.png"/>
@@ -112,7 +112,7 @@
   <image source="../../tileset/object/row_boat.png"/>
  </tileset>
  <tileset name="outhouse" firstgid="748" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/outhouse.png"/>
+  <image source="../../tileset/building/outhouse.png"/>
  </tileset>
  <tileset name="old wood" firstgid="760" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/old_wood.png"/>

@@ -12,8 +12,8 @@
  <tileset name="../../tileset/ground/water/water_bubbles.png" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="125" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="125" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/ridge/ice_2.png" firstgid="161" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/ice_2.png"/>
@@ -33,11 +33,11 @@
  <tileset name="../../tileset/ground/cobbled_paving.png" firstgid="315" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/cobbled_paving.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/witch_hut.png" firstgid="316" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/witch_hut.png"/>
+ <tileset name="../../tileset/building/witch_hut.png" firstgid="316" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="351" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="351" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/corpse/skull_pale.png" firstgid="375" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png" trans="ff00ff"/>

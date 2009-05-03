@@ -10,10 +10,10 @@
   <image source="../../tileset/ground/water/pool_corners.png"/>
  </tileset>
  <tileset name="grass 1" firstgid="178" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="grass 2" firstgid="214" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="ladder bridge" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/vertical_dark.png"/>
@@ -49,16 +49,16 @@
   <image source="../../tileset/logic/creature/amazon.png"/>
  </tileset>
  <tileset name="ironlamp" firstgid="430" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="433" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="rocks" firstgid="439" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png"/>
  </tileset>
  <tileset name="grass" firstgid="443" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <tileset name="portal" firstgid="455" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

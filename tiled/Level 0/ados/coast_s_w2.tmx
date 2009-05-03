@@ -27,14 +27,14 @@
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="230" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="230" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="266" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="266" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_side_on_pale.png" firstgid="290" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+ <tileset name="../../tileset/furniture/table/long_side_on_pale.png" firstgid="290" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="../../tileset/ground/green_paving_2.png" firstgid="293" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_2.png" trans="ffffff"/>
@@ -51,11 +51,11 @@
  <tileset name="../../tileset/building/wall/bricked_edges.png" firstgid="320" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/bed/large_front_on_darker.png" firstgid="335" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_darker.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_front_on_darker.png" firstgid="335" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_front_on_darker.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/bed/large_front_on.png" firstgid="341" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="341" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/orc.png" firstgid="347" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/object/boat.png"/>
  </tileset>
  <tileset name="long_front_on_pale" firstgid="418" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

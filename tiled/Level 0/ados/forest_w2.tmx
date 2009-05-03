@@ -19,10 +19,10 @@
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="107" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="apple tree" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/apple_tree.png"/>
@@ -37,10 +37,10 @@
   <image source="../../tileset/plant/tree/tree_with_plants.png"/>
  </tileset>
  <tileset name="bench iron" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron.png"/>
  </tileset>
  <tileset name="bench iron reverse" firstgid="202" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron_reverse.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron_reverse.png"/>
  </tileset>
  <tileset name="hay cart" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/hay_cart.png"/>
@@ -79,10 +79,10 @@
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="wooden rustic" firstgid="628" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_rustic.png"/>
+  <image source="../../tileset/furniture/chair/wooden_rustic.png"/>
  </tileset>
  <tileset name="brick base" firstgid="636" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="wooden stairs" firstgid="639" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/wooden_stairs.png"/>

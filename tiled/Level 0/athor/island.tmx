@@ -6,8 +6,8 @@
  <tileset name="../../tileset/ground/water/pool.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/plain_colours.png" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+ <tileset name="../../tileset/furniture/carpet/plain_colours.png" firstgid="106" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="../../tileset/ground/brown_paving.png" firstgid="116" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
@@ -21,11 +21,11 @@
  <tileset name="../../tileset/ground/water/pool_corners.png" firstgid="139" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool_corners.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="211" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="211" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="247" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="247" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/grasses.png" firstgid="271" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
@@ -54,11 +54,11 @@
  <tileset name="../../tileset/building/door/door_n.png" firstgid="338" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_n.png"/>
  </tileset>
- <tileset name="../../tileset/object/church.png" firstgid="344" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/church.png"/>
+ <tileset name="../../tileset/building/church.png" firstgid="344" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/church.png"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="400" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="400" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/plant/cactus.png" firstgid="720" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/cactus.png" trans="ffffff"/>
@@ -66,8 +66,8 @@
  <tileset name="../../tileset/plant/stump/small_stump.png" firstgid="722" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/small_stump.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/rug_border.png" firstgid="726" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
+ <tileset name="../../tileset/furniture/carpet/rug_border.png" firstgid="726" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="../../tileset/building/window/window_right.png" firstgid="735" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/window_right.png"/>
@@ -75,8 +75,8 @@
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="737" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="753" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/long_front_on.png" firstgid="753" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_front_on.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/blue_circle.png" firstgid="756" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/blue_circle.png" trans="ff00ff"/>
@@ -84,8 +84,8 @@
  <tileset name="../../tileset/building/wall/bricked_edges.png" firstgid="760" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/object/witch_hut.png" firstgid="775" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/witch_hut.png"/>
+ <tileset name="../../tileset/building/witch_hut.png" firstgid="775" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
  <tileset name="../../tileset/item/corpse/skull_pale.png" firstgid="810" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png" trans="ff00ff"/>
@@ -117,11 +117,11 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="940" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/object/beach_hut_pink.png" firstgid="941" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/beach_hut_pink.png"/>
+ <tileset name="../../tileset/building/beach_hut_pink.png" firstgid="941" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/beach_hut_pink.png"/>
  </tileset>
- <tileset name="../../tileset/object/beach_hut.png" firstgid="976" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/beach_hut.png"/>
+ <tileset name="../../tileset/building/beach_hut.png" firstgid="976" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/beach_hut.png"/>
  </tileset>
  <tileset name="boat" firstgid="1011" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/boat.png"/>

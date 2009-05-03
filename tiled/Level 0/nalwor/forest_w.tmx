@@ -21,8 +21,8 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/object/hut.png" firstgid="239" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/hut.png"/>
+ <tileset name="../../tileset/building/hut.png" firstgid="239" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/hut.png"/>
  </tileset>
  <tileset name="herb" firstgid="274" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/herb.png"/>

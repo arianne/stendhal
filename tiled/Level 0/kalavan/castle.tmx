@@ -49,16 +49,16 @@
   <image source="../../tileset/plant/vine_plait.png"/>
  </tileset>
  <tileset name="iron lamp" firstgid="143" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="146" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="152" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="tree golden large" firstgid="212" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_golden_large.png"/>
@@ -79,16 +79,16 @@
   <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="castle" firstgid="296" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="church" firstgid="616" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/church.png"/>
+  <image source="../../tileset/building/church.png"/>
  </tileset>
  <tileset name="pot golden" firstgid="672" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png"/>
  </tileset>
  <tileset name="bench" firstgid="676" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="statue green stone" firstgid="679" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone.png"/>
@@ -106,7 +106,7 @@
   <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
  <tileset name="table long front on" firstgid="798" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
  <tileset name="flag pole" firstgid="801" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/flagpole.png"/>

@@ -48,8 +48,8 @@
  <tileset name="../../tileset/plant/tree/tree_green.png" firstgid="226" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="306" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="306" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/pot/dark_barrel.png" firstgid="342" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png" trans="ffffff"/>
@@ -63,8 +63,8 @@
  <tileset name="../../tileset/ground/ladder/vertical_dark.png" firstgid="353" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/vertical_dark.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="356" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="356" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_n.png" firstgid="364" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_n.png"/>

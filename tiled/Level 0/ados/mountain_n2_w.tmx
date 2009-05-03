@@ -46,10 +46,10 @@
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
  <tileset name="horizontal bench" firstgid="289" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_white.png"/>
+  <image source="../../tileset/furniture/chair/bench_white.png"/>
  </tileset>
  <tileset name="pool" firstgid="297" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
+  <image source="../../tileset/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="birdies" firstgid="303" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/birds.png"/>
@@ -61,7 +61,7 @@
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
  <tileset name="corners" firstgid="352" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="stone steps" firstgid="376" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_grey.png"/>

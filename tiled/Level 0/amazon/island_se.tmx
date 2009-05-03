@@ -10,10 +10,10 @@
   <image source="../../tileset/ground/water/pool_corners.png"/>
  </tileset>
  <tileset name="grass 1" firstgid="178" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="grass 2" firstgid="214" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="tree 1" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/palm_tree.png"/>
@@ -40,10 +40,10 @@
   <image source="../../tileset/logic/creature/amazon.png"/>
  </tileset>
  <tileset name="ironlamp" firstgid="312" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="315" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="rocks" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_boulder.png"/>
@@ -52,7 +52,7 @@
   <image source="../../tileset/ground/rock/rocks_2.png"/>
  </tileset>
  <tileset name="newgrass" firstgid="334" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <tileset name="elements" firstgid="346" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elemental.png"/>
@@ -67,7 +67,7 @@
   <image source="../../tileset/item/statue/flowered_arch.png"/>
  </tileset>
  <tileset name="grass_2_edges" firstgid="386" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2_edges.png"/>
+  <image source="../../tileset/ground/grass_2_edges.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

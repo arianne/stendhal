@@ -10,10 +10,10 @@
   <image source="../../tileset/ground/water/pool_corners.png"/>
  </tileset>
  <tileset name="grass 1" firstgid="178" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="grass 2" firstgid="214" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="tree 1" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/palm_tree.png"/>
@@ -40,16 +40,16 @@
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
  <tileset name="ironlamp" firstgid="309" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="312" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="witch hut" firstgid="318" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/witch_hut.png"/>
+  <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
  <tileset name="grass 1" firstgid="353" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <tileset name="logs" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
