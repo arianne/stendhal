@@ -49,8 +49,9 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				//Behaviours.addHelp(this,
 				//				   "...");
 
+				// For future consider making Dr Feelgood able to heal pets (but still not humans)
 				addReply("heal",
-				        "Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
+				        "Sorry, I'm only licensed to heal animals looked after in this Zoo. (But... ssshh! I can make you an #offer.)");
 
 				addJob("I'm the veterinarian.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
