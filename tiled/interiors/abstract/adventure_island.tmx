@@ -43,10 +43,10 @@
   <image source="../../tileset/building/decoration/pool.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="133" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="water" firstgid="193" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
@@ -112,10 +112,10 @@
   <image source="../../tileset/building/decoration/floor_sparkle.png"/>
  </tileset>
  <tileset name="lush grass edges" firstgid="894" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2_edges.png"/>
+  <image source="../../tileset/ground/grass_2_edges.png"/>
  </tileset>
  <tileset name="lush grass" firstgid="903" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">

@@ -16,7 +16,7 @@
   <image source="../../tileset/ground/indoor/raised_platform_blue.png"/>
  </tileset>
  <tileset name="drapes royal blue" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/royal_blue_drapes.png"/>
+  <image source="../../tileset/furniture/curtain/royal_blue_drapes.png"/>
  </tileset>
  <tileset name="banner brown" firstgid="100" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/wall_hanging_brown.png"/>
@@ -34,25 +34,25 @@
   <image source="../../tileset/ground/water/golden_whirlpool.png"/>
  </tileset>
  <tileset name="castle" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="table copper" firstgid="458" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_copper.png"/>
+  <image source="../../tileset/furniture/table/table_copper.png"/>
  </tileset>
  <tileset name="grey pale" firstgid="464" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_pale.png"/>
+  <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="table with hob pale" firstgid="472" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob_pale.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="475" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="tree unbrella thorn" firstgid="481" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/umbrella_thorn.png"/>
  </tileset>
  <tileset name="brick base" firstgid="499" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="oreintal plant" firstgid="502" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
@@ -61,28 +61,28 @@
   <image source="../../tileset/item/household_items_2.png"/>
  </tileset>
  <tileset name="greenish grey" firstgid="520" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/greenish_grey.png"/>
+  <image source="../../tileset/furniture/chair/greenish_grey.png"/>
  </tileset>
  <tileset name="bench white" firstgid="524" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_white.png"/>
+  <image source="../../tileset/furniture/chair/bench_white.png"/>
  </tileset>
  <tileset name="table round white" firstgid="532" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_round_white.png"/>
+  <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="grass2" firstgid="538" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <tileset name="flowers red blue clusters" firstgid="550" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/red_blue_clusters.png"/>
  </tileset>
  <tileset name="stone clock" firstgid="554" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/stone_clock.png"/>
+  <image source="../../tileset/furniture/clock/stone_clock.png"/>
  </tileset>
  <tileset name="torch" firstgid="562" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch.png"/>
+  <image source="../../tileset/furniture/light/torch.png"/>
  </tileset>
  <tileset name="torch top" firstgid="563" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch_top.png"/>
+  <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
  <tileset name="metal and stone" firstgid="567" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>

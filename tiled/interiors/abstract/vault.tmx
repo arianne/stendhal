@@ -19,13 +19,13 @@
   <image source="../../tileset/item/pot/wastebin.png"/>
  </tileset>
  <tileset name="stool" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="big table" firstgid="46" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="lamps" firstgid="52" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/lights_candle.png"/>
+  <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
  <layer name="0_floor" width="9" height="10">
   <data encoding="base64" compression="gzip">

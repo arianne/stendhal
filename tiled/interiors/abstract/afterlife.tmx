@@ -9,8 +9,8 @@
  <tileset name="../../tileset/ground/water/golden_whirlpool.png" firstgid="19" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/golden_whirlpool.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="31" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="31" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_blue.png" firstgid="351" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>

@@ -6,32 +6,32 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="3" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="6" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+ <tileset name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="6" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="12" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="12" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="16" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="18" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="18" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/item/candle/lamp.png" firstgid="19" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/orb_table.png" firstgid="20" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/orb_table.png"/>
+ <tileset name="../../tileset/furniture/table/orb_table.png" firstgid="20" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/orb_table.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="21" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bluecarpet" firstgid="22" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="bed blue" firstgid="31" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
  </tileset>
  <tileset name="red wine" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
@@ -40,28 +40,28 @@
   <image source="../../tileset/item/food/fruit_basket.png"/>
  </tileset>
  <tileset name="bench ns" firstgid="42" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
  <tileset name="flower vase" firstgid="45" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
  <tileset name="shelfs" firstgid="48" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png"/>
  </tileset>
  <tileset name="piano" firstgid="60" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/piano.png"/>
+  <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/other/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/other/stove.png"/>
  </tileset>
  <tileset name="food" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
  <tileset name="sofa" firstgid="75" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_red.png"/>
+  <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
  <tileset name="wall" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_dark.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/plant/bush/hosta.png"/>
  </tileset>
  <tileset name="beer" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer_dark.png"/>
+  <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
  <tileset name="grass" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
@@ -91,13 +91,13 @@
   <image source="../../tileset/building/entrance/grey_wide.png"/>
  </tileset>
  <tileset name="furnace green" firstgid="269" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/green.png"/>
+  <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
  <tileset name="fire" firstgid="273" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
  <tileset name="flames" firstgid="300" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="plant" firstgid="306" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/plant_potted_2.png"/>
@@ -106,16 +106,16 @@
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
  <tileset name="rug" firstgid="314" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
  </tileset>
  <tileset name="tiles" firstgid="323" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="332" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/nain_rug.png"/>
+  <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="armchair" firstgid="348" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/armchair.png"/>
+  <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
  <tileset name="towels" firstgid="360" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>

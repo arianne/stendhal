@@ -4,25 +4,25 @@
   <image source="../../tileset/object/ship.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="369" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="lights candle" firstgid="378" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/lights_candle.png"/>
+  <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
  <tileset name="wooden rustic" firstgid="402" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_rustic.png"/>
+  <image source="../../tileset/furniture/chair/wooden_rustic.png"/>
  </tileset>
  <tileset name="wooden with candles" firstgid="410" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_with_candles.png"/>
+  <image source="../../tileset/furniture/table/wooden_with_candles.png"/>
  </tileset>
  <tileset name="bed white 2" firstgid="422" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_white2.png"/>
+  <image source="../../tileset/furniture/bed/bed_white2.png"/>
  </tileset>
  <tileset name="box" firstgid="425" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="426" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="barrels 1" firstgid="450" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_1.png"/>
@@ -31,13 +31,13 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="black grey " firstgid="459" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/black_grey.png"/>
+  <image source="../../tileset/furniture/carpet/black_grey.png"/>
  </tileset>
  <tileset name="notes" firstgid="461" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/notes.png"/>
+  <image source="../../tileset/item/documents/notes.png"/>
  </tileset>
  <tileset name="bed gray" firstgid="465" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

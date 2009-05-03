@@ -6,11 +6,11 @@
  <tileset name="../../tileset/ground/ridge/earth_dark.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_edges.png" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_edges.png" firstgid="130" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="166" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="166" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/grasses.png" firstgid="190" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
@@ -76,16 +76,16 @@
   <image source="../../tileset/sky/cloud/clouds.png"/>
  </tileset>
  <tileset name="oriental_floor_tile" firstgid="374" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
  </tileset>
  <tileset name="strawberrycarpet" firstgid="375" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/strawberry.png"/>
+  <image source="../../tileset/furniture/carpet/strawberry.png"/>
  </tileset>
  <tileset name="carpets_2" firstgid="376" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
+  <image source="../../tileset/furniture/carpet/carpets_2.png"/>
  </tileset>
  <tileset name="pink_rug" firstgid="388" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
+  <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="large_gravestone" firstgid="400" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/large_gravestone.png"/>
@@ -166,7 +166,7 @@
   <image source="../../tileset/item/statue/eaglehead.png"/>
  </tileset>
  <tileset name="plain_colours" firstgid="689" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="green paving 2" firstgid="699" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_2.png"/>
@@ -184,10 +184,10 @@
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
  <tileset name="sofa_cream" firstgid="717" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_cream.png"/>
+  <image source="../../tileset/furniture/chair/sofa_cream.png"/>
  </tileset>
  <tileset name="colorfulchair" firstgid="723" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/colorful.png"/>
+  <image source="../../tileset/furniture/chair/colorful.png"/>
  </tileset>
  <tileset name="pots_elegant" firstgid="739" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pots_elegant.png"/>
@@ -196,7 +196,7 @@
   <image source="../../tileset/ground/rock/pink_crystal.png"/>
  </tileset>
  <tileset name="sofa_shadow" firstgid="751" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_shadow.png"/>
+  <image source="../../tileset/furniture/chair/sofa_shadow.png"/>
  </tileset>
  <tileset name="stump green" firstgid="763" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_green.png"/>

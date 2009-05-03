@@ -19,7 +19,7 @@
   <image source="../../tileset/plant/flower/stone_edge_beds.png"/>
  </tileset>
  <tileset name="square table" firstgid="151" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square.png"/>
+  <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="door" firstgid="152" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door.png"/>
@@ -64,19 +64,19 @@
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="dark grassy sink" firstgid="236" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_brown_stone.png"/>
+  <image source="../../tileset/furniture/sink/dark_brown_stone.png"/>
  </tileset>
  <tileset name="flower benches" firstgid="240" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/flowers_on_bench2.png"/>
+  <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
  <tileset name="flower benches 2" firstgid="246" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/flowers_on_benches.png"/>
+  <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
  <tileset name="pot plant" firstgid="256" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
  <tileset name="table" firstgid="268" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">

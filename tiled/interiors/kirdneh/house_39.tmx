@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="35" height="25" tilewidth="32" tileheight="32">
  <tileset name="int wall light red" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="light red ns ew" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="lt blue drapes" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/lt_blue_drapes.png"/>
+  <image source="../../tileset/furniture/curtain/lt_blue_drapes.png"/>
  </tileset>
  <tileset name="banners" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>
@@ -22,7 +22,7 @@
   <image source="../../tileset/item/statue/girl_with_bird.png"/>
  </tileset>
  <tileset name="blue bed" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
  </tileset>
  <tileset name="potted plants 1" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
@@ -31,10 +31,10 @@
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
  <tileset name="table round white" firstgid="113" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_round_white.png"/>
+  <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="sofa pink" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_chair_pink.png"/>
+  <image source="../../tileset/furniture/chair/sofa_chair_pink.png"/>
  </tileset>
  <tileset name="sign large" firstgid="131" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sign_large.png"/>
@@ -43,31 +43,31 @@
   <image source="../../tileset/item/swing.png"/>
  </tileset>
  <tileset name="grey pale" firstgid="150" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_pale.png"/>
+  <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="brick base" firstgid="158" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="stove" firstgid="161" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/other/stove.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="167" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="greenish grey chair" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/greenish_grey.png"/>
+  <image source="../../tileset/furniture/chair/greenish_grey.png"/>
  </tileset>
  <tileset name="ground 2" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
  <tileset name="sheep picture" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/sheep_picture.png"/>
+  <image source="../../tileset/furniture/picture/sheep_picture.png"/>
  </tileset>
  <tileset name="household items 2" firstgid="185" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household_items_2.png"/>
  </tileset>
  <tileset name="table with hob" firstgid="201" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob.png"/>
  </tileset>
  <tileset name="items" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/items.png"/>
@@ -82,16 +82,16 @@
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
  <tileset name="bench" firstgid="292" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="clothes rack" firstgid="295" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/clothes_rack.png"/>
+  <image source="../../tileset/furniture/other/clothes_rack.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="297" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="red hat" firstgid="303" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/red_hat.png"/>
+  <image source="../../tileset/item/textile/red_hat.png"/>
  </tileset>
  <tileset name="sheep food" firstgid="304" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
@@ -104,9 +104,6 @@
  </tileset>
  <tileset name="logs" firstgid="307" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="310" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew_details.png"/>
  </tileset>
  <layer name="0_floor" width="35" height="25">
   <data encoding="base64" compression="gzip">
@@ -130,7 +127,7 @@
  </layer>
  <layer name="4_roof_add" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDDdwC4tsD7QgguIFF7DqUvkZPh4yCUTAKqAIsGFFpeunFBiwZUWl66R0Fo2AUjILBDPRHy7URBwDix2k9rA0AAA==
+   H4sIAAAAAAAAAGNgGAVDDdwC4tsD7QgguIFF7DqUvkZPh4yCUTAKRsEoGAWjYBSMAKDPONAuGAX0BgBEVsgvrA0AAA==
   </data>
  </layer>
  <layer name="objects" width="35" height="25">

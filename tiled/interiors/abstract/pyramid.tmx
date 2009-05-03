@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="castle" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="floor tiles 3" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>

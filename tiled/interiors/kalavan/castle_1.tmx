@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="castle" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="collision" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="torch iron lamp" firstgid="322" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="325" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="stairs" firstgid="331" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="throne" firstgid="335" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="weapons" firstgid="341" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
@@ -28,7 +28,7 @@
   <image source="../../tileset/item/armor/armor.png"/>
  </tileset>
  <tileset name="stick" firstgid="367" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stick.png"/>
+  <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
  <tileset name="chest" firstgid="369" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>

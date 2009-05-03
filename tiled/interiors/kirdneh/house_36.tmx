@@ -19,16 +19,16 @@
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
  <tileset name="sofa red" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_red.png"/>
+  <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
  <tileset name="table with hob pale" firstgid="59" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob_pale.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="oriental plant" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
  <tileset name="bench" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="collision" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -40,37 +40,37 @@
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
  <tileset name="chair wooden" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden.png"/>
+  <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
  <tileset name="logs" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
  <tileset name="armchair red" firstgid="87" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/armchair_red.png"/>
+  <image source="../../tileset/furniture/chair/armchair_red.png"/>
  </tileset>
  <tileset name="red carpet" firstgid="99" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
  </tileset>
  <tileset name="household items" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household_items_2.png"/>
  </tileset>
  <tileset name="square" firstgid="124" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square.png"/>
+  <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="dark red detail ns" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
  <tileset name="grey pale" firstgid="137" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_pale.png"/>
+  <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="items" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/items.png"/>
  </tileset>
  <tileset name="wooden clock" firstgid="149" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/wooden_clock.png"/>
+  <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
  <tileset name="brick base" firstgid="151" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="sheep food" firstgid="154" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
@@ -79,10 +79,10 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="159" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="church tiles" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/church_tiles.png"/>
