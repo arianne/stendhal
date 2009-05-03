@@ -982,6 +982,15 @@ assassin dagger 7000
 
 	<zone name="-1_nalwor_drows_tunnel" level="-1" x="500256" y="500384"
 		file="Level -1/nalwor/drows_tunnel.tmx">
+	 <entity x="10" y="38">
+        	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                	<parameter name="width">32</parameter>
+                	<parameter name="height">22</parameter>
+                	<parameter name="enterMessage">Menacing message to warn about arachne.</parameter>
+        	</implementation>
+  	</entity>
+
+
 	</zone>
 
 
