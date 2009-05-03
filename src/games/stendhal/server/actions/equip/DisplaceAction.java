@@ -91,13 +91,13 @@ public class DisplaceAction implements ActionListener {
 	private boolean mayDisplace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
 	    return nextTo(player, entity)
 				&& (!isItemBelowOtherPlayer(player, entity))
-				&& destInRange(player,x, y)
+				&& destInRange(player, x, y)
 				&& !entityCollides(player, zone, x, y, entity)
 				&& (isGamblingZoneAndIsDice(entity, player) || pathToDest(player, zone, x, y, entity));
 	}
 
     /**
-     * Checks whether the player is next to the entity and provides feedback to player if not
+     * Checks whether the player is next to the entity and provides feedback to player if not.
      *                                                                                       
      * @param player 
      *            the player doing the displacement
@@ -114,7 +114,7 @@ public class DisplaceAction implements ActionListener {
     }
 
 	/**
-	 * Checks whether the item is below <b>another</b> player and provides feedback to player
+	 * Checks whether the item is below <b>another</b> player and provides feedback to player.
 	 * 
 	 * @param player
 	 *            the player doing the displacement
@@ -138,7 +138,7 @@ public class DisplaceAction implements ActionListener {
 	}
 
     /**                                                                                                                                                                                          
-     * Checks whether the destination is in range and provides feedback to player if not
+     * Checks whether the destination is in range and provides feedback to player if not.
      *                                                                                                                                                                                           
      * @param player                                                                                                                                                                             
      *            the player doing the displacement                                                                                                                                              
@@ -172,7 +172,7 @@ public class DisplaceAction implements ActionListener {
 	}
 	
 	/**
-	 * Checks whether there is a path from player to destination
+	 * Checks whether there is a path from player to destination.
 	 *
 	 * @param player Player attempting the move
 	 * @param zone   Zone

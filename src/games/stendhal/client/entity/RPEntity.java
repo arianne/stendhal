@@ -674,7 +674,7 @@ public abstract class RPEntity extends ActiveEntity {
 				onPrivateListen(event.get("texttype"), event.get("text"));
 			}
 			if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
-				onPrivateListen("normal","Open Panel!");
+				onPrivateListen("normal", "Open Panel!");
 			}
 		}
 

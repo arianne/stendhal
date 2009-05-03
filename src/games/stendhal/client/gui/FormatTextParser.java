@@ -7,7 +7,7 @@ package games.stendhal.client.gui;
  */
 public abstract class FormatTextParser {
 	/**
-	 * Write text optionally colored, and strips '\' from the front of the '#' signs
+	 * Write text optionally colored, and strips '\' from the front of the '#' signs.
 	 * 
 	 * @param text the text to write
 	 * @param color true if the text should be coloured

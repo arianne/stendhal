@@ -523,7 +523,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return SingletonRepository.getRuleProcessor().onlinePlayers.size();
 	}
 
-	public static void notifyOnlineStatus(final boolean isOnline, final String name) {
+	public void notifyOnlineStatus(final boolean isOnline, final String name) {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {

@@ -3,6 +3,8 @@
  */
 package games.stendhal.server.maps;
 
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ArrestWarrentTestHelper;
 import utilities.RPClass.BloodTestHelper;
@@ -14,9 +16,6 @@ import utilities.RPClass.PassiveEntityRespawnPointTestHelper;
 import utilities.RPClass.PortalTestHelper;
 import utilities.RPClass.SheepFoodTestHelper;
 import utilities.RPClass.SheepTestHelper;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.trade.OfferTest;
-import marauroa.common.game.RPObject;
 
 public class MockStendlRPWorld extends StendhalRPWorld {
 

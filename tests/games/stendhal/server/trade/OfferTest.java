@@ -23,14 +23,14 @@ public class OfferTest {
 		Item item = SingletonRepository.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(1);
 		String offererName = "trader";
-		Offer o = new Offer(item,price,offererName);
-		assertThat(o.get("offererName"),is(offererName));
-		assertThat(o.getInt("price"),is(price.intValue()));
-		assertThat((Item)o.getSlot("item").getFirst(),is(item));
+		Offer o = new Offer(item, price, offererName);
+		assertThat(o.get("offererName"), is(offererName));
+		assertThat(o.getInt("price"), is(price.intValue()));
+		assertThat((Item) o.getSlot("item").getFirst(), is(item));
 		Offer offerFromRPObject = new Offer(o);
-		assertThat(offerFromRPObject.getPrice(),is(price));
-		assertThat(offerFromRPObject.getOffererName(),is(offererName));
-		assertThat(offerFromRPObject.getItem(),is(item));
+		assertThat(offerFromRPObject.getPrice(), is(price));
+		assertThat(offerFromRPObject.getOffererName(), is(offererName));
+		assertThat(offerFromRPObject.getItem(), is(item));
 	}
 }
 

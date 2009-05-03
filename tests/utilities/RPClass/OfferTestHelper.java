@@ -7,7 +7,7 @@ public class OfferTestHelper {
 
 	public static void generateRPClasses() {
 		EntityTestHelper.generateRPClasses();
-		if(!RPClass.hasRPClass("offer")) {
+		if (!RPClass.hasRPClass("offer")) {
 			Offer.generateRPClass();
 		}
 	}

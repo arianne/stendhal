@@ -350,9 +350,11 @@ public class StendhalRPAction {
 	}
 
 	
-	// the total area checked is 2n(n+1) + 1 ; choose n so that it's about
-	// the same as in the old algorithm 36 => 2665 squares vs the old 2601
-	/** maximum walking distance from the center */
+	/**
+	 * maximum walking distance from the center, determines the area checked. 
+	 * the total area checked is 2n(n+1) + 1
+	 * 36 => 2665 squares
+	 */
 	private static final int maxDisplacement = 36;
 	/**
 	 * Places an entity at a specified position in a specified zone. This will
@@ -528,7 +530,7 @@ public class StendhalRPAction {
 	}
 	
 	/**
-	 * Find a new place for entity
+	 * Finds a new place for entity.
 	 * @param zone zone to place the entity in
 	 * @param entity the entity to place
 	 * @param allowedArea only search within this area for a possible new position,
@@ -545,7 +547,7 @@ public class StendhalRPAction {
 		 * Minimum Euclidean distance within minimum walking distance
 		 */
 		for (int totalShift = 1; totalShift <= maxDisplacement; totalShift++) {
-			for (int tilt = (totalShift + 1)/ 2; tilt > 0; tilt--) {
+			for (int tilt = (totalShift + 1) / 2; tilt > 0; tilt--) {
 				final int spread = totalShift - tilt;
 				
 				int tmpx = x - tilt;
@@ -615,7 +617,7 @@ public class StendhalRPAction {
 	}
 	
 	/**
-	 * Check if a new placement for an entity is valid
+	 * Checks if a new placement for an entity is valid.
 	 * 
 	 * @param zone the zone where the entity should be placed
 	 * @param entity the entity to place

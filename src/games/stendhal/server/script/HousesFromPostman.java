@@ -1,12 +1,5 @@
 package games.stendhal.server.script;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,8 +12,13 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 /**
- * an one-off script for marking the houses at postmans slots as owned by someone
+ * an one-off script for marking the houses at postmans slots as owned by someone.
  */
 public class HousesFromPostman extends ScriptImpl {
 	private static final Logger logger = Logger.getLogger(HousesFromPostman.class);
@@ -37,10 +35,10 @@ public class HousesFromPostman extends ScriptImpl {
 	private void initPortalList() {
 		portals = new LinkedList<HousePortal>();
 		
-		for (String zoneName : ZONE_NAMES) {
-			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
+		for (final String zoneName : ZONE_NAMES) {
+			final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 			
-			for (Portal portal : zone.getPortals()) {
+			for (final Portal portal : zone.getPortals()) {
 				if (portal instanceof HousePortal) {
 					portals.add((HousePortal) portal);
 				}
@@ -48,12 +46,12 @@ public class HousesFromPostman extends ScriptImpl {
 		}
 	}
 	
-	private void updateHouse(int number) {
-		for (HousePortal portal : portals) {
+	private void updateHouse(final int number) {
+		for (final HousePortal portal : portals) {
 			if (portal.getPortalNumber() == number) {
 				portal.setOwner("an unknown owner");
 							
-				long time = System.currentTimeMillis();
+				final long time = System.currentTimeMillis();
 			
 				portal.setExpireTime(time);
 				
@@ -67,12 +65,12 @@ public class HousesFromPostman extends ScriptImpl {
 		logger.error("Failed to find house " + number);
 	}
 	
-	private StoredChest findChest(HousePortal portal) {
+	private StoredChest findChest(final HousePortal portal) {
 		final String zoneName = portal.getDestinationZone();
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		
 		final List<Entity> chests = zone.getFilteredEntities(new FilterCriteria<Entity>() {
-			public boolean passes(Entity object) {
+			public boolean passes(final Entity object) {
 				return (object instanceof StoredChest);
 			}
 		});
@@ -85,7 +83,7 @@ public class HousesFromPostman extends ScriptImpl {
 		return (StoredChest) chests.get(0);
 	}
 	
-	private void fillChest(StoredChest chest) {
+	private void fillChest(final StoredChest chest) {
 		Item item = SingletonRepository.getEntityManager().getItem("note");
 		item.setDescription("INFORMATION TO THE HOUSE OWNER\n"
 				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
@@ -116,11 +114,11 @@ public class HousesFromPostman extends ScriptImpl {
 		
 		initPortalList();
 		
-		for (String slotName : SLOTS) {
+		for (final String slotName : SLOTS) {
 			final String slotContents = postman.getQuest(slotName);
 			final String[] ownedHouses = slotContents.split(";");
 			
-			for (String house : ownedHouses) {
+			for (final String house : ownedHouses) {
 				if (house.length() > 0) {
 					updateHouse(Integer.parseInt(house));
 				}

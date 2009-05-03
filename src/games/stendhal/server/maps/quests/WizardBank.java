@@ -179,7 +179,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply(Arrays.asList("fee","enter"), null, new ChatAction() {
+				addReply(Arrays.asList("fee", "enter"), null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {

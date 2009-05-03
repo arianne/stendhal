@@ -14,12 +14,12 @@ public class Earning extends RPObject {
 	public static void generateRPClass() {
 		final RPClass earningClass = new RPClass("earning");
 		earningClass.isA("entity");
-		earningClass.addAttribute("value",Type.INT);
-		earningClass.addRPSlot("item",1);
+		earningClass.addAttribute("value", Type.INT);
+		earningClass.addRPSlot("item", 1);
 	}
 
 	/**
-	 * standard constructor from sold {@link Item} and price
+	 * constructs Earning from sold {@link Item} and price.
 	 * @param item the sold item
 	 * @param value the earned money
 	 */
@@ -29,13 +29,13 @@ public class Earning extends RPObject {
 		addSlot("item");
 		getSlot("item").add(item);
 		this.item = item;
-		put("value",value);
+		put("value", value);
 		this.value = value;
 		store();
 	}
 	
-	public Earning (final RPObject object) {
-		this((Item) object.getSlot("item").getFirst(),Integer.valueOf(object.getInt("value")));
+	public Earning(final RPObject object) {
+		this((Item) object.getSlot("item").getFirst(), Integer.valueOf(object.getInt("value")));
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.ados.swamp;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;

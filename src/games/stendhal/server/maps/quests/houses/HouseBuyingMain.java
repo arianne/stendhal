@@ -61,52 +61,52 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
 	private static final String FISHLICENSE2_QUEST_SLOT = "fishermans_license2";
 
-	/** Cost to buy house in kalavan */
+	/** Cost to buy house in kalavan. */
 	private static final int COST_KALAVAN = 100000;
-	/** Cost to buy house in ados */
+	/** Cost to buy house in ados. */
 	private static final int COST_ADOS = 120000;
-	/** Cost to buy house in kirdneh */
+	/** Cost to buy house in kirdneh. */
 	private static final int COST_KIRDNEH = 120000;
-	/** Cost to buy house in athor */
+	/** Cost to buy house in athor. */
 	private static final int COST_ATHOR = 100000;
 
-	/** Cost to buy spare keys */
+	/** Cost to buy spare keys. */
 	private static final int COST_OF_SPARE_KEY = 1000;
 
-	/** percentage of initial cost refunded when you resell a house*/
+	/** percentage of initial cost refunded when you resell a house.*/
 	private static final int DEPRECIATION_PERCENTAGE = 40;
 	
 	/**
 	 * age required to buy a house. Note, age is in minutes, not seconds! So
-	 * this is 300 hours
+	 * this is 300 hours.
 	 */
 	private static final int REQUIRED_AGE = 300 * 60;
 
-	/** Kalavan house seller Zone name */
+	/** Kalavan house seller Zone name. */
 	private static final String KALAVAN_CITY = "0_kalavan_city";
-	/** Athor house seller Zone name */
+	/** Athor house seller Zone name. */
 	private static final String ATHOR_ISLAND = "0_athor_island";
-	/** Ados house seller Zone name */
+	/** Ados house seller Zone name. */
 	private static final String ADOS_TOWNHALL = "int_ados_town_hall_3";
-	/** Kirdneh house seller Zone name */
+	/** Kirdneh house seller Zone name. */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
-	/** Kalavan house seller npc */
+	/** Kalavan house seller npc. */
 	protected SpeakerNPC npc;
-	/** Ados house seller npc */
+	/** Ados house seller npc. */
 	protected SpeakerNPC npc2;
-	/** Kirdneh house seller npc */
+	/** Kirdneh house seller npc. */
 	protected SpeakerNPC npc3;
-	/** Athor apartment seller npc */
+	/** Athor apartment seller npc. */
 	protected SpeakerNPC npc4;
 
-	/** Kalavan house seller */
+	/** Kalavan house seller. */
 	protected StendhalRPZone kalavan_city_zone;
-	/** Athor house seller Zone */
+	/** Athor house seller Zone. */
 	protected StendhalRPZone athor_island_zone;
-	/** Ados house seller Zone  */
+	/** Ados house seller Zone.  */
 	protected StendhalRPZone ados_townhall_zone;
-	/** Kirdneh house seller Zone */
+	/** Kirdneh house seller Zone. */
 	protected StendhalRPZone kirdneh_townhall_zone;
 	
 	private HouseTax houseTax;
@@ -128,7 +128,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 		private final String location;
 		/**	
-		 *	Creates NPC dialog for house sellers
+		 *	Creates NPC dialog for house sellers.
 		 * @param name
 		 *            the name of the NPC
 		 * @param location
@@ -136,7 +136,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		*/
 		private HouseSellerNPCBase(final String name, final String location) {
 			super(name);			
-			this.location=location;
+			this.location = location;
 			createDialogNowWeKnowLocation();
 		}
 		
@@ -355,7 +355,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		}
 	}
 	
-	private void fillChest(StoredChest chest) {
+	private void fillChest(final StoredChest chest) {
 		Item item = SingletonRepository.getEntityManager().getItem("note");
 		item.setDescription("WELCOME TO THE HOUSE OWNER\n"
 				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
@@ -389,7 +389,8 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		}
 	}
 
-	/** The sale of a spare key has been agreed, player meets conditions, here is the action to simply sell it */
+	/** The sale of a spare key has been agreed, player meets conditions, 
+	 * here is the action to simply sell it. */
 	private final class BuySpareKeyChatAction implements ChatAction {
 	
 
@@ -523,7 +524,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		private final String location;
 
 		/**
-		 * Creates a new ListUnboughtHousesAction
+		 * Creates a new ListUnboughtHousesAction.
 		 * 
 		 * @param location
 		 *            where are the houses?
@@ -534,7 +535,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final List<String> unbought = HouseUtilities.getUnboughtHousesInLocation(location);
-			if (unbought.size()>0){
+			if (unbought.size() > 0) {
 				engine.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
 			} else {
 				engine.say("Sorry, there are no houses available for sale in " + Grammar.makeUpperCaseWord(location) + ".");
@@ -548,9 +549,9 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		}
 	}
 
-	/** The NPC for Kalavan Houses */
+	/** The NPC for Kalavan Houses. */
 	private void createNPC() {
-		final SpeakerNPC npc = new HouseSellerNPCBase("Barrett Holmes","kalavan") {
+		final SpeakerNPC npc = new HouseSellerNPCBase("Barrett Holmes", "kalavan") {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -632,9 +633,9 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		kalavan_city_zone.add(npc);
 	}
 
-	/** The NPC for Ados Houses */
+	/** The NPC for Ados Houses. */
 	private void createNPC2() {
-		final SpeakerNPC npc2 = new HouseSellerNPCBase("Reg Denson","ados") {
+		final SpeakerNPC npc2 = new HouseSellerNPCBase("Reg Denson", "ados") {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -734,9 +735,9 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		ados_townhall_zone.add(npc2);
 	}
 
-	/** The NPC for Kirdneh Houses */
+	/** The NPC for Kirdneh Houses. */
 	private void createNPC3() {
-		final SpeakerNPC npc3 = new HouseSellerNPCBase("Roger Frampton","kirdneh") {
+		final SpeakerNPC npc3 = new HouseSellerNPCBase("Roger Frampton", "kirdneh") {
 			@Override
 			protected void createPath() {
 				setPath(null);
@@ -803,9 +804,9 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		kirdneh_townhall_zone.add(npc3);
 	}
 
-	/** The NPC for Athor Apartments */
+	/** The NPC for Athor Apartments. */
 	private void createNPC4() {
-		final SpeakerNPC npc4 = new HouseSellerNPCBase("Cyk","athor") {
+		final SpeakerNPC npc4 = new HouseSellerNPCBase("Cyk", "athor") {
 			@Override
 			protected void createPath() {
 				setPath(null);
@@ -817,7 +818,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		
 		// player is not old enough
 		npc4.add(ConversationStates.ATTENDING, 
-				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
 				 new NotCondition(new AgeGreaterThanCondition(REQUIRED_AGE)),
 				 ConversationStates.ATTENDING, 
 				 "The cost of a new apartment in Athor is "
@@ -828,7 +829,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		
 		// player is old enough and hasn't got a house but has not done required quest
 		npc4.add(ConversationStates.ATTENDING, 
-				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
 				 new AndCondition(new AgeGreaterThanCondition(REQUIRED_AGE), 
 								  new QuestNotCompletedCondition(FISHLICENSE2_QUEST_SLOT), 
 								  new QuestNotStartedCondition(QUEST_SLOT)),
@@ -838,7 +839,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		
 		// player is eligible to buy a apartment
 		npc4.add(ConversationStates.ATTENDING, 
-				 Arrays.asList("cost", "house", "buy", "purchase","apartment"),
+				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
 				 new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), 
 								  new AgeGreaterThanCondition(REQUIRED_AGE), 
 								  new QuestCompletedCondition(FISHLICENSE2_QUEST_SLOT)),

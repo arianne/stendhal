@@ -8,7 +8,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,7 @@ public class Shop {
 	
 	public Shop(final StendhalRPZone zone) {
 		for (final RPObject item : zone) {
-			if(item.getRPClass().getName().equals("offer")) {
+			if (item.getRPClass().getName().equals("offer")) {
 				final Offer offer = (Offer) item;
 				this.offers.add(offer);
 			}
@@ -44,10 +43,10 @@ public class Shop {
 		if (offers.contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				acceptingPlayer.equipOrPutOnGround(offer.getItem());
-				if(!earnings.containsKey(offer.getOffererName())) {
+				if (!earnings.containsKey(offer.getOffererName())) {
 					earnings.put(offer.getOffererName(), new HashSet<Earning>());
 				}
-				earnings.get(offer.getOffererName()).add(new Earning(offer.getItem(),offer.getPrice()));
+				earnings.get(offer.getOffererName()).add(new Earning(offer.getItem(), offer.getPrice()));
 			}
 		}
 	}
@@ -62,7 +61,7 @@ public class Shop {
 		}
 	}
 
-	private int sumUpEarningsForPlayer(Player earner) {
+	private int sumUpEarningsForPlayer(final Player earner) {
 		Set<Earning> earningsForPlayer = earnings.get(earner.getName());
 		int sum = 0;
 		for (Earning earning : earningsForPlayer) {

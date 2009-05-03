@@ -15,7 +15,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 /**
- * A Chest whose contents are stored by the zone
+ * A Chest whose contents are stored by the zone.
  * 
  * @author kymara
  */
@@ -23,7 +23,7 @@ public class StoredChest extends Chest {
 	private static Logger logger = Logger.getLogger(StoredChest.class);
 
 	/**
-	 * Creates a new StoredChest
+	 * Creates a new StoredChest.
 	 * 
 	 */
 	public StoredChest() {

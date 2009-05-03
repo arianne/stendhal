@@ -404,15 +404,15 @@ public class j2DClient {
 		
 	SwingUtilities.invokeLater(new Runnable() {
 
-		public void run() {
-			mainFrame.getMainFrame().pack();
-			mainFrame.getMainFrame().setVisible(true);
-			mainFrame.getMainFrame().setResizable(false);
-			mainFrame.getMainFrame().toFront();
+			public void run() {
+				mainFrame.getMainFrame().pack();
+				mainFrame.getMainFrame().setVisible(true);
+				mainFrame.getMainFrame().setResizable(false);
+				mainFrame.getMainFrame().toFront();
 
-			
-		}});	
-			directionRelease = null;
+			}
+		});
+		directionRelease = null;
 	
 
 	} // constructor

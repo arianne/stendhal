@@ -16,21 +16,21 @@ import games.stendhal.server.entity.item.HouseKey;
 public class HousePortal extends AccessCheckingPortal {
 	private static final String RPCLASS_NAME = "house_portal";
 	
-	/** attribute name for the door identifier string */
+	/** attribute name for the door identifier string. */
 	private static final String DOOR_ID = "door_id";
-	/** attribute name for the door owner string */
+	/** attribute name for the door owner string. */
 	private static final String OWNER = "owner";
-	/** attribute name for the lock number */
+	/** attribute name for the lock number. */
 	private static final String LOCK_NUMBER = "lock_number";
-	/** attribute name for the time when the house would be confiscated */
+	/** attribute name for the time when the house would be confiscated. */
 	private static final String EXPIRES = "expires";
 	
 	// these 3 are needed to save the data for linking the portals to each other
-	/** attribute name for storing the destination zone name */
+	/** attribute name for storing the destination zone name .*/
 	private static final String DESTINATION_ZONE = "destination_zone";
-	/** attribute name for storing the referance name of the destination portal */
+	/** attribute name for storing the referance name of the destination portal. */
 	private static final String DESTINATION_ID = "destination_id";
-	/** the attribute name for the map reference id of this portal */
+	/** the attribute name for the map reference id of this portal. */
 	private static final String PORTAL_REFERENCE = "reference";
 	
 	public static void generateRPClass() {
@@ -77,7 +77,7 @@ public class HousePortal extends AccessCheckingPortal {
 	}
 	
 	/**
-	 * Set the owner of this portal
+	 * Sets the owner of this portal.
 	 * 
 	 * @param owner name of the owner.
 	 */

@@ -39,8 +39,8 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(RentedSign.RPCLASS_NAME, new RentedSignTransformer());
 		transformerMap.put("chest", new StoredChestTransformer());
 		transformerMap.put("house_portal", new HousePortalTransformer());
-		transformerMap.put("offer",new OfferTransformer());
-		transformerMap.put("earning",new EarningTransformer());
+		transformerMap.put("offer", new OfferTransformer());
+		transformerMap.put("earning", new EarningTransformer());
 	}
 	
 	

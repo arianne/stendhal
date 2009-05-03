@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 
 /**
  * Knocks on a HousePortal - sends a message to all players inside the House
- * and a feedback message to the knocker
+ * and a feedback message to the knocker.
  *
  * @author kymara
  */
@@ -46,18 +46,16 @@ public class KnockAction implements ActionListener {
 			return;
 		}
 
-		if(!player.nextTo(entity)) {
+		if (player.nextTo(entity)) {
+			final HousePortal houseportal = (HousePortal) entity;
+			knock(player, houseportal);
+		} else {
 			player.sendPrivateText("You can't reach to knock from here.");
-			return;
 		}
-
-		final HousePortal houseportal = (HousePortal) entity;
-   
-		knock(player, houseportal);
 	}
 
 	/**
-	 * Knocks on the door
+	 * Knocks on the door.
 	 * @param player who is knocking?
 	 * @param houseportal HousePortal which was knocked
 	 */

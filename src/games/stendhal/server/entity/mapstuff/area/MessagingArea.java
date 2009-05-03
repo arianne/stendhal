@@ -8,18 +8,18 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Area that sends a private message to any player entering and/or leaving it
+ * Area that sends a private message to any player entering and/or leaving it.
  */
 public class MessagingArea extends AreaEntity implements MovementListener {
-	/** true if the area should cover the whole zone */
+	/** true if the area should cover the whole zone. */
 	private final boolean coversZone;
-	/** message sent to the players entering the area */
+	/** message sent to the players entering the area. */
 	private final String enterMessage;
-	/** message sent to the players leaving the area */
+	/** message sent to the players leaving the area. */
 	private final String leaveMessage;
 	
 	/**
-	 * Create a MessagingArea
+	 * Create a MessagingArea.
 	 * 
 	 * @param coversZone true if the area should cover the whole zone
 	 * @param width width of the area

@@ -100,9 +100,9 @@ public class HouseUtilities {
 			// this is only done once per server run
 			allHousePortals = new LinkedList<HousePortal>();
 			
-			for (String zoneName : zoneNames) {
-				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
-				for (Portal portal : zone.getPortals()) {
+			for (final String zoneName : zoneNames) {
+				final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
+				for (final Portal portal : zone.getPortals()) {
 					if (portal instanceof HousePortal) {
 						allHousePortals.add((HousePortal) portal);
 					}
@@ -124,12 +124,12 @@ public class HouseUtilities {
 	 * chest in the zone which the house portal leads to (Note, then, that chests should be on the 'ground floor')
 	 */
 
-	public static StoredChest findChest(HousePortal portal) {
+	public static StoredChest findChest(final HousePortal portal) {
 		final String zoneName = portal.getDestinationZone();
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		
 		final List<Entity> chests = zone.getFilteredEntities(new FilterCriteria<Entity>() {
-			public boolean passes(Entity object) {
+			public boolean passes(final Entity object) {
 				return (object instanceof StoredChest);
 			}
 		});
@@ -158,10 +158,10 @@ public class HouseUtilities {
 
 	// this will be ideal for a seller to list all unbought houses in a specific location
 	// using Grammar.enumerateCollection
-	public static List<String> getUnboughtHousesInLocation(String location) {
+	public static List<String> getUnboughtHousesInLocation(final String location) {
 		final String regex = location + ".*";
 		final List<String> unbought = new LinkedList<String>();
-		for (String doorId : getUnboughtHouses()) {
+		for (final String doorId : getUnboughtHouses()) {
 			if (doorId.matches(regex)) {
 				unbought.add(doorId);
 			}
