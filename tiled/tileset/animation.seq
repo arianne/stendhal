@@ -34,7 +34,7 @@ tileset/plant/flower/daisy_blue.png	3	5:7:1:3@3500
 tileset/plant/flower/daisy_blue.png	5	7:1:3:5@3500
 tileset/plant/flower/daisy_blue.png	7	1:3:5:7@3500
 
-tileset/item/furniture/light/flames.png	*@300	0:1:2:3:4:5
+tileset/furniture/light/flames.png	*@300	0:1:2:3:4:5
 
 tileset/ground/water/pool_grassy.png	0	0:3:6:3
 tileset/ground/water/pool_grassy.png	3	0:3:6:3
@@ -231,18 +231,18 @@ tileset/ground/fire/fire.png	8@1000	8:17:26:17
 tileset/ground/fire/fire.png	17@1000	8:17:26:17
 tileset/ground/fire/fire.png	26@1000	8:17:26:17
 
-tileset/item/furniture/light/dark_torch.png	1	1:3:5:3
-tileset/item/furniture/light/dark_torch.png	3	1:3:5:3
-tileset/item/furniture/light/dark_torch.png	5	1:3:5:3
+tileset/furniture/light/dark_torch.png	1	1:3:5:3
+tileset/furniture/light/dark_torch.png	3	1:3:5:3
+tileset/furniture/light/dark_torch.png	5	1:3:5:3
 
-tileset/item/furniture/light/dark_torch.png	0	0:2:4:2
-tileset/item/furniture/light/dark_torch.png	2	0:2:4:2
-tileset/item/furniture/light/dark_torch.png	4	0:2:4:2
+tileset/furniture/light/dark_torch.png	0	0:2:4:2
+tileset/furniture/light/dark_torch.png	2	0:2:4:2
+tileset/furniture/light/dark_torch.png	4	0:2:4:2
 
-tileset/item/furniture/light/lights_candle.png	*	4:16
-tileset/item/furniture/light/lights_candle.png	*	5:17
+tileset/furniture/light/lights_candle.png	*	4:16
+tileset/furniture/light/lights_candle.png	*	5:17
 
-tileset/item/furniture/light/torch_top.png * 0:1:2:3
+tileset/furniture/light/torch_top.png * 0:1:2:3
 
 tileset/ground/water/whirlpool.png	*	0:1:2:3
 
@@ -295,16 +295,16 @@ tileset/item/candle/menorah.png	1	1:7
 tileset/item/candle/menorah.png	6	0:6
 tileset/item/candle/menorah.png	7	1:7
 
-tileset/item/furniture/light/xmas_lights.png	*	0:1
-tileset/item/furniture/light/xmas_lights.png	*	2:3
-tileset/item/furniture/light/xmas_lights.png	*	4:5
-tileset/item/furniture/light/xmas_lights.png	*	6:7
-tileset/item/furniture/light/xmas_lights.png	*	8:9
-tileset/item/furniture/light/xmas_lights.png	*	10:11
-tileset/item/furniture/light/xmas_lights.png	*	12:13
-tileset/item/furniture/light/xmas_lights.png	*	14:15
-tileset/item/furniture/light/xmas_lights.png	*	16:17
-tileset/item/furniture/light/xmas_lights.png	*	18:19
+tileset/furniture/light/xmas_lights.png	*	0:1
+tileset/furniture/light/xmas_lights.png	*	2:3
+tileset/furniture/light/xmas_lights.png	*	4:5
+tileset/furniture/light/xmas_lights.png	*	6:7
+tileset/furniture/light/xmas_lights.png	*	8:9
+tileset/furniture/light/xmas_lights.png	*	10:11
+tileset/furniture/light/xmas_lights.png	*	12:13
+tileset/furniture/light/xmas_lights.png	*	14:15
+tileset/furniture/light/xmas_lights.png	*	16:17
+tileset/furniture/light/xmas_lights.png	*	18:19
 
 tileset/building/roof/roof_borders_xmas.png     *       0:9     
 tileset/building/roof/roof_borders_xmas.png     *       1:10
@@ -428,24 +428,24 @@ tileset/ground/water/water_bubbles.png	*@150	8:9:10:11:12:13:14:15
 tileset/object/kicking_tomi.png  0 0@2900:1@900:0@2900:2@800
 tileset/object/kicking_tomi.png  3@100     3:4:5
 # jacuzzi whirlypool
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 0  0:6:12
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 1  1:7:13
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 2  2:8:14
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 6  6:12:0
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 7  7:13:1
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 8  8:14:2
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 12  12:0:6
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 13  13:1:7
-tileset/item/furniture/sink/jacuzzi_dark_side_on.png 14  14:2:8
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 0  0:6:12
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 1  1:7:13
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 2  2:8:14
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 6  6:12:0
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 7  7:13:1
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 8  8:14:2
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 12  12:0:6
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 13  13:1:7
-tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png 14  14:2:8
+tileset/furniture/sink/jacuzzi_dark_side_on.png 0  0:6:12
+tileset/furniture/sink/jacuzzi_dark_side_on.png 1  1:7:13
+tileset/furniture/sink/jacuzzi_dark_side_on.png 2  2:8:14
+tileset/furniture/sink/jacuzzi_dark_side_on.png 6  6:12:0
+tileset/furniture/sink/jacuzzi_dark_side_on.png 7  7:13:1
+tileset/furniture/sink/jacuzzi_dark_side_on.png 8  8:14:2
+tileset/furniture/sink/jacuzzi_dark_side_on.png 12  12:0:6
+tileset/furniture/sink/jacuzzi_dark_side_on.png 13  13:1:7
+tileset/furniture/sink/jacuzzi_dark_side_on.png 14  14:2:8
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 0  0:6:12
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 1  1:7:13
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 2  2:8:14
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 6  6:12:0
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 7  7:13:1
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 8  8:14:2
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 12  12:0:6
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 13  13:1:7
+tileset/furniture/sink/jacuzzi_dark_side_on_wading.png 14  14:2:8
 # more animated flames
 tileset/ground/fire/flames.png * 0:1
 tileset/ground/fire/flames.png * 1:0
@@ -468,13 +468,13 @@ tileset/object/vulcanus.png * 1:3:5
 tileset/object/vulcanus.png * 6:8:10
 tileset/object/vulcanus.png * 7:9:11
 # single tile sparkle
-tileset/item/furniture/light/sparkle.png * 0:1
-tileset/item/furniture/light/sparkle.png * 1:0
+tileset/furniture/light/sparkle.png * 0:1
+tileset/furniture/light/sparkle.png * 1:0
 # span 2 tiles sparkle
-tileset/item/furniture/light/sparkle_middle.png * 0:2
-tileset/item/furniture/light/sparkle_middle.png * 1:3
-tileset/item/furniture/light/sparkle_middle.png * 2:0
-tileset/item/furniture/light/sparkle_middle.png * 3:1
+tileset/furniture/light/sparkle_middle.png * 0:2
+tileset/furniture/light/sparkle_middle.png * 1:3
+tileset/furniture/light/sparkle_middle.png * 2:0
+tileset/furniture/light/sparkle_middle.png * 3:1
 # make bees buzzing bees
 tileset/item/buzzing_bees.png * 0:1:2:3:4
 # cloudset1 
