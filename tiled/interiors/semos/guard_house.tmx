@@ -85,7 +85,7 @@
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
  <tileset name="rug" firstgid="224" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="windows" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_small_windows_dark_red.png"/>

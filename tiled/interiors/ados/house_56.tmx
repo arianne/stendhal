@@ -22,7 +22,7 @@
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="stove" firstgid="70" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="stairs" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>

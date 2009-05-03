@@ -31,7 +31,7 @@
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
  <tileset name="lamp" firstgid="393" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">

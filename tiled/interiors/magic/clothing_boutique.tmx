@@ -43,7 +43,7 @@
   <image source="../../tileset/furniture/carpet/dark_blue.png"/>
  </tileset>
  <tileset name="bluegreen curtains" firstgid="133" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/curtain/blue_green_curtains.png"/>
+  <image source="../../tileset/furniture/curtain/blue_green.png"/>
  </tileset>
  <tileset name="picture small hills" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small_hills.png"/>

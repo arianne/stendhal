@@ -12,8 +12,8 @@
  <tileset name="../../tileset/furniture/carpet/rug_border.png" firstgid="40" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_peach.png" firstgid="49" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="55" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
@@ -21,8 +21,8 @@
  <tileset name="../../tileset/furniture/table/long_side_on_pale.png" firstgid="91" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="94" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/single_blue.png" firstgid="94" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/clock/wooden_clock.png" firstgid="96" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>
@@ -42,8 +42,8 @@
  <tileset name="../../tileset/furniture/other/drawer_with_mirror.png" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="113" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="113" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>

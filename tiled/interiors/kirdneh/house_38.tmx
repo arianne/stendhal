@@ -4,7 +4,7 @@
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="bluecarpet" firstgid="13" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
  <tileset name="wall red" firstgid="22" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
@@ -46,10 +46,10 @@
   <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="127" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="131" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="door" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door.png"/>
@@ -124,7 +124,7 @@
   <image source="../../tileset/ground/water/water_bubbles.png"/>
  </tileset>
  <tileset name="warmer" firstgid="284" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="barrel" firstgid="286" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>

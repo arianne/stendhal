@@ -70,13 +70,13 @@
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="household items" firstgid="207" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="grey pale" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="items" firstgid="231" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="items2" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>

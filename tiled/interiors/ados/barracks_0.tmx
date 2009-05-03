@@ -19,7 +19,7 @@
   <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="55" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
@@ -37,7 +37,7 @@
   <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="69" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="71" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/projectleader.png"/>

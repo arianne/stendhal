@@ -82,16 +82,16 @@
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="196" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="household items" firstgid="220" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="planted container" firstgid="236" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="items" firstgid="252" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="items2" firstgid="256" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>
@@ -100,10 +100,10 @@
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
  <tileset name="rug" firstgid="262" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="curtains" firstgid="271" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/curtain/blue_green_curtains.png"/>
+  <image source="../../tileset/furniture/curtain/blue_green.png"/>
  </tileset>
  <tileset name="arch" firstgid="275" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/flowered_arch.png"/>

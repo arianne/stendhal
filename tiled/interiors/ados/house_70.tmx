@@ -37,13 +37,13 @@
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="warmer" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="tile" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
  <tileset name="round white table" firstgid="169" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_round_white.png"/>
@@ -91,7 +91,7 @@
   <image source="../../tileset/item/statue/nymph_reddish.png"/>
  </tileset>
  <tileset name="carpet" firstgid="284" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_purple.png"/>
+  <image source="../../tileset/furniture/carpet/purple.png"/>
  </tileset>
  <tileset name="basin" firstgid="293" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>

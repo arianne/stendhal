@@ -37,7 +37,7 @@
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
  <tileset name="bed blue" firstgid="75" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
@@ -58,10 +58,10 @@
   <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="132" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="water" firstgid="138" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>

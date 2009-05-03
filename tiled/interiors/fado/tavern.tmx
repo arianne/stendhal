@@ -36,8 +36,8 @@
  <tileset name="../../tileset/furniture/table/long_front_on.png" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_peach.png" firstgid="128" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/furniture/picture/small.png" firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small.png"/>
@@ -64,16 +64,16 @@
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="195" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="199" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="meals" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <tileset name="warmer" firstgid="227" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="brown rug 3" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/brown_rug3.png"/>
@@ -97,13 +97,13 @@
   <image source="../../tileset/item/drink/beers_and_flasks.png"/>
  </tileset>
  <tileset name="stove" firstgid="298" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="tools" firstgid="304" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/tools.png"/>
  </tileset>
  <tileset name="house hold items" firstgid="313" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="table" firstgid="329" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>

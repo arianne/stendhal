@@ -43,16 +43,16 @@
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="warmer" firstgid="154" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="160" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="tile" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
  <tileset name="red rug" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="sofa" firstgid="194" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_cream.png"/>

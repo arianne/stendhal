@@ -22,7 +22,7 @@
   <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="bench ns" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on.png"/>
@@ -70,7 +70,7 @@
   <image source="../../tileset/building/wall/walls_siding.png"/>
  </tileset>
  <tileset name="warmer" firstgid="173" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="barrel" firstgid="175" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
@@ -121,7 +121,7 @@
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="household items" firstgid="297" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="planted container" firstgid="313" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
@@ -139,7 +139,7 @@
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="rug" firstgid="364" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="rug border" firstgid="373" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>

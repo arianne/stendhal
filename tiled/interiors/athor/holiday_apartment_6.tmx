@@ -94,7 +94,7 @@
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="counters" firstgid="283" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="table" firstgid="307" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_linen.png"/>

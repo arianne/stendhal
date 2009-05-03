@@ -58,10 +58,10 @@
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="134" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="household items" firstgid="158" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="towels" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
@@ -82,7 +82,7 @@
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
  <tileset name="ru" firstgid="228" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">

@@ -46,7 +46,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bed" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="sheepfood" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
@@ -61,10 +61,10 @@
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
  <tileset name="stove" firstgid="173" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="warmer" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="baskets" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>

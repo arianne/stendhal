@@ -55,7 +55,7 @@
   <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
  <tileset name="bed" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="bookshelfish" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>

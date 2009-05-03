@@ -43,7 +43,7 @@
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="stove" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="crockery" firstgid="127" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/dishes.png"/>

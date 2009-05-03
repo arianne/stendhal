@@ -70,10 +70,10 @@
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
  <tileset name="carpet_blue" firstgid="124" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
  <tileset name="carpet_red" firstgid="133" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="mannequins" firstgid="142" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/mannequins.png"/>

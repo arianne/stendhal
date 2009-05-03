@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="40" height="25" tilewidth="32" tileheight="32">
  <tileset name="floor oriental tile" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
  <tileset name="carpet pink " firstgid="2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
@@ -52,10 +52,10 @@
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="116" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="door" firstgid="122" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door.png"/>
@@ -115,7 +115,7 @@
   <image source="../../tileset/building/wall/walls_siding.png"/>
  </tileset>
  <tileset name="warmer" firstgid="222" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="barrel" firstgid="224" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>

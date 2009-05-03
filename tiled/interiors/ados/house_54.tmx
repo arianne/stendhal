@@ -49,13 +49,13 @@
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
  <tileset name="warmer" firstgid="200" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="red rug" firstgid="230" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="239" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png"/>

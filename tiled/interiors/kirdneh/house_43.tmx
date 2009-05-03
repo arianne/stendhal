@@ -46,7 +46,7 @@
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="475" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="tree unbrella thorn" firstgid="481" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/umbrella_thorn.png"/>
@@ -58,7 +58,7 @@
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
  <tileset name="household items" firstgid="504" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="greenish grey" firstgid="520" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/greenish_grey.png"/>

@@ -46,7 +46,7 @@
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_on_stone.png"/>

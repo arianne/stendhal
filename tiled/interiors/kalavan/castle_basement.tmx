@@ -34,7 +34,7 @@
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
  <tileset name="lamp" firstgid="401" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="weapons" firstgid="402" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
@@ -133,7 +133,7 @@
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
  <tileset name="bed" firstgid="595" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="wall" firstgid="597" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_dark.png"/>

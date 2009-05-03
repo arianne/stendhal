@@ -25,10 +25,10 @@
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="stone grey" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/stone_grey.png"/>
@@ -58,7 +58,7 @@
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <tileset name="warmer" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="pillow red" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_red.png"/>
@@ -106,7 +106,7 @@
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="household items" firstgid="210" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="planted container" firstgid="226" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
@@ -121,7 +121,7 @@
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
  <tileset name="items" firstgid="258" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="wooden clock" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>

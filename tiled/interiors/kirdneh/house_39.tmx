@@ -22,7 +22,7 @@
   <image source="../../tileset/item/statue/girl_with_bird.png"/>
  </tileset>
  <tileset name="blue bed" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="potted plants 1" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
@@ -49,7 +49,7 @@
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="stove" firstgid="161" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
@@ -64,13 +64,13 @@
   <image source="../../tileset/furniture/picture/sheep_picture.png"/>
  </tileset>
  <tileset name="household items 2" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="table with hob" firstgid="201" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_hob.png"/>
  </tileset>
  <tileset name="items" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="bread" firstgid="210" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
@@ -88,7 +88,7 @@
   <image source="../../tileset/furniture/other/clothes_rack.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="297" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="red hat" firstgid="303" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/red_hat.png"/>

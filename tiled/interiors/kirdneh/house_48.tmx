@@ -28,7 +28,7 @@
   <image source="../../tileset/building/window/window_centered.png"/>
  </tileset>
  <tileset name="warmer" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="barrel" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
@@ -64,10 +64,10 @@
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="135" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="household items" firstgid="159" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="square" firstgid="175" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
@@ -76,7 +76,7 @@
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
  <tileset name="items" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="items2" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>

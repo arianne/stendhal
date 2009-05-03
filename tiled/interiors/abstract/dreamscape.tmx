@@ -76,7 +76,7 @@
   <image source="../../tileset/sky/cloud/clouds.png"/>
  </tileset>
  <tileset name="oriental_floor_tile" firstgid="374" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
  <tileset name="strawberrycarpet" firstgid="375" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/strawberry.png"/>

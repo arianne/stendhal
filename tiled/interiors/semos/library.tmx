@@ -12,8 +12,8 @@
  <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="46" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/green.png" firstgid="58" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/green.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/green.png" firstgid="58" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/green.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/wall_feature.png" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/wall_feature.png" trans="ff00ff"/>

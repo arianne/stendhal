@@ -88,7 +88,7 @@
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
  <tileset name="stove" firstgid="281" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="white countertop" firstgid="287" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/white_counter_top.png"/>
@@ -100,7 +100,7 @@
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="household items 2" firstgid="303" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="bread" firstgid="319" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>

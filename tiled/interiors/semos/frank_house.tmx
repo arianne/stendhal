@@ -60,11 +60,11 @@
  <tileset name="../../tileset/furniture/chair/sofa.png" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on_darker.png" firstgid="166" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+ <tileset name="../../tileset/furniture/bed/large_red.png" firstgid="166" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/carpet/carpet_red_purple.png" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_red_purple.png"/>
+ <tileset name="../../tileset/furniture/carpet/red_purple.png" firstgid="172" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/red_purple.png"/>
  </tileset>
  <tileset name="../../tileset/item/chest/small.png" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/small.png"/>

@@ -40,13 +40,13 @@
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="piesafe" firstgid="393" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="397" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="warmer" firstgid="403" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="meals1" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
  <tileset name="bluecarpet" firstgid="453" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
  <tileset name="kalavan" firstgid="462" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_kalavan.png"/>

@@ -24,8 +24,8 @@
  <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="96" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="100" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -49,10 +49,10 @@
   <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="134" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="food" firstgid="140" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
@@ -70,7 +70,7 @@
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <tileset name="bed" firstgid="203" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="sofa" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_cream.png"/>
@@ -91,7 +91,7 @@
   <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="255" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="pool" firstgid="279" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>

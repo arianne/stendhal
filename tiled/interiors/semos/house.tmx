@@ -46,7 +46,7 @@
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="bed/large_front_on.png" firstgid="142" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="chair/wooden_pale.png" firstgid="148" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>

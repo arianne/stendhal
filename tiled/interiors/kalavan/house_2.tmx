@@ -36,8 +36,8 @@
  <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="119" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/table/orb_table.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/orb_table.png"/>
@@ -73,7 +73,7 @@
   <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
  <tileset name="warmer" firstgid="228" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="baskets" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>

@@ -10,13 +10,13 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
  <tileset name="bed peach" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="47" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="63" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="sink" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/dark_front_on.png"/>

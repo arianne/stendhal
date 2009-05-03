@@ -79,7 +79,7 @@
   <image source="../../tileset/item/food/fish_crates.png"/>
  </tileset>
  <tileset name="kitchenstuff" firstgid="194" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="210" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/mossy_brick_paving.png" trans="ff00ff"/>

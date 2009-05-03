@@ -79,10 +79,10 @@
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="household items" firstgid="222" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="towels" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>

@@ -25,7 +25,7 @@
   <image source="../../tileset/item/armor/suit_of_armor2.png"/>
  </tileset>
  <tileset name="red carpet" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="throne" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne.png"/>

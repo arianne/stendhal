@@ -25,7 +25,7 @@
   <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>

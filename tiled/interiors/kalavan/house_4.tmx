@@ -58,7 +58,7 @@
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="bed" firstgid="96" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="paving" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png"/>
@@ -106,7 +106,7 @@
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="wooden table" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
@@ -127,7 +127,7 @@
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
  <tileset name="household" firstgid="285" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="toilet" firstgid="301" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/toilet.png"/>

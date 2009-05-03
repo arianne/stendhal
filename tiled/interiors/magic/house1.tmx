@@ -31,7 +31,7 @@
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>
@@ -82,7 +82,7 @@
   <image source="../../tileset/building/entrance/dark_red_ew_fancy.png"/>
  </tileset>
  <tileset name="bed" firstgid="155" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="dark book" firstgid="157" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/dark_bookshelf.png"/>

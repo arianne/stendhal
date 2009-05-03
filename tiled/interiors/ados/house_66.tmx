@@ -25,7 +25,7 @@
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="58" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="pot purple" firstgid="59" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png"/>
@@ -136,7 +136,7 @@
   <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="items" firstgid="408" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="items2" firstgid="412" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>
@@ -148,7 +148,7 @@
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
  <tileset name="household" firstgid="443" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="bed" firstgid="459" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2.png"/>
@@ -157,10 +157,10 @@
   <image source="../../tileset/furniture/bed/large_white2_top_sheet.png"/>
  </tileset>
  <tileset name="rug" firstgid="467" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="tile" firstgid="476" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/oriental_floor_tile.png"/>
+  <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
  <tileset name="throne" firstgid="477" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne_small.png"/>

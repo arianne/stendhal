@@ -37,7 +37,7 @@
   <image source="../../tileset/furniture/other/furniture_pine.png"/>
  </tileset>
  <tileset name="warmer" firstgid="103" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
@@ -61,7 +61,7 @@
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
  <tileset name="stove" firstgid="164" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="brush" firstgid="170" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
@@ -94,7 +94,7 @@
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="259" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="wooden table" firstgid="283" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
@@ -115,7 +115,7 @@
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
  <tileset name="household" firstgid="346" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="toilet" firstgid="362" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/toilet.png"/>
@@ -148,7 +148,7 @@
   <image source="../../tileset/item/textile/lace.png"/>
  </tileset>
  <tileset name="carpet" firstgid="465" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">

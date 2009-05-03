@@ -43,7 +43,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bed" firstgid="96" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="entrance" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
@@ -64,7 +64,7 @@
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="warmer" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
@@ -73,7 +73,7 @@
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
  <tileset name="pie" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="lace" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/lace.png"/>

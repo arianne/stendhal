@@ -13,10 +13,10 @@
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <tileset name="bed peach" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="bed blue" firstgid="63" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
@@ -85,7 +85,7 @@
   <image source="../../tileset/furniture/carpet/dark_blue.png"/>
  </tileset>
  <tileset name="red carpet" firstgid="224" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="bathroom basin" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>
@@ -106,7 +106,7 @@
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="items" firstgid="280" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="items2" firstgid="284" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>

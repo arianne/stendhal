@@ -22,7 +22,7 @@
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <tileset name="menorah" firstgid="370" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/menorah.png"/>
+  <image source="../../tileset/furniture/light/menorah.png"/>
  </tileset>
  <tileset name="marble" firstgid="378" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/marble.png"/>

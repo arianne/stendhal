@@ -27,8 +27,8 @@
  <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="112" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="116" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/single_blue.png" firstgid="116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
@@ -45,8 +45,8 @@
  <tileset name="../../tileset/furniture/chair/stool.png" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="136" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="136" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/pool.png" firstgid="138" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>

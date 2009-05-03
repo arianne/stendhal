@@ -58,7 +58,7 @@
   <image source="../../tileset/item/drink/white_wine.png"/>
  </tileset>
  <tileset name="rug" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_purple.png"/>
+  <image source="../../tileset/furniture/carpet/purple.png"/>
  </tileset>
  <tileset name="rack" firstgid="197" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/clothes_rack.png"/>

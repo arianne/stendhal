@@ -87,8 +87,8 @@
  <tileset name="../../tileset/item/chest/small.png" firstgid="344" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/small.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on_darker.png" firstgid="346" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_red.png" firstgid="346" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_red.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="352" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
@@ -162,8 +162,8 @@
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="590" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="594" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="594" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/table/square_pale.png" firstgid="596" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square_pale.png"/>
@@ -186,8 +186,8 @@
  <tileset name="../../tileset/plant/indoor/small_tree.png" firstgid="609" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/small_tree.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="610" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="610" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/clock/wooden_clock.png" firstgid="611" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>

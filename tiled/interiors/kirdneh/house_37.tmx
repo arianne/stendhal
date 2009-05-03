@@ -55,7 +55,7 @@
   <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
  <tileset name="household items" firstgid="114" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="square" firstgid="130" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
@@ -67,7 +67,7 @@
   <image source="../../tileset/furniture/table/grey_pale.png"/>
  </tileset>
  <tileset name="items" firstgid="151" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="wooden clock" firstgid="155" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>
@@ -82,7 +82,7 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>

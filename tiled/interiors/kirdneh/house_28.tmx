@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="40" height="25" tilewidth="32" tileheight="32">
  <tileset name="bluecarpet" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
  <tileset name="wall red" firstgid="10" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
@@ -25,7 +25,7 @@
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
  <tileset name="bed red" firstgid="75" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="carpets" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
@@ -46,10 +46,10 @@
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="127" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="stove" firstgid="131" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="water" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
@@ -145,7 +145,7 @@
   <image source="../../tileset/item/banners/superhumans_wall_hanging.png"/>
  </tileset>
  <tileset name="topsheet" firstgid="331" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_red_top_sheet.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">

@@ -7,7 +7,7 @@
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="stove" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="stairs" firstgid="39" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
@@ -61,7 +61,7 @@
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="warmer" firstgid="159" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="birdcage" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/birdcage.png"/>

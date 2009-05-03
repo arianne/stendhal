@@ -31,7 +31,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bed" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="hosta" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hosta.png"/>
@@ -52,7 +52,7 @@
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
  <tileset name="warmer" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="110" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
@@ -61,7 +61,7 @@
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
  <tileset name="pie" firstgid="117" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="drawer" firstgid="121" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_without_runner.png"/>
@@ -82,7 +82,7 @@
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
  <tileset name="stove" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
  <tileset name="brush" firstgid="185" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
@@ -103,7 +103,7 @@
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="221" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="blankets" firstgid="245" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/blankets.png"/>

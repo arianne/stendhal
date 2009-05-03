@@ -91,7 +91,7 @@
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
  <tileset name="lamp" firstgid="212" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="collision" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

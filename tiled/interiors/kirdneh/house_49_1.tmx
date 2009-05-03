@@ -13,7 +13,7 @@
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="pie safe" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="sink" firstgid="61" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/dark_front_on.png"/>

@@ -39,8 +39,8 @@
  <tileset name="../../tileset/furniture/other/drawer.png" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="117" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="117" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>

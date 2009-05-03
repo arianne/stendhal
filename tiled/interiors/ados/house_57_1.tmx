@@ -19,7 +19,7 @@
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="bed" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="screen" firstgid="47" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/oriental_screen.png"/>

@@ -64,7 +64,7 @@
   <image source="../../tileset/item/boxes.png"/>
  </tileset>
  <tileset name="household items" firstgid="171" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="planted container" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
@@ -76,7 +76,7 @@
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="rug" firstgid="207" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="table copper" firstgid="216" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_copper.png"/>
@@ -115,7 +115,7 @@
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="365" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="door" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_fancy.png"/>

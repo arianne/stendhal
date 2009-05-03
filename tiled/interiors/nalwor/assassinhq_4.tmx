@@ -43,7 +43,7 @@
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
  <tileset name="red_carpet" firstgid="122" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="table_long_front_on" firstgid="131" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>

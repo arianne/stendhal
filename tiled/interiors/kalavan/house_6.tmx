@@ -49,7 +49,7 @@
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <tileset name="bed" firstgid="136" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="stalactite" firstgid="142" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/stalactite.png"/>
@@ -91,7 +91,7 @@
   <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="carpet" firstgid="287" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_purple.png"/>
+  <image source="../../tileset/furniture/carpet/purple.png"/>
  </tileset>
  <tileset name="armchair" firstgid="296" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair_cream.png"/>

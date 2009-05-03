@@ -67,7 +67,7 @@
   <image source="../../tileset/furniture/sink/dark_front_on.png"/>
  </tileset>
  <tileset name="bed" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="statue2" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>

@@ -16,7 +16,7 @@
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="65" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>

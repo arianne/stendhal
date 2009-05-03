@@ -37,7 +37,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bed" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="entrance" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
@@ -58,13 +58,13 @@
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="warmer" firstgid="160" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
  </tileset>
  <tileset name="pie" firstgid="163" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/pie_safe.png"/>
+  <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
  <tileset name="drawer" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_without_runner.png"/>
@@ -73,7 +73,7 @@
   <image source="../../tileset/furniture/other/drawer.png"/>
  </tileset>
  <tileset name="lamp" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="brush" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
@@ -94,7 +94,7 @@
   <image source="../../tileset/item/textile/lace.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="216" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="pool" firstgid="240" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>

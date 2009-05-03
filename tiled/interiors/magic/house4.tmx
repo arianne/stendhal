@@ -22,7 +22,7 @@
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="52" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/item/gothic/slab.png"/>
  </tileset>
  <tileset name="warmer" firstgid="156" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="fairy" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/fairy.png"/>

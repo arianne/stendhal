@@ -27,8 +27,8 @@
  <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="113" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer_2.png" firstgid="114" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer_2.png" firstgid="114" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/shelve/broad_shelf.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/broad_shelf.png"/>

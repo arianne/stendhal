@@ -28,7 +28,7 @@
   <image source="../../tileset/item/armor/armor.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="84" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png"/>

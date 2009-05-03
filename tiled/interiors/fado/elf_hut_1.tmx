@@ -37,7 +37,7 @@
   <image source="../../tileset/ground/brownground2.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="92" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/shadow.png"/>

@@ -19,7 +19,7 @@
   <image source="../../tileset/item/food/torte.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="54" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>
@@ -61,10 +61,10 @@
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="bed" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="warmer" firstgid="126" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="drawer" firstgid="128" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>

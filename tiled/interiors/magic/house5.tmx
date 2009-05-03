@@ -55,10 +55,10 @@
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="150" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="warmer" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="firewood" firstgid="176" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
@@ -70,7 +70,7 @@
   <image source="../../tileset/item/chest/chest_purple.png"/>
  </tileset>
  <tileset name="lamp" firstgid="190" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="pot tall" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_tall.png"/>
@@ -82,10 +82,10 @@
   <image source="../../tileset/item/documents/books2.png"/>
  </tileset>
  <tileset name="house hold items 2" firstgid="203" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="items" firstgid="219" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/items.png"/>
+  <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
  <tileset name="collision" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

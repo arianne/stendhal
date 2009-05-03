@@ -25,7 +25,7 @@
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
  <tileset name="bed red" firstgid="70" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
@@ -88,7 +88,7 @@
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="red carpet" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
  <tileset name="bread" firstgid="207" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
@@ -124,16 +124,16 @@
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="282" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="household items" firstgid="306" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/household_items_2.png"/>
+  <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <tileset name="sheep food" firstgid="322" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="323" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_red_top_sheet.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">

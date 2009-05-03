@@ -28,7 +28,7 @@
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>

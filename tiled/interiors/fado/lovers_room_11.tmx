@@ -49,7 +49,7 @@
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <tileset name="blue bed" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="tall lamp" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/tall_lamp.png"/>

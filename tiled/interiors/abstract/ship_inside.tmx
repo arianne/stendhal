@@ -22,7 +22,7 @@
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="426" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
  <tileset name="barrels 1" firstgid="450" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_1.png"/>

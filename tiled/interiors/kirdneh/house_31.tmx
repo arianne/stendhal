@@ -33,14 +33,14 @@
  <tileset name="../../tileset/furniture/other/drawer.png" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="112" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="114" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/single_blue.png" firstgid="119" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="121" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>

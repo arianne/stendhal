@@ -54,11 +54,11 @@
  <tileset name="../../tileset/item/drink/white_wine.png" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/white_wine.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="96" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="96" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/candelabra.png" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+ <tileset name="../../tileset/furniture/light/candelabra.png" firstgid="97" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

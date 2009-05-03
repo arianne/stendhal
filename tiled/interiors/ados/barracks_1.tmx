@@ -16,7 +16,7 @@
   <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
  <tileset name="a" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="51" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small.png"/>

@@ -25,7 +25,7 @@
   <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="51" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>

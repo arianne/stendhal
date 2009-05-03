@@ -49,7 +49,7 @@
   <image source="../../tileset/item/sacks.png"/>
  </tileset>
  <tileset name="lamp" firstgid="149" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="oriental plant" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
