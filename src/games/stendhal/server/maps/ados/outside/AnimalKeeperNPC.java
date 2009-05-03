@@ -128,8 +128,12 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 							StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 							if (StendhalRPAction.placeat(zone, pet, x, y)) {
 								player.removePet(pet);
-								player.addKarma(30.0);
-								npc.say("Thank you for rescuing this " + petName + ", I will take good care of it. Remember you can come back and visit the pet sanctuary any time you like!");
+								// reward with some karma but limit abuse
+								if (player.getKarma() < 60.0) {
+									player.addKarma(30.0);
+								}
+								npc.say("Thank you for rescuing this " + petName + ", I will take good care of it. Remember you can come back "
+								+ "and visit the pet sanctuary any time you like!");
 								notifyWorldAboutChanges();
 							} else {
 								// there was no room for the pet
