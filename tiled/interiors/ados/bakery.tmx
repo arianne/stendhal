@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="16" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
@@ -12,11 +12,11 @@
  <tileset name="../../tileset/item/logs.png" firstgid="49" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/other/warmer.png" firstgid="52" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/other/warmer.png" firstgid="52" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/warmer.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_hob.png" firstgid="54" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_hob.png" firstgid="54" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_hob.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/brush.png" firstgid="59" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
@@ -30,8 +30,8 @@
  <tileset name="../../tileset/building/window/int_windows_purple.png" firstgid="68" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/clock/wooden_clock.png" firstgid="84" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/wooden_clock.png"/>
+ <tileset name="../../tileset/furniture/clock/wooden_clock.png" firstgid="84" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
  <tileset name="../../tileset/item/food/rustic_meals.png" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png" trans="ff00ff"/>
@@ -42,14 +42,14 @@
  <tileset name="../../tileset/building/entrance/pale_red_ew.png" firstgid="90" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_side_on_pale.png" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+ <tileset name="../../tileset/furniture/table/long_side_on_pale.png" firstgid="138" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="141" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" firstgid="177" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" firstgid="177" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
@@ -70,7 +70,7 @@
   <image source="../../tileset/item/household_items_2.png"/>
  </tileset>
  <tileset name="vendors table" firstgid="223" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/vendors_table.png"/>
+  <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">

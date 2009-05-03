@@ -6,14 +6,14 @@
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="9" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_beer_dark.png" firstgid="11" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer_dark.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_beer_dark.png" firstgid="11" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_beer_dark.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden.png" firstgid="21" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="21" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_beer.png" firstgid="26" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_beer.png" firstgid="26" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_beer.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/pot/pot_purple.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png" trans="ff00ff"/>
@@ -24,8 +24,8 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="38" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/picture/small.png" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+ <tileset name="../../tileset/furniture/picture/small.png" firstgid="41" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="../../tileset/logic/portal.png" firstgid="44" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -46,7 +46,7 @@
   <image source="../../tileset/building/entrance/grey_centred.png"/>
  </tileset>
  <tileset name="table" firstgid="151" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/vendors_table.png"/>
+  <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
  <tileset name="beers" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/beers_and_flasks.png"/>
@@ -58,13 +58,13 @@
   <image source="../../tileset/item/drink/white_wine.png"/>
  </tileset>
  <tileset name="rug" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpet_purple.png"/>
+  <image source="../../tileset/furniture/carpet/carpet_purple.png"/>
  </tileset>
  <tileset name="rack" firstgid="197" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/clothes_rack.png"/>
+  <image source="../../tileset/furniture/other/clothes_rack.png"/>
  </tileset>
  <tileset name="hat" firstgid="199" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/red_hat.png"/>
+  <image source="../../tileset/item/textile/red_hat.png"/>
  </tileset>
  <tileset name="bottles" firstgid="200" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>

@@ -7,13 +7,13 @@
   <image source="../../tileset/building/wall/dojo_walls.png"/>
  </tileset>
  <tileset name="lamp" firstgid="162" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="grass" firstgid="171" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2.png"/>
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <tileset name="flowers" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
@@ -40,13 +40,13 @@
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
  <tileset name="white bed" firstgid="301" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_white2.png"/>
+  <image source="../../tileset/furniture/bed/large_white2.png"/>
  </tileset>
  <tileset name="sheet" firstgid="307" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_white2_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_white2_top_sheet.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="309" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_2_edges.png"/>
+  <image source="../../tileset/ground/grass_2_edges.png"/>
  </tileset>
  <tileset name="wading whirlpool" firstgid="318" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/wading_whirlpool.png"/>

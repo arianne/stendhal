@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="entrance" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="black" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
@@ -25,7 +25,7 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="blackdragon picture" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/blackdragon.png"/>
+  <image source="../../tileset/furniture/picture/blackdragon.png"/>
  </tileset>
  <tileset name="floor" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
@@ -34,7 +34,7 @@
   <image source="../../tileset/item/snowman.png"/>
  </tileset>
  <tileset name="fireplace" firstgid="93" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/green.png"/>
+  <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
  <tileset name="flames" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
@@ -46,7 +46,7 @@
   <image source="../../tileset/plant/tree/spruce_xmas4.png"/>
  </tileset>
  <tileset name="sparkles" firstgid="111" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/xmas_lights.png"/>
+  <image source="../../tileset/furniture/light/xmas_lights.png"/>
  </tileset>
  <tileset name="obsidian" firstgid="131" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/obsidian.png"/>

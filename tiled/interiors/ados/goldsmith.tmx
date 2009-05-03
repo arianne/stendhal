@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="21" height="16" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/item/furniture/carpet/carpets.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+ <tileset name="../../tileset/furniture/carpet/carpets.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_wall_light_red.png" firstgid="9" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+ <tileset name="../../tileset/building/wall/int_green_purple.png" firstgid="9" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/fireplace_2.png" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace_2.png"/>
@@ -12,17 +12,17 @@
  <tileset name="../../tileset/ground/fire/fire.png" firstgid="46" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/border.png" firstgid="73" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/border.png"/>
+ <tileset name="../../tileset/furniture/carpet/border.png" firstgid="73" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/pool.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_long.png" firstgid="94" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_long.png"/>
+ <tileset name="../../tileset/furniture/table/grey_long.png" firstgid="94" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_long.png"/>
  </tileset>
- <tileset name="../../tileset/building/entrance/light_red_ns_ew.png" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+ <tileset name="../../tileset/building/entrance/green_purple_ns_ew.png" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
@@ -33,17 +33,17 @@
  <tileset name="../../tileset/item/armor/sword_rack.png" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_pale.png" firstgid="166" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_pale.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/grey_pale.png" firstgid="166" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/brick_base.png" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/brick_base.png" firstgid="174" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/brick_base.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="177" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stick.png"/>
+ <tileset name="../../tileset/furniture/other/stick.png" firstgid="177" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_hob_pale.png" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob_pale.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_hob_pale.png" firstgid="179" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_hob_pale.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/armor/armor.png" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/armor.png"/>

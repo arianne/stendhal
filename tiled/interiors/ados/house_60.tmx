@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="entrance" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="black" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
@@ -40,13 +40,13 @@
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
  <tileset name="bathroom" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bathroom/toilet.png"/>
+  <image source="../../tileset/furniture/bathroom/toilet.png"/>
  </tileset>
  <tileset name="basin" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bathroom/basin.png"/>
+  <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
  <tileset name="red drapes" firstgid="109" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_drapes.png"/>
+  <image source="../../tileset/furniture/curtain/red_drapes.png"/>
  </tileset>
  <tileset name="chest red" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chests_red.png"/>
@@ -55,10 +55,10 @@
   <image source="../../tileset/item/statue/plants_potted_stone.png"/>
  </tileset>
  <tileset name="table white" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_round_white.png"/>
+  <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="134" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="household items" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household_items_2.png"/>
@@ -70,10 +70,10 @@
   <image source="../../tileset/ground/water/water_bubbles.png"/>
  </tileset>
  <tileset name="carpet nain rug" firstgid="196" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/nain_rug.png"/>
+  <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="table wooden rectangular" firstgid="212" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="flower baskets" firstgid="221" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
@@ -82,7 +82,7 @@
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
  <tileset name="ru" firstgid="228" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">

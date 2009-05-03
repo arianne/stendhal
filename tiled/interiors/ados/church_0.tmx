@@ -7,34 +7,34 @@
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="14" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="334" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/fancy_blue_red.png"/>
+  <image source="../../tileset/furniture/table/fancy_blue_red.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="342" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_fancy.png"/>
+  <image source="../../tileset/furniture/table/grey_fancy.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="351" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="360" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="364" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="370" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="374" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="378" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="381" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="387" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/grey_stone.png"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="50" height="60" tilewidth="32" tileheight="32">
  <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="9" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
@@ -16,43 +16,43 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="55" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/front_on.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="62" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch.png"/>
+  <image source="../../tileset/furniture/light/torch.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="63" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
+  <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="65" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/piano.png"/>
+  <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="69" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/other/warmer.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="71" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/projectleader.png"/>
+  <image source="../../tileset/furniture/picture/projectleader.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="72" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="87" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="90" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="91" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
@@ -67,19 +67,19 @@
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="117" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stick.png"/>
+  <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="122" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="129" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>

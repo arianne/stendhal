@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="entrance" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="black" firstgid="57" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
  <tileset name="chair" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="stairs" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
@@ -34,7 +34,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="table" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="portals" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -49,16 +49,16 @@
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
  <tileset name="picture" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/city_picture.png"/>
+  <image source="../../tileset/furniture/picture/city_picture.png"/>
  </tileset>
  <tileset name="paintings" firstgid="124" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/oil_paintings.png"/>
+  <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="bathroom" firstgid="140" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bathroom/toilet.png"/>
+  <image source="../../tileset/furniture/bathroom/toilet.png"/>
  </tileset>
  <tileset name="basin" firstgid="146" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bathroom/basin.png"/>
+  <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
  <tileset name="stone fence white" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/stone_fence_white.png"/>
@@ -67,10 +67,10 @@
   <image source="../../tileset/item/statue/plants_potted_stone.png"/>
  </tileset>
  <tileset name="table white" firstgid="164" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_round_white.png"/>
+  <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="kitchen cabnets" firstgid="170" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="household items" firstgid="194" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household_items_2.png"/>

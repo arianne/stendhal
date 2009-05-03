@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="table 2" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="black" firstgid="4" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
  <tileset name="chair" firstgid="8" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="stairs" firstgid="12" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="books" firstgid="16" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/books.png"/>
+  <image source="../../tileset/item/documents/books.png"/>
  </tileset>
  <tileset name="grass" firstgid="20" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
@@ -31,7 +31,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="table" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="portals" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -43,28 +43,28 @@
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
  <tileset name="paintings" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/oil_paintings.png"/>
+  <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="flowers" firstgid="128" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
  <tileset name="warmer" firstgid="200" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="red rug" firstgid="230" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="239" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="sofa" firstgid="275" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_cream.png"/>
+  <image source="../../tileset/furniture/chair/sofa_cream.png"/>
  </tileset>
  <tileset name="round white table" firstgid="281" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_round_white.png"/>
+  <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
  <tileset name="wall" firstgid="287" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
@@ -76,10 +76,10 @@
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
  <tileset name="armchair" firstgid="327" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/armchair_red.png"/>
+  <image source="../../tileset/furniture/chair/armchair_red.png"/>
  </tileset>
  <tileset name="corners" firstgid="339" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="pots" firstgid="363" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pots_pink_blue.png"/>

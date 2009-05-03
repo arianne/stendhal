@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="chair" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="stove" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/other/stove.png"/>
  </tileset>
  <tileset name="stairs" firstgid="39" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
@@ -40,7 +40,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="noteboard" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/note_board.png"/>
+  <image source="../../tileset/item/documents/note_board.png"/>
  </tileset>
  <tileset name="portal" firstgid="110" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -49,28 +49,28 @@
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
  <tileset name="tablebeer" firstgid="118" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer_dark.png"/>
+  <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
  <tileset name="bottles" firstgid="128" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
  <tileset name="table" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="tiles" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="warmer" firstgid="159" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="birdcage" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/birdcage.png"/>
+  <image source="../../tileset/furniture/other/birdcage.png"/>
  </tileset>
  <tileset name="birds" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/birds.png"/>
  </tileset>
  <tileset name="desk" firstgid="175" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/desk.png"/>
+  <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
  <tileset name="flowers" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
