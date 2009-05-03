@@ -34,15 +34,17 @@ public class HousePortal extends AccessCheckingPortal {
 	private static final String PORTAL_REFERENCE = "reference";
 	
 	public static void generateRPClass() {
-		final RPClass entity = new RPClass(RPCLASS_NAME);
-		entity.isA("portal");
-		entity.addAttribute(DOOR_ID, Type.STRING);
-		entity.addAttribute(OWNER, Type.STRING);
-		entity.addAttribute(LOCK_NUMBER, Type.INT);
-		entity.addAttribute(EXPIRES, Type.STRING);
-		entity.addAttribute(DESTINATION_ZONE, Type.STRING);
-		entity.addAttribute(DESTINATION_ID, Type.STRING);
-		entity.addAttribute(PORTAL_REFERENCE, Type.STRING);
+		if (!RPClass.hasRPClass(RPCLASS_NAME)){
+			final RPClass entity = new RPClass(RPCLASS_NAME);
+			entity.isA("portal");
+			entity.addAttribute(DOOR_ID, Type.STRING);
+			entity.addAttribute(OWNER, Type.STRING);
+			entity.addAttribute(LOCK_NUMBER, Type.INT);
+			entity.addAttribute(EXPIRES, Type.STRING);
+			entity.addAttribute(DESTINATION_ZONE, Type.STRING);
+			entity.addAttribute(DESTINATION_ID, Type.STRING);
+			entity.addAttribute(PORTAL_REFERENCE, Type.STRING);
+		}
 	}
 	
 	/**

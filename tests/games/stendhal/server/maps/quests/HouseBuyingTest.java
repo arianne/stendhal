@@ -118,7 +118,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy"));
 		assertEquals("The cost of a new house in Ados is 120000 money. Also, you must pay a house tax of 1000 money,"
 				+ " every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				+ "The Ados houses are numbered from 50 to 71.", npc.getText());
+				+ "The Ados houses are numbered from 50 to 73.", npc.getText());
 		
 		// add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();

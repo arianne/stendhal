@@ -32,18 +32,26 @@ import marauroa.common.game.Definition.Type;
  * take out items that another player put in.
  */
 public class Chest extends Entity implements UseListener {
+	private static final String CHEST_RPCLASS_NAME = "chest";
 	/**
 	 * Whether the chest is open.
 	 */
 	private boolean open;
 
-	public static void generateRPClass() {
-		final RPClass chest = new RPClass("chest");
-		chest.isA("entity");
-		chest.addAttribute("open", Type.FLAG);
-		chest.addRPSlot("content", 30);
-	}
+	
+	
+	/**
+	 * Creates a new chest.
+	 */
+	public Chest() {
+		setRPClass(CHEST_RPCLASS_NAME);
+		put("type", CHEST_RPCLASS_NAME);
+		open = false;
 
+		final RPSlot slot = new ChestSlot(this);
+		addSlot(slot);
+	}
+	
 	/**
 	 * Creates a new chest.
 	 * 
@@ -52,8 +60,8 @@ public class Chest extends Entity implements UseListener {
 	 */
 	public Chest(final RPObject object) {
 		super(object);
-		setRPClass("chest");
-		put("type", "chest");
+		setRPClass(CHEST_RPCLASS_NAME);
+		put("type", CHEST_RPCLASS_NAME);
 
 		if (!hasSlot("content")) {
 			final RPSlot slot = new ChestSlot(this);
@@ -63,16 +71,13 @@ public class Chest extends Entity implements UseListener {
 		update();
 	}
 
-	/**
-	 * Creates a new chest.
-	 */
-	public Chest() {
-		setRPClass("chest");
-		put("type", "chest");
-		open = false;
-
-		final RPSlot slot = new ChestSlot(this);
-		addSlot(slot);
+	public static void generateRPClass() {
+		if (!RPClass.hasRPClass(CHEST_RPCLASS_NAME)) {
+			final RPClass chest = new RPClass(CHEST_RPCLASS_NAME);
+			chest.isA("entity");
+			chest.addAttribute("open", Type.FLAG);
+			chest.addRPSlot("content", 30);
+		}
 	}
 	
 	
@@ -82,7 +87,7 @@ public class Chest extends Entity implements UseListener {
 
 	@Override
     public String getDescriptionName(final boolean definite) {
-	    return Grammar.article_noun("chest", definite);
+	    return Grammar.article_noun(CHEST_RPCLASS_NAME, definite);
     }
 
 	@Override

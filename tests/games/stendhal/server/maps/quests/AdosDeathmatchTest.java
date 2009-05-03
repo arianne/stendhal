@@ -63,7 +63,7 @@ public class AdosDeathmatchTest {
 		dmPlayer.setLevel(19);
 		en.step(dmPlayer, "challenge");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", recruiter.get("text"));
+		assertEquals("Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", recruiter.get("text"));
 		recruiter.remove("text");
 		
 		en.step(dmPlayer, "bye");

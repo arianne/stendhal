@@ -46,7 +46,7 @@ public class StuffForBaldemarTest {
 
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(bob, "yes");
-		assertEquals("I will need many, many things: 20 mithril bars, 1 obsidian, 1 diamond, 5 emeralds,10 carbuncles, 10 sapphires, 1 black shield, 1 magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls,20 shuriken, 15 marbles and 1 snowglobe. Come back when you have them in the same #exact order!", baldemar.getText());
+		assertEquals("I will need many, many things: 20 mithril bars, 1 obsidian, 1 diamond, 5 emeralds,10 carbuncles, 10 sapphires, 1 black shield, 1 magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shuriken, 15 marbles and 1 snowglobe. Come back when you have them in the same #exact order!", baldemar.getText());
 		
 		en.step(bob, "exact");
 		assertEquals("As I have listed them here, you must provide them in that order.", baldemar.getText());

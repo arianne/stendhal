@@ -20,6 +20,7 @@ public class TradeTest {
 	@BeforeClass
 	public static void beforeClass() {
 		MockStendlRPWorld.get();
+		Earning.generateRPClass();
 	}
 
 	@AfterClass
