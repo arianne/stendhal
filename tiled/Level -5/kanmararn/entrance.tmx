@@ -36,11 +36,11 @@
  <tileset name="../../tileset/ground/ladder/vertical_pale.png" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/vertical_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="208" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="208" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/torch_top.png" firstgid="216" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch_top.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/torch_top.png" firstgid="216" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/torch_top.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="220" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>

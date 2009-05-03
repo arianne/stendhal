@@ -88,16 +88,16 @@
   <image source="../../tileset/item/logs.png"/>
  </tileset>
  <tileset name="flames" firstgid="311" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="317" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="329" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="353" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="tree golden small" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_golden_small.png"/>
@@ -136,19 +136,19 @@
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
  <tileset name="castle" firstgid="500" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="earthen entrance" firstgid="820" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen_3.png"/>
  </tileset>
  <tileset name="church" firstgid="826" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/church.png"/>
+  <image source="../../tileset/building/church.png"/>
  </tileset>
  <tileset name="pot golden" firstgid="882" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png"/>
  </tileset>
  <tileset name="bench" firstgid="886" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="entrance earthen3" firstgid="889" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen_3.png"/>

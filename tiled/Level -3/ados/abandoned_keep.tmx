@@ -22,10 +22,10 @@
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="109" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="118" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="127" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
@@ -40,25 +40,25 @@
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="162" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/vendors_table.png"/>
+  <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/bloodied_small_axe.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/blankets.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="199" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/rectangular_with_meals.png"/>
+  <image source="../../tileset/furniture/table/rectangular_with_meals.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="208" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/books.png"/>
+  <image source="../../tileset/item/documents/books.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="212" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="220" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>

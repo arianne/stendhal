@@ -16,13 +16,13 @@
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
  <tileset name="table" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="statue" firstgid="123" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="throne" firstgid="129" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="lamp" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/candle/lamp.png"/>
@@ -34,13 +34,13 @@
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
  <tileset name="steel lamp" firstgid="140" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="143" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="rug" firstgid="149" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
+  <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="amazoness" firstgid="161" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/amazon.png"/>

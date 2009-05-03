@@ -13,7 +13,7 @@
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="43" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="53" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>

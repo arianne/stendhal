@@ -57,8 +57,8 @@
  <tileset name="../../tileset/item/statue/skull_carving.png" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skull_carving.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/iron_lamp.png" firstgid="186" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/iron_lamp.png" firstgid="186" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/iron_lamp.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>

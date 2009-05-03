@@ -17,7 +17,7 @@
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="365" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="373" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>

@@ -12,8 +12,8 @@
  <tileset name="../../tileset/ground/indoor/grey_skull.png" firstgid="78" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_skull.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/brown_rug.png" firstgid="86" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/brown_rug.png" firstgid="86" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/brown_rug.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/ground/pothole.png" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/pothole.png" trans="ffffff"/>

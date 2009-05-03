@@ -40,13 +40,13 @@
   <image source="../../tileset/item/snowman.png"/>
  </tileset>
  <tileset name="table copper" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_copper.png"/>
+  <image source="../../tileset/furniture/table/table_copper.png"/>
  </tileset>
  <tileset name="tools" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/tools.png"/>
  </tileset>
  <tileset name="bed1" firstgid="113" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey.png"/>
  </tileset>
  <tileset name="logs" firstgid="116" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs_snow1.png"/>
@@ -55,13 +55,13 @@
   <image source="../../tileset/item/pot/barrel_snow1.png"/>
  </tileset>
  <tileset name="throne small" firstgid="118" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne_small.png"/>
+  <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
  <tileset name="shelf" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/shelf_3.png"/>
+  <image source="../../tileset/furniture/shelve/shelf_3.png"/>
  </tileset>
  <tileset name="chair" firstgid="126" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_rustic.png"/>
+  <image source="../../tileset/furniture/chair/wooden_rustic.png"/>
  </tileset>
  <tileset name="pig" firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/piglet.png"/>
@@ -109,34 +109,34 @@
   <image source="../../tileset/item/statue/buddha.png"/>
  </tileset>
  <tileset name="bed2" firstgid="229" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_roses.png"/>
+  <image source="../../tileset/furniture/bed/large_roses.png"/>
  </tileset>
  <tileset name="tinytable" firstgid="235" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square.png"/>
+  <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="oriental screen" firstgid="236" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/oriental_screen.png"/>
+  <image source="../../tileset/furniture/other/oriental_screen.png"/>
  </tileset>
  <tileset name="flower on bench" firstgid="240" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/flowers_on_benches.png"/>
+  <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
  <tileset name="bench iron" firstgid="250" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_iron_reverse.png"/>
+  <image source="../../tileset/furniture/chair/bench_iron_reverse.png"/>
  </tileset>
  <tileset name="shelf5" firstgid="254" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
  </tileset>
  <tileset name="itemshelf" firstgid="260" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/item_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/item_shelf.png"/>
  </tileset>
  <tileset name="carpet orange" firstgid="266" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
  </tileset>
  <tileset name="urn flower" firstgid="275" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/urn_with_flowers.png"/>
  </tileset>
  <tileset name="mannequins" firstgid="277" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/mannequins.png"/>
+  <image source="../../tileset/furniture/other/mannequins.png"/>
  </tileset>
  <tileset name="meals3" firstgid="305" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>

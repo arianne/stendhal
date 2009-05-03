@@ -10,52 +10,52 @@
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/strawberry.png"/>
+  <image source="../../tileset/furniture/carpet/strawberry.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/dark_blue.png"/>
+  <image source="../../tileset/furniture/carpet/dark_blue.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="92" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/border.png"/>
+  <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="104" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug.png"/>
+  <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="116" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
+  <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="137" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="146" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpet_red_purple.png"/>
+  <image source="../../tileset/furniture/carpet/carpet_red_purple.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="155" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/border2.png"/>
+  <image source="../../tileset/furniture/carpet/border2.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="167" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/fancy_blue_red.png"/>
+  <image source="../../tileset/furniture/table/fancy_blue_red.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="175" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="182" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/oil_paintings.png"/>
+  <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="204" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/other/warmer.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="coal fire" firstgid="212" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/coal_fire.png"/>
@@ -73,10 +73,10 @@
   <image source="../../tileset/logic/creature/dwarf_duergar.png"/>
  </tileset>
  <tileset name="newbed" firstgid="243" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey2.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey2.png"/>
  </tileset>
  <tileset name="bedsheet" firstgid="246" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey2_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey2_top_sheet.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">

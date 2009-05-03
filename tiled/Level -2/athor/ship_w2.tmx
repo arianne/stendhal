@@ -9,14 +9,14 @@
  <tileset name="../../tileset/ground/indoor/brown_hole.png" firstgid="14" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/brown_hole.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/bed/front_on.png" firstgid="26" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="26" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/front_on.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/square_pale.png" firstgid="28" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square_pale.png"/>
+ <tileset name="../../tileset/furniture/table/square_pale.png" firstgid="28" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/stool.png" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+ <tileset name="../../tileset/furniture/chair/stool.png" firstgid="29" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="../../tileset/item/pot/box.png" firstgid="30" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>

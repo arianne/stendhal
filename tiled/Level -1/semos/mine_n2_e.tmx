@@ -24,8 +24,8 @@
  <tileset name="../../tileset/ground/earth_edges.png" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="133" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="133" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/various_small.png" firstgid="157" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png"/>

@@ -25,7 +25,7 @@
   <image source="../../tileset/ground/earth_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/grass_corners" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png" trans="ffffff"/>
+  <image source="../../tileset/ground/grass_corners.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/water/whirlpool.png" firstgid="121" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png" trans="ffffff"/>

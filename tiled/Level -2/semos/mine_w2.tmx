@@ -40,7 +40,7 @@
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
  <tileset name="flames" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="rocks" firstgid="194" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/rocks.png"/>

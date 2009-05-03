@@ -27,8 +27,8 @@
  <tileset name="../../tileset/plant/bush/large_brown.png" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/large_brown.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="96" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="96" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png" trans="ff00ff"/>
@@ -46,22 +46,22 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="rug" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug.png"/>
+  <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
  <tileset name="bed purple" firstgid="156" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_purple.png"/>
+  <image source="../../tileset/furniture/bed/large_purple.png"/>
  </tileset>
  <tileset name="chest" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_purple.png"/>
  </tileset>
  <tileset name="grey bed" firstgid="164" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey.png"/>
  </tileset>
  <tileset name="tiles" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="throne" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne_small_gold.png"/>
+  <image source="../../tileset/furniture/chair/throne_small_gold.png"/>
  </tileset>
  <tileset name="brown edges" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_edges.png"/>

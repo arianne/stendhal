@@ -16,7 +16,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="69" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>

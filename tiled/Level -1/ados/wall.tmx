@@ -16,7 +16,7 @@
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="76" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

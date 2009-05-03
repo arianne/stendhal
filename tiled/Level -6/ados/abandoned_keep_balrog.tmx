@@ -10,7 +10,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
  <tileset name="balrog" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/enormous_creature.png"/>

@@ -46,7 +46,7 @@
   <image source="../../tileset/logic/creature/chess.png"/>
  </tileset>
  <tileset name="table" firstgid="471" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/concrete_table.png"/>
+  <image source="../../tileset/furniture/table/concrete_table.png"/>
  </tileset>
  <tileset name="tomi" firstgid="480" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/kicking_tomi.png"/>

@@ -16,31 +16,31 @@
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_green.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/orb_table.png"/>
+  <image source="../../tileset/furniture/table/orb_table.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="107" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/oil_paintings.png"/>
+  <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/bench_wooden.png"/>
+  <image source="../../tileset/furniture/chair/bench_wooden.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="131" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/fancy_blue_red.png"/>
+  <image source="../../tileset/furniture/table/fancy_blue_red.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="139" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne_small.png"/>
+  <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/blue_green_curtains.png"/>
+  <image source="../../tileset/furniture/curtain/blue_green_curtains.png"/>
  </tileset>
  <tileset name="portal" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

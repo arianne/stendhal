@@ -136,19 +136,19 @@
   <image source="../../tileset/object/well.png"/>
  </tileset>
  <tileset name="chair wooden pale" firstgid="429" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="table wooden" firstgid="433" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="iron lamp" firstgid="434" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="437" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="sink dark side on" firstgid="443" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
+  <image source="../../tileset/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="449" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
@@ -160,7 +160,7 @@
   <image source="../../tileset/building/wall/wood_2.png"/>
  </tileset>
  <tileset name="hut" firstgid="479" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/hut.png"/>
+  <image source="../../tileset/building/hut.png"/>
  </tileset>
  <tileset name="bricked edges" firstgid="514" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
@@ -235,13 +235,13 @@
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
  <tileset name="sink dark front on" firstgid="848" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_front_on.png"/>
+  <image source="../../tileset/furniture/sink/dark_front_on.png"/>
  </tileset>
  <tileset name="bench" firstgid="854" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="bench long front on" firstgid="857" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
  <tileset name="flower vase" firstgid="860" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
@@ -250,10 +250,10 @@
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
  <tileset name="notes" firstgid="865" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/notes.png"/>
+  <image source="../../tileset/item/documents/notes.png"/>
  </tileset>
  <tileset name="notes2" firstgid="869" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/notes2.png"/>
+  <image source="../../tileset/item/documents/notes2.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

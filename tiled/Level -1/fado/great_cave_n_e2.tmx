@@ -115,25 +115,25 @@
   <image source="../../tileset/item/logs.png"/>
  </tileset>
  <tileset name="chair wooden pale" firstgid="365" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="table wooden" firstgid="369" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="brick base" firstgid="370" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="iron lamp" firstgid="373" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="376" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="sink dark side on" firstgid="382" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
+  <image source="../../tileset/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="grass edges" firstgid="388" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_edges.png"/>
+  <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
  <tileset name="bricked edges" firstgid="424" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
@@ -172,16 +172,16 @@
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
  <tileset name="castle" firstgid="525" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="church" firstgid="845" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/church.png"/>
+  <image source="../../tileset/building/church.png"/>
  </tileset>
  <tileset name="dishes" firstgid="901" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+  <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="bench" firstgid="907" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="window left" firstgid="910" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/window_left.png"/>
@@ -223,7 +223,7 @@
   <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
  <tileset name="outhouse" firstgid="1035" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/outhouse.png"/>
+  <image source="../../tileset/building/outhouse.png"/>
  </tileset>
  <tileset name="broken statue" firstgid="1047" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/broken_green_column.png"/>
@@ -250,7 +250,7 @@
   <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
  <tileset name="rug" firstgid="1081" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug3.png"/>
+  <image source="../../tileset/furniture/carpet/brown_rug3.png"/>
  </tileset>
  <tileset name="hedge" firstgid="1090" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge.png"/>

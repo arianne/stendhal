@@ -34,7 +34,7 @@
   <image source="../../tileset/logic/creature/giant.png"/>
  </tileset>
  <tileset name="bench" firstgid="129" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="weapons" firstgid="132" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/box_of_weapons.png"/>
@@ -52,22 +52,22 @@
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
  <tileset name="bigbed1" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on.png"/>
  </tileset>
  <tileset name="bigbed1sheet" firstgid="182" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_top_sheet.png"/>
  </tileset>
  <tileset name="bigbed2" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
  </tileset>
  <tileset name="bigbed2sheet" firstgid="190" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_blue_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_blue_top_sheet.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dhohr_nuggetcutter.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="193" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_fancy_horizontal.png"/>
+  <image source="../../tileset/furniture/table/grey_fancy_horizontal.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="202" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/huge_pot.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="221" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/tools_rack.png"/>
+  <image source="../../tileset/furniture/other/tools_rack.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="227" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_wide.png"/>

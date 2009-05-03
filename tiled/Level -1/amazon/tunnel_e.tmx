@@ -16,10 +16,10 @@
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
  <tileset name="steel lamp" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="amazoness" firstgid="129" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/amazon.png"/>

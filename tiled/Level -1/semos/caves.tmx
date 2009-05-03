@@ -55,7 +55,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="bazar items" firstgid="219" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items1.png"/>
+  <image source="../../tileset/item/food/fish_crates.png"/>
  </tileset>
  <tileset name="sacks" firstgid="227" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>

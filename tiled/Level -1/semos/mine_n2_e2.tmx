@@ -30,8 +30,8 @@
  <tileset name="../../tileset/ground/earth_edges.png" firstgid="208" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
- <tileset name="../../tileset/plant/grass_corners.png" firstgid="226" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grass_corners.png"/>
+ <tileset name="../../tileset/ground/grass_corners.png" firstgid="226" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
  <tileset name="../../tileset/ground/rock/green_crystal2.png" firstgid="250" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal2.png"/>

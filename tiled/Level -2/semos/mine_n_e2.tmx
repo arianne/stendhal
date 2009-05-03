@@ -24,11 +24,11 @@
  <tileset name="../../tileset/building/wall/wall_brown.png" firstgid="124" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/wall_brown.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/torch_top.png" firstgid="136" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch_top.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/torch_top.png" firstgid="136" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/torch_top.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="140" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="140" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_n.png" firstgid="460" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_n.png"/>
