@@ -7,10 +7,10 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="wall" firstgid="9" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="entrance" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew.png"/>
+  <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
  <tileset name="ground 1" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
@@ -25,7 +25,7 @@
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
  <tileset name="shelf" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="weapons rack" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
@@ -40,28 +40,25 @@
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
  <tileset name="table" firstgid="118" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="stove" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stove.png"/>
+  <image source="../../tileset/furniture/other/stove.png"/>
  </tileset>
  <tileset name="crockery" firstgid="127" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+  <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="book shelf" firstgid="133" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="chair" firstgid="139" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="books" firstgid="143" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="imperials2" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="161" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/light_red_ns_ew_details.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="30">
   <data encoding="base64" compression="gzip">
@@ -85,7 +82,7 @@
  </layer>
  <layer name="4_roof_add" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UoREAMAgEQfpvIykUjyQMIrNrzr38CIB3p3Rr45Z2TGwA/5n4tQ6fBGxKI04oCRAOAAA=
+   H4sIAAAAAAAAAO3UoREAMAgEQUqKSP+14ZGEQWR2zbmXHwHw7pRubdzSjokN4D8Tv9bhk4BNCZ48heMQDgAA
   </data>
  </layer>
  <layer name="objects" width="30" height="30">

@@ -25,13 +25,13 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/projectleader.png"/>
+  <image source="../../tileset/furniture/picture/projectleader.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="101" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/piano.png"/>
+  <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>

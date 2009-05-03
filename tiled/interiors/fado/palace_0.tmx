@@ -25,10 +25,10 @@
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset name="thron" firstgid="182" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="carpet2" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="statue" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
@@ -37,7 +37,7 @@
   <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
  <tileset name="curtain" firstgid="211" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_gold_drawn.png"/>
+  <image source="../../tileset/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
  <tileset name="plant" firstgid="217" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>
@@ -61,7 +61,7 @@
   <image source="../../tileset/building/entrance/blue_green_big.png" trans="ffffff"/>
  </tileset>
  <tileset name="torch" firstgid="263" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch_top.png"/>
+  <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="267" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

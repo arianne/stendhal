@@ -13,13 +13,13 @@
   <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
  <tileset name="bed" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="stool" firstgid="81" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="table" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square_pale.png"/>
+  <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
  <tileset name="collision" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -40,22 +40,22 @@
   <image source="../../tileset/building/entrance/detail_ew.png"/>
  </tileset>
  <tileset name="table 2" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="chair" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="steel lamp" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="175" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="stairs" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="table2" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="imperials" firstgid="188" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>

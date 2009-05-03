@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="31" height="40" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/item/furniture/curtain/curtain_rails.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/curtain_rails.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/curtain/curtain_rails.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/curtain/curtain_rails.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/roof/red.png" firstgid="4" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/red.png"/>
@@ -24,23 +24,23 @@
  <tileset name="../../tileset/building/entrance/pale_red_ew.png" firstgid="140" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/rectangular_with_meals.png" firstgid="188" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/rectangular_with_meals.png" firstgid="188" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_beer.png" firstgid="197" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_beer.png" firstgid="197" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_beer.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="215" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+ <tileset name="../../tileset/furniture/table/long_front_on.png" firstgid="215" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="218" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="220" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="220" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="224" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>
@@ -48,11 +48,11 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="227" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_side_on_pale.png" firstgid="230" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+ <tileset name="../../tileset/furniture/table/long_side_on_pale.png" firstgid="230" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="233" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+ <tileset name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="233" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="../../tileset/item/armor/sword_rack.png" firstgid="239" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
@@ -60,20 +60,20 @@
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="247" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="247" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/item/chest/small.png" firstgid="248" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/small.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/picture/small.png" firstgid="250" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+ <tileset name="../../tileset/furniture/picture/small.png" firstgid="250" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="../../tileset/item/chest/large.png" firstgid="253" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/clock/wooden_clock.png" firstgid="261" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/wooden_clock.png"/>
+ <tileset name="../../tileset/furniture/clock/wooden_clock.png" firstgid="261" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/pool.png" firstgid="263" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>

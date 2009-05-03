@@ -19,13 +19,13 @@
   <image source="../../tileset/plant/grasses.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="66" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="70" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/bird.png"/>
@@ -34,7 +34,7 @@
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

@@ -13,7 +13,7 @@
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
@@ -37,10 +37,10 @@
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="117" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/front_on.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">

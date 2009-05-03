@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/item/furniture/carpet/carpets.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+ <tileset name="../../tileset/furniture/carpet/carpets.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_blue_green.png" firstgid="9" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png" trans="ff00ff"/>
@@ -9,11 +9,11 @@
  <tileset name="../../tileset/item/pot/pot_golden.png" firstgid="25" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/torch.png" firstgid="29" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/torch.png" firstgid="29" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/torch.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/book.png" firstgid="30" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+ <tileset name="../../tileset/item/documents/book.png" firstgid="30" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
@@ -24,8 +24,8 @@
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="54" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/orb_table.png" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/orb_table.png"/>
+ <tileset name="../../tileset/furniture/table/orb_table.png" firstgid="64" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/orb_table.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/block.png" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/block.png" trans="ff00ff"/>
@@ -33,14 +33,14 @@
  <tileset name="../../tileset/plant/stump/int_small_stump_2.png" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/int_small_stump_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/rectangular_with_meals.png" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/rectangular_with_meals.png" firstgid="68" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="77" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/flames.png" firstgid="77" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/picture/large_island.png" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/large_island.png"/>
+ <tileset name="../../tileset/furniture/picture/large_island.png" firstgid="83" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
  <tileset name="../../tileset/item/drink/red_wine.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
@@ -67,10 +67,10 @@
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
  <tileset name="large bed" firstgid="105" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_purple.png"/>
+  <image source="../../tileset/furniture/bed/large_purple.png"/>
  </tileset>
  <tileset name="weird lamp" firstgid="111" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/weird_lamp.png"/>
+  <image source="../../tileset/furniture/light/weird_lamp.png"/>
  </tileset>
  <tileset name="tiles" firstgid="123" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <tileset name="table" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_dark.png"/>
+  <image source="../../tileset/furniture/table/grey_dark.png"/>
  </tileset>
  <tileset name="blue circle 2" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/blue_circle2.png"/>

@@ -19,16 +19,16 @@
   <image source="../../tileset/building/fence/fence_wooden.png"/>
  </tileset>
  <tileset name="iron lamp" firstgid="248" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames png" firstgid="251" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="sparkle" firstgid="257" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/sparkle.png"/>
+  <image source="../../tileset/furniture/light/sparkle.png"/>
  </tileset>
  <tileset name="sparkle middle" firstgid="259" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/sparkle_middle.png"/>
+  <image source="../../tileset/furniture/light/sparkle_middle.png"/>
  </tileset>
  <tileset name="skeleton" firstgid="263" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>

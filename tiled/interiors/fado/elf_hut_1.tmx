@@ -9,23 +9,23 @@
  <tileset name="../../tileset/ground/rock/pebbles.png" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/bed/side_on_bluer.png" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on_bluer.png"/>
+ <tileset name="../../tileset/furniture/bed/side_on_bluer.png" firstgid="68" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/side_on_bluer.png"/>
  </tileset>
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden.png" firstgid="72" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden.png"/>
+ <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="72" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
  <tileset name="../../tileset/item/pot/pot_tall.png" firstgid="77" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_tall.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden.png" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+ <tileset name="../../tileset/furniture/table/wooden.png" firstgid="79" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stick.png"/>
+ <tileset name="../../tileset/furniture/other/stick.png" firstgid="80" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="82" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -46,13 +46,13 @@
   <image source="../../tileset/logic/creature/albino_elf.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="102" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+  <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="114" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>

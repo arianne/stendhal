@@ -10,10 +10,10 @@
   <image source="../../tileset/building/entrance/dark_red_ns_fancy.png"/>
  </tileset>
  <tileset name="carpets" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/wooden_clock.png"/>
+  <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="55" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_dark.png"/>
@@ -22,13 +22,13 @@
   <image source="../../tileset/item/pot/pot_purple.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="60" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

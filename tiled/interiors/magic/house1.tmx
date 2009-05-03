@@ -10,19 +10,19 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="long_side_on_pale" firstgid="47" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="55" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="58" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
@@ -58,19 +58,19 @@
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
  <tileset name="table_front" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="column" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="bright bookshelf 1" firstgid="115" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
  <tileset name="bookshelf 2" firstgid="124" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="books" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="portal" firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -82,16 +82,16 @@
   <image source="../../tileset/building/entrance/dark_red_ew_fancy.png"/>
  </tileset>
  <tileset name="bed" firstgid="155" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/front_on.png"/>
+  <image source="../../tileset/furniture/bed/front_on.png"/>
  </tileset>
  <tileset name="dark book" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf.png"/>
  </tileset>
  <tileset name="large picture" firstgid="163" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/large_island.png"/>
+  <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
  <tileset name="bottle shelf" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bottle_shelf.png"/>
  </tileset>
  <tileset name="detail" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>

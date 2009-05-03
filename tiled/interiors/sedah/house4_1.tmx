@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="ground" firstgid="29" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/greenGround2.png"/>
@@ -10,22 +10,22 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="bed" firstgid="34" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
  </tileset>
  <tileset name="plant 1" firstgid="40" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
  <tileset name="drawner" firstgid="42" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
+  <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
  <tileset name="table" firstgid="44" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="chairs" firstgid="47" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="books" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="portal" firstgid="55" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
  <tileset name="brown_rug2" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug2.png"/>
+  <image source="../../tileset/furniture/carpet/brown_rug2.png"/>
  </tileset>
  <tileset name="int_wall_dark_red" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
@@ -10,10 +10,10 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="52" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/torte.png"/>
@@ -40,16 +40,16 @@
   <image source="../../tileset/building/entrance/dark_red_ns_fancy.png"/>
  </tileset>
  <tileset name="table_front" firstgid="76" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="column" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="bookshelf 2" firstgid="85" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="books" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="plant11" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
@@ -58,31 +58,31 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="carpet" firstgid="104" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/nain_rug.png"/>
+  <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
  <tileset name="bed" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
  </tileset>
  <tileset name="warmer" firstgid="126" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/other/warmer.png"/>
  </tileset>
  <tileset name="drawer" firstgid="128" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
+  <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
  <tileset name="stone floor" firstgid="130" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/stone_floors.png"/>
  </tileset>
  <tileset name="wooden table" firstgid="136" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="dark shelf" firstgid="142" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png"/>
  </tileset>
  <tileset name="picture" firstgid="154" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/large_island.png"/>
+  <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
  <tileset name="clock" firstgid="156" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/clock/grandfather_clock.png"/>
+  <image source="../../tileset/furniture/clock/grandfather_clock.png"/>
  </tileset>
  <tileset name="door details" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>

@@ -21,11 +21,11 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="44" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/rug_border.png" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
+ <tileset name="../../tileset/furniture/carpet/rug_border.png" firstgid="45" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/plain_colours.png" firstgid="54" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+ <tileset name="../../tileset/furniture/carpet/plain_colours.png" firstgid="54" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>

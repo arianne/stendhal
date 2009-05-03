@@ -22,13 +22,13 @@
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset name="carpet2" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="stairs" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
  <tileset name="curtain" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_gold_drawn.png"/>
+  <image source="../../tileset/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
  <tileset name="kamin" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace.png"/>
@@ -46,10 +46,10 @@
   <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <tileset name="torch_top" firstgid="228" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/torch_top.png"/>
+  <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
  <tileset name="brick_base" firstgid="232" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="drink" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
@@ -64,10 +64,10 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="pillow" firstgid="252" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/pillow_red.png"/>
+  <image source="../../tileset/furniture/bed/pillow_red.png"/>
  </tileset>
  <tileset name="carpet2" firstgid="253" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
+  <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="265" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/question_marks.png"/>

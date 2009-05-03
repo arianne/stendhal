@@ -28,10 +28,10 @@
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
  <tileset name="table" firstgid="154" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="table 2" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="barrel 2" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
@@ -40,22 +40,22 @@
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
  <tileset name="shelf1" firstgid="166" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="bet" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="chair" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="bookshelf" firstgid="178" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="plant" firstgid="184" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
  <tileset name="book" firstgid="186" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="brush" firstgid="190" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
@@ -70,10 +70,10 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="steel lamp" firstgid="203" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="30">
   <data encoding="base64" compression="gzip">

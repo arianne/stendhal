@@ -12,14 +12,14 @@
  <tileset name="../../tileset/building/wall/int_wall_purple.png" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="57" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/dark_bottle_shelf.png" firstgid="105" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/shelve/dark_bottle_shelf.png" firstgid="105" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/dark_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/ground/rock/green_crystal.png" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png" trans="ff00ff"/>
@@ -27,26 +27,26 @@
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/dark_bookshelf.png" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/shelve/dark_bookshelf.png" firstgid="130" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/dark_bookshelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="136" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="136" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/brown_rug.png" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/brown_rug.png" firstgid="144" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/brown_rug.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/int_ns.png" firstgid="156" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/fancy_blue_red.png" firstgid="174" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/fancy_blue_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/fancy_blue_red.png" firstgid="174" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/fancy_blue_red.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/cactus.png" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/cactus.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/dark_front_on.png" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/sink/dark_front_on.png" firstgid="184" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/sink/dark_front_on.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/leaves.png" firstgid="190" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/leaves.png" trans="ffffff"/>
@@ -73,7 +73,7 @@
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
  <tileset name="bed" firstgid="304" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_purple.png"/>
+  <image source="../../tileset/furniture/bed/large_purple.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">

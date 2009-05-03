@@ -15,11 +15,11 @@
  <tileset name="../../tileset/item/chest/large.png" firstgid="46" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="54" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+ <tileset name="../../tileset/furniture/light/dark_torch.png" firstgid="54" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="62" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/stick.png"/>
+ <tileset name="../../tileset/furniture/other/stick.png" firstgid="62" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -37,10 +37,10 @@
   <image source="../../tileset/logic/creature/albino_elf.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="84" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="90" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+  <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="96" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>

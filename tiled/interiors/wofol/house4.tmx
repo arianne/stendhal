@@ -13,10 +13,10 @@
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="84" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>

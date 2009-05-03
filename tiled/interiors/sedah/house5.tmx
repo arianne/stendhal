@@ -19,7 +19,7 @@
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
  <tileset name="stool" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="collision" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -28,10 +28,10 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="table2" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="bookshelf" firstgid="94" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="chem1" firstgid="100" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chemistry/bottle.png"/>
@@ -40,10 +40,10 @@
   <image source="../../tileset/item/chemistry/empty_bottles.png"/>
  </tileset>
  <tileset name="steel lamp" firstgid="109" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="imperial" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>

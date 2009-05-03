@@ -6,14 +6,14 @@
  <tileset name="../../tileset/ground/indoor/soft_blue.png" firstgid="11" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/soft_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_wall_light_red.png" firstgid="14" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+ <tileset name="../../tileset/building/wall/int_green_purple.png" firstgid="14" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/fancy_gate.png" firstgid="42" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" firstgid="48" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" firstgid="48" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/int_earthen.png" firstgid="60" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_earthen.png" trans="ff00ff"/>
@@ -30,11 +30,11 @@
  <tileset name="../../tileset/ground/rock/rocks_2.png" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/table_with_beer.png" firstgid="149" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/table/table_with_beer.png" firstgid="149" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/table_with_beer.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="157" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/ground/rock/green_crystal.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png" trans="ff00ff"/>
@@ -57,8 +57,8 @@
  <tileset name="../../tileset/item/food/meals_2.png" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset name="../../tileset/item/book.png" firstgid="215" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+ <tileset name="../../tileset/item/documents/book.png" firstgid="215" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="../../tileset/item/drink/red_wine.png" firstgid="219" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
@@ -76,13 +76,13 @@
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
  <tileset name="large bed" firstgid="250" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on.png"/>
  </tileset>
  <tileset name="brick table" firstgid="256" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/brick_base.png"/>
+  <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
  <tileset name="table" firstgid="259" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/concrete_table.png"/>
+  <image source="../../tileset/furniture/table/concrete_table.png"/>
  </tileset>
  <tileset name="food" firstgid="268" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>

@@ -13,10 +13,10 @@
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="43" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob_pale.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="46" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="55" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
@@ -25,10 +25,10 @@
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="59" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="60" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="61" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_purple.png"/>

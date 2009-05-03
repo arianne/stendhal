@@ -13,25 +13,25 @@
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on_bluer.png"/>
+  <image source="../../tileset/furniture/bed/side_on_bluer.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="88" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden.png"/>
+  <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="93" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/brown_rug.png"/>
+  <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>

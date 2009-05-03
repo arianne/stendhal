@@ -16,25 +16,25 @@
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
  <tileset name="flowers on bench 2" firstgid="106" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/flowers_on_bench2.png"/>
+  <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
  <tileset name="flowers on benches" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/flowers_on_benches.png"/>
+  <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="122" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="table with beer" firstgid="131" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer.png"/>
+  <image source="../../tileset/furniture/table/table_with_beer.png"/>
  </tileset>
  <tileset name="table with hob pale" firstgid="139" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_hob_pale.png"/>
+  <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
  <tileset name="chair greenish grey" firstgid="142" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/greenish_grey.png"/>
+  <image source="../../tileset/furniture/chair/greenish_grey.png"/>
  </tileset>
  <tileset name="drawer shelf" firstgid="146" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/drawer_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/drawer_shelf.png"/>
  </tileset>
  <tileset name="pillar" firstgid="152" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/column/pillar.png"/>

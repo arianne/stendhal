@@ -16,13 +16,13 @@
   <image source="../../tileset/plant/stump/stump_rectangular.png" trans="438e41"/>
  </tileset>
  <tileset name="stool" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="drink" firstgid="54" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
  <tileset name="bed" firstgid="58" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_front_on_darker.png"/>
+  <image source="../../tileset/furniture/bed/large_front_on_darker.png"/>
  </tileset>
  <tileset name="lamp" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/candle/lamp.png"/>
@@ -43,10 +43,10 @@
   <image source="../../tileset/building/decoration/webs.png" trans="fe00fe"/>
  </tileset>
  <tileset name="carpet" firstgid="103" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="sink" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_front_on.png"/>
+  <image source="../../tileset/furniture/sink/dark_front_on.png"/>
  </tileset>
  <tileset name="collision" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

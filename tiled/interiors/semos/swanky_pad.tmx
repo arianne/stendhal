@@ -7,7 +7,7 @@
   <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
  <tileset name="kasten" firstgid="6" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="chest" firstgid="12" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_pale.png"/>
@@ -16,7 +16,7 @@
   <image source="../../tileset/item/logs.png" trans="7e7b7b"/>
  </tileset>
  <tileset name="carpet" firstgid="16" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="collision" firstgid="25" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -25,16 +25,16 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="oriental_table" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/oriental_table.png"/>
+  <image source="../../tileset/furniture/table/oriental_table.png"/>
  </tileset>
  <tileset name="sofa" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa.png"/>
+  <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
  <tileset name="sofa_red" firstgid="43" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_red.png"/>
+  <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
  <tileset name="table_with_beer_dark" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer_dark.png"/>
+  <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
  <tileset name="large_chest" firstgid="59" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>

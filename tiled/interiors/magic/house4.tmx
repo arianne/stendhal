@@ -10,10 +10,10 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="48" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
@@ -40,16 +40,16 @@
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
  <tileset name="table_front" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="column" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="bright bookshelf 1" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
  <tileset name="books" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="portal" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
@@ -79,7 +79,7 @@
   <image source="../../tileset/item/gothic/slab.png"/>
  </tileset>
  <tileset name="warmer" firstgid="156" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/other/warmer.png"/>
  </tileset>
  <tileset name="fairy" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/fairy.png"/>

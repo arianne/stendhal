@@ -4,7 +4,7 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="long_side_on_pale" firstgid="5" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="collision" firstgid="8" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -22,7 +22,7 @@
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
  <tileset name="tool racks" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/tools_rack.png"/>
+  <image source="../../tileset/furniture/other/tools_rack.png"/>
  </tileset>
  <tileset name="chest" firstgid="56" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>

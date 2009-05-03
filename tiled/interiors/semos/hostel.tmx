@@ -16,28 +16,28 @@
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
  <tileset name="square pine" firstgid="102" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square_pale.png"/>
+  <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
  <tileset name="table wooden brown" firstgid="103" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="bed grey" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey.png"/>
  </tileset>
  <tileset name="wooden pale" firstgid="115" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="wooden pale table" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="warmer 2" firstgid="120" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/other/warmer_2.png"/>
  </tileset>
  <tileset name="firewood" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <tileset name="book shelves 3" firstgid="132" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="bread" firstgid="138" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
@@ -70,10 +70,10 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="top sheet for bed" firstgid="169" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey2_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey2_top_sheet.png"/>
  </tileset>
  <tileset name="bed grey alternative" firstgid="170" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/bed_grey2.png"/>
+  <image source="../../tileset/furniture/bed/bed_grey2.png"/>
  </tileset>
  <tileset name="corners" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>

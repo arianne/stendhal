@@ -16,13 +16,13 @@
   <image source="../../tileset/item/chest/small_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/side_on.png"/>
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="81" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_burgundy.png"/>

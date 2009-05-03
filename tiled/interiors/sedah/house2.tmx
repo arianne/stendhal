@@ -19,10 +19,10 @@
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
  <tileset name="stool" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="table" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square_pale.png"/>
+  <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
  <tileset name="collision" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

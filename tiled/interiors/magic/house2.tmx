@@ -7,10 +7,10 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small.png"/>
+  <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="40" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
@@ -34,16 +34,16 @@
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
  <tileset name="table_front" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="bright bookshelf 1" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
  <tileset name="bookshelf 2" firstgid="92" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="books" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="drink1" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
@@ -76,10 +76,10 @@
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
  <tileset name="drink shelf" firstgid="199" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bottle_shelf.png"/>
  </tileset>
  <tileset name="dark book shelf 2" firstgid="205" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="detail ns" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
@@ -94,10 +94,10 @@
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="259" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/loom.png"/>
+  <image source="../../tileset/furniture/other/loom.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="263" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/chess.png"/>
+  <image source="../../tileset/furniture/other/chess.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">

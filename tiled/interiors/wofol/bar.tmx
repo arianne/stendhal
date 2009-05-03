@@ -13,13 +13,13 @@
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="75" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_with_beer_dark.png"/>
+  <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="86" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
@@ -28,7 +28,7 @@
   <image source="../../tileset/item/brush.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="100" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/large_island.png"/>
+  <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_purple.png"/>

@@ -13,16 +13,16 @@
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="74" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="77" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/knife_spoon.png"/>
+  <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/stool.png"/>
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="80" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/armor.png"/>
@@ -40,7 +40,7 @@
   <image source="../../tileset/item/pot/clay_pot.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>

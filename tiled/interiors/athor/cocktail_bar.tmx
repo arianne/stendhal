@@ -9,14 +9,14 @@
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden.png" firstgid="67" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden.png"/>
+ <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="67" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
  <tileset name="../../tileset/item/pot/pot_tall.png" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_tall.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden.png" firstgid="74" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+ <tileset name="../../tileset/furniture/table/wooden.png" firstgid="74" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="75" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -28,19 +28,19 @@
   <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
  <tileset name="plain colours" firstgid="88" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <tileset name="bench" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/bench.png"/>
+  <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
  <tileset name="square table" firstgid="101" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/square.png"/>
+  <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <tileset name="bottle and glass" firstgid="102" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>

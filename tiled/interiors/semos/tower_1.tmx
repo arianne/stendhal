@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="Untitled" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/pink_rug.png"/>
+  <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
  <tileset name="bluecarpet" firstgid="13" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
  </tileset>
  <tileset name="wall red" firstgid="22" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>

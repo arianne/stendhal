@@ -16,16 +16,16 @@
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset name="screen" firstgid="24" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/oriental_screen.png"/>
+  <image source="../../tileset/furniture/other/oriental_screen.png"/>
  </tileset>
  <tileset name="jacuzzi" firstgid="28" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on.png"/>
+  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
  <tileset name="bubbles" firstgid="46" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
+  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
  <tileset name="table" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/oriental_table.png"/>
+  <image source="../../tileset/furniture/table/oriental_table.png"/>
  </tileset>
  <tileset name="rolled blankets" firstgid="68" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/blankets.png"/>
@@ -34,10 +34,10 @@
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
  <tileset name="cushion" firstgid="86" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/pillow_yellow.png"/>
+  <image source="../../tileset/furniture/bed/pillow_yellow.png"/>
  </tileset>
  <tileset name="bed" firstgid="87" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/colorful.png"/>
+  <image source="../../tileset/furniture/chair/colorful.png"/>
  </tileset>
  <tileset name="plant" firstgid="103" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
@@ -46,10 +46,10 @@
   <image source="../../tileset/building/wall/dojo_walls.png"/>
  </tileset>
  <tileset name="lamp" firstgid="265" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+  <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
  <tileset name="flames" firstgid="268" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="door" firstgid="274" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dojo_entrances.png"/>

@@ -6,35 +6,35 @@
  <tileset name="../../tileset/building/wall/int_green_blue.png" firstgid="17" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="33" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/blue_green.png" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+ <tileset name="../../tileset/furniture/table/long_front_on.png" firstgid="45" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/dark_side_on.png" firstgid="48" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_side_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/sink/dark_side_on.png" firstgid="48" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/sink/dark_side_on.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="54" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+ <tileset name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="54" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/other/drawer_with_mirror.png" firstgid="60" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
+ <tileset name="../../tileset/furniture/other/drawer_with_mirror.png" firstgid="60" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="tileset/item/furniture/carpet/carpets.png" firstgid="63" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+ <tileset name="tileset/furniture/carpet/carpets.png" firstgid="63" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="tileset/building/entrance/blue_green_2.png" firstgid="71" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_2.png"/>
  </tileset>
- <tileset name="tileset/item/furniture/other/drawer.png" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/drawer.png"/>
+ <tileset name="tileset/furniture/other/drawer.png" firstgid="79" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/drawer.png"/>
  </tileset>
  <tileset name="tileset/item/drink/bottle_and_glass.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
@@ -46,16 +46,16 @@
   <image source="../../tileset/item/drink/cognac.png"/>
  </tileset>
  <tileset name="pictures" firstgid="91" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/picture/small_2.png"/>
+  <image source="../../tileset/furniture/picture/small_2.png"/>
  </tileset>
  <tileset name="clothes rack" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/clothes_rack.png"/>
+  <image source="../../tileset/furniture/other/clothes_rack.png"/>
  </tileset>
  <tileset name="mannequins" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/mannequins.png"/>
+  <image source="../../tileset/furniture/other/mannequins.png"/>
  </tileset>
  <tileset name="hat" firstgid="125" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/red_hat.png"/>
+  <image source="../../tileset/item/textile/red_hat.png"/>
  </tileset>
  <tileset name="doorway" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_wide.png"/>

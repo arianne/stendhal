@@ -7,13 +7,13 @@
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
  <tileset name="piano.png" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/piano.png"/>
+  <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="38" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="42" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
@@ -52,31 +52,31 @@
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
  <tileset name="throne" firstgid="102" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="table_front" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="column" firstgid="111" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="curtain 1" firstgid="117" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_gold_gathered.png"/>
+  <image source="../../tileset/furniture/curtain/red_gold_gathered.png"/>
  </tileset>
  <tileset name="curtain 2" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/red_gold_drawn.png"/>
+  <image source="../../tileset/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
  <tileset name="bright bookshelf 1" firstgid="129" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
  <tileset name="bookshelf 2" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="orb" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/orb_table.png"/>
+  <image source="../../tileset/furniture/table/orb_table.png"/>
  </tileset>
  <tileset name="books" firstgid="145" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="drink1" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>

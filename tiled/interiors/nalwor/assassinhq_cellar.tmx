@@ -34,13 +34,13 @@
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
  <tileset name="kitchen" firstgid="221" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="dishes" firstgid="245" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+  <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
  <tileset name="Table" firstgid="251" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <tileset name="stairs" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>

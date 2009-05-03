@@ -3,8 +3,8 @@
  <tileset name="../../tileset/ground/indoor/tiles.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_wall_light_red.png" firstgid="9" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_light_red.png"/>
+ <tileset name="../../tileset/building/wall/int_green_purple.png" firstgid="9" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
  <tileset name="../../tileset/plant/leaves.png" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/leaves.png" trans="ffffff"/>
@@ -18,8 +18,8 @@
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="58" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
+ <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="68" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/plant/stump/rectangular.png" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/rectangular.png" trans="ffffff"/>
@@ -48,8 +48,8 @@
  <tileset name="../../tileset/item/food/meals_2.png" firstgid="207" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/narrow_bookshelf.png" firstgid="209" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/narrow_bookshelf.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/shelve/narrow_bookshelf.png" firstgid="209" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/narrow_bookshelf.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
@@ -58,7 +58,7 @@
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
  <tileset name="table" firstgid="218" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+  <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="25" height="15" tilewidth="32" tileheight="32">
  <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="7" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
@@ -16,13 +16,13 @@
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="59" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="65" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
+  <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="71" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/shelve/narrow_bookshelf.png"/>
+  <image source="../../tileset/furniture/shelve/narrow_bookshelf.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="73" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

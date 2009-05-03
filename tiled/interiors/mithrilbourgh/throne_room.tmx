@@ -19,16 +19,16 @@
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
  <tileset name="carpets_2.png" firstgid="62" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
+  <image source="../../tileset/furniture/carpet/carpets_2.png"/>
  </tileset>
  <tileset name="armor" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/suit_of_armor2.png"/>
  </tileset>
  <tileset name="red carpet" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/red_carpet.png"/>
+  <image source="../../tileset/furniture/carpet/red_carpet.png"/>
  </tileset>
  <tileset name="throne" firstgid="87" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="lion statues" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/lion_statues.png"/>
@@ -43,16 +43,16 @@
   <image source="../../tileset/item/chest/chests_red.png"/>
  </tileset>
  <tileset name="tall lamp" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/tall_lamp.png"/>
+  <image source="../../tileset/furniture/light/tall_lamp.png"/>
  </tileset>
  <tileset name="table" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/wooden_with_candles.png"/>
+  <image source="../../tileset/furniture/table/wooden_with_candles.png"/>
  </tileset>
  <tileset name="meals" firstgid="153" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
  <tileset name="drapes" firstgid="155" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/curtain/dark_red.png"/>
+  <image source="../../tileset/furniture/curtain/dark_red.png"/>
  </tileset>
  <tileset name="bars" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/int_iron_bars.png"/>
@@ -64,10 +64,10 @@
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
  <tileset name="green" firstgid="194" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/green.png"/>
+  <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
  <tileset name="flames" firstgid="198" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/flames.png"/>
+  <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
  <tileset name="pillar" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/column/pillar.png"/>

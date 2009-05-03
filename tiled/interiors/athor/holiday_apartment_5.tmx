@@ -9,8 +9,8 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="6" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="9" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+ <tileset name="../../tileset/furniture/table/long_front_on.png" firstgid="9" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_front_on.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="12" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
@@ -28,37 +28,37 @@
   <image source="../../tileset/ground/indoor/soft_blue.png"/>
  </tileset>
  <tileset name="bed" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_purple2.png"/>
+  <image source="../../tileset/furniture/bed/large_purple2.png"/>
  </tileset>
  <tileset name="topsheet" firstgid="56" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/bed/large_purple2_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_purple2_top_sheet.png"/>
  </tileset>
  <tileset name="lamps" firstgid="58" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/weird_lamp.png"/>
+  <image source="../../tileset/furniture/light/weird_lamp.png"/>
  </tileset>
  <tileset name="sparkles" firstgid="70" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/light/sparkle.png"/>
+  <image source="../../tileset/furniture/light/sparkle.png"/>
  </tileset>
  <tileset name="sofas" firstgid="72" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/chair/sofa_chair_blue.png"/>
+  <image source="../../tileset/furniture/chair/sofa_chair_blue.png"/>
  </tileset>
  <tileset name="counters" firstgid="84" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/kitchen_cabnets.png"/>
+  <image source="../../tileset/furniture/other/kitchen_cabnets.png"/>
  </tileset>
  <tileset name="coatrack" firstgid="108" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/clothes_rack.png"/>
+  <image source="../../tileset/furniture/other/clothes_rack.png"/>
  </tileset>
  <tileset name="table" firstgid="110" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <tileset name="fairy cakes" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <tileset name="jacuzzi" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on.png"/>
+  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
  <tileset name="bubbles" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
+  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
  <tileset name="towels" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
@@ -67,10 +67,10 @@
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
  <tileset name="cabinets" firstgid="169" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/other/furniture_pine.png"/>
+  <image source="../../tileset/furniture/other/furniture_pine.png"/>
  </tileset>
  <tileset name="letter" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/letter.png"/>
+  <image source="../../tileset/item/documents/letter.png"/>
  </tileset>
  <tileset name="door" firstgid="186" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_centred.png"/>

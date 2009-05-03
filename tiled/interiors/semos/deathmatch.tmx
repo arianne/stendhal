@@ -6,11 +6,11 @@
  <tileset name="../../tileset/ground/ground.png" firstgid="5" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_plain.png" firstgid="38" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+ <tileset name="../../tileset/furniture/table/grey_plain.png" firstgid="38" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset name="../../tileset/object/castle.png" firstgid="47" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/castle.png"/>
+ <tileset name="../../tileset/building/castle.png" firstgid="47" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="367" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
@@ -27,26 +27,26 @@
  <tileset name="../../tileset/item/corpse/skeleton.png" firstgid="390" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/border.png" firstgid="394" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/border.png"/>
+ <tileset name="../../tileset/furniture/carpet/border.png" firstgid="394" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/carpets.png" firstgid="406" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+ <tileset name="../../tileset/furniture/carpet/carpets.png" firstgid="406" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_fancy.png" firstgid="414" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_fancy.png"/>
+ <tileset name="../../tileset/furniture/table/grey_fancy.png" firstgid="414" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_fancy.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_long.png" firstgid="423" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/grey_long.png"/>
+ <tileset name="../../tileset/furniture/table/grey_long.png" firstgid="423" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_long.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/carpet/rug_border.png" firstgid="427" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
+ <tileset name="../../tileset/furniture/carpet/rug_border.png" firstgid="427" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="../../tileset/item/gothic/slab.png" firstgid="436" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/slab.png"/>
  </tileset>
- <tileset name="../../tileset/item/book.png" firstgid="437" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/book.png"/>
+ <tileset name="../../tileset/item/documents/book.png" firstgid="437" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="441" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
