@@ -31,7 +31,7 @@ import java.util.List;
  * dropping his teddy. <li> Find the teddy in the Park Of Wolves <li> Bring it back to
  * Plink </ul>
  * 
- * REWARD: <ul><li> a smile <li> 20 XP </ul>
+ * REWARD: <ul><li> a smile <li> 20 XP <li> 10 Karma </ul>
  * 
  * REPETITIONS: <ul><li> None. </ul>
  */
@@ -131,7 +131,8 @@ public class PlinksToy extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					player.drop("teddy");
 					npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
-					player.addXP(10);
+					player.addXP(20);
+					player.addKarma(10.0);
 					player.setQuest(QUEST_SLOT, "done");
 				}
 			});
