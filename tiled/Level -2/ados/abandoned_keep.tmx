@@ -28,10 +28,10 @@
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="137" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/bluecarpet.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="146" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_red_purple.png"/>
+  <image source="../../tileset/furniture/carpet/red_purple.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="155" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border2.png"/>
@@ -52,10 +52,10 @@
   <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="204" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="warmer2" firstgid="206" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer_2.png"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset name="coal fire" firstgid="212" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/coal_fire.png"/>

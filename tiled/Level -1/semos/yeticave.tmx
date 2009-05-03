@@ -130,7 +130,7 @@
   <image source="../../tileset/furniture/shelve/item_shelf.png"/>
  </tileset>
  <tileset name="carpet orange" firstgid="266" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="urn flower" firstgid="275" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/urn_with_flowers.png"/>

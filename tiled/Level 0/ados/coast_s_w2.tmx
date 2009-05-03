@@ -51,11 +51,11 @@
  <tileset name="../../tileset/building/wall/bricked_edges.png" firstgid="320" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on_darker.png" firstgid="335" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_darker.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_red.png" firstgid="335" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_red.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="341" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_peach.png" firstgid="341" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/orc.png" firstgid="347" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>

@@ -69,8 +69,8 @@
  <tileset name="../../tileset/item/corpse/skull_dark.png" firstgid="268" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_dark.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="270" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="270" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_blue_green.png" firstgid="271" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png" trans="ff00ff"/>
@@ -138,8 +138,8 @@
  <tileset name="../../tileset/furniture/other/tools_rack.png" firstgid="413" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/tools_rack.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/candle/candelabra.png" firstgid="419" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+ <tileset name="../../tileset/furniture/light/candelabra.png" firstgid="419" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
  <tileset name="../../tileset/item/statue/skull_carving.png" firstgid="420" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skull_carving.png" trans="ff00ff"/>

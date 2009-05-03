@@ -21,8 +21,8 @@
  <tileset name="../../tileset/ground/brown_paving.png" firstgid="391" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/furniture/carpet/purple_rug.png" firstgid="393" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/purple_rug.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/carpet/lilac.png" firstgid="393" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/lilac.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/earthen.png" firstgid="396" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen.png" trans="ff00ff"/>

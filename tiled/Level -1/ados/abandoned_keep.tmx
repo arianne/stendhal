@@ -52,16 +52,16 @@
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
  <tileset name="bigbed1" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="bigbed1sheet" firstgid="182" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_peach_top_sheet.png"/>
  </tileset>
  <tileset name="bigbed2" firstgid="184" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue.png"/>
+  <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
  <tileset name="bigbed2sheet" firstgid="190" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_blue_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_blue_top_sheet.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dhohr_nuggetcutter.png"/>

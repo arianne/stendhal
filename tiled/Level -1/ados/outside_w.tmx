@@ -13,7 +13,7 @@
   <image source="../../tileset/logic/creature/human_armored.png"/>
  </tileset>
  <tileset name="beds" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png"/>
+  <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
  <tileset name="trunks" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
@@ -64,7 +64,7 @@
   <image source="../../tileset/ground/rock/green_crystal3.png"/>
  </tileset>
  <tileset name="bed topsheet" firstgid="165" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on_top_sheet.png"/>
+  <image source="../../tileset/furniture/bed/large_peach_top_sheet.png"/>
  </tileset>
  <tileset name="brownfloor" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>

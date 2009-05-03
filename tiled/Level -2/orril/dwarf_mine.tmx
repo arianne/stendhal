@@ -21,8 +21,8 @@
  <tileset name="../../tileset/object/mine_rails.png" firstgid="80" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/mine_rails.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>

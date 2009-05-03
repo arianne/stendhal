@@ -39,8 +39,8 @@
  <tileset name="../../tileset/building/wall/earthen_2.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="147" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/single_blue.png" firstgid="147" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="../../tileset/item/corpse/skull_pale.png" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
@@ -154,7 +154,7 @@
   <image source="../../tileset/logic/creature/undead_fallen.png"/>
  </tileset>
  <tileset name="rug" firstgid="343" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/carpet_orange.png"/>
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <tileset name="candles" firstgid="352" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>

@@ -9,8 +9,8 @@
  <tileset name="../../tileset/ground/indoor/brown_hole.png" firstgid="14" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/brown_hole.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/front_on.png" firstgid="26" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/front_on.png"/>
+ <tileset name="../../tileset/furniture/bed/single_blue.png" firstgid="26" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/table/square_pale.png" firstgid="28" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square_pale.png"/>

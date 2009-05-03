@@ -72,11 +72,11 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="566" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/candelabra.png" firstgid="569" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/candelabra.png"/>
+ <tileset name="../../tileset/furniture/light/candelabra.png" firstgid="569" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/other/warmer.png" firstgid="570" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/other/warmer.png"/>
+ <tileset name="../../tileset/furniture/kitchen/warmer.png" firstgid="570" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="572" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
@@ -108,11 +108,11 @@
  <tileset name="../../tileset/furniture/curtain/red_gold_drawn.png" firstgid="627" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
- <tileset name="../../tileset/item/candle/lamp.png" firstgid="633" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+ <tileset name="../../tileset/furniture/light/small_lamp.png" firstgid="633" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="634" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_peach.png" firstgid="634" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="640" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>

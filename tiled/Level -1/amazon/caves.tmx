@@ -25,7 +25,7 @@
   <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="lamp" firstgid="135" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset name="barell closed" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>

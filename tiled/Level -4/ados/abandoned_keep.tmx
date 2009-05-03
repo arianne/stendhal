@@ -40,7 +40,7 @@
   <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/curtain/blue_green_curtains.png"/>
+  <image source="../../tileset/furniture/curtain/blue_green.png"/>
  </tileset>
  <tileset name="portal" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>

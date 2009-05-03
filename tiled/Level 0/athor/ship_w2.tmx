@@ -30,8 +30,8 @@
  <tileset name="../../tileset/item/brush.png" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/bed/large_front_on.png" firstgid="82" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ <tileset name="../../tileset/furniture/bed/large_peach.png" firstgid="82" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
