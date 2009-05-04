@@ -276,9 +276,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 				int reward = (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
+					// no reward so give a lot karma instead, 100 in all
+					player.addKarma(95.0);
 				}
 				engine.say("Good work! Let me thank you in the name of the people of Semos!");
 				player.addXP(reward);
+				player.addKarma(5.0);
 				questCount = "" + (Integer.valueOf(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily", "done" + ";" + questLast + ";"
