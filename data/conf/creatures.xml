@@ -10108,7 +10108,7 @@
       <item value="greater potion" quantity="[2,4]" probability="20.0"/>
       <item value="mega potion" quantity="[1,1]" probability="20.0"/>
       <item value="vulcano hammer" quantity="[1,1]" probability="0.01"/>
-      <item value="black scythe" quantity="[1,1]" probability="0.5"/>
+      <item value="black scythe" quantity="[1,1]" probability="0.1"/>
 	  <item value="hell dagger" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
@@ -10289,7 +10289,7 @@
       <item value="black legs" quantity="[1,1]" probability="2.0"/>
       <item value="black boots" quantity="[1,1]" probability="1.0"/>
       <item value="black shield" quantity="[1,1]" probability="1.0"/>
-      <item value="black scythe" quantity="[1,1]" probability="1.0"/>
+      <item value="black scythe" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
