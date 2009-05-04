@@ -33,7 +33,7 @@ import java.util.List;
  * <li> You give the snowballs to Mr. Yeti.
  * <li> Mr. Yeti gives you 20 cod or perch.
  * <p>
- * REWARD: <li> 20 cod or perch <li> 500 XP
+ * REWARD: <li> 20 cod or perch <li> 500 XP <li> 20 karma in total
  * <p>
  * REPETITIONS: <li> Unlimited, but 12 hours of waiting is
  * required between repetitions
