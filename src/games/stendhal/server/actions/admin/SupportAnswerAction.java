@@ -39,10 +39,12 @@ public class SupportAnswerAction extends AdministrationAction {
 					reply = "Hi, thank you for telling us about this bug, we have found it ourselves too and it's already reported. Thank you though!";
 				} else if ("$bugstracker".equals(reply)) {
 					reply = "Hi, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you very much.";
+				} else if ("$rules".equals(reply)) {
+					reply = "Please read the Stendhal Rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem - thank you.";
 				} else if ("$abuse".equals(reply)) {
 					reply = "That question is not suitable for support. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources. Repeated abuse of the support channel will be punished.";
 				} else {
-					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $faqpvp, $wiki, $knownbug, $bugstracker or $abuse?");
+					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $faqpvp, $wiki, $knownbug, $bugstracker, $rules or $abuse?");
 					// send no support answer message if the shortcut wasn't understood
 					return;
 				}				
