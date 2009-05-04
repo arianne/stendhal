@@ -81,7 +81,8 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
-			"I don't need anything but I can tell you your #karma.", null);
+			"If you want to get good #karma all you have to do is be helpful to others. I know a hunter girl called Sally who needs wood, and " +
+			"I know another girl called Annie who loves icecream, well, I know many people who needs tasks doing for them regularly and I'm sure if you help them you will be rewarded, that's how karma works after all.", null);
 
 		// player is willing to help other people
 		// player gets a little karma bonus
@@ -105,7 +106,9 @@ public class LearnAboutKarma extends AbstractQuest {
 			"karma",
 			null,
 			ConversationStates.QUESTION_1,
-			"When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?",
+			"When you do a good thing like a #task for someone else, you get good karma. Good karma means you're likely to " +
+			"do well in battle and when fishing or searching for something like gold. " +
+			"Do you want to know what your karma is now?",
 			null);
 
 		// player wants to know what his own karma is
@@ -117,7 +120,7 @@ public class LearnAboutKarma extends AbstractQuest {
 					final long roundedkarma = Math.round(player.getKarma());
 					npc.say("Your karma is roughly " + roundedkarma + ".");
 					// TODO: make her say different things if it's big and
-					// potisive, small and negative etc. need idea of ranges
+					// positive, small and negative etc. need idea of ranges
 					// for this.
 				}
 			});
