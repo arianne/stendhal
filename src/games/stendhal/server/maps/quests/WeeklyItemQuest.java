@@ -143,6 +143,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 				int reward = 3 * (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
+					//	no reward so give a lot karma instead, 300 in all
+					player.addKarma(290.0);
 				}
 				int goldamount;
 				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
@@ -152,6 +154,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				player.equipOrPutOnGround(money);
 				engine.say("Wonderful! Here is " + Integer.toString(goldamount) + " money to cover your expenses.");
 				player.addXP(reward);
+				player.addKarma(10.0);
 				questCount = "" + (Integer.valueOf(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("weekly_item", "done" + ";" + questLast + ";"
