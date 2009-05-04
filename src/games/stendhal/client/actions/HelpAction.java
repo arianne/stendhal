@@ -34,6 +34,7 @@ class HelpAction implements SlashAction {
 				"- /add <player> \t\tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
 				"- /ignore <player> [<minutes>|*|- [<reason...>]] \tAdd <player> to your ignore list",
+				"- /ignore \t\t Find out who is on your ignore list",
 				"- /unignore <player> \tRemove <player> from your ignore list",
 				"- /away <message> \tSet an away message",
 				"- /away \t\tRemove status away",

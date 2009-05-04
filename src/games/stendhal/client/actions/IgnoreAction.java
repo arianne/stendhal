@@ -19,36 +19,39 @@ class IgnoreAction implements SlashAction {
 	 * @return <code>true</code> if command was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		final String duration = params[1];
 		final RPAction action = new RPAction();
 
 		action.put("type", "ignore");
-		action.put("target", params[0]);
-
-		if (duration != null) {
-			/*
-			 * Ignore "forever" values
-			 */
-			if (!duration.equals("*") || !duration.equals("-")) {
+		// because the max number of parameters is non zero, a String[2] is created when the command is parsed
+		// but if player only typed /ignore then even the first entry is null
+		if (params[0] == null) {
+			action.put("list", "1");
+		} else {
+			action.put("target", params[0]);
+			String duration = params[1];
+			if (duration != null) {
+				/*
+				 * Ignore "forever" values
+				 */
+				if (!duration.equals("*") || !duration.equals("-")) {
 				/*
 				 * Validate it's a number
 				 */
-				try {
-					Integer.parseInt(duration);
-				} catch (final NumberFormatException ex) {
-					return false;
-				}
+					try {
+						Integer.parseInt(duration);
+					} catch (final NumberFormatException ex) {
+						return false;
+					}
 
-				action.put("duration", duration);
+					action.put("duration", duration);
+				}
+			}
+
+			if (remainder.length() != 0) {
+				action.put("reason", remainder);
 			}
 		}
-
-		if (remainder.length() != 0) {
-			action.put("reason", remainder);
-		}
-
 		StendhalClient.get().send(action);
-
 		return true;
 	}
 
@@ -67,6 +70,6 @@ class IgnoreAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 0;
 	}
 }

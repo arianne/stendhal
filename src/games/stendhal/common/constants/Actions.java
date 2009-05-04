@@ -157,6 +157,8 @@ public final class Actions {
 
 	public static final String ALTER = "alter";
 
+	// for listing e.g. ignore list
+	public static final String LIST = "list";
 	
 	public static final String TARGET = "target";
 	public static final String BASESLOT = "baseslot";
