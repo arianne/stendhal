@@ -42,7 +42,8 @@ import java.util.List;
  * <li> Maerion checks your kills, takes the amulet and gives you a ring of life
  * as reward
  * </ul>
- * REWARD: <ul><li> emerald ring <li> 10000 XP</ul>
+ * REWARD: <ul><li> emerald ring <li> 10000 XP
+ * <li>10 karma in total</ul>
  * 
  * REPETITIONS: - None.
  */

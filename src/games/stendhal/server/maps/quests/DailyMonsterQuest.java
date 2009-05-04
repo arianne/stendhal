@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  * <li> if after 7 days you were not able to kill the creature, you have an
  * option to get another quest
  * <p>
- * REWARD: - xp
+ * REWARD: - xp - 5 karma
  * <p>
  * REPETITIONS: - once a day
  */

@@ -38,6 +38,7 @@ import java.util.List;
  * <ul>
  * <li> mithril nugget
  * <li> 4000 XP
+ * <li>10 karma in total
  * </ul>
  * 
  * REPETITIONS:

@@ -37,6 +37,7 @@ import java.util.List;
  * <ul>
  * <li> magical egg
  * <li> 5000 XP
+ * <li> 10 karma in total
  * </ul>
  * 
  * REPETITIONS:

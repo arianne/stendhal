@@ -36,6 +36,7 @@ import java.util.List;
  * <ul><li> xp
  * <li> between 100 and 600 money
  * <li> can buy kirdneh house if other eligibilities met
+ * <li> 10 Karma
  * </ul>
  * REPETITIONS:
  * <ul><li> once a week</ul>
