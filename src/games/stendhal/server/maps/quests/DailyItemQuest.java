@@ -31,7 +31,8 @@ import java.util.List;
  * another instead
  * <p>
  * REWARD:
- * <li> xp
+ * <li> xp 
+ * <li> 10 Karma
  * <p>
  * REPETITIONS:
  * <li> once a day
@@ -163,12 +164,15 @@ public class DailyItemQuest extends AbstractQuest {
 			if (player.drop(questKill)) {
 				final int start = Level.getXP(player.getLevel());
 				final int next = Level.getXP(player.getLevel() + 1);
-				int reward = (next - start) / 5;
+				int reward = (next - start) / 8;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
+					// no reward so give a lot karma instead, 100 in all
+					player.addKarma(90.0);
 				}
 				engine.say("Good work! Let me thank you on behalf of the people of Ados!");
 				player.addXP(reward);
+				player.addKarma(10.0);
 				questCount = "" + (Integer.valueOf(questCount).intValue() + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily_item", "done" + ";" + questLast + ";"
