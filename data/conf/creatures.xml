@@ -3,7 +3,7 @@
 	xsi:schemaLocation="stendhal creatures.xsd ">
   <creature name="deer">
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
-    <description>You see a defenseless deer, do not have fear of him.</description>
+    <description>You see a defenseless deer, do not have fear of it.</description>
     <attributes>
       <atk value="8"/>
       <def value="3"/>
@@ -31,7 +31,7 @@
 
   <creature name="crab">
     <type class="animal" subclass="crab" tileid="animal.png:8"/>
-    <description>You see a little crab that comes from the beach, be careful of his pincers.</description>
+    <description>You see a little crab that comes from the beach, be careful of its pincers.</description>
     <attributes>
       <atk value="8"/>
       <def value="4"/>
@@ -119,7 +119,7 @@
 
   <creature name="chick">
     <type class="farm_animal" subclass="chick" tileid="farm_animal.png:2"/>
-    <description>You see a little chick, he doesn't like to be away from his mother.</description>
+    <description>You see a little chick, it doesn't like to be away from its mother.</description>
     <attributes>
       <atk value="32"/>
       <def value="7"/>
@@ -178,7 +178,7 @@
 
   <creature name="bat">
     <type class="animal" subclass="bat" tileid="animal.png:0"/>
-    <description>You see a bat, he will seek your blood, don't be distracted...</description>
+    <description>You see a bat, it will seek your blood, don't be distracted...</description>
     <attributes>
       <atk value="36"/>
       <def value="7"/>
@@ -203,7 +203,7 @@
 
   <creature name="chicken">
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
-    <description>You see a chicken, isn't he nice?.</description>
+    <description>You see a chicken, isn't it nice?.</description>
     <attributes>
       <atk value="32"/>
       <def value="7"/>
@@ -345,7 +345,7 @@
 
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
-    <description>You see a monkey, would you like to offer him a banana?</description>
+    <description>You see a monkey, would you like to offer it a banana?</description>
     <attributes>
       <atk value="55"/>
       <def value="9"/>
@@ -403,7 +403,7 @@
 
   <creature name="ram">
     <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
-    <description>You see a ram, maybe are you able to shear him?</description>
+    <description>You see a ram, maybe are you able to shear it?</description>
     <attributes>
       <atk value="52"/>
       <def value="7"/>
@@ -593,7 +593,7 @@
 
   <creature name="horse">
     <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
-	<description>You see funny horse, don't slap him or he will run away!</description>
+	<description>You see funny horse, don't slap it or it will run away!</description>
     <attributes>
       <atk value="48"/>
       <def value="10"/>
@@ -859,7 +859,7 @@
 
   <creature name="snake">
     <type class="animal" subclass="cobra" tileid="animal.png:7"/>
-    <description>You see a snake, she came from the forest to poison you!</description>
+    <description>You see a snake, it came from the forest to poison you!</description>
     <attributes>
       <atk value="67"/>
       <def value="13"/>
@@ -1232,7 +1232,7 @@
 
   <creature name="young beholder">
     <type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
-	<description>You see a young beholder, with his big eye you won't can hide from him!</description>
+	<description>You see a young beholder, with his big eye you can't hide from him!</description>
     <attributes>
       <atk value="96"/>
       <def value="16"/>
@@ -3052,7 +3052,7 @@
 
   <creature name="black slime">
     <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
-    <description>You see a black slime, with a sticky trail behind him.</description>
+    <description>You see a black slime, with a sticky trail behind it.</description>
 	<attributes>
       <atk value="250"/>
       <def value="36"/>
