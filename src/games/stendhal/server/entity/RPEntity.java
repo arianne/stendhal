@@ -468,7 +468,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * Account for karma (+/-10%) But, the defender doesn't need luck to
 		 * help him defend if he's a much higher level than this attacker
 		 */
-		final int levelDifferenceToNotNeedKarmaDefending = (int) (IGNORE_KARMA_MULTIPLIER*defender.getLevel());
+		final int levelDifferenceToNotNeedKarmaDefending = (int) (IGNORE_KARMA_MULTIPLIER * defender.getLevel());
 		
 		if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
@@ -507,7 +507,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * Account for karma (+/-10%) But, don't need luck to help you attack if
 		 * you're a much higher level than what you attack
 		 */
-		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER*getLevel());
+		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER * getLevel());
 		if (!(effectiveAttackerLevel - levelDifferenceToNotNeedKarmaAttacking > effectiveDefenderLevel)) {
 			attack += attack * useKarma(0.1);
 		}
@@ -2075,7 +2075,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		 * Use some karma unless attacker is much stronger than defender, in
 		 * which case attacker doesn't need luck to help him hit.
 		 */
-		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER*getLevel());
+		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER * getLevel());
 		if (!(getLevel() - levelDifferenceToNotNeedKarmaAttacking > defender
 				.getLevel())) {
 			final double karma = this.useKarma(0.1);

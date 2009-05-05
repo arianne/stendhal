@@ -121,7 +121,7 @@ public class SolveRiddles extends AbstractQuest {
 						npc.say("You can ask my mirror to let you leave, or you must solve the riddle which I previously set you: " + riddle);
 					} else {
 						npc.say("Incorrect! Try again, or ask my mirror to let you leave.");
-						player.subXP(10*xpreward);
+						player.subXP(10 * xpreward);
 					}
 				}
 			});

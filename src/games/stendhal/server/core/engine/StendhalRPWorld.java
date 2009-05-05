@@ -19,7 +19,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.net.URI;
-import java.util.Iterator;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.IRPZone.ID;

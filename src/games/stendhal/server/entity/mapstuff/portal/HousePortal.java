@@ -34,7 +34,7 @@ public class HousePortal extends AccessCheckingPortal {
 	private static final String PORTAL_REFERENCE = "reference";
 	
 	public static void generateRPClass() {
-		if (!RPClass.hasRPClass(RPCLASS_NAME)){
+		if (!RPClass.hasRPClass(RPCLASS_NAME)) {
 			final RPClass entity = new RPClass(RPCLASS_NAME);
 			entity.isA("portal");
 			entity.addAttribute(DOOR_ID, Type.STRING);
