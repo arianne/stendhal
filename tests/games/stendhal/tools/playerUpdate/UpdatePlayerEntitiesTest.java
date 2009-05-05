@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class UpdatePlayerEntitiesTest {
@@ -25,6 +26,7 @@ public class UpdatePlayerEntitiesTest {
 	public void setUp() throws Exception {
 	}
 
+	@Ignore
 	@Test
 	public void testDoUpdate() throws SQLException, IOException {
 		//updatePlayerEntities has to be initialized here to get rid of MockStendlRPWorld.get()
