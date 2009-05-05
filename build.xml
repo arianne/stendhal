@@ -693,7 +693,6 @@
 			<classpath>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
-				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
