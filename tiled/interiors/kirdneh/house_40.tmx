@@ -126,13 +126,13 @@
  <tileset name="kitchen cabnets" firstgid="282" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="household items" firstgid="306" tilewidth="32" tileheight="32">
+ <tileset name="household items" firstgid="310" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="322" tilewidth="32" tileheight="32">
+ <tileset name="sheep food" firstgid="326" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="323" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="327" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_red_top_sheet.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="25">
@@ -147,12 +147,12 @@
  </layer>
  <layer name="2_object" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIA5QPwCiLkYGRi4gfg1kP0GiN/SWQzmFlyAB6iGF4g/AtmfgPgzncVAoBWP+9BBGhAXA3EJFJdCxUCAHWjeXyD9Dwf+D1WDDFKgNLqZyPYNJYAc10spNMsNiN0pNAMZ4EuHgxEsGWgHYAGDOQzR3bZsQFwx+EEzkeqW09QVlINFA+0APECWkbAaeoFaLGKKaO6zH0TuBQF095kOcvfBwFoo7QLE9kDsCMQOQOwMFV9PY3fBAD732UOxK5R2gtIgQI77RIF2iZEYP7jcBwIbCNCkAgmgXZJUdN9gAOjuuzgwzsAJhlr4DTagCnSfPBI2RHJvAQNmf6GACDOx6ctHks8n09xRQDwAAAQV2zagDwAA
+   H4sIAAAAAAAAAGNggIA5QPwCiLkYGRi4gfg1kP0GiN/SWQzmFlyAB6iGF4g/AtmfgPgzncVAoBWP+9BBGhAXA3EJFJdCxUCAHWjeXyD9Dwf+D1WDDFKgNLqZyPYNJYAc10spNMsNiN0pNAMZ4EuHgxEsGWgHYAGDOQzR3bZsQFwx+EEzkeqW09QVlINFA+0APECWkbAaeoFaLGKKaO5zHkTuBQF091kOcvfBwFoo7QLE9kDsCMQOQOwMFV9PY3fBAD732UOxK5R2gtIgQI77RIF2iZEYP7jcBwIbCNCkAgmgXZJUdN9gAOjuuzgwzsAJhlr4DTagCnSfPBI2RHJvAQNmf6GACDOx6ctHks8n09xRQDwAAD9zlISgDwAA
   </data>
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIAXQPwSipEBPcVeMZAGUokUoxagldlfgPgrFH8jQV87CWrnkeQiVPAdiH9A8U8KzMEHFlKgtwEN0wJQGn7OjAwMLoyDM/zoASgJPwFG7GxqgsEQfhl45HCFXzaRYpSCdALmDobwozbgw5PW8MmNAvoCRzrExWYovRGIN6GJEQL0cN8oGDhASjuMXLATSm8H4h1oYoTATOo7Z0QBW2D+lUbClkj5OQuLemxixKjJxMEmxdxRQH9gAqXNqGwuAOKxunigDwAA
+   H4sIAAAAAAAAAGNgQIAXQPwSipEBPcVeMZAGUokUoxagldlfgPgrFH8jQV87CWrnkeQiVPAdiH9A8U8KzMEHFlKgtwEN0wJQGn7ujAwMHoyDM/zoASgJPwFG7GxqgsEQfhl45HCFXzaRYpSCdALmDobwozbgw5PW8MmNAvoCVzrExWYovRGIN6GJEQL0cN8oGDhASjuMXLATSm8H4h1oYoTATOo7Z0QBR2D+lUbCtkj5OQuLemxixKjJxMEmxdxRQH9gAqXNqGwuACp2piegDwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
@@ -162,7 +162,7 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3KMQ0AAAgDsGEN/6IwwQFJezcBAD7p2jkAwC0DuhdWDqAPAAA=
+   H4sIAAAAAAAAAO3KMQ0AAAgDsGEO/5IwwQFJezcBAD7p2jkAwC0Ddimw2aAPAAA=
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">

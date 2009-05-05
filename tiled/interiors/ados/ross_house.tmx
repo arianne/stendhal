@@ -48,46 +48,46 @@
  <tileset name="kitchen" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="tile" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="tile" firstgid="188" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
- <tileset name="red rug" firstgid="185" tilewidth="32" tileheight="32">
+ <tileset name="red rug" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="sofa" firstgid="194" tilewidth="32" tileheight="32">
+ <tileset name="sofa" firstgid="198" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_cream.png"/>
  </tileset>
- <tileset name="round white table" firstgid="200" tilewidth="32" tileheight="32">
+ <tileset name="round white table" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
- <tileset name="bench" firstgid="206" tilewidth="32" tileheight="32">
+ <tileset name="bench" firstgid="210" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="stone floor" firstgid="209" tilewidth="32" tileheight="32">
+ <tileset name="stone floor" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/stonefloor.png"/>
  </tileset>
- <tileset name="books" firstgid="218" tilewidth="32" tileheight="32">
+ <tileset name="books" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/books2.png"/>
  </tileset>
- <tileset name="red chests" firstgid="222" tilewidth="32" tileheight="32">
+ <tileset name="red chests" firstgid="226" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chests_red.png"/>
  </tileset>
- <tileset name="cats" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset name="cats" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/cats.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvBwMCwYxDji0B8CYgvo7GJ1X8FiK8C8TU0NrH6rwPxDSC+icam1P2k+AEbJsUP2DApfhhMOACIp9LBnp1AvAuId5Opfz8QHwDigxS4wYNCPxCjHwDmHiU1AAQAAA==
+   H4sIAAAAAAAAANvDwMCwZxDjq0B8DYivo7GJ1X8DiG8C8S00NrH6bwPxHSC+i8am1P2k+AEbJsUP2DApfhhMOACIp9LBnr1AvA+I95Op/zAQHwHioxS4wYNCPxCjHwDAWL0ZAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONlYGDgJxMLALEgEAsBsRqJWBiIJaD6NRgQ4BwQnwfiCwyoIBiNr45DPzFgMQX6vYF4OYX2ryZD/yEgPgzFR8jQfxSIj0HxcTL0owNy9CcCcRIQJw+Q/hQgTgXiNBz6/Yg0h4FM+3HpFwNiVSxYC4c4CItD9UsCsRQOrIdHDoRlgBgAX0BVMwAEAAA=
+   H4sIAAAAAAAAAONlYGDgJxMLALEgEAsBsRqJWBiIJaD6NRgQ4BIQXwbiKwyoIBiNr45DPzFgMQX6vYF4OYX2ryZD/zEgPg7FJ8jQfxKIT0HxaTL0owNy9CcCcRIQJw+Q/hQgTgXiNBz6/Yg0h4FM+3HpFwNiVSxYC4c4CItD9UsCsRQOrIdHDoRlgBgAd9+oxgAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAXdUPoRlJ4FxLOBOJABP2CCYhDoQhKfA8RzgTgIiFcA8UogXoVFPwcQs0PZd5HE5wHxfCh7DRCvBeJ1eNxxmoA70YEoiepBoAZKi5ChFx+4R4He+wNoNz5QAsSlSHwuIO4gQX8FEFdC2XewyJMTfzBA7fgjFnASoUYTSmuTYb40EOtC2fpQPi4AAPChyiQABAAA
+   H4sIAAAAAAAAAGNgQAXdUPoZlJ4FxLOBOJABP2CCYhDoQhKfA8RzgTgIiFcA8UogXoVFPwcQs0PZD5HE5wHxfCh7DRCvBeJ1eNxxnoA70YEoiepBoAZKi5ChFx94RIHexwNoNz5QAsSlSHwuIO4gQX8FEFdC2Q+wyJMTfzBA7fgjFnASoUYTSmuTYb40EOtC2fpQPi4AAORWnyMABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

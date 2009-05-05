@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="32" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="32" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -57,16 +57,16 @@
  <tileset name="kitchen" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="table" firstgid="187" tilewidth="32" tileheight="32">
+ <tileset name="table" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset name="bread" firstgid="196" tilewidth="32" tileheight="32">
+ <tileset name="bread" firstgid="200" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset name="planted containers" firstgid="200" tilewidth="32" tileheight="32">
+ <tileset name="planted containers" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
- <tileset name="cups" firstgid="216" tilewidth="32" tileheight="32">
+ <tileset name="cups" firstgid="220" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
@@ -76,22 +76,22 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOXTSwrCMBQF0KxA1yC4Av8T/yMFwe8a1Q4cOvBbdargyPV4Q1oIj5cmLbETLxyQNuamvFYIlYJHXGxryhn0oJ9wfw4Lw/40FahCTfvdZtatYQNbGMDQ8LxxnvAi17h949Qt+3G5wDUSOqwPYAqzDF1cbnCPPBz7l7Dy1J82OyhBMWHNEU6Ms6cz2Pr1mepCD90u8/91P53/Psd+bv60X3+ndfT9fgv1PPT/MiMYMyYO/a7pJPSbIs9M53/IsV/G9ftvQDPSgi65/xFqnmnPb/v+/iVfvznx9gAIAAA=
+   H4sIAAAAAAAAAOWTSQoCMRBFcwI9g+AJnDfOKwXB8YwOC5cu3DjrVsGVp/GH7oZQVJLqpu2NDx40SXV+QiVKBeRSlMNXU0xgB3Yd81M4s6xPKcEyrBjfTaZuCVdwDXuwbzlvxBO+yBi3bkTVsx7HGV5Cr4L6DRzDSYIsjhu8hz6E+XO4SCk/LltYgHlHzQEeGU8p7cGXb/bUVNJfH5L+/zqf9n+XYT7Xf5pv3mlTer/fKjgP/V8zgEPGkSBfSsuRb0PvmfZ/n2G+Rvr+a7Ae2oBtMv9RQT/j7t/3/v6FLxvWpLoACAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXUT07CQByG4bmAxY3AFhVw6xoSboALE0g0QWCH3ET+nQEFlUiiCSR6gAqn6KYn4W06JJNJW4tt6Zc8SfnNdL6GEvJCCEN4p+Iz98oUz/LakOq48Ti/Imc5nOIK18r6/rqKDyyxwhovmGEe8Czqnltc4gkDDOW5ZWRk/3nAWZ/4wjd+AvapecM7FspshDEmeEUhZH/YbPDwj/vi6j8kZsr9atLub6Dps7b/nmzUEuq/w73PmiXc35WT3xg7w77/rfa5FeMz6P12xHPMv7cE9keNlWK//p6O3R8lTn8JFwlqo4OuMisK9/8/i5OE9fCIvjY/ww7yBrNzAAgAAA==
+   H4sIAAAAAAAAAMXUT07CQByG4bmAxY3AFhVw6xoSboALE0g0QWCH3ET+nQEFlUiiCSR6hAqn6Kbn4G06JJNJW4tt6Zc8SfnNdL6GEvJCCEN4p+Iz98oUz/LakOq48Ti/Imc5nOIK18r6/rqKDyyxwhovmGEe8Czqnltc4gkDDOW5ZWRk/3nAWZ/4wjd+AvapecM7FspshDEmeEUhZH/YbPDwj/vi6j8kZsr9atLub6Dps7b/nmzUEuq/w73PmiXc35WT3xg7w77/rfa5FeMz6P12xHPMv7cE9keNlWK//p6O3R8lTn8JFwlqo4OuMisK9/8/i5OE9fCIvjY/ww5ZDxM2AAgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHrgOAH5o0j4BBCfpLF7dgPxHijeS2O7RgF9AHKcImNqxO8yKphBbbBpoB1AAQCFJzb3uwCxKxbsQT+nDXtwaaAdMAooAgCkQqbVAAgAAA==
+   H4sIAAAAAAAAAGNgGHrgNAH5k0j4DBCfpbF79gPxASg+SGO7RgF9AHKcImNqxO8yKphBbbBpoB1AAQCFJzb3uwCxKxbsQT+nDXtwbaAdMAooAgBVytrQAAgAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUAEeh9PEBdcUoGAWjABk8gtJ3ofTTgXLIKBgFgxAAAGKNvJoACAAA
+   H4sIAAAAAAAAAGNgGAXUACeh9OkBdcUoGAWjABk8g9IPofTLgXLIKBgFgxAAAO1aOWcACAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -99,7 +99,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBrcCUgXYADgAAogWdyQAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" visible="0" opacity="0.52">
+ <layer name="collision" width="32" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJvOwMAwfRRjxQxEqkEH5NpFLiDVLGrbTyoY6fZjcwMheWq6lRgz6W0/urkDbT85ZhFrD73sJ0bPQNiPzQ3EqsOXTiixn9Z4IOwkBgMA5O87/AAIAAA=
   </data>

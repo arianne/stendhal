@@ -81,36 +81,36 @@
  <tileset name="kitchen cabinets" firstgid="202" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="floor tiles" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset name="floor tiles" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="border" firstgid="235" tilewidth="32" tileheight="32">
+ <tileset name="border" firstgid="239" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset name="sofas" firstgid="244" tilewidth="32" tileheight="32">
+ <tileset name="sofas" firstgid="248" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_blue.png"/>
  </tileset>
- <tileset name="topsheet" firstgid="256" tilewidth="32" tileheight="32">
+ <tileset name="topsheet" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2_top_sheet.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvJwMDwchDgWjSMLl+Fhmmt/xUaprX9xOJXFIYzrfTPRGLXQTEt7KcnZgRiZigeaLeM4uGJAYO9J7OABQAA
+   H4sIAAAAAAAAAHvLwMDwdhDgWjSMLl+Fhmmt/x0aprX9xOJ3FIYzrfTPRGLXQTEt7KcnZgRiZigeaLeM4uGJAQ1w4VaABQAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3Tyw7BQBQG4Fm6rS3dSXgHT8GzsG3cErcoRakX4iEsrN15Af8kZ2IyNaYVJ/lSnTN/NT0ZizHW0miDZeh3oAtrRQ+GAfsbOMKJnMGDJbjU51WGCv32lPwFruQGc+m/Fsxfpryp1PwdHuQJNqzI1JDvS3uFAczAkfriOTb1eX4EY42J1HfY+zt69Gzet5h+vjJXyfPZ6Oa/hR3zz1zMgc9Gnf+nqmrW1e/H84kve4Pk97QegaS0rwb1APkDrcekPVG6j3/J50gK0pAJ+f4in6VrPmRevH8BilD6MR+2/p1vQPPH/KfzZxLk/Jnw8/cC/Cc/y4AFAAA=
+   H4sIAAAAAAAAAK3Tyw7BQBQG4Fm6rS3dSXgHT8GzsG3cErcoRakX4iEsPIE7W/8kZ2IyNaYVJ/lSnTN/NT0ZizHW0miDZeh3oAtrRQ+GAfsbOMKJnMGDJbjU51WGCv32lPwFruQGc+m/Fsxfpryp1PwdHuQJNqzI1JDvS3uFAczAkfriOTb1eX4EY42J1HfY+zt69Gzet5h+vjJXyfPZ6Oa/hR3zz1zMgc9Gnf+nqmrW1e/H84kve4Pk97QegaS0rwb1APkDrcekPVG6j3/J50gK0pAJ+f4in6VrPmRevH8BilD6MR+2/p1vQPPH/KfzZxLk/Jnw8/cCVJFgPIAFAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASHsIgRCwyAWBeLOB8QqwOxBpSNDiSAWBKIjYF4DxZ5QRxsGJACYmkCbtMGYh0ccsTohwF3LGIyQCwLZdtgkY9CYnsQac9gALFEqgsC4stQ9hEgPgrEViTYEwbE14E4GoiPAfFxqHgiCWYQA5KAOBmLuAWU3ockFgGlfZHEMoA4kwT7RAjIrwPizSSYhw42EaH/GxB/AeKvUDYy2AbE2wno/wnE34H4B5Q91MB/IP4LxP+g7MEEACleX5eABQAA
+   H4sIAAAAAAAAAGNgwASHsIgRCwyAWBeLOB8QqwOxBpSNDiSAWBKIjYF4DxZ5QRxsGJACYmkCbtMGYh0ccsTohwF3LGIyQCwLZdtgkY9CYnsQac9gALFEqgsC4stQ9hEgPgrEViTYEwbE14E4GoiPAfFxqHgiCWYQA5KAOBmLuAWU3ockFgGlfZHEMoA4kwT7RAjIrwPizSSYhw42EaH/FxD/AOKfUDYy2AbE2wno/wvEv4H4D5Q91AAzIwMDIxAzMULYgwkAACoF67WABQAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGEKAEYgYB9oRowAbCB9g+28SqS4JiJNp6RAywPqBdgAQpABxKgX6s4A4mwL9BUBciEPuDxD/AuLfUPZwAgBHL5R3gAUAAA==
+   H4sIAAAAAAAAAGNgGDqAhZGBgZVxoF0xCrCB8AG2/yaR6pKAOJmWDiEDrB9oBwBBChCnUqA/C4izKdBfAMSFuCSBef4fkPoPZQ8nAACnjTdbgAUAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="22">

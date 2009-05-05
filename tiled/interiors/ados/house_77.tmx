@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="25" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="25" tilewidth="32" tileheight="32">
  <tileset name="wall red" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
@@ -117,10 +117,10 @@
  <tileset name="kitchen" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="door" firstgid="389" tilewidth="32" tileheight="32">
+ <tileset name="door" firstgid="393" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_fancy.png"/>
  </tileset>
- <tileset name="bread" firstgid="401" tilewidth="32" tileheight="32">
+ <tileset name="bread" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="25">
@@ -135,7 +135,7 @@
  </layer>
  <layer name="2_object" width="16" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD4wAGJDIDZCE9+FR483EPtA2cZAbALEpiTY6QvEfkSqFWMkwWAgmIvEngLEO7ApQjJzFprURCLsYwGqOYIm9g+I/xPhPlyACWgmM4l+pQdYhkXMFYjtiNS/Cod+F7JdRDw4CMSHqGheOzB+OiiIo26g3h4K9PcD9U4YhGkEBGyR2PFANybQ2Z22hJVQHRQMsP2kAgBtD6f+QAYAAA==
+   H4sIAAAAAAAAAGNgoD4wAGJDIDZCE9+FR483EPtA2cZAbALEpiTY6QvEfkSqFWMkwWAgmIvEngLEO7ApQjJzFprUVCLsYwGqOYIm9g+I/xPhPlyACWgmM4l+pQdYhkXMFYjtiNS/Cod+F7JdRDw4CMSHqGheNzB+eiiIo36g3gkU6J8M1DtlEKYRELBFYscD3ZhAZ3faElZCdVAwwPaTCgAG51uBQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="25">
@@ -145,7 +145,7 @@
  </layer>
  <layer name="4_roof_add" width="16" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGP5gCuNAu2AUjIJRMAqGHwAAFb2OO0AGAAA=
+   H4sIAAAAAAAAAGNgGP5gBuNAu2AUjIJRMAqGHwAApIo4ykAGAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="25">

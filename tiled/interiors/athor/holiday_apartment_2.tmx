@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/furniture/table/table_with_hob_pale.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_hob_pale.png" trans="ff00ff"/>
  </tileset>
@@ -87,23 +87,23 @@
  <tileset name="kitchen cabinets" firstgid="207" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="rug" firstgid="231" tilewidth="32" tileheight="32">
+ <tileset name="rug" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
- <tileset name="floor tiles" firstgid="247" tilewidth="32" tileheight="32">
+ <tileset name="floor tiles" firstgid="251" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="border" firstgid="256" tilewidth="32" tileheight="32">
+ <tileset name="border" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtkYGBoHAT4DRC/RaLR5b+jYXT5D0D8EYkmVT+6/X/RMK3tJxb/pTCcaaV/HhK7GYppYf8opi4GAEnJUZAABAAA
+   H4sIAAAAAAAAAGtkYGBoHAT4AxB/RKLR5X+jYXT5L0D8FYkmVT+6/YyMqJjW9hOLQW6hJJxppX8eErsZimlh/yimLgYAVRfziQAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJWSSw6CMBRFH+IHdeDYFbgP90b8JaJGERHFDenUuQPX4W18xJfSB9hwBuX2tITbkIhmCnMQ1uQLsARXixXYNMxvVB45OIOsyD08TMv75lX+SZyVAh9Om+k08O3xr38AFyYGXTg9JrD8tVhbEIEjSEQei70j9rdgp7AXeSK+M+e9TV7VrySzfNON7P9Jv/99Bw8qd56yb7qp69+MqfK++AbpjyrWNvFfyjpURb6YB2Ds8N+K3wdDMR84zpf9T6h8F1xo/U9Ivw+u+/EBdrXEuAAEAAA=
+   H4sIAAAAAAAAAJWSSw6CMBRFH/HHx8SxK2Af7o34S0SNIiCKG9Kpcweuw9v4iC+lBWxyBuX2tA23ERHNLSxA1JIvwQpcNdZg2zG/UX2U4AwKzvsO0YAZOt+8yc/EWTkYwXEZr4Ovj3/9I7gwCfDhBMxY8zdibUUMTiAVeSL2jtnfgb2Fg8hTcc+S91Z5U7+SQvNVN7L/J/3+9x08qN55zr7qpq1/NWaW79UdpD9pWNvFf1nWoSrqibkLpgb/bfE9EIi5bzhf9h9S/S2YsPUfkv09mN7HB8mbYeMABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -126,7 +126,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
+ <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJNhYGCQGUQYBnCJY5MjVj82NjbzCQFCduNSQ6wfCPmP0vAdjPqxhQs+QCh8CQFi9WNzH63sp0b4kooBkze4ZQAEAAA=
   </data>

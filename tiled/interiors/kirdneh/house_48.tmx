@@ -66,51 +66,51 @@
  <tileset name="kitchen cabnets" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="household items" firstgid="159" tilewidth="32" tileheight="32">
+ <tileset name="household items" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset name="square" firstgid="175" tilewidth="32" tileheight="32">
+ <tileset name="square" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
- <tileset name="dark red detail ns" firstgid="176" tilewidth="32" tileheight="32">
+ <tileset name="dark red detail ns" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
- <tileset name="items" firstgid="188" tilewidth="32" tileheight="32">
+ <tileset name="items" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation_2.png"/>
  </tileset>
- <tileset name="items2" firstgid="192" tilewidth="32" tileheight="32">
+ <tileset name="items2" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>
  </tileset>
- <tileset name="wooden clock" firstgid="196" tilewidth="32" tileheight="32">
+ <tileset name="wooden clock" firstgid="200" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
- <tileset name="vendors table" firstgid="198" tilewidth="32" tileheight="32">
+ <tileset name="vendors table" firstgid="202" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
- <tileset name="floors 3" firstgid="219" tilewidth="32" tileheight="32">
+ <tileset name="floors 3" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="stairs" firstgid="231" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvMwMDweJjgJ3jwqHlD37xRPIpH8eDCAFq5UwRABgAA
+   H4sIAAAAAAAAAHvOwMDwfJjgF3jwqHlD37xRPIpH8eDCAOHOWhtABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXRTwsBQRzG8TlRnFbyN1EUKUc5E8Vp7YF9Izjghjfh4C14Jbjg9XgmvzJNv5lZsVOf2vL17C6eECJjkQXP0ahtEXKQZOSh4Gi4NiH4k47QfNP+a28PO0sz0vqBY+9A9GYMF7jCDYbUHyO+i2ya0FKaOzzgqXQnZq/L7NXF5/9rGO6p3tu1NyF9xxa39+vR93oG6rE1+l4AZ/BhSteBtmdr4n5feRawhBXhjqnh9tawIVvDnqmJ+31D8f59ZzCn61D7jq2J8/lKkLJoOz6XyrRXgapDJ0Ij1eAFYAxaj0AGAAA=
+   H4sIAAAAAAAAALXRTwsBQRzG8TlRnFbyN1EUKUc5E8Vp7YF9Izjghjfh4E14Jbjg1XgmvzJNv5lZsVOf2vL17C6eECJjkQXP0ahtEXKQZOSh4Gi4NiH4k47QfNP+a28PO0sz0vqBY+9A9GYMF7jCDYbUHyO+i2ya0FKaOzzgqXQnZq/L7NXF5/9rGO6p3tu1NyF9xxa39+vR93oG6rE1+l4AZ/BhSteBtmdr4n5feRawhBXhjqnh9tawIVvDnqmJ+31D8f59ZzCn61D7jq2J8/lKkLJoOz6XyrRXgapDJ0Ij1eAFmg7Dx0AGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIAjQHwYiO2BuBaI6xgwwX4oDVIzA4inA/FsKBsdHEVi1wNxA5q8DRD3A/EEIJ4IxO1A3AHFnVjMe4HEbgTiJixqJgPxFCCeCsTdQNwDxb1Y1A4l4AbFuEA2EKch8ddQwT5agr00Np8WwA9K+wCxL5oYKWqGIijGI7cHSufSwyGjAANoQmltKpmnA6X1iFQPAClWKr9ABgAA
+   H4sIAAAAAAAAAGNggIATQHwciO2BuBaI6xgwwWEoDVIzA4inA/FsKBsdnERi1wNxA5q8DRD3A/EEIJ4IxO1A3AHFnVjMe4PEbgTiJixqJgPxFCCeCsTdQNwDxb1Y1A4l4AbFuEA2EKch8TdQwT5agoM0Np8WwA9K+wCxL5oYKWqGIijGI3cASufSwR2jABNoQmltKpmnA6X1iFQPAGhOB69ABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBxgHRDPB+IFQLxqYJ1CU3AMiI8D8QkksWkD5BZaAYeBdgAQmOHApKoZBYMThEDpICAORhMjRc0oQAUbgHgjEG8iUj0A2IvTg0AGAAA=
+   H4sIAAAAAAAAAGNgGBxgExAvBuIlQLxugN1CS3AKiE8D8RkksWkD5BZaAYeBdgAQmOHApKoZBYMThEDpICAORhMjRc0oQAVbgHgrEG8jUj0AVxr9IUAGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

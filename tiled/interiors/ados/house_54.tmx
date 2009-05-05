@@ -54,54 +54,54 @@
  <tileset name="kitchen" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="red rug" firstgid="230" tilewidth="32" tileheight="32">
+ <tileset name="red rug" firstgid="234" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="grass edges" firstgid="239" tilewidth="32" tileheight="32">
+ <tileset name="grass edges" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
- <tileset name="sofa" firstgid="275" tilewidth="32" tileheight="32">
+ <tileset name="sofa" firstgid="279" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_cream.png"/>
  </tileset>
- <tileset name="round white table" firstgid="281" tilewidth="32" tileheight="32">
+ <tileset name="round white table" firstgid="285" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
- <tileset name="wall" firstgid="287" tilewidth="32" tileheight="32">
+ <tileset name="wall" firstgid="291" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="green blue" firstgid="303" tilewidth="32" tileheight="32">
+ <tileset name="green blue" firstgid="307" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="entrance" firstgid="319" tilewidth="32" tileheight="32">
+ <tileset name="entrance" firstgid="323" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset name="armchair" firstgid="327" tilewidth="32" tileheight="32">
+ <tileset name="armchair" firstgid="331" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair_red.png"/>
  </tileset>
- <tileset name="corners" firstgid="339" tilewidth="32" tileheight="32">
+ <tileset name="corners" firstgid="343" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
- <tileset name="pots" firstgid="363" tilewidth="32" tileheight="32">
+ <tileset name="pots" firstgid="367" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pots_pink_blue.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAAtmYGAIHsQ4HwceKfoHIxalUC8u/c+A+DkQvyDT/pdA/AqIX5PptjdA/BaI3w2CMAZhdjroBwDS2X0vAAQAAA==
+   H4sIAAAAAAAAAAtmYGAIHsQ4HwceKfoHIxalUC8u/a+A+DUQvyHT/rdA/A6I35Pptg9A/BGIPw2CMAZhdjroBwA8SPqOAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNnZGBQJBMrAbE6EKsAsS2JWBWI1aD6rYDYm4GBwYsBFeQCxS0ZsANjNP0gwItFHSn6sQF0/VxAzEiCfhsgNsOCidWPCyDr1wBiQzRshMPMLKC4ICOqfmzxZ4dFP0ivECOm/cS6nw2qbi4Qm5OhPwWo7heUTY5+mBk/KdAPA+j6ZYFYjkhz8hhR9WOLP2RsD8QOaGKaUP3aQKxDADsCsRMWcT0gBgCYvyKWAAQAAA==
+   H4sIAAAAAAAAAKWRywrCMBBFZ7aFLuteRfFVFMFKUQSfC/sjrgT9n36q4i2k0IxTTOKFA+EyZxJIn4kGgQzBFIzA3pMxmBh/BwoiupKdB/qc9KyFXyVW5nx8LdKPAHv4W5ApuPptafozsBJkLTvv6BO2fe3/DopfuR3+vt/1/ZGZK8EmwL9h7m3OIX694/WHX0f6XdBz3PNk29f+r8kRnESXGn8OFj84g4vSL8EHpHErhwAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwARVQFwNZZ8A4pNY1KADVyB2gbLrgLgeyj4FxKeB+BoQ34CKXSfCPBg4A8RngfgWEN+Bit0mQT8tQAoWMW886mUYUfnM1HQMlYAw0I0iSFiUEbu6TUC8Fou4GFC9OBKWwKF/G4XuPECCWm+gG3xwuIMY4A/UG0CB/qEAAEBUV6sABAAA
+   H4sIAAAAAAAAAGNgwARVQFwNZZ8A4pNY1KADVyB2gbLrgLgeyj4FxKeB+BoQ34CKXSfCPBg4A8RngfgWEN+Bit0mQT8tQAoWMW886hUYUfnM1HQMlYA40I0SSFiSEbu6TUC8Fou4FFC9NBKWwaF/G4XuPECCWn+gGwJwuIMYEAzUG0KB/qEAACtPl7sABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUg4DrQDhgFWIEHI/l63UnQKwVUK02BXUMVAAA7P1szAAQAAA==
+   H4sIAAAAAAAAAGNgGAUg4DrQDhgFWIEPI/l6vUnQKwdUK0+BXUMVAACYYKhsAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">

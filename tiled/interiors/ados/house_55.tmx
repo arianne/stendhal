@@ -57,51 +57,51 @@
  <tileset name="kitchen" firstgid="207" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="tile" firstgid="231" tilewidth="32" tileheight="32">
+ <tileset name="tile" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
- <tileset name="red rug" firstgid="232" tilewidth="32" tileheight="32">
+ <tileset name="red rug" firstgid="236" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="grass edges" firstgid="241" tilewidth="32" tileheight="32">
+ <tileset name="grass edges" firstgid="245" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
- <tileset name="wall" firstgid="277" tilewidth="32" tileheight="32">
+ <tileset name="wall" firstgid="281" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="green blue" firstgid="293" tilewidth="32" tileheight="32">
+ <tileset name="green blue" firstgid="297" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="entrance" firstgid="309" tilewidth="32" tileheight="32">
+ <tileset name="entrance" firstgid="313" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset name="armchair" firstgid="317" tilewidth="32" tileheight="32">
+ <tileset name="armchair" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair_red.png"/>
  </tileset>
- <tileset name="corners" firstgid="329" tilewidth="32" tileheight="32">
+ <tileset name="corners" firstgid="333" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
- <tileset name="tiles" firstgid="353" tilewidth="32" tileheight="32">
+ <tileset name="tiles" firstgid="357" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtlZGBIHQQ4BQd+zoAdj+ofGMzGAMG00P8CKP4Sil/hsQOX/tdA8TdQ/JYMN74D6nkPxR8GMIzpiQETLOwwAAQAAA==
+   H4sIAAAAAAAAAMtkZGDIHAQ4Awd+zYAdj+ofGMzGAMG00P8GKP4Wit/hsQOX/vdA8Q9Q/JEMN34C6vkMxV8GMIzpiQFZ0OncAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNlZGAQJxNLALEsEEsBsTGJWBqIZaD6DYDYigE70MIhrommHwSYKNSPDTyiUD8uQKx+XSBWx4KR9csBsToa1sBiZgJQTBiKkfVjiz8TLPo5gGKlQLqKTP+D9NcB6QaQv8jQHwVU9wdIz8Gi3xYoZk+kGb+x6HcAijkR5wwwIMf9MGCOph9b/CFjUyA2QxOTh+pXBGIlAtgciC2wiKsAMQD806YgAAQAAA==
+   H4sIAAAAAAAAAJNkZGCQJhPLALEiEMsBsTmJWB6IFaD6TYDYigE70MIhroumHwSYKNSPDTyiUD8uQKx+XSBWx4KR9SsBsTYa1sFiZgpQTByKkfVjiz8LLPp5gGKlQLqKTP+D9NcB6QYgNiRDfxxIHRDPwaLfFihmT6QZ/7HodwCKORHnDDAgx/0wYI6mH1v8IWNLUP5AE1OG6lcFYjUC2BqIbbCIawAxAOfbRF8ABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASJQJwEZZ8E4lNY1OADyUCcAmWfBuIzQHwdiG8C8X0gfkCCWWeB+BwQ3wbiu0D8GIifkKD/HglqsYFoLGJmWMSscOh/RqH9tACNWMRSgdgbiH2A2BeP3i1APAGHnB8Q+wNxAB79O4F4BhFuBAFnLGKHgHgWkfodGRkYnBiJVIwFuAL1ulGgfygAAHeILrYABAAA
+   H4sIAAAAAAAAAGNgwASJQJwEZZ8E4lNY1OADyUCcAmWfBuIzQHwdiG8C8X0gfkCCWWeB+BwQ3wbiu0D8GIifkKD/HglqsYFoLGJmWMSscOh/RqH9tACNWMRSgdgbiH2A2BeP3i1APAGHnB8Q+wNxAB79O4F4BhFuBAFnLGKHgHgWkfpdGRkY3BiJVIwFeAL1elGgfygAAAbONqEABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6wpJI51Ab3sIiZYhEbrO4f6cCOkXy9thToHSkAALFWvhQABAAA
+   H4sIAAAAAAAAAGNgoA6wpJI51Ab3sIiZYhEbrO4f6cCJkXy9jhToHSkAAJqcyrIABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">

@@ -108,19 +108,19 @@
  <tileset name="kitchen" firstgid="227" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="jacuzzi" firstgid="251" tilewidth="32" tileheight="32">
+ <tileset name="jacuzzi" firstgid="255" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="jacuzzi" firstgid="269" tilewidth="32" tileheight="32">
+ <tileset name="jacuzzi" firstgid="273" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
- <tileset name="basin" firstgid="287" tilewidth="32" tileheight="32">
+ <tileset name="basin" firstgid="291" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
- <tileset name="towels" firstgid="290" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="294" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset name="household" firstgid="296" tilewidth="32" tileheight="32">
+ <tileset name="household" firstgid="300" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -130,22 +130,22 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUuU4DMRCGvVwdhCYcCQ2HBA1HEeiA5yAQrhSEglcACaqQHmhB4hA3pOJ6EpDgGSgAUfFbGkuOtbMer8RIn2Lt/t7PsXdnVCk1+I+MgX7QAzoEdAdkTX6AHJ1gA5TBObggLlVjZSgrrYzjKNP1K3BN3IBbxrEJtgIduu6Y7Ct4U8n/Yw/sgwOPg6t38OE4tsGOZ57rmPfkzRzpeazEOO4FnjzoEzrMmmxHPWCupOZiHJLqBbkATxqHOY/1hEwUKdUEmiO5o0i/dSU78xY8uxW0BTh06T1qB1nQRWNDzsnYZAMcej1cnzLvWT7mntuvfA6d+QRVcAxOwKqV+QY/NC6BQuBeGccXqIFTcMZkD8ER+dM4fj25uHnuN1iMyUnfJ7uqjCOp7B7yAJ7BI3ii8YuVXQK7jGMhYJ2+4hxcv9LX7R5SEjjS7JU5D70Pa2DZk68xjgqTr6jGM1/0PN9dm3GY/qD3owAmwZRK7iESTC8ZB0NgmJ4zDWbALGVG6H5aJsAf1Q87HMQJAAA=
+   H4sIAAAAAAAAALWUuU4DMRCGnYJTgtCEI6HhkKDhKADRAM9BIFwpCAWvABJUIT3QEolD3JCK60lAgmegAETFb2ksOdbOerwSI32Ktft7P8fenRGl1MA/Mgr6QDdoF9AVkDX5fnJ0gE1QBOfggrhU9ZWmrLTSjqNI16/ANXEDbhnHFtgOdOi6Y7Kv4E3F/499cAAOPQ6u3sGH49gBu555rmPBkzdzpOexGuG4F3hyoFfoMGuyHbWAuZKaj3BIqgdkAzxJHOY8NmIyDSmlGkFTSu7I029Nyc68Gc9uAa0BDl16j9pABnTS2JB1MjaZAIdeD9enzHuWi7jn9iufQ2c+QRkcgxOwZmW+wQ+NC2A6cK+M4wtUwCk4Y7JHoEr+JI5fTy5qnvsN5iNy0vfJrjLjiCu7hzyAZ/AInmj8YmWXwR7jWAxYp684B9ev9HW7hxQEjiR7Zc5D78M6WPHkK4yjxORLqv7MlzzPd9dmHKY/6P2YAJNgSsX3EAmml4yBQTBEz5kBs2COMsN0Pynj4A+F5BDhxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBykYMHUBqlYMLVBGhY8UkESCWqnAfEMWjlkmAIFxoGxd9LAWIsT7MMjpwEMI00gVsYSVhNp5iLaAQMs/iAmPkyB+vqp7prhDfbhYMNAG70cQmPQPtAOoCIIo4P5oTS2YyAAAI9fWoLECQAA
+   H4sIAAAAAAAAAGNgoBykYMHUBqlYMLVBGhY8UkESCWqnAfEMWjlkmAIVxoGxd9LAWIsT7MMjpwMMI10gVscSVhNp5iLaARMs/iAmPiyB+vqp7prhDfbhYMNAG70cQmPQPtAOoCIIo4P5oTS2YyAAAGt4El/ECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUBjcIyE8G4ilAPJVM869jEWsA4kYcduGyJ4JM+0kF9LJnFJAPwqH0JiLVCzMyMIgAsSgjrVw0tMBiIF6CJvYZiL/Qyf75QLyATnZhA6B0E45DfKDAViDeBsTbgXgHkXroUVbhCpOBDKtRMHQBAKq6aKPECQAA
+   H4sIAAAAAAAAAGNgGAXUBjcIyE8G4ilAPJVM869jEWsA4kYcduGyJ4JM+0kF9LJnFJAPwqH0JiLVizMyMEgAsSQjrVw0tMBiIF6CJvYZiL/Qyf75QLyATnZhA6B0E45DfKDAViDeBsTbgXgHkXroUVbhCpOBDKtRMHQBAEcetxfECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEw1EHHQDtgkIAtQLwdiM0ZB9olo2AU0B4AAK0WeIjECQAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEw1EHHQDtgkIAtQLwdiK0ZB9olo2AU0B4AAFCanF7ECQAA
   </data>
  </layer>
  <layer name="objects" width="25" height="25">

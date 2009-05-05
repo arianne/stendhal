@@ -60,53 +60,53 @@
  <tileset name="kitchen cabnets" firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="household items" firstgid="158" tilewidth="32" tileheight="32">
+ <tileset name="household items" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset name="towels" firstgid="174" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset name="water bubbles" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="water bubbles" firstgid="184" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png"/>
  </tileset>
- <tileset name="carpet nain rug" firstgid="196" tilewidth="32" tileheight="32">
+ <tileset name="carpet nain rug" firstgid="200" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
- <tileset name="table wooden rectangular" firstgid="212" tilewidth="32" tileheight="32">
+ <tileset name="table wooden rectangular" firstgid="216" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset name="flower baskets" firstgid="221" tilewidth="32" tileheight="32">
+ <tileset name="flower baskets" firstgid="225" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
- <tileset name="floor" firstgid="224" tilewidth="32" tileheight="32">
+ <tileset name="floor" firstgid="228" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
- <tileset name="ru" firstgid="228" tilewidth="32" tileheight="32">
+ <tileset name="ru" firstgid="232" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvAwMDwAIhzgTgPiPOJZD9Aw8VAXALEpUSy0fXjwo9w4OGo/wYJ5tJCPzacjAOP6qe9fhsS7CFXPwA1yHmkAAQAAA==
+   H4sIAAAAAAAAAHvCwMDwBIhzgTgPiPOJZD9Bw8VAXALEpUSy0fXjws9w4OGo/w4J5tJCPzacjAOP6qe9fhsK444Y/QA7CwcgAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgZiAdgPSwADErELORoZ8diHmg+mWA2AOHuplYxNyAWBpNPwjYEqmfAYd+bGAuFrFeEvRjAxPx6L+JplYQiCWxYG40/deBeAUW/aJALIUFo4f/LSC+DcR3iPQDqf4/AsRHofg4Fv11BPSfAOJtUHwei/4qIvTvhGJs+mvR1D8B4qdA/AzKvwDEl6D4Mhb9IFCPpP8VEL8G4jdY3OKBpp+LAXscy+EQR45/XiDmw4GV8MiBsAAQAwCJxrkoAAQAAA==
+   H4sIAAAAAAAAAGNkYGBgZiAdgPSwADErELORoZ8diHmg+mWA2AOHuplYxNyAWBpNPwjYEqmfAYd+bGAuFrFeEvRjAxPx6L+LplYQiCWxYG40/beBeA0W/aJALIUFo4f/PSC+D8QPiPQDqf4/AcQnofg0Fv11BPSfAeJdUHwZi/4qIvTvhWJs+mvR1L8A4pdA/ArKvwLE16D4Ohb9IFCPpP8dEL8H4g9Y3OKBpp+LAXscy+EQR45/XiDmw4GV8MiBsAAQAwDtfRWHAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA5wxyO3DIgnAPE0IJ4OxK5EmFcOpWOBeBUQTwHiWUA8m0R3xZCoHhdoQGI74lDTjEd/CxC34pG/TqqD0MByAvIboXQ2EKdSaFcGhfpHAWEgC6XlydSvCKWVCagDAIrLV38ABAAA
+   H4sIAAAAAAAAAGNgoA5wxyO3CognAPE0IJ4OxK5EmFcOpWOBeB0QTwHiWUA8m0R3xZCoHhdoQGI74lDTjEd/CxC34pG/TaqD0MBqAvJboXQ2EKdSaFcGhfpHAWEgC6XlydSvCKWVCagDANaCsXcABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC2YSmPzyQGdZOhpBOImPPJXgPgqEF8jy0VDH1QPtAOoAGqIVOdOU1fQFwAA5jr4GgAEAAA=
+   H4sIAAAAAAAAAGNgoC2YSmPzyQGdZOhpBOImPPI3gPgmEN8iy0VDH1QPtAOoAGqIVOdOU1fQFwAAGOnAgAAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHlgNZn6gvDI3SfTzFEwCgYSAACOvwCGAAQAAA==
+   H4sIAAAAAAAAAGNgGHlgPZn6gvDIPSbTzFEwCgYSAAD9Fo9VAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
