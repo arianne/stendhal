@@ -73,7 +73,7 @@
   <image source="../../tileset/furniture/shelve/item_shelf.png"/>
  </tileset>
  <tileset name="shelf green" firstgid="171" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="bottle and book shelfs" firstgid="177" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png"/>

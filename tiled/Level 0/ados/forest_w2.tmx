@@ -64,7 +64,7 @@
   <image source="../../tileset/ground/cobbled_paving.png"/>
  </tileset>
  <tileset name="items 3" firstgid="262" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items3.png"/>
+  <image source="../../tileset/item/bazaar_produce.png"/>
  </tileset>
  <tileset name="sacks" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>

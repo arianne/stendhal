@@ -96,8 +96,8 @@
  <tileset name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="254" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/shelve/sheilf_5.png" firstgid="260" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+ <tileset name="../../tileset/furniture/shelve/green_bookshelf.png" firstgid="260" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="../../tileset/item/logs.png" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>

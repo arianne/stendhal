@@ -97,7 +97,7 @@
   <image source="../../tileset/furniture/shelve/shelf_3.png"/>
  </tileset>
  <tileset name="shelf5" firstgid="283" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="potted plants" firstgid="289" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>

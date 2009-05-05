@@ -142,7 +142,7 @@
   <image source="../../tileset/plant/tree/palm_trees.png"/>
  </tileset>
  <tileset name="hotdog stand" firstgid="1200" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/hotdog_stand.png"/>
+  <image source="../../tileset/furniture/table/hotdog_stand.png"/>
  </tileset>
  <tileset name="signpost" firstgid="1220" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>

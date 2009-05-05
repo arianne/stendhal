@@ -31,19 +31,19 @@
   <image source="../../tileset/ground/water/pool_deep.png"/>
  </tileset>
  <tileset name="bazar table 1" firstgid="533" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_1.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_1.png"/>
  </tileset>
  <tileset name="bazzar table 2" firstgid="537" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_2.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_2.png"/>
  </tileset>
  <tileset name="bazzar table 3" firstgid="543" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_3.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_3.png"/>
  </tileset>
  <tileset name="bazzar table 4" firstgid="549" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_4.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_4.png"/>
  </tileset>
  <tileset name="bazzar table 5" firstgid="555" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_5.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_5.png"/>
  </tileset>
  <tileset name="awning 1" firstgid="561" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/awning_1.png"/>
@@ -55,7 +55,7 @@
   <image source="../../tileset/item/food/fish_crates.png"/>
  </tileset>
  <tileset name="items 3" firstgid="586" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items3.png"/>
+  <image source="../../tileset/item/bazaar_produce.png"/>
  </tileset>
  <tileset name="sacks" firstgid="590" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>

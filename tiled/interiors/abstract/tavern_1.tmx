@@ -36,8 +36,8 @@
  <tileset name="../../tileset/furniture/shelve/drawer_shelf.png" firstgid="128" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/drawer_shelf.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/shelve/sheilf_5.png" firstgid="134" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+ <tileset name="../../tileset/furniture/shelve/green_bookshelf.png" firstgid="134" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="../../tileset/furniture/shelve/shelf_3.png" firstgid="140" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/shelf_3.png"/>

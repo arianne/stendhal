@@ -64,7 +64,7 @@
   <image source="../../tileset/furniture/shelve/narrow_bookshelf.png"/>
  </tileset>
  <tileset name="bookshelf6" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="entrance_we" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew.png"/>

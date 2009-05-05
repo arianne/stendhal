@@ -76,7 +76,7 @@
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
  <tileset name="bazar items 3" firstgid="213" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items3.png"/>
+  <image source="../../tileset/item/bazaar_produce.png"/>
  </tileset>
  <tileset name="collision" firstgid="217" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

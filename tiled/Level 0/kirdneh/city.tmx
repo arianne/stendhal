@@ -268,19 +268,19 @@
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
  <tileset name="bazar table 1" firstgid="1039" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_1.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_1.png"/>
  </tileset>
  <tileset name="bazar table 2" firstgid="1043" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_2.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_2.png"/>
  </tileset>
  <tileset name="bazar table 3" firstgid="1049" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_3.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_3.png"/>
  </tileset>
  <tileset name="bazar table 4" firstgid="1055" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_4.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_4.png"/>
  </tileset>
  <tileset name="bazar table 5" firstgid="1061" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/bazar_table_5.png"/>
+  <image source="../../tileset/furniture/table/bazaar_table_5.png"/>
  </tileset>
  <tileset name="flowers on bench" firstgid="1067" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
@@ -295,7 +295,7 @@
   <image source="../../tileset/furniture/table/table_copper.png"/>
  </tileset>
  <tileset name="bazar items 3" firstgid="1097" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/bazar_items3.png"/>
+  <image source="../../tileset/item/bazaar_produce.png"/>
  </tileset>
  <tileset name="sacks" firstgid="1101" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>

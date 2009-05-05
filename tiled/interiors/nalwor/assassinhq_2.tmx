@@ -43,7 +43,7 @@
   <image source="../../tileset/furniture/shelve/narrow_bookshelf.png"/>
  </tileset>
  <tileset name="bookshelf6" firstgid="86" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="assassins" firstgid="92" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>

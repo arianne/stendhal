@@ -82,7 +82,7 @@
   <image source="../../tileset/item/textile/blankets.png"/>
  </tileset>
  <tileset name="shelf" firstgid="244" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">

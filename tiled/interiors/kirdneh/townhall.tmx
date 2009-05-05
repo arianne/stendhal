@@ -30,8 +30,8 @@
  <tileset name="../../tileset/item/documents/note_board.png" firstgid="112" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/note_board.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/shelve/sheilf_5.png" firstgid="116" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+ <tileset name="../../tileset/furniture/shelve/green_bookshelf.png" firstgid="116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/stairs_grey.png" firstgid="122" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_grey.png"/>

@@ -124,7 +124,7 @@
   <image source="../../tileset/furniture/chair/bench_iron_reverse.png"/>
  </tileset>
  <tileset name="shelf5" firstgid="254" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/sheilf_5.png"/>
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
  <tileset name="itemshelf" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/item_shelf.png"/>
