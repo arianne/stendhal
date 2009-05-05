@@ -10414,8 +10414,8 @@
     <type class="huge_hybrid" subclass="arachne" tileid="hybrid.png:13"/>
     <description>You see Arachne, a horrid half woman half spider. With so many legs she can hit you very fast, and her poisonous bite is fierce.</description>
     <attributes>
-      <atk value="1090"/>
-      <def value="160"/>
+      <atk value="666"/>
+      <def value="171"/>
       <hp value="8000"/>
       <speed value="0.9"/>
       <size value="2,2"/>
