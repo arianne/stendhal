@@ -17,6 +17,7 @@ import utilities.QuestHelper;
 
 public class LearnAboutKarmaTest {
 
+	private static final String KARMA_ANSWER = "When you do a good thing like a #task for someone else, you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?";
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -54,7 +55,7 @@ public class LearnAboutKarmaTest {
 		en.step(player, "no");
 		assertEquals("I knew it ... you probably have bad #karma.", npc.get("text"));
 		en.step(player, "karma");
-		assertEquals("When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?", npc.get("text"));
+		assertEquals(KARMA_ANSWER, npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Your karma is roughly -10.", npc.get("text"));
 		en.step(player, "bye");
@@ -65,9 +66,9 @@ public class LearnAboutKarmaTest {
 		en.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
 		en.step(player, "task");
-		assertEquals("I don't need anything but I can tell you your #karma.", npc.get("text"));
+		assertEquals("If you want to get good #karma all you have to do is be helpful to others. I know a hunter girl called Sally who needs wood, and I know another girl called Annie who loves icecream, well, I know many people who needs tasks doing for them regularly and I'm sure if you help them you will be rewarded, that's how karma works after all.", npc.get("text"));
 		en.step(player, "karma");
-		assertEquals("When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?", npc.get("text"));
+		assertEquals(KARMA_ANSWER, npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Your karma is roughly -10.", npc.get("text"));
 		en.step(player, "bye");
@@ -86,11 +87,11 @@ public class LearnAboutKarmaTest {
 		en.step(player, "yes");
 		assertEquals("Wonderful! You must have good #karma.", npc.get("text"));
 		en.step(player, "karma");
-		assertEquals("When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?", npc.get("text"));
+		assertEquals(KARMA_ANSWER, npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Your karma is roughly -5.", npc.get("text"));
 		en.step(player, "karma");
-		assertEquals("When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?", npc.get("text"));
+		assertEquals(KARMA_ANSWER, npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Your karma is roughly -5.", npc.get("text"));
 		en.step(player, "bye");
