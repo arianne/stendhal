@@ -24,11 +24,12 @@ public class UpdatePlayerEntitiesTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockStendlRPWorld.get();
 	}
 
 	@Test
 	public void testDoUpdate() throws SQLException, IOException {
+		//updatePlayerEntities has to be initialized here to get rid of MockStendlRPWorld.get()
+		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 		StendhalPlayerDatabase spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
 		
 		PlayerModifier pm = new PlayerModifier();
@@ -48,7 +49,6 @@ public class UpdatePlayerEntitiesTest {
 
 		assertTrue(pm.savePlayer(loaded));
 
-		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 		Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
 		updatePlayerEntities.savePlayer(changing);
 		

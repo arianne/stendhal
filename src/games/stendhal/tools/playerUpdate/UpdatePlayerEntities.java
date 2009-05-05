@@ -1,9 +1,9 @@
 package games.stendhal.tools.playerUpdate;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,8 +20,9 @@ public class UpdatePlayerEntities {
     private final StendhalPlayerDatabase spdb;
 
     UpdatePlayerEntities() {
+    	new RPClassGenerator().createRPClasses();
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
-    	MockStendlRPWorld.get();
+    	//MockStendlRPWorld.get();
     }
     
 	private void loadAndUpdatePlayers() {

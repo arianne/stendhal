@@ -613,7 +613,6 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_tiled}"/>
-				<pathelement path="${build_tests}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -674,6 +673,8 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
+				<pathelement path="${easymock_jar}"/>
+				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
