@@ -25,11 +25,6 @@ public class MockDatabase extends StendhalPlayerDatabase {
 		database = this;
 	}
 
-	public static void resetDatabase() {
-
-		database = null;
-	}
-
 	@Override
 	public Transaction getTransaction() {
 		return new JDBCTransaction(null) {
