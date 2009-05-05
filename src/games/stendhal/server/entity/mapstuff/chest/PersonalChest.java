@@ -2,6 +2,7 @@ package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -38,6 +39,8 @@ public class PersonalChest extends Chest {
 	private RPEntity attending;
 
 	private final String bankName;
+
+	private SyncContent chestSynchronizer;
 
 	/**
 	 * Create a personal chest using the default bank slot.
@@ -158,7 +161,8 @@ public class PersonalChest extends Chest {
 	public void open(final RPEntity user) {
 		attending = user;
 
-		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SyncContent());
+		chestSynchronizer = new SyncContent();
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, chestSynchronizer);
 
 		final RPSlot content = getSlot("content");
 		content.clear();
@@ -183,6 +187,7 @@ public class PersonalChest extends Chest {
 
 		getSlot("content").clear();
 		attending = null;
+
 	}
 
 	/**
@@ -229,6 +234,13 @@ public class PersonalChest extends Chest {
 				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 			}
 		}
+		
+		
 	}
+@Override
+public void onRemoved(final StendhalRPZone zone) {
+	SingletonRepository.getTurnNotifier().dontNotify(chestSynchronizer);
 
+	super.onRemoved(zone);
+}
 }

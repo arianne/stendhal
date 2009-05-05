@@ -22,6 +22,7 @@ import java.net.URI;
 import java.util.Iterator;
 
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.IRPZone.ID;
 import marauroa.server.game.rp.RPWorld;
 
 import org.apache.log4j.Logger;
@@ -64,15 +65,18 @@ public class StendhalRPWorld extends RPWorld {
 		instance = this;
 	}
 
+	@Override
+	public IRPZone removeRPZone(final ID zoneid) throws Exception {
+		return super.removeRPZone(zoneid);
+	}
+	
 	public void removeZone(final StendhalRPZone toBeRemoved) {
-		Iterator<IRPZone> it = iterator();
-		while (it.hasNext()) {
-			IRPZone zone = it.next();
-			if (zone.getID().equals(toBeRemoved.getID())) {
-				it.remove();
-			}
+		try {
+			removeRPZone(toBeRemoved.getID());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
 	
 	
