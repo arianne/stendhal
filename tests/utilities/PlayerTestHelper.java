@@ -226,14 +226,7 @@ public abstract class PlayerTestHelper {
 		SingletonRepository.getNPCList().remove(npcName);
 	}
 
-	/**
-	 * Remove a zone from the world.
-	 * 
-	 * @param zoneName
-	 */
-	public static void removeZone(final String zoneName) {
-		// TODO implement removeZone()
-	}
+
 
 	public static void addEmptySlots(final Player player) {
 //		"bag", "rhand", "lhand", "head", "armor",
