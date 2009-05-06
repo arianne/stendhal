@@ -254,8 +254,8 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
-			assertThat(playerSays, npc.getText(), is("I understand. If there's anything else I can do for you, just say."));
+			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
+			assertThat(playerSays, npc.getText(), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
 		}
 	}
 
