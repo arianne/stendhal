@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/logic/collision.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
@@ -81,26 +81,23 @@
  <tileset name="jacuzzi" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="jacuzzi roof part" firstgid="248" tilewidth="32" tileheight="32">
+ <tileset name="jacuzzi roof part" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
- <tileset name="rug" firstgid="266" tilewidth="32" tileheight="32">
+ <tileset name="rug" firstgid="284" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/red_purple.png"/>
  </tileset>
- <tileset name="bluecarpet" firstgid="275" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/blue.png"/>
- </tileset>
- <tileset name="blue rug" firstgid="284" tilewidth="32" tileheight="32">
+ <tileset name="blue rug" firstgid="293" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/royalblue.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvMwMCweAhgGUYGBlkgVgBiOUbS9ctD9YKw4gDoVwLqUYZiFTL00xtfAeJrg8Ad2PAyMvUg46Gmn1YYAJsjwmcABAAA
+   H4sIAAAAAAAAAFvMwMCweAhgVUYGBjUg1gRidUbS9WtA9YKw1gDo1wbq0YFiXTL00xtfAeJrg8Ad2PAyMvUg46Gmn1YYAG3bTIoABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ2SSQrCQBBFK5ss1IV6AM/hURxQd0bUOMThOg4bx42QtWcRBVG8hL9JNZRtBmPBg+7qep1qKj0imvxJH8xAHTQiaEacq/yc/RaogCqo0We0+VzFBmxFXvo6TkyYvwP7BN+MMfB4fQDHlH5U/Oq7YJDgO6Aj6lzeK7p8/znG1/PR71RvXoMVBXNSvp+y/wVYcp3uT/Zo+hdwNe4oc538f7wUvq4L68/0byBjEWVBzgpqSsK/g0fC+/PwCqBofX//CV6c8yl8fgpbrPX8HCOn88ofgqnANvZxjMAboWaMcAAEAAA=
+   H4sIAAAAAAAAAJ2SSQrCQBBFK5ucQrNQD+FRHFB3RtQ4xOE6DhvHjZC1ZxEFUbyEv0k1lG0GY8GD7up6nWoqPSKa/EkfzEAdNGJoxpyr/Jz9FqiAKqjRZ7T5XMUGbEVe+jpOTJS/A/sU34wx8Hl9AMeMflz86ntgkOK7oCPqPN4runz/OcHX89HvVG9egxWFc1J+kLH/BVhyne5P9mj6F3A17ihznfx//Ay+rovqz/RvIGcR5YFjhTWO8O/gkfL+ArwiKFnf33+CF+cCip6fwhZrPT/XyOm88odgKrCNfRIj8AZ+aYXwAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -110,7 +107,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD+wHwA7QeAAEB8cILspBbsp1L+ZKq7ADe4C8X0a2zGQ4AcQ/4KyaR2W9AQAz3T6iQAEAAA=
+   H4sIAAAAAAAAAGNgoD+wHwA7QeAAEB8cILspBbsp1L+ZKq7ADe4C8X0a2zGQgIuRgYGHEcKmdVjSEwAAfvAx6QAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -123,12 +120,12 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
+ <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAM2QUQoAMAhCX/e/9P6llkGwBUFYZhlAfJoYtWJIHYIjeLYnm+v0K34VLi/ru57dNLb53X8vbsTAb/5P/qticrvT384DBrY4dgAEAAA=
   </data>
  </layer>
- <layer name="protection" width="16" height="16" visible="0">
+ <layer name="protection" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>

@@ -87,10 +87,10 @@
  <tileset name="jacuzzi" firstgid="384" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="jacuzzi wading" firstgid="402" tilewidth="32" tileheight="32">
+ <tileset name="jacuzzi wading" firstgid="420" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
  </tileset>
- <tileset name="towels" firstgid="420" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="438" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -105,12 +105,12 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASngPg0lF2NJqfCyMCgyoiphxWIO6Hsc0B8HsquAWItoHorILYGYjUgVseiHx/QA6q3A2J7INYAYk0S9VMbbB9Y60kGK4HhVQLEpVBcRkb4lQP1VEBxJQn6VwHxajSxKSTYuw6I1xOhjhfopgYgLQyk24B0FQl2gMAbKN0KpUnVDwI/oLQsI3n6kYEmlNYmU78ulNYnoA4ARuSu1QAEAAA=
+   H4sIAAAAAAAAAGNgwASngPg0lF2NJqfCyMCgyoiphxWIO6Hsc0B8HsquAWItoHorILYGYjUgVseiHx/QA6q3A2J7INYAYk0S9VMbbB9Y60kGu4HhVQLEpVBcRkb4lQP1VEBxJQn6VwHxajSxKSTYuw6I1xOhjhfopgYgLQyk24B0FQl2gMAbKN0KpUnVDwI/oLQsI3n6kYEmlNYmU78ulNYnoA4A2MJcJAAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHlAl3GgXUA8mAR062Qgng/EM6HsKXR0/zIsYpNJNGM5lK4GurtmCIU9LkCq/wczAAADmYXZAAQAAA==
+   H4sIAAAAAAAAAGNgGHlAl3GgXUA8WAJ061Ig3gjEq6HsZXR0/zIsYpNJNGM5lK4GurtmCIU9LkCq/wczAADJfBvCAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
