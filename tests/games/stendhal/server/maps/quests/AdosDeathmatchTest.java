@@ -1,12 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
-
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -16,6 +11,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC;
 import games.stendhal.server.util.Area;
+
+import java.awt.geom.Rectangle2D;
+
 import marauroa.common.Log4J;
 
 import org.junit.AfterClass;
@@ -39,7 +37,7 @@ public class AdosDeathmatchTest {
 		configurator.configureZone(zone, null);
 		// some of the recruiter responses are defined in the quest not the configurator
 		
-		new AdosDeathmatch(ados_wall_n,new Area(ados_wall_n, new Rectangle2D.Double(0,0,ados_wall_n.getWidth(),ados_wall_n.getHeight()))).addToWorld();	
+		new AdosDeathmatch(ados_wall_n, new Area(ados_wall_n, new Rectangle2D.Double(0, 0, ados_wall_n.getWidth(), ados_wall_n.getHeight()))).addToWorld();	
 	}
 	
 	@AfterClass
@@ -91,7 +89,7 @@ public class AdosDeathmatchTest {
 		en.step(dmPlayer, "challenge");
 		
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals(null,recruiter.get("text"));
+		assertEquals(null, recruiter.get("text"));
 		assertNotNull(dmPlayer.getZone());
 		// no players already in zone, send straight in
 		assertEquals(ados_wall_n, dmPlayer.getZone());
