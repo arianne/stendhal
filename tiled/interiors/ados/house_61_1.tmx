@@ -54,18 +54,18 @@
  <tileset name="whirlpool" firstgid="322" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png"/>
  </tileset>
- <tileset name="water" firstgid="326" tilewidth="32" tileheight="32">
+ <tileset name="water" firstgid="330" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
  </tileset>
- <tileset name="pebbles" firstgid="350" tilewidth="32" tileheight="32">
+ <tileset name="pebbles" firstgid="354" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
- <tileset name="rocks" firstgid="353" tilewidth="32" tileheight="32">
+ <tileset name="rocks" firstgid="357" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtjYGBIB2JmEnEWEGcDcQEQFwJxERALE4mLgbgEiEuBeNMopioOYmRgCGGE0OToDwbqc2KE0OToh9lNrv2jmL4YAF/LBPYABAAA
+   H4sIAAAAAAAAAEtjYGBIB2JmEnEWEGcDcQEQFwJxERALE4mLgbgEiEuBeNMopioOY2RgiGCE0OToDwfqc2KE0OToh9lNrv2jmL4YAHEVxR8ABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -75,7 +75,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA7+gwhGIGLEoYAAYALqYwZiFkaIOf9hZpKhH0Qj83G5SZsIt1LVX3jACxziXGTaSwgsoVB/ItRdCVCaHHe+BOJ4RohZSVD9PFT071EovROL3F0k9hMq2SeExe3vgfgeHj1H8Mi9otA9tAAAg9bqOwAEAAA=
+   H4sIAAAAAAAAAGNgwA7+gwhGIGLEoYAAYALqYwZiFkaIOf9hZpKhH0Qj83G5SZsIt1LVX3jACxziXGTaSwgsoVB/KtRdKVCaHHe+BOJkRohZaVD9PFT071EovROL3F0k9hMq2SeExe3vgfgeHj1H8Mi9otA9tAAA96XfEQAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
