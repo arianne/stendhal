@@ -130,7 +130,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD0oZ2RgqADiAiBuAOJCRkw1+VB8AQ1fBOJqoPoaIC6B4lIs+i9B9TMA5RihmAmIr2Bxz10sYpegNDNQDwsUs0L1VyHZNxnIvoND/28omw2ohgOqB10/CJzDof8/lM0DVM+HpD8HyM7F4mds7kcH2PxPC/1XgfgaFnwdi1otIs3EBbQp1K9DoX5KgeYA2z8YQTEQ9wFxFxa5BzjY6GAiHrloYP6JIZCH8IFYoN44PPo/AvEHHHIPcLCRwRsgfg3Ep0l32oACAPO83ORABgAA
+   H4sIAAAAAAAAAGNgoD0oZ2RgqADiAiBuAOJCRkw1+VB8AQ1fBOJqoPoaIC6B4lIs+i9B9TMA5RihmAmIr2Bxz10sYpegNDNQDwsUs0L1VyHZNxnIvoND/28omw2ohgOqB10/CJzDof8/lM0DVM+HpD8HyM7F4mds7kcH2PxPqX5NLGJXgfgaFnwdi1otIt2EC2hTqF+HQv2jgPqgGIj7gLgLi9wDHGx0MBGPXDQw/8QQyEP4QCxQbxwe/R+B+AMOuQc42MjgDRC/BuLTpDttQAEAMZJx6kAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="25">
@@ -155,7 +155,7 @@
  </layer>
  <layer name="collision" width="16" height="25" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2UawoAIAiDd77uf6D+y9pcD2gQ9PDTMG0AGB8NiDXIuTtjUvzK3vHsDgnP7Kqt8tG5d8ornfDu/Xf5G/E7tXDCr3ykUmzSH53a6vAv8sj+A7WXKO0flwcXq85Vftmc+fxhTLLLXzxABgAA
+   H4sIAAAAAAAAAM2UWwoAIAgE93zd/0D9x7YPKkgQKh0V0QaA8ZFC3EHszsZE8Tt/x7MaGp75rb4qRlJ3y6fsDb6Jc8K6/MksnPC7OK0ottmPZLYS/kUf2X+g3hpp98f1weVaz6q/7Mxi/qATIn+oE0AGAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="25">

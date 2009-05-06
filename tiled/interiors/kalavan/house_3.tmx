@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -111,16 +111,13 @@
  <tileset name="jacuzzi" firstgid="255" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="jacuzzi" firstgid="291" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
- </tileset>
- <tileset name="basin" firstgid="309" tilewidth="32" tileheight="32">
+ <tileset name="basin" firstgid="291" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
- <tileset name="towels" firstgid="312" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="294" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset name="household" firstgid="318" tilewidth="32" tileheight="32">
+ <tileset name="household" firstgid="300" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -130,22 +127,22 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUuU4DMRCGnYJTgtCEI6HhkKDhKIAO6HkDAuFKQSh4BZCgCumBlkgc4oZUXE8CEjwDBSAqfktjybF21uOVGOlTrN3f+zn27owopQb+kVHQB7pBu4CugKzJ95OjA2yCIjgHF8Slqq80ZaWVdhxFun4FrokbcMs4tsB2oEPXHZN9BW8q/n/sgwNw6HFw9Q4+HMcO2PXMcx0LnryZIz2P1QjHvcCTA71Ch1mT7agFzJXUfIRDUj0gG+BJ4jDnsRGTaUgp1QiaUnJHnn5rSnbmzXh2C2gNcOjSe9QGMqCTxoask7HJBDj0erg+Zd6zXMQ9t1/5HDrzCcrgGJyANSvzDX5oXABzgXtlHF+gAk7BGZM9AlXyJ3H8enJR89xvMB+Rk75PdpUZR1zZPeQBPINH8ETjFyu7DPYYx2LAOn3FObh+pa/bPaQgcCTZK3Meeh/WwYonX2EcJSZfUvVnvuR5vrs24zD9Qe/HBJgEUyq+h0gwvWQMDIIhes40mAGzlBmm+0kZB38tjGHaxAkAAA==
+   H4sIAAAAAAAAALWUuU4DMRCGnYJTgtCEI6HhkKDhKADRAM9BIFwpCAWvABJUIT3QEolD3JCK60lAgmegAETFb2ksOdbOerwSI32Ktft7P8fenRGl1MA/Mgr6QDdoF9AVkDX5fnJ0gE1QBOfggrhU9ZWmrLTSjqNI16/ANXEDbhnHFtgOdOi6Y7Kv4E3F/499cAAOPQ6u3sGH49gBu555rmPBkzdzpOexGuG4F3hyoFfoMGuyHbWAuZKaj3BIqgdkAzxJHOY8NmIyDSmlGkFTSu7I029Nyc68Gc9uAa0BDl16j9pABnTS2JB1MjaZAIdeD9enzHuWi7jn9iufQ2c+QRkcgxOwZmW+wQ+NC2A6cK+M4wtUwCk4Y7JHoEr+JI5fTy5qnvsN5iNy0vfJrjLjiCu7hzyAZ/AInmj8YmWXwR7jWAxYp684B9ev9HW7hxQEjiR7Zc5D78M6WPHkK4yjxORLqv7MlzzPd9dmHKY/6P2YAJNgSsX3EAmml4yBQTBEz5kBs2COMsN0Pynj4A+F5BDhxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBykYMHUBqlYMLVBGhY8UkESCWqnAfEMWjlkmAIzxoGxd9LAWIsT7MMjZwcMI3sgtsQSVhNp5iLaATcs/iAmPryB+vqp7prhDfbhYMNAG70cQmPQPtAOoCIIo4P5oTS2YyAAAD8/6UzECQAA
+   H4sIAAAAAAAAAGNgoBykYMHUBqlYMLVBGhY8UkESCWqnAfEMWjlkmAIVxoGxd9LAWIsT7MMjpwMMI10gVscSVhNp5iLaARMs/iAmPiyB+vqp7prhDfbhYMNAG70cQmPQPtAOoCIIo4P5oTS2YyAAAGt4El/ECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUBjcIyE8G4ilAPJVM869jEWsA4kYcduGyJ4JM+0kF9LJnFJAPwqH0JiLVazIyMGgBsTYjrVw0tMBiIF6CJvYZiL/Qyf75QLyATnZhA6B0E45DfKDAViDeBsTbgXgHkXroUVbhCpOBDKtRMHQBADo/gu7ECQAA
+   H4sIAAAAAAAAAGNgGAXUBjcIyE8G4ilAPJVM869jEWsA4kYcduGyJ4JM+0kF9LJnFJAPwqH0JiLVCzIyMEgAsSQjrVw0tMBiIF6CJvYZiL/Qyf75QLyATnZhA6B0E45DfKDAViDeBsTbgXgHkXroUVbhCpOBDKtRMHQBAOLUaRHECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEw1EHHQDtgkIAtQLwdiH0ZB9olo2AU0B4AAHHN6ILECQAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEw1EHHQDtgkIAtQLwdiK0ZB9olo2AU0B4AAFCanF7ECQAA
   </data>
  </layer>
  <layer name="objects" width="25" height="25">

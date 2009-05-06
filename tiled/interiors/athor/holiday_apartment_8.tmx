@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/pot/box.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
@@ -21,37 +21,34 @@
  <tileset name="jacuzzi" firstgid="28" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="bubbles" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on_wading.png"/>
- </tileset>
- <tileset name="table" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset name="table" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/oriental_table.png"/>
  </tileset>
- <tileset name="rolled blankets" firstgid="86" tilewidth="32" tileheight="32">
+ <tileset name="rolled blankets" firstgid="68" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/blankets.png"/>
  </tileset>
- <tileset name="towels" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="towels" firstgid="80" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset name="cushion" firstgid="104" tilewidth="32" tileheight="32">
+ <tileset name="cushion" firstgid="86" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_yellow.png"/>
  </tileset>
- <tileset name="bed" firstgid="105" tilewidth="32" tileheight="32">
+ <tileset name="bed" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/colorful.png"/>
  </tileset>
- <tileset name="plant" firstgid="121" tilewidth="32" tileheight="32">
+ <tileset name="plant" firstgid="103" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset name="wall" firstgid="123" tilewidth="32" tileheight="32">
+ <tileset name="wall" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/dojo_walls.png"/>
  </tileset>
- <tileset name="lamp" firstgid="283" tilewidth="32" tileheight="32">
+ <tileset name="lamp" firstgid="265" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="286" tilewidth="32" tileheight="32">
+ <tileset name="flames" firstgid="268" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="door" firstgid="292" tilewidth="32" tileheight="32">
+ <tileset name="door" firstgid="274" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dojo_entrances.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -61,17 +58,17 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXSTwsBQRjH8VGKsg4UB9a/nOWMM16Hm/IO5CXIi3KTm7soLhSvwXc0appmHubgqU+zszu/eXbbOSmlzlhFuuCKG+5YR3rgiT22SDMqWL5nO2ysvC5hi/czbSbkUzTQRRNZK78wpP4ttI2O8C6+fA31wKgrQdHi6x9TofzckEr/D1/ezn3b49f80sl95v/4frdXbP+eOYB96SA6+Rxr8zhwPWAcYmTmkgJrEpRQxpF7Y8YJpmYuqbCmihe4UrRPAAQAAA==
+   H4sIAAAAAAAAALXSTw4BMRTH8U7MSriAMf7EAmucw07iBuII4lB2Mjt7IWFDwjVI2PAtlTST9tGFl3zSNO2vr5PpRim1xTTQDnsccMQs0AlnZFigGClvudaWmFt5XcIRrzVtKOSrSNFCDbGVHxtS/zoaRlO4iytfQeIZdZVQtrj6h5QvPzKk0v/Dlbdz3874NT/J5T7zf3x/vldo/8Q8wFR6iLn8BVes0CbXQTd6zyU33PHQh7F/zdBj7GNg5pICe2I8ATZCdbAABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6QZiRPDgZk8ajBJ4cMkvDI5UAxLYEkEEsg0dQGPEiYEkBMfOAD+OIjCIiDKTA7BIhD0cRKkDA5oBSIy4C4nEz9A20/LQEANADbNQAEAAA=
+   H4sIAAAAAAAAAGNgoA7gZCRPDga48ajBJ4cMAvDIRUExLYEkEEsg0dQGPEiYEkBMfOAD+OLDAYgdKTDbCYid0cSSkDA5IBmIU4A4lUz9A20/LQEA+OmI6AAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6QY8Qtp4BHjlQQRz2jMIADEDsCsTsQO6HJsaFhdCCBRUwSSZwTDQ8kUKJifBAClQT4tLSL3vbrQsNVn8zwtYTqsyZTvytQnxsQu5OgHwA/V1V9AAQAAA==
+   H4sIAAAAAAAAAGNgoA7gYcQtx4dHjlTgQz2jMIAJEFsDsT4QG6DJsaFhdCCBRUwSSZwTDQ8kEKBifBAC6QT4tLSL3vZLQ8NVlszwVYfq0yRTvzFQnwkQm5KgHwAX2Gf9AAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
