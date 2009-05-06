@@ -54,28 +54,50 @@ public class PlayerDieer {
 
 	public void onDead(final Entity killer) {
 		player.put("dead", "");
-		logger.info("ondeadstart");
+		logger.debug("ondeadstart");
 		abondonPetsAndSheep();
 
 		stopEating();
 		
+		double penaltyFactor = 1.0;
 
+		// only lose skills if creature is a spawned creature and not one from /summon or Plague
 		if (!(killer instanceof RaidCreature)) {
-			logger.info("noraidcreature");
+			logger.debug("noraidcreature");
+			logger.debug("player karma is " + player.getKarma());
+   			double karma;
+			if (player.isBadBoy()) {
+			    // don't allow PKers to use good karma to help against death penalty
+			    // if they had positive karma, this will return 0 (i.e. no change to the normal death penalty)
+				karma = player.useKarma(-100.0, 0.0);
+			} else {
+				karma = player.useKarma(-100.0, 100.0);
+			}
+			logger.debug("karma selected: " + karma);
+			// scale down to between -1 and 1, as the penalty factor is scaled to 1 (we will also need to scale again before adding to penaltyFactor)
+			karma = karma/100.0;
+
 			final List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
 			
-			logger.info("ringlist " + ringList);
-			double penaltyFactor;
+			logger.debug("ringlist " + ringList);
+	
 			if (ringList.isEmpty()) {
-				penaltyFactor = 0.9;
+			    // if player has positive karma, then they will lose between 0% and 10% skills - less than if karma was ignored
+			    // if player has negative karma, they lose between 10% and 20% skills - more than if karma was ignored
+			    penaltyFactor = 0.9 + (karma/10.0);
+			    logger.debug("penaltyFactor: " + penaltyFactor);
 			} else {
-				ringList.get(0).damage();
-				penaltyFactor = 0.99;
+			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored                             
+			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored  
+			    ringList.get(0).damage();
+			    penaltyFactor = 0.99 + (karma/100.0);
 			}
-			
-			player.setXP((int) (player.getXP() * penaltyFactor));
-			player.setATKXP((int) (player.getATKXP() * penaltyFactor));
-			player.setDEFXP((int) (player.getDEFXP() * penaltyFactor));
+			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
+			// and even then, some chance will mean they are not guaranteed to hit the maximum 
+			// (just because we call useKarma(-100.0,100.0) doesn't mean that a player with over 100.0 karma will get 100.0 used. He is just more likely to get 100.0 used.)
+			player.setXP((int) Math.round(player.getXP() * penaltyFactor));
+			player.setATKXP((int) Math.round(player.getATKXP() * penaltyFactor));
+			player.setDEFXP((int) Math.round(player.getDEFXP() * penaltyFactor));
 			if (killer instanceof Player) {
 								Player playerKiller = (Player) killer;
 								handlePlayerKiller(playerKiller);
@@ -83,6 +105,8 @@ public class PlayerDieer {
 			player.update();
 		}
 
+		// this is for telling the player what % of their old value, the skills are now. so, some loss of precision is ok. 
+		final int skillPercentage = (int) Math.round(penaltyFactor * 100.0);
 		
 		player.setHP(player.getBaseHP());
 
@@ -114,9 +138,9 @@ public class PlayerDieer {
 					strings.add(Grammar.a_noun(item.getName()));
 				}
 			}
-			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ".");
+			player.sendPrivateText(NotificationType.NEGATIVE, "Your corpse contains " + Grammar.enumerateCollection(strings) + ", but you may be able to retrieve " + Grammar.itthem(numberOfDrops) + ". Your skills are " + skillPercentage + "% of their old value.");
 		} else {
-			player.sendPrivateText(NotificationType.POSITIVE, "You were lucky and dropped no items when you died.");
+			player.sendPrivateText(NotificationType.POSITIVE, "You were lucky and dropped no items when you died. Your skills are " + skillPercentage + "% of their old value.");
 		}
 	}
 
