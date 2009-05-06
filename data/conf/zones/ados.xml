@@ -628,37 +628,36 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_74"/>
   </portal>
  </zone>
-<!--  fill in the interior portal and chest locations as you uncomment these  
  <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+	<parameter name="x">2</parameter>
+	<parameter name="y">10</parameter>
   </configurator>
-  <portal x="" y="" ref="in">
+  <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_75"/>
   </portal>
  </zone>
  <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+	<parameter name="x">3</parameter>
+	<parameter name="y">13</parameter>
   </configurator>
-  <portal x="" y="" ref="in">
+  <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_76"/>
   </portal>
  </zone>
  <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+	<parameter name="x">13</parameter>
+	<parameter name="y">13</parameter>
   </configurator>
-  <portal x="" y="" ref="in">
+  <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_77"/>
   </portal>
- </zone>-->
+ </zone>
 
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
@@ -1937,7 +1936,6 @@ Southeast: Docks
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
     </portal>
-<!--
     <portal x="99" y="91" ref="house_75">
      <destination zone="int_ados_house_75" ref="in"/>
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
@@ -1959,7 +1957,6 @@ Southeast: Docks
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
     </portal>
--->
     <portal x="101" y="22" ref="felina_entrance">
      <destination zone="int_ados_felinas_house" ref="entrance"/>
     </portal>
