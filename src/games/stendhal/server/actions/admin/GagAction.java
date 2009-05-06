@@ -14,7 +14,7 @@ public class GagAction extends AdministrationAction {
 	private static final String USAGE_GAG_NAME_MINUTES_REASON = "Usage: /gag name minutes reason";
 
 	public static void register() {
-		CommandCenter.register(GAG, new GagAction(), 400);
+		CommandCenter.register(GAG, new GagAction(), 200);
 
 	}
 
