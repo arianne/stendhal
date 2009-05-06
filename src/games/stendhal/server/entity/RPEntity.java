@@ -2079,8 +2079,11 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (!(getLevel() - levelDifferenceToNotNeedKarmaAttacking > defender
 				.getLevel())) {
 			final double karma = this.useKarma(0.1);
-
-			roll -= roll * karma;
+			// the karma effect must be cast to an integer to affect the roll 
+			// but in most cases this means the karma use was lost. so multiply by 2 to 
+			// make the same amount of karma use be more useful
+			final double karmaEffect = roll * karma * 2.0;
+			roll -= (int) karmaEffect;
 		}
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 
