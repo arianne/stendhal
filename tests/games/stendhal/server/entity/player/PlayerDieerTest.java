@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.player;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -25,35 +26,67 @@ public class PlayerDieerTest {
 
 	@Test
 	public void testPlayerDieer() {
-		final Player hasRing = PlayerTestHelper.createPlayer("bob");
-		hasRing.setXP(10000);
+		final Player hasRingGood = PlayerTestHelper.createPlayer("bob");
+		hasRingGood.setXP(10000);
+		hasRingGood.put("karma", 200.0);
+                final Player hasRingBad = PlayerTestHelper.createPlayer("bob");
+                hasRingBad.setXP(10000);
+		hasRingBad.put("karma", -200.0);
 		
-		final Player hasNoRing = PlayerTestHelper.createPlayer("bob");
-		hasNoRing.setXP(10000);
-		
+		final Player hasNoRingGood = PlayerTestHelper.createPlayer("bob");
+		hasNoRingGood.setXP(10000);
+		hasNoRingGood.put("karma", 200.0);
+		final Player hasNoRingBad = PlayerTestHelper.createPlayer("bob");
+                hasNoRingBad.setXP(10000);
+		hasNoRingBad.put("karma", -200.0);
+
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
-		zone.add(hasRing);
-		zone.add(hasNoRing);
+		zone.add(hasRingGood);
+		zone.add(hasRingBad);
+		zone.add(hasNoRingGood);
+                zone.add(hasNoRingBad);
 		
 		final RingOfLife ring = new RingOfLife();
-		hasRing.equip("bag", ring);
-		
+		hasRingGood.equip("bag", ring);
+		final RingOfLife ring2 = new RingOfLife();
+		hasRingBad.equip("bag", ring2);
+
 		assertFalse(ring.isBroken());
-		final PlayerDieer dierWithRing = new PlayerDieer(hasRing);
-		dierWithRing.onDead(new Entity() {
+		assertFalse(ring2.isBroken());
+
+		final PlayerDieer dierWithRingGood = new PlayerDieer(hasRingGood);
+		dierWithRingGood.onDead(new Entity() {
 		});
-		
-		final PlayerDieer dierWithoutRing1 = new PlayerDieer(hasNoRing);
-		dierWithoutRing1.onDead(new Entity() {
+
+                final PlayerDieer dierWithRingBad = new PlayerDieer(hasRingBad);
+                dierWithRingBad.onDead(new Entity() {
+		    });
+
+		final PlayerDieer dierWithoutRingGood = new PlayerDieer(hasNoRingGood);
+		dierWithoutRingGood.onDead(new Entity() {
 		});
+                final PlayerDieer dierWithoutRingBad = new PlayerDieer(hasNoRingBad);
+                dierWithoutRingBad.onDead(new Entity() {
+		    });
+
 		assertTrue(ring.isBroken());
+                assertTrue(ring2.isBroken());
 		
-		assertThat("ring wearer looses 1 percent", hasRing.getXP(), is(9900));
-		assertThat("normal player loses 10 percent", hasNoRing.getXP(), is(9000));
-		hasRing.setXP(10000);
-		dierWithRing.onDead(new Entity() {
+		assertThat("ring wearer, good loses max 1 percent", hasRingGood.getXP(), greaterThan(9899));
+		assertThat("ring wearer, good loses min 0 percent", hasRingGood.getXP(), lessThan(10001));
+
+		assertThat("ring wearer, bad loses max 2 percent", hasRingBad.getXP(), greaterThan(9799));
+
+                assertThat("normal player, good loses max 10 percent", hasNoRingGood.getXP(), greaterThan(8999));
+		assertThat("normal player, good loses min 0 percent", hasNoRingGood.getXP(), lessThan(10001));
+
+		assertThat("normal player, bad loses max 20 percent", hasNoRingBad.getXP(), greaterThan(7999));
+		
+		hasRingGood.setXP(10000);
+		dierWithRingGood.onDead(new Entity() {
 		});
-		assertThat("ring wearer with broken ring loses 10 percent", hasRing.getXP(), is(9000));
+		assertThat("ring wearer, good, with broken ring, loses max 10 percent", hasRingGood.getXP(), greaterThan(8999));
+		assertThat("ring wearer, good, with broken ring, loses min 0 percent", hasRingGood.getXP(), lessThan(10001));
 		
 	}
 	
