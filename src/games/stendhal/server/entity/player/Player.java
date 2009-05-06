@@ -57,11 +57,6 @@ public class Player extends RPEntity {
 	private static final Logger logger = Logger.getLogger(Player.class);
 
 	/**
-	 * The base log for karma use.
-	 */
-	private static final double KARMA_BASELOG = Math.log(10.0);
-
-	/**
 	 * A random generator (for karma payout).
 	 */
 	private static final Random KARMA_RANDOMIZER = new Random();
@@ -533,11 +528,6 @@ public class Player extends RPEntity {
 		}
 
 		/*
-		 * Calculate the maximum payout (based on what we have)
-		 */
-		limit = Math.log(Math.abs(karma) + 1.0) / KARMA_BASELOG;
-
-		/*
 		 * Positive or Negative?
 		 */
 		if (karma < 0.0) {
@@ -545,13 +535,13 @@ public class Player extends RPEntity {
 				return 0.0;
 			}
 
-			limit = Math.max(negLimit, -limit);
+			limit = Math.max(negLimit, karma);
 		} else {
 			if (posLimit <= 0.0) {
 				return 0.0;
 			}
 
-			limit = Math.min(posLimit, limit);
+			limit = Math.min(posLimit, karma);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -564,9 +554,9 @@ public class Player extends RPEntity {
 		score = (0.2 + (KARMA_RANDOMIZER.nextDouble() * 0.8)) * limit;
 
 		/*
-		 * Clip to grandularity
+		 * Clip to granularity
 		 */
-		score = ((int) (score / granularity)) * granularity;
+		score = (int) Math.round((score / granularity) * granularity);
 
 		/*
 		 * with a lucky charm you use up less karma to be just as lucky
