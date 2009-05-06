@@ -6,9 +6,11 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
@@ -171,7 +173,8 @@ public class BringListOfItemsQuestLogic {
 	 * Player says he doesn't have required items with him.
 	 */
 	protected void playerDoesNotWantToGiveItems() {
-		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
+	    final int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		concreteQuest.getNPC().add(states, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					final List<String> missingItems = getListOfStillMissingItems(player, false);
@@ -209,7 +212,7 @@ public class BringListOfItemsQuestLogic {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
 					final Expression item = sentence.getTriggerExpression();
-
+					// strange check to do since we only took needed items an input.
 					final Expression found = triggerWords.find(item);
 					if (found != null) {
 						final String itemName = found.getOriginal();
@@ -217,43 +220,62 @@ public class BringListOfItemsQuestLogic {
 						TriggerList missing = new TriggerList(getListOfStillMissingItems(player, false));
 
 						if (missing.contains(item)) {
-        					if (!player.drop(itemName)) {
+						    if (!player.drop(itemName)) {
         						engine.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
         						return;
-        					}
+						    }
 
-        					// register item as done
-        					final String doneText = player.getQuest(concreteQuest.getSlotName());
-        					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
+						    // register item as done
+						    final String doneText = player.getQuest(concreteQuest.getSlotName());
+						    player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
 
-        					// check if the player has brought all items
-        					missing = new TriggerList(getListOfStillMissingItems(player, false));
+						    // check if the player has brought all items
+						    missing = new TriggerList(getListOfStillMissingItems(player, false));
 
-        					if (missing.size() > 0) {
+						    if (missing.size() > 0) {
         						engine.say(concreteQuest.respondToItemBrought());
-        					} else {
+						    } else {
         						concreteQuest.rewardPlayer(player);
         						player.notifyWorldAboutChanges();
         						engine.say(concreteQuest.respondToLastItemBrought());
         						player.setQuest(concreteQuest.getSlotName(), "done");
         						engine.setCurrentState(ConversationStates.ATTENDING);
-        					}
-    					} else {
-    						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
-    					}
-					} else {
-						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
+						    }
+						} else {
+						    engine.say(concreteQuest.respondToOfferOfNotMissingItem());
+						}
 					}
 				}
 
-				@Override
+			    @Override
 				public String toString() {
-					return "accept or reject offered item";
-				}
-			});
+				return "accept or reject offered item";
+			    }
+			}
+		);
 	}
 
-	/**
+    /**
+     * player tries to offer an unwanted item 
+    */
+    protected void offerNotNeededItem() {
+	concreteQuest.getNPC().add(ConversationStates.QUESTION_1,"", 	
+				   new NotCondition(new TriggerInListCondition(concreteQuest.getNeededItems())),
+				   ConversationStates.QUESTION_1,
+				   concreteQuest.respondToOfferOfNotNeededItem(),
+				   null);
+    }
+
+    /**
+     * player tries to say bye
+    */
+		// allow to say goodbye while listening for items
+    protected void sayByeWhileInQuestion1() {
+	concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES, null,
+		ConversationStates.IDLE, "Bye.", null);
+    }
+	
+    /**
 	 * Player returns while quest is still active.
 	 */
 	protected void welcomeKnownPlayer() {
@@ -299,6 +321,8 @@ public class BringListOfItemsQuestLogic {
 		playerWantsToGiveItems();
 		offerItem();
 
+	        offerNotNeededItem();
+		sayByeWhileInQuestion1();
 		welcomePlayerAfterQuest();
 	}
 }
