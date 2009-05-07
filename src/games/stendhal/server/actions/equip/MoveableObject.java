@@ -1,7 +1,9 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
+
 
 import java.util.List;
 
@@ -76,6 +78,18 @@ public abstract class MoveableObject {
 		return true;
 	}
 
+	/**
+	 * Checks if container is a corpse. 
+	 * @return true if container is a corpse.
+	 */
+	public boolean isContainerCorpse() {
+		if (parent != null) {
+			final Class< ? > clazz = Corpse.class;
+			return (clazz.isInstance(parent));
+		}
+		return false;
+	}
+	
 	boolean isInvalidMoveable(final Player player, final double maxDistance, final List<Class< ? >> containerClassesList) {
 		return !isValid() || !checkDistance(player, maxDistance) || (!checkClass(containerClassesList));
 	}

@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
@@ -64,6 +65,15 @@ public class EquipAction extends EquipmentAction {
 			if (entity instanceof StackableItem) {
 				amount = ((StackableItem) entity).getQuantity();
 			}
+
+			// players sometimes accidentally drop items into corpses, so inform about all drops into a corpse 
+			// which arent just a movement from one corpse to another.
+			// we could of course specifically preclude dropping into corpses, but that is undesirable.
+			if (dest.isContainerCorpse() && !source.isContainerCorpse()) {
+					player.sendPrivateText("For your information, you just dropped " 
+							+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse you are stood next to.");
+			}
+			
 			new GameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
 	
 			player.updateItemAtkDef();
