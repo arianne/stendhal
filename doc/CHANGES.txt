@@ -6,13 +6,30 @@ Changelog
 - trade center in progress
 
 0.74
-- new houses in ados 
-- supportanswer keywords which abbreviate longer replies
+- player karma affects what skills they lose on death 
+ --max 20% for non ring wearers with negative karma, and 10% as before if player karma was 0. if they had positive karma they lose less
+ --Ring wearers lose max 2%, average 1% and less with positive karma
+- new hybrid spider creature in nalwor drow tunnels
+- new houses in ados, numbers 69 to 77 
 - tutorial event linking to stendhal rules
+- find out content of Ignore list by typing /ignore (with no parameters)
 - deathmatch: if occupied then challenging player is told who is inside so they can say yes/no about entering
 - feedback to player given on successful buddy and sentence actions
 - feedback messages about failure when trying to drop or displace items too far from current location, displacing an item without being next to it, dropping onto a collision, adding to full slots
+- inform player who dropped item into a nearby corpse, incase the drop was not deliberate
+- Sarzina suggests some ways to get karma
+- Daily monster, daily item and weekly item quests give karma.
+- Daily Item quest gives less XP than monster now, (as it gives more karma)
+- max level players get a large karma reward from daily and weekly quests (as they cannot earn xp from it)
+- in fighting, made the 'level difference to not need karma' be dependent on level instead of being a fixed 20 levels 
+*Admin*
+- gag is adminlevel 200
+- support and supportanswer messages coloured orange to make more visible
+- supportanswer keywords which abbreviate longer replies
 *Bug fixes*
+- PersonalChest removes its own turnlistener in onremoved(rpzone), fixing NPE when leaving vaults
+- karma for large scales was never achieved due to a wrongly used log
+- karma for canHit was factored out early by a cast to int
 - adding buddies using right-click fixed
 - house tax problem fixed
 - added missing logic to BringListOfItemsQuests
@@ -20,6 +37,12 @@ Changelog
 - don't allow pets or sheep in death match
 - remove possibility of	dropping or displacing	items to places	where they can't be retrieved (or where it would be v long walk to fetch them)
 - minor map and graphical fixes
+- unignore: check first, and if target not being ignored, tell player so.
+*behind the scenes*
+- reflection removed from stendhalQuestsystem
+- QuestsXMLReader changed from singleton to just create one.
+- Iquest.getName() abstract in Abstractquest. every quest knows its name now (not the descriptive one yet)
+- moved a lot of tilesets to correct homes
 
 0.73
 - rare monsters that do not appear in DM or daily quests: pegasus and centaur
