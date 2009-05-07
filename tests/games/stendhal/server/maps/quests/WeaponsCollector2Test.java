@@ -69,7 +69,7 @@ public class WeaponsCollector2Test {
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		final WeaponsCollector2 wc = new WeaponsCollector2();
-		wc.init("weaponscollector2_quest");
+	
 		wc.addToWorld();
 		final SpeakerNPC npc = wc.getNPC();
 		final Engine en = npc.getEngine();

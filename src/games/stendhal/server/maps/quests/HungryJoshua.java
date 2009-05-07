@@ -58,10 +58,7 @@ public class HungryJoshua extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "hungry_joshua";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -250,5 +247,9 @@ public class HungryJoshua extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+	@Override
+	public String getName() {
+		return "HelpTomi";
 	}
 }

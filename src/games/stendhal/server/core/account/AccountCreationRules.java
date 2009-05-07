@@ -5,7 +5,7 @@ package games.stendhal.server.core.account;
  * 
  * @author hendrik
  */
-public class AccountCreationRules {
+class AccountCreationRules {
 	private final ValidatorList validators = new ValidatorList();
 
 	private final String username;
@@ -22,7 +22,7 @@ public class AccountCreationRules {
 	 * @param email
 	 *            email contact
 	 */
-	public AccountCreationRules(final String username, final String password, final String email) {
+	protected AccountCreationRules(final String username, final String password, final String email) {
 		this.username = username.trim();
 		this.password = password.trim();
 		this.email = email.trim();

@@ -33,10 +33,7 @@ public class McPeglegIOU extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "IOU";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -95,6 +92,10 @@ public class McPeglegIOU extends AbstractQuest {
 
 		step_1();
 		step_2();
+	}
+	@Override
+	public String getName() {
+		return "McPeglegIOU";
 	}
 
 }

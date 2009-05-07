@@ -76,10 +76,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 */
 	private static final int CORPSE_REFILL_SECONDS = 60;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -432,5 +429,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 		prepareCowardSoldier();
 		prepareCorpses();
 		prepareSergeant();
+	}
+
+	@Override
+	public String getName() {
+		return "KanmararnSoldiers";
 	}
 }

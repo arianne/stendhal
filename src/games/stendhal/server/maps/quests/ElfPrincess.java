@@ -59,10 +59,7 @@ public class ElfPrincess extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "elf_princess";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -169,6 +166,10 @@ public class ElfPrincess extends AbstractQuest {
 		offerQuestStep();
 		getFlowerStep();
 		bringFlowerStep();
+	}
+	@Override
+	public String getName() {
+		return "ElfPrincess";
 	}
 
 }

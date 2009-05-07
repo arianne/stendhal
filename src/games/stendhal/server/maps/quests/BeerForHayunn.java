@@ -54,10 +54,7 @@ public class BeerForHayunn extends AbstractQuest {
 
 	public static final String QUEST_SLOT = "beer_hayunn";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+	
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -189,5 +186,10 @@ public class BeerForHayunn extends AbstractQuest {
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+
+	@Override
+	public String getName() {
+		return "BeerForHayunn";
 	}
 }

@@ -60,7 +60,7 @@ public class CloakCollectorTest {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
-		cc.init("CloaksCollector");
+	
 		final SpeakerNPC npc = cc.getNPC();
 		final Engine en = npc.getEngine();
 		final Player monica = PlayerTestHelper.createPlayer("monica");

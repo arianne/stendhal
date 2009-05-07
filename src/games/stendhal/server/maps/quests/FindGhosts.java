@@ -270,4 +270,9 @@ public class FindGhosts extends AbstractQuest {
 		findingStep();
 		tellingStep();
 	}
+
+	@Override
+	public String getName() {
+		return "FindGhosts";
+	}
 }

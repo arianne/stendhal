@@ -149,5 +149,9 @@ public class Cataclysm extends AbstractQuest {
 		nomyr();
 		sato();
 	}
+	@Override
+	public String getName() {
+		return "Cataclysm";
+	}
 
 }

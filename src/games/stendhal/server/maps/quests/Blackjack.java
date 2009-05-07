@@ -394,4 +394,9 @@ public class Blackjack extends AbstractQuest {
 	public String getSlotName() {
 		return "blackjack";
 	}
+
+	@Override
+	public String getName() {
+		return "Blackjack";
+	}
 }

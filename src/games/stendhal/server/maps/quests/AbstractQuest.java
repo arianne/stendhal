@@ -12,14 +12,12 @@ import java.util.List;
  *
  * @author hendrik
  */
-public abstract class AbstractQuest implements IQuest {
+abstract class AbstractQuest implements IQuest {
 
 	
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 	
-	/** The internal name of this quest. (e.g used to read quest.xml) */
-	protected String name;
-
+	
 	
 	
 	/** NPCList. */
@@ -32,18 +30,6 @@ public abstract class AbstractQuest implements IQuest {
 	 */
 	public abstract String getSlotName();
 	
-	/**
-	 * Inits this quest by specifying the name.
-	 * <p>
-	 * Make sure to set slotname in the subclasses.
-	 *
-	 * @param name
-	 *            name of quest
-	 */
-	public void init(final String name) {
-		this.name = name;
-	}
-
 	public void addToWorld() {
 		// sub classes can implement this method
 	}
@@ -72,8 +58,6 @@ public abstract class AbstractQuest implements IQuest {
 		return player.hasQuest(getSlotName());
 	}
 
-	public String getName() {
-		return name;
-	}
+	public abstract String getName();
 
 }

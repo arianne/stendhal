@@ -207,4 +207,9 @@ public class SevenCherubs extends AbstractQuest {
 		npc = new CherubNPC("Azazel", 67, 24);
 		zone.add(npc);
 	}
+
+	@Override
+	public String getName() {
+		return "SevenCherubs";
+	}
 }

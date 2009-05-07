@@ -37,11 +37,7 @@ public class MeetBunny extends AbstractQuest {
 
 	private StendhalRPZone zone;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -97,5 +93,10 @@ public class MeetBunny extends AbstractQuest {
 		super.addToWorld();
 		createbunny();
 		new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!");
+	}
+
+	@Override
+	public String getName() {
+		return "MeetBunny";
 	}
 }

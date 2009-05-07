@@ -185,4 +185,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 		createRequestingStep();
 		createBringingStep();
 	}
+
+	@Override
+	public String getName() {
+		return "SuntanCreamForZara";
+	}
 }

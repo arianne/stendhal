@@ -9,7 +9,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-public class AdminLevelAction extends AdministrationAction {
+class AdminLevelAction extends AdministrationAction {
 
 	public static void register() {
 		CommandCenter.register(ADMINLEVEL, new AdminLevelAction(), 0);
@@ -72,7 +72,7 @@ public class AdminLevelAction extends AdministrationAction {
 		}
 	}
 
-	boolean isAllowedtoSeeGhosts(final Player player) {
+	private boolean isAllowedtoSeeGhosts(final Player player) {
 		return AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "ghostmode", false);
 	}
 

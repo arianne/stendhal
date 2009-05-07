@@ -62,7 +62,7 @@ public class CommandCenter {
 	}
 
 	private static void registerActions() {
-		AdministrationAction.register();
+		AdministrationAction.registerActions();
 		AttackAction.register();
 		AwayAction.register();
 		BanAction.register();
@@ -130,7 +130,7 @@ public class CommandCenter {
 		}
 	}
 
-	static class UnknownAction implements ActionListener {
+	private static class UnknownAction implements ActionListener {
 		private static Logger logger = Logger.getLogger(UnknownAction.class);
 
 		public void onAction(final Player player, final RPAction action) {

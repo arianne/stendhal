@@ -33,10 +33,10 @@ import org.apache.log4j.Logger;
  * </p>
  */
 public class Cache {
+	private static final String VERSION_KEY = "_VERSION";
 	private static Logger logger = Logger.getLogger(Cache.class);
 	private Configuration cacheManager;
 	private Properties prefilledCacheManager;
-	private static final String VERSION_KEY = "_VERSION";
 
 	/**
 	 * Return the client configuration instance
@@ -51,7 +51,7 @@ public class Cache {
 	/**
 	 * Inits the cache.
 	 */
-	public void init() {
+	protected void init() {
 		try {
 			prefilledCacheManager = new Properties();
 			final URL url = SpriteStore.get().getResourceURL("cache/stendhal.cache");
@@ -195,7 +195,7 @@ public class Cache {
 	 *            key
 	 * @return InputStream or null if not in cache
 	 */
-	public InputStream getItem(final TransferContent item) {
+	protected InputStream getItem(final TransferContent item) {
 		// 1. try to read it from stendhal-prefilled-cache.jar
 		InputStream is = getItemFromPrefilledCache(item);
 
@@ -214,7 +214,7 @@ public class Cache {
 	 * @param data
 	 *            data
 	 */
-	public void store(final TransferContent item, final byte[] data) {
+	protected void store(final TransferContent item, final byte[] data) {
 		try {
 			final OutputStream os = Persistence.get().getOutputStream(true,
 					stendhal.STENDHAL_FOLDER + "cache/", item.name);

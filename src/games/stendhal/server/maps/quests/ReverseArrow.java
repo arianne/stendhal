@@ -451,4 +451,8 @@ public class ReverseArrow extends AbstractQuest implements
 
 		step_1();
 	}
+	@Override
+	public String getName() {
+		return "ReverseArrow";
+	}
 }

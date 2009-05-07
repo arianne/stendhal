@@ -180,4 +180,9 @@ public class WeaponsCollector extends AbstractQuest implements
 		return "Oh, that is not an interesting weapon";
 	}
 
+	@Override
+	public String getName() {
+		return "WeaponsCollector";
+	}
+
 }

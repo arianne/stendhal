@@ -189,4 +189,9 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		createDadNPC();
 		createSignToCloseTower();
 	}
+
+	@Override
+	public String getName() {
+		return "SemosMineTownRevivalWeeks";
+	}
 }

@@ -32,7 +32,7 @@ public class ToysCollectorTest {
 	public void setUp() throws Exception {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
-		quest.init("Toys Collector");
+	
 		quest.addToWorld();
 	}
 

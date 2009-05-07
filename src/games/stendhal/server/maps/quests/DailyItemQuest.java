@@ -225,10 +225,7 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 	}
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -304,6 +301,11 @@ public class DailyItemQuest extends AbstractQuest {
 		step_2();
 		step_3();
 		step_4();
+	}
+
+	@Override
+	public String getName() {
+		return "DailyItemQuest";
 	}
 
 }

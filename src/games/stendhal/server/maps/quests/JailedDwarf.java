@@ -24,10 +24,7 @@ public class JailedDwarf extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "jailed_dwarf";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -62,5 +59,9 @@ public class JailedDwarf extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		step_1();
+	}
+	@Override
+	public String getName() {
+		return "JailedDwarf";
 	}
 }

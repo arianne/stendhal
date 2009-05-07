@@ -31,10 +31,7 @@ public class MeetHackim extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "meet_hackim";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -121,5 +118,10 @@ public class MeetHackim extends AbstractQuest {
 		super.addToWorld();
 
 		prepareHackim();
+	}
+
+	@Override
+	public String getName() {
+		return "MeetHackim";
 	}
 }

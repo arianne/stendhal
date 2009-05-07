@@ -41,10 +41,7 @@ import games.stendhal.server.maps.quests.marriage.MarriageQuestChain;
 public class Marriage extends AbstractQuest {
 	private static final String QUEST_SLOT = "marriage";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -57,6 +54,12 @@ public class Marriage extends AbstractQuest {
 		
 		MarriageQuestChain marriage = new MarriageQuestChain();
 		marriage.addToWorld();
+	}
+
+
+	@Override
+	public String getName() {
+		return "Marriage";
 	}
 
 }

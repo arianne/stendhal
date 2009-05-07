@@ -83,10 +83,6 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private static final String NAME = "Alrak";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
 
 	
 	@Override
@@ -483,6 +479,11 @@ public class ObsidianKnife extends AbstractQuest {
 		getBookStep();
 		bringBookStep();
 		offerKnifeStep();
+	}
+
+	@Override
+	public String getName() {
+		return "ObsidianKnife";
 	}
 
 }

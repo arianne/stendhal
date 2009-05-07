@@ -36,10 +36,7 @@ import java.util.List;
 public class LookBookforCeryl extends AbstractQuest {
 	private static final String QUEST_SLOT = "ceryl_book";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -221,5 +218,10 @@ public class LookBookforCeryl extends AbstractQuest {
 		step1LearnAboutQuest();
 		step2getBook();
 		step3returnBook();
+	}
+
+	@Override
+	public String getName() {
+		return "LookBookforCeryl";
 	}
 }

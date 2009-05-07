@@ -19,16 +19,13 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class QuestsXMLLoader extends DefaultHandler {
 
-	/** The Singleton instance. */
-	private static QuestsXMLLoader instance;
-
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(QuestsXMLLoader.class);
 
 	private Map<String, QuestInfo> questInfos;
 
 	// used while parsing the XML structure
-	private String name;
+	//private String name;
 
 	private QuestInfo currentQuestInfo;
 
@@ -52,22 +49,6 @@ public class QuestsXMLLoader extends DefaultHandler {
 		System.exit(0);
 	}
 
-	private QuestsXMLLoader() {
-		// hide constructor, this is a Singleton
-	}
-
-	public static QuestsXMLLoader get() {
-		if (instance == null) {
-			instance = new QuestsXMLLoader();
-			try {
-				instance.load("data/conf/quests.xml");
-			} catch (final SAXException e) {
-				logger.error(e, e);
-			}
-		}
-		return instance;
-	}
-
 	public QuestInfo get(final String name) {
 		QuestInfo questInfo = questInfos.get(name);
 		if (questInfo == null) {
@@ -79,7 +60,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 		return questInfo;
 	}
 
-	public Map<String, QuestInfo> load(final String ref) throws SAXException {
+	private Map<String, QuestInfo> load(final String ref) throws SAXException {
 		questInfos = new HashMap<String, QuestInfo>();
 		// Use the default (non-validating) parser
 		final SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -120,8 +101,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 		if (qName.equals("quest")) {
 			currentQuestInfo = new QuestInfo();
-			name = attrs.getValue("name");
-			currentQuestInfo.setName(name);
+			currentQuestInfo.setName(attrs.getValue("name"));
 
 		} else if (qName.equals("repeatable")) {
 
@@ -138,7 +118,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
 
 		if (qName.equals("quest")) {
-			questInfos.put(name, currentQuestInfo);
+			questInfos.put(currentQuestInfo.getName(), currentQuestInfo);
 		} else if (qName.equals("title")) {
 			currentQuestInfo.setTitle(text.toString());
 		} else if (qName.equals("description")) {
@@ -157,5 +137,10 @@ public class QuestsXMLLoader extends DefaultHandler {
 	@Override
 	public void characters(final char[] buf, final int offset, final int len) {
 		text.append((new String(buf, offset, len)).trim() + " ");
+	}
+
+	public void load() throws SAXException {
+		load("data/conf/quests.xml");
+		
 	}
 }

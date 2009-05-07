@@ -179,4 +179,9 @@ public class ZooFood extends AbstractQuest {
 		step_3();
 		step_4();
 	}
+
+	@Override
+	public String getName() {
+		return "ZooFood";
+	}
 }

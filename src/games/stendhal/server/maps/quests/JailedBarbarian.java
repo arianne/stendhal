@@ -55,10 +55,7 @@ import java.util.Arrays;
  
  	private static final String QUEST_SLOT = "jailedbarb";
  	
- 	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+ 
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -306,6 +303,10 @@ import java.util.Arrays;
 		step6();
 		step7();
 		step8();
+	}
+	@Override
+	public String getName() {
+		return "JailedBarbarian";
 	}
 
  

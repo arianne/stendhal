@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 import marauroa.common.game.RPAction;
 
-public class AcceptTradeOfferAction implements ActionListener {
+class AcceptTradeOfferAction implements ActionListener {
 	
 	private final String item;
 	
@@ -17,7 +17,7 @@ public class AcceptTradeOfferAction implements ActionListener {
 
 	private final String offererName;
 
-	public AcceptTradeOfferAction(final String item, final int price, final String offererName) {
+	protected AcceptTradeOfferAction(final String item, final int price, final String offererName) {
 		this.item = item;
 		this.price = price;
 		this.offererName = offererName;

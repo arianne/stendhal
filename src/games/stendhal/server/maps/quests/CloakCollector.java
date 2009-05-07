@@ -44,11 +44,6 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	private static final String QUEST_SLOT = "cloaks_collector";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
 		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
@@ -197,6 +192,11 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		player.equipOrPutOnGround(blackcloak);
 		player.addKarma(5.0);
 		player.addXP(10000);
+	}
+
+	@Override
+	public String getName() {
+		return "CloakCollector";
 	}
 
 }

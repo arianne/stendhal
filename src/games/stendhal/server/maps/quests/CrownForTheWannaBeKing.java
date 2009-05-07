@@ -368,4 +368,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		step_2();
 		step_3();
 	}
+
+	@Override
+	public String getName() {
+		return "CrownForTheWannaBeKing";
+	}
 }

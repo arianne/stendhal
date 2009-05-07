@@ -161,4 +161,9 @@ public class PlinksToy extends AbstractQuest {
 		step_3();
 	}
 
+	@Override
+	public String getName() {
+		return "PlinksToy";
+	}
+
 }

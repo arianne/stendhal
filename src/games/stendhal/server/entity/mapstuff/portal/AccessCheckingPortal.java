@@ -15,7 +15,7 @@ import games.stendhal.server.entity.RPEntity;
  * An access checking portal is a special kind of portal which requires some
  * condition to use.
  */
-public abstract class AccessCheckingPortal extends Portal {
+abstract class AccessCheckingPortal extends Portal {
 	/**
 	 * The message to given when rejected.
 	 */

@@ -321,4 +321,9 @@ public class StuffForVulcanus extends AbstractQuest {
 		step_3();
 	}
 
+	@Override
+	public String getName() {
+		return "StuffForVulcanus";
+	}
+
 }

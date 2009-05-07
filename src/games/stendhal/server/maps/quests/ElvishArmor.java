@@ -53,10 +53,7 @@ public class ElvishArmor extends AbstractQuest implements
 		return QUEST_SLOT;
 	}
 	
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
@@ -201,6 +198,13 @@ public class ElvishArmor extends AbstractQuest implements
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I don't think I trust you well enough yet ... ", null);
+	}
+
+
+
+	@Override
+	public String getName() {
+		return "ElvishArmor";
 	}
 
 }

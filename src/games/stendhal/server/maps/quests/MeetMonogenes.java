@@ -143,4 +143,8 @@ public class MeetMonogenes extends AbstractQuest {
 		// });
 		npc.addGoodbye();
 	}
+	@Override
+	public String getName() {
+		return "MeetMonogenes";
+	}
 }

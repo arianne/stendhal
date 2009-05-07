@@ -63,10 +63,7 @@ public class PaperChase extends AbstractQuest {
 
 	}
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	
 	@Override
 	public String getSlotName() {
@@ -103,5 +100,10 @@ public class PaperChase extends AbstractQuest {
 		// based on time and level)
 		// - store and read result (with server restart in mind)
 		// - create sign as Hall of Fame
+	}
+
+	@Override
+	public String getName() {
+		return "PaperChase";
 	}
 }

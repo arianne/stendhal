@@ -56,10 +56,7 @@ public class ArmorForDagobert extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "armor_dagobert";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+	
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -182,5 +179,10 @@ public class ArmorForDagobert extends AbstractQuest {
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+
+	@Override
+	public String getName() {
+		return "ArmorForDagobert";
 	}
 }

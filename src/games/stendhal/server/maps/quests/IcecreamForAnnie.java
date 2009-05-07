@@ -34,10 +34,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 
 	/** The delay between repeating quests. */
 	private static final int REQUIRED_MINUTES = 30;
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -184,5 +181,9 @@ public class IcecreamForAnnie extends AbstractQuest {
 		super.addToWorld();
 		icecreamStep();
 		meetMummyStep();
+	}
+	@Override
+	public String getName() {
+		return "IcecreamForAnnie";
 	}
 }

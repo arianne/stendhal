@@ -51,10 +51,7 @@ import java.util.List;
 public class IntroducePlayers extends AbstractQuest {
 	private static final String QUEST_SLOT = "introduce_players";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -304,6 +301,10 @@ public class IntroducePlayers extends AbstractQuest {
 		step_4();
 		step_5();
 		step_6();
+	}
+	@Override
+	public String getName() {
+		return "IntroducePlayers";
 	}
 
 }

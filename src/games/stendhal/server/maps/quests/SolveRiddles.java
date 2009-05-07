@@ -54,10 +54,7 @@ public class SolveRiddles extends AbstractQuest {
 		riddles.put("What number comes after 9?", "10");
 	}
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -131,5 +128,10 @@ public class SolveRiddles extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		setRiddle();
+	}
+
+	@Override
+	public String getName() {
+		return "SolveRiddles";
 	}
 }

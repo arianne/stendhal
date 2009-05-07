@@ -107,4 +107,8 @@ public class DragonLair extends AbstractQuest {
 		step_1();
 
 	}
+	@Override
+	public String getName() {
+		return "DragonLair";
+	}
 }

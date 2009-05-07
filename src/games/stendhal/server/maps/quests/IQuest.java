@@ -11,14 +11,6 @@ import java.util.List;
 public interface IQuest {
 
 	/**
-	 * Initializes the quest on server startup.
-	 *
-	 * @param name
-	 *            Name of this quest
-	 */
-	void init(String name);
-
-	/**
 	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
 	 */
 	void addToWorld();

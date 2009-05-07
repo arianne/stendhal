@@ -342,4 +342,8 @@ public class CloakCollector2 extends AbstractQuest {
 		player.addKarma(100.0);
 		player.addXP(100000);
       	}
+	@Override
+	public String getName() {
+		return "CloakCollector2";
+	}
 }

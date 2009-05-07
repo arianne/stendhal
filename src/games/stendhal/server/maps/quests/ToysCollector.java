@@ -172,4 +172,9 @@ public class ToysCollector extends AbstractQuest implements
 	public String respondToOfferOfNotNeededItem() {
 		return "That's not a good toy!";
 	}
+
+	@Override
+	public String getName() {
+		return "ToysCollector";
+	}
 }

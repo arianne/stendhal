@@ -42,10 +42,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	private StendhalRPZone zone;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -144,5 +141,10 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
 		*/
+	}
+
+	@Override
+	public String getName() {
+		return "MeetSanta";
 	}
 }

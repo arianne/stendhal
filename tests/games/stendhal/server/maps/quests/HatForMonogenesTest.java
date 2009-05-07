@@ -193,10 +193,6 @@ public class HatForMonogenesTest {
 
 	}
 
-	@Test
-	public void testinit() {
-		quest.init("bla");
-		assertEquals("bla", quest.getName());
-	}
+
 
 }

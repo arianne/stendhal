@@ -42,7 +42,7 @@ public abstract class AdministrationAction implements ActionListener {
 	
 
 
-	public static void register() {
+	public static void registerActions() {
 		InspectAction.register();
 		DestroyAction.register();
 		SupportAnswerAction.register();

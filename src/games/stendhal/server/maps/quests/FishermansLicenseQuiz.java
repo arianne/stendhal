@@ -65,10 +65,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 	private Item fishOnTable;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -222,5 +219,9 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		createQuizStep();
+	}
+	@Override
+	public String getName() {
+		return "FishermansLicenseQuiz";
 	}
 }

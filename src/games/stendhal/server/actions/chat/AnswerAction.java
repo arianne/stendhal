@@ -10,7 +10,7 @@ import marauroa.common.game.RPAction;
 /**
  * handles /tell-action (/msg-action). 
  */
-public class AnswerAction implements ActionListener {
+class AnswerAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TEXT)) {

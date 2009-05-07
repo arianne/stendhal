@@ -7,13 +7,13 @@ import java.awt.Component;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class OrderPanelController implements ObjectChangeListener {
+class OrderPanelController implements ObjectChangeListener {
 
 	private Component component;
 	
 	private final RPObject object;
 
-    public OrderPanelController(final RPObject object) {
+    protected OrderPanelController(final RPObject object) {
     	this.object = object;
 		initialize(this.object);
 	}

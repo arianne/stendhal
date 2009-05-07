@@ -43,7 +43,7 @@ public class WeaponsCollectorTest {
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		final WeaponsCollector wc = new WeaponsCollector();
-		wc.init("weaponscollector_quest");
+	
 		wc.addToWorld();
 		final SpeakerNPC npc = wc.getNPC();
 		final Engine en = npc.getEngine();
@@ -63,7 +63,7 @@ public class WeaponsCollectorTest {
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		final WeaponsCollector wc = new WeaponsCollector();
-		wc.init("weaponscollector_quest");
+
 		wc.addToWorld();
 		final SpeakerNPC npc = wc.getNPC();
 		final Engine en = npc.getEngine();

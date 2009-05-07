@@ -1,22 +1,95 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.server.core.config.QuestsXMLLoader;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.AdosDeathmatch;
+import games.stendhal.server.maps.quests.AmazonPrincess;
+import games.stendhal.server.maps.quests.ArmorForDagobert;
+import games.stendhal.server.maps.quests.Balloon;
+import games.stendhal.server.maps.quests.BeerForHayunn;
+import games.stendhal.server.maps.quests.Blackjack;
+import games.stendhal.server.maps.quests.Campfire;
+import games.stendhal.server.maps.quests.CleanStorageSpace;
+import games.stendhal.server.maps.quests.CloakCollector;
+import games.stendhal.server.maps.quests.CloakCollector2;
+import games.stendhal.server.maps.quests.CloaksForBario;
+import games.stendhal.server.maps.quests.ClubOfThorns;
+import games.stendhal.server.maps.quests.CrownForTheWannaBeKing;
+import games.stendhal.server.maps.quests.DailyItemQuest;
+import games.stendhal.server.maps.quests.DailyMonsterQuest;
+import games.stendhal.server.maps.quests.DiceGambling;
+import games.stendhal.server.maps.quests.DragonLair;
+import games.stendhal.server.maps.quests.ElfPrincess;
+import games.stendhal.server.maps.quests.ElvishArmor;
+import games.stendhal.server.maps.quests.FindGhosts;
+import games.stendhal.server.maps.quests.FishermansLicenseCollector;
+import games.stendhal.server.maps.quests.FishermansLicenseQuiz;
+import games.stendhal.server.maps.quests.HatForMonogenes;
+import games.stendhal.server.maps.quests.HelpTomi;
+import games.stendhal.server.maps.quests.HouseBuying;
+import games.stendhal.server.maps.quests.HungryJoshua;
 import games.stendhal.server.maps.quests.IQuest;
+import games.stendhal.server.maps.quests.IcecreamForAnnie;
+import games.stendhal.server.maps.quests.ImperialPrincess;
+import games.stendhal.server.maps.quests.IntroducePlayers;
+import games.stendhal.server.maps.quests.JailedBarbarian;
+import games.stendhal.server.maps.quests.JailedDwarf;
+import games.stendhal.server.maps.quests.KanmararnSoldiers;
+import games.stendhal.server.maps.quests.KillDarkElves;
+import games.stendhal.server.maps.quests.KillDhohrNuggetcutter;
+import games.stendhal.server.maps.quests.KillSpiders;
+import games.stendhal.server.maps.quests.LearnAboutKarma;
+import games.stendhal.server.maps.quests.LearnAboutOrbs;
+import games.stendhal.server.maps.quests.LookBookforCeryl;
+import games.stendhal.server.maps.quests.LookUpQuote;
+import games.stendhal.server.maps.quests.Marriage;
+import games.stendhal.server.maps.quests.McPeglegIOU;
+import games.stendhal.server.maps.quests.MeetHackim;
+import games.stendhal.server.maps.quests.MeetHayunn;
+import games.stendhal.server.maps.quests.MeetIo;
+import games.stendhal.server.maps.quests.MeetKetteh;
+import games.stendhal.server.maps.quests.MeetMonogenes;
+import games.stendhal.server.maps.quests.MeetSanta;
+import games.stendhal.server.maps.quests.MeetZynn;
+import games.stendhal.server.maps.quests.MithrilCloak;
+import games.stendhal.server.maps.quests.NewsFromHackim;
+import games.stendhal.server.maps.quests.ObsidianKnife;
+import games.stendhal.server.maps.quests.PizzaDelivery;
+import games.stendhal.server.maps.quests.PlinksToy;
 import games.stendhal.server.maps.quests.QuestInfo;
+import games.stendhal.server.maps.quests.RainbowBeans;
+import games.stendhal.server.maps.quests.ReverseArrow;
+import games.stendhal.server.maps.quests.RingMaker;
+import games.stendhal.server.maps.quests.SevenCherubs;
+import games.stendhal.server.maps.quests.Snowballs;
+import games.stendhal.server.maps.quests.SolveRiddles;
+import games.stendhal.server.maps.quests.Soup;
+import games.stendhal.server.maps.quests.StuffForBaldemar;
+import games.stendhal.server.maps.quests.StuffForVulcanus;
+import games.stendhal.server.maps.quests.SuntanCreamForZara;
+import games.stendhal.server.maps.quests.TakeGoldforGrafindle;
+import games.stendhal.server.maps.quests.ToysCollector;
+import games.stendhal.server.maps.quests.VampireSword;
+import games.stendhal.server.maps.quests.WeaponsCollector;
+import games.stendhal.server.maps.quests.WeaponsCollector2;
+import games.stendhal.server.maps.quests.WeeklyItemQuest;
+import games.stendhal.server.maps.quests.WizardBank;
+import games.stendhal.server.maps.quests.ZooFood;
 
-import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
 
 /**
  * Loads and manages all quests.
  */
 public class StendhalQuestSystem {
 
+	private static final StendhalQuestSystem stendhalQuestSystem = new StendhalQuestSystem();
+
+	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalQuestSystem.class);
 
@@ -24,140 +97,120 @@ public class StendhalQuestSystem {
 
 	private QuestsXMLLoader questInfos;
 
-	private static StendhalQuestSystem stendhalQuestSystem;
-
-	public static StendhalQuestSystem get() {
-		if (stendhalQuestSystem == null) {
-			stendhalQuestSystem = new StendhalQuestSystem();
-		}
-		return stendhalQuestSystem;
-	}
-
 	private StendhalQuestSystem() {
 		// hide constructor, this is a Singleton
 	}
 
+	
+	public static StendhalQuestSystem get() {
+		return stendhalQuestSystem;
+	}
+
+	
 	/**
 	 * Initializes the QuestSystem.
 	 */
 	public void init() {
-		/*
-		 * TODO: Refactor What about loading this from a XML file like zones?
-		 */
-
-		questInfos = SingletonRepository.getQuestsXMLLoader();
-		loadQuest("AdosDeathmatch");
-		loadQuest("AmazonPrincess");
-		loadQuest("ArmorForDagobert");
-		loadQuest("Balloon");
-		loadQuest("BeerForHayunn");
-		loadQuest("Blackjack");
-		loadQuest("Campfire");
-		// loadQuest("CarmenCataclysm");
-		loadQuest("CleanStorageSpace");
-		loadQuest("CloakCollector");
-		loadQuest("CloakCollector2");
-		loadQuest("CloaksForBario");
-		loadQuest("ClubOfThorns");
-		loadQuest("CrownForTheWannaBeKing");
-		loadQuest("DailyItemQuest");
-		loadQuest("DailyMonsterQuest");
-		loadQuest("DiceGambling");
-		// loadQuest("DiogenesCataclysm");
-		loadQuest("DragonLair");
-		loadQuest("ElfPrincess");
-		loadQuest("ElvishArmor");
-		loadQuest("FindGhosts");
-		loadQuest("FishermansLicenseQuiz");
-		loadQuest("FishermansLicenseCollector");
-		loadQuest("HatForMonogenes");
-		// loadQuest("HayunnCataclysm");
-		loadQuest("HelpTomi");
-		loadQuest("HouseBuying");
-		loadQuest("HungryJoshua");
-		loadQuest("IcecreamForAnnie");
-		loadQuest("ImperialPrincess");
-		loadQuest("IntroducePlayers");
-		loadQuest("JailedBarbarian");
-		loadQuest("JailedDwarf");
-		loadQuest("LearnAboutKarma");
-		loadQuest("LearnAboutOrbs");
-		loadQuest("LookBookforCeryl");
-		loadQuest("LookUpQuote");
-		loadQuest("KanmararnSoldiers");
-		loadQuest("KillDarkElves");
-		loadQuest("KillDhohrNuggetcutter");
-		loadQuest("KillSpiders");
-		loadQuest("Marriage");
-		// loadQuest("MonogenesCataclysm");
-		// loadQuest("MeetBunny");
-		loadQuest("MeetHackim");
-		loadQuest("McPeglegIOU");
-		loadQuest("MeetHayunn");
-		loadQuest("MeetIo");
-		loadQuest("MeetKetteh");
-		loadQuest("MeetMonogenes");
-	    loadQuest("MeetSanta");
-		loadQuest("MeetZynn");
-		loadQuest("MithrilCloak");
-		loadQuest("NewsFromHackim");
-		// loadQuest("NomyrCataclysm");
-		loadQuest("ObsidianKnife");
-		loadQuest("PizzaDelivery");
-		loadQuest("PlinksToy");
-		loadQuest("RainbowBeans");
-		loadQuest("ReverseArrow");
-		loadQuest("RingMaker");
-		// loadQuest("SatoCataclysm");
-		// loadQuest("SemosMineTownRevivalWeeks");
-		loadQuest("SolveRiddles");
-		loadQuest("SevenCherubs");
-		loadQuest("Snowballs");
-		loadQuest("Soup");
-		loadQuest("StuffForBaldemar");
-		loadQuest("StuffForVulcanus");
-		loadQuest("SuntanCreamForZara");
-		loadQuest("TakeGoldforGrafindle");
-		loadQuest("ToysCollector");
-		loadQuest("VampireSword");
-		loadQuest("WeaponsCollector");
-		loadQuest("WeaponsCollector2");
-        loadQuest("WeeklyItemQuest");
-		loadQuest("WizardBank");
-		loadQuest("ZooFood");
+		
+		questInfos = new QuestsXMLLoader();
+		try {
+			questInfos.load();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		loadQuest(new AdosDeathmatch());
+		loadQuest(new AmazonPrincess());
+		loadQuest(new ArmorForDagobert());
+		loadQuest(new Balloon());
+		loadQuest(new BeerForHayunn());
+		loadQuest(new Blackjack());
+		loadQuest(new Campfire());
+		//loadQuest(new CarmenCataclysm());
+		loadQuest(new CleanStorageSpace());
+		loadQuest(new CloakCollector());
+		loadQuest(new CloakCollector2());
+		loadQuest(new CloaksForBario());
+		loadQuest(new ClubOfThorns());
+		loadQuest(new CrownForTheWannaBeKing());
+		loadQuest(new DailyItemQuest());
+		loadQuest(new DailyMonsterQuest());
+		loadQuest(new DiceGambling());
+		// loadQuet("DiogenesCataclysm());
+		loadQuest(new DragonLair());
+		loadQuest(new ElfPrincess());
+		loadQuest(new ElvishArmor());
+		loadQuest(new FindGhosts());
+		loadQuest(new FishermansLicenseQuiz());
+		loadQuest(new FishermansLicenseCollector());
+		loadQuest(new HatForMonogenes());
+		// loadQuest("HayunnCataclysm());
+		loadQuest(new HelpTomi());
+		loadQuest(new HouseBuying());
+		loadQuest(new HungryJoshua());
+		loadQuest(new IcecreamForAnnie());
+		loadQuest(new ImperialPrincess());
+		loadQuest(new IntroducePlayers());
+		loadQuest(new JailedBarbarian());
+		loadQuest(new JailedDwarf());
+		loadQuest(new LearnAboutKarma());
+		loadQuest(new LearnAboutOrbs());
+		loadQuest(new LookBookforCeryl());
+		loadQuest(new LookUpQuote());
+		loadQuest(new KanmararnSoldiers());
+		loadQuest(new KillDarkElves());
+		loadQuest(new KillDhohrNuggetcutter());
+		loadQuest(new KillSpiders());
+		loadQuest(new Marriage());
+		// loadQuet("MonogenesCataclysm());
+		// loadQuest("MeetBunny());
+		loadQuest(new MeetHackim());
+		loadQuest(new McPeglegIOU());
+		loadQuest(new MeetHayunn());
+		loadQuest(new MeetIo());
+		loadQuest(new MeetKetteh());
+		loadQuest(new MeetMonogenes());
+	    loadQuest(new MeetSanta());
+		loadQuest(new MeetZynn());
+		loadQuest(new MithrilCloak());
+		loadQuest(new NewsFromHackim());
+		// loadQuset("NomyrCataclysm());
+		loadQuest(new ObsidianKnife());
+		loadQuest(new PizzaDelivery());
+		loadQuest(new PlinksToy());
+		loadQuest(new RainbowBeans());
+		loadQuest(new ReverseArrow());
+		loadQuest(new RingMaker());
+		// loadQuet("SatoCataclysm());
+		// loadQuest("SemosMineTownRevivalWeeks());
+		loadQuest(new SolveRiddles());
+		loadQuest(new SevenCherubs());
+		loadQuest(new Snowballs());
+		loadQuest(new Soup());
+		loadQuest(new StuffForBaldemar());
+		loadQuest(new StuffForVulcanus());
+		loadQuest(new SuntanCreamForZara());
+		loadQuest(new TakeGoldforGrafindle());
+		loadQuest(new ToysCollector());
+		loadQuest(new VampireSword());
+		loadQuest(new WeaponsCollector());
+		loadQuest(new WeaponsCollector2());
+        loadQuest(new WeeklyItemQuest());
+		loadQuest(new WizardBank());
+		loadQuest(new ZooFood());
 	}
 
-	private boolean loadQuest(final String name) {
-		final String regex = System.getProperty("stendhal.quest.regex", ".*");
-		if (!name.matches(regex)) {
-			return false;
-		}
+	private void loadQuest(final IQuest quest) {
+		initQuestAndAddToWorld(quest);
 		
-		try {
-			final Class< ? > questClass = Class.forName("games.stendhal.server.maps.quests."
-					+ name);
+	}
 
-			if (!IQuest.class.isAssignableFrom(questClass)) {
-				logger.error("Class " + name
-						+ " doesn't implement IQuest interface.");
-				return false;
-			}
 
-			// Create a new instance.
-			logger.info("Loading Quest: " + name);
-			final Constructor< ? > constr = questClass.getConstructor();
-			final IQuest quest = (IQuest) constr.newInstance();
+	private void initQuestAndAddToWorld(final IQuest quest) {
+		logger.info("Loading Quest: " + quest.getName());
+		quest.addToWorld();
 
-			// init and add to world
-			quest.init(name);
-			quest.addToWorld();
-
-			quests.add(quest);
-			return true;
-		} catch (final Exception e) {
-			logger.warn("Quest(" + name + ") loading failed.", e);
-			return false;
-		}
+		quests.add(quest);
 	}
 
 	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {

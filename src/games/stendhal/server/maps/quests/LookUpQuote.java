@@ -60,10 +60,7 @@ public class LookUpQuote extends AbstractQuest {
 		quotes.put("fisherman Ally", "Holy mackerel! These chips are tasty.");
 	}
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -178,5 +175,9 @@ public class LookUpQuote extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		createFishingRod();
+	}
+	@Override
+	public String getName() {
+		return "LookUpQuote";
 	}
 }

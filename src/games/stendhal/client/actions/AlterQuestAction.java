@@ -3,7 +3,7 @@ package games.stendhal.client.actions;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AlterQuestAction implements SlashAction {
+class AlterQuestAction implements SlashAction {
 
 	public boolean execute(final String[] params, final String remainder) {
 		if ((params == null) || (params.length < getMinimumParameters())) {

@@ -29,10 +29,7 @@ import java.util.List;
 public class NewsFromHackim extends AbstractQuest {
 	private static final String QUEST_SLOT = "news_hackim";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -137,5 +134,10 @@ public class NewsFromHackim extends AbstractQuest {
 
 		step_1();
 		step_2();
+	}
+
+	@Override
+	public String getName() {
+		return "NewsFromHackim";
 	}
 }

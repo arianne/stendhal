@@ -80,10 +80,6 @@ public class SingletonRepository {
 		return CreaturesXMLLoader.get();
 	}
 
-	public static QuestsXMLLoader getQuestsXMLLoader() {
-		return QuestsXMLLoader.get();
-	}
-
 	public static IDatabase getPlayerDatabase() {
 		return StendhalPlayerDatabase.getDatabase();
 	}

@@ -44,10 +44,7 @@ public class MeetHayunn extends AbstractQuest {
 	//This is 1 minute at 300 ms per turn
 	private static final int TIME_OUT = 200;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	
 	@Override
 	public String getSlotName() {
@@ -231,5 +228,10 @@ public class MeetHayunn extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		prepareHayunn();
+	}
+
+	@Override
+	public String getName() {
+		return "MeetHayunn";
 	}
 }

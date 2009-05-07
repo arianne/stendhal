@@ -44,7 +44,7 @@ public class AdministrationActionTest {
 		CorpseTestHelper.generateRPClasses();
 		// load item classes including "dagger" from XML
 		//DefaultEntityManager.getInstance();	
-		AdministrationAction.register();
+		AdministrationAction.registerActions();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 

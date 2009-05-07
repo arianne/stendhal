@@ -5,10 +5,7 @@ import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 public class HouseBuying extends AbstractQuest {
 	private static final String QUEST_SLOT = "house";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -20,5 +17,9 @@ public class HouseBuying extends AbstractQuest {
 
 		HouseBuyingMain quest = new HouseBuyingMain();
 		quest.addToWorld();
+	}
+	@Override
+	public String getName() {
+		return "HouseBuying";
 	}
 }

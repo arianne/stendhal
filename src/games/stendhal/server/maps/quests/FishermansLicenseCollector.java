@@ -61,7 +61,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 	/**
 	 * Returns a list of the names of all fish that the given player still has
-	 * to bring to fulfil the quest.
+	 * to bring to fulfill the quest.
 	 *
 	 * @param player
 	 *            The player doing the quest
@@ -224,5 +224,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+
+	@Override
+	public String getName() {
+		return "FishermansLicenseCollector";
 	}
 }

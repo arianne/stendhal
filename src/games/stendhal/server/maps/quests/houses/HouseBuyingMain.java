@@ -8,8 +8,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.HouseKey;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -28,7 +28,6 @@ import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.AbstractQuest;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -42,7 +41,7 @@ import org.apache.log4j.Logger;
  * @author kymara
  */
 
-public class HouseBuyingMain extends AbstractQuest implements LoginListener {
+public class HouseBuyingMain implements LoginListener {
 
 
 	/** the logger instance. */
@@ -111,14 +110,6 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 	
 	private HouseTax houseTax;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-	@Override
-	public String getSlotName() {
-		return QUEST_SLOT;
-	}
 
 	/**
 	 * Base class for dialogue shared by all houseseller NPCs.
@@ -899,9 +890,7 @@ public class HouseBuyingMain extends AbstractQuest implements LoginListener {
 		}
 	}
 
-	@Override
 	public void addToWorld() {
-		super.addToWorld();
 
 		kalavan_city_zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
 		createNPC();

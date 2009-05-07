@@ -21,8 +21,8 @@ public class Balloon extends AbstractQuest {
 	private static BalloonScroll scroll;
 
 	@Override
-	public void init(final String name) {
-		super.init(name);
+	public void addToWorld() {
+		super.addToWorld();
 		if (scroll == null) {
 			scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem(BALLOON);
 		}
@@ -36,16 +36,17 @@ public class Balloon extends AbstractQuest {
 			}
 
 		});
-	}
-
-	@Override
-	public void addToWorld() {
-		super.addToWorld();
 
 	}
 
 	@Override
 	public String getSlotName() {
 		return BALLOON;
+	}
+
+	@Override
+	public String getName() {
+		
+		return "Balloon";
 	}
 }

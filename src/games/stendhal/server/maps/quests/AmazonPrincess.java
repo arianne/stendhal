@@ -60,10 +60,6 @@ public class AmazonPrincess extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 60;
 	private static final List<String> triggers = Arrays.asList("drink", "pina colada", "cocktail", "cheers", "pina");
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
 
 	private void offerQuestStep() {
 		final SpeakerNPC npc = npcs.get("Princess Esclara");
@@ -186,6 +182,11 @@ npc.add(ConversationStates.ATTENDING,
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+
+	@Override
+	public String getName() {
+		return "AmazonPrincess";
 	}
 
 }

@@ -46,10 +46,7 @@ public class LearnAboutKarma extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "learn_karma";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -137,5 +134,9 @@ public class LearnAboutKarma extends AbstractQuest {
 
 		step1();
 
+	}
+	@Override
+	public String getName() {
+		return "LearnAboutKarma";
 	}
 }

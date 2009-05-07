@@ -124,5 +124,9 @@ public class DiceGambling extends AbstractQuest {
 		
 		return map;
 	}
+	@Override
+	public String getName() {
+		return "DiceGambling";
+	}
 
 }

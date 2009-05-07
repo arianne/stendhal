@@ -281,4 +281,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		step_4();
 	}
 
+	@Override
+	public String getName() {
+		return "WeeklyItemQuest";
+	}
+
 }

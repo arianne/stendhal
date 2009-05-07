@@ -15,7 +15,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 /**
  * A factory for <code>AccessCheckingPortal</code> objects.
  */
-public abstract class AccessCheckingPortalFactory implements
+abstract class AccessCheckingPortalFactory implements
 		ConfigurableFactory {
 	//
 	// AccessCheckingPortalFactory

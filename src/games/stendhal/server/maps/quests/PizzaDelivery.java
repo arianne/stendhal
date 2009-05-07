@@ -117,10 +117,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 	private static Map<String, CustomerData> customerDB;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -536,5 +533,10 @@ public class PizzaDelivery extends AbstractQuest {
 		buildCustomerDatabase();
 		prepareBaker();
 		prepareCustomers();
+	}
+
+	@Override
+	public String getName() {
+		return "PizzaDelivery";
 	}
 }

@@ -71,9 +71,12 @@ public class MithrilCloak extends AbstractQuest {
 	/** The twilight moss scroll for teleporting back. */
 	private static TwilightMossScroll scroll;
 
+
+	
+	
 	@Override
-	public void init(final String name) {
-		super.init(name);
+	public void addToWorld() {
+		super.addToWorld();
 		if (scroll == null) {
 			scroll = (TwilightMossScroll) SingletonRepository.getEntityManager().getItem("twilight moss");
 		}
@@ -86,15 +89,17 @@ public class MithrilCloak extends AbstractQuest {
 			}
 
 		});
-	}
-	
-	
-	@Override
-	public void addToWorld() {
-		super.addToWorld();
 		
 		MithrilCloakQuestChain mithrilcloak = new MithrilCloakQuestChain();
 		mithrilcloak.addToWorld();
+	}
+
+
+
+
+	@Override
+	public String getName() {
+		return "MithrilCloak";
 	}
 
 }

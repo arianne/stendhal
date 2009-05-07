@@ -49,7 +49,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 		quest = new LookUpQuote();
 		quest.addToWorld();
-		quest.init("Lookup Quote");
+		
 	}
 
 	@AfterClass

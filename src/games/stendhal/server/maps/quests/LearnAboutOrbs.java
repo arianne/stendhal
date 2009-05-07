@@ -46,10 +46,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "learn_scrying";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	
 	@Override
 	public String getSlotName() {
@@ -129,5 +126,10 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 		step1();
 
+	}
+
+	@Override
+	public String getName() {
+		return "LearnAboutOrbs";
 	}
 }

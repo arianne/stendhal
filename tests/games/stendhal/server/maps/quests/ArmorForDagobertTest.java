@@ -154,10 +154,5 @@ public class ArmorForDagobertTest {
 		assertEquals("Thank you very much for the armor, but I don't have any other task for you.", npc.get("text"));
 	}
 
-	@Test
-	public void testInit() {
-		assertNull(quest.name);
-		quest.init("bla");
-		assertEquals("bla", quest.name);
-	}
+	
 }

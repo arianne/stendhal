@@ -309,4 +309,9 @@ public class VampireSword extends AbstractQuest {
 		}
 		return res;
 	}
+
+	@Override
+	public String getName() {
+		return "VampireSword";
+	}
 }

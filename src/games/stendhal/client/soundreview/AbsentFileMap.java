@@ -8,7 +8,7 @@ import java.util.Set;
  * AbsentFilemap implements the NullObject Pattern for SoundFileMap
  * 
  */
-public class AbsentFileMap implements Map<String, byte[]>, Nullable {
+class AbsentFileMap implements Map<String, byte[]>, Nullable {
 
 	public void clear() {
 

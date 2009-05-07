@@ -6,7 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-public class AlterQuestAction extends AdministrationAction {
+class AlterQuestAction extends AdministrationAction {
 
 	private static final int REQUIREDLEVEL = 900;
 

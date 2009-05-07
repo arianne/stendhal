@@ -65,11 +65,6 @@ public class Campfire extends AbstractQuest {
 	}
 	
 	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
-
-	@Override
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT)) && !"rejected".equals(player.getQuest(QUEST_SLOT));
 	}
@@ -259,5 +254,10 @@ public class Campfire extends AbstractQuest {
 
 		prepareRequestingStep();
 		prepareBringingStep();
+	}
+
+	@Override
+	public String getName() {
+		return "Campfire";
 	}
 }

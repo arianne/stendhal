@@ -284,4 +284,8 @@ public class AdosDeathmatch extends AbstractQuest {
 
 		recruiterInformation();
 	}
+	@Override
+	public String getName() {
+		return "AdosDeathmatch";
+	}
 }

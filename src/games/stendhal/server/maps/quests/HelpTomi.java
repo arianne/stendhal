@@ -53,10 +53,7 @@ public class HelpTomi extends AbstractQuest {
 	private static final String extraTrigger = "ice";
 	private List<String> questTrigger;
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -146,5 +143,9 @@ public class HelpTomi extends AbstractQuest {
 		questTrigger.add(extraTrigger);
 		step1();
 
+	}
+	@Override
+	public String getName() {
+		return "HelpTomi";
 	}
 }

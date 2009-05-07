@@ -140,11 +140,6 @@ public class BeerForHayunnTest {
 
 	}
 
-	@Test
-	public void testinit() {
-		final BeerForHayunn quest = new BeerForHayunn();
-		quest.init("bla");
-		assertEquals("bla", quest.getName());
-	}
+
 
 }

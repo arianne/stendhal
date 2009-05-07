@@ -233,4 +233,9 @@ public class Snowballs extends AbstractQuest {
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
+
+	@Override
+	public String getName() {
+		return "Snowballs";
+	}
 }

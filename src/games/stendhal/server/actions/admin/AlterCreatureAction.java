@@ -10,7 +10,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-public class AlterCreatureAction extends AdministrationAction {
+class AlterCreatureAction extends AdministrationAction {
 
 	public static void register() {
 		CommandCenter.register(ALTERCREATURE, new AlterCreatureAction(), 900);

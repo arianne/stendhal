@@ -20,6 +20,11 @@ public class AbstractQuestTest {
 		public String getSlotName() {
 			return QUESTSlotSTRING;
 		}
+
+		@Override
+		public String getName() {
+			return null;
+		}
 	}
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,13 +49,6 @@ public class AbstractQuestTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public final void testInitString() {
-		final Mockquest quest = new Mockquest();
-		quest.init(QUESTNAMESTRING);
-		assertEquals(QUESTSlotSTRING, quest.getSlotName());
-		assertEquals(QUESTNAMESTRING, quest.getName());
-	}
 
 	@Test
 	public final void testGetHintGetHistory() {
@@ -60,6 +58,12 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
+				return null;
+			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -77,9 +81,14 @@ public class AbstractQuestTest {
 			public String getSlotName() {
 				return QUESTSlotSTRING;
 			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 
-		quest.init(QUESTNAMESTRING);
 
 		assertFalse(quest.isCompleted(pl));
 
@@ -108,6 +117,12 @@ public class AbstractQuestTest {
 			public String getSlotName() {
 				return null;
 			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		assertFalse("abstract quests are not repeatable by default",
 				quest.isRepeatable(null));
@@ -119,6 +134,12 @@ public class AbstractQuestTest {
 
 			@Override
 			public String getSlotName() {
+				return null;
+			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
 				return null;
 			}
 		};
@@ -135,6 +156,12 @@ public class AbstractQuestTest {
 			public String getSlotName() {
 				return null;
 			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		assertFalse(quest.isStarted(null));
 	}
@@ -149,9 +176,15 @@ public class AbstractQuestTest {
 			public String getSlotName() {
 				return null;
 			}
+
+			@Override
+			public String getName() {
+				// TODO Auto-generated method stub
+				return QUESTNAMESTRING;
+			}
 		};
 
-		quest.init(QUESTNAMESTRING);
+		
 		assertEquals(QUESTNAMESTRING, quest.getName());
 	}
 

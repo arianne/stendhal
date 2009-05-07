@@ -273,7 +273,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	 * @param player
 	 *            the player to teleport out
 	 */
-	void teleportAway(final Player player) {
+	private void teleportAway(final Player player) {
 		if (player != null) {
 			final IRPZone playerZone = player.getZone();
 			if (playerZone.equals(zone)) {
@@ -295,5 +295,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		createNPC();
+	}
+
+	@Override
+	public String getName() {
+		return "WizardBank";
 	}
 }

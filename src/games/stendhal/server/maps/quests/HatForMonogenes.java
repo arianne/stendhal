@@ -48,10 +48,7 @@ import java.util.List;
 public class HatForMonogenes extends AbstractQuest {
 	private static final String QUEST_SLOT = "hat_monogenes";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -166,5 +163,9 @@ public class HatForMonogenes extends AbstractQuest {
 
 		createRequestingStep();
 		createBringingStep();
+	}
+	@Override
+	public String getName() {
+		return "HatForMonogenes";
 	}
 }

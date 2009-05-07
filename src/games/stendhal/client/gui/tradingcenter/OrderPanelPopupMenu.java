@@ -7,7 +7,7 @@ import javax.swing.JPopupMenu;
 
 public class OrderPanelPopupMenu extends JPopupMenu {
 
-	public OrderPanelPopupMenu(final Style style, final AcceptTradeOfferAction acceptAction) {
+	protected OrderPanelPopupMenu(final Style style, final AcceptTradeOfferAction acceptAction) {
 		final JMenuItem acceptItem = new JMenuItem("Accept");
 		acceptItem.addActionListener(acceptAction);
 			this.add(acceptItem);

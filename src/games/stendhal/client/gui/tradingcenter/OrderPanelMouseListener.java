@@ -7,11 +7,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPopupMenu;
 
-public final class OrderPanelMouseListener extends MouseAdapter {
+final class OrderPanelMouseListener extends MouseAdapter {
 
 	private final AcceptTradeOfferAction acceptAction;
 
-	public OrderPanelMouseListener(final AcceptTradeOfferAction acceptTradeOfferAction) {
+	protected OrderPanelMouseListener(final AcceptTradeOfferAction acceptTradeOfferAction) {
 		this.acceptAction = acceptTradeOfferAction;
 	}
 

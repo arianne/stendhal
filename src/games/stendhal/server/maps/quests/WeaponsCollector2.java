@@ -286,4 +286,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 		step_2();
 		step_3();
 	}
+
+	@Override
+	public String getName() {
+		return "WeaponsCollector2";
+	}
 }

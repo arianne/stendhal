@@ -41,7 +41,7 @@ public class DailyMonsterQuestTest {
 		mayor = SpeakerNPCTestHelper.createSpeakerNPC("Mayor Sakhs");
 		NPCList.get().add(mayor);
 		dmq = new DailyMonsterQuest();
-		dmq.init("DMQTest");
+	
 		dmq.addToWorld();
 		en = mayor.getEngine();
 	}

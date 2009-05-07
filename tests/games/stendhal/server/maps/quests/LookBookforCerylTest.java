@@ -59,7 +59,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void askJynathWithoutQuest() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-		quest.init("Ceryl needs a book");
+	
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("joe");
 		assertFalse(quest.isStarted(pl));
@@ -83,7 +83,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void comeBackFromJynathWithoutBook() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-		quest.init("Ceryl needs a book");
+	
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("joe");
 		pl.setQuest(CERYL_BOOK, "jynath");
@@ -101,7 +101,7 @@ public class LookBookforCerylTest {
 	@Test
 	public void doQuest() throws Exception {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-		quest.init("Ceryl needs a book");
+	
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
@@ -184,7 +184,7 @@ public class LookBookforCerylTest {
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
 		quest.addToWorld();
-		quest.init("Ceryl needs a book");
+	
 		assertTrue(quest.getHistory(pl).isEmpty());
 
 		pl.setQuest(CERYL_BOOK, "rejected");
@@ -223,7 +223,7 @@ public class LookBookforCerylTest {
 	public final void testIsCompleted() {
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
-		quest.init("Ceryl needs a book");
+
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isCompleted(pl));
@@ -242,7 +242,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void testIsStarted() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-		quest.init("blabla");
+	
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		assertFalse(bob.hasQuest(LookBookforCerylTest.CERYL_BOOK));
 		assertFalse(quest.isStarted(bob));
@@ -251,12 +251,6 @@ public class LookBookforCerylTest {
 		assertTrue(quest.isStarted(bob));
 	}
 
-	@Test
-	public final void testGetName() {
-		final LookBookforCeryl quest = new LookBookforCeryl();
-		assertEquals(null, quest.getName());
-		quest.init("testname");
-		assertEquals("testname", quest.getName());
-	}
+
 
 }

@@ -258,4 +258,9 @@ public class RingMaker extends AbstractQuest {
 		}
 		
 	}
+
+	@Override
+	public String getName() {
+		return "RingMaker";
+	}
 }

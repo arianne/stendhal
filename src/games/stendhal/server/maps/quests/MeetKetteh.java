@@ -96,4 +96,9 @@ public class MeetKetteh extends AbstractQuest {
 
 		step1();
 	}
+
+	@Override
+	public String getName() {
+		return "MeetKetteh";
+	}
 }

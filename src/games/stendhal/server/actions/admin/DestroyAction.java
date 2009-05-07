@@ -20,7 +20,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-public class DestroyAction extends AdministrationAction {
+class DestroyAction extends AdministrationAction {
 
 
 	

@@ -380,4 +380,9 @@ public class Soup extends AbstractQuest {
 		step_2();
 		step_3();
 	}
+
+	@Override
+	public String getName() {
+		return "Soup";
+	}
 }

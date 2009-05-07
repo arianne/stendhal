@@ -29,10 +29,7 @@ public class MeetIo extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "meet_io";
 
-	@Override
-	public void init(final String name) {
-		super.init(name);
-	}
+
 
 	@Override
 	public String getSlotName() {
@@ -161,5 +158,10 @@ public class MeetIo extends AbstractQuest {
 		super.addToWorld();
 
 		prepareIO();
+	}
+
+	@Override
+	public String getName() {
+		return "MeetIo";
 	}
 }
