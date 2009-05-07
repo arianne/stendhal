@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.semos.bank;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -45,11 +47,11 @@ public class Vault extends StendhalRPZone {
 		walkblocker
 				.setDescription("You see a wastebin, handily placed for items you wish to dispose of.");
 		add(walkblocker);
-		// Add a sign explaining about dropped items
+		// Add a sign explaining about equipped items
 		final Sign book = new Sign();
 		book.setPosition(2, 2);
 		book
-				.setText("Items left on the ground will be returned to you when you leave the vault, as it is assumed they were dropped by mistake. There is a wastebin provided below for anything you want to throw away. It will be emptied automatically when you leave the vault.");
+				.setText("Items left on the ground will be returned to you when you leave the vault, as it is assumed they were equipped by mistake. There is a wastebin provided below for anything you want to throw away. It will be emptied automatically when you leave the vault.");
 		book.setEntityClass("book_blue");
 		book.setResistance(0);
 		add(book);
@@ -96,6 +98,7 @@ public class Vault extends StendhalRPZone {
 												+ " which you left on the floor in the vault have been automatically "
 												+ "returned to your bag.");
 							}
+							new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bag", Integer.toString(item.getQuantity())).raise();
 						} else {
 							boolean equippedToBank = ((RPEntity) entity).equip(
 									"bank", item);
@@ -112,6 +115,7 @@ public class Vault extends StendhalRPZone {
 													+ " which you left on the floor in the vault have been automatically "
 													+ "returned to your bank chest.");
 								}
+								new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
 							} else {
 								// the player lost their items
 								if (postman != null) {
@@ -127,9 +131,15 @@ public class Vault extends StendhalRPZone {
 													+ "the void, because there was no space to fit them into either your "
 													+ "bank chest or your bag.");
 								}
+								// the timeout method enters the zone and coords of item, this is useful we will know it was in vault
+								new ItemLogger().timeout(item);
 							}
 						}
+					} else {
+						// the timeout method enters the zone and coords of item, this is useful, this is useful we will know it was in wastebin
+						new ItemLogger().timeout(item);
 					}
+					
 				}
 				// since we are about to destroy the vault, change the player
 				// zoneid to semos bank so that if they are relogging,
