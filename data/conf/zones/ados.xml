@@ -611,8 +611,8 @@ in roaches.
  <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="9"></parameter>
-	<parameter name="2"></parameter>
+	<parameter name="x">9</parameter>
+	<parameter name="y">2</parameter>
   </configurator>
   <portal x="1" y="7" ref="in">
     <destination zone="0_ados_wall" ref="house_73"/>
@@ -621,8 +621,8 @@ in roaches.
  <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="28"></parameter>
-	<parameter name="2"></parameter>
+	<parameter name="x">28</parameter>
+	<parameter name="y">2</parameter>
   </configurator>
   <portal x="17" y="20" ref="in">
     <destination zone="0_ados_wall" ref="house_74"/>
