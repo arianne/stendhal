@@ -121,7 +121,9 @@ public class HouseTax implements TurnListener {
 			 * That results in duplicated notifications to some players, but
 			 * that's better than not notifying some at all.
 			 */
-			timeSinceChecked = 2 * TAX_CHECKING_PERIOD;
+		    // temporarily really long! to solve problems now fixed in head, for main server. 
+		    // (tonnes of players didnt get notified they owe tax)
+		    timeSinceChecked = TAX_PAYMENT_PERIOD * 1000;
 		}
 		previouslyChecked = time;
 
