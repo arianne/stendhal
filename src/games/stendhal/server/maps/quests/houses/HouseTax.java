@@ -17,7 +17,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 
 /**
- * House tax, and confiscation of houses
+ * House tax, and confiscation of houses.
  */
 public class HouseTax implements TurnListener {
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
@@ -28,7 +28,7 @@ public class HouseTax implements TurnListener {
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
 	private static final int MAX_UNPAID_TAXES = 5;
 	
-	/** The base amount of tax per month */
+	/** The base amount of tax per month. */
 	public static final int BASE_TAX = 1000;
 	/** Interest rate for unpaid taxes. The taxman does not give free loans. */
 	private static final double INTEREST_RATE = 0.1;
@@ -47,7 +47,7 @@ public class HouseTax implements TurnListener {
 	 * @param portal the portal to be checked
 	 * @return the amount of taxes to be paid
 	 */
-	public int getTaxDebt(HousePortal portal) {
+	public int getTaxDebt(final HousePortal portal) {
 		return getTaxDebt(getUnpaidTaxPeriods(portal));
 	}
 	
@@ -57,7 +57,7 @@ public class HouseTax implements TurnListener {
 	 * @param periods the number of months the player has to pay at once
 	 * @return the amount of debt
 	 */
-	private int getTaxDebt(int periods) {
+	private int getTaxDebt(final int periods) {
 		int debt = 0; 
 		
 		for (int i = 0; i < periods; i++) {
@@ -74,7 +74,7 @@ public class HouseTax implements TurnListener {
 	 * @return number of periods
 	 */
 	private int getUnpaidTaxPeriods(final Player player) {
-		HousePortal portal = HouseUtilities.getPlayersHouse(player);
+		final HousePortal portal = HouseUtilities.getPlayersHouse(player);
 		int payments = 0;
 
 		if (portal != null) {
@@ -89,18 +89,18 @@ public class HouseTax implements TurnListener {
 	 * @param portal the portal to be checked
 	 * @return number of periods
 	 */
-	private int getUnpaidTaxPeriods(HousePortal portal) {
+	private int getUnpaidTaxPeriods(final HousePortal portal) {
 		final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
 		return Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
 	}
 	
-	private void setTaxesPaid(Player player, int periods) {
-		HousePortal portal = HouseUtilities.getPlayersHouse(player);
+	private void setTaxesPaid(final Player player, final int periods) {
+		final HousePortal portal = HouseUtilities.getPlayersHouse(player);
 		logger.debug("set portal expire time to " + portal.getExpireTime() + " plus " + ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
 		portal.setExpireTime(portal.getExpireTime() +  ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
 	}
 
-	public void onTurnReached(int turn) {
+	public void onTurnReached(final int turn) {
 		SingletonRepository.getTurnNotifier().notifyInSeconds(TAX_CHECKING_PERIOD, this);
 
 		final long time =  System.currentTimeMillis();
@@ -121,16 +121,14 @@ public class HouseTax implements TurnListener {
 			 * That results in duplicated notifications to some players, but
 			 * that's better than not notifying some at all.
 			 */
-		    // temporarily really long! to solve problems now fixed in head, for main server. 
-		    // (tonnes of players didnt get notified they owe tax)
-		    timeSinceChecked = TAX_PAYMENT_PERIOD * 1000;
+			timeSinceChecked = 2 * TAX_CHECKING_PERIOD * 1000;
 		}
 		previouslyChecked = time;
 
 
 		// Check all houses, and decide if they need any action
-		for (HousePortal portal : HouseUtilities.getHousePortals()) {
-			String owner = portal.getOwner();
+		for (final HousePortal portal : HouseUtilities.getHousePortals()) {
+			final String owner = portal.getOwner();
 			if (owner.length() > 0) {		
 				final int timeDiffSeconds = (int) ((time - portal.getExpireTime()) / 1000);
 				final int payments = (int) timeDiffSeconds / TAX_PAYMENT_PERIOD;
@@ -163,7 +161,7 @@ public class HouseTax implements TurnListener {
 	 * 
 	 * @param portal the door of the house to confiscate
 	 */
-	private void confiscate(HousePortal portal) {
+	private void confiscate(final HousePortal portal) {
 		notifyIfNeeded(portal.getOwner(), "You have neglected to pay your house taxes for too long. "
 					   + "Your house has been repossessed to cover the debt to the state.");
 		logger.info("repossessed " + portal.getDoorId() + ", which used to belong to " + portal.getOwner());
@@ -172,12 +170,12 @@ public class HouseTax implements TurnListener {
 	}
 
 	/**
-	 * Notify the owner of a house in the name of Tax Man
+	 * Notifies the owner of a house in the name of Tax Man.
 	 * 
 	 * @param owner the player to be notified
 	 * @param message the delivered message
 	 */
-	private void notifyIfNeeded(String owner, String message) {
+	private void notifyIfNeeded(final String owner, final String message) {
 		// TODO: remove the support for "an unknown owner", once all the old
 		// houses have been updated or confiscated
 		if (!owner.equals("an unknown owner")) {
@@ -193,7 +191,7 @@ public class HouseTax implements TurnListener {
 	}
 	
 	private void setupTaxman() {
-		SpeakerNPC taxman = SingletonRepository.getNPCList().get("Mr Taxman");
+		final SpeakerNPC taxman = SingletonRepository.getNPCList().get("Mr Taxman");
 		
 		taxman.addReply("tax", "All house owners must #pay taxes to the state.");
 		
@@ -227,8 +225,8 @@ public class HouseTax implements TurnListener {
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-						int periods = getUnpaidTaxPeriods(player);
-						int cost = getTaxDebt(periods);
+						final int periods = getUnpaidTaxPeriods(player);
+						final int cost = getTaxDebt(periods);
 						if (player.isEquipped("money", cost)) {
 							player.drop("money", cost);
 							setTaxesPaid(player, periods);
