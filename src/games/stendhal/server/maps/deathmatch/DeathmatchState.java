@@ -7,13 +7,15 @@ import java.util.Date;
  *
  * @author hendrik
  */
-class DeathmatchState {
+public class DeathmatchState {
 
 	private DeathmatchLifecycle lifecycleState;
 
 	private int level;
 
 	private long date;
+
+        private int points;
 
 	protected DeathmatchState() {
 		// hide constructor
@@ -33,6 +35,7 @@ class DeathmatchState {
 		if (deathmatchState.level < 1) {
 			deathmatchState.level = 1;
 		}
+		deathmatchState.points = 0;
 		return deathmatchState;
 	}
 
@@ -50,6 +53,7 @@ class DeathmatchState {
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
 		deathmatchState.date = Long.parseLong(tokens[2]);
+		deathmatchState.points = Integer.parseInt(tokens[3]);
 		return deathmatchState;
 	}
 
@@ -77,6 +81,27 @@ class DeathmatchState {
 		this.level++;
 	}
 
+
+	/**
+	 * Gets the DM points earned in this DM
+	 *
+	 * @return DM points
+	 */
+	int getPoints() {
+		return points;
+	}
+
+
+	/**
+	 * Adds some DM points.
+	 *
+	 * @param points
+	 *            DM points
+	 */
+	public void addPoints(final int points) {
+		this.points += points;
+	}
+
 	/**
 	 * Gets the current lifecycle state.
 	 *
@@ -102,8 +127,8 @@ class DeathmatchState {
 	 *
 	 * @return quest string
 	 */
-	String toQuestString() {
-		return lifecycleState.toQuestString() + ";" + level + ";" + date;
+	public String toQuestString() {
+		return lifecycleState.toQuestString() + ";" + level + ";" + date + ";" + points;
 	}
 
 	@Override
