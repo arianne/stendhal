@@ -13,113 +13,101 @@ package games.stendhal.server.entity.npc;
 
 /**
  * Represents the conversation status of a NPC that can talk with players.
- * 
- * @author Daniel Herding
  */
-public class ConversationStates {
+public enum ConversationStates {
 
 	/**
 	 * A wildcard that always matches, regardless of the current state.
 	 */
-	public static final int ANY = -1;
+	ANY,
 
 	/**
 	 * The SpeakerNPC is waiting for a player to start a conversation.
 	 */
-	public static final int IDLE = 0;
+	IDLE,
 
 	/**
 	 * The SpeakerNPC is attending one player; all prior talk is irrelevant.
 	 */
-	public static final int ATTENDING = 1;
+	ATTENDING,
 
 	/**
 	 * The player wants to buy an item; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
-	public static final int BUY_PRICE_OFFERED = 20;
+	BUY_PRICE_OFFERED,
 
 	/**
 	 * The player wants to sell an item; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
-	public static final int SELL_PRICE_OFFERED = 30;
+	SELL_PRICE_OFFERED,
 
 	/**
 	 * The player wants to be healed; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
-	public static final int HEAL_OFFERED = 40;
+	HEAL_OFFERED,
 
 	/**
 	 * The player wants the NPC to produce something; the SpeakerNPC has told
 	 * about the required resources and waits for the player to accept or reject
 	 * the offer.
 	 */
-	public static final int PRODUCTION_OFFERED = 45;
+	PRODUCTION_OFFERED,
 
 	/**
 	 * The player wants the NPC to do something; the SpeakerNPC has told about
 	 * the required cash/resources and waits for the player to accept or reject
 	 * the offer.
 	 */
-	public static final int SERVICE_OFFERED = 46;
+	SERVICE_OFFERED,
 
 	/**
 	 * The SpeakerNPC is simply telling something to the player.
 	 */
-	public static final int INFORMATION_1 = 50;
-
-	public static final int INFORMATION_2 = 51;
-
-	public static final int INFORMATION_3 = 52;
-
-	public static final int INFORMATION_4 = 53;
-
-	public static final int INFORMATION_5 = 54;
-
-	public static final int INFORMATION_6 = 55;
-
-	public static final int INFORMATION_7 = 56;
-
-	public static final int INFORMATION_8 = 57;
-
-	public static final int INFORMATION_9 = 58;
-
-	public static final int INFORMATION_10 = 59;
-
+	INFORMATION_1,
+	INFORMATION_2,
+	INFORMATION_3,
+	INFORMATION_4,
+	INFORMATION_5,
+	INFORMATION_6,
+	INFORMATION_7,
+	INFORMATION_8,
+	INFORMATION_9,
+	INFORMATION_10,
 	/**
 	 * The SpeakerNPC has offered a quest; the player has to accept or reject
 	 * it.
 	 */
-	public static final int QUEST_OFFERED = 60;
+	QUEST_OFFERED,
 
 	/**
 	 * The SpeakerNPC has offered a second quest; the player has to accept or
 	 * reject it.
 	 */
-	public static final int QUEST_2_OFFERED = 65;
+	QUEST_2_OFFERED,
 
 	/**
 	 * The player has just started the quest.
 	 */
-	public static final int QUEST_STARTED = 61;
+	QUEST_STARTED,
 
 	/**
 	 * The player has brought a requested item, and the SpeakerNPC has asked if
 	 * it should be used for the quest.
 	 */
-	public static final int QUEST_ITEM_BROUGHT = 62;
+	QUEST_ITEM_BROUGHT,
 
 	/**
 	 * The SpeakerNPC asks the player if the player has brought a requested item.
 	 */
-	public static final int QUEST_ITEM_QUESTION = 63;
+	QUEST_ITEM_QUESTION,
 
 	/** Multi-purpose states for multiple questions. */
-	public static final int QUESTION_1 = 70;
+	QUESTION_1,
 
-	public static final int QUESTION_2 = 71;
+	QUESTION_2,
 
-	public static final int QUESTION_3 = 72;
+	QUESTION_3;
 }

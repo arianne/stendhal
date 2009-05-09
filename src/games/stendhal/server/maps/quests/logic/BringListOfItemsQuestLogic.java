@@ -145,11 +145,11 @@ public class BringListOfItemsQuestLogic {
 		// the "giving items" states. Unless the trigger phrase list is empty
 		// In this case it is ignored during the "giving items" state because
 		// there is already a yes-trigger defined elsewhere.
-		int[] states;
+		ConversationStates[] states;
 		if (concreteQuest.getTriggerPhraseToEnumerateMissingItems() != ConversationPhrases.EMPTY) {
-			states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+			states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		} else {
-			states = new int[] {ConversationStates.ATTENDING};
+			states = new ConversationStates[] {ConversationStates.ATTENDING};
 		}
 
 		concreteQuest.getNPC().add(states,
@@ -173,7 +173,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player says he doesn't have required items with him.
 	 */
 	protected void playerDoesNotWantToGiveItems() {
-	    final int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+	    final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
@@ -192,7 +192,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player says he has a required item with him.
 	 */
 	protected void playerWantsToGiveItems() {
-		final int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states,
 			ConversationPhrases.YES_MESSAGES, 
 			new QuestActiveCondition(concreteQuest.getSlotName()),
@@ -259,7 +259,7 @@ public class BringListOfItemsQuestLogic {
      * player tries to offer an unwanted item 
     */
     protected void offerNotNeededItem() {
-	concreteQuest.getNPC().add(ConversationStates.QUESTION_1,"", 	
+	concreteQuest.getNPC().add(ConversationStates.QUESTION_1, "", 	
 				   new NotCondition(new TriggerInListCondition(concreteQuest.getNeededItems())),
 				   ConversationStates.QUESTION_1,
 				   concreteQuest.respondToOfferOfNotNeededItem(),

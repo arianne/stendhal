@@ -2,15 +2,15 @@ package games.stendhal.server.entity.player;
 
 import java.awt.Point;
 
-public class Cell {
+class Cell {
 	private final Point entry;
 	private String inmateName = "";
 
-	public Cell(final Point entry) {
+	protected Cell(final Point entry) {
 		this.entry = entry;
 	}
 
-	public boolean remove(final String name) {
+	protected boolean remove(final String name) {
 		if (this.inmateName.equalsIgnoreCase(name)) {
 			this.inmateName = "";
 			return true;
@@ -27,7 +27,7 @@ public class Cell {
 		return entry;
 	}
 
-	public boolean add(final String string) {
+	protected boolean add(final String string) {
 		if (isEmpty()) {
 			inmateName = string;
 			return true;

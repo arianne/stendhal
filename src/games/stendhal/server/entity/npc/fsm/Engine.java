@@ -29,13 +29,11 @@ public class Engine {
 	// TODO later: remove dependency on games.stendhal.server.entity.npc.* and Player
 	private final SpeakerNPC speakerNPC;
 
-	private int maxState;
-
 	// FSM state transition table
 	private final List<Transition> stateTransitionTable = new LinkedList<Transition>();
 
 	// current FSM state
-	private int currentState = ConversationStates.IDLE;
+	private ConversationStates currentState = ConversationStates.IDLE;
 
 	/**
 	 * Creates a new FSM.
@@ -59,7 +57,7 @@ public class Engine {
 	 * @param condition
 	 * @return previous transition entry
 	 */
-	private Transition get(final int state, final Expression trigger, final ChatCondition condition) {
+	private Transition get(final ConversationStates state, final Expression trigger, final ChatCondition condition) {
 		for (final Transition transition : stateTransitionTable) {
 			if (transition.matchesWithCondition(state, trigger, condition)) {
 				return transition;
@@ -67,16 +65,6 @@ public class Engine {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Calculates and returns an unused state.
-	 * 
-	 * @return unused state
-	 */
-	public int getFreeState() {
-		maxState++;
-		return maxState;
 	}
 
 	/**
@@ -95,8 +83,8 @@ public class Engine {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public void add(final int state, final String triggerString, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final String triggerString, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		add(state, triggerString, null, condition, nextState, reply, action);
 	}
 
@@ -111,14 +99,12 @@ public class Engine {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(final int state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
-			final int nextState, String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		// normalize trigger expressions using the conversation parser
 		final Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
 
-		if (state > maxState) {
-			maxState = state;
-		}
+		
 
 		// look for already existing rule with identical input parameters
 		final Transition existing = get(state, triggerExpression, condition);
@@ -129,10 +115,11 @@ public class Engine {
 
 			// Concatenate the previous and the new reply texts if the new one is not there already.
 			if ((existingReply != null) && (reply != null) && !existingReply.contains(reply)) {
-				reply = existingReply + " " + reply;
+				existing.setReply(existingReply + " " + reply);
+			} else {
+				existing.setReply(reply);
 			}
 
-			existing.setReply(reply);
 
 			if (((action == null) && (existingAction == null))
 					|| ((action != null) && action.equals(existingAction))) {
@@ -164,8 +151,8 @@ public class Engine {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final int state, final List<String> triggers, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		if (triggers == null) {
 			throw new IllegalArgumentException("triggers list must not be null");
 		}
@@ -179,7 +166,7 @@ public class Engine {
 	 * 
 	 * @return current state
 	 */
-	public int getCurrentState() {
+	public ConversationStates getCurrentState() {
 		return currentState;
 	}
 
@@ -189,7 +176,7 @@ public class Engine {
 	 * @param currentState
 	 *            new state
 	 */
-	public void setCurrentState(final int currentState) {
+	public void setCurrentState(final ConversationStates currentState) {
 		this.currentState = currentState;
 	}
 
@@ -370,35 +357,12 @@ public class Engine {
 	 * @return true if transition has been found
 	 */
 	private boolean matchesTransition(final MatchType type, final Sentence sentence, final Transition transition) {
-		switch(type) {
-			case EXACT_MATCH:
-				return transition.matches(currentState, sentence);
+		return type.match(transition, currentState, sentence);
 
-			case NORMALIZED_MATCH:
-				return transition.matchesNormalized(currentState, sentence);
-
-			case SIMILAR_MATCH:
-				return transition.matchesSimilar(currentState, sentence);
-
-			case ABSOLUTE_JUMP:
-				return (currentState != ConversationStates.IDLE)
-						&& transition.matchesWild(sentence);
-
-			case NORMALIZED_JUMP:
-				return (currentState != ConversationStates.IDLE)
-						&& transition.matchesWildNormalized(sentence);
-
-			case SIMILAR_JUMP:
-				return (currentState != ConversationStates.IDLE)
-						&& transition.matchesWildSimilar(sentence);
-
-			default:
-				return false;
-		}
 	}
 
 	private void executeTransition(final Player player, final Sentence sentence, final Transition trans) {
-		final int nextState = trans.getNextState();
+		final ConversationStates nextState = trans.getNextState();
 		if (trans.getReply() != null) {
 			speakerNPC.say(trans.getReply());
 		}

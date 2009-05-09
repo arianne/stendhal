@@ -390,8 +390,8 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final int state, final String trigger, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final String trigger, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, condition, nextState, reply, action);
 	}
 
@@ -406,8 +406,8 @@ public class SpeakerNPC extends NPC {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(final int state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, matcher, condition, nextState, reply, action);
 	}
 
@@ -428,8 +428,8 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final int state, final List<String> triggers, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
+	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, triggers, condition, nextState, reply, action);
 	}
 
@@ -450,9 +450,9 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final int[] states, final String trigger, final ChatCondition condition,
-			final int nextState, final String reply, final ChatAction action) {
-		for (final int state : states) {
+	public void add(final ConversationStates[] states, final String trigger, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
+		for (final ConversationStates state : states) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
 	}
@@ -474,16 +474,16 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final int[] states, final List<String> triggers,
-			final ChatCondition condition, final int nextState, final String reply,
+	public void add(final ConversationStates[] states, final List<String> triggers,
+			final ChatCondition condition, final ConversationStates nextState, final String reply,
 			final ChatAction action) {
-		for (final int state : states) {
+		for (final ConversationStates state : states) {
 			add(state, triggers, condition, nextState, reply, action);
 		}
 	}
 
 
-	public void add(final int state, final List<String> triggers, final int nextState,
+	public void add(final ConversationStates state, final List<String> triggers, final ConversationStates nextState,
 			final String reply, final ChatAction action) {
 		for (final String trigger : triggers) {
 			add(state, trigger, null, nextState, reply, action);
@@ -551,7 +551,7 @@ public class SpeakerNPC extends NPC {
 		return engine.step(player, text);
 	}
 
-	public void setCurrentState(final int state) {
+	public void setCurrentState(final ConversationStates state) {
 		engine.setCurrentState(state);
 	}
 

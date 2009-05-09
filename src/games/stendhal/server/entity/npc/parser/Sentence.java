@@ -20,13 +20,15 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         UNDEFINED, STATEMENT, IMPERATIVE, QUESTION
     };
 
+    protected String originalText;
+    
+    protected final ConversationContext context;
+
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
 
     List<Expression> expressions = new ArrayList<Expression>();
-
-    protected final ConversationContext context;
-
-    protected String originalText;
+    
+  
 
     /**
      * Create a Sentence object.

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationStates;
+import static games.stendhal.server.entity.npc.ConversationStates.*;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -32,22 +34,13 @@ public class EngineTest {
 	}
 
 	@Test
-	public void testGetFreeState() {
-		final Engine en = new Engine(new SpeakerNPC("bob"));
-		assertEquals("creates an integer for a free state", 1, en
-				.getFreeState());
-		assertEquals("creates the next integer for a free state", 2, en
-				.getFreeState());
-	}
-
-	@Test
 	public void testAddSingleStringEmptyCondition() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
-		int state;
-		state = 0;
+		ConversationStates state = IDLE;
+		
 		final String triggers = "boo";
 
-		final int nextState = state + 1;
+		final ConversationStates nextState = ConversationStates.ATTENDING;
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
@@ -64,9 +57,9 @@ public class EngineTest {
 	public void testaddBothActionsNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		assertTrue(en.getTransitions().isEmpty());
-		en.add(0, null, null, null, 0, null, null);
+		en.add(IDLE, null, null, null, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(0, null, null, null, 0, null, null);
+		en.add(IDLE, null, null, null, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
 	}
 	
@@ -74,9 +67,9 @@ public class EngineTest {
 	public void testaddExistingActionNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		
-		en.add(0, null, null, null, 0, null, null);
+		en.add(IDLE, null, null, null, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(0, null, null, null, 0, null, new ChatAction() {
+		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				
@@ -91,14 +84,14 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		
 		
-		en.add(0, null, null, null, 0, null, new ChatAction() {
+		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 				
 			}
 		});
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(0, null, null, null, 0, null, null);
+		en.add(IDLE, null, null, null, IDLE, null, null);
 		
 		assertThat(en.getTransitions().size(), is(2));
 		
@@ -113,10 +106,10 @@ public class EngineTest {
 				
 			}
 		};
-		en.add(0, null, null, null, 0, null, chatAction);
+		en.add(IDLE, null, null, null, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
 		
-		en.add(0, null, null, null, 0, null, chatAction);
+		en.add(IDLE, null, null, null, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
 		
 	}
@@ -136,10 +129,10 @@ public class EngineTest {
 				
 			}
 		};
-		en.add(0, null, null, null, 0, null, chatAction1);
+		en.add(IDLE, null, null, null, IDLE, null, chatAction1);
 		assertThat(en.getTransitions().size(), is(1));
 		
-		en.add(0, null, null, null, 0, null, chatAction2);
+		en.add(IDLE, null, null, null, IDLE, null, chatAction2);
 		assertThat(en.getTransitions().size(), is(2));
 		
 	}
@@ -150,8 +143,9 @@ public class EngineTest {
 		final SpeakerNPC bob = new SpeakerNPC("bob");
 
 		final Engine en = new Engine(bob);
-		int state;
-		state = 0;
+		ConversationStates state = IDLE;
+		ConversationStates nextState = ATTENDING;
+		
 		final String triggers = "boo";
 
 		final ChatCondition cc = new ChatCondition() {
@@ -161,7 +155,7 @@ public class EngineTest {
 			}
 		};
 
-		final int nextState = state + 1;
+		
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {

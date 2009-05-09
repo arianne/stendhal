@@ -192,4 +192,11 @@ public class BeerForHayunn extends AbstractQuest {
 	public String getName() {
 		return "BeerForHayunn";
 	}
+
+	public String getTitle() {
+		
+		return "Beer for Hayunn";
+	}
+	
+
 }

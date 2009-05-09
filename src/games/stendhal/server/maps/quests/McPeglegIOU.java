@@ -72,7 +72,7 @@ public class McPeglegIOU extends AbstractQuest {
 						money.setQuantity(250);
 						player.equipToInventoryOnly(money);
 						player.setQuest(QUEST_SLOT, "done");
-						engine.setCurrentState(1);
+						engine.setCurrentState(ConversationStates.ATTENDING);
 					} else {
 						engine.say("I can't see that you got a valid IOU with my signature!");
 					}

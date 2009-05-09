@@ -73,4 +73,6 @@ public interface IQuest {
 	 */
 	String getName();
 
+	
+
 }

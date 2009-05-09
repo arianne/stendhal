@@ -11,7 +11,6 @@ import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.CountingMap;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +20,6 @@ import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.log4j.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
@@ -31,7 +29,6 @@ import org.apache.log4j.Logger;
  */
 public class DumpTransitionsEx extends ScriptImpl {
 
-	private static Logger logger = Logger.getLogger(DumpTransitionsEx.class);
 	private StringBuilder dumpedTable;
 	private CountingMap<PreTransitionCondition> conditions;
 	private CountingMap<PostTransitionAction> actions;
@@ -122,21 +119,22 @@ public class DumpTransitionsEx extends ScriptImpl {
 		return transitionName;
 	}
 
-	private static String getStateName(final int number) {
-		final Integer num = Integer.valueOf(number);
-		final Field[] fields = ConversationStates.class.getFields();
-		for (final Field field : fields) {
-			try {
-				if (field.get(null).equals(num)) {
-					return field.getName();
-				}
-			} catch (final IllegalArgumentException e) {
-				logger.error(e, e);
-			} catch (final IllegalAccessException e) {
-				logger.error(e, e);
-			}
-		}
-		return Integer.toString(number);
+	private static String getStateName(final ConversationStates number) {
+		return number.toString();
+//		final Integer num = Integer.valueOf(number);
+//		final Field[] fields = ConversationStates.class.getFields();
+//		for (final Field field : fields) {
+//			try {
+//				if (field.get(null).equals(num)) {
+//					return field.getName();
+//				}
+//			} catch (final IllegalArgumentException e) {
+//				logger.error(e, e);
+//			} catch (final IllegalAccessException e) {
+//				logger.error(e, e);
+//			}
+//		}
+//		return Integer.toString(number);
 	}
 
 	private void dumpFooter() {

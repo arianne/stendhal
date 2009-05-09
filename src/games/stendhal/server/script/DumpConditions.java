@@ -11,12 +11,9 @@ import games.stendhal.server.entity.npc.fsm.TransitionList;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
-import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
@@ -25,8 +22,6 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class DumpConditions extends ScriptImpl {
-
-	private static Logger logger = Logger.getLogger(DumpConditions.class);
 
 	private StringBuilder dumpedTable;
 
@@ -46,10 +41,10 @@ public class DumpConditions extends ScriptImpl {
 
 	private void dumpNPC(final SpeakerNPC npc) {
 		final TransitionList transitions = new TransitionList(npc.getTransitions());
-		final Set<Integer> states = transitions.getSourceStates();
+		final Set<ConversationStates> states = transitions.getSourceStates();
 
-		for (final Integer stateInt : states) {
-			final int state = stateInt.intValue();
+		for (final ConversationStates state : states) {
+			
 			final Set<Expression> triggers = transitions.getTriggersForState(state);
 			for (final Expression trigger : triggers) {
 				final List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
@@ -63,28 +58,10 @@ public class DumpConditions extends ScriptImpl {
 				}
 				if (conditions.size() > 1) {
 					dumpedTable.append(npc.getName() + "\t"
-							+ getStateName(state) + "\t" + trigger + "\t"
+							+ state.toString() + "\t" + trigger + "\t"
 							+ conditions + "\n");
 				}
 			}
 		}
 	}
-
-	private static String getStateName(final int number) {
-		final Integer num = Integer.valueOf(number);
-		final Field[] fields = ConversationStates.class.getFields();
-		for (final Field field : fields) {
-			try {
-				if (field.get(null).equals(num)) {
-					return field.getName();
-				}
-			} catch (final IllegalArgumentException e) {
-				logger.error(e, e);
-			} catch (final IllegalAccessException e) {
-				logger.error(e, e);
-			}
-		}
-		return Integer.toString(number);
-	}
-
 }

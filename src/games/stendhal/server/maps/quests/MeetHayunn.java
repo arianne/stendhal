@@ -208,7 +208,7 @@ public class MeetHayunn extends AbstractQuest {
 				epilog + "Well, good luck in the dungeons! This shield should help you. Here's hoping you find fame and glory, and keep watch for monsters!",
 				new MultipleActions(reward2));
 
-		npc.add(new int[] { ConversationStates.ATTENDING,
+		npc.add(new ConversationStates[] { ConversationStates.ATTENDING,
 					ConversationStates.INFORMATION_1,
 					ConversationStates.INFORMATION_2,
 					ConversationStates.INFORMATION_3,
