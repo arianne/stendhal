@@ -2,6 +2,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.deathmatch.DeathmatchState;
 
 /**
  * <p>A creature that will give no XP to killers.
@@ -36,7 +37,7 @@ public class DeathMatchCreature extends Creature {
 	public void setPlayerToReward(final Player player) {
 		this.playerName = player.getName();
 	}
-	
+    
 	@Override
 	public Creature getNewInstance() {
 		return new DeathMatchCreature(this);
@@ -60,7 +61,11 @@ public class DeathMatchCreature extends Creature {
 			if (killerName.equals(playerName)) {
 				points = (int) (killer.getLevel()
 					* ((float) damageDone / (float) totalDamageReceived));
-			}	
+				final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(killer.getQuest("deathmatch"));
+				deathmatchState.addPoints(points);
+				killer.setQuest("deathmatch", deathmatchState.toQuestString());
+			}
+			
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
