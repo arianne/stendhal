@@ -164,16 +164,6 @@ public class CreatureSpawner implements TurnListener {
 		return spawnNewCreature(calculateNextCreature(questLevel), player,  deathmatchInfo);
 	}
 
-	int calculatePoints() {
-		int sum = 0;
-
-		for (final DeathMatchCreature creature : spawnedCreatures) {
-			sum += creature.getDMPoints();
-		}
-
-		return sum;
-	}
-
 	public void onTurnReached(final int currentTurn) {
 
 	}

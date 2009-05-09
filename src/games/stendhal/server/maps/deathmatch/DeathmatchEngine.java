@@ -106,7 +106,6 @@ class DeathmatchEngine implements TurnListener {
 						+ " completed deathmatch");
 				spawner.spawnDailyMonster(player, dmInfo);
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
-				deathmatchState.setQuestLevel(spawner.calculatePoints());
 				player.setQuest("deathmatch", deathmatchState.toQuestString());
 				// remove this ScriptAction since we're done
 

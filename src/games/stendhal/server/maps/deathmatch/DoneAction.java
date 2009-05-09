@@ -40,7 +40,7 @@ public class DoneAction implements ChatAction {
 	private int updatePoints(final Player player) {
 		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
-		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getQuestLevel());
+		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getPoints());
 		return rules.getHallOfFamePoints(player.getName(), "D");
 	}
 
