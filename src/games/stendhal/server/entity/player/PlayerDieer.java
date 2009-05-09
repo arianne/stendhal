@@ -75,7 +75,7 @@ public class PlayerDieer {
 			}
 			logger.debug("karma selected: " + karma);
 			// scale down to between -1 and 1, as the penalty factor is scaled to 1 (we will also need to scale again before adding to penaltyFactor)
-			karma = karma/100.0;
+			karma = karma / 100.0;
 
 			final List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
 			
@@ -84,13 +84,13 @@ public class PlayerDieer {
 			if (ringList.isEmpty()) {
 			    // if player has positive karma, then they will lose between 0% and 10% skills - less than if karma was ignored
 			    // if player has negative karma, they lose between 10% and 20% skills - more than if karma was ignored
-			    penaltyFactor = 0.9 + (karma/10.0);
+			    penaltyFactor = 0.9 + (karma / 10.0);
 			    logger.debug("penaltyFactor: " + penaltyFactor);
 			} else {
 			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored                             
 			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored  
 			    ringList.get(0).damage();
-			    penaltyFactor = 0.99 + (karma/100.0);
+			    penaltyFactor = 0.99 + (karma / 100.0);
 			}
 			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
 			// and even then, some chance will mean they are not guaranteed to hit the maximum 

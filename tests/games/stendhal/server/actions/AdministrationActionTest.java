@@ -84,7 +84,7 @@ public class AdministrationActionTest {
 				.intValue());
 		assertEquals(400, AdministrationAction.getLevelForCommand("jail")
 				.intValue());
-		assertEquals(400, AdministrationAction.getLevelForCommand("gag")
+		assertEquals(200, AdministrationAction.getLevelForCommand("gag")
 				.intValue());
 		assertEquals(500, AdministrationAction.getLevelForCommand("invisible")
 				.intValue());

@@ -67,7 +67,7 @@ public class EquipAction extends EquipmentAction {
 			}
 
 			// players sometimes accidentally drop items into corpses, so inform about all drops into a corpse 
-			// which arent just a movement from one corpse to another.
+			// which aren't just a movement from one corpse to another.
 			// we could of course specifically preclude dropping into corpses, but that is undesirable.
 			if (dest.isContainerCorpse() && !source.isContainerCorpse()) {
 					player.sendPrivateText("For your information, you just dropped " 
