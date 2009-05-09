@@ -2868,7 +2868,7 @@
 <!--
   <creature name="pirate">
     <type class="lutin" subclass="lutin_bandit" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="221"/>
       <def value="40"/>
@@ -3021,7 +3021,7 @@
 <!--
   <creature name="pirate wench">
     <type class="lutin" subclass="lutin_wench" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="181"/>
       <def value="40"/>
@@ -3205,7 +3205,7 @@
 
   <creature name="hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="244"/>
       <def value="43"/>
@@ -3237,7 +3237,7 @@
 
   <creature name="mage elf">
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="242"/>
       <def value="63"/>
@@ -3267,7 +3267,7 @@
 
   <creature name="glow monster">
     <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="242"/>
       <def value="53"/>
@@ -3325,7 +3325,7 @@
 
   <creature name="sheepman">
     <type class="sheepman" subclass="sheepman" tileid="sheepman.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="245"/>
       <def value="47"/>
@@ -3359,7 +3359,7 @@
 
   <creature name="elite frogman">
     <type class="frogman" subclass="caped_frogman" tileid="frogman.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="257"/>
       <def value="50"/>
@@ -3386,7 +3386,7 @@
 
   <creature name="elder skeleton">
     <type class="undead" subclass="elder_skeleton" tileid="undead.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="253"/>
       <def value="49"/>
@@ -3419,7 +3419,7 @@
 
   <creature name="littlewitch">
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="246"/>
       <def value="48"/>
@@ -3479,7 +3479,7 @@
 
   <creature name="rotten zombie">
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="256"/>
       <def value="70"/>
@@ -3511,7 +3511,7 @@
 
   <creature name="littlewizard">
     <type class="human" subclass="littlewizard" tileid="human_little.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="266"/>
       <def value="50"/>
@@ -3537,7 +3537,7 @@
 
   <creature name="red roohako">
     <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="271"/>
       <def value="48"/>
@@ -3563,7 +3563,7 @@
 
   <creature name="duergar">
     <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="278"/>
       <def value="49"/>
@@ -3591,7 +3591,7 @@
 
   <creature name="kalavan housewife">
     <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="274"/>
       <def value="42"/>
@@ -3618,7 +3618,7 @@
 
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="283"/>
       <def value="69"/>
@@ -3649,7 +3649,7 @@
 <!--
   <creature name="buccaneer">
     <type class="lutin" subclass="lutin_outlaw" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="261"/>
       <def value="70"/>
@@ -3680,7 +3680,7 @@
 -->
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="285"/>
       <def value="102"/>
@@ -3714,7 +3714,7 @@
 
   <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="281"/>
       <def value="91"/>
@@ -3744,7 +3744,7 @@
 
   <creature name="armored sheepman">
     <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="287"/>
       <def value="51"/>
@@ -3777,7 +3777,7 @@
 
   <creature name="kalavan peasant">
     <type class="human" subclass="kalavan_peasant" tileid="human_kalavan.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="296"/>
       <def value="44"/>
@@ -3835,7 +3835,7 @@
 
   <creature name="duergar axeman">
     <type class="dwarf" subclass="duergar_axe" tileid="dwarf_duergar.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="298"/>
       <def value="52"/>
@@ -3866,7 +3866,7 @@
 
   <creature name="superogre">
     <type class="giant" subclass="superogre" tileid="giant.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="296"/>
       <def value="52"/>
@@ -3891,7 +3891,7 @@
 
   <creature name="kalavan wisewoman">
     <type class="human" subclass="kalavan_wisewoman" tileid="human_kalavan.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="301"/>
       <def value="46"/>
@@ -3920,7 +3920,7 @@
 
   <creature name="kalavan citizen">
     <type class="human" subclass="kalavan_citizen" tileid="human_kalavan.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="310"/>
       <def value="56"/>
@@ -3948,7 +3948,7 @@
 
   <creature name="wizard frogman">
     <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="305"/>
       <def value="57"/>
@@ -3974,7 +3974,7 @@
 
   <creature name="archmage elf">
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="256"/>
       <def value="87"/>
@@ -4007,7 +4007,7 @@
 
   <creature name="leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="311"/>
       <def value="111"/>
@@ -4041,7 +4041,7 @@
 
   <creature name="dark mutant">
     <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="325"/>
       <def value="88"/>
@@ -4073,7 +4073,7 @@
 
   <creature name="elder cannibal">
     <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="315"/>
       <def value="111"/>
@@ -4104,7 +4104,7 @@
 
   <creature name="elder duergar">
     <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="325"/>
       <def value="60"/>
@@ -4130,7 +4130,7 @@
 
   <creature name="imperial defender">
     <type class="human" subclass="imperial_defender" tileid="human_imperial.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="325"/>
       <def value="36"/>
@@ -4160,7 +4160,7 @@
 
   <creature name="bandit">
     <type class="human" subclass="bandit" tileid="human_evil.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="329"/>
       <def value="56"/>
@@ -4192,7 +4192,7 @@
 
   <creature name="imperial veteran">
     <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -4220,7 +4220,7 @@
 
   <creature name="robot aruthon">
     <type class="hybrid" subclass="robot_aruthon" tileid="hybrid.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -4248,7 +4248,7 @@
 <!--
  <creature name="smuggler">
     <type class="lutin" subclass="lutin_king" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="270"/>
       <def value="70"/>
@@ -4279,7 +4279,7 @@
 -->
   <creature name="elder sheepman">
     <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="326"/>
       <def value="58"/>
@@ -4312,7 +4312,7 @@
 
   <creature name="albino elf swordsman">
     <type class="albino_elf" subclass="albino_elf_swordsman" tileid="albino_elf.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -4342,7 +4342,7 @@
 
   <creature name="darkmonk">
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="334"/>
       <def value="102"/>
@@ -4432,7 +4432,7 @@
 
   <creature name="barbarian">
     <type class="human" subclass="barbarian" tileid="human_barbarian.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="350"/>
       <def value="57"/>
@@ -4461,7 +4461,7 @@
 
   <creature name="imperial archer">
     <type class="human" subclass="imperial_archer" tileid="human_imperial.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="331"/>
       <def value="77"/>
@@ -4493,7 +4493,7 @@
 
  <creature name="madaram archer">
     <type class="madaram" subclass="madaram_archer" tileid="madaram.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="332"/>
       <def value="76"/>
@@ -4524,7 +4524,7 @@
 
    <creature name="disciple assassin">
     <type class="human" subclass="little_assassin" tileid="human_evil.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="344"/>
       <def value="77"/>
@@ -4559,7 +4559,7 @@
  
   <creature name="mountain orc">
     <type class="orc" subclass="orc" tileid="mountain_orc.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="352"/>
       <def value="57"/>
@@ -4588,7 +4588,7 @@
 
  <creature name="madaram peasant">
     <type class="madaram" subclass="madaram_peasant" tileid="madaram.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="357"/>
       <def value="52"/>
@@ -4616,7 +4616,7 @@
 
   <creature name="duergar elite">
     <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="354"/>
       <def value="58"/>
@@ -4644,7 +4644,7 @@
 
   <creature name="demon skeleton">
     <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="316"/>
       <def value="102"/>
@@ -4675,7 +4675,7 @@
 
   <creature name="invisible man">
     <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
-    <description/>
+    <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
     <attributes>
       <atk value="367"/>
       <def value="59"/>
@@ -4704,7 +4704,7 @@
 
   <creature name="albino elf archer">
     <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="345"/>
       <def value="94"/>
@@ -4736,7 +4736,7 @@
 
   <creature name="imperial priest">
     <type class="human" subclass="imperial_priest" tileid="human_imperial.png:12"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="368"/>
       <def value="57"/>
@@ -4765,7 +4765,7 @@
 
  <creature name="madaram trooper">
     <type class="madaram" subclass="madaram_trooper" tileid="madaram.png:11"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="370"/>
       <def value="55"/>
@@ -4793,7 +4793,7 @@
 
   <creature name="child dark elf">
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="374"/>
       <def value="67"/>
@@ -4823,7 +4823,7 @@
 
   <creature name="elite sheepman">
     <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="373"/>
       <def value="70"/>
@@ -4856,7 +4856,7 @@
 
   <creature name="imperial elite guardian">
     <type class="human" subclass="imperial_elite_guardian" tileid="human_imperial.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="376"/>
       <def value="52"/>
@@ -4886,7 +4886,7 @@
 
   <creature name="violet avenger">
     <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="368"/>
       <def value="71"/>
@@ -4913,6 +4913,7 @@
 
   <creature name="nymph">
     <type class="elemental" subclass="nymph" tileid="elemental.png:6"/>
+    <description>You see a nymph. She loves nature very much! As you take a look at her she feels disturbed in sun-bathing and talking to the birds, perhaps she was best left alone.</description>
     <attributes>
       <atk value="368"/>
       <def value="61"/>
@@ -4940,7 +4941,7 @@
 
   <creature name="barbarian wolf">
     <type class="human" subclass="barbarian_wolf" tileid="human_barbarian.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="365"/>
       <def value="62"/>
@@ -4999,7 +5000,7 @@
 
   <creature name="elf sacerdotist">
     <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="380"/>
       <def value="108"/>
@@ -5028,7 +5029,7 @@
 
   <creature name="minotaur">
     <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
-    <description/>
+    <description>You see a minotaur. He escaped from his labyrinth and is very angry now!</description>
     <attributes>
       <atk value="373"/>
       <def value="122"/>
@@ -5061,7 +5062,7 @@
 
    <creature name="apprentice assassin">
     <type class="human" subclass="apprentice_assassin" tileid="human_evil.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="375"/>
       <def value="123"/>
@@ -5097,7 +5098,7 @@
 
   <creature name="mountain orc warrior">
     <type class="orc" subclass="orc_warrior" tileid="mountain_orc.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="377"/>
       <def value="66"/>
@@ -5126,7 +5127,7 @@
 
   <creature name="duergar hero">
     <type class="dwarf" subclass="duergar_hero" tileid="dwarf_duergar.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="378"/>
       <def value="63"/>
@@ -5157,7 +5158,7 @@
 
   <creature name="hunter">
     <type class="human" subclass="hunter" tileid="human_evil.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="371"/>
       <def value="60"/>
@@ -5196,7 +5197,7 @@
 
  <creature name="madaram soldier">
     <type class="madaram" subclass="madaram_soldier" tileid="madaram.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="400"/>
       <def value="64"/>
@@ -5224,7 +5225,7 @@
 
  <creature name="elf wizard">
     <type class="elf" subclass="elf_wizard" tileid="elf.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="400"/>
       <def value="70"/>
@@ -5252,7 +5253,7 @@
 
   <creature name="barbarian elite">
     <type class="human" subclass="barbarian_elite" tileid="human_barbarian.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="413"/>
       <def value="67"/>
@@ -5313,7 +5314,7 @@
 
   <creature name="dark elf archer">
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="385"/>
       <def value="125"/>
@@ -5347,7 +5348,7 @@
 
   <creature name="elf bodyguard">
     <type class="elf" subclass="elf_bodyguard" tileid="elf.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="403"/>
       <def value="102"/>
@@ -5378,7 +5379,7 @@
 <!--
  <creature name="evil pirate">
     <type class="truskull" subclass="truskull_nightshade" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="400"/>
       <def value="65"/>
@@ -5410,7 +5411,7 @@
 
  <creature name="pirate leader">
     <type class="truskull" subclass="truskull_magician" tileid="animal.png:100"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="400"/>
       <def value="65"/>
@@ -5471,7 +5472,7 @@
 
   <creature name="fire elemental">
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="411"/>
       <def value="67"/>
@@ -5584,7 +5585,7 @@
 
   <creature name="green dragon">
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="403"/>
       <def value="75"/>
@@ -5618,7 +5619,7 @@
 
   <creature name="imperial scientist">
     <type class="human" subclass="imperial_scientist" tileid="human_imperial.png:13"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="393"/>
       <def value="49"/>
@@ -5649,7 +5650,7 @@
 
   <creature name="mountain orc hunter">
     <type class="orc" subclass="orc_hunter" tileid="mountain_orc.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="411"/>
       <def value="68"/>
@@ -5678,7 +5679,7 @@
 
   <creature name="duergar wizard">
     <type class="dwarf" subclass="duergar_wizard" tileid="dwarf_duergar.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="413"/>
       <def value="67"/>
@@ -5705,7 +5706,7 @@
 
   <creature name="death knight">
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="421"/>
       <def value="52"/>
@@ -5737,7 +5738,7 @@
 
   <creature name="devil queen">
     <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="423"/>
       <def value="61"/>
@@ -5768,7 +5769,7 @@
 
   <creature name="barbarian priest">
     <type class="human" subclass="barbarian_priest" tileid="human_barbarian.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="425"/>
       <def value="68"/>
@@ -5794,7 +5795,7 @@
 
  <creature name="madaram healer">
     <type class="madaram" subclass="madaram_healer" tileid="madaram.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="425"/>
       <def value="64"/>
@@ -5822,7 +5823,7 @@
 
   <creature name="mountain dwarf">
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="437"/>
       <def value="72"/>
@@ -5853,7 +5854,7 @@
 
   <creature name="googon">
     <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="430"/>
       <def value="128"/>
@@ -5881,7 +5882,7 @@
 
   <creature name="dark elf">
     <type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="433"/>
       <def value="151"/>
@@ -5912,7 +5913,7 @@
 
  <creature name="madaram axeman">
     <type class="madaram" subclass="madaram_axeman" tileid="madaram.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="438"/>
       <def value="73"/>
@@ -5940,7 +5941,7 @@
 
   <creature name="giant kobold">
     <type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="440"/>
       <def value="57"/>
@@ -5974,7 +5975,7 @@
 
   <creature name="bone dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="435"/>
       <def value="48"/>
@@ -6033,7 +6034,7 @@
 
   <creature name="fallen warrior">
     <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="438"/>
       <def value="66"/>
@@ -6063,7 +6064,7 @@
 
   <creature name="albino elf magician">
     <type class="albino_elf" subclass="albino_elf_magician" tileid="albino_elf.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="432"/>
       <def value="58"/>
@@ -6093,7 +6094,7 @@
 
   <creature name="imperial high priest">
     <type class="human" subclass="imperial_high_priest" tileid="human_imperial.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="437"/>
       <def value="52"/>
@@ -6124,7 +6125,7 @@
 
   <creature name="blue mohiko">
     <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="450"/>
       <def value="50"/>
@@ -6152,7 +6153,7 @@
 
   <creature name="assassin">
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="448"/>
       <def value="70"/>
@@ -6184,7 +6185,7 @@
 
  <creature name="madaram queen">
     <type class="madaram" subclass="madaram_queen" tileid="madaram.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="440"/>
       <def value="64"/>
@@ -6214,7 +6215,7 @@
 
   <creature name="barbarian chaman">
     <type class="human" subclass="barbarian_chaman" tileid="human_barbarian.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="449"/>
       <def value="67"/>
@@ -6244,7 +6245,7 @@
 
   <creature name="albino elf queen">
     <type class="albino_elf" subclass="albino_elf_queen" tileid="albino_elf.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="454"/>
       <def value="48"/>
@@ -6273,7 +6274,7 @@
 
  <creature name="madaram hero">
     <type class="madaram" subclass="madaram_hero" tileid="madaram.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="453"/>
       <def value="65"/>
@@ -6301,7 +6302,7 @@
 
   <creature name="dark elf elite archer">
     <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="432"/>
       <def value="125"/>
@@ -6334,7 +6335,7 @@
 
   <creature name="mountain dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="461"/>
       <def value="70"/>
@@ -6393,7 +6394,7 @@
 
  <creature name="madaram windwalker">
     <type class="madaram" subclass="madaram_windwalker" tileid="madaram.png:12"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="460"/>
       <def value="67"/>
@@ -6447,7 +6448,7 @@
 
   <creature name="dark elf captain">
     <type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="465"/>
       <def value="97"/>
@@ -6481,7 +6482,7 @@
 
   <creature name="lich">
     <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="468"/>
       <def value="53"/>
@@ -6512,7 +6513,7 @@
 
   <creature name="black duergar">
     <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="473"/>
       <def value="69"/>
@@ -6545,7 +6546,7 @@
 
   <creature name="albino elf king">
     <type class="albino_elf" subclass="albino_elf_king" tileid="albino_elf.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="461"/>
       <def value="53"/>
@@ -6576,7 +6577,7 @@
 
   <creature name="mountain orc chief">
     <type class="orc" subclass="orc_chief" tileid="mountain_orc.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="474"/>
       <def value="75"/>
@@ -6607,7 +6608,7 @@
 
  <creature name="madaram cavalry">
     <type class="madaram" subclass="madaram_cavalry" tileid="madaram.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="469"/>
       <def value="66"/>
@@ -6637,7 +6638,7 @@
 
   <creature name="imperial archer leader">
     <type class="human" subclass="imperial_archer_leader" tileid="human_imperial.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="440"/>
       <def value="69"/>
@@ -6668,7 +6669,7 @@
 
   <creature name="minotaur king">
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="481"/>
       <def value="57"/>
@@ -6703,7 +6704,7 @@
 
   <creature name="mountain elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="mountain_dwarf.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="484"/>
       <def value="75"/>
@@ -6736,7 +6737,7 @@
 
   <creature name="snarfkin">
     <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="472"/>
       <def value="74"/>
@@ -6765,7 +6766,7 @@
 
   <creature name="cave troll">
     <type class="huge_troll" subclass="cave_troll" tileid="troll.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="474"/>
       <def value="45"/>
@@ -6798,7 +6799,7 @@
 
   <creature name="amazoness archer">
     <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="448"/>
       <def value="66"/>
@@ -6830,7 +6831,7 @@
 
   <creature name="barbarian leader">
     <type class="human" subclass="barbarian_leader" tileid="human_barbarian.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="492"/>
       <def value="75"/>
@@ -6863,7 +6864,7 @@
 
   <creature name="mithrilbourgh soldier">
     <type class="human" subclass="soldier_common" tileid="human_soldier.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="490"/>
       <def value="78"/>
@@ -6891,7 +6892,7 @@
 
   <creature name="imperial elite archer">
     <type class="human" subclass="imperial_elite_archer" tileid="human_imperial.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="461"/>
       <def value="62"/>
@@ -6923,7 +6924,7 @@
 
   <creature name="ninja">
     <type class="human" subclass="masked_ninja" tileid="human_evil.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="489"/>
       <def value="75"/>
@@ -6954,7 +6955,7 @@
 
   <creature name="amazoness hunter">
     <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="484"/>
       <def value="57"/>
@@ -6984,7 +6985,7 @@
 
   <creature name="dark elf knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="494"/>
       <def value="96"/>
@@ -7017,7 +7018,7 @@
 
   <creature name="vampire lord">
     <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="497"/>
       <def value="35"/>
@@ -7046,7 +7047,7 @@
 
   <creature name="imperial leader">
     <type class="human" subclass="imperial_leader" tileid="human_imperial.png:11"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="493"/>
       <def value="64"/>
@@ -7076,7 +7077,7 @@
 
  <creature name="madaram stalker">
     <type class="madaram" subclass="madaram_stalker" tileid="madaram.png:10"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="497"/>
       <def value="67"/>
@@ -7104,7 +7105,7 @@
 
   <creature name="imp">
     <type class="demon" subclass="imp" tileid="demon.png:0"/>
-    <description/>
+    <description>You see an imp. He may look a little bit cute, but don´t forget he is one of the devil´s servants!</description>
     <attributes>
       <atk value="495"/>
       <def value="73"/>
@@ -7131,7 +7132,7 @@
 
   <creature name="oni warrior">
     <type class="oni" subclass="oni_warrior" tileid="oni.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="499"/>
       <def value="77"/>
@@ -7160,7 +7161,7 @@
 
   <creature name="mountain hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="mountain_dwarf.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="503"/>
       <def value="72"/>
@@ -7192,7 +7193,7 @@
 
   <creature name="mithrilbourgh archer">
     <type class="human" subclass="soldier_archer" tileid="human_soldier.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="487"/>
       <def value="76"/>
@@ -7223,7 +7224,7 @@
 
   <creature name="amazoness coastguard">
     <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="509"/>
       <def value="67"/>
@@ -7250,7 +7251,7 @@
 
  <creature name="madaram buster blader">
     <type class="madaram" subclass="madaram_buster_blader" tileid="madaram.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="497"/>
       <def value="73"/>
@@ -7278,7 +7279,7 @@
 
   <creature name="winged blue imp">
     <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="515"/>
       <def value="86"/>
@@ -7307,7 +7308,7 @@
 
   <creature name="dark elf general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="515"/>
       <def value="92"/>
@@ -7342,7 +7343,7 @@
 
   <creature name="blue dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="511"/>
       <def value="57"/>
@@ -7372,7 +7373,7 @@
 
   <creature name="mithrilbourgh knight">
     <type class="human" subclass="soldier_knight" tileid="human_soldier.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="523"/>
       <def value="78"/>
@@ -7402,7 +7403,7 @@
 
   <creature name="mithrilbourgh elite archer">
     <type class="human" subclass="soldier_elite_archer" tileid="human_soldier.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="500"/>
       <def value="73"/>
@@ -7434,7 +7435,7 @@
 
   <creature name="oni archer">
     <type class="oni" subclass="oni_archer" tileid="oni.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="511"/>
       <def value="77"/>
@@ -7465,7 +7466,7 @@
 
   <creature name="imperial knight">
     <type class="human" subclass="imperial_knight" tileid="human_imperial.png:10"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="536"/>
       <def value="88"/>
@@ -7495,7 +7496,7 @@
 
   <creature name="imperial chief">
     <type class="human" subclass="imperial_chief" tileid="human_imperial.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="533"/>
       <def value="82"/>
@@ -7525,7 +7526,7 @@
 
   <creature name="amazoness archer commander">
     <type class="amazon" subclass="amazoness_archer_commander" tileid="amazon.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="518"/>
       <def value="71"/>
@@ -7556,7 +7557,7 @@
 
   <creature name="naga">
     <type class="mutant" subclass="naga" tileid="naga.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="536"/>
       <def value="81"/>
@@ -7583,7 +7584,7 @@
 
   <creature name="fallen priest">
     <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="546"/>
       <def value="80"/>
@@ -7613,7 +7614,7 @@
 
   <creature name="amazoness elite coastguard">
     <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="538"/>
       <def value="73"/>
@@ -7642,7 +7643,7 @@
 
   <creature name="barbarian king">
     <type class="human" subclass="barbarian_king" tileid="human_barbarian.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="531"/>
       <def value="79"/>
@@ -7672,7 +7673,7 @@
 
   <creature name="chaos soldier">
     <type class="chaos" subclass="chaos_soldier" tileid="chaos.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="543"/>
       <def value="81"/>
@@ -7703,7 +7704,7 @@
 
   <creature name="mithrilbourgh sergeant">
     <type class="human" subclass="soldier_sergeant" tileid="human_soldier.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="547"/>
       <def value="80"/>
@@ -7731,7 +7732,7 @@
 
   <creature name="amazoness bodyguard">
     <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="548"/>
       <def value="95"/>
@@ -7757,7 +7758,7 @@
 
   <creature name="oni priest">
     <type class="oni" subclass="oni_priest" tileid="oni.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="547"/>
       <def value="76"/>
@@ -7786,7 +7787,7 @@
 
   <creature name="mountain leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="560"/>
       <def value="83"/>
@@ -7820,7 +7821,7 @@
 
   <creature name="amazoness coastguard mistress">
     <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="569"/>
       <def value="81"/>
@@ -7849,7 +7850,7 @@
 
   <creature name="incorporeal armor">
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="565"/>
       <def value="78"/>
@@ -7878,7 +7879,7 @@
 
   <creature name="ent">
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
-    <description/>
+    <description>You see an ent. First you think it is a tree but as it begins to walk you get a surprise!</description>
     <attributes>
       <atk value="593"/>
       <def value="323"/>
@@ -7907,7 +7908,7 @@
 
   <creature name="werewolf">
     <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
-    <description/>
+    <description>You see a werewolf. Normally he is a human but at fullmoon nights he turns into a dangerous beast! His poison seems to last forever.</description>
     <attributes>
       <atk value="584"/>
       <def value="79"/>
@@ -7935,7 +7936,7 @@
 
   <creature name="dark aruthon">
     <type class="hybrid" subclass="dark_aruthon" tileid="hybrid.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="583"/>
       <def value="73"/>
@@ -7962,7 +7963,7 @@
 
   <creature name="duergar king">
     <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="593"/>
       <def value="82"/>
@@ -7989,7 +7990,7 @@
 
   <creature name="samurai">
     <type class="human" subclass="samurai" tileid="human_evil.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="585"/>
       <def value="73"/>
@@ -8019,7 +8020,7 @@
 
   <creature name="dead lich">
     <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="582"/>
       <def value="80"/>
@@ -8050,7 +8051,7 @@
 
   <creature name="amazoness commander">
     <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="566"/>
       <def value="105"/>
@@ -8076,7 +8077,7 @@
 
   <creature name="imperial commander">
     <type class="human" subclass="imperial_commander" tileid="human_imperial.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="567"/>
       <def value="122"/>
@@ -8110,7 +8111,7 @@
 
   <creature name="old ent"> 	 
    <type class="boss" subclass="dead_ent" tileid="boss.png:1"/> 	 
-   <description/> 	 
+   <description></description> 	 
    <attributes> 	 
     <atk value="573"/> 	 
 	<def value="128"/> 	 
@@ -8140,7 +8141,7 @@
 
   <creature name="mithrilbourgh lieutenant">
     <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="577"/>
       <def value="80"/>
@@ -8168,7 +8169,7 @@
 
   <creature name="high naga">
     <type class="mutant" subclass="high_naga" tileid="naga.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="587"/>
       <def value="79"/>
@@ -8196,7 +8197,7 @@
 
   <creature name="imperial experiment">
     <type class="mutant" subclass="imperial_experiment" tileid="mutant.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="572"/>
       <def value="71"/>
@@ -8224,7 +8225,7 @@
 
   <creature name="chaos warrior">
     <type class="chaos" subclass="chaos_warrior" tileid="chaos.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="604"/>
       <def value="81"/>
@@ -8259,7 +8260,7 @@
 
   <creature name="demon">
     <type class="demon" subclass="demon" tileid="demon.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="591"/>
       <def value="80"/>
@@ -8287,7 +8288,7 @@
 
   <creature name="imperial demon servant">
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="587"/>
       <def value="74"/>
@@ -8316,7 +8317,7 @@
 
   <creature name="kasarkutominubat">
     <type class="giant_madaram" subclass="kasarkutominubat" tileid="madaram.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="606"/>
       <def value="86"/>
@@ -8343,7 +8344,7 @@
 
   <creature name="mithrilbourgh colonel">
     <type class="human" subclass="soldier_colonel" tileid="human_soldier.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="610"/>
       <def value="82"/>
@@ -8371,7 +8372,7 @@
 
   <creature name="dark elf wizard">
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="615"/>
       <def value="103"/>
@@ -8406,7 +8407,7 @@
 
   <creature name="baby angel">
     <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="628"/>
       <def value="100"/>
@@ -8441,7 +8442,7 @@
 
   <creature name="grobble monster">
     <type class="huge_hybrid" subclass="grobble_monster" tileid="hybrid.png:12"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="609"/>
       <def value="73"/>
@@ -8475,7 +8476,7 @@
 
   <creature name="giant dwarf">
     <type class="huge_animal" subclass="giant_dwarf" tileid="huge_animal.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="616"/>
       <def value="99"/>
@@ -8507,7 +8508,7 @@
 
 <creature name="Dhohr Nuggetcutter">
     <type class="huge_animal" subclass="giant_dwarf" tileid="dhohr_nuggetcutter.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="619"/>
       <def value="101"/>
@@ -8539,7 +8540,7 @@
 
   <creature name="fallen high priest">
     <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="619"/>
       <def value="81"/>
@@ -8569,7 +8570,7 @@
 
   <creature name="imperial mutant">
     <type class="mutant" subclass="imperial_mutant" tileid="mutant.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="633"/>
       <def value="77"/>
@@ -8601,7 +8602,7 @@
 
   <creature name="mithrilbourgh wizard">
     <type class="human" subclass="soldier_wizard" tileid="human_soldier.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="634"/>
       <def value="80"/>
@@ -8627,7 +8628,7 @@
 
   <creature name="shadows assassin">
     <type class="human" subclass="shadows_assassin" tileid="human_evil.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="645"/>
       <def value="87"/>
@@ -8658,7 +8659,7 @@
 
   <creature name="imperial general">
     <type class="human" subclass="imperial_general" tileid="human_imperial.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="631"/>
       <def value="102"/>
@@ -8690,7 +8691,7 @@
 
   <creature name="armed naga">
     <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="617"/>
       <def value="86"/>
@@ -8721,7 +8722,7 @@
 
   <creature name="amazoness vigilance">
     <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="629"/>
       <def value="86"/>
@@ -8749,7 +8750,7 @@
 
   <creature name="mithrilbourgh general">
     <type class="human" subclass="soldier_general" tileid="human_soldier.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="624"/>
       <def value="83"/>
@@ -8779,7 +8780,7 @@
 
   <creature name="chaos commander">
     <type class="chaos" subclass="chaos_commander" tileid="chaos.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="654"/>
       <def value="91"/>
@@ -8814,7 +8815,7 @@
 
   <creature name="dark elf viceroy">
     <type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="663"/>
       <def value="120"/>
@@ -8851,7 +8852,7 @@
 
   <creature name="imperial demon lord">
     <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="676"/>
       <def value="89"/>
@@ -8882,7 +8883,7 @@
 
   <creature name="winged blurble">
     <type class="hybrid" subclass="winged_blurble" tileid="hybrid.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="666"/>
       <def value="78"/>
@@ -8912,7 +8913,7 @@
 
   <creature name="chaos sorcerer">
     <type class="chaos" subclass="chaos_sorceror" tileid="chaos.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="670"/>
       <def value="123"/>
@@ -8945,7 +8946,7 @@
 
  <creature name="high lich">
     <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="693"/>
       <def value="123"/>
@@ -8976,7 +8977,7 @@
 
   <creature name="amazoness imperator">
     <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="687"/>
       <def value="108"/>
@@ -9003,7 +9004,7 @@
 
   <creature name="dark elf ranger">
     <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:11"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="688"/>
       <def value="88"/>
@@ -9041,7 +9042,7 @@
 
   <creature name="emperor dalmung">
     <type class="human" subclass="emperor_dalmung" tileid="human_imperial.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="705"/>
       <def value="91"/>
@@ -9075,7 +9076,7 @@
 
   <creature name="chaos dragonrider">
     <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
-    <description/>
+    <description>You see a chaos dragonrider. He is very well trained in dragon riding, but also on the ground he can fight well.</description>
     <attributes>
       <atk value="706"/>
       <def value="89"/>
@@ -9104,7 +9105,7 @@
 
   <creature name="oni king">
     <type class="oni" subclass="oni_king" tileid="oni.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="714"/>
       <def value="93"/>
@@ -9134,7 +9135,7 @@
 
   <creature name="giant spider">
     <type class="huge_animal" subclass="giant_spider" tileid="huge_animal.png:5"/>
-    <description/>
+    <description>You see a giant spider. It has very long legs which are quite dangerous.</description>
     <attributes>
       <atk value="709"/>
       <def value="94"/>
@@ -9165,7 +9166,7 @@
 
   <creature name="giant">
     <type class="giant_human" subclass="giant" tileid="giant_human.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="703"/>
       <def value="93"/>
@@ -9225,7 +9226,7 @@
 
   <creature name="entwife">
     <type class="boss" subclass="entwife" tileid="boss.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="719"/>
       <def value="93"/>
@@ -9258,7 +9259,7 @@
 
   <creature name="blordrough quartermaster">
     <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="727"/>
       <def value="94"/>
@@ -9290,7 +9291,7 @@
 
   <creature name="imperial general giant">
     <type class="giant_human" subclass="imperial_general_giant" tileid="giant_human.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="738"/>
       <def value="100"/>
@@ -9323,7 +9324,7 @@
 
   <creature name="oni queen">
     <type class="oni" subclass="oni_queen" tileid="oni.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="737"/>
       <def value="98"/>
@@ -9355,7 +9356,7 @@
 
   <creature name="dark elf sacerdotist">
     <type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="dark_elf.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="479"/>
       <def value="162"/>
@@ -9390,7 +9391,7 @@
 
   <creature name="red dragon">
     <type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="777"/>
       <def value="115"/>
@@ -9420,7 +9421,7 @@
 
   <creature name="chaos lord">
     <type class="chaos" subclass="chaos_lord" tileid="chaos.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="807"/>
       <def value="92"/>
@@ -9456,7 +9457,7 @@
 
    <creature name="master assassin">
     <type class="human" subclass="master_assassin" tileid="human_evil.png:8"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="820"/>
       <def value="95"/>
@@ -9489,7 +9490,7 @@
 
   <creature name="dark elf admiral">
     <type class="dark_elf" subclass="dark_elf_admiral" tileid="dark_elf.png:13"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="809"/>
       <def value="160"/>
@@ -9523,7 +9524,7 @@
 
   <creature name="elder giant">
     <type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="826"/>
       <def value="96"/>
@@ -9558,7 +9559,7 @@
 
   <creature name="flying golden dragon">
     <type class="huger_animal" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
-    <description/>
+    <description>You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!</description>
     <attributes>
       <atk value="837"/>
       <def value="138"/>
@@ -9590,7 +9591,7 @@
 
   <creature name="dark elf master">
     <type class="dark_elf" subclass="dark_elf_master" tileid="dark_elf.png:12"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="838"/>
       <def value="174"/>
@@ -9626,7 +9627,7 @@
 
   <creature name="twin headed dragon">
     <type class="huge_animal" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
-    <description/>
+    <description>You see a twin headed dragon. The two heads are staring at you with their four eyes!</description>
     <attributes>
       <atk value="836"/>
       <def value="96"/>
@@ -9657,7 +9658,7 @@
 
   <creature name="blordrough corporal">
     <type class="human" subclass="armored_leader" tileid="human_armored.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="842"/>
       <def value="97"/>
@@ -9692,7 +9693,7 @@
 
   <creature name="master giant">
     <type class="giant_human" subclass="master_giant" tileid="giant_human.png:9"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="850"/>
       <def value="98"/>
@@ -9727,7 +9728,7 @@
 
   <creature name="chaos green dragonrider">
     <type class="huge_animal" subclass="chaos_green_dragonrider" tileid="huge_animal.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="867"/>
       <def value="98"/>
@@ -9762,7 +9763,7 @@
 
   <creature name="dark elf matronmother">
     <type class="dark_elf" subclass="dark_elf_matronmother" tileid="dark_elf.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="869"/>
       <def value="136"/>
@@ -9800,7 +9801,7 @@
 
   <creature name="ice giant">
     <type class="giant_human" subclass="ice_giant" tileid="giant_human.png:2"/>
-    <description/>
+    <description>You see an ice giant. His skin is covered with frozen hoarfrost and his breath feels like the cold north wind.</description>
     <attributes>
       <atk value="934"/>
       <def value="102"/>
@@ -9830,7 +9831,7 @@
 
   <creature name="blordrough storm trooper">
     <type class="human" subclass="super_human" tileid="human_armored.png:2"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="921"/>
       <def value="98"/>
@@ -9864,7 +9865,7 @@
 <!-- used to be in giant human folder which is why the tiled image is different -->
   <creature name="dwarf golem">
     <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="939"/>
       <def value="99"/>
@@ -9895,7 +9896,7 @@
 
   <creature name="xenocium">
     <type class="huge_hybrid" subclass="xenocium" tileid="hybrid.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="953"/>
       <def value="114"/>
@@ -9927,7 +9928,7 @@
 
   <creature name="thing">
     <type class="huge_animal" subclass="thing" tileid="huge_animal.png:8"/>
-    <description/>
+    <description>You see a thing. It looks like a very mutated human and is so scary that you think it has to come from another world.</description>
     <attributes>
       <atk value="977"/>
       <def value="121"/>
@@ -9958,7 +9959,7 @@
 
   <creature name="amazoness giant">
     <type class="giant_human" subclass="amazoness_giant" tileid="giant_human.png:10"/>
-    <description/>
+    <description>You see an amazoness giant. She looks very beautiful but don´t be deceived by that!</description>
     <attributes>
       <atk value="974"/>
       <def value="124"/>
@@ -9988,7 +9989,7 @@
 
   <creature name="chaos overlord">
     <type class="chaos" subclass="chaos_overlord" tileid="chaos.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1042"/>
       <def value="113"/>
@@ -10026,7 +10027,7 @@
 
   <creature name="chaos red dragonrider">
     <type class="huge_animal" subclass="chaos_red_dragonrider" tileid="huge_animal.png:11"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1044"/>
       <def value="107"/>
@@ -10060,7 +10061,7 @@
 
   <creature name="black dragon">
     <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
-    <description/>
+    <description>You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.</description>
     <attributes>
       <atk value="1227"/>
       <def value="127"/>
@@ -10092,7 +10093,7 @@
 
   <creature name="devil monk">
     <type class="undead" subclass="devil_monk" tileid="undead_fallen.png:8"/>
-    <description/>
+    <description>You see a devil monk. He is member of a devil cult which practises black rituals.</description>
     <attributes>
       <atk value="1089"/>
       <def value="108"/>
@@ -10124,7 +10125,7 @@
 
   <creature name="fallen angel">
     <type class="giant_human" subclass="fallen_angel" tileid="giant_human.png:7"/>
-    <description/>
+    <description>You see a fallen angel. When he turned away from good, he fell down from heaven.</description>
     <attributes>
       <atk value="1120"/>
       <def value="105"/>
@@ -10161,7 +10162,7 @@
 
   <creature name="black giant">
     <type class="giant_human" subclass="black_giant" tileid="giant_human.png:3"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1154"/>
       <def value="119"/>
@@ -10200,7 +10201,7 @@
 
   <creature name="angel">
     <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1187"/>
       <def value="128"/>
@@ -10237,7 +10238,7 @@
 
   <creature name="necrosophia">
     <type class="huger_hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1292"/>
       <def value="154"/>
@@ -10271,7 +10272,7 @@
 
   <creature name="black death">
     <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
-    <description/>
+    <description>You see black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day.</description>
     <attributes>
       <atk value="1451"/>
       <def value="154"/>
@@ -10342,7 +10343,7 @@
   
  <creature name="archangel">
     <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
-    <description/>
+    <description>You see an archangel. She wants to kill you because she doesn´t want you in the clouds.</description>
     <attributes>
       <atk value="1455"/>
       <def value="162"/>
@@ -10479,7 +10480,7 @@
 
  <creature name="dark angel">
     <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1755"/>
       <def value="142"/>
@@ -10518,7 +10519,7 @@
 
  <creature name="golden death">
     <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
-    <description/>
+    <description>You see the golden death. He came to take away your soul to pay for all your sins.</description>
     <attributes>
       <atk value="1968"/>
       <def value="171"/>
@@ -10554,7 +10555,7 @@
 
  <creature name="dark archangel">
     <type class="giant_human" subclass="dark_archangel" tileid="giant_human.png:12"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="1965"/>
       <def value="171"/>
@@ -10594,7 +10595,7 @@
   
   <creature name="gashadokuro">
     <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
-    <description/>
+    <description></description>
     <attributes>
       <atk value="2000"/>
       <def value="171"/>
