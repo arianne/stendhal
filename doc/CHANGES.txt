@@ -39,6 +39,7 @@ Changelog
 - minor map and graphical fixes
 - unignore: check first, and if target not being ignored, tell player so.
 *behind the scenes*
+- Conversationstates changed to enum
 - reflection removed from stendhalQuestsystem
 - QuestsXMLReader changed from singleton to just create one.
 - Iquest.getName() abstract in Abstractquest. every quest knows its name now (not the descriptive one yet)
