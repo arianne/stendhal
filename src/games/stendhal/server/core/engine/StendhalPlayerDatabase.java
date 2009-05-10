@@ -13,13 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCSQLHelper;
@@ -56,6 +56,14 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	};
 	
+	protected StendhalPlayerDatabase(final Properties connInfo) {
+		super(connInfo);
+		try {
+			configureDatabase();
+		} catch (final SQLException e) {
+			throw new NoDatabaseConfException(e);
+		}
+	}
 	
 	
 	/**
@@ -78,14 +86,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 	
-	protected StendhalPlayerDatabase(final Properties connInfo) {
-		super(connInfo);
-		try {
-			configureDatabase();
-		} catch (final SQLException e) {
-			throw new NoDatabaseConfException(e);
-		}
-	}
+
 
 	protected void configureDatabase() throws SQLException {
 		final Transaction trans = getTransaction();
@@ -214,8 +215,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		updateCharStatsStatement.setDouble(12, instance.getKarma());
 		updateCharStatsStatement.setString(13, extractName(instance.getHelmet()));
 		updateCharStatsStatement.setString(14, extractName(instance.getArmor()));
-		updateCharStatsStatement.setString(15, extractName(instance.getShield()));
-		updateCharStatsStatement.setString(16, extractRhandName(instance));
+		updateCharStatsStatement.setString(15, extractHandName(instance, "lhand"));			
+		updateCharStatsStatement.setString(16, extractHandName(instance, "rhand"));
 		updateCharStatsStatement.setString(17, extractName(instance.getLegs()));
 		updateCharStatsStatement.setString(18, extractName(instance.getBoots()));
 		updateCharStatsStatement.setString(19, extractName(instance.getCloak()));
@@ -245,8 +246,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		insertStatement.setDouble(13, instance.getKarma());
 		insertStatement.setString(14, extractName(instance.getHelmet()));
 		insertStatement.setString(15, extractName(instance.getArmor()));
-		insertStatement.setString(16, extractName(instance.getShield()));
-		insertStatement.setString(17, extractRhandName(instance));
+		insertStatement.setString(16, extractHandName(instance, "lhand"));
+		insertStatement.setString(17, extractHandName(instance, "rhand"));
 		insertStatement.setString(18, extractName(instance.getLegs()));
 		insertStatement.setString(19, extractName(instance.getBoots()));
 		insertStatement.setString(20, extractName(instance.getCloak()));
@@ -257,14 +258,27 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		connection.commit();
 		insertStatement.close();
 	}
-
-	private String extractRhandName(final Player instance) {
-		String rhand = null;
-		final List<Item> items = instance.getWeapons();
-		if (items.size() > 0) {
-			rhand = items.get(0).getName();
+	
+	// Used to get the items in the hands container, as they can be different to weapons or shields...
+	// Could also be done using getEquippedItemClass and using all posibble classes for
+	// the objects that can be used in hands.
+	private String extractHandName(final Player instance, final String handSlot) {		
+		if (instance != null && handSlot != null) {		
+			if (instance.hasSlot(handSlot)) {
+				final RPSlot rpslot = instance.getSlot(handSlot);
+					// traverse all slot items
+					for (final RPObject object : rpslot) {
+						// is it the right type
+						if (object instanceof Item) {
+							final Item item = (Item) object;
+							return item.getName();
+						}
+					}
+					return null;
+			}	
+			return null;
 		}
-		return rhand;
+		return null;
 	}
 
 	private String extractName(final Item item) {
