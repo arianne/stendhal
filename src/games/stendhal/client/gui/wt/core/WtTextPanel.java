@@ -34,10 +34,10 @@ import java.awt.Graphics2D;
 public class WtTextPanel extends WtPanel {
 
 	/** default font size. */
-	public static final int DEFAULT_FONT_SIZE = 12;
+	protected static final int DEFAULT_FONT_SIZE = 12;
 
 	/** default color. */
-	public static final Color DEFAULT_COLOR = Color.WHITE;
+	private static final Color DEFAULT_COLOR = Color.WHITE;
 
 	/** the text to display. */
 	private StringFormatter formatter;

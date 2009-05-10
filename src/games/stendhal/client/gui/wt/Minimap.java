@@ -30,6 +30,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
 
 import java.awt.Color;
@@ -625,5 +626,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		playerY = y;
 
 		updateView();
+	}
+
+	@Override
+	protected void playOpenSound() {
+		SoundMaster.play("click-4.wav");
 	}
 }

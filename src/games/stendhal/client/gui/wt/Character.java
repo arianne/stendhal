@@ -26,6 +26,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
@@ -277,5 +278,10 @@ public class Character extends WtPanel {
 		refreshPlayerStats(gameScreen);
 
 		super.drawContent(g, gameScreen);
+	}
+
+	@Override
+	protected void playOpenSound() {
+		SoundMaster.play("click-6.wav");
 	}
 }
