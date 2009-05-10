@@ -21,9 +21,15 @@ import java.util.List;
 final class AdosHouseSeller extends HouseSellerNPCBase {
 	/** Cost to buy house in ados. */
 	private static final int COST_ADOS = 120000;
+	private static final String ANNA_QUEST_SLOT = "toys_collector";
+	private static final String KEYRING_QUEST_SLOT = "hungry_joshua";
+	private static final String GHOSTS_QUEST_SLOT = "find_ghosts";
+	private static final String DAILY_ITEM_QUEST_SLOT = "daily_item";
+	private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
+	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 
-	AdosHouseSeller(final String name, final String location) {
-		super(name, location);
+	AdosHouseSeller(final String name, final String location, final HouseTax houseTax) {
+		super(name, location, houseTax);
 		init();
 	}
 
@@ -35,28 +41,28 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 		// player is not old enough
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new NotCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE)),
+				 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
 				 ConversationStates.ATTENDING,
 				 "The cost of a new house in Ados is "
 				 + getCost()
 				 + " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
-				 + Integer.toString((HouseBuyingMain.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+				 + Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 					null);
 		
 		
 		// player doesn't have a house and is old enough but has not done required quests
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT),
+				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
 								  new NotCondition(
 													  new AndCondition(
-																	   new QuestCompletedCondition(HouseBuyingMain.DAILY_ITEM_QUEST_SLOT),
-																	   new QuestCompletedCondition(HouseBuyingMain.ANNA_QUEST_SLOT),
-																	   new QuestCompletedCondition(HouseBuyingMain.KEYRING_QUEST_SLOT),
-																	   new QuestCompletedCondition(HouseBuyingMain.FISHROD_QUEST_SLOT),
-																	   new QuestCompletedCondition(HouseBuyingMain.GHOSTS_QUEST_SLOT),
-																	   new QuestCompletedCondition(HouseBuyingMain.ZARA_QUEST_SLOT)))),
+																	   new QuestCompletedCondition(AdosHouseSeller.DAILY_ITEM_QUEST_SLOT),
+																	   new QuestCompletedCondition(AdosHouseSeller.ANNA_QUEST_SLOT),
+																	   new QuestCompletedCondition(AdosHouseSeller.KEYRING_QUEST_SLOT),
+																	   new QuestCompletedCondition(AdosHouseSeller.FISHROD_QUEST_SLOT),
+																	   new QuestCompletedCondition(AdosHouseSeller.GHOSTS_QUEST_SLOT),
+																	   new QuestCompletedCondition(AdosHouseSeller.ZARA_QUEST_SLOT)))),
 				 ConversationStates.ATTENDING, 
 				 "The cost of a new house in Ados is "
 				 + getCost()
@@ -66,14 +72,14 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 		// player is eligible to buy a house
 		add(ConversationStates.ATTENDING, 
 					Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT), 
-								  new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestCompletedCondition(HouseBuyingMain.DAILY_ITEM_QUEST_SLOT),
-								  new QuestCompletedCondition(HouseBuyingMain.ANNA_QUEST_SLOT),
-								  new QuestCompletedCondition(HouseBuyingMain.KEYRING_QUEST_SLOT),
-								  new QuestCompletedCondition(HouseBuyingMain.FISHROD_QUEST_SLOT),
-								  new QuestCompletedCondition(HouseBuyingMain.GHOSTS_QUEST_SLOT),
-								  new QuestCompletedCondition(HouseBuyingMain.ZARA_QUEST_SLOT)),
+				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
+								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestCompletedCondition(AdosHouseSeller.DAILY_ITEM_QUEST_SLOT),
+								  new QuestCompletedCondition(AdosHouseSeller.ANNA_QUEST_SLOT),
+								  new QuestCompletedCondition(AdosHouseSeller.KEYRING_QUEST_SLOT),
+								  new QuestCompletedCondition(AdosHouseSeller.FISHROD_QUEST_SLOT),
+								  new QuestCompletedCondition(AdosHouseSeller.GHOSTS_QUEST_SLOT),
+								  new QuestCompletedCondition(AdosHouseSeller.ZARA_QUEST_SLOT)),
 				 ConversationStates.QUEST_OFFERED, 
 				 "The cost of a new house in Ados is "
 				 + getCost()
@@ -89,7 +95,7 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 				 ConversationStates.ATTENDING, 
 				 null,
-				 new BuyHouseChatAction(getCost()));
+				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 		addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");

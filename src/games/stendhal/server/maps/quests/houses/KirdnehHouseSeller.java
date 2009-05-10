@@ -16,9 +16,10 @@ import java.util.Arrays;
 final class KirdnehHouseSeller extends HouseSellerNPCBase {
 	/** Cost to buy house in kirdneh. */
 	private static final int COST_KIRDNEH = 120000;
+	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
 
-	KirdnehHouseSeller(final String name, final String location) {
-		super(name, location);
+	KirdnehHouseSeller(final String name, final String location, final HouseTax houseTax) {
+		super(name, location, houseTax);
 		init();
 	}
 
@@ -30,20 +31,20 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 		// player is not old enough
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new NotCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE)),
+				 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
 				 ConversationStates.ATTENDING, 
 				 "The cost of a new house in Kirdneh is "
 						 + getCost()
 				 + " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " 
-				 + Integer.toString((HouseBuyingMain.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+				 + Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 				 null);
 		
 		// player is old enough and hasn't got a house but has not done required quest
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestNotCompletedCondition(HouseBuyingMain.KIRDNEH_QUEST_SLOT), 
-									 new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT)),
+				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestNotCompletedCondition(KirdnehHouseSeller.KIRDNEH_QUEST_SLOT), 
+									 new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT)),
 				 ConversationStates.ATTENDING, 
 				 "The cost of a new house in Kirdneh is "
 				 + getCost()
@@ -53,9 +54,9 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 		// player is eligible to buy a house
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT), 
-								  new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestCompletedCondition(HouseBuyingMain.KIRDNEH_QUEST_SLOT)),
+				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
+								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestCompletedCondition(KirdnehHouseSeller.KIRDNEH_QUEST_SLOT)),
 					ConversationStates.QUEST_OFFERED, 
 				 "The cost of a new house is "
 				 + getCost()
@@ -71,7 +72,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 				 ConversationStates.ATTENDING, 
 				 null,
-				 new BuyHouseChatAction(getCost()));
+				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 
 		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");

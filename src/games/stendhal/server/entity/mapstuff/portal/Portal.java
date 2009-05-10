@@ -29,6 +29,8 @@ import org.apache.log4j.Logger;
  * A portal which teleports the player to another portal if used.
  */
 public class Portal extends Entity implements UseListener {
+	private static final String RPCLASS_NAME = "portal";
+
 	/**
 	 * The hidden flags attribute name.
 	 */
@@ -47,9 +49,11 @@ public class Portal extends Entity implements UseListener {
 
 	public static void generateRPClass() {
 		try {
-			final RPClass portal = new RPClass("portal");
-			portal.isA("entity");
-			portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
+				if (!RPClass.hasRPClass(RPCLASS_NAME)){
+					final RPClass portal = new RPClass(RPCLASS_NAME);
+					portal.isA("entity");
+					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
+				}
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -59,16 +63,16 @@ public class Portal extends Entity implements UseListener {
 	 * Creates a new portal.
 	 */
 	public Portal() {
-		setRPClass("portal");
-		put("type", "portal");
+		setRPClass(RPCLASS_NAME);
+		put("type", RPCLASS_NAME);
 
 		isDestinationSet = false;
 	}
 	
 	public Portal(final RPObject object) {
 		super(object);
-		setRPClass("portal");
-		put("type", "portal");
+		setRPClass(RPCLASS_NAME);
+		put("type", RPCLASS_NAME);
 		isDestinationSet = false;
 	}
 

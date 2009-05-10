@@ -19,9 +19,10 @@ import java.util.Arrays;
 final class AthorHouseSeller extends HouseSellerNPCBase {
 	/** Cost to buy house in athor. */
 	private static final int COST_ATHOR = 100000;
+	private static final String FISHLICENSE2_QUEST_SLOT = "fishermans_license2";
 
-	AthorHouseSeller(final String name, final String location) {
-		super(name, location);
+	AthorHouseSeller(final String name, final String location, final HouseTax houseTax) {
+		super(name, location, houseTax);
 		init();
 	}
 
@@ -33,20 +34,20 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 		// player is not old enough
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new NotCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE)),
+				 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
 				 ConversationStates.ATTENDING, 
 				 "The cost of a new apartment in Athor is "
 						 + getCost()
 				 + " money. But, you'll have to come back when you have spent at least " 
-				 + Integer.toString((HouseBuyingMain.REQUIRED_AGE / 60)) + " hours on Faiumoni. Maybe I'll have managed to get a suntan by then.",
+				 + Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni. Maybe I'll have managed to get a suntan by then.",
 				 null);
 		
 		// player is old enough and hasn't got a house but has not done required quest
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new AndCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestNotCompletedCondition(HouseBuyingMain.FISHLICENSE2_QUEST_SLOT), 
-								  new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT)),
+				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestNotCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT), 
+								  new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT)),
 				 ConversationStates.ATTENDING, 
 				 "What do you want with an apartment on Athor when you're not even a good #fisherman? We are trying to attract owners who will spend time on the island. Come back when you have proved yourself a better fisherman.",
 				 null);
@@ -54,9 +55,9 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 		// player is eligible to buy a apartment
 		add(ConversationStates.ATTENDING, 
 				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new AndCondition(new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT), 
-								  new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-								  new QuestCompletedCondition(HouseBuyingMain.FISHLICENSE2_QUEST_SLOT)),
+				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
+								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+								  new QuestCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT)),
 					ConversationStates.QUEST_OFFERED, 
 				 "The cost of a new apartment is "
 				 + getCost()
@@ -72,7 +73,7 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 				 ConversationStates.ATTENDING, 
 				 null,
-				 new BuyHouseChatAction(getCost()));
+				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 
 		addJob("Well, I'm actually trying to sunbathe here. But, since you ask, I sell apartments here on Athor. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");

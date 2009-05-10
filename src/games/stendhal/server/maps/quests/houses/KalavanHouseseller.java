@@ -19,9 +19,10 @@ import java.util.List;
 final class KalavanHouseseller extends HouseSellerNPCBase {
 	/** Cost to buy house in kalavan. */
 	private static final int COST_KALAVAN = 100000;
+	private static final String PRINCESS_QUEST_SLOT = "imperial_princess";
 
-	KalavanHouseseller(final String name, final String location) {
-		super(name, location);
+	KalavanHouseseller(final String name, final String location, final HouseTax houseTax) {
+		super(name, location, houseTax);
 		init();
 	}
 
@@ -33,7 +34,7 @@ final class KalavanHouseseller extends HouseSellerNPCBase {
 		// player has not done required quest, hasn't got a house at all
 add(ConversationStates.ATTENDING, 
 		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT), new QuestNotCompletedCondition(HouseBuyingMain.PRINCESS_QUEST_SLOT)),
+		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), new QuestNotCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
 		ConversationStates.ATTENDING, 
 			"The cost of a new house is "
 		+ getCost()
@@ -46,21 +47,21 @@ add(ConversationStates.ATTENDING,
 add(ConversationStates.ATTENDING, 
 		Arrays.asList("cost", "house", "buy", "purchase"),
 		new AndCondition(
-							 new QuestCompletedCondition(HouseBuyingMain.PRINCESS_QUEST_SLOT),
-							 new NotCondition(new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE))),
+							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT),
+							 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE))),
 		ConversationStates.ATTENDING, 
 		"The cost of a new house is "
 		+ getCost()
 		+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
-		+ Integer.toString((HouseBuyingMain.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+		+ Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 		null);
 
 // player is eligible to buy a house
 		add(ConversationStates.ATTENDING, 
 		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(new QuestNotStartedCondition(HouseBuyingMain.QUEST_SLOT), 
-						 new AgeGreaterThanCondition(HouseBuyingMain.REQUIRED_AGE), 
-							 new QuestCompletedCondition(HouseBuyingMain.PRINCESS_QUEST_SLOT)),
+		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
+						 new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
 		ConversationStates.QUEST_OFFERED, 
 		"The cost of a new house is "
 		+ getCost()
@@ -75,7 +76,7 @@ add(ConversationStates.QUEST_OFFERED,
 		new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 		ConversationStates.ATTENDING,
 		null,
-		new BuyHouseChatAction(getCost()));
+		new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
 addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
 addReply("citizenship",

@@ -45,7 +45,7 @@ public class BuyHouseChatActionTest {
 
 	@Test
 	public void testFire() {
-		BuyHouseChatAction action = new BuyHouseChatAction(1);
+		BuyHouseChatAction action = new BuyHouseChatAction(1, HouseSellerNPCBase.QUEST_SLOT);
 		String zoneName = "0_ados_city_n";
 		StendhalRPZone ados = new StendhalRPZone(zoneName);
 		MockStendlRPWorld.get().addRPZone(ados);

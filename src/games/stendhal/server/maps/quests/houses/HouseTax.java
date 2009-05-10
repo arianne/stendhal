@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests.houses;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -16,6 +14,8 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+
+import org.apache.log4j.Logger;
 
 /**
  * House tax, and confiscation of houses.

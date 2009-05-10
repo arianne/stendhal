@@ -18,6 +18,7 @@ import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -39,10 +40,12 @@ public class AdosHouseSellerTest {
 		Portal.generateRPClass();
 		HousePortal.generateRPClass();
 		MockStendlRPWorld.get();
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Mr Taxman"));
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		SingletonRepository.getNPCList().clear();
 	}
 
 	@Before
@@ -55,20 +58,20 @@ public class AdosHouseSellerTest {
 
 	@Test
 	public void testGetCost() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		assertEquals(120000, seller.getCost());
 	}
 
 	@Test
 	public void testGetLowestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		assertEquals(50, seller.getLowestHouseNumber());
 
 	}
 
 	@Test
 	public void testGetHighestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		assertEquals(73, seller.getHighestHouseNumber());
 		assertThat(seller.getLowestHouseNumber(), is(lessThan(seller.getHighestHouseNumber())));
 
@@ -76,7 +79,7 @@ public class AdosHouseSellerTest {
 
 	@Test
 	public void testAdosHouseSellerTooYoungNoQuests() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
 		assertThat(en.getCurrentState(), is(IDLE));
 		
@@ -103,7 +106,8 @@ public class AdosHouseSellerTest {
 	
 	@Test
 	public void testAdosHouseSellerNoZones() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		HouseUtilities.allHousePortals = null;
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 		
@@ -127,7 +131,7 @@ public class AdosHouseSellerTest {
 		HouseUtilities.allHousePortals = null;
 		
 		
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana");
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 		

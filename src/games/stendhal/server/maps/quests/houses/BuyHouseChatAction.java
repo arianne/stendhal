@@ -4,6 +4,8 @@ package games.stendhal.server.maps.quests.houses;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -11,9 +13,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-final class BuyHouseChatAction implements ChatAction {
+final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
-//	private final String location;
 
 	private int cost;
 
@@ -23,7 +24,8 @@ final class BuyHouseChatAction implements ChatAction {
 	 * @param location
 	 *            where are the houses?
 	 */
-	BuyHouseChatAction(final int cost) {
+	BuyHouseChatAction(final int cost, final String questSlot) {
+		super(questSlot);
 		this.cost = cost;
 	}
 
@@ -58,14 +60,14 @@ final class BuyHouseChatAction implements ChatAction {
 				if (player.equipToInventoryOnly(key)) {
 					engine.say("Congratulations, here is your key to " + doorId
 							   + "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
-							   + HouseBuyingMain.COST_OF_SPARE_KEY + " money?");
+							   + HouseChatAction.COST_OF_SPARE_KEY + " money?");
 					
 					player.drop("money", cost);
 					// remember what house they own
-					player.setQuest(HouseBuyingMain.QUEST_SLOT, itemName);
+					player.setQuest(questslot, itemName);
 
 					// put nice things and a helpful note in the chest
-					HouseBuyingMain.fillChest(HouseUtilities.findChest(houseportal));
+					BuyHouseChatAction.fillChest(HouseUtilities.findChest(houseportal));
 
 					// set the time so that the taxman can start harassing the player
 					final long time = System.currentTimeMillis();
@@ -86,5 +88,23 @@ final class BuyHouseChatAction implements ChatAction {
 					   + " is sold, please ask for a list of #unsold houses, or give me the number of another house.");
 			engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 		}
+	}
+
+	private static void fillChest(final StoredChest chest) {
+		Item item = SingletonRepository.getEntityManager().getItem("note");
+		item.setDescription("WELCOME TO THE HOUSE OWNER\n"
+				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
+				+ "2. All people who can get in the house can use the chest.\n"
+				+ "3. Remember to change your locks as soon as the security of your house is compromised.\n"
+				+ "4. You can resell your house to the state if wished (please don't leave me)\n");
+		chest.add(item);
+		
+		item = SingletonRepository.getEntityManager().getItem("wine");
+		((StackableItem) item).setQuantity(2);
+		chest.add(item);
+		
+		item = SingletonRepository.getEntityManager().getItem("chocolate bar");
+		((StackableItem) item).setQuantity(2);
+		chest.add(item);
 	}
 }
