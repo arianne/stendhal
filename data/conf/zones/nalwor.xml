@@ -203,23 +203,14 @@ below average.
 		</portal>
 
 		<entity x="15" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-I buy the following:
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+				<parameter name="shop">buyarcherstuff</parameter>
+				<parameter name="title">I buy the following:</parameter>
+			</implementation>
 
-steel arrow 5
-wooden arrow 1
-power arrow 50
-golden arrow 20
-
-longbow 300
-crossbow 400
-wooden bow 250
-composite bow 350
-hunter crossbow 800
-     </attribute>
 			<attribute name="class">blackboard</attribute>
 		</entity>
+
 		<entity x="10" y="5">
 			<implementation
 				class-name="games.stendhal.server.maps.nalwor.basement.ArcheryDealerNPC">
