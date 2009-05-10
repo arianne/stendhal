@@ -12,8 +12,8 @@ import javax.swing.BoxLayout;
 
 @SuppressWarnings("serial")
 class BuddyPanel extends StyledJPanel {
-	Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
-	public BuddyPanel(final Style style) {
+	private Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
+	protected BuddyPanel(final Style style) {
 		super(style);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setSize(new Dimension(168, 88));
@@ -21,7 +21,7 @@ class BuddyPanel extends StyledJPanel {
 	}
 
 
-	public void addBuddy(final String buddyName, final boolean isOnline) {
+	private void addBuddy(final String buddyName, final boolean isOnline) {
 		
 		if (labelMap.get(buddyName) == null) {
 			final BuddyLabel label = new BuddyLabel(buddyName, isOnline);

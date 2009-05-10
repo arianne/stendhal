@@ -9,7 +9,7 @@ class WhereBuddyAction implements ActionListener {
 
 	private final String buddyName;
 
-	public WhereBuddyAction(final String buddyName) {
+	protected WhereBuddyAction(final String buddyName) {
 		this.buddyName = buddyName;
 	}
 

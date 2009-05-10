@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 class LeaveBuddyMessageAction implements ActionListener {
 	private final String buddyName;
-	public LeaveBuddyMessageAction(final String buddyName) {
+	protected LeaveBuddyMessageAction(final String buddyName) {
 		if (buddyName.indexOf(' ') > -1) {
 			this.buddyName = "'" + buddyName + "'";
 		} else {

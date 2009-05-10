@@ -29,13 +29,13 @@ class BuddyLabel extends JLabel {
 		this.setText("bobbele");
 	}
 
-	public BuddyLabel(final String name) {
+	private BuddyLabel(final String name) {
 		this();
 		setName(name);
 		setText(name);
 	}
 
-	public BuddyLabel(final String name, final boolean isOnline) {
+	protected BuddyLabel(final String name, final boolean isOnline) {
 		this(name);
 		setOnline(isOnline);
 	}

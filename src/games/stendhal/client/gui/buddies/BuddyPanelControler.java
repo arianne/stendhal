@@ -11,7 +11,7 @@ import marauroa.common.game.RPSlot;
 
 public class BuddyPanelControler implements PropertyChangeListener {
 	private static PropertyChangeListener instance;
-	BuddyPanel buddyPanel;
+	private BuddyPanel buddyPanel;
 
 	public BuddyPanelControler() {
 		buddyPanel = new BuddyPanel(WoodStyle.getInstance());

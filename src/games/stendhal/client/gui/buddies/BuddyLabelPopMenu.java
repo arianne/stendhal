@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
 class BuddyLabelPopMenu extends StyledJPopupMenu {
 
-	public BuddyLabelPopMenu(final Style style, final String buddyName, final boolean online) {
+	protected BuddyLabelPopMenu(final Style style, final String buddyName, final boolean online) {
 		super(style, buddyName);
 		if (online) {
 			createOnlineMenu(buddyName);
