@@ -5,8 +5,10 @@ import java.util.Map;
 
 /**
  * @author gummipferd
+ * 
+ * Less safe for players below level 50
  */
-public class UndeadRisingRaid extends CreateRaid {
+public class ZombieRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {

@@ -5,19 +5,20 @@ import java.util.Map;
 
 /**
  * @author gummipferd
+ * 
+ * Not safe for players below level 150
  */
-public class BlordroughsRevengeRaid extends CreateRaid {
+public class BlordroughRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
 		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
-		attackArmy.put("imp", 7);
-		attackArmy.put("imperial demon servant", 5);
-		attackArmy.put("imperial demon lord", 5);
-		attackArmy.put("blordrough quartermaster", 7);
+		attackArmy.put("elder giant", 5);
+		attackArmy.put("imperial general giant", 5);
+		attackArmy.put("blordrough quartermaster", 9);
 		attackArmy.put("blordrough corporal", 6);
 		attackArmy.put("blordrough storm trooper", 8);
-		attackArmy.put("fallen angel", 2);
+		attackArmy.put("master giant", 2);
 		return attackArmy;
 	}
 }

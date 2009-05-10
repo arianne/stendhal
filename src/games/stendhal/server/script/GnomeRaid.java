@@ -5,8 +5,10 @@ import java.util.Map;
 
 /**
  * @author gummipferd
+ * 
+ * Less safe for players below level 10
  */
-public class SmallForcesRaid extends CreateRaid {
+public class GnomeRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {

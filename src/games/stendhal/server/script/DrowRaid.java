@@ -5,14 +5,16 @@ import java.util.Map;
 
 /**
  * @author miguel
+ * 
+ * Not safe for players below level 150
  */
-public class DrowAttackRaid extends CreateRaid {
+public class DrowRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
 		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
-		attackArmy.put("dark elf", 30);
-		attackArmy.put("dark elf archer", 10);
+		attackArmy.put("dark elf", 20);
+		attackArmy.put("dark elf archer", 5);
 		attackArmy.put("dark elf elite archer", 5);
 		attackArmy.put("dark elf captain", 7);
 		attackArmy.put("dark elf knight", 3);
@@ -21,7 +23,9 @@ public class DrowAttackRaid extends CreateRaid {
 		attackArmy.put("dark elf viceroy", 1);
 		attackArmy.put("dark elf sacerdotist", 3);
 		attackArmy.put("dark elf matronmother", 1);
-
+		attackArmy.put("dark elf master", 1);
+		attackArmy.put("dark elf ranger", 3);
+		attackArmy.put("dark elf admiral", 3);
 		return attackArmy;
 	}
 }

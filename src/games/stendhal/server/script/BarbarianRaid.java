@@ -3,7 +3,7 @@ package games.stendhal.server.script;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BarbarianAttackRaid extends CreateRaid {
+public class BarbarianRaid extends CreateRaid {
 
 	@Override
 	protected Map<String, Integer> createArmy() {
