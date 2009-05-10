@@ -192,7 +192,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/*
 	 * Clear all holders.
 	 */
-	protected void clear(final IGameScreen gameScreen) {
+	private void clear(final IGameScreen gameScreen) {
 		for (final EntitySlot entitySlot : slotPanels) {
 			entitySlot.setEntity(null, gameScreen);
 		}

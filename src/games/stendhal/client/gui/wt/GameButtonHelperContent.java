@@ -15,7 +15,7 @@ import games.stendhal.client.gui.styled.swing.StyledJButton;
  * 
  * @author timothyb89
  */
-public class GameButtonHelperContent extends javax.swing.JPanel {
+class GameButtonHelperContent extends javax.swing.JPanel {
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	
@@ -24,7 +24,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	 * @param sp 
 	 * @param gbh 
 	 * @param ui */
-	public GameButtonHelperContent(final SettingsPanel sp, final GameButtonHelper gbh,
+	protected GameButtonHelperContent(final SettingsPanel sp, final GameButtonHelper gbh,
 			final j2DClient ui) { 
 		// settings panel for the setVisable stuff
 		initComponents();

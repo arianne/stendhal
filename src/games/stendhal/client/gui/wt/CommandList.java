@@ -18,7 +18,7 @@ import javax.swing.JMenuItem;
  * 
  * @author mtotz
  */
-public class CommandList extends WtPopupMenu {
+class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	/** the entity associated with the command list. */
@@ -34,7 +34,7 @@ public class CommandList extends WtPopupMenu {
 	 * @param view
 	 *            The entity view.
 	 */
-	public CommandList(final String name, final String[] items,
+	protected CommandList(final String name, final String[] items,
 			final EntityView view) {
 		super(name);
 
@@ -43,7 +43,7 @@ public class CommandList extends WtPopupMenu {
 		populate(items);
 	}
 
-	protected void populate(final String[] items) {
+	private void populate(final String[] items) {
 		ActionListener listener;
 		Icon adminIcon;
 		Icon icon;
@@ -70,7 +70,7 @@ public class CommandList extends WtPopupMenu {
 
 	/** an action has been chosen. 
 	 * @param command */
-	protected void doAction(final String command) {
+	private void doAction(final String command) {
 		// tell the entity what happened
 		view.onAction(ActionType.getbyRep(command));
 	}
@@ -81,7 +81,7 @@ public class CommandList extends WtPopupMenu {
 	/**
 	 * Handle action selection.
 	 */
-	protected class ActionSelectedCB implements ActionListener {
+	private class ActionSelectedCB implements ActionListener {
 
 		//
 		// ActionListener
@@ -108,7 +108,7 @@ public class CommandList extends WtPopupMenu {
 	 *      :
 	 * </pre>
 	 */
-	protected static class AdminIcon implements Icon {
+	private static class AdminIcon implements Icon {
 
 		public int getIconHeight() {
 			return 7;

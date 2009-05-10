@@ -14,11 +14,11 @@ import games.stendhal.client.gui.j2DClient;
 /**
  * The GameButtonHelper.
  */
-public class GameButtonHelper extends InternalManagedDialog {
+class GameButtonHelper extends InternalManagedDialog {
 	/**
 	 * The buyWindow.
 	 */
-	protected GameButtonHelperContent content;
+	private GameButtonHelperContent content;
 
 	/** Creates a new instance of Buddies. 
 	 * @param sp 

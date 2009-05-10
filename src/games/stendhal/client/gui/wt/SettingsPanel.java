@@ -155,11 +155,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/**
 	 * A menu entry.
 	 */
-	protected static class Entry {
-		protected WtButton button;
-		protected ManagedWindow window;
+	private static class Entry {
+		private WtButton button;
+		private ManagedWindow window;
 
-		public Entry(final WtButton button, final ManagedWindow window) {
+		private Entry(final WtButton button, final ManagedWindow window) {
 			this.button = button;
 			this.window = window;
 		}

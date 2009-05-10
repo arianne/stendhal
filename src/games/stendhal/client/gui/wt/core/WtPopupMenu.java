@@ -52,7 +52,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	 * @param ev
 	 * 
 	 */
-	protected void redirectEvent(final MenuKeyEvent ev) {
+	private void redirectEvent(final MenuKeyEvent ev) {
 		Component invoker;
 		invoker = getInvoker();
 		if (invoker != null) {
@@ -97,10 +97,10 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	//
 	//
 
-	protected class RedirectingMenuItem extends JMenuItem {
+	private class RedirectingMenuItem extends JMenuItem {
 		private static final long serialVersionUID = -1607102841664745919L;
 
-		public RedirectingMenuItem(final String label, final Icon icon) {
+		private RedirectingMenuItem(final String label, final Icon icon) {
 			super(label, icon);
 		}
 

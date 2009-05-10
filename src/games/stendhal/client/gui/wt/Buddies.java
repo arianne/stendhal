@@ -141,7 +141,7 @@ public class Buddies extends WtPanel {
 	 * @param command 
 	 * @param buddieName 
 	 */
-	protected void doAction(final String command, final String buddieName) {
+	private void doAction(final String command, final String buddieName) {
 		if ("talk".equals(command)) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
@@ -224,12 +224,12 @@ public class Buddies extends WtPanel {
 	/**
 	 * Handle action selections.
 	 */
-	protected class ActionSelectedCB implements ActionListener {
+	private class ActionSelectedCB implements ActionListener {
 
 		/**
 		 * The buddy to act on.
 		 */
-		protected String buddy;
+		private String buddy;
 
 		/**
 		 * Create a listener for action items.
@@ -237,7 +237,7 @@ public class Buddies extends WtPanel {
 		 * 
 		 * 
 		 */
-		public ActionSelectedCB(final String buddy) {
+		private ActionSelectedCB(final String buddy) {
 			this.buddy = buddy;
 		}
 

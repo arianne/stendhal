@@ -109,7 +109,7 @@ public class WtWindowManager {
 	}
 
 	/** Reads the current settings from a file. */
-	public void read() {
+	private void read() {
 		properties = new Properties();
 		try {
 			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
@@ -201,7 +201,7 @@ public class WtWindowManager {
 	 * @param panel
 	 * @param state
 	 */
-	public void setMinimized(final ManagedWindow panel, final boolean state) {
+	protected void setMinimized(final ManagedWindow panel, final boolean state) {
 		final WindowConfiguration config = getConfig(panel);
 
 		config.minimized = state;
@@ -217,28 +217,28 @@ public class WtWindowManager {
 	private class WindowConfiguration {
 
 		/** name of the window. */
-		public String name;
+		private String name;
 
 		/** minimized state of the window. */
-		public boolean minimized;
+		private boolean minimized;
 
 		/** is the window visible? */
-		public boolean visible;
+		private boolean visible;
 
 		/** x-pos. */
-		public int x;
+		private int x;
 
 		/** y-pos. */
-		public int y;
+		private int y;
 
-		public WindowConfiguration(final String name) {
+		private WindowConfiguration(final String name) {
 			this.name = name;
 		}
 
 		/**
 		 * @return string to be stored as property
 		 */
-		public String writeToPropertyString() {
+		private String writeToPropertyString() {
 			return "window." + name + ".minimized=" + minimized + "\n"
 					+ "window." + name + ".visible=" + visible + "\n"
 					+ "window." + name + ".x=" + x + "\n" + "window." + name
@@ -272,7 +272,7 @@ public class WtWindowManager {
 		 * @param defaultY
 		 * @param defaultVisible
 		 */
-		public void readFromProperties(final Properties props,
+		private void readFromProperties(final Properties props,
 				final boolean defaultMinimized, final int defaultX, final int defaultY,
 				final boolean defaultVisible) {
 			minimized = Boolean.parseBoolean(props.getProperty("window." + name
@@ -291,7 +291,7 @@ public class WtWindowManager {
 		 * @param props
 		 * @param defaults
 		 */
-		public void readFromProperties(final Properties props, final ManagedWindow defaults) {
+		private void readFromProperties(final Properties props, final ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY(), defaults.isVisible());
 		}

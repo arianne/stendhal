@@ -39,7 +39,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Disable the keyring.
 	 */
-	protected void disable() {
+	private void disable() {
 		if (isMinimizeable()) {
 			setMinimizeable(false);
 			setMinimized(true);

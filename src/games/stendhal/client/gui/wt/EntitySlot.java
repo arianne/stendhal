@@ -45,7 +45,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author mtotz
  */
-public class EntitySlot extends WtPanel implements WtDropTarget {
+class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * The background surface sprite.
 	 */
@@ -75,7 +75,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param y
 	 * @param gameScreen
 	 */
-	public EntitySlot(final String name, final Sprite placeholder, final int x, final int y,
+	protected EntitySlot(final String name, final Sprite placeholder, final int x, final int y,
 			final IGameScreen gameScreen) {
 		super(name, x, y, background.getWidth(), background.getHeight(),
 				gameScreen);
@@ -84,11 +84,11 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		view = null;
 	}
 
-	public static int getDefaultHeight() {
+	protected static int getDefaultHeight() {
 		return background.getHeight();
 	}
 
-	public static int getDefaultWidth() {
+	protected static int getDefaultWidth() {
 		return background.getWidth();
 	}
 
@@ -150,7 +150,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param gameScreen 
 	 * 			 The gameScreen to paint on.
 	 */
-	public void setEntity(final IEntity entity, final IGameScreen gameScreen) {
+	protected void setEntity(final IEntity entity, final IGameScreen gameScreen) {
 		if (view != null) {
 			/*
 			 * Don't replace the same object

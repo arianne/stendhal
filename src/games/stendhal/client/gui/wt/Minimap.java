@@ -438,7 +438,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param entity
 	 *            The entity to be drawn
 	 */
-	protected void drawRPEntity(final Graphics g, final RPEntity entity) {
+	private void drawRPEntity(final Graphics g, final RPEntity entity) {
 		if (entity instanceof DomesticAnimal) {
 			drawEntity(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
@@ -458,7 +458,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param color
 	 *            the Color to be used
 	 */
-	protected void drawEntity(final Graphics g, final IEntity entity,
+	private void drawEntity(final Graphics g, final IEntity entity,
 			final Color color) {
 		drawEntity(g, entity, color, null);
 	}
@@ -476,7 +476,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param borderColor
 	 *            The (optional) border color.
 	 */
-	protected void drawEntity(final Graphics g, final IEntity entity,
+	private void drawEntity(final Graphics g, final IEntity entity,
 			final Color color, final Color borderColor) {
 		final Rectangle2D area = entity.getArea();
 
@@ -504,7 +504,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param color
 	 *            The color to draw with.
 	 */
-	protected void drawPlayer(final Graphics g, final Player player,
+	private void drawPlayer(final Graphics g, final Player player,
 			final Color color) {
 		drawCross(g, (int) ((player.getX() * scale) + 0.5), (int) ((player
 				.getY() * scale) + 0.5), color);

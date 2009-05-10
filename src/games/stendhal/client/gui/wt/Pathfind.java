@@ -17,7 +17,7 @@ import java.util.PriorityQueue;
  * @author Kawn
  */
 
-public class Pathfind {
+class Pathfind {
 	private static Rectangle search_area;
 	private static List<Node> closed_list = new ArrayList<Node>();
 	private static LinkedList<Node> final_path = new LinkedList<Node>();

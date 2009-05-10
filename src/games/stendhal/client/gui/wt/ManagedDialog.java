@@ -266,7 +266,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	/**
 	 * Handle dialog state events.
 	 */
-	protected class DialogStateHandler extends ComponentAdapter {
+	private class DialogStateHandler extends ComponentAdapter {
 
 		//
 		// ComponentListener
@@ -317,7 +317,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	/**
 	 * Handle content resize require property change.
 	 */
-	protected class ContentSizeChangeCB implements PropertyChangeListener {
+	private class ContentSizeChangeCB implements PropertyChangeListener {
 
 		//
 		// PropertyChangeListener

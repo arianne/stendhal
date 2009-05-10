@@ -57,64 +57,64 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * The close button.
 	 */
-	protected JButton closeButton;
+	private JButton closeButton;
 
 	/**
 	 * The window content.
 	 */
-	protected JComponent content;
+	private JComponent content;
 
 	/**
 	 * Listeners interesting in close notifications.
 	 */
-	protected List<WtCloseListener> closeListeners;
+	private List<WtCloseListener> closeListeners;
 
 	/**
 	 * The simulated dialog.
 	 */
-	protected Panel dialog;
+	private Panel dialog;
 
 	/**
 	 * Start of a window drag.
 	 */
-	protected Point dragStart;
+	private Point dragStart;
 
 	/**
 	 * The content pane.
 	 */
-	protected StyledJPanel contentPane;
+	private StyledJPanel contentPane;
 
 	/**
 	 * Whether the dialog is minimized.
 	 */
-	protected boolean minimized;
+	private boolean minimized;
 
 	/**
 	 * The minimize button.
 	 */
-	protected JButton minimizeButton;
+	private JButton minimizeButton;
 
 	/**
 	 * If the window can be moved.
 	 */
-	protected boolean movable;
+	private boolean movable;
 
 	/**
 	 * The window name.
 	 */
-	protected String name;
+	private String name;
 
-	protected ContentSizeChangeCB sizeChangeListener;
+	private ContentSizeChangeCB sizeChangeListener;
 
 	/**
 	 * The titlebar.
 	 */
-	protected JComponent titlebar;
+	private JComponent titlebar;
 
 	/**
 	 * The title label.
 	 */
-	protected JLabel titleLabel;
+	private JLabel titleLabel;
 
 	/**
 	 * Create a managed dialog window.
@@ -225,21 +225,21 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Close window.
 	 */
-	protected void closeCB() {
+	private void closeCB() {
 		setVisible(false);
 	}
 
 	/**
 	 * Toggle minimization.
 	 */
-	protected void minimizeCB() {
+	private void minimizeCB() {
 		setMinimized(!isMinimized());
 	}
 
 	/**
 	 * Do simulated dialog layout.
 	 */
-	protected void pack() {
+	private void pack() {
 		Dimension tbSize;
 		Dimension cSize;
 		int width;
@@ -273,10 +273,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		}
 	}
 
-	protected void setTitle(final String title) {
-		titleLabel.setText(title);
-	}
-
 	//
 	// ManagedDialog
 	//
@@ -287,7 +283,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * @param count
 	 *            The click count.
 	 */
-	protected void tbClicked(final int count) {
+	private void tbClicked(final int count) {
 		if (count == 1) {
 			/*
 			 * Raise the window if possible.
@@ -315,7 +311,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * @param y
 	 *            The Y coordinate.
 	 */
-	protected void tbDragBegin(final int x, final int y) {
+	private void tbDragBegin(final int x, final int y) {
 		if (isMovable()) {
 			dragStart = SwingUtilities.convertPoint(titlebar, x, y, dialog);
 		}
@@ -329,7 +325,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * @param y
 	 *            The Y coordinate.
 	 */
-	protected void tbDragEnd(final int x, final int y) {
+	private void tbDragEnd(final int x, final int y) {
 		tbDragMovement(x, y);
 		dragStart = null;
 		windowMoved();
@@ -343,7 +339,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * @param y
 	 *            The Y coordinate.
 	 */
-	protected void tbDragMovement(final int x, final int y) {
+	private void tbDragMovement(final int x, final int y) {
 		Point p;
 		Container parent;
 
@@ -385,7 +381,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Call all registered close listeners.
 	 */
-	protected void fireCloseListeners() {
+	private void fireCloseListeners() {
 		WtCloseListener[] listeners;
 
 		listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
@@ -422,7 +418,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Called when the window's position changes.
 	 */
-	protected void windowMoved() {
+	private void windowMoved() {
 		/*
 		 * Update saved state
 		 */
@@ -615,7 +611,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Handle content resize required property change.
 	 */
-	protected class ContentSizeChangeCB implements PropertyChangeListener {
+	private class ContentSizeChangeCB implements PropertyChangeListener {
 
 		//
 		// PropertyChangeListener
@@ -629,7 +625,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Handle close button.
 	 */
-	protected class CloseCB implements ActionListener {
+	private class CloseCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
 			closeCB();
 		}
@@ -638,7 +634,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Handle minimzation button.
 	 */
-	protected class MinimizeCB implements ActionListener {
+	private class MinimizeCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
 			minimizeCB();
 		}
@@ -647,7 +643,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Disabled button icon.
 	 */
-	protected static class DisabledIcon implements Icon {
+	private static class DisabledIcon implements Icon {
 		//
 		// Icon
 		//
@@ -668,7 +664,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Close button icon.
 	 */
-	protected static class CloseIcon implements Icon {
+	private static class CloseIcon implements Icon {
 		//
 		// Icon
 		//
@@ -721,7 +717,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Minmization button icon.
 	 */
-	protected static class MinimizeIcon implements Icon {
+	private static class MinimizeIcon implements Icon {
 		//
 		// Icon
 		//
@@ -757,7 +753,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Mouse drag event handler for the titlebar.
 	 */
-	protected class TBDragMoveCB extends MouseMotionAdapter {
+	private class TBDragMoveCB extends MouseMotionAdapter {
 		/**
 		 * Handle mouse drag event.
 		 * 
@@ -773,7 +769,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Mouse click event handler for the titlebar.
 	 */
-	protected class TBDragClickCB extends MouseAdapter {
+	private class TBDragClickCB extends MouseAdapter {
 		/**
 		 * Handle mouse pressed event.
 		 * 

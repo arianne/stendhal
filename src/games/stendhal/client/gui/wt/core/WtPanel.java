@@ -131,10 +131,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	private WtPanel parent;
 
 	/** List of registered CloseListener. */
-	protected List<WtCloseListener> closeListeners;
+	private List<WtCloseListener> closeListeners;
 
 	/** List of registered ClickListener. */
-	protected List<WtClickListener> clickListeners;
+	private List<WtClickListener> clickListeners;
 
 	/** changes the titlebar/frame image. */
 	private BufferedImage cachedImage;
@@ -367,7 +367,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the operation is allowed (panel is moved) or false if
 	 *         not (panel is not moved)
 	 */
-	public boolean moveTo(final int x, final int y, final boolean checkHeight) {
+	private boolean moveTo(final int x, final int y, final boolean checkHeight) {
 		this.x = x;
 		this.y = y;
 
@@ -425,7 +425,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** @return whether the panel has a title bar. */
-	public boolean hasTitleBar() {
+	private boolean hasTitleBar() {
 		return titleBar;
 	}
 
@@ -454,7 +454,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** @return whether the panel has a frame. */
-	public boolean hasFrame() {
+	private boolean hasFrame() {
 		return frame;
 	}
 
@@ -579,7 +579,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** @return whether the panel has a parent. */
-	public boolean hasParent() {
+	private boolean hasParent() {
 		return (parent != null);
 	}
 
@@ -654,7 +654,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Scans all children and remove those without our parenting.
 	 */
-	protected void checkDisowned() {
+	private void checkDisowned() {
 		// remove un/reparented children
 		final Iterator<WtPanel> iter = children.iterator();
 
@@ -977,7 +977,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            Graphics object clipped to the client region.
 	 * @param gameScreen
 	 */
-	protected void drawChildren(final Graphics2D g, final IGameScreen gameScreen) {
+	private void drawChildren(final Graphics2D g, final IGameScreen gameScreen) {
 		int i = children.size();
 
 		while (i-- != 0) {
@@ -1015,7 +1015,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            y-coordinate to check (in parents coordinate space)
 	 * @return true when the point is in this panel, false otherwise
 	 */
-	public boolean isHit(final int x, final int y) {
+	private boolean isHit(final int x, final int y) {
 		if (isClosed()) {
 			return false;
 		}
