@@ -12,6 +12,7 @@ public class MathHelper {
 	public static final int SECONDS_IN_ONE_HOUR = 60 * SECONDS_IN_ONE_MINUTE; 
     public static final int SECONDS_IN_ONE_DAY = 24 * SECONDS_IN_ONE_HOUR;
     public static final int SECONDS_IN_ONE_WEEK = 7 * SECONDS_IN_ONE_DAY;
+	public static final int MINUTES_IN_ONE_HOUR = 60;
     
 	/**
 	 * parses an integer safely. returning a default if nothing can be sanely

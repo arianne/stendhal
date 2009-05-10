@@ -14,7 +14,8 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 
-public class HouseUtilities {
+class HouseUtilities {
+	protected static List<HousePortal> allHousePortals = null;
 	private static final String HOUSE_QUEST_SLOT = "house";
 	private static final Logger logger = Logger.getLogger(HouseUtilities.class);
 	private static final String[] zoneNames = {
@@ -27,7 +28,9 @@ public class HouseUtilities {
 		"0_athor_island"
 	};
 	
-	private static List<HousePortal> allHousePortals = null;
+	private HouseUtilities() {
+	}
+	
 	
 	/**
 	 * Get the house owned by a player.
@@ -36,7 +39,7 @@ public class HouseUtilities {
 	 * @return portal to the house owned by the player, or <code>null</code>
 	 * if he doesn not own one. 
 	 */
-	public static HousePortal getPlayersHouse(final Player player) {
+	protected static HousePortal getPlayersHouse(final Player player) {
 		if (player.hasQuest(HOUSE_QUEST_SLOT)) {
 			final String claimedHouse = player.getQuest(HOUSE_QUEST_SLOT);
 		
@@ -65,7 +68,7 @@ public class HouseUtilities {
 	 * @param player the player to be checked
 	 * @return <code>true</code> if the player owns a house, false otherwise
 	 */
-	public static boolean playerOwnsHouse(final Player player) {
+	protected static boolean playerOwnsHouse(final Player player) {
 		return (getPlayersHouse(player) != null);
 	}
 
@@ -76,7 +79,7 @@ public class HouseUtilities {
 	 * @return the portal to the house, or <code>null</code> if there is no
 	 * house by number <code>id</code>
 	 */
-	public static HousePortal getHousePortal(final int houseNumber) {
+	protected static HousePortal getHousePortal(final int houseNumber) {
 		final List<HousePortal> portals =  getHousePortals();
 		
 		for (final HousePortal houseportal : portals) {
@@ -95,16 +98,20 @@ public class HouseUtilities {
 	 * 
 	 * @return list of all house portals
 	 */
-	public static List<HousePortal> getHousePortals() {
+	protected static List<HousePortal> getHousePortals() {
 		if (allHousePortals == null) {
 			// this is only done once per server run
 			allHousePortals = new LinkedList<HousePortal>();
 			
 			for (final String zoneName : zoneNames) {
 				final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
-				for (final Portal portal : zone.getPortals()) {
-					if (portal instanceof HousePortal) {
-						allHousePortals.add((HousePortal) portal);
+				if (zone == null) {
+					logger.warn("Could not find zone " + zoneName);
+				} else {
+					for (final Portal portal : zone.getPortals()) {
+						if (portal instanceof HousePortal) {
+							allHousePortals.add((HousePortal) portal);
+						}
 					}
 				}
 			}
@@ -124,7 +131,7 @@ public class HouseUtilities {
 	 * chest in the zone which the house portal leads to (Note, then, that chests should be on the 'ground floor')
 	 */
 
-	public static StoredChest findChest(final HousePortal portal) {
+	protected static StoredChest findChest(final HousePortal portal) {
 		final String zoneName = portal.getDestinationZone();
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		
@@ -144,7 +151,7 @@ public class HouseUtilities {
 
 	// this will be ideal for a seller to list all unbought houses
 	// using Grammar.enumerateCollection
-	public static List<String> getUnboughtHouses() {
+	private static List<String> getUnboughtHouses() {
 	    final List<String> unbought = new LinkedList<String>();
 		final List<HousePortal> portals =  getHousePortals();
 		for (final HousePortal houseportal : portals) {
@@ -158,7 +165,7 @@ public class HouseUtilities {
 
 	// this will be ideal for a seller to list all unbought houses in a specific location
 	// using Grammar.enumerateCollection
-	public static List<String> getUnboughtHousesInLocation(final String location) {
+	protected static List<String> getUnboughtHousesInLocation(final String location) {
 		final String regex = location + ".*";
 		final List<String> unbought = new LinkedList<String>();
 		for (final String doorId : getUnboughtHouses()) {

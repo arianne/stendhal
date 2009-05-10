@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.houses;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -19,17 +20,19 @@ import java.util.Arrays;
 /**
  * House tax, and confiscation of houses.
  */
-public class HouseTax implements TurnListener {
+class HouseTax implements TurnListener {
+	/** The base amount of tax per month. */
+	protected static final int BASE_TAX = 1000;
+	
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
 	/** How often the tax should be paid. Time in seconds. */ 
-	private static final int TAX_PAYMENT_PERIOD = 60 * 60 * 24 * 30;
+	private static final int TAX_PAYMENT_PERIOD = 30 * MathHelper.SECONDS_IN_ONE_DAY;
 	/** How often the payments should be checked. Time in seconds */
-	private static final int TAX_CHECKING_PERIOD = TAX_PAYMENT_PERIOD / 30;
+	private static final int TAX_CHECKING_PERIOD = MathHelper.SECONDS_IN_ONE_DAY;
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
 	private static final int MAX_UNPAID_TAXES = 5;
 	
-	/** The base amount of tax per month. */
-	public static final int BASE_TAX = 1000;
+	
 	/** Interest rate for unpaid taxes. The taxman does not give free loans. */
 	private static final double INTEREST_RATE = 0.1;
 	
@@ -47,7 +50,7 @@ public class HouseTax implements TurnListener {
 	 * @param portal the portal to be checked
 	 * @return the amount of taxes to be paid
 	 */
-	public int getTaxDebt(final HousePortal portal) {
+	protected int getTaxDebt(final HousePortal portal) {
 		return getTaxDebt(getUnpaidTaxPeriods(portal));
 	}
 	
