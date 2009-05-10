@@ -201,12 +201,17 @@ public class StendhalQuestSystem {
 	}
 
 	private void loadQuest(final IQuest quest) {
-		initQuestAndAddToWorld(quest);
+		try {
+			initQuestAndAddToWorld(quest);
+		} catch (Exception e) {
+			logger.warn("Quest(" + quest.getName() + ") loading failed.", e);
+		}
 		
 	}
 
 
 	private void initQuestAndAddToWorld(final IQuest quest) {
+	
 		logger.info("Loading Quest: " + quest.getName());
 		quest.addToWorld();
 

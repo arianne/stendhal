@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  */
 
 public class HouseBuyingMain implements LoginListener {
-	static HouseTax houseTax = new HouseTax();
+	static HouseTax houseTax;
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(HouseBuyingMain.class);
@@ -106,7 +106,7 @@ public class HouseBuyingMain implements LoginListener {
 	}
 
 	public void addToWorld() {
-
+		houseTax = new HouseTax();
 		kalavan_city_zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
 		createNPC();
 
