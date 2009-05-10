@@ -201,6 +201,11 @@ public class StendhalQuestSystem {
 	}
 
 	private void loadQuest(final IQuest quest) {
+		final String regex = System.getProperty("stendhal.quest.regex", ".*");
+		if (!quest.getName().matches(regex)) {
+			return;
+		}
+		
 		try {
 			initQuestAndAddToWorld(quest);
 		} catch (Exception e) {
