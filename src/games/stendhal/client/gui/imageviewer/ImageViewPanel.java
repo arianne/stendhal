@@ -27,18 +27,12 @@ public class ImageViewPanel extends StyledJPanel {
 
 	private final URL url;
 	private final String alt;
-	private final ImageViewWindow imw;
-
-	
-
-	public ImageViewPanel(final ImageViewWindow imw, final URL url, final String alt) {
+	public ImageViewPanel(final URL url, final String alt, final Dimension maxSize) {
 		super(WoodStyle.getInstance());
 		this.url = url;
 		this.alt = alt;
-		this.imw = imw;
-
 		initImage();
-		initComponents();
+		initComponents(maxSize);
 	}
 
 	/**
@@ -56,9 +50,10 @@ public class ImageViewPanel extends StyledJPanel {
 
 	/**
 	 * Creates and adds components to draw the image.
+	 * @param maxSize TODO
 	 */
-	private void initComponents() {
-		final Dimension max = imw.genMaxSize();
+	private void initComponents(final Dimension maxSize) {
+		final Dimension max = maxSize;
 		int width = image.getWidth(null);
 		int height = image.getHeight(null);
 

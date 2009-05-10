@@ -41,7 +41,7 @@ public class ImageViewWindow extends InternalManagedDialog {
 	}
 
 	public void init() {
-		final ImageViewPanel ivp = new ImageViewPanel(this, url, alt);
+		final ImageViewPanel ivp = new ImageViewPanel(url, alt, genMaxSize());
 		setContent(ivp);
 		j2DClient.get().addWindow(this);
 		final Point center = genCenterPoint();
