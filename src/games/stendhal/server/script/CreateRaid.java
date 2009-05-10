@@ -2,7 +2,7 @@ package games.stendhal.server.script;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public abstract class CreateRaid extends ScriptImpl {
 		sandbox.setZone(myZone);
 
 		for (final Map.Entry<String, Integer> entry : createArmy().entrySet()) {
-			final Creature creature = sandbox.getCreature(entry.getKey());
+			final RaidCreature creature = new RaidCreature(sandbox.getCreature(entry.getKey()));
 
 			for (int i = 0; i < entry.getValue(); i++) {
 				sandbox.add(creature, x
