@@ -29,4 +29,5 @@ server.ini
 .classpath
 server*.ini
 .metadata
+.checkstyle
 marauroa-strato.ini
