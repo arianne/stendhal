@@ -21,4 +21,8 @@ public class KoboldRaid extends CreateRaid {
 		attackArmy.put("veteran kobold", 7);
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Less safe for players below level 10.";
+	}
 }

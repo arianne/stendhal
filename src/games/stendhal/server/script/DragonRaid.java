@@ -24,4 +24,8 @@ public class DragonRaid extends CreateRaid {
 		attackArmy.put("black dragon", 1);
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Not safe for players below level 150.";
+	}
 }

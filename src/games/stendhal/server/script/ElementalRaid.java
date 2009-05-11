@@ -21,4 +21,9 @@ public class ElementalRaid extends CreateRaid {
 		attackArmy.put("air elemental", 7);
 		return attackArmy;
 	}
+	
+	@Override
+	protected String getInfo() {
+		return "Less safe for players below level 50";
+	}
 }

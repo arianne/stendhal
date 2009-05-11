@@ -20,4 +20,9 @@ public class AngelRaid extends CreateRaid {
 		// no dark archangel here as archers can still hit you as you run from them
 		return attackArmy;
 	}
+	
+	@Override
+	protected String getInfo() {
+		return "Not safe for players below level 150";
+	}
 }

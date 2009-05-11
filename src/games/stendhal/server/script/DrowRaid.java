@@ -28,4 +28,8 @@ public class DrowRaid extends CreateRaid {
 		attackArmy.put("dark elf admiral", 3);
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Not safe for players below level 150.";
+	}
 }

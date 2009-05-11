@@ -14,6 +14,12 @@ public abstract class CreateRaid extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
+
+		if (args.size() > 0) {
+			admin.sendPrivateText(getInfo());
+			return;
+		}
+		
 		// extract position of admin
 		final StendhalRPZone myZone = sandbox.getZone(admin);
 		final int x = admin.getX();
@@ -29,5 +35,14 @@ public abstract class CreateRaid extends ScriptImpl {
 						+ games.stendhal.common.Rand.randUniform(-20, 20));
 			}
 		}
+	}
+
+	/**
+	 * contains info to help raid makers decide if this special raidscript is applicable for the given users or other usefull info.
+	 *
+	 * @return the info to simplify life of raid maker
+	 */
+	protected String getInfo() {
+		return "no special Info";
 	}
 }

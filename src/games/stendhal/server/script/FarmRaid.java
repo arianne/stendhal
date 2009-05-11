@@ -25,4 +25,9 @@ public class FarmRaid extends CreateRaid {
 		attackArmy.put("white horse", 2);
 		return attackArmy;
 	}
+	
+	@Override
+	protected String getInfo() {
+		return "A raid safe for lowest level Player.";
+	}
 }

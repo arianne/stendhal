@@ -21,4 +21,8 @@ public class BlordroughRaid extends CreateRaid {
 		attackArmy.put("master giant", 2);
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Not safe for players below level 150.";
+	}
 }

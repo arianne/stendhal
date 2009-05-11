@@ -27,4 +27,8 @@ public class LichRaid extends CreateRaid {
 
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Not safe for players below level 80.";
+	}
 }

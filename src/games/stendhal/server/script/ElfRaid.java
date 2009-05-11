@@ -25,4 +25,8 @@ public class ElfRaid extends CreateRaid {
 
 		return attackArmy;
 	}
+	@Override
+	protected String getInfo() {
+		return "Less safe for players below level 30.";
+	}
 }
