@@ -202,13 +202,11 @@ public class j2DClient {
 		this.userContext = userContext;
 		setDefault(this);
 		
-		
 		mainFrame = new MainFrame();
+		final Container mainFrameContentPane = mainFrame.getMainFrame();
 
-	
-		final Container mainFrameContentPane = mainFrame.getMainFrame().getContentPane();
-
-
+		
+		
 		/*
 		 * Get hold the content of the frame and set up the resolution of the
 		 * game
@@ -216,7 +214,6 @@ public class j2DClient {
 		pane = new JLayeredPane();
 		pane.setPreferredSize(stendhal.screenSize);
 	
-
 		/*
 		 * Wrap canvas in panel that can has setPreferredSize()
 		 */
@@ -885,11 +882,6 @@ public class j2DClient {
 		// Should really keep only one instance of this around
 		final OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
 		dialog.setVisible(true);
-	}
-
-	public void manageGuilds() {
-		final GuildManager gm = new GuildManager();
-		gm.setVisible(true);
 	}
 
 	/**
