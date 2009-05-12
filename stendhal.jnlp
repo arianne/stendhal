@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- set codebase to game-server to allow connection (security restriction) -->
 <!-- the .jar-files are downloaded from sf.net in order not to cause lag in game -->
-<jnlp spec="1.0+" codebase="http://stendhal.game-host.org/stendhal" href="stendhal.jnlp">
+<jnlp spec="1.0+" codebase="http://arianne.sourceforge.net/jws" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
@@ -22,7 +22,7 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
   </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-0.73.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-0.69.jar" download="eager" main="true" />
   </resources>
   <application-desc/>
 </jnlp>
