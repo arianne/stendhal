@@ -574,7 +574,7 @@ surgeonfish 15
 	<parameter name="x">10</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
-  <portal x="18" y="23" ref="entrance">
+  <portal x="9" y="18" ref="entrance">
    <destination zone="0_kirdneh_city" ref="48"/>
   </portal>
   <portal x="2" y="2" ref="up">
@@ -596,7 +596,7 @@ surgeonfish 15
 	<parameter name="x">10</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
-  <portal x="18" y="23" ref="entrance">
+  <portal x="9" y="18" ref="entrance">
    <destination zone="0_kirdneh_city" ref="49"/>
   </portal>
   <portal x="2" y="2" ref="up">
