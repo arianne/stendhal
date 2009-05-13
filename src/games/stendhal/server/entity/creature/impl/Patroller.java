@@ -3,7 +3,7 @@ package games.stendhal.server.entity.creature.impl;
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.creature.Creature;
 
-class Patroller implements Idlebehaviour {
+class Patroller extends StandOnIdle {
 
 	private int minX;
 	private int maxX;
@@ -22,6 +22,10 @@ class Patroller implements Idlebehaviour {
 			if (creature.hasPath()) {
 				creature.followPath();
 			} else {
+				if (retreatUnderFire(creature)) {
+					return;
+				}
+				
 				if (weWouldLeaveArea(creature, Direction.STOP)) {
 					initArea(creature);
 				}
@@ -58,5 +62,4 @@ class Patroller implements Idlebehaviour {
 				|| (creature.getX() + d.getdx() < minX)
 				|| (creature.getX() + d.getdx() > maxX);
 	}
-
 }
