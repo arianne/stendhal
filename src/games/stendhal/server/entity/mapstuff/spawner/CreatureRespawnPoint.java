@@ -192,12 +192,18 @@ public class CreatureRespawnPoint implements TurnListener {
 			newentity.setDEF(Rand.randGaussian(newentity.getDEF(),
 					newentity.getDEF() / 10));
 
-			StendhalRPAction.placeat(zone, newentity, x, y);
+			if (StendhalRPAction.placeat(zone, newentity, x, y)) {
+				newentity.init();
+				newentity.setRespawnPoint(this);
 
-			newentity.init();
-			newentity.setRespawnPoint(this);
-
-			creatures.add(newentity);
+				creatures.add(newentity);
+			} else {
+				// Could not place the creature anywhere. 
+				// Treat it like it just had died.
+				notifyDead(newentity);
+				logger.warn("Could not respawn " + newentity.getName() + " near " 
+						+ zone.getName() + " " + x + " " + y);
+			}
 		} catch (final Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
