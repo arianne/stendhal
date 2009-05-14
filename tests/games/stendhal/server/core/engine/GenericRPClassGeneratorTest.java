@@ -20,16 +20,15 @@ public class GenericRPClassGeneratorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockStendlRPWorld.get();
 	}
 	
 	@After
 	public void after() throws Exception {
-		MockStendlRPWorld.reset();
 	}
 	
 	@Test
 	public void testRPClassGeneration() throws Exception {
+		RPClass entity = new RPClass("entity");
 		Class<?> clazz = new EntityGenerationTestEntity().getClass();
 		assertNotNull(clazz);
 		GenericRPClassGenerator genericRPClassGenerator = new GenericRPClassGenerator();
