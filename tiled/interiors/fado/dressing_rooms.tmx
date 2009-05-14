@@ -63,9 +63,12 @@
  <tileset name="Untitled" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
+ <tileset name="ground" firstgid="162" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEeejdlCeroa6HQuhmFR9AK6/YwPcBQAA
+   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEecj0Y41aJhcO4dLPl8IxaTqAwByTf1i3AUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="15">

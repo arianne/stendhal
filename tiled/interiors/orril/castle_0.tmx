@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -138,9 +138,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="water" firstgid="366" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/water/water.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QuxWAIBREQQJyA//af5/Sgxwe6AST792cUspANXOxdGpt0L8Ve6cO/fr169evX79+/dWdxdWpu0E/AAAAAHzV9EL09qju0T+o1T7qB/r169evX/8fP9CvX7/+v/bX/iG6I/KD6P0AAABf9QBf8y24AEAAAA==
+   H4sIAAAAAAAAAO3QOxJAQBRE0VElF/izS/sPTGYBprzBCU7et9uUUgsU02dDpcYH+qdsrtSiX79+/fr169evv7g12yq1P9APAAAAAF/V3RC9Par77R+Uan/rB/r169evX/8fP9CvX7/+v/aX/iG6I/KD6P0AQD2O5hK9BeALThpZ/3sAQAAA
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
@@ -150,12 +153,12 @@
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ayQ6CMBSFYeqEw0OYOC/Utfpybnls7wKThmBpa5Ha/l9yEwK1cgxtwVAUZmvV0cDDRn0um7Y2x2Lmkr+tvWn/v/0WANBmK3PYzrH2Cc175Cd/zvkPkuXoWKeE8gMAfkPJ2jHqcf149td11N+dE9P/OpVFG9/+uz5fmQ8HY3Nu3+Q39QMgbWcZ5xepq7LbBpAOfWzfpO5Sj8Y24x/wM5YxM5GaZjp2ZpK7lJpHmr85t+nzXgg++UM/ew35TOeaP/S5Dv1OS+zXf9/IT37yk7+s74NyuxfS85cZXgsLybqsK8f8OuYC8pOf/Lnmf68Fq0zzAwAAAADS8QJZUrrxAEAAAA==
+   H4sIAAAAAAAAAO3aSw7CIBSFYfFVH4sw8T1Qx+rmnHZ5Lsk7qAlpKqVIBeH/kps0FpFjCrTGwcBspVoaOFirz2XT1uZczLrkb2pvev3fvgsAaLKRNWzbsXYJrXvkJ3/O+feS5dCxjgnlBwD8hpK9Y9jj/vHor+uoPzsnpt91Sos2rv23vb80n/bGZmzf5Df1AyBtJ5nnZ6mLsjsGkA59bl+lblL32jHzH3AzkjkzlppkOnemkruQmkWav7626eueDy75fT97hXym65rf91hD/6cl9uu/b+QnP/nJX1T3QbndC+n5iwyvhblkXVSVY34dawH5yU/+XPO/94JlpvkBAAAQ1jP0AAAk5QW2IcG6AEAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3V3QqCMBjGcb2C7qGz6jg7CaLSQOqawrPoOruQeoSEoSsCzY+9/x88Ohi4vdPNKAIAAGM0j5uxxFe/xbWwWDP6kSqZclby973MZchJAejNs7zwb/mLq7LV2hbGxq7MnFgau3JTdnoH95bP2esZB+Xo2aef+roaewxS1ZEpJ0/93/qAECz0bS+VVfxbG0A43L29VhJlU2uz/wGEqH62ueceAAAAAAAAAAAAgOl4DD0BIDAvORFrNQBAAAA=
+   H4sIAAAAAAAAAO3ZTQqCQBjGcT1Bd2hXratNEJUKUVdK2kXn7CD1CAmDThFofsz7/8GjAwPzpTMujCIAADBE07geS3zzt7gWFueMbiRKqpyU4/te5NznoAB05llc+Lb8Ra5stLZXY32XJk4s9V26KVs9g3vDdnZqY68cPPv0U11bfQ9BonmkSuaZ/7c6IAQzvdtzZRH/VgYQDndvL5WVsq6U2f8AQlQ929xzDwAAAAAAAAAAAONy4R+PaY++BwAE5gX6MARgAEAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="64" height="64">
@@ -170,7 +173,7 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.51">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSw7DIAxE2wPn/tsqi0oIGfBnbILjkVi0gWFeMU6v7+dz1RiOW7szRLJyhfDYKUTu4i/+4vfj9+xjxT9e8/+88vLib/ffef6R/O3ap/BLPU6pf1Rub36k+jutzd3X6Sn8t1bZpfV0Gn+rt9V/r+L34V/dI21Pt47V3u3zt/K//fyLn+YrfnpOdC2h5Hn+6Fxo9tFeoznSvMhM2fg1fr2v5t5z9tIo+/lLPYofm6n46/4/5fypOW/i53hk4JfWRPHv63/SvLO9Vhm4eS164vlL+ZG9xOs3kNSXxteSySquhwf/SSr+GP6ofmbNRX2P3Gf0eZcQ7z/uPq1v+52HuHmz8nMVyY+u/9X6/jk1f8ZPzbFkPan/jeZkUyZ+TUYP/l3/fyP5vXrlyMujBrnekueovh7VL73ODJnJ4rtaN/OX3vds/Ja8FmWqf0RPzsA/650cP8t7QdK7NXpC/aOyo/JahODn5qD8pQycnKj6n2UY+UiyU+uo33aV1yLNfUfyI/JalPH+76h/TXaER0T9U2s89kGP3fvXoMcPcDv5FgBAAAA=
+   H4sIAAAAAAAAAO2WSw7DIAxE2wPn/tsqi0oI2fg3hkA8EosmYM+rjdvr+/lctdh1a7WHmaxaIWKsFMJ38Rd/8efxZ86x4ufP/D9LsbL42/wr6z+Tvz37FH5rjF36H+U7mx+p/k57ffd9ugv/Lcm7tZ9242/1tv7vVfw5/NI98s706JJyt+/fyv/2+hc/zVf89J7ZvYRSZv3RvtDsXC5uj9Uv0tNp/J54fVzPvdfk8uj0+ltjFD/WU/HX/X9K/ak9b+LXxDiB39oTxb9u/ln9jnJJHrR+I3pi/a38yFmS9R1Y+ssTN+IpKm2MDP6dVPxz+GfNs6gv6jkyD/d5lRC/f9o8bdz2WYa0fk/l12omP7r/pfP9e2r/iJ/aE/G60/zj9pymk/g9HjP4V/3/ncmfNSu5WBk9qI1teY+a67PmZVbNkJ4icaVzo/jW+34af8RvRCf1P2Imn8A/mp2aeJHfBcvs9ugJ/Y/yjvIbEYJf64OKb2XQ+ET1/8gDF8finTpHfbeS34g091zyRHFocqH8RmRl5555cqH8av1l9r/HOyJGdv+j6q/Jg16r89ei1w+STmorAEAAAA==
   </data>
  </layer>
  <layer name="protection" width="64" height="64">

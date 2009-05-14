@@ -60,13 +60,13 @@
  <tileset name="../../tileset/furniture/crockery/knife_spoon.png" firstgid="166" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/knife_spoon.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/sink/dark_side_on.png" firstgid="167" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/sink/dark_side_on.png"/>
+ <tileset name="../../tileset/furniture/sink/jacuzzi_dark_side_on.png" firstgid="167" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="grey detail" firstgid="173" tilewidth="32" tileheight="32">
+ <tileset name="grey detail" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="181" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_wide.png"/>
  </tileset>
  <layer name="0_floor" width="50" height="32">
@@ -76,7 +76,7 @@
  </layer>
  <layer name="1_terrain" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWYyWpVQRCGy3keILpQCW6CLhwWBg1yjU+goLgLSRbOOMXEJ1EX6sKJ8wzO84iKiooP5N+kixSV6un0yfWHj9yc01XV/6X6nO67iIgWg02VuByDYEuL2CWVsUvBMrAcbKtkBdgNdrTIVxu70sfuBGOgoTndArc9d8B5mq9GxOwSc+F818ENcFPF6es6VtfnOZCYR6iu9NBG1lxy9Qg8Bk/A08q6/fJxF9zz3PfXnoHn4AV4uUB12+az5hvSK/AavAFvC2o2Rt2QLmTmrPle3oH34AP4SLNrK0eWj4vgcmC8u3dJoMe5urrHT4HTnjOJ+Vg9rp8zlsaN2CvgamC8uzclsMb9jx6fMGJrfbTtcRJz2Q/2JsbKPrd8TINrgVjLx1k1Rvd4qYbAZprvhfvL6q1Jw4fWOfHZeZwRWH5j+U6kTHiFvMTUpietd7qTtd7k+9x6p4ekvVjvtUZg1W0j169Wn+bK8hrz0oi/Y0bd8TYmvGp8hKS9jARYA9aKuhMVNUt9nEzcl99zj2a9rAeHAwxTNz5ynhul2gcOgu2UPoMMUtiHfq6m1KUP6WErlZ0/JkUeea7Qsq5b6y0m2d+fwGfwxf/vPAwLD5xf6wF4KOquAqspvI50ndh6y/Hh5il7+yv4Br7TXK9LDymxjz0UXj9WnRiuF0Yp/A7jfukpWL1CD9KHi4v9zvAD/AS/ImP0mnPPlwO+DvcEexhI5M/1wHsE9pH6neE3+AP+RsZIhpQX7nn2oNetzl+qnPe53hel9kmcQ3rhfmMPclyJ+Aykzz5dP++12IvreemhrXjPrc8MC+3DSfdYjXjPrffa/fDh1KUXa7/dLx9OXXrR6qcPpxIvuecup67OH5QRK/cth6i7707mTe1LSjgCjgbu8b6l5310VZPPH+sovrcv4Rg4HrnPe5LRjuo5NoCN4B+PHiLNABkAAA==
+   H4sIAAAAAAAAAMWYyWpVQRCGy3keILpQCW6CLhwWBg1yjU+goLgLSRbOOMXEJ1EX6sKJ80jO84iKiopP4N+kixSV6un0yfWHjyTndFX1f1N9TvddRESLwaZKXI5BsKVF7JLK2KVgGVgOtlWyAuwGO1rkq41d6WN3gjHQ0JxugdueO+A8zVcjYnaJuXC+6+AGuKni9HUdq+vzHEjMI1RXemgjay65egQegyfgaWXdfvm4C+557vtrz8Bz8AK8XKC6bfNZ8w3pFXgN3oC3BTUbo25IFzJz1nwu78B78AF8pNm1lSPLx0VwOTDe3bsk0ONcXd3jp8Bpz5nEfKwe188ZS+NG7BVwNTDe3ZsSWOP+R49PGLG1Ptr2OIm57Ad7E2Nln1s+psG1QKzl46wao3u8VENgM833wv1l9dYkpf+X58TvzuOMwPIby3ciZcIr5CWmNj1pvdOdrPUm3+fWOz0k7cV6rzUCq24buX61+jRXlteYl0b8HDPqjrcx4VXjIyTtZSTAGrBW1J2oqFnq42TivvycezTrZT04HGCYuvGR89wo1T5wEGyn9BlkkMI+9HM1pS59SA9bqez8MSnyyHOFlnXdWm8xyf7+BD6DL/5v52FYeOD8Wg/AQ1F3FVhN4XWk68TWW44PN0/Z21/BN/Cd5npdekiJfeyh8Pqx6sRwvTBK4XcY90tPweoVepA+XFzse4Yf4Cf4FRmj15x7vhzwdbgn2MNAIn+uB94jsI/U9wy/wR/wNzJGMqS8cM+zB71udf5S5bzP9b4otU/iHNIL9xt7kONKxGcgffbp+nmvxV5cz0sPbcV7bn1mWGgfTrrHasR7br3X7ocPpy69WPvtfvlw6tKLVj99OJV4yT13OXV1/qCMWLlvOUTdfXYyb2pfUsIRcDRwj/ctPe+jq5p8/lhH8b19CcfA8ch93pOMdlTPsQFsBP8AhKsjsgAZAAA=
   </data>
  </layer>
  <layer name="2_object" width="50" height="32">
@@ -86,7 +86,7 @@
  </layer>
  <layer name="3_roof" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YXQ7CIAzHuYWH8RZmMTuIy27hfFAfjE8cwK95QFnSxQZbPgbbUPkl/0gq0paUjinEJxvCZsJnfh1xPWpeoSRhXCntlQ6gI7OOBFXMelulRmmnfcfZe3T/VAycX0nYvpGp8jih8XkinyH4xntVunj6SLGGujxuMF47/iZ2Hq5+Xenic+kzGTNDajxFcI3Hoq+vFGprNXcAAZTi/dw2PbttUD1JIukUA/2EgnNtmDlSG9fwGbtP/jK+d2ZMSvtM3UV7QnJMCVOONnz2gOsFgrGPXQd4/ZA9yNi5I43t5wEagq3mFkpLkA++d4RW6QmicPnfgKI/ry1SDErCpudM7QE+d67nvRD5vGYyKTHFXUj3Yeqptni49w+XvkL1Ooytj/n0Ljx3rnemzP/wAnUJLbwAGQAA
+   H4sIAAAAAAAAAO2Yyw3CMAyGswXDsAWqUAeh6hbAATggTtkCWIFXmQhXcoUVnFcTSoB80i8iE+w4ctwUIV6ZMTYTPvPriP64eQVI4rgCrUBr1EbjR6Iqjb85aAFaKt/p7B1qfG4NuriSsX0jQ+WxJePdQDFD8F3vGXTyjJFiDbV5XHA8dfxN7Dxc47rSrs+lz2TM9KnxFKE1HouuvlKorcmnFxBAKZ7PbdOz2wbXkySRStEzTig014VmjlTGNX7G7pO/jO+dmZLSPnN30Y6QHFPClKMNnz3Q9QKhsb+7Dqj/kD1Q2YMOqGNEv9/MlejdcW6oPthqbgQao3zwvSM0oDuKw+V/A47uvDZEMSgZm5oztwf03Lme90LEPa+ZTCaMIe5CagxTT7WtR/f+4dJXuF5HsfUxn95F537qnSnzPzwA4pycegAZAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="50" height="32">
@@ -99,9 +99,9 @@
    H4sIAAAAAAAAAO3XOwrAIBAEUK+df5GkyqXTBAIWgrsZZo3zwNJhFb8piQjbSOqLNIDzJ3C+vA5A5gLIFL+NXQDZaujjmbNW98HJLkCgIq9Lyx7tQe9nt4hH1L8Um/5a9SLfn7kdkFkz/vwtOX9ZyM+U7viW1hxKL2fV9TSxuwEykoldABkAAA==
   </data>
  </layer>
- <layer name="collision" width="50" height="32" visible="0" opacity="0.5">
+ <layer name="collision" width="50" height="32" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1VWw7DMAjj2D1+f6eIEhsMmbZailRlwQ8ausvMrnd97bJgfwXL69UxPKh2BSgX0reKrjrHE7f3rMxRBepdCfW78Dgn/LAzUpk5xFe2Xp3DO8MgW9uRowJljur5as7oG4Fqds95dm67alCuzKxHXKxeFhUury7iU/UL8dJxT5ml1KygkkGd42QWpe7uLMOVzRF5UfQEne3P32x5zuZTvVuGH8GJHAw/iu4c651g+FH/Uzky/CyQu7Du7c6wvc/6fdrP9IHRVWicyvFLGhM6Uzm6tSZzsHqMH3QOEU7EV6TH+t7xKv4HOvn/Yd2Y9Ci9ABkAAA==
+   H4sIAAAAAAAAAO1V2w6FMAjbZ/v5vi8ILRRmzrHJErNAL3Potda6vvXatZz9HSyv1cfwoNoVoFzIuVV01TmeuK1nZY4qUO9KqN+FxTnhh52RyswhvrL96hxWDYNsb0eOCpQ5qvXVnN43AtXsnvPs3Hb1oFyZWfe4WL0sKlxWn8enOi/ES8c9ZZZSs4JKBnWOk1mUulEtw5XN4XlBvx+MT8/7rhnVR/lU75bhR3AiB8OPojvHficYftT/VI4MPwvkLux7UQ179lm/T/uZc2B0FRqncvySxoTOVI5urckcrB7jB51DhBPx5emxviNexX+gk/8f1g2AcwoeABkAAA==
   </data>
  </layer>
  <layer name="protection" width="50" height="32">

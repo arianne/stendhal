@@ -81,9 +81,12 @@
  <tileset name="table" firstgid="250" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/rectangular_with_meals.png"/>
  </tileset>
+ <tileset name="water" firstgid="259" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/water/water.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC7gobJ59LKfhUqYh0g8GOxHdgc97cYWDqP209d+dDBq/9C3nxQ3jNpPHfvRATaziQEDZT8AdOsHLAAIAAA=
+   H4sIAAAAAAAAAGNgoC7gobJ59LKfhUjMzIjA2OR5iMTk2k8Ik2I/sjvoaTe2cBi1n772o4NR+4e+/aS4YdR+6tiPDrCZTQwYKPsB5PFbfQAIAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="16">
@@ -111,12 +114,12 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBrcDdgXYADgAArqK9vgAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" opacity="0.52">
+ <layer name="collision" width="32" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2OUQoAIAhDvf8pO0pfQcSyuQoJGowC557FzMq3axteNPP22r8XyqpSujL5Y36XHxXDRxk2q9yg8pn7mO5X+SjLiOnd7UEzz6f5kT1VCj+ys8oq/NneTWcwGVezz2t2AAgAAA==
   </data>
  </layer>
- <layer name="protection" width="32" height="16" opacity="0.24">
+ <layer name="protection" width="32" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHvIwMDwcBSP4lE8ikfxKB7FIwoDAD1e2BUACAAA
   </data>
