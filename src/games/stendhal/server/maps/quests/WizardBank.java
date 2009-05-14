@@ -262,8 +262,13 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		zone.add(npc);
 	}
 
-	// kym says: this was in reverse arrow. don't know what it's for.
 	public void onLoggedIn(final Player player) {
+		/*
+		 *  Stop any possible running notifiers that might be left after the player
+		 *  logged out while in the bank. Otherwise the player could be thrown out 
+		 *  too early if he goes back.
+		 */
+		SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
 		teleportAway(player);
 	}
 
