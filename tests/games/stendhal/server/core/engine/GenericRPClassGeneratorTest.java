@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
 
 import org.junit.After;
@@ -10,6 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import sun.reflect.ReflectionFactory;
 
@@ -18,10 +20,12 @@ public class GenericRPClassGeneratorTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MockStendlRPWorld.get();
 	}
 	
 	@After
 	public void after() throws Exception {
+		MockStendlRPWorld.reset();
 	}
 	
 	@Test
@@ -33,6 +37,7 @@ public class GenericRPClassGeneratorTest {
 		RPClass rpclass = RPClass.getRPClass("EntityGenerationTestEntity");
 		assertNotNull(rpclass);
 		assertThat(rpclass.getName(),is("EntityGenerationTestEntity"));
+		assertTrue(rpclass.subclassOf("entity"));
 	}
 
 }

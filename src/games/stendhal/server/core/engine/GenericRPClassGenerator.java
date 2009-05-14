@@ -19,7 +19,8 @@ public class GenericRPClassGenerator {
 	public void generate(final Class<?> clazz) {
 		if(clazz.isAnnotationPresent(RPClassAnnotation.class)) {
 			this.generatedRPClass = new RPClass(clazz.getAnnotation(RPClassAnnotation.class).rpclassname());
-			clazz.isAnnotationPresent(RPClassAnnotation.class);
+			String isa = clazz.getAnnotation(RPClassAnnotation.class).isa();
+			this.generatedRPClass.isA(isa );
 		}
 	}
 
