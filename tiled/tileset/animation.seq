@@ -283,6 +283,13 @@ tileset/ground/water/dungeon_water.png	20	20:19:18:19
 tileset/ground/water/dungeon_water.png	21	21:22:23:22
 tileset/ground/water/dungeon_water.png	22	22:23:22:21
 tileset/ground/water/dungeon_water.png	23	23:22:21:22
+# top waves
+tileset/ground/water/dungeon_water.png	24	24:25:26:25
+tileset/ground/water/dungeon_water.png	25	25:26:25:24
+tileset/ground/water/dungeon_water.png	26	26:25:24:25
+tileset/ground/water/dungeon_water.png	27	27:28:29:28
+tileset/ground/water/dungeon_water.png	28	28:29:28:27
+tileset/ground/water/dungeon_water.png	29	29:28:27:28
 
 tileset/item/banners/flag.png	*@300	0:1:2
 tileset/item/banners/flag.png   *@300   3:4:5
