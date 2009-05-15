@@ -39,6 +39,11 @@ import org.apache.log4j.Logger;
  * Moving of items around on the ground.
  */
 public class DisplaceAction implements ActionListener {
+	/**
+	 * The maximum distance a player can throw an item away from himself.
+	 */
+	private static final int MAX_THROWING_DISTANCE = 8;
+	
 	private static Logger logger = Logger.getLogger(DisplaceAction.class);
 
 	/**
@@ -91,7 +96,7 @@ public class DisplaceAction implements ActionListener {
 	private boolean mayDisplace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
 	    return nextTo(player, entity)
 				&& (!isItemBelowOtherPlayer(player, entity))
-				&& destInRange(player, x, y)
+				&& destInRange(player, entity, x, y)
 				&& !entityCollides(player, zone, x, y, entity)
 				&& (isGamblingZoneAndIsDice(entity, player) || pathToDest(player, zone, x, y, entity));
 	}
@@ -147,11 +152,17 @@ public class DisplaceAction implements ActionListener {
      * @return true, if in range; false otherwise                                                                                                                                       
      */
 
-    private boolean destInRange(final Player player, final int x, final int y) {
-    	if (!(player.squaredDistance(x, y) < 8 * 8)) {
+    private boolean destInRange(final Player player, final Entity entity, final int x, final int y) {
+    	// Calculate from the center to make moving large items, like big corpses feel more natural
+    	int centerX = (int) (x + entity.getArea().getWidth() / 2);
+    	int centerY = (int) (y + entity.getArea().getHeight() / 2);
+    	
+    	if (!(player.squaredDistance(centerX, centerY) < MAX_THROWING_DISTANCE * MAX_THROWING_DISTANCE)) {
     		player.sendPrivateText("You cannot throw that far.");
+    		return false;
+    	} else {
+    		return true;
     	}
-    	return (player.squaredDistance(x, y) < 8 * 8);
     }
     
 	/**
