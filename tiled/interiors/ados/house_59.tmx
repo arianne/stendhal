@@ -84,7 +84,7 @@
  <tileset name="water bubbles" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png"/>
  </tileset>
- <tileset name="flower baskets" firstgid="238" tilewidth="32" tileheight="32">
+ <tileset name="flower baskets" firstgid="254" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -99,7 +99,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIAKIK5kwA9qgLgOiFuwyFUBcTUSvxeIJwHxbSxqO7CIhaHxJyCxbxBw1yhgYNgHxPuBeD0Ub0CTDwDiQCAOhrLRgQcQf6DA/pNEqLHFI7cXib0cTc4eiLOB2BWIrwCxAwH9K4B4JZr+LCi7FIf+g3jcBgN2eOSuEqEfBtDTOjYgC6XlSTAXGShCaWUC6gAIG8TWAAQAAA==
+   H4sIAAAAAAAAAGNggIAKIK5kwA9qgLgOiFuwyFUBcTUSvxeIJwHxbSxqO7CIhaHxJyCxbxBw1yhgYNgHxPuBeD0Ub0CTDwDiQCAOhrLRgQeIYCTf/pNEqLHFI7cXib0cTc4eiLOB2BWIrwCxAwH9K4B4JZr+LCi7FIf+g3jcBgN2eOSuEqEfBtDTOjYgC6XlSTAXGShCaWUC6gD5yG7QAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
