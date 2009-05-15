@@ -186,7 +186,7 @@ public class DisplaceAction implements ActionListener {
 				player.getX(), player.getY(), new Rectangle(x, y, 1, 1),
 				64 /* maxDestination * maxDestination */, false);
 		if (path.isEmpty()) {
-			player.sendPrivateText("There is easy path to that place.");		
+			player.sendPrivateText("There is no easy path to that place.");		
 		}
 		return !path.isEmpty();
 	}
