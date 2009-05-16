@@ -32,7 +32,7 @@ public class TextBoxFactory {
 	/** space needed for the bubble "handle" in pixels. */
 	private static final int BUBBLE_OFFSET = 10;
 	/** the diameter of the arc of the rounded bubble corners. */
-	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH;
+	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH + 2;
 	
 	public TextBoxFactory(final Graphics2D graphics) {
 		this.graphics = graphics;
@@ -104,19 +104,22 @@ public class TextBoxFactory {
 		g2d.fillRoundRect(BUBBLE_OFFSET, 0, width, height, ARC_DIAMETER, ARC_DIAMETER);
 		
 		g2d.setColor(outLineColor);
-		g2d.drawRoundRect(BUBBLE_OFFSET, 0, width - 1, height - 1, ARC_DIAMETER, ARC_DIAMETER);
+		// The definition of the arcs for fillRoundRect() and drawRoundRect() are the
+		// same according to java docs, but apparently they are drawn differently anyway.
+		// The widhts and heights are different by 1 (documented).
+		g2d.drawRoundRect(BUBBLE_OFFSET, 0, width - 1, height - 1, ARC_DIAMETER - 2, ARC_DIAMETER - 2);
 		
 		// The bubble handle
 		g2d.setColor(fillColor);
 		final Polygon p = new Polygon();
 		p.addPoint(BUBBLE_OFFSET + 1, MARGIN_WIDTH + 1);
 		p.addPoint(0, LINE_HEIGHT);
-		p.addPoint(BUBBLE_OFFSET + 1, LINE_HEIGHT - ARC_DIAMETER);
+		p.addPoint(BUBBLE_OFFSET + 1, LINE_HEIGHT / 2 + MARGIN_WIDTH);
 		g2d.fillPolygon(p);
 		
 		g2d.setColor(outLineColor);
 		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, MARGIN_WIDTH);
-		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, LINE_HEIGHT - ARC_DIAMETER);
+		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, LINE_HEIGHT / 2 + MARGIN_WIDTH);
 	}
 	
 	private void drawRectangle(final Graphics2D g2d, final Color fillColor, 
