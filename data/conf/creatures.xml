@@ -3205,7 +3205,7 @@
 
   <creature name="hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
-    <description></description>
+    <description>You see a hero dwarf. He is an old dwarf warrior who became a hero for fighting in many dwarf wars and he is very famous for his strength and brutality.</description>
     <attributes>
       <atk value="244"/>
       <def value="43"/>
@@ -3479,7 +3479,7 @@
 
   <creature name="rotten zombie">
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
-    <description></description>
+    <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
     <attributes>
       <atk value="256"/>
       <def value="70"/>
@@ -3511,7 +3511,7 @@
 
   <creature name="littlewizard">
     <type class="human" subclass="littlewizard" tileid="human_little.png:1"/>
-    <description></description>
+    <description>You see a littlewizard. He is a child but he is already able to cast powerful spells.</description>
     <attributes>
       <atk value="266"/>
       <def value="50"/>
@@ -3714,7 +3714,7 @@
 
   <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
-    <description></description>
+    <description>You see a cannibal. He is hunting you to cook and eat you! It´s useless to tell him that your flesh is not good, better fight him or run away!</description>
     <attributes>
       <atk value="281"/>
       <def value="91"/>
@@ -4007,7 +4007,7 @@
 
   <creature name="leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
-    <description></description>
+    <description>You see a leader dwarf. He is the most mighty dwarf of his tribe so he enjoys much popularity there.</description>
     <attributes>
       <atk value="311"/>
       <def value="111"/>
@@ -4192,7 +4192,7 @@
 
   <creature name="imperial veteran">
     <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
-    <description></description>
+    <description>You see an imperial veteran. He fought in many battles and wars. Now he is old, but over the years he always looked for an new enemy to fight against.</description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -4524,7 +4524,7 @@
 
    <creature name="disciple assassin">
     <type class="human" subclass="little_assassin" tileid="human_evil.png:6"/>
-    <description></description>
+    <description>You see a disciple assassin. He is quite young but he has learned to fight and kill already.</description>
     <attributes>
       <atk value="344"/>
       <def value="77"/>
@@ -5062,7 +5062,7 @@
 
    <creature name="apprentice assassin">
     <type class="human" subclass="apprentice_assassin" tileid="human_evil.png:7"/>
-    <description></description>
+    <description>You see a apprentice assassin. He has been taught some very awesome moves and methods, so he is already able to kill an enemy almost perfectly!</description>
     <attributes>
       <atk value="375"/>
       <def value="123"/>
@@ -5585,7 +5585,8 @@
 
   <creature name="green dragon">
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
-    <description></description>
+    <description>You see a green dragon. His wings may be too small for him to fly with them but nevertheless he looks very strong and his thick green skin seems to protect him quite well.
+	</description>
     <attributes>
       <atk value="403"/>
       <def value="75"/>
@@ -5602,7 +5603,6 @@
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
       <item value="emerald" quantity="[1,4]" probability="5.0"/>
       <item value="green dragon shield" quantity="[1,1]" probability="0.25"/>
-
       <item value="green dragon cloak" quantity="[1,1]" probability="2.5"/>
 
     </drops>
@@ -5706,7 +5706,7 @@
 
   <creature name="death knight">
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
-    <description></description>
+    <description>You see a death knight. Some time ago he fought in tournaments where his only aim was to kill as many enemies as possible.</description>
     <attributes>
       <atk value="421"/>
       <def value="52"/>
@@ -5823,7 +5823,7 @@
 
   <creature name="mountain dwarf">
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
-    <description></description>
+    <description>You see a mountain dwarf. He likes earth, stones and rocks. Deep within the mountain, where no animal and no human has ever been, you can hear the sound of his pickaxe as he searches for gold and ore.</description>
     <attributes>
       <atk value="437"/>
       <def value="72"/>
@@ -6153,7 +6153,7 @@
 
   <creature name="assassin">
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
-    <description></description>
+    <description>You see an assassin. He is a very good at killing his victims silently without being seen by anyone.</description>
     <attributes>
       <atk value="448"/>
       <def value="70"/>
@@ -6335,7 +6335,7 @@
 
   <creature name="mountain dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
-    <description></description>
+    <description>You see a mountain dwarf guardian. He has to watch out for enemies and guards the mountain dwarfs while they are doing their work.</description>
     <attributes>
       <atk value="461"/>
       <def value="70"/>
@@ -6422,6 +6422,7 @@
 
   <creature name="djinn">
     <type class="elemental" subclass="djinn" tileid="elemental.png:0"/>
+	<description>You see a djinn. He isn´t caught in a bottle or lamp so someone must have let him free and gave him the order to kill you.</description>
     <attributes>
       <atk value="460"/>
       <def value="74"/>
@@ -6704,7 +6705,7 @@
 
   <creature name="mountain elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="mountain_dwarf.png:2"/>
-    <description></description>
+    <description>You see a mountain elder dwarf. For many years he worked deep in the mountain and found much gold and ore in his life. Soon he will be too old to do this work but at the moment he is still a strong dwarf.</description>
     <attributes>
       <atk value="484"/>
       <def value="75"/>
@@ -6955,7 +6956,7 @@
 
   <creature name="amazoness hunter">
     <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
-    <description></description>
+    <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn´t like that you are in her hunting area!</description>
     <attributes>
       <atk value="484"/>
       <def value="57"/>
@@ -7018,7 +7019,7 @@
 
   <creature name="vampire lord">
     <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
-    <description></description>
+    <description>You see a vampire lord. Be careful, he is after your blood!</description>
     <attributes>
       <atk value="497"/>
       <def value="35"/>
@@ -7161,7 +7162,7 @@
 
   <creature name="mountain hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="mountain_dwarf.png:3"/>
-    <description></description>
+    <description>You see a mountain hero dwarf. Many, many dwarfs admire him! He was a member of a dwarf group who discovered a very big gold deposit!</description>
     <attributes>
       <atk value="503"/>
       <def value="72"/>
@@ -7343,7 +7344,7 @@
 
   <creature name="blue dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
-    <description></description>
+    <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don´t forget that it has also claws and teeth!</description>
     <attributes>
       <atk value="511"/>
       <def value="57"/>
@@ -7787,7 +7788,7 @@
 
   <creature name="mountain leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
-    <description></description>
+    <description>You see a mountain leader dwarf. He is responsible for the mountain dwarfs and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!</description>
     <attributes>
       <atk value="560"/>
       <def value="83"/>
@@ -7850,7 +7851,7 @@
 
   <creature name="incorporeal armor">
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
-    <description></description>
+    <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
     <attributes>
       <atk value="565"/>
       <def value="78"/>
@@ -8476,7 +8477,7 @@
 
   <creature name="giant dwarf">
     <type class="huge_animal" subclass="giant_dwarf" tileid="huge_animal.png:9"/>
-    <description></description>
+    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because the some of the other dwarfs don´t really see him as one of them because of his height... But in his big heart he is a dwarf and in battle he will fight against every enemy!</description>
     <attributes>
       <atk value="616"/>
       <def value="99"/>
@@ -8628,7 +8629,7 @@
 
   <creature name="shadows assassin">
     <type class="human" subclass="shadows_assassin" tileid="human_evil.png:3"/>
-    <description></description>
+    <description>You see a shadows assassin. He knows how to become one with the shadows and to move in the dark without been seen or making any sound.</description>
     <attributes>
       <atk value="645"/>
       <def value="87"/>
@@ -8722,7 +8723,7 @@
 
   <creature name="amazoness vigilance">
     <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
-    <description></description>
+    <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don´t want her to hear you!</description>
     <attributes>
       <atk value="629"/>
       <def value="86"/>
@@ -9457,7 +9458,7 @@
 
    <creature name="master assassin">
     <type class="human" subclass="master_assassin" tileid="human_evil.png:8"/>
-    <description></description>
+    <description>You see a master assassin. He is a master of assassination! He is able to kill an enemy without letting him know that he is already there!</description>
     <attributes>
       <atk value="820"/>
       <def value="95"/>
@@ -9865,7 +9866,7 @@
 <!-- used to be in giant human folder which is why the tiled image is different -->
   <creature name="dwarf golem">
     <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
-    <description></description>
+    <description>You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarfs created a golem out of this rock! From this day the dwarf golem lives together with them.</description>
     <attributes>
       <atk value="939"/>
       <def value="99"/>
@@ -10201,7 +10202,7 @@
 
   <creature name="angel">
     <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
-    <description></description>
+    <description>You see an angel. With his flame sword he guards the way and doesn´t let you pass.</description>
     <attributes>
       <atk value="1187"/>
       <def value="128"/>
