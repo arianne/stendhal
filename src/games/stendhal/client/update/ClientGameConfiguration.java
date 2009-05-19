@@ -1,6 +1,5 @@
 package games.stendhal.client.update;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -13,24 +12,25 @@ public class ClientGameConfiguration {
 
 	private static ClientGameConfiguration instance;
 
-	private Properties gameConfig;
+	private Properties gameConfig = getGameProperties();
 
 	private ClientGameConfiguration() {
-		// Singleton pattern, hide constructor
-		try {
-			final Properties temp = new Properties();
-			InputStream is = ClientGameConfiguration.class.getResourceAsStream("game-default.properties");
-			temp.load(is);
-			is.close();
+		instance = this;
+	}
 
-			gameConfig = new Properties(temp);
-			is = ClientGameConfiguration.class.getResourceAsStream("game.properties");
+	private Properties getGameProperties() {
+		try {
+			InputStream is =  ClientGameConfiguration.class
+					.getResourceAsStream("game.properties");
 			if (is != null) {
 				gameConfig.load(is);
 				is.close();
+			} else {
+				gameConfig = new DefaultGameProperties();
 			}
-		} catch (final IOException e) {
-			e.printStackTrace();
+			return gameConfig;
+		} catch (Exception e) {
+			return new DefaultGameProperties();
 		}
 	}
 
