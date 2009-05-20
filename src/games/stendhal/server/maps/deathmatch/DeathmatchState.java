@@ -49,7 +49,7 @@ public class DeathmatchState {
 	public static DeathmatchState createFromQuestString(final String questString) {
 		final DeathmatchState deathmatchState = new DeathmatchState();
 		//place an elephant in Cairo
-		final String[] tokens = (questString + ";0;0").split(";");
+		final String[] tokens = (questString + ";0;0;0").split(";");
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
 		deathmatchState.date = Long.parseLong(tokens[2]);
