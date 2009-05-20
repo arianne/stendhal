@@ -1,19 +1,14 @@
 package games.stendhal.server.core.engine;
 
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import marauroa.common.game.RPClass;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import sun.reflect.ReflectionFactory;
 
 
 public class GenericRPClassGeneratorTest {
@@ -35,8 +30,10 @@ public class GenericRPClassGeneratorTest {
 		genericRPClassGenerator.generate(clazz);
 		RPClass rpclass = RPClass.getRPClass("EntityGenerationTestEntity");
 		assertNotNull(rpclass);
-		assertThat(rpclass.getName(),is("EntityGenerationTestEntity"));
+		assertThat(rpclass.getName(), is("EntityGenerationTestEntity"));
 		assertTrue(rpclass.subclassOf("entity"));
+		System.out.println(entity);
+		genericRPClassGenerator.generate(clazz);
 	}
 
 }
