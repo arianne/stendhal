@@ -474,6 +474,7 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
 			<fileset dir="doc"/>
