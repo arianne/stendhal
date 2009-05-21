@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.quests;
+fpackage games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -17,8 +17,10 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * QUEST: Quest to solve a riddle to leave hell
@@ -44,14 +46,21 @@ import java.util.Map;
 public class SolveRiddles extends AbstractQuest {
 	private static final String QUEST_SLOT = "solve_riddles";
 	private static final int xpreward = 100;
-	
-	private static Map<String, String> riddles = new HashMap<String, String>();
-	static {
-		// TODO: Use a configuation file stored on the server instead of storing in source code
-		// note these are just simple dummy riddles for testing atm
-		riddles.put("To answer this riddle, repeat - three blind mice, three blind mice", "three blind mice, three blind mice");
-		riddles.put("What type of animal is pink and the flesh makes pork and bacon?", "pig");
-		riddles.put("What number comes after 9?", "10");
+    private static final String RIDDLES_XML = "data/conf/riddles.xml";
+	private final Properties riddles = new Properties();
+
+	public SolveRiddles() {
+		try {
+			FileInputStream fis = new FileInputStream(RIDDLES_XML);
+			if (fis==null) { 
+				System.out.println("**************cant find riddles file**********");
+			} else {
+				this.riddles.loadFromXML(fis);
+			}
+			// TODO: load a riddles-example.xml if other doesn't exist
+		} catch (final Exception e) {
+			System.out.println("******error loading riddles file*******");
+		}
 	}
 
 
@@ -72,7 +81,7 @@ public class SolveRiddles extends AbstractQuest {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						// randomly choose from available riddles
-						final String riddle = Rand.rand(riddles.keySet());
+						final String riddle = Rand.rand(riddles.keySet()).toString();
 						npc.say("Try this riddle: " + riddle);
 						player.setQuest(QUEST_SLOT, riddle);
 					}
@@ -96,7 +105,7 @@ public class SolveRiddles extends AbstractQuest {
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
-					final String solution = riddles.get(riddle);
+					final String solution = riddles.get(riddle).toString();
 
 					final ConversationContext ctx = new ConvCtxForMatchingSource();
 					final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
