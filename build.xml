@@ -227,6 +227,7 @@
 				<include name="quests.xml"/>
 				<include name="zones.xml"/>
 				<include name="zones/*.xml"/>
+				<include name="riddles-example.xml"/>
 			</fileset>
 		</copy>
 

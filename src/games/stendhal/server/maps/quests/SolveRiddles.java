@@ -1,4 +1,4 @@
-fpackage games.stendhal.server.maps.quests;
+package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -17,10 +17,10 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
-import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.InputStream;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Quest to solve a riddle to leave hell
@@ -44,25 +44,30 @@ import java.util.Properties;
  */
 
 public class SolveRiddles extends AbstractQuest {
+	private static Logger logger = Logger.getLogger(SolveRiddles.class);
+	
 	private static final String QUEST_SLOT = "solve_riddles";
 	private static final int xpreward = 100;
-    private static final String RIDDLES_XML = "data/conf/riddles.xml";
+    private static final String RIDDLES_XML = "/data/conf/riddles.xml";
+    private static final String RIDDLES_EXAMPLE_XML = "/data/conf/riddles-example.xml";
 	private final Properties riddles = new Properties();
 
 	public SolveRiddles() {
-		try {
-			FileInputStream fis = new FileInputStream(RIDDLES_XML);
-			if (fis==null) { 
-				System.out.println("**************cant find riddles file**********");
-			} else {
-				this.riddles.loadFromXML(fis);
+			InputStream fis = getClass().getResourceAsStream(RIDDLES_XML);
+			if (fis==null) {
+				logger.warn(RIDDLES_XML + " not found. Using " + RIDDLES_EXAMPLE_XML);
+				fis = getClass().getResourceAsStream(RIDDLES_EXAMPLE_XML);
+				if (fis == null) {
+					logger.error("Failed to load " + RIDDLES_EXAMPLE_XML);
+				}
 			}
-			// TODO: load a riddles-example.xml if other doesn't exist
-		} catch (final Exception e) {
-			System.out.println("******error loading riddles file*******");
-		}
+			
+			try {
+				riddles.loadFromXML(fis);
+			} catch (final Exception e) {
+				logger.error("Error loading riddles", e);
+			}
 	}
-
 
 	@Override
 	public String getSlotName() {
