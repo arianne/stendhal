@@ -977,7 +977,7 @@ assassin dagger 7000
         	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 	<parameter name="width">32</parameter>
                 	<parameter name="height">22</parameter>
-                	<parameter name="enterMessage">Menacing message to warn about arachne.</parameter>
+                	<parameter name="enterMessage">You stumble and trip over bodies wrapped in silken spider thread. Many of the bodies are of great warriors, who seem to have met their match.</parameter>
         	</implementation>
   	</entity>
 
