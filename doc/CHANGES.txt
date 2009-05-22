@@ -24,10 +24,12 @@ Changelog
 - in fighting, made the 'level difference to not need karma' be dependent on level instead of being a fixed 20 levels 
 - answer a riddle to leave hell, as another option instead of losing karma
 - more creature descriptions 
+- new raid scripts added, and list raids which gives the names. existing scripts renamed to be all same format
 *Admin*
 - gag is adminlevel 200
 - support and supportanswer messages coloured orange to make more visible
 - supportanswer keywords which abbreviate longer replies
+- postman sends new account messages and npc shout to a zone messages to support channel
 *Bug fixes*
 - PersonalChest removes its own turnlistener in onremoved(rpzone), fixing NPE when leaving vaults
 - karma for large scales was never achieved due to a wrongly used log
@@ -40,6 +42,7 @@ Changelog
 - remove possibility of	dropping or displacing	items to places	where they can't be retrieved (or where it would be v long walk to fetch them)
 - minor map and graphical fixes
 - unignore: check first, and if target not being ignored, tell player so.
+- now getting points in dm for the final creature killed
 *behind the scenes*
 - Conversationstates changed to enum
 - reflection removed from stendhalQuestsystem
