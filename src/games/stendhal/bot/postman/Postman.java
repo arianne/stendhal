@@ -196,7 +196,11 @@ public class Postman implements Runnable {
 						postmanIRC.sendMessageToAllChannels(text);
 					} else if (arianneCmd.equalsIgnoreCase("asks")
 							|| arianneCmd.equalsIgnoreCase("answers")
-							|| arianneCmd.equalsIgnoreCase("answer")) {
+							|| arianneCmd.equalsIgnoreCase("answer")
+							   // for the new account messages
+							|| "Support:".equals(from)
+							   // for the npc zone shouts
+							|| arianneCmd.equalsIgnoreCase("shouts")) {
 						// answer is a typo in old server
 						postmanIRC.sendSupportMessage(text);
 						if (arianneCmd.equalsIgnoreCase("asks")) {
