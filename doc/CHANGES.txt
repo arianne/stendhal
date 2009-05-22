@@ -22,6 +22,8 @@ Changelog
 - Daily Item quest gives less XP than monster now, (as it gives more karma)
 - max level players get a large karma reward from daily and weekly quests (as they cannot earn xp from it)
 - in fighting, made the 'level difference to not need karma' be dependent on level instead of being a fixed 20 levels 
+- answer a riddle to leave hell, as another option instead of losing karma
+- more creature descriptions 
 *Admin*
 - gag is adminlevel 200
 - support and supportanswer messages coloured orange to make more visible
