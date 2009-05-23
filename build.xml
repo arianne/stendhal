@@ -113,6 +113,7 @@
 			<include name="games/stendhal/bot/postman/*.java"/>
 			<include name="games/stendhal/bot/package-info.java"/>
 			<include name="games/stendhal/bot/shouter/*.java"/>
+			<include name="games/stendhal/bot/core/*.java"/>
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
