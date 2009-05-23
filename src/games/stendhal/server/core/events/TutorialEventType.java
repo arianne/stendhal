@@ -44,7 +44,7 @@ public enum TutorialEventType {
 	TIMED_RULES(
 				    "Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem"),
 	NEW_RELEASE73(
-			"Hello and thanks for logging in to Stendhal 0.73! You can read about the new things at #http://arianne.sourceforge.net, especially important for you to read if you're a house owner.");
+			"Hello and thanks for logging in to a new release of Stendhal! You can read about the new things at #http://arianne.sourceforge.net, especially important for you to read if you're a house owner.");
 	private String message;
 
 	/**
