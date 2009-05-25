@@ -259,6 +259,7 @@
     <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
+	  <min_level value="40"/>
     </attributes>
     <weight value="40.0"/>
     <value value="34391"/>
@@ -273,6 +274,7 @@
     <description>You see a dwarvish armor. It's made with ingenuity and skill.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
+	  <min_level value="50"/>
     </attributes>
     <weight value="40.0"/>
     <value value="34391"/>
@@ -287,6 +289,7 @@
     <description>You see a suit of stone armor. Swords will crumble if they try to pierce it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
+	  <min_level value="60"/>
     </attributes>
     <weight value="35.0"/>
     <value value="40824"/>
@@ -301,6 +304,7 @@
     <description>You see a suit of ice armor, to protect even the coldest of hearts.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="19"/>
+	  <min_level value="80"/>
     </attributes>
     <weight value="35.0"/>
     <value value="48013"/>
@@ -315,6 +319,7 @@
     <description>You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
+	  <min_level value="100"/>
     </attributes>
     <weight value="45.0"/>
     <value value="56000"/>
@@ -329,6 +334,7 @@
     <description>You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="21"/>
+	  <min_level value="120"/>
     </attributes>
     <weight value="45.0"/>
     <value value="76000"/>
@@ -343,6 +349,7 @@
     <description>You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="22"/>
+	  <min_level value="125"/>
     </attributes>
     <weight value="45.0"/>
     <value value="86000"/>
@@ -357,6 +364,7 @@
     <description>You see a suit of plate armor. The steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="24"/>
+	  <min_level value="150"/>
     </attributes>
     <weight value="45.0"/>
     <value value="96768"/>
@@ -371,6 +379,7 @@
     <description>You see a suit of black armor. Does it put you in a dark mood?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="26"/>
+	  <min_level value="200"/>
     </attributes>
     <weight value="45.0"/>
     <value value="123032"/>

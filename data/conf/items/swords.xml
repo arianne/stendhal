@@ -7,6 +7,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="6"/>
       <rate value="2"/>
+	  <min_level value="50"/>
     </attributes>
     <weight value="0.2"/>
     <value value="5400"/>
@@ -39,6 +40,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="2"/>
       <rate value="1"/>
+	  <min_level value="50"/>
     </attributes>
     <weight value="0.1"/>
     <value value="6250"/>
@@ -136,6 +138,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="9"/>
       <rate value="2"/>
+      <min_level value="70"/>
     </attributes>
     <weight value="0.2"/>
     <value value="12800"/>
@@ -153,9 +156,8 @@
   <attributes>
    <atk value="7"/> 
     <rate value="2"/>
-   <lifesteal value="0.1"/> 
-  
-  
+    <lifesteal value="0.1"/> 
+    <min_level value="150"/>
   </attributes> 
   <weight value="1"/>    
   <value value="10400"/>
@@ -429,7 +431,7 @@
       <atk value="32"/>
       <rate value="9"/>
       <lifesteal value="0.3"/>
-      
+      <min_level value="100"/>
     </attributes>
     <weight value="10.0"/>
     <value value="182044"/>
@@ -558,6 +560,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="38"/>
       <rate value="6"/>
+      <min_level value="150"/>
     </attributes>
     <weight value="6.0"/>
     <value value="457142"/>
@@ -574,6 +577,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="7"/>
+      <min_level value="100"/>
     </attributes>
     <weight value="9.0"/>
     <value value="457142"/>
@@ -590,8 +594,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="58"/>
         <rate value="10"/>
-      <lifesteal value="0.3"/>
-    
+        <lifesteal value="0.3"/>
+        <min_level value="300"/>
     </attributes>
     <weight value="12.0"/>
     <value value="975560"/>
