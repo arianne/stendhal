@@ -1894,33 +1894,41 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		int cloak = 0;
 		int weapon = 0;
 
+		Item item;
+		
 		if (hasShield()) {
-			shield = getShield().getDefense();
+			item = getShield();
+			shield = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		if (hasArmor()) {
-			armor = getArmor().getDefense();
+			item = getArmor();
+			armor = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		if (hasHelmet()) {
-			helmet = getHelmet().getDefense();
+			item = getHelmet();
+			helmet = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		if (hasLegs()) {
-			legs = getLegs().getDefense();
+			item = getLegs();
+			legs = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		if (hasBoots()) {
-			boots = getBoots().getDefense();
+			item = getBoots();
+			boots = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		if (hasCloak()) {
-			cloak = getCloak().getDefense();
+			item = getCloak();
+			cloak = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
 		final List<Item> targetWeapons = getWeapons();
 		for (final Item weaponItem : targetWeapons) {
-			weapon += weaponItem.getDefense();
+			weapon += weaponItem.getDefense() / getItemLevelModifier(weaponItem);
 		}
 
 		return SHIELD_DEF_MULTIPLIER * shield + ARMOR_DEF_MULTIPLIER * armor
@@ -2129,8 +2137,34 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 				best = res;
 			}
 		}
-
+		
+		// Level effect
+		best = (int) Math.ceil(best * getItemLevelModifier(weapons.get(0)));
+		
 		return best;
+	}
+	
+	/**
+	 * Get a modifier to be used when an item has a higher min_level
+	 * than the entity's level. For any item where the entity's level
+	 * is high enough, the modifier is 1. For anything else, > 1 depending
+	 * on the ratio between the required, and the possessed level.
+	 * 
+	 * @param item the item to be examined
+	 * @return modifier for item properties
+	 */
+	private double getItemLevelModifier(Item item) {
+		final String minLevelS = item.get("min_level");
+		
+		if (minLevelS != null) {
+			final int minLevel = Integer.parseInt(minLevelS);
+			final int level = getLevel();
+			if (minLevel > level) {
+				return 1 - Math.log(((double) level + 1) / (minLevel + 1));
+			}
+		}
+		
+		return 1.0;
 	}
 
 	/**

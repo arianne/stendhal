@@ -27,14 +27,6 @@ public class EquipAction extends EquipmentAction {
 		// is the entity unbound or bound to the right player?
 		final Entity entity = source.getEntity();
 		final String itemName = source.getEntityName();
-		logger.debug("Checking minimum level");
-		// check minimum level
-		if (entity.has("min_level")
-				&& (player.getLevel() < entity.getInt("min_level"))) {
-			player.sendPrivateText("You are not experienced enough to use this "
-					+ itemName);
-			return;
-		}
 	
 		logger.debug("Checking if entity is bound");
 		if (entity instanceof Item) {
