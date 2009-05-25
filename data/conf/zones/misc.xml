@@ -17,9 +17,7 @@
   <entity x="29" y="22">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
-Sorry, you have died.
-You lost some of your items and 10% of your experience points.
-Be more careful in the future!
+You are a ghost in the afterlife.
 
 Walk on, and you will be returned to the land of the living...
    </attribute>
@@ -28,9 +26,7 @@ Walk on, and you will be returned to the land of the living...
   <entity x="33" y="22">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
-Sorry, you have died.
-You lost some of your items and 10% of your experience points.
-Be more careful in the future!
+You are a ghost in the afterlife.
 
 Walk on, and you will be returned to the land of the living...
    </attribute>
