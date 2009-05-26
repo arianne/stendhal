@@ -172,7 +172,7 @@
          <destination zone="0_athor_island" ref="diving_board_destination"/>
        </portal>
        
-       <entity x="16" y="90">
+       <entity x="16" y="88">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC">
            <parameter name="name">Jessica</parameter>
            <parameter name="direction">left</parameter>
