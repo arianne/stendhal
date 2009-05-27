@@ -24,36 +24,50 @@ public class DropPlayerItems extends ScriptImpl {
 			return;
 		}
 
+                if (args.size() > 3) {
+                        admin.sendPrivateText("<player> [<amount>] '<item>' - and don't forget those quotes if the item name has spaces");
+                        return;
+                }
+
 		final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
 		String itemName = null;
 		int amount = 1;
 
 		if (args.size() == 3) {
-			amount = Integer.parseInt(args.get(1));
-			itemName = args.get(2);
+			try {
+				amount = Integer.parseInt(args.get(1));
+				itemName = args.get(2);
+			} catch (final NumberFormatException e) {
+				//	admin did something like "playername black shield" (i.e. an item with spaces, but didnt use quotes, or a number)
+				// catch the exception and see if we can help them anyway
+				// amount = 1; is default
+				itemName = args.get(1) + " " + args.get(2);
+			}
 		} else {
 			itemName = args.get(1);
 		}
 
 		final String singularItemName = Grammar.singular(itemName);
 
-		boolean res = player.drop(itemName, amount);
+		boolean result = player.drop(itemName, amount);
 
-		if (!res && !itemName.equals(singularItemName)) {
-			res = player.drop(singularItemName, amount);
+		if (!result && !itemName.equals(singularItemName)) {
+			result = player.drop(singularItemName, amount);
+
 		}
 
-		final String msg = "Admin " + admin.getTitle() + " removed " + amount + " "
+		final String msg = "Admin " + admin.getTitle() + " removed " + amount +
+				" "
 				+ Grammar.plnoun(amount, singularItemName) + " from player "
-				+ player.getTitle() + ": " + res;
+				+ player.getTitle() + ": #" + result;
 
 		admin.sendPrivateText(msg);
 
-		if (res) {
+		if (result) {
 			player.sendPrivateText(msg);
 			new GameEvent(admin.getName(),
 					"admindrop", player.getName(), Integer.toString(amount),
-					itemName);
+					itemName).raise();
 		}
 	}
 }
