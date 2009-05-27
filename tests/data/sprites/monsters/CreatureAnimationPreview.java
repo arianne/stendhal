@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import pagelayout.Cell;
+import pagelayout.EasyCell;
+
 public class CreatureAnimationPreview {
 	private static final int NUMBER_OF_ROWS = 4;
 
@@ -28,12 +31,17 @@ public class CreatureAnimationPreview {
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jPanel = new JPanel();
-			jPanel.setLayout(null);
-			jPanel.add(getImageViewerSwing(), null);
-			jPanel.add(getImageViewerSwing2(), null);
-			jPanel.add(getImageViewerSwing3(), null);
-			jPanel.add(getImageViewerSwing4(), null);
-			jPanel.add(getImageViewerSwing1(), null);
+		Cell cell =	EasyCell.grid(getImageViewerSwing(),getImageViewerSwing2(),getImageViewerSwing3(),getImageViewerSwing4(), EasyCell.eol()
+							, getImageViewerSwing1(),EasyCell.span(),EasyCell.span(),EasyCell.span()
+			);
+			cell.createLayout(jPanel);
+		
+//			jPanel.setLayout(null);
+//			jPanel.add(getImageViewerSwing(), null);
+//			jPanel.add(getImageViewerSwing2(), null);
+//			jPanel.add(getImageViewerSwing3(), null);
+//			jPanel.add(getImageViewerSwing4(), null);
+//			jPanel.add(getImageViewerSwing1(), null);
 		}
 		return jPanel;
 	}
