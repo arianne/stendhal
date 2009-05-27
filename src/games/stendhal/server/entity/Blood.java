@@ -28,7 +28,7 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
-	public static final int DEGRADATION_TIMEOUT = 30 * MathHelper.SECONDS_IN_ONE_MINUTE; 
+	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE; 
 
 	public static void generateRPClass() {
 		final RPClass blood = new RPClass("blood");
