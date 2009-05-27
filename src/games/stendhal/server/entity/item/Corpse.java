@@ -183,7 +183,7 @@ public class Corpse extends PassiveEntity implements
 				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
 				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
-		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this.turnlistener);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.turnlistener);
 		stage = 0;
 		put("stage", stage);
 
@@ -251,7 +251,7 @@ public class Corpse extends PassiveEntity implements
 		if (isCompletelyRotten()) {
 				this.getZone().remove(this);
 		} else {
-			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this.turnlistener);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.turnlistener);
 		}
 	}
 
@@ -355,5 +355,9 @@ public class Corpse extends PassiveEntity implements
 		} else {
 			return super.getTitle();
 		}
+	}
+	
+	protected int getDegradationStepTimeout() {
+		return DEGRADATION_STEP_TIMEOUT;
 	}
 }

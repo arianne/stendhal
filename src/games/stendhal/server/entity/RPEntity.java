@@ -1169,7 +1169,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 
 		// Add a corpse
-		final Corpse corpse = new Corpse(this, killerName);
+		final Corpse corpse = makeCorpse(killerName);
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
@@ -1181,6 +1181,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (remove) {
 			zone.remove(this);
 		}
+	}
+	
+	/**
+	 * Make a corpse belonging to this entity
+	 * 
+	 * @param killer Name of the killer
+	 * @return The corpse of a dead RPEntity
+	 */
+	protected Corpse makeCorpse(String killer) {
+		return new Corpse(this, killer);
 	}
 
 	protected abstract void dropItemsOn(Corpse corpse);
