@@ -208,7 +208,6 @@ public class MithrilCloakTest {
 		assertEquals("makingthread;40;silk thread;0", player.getQuest(questSlot));
 		en.step(player, "hi");
 		assertEquals("Oh, I gave your 40 spools of silk thread to my research student Boris Karlova. Go collect them from him.", npc.get("text"));
-		// [22:07] jammyjam earns 100 experience points.
 		en.step(player, "bye");
 		assertEquals("Ta ta!", npc.get("text"));
 		

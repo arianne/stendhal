@@ -134,8 +134,6 @@ class MakingFabric {
 					npc.say("Oh, I gave your "
 							+ Grammar.quantityplnoun(numberOfProductItems,
 													 getProductName()) + " to my research student Boris Karlova. Go collect them from him.");
-					// give some XP as a little bonus for industrious workers
-					player.addXP(100);
 					player.notifyWorldAboutChanges();
 				}
 			}
@@ -274,6 +272,7 @@ class MakingFabric {
 							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
 																														  "silk thread");
 							
+							player.addXP(100);
 							products.setQuantity(numberOfProductItems);
 							products.setBoundTo(player.getName());
 							player.setQuest(mithrilcloak.getQuestSlot(), "got_thread");
