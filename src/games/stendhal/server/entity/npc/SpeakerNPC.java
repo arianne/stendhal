@@ -18,16 +18,24 @@ import org.apache.log4j.Logger;
 /**
  * This is a finite state machine that implements a chat system. See:
  * http://en.wikipedia.org/wiki/Finite_state_machine In fact, it is a
- * transducer. * States are denoted by integers. Some constants are defined in
- * ConversationStates for often-used states. * Input is the text that the player
- * says to the SpeakerNPC. * Output is the text that the SpeakerNPC answers.
+ * transducer.
+ * States are denoted by the enum ConversationStates. Input is the text
+ * that the player says to the SpeakerNPC. Output is the text that the
+ * SpeakerNPC answers.
  *
- * See examples to understand how it works. RULES: * State 0 (IDLE) is both the
- * start state and the state that will end the conversation between the player
- * and the SpeakerNPC. * State 1 (ATTENDING) is the state where only one player
- * can talk to NPC and where the prior talk doesn't matter. * State -1 (ANY) is
- * a wildcard and is used to jump from any state whenever the trigger is active. *
- * States from 2 to 100 are reserved for special behaviours and quests.
+ * See examples to understand how it works.
+ *
+ * RULES:
+ *
+ * State IDLE is both the start state and the state that will end the
+ * conversation between the player and the SpeakerNPC.
+ *
+ * State ATTENDING is the state where only one player can talk to NPC
+ * and where the prior talk doesn't matter.
+ *
+ * State ANY is a wildcard and is used to jump from any state whenever
+ * the trigger is active. There are states that are reserved for
+ * special behaviours and quests.
  *
  * Example how it works: First we need to create a message to greet the player
  * and attend it. We add a hi event:
@@ -51,16 +59,24 @@ import org.apache.log4j.Logger;
  * state, because after reacting to "job" or "offer", the NPC can directly react
  * to one of these again.
  *
- * add(ConversationStates.ATTENDING, "buy",
- * ConversationStates.BUY_PRICE_OFFERED, null, new ChatAction() { public void
- * fire(Player player, String text, SpeakerNPC npc) { int i=text.indexOf(" ");
- * String item=text.substring(i+1); if(item.equals("sword")) { npc.say(item+"
- * costs 10 coins. Do you want to buy?"); } else { npc.say("Sorry, I don't sell " +
- * item + "."); npc.setActualState(ConversationStates.ATTENDING); } } });
+ * <pre>
+ * add(ConversationStates.ATTENDING, "buy", ConversationStates.BUY_PRICE_OFFERED, null, new ChatAction() {
+ *    public void fire(Player player, String text, SpeakerNPC npc) {
+ *        int i = text.indexOf(" ");
+ *        String item = text.substring(i + 1);
+ *        if (item.equals("sword")) {
+ *            npc.say(item + "costs 10 coins. Do you want to buy?");
+ *        } else {
+ *            npc.say("Sorry, I don't sell " + item + ".");
+ *            npc.setActualState(ConversationStates.ATTENDING);
+ *        }
+ *    }
+ * });
+ * </pre>
  *
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle
- * the event. Also see that we move to a new state, BUY_PRICE_OFFERED (20). The
+ * the event. Also see that we move to a new state, BUY_PRICE_OFFERED. The
  * player is then replying to a question, so we only expect two possible
  * replies: yes or no.
  *
@@ -77,7 +93,7 @@ import org.apache.log4j.Logger;
  * add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
  * ConversationStates.IDLE, "Bye!", null);
  *
- * We use the state ANY (-1) as a wildcard, so if the input text is "bye" the
+ * We use the state ANY as a wildcard, so if the input text is "bye" the
  * transition happens, no matter in which state the FSM really is, with the
  * exception of the IDLE state.
  */
