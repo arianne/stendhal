@@ -32,8 +32,6 @@ public class SlashActionRepository {
 		
 		actions.put("drop", new DropAction());
 		actions.put("gag", new GagAction());
-		actions.put("gmhelp_alter", new GMHelpAlterAction());
-		actions.put("gmhelp_script", new GMHelpScriptAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("grumpy", new GrumpyAction());
 		actions.put("help", new HelpAction());
