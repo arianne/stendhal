@@ -104,23 +104,3 @@ create table if not exists words (
 /*CREATE INDEX i_word_normalized ON words(normalized);*/
 
 
-CREATE TABLE IF NOT EXISTS npcs (
-  id         INTEGER AUTO_INCREMENT NOT NULL,
-  name       VARCHAR(64),
-  title      VARCHAR(64),
-  class      VARCHAR(64),
-  outfit     VARCHAR(32),
-  hp         INTEGER,
-  base_hp    INTEGER,
-  zone       VARCHAR(64),
-  x          INTEGER,
-  y          INTEGER,
-  level      INTEGER,
-  description      VARCHAR(255),
-  job       VARCHAR(255),
-  PRIMARY KEY (id)
-) TYPE=MYISAM;
-
-/*CREATE INDEX i_npcs_id ON npcs (id);*/
-/*CREATE INDEX i_npcs_name ON npcs (name);*/
-
