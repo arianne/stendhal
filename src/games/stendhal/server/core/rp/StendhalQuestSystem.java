@@ -1,6 +1,7 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.server.core.config.QuestsXMLLoader;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.maps.quests.AmazonPrincess;
@@ -198,6 +199,8 @@ public class StendhalQuestSystem {
         loadQuest(new WeeklyItemQuest());
 		loadQuest(new WizardBank());
 		loadQuest(new ZooFood());
+
+		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
 	}
 
 	private void loadQuest(final IQuest quest) {
