@@ -22,6 +22,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.RaidCreatureCorpse;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
@@ -77,6 +78,15 @@ public class UseAction implements ActionListener {
 				&& !player.getID().equals(base.getID())) {
 			// Only allowed to use item of our own player.
 			return false;
+		}
+		
+		if (base instanceof RaidCreatureCorpse) {
+			RaidCreatureCorpse corpse = (RaidCreatureCorpse) base;
+			if (!corpse.mayUse(player)) {
+				player.sendPrivateText("Only " + corpse.getOwner() + " may access the corpse yet.");
+				
+				return false;
+			}
 		}
 		
 		return true;

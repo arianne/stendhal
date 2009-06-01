@@ -1147,8 +1147,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            <code>true</code> to remove entity from world.
 	 */
 	protected final void onDead(final String killerName, final boolean remove) {
-		stopAttack();
-
 		final int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
@@ -1178,6 +1176,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final StendhalRPZone zone = getZone();
 		zone.add(corpse);
 
+		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does), 
+		// so defer stopping. 
+		stopAttack();
 		if (remove) {
 			zone.remove(this);
 		}

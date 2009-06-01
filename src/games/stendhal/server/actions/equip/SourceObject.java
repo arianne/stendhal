@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.RaidCreatureCorpse;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -67,6 +68,7 @@ class SourceObject extends MoveableObject {
 		if (!isValidParent(parent, player)) {
 			return invalidSource;
 		}
+		
 		final String slotName = action.get(EquipActionConsts.BASE_SLOT);
 
 		if (!parent.hasSlot(slotName)) {
@@ -98,6 +100,16 @@ class SourceObject extends MoveableObject {
 					+ " is not an item and therefore cannot be equipped");
 			return invalidSource;
 		}
+		
+		if (parent instanceof RaidCreatureCorpse) {
+			RaidCreatureCorpse corpse = (RaidCreatureCorpse) parent;
+			if (!corpse.mayUse(player)) {
+				logger.info(player.getName() + " tried to access RaidCreatureCorpse owned by " + corpse.getOwner());
+				player.sendPrivateText("Only " + corpse.getOwner() + " may access the corpse yet.");
+				return invalidSource;
+			}
+		}
+		
 		source = new SourceObject(player, parent, slotName, (Item) entity);
 		return source;
 	}
