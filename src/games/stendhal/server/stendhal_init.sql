@@ -110,12 +110,12 @@ CREATE TABLE IF NOT EXISTS npcs (
   title      VARCHAR(64),
   class      VARCHAR(64),
   outfit     VARCHAR(32),
+  level      INTEGER,
   hp         INTEGER,
   base_hp    INTEGER,
   zone       VARCHAR(64),
   x          INTEGER,
   y          INTEGER,
-  level      INTEGER,
   description      VARCHAR(255),
   job       VARCHAR(255),
   PRIMARY KEY (id)
