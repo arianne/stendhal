@@ -26,23 +26,24 @@ public class SupportAnswerAction extends AdministrationAction {
 			String reply = action.get(TEXT);
 			
 			// test for use of standard response shortcut, and replace the reply message if so
+			// if you alter these please update client/actions/GMHelpAction (or put the string replies in a common file if you like)
 			if (reply.startsWith("$")) {
 				if ("$faq".equals(reply)) {
-					reply = "Hi, you will find the answer to your question in the Stendhal FAQ. It's very helpful so read it thoroughly! #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ";
+					reply = "Hi, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ. Thanks for playing Stendhal!";
 				} else if ("$faqsocial".equals(reply)) {
-					reply = "Hi, this issue is discussed on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems";
+					reply = "Hi, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.";
 				} else if ("$faqpvp".equals(reply)) {
-					reply = "Hi, this issue is discussed on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player";
+					reply = "Hi, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player - good luck for the future.";
 				} else if ("$wiki".equals(reply)) {
-					reply = "Hi, this is a question which is answered on the Stendhal wiki, please look on #http://stendhal.game-host.org/wiki/index.php/Stendhal as this is full of useful information.";
+					reply = "Hi, this is a question which is answered on the Stendhal wiki, please look on #http://stendhal.game-host.org/wiki/index.php/Stendhal as this is full of useful information. Thanks for playing Stendhal.";
 				} else if ("$knownbug".equals(reply)) {
-					reply = "Hi, thank you for telling us about this bug, we have found it ourselves too and it's already reported. Thank you though!";
+					reply = "Hi, thank you for telling us about this bug, we have found it ourselves too and it's already reported. Thank you though and please do keep reporting bugs if you see them!";
 				} else if ("$bugstracker".equals(reply)) {
 					reply = "Hi, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you very much.";
 				} else if ("$rules".equals(reply)) {
 					reply = "Please read the Stendhal Rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem - thank you.";
 				} else if ("$abuse".equals(reply)) {
-					reply = "That question is not suitable for support. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources. Repeated abuse of the support channel will be punished.";
+					reply = "Sorry, but support is not here for that issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources. Repeated abuse of the support channel will be punished.";
 				} else {
 					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $faqpvp, $wiki, $knownbug, $bugstracker, $rules or $abuse?");
 					// send no support answer message if the shortcut wasn't understood
