@@ -116,8 +116,8 @@ CREATE TABLE IF NOT EXISTS npcs (
   zone       VARCHAR(64),
   x          INTEGER,
   y          INTEGER,
-  description      VARCHAR(255),
-  job       VARCHAR(255),
+  description      VARCHAR(1000),
+  job       VARCHAR(1000),
   PRIMARY KEY (id)
 ) TYPE=MYISAM;
 
