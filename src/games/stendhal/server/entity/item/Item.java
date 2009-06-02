@@ -470,6 +470,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String describe() {
 		String text = "You see " + Grammar.a_noun(getTitle()) + ".";
 		String stats = "";
+		String levelwarning = "";
 		if (hasDescription()) {
 			text = getDescription();
 		}
@@ -481,6 +482,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 					+ ", and cannot be used by others.";
 		}
 
+		if (has("min_level")) {
+			levelwarning = " It requires level " + get("min_level") + " to be used to the full benefit.";
+		}
 		if (has("atk")) {
 			stats += " ATK: " + get("atk");
 		}
@@ -496,10 +500,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (has("range")) {
 			stats += " RANGE: " + get("range");
 		}
+		if (has("lifesteal")) {
+			stats += " LIFESTEAL: " + get("lifesteal");
+		}
 		if (stats.length() > 0) {
 			stats = " Stats are (" + stats.trim() + ").";
 		}
-		return (text + stats);
+		return (text + levelwarning + stats);
 	}
 
 	/**
