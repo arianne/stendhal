@@ -49,7 +49,7 @@ public class AskForSupportAction  implements ActionListener {
 					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 
-			new GameEvent(player.getName(), "support", action.get(TEXT)).raise();
+			new GameEvent(player.getName(), "support", player.getName(), action.get(TEXT)).raise();
 
 			SingletonRepository.getRuleProcessor().sendMessageToSupporters(player.getTitle(), message);
 
