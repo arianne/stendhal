@@ -74,13 +74,15 @@ public class Postman implements Runnable {
 	 *            the talking person
 	 */
 	public void processPublicTalkEvent(final RPObject object) {
+		
 		try {
 			if (object == null) {
 				return;
 			}
 			final int xdiff = object.getInt("x") - Integer.parseInt(X_COORD);
 			final int ydiff = object.getInt("y") - Integer.parseInt(Y_COORD);
-			if (xdiff * xdiff + ydiff * ydiff < 36) {
+			if (xdiff * xdiff + ydiff * ydiff > 36) {
+				
 				return;
 			}
 

@@ -133,7 +133,7 @@
 			<fileset dir="${buildroot}/buildbot">
 				<include name="games/stendhal/bot/postman/*"/>
 
-				<include name="games/stendhal/bot/*"/>
+				<include name="games/stendhal/bot/core/*"/>
 
 				<include name="games/stendhal/bot/shouter/*"/>
 			</fileset>
