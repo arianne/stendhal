@@ -30,6 +30,7 @@ class GMHelpAction implements SlashAction {
 				"Here are the most-used GM commands:",
 				"- /gmhelp [alter|script|support]  \t for more info about alter, script or the supportanswer shortcuts", 
 				"- /supportanswer <player> <message> \t Replies to a support question. Replace <message> with $faq, $faqsocial, $faqpvp, $wiki, $knownbug, $bugstracker, $rules and $abuse shortcuts if desired.",
+				"- /adminnote <player> <note> \t\tLogs a note about this player",
 				"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
 				"- /tellall <message> \t\tSend a private message to all logged-in players",
 				"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",

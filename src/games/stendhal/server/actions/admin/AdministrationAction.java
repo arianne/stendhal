@@ -39,6 +39,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 	public static void registerActions() {
 		AdminLevelAction.register();
+		AdminNoteAction.register();
 		AlterAction.register();
 		AlterCreatureAction.register();
 		AlterQuestAction.register();

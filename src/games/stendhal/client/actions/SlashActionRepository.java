@@ -20,6 +20,7 @@ public class SlashActionRepository {
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
+		actions.put("adminnote", new AdminNoteAction());
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put("alterquest", new AlterQuestAction());

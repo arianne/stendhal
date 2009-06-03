@@ -1,9 +1,13 @@
 Changelog
 ---------
 0.xx
+- added NPCs to website
 - buddy panel is no free floating window anymore
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - trade center in progress
+* Admin
+  - support log available at http://stendhal.game-host.org
+  - new command /adminnote
 
 0.74
 - player karma affects what skills they lose on death 
