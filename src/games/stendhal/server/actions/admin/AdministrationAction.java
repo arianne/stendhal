@@ -35,32 +35,27 @@ public abstract class AdministrationAction implements ActionListener {
 	
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
 
-	
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
-	
-	
-
-
 	public static void registerActions() {
-		InspectAction.register();
-		DestroyAction.register();
-		SupportAnswerAction.register();
-		TellAllAction.register();
-		TeleportAction.register();
-		TeleportToAction.register();
 		AdminLevelAction.register();
 		AlterAction.register();
 		AlterCreatureAction.register();
-		SummonAction.register();
-		SummonAtAction.register();
-		InvisibleAction.register();
+		AlterQuestAction.register();
+		DestroyAction.register();
+		GagAction.register();
 		GhostModeAction.register();
-		TeleClickModeAction.register();
+		InspectAction.register();
+		InvisibleAction.register();
 		JailAction.register();
 		JailReportAction.register();
-		GagAction.register();
-		AlterQuestAction.register();
+		SummonAction.register();
+		SummonAtAction.register();
+		SupportAnswerAction.register();
+		TeleClickModeAction.register();
+		TeleportAction.register();
+		TeleportToAction.register();
+		TellAllAction.register();
 		WrapAction.register();
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
@@ -86,7 +81,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 		// check that we know this command
 		if (required == null) {
-		return true;
+			return true;
 		}
 
 		if (adminlevel < required.intValue()) {
@@ -116,24 +111,22 @@ public abstract class AdministrationAction implements ActionListener {
 	}
 
 	public final void onAction(final Player player, final RPAction action) {
-
-	
-
 		perform(player, action);
 	}
 
 	protected abstract void perform(Player player, RPAction action);
-protected final Entity getTargetAnyZone(final Player player, final RPAction action) {
 
-		
+	protected final Entity getTargetAnyZone(final Player player, final RPAction action) {
+
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
 		if (entity == null) {
 			entity = EntityHelper.entityFromTargetNameAnyZone(action.get(Actions.TARGET), player);
 		}
-		
+
 		return entity;
-}
+	}
+
 	/**
 	 * get the Entity-object of the specified target.
 	 * 
