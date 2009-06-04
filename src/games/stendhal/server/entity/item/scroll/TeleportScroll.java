@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * Represents a general teleport scroll.
  */
-public abstract class TeleportScroll extends InfoStringScroll {
+public abstract class TeleportScroll extends Scroll {
 
 	/**
 	 * Creates a new teleport scroll.

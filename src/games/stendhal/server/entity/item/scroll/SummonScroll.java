@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
 /**
  * Represents a creature summon scroll.
  */
-public class SummonScroll extends InfoStringScroll {
+public class SummonScroll extends Scroll {
 
 	private static final int MAX_ZONE_NPCS = 50;
 
