@@ -39,6 +39,9 @@ import marauroa.common.game.Definition.Type;
  */
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
+	private static final int DEFAULT_ATTACK_RATE = 5;
+
+
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE; 
 
@@ -243,8 +246,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return getInt("rate");
 		}
 
-		/* Default attack rate is 5. */
-		return 5;
+		return DEFAULT_ATTACK_RATE;
 	}
 
 	/**
