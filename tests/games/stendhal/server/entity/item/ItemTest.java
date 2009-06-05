@@ -303,12 +303,12 @@ public class ItemTest {
 		assertNull(mo.getBoundTo());
 		mo.setBoundTo("bob");
 		assertTrue(mo.isBound());
-		assertTrue(mo.isBoundTo(PlayerTestHelper.createPlayer("bob")));
+		assertTrue(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));
 		assertEquals("bob", mo.getBoundTo());
 		
 		mo.setBoundTo(null);
 		assertFalse(mo.isBound());
-		assertFalse(mo.isBoundTo(PlayerTestHelper.createPlayer("bob")));
+		assertFalse(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));
 		assertThat(mo.getBoundTo(), not(is("bob")));
 	}
 

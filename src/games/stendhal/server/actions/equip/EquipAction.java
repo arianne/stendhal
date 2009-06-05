@@ -31,7 +31,7 @@ public class EquipAction extends EquipmentAction {
 		logger.debug("Checking if entity is bound");
 		if (entity instanceof Item) {
 			final Item item = (Item) entity;
-			if (item.isBound() && !item.isBoundTo(player)) {
+			if (item.isBound() && !player.isBoundTo(item)) {
 				player.sendPrivateText("This " + itemName
 						+ " is a special reward for " + item.getBoundTo()
 						+ ". You do not deserve to use it.");

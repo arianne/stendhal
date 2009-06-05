@@ -119,7 +119,7 @@ public abstract class UpdateConverter {
      * @param object
      *            RPObject representing a player
      */
-    static void updatePlayerRPObject(final RPObject object) {
+    public static void updatePlayerRPObject(final RPObject object) {
     	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
     			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
     			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",

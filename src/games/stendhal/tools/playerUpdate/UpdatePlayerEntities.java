@@ -3,6 +3,7 @@ package games.stendhal.tools.playerUpdate;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
@@ -22,7 +23,6 @@ public class UpdatePlayerEntities {
     UpdatePlayerEntities() {
     	new RPClassGenerator().createRPClasses();
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
-    	//MockStendlRPWorld.get();
     }
     
 	private void loadAndUpdatePlayers() {
@@ -41,7 +41,7 @@ public class UpdatePlayerEntities {
     }
 
 	Player createPlayerFromRPO(final RPObject next) {
-		final Player p = Player.create(next);
+		final Player p = (Player) new PlayerTransformer().transform(next);
 		return p;
 	}
 

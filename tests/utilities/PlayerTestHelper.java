@@ -2,6 +2,7 @@ package utilities;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
@@ -43,7 +44,7 @@ public abstract class PlayerTestHelper {
 
 		RPObject object = new RPObject();
 		object.put("name", name);
-		final Player pl = Player.create(object);
+		final Player pl = (Player) new PlayerTransformer().transform(object);
 		Iterator<RPEvent> eventsIterator = pl.eventsIterator();
 		eventsIterator.next();
 		eventsIterator.remove();

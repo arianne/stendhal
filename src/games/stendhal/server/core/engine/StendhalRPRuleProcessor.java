@@ -29,6 +29,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,9 +44,8 @@ import marauroa.common.game.CharacterResult;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
 import marauroa.server.game.Statistics;
-import marauroa.server.game.container.PlayerEntry;
-import marauroa.server.game.container.PlayerEntryContainer;
 import marauroa.server.game.db.Transaction;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
@@ -50,9 +54,13 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
+	/** only log the first exception while reading welcome URL. */
+	private static boolean firstWelcomeException = true;
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
-
+	/** list of super admins read from admins.list. */
+	private static List<String> adminNames;
+	
 	/** The Singleton instance. */
 	protected static StendhalRPRuleProcessor instance;
 
@@ -384,17 +392,56 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			logger.error("error in endTurn", e);
 		}
 	}
+	
+	/**
+	 * reads the admins from admins.list.
+	 * 
+	 * @param player
+	 *            Player to check for super admin status.
+	 */
+	void  readAdminsFromFile(final Player player) {
+		if (adminNames == null) {
+			adminNames = new LinkedList<String>();
+
+			final String adminFilename = "data/conf/admins.list";
+
+			try {
+				final InputStream is = player.getClass().getClassLoader().getResourceAsStream(
+						adminFilename);
+
+				if (is == null) {
+					logger.info("data/conf/admins.list does not exist.");
+				} else {
+
+					final BufferedReader in = new BufferedReader(
+							new UnicodeSupportingInputStreamReader(is));
+					try {
+						String line;
+						while ((line = in.readLine()) != null) {
+							adminNames.add(line);
+						}
+					} catch (final Exception e) {
+						logger.error("Error loading admin names from: "
+								+ adminFilename, e);
+					}
+					in.close();
+				}
+			} catch (final Exception e) {
+				logger.error(
+						"Error loading admin names from: " + adminFilename, e);
+			}
+		}
+
+		if (adminNames.contains(player.getName())) {
+			player.setAdminLevel(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+		}
+	}
 
 	public synchronized boolean onInit(final RPObject object) {
 		try {
-			final PlayerEntry entry = PlayerEntryContainer.getContainer().get(object);
-
-			/*
-			 * TODO: This is a hack, it should use instead RPObjectFactory.
-			 */
-			final Player player = Player.create(object);
-			entry.object = player;
-
+			
+			Player player = (Player) object;
+			
 			playersRmText.add(player);
 
 			getOnlinePlayers().add(player);
@@ -410,14 +457,49 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
 
-
+			readAdminsFromFile(player);
+			welcome(player);
 			return true;
 		} catch (final Exception e) {
 			logger.error("There has been a severe problem loading player " + object.get("#db_id"), e);
 			return false;
 		}
 	}
-
+	/**
+	 * send a welcome message to the player which can be configured in
+	 * marauroa.ini file as "server_welcome". If the value is an http:// address,
+	 * the first line of that address is read and used as the message
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	static void welcome(final Player player) {
+		String msg = "This release is EXPERIMENTAL. Need help? #http://stendhal.game-host.org/wiki/index.php/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
+		try {
+			final Configuration config = Configuration.getConfiguration();
+			if (config.has("server_welcome")) {
+				msg = config.get("server_welcome");
+				if (msg.startsWith("http://")) {
+					final URL url = new URL(msg);
+					HttpURLConnection.setFollowRedirects(false);
+					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					final BufferedReader br = new BufferedReader(
+							new InputStreamReader(connection.getInputStream()));
+					msg = br.readLine();
+					br.close();
+					connection.disconnect();
+				}
+			}
+		} catch (final Exception e) {
+			if (firstWelcomeException) {
+				logger.warn("Can't read server_welcome from marauroa.ini", e);
+				firstWelcomeException = false;
+			}
+		}
+		if (msg != null) {
+			player.sendPrivateText(msg);
+		}
+	}
 	public synchronized boolean onExit(final RPObject object) {
 		try {
 			final Player player = (Player) object;

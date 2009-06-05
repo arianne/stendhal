@@ -182,7 +182,7 @@ public class RingMaker extends AbstractQuest {
 									final Sentence sentence,
 									final SpeakerNPC npc) {
 								final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
-								if (emeraldRing.isBoundTo(player)) {
+								if (player.isBoundTo(emeraldRing)) {
 									player.setQuest(QUEST_SLOT, "forging;"
 											+ System.currentTimeMillis());
 								} else {

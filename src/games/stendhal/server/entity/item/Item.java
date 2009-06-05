@@ -341,10 +341,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return get("bound");
 	}
 	
-	public boolean isBoundTo(final Player player) {
-		return player.getName().equals(getBoundTo());
-	}
-	
 	public boolean isBound() {
 		return has("bound");
 	}

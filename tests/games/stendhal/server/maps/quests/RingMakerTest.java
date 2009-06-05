@@ -190,7 +190,7 @@ public class RingMakerTest {
 		
 		final Item ring = player.getFirstEquipped("emerald ring");
 		assertTrue(ring.isBound());
-		assertTrue(ring.isBoundTo(player));
+		assertTrue(player.isBoundTo(ring));
 		assertEquals("You see ring of life. Wear it, and you risk less from death.", ring.getDescription());
 		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ring.describe());
 		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
@@ -256,7 +256,7 @@ public class RingMakerTest {
 		orderfixandfetchordered(player);
 		final Item ringafter = player.getFirstEquipped("emerald ring");
 		assertTrue(ringafter.isBound());
-		assertTrue(ringafter.isBoundTo(player));
+		assertTrue(player.isBoundTo(ringafter));
 		assertEquals("You see ring of life. Wear it, and you risk less from death.", ringafter.getDescription());
 		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ringafter.describe());
 

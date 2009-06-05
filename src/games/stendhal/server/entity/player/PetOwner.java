@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-class PetOwner {
+public class PetOwner {
 	
 
 	/**

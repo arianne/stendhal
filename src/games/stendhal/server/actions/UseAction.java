@@ -132,7 +132,7 @@ public class UseAction implements ActionListener {
 	protected boolean isItemBoundToOtherPlayer(final Player player, final RPObject object) {
 		if (object instanceof Item) {
 			final Item item = (Item) object;
-			if (item.isBound() && !item.isBoundTo(player)) {
+			if (item.isBound() && !player.isBoundTo(item)) {
 				player.sendPrivateText("This "
 						+ item.getName()
 						+ " is a special reward for " + item.getBoundTo()

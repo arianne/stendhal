@@ -129,55 +129,7 @@ public class Player extends RPEntity {
 	}
 	
 
-	public static Player create(final RPObject object) {
 
-		// add attributes and slots
-		UpdateConverter.updatePlayerRPObject(object);
-
-		final Player player = new Player(object);
-		player.stop();
-		player.stopAttack();
-
-		if (player.has(AWAY)) {
-			player.remove(AWAY);
-		}
-		// remove grumpy on login to give postman a chance to deliver messages
-		// (and in the hope that player is receptive now)
-		if (player.has(GRUMPY)) {
-			player.remove(GRUMPY);
-		}
-
-		PlayerRPClass.readAdminsFromFile(player);
-		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);
-		PlayerRPClass.loadItemsIntoSlots(player);
-
-		if (player.getSlot("!buddy").size() > 0) {
-			final RPObject buddies = player.getSlot("!buddy").iterator().next();
-			for (final String buddyName : buddies) {
-				// TODO: Remove '_' prefix if ID is made completely virtual
-				if (buddyName.charAt(0) == '_') {
-					final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
-							buddyName.substring(1));
-					if ((buddy != null) && !buddy.isGhost()) {
-						buddies.put(buddyName, 1);
-					} else {
-						buddies.put(buddyName, 0);
-					}
-				}
-			}
-		}
-
-		convertOldfeaturesList(player);
-
-		player.updateItemAtkDef();
-
-		UpdateConverter.updateQuests(player);
-
-		PlayerRPClass.welcome(player);
-
-		logger.debug("Finally player is :" + player);
-		return player;
-	}
 
 	public static Player createEmptyZeroLevelPlayer(final String characterName) {
 		/*
@@ -218,21 +170,7 @@ public class Player extends RPEntity {
         return player;
 	}
 
-	private static void convertOldfeaturesList(final Player player) {
-		if (player.has("features")) {
-			logger.info("Converting features for " + player.getName() + ": "
-					+ player.get("features"));
 
-			final FeatureList features = new FeatureList();
-			features.decode(player.get("features"));
-
-			for (final String name : features) {
-				player.setFeature(name, features.get(name));
-			}
-
-			player.remove("features");
-		}
-	}
 
 	public static void destroy(final Player player) {
 		player.getPetOwner().destroy();
@@ -1928,5 +1866,9 @@ public class Player extends RPEntity {
 
 	public PetOwner getPetOwner() {
 		return petOwner;
+	}
+
+	public boolean isBoundTo(final Item item) {
+		return getName().equals(item.getBoundTo());
 	}
 }
