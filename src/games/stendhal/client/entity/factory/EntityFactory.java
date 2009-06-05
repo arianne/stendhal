@@ -39,7 +39,7 @@ public class EntityFactory {
 	 */
 	public static IEntity createEntity(final RPObject object) {
 		try {
-			final String type = object.get("type");
+			final String type = object.getRPClass().getName();
 
 			if (type.equals("player") && object.has("name")) {
 				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(
