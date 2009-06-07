@@ -461,7 +461,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			welcome(player);
 			return true;
 		} catch (final Exception e) {
-			logger.error("There has been a severe problem loading player " + object.get("#db_id"), e);
+			String id = "<object is null>";
+			if (object != null) {
+				id = object.get("#db_id");
+			}
+			logger.error("There has been a severe problem loading player " + id, e);
 			return false;
 		}
 	}
