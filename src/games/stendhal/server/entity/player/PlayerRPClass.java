@@ -12,39 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import games.stendhal.common.Debug;
 import games.stendhal.common.constants.Events;
-import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TutorialNotifier;
-import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.entity.creature.DomesticAnimal;
-import games.stendhal.server.entity.creature.Pet;
-import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.slot.BankSlot;
-import games.stendhal.server.entity.slot.Banks;
-import games.stendhal.server.entity.slot.PlayerSlot;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import marauroa.common.Configuration;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
-import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
 import org.apache.log4j.Logger;
 
