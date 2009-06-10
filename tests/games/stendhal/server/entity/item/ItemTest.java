@@ -2,6 +2,7 @@ package games.stendhal.server.entity.item;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -74,6 +75,19 @@ public class ItemTest {
 
 	}
 
+	@Test
+	public void testClone() throws Exception {
+		Map<String, String> attribs = new HashMap<String, String>();
+		Item it1 = new Item("name","class","subclass",attribs );
+		Object it2 = it1.clone();
+		assertFalse(it1 == it2);
+		assertTrue(it2.getClass() == Item.class);
+		
+		assertTrue(it2.getClass() == it1.getClass());
+		assertEquals(it1, it2);
+	}
+	
+	
 	@Test
 	public void testDescribe() {
 		final Item mo = new Item("name1", "class", "subclass",
