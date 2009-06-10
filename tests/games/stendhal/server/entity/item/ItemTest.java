@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -77,15 +78,18 @@ public class ItemTest {
 	@Test
 	public void testClone() throws Exception {
 		Map<String, String> attribs = new HashMap<String, String>();
+		attribs.put("att_1", "val_1");
+		attribs.put("att_2", "val_2");
 		Item it1 = new Item("name", "class", "subclass", attribs);
 		Object it2 = it1.clone();
 		assertFalse(it1 == it2);
 		assertTrue(it2.getClass() == Item.class);
-		
 		assertTrue(it2.getClass() == it1.getClass());
 		assertEquals(it1, it2);
+		assertEquals("val_1", ((RPObject) it2).get("att_1"));
+		assertEquals("val_2", ((RPObject) it2).get("att_2"));
+
 	}
-	
 	
 	@Test
 	public void testDescribe() {
