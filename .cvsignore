@@ -31,3 +31,5 @@ server*.ini
 .metadata
 .checkstyle
 marauroa-strato.ini
+*.euml2
+*.umlproject
