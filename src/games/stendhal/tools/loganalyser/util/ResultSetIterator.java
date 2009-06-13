@@ -76,7 +76,13 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 
 	public void remove() {
 		try {
+			if (nextCalled) {
+				resultSet.previous();
+			}
 	        resultSet.deleteRow();
+			if (nextCalled) {
+				resultSet.next();
+			}
         } catch (final SQLException e) {
         	logger.error(e, e);
         }
