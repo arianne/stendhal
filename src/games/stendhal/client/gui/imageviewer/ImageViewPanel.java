@@ -10,6 +10,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
+import org.apache.log4j.Logger;
+
 /**
  * A JPanel to be viewed from an ImageViewWindow.
  * 
@@ -44,7 +46,7 @@ public class ImageViewPanel extends StyledJPanel {
 			// maybe there's a better way?
 			image = ImageIO.read(url);
 		} catch (final Exception e) {
-			e.printStackTrace();
+			Logger.getLogger(ImageViewPanel.class).error(e, e);
 		}
 	}
 

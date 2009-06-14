@@ -216,7 +216,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 				sys.cycleMap.put(entity.ID_Token, cycle);
 			} catch (final IllegalStateException e) {
-				logger.error("*** Undefined sound sample: " + token, e);
+				logger.error("Undefined sound sample: " + token, e);
 			}
 		}
 		return cycle;
@@ -376,7 +376,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						count++;
 					} catch (final Exception e) {
 						// could not validate sound file content
-						hstr = "*** CORRUPTED SOUND: " + name + "=" + filename;
+						hstr = "corruped sound: " + name + "=" + filename;
 						logger.error(hstr, e);
 						failedCounted++;
 						continue;
@@ -417,7 +417,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			WorldObjects.addWorldListener(this);
 			operative = true;
 		} catch (final IOException e) {
-			hstr = "*** SOUNDSYSTEM LOAD ERROR";
+			hstr = "Sound System load error";
 			logger.error(hstr, e);
 			return;
 		}
@@ -488,7 +488,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		String hstr;
 		mixInfos = AudioSystem.getMixerInfo();
 		if ((mixInfos == null) || (mixInfos.length == 0)) {
-			logger.error("*** SoundSystem: no sound driver available!");
+			logger.error("SoundSystem: no sound driver available!");
 			return false;
 		}
 

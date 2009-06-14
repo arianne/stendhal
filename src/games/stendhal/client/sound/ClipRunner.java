@@ -159,7 +159,7 @@ class ClipRunner implements LineListener {
 				line.addLineListener(this);
 				return line;
 			} catch (final Exception ex) {
-				logger.error("** AudioSystem: clip line unavailable for: "
+				logger.error("AudioSystem: clip line unavailable for: "
 						+ this.name, ex);
 				return null;
 			}

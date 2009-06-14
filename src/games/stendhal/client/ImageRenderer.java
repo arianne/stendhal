@@ -21,11 +21,13 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
+
 /**
  * This class renders a layer based on a complete image.
  */
 public class ImageRenderer extends LayerRenderer {
-
+	private static Logger logger = Logger.getLogger(ImageRenderer.class);
 	private Sprite mySprite;
 
 	public ImageRenderer(final URL url) {
@@ -35,7 +37,7 @@ public class ImageRenderer extends LayerRenderer {
 			height = myImage.getHeight();
 			mySprite = new ImageSprite(myImage);
 		} catch (final Exception e) {
-			System.err.println(e);
+			logger.error(e);
 		}
 	}
 

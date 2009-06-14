@@ -40,10 +40,10 @@ public class ItemImageLoader {
 					img = read(resource);
 					ImageMap.put(path, img);
 				} else {
-					Logger.getLogger(ItemImageLoader.class).error("file not found :" + path);
+					Logger.getLogger(ItemImageLoader.class).error("file not found: " + path);
 				}
 			} catch (final IOException e) {
-				e.printStackTrace();
+				Logger.getLogger(ItemImageLoader.class).error("io error while loading: " + path, e);
 			}
 		}
 		return img;

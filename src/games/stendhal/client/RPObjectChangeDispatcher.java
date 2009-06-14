@@ -104,7 +104,7 @@ public class RPObjectChangeDispatcher {
 			fireChangedAdded(object, changes);
 			object.applyDifferences(changes, null);
 		} catch (final Exception e) {
-			logger.debug("dispatchModifyAdded failed, object is " + object
+			logger.error("dispatchModifyAdded failed, object is " + object
 					+ ", changes is " + changes, e);
 		}
 

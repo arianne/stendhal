@@ -28,6 +28,8 @@ import javax.swing.text.html.StyleSheet;
 
 import marauroa.common.game.RPAction;
 
+import org.apache.log4j.Logger;
+
 /**
  * A HTML implementation of a KTextEdit component.
  *
@@ -39,6 +41,7 @@ import marauroa.common.game.RPAction;
  */
 @SuppressWarnings("serial")
 public class KHtmlEdit extends KTextEdit {
+	private static Logger logger = Logger.getLogger(KHtmlEdit.class);
 
 	//
 	// KHtmlEdit
@@ -106,10 +109,10 @@ public class KHtmlEdit extends KTextEdit {
 		try {
 			final Element root = doc.getParagraphElement(0);
 			doc.insertBeforeEnd(root, text);
-		} catch (final BadLocationException ex) {
-			ex.printStackTrace();
-		} catch (final IOException ex) {
-			ex.printStackTrace();
+		} catch (final BadLocationException e) {
+			logger.error(e, e);
+		} catch (final IOException e) {
+			logger.error(e, e);
 		}
 	}
 

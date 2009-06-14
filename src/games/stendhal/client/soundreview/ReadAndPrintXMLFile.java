@@ -5,12 +5,14 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 public class ReadAndPrintXMLFile {
+	private static Logger logger = Logger.getLogger(ReadAndPrintXMLFile.class);
 
 	public static void main(final String[] argv) {
 		try {
@@ -35,21 +37,20 @@ public class ReadAndPrintXMLFile {
 			} // end of for loop with s var
 
 		} catch (final SAXParseException err) {
-			System.out.println("** Parsing error" + ", line "
+			logger.error("** Parsing error" + ", line "
 					+ err.getLineNumber() + ", uri " + err.getSystemId());
-			System.out.println(" " + err.getMessage());
+			logger.error(" " + err.getMessage());
 
 		} catch (final SAXException e) {
 			final Exception x = e.getException();
 			if (x == null) {
-				e.printStackTrace();
-
+				logger.error(e, e);
 			} else {
-				x.printStackTrace();
+				logger.error(x, x);
 			}
 
 		} catch (final Throwable t) {
-			t.printStackTrace();
+			logger.error(t, t);
 		}
 		// System.exit (0);
 

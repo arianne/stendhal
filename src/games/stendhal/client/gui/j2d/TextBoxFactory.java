@@ -22,6 +22,8 @@ import java.text.CharacterIterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class TextBoxFactory {
 	private Graphics2D graphics;
 	
@@ -172,7 +174,7 @@ public class TextBoxFactory {
 
 			return aStyledText;
 		} catch (final Exception e) {
-			e.printStackTrace();
+			Logger.getLogger(TextBoxFactory.class).error(e, e);
 			return null;
 		}
 	}

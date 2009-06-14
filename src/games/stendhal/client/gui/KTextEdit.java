@@ -174,8 +174,8 @@ public class KTextEdit extends JPanel {
 				doc.insertString(doc.getLength(), "<" + header + "> ",
 						textPane.getStyle("header"));
 			}
-		} catch (final BadLocationException ble) {
-			System.err.println("Couldn't insert initial text.");
+		} catch (final BadLocationException e) {
+			logger.error("Couldn't insert initial text.", e);
 		}
 	}
 
@@ -186,8 +186,8 @@ public class KTextEdit extends JPanel {
 				doc.insertString(doc.getLength(), header,
 						textPane.getStyle("timestamp"));
 			}
-		} catch (final BadLocationException ble) {
-			System.err.println("Couldn't insert initial text.");
+		} catch (final BadLocationException e) {
+			logger.error("Couldn't insert initial text.", e);
 		}
 	}
 
@@ -208,9 +208,9 @@ public class KTextEdit extends JPanel {
 				}
 			};
 			parser.format(text);
-		} catch (final Exception ble) { 
+		} catch (final Exception e) { 
 			// BadLocationException
-			System.err.println("Couldn't insert initial text.");
+			logger.error("Couldn't insert initial text.", e);
 		}
 	}
 
@@ -218,8 +218,8 @@ public class KTextEdit extends JPanel {
 		final Document doc = textPane.getDocument();
 		try {
 			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
-		} catch (final BadLocationException ble) {
-			System.err.println("Couldn't insert initial text.");
+		} catch (final BadLocationException e) {
+			logger.error("Couldn't insert initial text.", e);
 		}
 	}
 

@@ -198,6 +198,7 @@ class SoundCycle extends Thread implements Cloneable {
 			try {
 				sleep(waitTime);
 			} catch (final InterruptedException e) {
+				// ignore
 			}
 
 			if (!executing) {
