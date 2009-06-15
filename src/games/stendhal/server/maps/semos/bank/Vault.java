@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -67,7 +68,7 @@ public class Vault extends StendhalRPZone {
 
 		public void onEntered(final ActiveEntity entity,
 				final StendhalRPZone zone, final int newX, final int newY) {
-
+			// ignore
 		}
 
 		public void onExited(final ActiveEntity entity,
@@ -151,14 +152,14 @@ public class Vault extends StendhalRPZone {
 				entity.put("x", "9");
 				entity.put("y", "27");
 
-				SingletonRepository.getRPWorld().removeZone(zone);
+				TurnNotifier.get().notifyInTurns(2, new VaultRemover(zone));
 			}
 		}
 
 		public void onMoved(final ActiveEntity entity,
 				final StendhalRPZone zone, final int oldX, final int oldY,
 				final int newX, final int newY) {
-
+			// ignore
 		}
 	}
 
