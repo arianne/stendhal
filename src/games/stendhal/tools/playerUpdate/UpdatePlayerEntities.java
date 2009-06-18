@@ -21,9 +21,12 @@ public class UpdatePlayerEntities {
     private final StendhalPlayerDatabase spdb;
 
     UpdatePlayerEntities() {
-    	new RPClassGenerator().createRPClasses();
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
     }
+
+	public void initRPClasses() {
+		new RPClassGenerator().createRPClasses();
+	}
     
 	private void loadAndUpdatePlayers() {
     	final Iterator<RPObject> i = spdb.iterator();
@@ -55,7 +58,9 @@ public class UpdatePlayerEntities {
 	}
     
 	public static void main(final String[] args) {
-        new UpdatePlayerEntities().doUpdate();
+        UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
+        updatePlayerEntities.initRPClasses();
+		updatePlayerEntities.doUpdate();
     }
 
 }

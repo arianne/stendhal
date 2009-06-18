@@ -49,7 +49,6 @@ public class UpdatePlayerEntitiesTest {
 		assertThat(loaded.getSlot("bag").getFirst().get("name"), is("leather_armor_+1"));
 
 		assertTrue(pm.savePlayer(loaded));
-		MockStendlRPWorld.reset();
 		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 		Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
 		updatePlayerEntities.savePlayer(changing);
