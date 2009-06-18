@@ -33,8 +33,6 @@ import org.apache.log4j.Logger;
 public class PlayerTransformer implements Transformer {
 
 	public RPObject transform(final RPObject object) {
-	
-	
 		return create(object);
 	}
 

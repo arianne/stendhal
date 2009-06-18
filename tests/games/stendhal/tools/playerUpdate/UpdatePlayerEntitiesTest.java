@@ -11,6 +11,7 @@ import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.tools.modifer.PlayerModifier;
 
 import java.io.IOException;
@@ -26,11 +27,10 @@ public class UpdatePlayerEntitiesTest {
 	public void setUp() throws Exception {
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDoUpdate() throws SQLException, IOException {
-		//updatePlayerEntities has to be initialized here to get rid of MockStendlRPWorld.get()
-		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
+		MockStendlRPWorld.get();
 		StendhalPlayerDatabase spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
 		
 		PlayerModifier pm = new PlayerModifier();
@@ -49,7 +49,8 @@ public class UpdatePlayerEntitiesTest {
 		assertThat(loaded.getSlot("bag").getFirst().get("name"), is("leather_armor_+1"));
 
 		assertTrue(pm.savePlayer(loaded));
-
+		MockStendlRPWorld.reset();
+		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 		Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
 		updatePlayerEntities.savePlayer(changing);
 		
