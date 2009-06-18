@@ -24,6 +24,9 @@ public class UpdatePlayerEntities {
     	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
     }
 
+    /**
+     * Inits all RPClasses, has to be called before doing update. Split off due to testing issues.
+     */
 	public void initRPClasses() {
 		new RPClassGenerator().createRPClasses();
 	}
