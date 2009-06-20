@@ -47,6 +47,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			super(copy);
 		}
 
+		/*
+		 disabled, see https://sourceforge.net/tracker/?func=detail&aid=2806268&group_id=1111&atid=101111
 		@Override
 		public void onDead(final Entity killer, final boolean remove) {
 			super.onDead(killer, remove);
@@ -61,7 +63,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 				}
 			}
-		}
+		}*/
 
 		@Override
 		public Creature getNewInstance() {
