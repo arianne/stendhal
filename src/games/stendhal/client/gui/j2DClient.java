@@ -411,8 +411,20 @@ public class j2DClient {
 		});
 		directionRelease = null;
 	
-
+		checkAndComplainAboutJavaImplementation();
 	} // constructor
+
+	private void checkAndComplainAboutJavaImplementation() {
+		if (System.getProperty("java.vm.name", "unknown").toLowerCase().indexOf("hotspot") < 0) {
+			String text = "Stendhal is developed and tested on original Sun Java. You are using " 
+				+ System.getProperty("ava.vm.vendor", "unknown") + " " 
+				+ System.getProperty("java.vm.name", "unknown") 
+				+ " so there may be some problems like a black or grey screen.\n"
+				+ " If you have coding experience with your JDK, we are looking for help.";
+			addEventLine(new HeaderLessEventLine(text, NotificationType.ERROR));
+		}
+	}
+
 	private void createAndAddOldBag(final IGameScreen gameScreen) {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
 		addWindow(inventory);
