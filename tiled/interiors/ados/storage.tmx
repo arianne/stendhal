@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/brown_paving.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
  </tileset>
@@ -52,7 +52,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WWQvCMBCEF+p9t4giHi+CKCoeffb8/z/KCWzooq00TS2iCXwvze4MtJl0PSIqgbIlFeBl6KmCGhhaUAcNQy3ZMyC7NcqglaXH+Tt/5//d/i3QB4uE2jnvtz/g3wU9sGLNEzgLLmANllwX5OSvNDcU3etb1ryCm+D+VKvvf1v/HdiDg+D4plbt53n/m6yQyfP8/bu/zpSk6PzpTMn8xa1P5E+/Sz1/FZ0/+S3V/FV0/uLOUphQq5//6v/H+Tt/55++p0nRzGbCGEzo9V+SVkv1dCia2UyZghnwmYC1fANUzwPOgpj/ABAAAA==
+   H4sIAAAAAAAAAO2W2QrCMBBFB+q+t4giLi+CKCou/QH1/z/KG0hIUFuaxSo6gfPSzNwLaWYyERFVQNWTGogccuqgAcYeNEHLUsvMGZHfmjhoueSwP/uz/3f7d8AQrDJil3K/+wb/PhiATY7mFqxlXBLIX2juSPf1vdS8gKvB7SFW9X9f/wM4gpPBOSdW7Ifs/zYrlYS8f//ur2rKpOz6UzX1ifpTZ6nmr7Lrz/yXYv4qu/5e3aU0I1Z9/9X3h/3Zn/2L57RJz2w2TMGMnt+Soloip0d6ZrNlDhYgliRSK7ZA5NwBOKqHjQAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SSwqAMAwFc7Hquu78tt7/In2FFN2pYCmkb2DINkwiQkh7PJxeTGIT3p30zgwPGNQNrjoX9Wy2nX1y/9K5dN/lukmUb/0dHG6Ofy5rkNw/Psj/rwf7E9IXCXHSgg0AEAAA
+   H4sIAAAAAAAAAO2TSQqAMAwA8zH1rDf3+v+PmEKK3mpBCdQZGHINk1YEwJ9eHR5MqBPu/j6N2t7sfNeBDKO6qbu5qLPNyTzctquf2D91Tt1XuW4SpKw//6+M2D9k5P1/B/0B/sUJh/qdfwAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
