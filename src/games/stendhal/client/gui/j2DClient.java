@@ -417,7 +417,7 @@ public class j2DClient {
 	private void checkAndComplainAboutJavaImplementation() {
 		if (System.getProperty("java.vm.name", "unknown").toLowerCase().indexOf("hotspot") < 0) {
 			String text = "Stendhal is developed and tested on original Sun Java. You are using " 
-				+ System.getProperty("ava.vm.vendor", "unknown") + " " 
+				+ System.getProperty("java.vm.vendor", "unknown") + " " 
 				+ System.getProperty("java.vm.name", "unknown") 
 				+ " so there may be some problems like a black or grey screen.\n"
 				+ " If you have coding experience with your JDK, we are looking for help.";
