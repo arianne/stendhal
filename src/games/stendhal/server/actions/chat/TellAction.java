@@ -158,7 +158,7 @@ public class TellAction implements ActionListener {
 				if (!"id".equals(buddyName)) {
 					
 				buddyName = buddyName.substring(1);
-					if (buddyName.equals(senderName)) {
+					if (buddyName.equalsIgnoreCase(senderName)) {
 						senderFound = true;
 						break;
 					}
