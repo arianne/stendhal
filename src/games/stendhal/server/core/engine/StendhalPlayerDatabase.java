@@ -223,6 +223,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		updateCharStatsStatement.setString(20, instance.getName());
 		logger.debug("storeCharacter is running: " + updateCharStatsStatement.toString());
 		final int count = updateCharStatsStatement.executeUpdate();
+		updateCharStatsStatement.close();
 		return count;
 	}
 
