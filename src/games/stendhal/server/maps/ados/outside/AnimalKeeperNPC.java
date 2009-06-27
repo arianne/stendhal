@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.ados.outside;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -10,7 +9,6 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
