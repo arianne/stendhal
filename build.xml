@@ -50,10 +50,6 @@
 			match="public static final String VERSION ?= ?&quot;.*&quot;;"
 			replace="public static final String VERSION = &quot;${version}&quot;;"
 			byline="true"/>
-		<replaceregexp file="web/html/stendhal.version"
-			match=".*"
-			replace="${version}"
-			byline="true"/>
 		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
 			match="out.println\(&quot;server_version=.*&quot;\);"
 			replace="out.println(&quot;server_version=${version}&quot;);"
@@ -464,10 +460,6 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${buildroot}/stendhal-server-${version}/web">
-			<fileset dir="web"/>
-		</copy>
-
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${commons_lang_jar}"/>
@@ -565,10 +557,6 @@
 				<!-- There is a 4MB OGG there! -->
 				<exclude name="music/**/*"/>
 			</fileset>
-		</copy>
-
-		<copy todir="${buildroot}/stendhal-server-${version}/web">
-			<fileset dir="web"/>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
