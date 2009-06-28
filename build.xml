@@ -668,6 +668,7 @@
 				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_tools}"/>
+				<pathelement path="${build_server_script}"/>
 				<pathelement path="${build_tiled}"/>
 			</classpath>
 		</javac>
