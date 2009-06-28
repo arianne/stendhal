@@ -665,6 +665,7 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${easymock_jar}"/>
+				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_tiled}"/>
