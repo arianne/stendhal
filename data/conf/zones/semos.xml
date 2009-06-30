@@ -126,7 +126,19 @@
 		file="Level 0/semos/mountain_n_w2.tmx">
 
 		<configurator
-			class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC" />
+			class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC"/>
+
+		<portal x="63" y="116" ref="right">
+			<destination zone="0_semos_mountain_n_w2" ref="left" />
+		</portal>
+		<portal x="64" y="116" ref="left">
+			<destination zone="0_semos_mountain_n_w2" ref="right" />
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="maximum-level">50</parameter>
+				<parameter name="rejected">The gnomes don't want you getting in here.</parameter>
+			</implementation>
+		</portal>
+
 		<entity x="39" y="23">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
