@@ -163,40 +163,10 @@ leather helmet  15
 	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">62</parameter>
-			<parameter name="y">45</parameter>
-			<parameter name="width">2</parameter>
-			<parameter name="height">7</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">65</parameter>
-			<parameter name="y">45</parameter>
-			<parameter name="width">11</parameter>
-			<parameter name="height">4</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">62</parameter>
-			<parameter name="y">53</parameter>
-			<parameter name="width">5</parameter>
-			<parameter name="height">5</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">71</parameter>
-			<parameter name="y">52</parameter>
-			<parameter name="width">5</parameter>
-			<parameter name="height">5</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 			<parameter name="x">60</parameter>
-			<parameter name="y">59</parameter>
-			<parameter name="width">6</parameter>
-			<parameter name="height">11</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">71</parameter>
-			<parameter name="y">63</parameter>
-			<parameter name="width">5</parameter>
-			<parameter name="height">7</parameter>
+			<parameter name="y">44</parameter>
+			<parameter name="width">16</parameter>
+			<parameter name="height">34</parameter>
 		</configurator>
 
 		<portal x="92" y="101" ref="catacombs_entrance">
@@ -233,6 +203,23 @@ leather helmet  15
 			<attribute name="class">plinknpc</attribute>
 		</entity>
 
+		<entity x="77" y="66">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">This ground has been fertilised so that seeds can grow here. Ask me (Jenny from the Mill) for seeds! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
+			<attribute name="class">signpost</attribute>
+		</entity>
+
+		<entity x="59" y="58">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">This ground has been fertilised so that seeds can grow here. Ask me (Jenny from the Mill) for seeds! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
+			<attribute name="class">signpost</attribute>
+		</entity>
+
+		<entity x="68" y="43">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">This ground has been fertilised so that seeds can grow here. Ask me (Jenny from the Mill) for seeds! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
+			<attribute name="class">signpost</attribute>
+		</entity>
 
 		<entity x="82" y="63">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
