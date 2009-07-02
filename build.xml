@@ -54,6 +54,14 @@
 			match="out.println\(&quot;server_version=.*&quot;\);"
 			replace="out.println(&quot;server_version=${version}&quot;);"
 			byline="true"/>
+		<replaceregexp file="runserver.bat"
+			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
+			replace="STENDHAL_VERSION = &quot;${version}&quot;"
+			byline="true"/>
+		<replaceregexp file="runserver.sh"
+			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
+			replace="STENDHAL_VERSION = &quot;${version}&quot;"
+			byline="true"/>
 
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
