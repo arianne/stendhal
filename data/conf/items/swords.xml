@@ -190,6 +190,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="12"/>
       <rate value="3"/>
+	  <min_level value="80"/>
     </attributes>
     <weight value="4.0"/>
     <value value="33750"/>
@@ -205,6 +206,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="12"/>
       <rate value="3"/>
+	  <min_level value="80"/>
     </attributes>
     <weight value="4.0"/>
     <value value="33750"/>
@@ -348,8 +350,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
        <rate value="5"/>
-      <lifesteal value="0.1"/>
-     
+       <lifesteal value="0.1"/>
+       <min_level value="50"/>
     </attributes>
     <weight value="4.0"/>
     <value value="98742"/>
@@ -414,6 +416,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="29"/>
       <rate value="6"/>
+	  <min_level value="40"/>
     </attributes>
     <weight value="4.0"/>
     <value value="174207"/>
@@ -544,6 +547,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="35"/>
       <rate value="6"/>
+	  <min_level value="80"/>
     </attributes>
     <weight value="9.0"/>
     <value value="357291"/>
