@@ -471,7 +471,8 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
-
+        <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
+        <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
@@ -575,9 +576,10 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="COPYING.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
-
+		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
-		<copy todir="${buildroot}/stendhal-server-${version}-src/doc">
+		<copy todir="${buildroot}/stendhal-${version}-src/doc">
 			<fileset dir="doc"/>
 		</copy>
 
