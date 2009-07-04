@@ -706,7 +706,9 @@
 
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
-		<junit printsummary="yes" fork="no">
+		<junit printsummary="yes" fork="yes">
+			<jvmarg value="-Djava.awt.headless=true"/>
+
 			<classpath>
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
@@ -726,7 +728,6 @@
 
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
-
 			</classpath>
 
 			<formatter type="plain" usefile="false"/>
