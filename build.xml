@@ -716,7 +716,7 @@
 				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
-
+				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${hamcrest_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -725,14 +725,11 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
-
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
 			</classpath>
-
 			<formatter type="plain" usefile="false"/>
 			<formatter type="xml"/>
-
 			<batchtest todir="${build_tests_report}">
 				<fileset dir="tests">
 					<include name="**/*Test.java"/>

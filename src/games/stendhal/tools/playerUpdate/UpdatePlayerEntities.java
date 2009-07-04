@@ -3,8 +3,10 @@ package games.stendhal.tools.playerUpdate;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,7 +30,7 @@ public class UpdatePlayerEntities {
      * Inits all RPClasses, has to be called before doing update. Split off due to testing issues.
      */
 	public void initRPClasses() {
-		new RPClassGenerator().createRPClasses();
+		StendhalRPWorld.get();
 	}
     
 	private void loadAndUpdatePlayers() {
@@ -36,6 +38,7 @@ public class UpdatePlayerEntities {
     	while (i.hasNext()) {
     		try {
 	    		final RPObject next = i.next();
+	    		System.out.println(next);
 	    		final Player p = createPlayerFromRPO(next);
 	    		savePlayer(p);
 			} catch (final SQLException e) {
@@ -47,7 +50,9 @@ public class UpdatePlayerEntities {
     }
 
 	Player createPlayerFromRPO(final RPObject next) {
-		final Player p = (Player) new PlayerTransformer().transform(next);
+		UpdateConverter.updatePlayerRPObject(next);
+		final Player p = (Player) new Player(next);
+		UpdateConverter.updateQuests(p);
 		return p;
 	}
 

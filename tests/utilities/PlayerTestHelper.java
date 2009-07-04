@@ -46,8 +46,10 @@ public abstract class PlayerTestHelper {
 		object.put("name", name);
 		final Player pl = (Player) new PlayerTransformer().transform(object);
 		Iterator<RPEvent> eventsIterator = pl.eventsIterator();
-		eventsIterator.next();
-		eventsIterator.remove();
+		while(eventsIterator.hasNext()) {
+			eventsIterator.next();
+			eventsIterator.remove();
+		}
 		
 		pl.setName(name);
 
