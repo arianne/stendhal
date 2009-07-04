@@ -48,7 +48,13 @@ import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 public class RPClassGenerator {
+	private static boolean inited = false;
+
 	public void createRPClasses() {
+		if (inited) {
+			return;
+		}
+		inited = true;
 		Entity.generateRPClass();
 
 		// Entity sub-classes
