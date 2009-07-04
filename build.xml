@@ -418,11 +418,12 @@
 		<jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
 	</target>
 
-	<target name="docs" depends="server_build, client_build" description="Build javadocs for Stendhal">
+	<target name="docs" depends="server_build, client_build" description="Build javadocs for fixedStendhal">
 		<javadoc packagenames="games.stendhal.*"
 		   defaultexcludes="yes"
 		   destdir="${docs}"
 		   author="true"
+		   encoding="UTF-8"
 		   version="true"
 		   use="true"
 		   classpath="${classpath}"
