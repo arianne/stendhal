@@ -25,6 +25,7 @@ import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.UseableItem;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -42,6 +43,7 @@ public class EntityFactoryTest {
 
 		MockRPObject(final String type, final String eclass) {
 			super.put("type", type);
+			super.setRPClass(type);
 			if (eclass != null) {
 				super.put("class", eclass);
 			}
@@ -59,6 +61,7 @@ public class EntityFactoryTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		GameObjects.createInstance(null);
+		MockStendlRPWorld.get();
 		Log4J.init();
 	}
 
