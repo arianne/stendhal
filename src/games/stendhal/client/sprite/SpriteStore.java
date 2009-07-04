@@ -14,6 +14,7 @@ import games.stendhal.client.sprite.TileSprite.TSRef;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
@@ -49,7 +50,11 @@ public class SpriteStore {
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
-		gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		try {
+			gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		} catch (HeadlessException e) {
+			logger.warn("Cannot initialize graphic user interface: " + e);
+		}
 	}
 
 	/**
