@@ -1,7 +1,6 @@
 Changelog
 ---------
 0.xx
-- added NPCs to website
 - buddy panel is no free floating window anymore
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - trade center in progress
@@ -13,14 +12,17 @@ Changelog
   - attacking items have slower rate to hit if user less than min level
   - defending items have less defence if user less than min level
   - for all items with min level the effect is bigger, the further user is from min level
-- items display lifesteal and min level attribues in description
+- items display lifesteal and min level attributes in description
 - a large memory hole fixed
+- Jenny from the Mill sells flower seeds to plant on a patch in Semos Plains N
+- added NPCs to website
 * new artwork
 - potions, antidotes, poisons
 - black dragon, flying golden dragon
-- skeletons of all kinds
+- skeletons, fallens of all kinds
 * Admin
   - support log available at http://stendhal.game-host.org
+  - player history available at http://stendhal.game-host.org/?id=content%2Fadmin%2Fplayerhistory&name=NAME&sublogin=Search
   - new command /adminnote
   - /gmhelp_script and /gmehlp_alter replaced by /gmhelp script and /gmhelp alter
 
