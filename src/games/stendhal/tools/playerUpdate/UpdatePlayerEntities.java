@@ -1,10 +1,8 @@
 package games.stendhal.tools.playerUpdate;
 
-import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 

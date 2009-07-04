@@ -6,7 +6,6 @@ import games.stendhal.server.core.engine.annotations.RPSlotAnnotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.Collection;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
