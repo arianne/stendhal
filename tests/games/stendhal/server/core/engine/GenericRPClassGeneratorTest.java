@@ -1,20 +1,24 @@
 package games.stendhal.server.core.engine;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.DefinitionClass;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 
 public class GenericRPClassGeneratorTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MockStendlRPWorld.reset();
 	}
 	
 	@After
@@ -23,7 +27,6 @@ public class GenericRPClassGeneratorTest {
 	
 	@Test
 	public void testRPClassGeneration() throws Exception {
-		RPClass entity = new RPClass("entity");
 		Class<?> clazz = new EntityGenerationTestEntity().getClass();
 		assertNotNull(clazz);
 		GenericRPClassGenerator genericRPClassGenerator = new GenericRPClassGenerator();
@@ -32,8 +35,10 @@ public class GenericRPClassGeneratorTest {
 		assertNotNull(rpclass);
 		assertThat(rpclass.getName(), is("EntityGenerationTestEntity"));
 		assertTrue(rpclass.subclassOf("entity"));
-		System.out.println(entity);
-		genericRPClassGenerator.generate(clazz);
+		assertTrue(rpclass.hasDefinition(DefinitionClass.ATTRIBUTE,"name"));
+		assertTrue(rpclass.hasDefinition(DefinitionClass.ATTRIBUTE,"changedname"));
+		assertTrue(rpclass.hasDefinition(DefinitionClass.RPSLOT,"slot"));
+		assertTrue(rpclass.hasDefinition(DefinitionClass.RPSLOT,"slotTwo"));
 	}
 
 }
