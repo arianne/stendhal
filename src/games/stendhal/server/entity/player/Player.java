@@ -460,7 +460,7 @@ public class Player extends RPEntity {
 	public double useKarma(final double negLimit, final double posLimit, final double granularity) {
 		double limit;
 		double score;
-
+		
 		if (logger.isDebugEnabled()) {
 			logger.debug("karma request: " + negLimit + " <= x <= " + posLimit);
 		}
@@ -492,9 +492,10 @@ public class Player extends RPEntity {
 		score = (0.2 + (KARMA_RANDOMIZER.nextDouble() * 0.8)) * limit;
 
 		/*
-		 * Clip to granularity
+		 * Clip to granularity. Use floor() instead of round() so that the player 
+		 * never uses more karma than she has.
 		 */
-		score = (int) Math.round((score / granularity) * granularity);
+		score = Math.floor(score / granularity) * granularity;
 
 		/*
 		 * with a lucky charm you use up less karma to be just as lucky
