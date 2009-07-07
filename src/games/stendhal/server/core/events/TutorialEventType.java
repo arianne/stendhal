@@ -43,7 +43,7 @@ public enum TutorialEventType {
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
 	TIMED_RULES(
 				    "Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem"),
-	NEW_RELEASE(
+	NEW_RELEASE75(
 			"Some of the best equipment now needs you to have a minimum experience level to be used to its best. If you are less than the minimum level marked on your attacking weapon, it hits with a slower rate for you. If you are less than the minimum level for a defensive weapon, it has a less good defense for you. You can see the effective rate and your total defense in your Character Window.");
 	private String message;
 
