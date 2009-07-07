@@ -85,8 +85,8 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 				 + getCost()
 				 + " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
 				 + " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				 + "The Ados houses are numbered from 50 to "
-				 + getHighestHouseNumber() + ".",
+				 + "The Ados houses are numbered from " 
+				 + getLowestHouseNumber() + " to " + getHighestHouseNumber() + ".",
 				 null);
 		
 		// handle house numbers getLowestHouseNumber() - getHighestHouseNumber()

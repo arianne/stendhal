@@ -62,7 +62,8 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				 + getCost()
 				 + " money.  Also, you must pay a house tax of " + HouseTax.BASE_TAX
 				 + " money, every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				 + "Kirdneh Houses are numbered 26 to 49.",
+				 + "Kirdneh Houses are numbered "
+				 + getLowestHouseNumber() + " to " + getHighestHouseNumber() + ".",
 				 null);
 		
 		// handle house numbers 26 to 49
