@@ -684,7 +684,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 			<attribute name="height">4</attribute>
 		</entity>
 
-		<!-- Sign for the Trading Center -->
+		<!-- Sign for the Trading Center
 		<entity x="11" y="17">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.TradeCenterSign">
 				<parameter name="shop">tradeswords</parameter>
@@ -692,7 +692,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
-		</entity>
+		</entity> -->
 
 		<entity x="2" y="11">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
