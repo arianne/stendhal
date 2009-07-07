@@ -23,6 +23,11 @@ public class PlantAction {
 		if ((seed == null) || (user == null)) {
 			return false;
 		} else if (!seed.isContained()) {
+			if (!seed.nextTo(user)) {
+				user.sendPrivateText("The seed is too far away");
+				return false;
+			}
+			
 			final String infostring = seed.getInfoString();
 			FlowerGrower flowerGrower;
 			if (infostring == null) {
@@ -36,6 +41,7 @@ public class PlantAction {
 			seed.removeOne();
 			return true;
 		}
+		
 		user.sendPrivateText("You have to put the seed on the ground to plant it, silly!");
 		return false;
 
