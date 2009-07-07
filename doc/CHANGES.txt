@@ -17,6 +17,7 @@ Changelog
 - Jenny from the Mill sells flower seeds to plant on a patch in Semos Plains N
 - added NPCs to website
 - prevent creation of accounts with commonly used passwords from a list 
+- Sato puts his sheep in the den
 * new artwork
 - potions, antidotes, poisons
 - black dragon, flying golden dragon
