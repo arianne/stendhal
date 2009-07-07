@@ -23,5 +23,17 @@ public class Seed extends StackableItem implements UseListener {
 		plantAction.setSeed(this);
 		return plantAction.execute();
 	}
+
+
+	@Override
+	public String describe() {
+		final String flowerName = getInfoString();
+
+		if (flowerName != null) {
+			return "You see a " + flowerName + " seed. It can be planted anywhere, but it will only thrive on fertile ground.";
+		} else {
+			return "You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.";
+		}
+	}
 	
 }
