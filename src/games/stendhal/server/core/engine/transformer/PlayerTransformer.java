@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import games.stendhal.common.Debug;
 import games.stendhal.common.FeatureList;
+import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -43,8 +44,10 @@ public class PlayerTransformer implements Transformer {
 			"lucky charm");
 
 	/** these items should be unbound.*/
-	private static final List<String> ITEMS_TO_UNBIND = Arrays.asList(
-																	"marked scroll");
+	private static final List<String> ITEMS_TO_UNBIND = Arrays.asList("marked scroll");
+
+	/** these items should be delete for non admins */
+	private static final List<String> ITEMS_FOR_ADMINS = Arrays.asList("rod of the gm", "master key");
 
 	public Player create(final RPObject object) {
 		
@@ -288,6 +291,16 @@ public class PlayerTransformer implements Transformer {
 			try {
 				// We simply ignore corpses...
 				if (item.get("type").equals("item")) {
+					
+					if (ITEMS_FOR_ADMINS.contains(item.get("name")) && (!player.has("adminlevel") || player.getInt("adminlevel") < 1000)) {
+						logger.warn("removed admin item " + item.get("name") + " from player " + player.getName());
+						String quantity = "1";
+						if (item.has("quantity")) {
+							quantity = item.get("quantity");
+						}
+						new ItemLogger().addItemLogEntry(new ItemLogEntry(item, player, "destroy", item.get("name"), quantity, "playertransformer", slot.getName()));
+						continue;
+					}
 
 					final String name = UpdateConverter.updateItemName(item.get("name"));
 					final Item entity = UpdateConverter.updateItem(name);
