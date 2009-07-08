@@ -203,7 +203,7 @@
       <atk value="42"/>
       <rate value="8"/>
       <lifesteal value="0.3"/>
-      <min_level value="100"/>
+      <min_level value="80"/>
     </attributes>
     <weight value="8.0"/>
     <value value="463050"/>
