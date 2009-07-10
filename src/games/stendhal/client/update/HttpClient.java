@@ -230,7 +230,7 @@ public class HttpClient {
 			connection.disconnect();
 			res = true;
 		} catch (final Exception e) {
-			res = true;
+			res = false;
 			System.err.println(e);
 			e.printStackTrace(System.err);
 		}
