@@ -55,71 +55,162 @@ public class RPClassGenerator {
 			return;
 		}
 		inited = true;
-		Entity.generateRPClass();
+
+		if (!RPClass.hasRPClass("entity")) {
+			Entity.generateRPClass();
+		}
 
 		// Entity sub-classes
-		ActiveEntity.generateRPClass();
-		AreaEntity.generateRPClass();
-		Blood.generateRPClass();
-		Chest.generateRPClass();
-		Corpse.generateRPClass();
-		Door.generateRPClass();
-		Fire.generateRPClass();
-		FishSource.generateRPClass();
-		Gate.generateGateRPClass();
-		GoldSource.generateRPClass();
-		WellSource.generateRPClass();
-		Item.generateRPClass();
-		PassiveEntityRespawnPoint.generateRPClass();
-		Portal.generateRPClass();
-		Sign.generateRPClass();
-		Spell.generateRPClass();
-		WalkBlocker.generateRPClass();
-		HousePortal.generateRPClass();
+		if (!RPClass.hasRPClass("active_entity")) {
+			ActiveEntity.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("area")) {
+			AreaEntity.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("blood")) {
+			Blood.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("chest")) {
+			Chest.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("corpse")) {
+			Corpse.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("door")) {
+			Door.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("fire")) {
+			Fire.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("fish_source")) {
+			FishSource.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("gate")) {
+			Gate.generateGateRPClass();
+		}
+		if (!RPClass.hasRPClass("gold_source")) {
+			GoldSource.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("well_source")) {
+			WellSource.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("item")) {
+			Item.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("plant_grower")) {
+			PassiveEntityRespawnPoint.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("portal")) {
+			Portal.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("sign")) {
+			Sign.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("spell")) {
+			Spell.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("wallblocker")) {
+			WalkBlocker.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("house_portal")) {
+			HousePortal.generateRPClass();
+		}
 
 		// ActiveEntity sub-classes
-		RPEntity.generateRPClass();
+		if (!RPClass.hasRPClass("rpentity")) {
+			RPEntity.generateRPClass();
+		}
 
 		// RPEntity sub-classes
-		NPC.generateRPClass();
-		Player.generateRPClass();
+		if (!RPClass.hasRPClass("npc")) {
+			NPC.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("player")) {
+			Player.generateRPClass();
+		}
 
 		// NPC sub-classes
-		Creature.generateRPClass();
+		if (!RPClass.hasRPClass("creature")) {
+			Creature.generateRPClass();
+		}
 
 		// Creature sub-classes
-		Sheep.generateRPClass();
-		Pet.generateRPClass();
-		Cat.generateRPClass();
-		BabyDragon.generateRPClass();
+		if (!RPClass.hasRPClass("sheep")) {
+			Sheep.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("pet")) {
+			Pet.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("cat")) {
+			Cat.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("baby_dragon")) {
+			BabyDragon.generateRPClass();
+		}
 
 		// PassiveEntityRespawnPoint sub-class
-		GrowingPassiveEntityRespawnPoint.generateRPClass();
-		SheepFood.generateRPClass();
+		if (!RPClass.hasRPClass("growing_entity_spawner")) {
+			GrowingPassiveEntityRespawnPoint.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("food")) {
+			SheepFood.generateRPClass();
+		}
 
 		// zone storage
-		ArrestWarrant.generateRPClass();
-		RentedSign.generateRPClass();
-		Offer.generateRPClass();
-		Earning.generateRPClass();
+		if (!RPClass.hasRPClass("arrest_warrant")) {		
+			ArrestWarrant.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("rented_sign")) {
+			RentedSign.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("offer")) {
+			Offer.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("earning")) {
+			Earning.generateRPClass();
+		}
 
 		// rpevents
-		BuddyLoginEvent.generateRPClass();
-		BuddyLogoutEvent.generateRPClass();
-		DamagedEvent.generateRPClass();
-		ExamineEvent.generateRPClass();
-		HealedEvent.generateRPClass();
-		PrivateTextEvent.generateRPClass();
-		TextEvent.generateRPClass();
+		if (!RPClass.hasRPClass("buddy_login")) {
+			BuddyLoginEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("buddy_logout")) {
+			BuddyLogoutEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("damaged")) {
+			DamagedEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("examine")) {
+			ExamineEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("healed")) {
+			HealedEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("private_text")) {
+			PrivateTextEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("text")) {
+			TextEvent.generateRPClass();
+		}
 
-		//guilds
-		Guild.generateRPClass();
-		GuildMember.generateRPClass();
-		GuildPermission.generateRPClass();
+		// guilds
+		if (!RPClass.hasRPClass("guild")) {
+			Guild.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("guild_member")) {
+			GuildMember.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("guild_permission")) {
+			GuildPermission.generateRPClass();
+		}
 
-		createChatActionRPClass();
+		if (!RPClass.hasRPClass("chat")) {
+			createChatActionRPClass();
+		}
 
-		createTellActionRPClass();
+		if (!RPClass.hasRPClass("tell")) {
+			createTellActionRPClass();
+		}
 	}
 
 	private void createTellActionRPClass() {
