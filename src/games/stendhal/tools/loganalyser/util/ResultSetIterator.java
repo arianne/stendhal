@@ -26,6 +26,16 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	/**
 	 * Creates a new ResultSetIterator.
 	 *
+	 * @param resultSet resultSet
+	 */
+	public ResultSetIterator(final ResultSet resultSet) {
+		this.statement = null;
+		this.resultSet = resultSet;
+	}
+
+	/**
+	 * Creates a new ResultSetIterator.
+	 *
 	 * @param statement statement
 	 * @param resultSet resultSet
 	 */
@@ -102,7 +112,9 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
         	logger.error(e, e);
         }
 		try {
-			statement.close();
+			if (statement != null) {
+				statement.close();
+			}
         } catch (final SQLException e) {
         	logger.error(e, e);
         }
