@@ -152,13 +152,17 @@ public class HttpClient {
 	 * Closes the connection and associated streams.
 	 */
 	public void close() {
-		try {
-			is.close();
-		} catch (final IOException e) {
-			System.err.println(e);
-			e.printStackTrace(System.err);
+		if (is != null) {
+			try {
+				is.close();
+			} catch (final IOException e) {
+				System.err.println(e);
+				e.printStackTrace(System.err);
+			}
 		}
-		connection.disconnect();
+		if (connection != null) {
+			connection.disconnect();
+		}
 	}
 
 	/**
