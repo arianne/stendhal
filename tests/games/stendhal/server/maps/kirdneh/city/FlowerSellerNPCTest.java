@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -24,6 +24,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 
 		QuestHelper.setUpBeforeClass();
@@ -31,9 +32,6 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME, new FlowerSellerNPC());
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	public FlowerSellerNPCTest() {
 		super(ZONE_NAME, "Fleur");
