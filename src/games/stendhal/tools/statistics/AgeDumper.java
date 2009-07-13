@@ -1,15 +1,18 @@
 package games.stendhal.tools.statistics;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+import games.stendhal.server.core.engine.db.CharacterIterator;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
+import marauroa.server.game.db.DatabaseFactory;
+
+import org.apache.log4j.Logger;
 
 /**
  * Dumps the Age and Release of players.
@@ -17,24 +20,8 @@ import marauroa.server.game.db.Transaction;
  * @author hendrik
  */
 public final class AgeDumper {
-	StendhalPlayerDatabase db;
-
-	Transaction trans;
-
-	PreparedStatement ps;
-
+	private static Logger logger = Logger.getLogger(AgeDumper.class);
 	java.sql.Date date;
-
-	/**
-	 * Creates a new AgeDumper.
-	 * 
-	 * @param db
-	 *            JDBCPlayerDatabase
-	 */
-	private AgeDumper(final StendhalPlayerDatabase db) {
-		this.db = db;
-		this.trans = db.getTransaction();
-	}
 
 	/**
 	 * Dumps the items.
@@ -42,20 +29,18 @@ public final class AgeDumper {
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
-	private void dump() throws Exception {
+	private void dump(DBTransaction transaction) throws Exception {
 		final String query = "insert into age(datewhen, charname, age, version) values(?, ?, ?, ?)";
 		date = new java.sql.Date(new java.util.Date().getTime());
-		final Connection connection =  trans.getConnection();
-		ps = connection.prepareStatement(query);
+		PreparedStatement ps = transaction.prepareStatement(query, null);
 
-		for (final RPObject object : db) {
+		for (final RPObject object : new CharacterIterator(transaction)) {
 			final String name = object.get("name");
 			// System.out.println(id + " " + name);
-			logPlayer(name, object);
+			logPlayer(ps, name, object);
 		}
 
 		ps.close();
-		trans.commit();
 	}
 
 	/**
@@ -68,7 +53,7 @@ public final class AgeDumper {
 	 * @throws SQLException
 	 *             in case of a database error
 	 */
-	private void logPlayer(final String name, final RPObject object) throws SQLException {
+	private void logPlayer(final PreparedStatement ps, final String name, final RPObject object) throws SQLException {
 		int age = -1;
 		String release = "0.0";
 		if (object.has("age")) {
@@ -84,6 +69,17 @@ public final class AgeDumper {
 		ps.setString(4, release);
 		ps.executeUpdate();
 	}
+	
+	public void dump() {
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		try {
+			dump(transaction);
+			TransactionPool.get().commit(transaction);
+		} catch (Exception e) {
+			logger.error(e, e);
+			TransactionPool.get().rollback(transaction);
+		}
+	}
 
 	/**
 	 * Starts the ItemDumper.
@@ -94,10 +90,10 @@ public final class AgeDumper {
 	 *             in case of an unexpected item
 	 */
 	public static void main(final String[] args) throws Exception {
+		new DatabaseFactory().initializeDatabase();	
 		SingletonRepository.getRPWorld();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
-		final StendhalPlayerDatabase db = (StendhalPlayerDatabase) StendhalPlayerDatabase.newConnection();
-		final AgeDumper itemDumper = new AgeDumper(db);
+		final AgeDumper itemDumper = new AgeDumper();
 		itemDumper.dump();
 	}
 }

@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,9 +22,8 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.db.Accessor;
-import marauroa.server.game.db.IDatabase;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
@@ -687,47 +684,27 @@ public final class WordList {
             return;
         }
 
-        final IDatabase db = SingletonRepository.getPlayerDatabase();
-        final Transaction trans = db.getTransaction();
-        boolean success;
+		DBTransaction transaction = TransactionPool.get().beginWork();
 
-        // empty table "words"
-        Accessor acc = trans.getAccessor();
 
         try {
-            try {
-                acc.execute("truncate table words");
-            } finally {
-                acc.close();
-            }
+            // empty table "words"
+            transaction.execute("truncate table words", null);
+            insertIntoDB(transaction, words.keySet());
+            
+            String query = "INSERT INTO words(normalized, type, plural)"
+            	+ " VALUES ('[normalized]', '[type]', '[plural]')";
 
-            success = true;
-        } catch (final SQLException e) {
-            success = false;
-            logger.error("error emptying DB table words", e);
-        }
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("normalized", HASH_KEYWORD);
+			params.put("type", HASH_KEYWORD);
+			params.put("plural", hash);
 
-        if (success) {
-            insertIntoDB(words.keySet());
-
-            acc = trans.getAccessor();
-
-            try {
-                try {
-                    acc.execute("insert into words(normalized, type, plural)\n" + "values('" + HASH_KEYWORD + "', '"
-                            + HASH_KEYWORD + "', '" + hash + "')");
-                } finally {
-                    acc.close();
-                }
-            } catch (final SQLException e) {
-                logger.error("error storing word list version number into DB", e);
-            }
-        }
-
-        try {
-            acc.close();
+            transaction.execute(query, params);
+    		TransactionPool.get().commit(transaction);
         } catch (final SQLException e) {
             logger.error("error closing DB accessor", e);
+    		TransactionPool.get().rollback(transaction);
         }
     }
 
@@ -742,30 +719,16 @@ public final class WordList {
             return false;
         }
 
-        final IDatabase db = SingletonRepository.getPlayerDatabase();
-        final Transaction trans = db.getTransaction();
-        boolean success;
-
+		DBTransaction transaction = TransactionPool.get().beginWork();
         try {
-            success = insertIntoDB(trans, keys);
-
-            if (success) {
-                trans.commit();
-            }
-        } catch (final SQLException e) {
+            insertIntoDB(transaction, keys);
+    		TransactionPool.get().commit(transaction);
+    	} catch (final SQLException e) {
             logger.error("error while inserting new word into DB", e);
-            success = false;
+    		TransactionPool.get().rollback(transaction);
+    		return false;
         }
-
-        if (!success) {
-            try {
-                trans.rollback();
-            } catch (final SQLException e) {
-                logger.error("error while rolling back transaction", e);
-            }
-        }
-
-        return success;
+        return true;
     }
 
     /**
@@ -776,11 +739,9 @@ public final class WordList {
      * @return success flag
      * @throws SQLException
      */
-    private boolean insertIntoDB(final Transaction trans, final Set<String> keys) throws SQLException {
-        final Connection conn = trans.getConnection();
-
-        PreparedStatement stmt = conn.prepareStatement("insert into words(normalized, type, plural, value)\n"
-                + "values(?, ?, ?, ?)");
+    private boolean insertIntoDB(final DBTransaction transaction, final Set<String> keys) throws SQLException {
+        PreparedStatement stmt = transaction.prepareStatement("insert into words(normalized, type, plural, value)\n"
+                + "values(?, ?, ?, ?)", null);
 
         int count = 0;
 
@@ -817,7 +778,7 @@ public final class WordList {
             stmt.close();
         }
 
-        stmt = conn.prepareStatement("update	words\n" + "set	alias_id = ?\n" + "where	id = ?");
+        stmt = transaction.prepareStatement("update words set alias_id = ? where id = ?", null);
 
         try {
             for (final String key : keys) {
@@ -857,14 +818,12 @@ public final class WordList {
             return 0;
         }
 
-        final IDatabase db = SingletonRepository.getPlayerDatabase();
-
-        final Transaction trans = db.getTransaction();
-        final Accessor acc = trans.getAccessor();
+		DBTransaction transaction = TransactionPool.get().beginWork();
 
         try {
-            final ResultSet res = acc.query("select	w.id, w.normalized, w.type, w.plural, w.value,\n" + "	s.normalized\n"
-                    + "from	words w\n" + "left outer join words s on s.id = w.alias_id");
+        	String query = "select	w.id, w.normalized, w.type, w.plural, w.value,"
+        		+ "	s.normalized from words w left outer join words s on s.id = w.alias_id";
+            final ResultSet res = transaction.query(query, null);
 
             int count = 0;
 
@@ -894,8 +853,6 @@ public final class WordList {
                 ++count;
             }
 
-            trans.commit();
-
             final WordEntry versionEntry = find(HASH_KEYWORD);
 
             if (versionEntry != null) {
@@ -908,15 +865,11 @@ public final class WordList {
 
             logger.debug("read " + count + " word entries from database");
 
+    		TransactionPool.get().commit(transaction);
             return count;
         } catch (final SQLException e) {
             logger.error("error while reading from DB table words", e);
-
-            try {
-                trans.rollback();
-            } catch (final SQLException e1) {
-                logger.error("error while rolling back transaction", e1);
-            }
+    		TransactionPool.get().rollback(transaction);
 
             return -1;
         }

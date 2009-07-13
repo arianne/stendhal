@@ -1,6 +1,5 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -8,9 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import marauroa.server.game.db.Accessor;
-import marauroa.server.game.db.IDatabase;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 
 /**
  * Lists all word list entries in the database with missing type information.
@@ -21,34 +19,24 @@ public class ListUnknownWords extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		final IDatabase db = SingletonRepository.getPlayerDatabase();
-		final Transaction trans = db.getTransaction();
-		final Accessor acc = trans.getAccessor();
+		final DBTransaction transaction = TransactionPool.get().beginWork();
 
 		final StringBuilder sb = new StringBuilder("Currently unknown words:\n");
 
 		try {
-	        final ResultSet res = acc.query(
-        		"select normalized\n"
-	        		+ "from	words w\n"
-	        		+ "where type = ''\n"
-	        		+ "order by normalized"
-	        );
+	        final ResultSet res = transaction.query(
+        		"SELECT normalized FROM words w"
+	        		+ " WHERE type = '' ORDER BY normalized", null);
 
 	        while (res.next()) {
 	        	sb.append(res.getString(1));
 	        	sb.append('\n');
 	        }
 
-			trans.commit();
+			TransactionPool.get().commit(transaction);
         } catch (final SQLException e) {
         	sb.append("error while reading from DB table words: " + e.getMessage());
-
-	        try {
-	            trans.rollback();
-            } catch (final SQLException e1) {
-    	        sb.append("error while rolling back transaction: " + e.getMessage());
-            }
+			TransactionPool.get().rollback(transaction);
         }
 
 		admin.sendPrivateText(sb.toString());

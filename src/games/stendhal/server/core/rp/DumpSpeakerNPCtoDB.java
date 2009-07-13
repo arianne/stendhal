@@ -2,16 +2,17 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
@@ -25,12 +26,12 @@ public class DumpSpeakerNPCtoDB implements TurnListener {
 
 		
 	public void onTurnReached(int currentTurn) {
+		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			long start = System.currentTimeMillis();
-			Connection con = StendhalPlayerDatabase.getDatabase().getTransaction().getConnection();
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO npcs " +
+			PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
 				"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job)" +
-				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
 			stmt.execute("start transaction;");
 			stmt.execute("DELETE FROM npcs");
@@ -38,12 +39,11 @@ public class DumpSpeakerNPCtoDB implements TurnListener {
 				dumpNPC(stmt, npc);
 			}
 			stmt.executeBatch();
-
-			con.commit();
-			stmt.close();
+			TransactionPool.get().commit(transaction);
 			logger.debug((System.currentTimeMillis() - start));
 		} catch (SQLException e) {
 			logger.error(e, e);
+			TransactionPool.get().rollback(transaction);
 		}
 	}
 

@@ -1,8 +1,7 @@
 package games.stendhal.tools.playerUpdate;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.db.CharacterIterator;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 
@@ -11,18 +10,20 @@ import java.sql.SQLException;
 import java.util.Iterator;
 
 import marauroa.common.game.RPObject;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
+import marauroa.server.game.db.CharacterDAO;
+import marauroa.server.game.db.DAORegister;
+import marauroa.server.game.db.DatabaseFactory;
+
+import org.apache.log4j.Logger;
 
 /**
  * Loads all Players from the database, performs update operations and saves afterwards. 
  * @author madmetzger
  */
 public class UpdatePlayerEntities {
-
-    private final StendhalPlayerDatabase spdb;
-
-    UpdatePlayerEntities() {
-    	this.spdb = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
-    }
+	private static Logger logger = Logger.getLogger(UpdatePlayerEntities.class);
 
     /**
      * Inits all RPClasses, has to be called before doing update. Split off due to testing issues.
@@ -31,19 +32,13 @@ public class UpdatePlayerEntities {
 		StendhalRPWorld.get();
 	}
     
-	private void loadAndUpdatePlayers() {
-    	final Iterator<RPObject> i = spdb.iterator();
+	private void loadAndUpdatePlayers(DBTransaction transaction) throws SQLException, IOException {
+    	final Iterator<RPObject> i = new CharacterIterator(transaction);
     	while (i.hasNext()) {
-    		try {
-	    		final RPObject next = i.next();
-	    		System.out.println(next);
-	    		final Player p = createPlayerFromRPO(next);
-	    		savePlayer(p);
-			} catch (final SQLException e) {
-				e.printStackTrace();
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
+    		final RPObject next = i.next();
+    		System.out.println(next);
+    		final Player p = createPlayerFromRPO(next);
+    		savePlayer(transaction, p);
     	}
     }
 
@@ -54,17 +49,24 @@ public class UpdatePlayerEntities {
 		return p;
 	}
 
-	void savePlayer(final Player p)
-			throws SQLException, IOException {
-		spdb.storeCharacter(spdb.getTransaction(), p.getName(), p.getName(), p);
+	void savePlayer(DBTransaction transaction, final Player player) throws SQLException, IOException {
+		DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player);
 	}
     
     private void doUpdate() {
-		this.loadAndUpdatePlayers();
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		try {
+			this.loadAndUpdatePlayers(transaction);
+			TransactionPool.get().commit(transaction);
+		} catch (Exception e) {
+			logger.error(e, e);
+			TransactionPool.get().rollback(transaction);
+		}
 	}
     
 	public static void main(final String[] args) {
-        UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
+		new DatabaseFactory().initializeDatabase();	
+		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
         updatePlayerEntities.initRPClasses();
 		updatePlayerEntities.doUpdate();
     }

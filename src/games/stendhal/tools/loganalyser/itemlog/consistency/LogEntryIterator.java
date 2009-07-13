@@ -20,6 +20,15 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	/**
 	 * Creates a new LogEntryIterator.
 	 *
+	 * @param resultSet resultSet
+	 */
+	public LogEntryIterator(final ResultSet resultSet) {
+	    super(resultSet);
+    }
+
+	/**
+	 * Creates a new LogEntryIterator.
+	 *
 	 * @param statement statement
 	 * @param resultSet resultSet
 	 */
