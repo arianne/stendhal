@@ -1,13 +1,14 @@
 package games.stendhal.server.core.account;
 
 import static org.junit.Assert.assertEquals;
+
 import java.sql.SQLException;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.Result;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-import marauroa.server.game.db.NoDatabaseConfException;
-import marauroa.server.game.db.Transaction;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,12 +21,13 @@ public class CharacterCreatorTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 		PlayerTestHelper.generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
 	}
 
 	@Test
-	public void testCreate() {
+	public void testCreate() throws SQLException {
 		cleanDB();
 
 		final CharacterCreator cc = new CharacterCreator("user", "player", null);
@@ -35,17 +37,15 @@ public class CharacterCreatorTest {
 		cleanDB();
 	}
 
-	private void cleanDB() {
-		final Transaction trans = DatabaseFactory.getDatabase().getTransaction();
+	private void cleanDB() throws SQLException {
+		final DBTransaction transaction = TransactionPool.get().beginWork();;
 		try {
-			trans.getAccessor().execute("DELETE FROM character_stats where name='player';");
-			trans.commit();
-			trans.getAccessor().execute("DELETE rpobject , characters from rpobject , characters where characters.charname = 'player' and characters.object_id = rpobject.object_id;");
-			trans.commit();
-		} catch (final NoDatabaseConfException e) {
-			e.printStackTrace();
+			transaction.execute("DELETE FROM character_stats where name='player';", null);
+			transaction.execute("DELETE rpobject , characters from rpobject , characters where characters.charname = 'player' and characters.object_id = rpobject.object_id;", null);
+			TransactionPool.get().commit(transaction);
 		} catch (final SQLException e) {
-			e.printStackTrace();
+			TransactionPool.get().rollback(transaction);
+			throw e;
 		}
 	}
 }
