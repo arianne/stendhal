@@ -27,7 +27,7 @@ public class UpdatePlayerEntitiesTest {
 
 	//@Ignore
 	@Test
-	public void testDoUpdate() throws Exception, Exception {
+	public void testDoUpdate() throws Exception, Throwable {
 		MockStendlRPWorld.get();
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -62,7 +62,7 @@ public class UpdatePlayerEntitiesTest {
 			assertThat(secondLoaded.getSlot("bag").getFirst().get("name"), not(is("leather_armor_+1")));
 
 			TransactionPool.get().rollback(transaction);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			TransactionPool.get().rollback(transaction);
 			throw e;
 		}
