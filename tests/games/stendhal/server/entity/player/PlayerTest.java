@@ -11,6 +11,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,6 +29,7 @@ public class PlayerTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 	}
 
