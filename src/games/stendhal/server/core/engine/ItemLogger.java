@@ -155,7 +155,7 @@ public class ItemLogger {
 			}
 	
 			TransactionPool.get().commit(transaction);
-		} catch (final SQLException e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 			TransactionPool.get().rollback(transaction);
 		}
