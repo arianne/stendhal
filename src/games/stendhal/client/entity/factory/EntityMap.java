@@ -48,6 +48,8 @@ import games.stendhal.client.entity.WellSource;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
  * Registers the relationship between Type, eclass and java class of entity
  * Objects.
@@ -58,7 +60,7 @@ import java.util.Map;
  * 
  */
 public final class EntityMap {
-	private static Map<Triple<String, String, String>, Class<? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class<? extends IEntity>>();
+	private static Map<Triple<String, String, String>, Class< ? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends IEntity>>();
 
 	static {
 		register();
@@ -102,6 +104,7 @@ public final class EntityMap {
 
 		register("blood", null, null, Blood.class);
 		register("sign", null, null, Sign.class);
+		register("rented_sign", null, null, Sign.class);
 		register("blackboard", null, null, Sign.class);
 		register("tradecentersign", null, null, Sign.class);
 
@@ -149,7 +152,7 @@ public final class EntityMap {
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,
-			final String subClass, final Class<? extends IEntity> entityClazz) {
+			final String subClass, final Class< ? extends IEntity> entityClazz) {
 		entityMap.put(
 				new Triple<String, String, String>(type, eclass, subClass),
 				entityClazz);
@@ -165,9 +168,9 @@ public final class EntityMap {
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class<? extends IEntity> getClass(final String type,
+	public static Class< ? extends IEntity> getClass(final String type,
 			final String eclass, final String subClass) {
-		Class<? extends IEntity> result = entityMap
+		Class< ? extends IEntity> result = entityMap
 				.get(new Triple<String, String, String>(type, eclass, subClass));
 		if (result == null) {
 			result = entityMap.get(new Triple<String, String, String>(type,
@@ -176,6 +179,10 @@ public final class EntityMap {
 		if (result == null) {
 			result = entityMap.get(new Triple<String, String, String>(type,
 					null, null));
+		}
+		if (result == null) {
+			
+			Logger.getLogger(EntityMap.class).error("no class for " + type + "," + eclass + "," + subClass);
 		}
 		return result;
 	}
