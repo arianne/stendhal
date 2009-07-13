@@ -344,9 +344,17 @@ public class LoginDialog extends JDialog {
 			// if something goes horribly just cancel the progressbar
 			progressBar.cancel();
 			setEnabled(true);
+			String message = "unable to connect to server";
+			
+			if (profile != null) {
+				message = message + " " + profile.getHost() + ":" + profile.getPort();
+			} else {
+				message = message + ", because profile was null";
+			}
+				Logger.getLogger(LoginDialog.class).error(
+					message  , ex);
 
-			Logger.getLogger(LoginDialog.class).error(
-					"unable to connect to server", ex);
+			Logger.getLogger(LoginDialog.class).error(message, ex);
 			JOptionPane.showMessageDialog(this,
 					"Unable to connect to server. Did you misspell the server name?");
 			return;
