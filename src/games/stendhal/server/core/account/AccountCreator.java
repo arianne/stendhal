@@ -1,13 +1,16 @@
 package games.stendhal.server.core.account;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+
 import java.sql.SQLException;
 
 import marauroa.common.crypto.Hash;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.Result;
-import marauroa.server.game.db.DatabaseFactory;
-import marauroa.server.game.db.IDatabase;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
+import marauroa.server.game.db.AccountDAO;
+import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
@@ -70,27 +73,23 @@ public class AccountCreator {
 	 * @return Result.OK_CREATED on success
 	 */
 	private AccountResult insertIntoDatabase() {
-		final IDatabase database = DatabaseFactory.getDatabase();
-		final Transaction trans = database.getTransaction();
-		try {
-			trans.begin();
+		final TransactionPool transactionPool = SingletonRepository.getTransactionPool();
+		final DBTransaction transaction = transactionPool.beginWork();
+		final AccountDAO accountDAO = DAORegister.get().get(AccountDAO.class);
 
-			if (database.hasPlayer(trans, username)) {
+		try {
+			if (accountDAO.hasPlayer(transaction, username)) {
 				logger.warn("Account already exist: " + username);
 				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
 			}
 
-			database.addPlayer(trans, username, Hash.hash(password), email);
+			accountDAO.addPlayer(transaction, username, Hash.hash(password), email);
 
-			trans.commit();
+			transactionPool.commit(transaction);
 			return new AccountResult(Result.OK_CREATED, username);
 		} catch (final SQLException e) {
 			logger.warn("SQL exception while trying to create a new account", e);
-			try {
-				trans.rollback();
-			} catch (final SQLException rollbackException) {
-				logger.error("Rollback failed: ", rollbackException);
-			}
+			transactionPool.rollback(transaction);
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 	}

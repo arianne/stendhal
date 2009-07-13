@@ -8,7 +8,8 @@ import games.stendhal.server.entity.player.Player;
 import java.sql.SQLException;
 
 import marauroa.common.game.RPAction;
-import marauroa.server.game.db.IDatabase;
+import marauroa.server.game.db.AccountDAO;
+import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
@@ -23,11 +24,9 @@ public class BanAction extends AdministrationAction {
 			if (action.has("reason")) {
 				reason = action.get("reason");
 			}
-
-			IDatabase playerDatabase = SingletonRepository.getPlayerDatabase();
 			
 			try {
-				playerDatabase.setAccountStatus(playerDatabase.getTransaction(), bannedName, "banned");
+				DAORegister.get().get(AccountDAO.class).setAccountStatus(bannedName, "banned");
 				player.sendPrivateText("You have banned " + bannedName + " for: " + reason);
 
 				// logging

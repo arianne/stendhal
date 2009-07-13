@@ -2,14 +2,13 @@ package games.stendhal.server.core.account;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Result;
-import marauroa.server.game.db.IDatabase;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
+import marauroa.server.game.db.CharacterDAO;
+import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
@@ -62,11 +61,12 @@ public class CharacterCreator {
 			return new CharacterResult(result, character, template);
 		}
 
-		final IDatabase database = SingletonRepository.getPlayerDatabase();
-		final Transaction trans = database.getTransaction();
+		final TransactionPool transactionPool = SingletonRepository.getTransactionPool();
+		final DBTransaction trans = transactionPool.beginWork();
+		final CharacterDAO characterDAO = DAORegister.get().get(CharacterDAO.class);
 
 		try {
-			if (database.hasCharacter(trans, username, character)) {
+			if (characterDAO.hasCharacter(trans, username, character)) {
 				logger.warn("Character already exist: " + character);
 				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
 						character, template);
@@ -81,16 +81,12 @@ public class CharacterCreator {
 			/*
 			 * Finally we add it to database.
 			 */
-			database.addCharacter(trans, username, character, object);
-			trans.commit();
+		    characterDAO.addCharacter(trans, username, character, object);
+			transactionPool.commit(trans);
 
 			return new CharacterResult(Result.OK_CREATED, character, object);
 		} catch (final Exception e) {
-			try {
-				trans.rollback();
-			} catch (final SQLException e1) {
-				e1.printStackTrace();
-			}
+			transactionPool.rollback(trans);
 			logger.error("Can't create character", e);
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}

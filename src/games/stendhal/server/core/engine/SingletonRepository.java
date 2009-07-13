@@ -14,7 +14,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
-import marauroa.server.game.db.IDatabase;
+import marauroa.server.db.TransactionPool;
 
 
 /**
@@ -79,8 +79,8 @@ public class SingletonRepository {
 		return CreaturesXMLLoader.get();
 	}
 
-	public static IDatabase getPlayerDatabase() {
-		return StendhalPlayerDatabase.getDatabase();
+	public static TransactionPool getTransactionPool() {
+		return TransactionPool.get();
 	}
 
 	public static GuildPermissionList getGuildPermissionList() {

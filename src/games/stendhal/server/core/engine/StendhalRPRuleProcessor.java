@@ -19,6 +19,8 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.account.AccountCreator;
 import games.stendhal.server.core.account.CharacterCreator;
+import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
+import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
@@ -45,8 +47,10 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 import marauroa.server.game.Statistics;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
 
@@ -63,8 +67,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	
 	/** The Singleton instance. */
 	protected static StendhalRPRuleProcessor instance;
-
-	private StendhalPlayerDatabase database;
 
 	private RPServerManager rpman;
 
@@ -90,8 +92,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void init() {
-		database = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
-
 		instance = this;
 		String[] params = {};
 		new GameEvent("server system", "startup", params).raise();
@@ -117,9 +117,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public int getHallOfFamePoints(final String playername, final String fametype) {
 		int res = 0;
 		try {
-			final Transaction transaction = database.getTransaction();
-			res = database.getHallOfFamePoints(transaction, playername, fametype);
-			transaction.commit();
+			res = DAORegister.get().get(StendhalHallOfFameDAO.class).getHallOfFamePoints(playername, fametype);
 		} catch (final Exception e) {
 			logger.warn("Can't store game event", e);
 		}
@@ -137,13 +135,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            points to add
 	 */
 	public void addHallOfFamePoints(final String playername, final String fametype, final int points) {
+		final TransactionPool transactionPool = SingletonRepository.getTransactionPool();
+		final DBTransaction transaction = transactionPool.beginWork();
+		final StendhalHallOfFameDAO hallOfFameDAO = DAORegister.get().get(StendhalHallOfFameDAO.class);
+		
 		try {
-			final Transaction transaction = database.getTransaction();
-			final int oldPoints = database.getHallOfFamePoints(transaction, playername, fametype);
+			final int oldPoints = hallOfFameDAO.getHallOfFamePoints(transaction, playername, fametype);
 			final int totalPoints = oldPoints + points;
-			database.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
-			transaction.commit();
+			hallOfFameDAO.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
+			transactionPool.commit(transaction);
 		} catch (final Exception e) {
+			transactionPool.rollback(transaction);			
 			logger.warn("Can't store game event", e);
 		}
 	}
@@ -183,7 +185,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Remove online info from database.
 			 */
-			database.clearOnlineStatus();
+			DAORegister.get().get(StendhalWebsiteDAO.class).clearOnlineStatus();
 		} catch (final Exception e) {
 			logger.error("cannot set Context. exiting", e);
 			System.exit(-1);
@@ -448,7 +450,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			if (!player.isGhost()) {
 				notifyOnlineStatus(true, player.getName());
-				database.setOnlineStatus(player, true);
+				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
 
 			}
 			String[] params = {};
@@ -518,7 +520,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Player.destroy(player);
 			getOnlinePlayers().remove(player);
 
-			database.setOnlineStatus(player, false);
+			DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, false);
 			String[] params = {};
 			
 			new GameEvent(player.getName(), "logout", params).raise();

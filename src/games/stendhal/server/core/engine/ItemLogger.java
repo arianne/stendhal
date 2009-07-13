@@ -12,8 +12,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.db.StringChecker;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.StringChecker;
+import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
@@ -27,7 +28,7 @@ public class ItemLogger {
 	private static final String ATTR_ITEM_LOGID = "logid";
 	private static final Logger logger = Logger.getLogger(ItemLogger.class);
 	
-static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentLinkedQueue<ItemLogEntry>();
+	static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentLinkedQueue<ItemLogEntry>();
 	
 	public void addItemLogEntry(final ItemLogEntry logEntry) {
 		logEntryQueue.add(logEntry);
@@ -125,21 +126,18 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 			return;
 		}
 	
-		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 	
 			itemLogAssignIDIfNotPresent(transaction, logEntry.item);
 			itemLogWriteEntry(transaction, logEntry.item, logEntry.player, logEntry.event, logEntry.param1, logEntry.param2, logEntry.param3, logEntry.param4);
 	
-			transaction.commit();
+			TransactionPool.get().commit(transaction);
 		} catch (final SQLException e) {
 			logger.error(e, e);
-			try {
-				transaction.rollback();
-			} catch (final SQLException e1) {
-				logger.error(e1, e1);
-			}
+			TransactionPool.get().rollback(transaction);
 		}
+
 	}
 
 	/**
@@ -148,7 +146,7 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 	 * @param items item
 	 */
 	private void itemLogAssignIDIfNotPresent(final RPObject... items) {
-		final Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
+		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			for (final RPObject item : items) {
 				if (item.getRPClass().subclassOf("item")) {
@@ -156,14 +154,10 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 				}
 			}
 	
-			transaction.commit();
+			TransactionPool.get().commit(transaction);
 		} catch (final SQLException e) {
 			logger.error(e, e);
-			try {
-				transaction.rollback();
-			} catch (final SQLException e1) {
-				logger.error(e1, e1);
-			}
+			TransactionPool.get().rollback(transaction);
 		}
 	}
 
@@ -174,13 +168,13 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private void itemLogAssignIDIfNotPresent(final Transaction transaction, final RPObject item) throws SQLException {
+	private void itemLogAssignIDIfNotPresent(final DBTransaction transaction, final RPObject item) throws SQLException {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
 	
 		// increment the last_id value (or initialize it in case that table has 0 rows).
-		final int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
+		final int count = transaction.execute("UPDATE itemid SET last_id = last_id+1;", null);
 		if (count < 0) {
 			logger.error("Unexpected return value of execute method: " + count);
 		} else if (count == 0) {
@@ -188,12 +182,12 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 			// In case itemlog was emptied, too; this workaround does not work because
 			// there are still items with higher ids out there.
 			logger.warn("Initializing itemid table, this may take a few minutes in case this database is not empty.");
-			transaction.getAccessor().execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;");
+			transaction.execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;", null);
 			logger.warn("itemid initialized.");
 		}
 	
 		// read last_id from database
-		final int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
+		final int id = transaction.querySingleCellInt("SELECT last_id FROM itemid", null);
 		item.put(ATTR_ITEM_LOGID, id);
 		itemLogInsertName(transaction, item);
 	}
@@ -204,11 +198,11 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 	 * @param item
 	 * @throws SQLException
 	 */
-	private void itemLogInsertName(final Transaction transaction, final RPObject item) throws SQLException {
+	private void itemLogInsertName(final DBTransaction transaction, final RPObject item) throws SQLException {
 		itemLogWriteEntry(transaction, item, null, "register", getAttribute(item, "name"), getAttribute(item, "quantity"), getAttribute(item, "infostring"), getAttribute(item, "bound"));
 	}
 
-	private void itemLogWriteEntry(final Transaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
+	private void itemLogWriteEntry(final DBTransaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
@@ -223,7 +217,7 @@ static final ConcurrentLinkedQueue<ItemLogEntry> logEntryQueue = new ConcurrentL
 			+ StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" 
 			+ StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
 	
-		transaction.getAccessor().execute(query);
+		transaction.execute(query, null);
 	}
 	/**
 	 * gets an optional attribute .

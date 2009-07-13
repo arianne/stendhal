@@ -4,10 +4,11 @@ import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.server.game.db.DAORegister;
 
 public class GhostModeAction extends AdministrationAction {
 
@@ -36,8 +37,7 @@ public class GhostModeAction extends AdministrationAction {
 			
 		}
 		/* Notify database that the player is in Ghost mode */
-		final StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();		
-		database.setOnlineStatus(player, !player.isGhost());
+		DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, !player.isGhost());
 		
 		/* Notify players about admin going into ghost mode. */
 		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player.getName());
