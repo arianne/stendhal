@@ -2,11 +2,16 @@ package games.stendhal.server.entity.creature.impl;
 
 import static org.junit.Assert.assertFalse;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GandhiTest {
-
+	@BeforeClass
+	public static void beforeClass() {
+		MockStendlRPWorld.get();
+	}
 	
 	@Test
 	public void testAttack() {
