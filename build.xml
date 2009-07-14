@@ -717,6 +717,7 @@
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${easymock_jar}"/>
+				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${hamcrest_jar}"/>
 				<pathelement path="${log4j_jar}"/>
