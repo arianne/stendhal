@@ -10,6 +10,8 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.server.game.db.DatabaseFactory;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,6 +26,7 @@ public class StendhalRPActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
+		new DatabaseFactory().initializeDatabase();
 	}
 
 	@AfterClass
