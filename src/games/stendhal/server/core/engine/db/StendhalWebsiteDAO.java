@@ -25,6 +25,9 @@ import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
+/**
+ * database access for the redundant tables used on the website
+ */
 public class StendhalWebsiteDAO {
 	private static Logger logger = Logger.getLogger(StendhalWebsiteDAO.class);
 

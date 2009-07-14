@@ -21,6 +21,11 @@ import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
+/**
+ * database access for the hall of fame used in deathmatch
+ *
+ * @author hendrik
+ */
 public class StendhalHallOfFameDAO {
 	private static Logger logger = Logger.getLogger(StendhalHallOfFameDAO.class);
 

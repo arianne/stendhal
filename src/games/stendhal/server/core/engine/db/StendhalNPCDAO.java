@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
+/**
+ * database base access for the NPC dump used on the website
+ *
+ * @author hendrik
+ */
 public class StendhalNPCDAO {
 
 }

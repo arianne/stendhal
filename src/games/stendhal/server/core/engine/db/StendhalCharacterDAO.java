@@ -23,6 +23,10 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Stendhal epecific extensions to the normal CharacterDAO which will update
+ * the redundant tables for the web application.
+ */
 public class StendhalCharacterDAO extends CharacterDAO {
 	private static Logger logger = Logger.getLogger(StendhalCharacterDAO.class);
 

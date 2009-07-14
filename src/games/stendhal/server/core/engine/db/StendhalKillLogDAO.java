@@ -26,6 +26,11 @@ import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
+/**
+ * database access to the kill log
+ *
+ * @author hendrik
+ */
 public class StendhalKillLogDAO {
 	private static Logger logger = Logger.getLogger(StendhalKillLogDAO.class);
 
