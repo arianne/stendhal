@@ -72,7 +72,7 @@ public class AdosHouseSellerTest {
 	@Test
 	public void testGetHighestHouseNumber() {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
-		assertEquals(73, seller.getHighestHouseNumber());
+		assertEquals(77, seller.getHighestHouseNumber());
 		assertThat(seller.getLowestHouseNumber(), is(lessThan(seller.getHighestHouseNumber())));
 
 	}
