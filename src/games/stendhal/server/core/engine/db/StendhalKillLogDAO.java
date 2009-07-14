@@ -72,6 +72,7 @@ public class StendhalKillLogDAO {
 			logKill(transaction, killed, killer);
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
+			logger.error(e, e);
 			TransactionPool.get().rollback(transaction);
 		}
 	}
