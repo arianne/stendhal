@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 
@@ -19,6 +20,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 		generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
