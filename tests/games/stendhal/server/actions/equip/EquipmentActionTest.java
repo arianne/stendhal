@@ -11,6 +11,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -40,6 +41,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
+		new DatabaseFactory().initializeDatabase();
 		setupZone(ZONE_NAME);
 	}
 

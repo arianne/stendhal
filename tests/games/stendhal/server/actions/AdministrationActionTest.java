@@ -23,6 +23,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -39,6 +40,7 @@ public class AdministrationActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 		ArrestWarrentTestHelper.generateRPClasses();
 		CreatureTestHelper.generateRPClasses();
 		CorpseTestHelper.generateRPClasses();

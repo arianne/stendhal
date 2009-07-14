@@ -7,6 +7,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.game.RPAction;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,6 +18,7 @@ public class GhostModeActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 	}
 
