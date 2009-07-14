@@ -3,6 +3,7 @@ package games.stendhal.server.entity.mapstuff.portal;
 import static org.junit.Assert.*;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.game.RPClass;
 
@@ -13,6 +14,7 @@ public class GateTest {
 	
 	@BeforeClass
 	public static void setupBeforeClass() {
+		MockStendlRPWorld.get();
 		if (!RPClass.hasRPClass("gate")) {
 			Gate.generateGateRPClass();
 		}
