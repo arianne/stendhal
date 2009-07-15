@@ -247,7 +247,7 @@ public class EntityFactoryTest {
 		assertEquals("we should have created a Sign by now", Sign.class, en
 				.getClass());
 
-		rp = new MockRPObject("blackboard", null);
+		rp = new MockRPObject("rented_sign", null);
 
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
