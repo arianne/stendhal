@@ -1,9 +1,19 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
+
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObject;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
+import marauroa.server.game.db.CharacterDAO;
+import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
@@ -15,8 +25,6 @@ public class OfflineAdminlevel extends ScriptImpl {
 		super.execute(admin, args);
 		
 		// This code leaves the player as ghost in the world
-		
-		/*
 
 		// validate and read parameters
 		if (args.size() != 2) {
@@ -56,11 +64,18 @@ public class OfflineAdminlevel extends ScriptImpl {
 			TransactionPool.get().commit(transaction);
 
 			// log game event
-			new GameEvent(admin.getName(), ADMINLEVEL, playerName, ADMINLEVEL, newLevel).raise();
+			new GameEvent(admin.getName(), "adminlevel", playerName, "adminlevel", newLevel).raise();
+
+			// remove from world
+			IRPZone zone = StendhalRPWorld.get().getRPZone(object.getID());
+			if (zone != null) {
+				zone.remove(object.getID());
+			}
+
 		} catch (Exception e) {
 			logger.error(e, e);
 			admin.sendPrivateText(e.toString());
 			TransactionPool.get().rollback(transaction);
-		}*/
+		}
 	}
 }
