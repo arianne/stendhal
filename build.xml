@@ -60,7 +60,7 @@
 			byline="true"/>
 		<replaceregexp file="runserver.sh"
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
-			replace="STENDHAL_VERSION = &quot;${version}&quot;"
+			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
 
 		<!-- Update location of resources -->
