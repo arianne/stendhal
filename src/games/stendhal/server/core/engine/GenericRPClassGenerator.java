@@ -3,6 +3,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.server.core.engine.annotations.AttributeName;
 import games.stendhal.server.core.engine.annotations.RPClassAnnotation;
 import games.stendhal.server.core.engine.annotations.RPSlotAnnotation;
+import games.stendhal.server.entity.Entity;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -20,10 +21,15 @@ public class GenericRPClassGenerator {
 	private RPClass generatedRPClass;
 	
 	public void generate(final Class<?> clazz) {
+		if (!RPClass.hasRPClass("entity")) {
+			Entity.generateRPClass();
+		}
 		if(clazz.isAnnotationPresent(RPClassAnnotation.class)) {
 			this.generatedRPClass = new RPClass(clazz.getAnnotation(RPClassAnnotation.class).rpclassname());
 			final String isa = clazz.getAnnotation(RPClassAnnotation.class).isa();
-			this.generatedRPClass.isA(isa );
+			if(isa!=null) {
+				this.generatedRPClass.isA(isa );				
+			}
 			this.handleAttributes(clazz);
 		}
 	}

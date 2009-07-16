@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
