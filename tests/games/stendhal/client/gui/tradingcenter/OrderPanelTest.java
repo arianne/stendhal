@@ -7,7 +7,11 @@ import javax.swing.JFrame;
 import marauroa.common.game.RPObject;
 
 import org.junit.Test;
-
+/**
+ * Just a simple test class to show an example dialogue
+ * 
+ * @author madmetzger
+ */
 public class OrderPanelTest {
 	
 	public static void main(final String[] args) {
