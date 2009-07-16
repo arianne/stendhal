@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 
 import marauroa.common.game.RPObject;
 
+import org.junit.Test;
+
 public class OrderPanelTest {
 	
 	public static void main(final String[] args) {
@@ -23,5 +25,10 @@ public class OrderPanelTest {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
     }
+	
+	@Test
+	public void testDummyMethod() throws Exception {
+		//this is just a dummy to prevent errors 
+	}
 	
 }
