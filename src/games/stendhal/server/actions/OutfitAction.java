@@ -34,9 +34,9 @@ public class OutfitAction implements ActionListener {
 	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 			final Outfit outfit = new Outfit(action.getInt(VALUE));
 			if (outfit.isChoosableByPlayers()) {
+				new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
 			}
 		}
