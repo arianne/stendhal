@@ -26,6 +26,23 @@ public abstract class Path {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Path.class);
+	
+	/**
+	 * Get a reasonable maximum path lenght to search
+	 * 
+	 * @param entity moving Entity
+	 * @param x destination x
+	 * @param y destination y
+	 * @return distance
+	 */
+	private static int defaultMaximumDistance(final Entity entity, final int x, final int y) {
+		/*
+		 * Pathfinding can be expensive for long distances, 
+		 * so don't allow arbitrary length searches.
+		 */
+		int manhattan = Math.abs(x - entity.getX()) + Math.abs(y - entity.getY());
+		return Math.max(2 * manhattan, 40);
+	}
 
 	//
 	// Path
@@ -36,21 +53,16 @@ public abstract class Path {
 	 * 
 	 * @param entity
 	 *            the Entity
-	 * @param x
-	 *            start x
-	 * @param y
-	 *            start y
-	 * @param destination 
+	 * @param ex 
+	 *            destination x
+	 * @param ey
+	 *            destination y
+	 *             
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(final Entity entity, final int x, final int y,
-			final Rectangle2D destination) {
-		return searchPath(entity, x, y, destination, -1.0);
-	}
-
 	public static List<Node> searchPath(final Entity entity, final int ex, final int ey) {
 		return searchPath(entity, entity.getX(), entity.getY(), entity.getArea(
-				ex, ey), -1.0);
+				ex, ey), defaultMaximumDistance(entity, ex, ey));
 	}
 
 	/**
@@ -117,20 +129,6 @@ public abstract class Path {
 		}
 
 		return resultPath;
-	}
-
-	/**
-	 * Finds a path for the Entity <code>entity</code> to (or next to) the
-	 * other Entity <code>dest</code>.
-	 * 
-	 * @param entity
-	 *            the Entity (also start point)
-	 * @param dest
-	 *            the destination Entity
-	 * @return a list with the path nodes or an empty list if no path is found
-	 */
-	static List<Node> searchPath(final Entity entity, final Entity dest) {
-		return searchPath(entity, dest, -1.0);
 	}
 
 	/**
