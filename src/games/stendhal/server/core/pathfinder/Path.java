@@ -147,15 +147,16 @@ public abstract class Path {
 	 */
 	public static List<Node> searchPath(final Entity entity, final Entity dest,
 			final double maxDistance) {
-		final Rectangle2D area = dest.getArea(dest.getX(), dest.getY());
-
 		/*
-		 * Expand area by surounding tiles.
+		 * Choose destination area so that the result corresponds to 
+		 * any part of the entities being next to each other
 		 */
-		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-				((int) area.getX()) - 1, ((int) area.getY()) - 1,
-				((int) area.getWidth()) + 2, ((int) area.getHeight()) + 2),
-				maxDistance);
+		final Rectangle2D area = new Rectangle((int) (dest.getX() - entity.getWidth()), 
+				(int) (dest.getY() - entity.getHeight()),
+				(int) (dest.getWidth() + entity.getWidth() + 1), 
+				(int) (dest.getHeight() + entity.getHeight() + 1));
+		
+		return searchPath(entity, entity.getX(), entity.getY(), area, maxDistance);
 	}
 
 	/**
