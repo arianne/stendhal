@@ -126,7 +126,7 @@ class Pathfinder {
 
 	/**
 	 * The maximum distance for the path. It is compared with the f value of the
-	 * node The default is 40 The minimum for working pathfinding is
+	 * node. The minimum for working pathfinding is
 	 * heuristicFromStartNode + 1
 	 */
 	private final double maxDistance;
