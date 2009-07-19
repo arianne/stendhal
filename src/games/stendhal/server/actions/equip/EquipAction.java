@@ -63,7 +63,7 @@ public class EquipAction extends EquipmentAction {
 			// we could of course specifically preclude dropping into corpses, but that is undesirable.
 			if (dest.isContainerCorpse() && !source.isContainerCorpse()) {
 					player.sendPrivateText("For your information, you just dropped " 
-							+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse you are stood next to.");
+							+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse next to you.");
 			}
 			
 			new GameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
