@@ -65,7 +65,7 @@ public class StendhalPlayerDatabase {
 	public void initialize() {
 		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			JDBCSQLHelper.get().runDBScript(transaction, "games/stendhal/server/stendhal_init.sql");
+			new JDBCSQLHelper(transaction).runDBScript("games/stendhal/server/stendhal_init.sql");
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);
