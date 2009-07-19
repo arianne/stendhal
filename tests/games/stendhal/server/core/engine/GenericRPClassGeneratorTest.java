@@ -1,6 +1,9 @@
 package games.stendhal.server.core.engine;
 
-import games.stendhal.server.entity.Entity;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
@@ -8,11 +11,6 @@ import marauroa.common.game.Definition.DefinitionClass;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 
 public class GenericRPClassGeneratorTest {
