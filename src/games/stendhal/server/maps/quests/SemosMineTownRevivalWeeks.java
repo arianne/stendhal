@@ -86,8 +86,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					null);
 				
 				addReply("puzzle", "Gamblos has nine tokens on the floor arranged into a triangle with the point downwards."
-						 + " The puzzle is to try to make it into an triangle pointing upwards by moving only three tokens!"
-						 + " Just remember, you must be stood next to the token to move it.");
+						 + " The puzzle is to try to make it into a triangle pointing upwards by moving only three tokens!"
+						 + " Just remember, you must stand next to the token to move it.");
 				
 				// friends
 				add(ConversationStates.ATTENDING, Arrays.asList("friend",
