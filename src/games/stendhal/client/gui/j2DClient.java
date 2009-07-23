@@ -219,7 +219,7 @@ public class j2DClient {
 		 */
 		final JPanel groundPanel = new JPanel();
 		groundPanel.setLayout(null);
-		groundPanel.setPreferredSize(stendhal.screenSize);
+		groundPanel.setSize(stendhal.screenSize);
 		pane.add(groundPanel, JLayeredPane.DEFAULT_LAYER);
 
 		/*
