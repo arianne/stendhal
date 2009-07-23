@@ -6,6 +6,11 @@ Changelog
 - trade center in progress
 - corpses redrawn and new kinds added
 
+
+0.76
+- ported to the latest release of marauroa with supports multi threaded database access
+- support for OpenJDK IcedTea (thanks to omair)
+
 0.75
 - the corpse of a raid creature can only be looted by player that the raid creature attacked
 - min level for items which makes them less effective if player is less then min level for using item
