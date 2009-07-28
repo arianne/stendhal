@@ -19,7 +19,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -46,6 +45,11 @@ public class Corpse extends PassiveEntity implements
 	 * The name attribute name.
 	 */
 	protected static final String ATTR_NAME = "name";
+	
+	/**
+	 * The image name
+	 */
+	private static final String ATTR_IMAGE = "image";
 
 	private static final Logger logger = Logger.getLogger(Corpse.class);
 
@@ -85,30 +89,11 @@ public class Corpse extends PassiveEntity implements
 
 		entity.addAttribute(ATTR_NAME, Type.STRING);
 		entity.addAttribute(ATTR_KILLER, Type.STRING);
+		entity.addAttribute(ATTR_IMAGE, Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
-
-	private void decideSize(final String clazz) {
-		//TODO: this should be part of the creatures.xml 
-		
-		
-		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
-				|| clazz.equals("huge_animal") || clazz.equals("boss")
-				|| clazz.equals("giant_troll") || clazz.equals("giant_madaram")
-				|| clazz.equals("huge_hybrid")) {
-			setSize(2, 2);
-		} else if (clazz.equals("huger_animal") || clazz.equals("huger_hybrid")) {
-			setSize(4, 4);
-		} else if (clazz.equals("mythical_animal")) {
-			setSize(6, 6);
-		} else if (clazz.equals("enormous_creature")) {
-			setSize(16, 16);
-		} else {
-			setSize(1, 1);
-		}
-	}
-
+	
 	/**
 	 * non rotting corpse.
 	 * 
@@ -122,28 +107,14 @@ public class Corpse extends PassiveEntity implements
 
 		setEntityClass(clazz);
 
-		decideSize(clazz);
-
 		setPosition(x, y);
 		stage = 0;
 		put("stage", stage);
+		// default to player corpse image
+		put(ATTR_IMAGE, "player");
 
 		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
-	}
-
-	/**
-	 * Create a corpse.
-	 * 
-	 * @param victim
-	 *            The killed entity.
-	 * @param killer
-	 *            The killer entity.
-	 * 
-	 * 
-	 */
-	public Corpse(final RPEntity victim, final Entity killer) {
-		this(victim, killer.getTitle());
 	}
 
 	/**
@@ -165,8 +136,9 @@ public class Corpse extends PassiveEntity implements
 		} else {
 			setEntityClass(victim.get("type"));
 		}
-
-		decideSize(get("class"));
+		
+		put(ATTR_IMAGE, victim.getCorpseName());
+		setSize(victim.getCorpseWidth(), victim.getCorpseHeight());
 
 		if ((killerName != null) && (victim instanceof Player)) {
 			put(ATTR_NAME, victim.getTitle());

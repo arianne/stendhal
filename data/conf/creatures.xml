@@ -14,6 +14,7 @@
     <level value="0"/>
     <experience value="0"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,3]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
@@ -42,6 +43,7 @@
     <level value="0"/>
     <experience value="5"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="meat" quantity="[1,1]" probability="60.0"/>
     </drops>
@@ -70,6 +72,7 @@
     <level value="0"/>
     <experience value="5"/>
     <respawn value="900"/>
+	<corpse name="small_animal"/>
     <drops>
       <item value="cheese" quantity="[1,1]" probability="50.0"/>
       <item value="money" quantity="[1,3]" probability="70.0"/>
@@ -101,6 +104,7 @@
     <level value="0"/>
     <experience value="5"/>
     <respawn value="900"/>
+   	<corpse name="small_animal"/>
     <drops>
       <item value="cheese" quantity="[1,2]" probability="100.0"/>
      </drops>
@@ -130,6 +134,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
+   	<corpse name="small_animal"/>
     <drops>
       <item value="chicken" quantity="[1,1]" probability="70.0"/>
     </drops>
@@ -160,6 +165,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
+   	<corpse name="animal"/>
     <drops>
       <item value="ham" quantity="[1,1]" probability="70.0"/>
     </drops>
@@ -189,6 +195,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
+   	<corpse name="small_animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -214,6 +221,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
+	<corpse name="small_animal"/>    
     <drops>
       <item value="chicken" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -244,6 +252,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
+   	<corpse name="small_animal"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="70.0"/>
     </drops>
@@ -273,6 +282,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[1,6]" probability="90.0"/>
       <item value="cheese" quantity="[1,2]" probability="60.0"/>
@@ -300,6 +310,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="meat" quantity="[2,4]" probability="60.0"/>
       <item value="cod" quantity="[2,3]" probability="30.0"/>
@@ -330,6 +341,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="40.0"/>
     </drops>
@@ -356,6 +368,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
@@ -386,6 +399,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="ham" quantity="[1,1]" probability="40.0"/>
     </drops>
@@ -414,6 +428,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,1]" probability="40.0"/>
     </drops>
@@ -441,6 +456,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
@@ -471,6 +487,7 @@
     <experience value="20"/>
     <!-- once in a month -->
     <respawn value="8640000"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
@@ -501,6 +518,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
     </drops>
@@ -526,6 +544,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="wood" quantity="[1,2]" probability="20.0"/>
@@ -552,6 +571,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
     </drops>
@@ -579,6 +599,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
     </drops>
@@ -604,6 +625,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
     </drops>
@@ -632,6 +654,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
     </drops>
@@ -660,6 +683,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="minor potion" quantity="[1,1]" probability="5.0"/>
@@ -693,6 +717,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="antidote" quantity="[1,1]" probability="10.0"/>
@@ -725,6 +750,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[2,8]" probability="70.0"/>
       <item value="ham" quantity="[1,3]" probability="45.0"/>
@@ -754,6 +780,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="50.0"/>
       <item value="ham" quantity="[1,1]" probability="30.0"/>
@@ -783,6 +810,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,3]" probability="50.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
@@ -812,6 +840,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,3]" probability="80.0"/>
     </drops>
@@ -840,6 +869,7 @@
     <level value="3"/>
     <experience value="30"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="60.0"/>
       <item value="poison" quantity="[1,1]" probability="10.0"/>
@@ -870,6 +900,7 @@
     <level value="3"/>
     <experience value="30"/>
     <respawn value="900"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="60.0"/>
       <item value="poison" quantity="[1,1]" probability="10.0"/>
@@ -900,6 +931,7 @@
     <level value="4"/>
     <experience value="40"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[3,7]" probability="50.0"/>
       <item value="ham" quantity="[1,3]" probability="30.0"/>
@@ -929,6 +961,7 @@
     <level value="4"/>
     <experience value="40"/>
     <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[2,6]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
@@ -958,6 +991,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
       <item value="pie" quantity="[1,1]" probability="1.0"/>
@@ -994,6 +1028,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
       <item value="leather legs" quantity="[1,1]" probability="10.0"/>
@@ -1030,6 +1065,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,10]" probability="100.0"/>
       <item value="ham" quantity="[2,8]" probability="70.0"/>
@@ -1060,6 +1096,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="100.0"/>
       <item value="cheese" quantity="[1,3]" probability="50.0"/>
@@ -1089,6 +1126,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[1,6]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
@@ -1118,6 +1156,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[4,10]" probability="70.0"/>
       <item value="carrot" quantity="[2,10]" probability="20.0"/>
@@ -1151,6 +1190,7 @@
     <level value="5"/>
     <experience value="55"/>
     <respawn value="1200"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[6,14]" probability="70.0"/>
       <item value="chain boots" quantity="[1,1]" probability="15.0"/>
@@ -1183,6 +1223,7 @@
     <level value="6"/>
     <experience value="60"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
@@ -1218,6 +1259,7 @@
     <level value="6"/>
     <experience value="60"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
     </drops>
@@ -1243,6 +1285,7 @@
     <level value="6"/>
     <experience value="60"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
     </drops>
@@ -1271,6 +1314,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="100.0"/>
       <item value="cheese" quantity="[2,5]" probability="50.0"/>
@@ -1303,6 +1347,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,11]" probability="90.0"/>
       <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
@@ -1339,6 +1384,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,11]" probability="90.0"/>
       <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
@@ -1375,6 +1421,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="bat entrails" quantity="[1,1]" probability="60.0"/>
@@ -1401,6 +1448,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -1427,6 +1475,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
@@ -1463,6 +1512,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="meat" quantity="[3,12]" probability="60.0"/>
       <item value="ham" quantity="[2,4]" probability="40.0"/>
@@ -1492,6 +1542,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,12]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="30.0"/>
@@ -1518,6 +1569,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
+    <corpse name="small_animal"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
       <item value="cheese" quantity="[1,3]" probability="50.0"/>
@@ -1545,6 +1597,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="30.0"/>
       <item value="sandwich" quantity="[1,1]" probability="2.0"/>
@@ -1577,6 +1630,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,13]" probability="100.0"/>
       <item value="chain armor" quantity="[1,1]" probability="1.0"/>
@@ -1608,6 +1662,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[6,13]" probability="100.0"/>
     </drops>
@@ -1633,6 +1688,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,13]" probability="90.0"/>
       <item value="plate shield" quantity="[1,1]" probability="5.0"/>
@@ -1668,6 +1724,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,13]" probability="90.0"/>
       <item value="wooden shield" quantity="[1,1]" probability="10.0"/>
@@ -1702,6 +1759,7 @@
     <level value="10"/>
     <experience value="110"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1731,6 +1789,7 @@
     <level value="10"/>
     <experience value="110"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1760,6 +1819,7 @@
     <level value="10"/>
     <experience value="110"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
@@ -1788,6 +1848,7 @@
     <level value="11"/>
     <experience value="120"/>
     <respawn value="1210"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="fairy cake" quantity="[1,2]" probability="20.0"/>
@@ -1814,6 +1875,7 @@
     <level value="12"/>
     <experience value="130"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,19]" probability="100.0"/>
       <item value="hammer" quantity="[1,1]" probability="7.0"/>
@@ -1845,6 +1907,7 @@
     <level value="12"/>
     <experience value="130"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="studded armor" quantity="[1,1]" probability="10.0"/>
@@ -1873,6 +1936,7 @@
     <level value="12"/>
     <experience value="130"/>
     <respawn value="1210"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="50.0"/>
       <item value="beer" quantity="[2,5]" probability="10.0"/>
@@ -1906,6 +1970,7 @@
     <level value="12"/>
     <experience value="130"/>
     <respawn value="1210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="8.0"/>
@@ -1941,6 +2006,7 @@
     <level value="13"/>
     <experience value="150"/>
     <respawn value="1220"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="8.0"/>
@@ -1977,6 +2043,7 @@
     <level value="14"/>
     <experience value="160"/>
     <respawn value="1220"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="3.0"/>
@@ -2008,6 +2075,7 @@
     <level value="14"/>
     <experience value="160"/>
     <respawn value="1220"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="4.0"/>
@@ -2039,13 +2107,13 @@
     <level value="14"/>
     <experience value="160"/>
     <respawn value="1220"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,15]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="2.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
       <item value="wooden arrow" quantity="[4,12]" probability="10.0"/>
       <item value="chain boots" quantity="[1,1]" probability="5.0"/>
-
       <item value="wooden bow" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
@@ -2073,6 +2141,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,23]" probability="100.0"/>
     </drops>
@@ -2102,6 +2171,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
@@ -2130,6 +2200,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
@@ -2162,6 +2233,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1200"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
@@ -2195,6 +2267,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[9,22]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2227,6 +2300,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
@@ -2264,6 +2338,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
@@ -2299,6 +2374,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="30.0"/>
@@ -2325,6 +2401,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[3,12]" probability="100.0"/>
       <item value="meat" quantity="[3,7]" probability="80.0"/>
@@ -2357,6 +2434,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
@@ -2387,6 +2465,7 @@
     <level value="16"/>
     <experience value="200"/>
     <respawn value="1230"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -2413,6 +2492,7 @@
     <level value="16"/>
     <experience value="200"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="90.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2444,6 +2524,7 @@
     <level value="16"/>
     <experience value="200"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
@@ -2476,6 +2557,7 @@
     <level value="16"/>
     <experience value="200"/>
     <respawn value="1230"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,17]" probability="90.0"/>
       <item value="scale armor" quantity="[1,1]" probability="3.0"/>
@@ -2505,6 +2587,7 @@
     <level value="17"/>
     <experience value="210"/>
     <respawn value="1240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,27]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="4.0"/>
@@ -2534,6 +2617,7 @@
     <level value="17"/>
     <experience value="210"/>
     <respawn value="1240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="5.0"/>
@@ -2541,7 +2625,6 @@
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.05"/>
       <item value="steel boots" quantity="[1,1]" probability="0.5"/>
       <item value="chain helmet" quantity="[1,1]" probability="5.0"/>
-
       <item value="sword" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
@@ -2567,6 +2650,7 @@
     <level value="18"/>
     <experience value="230"/>
     <respawn value="1240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="9.0"/>
@@ -2599,6 +2683,7 @@
     <level value="18"/>
     <experience value="230"/>
     <respawn value="1240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="7.0"/>
@@ -2606,7 +2691,6 @@
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.35"/>
       <item value="elvish boots" quantity="[1,1]" probability="0.25"/>
       <item value="elvish shield" quantity="[1,1]" probability="0.02"/>
-
       <item value="lion shield" quantity="[1,1]" probability="0.5"/>
       <item value="scimitar" quantity="[1,1]" probability="1.0"/>
     </drops>
@@ -2633,6 +2717,7 @@
     <level value="18"/>
     <experience value="230"/>
     <respawn value="1240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[9,25]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="7.0"/>
@@ -2642,7 +2727,6 @@
       <item value="golden mace" quantity="[1,1]" probability="0.5"/>
       <item value="steel boots" quantity="[1,1]" probability="1.0"/>
       <item value="viking helmet" quantity="[1,1]" probability="3.0"/>
-
     </drops>
     <equips>
     </equips>
@@ -2667,6 +2751,7 @@
     <level value="19"/>
     <experience value="250"/>
     <respawn value="1250"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,20]" probability="100.0"/>
       <item value="elvish legs" quantity="[1,1]" probability="5.0"/>
@@ -2702,6 +2787,7 @@
     <level value="19"/>
     <experience value="250"/>
     <respawn value="1250"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="4.0"/>
@@ -2730,6 +2816,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[9,30]" probability="100.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="5.0"/>
@@ -2763,6 +2850,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="75.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -2792,6 +2880,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,40]" probability="70.0"/>
       <item value="pie" quantity="[1,1]" probability="5.0"/>
@@ -2827,6 +2916,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,20]" probability="75.0"/>
     </drops>
@@ -2851,6 +2941,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="0.5"/>
@@ -2879,6 +2970,7 @@
     <level value="20"/>
     <experience value="300"/>
     <respawn value="960"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="minor potion" quantity="[1,3]" probability="10.0"/>
@@ -2911,6 +3003,7 @@
     <level value="21"/>
     <experience value="300"/>
     <respawn value="1260"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="8.0"/>
@@ -2945,6 +3038,9 @@
     <level value="21"/>
     <experience value="300"/>
     <respawn value="1260"/>
+    <!-- a corpse with a skull is somewhat inapropriate for a headless monster, 
+    	but we don't have anything better -->
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="10.0"/>
@@ -2972,6 +3068,7 @@
     <level value="22"/>
     <experience value="320"/>
     <respawn value="1270"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
       <item value="battle axe" quantity="[1,1]" probability="2.0"/>
@@ -2999,6 +3096,7 @@
     <level value="23"/>
     <experience value="350"/>
     <respawn value="1280"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,29]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="4.0"/>
@@ -3032,6 +3130,7 @@
     <level value="23"/>
     <experience value="350"/>
     <respawn value="1280"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="90.0"/>
       <item value="sandwich" quantity="[1,1]" probability="40.0"/>
@@ -3063,6 +3162,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
     </drops>
@@ -3089,6 +3189,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
       <item value="wood" quantity="[1,2]" probability="15.0"/>
@@ -3117,6 +3218,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="3.0"/>
@@ -3146,6 +3248,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,37]" probability="100.0"/>
       <item value="onion" quantity="[1,1]" probability="18.0"/>
@@ -3179,6 +3282,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="10.0"/>
@@ -3216,6 +3320,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="4.5"/>
@@ -3248,6 +3353,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
       <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
@@ -3278,6 +3384,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="5.0"/>
@@ -3307,6 +3414,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="greater poison" quantity="[1,1]" probability="10.0"/>
@@ -3336,6 +3444,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="meat" quantity="[1,5]" probability="10.0"/>
@@ -3370,6 +3479,7 @@
     <level value="26"/>
     <experience value="430"/>
     <respawn value="1310"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="trout" quantity="[1,1]" probability="10.0"/>
@@ -3397,6 +3507,7 @@
     <level value="26"/>
     <experience value="430"/>
     <respawn value="1310"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="5.0"/>
@@ -3430,6 +3541,7 @@
     <level value="26"/>
     <experience value="430"/>
     <respawn value="1310"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="cherry" quantity="[1,2]" probability="30.0"/>
@@ -3456,6 +3568,7 @@
     <level value="27"/>
     <experience value="460"/>
     <respawn value="1320"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="80.0"/>
       <item value="potion" quantity="[1,1]" probability="50.0"/>
@@ -3490,6 +3603,7 @@
     <level value="27"/>
     <experience value="460"/>
     <respawn value="1320"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,35]" probability="100.0"/>
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="15.0"/>
@@ -3522,6 +3636,7 @@
     <level value="28"/>
     <experience value="490"/>
     <respawn value="1330"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="home scroll" quantity="[1,1]" probability="10.0"/> 
@@ -3548,6 +3663,7 @@
     <level value="28"/>
     <experience value="490"/>
     <respawn value="1300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="dagger" quantity="[1,1]" probability="3.0"/>
@@ -3574,6 +3690,7 @@
     <level value="29"/>
     <experience value="530"/>
     <respawn value="1340"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,33]" probability="90.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.025"/>
@@ -3602,6 +3719,7 @@
     <level value="29"/>
     <experience value="530"/>
     <respawn value="1310"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="cloak" quantity="[1,1]" probability="10.0"/>
@@ -3629,6 +3747,7 @@
     <level value="30"/>
     <experience value="570"/>
     <respawn value="1350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="2.5"/>
@@ -3660,6 +3779,7 @@
     <level value="30"/>
     <experience value="570"/>
     <respawn value="980"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="90.0"/>
       <item value="pie" quantity="[1,1]" probability="30.0"/>
@@ -3691,6 +3811,7 @@
     <level value="30"/>
     <experience value="570"/>
     <respawn value="1350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,35]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="2.0"/>
@@ -3725,6 +3846,7 @@
     <level value="30"/>
     <experience value="570"/>
     <respawn value="1350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,39]" probability="100.0"/>
       <item value="wooden spear" quantity="[1,3]" probability="40.0"/>
@@ -3755,6 +3877,7 @@
     <level value="31"/>
     <experience value="600"/>
     <respawn value="1370"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="12.0"/>
@@ -3788,6 +3911,7 @@
     <level value="31"/>
     <experience value="600"/>
     <respawn value="1370"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="100.0"/>
       <item value="studded boots" quantity="[1,1]" probability="20.0"/>
@@ -3816,10 +3940,10 @@
     <level value="32"/>
     <experience value="640"/>
     <respawn value="1380"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,27]" probability="100.0"/>
       <item value="stone cloak" quantity="[1,1]" probability="2.5"/>
-
       <item value="stone boots" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
@@ -3846,6 +3970,7 @@
     <level value="32"/>
     <experience value="640"/>
     <respawn value="1380"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -3853,7 +3978,6 @@
       <item value="battle axe" quantity="[1,1]" probability="4.5"/>
       <item value="potion" quantity="[1,2]" probability="1.5"/>
       <item value="crown shield" quantity="[1,1]" probability="4.5"/>
-
     </drops>
     <equips>
     </equips>
@@ -3877,6 +4001,7 @@
     <level value="33"/>
     <experience value="640"/>
     <respawn value="1380"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
     </drops>
@@ -3902,6 +4027,7 @@
     <level value="33"/>
     <experience value="640"/>
     <respawn value="1380"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,1]" probability="30.0"/>
@@ -3931,6 +4057,7 @@
     <level value="34"/>
     <experience value="730"/>
     <respawn value="1410"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="axe" quantity="[1,1]" probability="20.0"/>
@@ -3959,6 +4086,7 @@
     <level value="34"/>
     <experience value="730"/>
     <respawn value="1410"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="cod" quantity="[1,4]" probability="20.0"/>
@@ -3985,6 +4113,7 @@
     <level value="35"/>
     <experience value="770"/>
     <respawn value="1420"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
       <item value="blue elf cloak" quantity="[1,1]" probability="1.0"/>
@@ -3992,7 +4121,6 @@
       <item value="scimitar" quantity="[1,1]" probability="6.0"/>
       <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
       <item value="elvish shield" quantity="[1,1]" probability="1.0"/>
-
     </drops>
     <equips>
       <slot name="rhand" item="elvish sword"/>
@@ -4018,6 +4146,7 @@
     <level value="35"/>
     <experience value="770"/>
     <respawn value="1420"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="8.0"/>
@@ -4028,7 +4157,6 @@
       <item value="stone cloak" quantity="[1,1]" probability="0.5"/>
       <item value="potion" quantity="[1,2]" probability="1.5"/>
       <item value="crown shield" quantity="[1,1]" probability="4.5"/>
-
     </drops>
     <equips>
     </equips>
@@ -4052,6 +4180,7 @@
     <level value="35"/>
     <experience value="770"/>
     <respawn value="1420"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[8,35]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4059,7 +4188,6 @@
       <item value="black sword" quantity="[1,1]" probability="0.0025"/>
       <item value="black shield" quantity="[1,1]" probability="0.0025"/>
       <item value="viking helmet" quantity="[1,1]" probability="5.0"/>
-
     </drops>
     <equips>
     </equips>
@@ -4084,6 +4212,7 @@
     <level value="35"/>
     <experience value="770"/>
     <respawn value="1420"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[7,48]" probability="100.0"/>
       <item value="potion" quantity="[1,3]" probability="20.0"/>
@@ -4115,6 +4244,7 @@
     <level value="36"/>
     <experience value="850"/>
     <respawn value="1380"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,50]" probability="90.0"/>
       <item value="aventail" quantity="[1,1]" probability="10.0"/>
@@ -4141,6 +4271,7 @@
     <level value="36"/>
     <experience value="810"/>
     <respawn value="1520"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4171,6 +4302,7 @@
     <level value="37"/>
     <experience value="870"/>
     <respawn value="1460"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="7.0"/>
@@ -4203,6 +4335,7 @@
     <level value="37"/>
     <experience value="870"/>
     <respawn value="1460"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="pauldroned leather cuirass" quantity="[1,1]" probability="20.0"/>
@@ -4231,6 +4364,7 @@
     <level value="37"/>
     <experience value="900"/>
     <respawn value="1500"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="5.0"/>
@@ -4259,6 +4393,7 @@
     <level value="37"/>
     <experience value="900"/>
     <respawn value="3050"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[40,75]" probability="80.0"/>
       <item value="wine" quantity="[3,6]" probability="40.0"/>
@@ -4290,10 +4425,10 @@
     <level value="38"/>
     <experience value="920"/>
     <respawn value="1480"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="morning star" quantity="[1,1]" probability="2.0"/>
-
       <item value="pauldroned iron cuirass" quantity="[1,1]" probability="10.5"/>
       <item value="greater poison" quantity="[1,2]" probability="10.0"/>
     </drops>
@@ -4323,6 +4458,7 @@
     <level value="38"/>
     <experience value="920"/>
     <respawn value="1460"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,40]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
@@ -4353,6 +4489,7 @@
     <level value="39"/>
     <experience value="980"/>
     <respawn value="1500"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,20]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="10.0"/>
@@ -4384,6 +4521,7 @@
     <level value="39"/>
     <experience value="990"/>
     <respawn value="1500"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,3]" probability="10.0"/>
@@ -4413,6 +4551,7 @@
     <level value="40"/>
     <experience value="1040"/>
     <respawn value="1520"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -4443,6 +4582,7 @@
     <level value="40"/>
     <experience value="1040"/>
     <respawn value="1520"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,20]" probability="100.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="0.5"/>
@@ -4472,11 +4612,11 @@
     <level value="40"/>
     <experience value="900"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="steel arrow" quantity="[1,15]" probability="10.0"/>
       <item value="longbow" quantity="[1,1]" probability="5.0"/>
-
     </drops>
     <equips>
       <slot name="lhand" item="steel arrow" quantity="10000"/>
@@ -4504,6 +4644,7 @@
     <level value="40"/>
     <experience value="900"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="golden arrow" quantity="[5,15]" probability="5.0"/>
@@ -4535,6 +4676,7 @@
     <level value="40"/>
     <experience value="920"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,40]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="10.5"/>
@@ -4570,6 +4712,7 @@
     <level value="41"/>
     <experience value="1090"/>
     <respawn value="1640"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
       <item value="ugmash" quantity="[1,1]" probability="0.001"/>
@@ -4599,6 +4742,7 @@
     <level value="41"/>
     <experience value="1090"/>
     <respawn value="1640"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="sandwich" quantity="[1,1]" probability="5.0"/>
@@ -4627,6 +4771,7 @@
     <level value="41"/>
     <experience value="1090"/>
     <respawn value="1640"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>      
       <item value="enhanced mace" quantity="[1,1]" probability="15.5"/>
@@ -4655,6 +4800,7 @@
     <level value="42"/>
     <experience value="1160"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="demon sword" quantity="[1,1]" probability="1.0"/>
@@ -4686,6 +4832,7 @@
     <level value="42"/>
     <experience value="1160"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
     </drops>
@@ -4715,6 +4862,7 @@
     <level value="42"/>
     <experience value="960"/>
     <respawn value="1630"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="90.0"/>
       <item value="studded armor" quantity="[1,1]" probability="2.0"/>
@@ -4747,6 +4895,7 @@
     <level value="42"/>
     <experience value="1100"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
@@ -4776,6 +4925,7 @@
     <level value="43"/>
     <experience value="1220"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,13]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="5.0"/>
@@ -4804,6 +4954,7 @@
     <level value="43"/>
     <experience value="1220"/>
     <respawn value="1680"/>
+    <corpse name="tiny_humanoid"/>
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
       <item value="elvish armor" quantity="[1,1]" probability="0.05"/>
@@ -4834,6 +4985,7 @@
     <level value="43"/>
     <experience value="1120"/>
     <respawn value="1680"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,45]" probability="100.0"/>
       <item value="meat" quantity="[2,6]" probability="22.5"/>
@@ -4867,6 +5019,7 @@
     <level value="43"/>
     <experience value="1100"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
@@ -4897,6 +5050,7 @@
     <level value="44"/>
     <experience value="1290"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="antidote" quantity="[1,2]" probability="30.0"/>
@@ -4924,6 +5078,7 @@
     <level value="44"/>
     <experience value="1290"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="50.0"/>
@@ -4952,6 +5107,7 @@
     <level value="44"/>
     <experience value="1290"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -4981,6 +5137,7 @@
     <level value="45"/>
     <experience value="1360"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,27]" probability="100.0"/>
       <item value="snowball" quantity="[1,4]" probability="75"/>
@@ -5011,6 +5168,7 @@
     <level value="45"/>
     <experience value="1360"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,55]" probability="100.0"/>
       <item value="blue elf cloak" quantity="[1,1]" probability="2.5"/>
@@ -5040,6 +5198,7 @@
     <level value="45"/>
     <experience value="1360"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,46]" probability="100.0"/>
       <item value="empty scroll" quantity="[1,1]" probability="1.0"/>
@@ -5073,6 +5232,7 @@
     <level value="45"/>
     <experience value="1400"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[20,50]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="15.5"/>
@@ -5109,6 +5269,7 @@
     <level value="46"/>
     <experience value="1430"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.25"/>
@@ -5138,6 +5299,7 @@
     <level value="46"/>
     <experience value="1430"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="golden boots" quantity="[1,1]" probability="0.9"/>
@@ -5169,14 +5331,13 @@
     <level value="47"/>
     <experience value="1500"/>
     <respawn value="1670"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
       <item value="longbow" quantity="[1,1]" probability="0.5"/>
-
       <item value="wooden arrow" quantity="[5,15]" probability="10.0"/>
       <item value="shadow boots" quantity="[1,1]" probability="0.25"/>
       <item value="crossbow" quantity="[1,1]" probability="3.5"/>
-
       <item value="hunter crossbow" quantity="[1,1]" probability="5.0E-4"/>
     </drops>
     <equips>
@@ -5208,6 +5369,7 @@
     <level value="48"/>
     <experience value="1580"/>
     <respawn value="1610"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="broadsword" quantity="[1,1]" probability="5.0"/>
@@ -5236,6 +5398,7 @@
     <level value="48"/>
     <experience value="1580"/>
     <respawn value="1610"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[8,43]" probability="100.0"/>
       <item value="nalwor city scroll" quantity="[1,1]" probability="5.0"/>
@@ -5264,6 +5427,7 @@
     <level value="48"/>
     <experience value="1580"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -5297,6 +5461,7 @@
     <experience value="2000"/>
     <!-- once in 2 months -->
     <respawn value="17280000"/>
+    <corpse name="animal"/>
     <drops>
       <item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
       <item value="lucky charm" quantity="[1,1]" probability="80.0"/>
@@ -5325,6 +5490,7 @@
     <level value="49"/>
     <experience value="1660"/>
     <respawn value="1630"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,50]" probability="100.0"/>
       <item value="elvish armor" quantity="[1,1]" probability="5.0"/>
@@ -5359,6 +5525,7 @@
     <level value="50"/>
     <experience value="1760"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,55]" probability="100.0"/>
       <item value="golden helmet" quantity="[1,1]" probability="0.5"/>
@@ -5390,6 +5557,7 @@
     <level value="50"/>
     <experience value="1700"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[40,155]" probability="80.0"/>
       <item value="iron" quantity="[1,3]" probability="5.0"/>
@@ -5422,6 +5590,7 @@
     <level value="50"/>
     <experience value="1700"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[40,155]" probability="80.0"/>
       <item value="wine" quantity="[3,10]" probability="40.0"/>
@@ -5455,6 +5624,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="20.0"/>
@@ -5483,6 +5653,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5510,6 +5681,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5540,6 +5712,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="10.0"/>
@@ -5567,6 +5740,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,3]" probability="10.0"/>
@@ -5597,6 +5771,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="50.0"/>
@@ -5604,7 +5779,6 @@
       <item value="emerald" quantity="[1,4]" probability="5.0"/>
       <item value="green dragon shield" quantity="[1,1]" probability="0.25"/>
       <item value="green dragon cloak" quantity="[1,1]" probability="2.5"/>
-
     </drops>
     <equips>
     </equips>
@@ -5630,6 +5804,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[2,4]" probability="8.0"/>
@@ -5661,6 +5836,7 @@
     <level value="51"/>
     <experience value="1830"/>
     <respawn value="1690"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="5.0"/>
@@ -5690,6 +5866,7 @@
     <level value="51"/>
     <experience value="1830"/>
     <respawn value="1690"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="empty scroll" quantity="[1,1]" probability="3.5"/>
@@ -5717,6 +5894,7 @@
     <level value="52"/>
     <experience value="1920"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[4,60]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
@@ -5749,6 +5927,7 @@
     <level value="52"/>
     <experience value="1920"/>
     <respawn value="1620"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="great sword" quantity="[1,1]" probability="2.0"/>
@@ -5780,6 +5959,7 @@
     <level value="53"/>
     <experience value="2010"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -5806,6 +5986,7 @@
     <level value="53"/>
     <experience value="2010"/>
     <respawn value="1610"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="5.0"/>
@@ -5834,6 +6015,7 @@
     <level value="54"/>
     <experience value="2110"/>
     <respawn value="1680"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[20,52]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -5865,6 +6047,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1610"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,50]" probability="100.0"/>
       <item value="antidote" quantity="[1,1]" probability="3.0"/>
@@ -5893,6 +6076,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,50]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -5924,6 +6108,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="axe" quantity="[1,1]" probability="15.0"/>
@@ -5952,6 +6137,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
@@ -5986,6 +6172,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -6016,6 +6203,8 @@
     <experience value="3000"/>
     <!-- once in 2 weeks -->
     <respawn value="4032000"/>
+    <!-- uh, should this one be an animal or humanoid? -->
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,100]" probability="70.0"/>
       <item value="greater potion" quantity="[1,4]" probability="30.0"/>
@@ -6045,6 +6234,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="30.0"/>
       <item value="money" quantity="[10,70]" probability="100.0"/>
@@ -6075,9 +6265,9 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="elf cloak" quantity="[1,1]" probability="2.5"/> 
-
       <item value="greater potion" quantity="[1,2]" probability="20.0"/>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="empty scroll" quantity="[1,2]" probability="10.0"/>
@@ -6105,12 +6295,12 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1920"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="2.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.7"/>
-
       <item value="dark dagger" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
@@ -6136,6 +6326,7 @@
     <level value="56"/>
     <experience value="2400"/>
     <respawn value="1700"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
@@ -6164,6 +6355,7 @@
     <level value="57"/>
     <experience value="2420"/>
     <respawn value="1680"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -6196,6 +6388,7 @@
     <level value="57"/>
     <experience value="2420"/>
     <respawn value="1680"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="jewelled legs" quantity="[1,1]" probability="0.0001"/>
@@ -6226,6 +6419,7 @@
     <level value="58"/>
     <experience value="2530"/>
     <respawn value="1720"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -6256,6 +6450,7 @@
     <level value="58"/>
     <experience value="2700"/>
     <respawn value="1800"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,60]" probability="100.0"/>
       <item value="shadow boots" quantity="[1,1]" probability="0.5"/>
@@ -6285,6 +6480,7 @@
     <level value="58"/>
     <experience value="2700"/>
     <respawn value="1810"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="shadow legs" quantity="[1,1]" probability="1.0"/>
@@ -6313,6 +6509,7 @@
     <level value="59"/>
     <experience value="2640"/>
     <respawn value="1760"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,70]" probability="100.0"/>
       <item value="elvish armor" quantity="[1,1]" probability="5.0"/>
@@ -6346,6 +6543,7 @@
     <level value="59"/>
     <experience value="2640"/>
     <respawn value="1760"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[9,31]" probability="100.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
@@ -6376,6 +6574,7 @@
     <level value="60"/>
     <experience value="2710"/>
     <respawn value="1700"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="shadow legs" quantity="[1,1]" probability="0.3"/>
@@ -6405,6 +6604,7 @@
     <level value="60"/>
     <experience value="2710"/>
     <respawn value="1810"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="shadow legs" quantity="[1,1]" probability="1.0"/>
@@ -6433,6 +6633,7 @@
     <level value="60"/>
     <experience value="2760"/>
     <respawn value="1800"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="antidote" quantity="[2,5]" probability="10.0"/>
@@ -6460,6 +6661,7 @@
     <level value="60"/>
     <experience value="2760"/>
     <respawn value="1800"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,70]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.15"/>
@@ -6494,6 +6696,7 @@
     <level value="60"/>
     <experience value="2760"/>
     <respawn value="1800"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
@@ -6525,6 +6728,7 @@
     <level value="60"/>
     <experience value="2760"/>
     <respawn value="1800"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,27]" probability="90.0"/>      
       <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
@@ -6558,6 +6762,7 @@
     <level value="60"/>
     <experience value="2800"/>
     <respawn value="1900"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,60]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
@@ -6589,6 +6794,7 @@
     <level value="61"/>
     <experience value="2870"/>
     <respawn value="1830"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,65]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -6620,6 +6826,7 @@
     <level value="61"/>
     <experience value="2810"/>
     <respawn value="1810"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
@@ -6650,6 +6857,7 @@
     <level value="61"/>
     <experience value="2870"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="power arrow" quantity="[1,10]" probability="8.0"/>
@@ -6681,6 +6889,7 @@
     <level value="62"/>
     <experience value="3000"/>
     <respawn value="1870"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,89]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -6716,6 +6925,7 @@
     <level value="62"/>
     <experience value="3000"/>
     <respawn value="1870"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[9,55]" probability="100.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="1.0"/>
@@ -6749,6 +6959,7 @@
     <level value="62"/>
     <experience value="3000"/>
     <respawn value="1870"/>
+    <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[9,35]" probability="100.0"/>
       <item value="egg" quantity="[1,1]" probability="2.0"/>
@@ -6778,6 +6989,7 @@
     <level value="63"/>
     <experience value="3100"/>
     <respawn value="1870"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="meat" quantity="[1,5]" probability="10.5"/>
@@ -6811,6 +7023,7 @@
     <level value="63"/>
     <experience value="3100"/>
     <respawn value="1870"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="steel arrow" quantity="[3,8]" probability="40.5"/>
@@ -6843,6 +7056,7 @@
     <level value="64"/>
     <experience value="3260"/>
     <respawn value="1960"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="10.0"/>
@@ -6876,6 +7090,7 @@
     <level value="64"/>
     <experience value="3260"/>
     <respawn value="1960"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="stone boots" quantity="[1,1]" probability="1.5"/>
@@ -6904,11 +7119,11 @@
     <level value="64"/>
     <experience value="3300"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="power arrow" quantity="[3,10]" probability="5.0"/>
       <item value="crossbow" quantity="[1,1]" probability="1.75"/>
-
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
@@ -6936,6 +7151,7 @@
     <level value="64"/>
     <experience value="3300"/>
     <respawn value="1980"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="golden arrow" quantity="[1,10]" probability="1.0"/>
@@ -6967,11 +7183,11 @@
     <level value="64"/>
     <experience value="3390"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="wooden spear" quantity="[2,5]" probability="10.0"/>
       <item value="hunter crossbow" quantity="[1,1]" probability="2.0"/>
-
       <item value="red legs" quantity="[1,1]" probability="3.0"/>
       <item value="red cloak" quantity="[1,1]" probability="2.5"/>
     </drops>
@@ -6997,6 +7213,7 @@
     <level value="65"/>
     <experience value="3390"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[50,80]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
@@ -7030,6 +7247,7 @@
     <level value="65"/>
     <experience value="3390"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,100]" probability="100.0"/>
       <item value="mega potion" quantity="[1,2]" probability="55.0"/>
@@ -7059,6 +7277,7 @@
     <level value="65"/>
     <experience value="3390"/>
     <respawn value="1420"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.4"/>
@@ -7089,6 +7308,7 @@
     <level value="66"/>
     <experience value="3510"/>
     <respawn value="2010"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="shadow shield" quantity="[1,1]" probability="2.0"/>
@@ -7117,6 +7337,7 @@
     <level value="66"/>
     <experience value="3530"/>
     <respawn value="2050"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -7144,6 +7365,7 @@
     <level value="67"/>
     <experience value="3660"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="90.0"/>
       <item value="shadow legs" quantity="[1,1]" probability="0.8"/>
@@ -7173,6 +7395,7 @@
     <level value="67"/>
     <experience value="3670"/>
     <respawn value="2090"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="1.2"/>
@@ -7205,6 +7428,7 @@
     <level value="68"/>
     <experience value="3820"/>
     <respawn value="2140"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="golden arrow" quantity="[5,20]" probability="5.0"/>
@@ -7236,6 +7460,7 @@
     <level value="69"/>
     <experience value="4110"/>
     <respawn value="2000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="red shield" quantity="[1,1]" probability="1.0"/>
@@ -7263,6 +7488,7 @@
     <level value="69"/>
     <experience value="4110"/>
     <respawn value="2210"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="buster" quantity="[1,1]" probability="2.5"/>
@@ -7291,6 +7517,7 @@
     <level value="70"/>
     <experience value="4130"/>
     <respawn value="2250"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -7320,6 +7547,7 @@
     <level value="70"/>
     <experience value="4130"/>
     <respawn value="2240"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[50,100]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
@@ -7355,6 +7583,7 @@
     <level value="70"/>
     <experience value="4130"/>
     <respawn value="2240"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
       <item value="money" quantity="[20,100]" probability="100.0"/>
@@ -7385,6 +7614,7 @@
     <level value="71"/>
     <experience value="4280"/>
     <respawn value="2290"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="1.5"/>
@@ -7415,6 +7645,7 @@
     <level value="72"/>
     <experience value="4450"/>
     <respawn value="2350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="power arrow" quantity="[1,5]" probability="5.0"/>
@@ -7447,6 +7678,7 @@
     <level value="72"/>
     <experience value="4000"/>
     <respawn value="2300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="golden legs" quantity="[1,1]" probability="2.0"/>
@@ -7478,6 +7710,7 @@
     <level value="72"/>
     <experience value="4000"/>
     <respawn value="3000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="black helmet" quantity="[1,1]" probability="0.008"/>
@@ -7508,6 +7741,7 @@
     <level value="72"/>
     <experience value="4100"/>
     <respawn value="3490"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="2.0"/>
@@ -7538,6 +7772,7 @@
     <level value="73"/>
     <experience value="4620"/>
     <respawn value="2400"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="power arrow" quantity="[4,10]" probability="30.0"/>
@@ -7569,6 +7804,7 @@
     <level value="73"/>
     <experience value="4620"/>
     <respawn value="2400"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
     </drops>
@@ -7596,6 +7832,7 @@
     <level value="74"/>
     <experience value="4790"/>
     <respawn value="2460"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
@@ -7626,6 +7863,7 @@
     <level value="75"/>
     <experience value="4960"/>
     <respawn value="2500"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="red armor" quantity="[1,1]" probability="2.0"/>
@@ -7655,6 +7893,7 @@
     <level value="75"/>
     <experience value="4960"/>
     <respawn value="2510"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[60,300]" probability="100.0"/>
       <item value="stone armor" quantity="[1,1]" probability="0.15"/>
@@ -7685,6 +7924,7 @@
     <level value="75"/>
     <experience value="4960"/>
     <respawn value="2510"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
@@ -7716,6 +7956,7 @@
     <level value="76"/>
     <experience value="5140"/>
     <respawn value="2570"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,63]" probability="100.0"/>
       <item value="stone armor" quantity="[1,1]" probability="0.1"/>
@@ -7744,6 +7985,7 @@
     <level value="77"/>
     <experience value="5290"/>
     <respawn value="2590"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[15,40]" probability="100.0"/>
       <item value="red armor" quantity="[1,1]" probability="2.0"/>
@@ -7770,6 +8012,7 @@
     <level value="77"/>
     <experience value="5290"/>
     <respawn value="2590"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="money" quantity="[10,40]" probability="100.0"/>
@@ -7799,6 +8042,7 @@
     <level value="78"/>
     <experience value="5520"/>
     <respawn value="2690"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,45]" probability="100.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="2.0"/>
@@ -7833,6 +8077,7 @@
     <level value="78"/>
     <experience value="5520"/>
     <respawn value="2700"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="red cloak" quantity="[1,1]" probability="5.5"/>
@@ -7862,6 +8107,7 @@
     <level value="79"/>
     <experience value="5720"/>
     <respawn value="2750"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
     </drops>
@@ -7891,6 +8137,7 @@
     <level value="80"/>
     <experience value="5920"/>
     <respawn value="2820"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[50,70]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="20.0"/>
@@ -7920,6 +8167,7 @@
     <level value="80"/>
     <experience value="5920"/>
     <respawn value="2820"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,50]" probability="100.0"/>
     </drops>
@@ -7948,6 +8196,7 @@
     <level value="80"/>
     <experience value="5920"/>
     <respawn value="3000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="mainio legs" quantity="[1,1]" probability="1.5"/>
@@ -7975,6 +8224,7 @@
     <level value="81"/>
     <experience value="6120"/>
     <respawn value="2880"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,97]" probability="90.0"/>      
       <item value="stone armor" quantity="[1,1]" probability="0.1"/>
@@ -8002,6 +8252,7 @@
     <level value="81"/>
     <experience value="6200"/>
     <respawn value="2880"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.0050"/>
@@ -8032,6 +8283,7 @@
     <level value="82"/>
     <experience value="6330"/>
     <respawn value="2950"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
@@ -8063,6 +8315,7 @@
     <level value="82"/>
     <experience value="6330"/>
     <respawn value="2990"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,40]" probability="100.0"/>
       <item value="red helmet" quantity="[1,1]" probability="12.0"/>
@@ -8089,6 +8342,7 @@
     <level value="82"/>
     <experience value="6330"/>
     <respawn value="2990"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="horned golden helmet" quantity="[1,1]" probability="1.0"/>
@@ -8122,7 +8376,8 @@
    </attributes> 	 
    <level value="83"/> 	 
    <experience value="6540"/> 	 
-   <respawn value="3010"/> 	 
+   <respawn value="3010"/>
+   <corpse name="huge_animal" width="2" height="2"/> 	 
    <drops> 	 
      <item value="money" quantity="[30,50]" probability="100.0"/> 	 
      <item value="greater potion" quantity="[1,2]" probability="30.0"/> 	 
@@ -8153,6 +8408,7 @@
     <level value="83"/>
     <experience value="6540"/>
     <respawn value="3010"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,63]" probability="100.0"/>
       <item value="stone armor" quantity="[1,1]" probability="0.1"/>
@@ -8181,6 +8437,7 @@
     <level value="84"/>
     <experience value="6760"/>
     <respawn value="3080"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -8209,6 +8466,7 @@
     <level value="84"/>
     <experience value="6800"/>
     <respawn value="3200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="shadow helmet" quantity="[1,1]" probability="0.6"/>
@@ -8237,6 +8495,7 @@
     <level value="85"/>
     <experience value="6990"/>
     <respawn value="3150"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -8272,6 +8531,7 @@
     <level value="85"/>
     <experience value="6990"/>
     <respawn value="3050"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="demon fire sword" quantity="[1,1]" probability="0.005"/>
@@ -8300,6 +8560,7 @@
     <level value="86"/>
     <experience value="7100"/>
     <respawn value="3350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,95]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.6"/>
@@ -8329,6 +8590,7 @@
     <level value="87"/>
     <experience value="7300"/>
     <respawn value="3350"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[5,95]" probability="100.0"/>
       <item value="mainio cloak" quantity="[1,1]" probability="1.6"/>
@@ -8356,6 +8618,7 @@
     <level value="89"/>
     <experience value="7930"/>
     <respawn value="3450"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,95]" probability="100.0"/>
       <item value="stone armor" quantity="[1,1]" probability="0.7"/>
@@ -8384,6 +8647,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[50,90]" probability="100.0"/>
       <item value="greater potion" quantity="[1,6]" probability="20.0"/>
@@ -8419,6 +8683,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,60]" probability="100.0"/>
       <item value="fairy cake" quantity="[1,5]" probability="10.0"/>
@@ -8454,6 +8719,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater poison" quantity="[1,2]" probability="5.0"/>
@@ -8488,6 +8754,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[50,200]" probability="100.0"/>
       <item value="stone armor" quantity="[1,1]" probability="1.0"/>
@@ -8520,6 +8787,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[50,200]" probability="100.0"/>
       <item value="mithril bar" quantity="[1,1]" probability="0.0010"/>
@@ -8552,6 +8820,7 @@
     <level value="91"/>
     <experience value="8440"/>
     <respawn value="3610"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="mega potion" quantity="[1,1]" probability="10.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
@@ -8582,6 +8851,7 @@
     <level value="91"/>
     <experience value="8580"/>
     <respawn value="4000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[20,70]" probability="100.0"/>
       <item value="claymore" quantity="[1,1]" probability="1.5"/>
@@ -8614,6 +8884,7 @@
     <level value="92"/>
     <experience value="8700"/>
     <respawn value="3690"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,93]" probability="100.0"/>
       <item value="empty scroll" quantity="[1,2]" probability="10.0"/>
@@ -8640,6 +8911,7 @@
     <level value="93"/>
     <experience value="8970"/>
     <respawn value="3770"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
       <item value="assassin dagger" quantity="[1,1]" probability="1.0"/>
@@ -8671,6 +8943,7 @@
     <level value="93"/>
     <experience value="8980"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="black helmet" quantity="[1,1]" probability="0.3"/>
@@ -8703,6 +8976,7 @@
     <level value="94"/>
     <experience value="9240"/>
     <respawn value="3850"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,60]" probability="100.0"/>
       <item value="ice armor" quantity="[1,1]" probability="0.4"/>
@@ -8734,6 +9008,7 @@
     <level value="95"/>
     <experience value="9520"/>
     <respawn value="3990"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="red armor" quantity="[1,1]" probability="5.0"/>
@@ -8762,6 +9037,7 @@
     <level value="95"/>
     <experience value="9520"/>
     <respawn value="3940"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,100]" probability="100.0"/>
       <item value="ice armor" quantity="[1,1]" probability="0.1"/>
@@ -8792,6 +9068,7 @@
     <level value="97"/>
     <experience value="10090"/>
     <respawn value="4120"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="chaos armor" quantity="[1,1]" probability="0.1"/>
@@ -8827,6 +9104,7 @@
     <level value="100"/>
     <experience value="11000"/>
     <respawn value="4400"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[50,120]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -8864,6 +9142,7 @@
     <level value="101"/>
     <experience value="11200"/>
     <respawn value="5350"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[20,110]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
@@ -8895,6 +9174,7 @@
     <level value="102"/>
     <experience value="12200"/>
     <respawn value="3000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[20,110]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
@@ -8925,6 +9205,7 @@
     <level value="103"/>
     <experience value="12500"/>
     <respawn value="3000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="chaos shield" quantity="[1,1]" probability="1.0"/>
@@ -8958,6 +9239,7 @@
     <level value="104"/>
     <experience value="12800"/>
     <respawn value="5950"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="mega potion" quantity="[1,1]" probability="20.0"/>
       <item value="money" quantity="[40,100]" probability="100.0"/>
@@ -8989,6 +9271,7 @@
     <level value="105"/>
     <experience value="13000"/>
     <respawn value="5990"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="imperator sword" quantity="[1,1]" probability="1.0"/>
@@ -9016,6 +9299,7 @@
     <level value="107"/>
     <experience value="13300"/>
     <respawn value="5100"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[50,120]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
@@ -9054,6 +9338,7 @@
     <level value="108"/>
     <experience value="13000"/>
     <respawn value="5300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[80,130]" probability="100.0"/>
       <item value="greater potion" quantity="[2,5]" probability="30.0"/>
@@ -9088,6 +9373,7 @@
     <level value="109"/>
     <experience value="14000"/>
     <respawn value="5300"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
@@ -9117,6 +9403,7 @@
     <level value="109"/>
     <experience value="14000"/>
     <respawn value="5300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="30.0"/>
@@ -9147,6 +9434,7 @@
     <level value="110"/>
     <experience value="14400"/>
     <respawn value="5400"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="70.0"/>
       <item value="greater poison" quantity="[1,2]" probability="80.0"/>
@@ -9178,6 +9466,7 @@
     <level value="110"/>
     <experience value="14400"/>
     <respawn value="5400"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="80.0"/>
@@ -9211,6 +9500,7 @@
     <level value="111"/>
     <experience value="14580"/>
     <respawn value="1200"/>
+    <corpse name="animal"/>
     <drops>
       <item value="greater antidote" quantity="[1,1]" probability="100.0"/>
     </drops>
@@ -9238,6 +9528,7 @@
     <level value="113"/>
     <experience value="15000"/>
     <respawn value="3200"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="button mushroom" quantity="[1,6]" probability="50.0"/>
       <item value="greater potion" quantity="[2,3]" probability="10.0"/>
@@ -9271,6 +9562,7 @@
     <level value="114"/>
     <experience value="15900"/>
     <respawn value="5900"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="10.0"/>
@@ -9303,6 +9595,7 @@
     <level value="116"/>
     <experience value="16100"/>
     <respawn value="6400"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="60.0"/>
@@ -9336,6 +9629,7 @@
     <level value="118"/>
     <experience value="17000"/>
     <respawn value="6200"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="30.0"/>
@@ -9368,6 +9662,7 @@
     <level value="125"/>
     <experience value="20700"/>
     <respawn value="7300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="80.0"/>
       <item value="greater poison" quantity="[1,1]" probability="50.0"/>
@@ -9403,6 +9698,7 @@
     <level value="125"/>
     <experience value="20700"/>
     <respawn value="7300"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[2,4]" probability="80.0"/>
       <item value="money" quantity="[60,160]" probability="100.0"/>
@@ -9433,6 +9729,7 @@
     <level value="130"/>
     <experience value="21000"/>
     <respawn value="8300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[80,200]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="30.0"/>
@@ -9469,6 +9766,7 @@
     <level value="130"/>
     <experience value="21000"/>
     <respawn value="7400"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[60,340]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="35"/>
@@ -9502,6 +9800,7 @@
     <level value="133"/>
     <experience value="24000"/>
     <respawn value="9000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -9536,6 +9835,7 @@
     <level value="135"/>
     <experience value="25900"/>
     <respawn value="8800"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -9571,6 +9871,7 @@
     <level value="137"/>
     <experience value="25980"/>
     <respawn value="10000"/>
+    <corpse name="invalid" width="4" height="4"/>
     <drops>
       <item value="mega potion" quantity="[1,1]" probability="50.0"/>
       <item value="money" quantity="[30,100]" probability="100.0"/>
@@ -9603,6 +9904,7 @@
     <level value="138"/>
     <experience value="26000"/>
     <respawn value="10300"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[30,200]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -9639,12 +9941,12 @@
     <level value="139"/>
     <experience value="26100"/>
     <respawn value="11000"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="80.0"/>
       <item value="money" quantity="[30,200]" probability="100.0"/>
       <item value="sapphire" quantity="[2,5]" probability="10.0"/>
       <item value="blue dragon cloak" quantity="[1,1]" probability="2.5"/>
-
     </drops>
     <equips>
     </equips>
@@ -9670,6 +9972,7 @@
     <level value="140"/>
     <experience value="28800"/>
     <respawn value="9700"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="20.0"/>
@@ -9705,6 +10008,7 @@
     <level value="144"/>
     <experience value="30800"/>
     <respawn value="12800"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -9740,6 +10044,7 @@
     <level value="145"/>
     <experience value="31900"/>
     <respawn value="10600"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[90,200]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -9775,6 +10080,7 @@
     <level value="150"/>
     <experience value="35200"/>
     <respawn value="11500"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="50.0"/>
       <item value="deadly poison" quantity="[1,3]" probability="40.0"/>
@@ -9813,6 +10119,7 @@
     <level value="160"/>
     <experience value="42500"/>
     <respawn value="13700"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -9843,6 +10150,7 @@
     <level value="165"/>
     <experience value="47800"/>
     <respawn value="15000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -9877,6 +10185,7 @@
     <level value="170"/>
     <experience value="50800"/>
     <respawn value="16000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
@@ -9908,6 +10217,7 @@
     <level value="170"/>
     <experience value="50800"/>
     <respawn value="3000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="xeno shield" quantity="[1,1]" probability="1.0"/>
@@ -9940,12 +10250,12 @@
     <level value="175"/>
     <experience value="55300"/>
     <respawn value="17300"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,3]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,6]" probability="80.0"/>
       <item value="money" quantity="[100,400]" probability="100.0"/>
       <item value="green thing boots" quantity="[1,1]" probability="2.5"/>
-
     </drops>
     <equips>
     </equips>
@@ -9971,6 +10281,7 @@
     <level value="175"/>
     <experience value="55300"/>
     <respawn value="17300"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[80,100]" probability="100.0"/>
       <item value="red armor" quantity="[1,1]" probability="20.0"/>
@@ -10001,6 +10312,7 @@
     <level value="190"/>
     <experience value="70400"/>
     <respawn value="21600"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[100,600]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="30.0"/>
@@ -10039,6 +10351,7 @@
     <level value="195"/>
     <experience value="75300"/>
     <respawn value="22600"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[90,200]" probability="100.0"/>
       <item value="greater potion" quantity="[1,3]" probability="50.0"/>
@@ -10073,6 +10386,7 @@
     <level value="200"/>
     <experience value="82000"/>
     <respawn value="24000"/>
+    <corpse name="invalid" width="6" height="6"/>
     <drops>
       <item value="greater potion" quantity="[1,3]" probability="70.0"/>
       <item value="money" quantity="[300,1000]" probability="100.0"/>
@@ -10105,6 +10419,7 @@
     <level value="205"/>
     <experience value="86000"/>
     <respawn value="26000"/>
+    <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[100,600]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="20.0"/>
@@ -10137,6 +10452,7 @@
     <level value="210"/>
     <experience value="90000"/>
     <respawn value="28000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -10174,6 +10490,7 @@
     <level value="220"/>
     <experience value="108000"/>
     <respawn value="32000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -10213,6 +10530,7 @@
     <level value="230"/>
     <experience value="123000"/>
     <respawn value="36000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -10250,6 +10568,7 @@
     <level value="250"/>
     <experience value="150000"/>
     <respawn value="3000"/>
+    <corpse name="invalid" width="4" height="4"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="50.0"/>
       <item value="money" quantity="[500,4000]" probability="100.0"/>
@@ -10284,6 +10603,7 @@
     <level value="300"/>
     <experience value="270000"/>
     <respawn value="70000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[2,4]" probability="50.0"/>
       <item value="money" quantity="[3000,10000]" probability="100.0"/>
@@ -10322,6 +10642,7 @@
     <level value="325"/>
     <experience value="300000"/>
     <respawn value="75000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,4]" probability="20.0"/>
       <item value="black halberd" quantity="[1,1]" probability="0.25"/>
@@ -10355,6 +10676,7 @@
     <level value="330"/>
     <experience value="363000"/>
     <respawn value="40000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,4]" probability="40.0"/>
       <item value="soup" quantity="[1,3]" probability="30.0"/>
@@ -10397,6 +10719,7 @@
     <experience value="500000"/>
     <!-- once in 6 weeks -->
     <respawn value="12096000"/>
+    <corpse name="animal"/>
     <drops>
       <item value="ice sword" quantity="[1,1]" probability="20.0"/>
       <item value="apple" quantity="[10,30]" probability="80.0"/>
@@ -10425,6 +10748,7 @@
     <level value="350"/>
     <experience value="430000"/>
     <respawn value="70000"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[2000,10000]" probability="80.0"/>
       <item value="silk gland" quantity="[1,3]" probability="20.0"/>
@@ -10455,6 +10779,7 @@
     <level value="350"/>
     <experience value="430000"/>
     <respawn value="120000"/>
+    <corpse name="invalid" width="16" height="16"/>
     <drops>
       <item value="money" quantity="[2000,20000]" probability="100.0"/>
       <item value="mega potion" quantity="[2,4]" probability="60.0"/>
@@ -10492,6 +10817,7 @@
     <level value="400"/>
     <experience value="623000"/>
     <respawn value="160000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="90.0"/>
@@ -10531,6 +10857,7 @@
     <level value="450"/>
     <experience value="700000"/>
     <respawn value="240000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[5,20]" probability="80.0"/>
       <item value="gold bar" quantity="[2,10]" probability="30.0"/>
@@ -10567,6 +10894,7 @@
     <level value="500"/>
     <experience value="750000"/>
     <respawn value="100000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[2,5]" probability="50.0"/>
       <item value="soup" quantity="[2,4]" probability="50.0"/>
@@ -10607,6 +10935,7 @@
     <level value="500"/>
     <experience value="750000"/>
     <respawn value="300000"/>
+    <corpse name="invalid" width="6" height="6"/>
     <drops>
       <item value="money" quantity="[5000,30000]" probability="100.0"/>
       <item value="skull staff" quantity="[1,1]" probability="3.0"/>
@@ -10642,6 +10971,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10666,6 +10996,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10691,6 +11022,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10716,6 +11048,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
      </drops>
     <equips>
@@ -10740,6 +11073,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
      </drops>
     <equips>
@@ -10765,6 +11099,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10789,6 +11124,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10813,6 +11149,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10837,6 +11174,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10861,6 +11199,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10885,6 +11224,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/> 
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>
@@ -10909,6 +11249,7 @@
     <level value="1000"/>
     <experience value="0"/>
     <respawn value="5000"/>
+    <corpse name="humanoid"/>
     <drops>
     </drops>
     <equips>

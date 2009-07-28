@@ -83,42 +83,8 @@ class Corpse2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final IGameScreen gameScreen) {
-		final String clazz = entity.getEntityClass();
-		String corpseType = entity.getType();
-
-		if (clazz != null) {
-			if (clazz.equals("player")) {
-				corpseType = corpseType + "_player";
-			} else if (clazz.equals("youngsoldiernpc")) {
-				corpseType = corpseType + "_player";
-			} else if (clazz.equals("giant_animal")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("giant_human")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("huge_animal")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("huge_hybrid")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("huge_troll")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("giant_madaram")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("huger_hybrid")) {
-				corpseType = corpseType + "_huger_animal";
-			} else if (clazz.equals("huger_animal")) {
-				corpseType = corpseType + "_huger_animal";
-			} else if (clazz.equals("mythical_animal")) {
-				corpseType = corpseType + "_mythical_creature";
-			} else if (clazz.equals("boss")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (clazz.equals("enormous_creature")) {
-				corpseType = corpseType + "_enormous_creature";
-			} else if (!clazz.equals("animal")) {
-				// logger.debug("Unknown corpse type: " + clazz);
-			}
-		}
-
-		final Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
+		final String imageName = entity.getRPObject().get("image");
+		final Sprite sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
 
 		width = sprite.getWidth();
 		height = sprite.getHeight();

@@ -66,6 +66,10 @@ public class DefaultCreature {
 	private int width;
 
 	private int height;
+	
+	private String corpseName;
+	private int corpseWidth;
+	private int corpseHeight;
 
 	/** The list of items this creature may drop. */
 	private List<DropItem> dropsItems;
@@ -172,6 +176,12 @@ public class DefaultCreature {
 	public List<EquipItem> getEquipedItems() {
 		return equipsItems;
 	}
+	
+	public void setCorpse(final String name, final int width, final int height) {
+		corpseName = name;
+		corpseWidth = width;
+		corpseHeight = height;
+	}
 
 	public void setDropItems(final List<DropItem> dropsItems) {
 		this.dropsItems = dropsItems;
@@ -206,6 +216,9 @@ public class DefaultCreature {
 				level, xp, width, height, speed, dropsItems, aiProfiles,
 				creatureSays, respawn, description);
 		creature.equip(equipsItems);
+		
+		creature.setCorpse(corpseName, corpseWidth, corpseHeight);
+		
 		return creature;
 	}
 

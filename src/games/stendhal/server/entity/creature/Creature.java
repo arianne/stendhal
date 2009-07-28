@@ -101,7 +101,9 @@ public class Creature extends NPC {
 	
 	boolean isRespawned;
 	
-
+	private String corpseName;
+	private int corpseWidth;
+	private int corpseHeight;
 
 	private CreatureRespawnPoint point;
 
@@ -139,6 +141,8 @@ public class Creature extends NPC {
 
 		this.baseSpeed = copy.baseSpeed;
 		setSize((int) copy.getWidth(), (int) copy.getHeight());
+		
+		setCorpse(copy.getCorpseName(), copy.getCorpseWidth(), copy.getCorpseHeight());
 
 		/**
 		 * Creatures created with this function will share their dropsItems with
@@ -337,6 +341,39 @@ public class Creature extends NPC {
 	public int getRespawnTime() {
 		return respawnTime;
 	}
+	
+	public void setCorpse(final String name, final int width, final int height) {
+		corpseName = name;
+		if (corpseName == null) {
+			LOGGER.error(getName() + " has null corpse name.");
+			/*
+			 * Should not happen, but a null corpse would result 
+			 * in an unkillable creature, so set it to something
+			 * workable. 
+			 */ 
+			corpseName = "animal";
+		}
+		corpseWidth = width;
+		corpseHeight = height;
+	}
+	
+	@Override
+	public String getCorpseName() {
+		if (corpseName == null) {
+			return "tiny_humanoid";
+		}
+		return corpseName;
+	}
+	
+	@Override
+	public int getCorpseWidth() {
+		return corpseWidth;
+	};
+	
+	@Override
+	public int getCorpseHeight() {
+		return corpseHeight;
+	};
 
 	/**
 	 * clears the list of predefined dropItems and creates an empty list

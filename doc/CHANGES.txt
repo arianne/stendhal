@@ -10,6 +10,7 @@ Changelog
 0.76
 - ported to the latest release of marauroa with supports multi threaded database access
 - support for OpenJDK IcedTea (thanks to omair)
+- corpse images used are now specified in xml
 
 0.75
 - the corpse of a raid creature can only be looted by player that the raid creature attacked

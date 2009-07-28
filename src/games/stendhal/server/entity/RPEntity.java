@@ -1193,6 +1193,25 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	protected Corpse makeCorpse(String killer) {
 		return new Corpse(this, killer);
 	}
+	
+	/**
+	 * Get the corpse image name to be used for the entity.
+	 * Defaults to a player corpse.
+	 * 
+	 * @return Identification string for corpse. This is the corpse 
+	 * image shown by the client without the path or file extension.  
+	 */
+	public String getCorpseName() {
+		return "player";
+	}
+	
+	public int getCorpseWidth() {
+		return 1;
+	}
+	
+	public int getCorpseHeight() {
+		return 1;
+	}
 
 	protected abstract void dropItemsOn(Corpse corpse);
 

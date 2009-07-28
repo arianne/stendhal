@@ -69,6 +69,12 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private Map<String, String> aiProfiles;
 
 	private List<DefaultCreature> list;
+	
+	private String corpseName;
+	
+	private int corpseWidth;
+	
+	private int corpseHeight;
 
 	private boolean drops;
 
@@ -188,6 +194,24 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			}
 		} else if (qName.equals("respawn")) {
 			respawn = Integer.parseInt(attrs.getValue("value"));
+		} else if (qName.equals("corpse")) {
+			corpseName = attrs.getValue("name");
+			String value = attrs.getValue("width");
+			
+			// Default to 1 for width and height to save the fingers 
+			// of the people writing the creatures
+			if (value != null) {
+				corpseWidth = Integer.parseInt(value);
+			} else {
+				corpseWidth = 1;
+			}
+
+			value = attrs.getValue("height");
+			if (value != null) {
+				corpseHeight = Integer.parseInt(value);
+			} else {
+				corpseHeight = 1;
+			}
 		} else if (qName.equals("drops")) {
 			drops = true;
 		} else if (qName.equals("item") && drops) {
@@ -261,6 +285,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			creature.setLevel(level, xp);
 			creature.setSize(sizeWidth, sizeHeight);
 			creature.setEquipedItems(equipsItems);
+			
+			creature.setCorpse(corpseName, corpseWidth, corpseHeight);
+			corpseName = null;
+			corpseWidth = corpseHeight = 1;
+			
 			creature.setDropItems(dropsItems);
 			creature.setAIProfiles(aiProfiles);
 			creature.setNoiseLines(creatureSays);
