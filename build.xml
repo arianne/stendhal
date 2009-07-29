@@ -125,7 +125,7 @@
 		<delete dir="${build_tests_report}" />
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
-		<delete dir="" />
+		<delete file="cobertura.ser" />
 		<delete>
 					<fileset dir=".">
 						<include name="TEST-*.xml"/>
