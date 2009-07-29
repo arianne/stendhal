@@ -33,3 +33,4 @@ server*.ini
 marauroa-strato.ini
 *.euml2
 *.umlproject
+cobertura.ser
