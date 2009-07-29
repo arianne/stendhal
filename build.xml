@@ -885,6 +885,7 @@
 	</target>
 	
 	<target name="cobertura-test">
+		<mkdir dir="${build_tests_report}"/>
 		<junit printsummary="yes" fork="yes">
 			<jvmarg value="-Djava.awt.headless=true"/>
 					
