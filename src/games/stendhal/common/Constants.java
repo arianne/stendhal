@@ -4,11 +4,13 @@ public interface Constants {
 	
 	String ACCEPT_OFFER_TYPE = "ACCEPT_OFFER";
 	
-	String ACCEPT_OFFER_ITEM = "item";
+	String OFFER_ITEM = "item";
 	
-	String ACCEPT_OFFER_PRICE = "price";
+	String OFFER_PRICE = "price";
 	
 	String OFFER_GOODS = "goods";
+	
+	String OFFER_OFFERERNAME = "offererName";
 	
 	String ACTION_TYPE = "type";
 
@@ -18,7 +20,5 @@ public interface Constants {
 	 */
 	String[] CARRYING_SLOTS = { "bag", "head", "rhand",
 			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
-
-	String ACCEPT_OFFER_OFFERERNAME = "offererName";
 
 }
