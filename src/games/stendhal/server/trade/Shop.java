@@ -17,14 +17,28 @@ import marauroa.common.game.RPObject;
 
 public class Shop {
 	
+	public static Shop createShop(StendhalRPZone zone) {
+		return new Shop(zone);
+	}
+
 	private final Map<String, Set<Earning>> earnings = new HashMap<String, Set<Earning>>();
 	private final List<Offer> offers = new LinkedList<Offer>();
+	private StendhalRPZone zone;
 	
-	public Shop(final StendhalRPZone zone) {
-		for (final RPObject item : zone) {
+	private Shop(final StendhalRPZone zone) {
+		this.zone = zone;
+		for (final RPObject item : this.zone) {
 			if (item.getRPClass().getName().equals("offer")) {
 				final Offer offer = (Offer) item;
 				this.offers.add(offer);
+			}
+			if(item.getRPClass().getName().equals("earning")) {
+				Earning earning = (Earning) item;
+				if(this.earnings.containsKey(earning.getSeller())) {
+					this.earnings.put(earning.getSeller(),new HashSet<Earning>());
+				}
+				Set<Earning> sellersEarnings = this.earnings.get(earning.getSeller());
+				sellersEarnings.add(earning);
 			}
 		}
 
@@ -35,7 +49,7 @@ public class Shop {
 		offerer.drop(item);
 		final Offer offer = new Offer(item, money, offerer.getName());
 		offers.add(offer);
-		
+		this.zone.add(offer,false);
 		return offer;
 	}
 
@@ -46,7 +60,10 @@ public class Shop {
 				if (!earnings.containsKey(offer.getOffererName())) {
 					earnings.put(offer.getOffererName(), new HashSet<Earning>());
 				}
-				earnings.get(offer.getOffererName()).add(new Earning(offer.getItem(), offer.getPrice()));
+				Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOffererName());
+				earnings.get(offer.getOffererName()).add(earning);
+				this.zone.add(earning, false);
+				this.zone.remove(offer);
 			}
 		}
 	}
