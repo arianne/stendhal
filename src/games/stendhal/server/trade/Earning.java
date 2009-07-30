@@ -11,11 +11,14 @@ public class Earning extends RPObject {
 	
 	private final Integer value;
 	
+	private final String sellerName;
+	
 	public static void generateRPClass() {
 		final RPClass earningClass = new RPClass("earning");
 		earningClass.isA("entity");
 		earningClass.addAttribute("value", Type.INT);
 		earningClass.addRPSlot("item", 1);
+		earningClass.addAttribute("sellerName",Type.STRING);
 	}
 
 	/**
@@ -23,7 +26,7 @@ public class Earning extends RPObject {
 	 * @param item the sold item
 	 * @param value the earned money
 	 */
-	public Earning(final Item item, final Integer value) {
+	public Earning(final Item item, final Integer value, final String sellerName) {
 		super();
 		setRPClass("earning");
 		addSlot("item");
@@ -31,11 +34,13 @@ public class Earning extends RPObject {
 		this.item = item;
 		put("value", value);
 		this.value = value;
+		this.sellerName = sellerName;
+		put("sellerName",sellerName);
 		store();
 	}
 	
 	public Earning(final RPObject object) {
-		this((Item) object.getSlot("item").getFirst(), Integer.valueOf(object.getInt("value")));
+		this((Item) object.getSlot("item").getFirst(), Integer.valueOf(object.getInt("value")),object.get("sellerName"));
 	}
 
 	/**
@@ -50,6 +55,11 @@ public class Earning extends RPObject {
 	 */
 	public Item getItem() {
 		return item;
+	}
+
+	public String getSeller() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
