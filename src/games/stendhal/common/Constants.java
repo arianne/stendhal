@@ -4,6 +4,8 @@ public interface Constants {
 	
 	String ACCEPT_OFFER_TYPE = "ACCEPT_OFFER";
 	
+	String ADD_OFFER_TYPE = "ADD_OFFER";
+	
 	String OFFER_ITEM = "item";
 	
 	String OFFER_PRICE = "price";

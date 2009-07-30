@@ -16,7 +16,7 @@ public class OrderPanelTest {
 	
 	public static void main(final String[] args) {
 		final RPObject offer =  new RPObject();
-		offer.put(Constants.ACCEPT_OFFER_PRICE, -1);
+		offer.put(Constants.OFFER_PRICE, -1);
 		final String rps = Constants.OFFER_GOODS;
 		offer.addSlot(rps);
 		final RPObject rpoItem = new RPObject();

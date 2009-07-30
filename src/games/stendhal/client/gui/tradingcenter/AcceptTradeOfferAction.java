@@ -26,9 +26,9 @@ class AcceptTradeOfferAction implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		final RPAction action = new RPAction();
 		action.put(ACTION_TYPE, ACCEPT_OFFER_TYPE);
-		action.put(ACCEPT_OFFER_ITEM, item);
-		action.put(ACCEPT_OFFER_PRICE, price);
-		action.put(ACCEPT_OFFER_OFFERERNAME, offererName);
+		action.put(OFFER_ITEM, item);
+		action.put(OFFER_PRICE, price);
+		action.put(OFFER_OFFERERNAME, offererName);
 		StendhalClient.get().send(action);
 	}
 
