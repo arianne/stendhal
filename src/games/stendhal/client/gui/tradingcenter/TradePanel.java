@@ -3,11 +3,34 @@ package games.stendhal.client.gui.tradingcenter;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.RPObject;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-class TradePanel {
+import marauroa.common.game.RPObject;
+import java.awt.GridBagLayout;
+
+public class TradePanel extends JPanel {
+	
+	private static final long serialVersionUID = 1067639200909399350L;
 	
 	private final List<OrderPanelController> opcs = new LinkedList<OrderPanelController>();
+
+	/**
+	 * This method initializes 
+	 * 
+	 */
+	public TradePanel() {
+		super();
+		initialize();
+	}
+
+	/**
+	 * This method initializes this
+	 * 
+	 */
+	private void initialize() {
+			
+	}
 
 	protected void add(final OrderPanelController orderPanelController) {
 		this.opcs.add(orderPanelController);

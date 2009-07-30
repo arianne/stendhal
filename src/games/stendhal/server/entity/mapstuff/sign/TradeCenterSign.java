@@ -22,7 +22,7 @@ public class TradeCenterSign extends Sign implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		//TODO: send display offer panel event/message to user
+		user.addEvent(new OpenOfferPanelEvent());
 		return true;
 	}
 

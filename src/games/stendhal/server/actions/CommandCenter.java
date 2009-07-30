@@ -20,6 +20,8 @@ import games.stendhal.server.actions.move.PushAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
+import games.stendhal.server.actions.trade.AcceptOfferAction;
+import games.stendhal.server.actions.trade.AddOfferAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -86,6 +88,8 @@ public class CommandCenter {
 		QuestListAction.register();
 		SentenceAction.register();
 		StopAction.register();
+		AcceptOfferAction.register();
+		AddOfferAction.register();
 		UseAction.register();
 		register("info", new InfoAction());
 	}
