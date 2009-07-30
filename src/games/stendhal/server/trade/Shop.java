@@ -8,6 +8,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +75,14 @@ public class Shop {
 					.getEntityManager().getItem("money");
 			item.setQuantity(this.sumUpEarningsForPlayer(earner));
 			earner.equipToInventoryOnly(item);
+			this.removeAllEarningsFromZone(earnings.get(earner.getName()));
 			earnings.remove(earner.getName());
+		}
+	}
+
+	private void removeAllEarningsFromZone(Set<Earning> set) {
+		for(Earning earning:set) {
+			this.zone.remove(earning);
 		}
 	}
 
