@@ -19,7 +19,6 @@ import games.stendhal.client.gui.tradingcenter.TradingCenterWindow;
 import games.stendhal.common.constants.Events;
 
 import java.util.HashMap;
-import java.util.List;
 
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;

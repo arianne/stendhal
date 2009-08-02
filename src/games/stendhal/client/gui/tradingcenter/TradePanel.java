@@ -4,10 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import marauroa.common.game.RPObject;
-import java.awt.GridBagLayout;
 
 public class TradePanel extends JPanel {
 	

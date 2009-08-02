@@ -1,10 +1,8 @@
 package games.stendhal.client.gui.tradingcenter;
 
-import javax.swing.JComponent;
-
-import marauroa.common.game.RPEvent;
-
 import games.stendhal.client.gui.wt.InternalManagedDialog;
+
+import javax.swing.JComponent;
 
 
 public class TradingCenterWindow extends InternalManagedDialog {
