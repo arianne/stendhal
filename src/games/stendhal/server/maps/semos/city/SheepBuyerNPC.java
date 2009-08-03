@@ -3,6 +3,7 @@
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
@@ -10,14 +11,34 @@ import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
+import games.stendhal.server.util.Area;
 
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * A merchant (original name: Sato) who buys sheep from players.
  */
 public class SheepBuyerNPC extends SpeakerNPCFactory {
+	// The sheep pen where Sato moves what he buys
+	/** Left X coordinate of the sheep pen */ 
+	private static final int SHEEP_PEN_X = 39;
+	/** Top Y coordinate of the sheep pen */
+	private static final int SHEEP_PEN_Y = 24;
+	/** Width of the sheep pen */
+	private static final int SHEEP_PEN_WIDTH = 16;
+	/** Height of the sheep pen */
+	private static final int SHEEP_PEN_HEIGHT = 6;
+	/** 
+	 * The maximum number of sheep Sato keeps in his sheep pen.
+	 */ 
+	private static final int MAX_SHEEP_IN_PEN = 12;
+	/** The area covering the sheep pen in Semos */
+	private Area pen;
+	
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
@@ -42,16 +63,67 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 			
 			/**
+			 * Get the area of the sheep pen where bought sheep 
+			 * should be moved.
+			 * 
+			 * @param zone the zone of the sheep pen
+			 * @return area of the sheep pen
+			 */
+			private Area getPen(StendhalRPZone zone) {
+				if (pen == null) {
+					Rectangle2D rect = new Rectangle2D.Double();
+					rect.setRect(SHEEP_PEN_X, SHEEP_PEN_Y, SHEEP_PEN_WIDTH, SHEEP_PEN_HEIGHT);
+					pen = new Area(zone, rect);
+				}
+				
+				return pen;
+			}
+			
+			/**
+			 * Get a list of the sheep in the pen.
+			 * 
+			 * @param zone the zone to check
+			 * @return list of sheep in the pen
+			 */
+			private List<Sheep> sheepInPen(StendhalRPZone zone) {
+				List<Sheep> sheep = new LinkedList<Sheep>();
+				Area pen = getPen(zone);
+				
+				for (RPEntity entity : zone.getPlayerAndFriends()) {
+					if (entity instanceof Sheep) {
+						if (pen.contains(entity)) {
+							sheep.add((Sheep) entity);
+						}
+					}
+				}
+				
+				return sheep;
+			}
+			
+			/**
 			 * Move a bought sheep to the den if there's space, or remove it 
-			 * from the zone otherwise.
+			 * from the zone otherwise. Remove old sheep if there'd be more
+			 * than <code>MAX_SHEEP_IN_PEN</code> after the addition.
 			 * 
 			 * @param sheep the sheep to be moved
 			 */
 			private void moveSheep(Sheep sheep) {
 				// The area of the sheed den.
-				int x = Rand.randUniform(39, 54);
-				int y = Rand.randUniform(24, 29);
+				int x = Rand.randUniform(SHEEP_PEN_X, SHEEP_PEN_X + SHEEP_PEN_WIDTH - 1);
+				int y = Rand.randUniform(SHEEP_PEN_Y, SHEEP_PEN_Y + SHEEP_PEN_HEIGHT - 1);
 				StendhalRPZone zone = sheep.getZone();
+				List<Sheep> oldSheep = sheepInPen(zone);
+				
+				/*
+				 * Keep the amount of sheep reasonable. Sato's
+				 * a business man and letting the sheep starve 
+				 * would be bad for busines.
+				 */
+				if (oldSheep.size() >= MAX_SHEEP_IN_PEN) {
+					// Sato sells the oldest sheep
+					zone.remove(oldSheep.get(0));
+				}
+				
 				if (!StendhalRPAction.placeat(zone, sheep, x, y)) {
 					// there was no room for the sheep. Simply eat it
 					sheep.getZone().remove(sheep);  
