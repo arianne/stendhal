@@ -108,7 +108,7 @@ public class PassiveEntityRespawnPointFactory {
 					.setDescription("You see a place where a coconut looks likely to fall.");
 			break;
 		case 1:
-			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("tomato",	800);
+			passiveEntityrespawnPoint = new VegetableGrower("tomato");
 			break;
 		case 2:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("pineapple", 1200);
