@@ -80,6 +80,7 @@ public class AccountCreator {
 		try {
 			if (accountDAO.hasPlayer(transaction, username)) {
 				logger.warn("Account already exist: " + username);
+				transactionPool.commit(transaction);
 				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
 			}
 
