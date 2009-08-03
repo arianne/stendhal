@@ -2959,7 +2959,7 @@
 <!--
   <creature name="pirate">
     <type class="lutin" subclass="lutin_bandit" tileid="animal.png:100"/>
-    <description></description>
+    <description>You see a bandit. Together with his partners he commits many different crimes to get much money or some rare and valuable items.</description>
     <attributes>
       <atk value="221"/>
       <def value="40"/>
@@ -3342,7 +3342,7 @@
 
   <creature name="mage elf">
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
-    <description></description>
+    <description>You see a mage elf. She can feel pure magic when she stands outside in the forest and just frees her mind.</description>
     <attributes>
       <atk value="242"/>
       <def value="63"/>
@@ -3404,6 +3404,7 @@
 
   <creature name="poisonous spider">
     <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
+    <description>You see a poisonous spider. Be careful! It´s poison is very strong! It will make you very weak and can probably kill you!</description>
     <attributes>
       <atk value="244"/>
       <def value="61"/>
@@ -3708,7 +3709,7 @@
 
   <creature name="kalavan housewife">
     <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
-    <description></description>
+    <description>You see a kalavan housewife. She lives in kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!</description>
     <attributes>
       <atk value="274"/>
       <def value="42"/>
@@ -3900,7 +3901,7 @@
 
   <creature name="kalavan peasant">
     <type class="human" subclass="kalavan_peasant" tileid="human_kalavan.png:3"/>
-    <description></description>
+    <description>You see a kalavan peasant. He works in the fields around kalavan city. As he heard there were strangers in the city he came to help the kalavan citizens in fighting the enemies!</description>
     <attributes>
       <atk value="296"/>
       <def value="44"/>
@@ -4016,7 +4017,7 @@
 
   <creature name="kalavan wisewoman">
     <type class="human" subclass="kalavan_wisewoman" tileid="human_kalavan.png:4"/>
-    <description></description>
+    <description>You see a kalavan wisewoman. Normally she sits in her small room and does some handworking but now she wants to have some action!</description>
     <attributes>
       <atk value="301"/>
       <def value="46"/>
@@ -4046,7 +4047,7 @@
 
   <creature name="kalavan citizen">
     <type class="human" subclass="kalavan_citizen" tileid="human_kalavan.png:1"/>
-    <description></description>
+    <description>You see a kalavan citizen. He lives in kalavan city and tries to protect it from invaders!</description>
     <attributes>
       <atk value="310"/>
       <def value="56"/>
@@ -4382,7 +4383,7 @@
 <!--
  <creature name="smuggler">
     <type class="lutin" subclass="lutin_king" tileid="animal.png:100"/>
-    <description></description>
+    <description>You see a smuggler. You don´t know what he's smuggling... Maybe you will be able to find out? But if he notices you as you are watching him, he will fight to save his secrets!</description>
     <attributes>
       <atk value="270"/>
       <def value="70"/>
@@ -4943,7 +4944,7 @@
 
   <creature name="child dark elf">
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
-    <description></description>
+    <description>You see a child dark elf. You should know that dark elves are already quite strong and intelligent when they are children. Don´t think you can fight him so easily!</description>
     <attributes>
       <atk value="374"/>
       <def value="67"/>
@@ -5387,7 +5388,7 @@
 
  <creature name="elf wizard">
     <type class="elf" subclass="elf_wizard" tileid="elf.png:9"/>
-    <description></description>
+    <description>You see an elf wizard. He is a very wise elf who knows almost every kind of magic. He likes to use nature spells to make every plant and creature fertile, but he is also able to defend himself when he has to do.</description>
     <attributes>
       <atk value="400"/>
       <def value="70"/>
@@ -5793,7 +5794,7 @@
 
   <creature name="imperial scientist">
     <type class="human" subclass="imperial_scientist" tileid="human_imperial.png:13"/>
-    <description></description>
+    <description>You see an imperial scientist. He is quite clever but also a little bit crazy and unfortunately he uses his intelligence for evil experiments.</description>
     <attributes>
       <atk value="393"/>
       <def value="49"/>
@@ -7012,7 +7013,7 @@
 
   <creature name="amazoness archer">
     <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
-    <description></description>
+    <description>You see an amazoness archer. She handles her bow quite well and her arrows are very dangerous when she shoots them at you out of the forest!</description>
     <attributes>
       <atk value="448"/>
       <def value="66"/>
@@ -8366,7 +8367,7 @@
 
   <creature name="old ent"> 	 
    <type class="boss" subclass="dead_ent" tileid="boss.png:1"/> 	 
-   <description></description> 	 
+   <description>You see an old ent. He has seen many years passing by and survived a lot of storms. You can see that he is very old because he has already lost all of his leaves and most of his bark is broken...</description> 	 
    <attributes> 	 
     <atk value="573"/> 	 
 	<def value="128"/> 	 
@@ -9824,7 +9825,7 @@
 
   <creature name="elder giant">
     <type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
-    <description></description>
+    <description>You see an elder giant. For many years he lived alone and had to hide because he was hunted by humans! Now he is old and has decided not to hide any longer because he wants to see something else in his life.</description>
     <attributes>
       <atk value="826"/>
       <def value="96"/>
