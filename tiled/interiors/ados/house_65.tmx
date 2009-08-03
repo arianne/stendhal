@@ -137,7 +137,7 @@
  </layer>
  <layer name="3_roof" width="23" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGP6gHY0fR4LeZiBuIdPebiDuItE+YkA8lc2jFJwB4rMkqC8F4nIi1Z4D4vN45L8A8Vcg/kaC/aOAPiAfiAuAuJBG5hcDcQmNzB6u4CYQ3yZRTxgjdd0wl7rG0Q2spUCvKjAM1agcjqOAMgAAzji08fwIAAA=
+   H4sIAAAAAAAAAGNgGHkgjgS1zUDcQqY93UDcRaJ9xIB4KptHKTgDxGdJUF8KxOVEqj0HxOfxyH8B4q9A/I0E+0cBfUA+EBcAcSGNzC8G4hIamT1cwU0gvk2injBG6rphLnWNoxtYS4FeVWAYqlE5HEcBZQAA+LE2/vwIAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="23" height="25">
