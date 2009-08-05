@@ -360,7 +360,7 @@ public class Creature extends NPC {
 	@Override
 	public String getCorpseName() {
 		if (corpseName == null) {
-			return "tiny_humanoid";
+			return "animal";
 		}
 		return corpseName;
 	}
