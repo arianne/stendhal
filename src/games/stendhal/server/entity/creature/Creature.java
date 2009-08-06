@@ -102,8 +102,8 @@ public class Creature extends NPC {
 	boolean isRespawned;
 	
 	private String corpseName;
-	private int corpseWidth;
-	private int corpseHeight;
+	private int corpseWidth = 1;
+	private int corpseHeight = 1;
 
 	private CreatureRespawnPoint point;
 
