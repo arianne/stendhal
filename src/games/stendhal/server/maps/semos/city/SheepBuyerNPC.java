@@ -4,6 +4,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import marauroa.common.game.RPObject;
 
 /**
  * A merchant (original name: Sato) who buys sheep from players.
@@ -80,6 +83,27 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 			
 			/**
+			 * Try to get rid of the big bad wolf that could have spawned in the pen,
+			 * but miss it sometimes.
+			 *  
+			 * @param zone the zone to check
+			 */
+			private void killWolves(StendhalRPZone zone) {
+				if (Rand.throwCoin() == 1) { 
+					for (RPObject obj : zone) {
+						if (obj instanceof Creature) {
+							Creature wolf = (Creature) obj;
+							
+							if ("wolf".equals(wolf.get("subclass")) && getPen(zone).contains(wolf)) {
+									wolf.delayedDamage(wolf.getHP(), "Sato");
+									return;
+							}
+						}
+					}
+				}
+			}
+			
+			/**
 			 * Get a list of the sheep in the pen.
 			 * 
 			 * @param zone the zone to check
@@ -114,6 +138,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 				StendhalRPZone zone = sheep.getZone();
 				List<Sheep> oldSheep = sheepInPen(zone);
 				
+				killWolves(zone);
 				/*
 				 * Keep the amount of sheep reasonable. Sato's
 				 * a business man and letting the sheep starve 
