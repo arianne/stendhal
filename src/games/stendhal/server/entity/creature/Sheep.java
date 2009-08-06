@@ -319,7 +319,7 @@ public class Sheep extends DomesticAnimal {
 		if (weight > 0) {
 			setWeight(weight - 1);
 		} else {
-			damage(1, "starvation");
+			delayedDamage(1, "starvation");
 		}
 		logger.warn("Sheep starve " + getZone().getName() + " " + getX() + ": " + getY());
 		hunger /= 2;

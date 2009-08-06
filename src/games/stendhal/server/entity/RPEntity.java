@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
@@ -993,24 +994,36 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/**
-	 * Apply damage to this entity, and call onDead() if HP reaches 0.
+	 * Apply damage to this entity, delaying the damage to happen in a turn 
+	 * notifier. To be used when dying could result in concurrent modification
+	 * in the zone's entity list, such as sheep starving. Call onDead() if HP 
+	 * reaches 0.
 	 * 
 	 * @param amount
 	 *            The HP to take.
 	 * @param attackerName
-	 *            The name of the attacker (suitable for use with
-	 *            <em>onDead()</em>.)
+	 *            The name of the attacker.
 	 * 
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
-	public int damage(final int amount, final String attackerName) {
-		final int taken = damage(amount);
-
-		if (hp == 0) {
-			onDead(attackerName);
-		}
-
-		return taken;
+	public void delayedDamage(final int amount, final String attackerName) {
+		final RPEntity me = this;
+		/*
+		 * Use a dummy damager entity, so that we can follow the 
+		 * normal code path. Important when dying. 
+		 */
+		final Entity attacker = new Entity() {
+			@Override
+			public String getTitle() {
+				return attackerName;
+			}
+		};
+		
+		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+			public void onTurnReached(int turn) {
+				me.damage(amount, attacker);
+			}
+		}); 
 	}
 
 	/**
@@ -1103,17 +1116,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 */
 	public final void onDead(final Entity killer) {
 		onDead(killer, true);
-	}
-
-	/**
-	 * This method is called when the entity has been killed ( hp==0 ).
-	 * 
-	 * @param killerName
-	 *            The killer's name (a phrase suitable in the expression "
-	 *            <code>by</code> <em>killerName</em>".
-	 */
-	public final void onDead(final String killerName) {
-		onDead(killerName, true);
 	}
 
 	/**

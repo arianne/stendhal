@@ -255,7 +255,7 @@ public abstract class Pet extends DomesticAnimal {
 				if (weight > 0) {
 					setWeight(weight - 1);
 				} else {
-					damage(2, "starvation");
+					delayedDamage(2, "starvation");
 					// TODO: URGENT! Cat can die here! and the removePet() call
 					// isn't working!
 					notifyWorldAboutChanges();
