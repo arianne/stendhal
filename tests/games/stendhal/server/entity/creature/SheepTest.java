@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
@@ -218,10 +219,14 @@ public class SheepTest {
 		assertEquals(2, meh.getHP());
 
 		meh.onStarve();
+		int turn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+		SingletonRepository.getTurnNotifier().logic(turn + 2);
 		assertEquals(0, meh.getWeight());
 		assertEquals(1, meh.getHP());
 
 		meh.onStarve();
+		turn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+		SingletonRepository.getTurnNotifier().logic(turn + 2);
 		assertEquals(0, meh.getWeight());
 		assertEquals(0, meh.getHP());
 	}
