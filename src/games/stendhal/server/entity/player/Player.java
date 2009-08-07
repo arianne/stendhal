@@ -883,7 +883,9 @@ public class Player extends RPEntity {
 	
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
-		super.onDead(killer, remove);
+		// Always use remove=false for players, as documented
+		// in RPEntity.onDead()
+		super.onDead(killer, false);
 		dieer.onDead(killer);
 	}
 
