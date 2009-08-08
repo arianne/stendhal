@@ -43,7 +43,6 @@ public class NameActionTest {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("Please issue the old and the new name."));
-
 	}
 
 	@Test
@@ -55,7 +54,28 @@ public class NameActionTest {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("You don't own any oldname"));
-
+	}
+	
+	@Test
+	public void testOnActionOwnsPetOfDifferentName() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "noname");
+		action.put("args", "newname");
+		final Sheep pet = new Sheep();
+		
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You don't own a pet called 'noname'"));
+		assertThat(pet.getTitle(), is("sheep"));
 	}
 
 	@Test
@@ -77,7 +97,50 @@ public class NameActionTest {
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'sheep' to 'newname'"));
-
+		assertThat(pet.getTitle(), is("newname"));
+	}
+	
+	@Test
+	public void testOnActionNameWithQuotesAndSpace() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "sheep");
+		action.put("args", "' newname '");
+		final Sheep pet = new Sheep();
+		
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'sheep' to 'newname'"));
+		assertThat(pet.getTitle(), is("newname"));
+	}
+	
+	@Test
+	public void testOnActionNameToExisting() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "sheep");
+		action.put("args", "sheep");
+		final Sheep pet = new Sheep();
+		
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You own already a pet named 'sheep'"));
 	}
 	
 	@Test
@@ -99,8 +162,75 @@ public class NameActionTest {
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to 'newname'"));
-
+		assertThat(pet.getTitle(), is("newname"));
 	}
+	
+	@Test
+	public void testOnActionRenameBack() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "oldname");
+		action.put("args", "sheep");
+		final Sheep pet = new Sheep();
+		pet.setTitle("oldname");
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to 'sheep'"));
+		assertThat(pet.getTitle(), is("sheep"));
+	}
+	
+	@Test
+	public void testOnActionRenameWithGenericName() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "sheep");
+		action.put("args", "newname");
+		final Sheep pet = new Sheep();
+		pet.setTitle("oldname");
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to 'newname'"));
+		assertThat(pet.getTitle(), is("newname"));
+	}
+	
+	@Test
+	public void testOnActionRenameBackWithGenericName() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
+		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "sheep");
+		action.put("args", "sheep");
+		final Sheep pet = new Sheep();
+		pet.setTitle("oldname");
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+		
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to 'sheep'"));
+		assertThat(pet.getTitle(), is("sheep"));
+	}
+	
 	@Test
 	public void testOnActionLongestName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -120,10 +250,9 @@ public class NameActionTest {
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("You changed the name of 'oldname' to '01234567890123456789'"));
-		
-		
-
+		assertThat(pet.getTitle(), is("01234567890123456789"));
 	}
+	
 	@Test
 	public void testOnActiontooLongName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -144,8 +273,27 @@ public class NameActionTest {
 		bob.setSheep(pet);
 		nameAction.onAction(bob, action);
 		assertThat(bob.events().get(0).get("text"), is("The new name of your pet must not be longer than 20 characters."));
+		assertThat(pet.getTitle(), is("oldname"));
+	}
+	
+	@Test
+	public void testOnActionEmptyName() {
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		MockStendlRPWorld.get().addRPZone(zone);
 		
+		SheepTestHelper.generateRPClasses();
+		final RPAction action = new RPAction();
+		final NameAction nameAction = new NameAction();
+		action.put("target", "sheep");
+		action.put("args", "   ");
+		final Sheep pet = new Sheep();
+		zone.add(pet);
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
 		
-
+		bob.setSheep(pet);
+		nameAction.onAction(bob, action);
+		assertThat(bob.events().get(0).get("text"), is("Please don't use empty names."));
+		assertThat(pet.getTitle(), is("sheep"));
 	}
 }
