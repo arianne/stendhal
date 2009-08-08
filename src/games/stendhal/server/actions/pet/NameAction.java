@@ -45,39 +45,37 @@ public class NameAction implements ActionListener {
 
 			do {
 				animal = player.searchAnimal(curName, false);
-
 				if (animal != null) {
-					if (animal.getTitle().equalsIgnoreCase(curName)) {
-						// remove quotes, if present
-						if ((newName.charAt(0) == '\'') && (newName.charAt(newName.length() - 1) == '\'')) {
-							newName = newName.substring(1, newName.length() - 1);
-						}
+					// remove quotes, if present
+					if ((newName.charAt(0) == '\'') && (newName.charAt(newName.length() - 1) == '\'')) {
+						newName = newName.substring(1, newName.length() - 1);
+					}
 
-						newName = newName.trim();
+					newName = newName.trim();
 
-						if (player.searchAnimal(newName, false) != null) {
-							player.sendPrivateText("You own already a pet named '" + newName + "'");
-						} else if (newName.length() > 0) {
-							if (newName.length() > 20) {
-								player.sendPrivateText("The new name of your pet must not be longer than 20 characters.");
-							} else {
-								final String oldName = animal.getTitle();
-
-								animal.setTitle(newName);
-
-								if (oldName != null) {
-									player.sendPrivateText("You changed the name of '" + oldName + "' to '" + newName
-											+ "'");
-
-								} else {
-									player.sendPrivateText("Congratulations, your " + curName + " is now called '"
-											+ newName + "'.");
-								}
-							}
+					// check only if the pet is actually named newName, rather than just recognises it
+					if (player.searchAnimal(newName, true) != null) {
+						player.sendPrivateText("You own already a pet named '" + newName + "'");
+					} else if (newName.length() > 0) {
+						if (newName.length() > 20) {
+							player.sendPrivateText("The new name of your pet must not be longer than 20 characters.");
 						} else {
-        					player.sendPrivateText("Please don't use empty names.");
-        				}
-        			}
+							final String oldName = animal.getTitle();
+
+							animal.setTitle(newName);
+
+							if (oldName != null) {
+								player.sendPrivateText("You changed the name of '" + oldName + "' to '" + newName
+										+ "'");
+
+							} else {
+								player.sendPrivateText("Congratulations, your " + curName + " is now called '"
+										+ newName + "'.");
+							}
+						}
+					} else {
+						player.sendPrivateText("Please don't use empty names.");
+					}
     			} else {
         			// see if we can move the word separator one space to the
 					// right to search for a pet name
