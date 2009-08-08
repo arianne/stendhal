@@ -1763,8 +1763,9 @@ public class Player extends RPEntity {
 	/**
 	 * Search for an animal with the given name or type.
 	 *
-	 * @param name 
-	 * @param exactly 
+	 * @param name the name or type of the pet to search
+	 * @param exactly <code>true</code> if looking only for matching 
+	 * 	name instead of both name and type.
 	 * @return the found pet
 	 */
 	public DomesticAnimal searchAnimal(final String name, final boolean exactly) {
