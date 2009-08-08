@@ -8129,9 +8129,9 @@
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
     <description>You see an ent. First you think it is a tree but as it begins to walk you get a surprise!</description>
     <attributes>
-      <atk value="593"/>
-      <def value="323"/>
-      <hp value="100"/>
+      <atk value="588"/>
+      <def value="37"/>
+      <hp value="2000"/>
       <speed value="0.1"/>
       <size value="5,3"/>
     </attributes>
