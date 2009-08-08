@@ -64,7 +64,7 @@ public class JCreature extends javax.swing.JFrame {
 
 	void setLists() {
 		creatureClass.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "animal", "beholder", "boss", "dark_elf",
+				new String[] { "animal", "beholder", "ent", "dark_elf",
 						"demon", "dwarf", "elemental", "elf", "gargoyle",
 						"giant", "giant_animal", "giant_human", "gnome",
 						"goblin", "golem", "huge_animal", "human", "kobold",

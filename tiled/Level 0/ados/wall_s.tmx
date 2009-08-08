@@ -88,7 +88,7 @@
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
  <tileset name="ents" firstgid="858" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="leaves" firstgid="862" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/leaves.png"/>

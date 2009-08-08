@@ -67,7 +67,7 @@
   <image source="../../tileset/building/stairs/stairs_grey.png"/>
  </tileset>
  <tileset name="entwives" firstgid="382" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="pine tree" firstgid="386" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/pine_tree.png"/>

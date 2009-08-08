@@ -37,7 +37,7 @@
   <image source="../../tileset/plant/tree/pine_snowy.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="170" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>

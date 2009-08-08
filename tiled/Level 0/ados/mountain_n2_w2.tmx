@@ -16,7 +16,7 @@
   <image source="../../tileset/ground/earth_edges.png"/>
  </tileset>
  <tileset name="entwives" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="grasses" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grasses.png"/>

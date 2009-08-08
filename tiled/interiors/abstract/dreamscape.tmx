@@ -118,7 +118,7 @@
   <image source="../../tileset/logic/creature/beholder.png"/>
  </tileset>
  <tileset name="ent" firstgid="531" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="tree" firstgid="535" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png"/>

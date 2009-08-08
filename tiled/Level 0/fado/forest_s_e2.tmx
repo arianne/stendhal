@@ -73,7 +73,7 @@
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="creature/boss.png" firstgid="355" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="animal" firstgid="359" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>

@@ -21,7 +21,7 @@ public class EntityViewFactoryTest {
 	@Test
 	public final void testCreate() {
 		assertEquals(EntityViewFactory.getViewClass("blood", null, null), Blood2DView.class);
-		assertEquals(EntityViewFactory.getViewClass("creature", "boss", null), BossCreature2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("creature", "ent", null), BossCreature2DView.class);
 		
 		assertEquals(EntityViewFactory.getViewClass("item", "box", null), Box2DView.class);
 		

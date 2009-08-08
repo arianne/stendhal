@@ -8126,7 +8126,7 @@
   </creature>
 
   <creature name="ent">
-    <type class="boss" subclass="treant" tileid="boss.png:2"/>
+    <type class="ent" subclass="treant" tileid="ent.png:2"/>
     <description>You see an ent. First you think it is a tree but as it begins to walk you get a surprise!</description>
     <attributes>
       <atk value="588"/>
@@ -8366,7 +8366,7 @@
   </creature>
 
   <creature name="old ent"> 	 
-   <type class="boss" subclass="dead_ent" tileid="boss.png:1"/> 	 
+   <type class="ent" subclass="dead_ent" tileid="ent.png:1"/> 	 
    <description>You see an old ent. He has seen many years passing by and survived a lot of storms. You can see that he is very old because he has already lost all of his leaves and most of his bark is broken...</description> 	 
    <attributes> 	 
     <atk value="573"/> 	 
@@ -9517,7 +9517,7 @@
   </creature>
 
   <creature name="entwife">
-    <type class="boss" subclass="entwife" tileid="boss.png:3"/>
+    <type class="ent" subclass="entwife" tileid="ent.png:3"/>
     <description></description>
     <attributes>
       <atk value="719"/>

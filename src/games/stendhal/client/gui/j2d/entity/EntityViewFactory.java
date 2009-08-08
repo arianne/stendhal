@@ -145,7 +145,7 @@ public class EntityViewFactory {
 	protected void configure() {
 		
 		register("blood", null, null, Blood2DView.class);
-		register("creature", "boss", null, BossCreature2DView.class);
+		register("creature", "ent", null, BossCreature2DView.class);
 		
 		register("item", "box", null, Box2DView.class);
 		

@@ -34,7 +34,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="195" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/boss.png"/>
+  <image source="../../tileset/logic/creature/ent.png"/>
  </tileset>
  <tileset name="Sin nombre" firstgid="199" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
