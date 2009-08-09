@@ -784,6 +784,10 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (Integer.MAX_VALUE - this.xp <= newxp) {
 			return;
 		}
+		if (newxp == 0) {
+			return;
+		}
+
 		// Increment experience points
 		this.xp += newxp;
 		put("xp", xp);
