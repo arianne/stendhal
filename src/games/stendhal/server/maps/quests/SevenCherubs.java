@@ -127,7 +127,11 @@ public class SevenCherubs extends AbstractQuest {
 								engine.say("Well done! You only need to find "
 												+ (7 - list.size())
 												+ " more. Fare thee well!");
-								player.addXP((7 - left + 1) * 200);
+								if (engine.getZone().getName().equals("0_semos_village_w")) {
+									player.addXP(20);
+								} else {
+									player.addXP((7 - left + 1) * 200);
+								}
 							} else {
 								engine.say("Thou hast proven thyself brave enough to bear this mighty relic!");
 
