@@ -86,7 +86,7 @@ public class WeddingRing extends Ring {
 	private void teleportToSpouse(final Player player) {
 		// check if pets and sheep are near
 		if (!player.isZoneChangeAllowed()) {
-			player.sendPrivateText("You were told to watch your pet, weren't you ?");
+			player.sendPrivateText("You were told to watch your pet, weren't you?");
 			return;
 		}
 
