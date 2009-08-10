@@ -2439,9 +2439,14 @@ knife 5
 amulet 800
 dagger 20
 shuriken 20
-skull ring 50
-black pearl 70
+skull ring 250
+black pearl 100
 lucky charm 60
+greater antidote 80
+marbles 80
+magical needle 1000
+snowglobe 150
+silk gland 500
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
