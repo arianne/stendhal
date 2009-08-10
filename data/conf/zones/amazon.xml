@@ -55,6 +55,8 @@ lich cloak  10000
 xeno cloak  18000
 stone cloak  350
 vampire cloak  14000
+red dragon cloak  4000
+blue striped cloak 280
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
