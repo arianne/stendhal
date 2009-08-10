@@ -33,6 +33,10 @@ public class DwarfBuyerGuyNPC extends SpeakerNPCFactory {
 				offerings.put("dagger", 20);
 				offerings.put("skull ring", 250);
 				offerings.put("greater antidote", 80);
+				offerings.put("marbles", 80);
+				offerings.put("magical needle", 1000);
+				offerings.put("snowglobe", 150);
+				offerings.put("silk gland", 500);
 				new BuyerAdder().add(dwarfguy, new BuyerBehaviour(offerings), true);			    
 			    
 			   	}
