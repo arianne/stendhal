@@ -130,7 +130,8 @@ public class ShopList {
 		shops.add("buyprecious", "carbuncle", 600);
 		shops.add("buyprecious", "diamond", 800);
 		shops.add("buyprecious", "obsidian", 1000);
-
+		shops.add("buyprecious", "mithril bar", 2500);
+		
 		// rare weapons shop
 		shops.add("buyrare", "scimitar", 65);
 		shops.add("buyrare", "katana", 70);
@@ -284,7 +285,12 @@ public class ShopList {
 		shops.add("buyoddsandends", "lucky charm", 60);
 		shops.add("buyoddsandends", "knife", 5);
 		shops.add("buyoddsandends", "dagger", 20);
-		shops.add("buyoddsandends", "skull ring", 50);
+		shops.add("buyoddsandends", "skull ring", 250);
+		shops.add("buyoddsandends", "greater antidote", 80);
+		shops.add("buyoddsandends", "marbles", 80);
+		shops.add("buyoddsandends", "magical needle", 1000);
+		shops.add("buyoddsandends", "snowglobe", 150);
+		shops.add("buyoddsandends", "silk gland", 500);
 
 		// archery shop in nalwor)
 		shops.add("buyarcherstuff", "wooden arrow", 1);
@@ -296,6 +302,7 @@ public class ShopList {
 		shops.add("buyarcherstuff", "longbow", 300);
 		shops.add("buyarcherstuff", "composite bow", 350);
 		shops.add("buyarcherstuff", "hunter crossbow", 800);	
+		shops.add("buyarcherstuff", "mithril bow", 2000);	
 		
 		// assassinhq chief falatheen the dishwasher and veggie buyer)
 		// sign is hard coded so if you change this change the sign
@@ -364,6 +371,8 @@ public class ShopList {
 		shops.add("buyamazoncloaks", "elf cloak", 50);
 		shops.add("buyamazoncloaks", "lich cloak", 10000);
 		shops.add("buyamazoncloaks", "stone cloak", 350);
+		shops.add("buyamazoncloaks", "blue striped cloak", 280);
+		shops.add("buyamazoncloaks", "red dragon cloak", 4000);
 		
 		// kirdneh city fishy market)
 		shops.add("buyfishes", "perch", 22);
