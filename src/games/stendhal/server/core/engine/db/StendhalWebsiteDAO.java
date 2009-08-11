@@ -76,7 +76,7 @@ public class StendhalWebsiteDAO {
 	protected int updateCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
 		final String query = "UPDATE character_stats SET "
 			+ " admin=[admin], sentence='[sentence]', age=[age], level=[level],"
-			+ " outfit=[outfit], xp=[xp], money='[money]',"
+			+ " outfit=[outfit], xp=[xp], money='[money]', married='[married]'," 
 			+ " atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
 			+ " legs='[legs]', feet='[feet]', cloak='[cloak]'"
@@ -97,8 +97,7 @@ public class StendhalWebsiteDAO {
 		params.put("outfit", instance.getOutfit().getCode());	
 		params.put("xp", instance.getXP());
 		params.put("money", instance.getTotalNumberOf("money"));
-		//married
-		//params.put("married", null);
+		params.put("married", extractSpouseOrNull(instance));
 		params.put("atk", instance.getATK());
 		params.put("def", instance.getDEF());
 		params.put("hp", instance.getHP());
@@ -117,11 +116,11 @@ public class StendhalWebsiteDAO {
 	protected void insertIntoCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
 		final String query = "INSERT INTO character_stats"
 			+ " (name, admin, sentence, age, level,"
-			+ " outfit, xp, money, atk, def, hp,"
+			+ " outfit, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
 			+ " legs, feet, cloak)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
-			+ " '[outfit]', '[xp]', '[money]', '[atk]', '[atk]', '[hp]',"
+			+ " '[outfit]', '[xp]', '[money]', '[married]', '[atk]', '[atk]', '[hp]',"
 			+ " '[karma]', '[head]', '[armor]', '[lhand]', '[rhand]',"
 			+ " '[legs]', '[feet]', '[cloak]')";
 		Map<String, Object> params = getParamsFromPlayer(instance);
@@ -160,4 +159,11 @@ public class StendhalWebsiteDAO {
 		return null;
 	}
 
+	private String extractSpouseOrNull(final Player instance) {
+		if (instance.hasQuest("spouse")) {
+			return instance.getQuest("spouse");
+		} else {
+			return null;
+		}
+	}
 }
