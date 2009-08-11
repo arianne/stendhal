@@ -1591,6 +1591,31 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		return result;
 	}
 
+
+	/**
+	 * Gets the number of items of the given name including bank.
+	 * The item can either be stackable or non-stackable.
+	 * 
+	 * @param name
+	 *            The item's name
+	 * @return The number of carried items
+	 */
+	public int getTotalNumberOf(final String name) {
+		int result = 0;
+
+		for (final RPSlot slot : slots()) {
+			for (final RPObject object : slot) {
+				if (object instanceof Item) {
+					final Item item = (Item) object;
+					if (item.getName().equals(name)) {
+						result += item.getQuantity();
+					}
+				}
+			}
+		}
+		return result;
+	}
+
 	/**
 	 * Gets an item that is carried by the RPEntity. If the item is stackable,
 	 * gets all that are on the first stack that is found.

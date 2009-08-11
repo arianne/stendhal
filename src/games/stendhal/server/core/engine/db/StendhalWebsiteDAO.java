@@ -96,7 +96,7 @@ public class StendhalWebsiteDAO {
 		params.put("level", instance.getLevel());
 		params.put("outfit", instance.getOutfit().getCode());	
 		params.put("xp", instance.getXP());
-		params.put("money", instance.getNumberOfEquipped("money"));
+		params.put("money", instance.getTotalNumberOf("money"));
 		//married
 		//params.put("married", null);
 		params.put("atk", instance.getATK());
