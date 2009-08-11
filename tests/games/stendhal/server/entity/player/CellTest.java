@@ -1,22 +1,14 @@
 package games.stendhal.server.entity.player;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class CellTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public void testCell() {

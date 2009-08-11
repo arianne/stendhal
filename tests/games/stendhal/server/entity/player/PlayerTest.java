@@ -13,8 +13,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,20 +31,12 @@ public class PlayerTest {
 		MockStendlRPWorld.get();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		zone = new StendhalRPZone("the zone where the corpse shall be slain");
-				player = PlayerTestHelper.createPlayer(playername);
-				zone.add(player);
-				killer = PlayerTestHelper.createPlayer("killer");	
-	}
-	
-	@After
-	public void tearDown() throws Exception {
+		player = PlayerTestHelper.createPlayer(playername);
+		zone.add(player);
+		killer = PlayerTestHelper.createPlayer("killer");	
 	}
 
 	@Test
@@ -69,6 +59,7 @@ public class PlayerTest {
 	@Test
 	public void testIsObstacle() {
 		final Entity ent = new Entity() {
+			// just a sub class
 		};
 		ent.setResistance(100);
 		assertTrue(player.isObstacle(ent));
@@ -76,7 +67,6 @@ public class PlayerTest {
 
 		assertFalse(player.isObstacle(ent));
 		assertThat(player.getResistance(ent), is(95));
-
 	}
 
 	@Test
@@ -252,4 +242,6 @@ public class PlayerTest {
 		assertThat(george.getHeight(), is(1.0));
 		assertThat(george.get("height"), is("1"));
 	}
+
+
 }
