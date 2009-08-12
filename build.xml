@@ -886,7 +886,7 @@
 	
 	<target name="cobertura-test">
 		<mkdir dir="${build_tests_report}"/>
-		<junit printsummary="yes" fork="no">
+		<junit printsummary="yes" fork="yes" forkmode="once">
 			<jvmarg value="-Djava.awt.headless=true"/>
 					
 			<sysproperty key="net.sourceforge.cobertura.datafile"
