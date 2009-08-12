@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
 public class SetQuestAction implements ChatAction {
 
 	private final String questname;
-
+	private final int index;
 	private final String state;
 
 	/**
@@ -24,16 +24,37 @@ public class SetQuestAction implements ChatAction {
 	 */
 	public SetQuestAction(final String questname, final String state) {
 		this.questname = questname;
+		this.index = -1;
+		this.state = state;
+	}
+
+	/**
+	 * Creates a new SetQuestAction.
+	 * 
+	 * @param questname
+	 *            name of quest-slot to change
+	 * @param index
+	 *            index of sub state
+	 * @param state
+	 *            new value
+	 */
+	public SetQuestAction(final String questname, final int index, final String state) {
+		this.questname = questname;
+		this.index = index;
 		this.state = state;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		player.setQuest(questname, state);
+		if (index > -1) {
+			player.setQuest(questname, index, state);
+		} else {
+			player.setQuest(questname, state);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "SetQuest<" + questname + "," + state + ">";
+		return "SetQuest<" + questname + "[" + index + "] = " + state + ">";
 	}
 
 	@Override
