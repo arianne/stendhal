@@ -250,37 +250,41 @@ public class PlayerTest {
 		player.setQuest("testquest", "start");
 		assertThat(player.getQuest("testquest"), equalTo("start"));
 		assertThat(player.getQuest("testquest", 0), equalTo("start"));
-		assertThat(player.getQuest("testquest", 1), nullValue());
+		assertThat(player.getQuest("testquest", 1), equalTo(""));
 
 		player.setQuest("testquest", 0, "cont");
 		assertThat(player.getQuest("testquest"), equalTo("cont"));
 		assertThat(player.getQuest("testquest", 0), equalTo("cont"));
-		assertThat(player.getQuest("testquest", 1), nullValue());
+		assertThat(player.getQuest("testquest", 1), equalTo(""));
 
 		player.setQuest("testquest", 1, "end");
 		assertThat(player.getQuest("testquest"), equalTo("cont;end"));
 		assertThat(player.getQuest("testquest", 0), equalTo("cont"));
 		assertThat(player.getQuest("testquest", 1), equalTo("end"));
-		assertThat(player.getQuest("testquest", 2), nullValue());
-
+		assertThat(player.getQuest("testquest", 2), equalTo(""));
 
 		player.setQuest("testquest", 0, "first");
 		assertThat(player.getQuest("testquest"), equalTo("first;end"));
 		assertThat(player.getQuest("testquest", 0), equalTo("first"));
 		assertThat(player.getQuest("testquest", 1), equalTo("end"));
-		assertThat(player.getQuest("testquest", 2), nullValue());
+		assertThat(player.getQuest("testquest", 2), equalTo(""));
 
 		player.setQuest("testquest", 1, "second");
 		assertThat(player.getQuest("testquest"), equalTo("first;second"));
 		assertThat(player.getQuest("testquest", 0), equalTo("first"));
 		assertThat(player.getQuest("testquest", 1), equalTo("second"));
-		assertThat(player.getQuest("testquest", 2), nullValue());
+		assertThat(player.getQuest("testquest", 2), equalTo(""));
 
 		player.setQuest("testquest2", 1, "second");
 		assertThat(player.getQuest("testquest2"), equalTo(";second"));
 		assertThat(player.getQuest("testquest2", 0), equalTo(""));
 		assertThat(player.getQuest("testquest2", 1), equalTo("second"));
-		assertThat(player.getQuest("testquest2", 2), nullValue());
-	
+		assertThat(player.getQuest("testquest2", 2), equalTo(""));
+
+		assertThat(player.getQuest("testquest3"), nullValue());
+		assertThat(player.getQuest("testquest3", 0), nullValue());
+		assertThat(player.getQuest("testquest3", 1), nullValue());
+		assertThat(player.getQuest("testquest3", 2), nullValue());
+
 	}
 }
