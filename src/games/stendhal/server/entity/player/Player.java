@@ -1092,6 +1092,18 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Gets the player's current status in the given quest.
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to change (separated by ";")
+	 * @return the player's status in the quest
+	 */
+	public String getQuest(final String name, final int index) {
+		return quests.getQuest(name, index);
+	}
+	/**
 	 * Allows to store the player's current status in a quest in a string. This
 	 * string may, for instance, be "started", "done", a semicolon- separated
 	 * list of items that need to be brought/NPCs that need to be met, or the
@@ -1106,6 +1118,25 @@ public class Player extends RPEntity {
 	 */
 	public void setQuest(final String name, final String status) {
 		quests.setQuest(name, status);
+	}
+
+	/**
+	 * Allows to store the player's current status in a quest in a string. This
+	 * string may, for instance, be "started", "done", a semicolon- separated
+	 * list of items that need to be brought/NPCs that need to be met, or the
+	 * number of items that still need to be brought. Note that the string
+	 * "done" has a special meaning: see isQuestComplete().
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to change (separated by ";")
+	 * @param status
+	 *            the player's status in the quest. Set it to null to completely
+	 *            reset the player's status for the quest.
+	 */
+	public void setQuest(final String name, final int index, final String status) {
+		quests.setQuest(name, index, status);
 	}
 
 	public List<String> getQuests() {

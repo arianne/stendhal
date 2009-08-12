@@ -82,6 +82,96 @@ class PlayerQuests {
 		}
 	}
 
+	
+	/**
+	 * Gets the player's current status in the given quest.
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to change (separated by ";")
+	 * @return the player's status in the quest
+	 */
+	public String getQuest(final String name, final int index) {
+		String state = getQuest(name);
+		if (state == null) {
+			return null;
+		}
+		
+		String[] elements = state.split(";");
+		if (index < elements.length) {
+			return elements[index];
+		}
+		return "";
+	}
+
+	/**
+	 * Allows to store the player's current status in a quest in a string. This
+	 * string may, for instance, be "started", "done", a semicolon- separated
+	 * list of items that need to be brought/NPCs that need to be met, or the
+	 * number of items that still need to be brought. Note that the string
+	 * "done" has a special meaning: see isQuestComplete().
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to change (separated by ";")
+	 * @param subStatus
+	 *            the player's status in the quest. Set it to null to completely
+	 *            reset the player's status for the quest.
+	 */
+	public void setQuest(final String name, final int index, final String subStatus) {
+		/*String state = getQuest(name);
+		if (state == null) {
+			state = "";
+		}
+		int counter = 0;
+		StringTokenizer st = new StringTokenizer(state, ";");
+		StringBuilder res = new StringBuilder();
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+			if (counter > 0) {
+				res.append(";");
+			}
+			if (counter == index) {
+				res.append(subStatus);
+			} else {
+				res.append(token);
+			}
+			counter++;
+		}
+		for (int i = 0; i <= index - counter; i++) {
+			res.append(";");
+		}
+		if (counter <= index) {
+			res.append(subStatus);
+		}
+		// todo: handle counter < index;
+		setQuest(name, res.toString());*/
+		String state = getQuest(name);
+		if (state == null) {
+			state = "";
+		}
+		String[] elements = state.split(";");
+		if (elements.length <= index) {
+			String[] temp = new String[index + 1];
+			System.arraycopy(elements, 0, temp, 0, elements.length);
+			elements = temp;
+		}
+		
+		elements[index] = subStatus;
+		StringBuilder res = new StringBuilder();
+		for (int i = 0; i < elements.length; i++) {
+			if (i > 0) {
+				res.append(";");
+			}
+			if (elements[i] != null) {
+				res.append(elements[i]);
+			}
+		}
+		setQuest(name, res.toString());
+	}
+	
 	public List<String> getQuests() {
 		final RPSlot slot = player.getSlot("!quests");
 		final RPObject quests = slot.iterator().next();
