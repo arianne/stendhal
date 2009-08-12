@@ -891,10 +891,14 @@
 					
 			<sysproperty key="net.sourceforge.cobertura.datafile"
 			file="${build_cobertura}/cobertura.ser" />
-			<classpath location="${build_cobertura}" />
 			<classpath>
+				<pathelement path="${build_cobertura}"/>
 				<pathelement path="${build_tests}"/>
+				<pathelement path="${build_client}"/>
+				<pathelement path="${build_server}"/>
+				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
+				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${cglib_jar}"/>
