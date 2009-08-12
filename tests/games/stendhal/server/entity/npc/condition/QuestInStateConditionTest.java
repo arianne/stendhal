@@ -73,7 +73,7 @@ public class QuestInStateConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestInState <questname,testToString>",
+		assertEquals("QuestInState <questname[-1] = testToString>",
 				new QuestInStateCondition(QUESTNAME, "testToString").toString());
 	}
 
@@ -111,8 +111,7 @@ public class QuestInStateConditionTest {
 	@Test
 	public void testHashCode() throws Throwable {
 
-		final QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME,
-				"state");
+		final QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME, "state");
 		assertEquals(obj.hashCode(), obj.hashCode());
 
 		assertEquals(

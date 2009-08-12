@@ -76,7 +76,7 @@ public class QuestNotInStateConditionTest {
 	@Test
 	public final void testToString() {
 		assertEquals(
-				"QuestNotInState <questname,testToString>",
+				"QuestNotInState <questname[-1] = testToString>",
 				new QuestNotInStateCondition(QUESTNAME, "testToString").toString());
 	}
 

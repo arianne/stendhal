@@ -15,6 +15,7 @@ public class QuestNotInStateCondition implements ChatCondition {
 
 	private final String questname;
 	private final String state;
+	private final int index;
 
 	/**
 	 * Creates a new QuestNotInStateCondition.
@@ -26,17 +27,40 @@ public class QuestNotInStateCondition implements ChatCondition {
 	 */
 	public QuestNotInStateCondition(final String questname, final String state) {
 		this.questname = questname;
+		this.index = -1;
+		this.state = state;
+	}
+
+	/**
+	 * Creates a new QuestNotInStateCondition.
+	 * 
+	 * @param questname
+	 *            name of quest-slot
+	 * @param index
+	 *            index of sub state
+	 * @param state
+	 *            state
+	 */
+	public QuestNotInStateCondition(final String questname, final int index, final String state) {
+		this.questname = questname;
+		this.index = index;
 		this.state = state;
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		return (!player.hasQuest(questname) || !player.getQuest(questname).equals(
-				state));
+		if (!player.hasQuest(questname)) {
+			return true;
+		}
+		if (index > -1) {
+			return !player.getQuest(questname, index).equals(state);
+		} else {
+			return !player.getQuest(questname).equals(state);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "QuestNotInState <" + questname + "," + state + ">";
+		return "QuestNotInState <" + questname + "[" + index + "] = " + state + ">";
 	}
 
 	@Override
