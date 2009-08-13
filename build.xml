@@ -852,7 +852,7 @@
 	</target>
 	
 	<target name="cobertura-instrument">
-		<cobertura-instrument todir="${build_cobertura}">
+		<cobertura-instrument todir="${build_cobertura}" datafile="${build_cobertura}/cobertura.ser">
 		    <ignore regex="org.apache.log4j.*" />
 		    <fileset dir="${build_server}">
 		        <include name="**/*.class" />
@@ -887,8 +887,6 @@
 	<target name="cobertura-test">
 		<mkdir dir="${build_tests_report}"/>
 		<junit printsummary="yes" fork="yes" forkmode="once">
-			<jvmarg value="-Djava.awt.headless=true"/>
-					
 			<sysproperty key="net.sourceforge.cobertura.datafile"
 			file="${build_cobertura}/cobertura.ser" />
 			<classpath>
@@ -928,8 +926,8 @@
 	
 	<target name="cobertura-report">
 		<mkdir dir="${build_cobertura_report}"/>
-		<cobertura-report format="html" destdir="${build_cobertura_report}" srcdir="${src}" />
-		<cobertura-report format="xml" destdir="${build_cobertura_report}" srcdir="${src}" />
+		<cobertura-report format="html" destdir="${build_cobertura_report}" srcdir="${src}" datafile="${build_cobertura}/cobertura.ser" />
+		<cobertura-report format="xml" destdir="${build_cobertura_report}" srcdir="${src}" datafile="${build_cobertura}/cobertura.ser" />
 	</target>
 	
 	<target name="run_tests_with_cobertura" depends="compile_tests,cobertura-instrument,cobertura-test,cobertura-report,report_test"/>
