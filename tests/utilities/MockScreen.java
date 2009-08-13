@@ -102,7 +102,7 @@ public class MockScreen implements IGameScreen {
 			final Color outlineColor, final String text, final int x, final int y) {
 	}
 
-	public Graphics2D expose() {
+	public Graphics2D getGraphics() {
 		return null;
 	}
 

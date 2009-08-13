@@ -15,7 +15,7 @@ public class EntityViewFactoryTest {
 	public void setUp() throws Exception {
 		Log4J.init();
 
-		GameScreen.setDefaultScreen(new MockScreen());
+		//GameScreen.setDefaultScreen(new MockScreen());
 	}
 
 	@Test
