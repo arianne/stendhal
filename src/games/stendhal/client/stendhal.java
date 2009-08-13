@@ -144,7 +144,7 @@ public class stendhal {
 		
 		waitForLogin();
 		startSoundMaster();
-		IGameScreen gameScreen = GameScreen.get();
+		GameScreen gameScreen = GameScreen.get();
 		
 		final j2DClient locclient = new j2DClient(client, gameScreen, userContext);
 		perceptionDispatch.register(locclient.getPerceptionListener());

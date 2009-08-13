@@ -16,7 +16,6 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.tools.tiled.LayerDefinition;
 
-import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
@@ -117,7 +116,6 @@ public class TileRenderer extends LayerRenderer {
 			y = 0;
 		}
 
-		final Graphics g = screen.expose();
 		final Point p = screen.convertWorldToScreenView(x, y);
 
 		int sy = p.y;
@@ -127,7 +125,7 @@ public class TileRenderer extends LayerRenderer {
 			int sx = p.x;
 
 			for (int i = x; i < x2; i++) {
-				spriteMap[mapidx].draw(g, sx, sy);
+				spriteMap[mapidx].draw(screen.getGraphics(), sx, sy);
 				mapidx++;
 				sx += IGameScreen.SIZE_UNIT_PIXELS;
 			}

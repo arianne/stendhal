@@ -28,6 +28,7 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -53,9 +54,12 @@ import org.apache.log4j.Logger;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
+/*
+ * In principle swing has a nice builtin double buffering. In practice it 
+ * can not be used for anything but trivial cases, so deriving this from
+ * awt.Canvas instead
+ */
 public class GameScreen implements PositionChangeListener, IGameScreen {
-
-	
 	/**
 	 * Comparator used to sort entities to display.
 	 */
@@ -72,8 +76,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private static final Sprite offlineIcon;
 
 	/** the singleton instance. */
-	private static IGameScreen screen;
+	private static GameScreen screen;
 
+	private Canvas canvas;
+	private BufferStrategy buffer;
+	private Graphics g2d;
 	/**
 	 * Static game layers.
 	 */
@@ -92,10 +99,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/** Actual size of the world in world units. */
 	protected int ww;
 	protected int wh;
-
-	private final BufferStrategy strategy;
-
-	private Graphics2D g;
 
 	/**
 	 * The ground layer.
@@ -166,7 +169,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-	private final TextBoxFactory textBoxFactory;
+	private TextBoxFactory textBoxFactory;
 
 	/**
 	 * Create a game screen.
@@ -176,7 +179,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param canvas
 	 *            The canvas to render in.
 	 */
-	public GameScreen(final StendhalClient client, final Canvas canvas) {
+	public GameScreen(final StendhalClient client) {
+		canvas = new Canvas();
+		canvas.setIgnoreRepaint(true);
+		//canvas.setPreferredSize(stendhal.screenSize);
+		canvas.setSize(stendhal.screenSize);
 		gameLayers = client.getStaticGameLayers();
 
 		sw = canvas.getWidth();
@@ -202,17 +209,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// register native event handler
 		canvas.addMouseListener(ground);
 		canvas.addMouseMotionListener(ground);
-
-		/*
-		 * Create the buffering strategy which will allow AWT to manage our
-		 * accelerated graphics
-		 */
-		canvas.createBufferStrategy(2);
-		strategy = canvas.getBufferStrategy();
-
-		g = (Graphics2D) strategy.getDrawGraphics();
-		
-		textBoxFactory = new TextBoxFactory(g);
+	}
+	
+	public Component getComponent() {
+		return canvas;
 	}
 
 	/**
@@ -221,30 +221,23 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param screen
 	 *            The screen.
 	 */
-	public static void setDefaultScreen(final IGameScreen screen) {
+	
+	public static void setDefaultScreen(final GameScreen screen) {
 		GameScreen.screen = screen;
 	}
 
 	/** @return the GameScreen object. */
-	public static IGameScreen get() {
+	public static GameScreen get() {
 		return screen;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getViewWidth()
-	 */
-	public double getViewWidth() {
+	/** @return screen width in world units. */
+	private double getViewWidth() {
 		return sw / SIZE_UNIT_PIXELS;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getViewHeight()
-	 */
-	public double getViewHeight() {
+	/** @return screen height in world units .*/
+	private double getViewHeight() {
 		return sh / SIZE_UNIT_PIXELS;
 	}
 	
@@ -254,12 +247,15 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#nextFrame()
 	 */
 	public void nextFrame() {
-		g.dispose();
-		strategy.show();
-
 		adjustView();
-
-		g = (Graphics2D) strategy.getDrawGraphics();
+	}
+	
+	private TextBoxFactory getTextFactory() {
+		if (textBoxFactory == null) {
+			textBoxFactory = new TextBoxFactory((Graphics2D) getGraphics());
+		}
+		
+		return textBoxFactory;
 	}
 
 	/*
@@ -291,14 +287,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void addEntityView(final EntityView view) {
+	private void addEntityView(final EntityView view) {
 		views.add(view);
 		if (view instanceof Entity2DView) {
 			final Entity2DView inspectable = (Entity2DView) view;
 			
 			inspectable.setInspector(ground);
-		}
-			
+		}	
 	}
 	
 
@@ -321,24 +316,15 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @param view
 	 *            A view.
 	 */
-	protected void removeEntityView(final EntityView view) {
+	private void removeEntityView(final EntityView view) {
 		view.release(this);
 		views.remove(view);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#expose()
-	 */
-	public Graphics2D expose() {
-		return g;
 	}
 
 	/**
 	 * Update the view position to center the target position.
 	 */
-	protected void adjustView() {
+	private void adjustView() {
 		/*
 		 * Already centered?
 		 */
@@ -435,7 +421,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * Updates the view position to center the target position.
 	 *
 	 */
-	protected void calculateView() {
+	private void calculateView() {
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
 		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
 
@@ -487,21 +473,35 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#createView(games.stendhal.client.entity.Entity)
 	 */
 	public EntityView createView(final IEntity entity) {
-		Entity2DView view = (Entity2DView) EntityViewFactory.create(entity);
+		final Entity2DView view = (Entity2DView) EntityViewFactory.create(entity);
 		view.initialize(entity);
-		return  view;
 		
+		return  view;
 	}
 	
-	/*
-	 * Draw the screen.
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#draw()
-	 */
+
 	public void draw() {
+		final Graphics g = getGraphics();
+		draw((Graphics2D) g);
+		
+		buffer.show();
+	}
+	
+	public Graphics getGraphics() {
+		/*
+		 *  swing does not want to give a valid GraphicsConfiguration until the
+		 *  window has been drawn, so this can not be done in the constructor.
+		 */ 
+		if (buffer == null) {
+			canvas.createBufferStrategy(2);
+			buffer = canvas.getBufferStrategy();
+			g2d = buffer.getDrawGraphics(); 
+		}
+		
+		return g2d;
+	}
+	
+	private void draw(final Graphics2D g2d) {
 		Collections.sort(views, entityViewComparator);
 
 		/*
@@ -514,36 +514,36 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		final int yTemp = (int) getViewY();
 		final int w = (int) getViewWidth();
 		final int h = (int) getViewHeight();
-
+		
 		/*
 		 * End of the world (map falls short of the view)?
 		 */
 		int px = convertWorldXToScreenView(Math.max(xTemp, 0));
 
 		if (px > 0) {
-			g.setColor(Color.black);
-			g.fillRect(0, 0, px, sh);
+			g2d.setColor(Color.black);
+			g2d.fillRect(0, 0, px, sh);
 		}
 
 		px = convertWorldXToScreenView(Math.min(xTemp + w, ww));
 
 		if (px < sw) {
-			g.setColor(Color.black);
-			g.fillRect(px, 0, sw - px, sh);
+			g2d.setColor(Color.black);
+			g2d.fillRect(px, 0, sw - px, sh);
 		}
 
 		int py = convertWorldYToScreenView(Math.max(yTemp, 0));
 
 		if (py > 0) {
-			g.setColor(Color.black);
-			g.fillRect(0, 0, sw, py);
+			g2d.setColor(Color.black);
+			g2d.fillRect(0, 0, sw, py);
 		}
 
 		py = convertWorldYToScreenView(Math.min(yTemp + h, wh));
 
 		if (py < sh) {
-			g.setColor(Color.black);
-			g.fillRect(0, py, sw, sh - py);
+			g2d.setColor(Color.black);
+			g2d.fillRect(0, py, sw, sh - py);
 		}
 
 		/*
@@ -552,22 +552,22 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		gameLayers.draw(this, set, "0_floor", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "1_terrain", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "2_object", xTemp, yTemp, w, h);
-		drawEntities();
+		drawEntities(g2d);
 		gameLayers.draw(this, set, "3_roof", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "4_roof_add", xTemp, yTemp, w, h);
-		drawTopEntities();
-		drawText();
+		drawTopEntities(g2d);
+		drawText(g2d);
 
 		/*
 		 * Dialogs
 		 */
-		ground.draw(g, this);
+		ground.draw(g2d, this);
 
 		/*
 		 * Offline
 		 */
 		if (offline && (blinkOffline > 0)) {
-			offlineIcon.draw(g, 560, 420);
+			offlineIcon.draw(g2d, 560, 420);
 		}
 
 		if (blinkOffline < -10) {
@@ -580,29 +580,25 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
 	 * Draw the screen entities.
 	 */
-	protected void drawEntities() {
-		final Graphics2D g2d = expose();
-
+	private void drawEntities(final Graphics2D g) {
 		for (final EntityView view : views) {
-			view.draw(g2d, this);
+			view.draw(g, this);
 		}
 	}
 
 	/**
 	 * Draw the top portion screen entities (such as HP/title bars).
 	 */
-	protected void drawTopEntities() {
-		final Graphics2D g2d = expose();
-
+	private void drawTopEntities(final Graphics2D g) {
 		for (final EntityView view : views) {
-			view.drawTop(g2d, this);
+			view.drawTop(g, this);
 		}
 	}
 
 	/**
 	 * Draw the screen text bubbles.
 	 */
-	protected void drawText() {
+	private void drawText(final Graphics2D g2d) {
 		texts.removeAll(textsToRemove);
 		textsToRemove.clear();
 
@@ -615,21 +611,21 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the view X world coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getViewX()
+	 * @return The X coordinate of the left side.
 	 */
-	public double getViewX() {
+	private double getViewX() {
 		return (double) getScreenViewX() / SIZE_UNIT_PIXELS;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the view Y world coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getViewY()
+	 * @return The Y coordinate of the left side.
 	 */
-	public double getViewY() {
+	private double getViewY() {
 		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
 	}
 
@@ -665,38 +661,40 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		addText(x, y, text, type.getColor(), isTalking);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#addText(double, double,
-	 *      java.lang.String, java.awt.Color, boolean)
+	/**
+	 * Adds a text bubble at a give position of the specified Color.
+	 * 
+	 * @param x The screen X coordinate.
+	 * @param y The screen Y coordinate.
+	 * @param text The textual content
+	 * @param color The color in which the text shall be shown 
+	 * @param isTalking Is it a talking text bubble
+	 * @see games.stendhal.common.NotificationType
+	 * 
 	 */
-	public void addText(final double x, final double y, final String text,
+	private void addText(final double x, final double y, final String text,
 			final Color color, final boolean talking) {
 		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color,
 				talking);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Add a text bubble.
 	 *
-	 * @see games.stendhal.client.IGameScreen#addText(int, int,
-	 *      java.lang.String, games.stendhal.client.NotificationType, boolean)
+	 * @param sx
+	 *            The screen X coordinate.
+	 * @param sy
+	 *            The screen Y coordinate.
+	 * @param text
+	 *            The text.
+	 * @param color
+	 *            The text color.
+	 * @param isTalking
+	 *            Is it is a talking text bubble.
 	 */
-	public void addText(final int sx, final int sy, final String text,
-			final NotificationType type, final boolean talking) {
-		addText(sx, sy, text, type.getColor(), talking);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#addText(int, int,
-	 *      java.lang.String, java.awt.Color, boolean)
-	 */
-	public void addText(int sx, int sy, final String text, final Color color,
+	private void addText(int sx, int sy, final String text, final Color color,
 			final boolean isTalking) {
-		final Sprite sprite = textBoxFactory.createTextBox(text, 240, color, Color.white, isTalking);
+		final Sprite sprite = getTextFactory().createTextBox(text, 240, color, Color.white, isTalking);
 
 		if (isTalking) {
 			// Point alignment: left, bottom
@@ -768,16 +766,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		views.clear();
 		texts.clear();
 		textsToRemove.clear();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#clear()
-	 */
-	public void clear() {
-		g.setColor(Color.black);
-		g.fillRect(0, 0, getScreenViewWidth(), getScreenViewHeight());
 	}
 
 	/*
@@ -898,21 +886,27 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Convert world X coordinate to screen view coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldXToScreenView(double)
+	 * @param wx
+	 *            World X coordinate.
+	 *
+	 * @return Screen X coordinate (in integer value).
 	 */
-	public int convertWorldXToScreenView(final double wx) {
+	private int convertWorldXToScreenView(final double wx) {
 		return convertWorldToScreen(wx) - svx;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Convert world Y coordinate to screen view coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldYToScreenView(double)
+	 * @param wy
+	 *            World Y coordinate.
+	 *
+	 * @return Screen Y coordinate (in integer value).
 	 */
-	public int convertWorldYToScreenView(final double wy) {
+	private int convertWorldYToScreenView(final double wy) {
 		return convertWorldToScreen(wy) - svy;
 	}
 
@@ -937,13 +931,21 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				wrect.getWidth(), wrect.getHeight());
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Convert world coordinates to screen coordinates.
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(double,
-	 *      double, double, double)
+	 * @param wx
+	 *            World X coordinate.
+	 * @param wy
+	 *            World Y coordinate.
+	 * @param wwidth
+	 *            World area width.
+	 * @param wheight
+	 *            World area height.
+	 *
+	 * @return Screen rectangle (in integer values).
 	 */
-	public Rectangle convertWorldToScreenView(final double wx, final double wy,
+	private Rectangle convertWorldToScreenView(final double wx, final double wy,
 			final double wwidth, final double wheight) {
 		return new Rectangle(convertWorldXToScreenView(wx),
 				convertWorldYToScreenView(wy),
@@ -960,12 +962,22 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return isInScreen(srect.x, srect.y, srect.width, srect.height);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Determine if an area is in the screen view.
 	 *
-	 * @see games.stendhal.client.IGameScreen#isInScreen(int, int, int, int)
+	 * @param sx
+	 *            Screen X coordinate.
+	 * @param sy
+	 *            Screen Y coordinate.
+	 * @param swidth
+	 *            Screen area width.
+	 * @param sheight
+	 *            Screen area height.
+	 *
+	 * @return <code>true</code> if some part of area in in the visible
+	 *         screen, otherwise <code>false</code>.
 	 */
-	public boolean isInScreen(final int sx, final int sy, final int swidth, final int sheight) {
+	private boolean isInScreen(final int sx, final int sy, final int swidth, final int sheight) {
 		return (((sx >= -swidth) && (sx < sw)) && ((sy >= -sheight) && (sy < sh)));
 	}
 
@@ -973,7 +985,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * (non-Javadoc)
 	 *
 	 * @see games.stendhal.client.IGameScreen#draw(games.stendhal.client.sprite.Sprite,
-	 *      double, double)
+	 *      int, int)
 	 */
 	public void draw(final Sprite sprite, final double wx, final double wy) {
 		final Point p = convertWorldToScreenView(wx, wy);
@@ -984,7 +996,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 			if (((p.x >= -spritew) && (p.x < sw))
 					&& ((p.y >= -spriteh) && (p.y < sh))) {
-				sprite.draw(g, p.x, p.y);
+				sprite.draw(getGraphics(), p.x, p.y);
 			}
 		}
 	}
@@ -996,17 +1008,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *      int, int)
 	 */
 	public void drawInScreen(final Sprite sprite, final int sx, final int sy) {
-		sprite.draw(g, sx, sy);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#createString(java.lang.String,
-	 *      games.stendhal.client.NotificationType)
-	 */
-	public Sprite createString(final String text, final NotificationType type) {
-		return createString(text, type.getColor());
+		sprite.draw(getGraphics(), sx, sy);
 	}
 
 	/*
@@ -1017,7 +1019,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	public Sprite createString(final String text, final Color textColor) {
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		final Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
+		final Image image = gc.createCompatibleImage(getGraphics().getFontMetrics().stringWidth(
 				text) + 2, 16, Transparency.BITMASK);
 		final Graphics g2d = image.getGraphics();
 
@@ -1049,13 +1051,25 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		drawOutlineString(g, textColor, outlineColor, text, x, y);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
+	 * only with an outline border. The area drawn extends 1 pixel out on all
+	 * side from what would normal be drawn by drawString().
 	 *
-	 * @see games.stendhal.client.IGameScreen#drawOutlineString(java.awt.Graphics,
-	 *      java.awt.Color, java.awt.Color, java.lang.String, int, int)
+	 * @param g
+	 *            The graphics context.
+	 * @param textColor
+	 *            The text color.
+	 * @param outlineColor
+	 *            The outline color.
+	 * @param text
+	 *            The text to draw.
+	 * @param x
+	 *            The X position.
+	 * @param y
+	 *            The Y position.
 	 */
-	public void drawOutlineString(final Graphics g, final Color textColor,
+	private void drawOutlineString(final Graphics g, final Color textColor,
 			final Color outlineColor, final String text, final int x,
 			final int y) {
 		g.setColor(outlineColor);
@@ -1077,12 +1091,17 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return (int) (w * SIZE_UNIT_PIXELS);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Convert screen coordinates to world coordinates.
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertScreenToWorld(int, int)
+	 * @param x
+	 *            The virtual screen X coordinate.
+	 * @param y
+	 *            The virtual screen Y coordinate.
+	 *
+	 * @return World coordinates.
 	 */
-	public Point2D convertScreenToWorld(final int x, final int y) {
+	private Point2D convertScreenToWorld(final int x, final int y) {
 		return new Point.Double((double) x / SIZE_UNIT_PIXELS, (double) y
 				/ SIZE_UNIT_PIXELS);
 
@@ -1106,40 +1125,22 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return convertScreenToWorld(x + getScreenViewX(), y + getScreenViewY());
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the full screen height in pixels.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenHeight()
+	 * @return The height.
 	 */
-	public int getScreenHeight() {
+	private int getScreenHeight() {
 		return convertWorldToScreen(wh);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the full screen width in pixels.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenWidth()
+	 * @return The width.
 	 */
-	public int getScreenWidth() {
+	private int getScreenWidth() {
 		return convertWorldToScreen(ww);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenViewHeight()
-	 */
-	public int getScreenViewHeight() {
-		return sh;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenViewWidth()
-	 */
-	public int getScreenViewWidth() {
-		return sw;
 	}
 
 	/*
@@ -1187,7 +1188,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	//
 	//
 
-	public static class EntityViewComparator implements
+	private static class EntityViewComparator implements
 			Comparator<EntityView> {
 		//
 		// Comparator
@@ -1206,7 +1207,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 				if (rv == 0) {
 					rv = area1.x - area2.x;
-
 					/*
 					 * Quick workaround to stack items in the same order they
 					 * were added.

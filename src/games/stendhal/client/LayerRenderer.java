@@ -47,6 +47,7 @@ public abstract class LayerRenderer {
 	 * @param screen
 	 *            The screen to draw on.
 	 */
+	/*
 	public void draw(final IGameScreen screen) {
 		final int x = (int) screen.getViewX();
 		final int y = (int) screen.getViewY();
@@ -55,6 +56,7 @@ public abstract class LayerRenderer {
 
 		draw(screen, x, y, w, h);
 	}
+	*/
 
 	/**
 	 * Render the layer to screen. We assume that game screen will clip.

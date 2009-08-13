@@ -16,6 +16,7 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
@@ -47,7 +48,6 @@ public class ImageRenderer extends LayerRenderer {
 	 * @param screen
 	 *            The screen to draw on.
 	 */
-	@Override
 	public void draw(final IGameScreen screen) {
 		if (mySprite != null) {
 			screen.draw(mySprite, 0, 0);
