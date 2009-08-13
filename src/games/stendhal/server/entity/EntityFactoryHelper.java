@@ -38,7 +38,7 @@ public class EntityFactoryHelper {
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
 	 * 
-	 * @see-also ConfigurableFactory
+	 * @see ConfigurableFactory
 	 */
 	public static Entity create(final String className,
 			final Map<String, String> parameters, final Map<String, String> attributes) {

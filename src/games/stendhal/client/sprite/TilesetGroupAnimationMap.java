@@ -111,7 +111,7 @@ public class TilesetGroupAnimationMap {
 	 * @param line
 	 *            The configuration line.
 	 * 
-	 * @see-also #load(InputStream)
+	 * @see #load(InputStream)
 	 */
 	protected void addConfig(final String line) {
 
@@ -266,7 +266,7 @@ public class TilesetGroupAnimationMap {
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 * 
-	 * @see-also #clear()
+	 * @see #clear()
 	 */
 	public void load(final InputStream in) throws IOException {
 		final BufferedReader r = new BufferedReader(new InputStreamReader(in));

@@ -283,9 +283,9 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return <code>true</code> if animating.
 	 * 
-	 * @see-also #start()
-	 * @see-also #stop()
-	 * @see-also #setAnimating(boolean)
+	 * @see #start()
+	 * @see #stop()
+	 * @see #setAnimating(boolean)
 	 */
 	public boolean isAnimating() {
 		return animating;
@@ -296,7 +296,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return <code>true</code> if animation loops.
 	 * 
-	 * @see-also #setLoop(boolean)
+	 * @see #setLoop(boolean)
 	 */
 	public boolean isLoop() {
 		return loop;
@@ -363,7 +363,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Start the sprite animating.
 	 * 
-	 * @see-also #stop()
+	 * @see #stop()
 	 */
 	public void start() {
 		animating = true;
@@ -372,7 +372,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Stop the sprite animating. This does not change the current frame.
 	 * 
-	 * @see-also #start()
+	 * @see #start()
 	 */
 	public void stop() {
 		animating = false;

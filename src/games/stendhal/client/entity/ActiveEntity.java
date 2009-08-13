@@ -183,7 +183,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param base
 	 *            The object.
 	 * 
-	 * @see-also #release()
+	 * @see #release()
 	 */
 	@Override
 	public void initialize(final RPObject base) {

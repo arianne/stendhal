@@ -53,7 +53,7 @@ public class SpriteCache {
 	 * @param sprite
 	 *            The sprite to add.
 	 * 
-	 * @see-also Sprite#getReference()
+	 * @see Sprite#getReference()
 	 */
 	public void add(final Sprite sprite) {
 		add(sprite.getReference(), sprite);

@@ -624,7 +624,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param object
 	 *            The object.
 	 * 
-	 * @see-also #release()
+	 * @see #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -799,7 +799,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
 	 * 
-	 * @see-also #initialize(RPObject)
+	 * @see #initialize(RPObject)
 	 */
 	@Override
 	public void release() {

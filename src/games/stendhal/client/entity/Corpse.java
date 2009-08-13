@@ -55,7 +55,7 @@ public class Corpse extends Entity {
 	 * @param object
 	 *            The object.
 	 * 
-	 * @see-also #release()
+	 * @see #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {

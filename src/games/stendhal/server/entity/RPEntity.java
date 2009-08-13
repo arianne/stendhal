@@ -253,7 +253,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return The current amount of karma.
 	 * 
-	 * @see-also #addKarma()
+	 * @see #addKarma()
 	 */
 	public double getKarma() {
 		// No karma (yet)

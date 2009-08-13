@@ -402,7 +402,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @return The current amount of karma.
 	 * 
-	 * @see-also #addKarma()
+	 * @see #addKarma()
 	 */
 	@Override
 	public double getKarma() {
