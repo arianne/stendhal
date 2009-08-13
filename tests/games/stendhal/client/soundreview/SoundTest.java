@@ -1,5 +1,6 @@
 package games.stendhal.client.soundreview;
 
+import static org.junit.Assume.assumeTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import games.stendhal.client.entity.User;
@@ -47,16 +48,16 @@ public class SoundTest {
 	public void testPlay() {
 		final SoundMaster sm = new SoundMaster();
 		sm.init();
-		if (SoundSystem.get().isOperative()) {
-			Sound valid = new Sound("chicken-mix", 0, 0);
-			assertNull(valid.play());
-			valid = new Sound("chicken-mix", 1, 1);
-			assertNotNull("this sound exists", valid);
-			new User();
-			assertNotNull(valid.play());
-			final Sound invalid = new Sound("bla", 1, 1);
-			assertNull(invalid.play());
-		}
+		assumeTrue(SoundSystem.get().isOperative());
+		
+		Sound valid = new Sound("chicken-mix", 0, 0);
+		assertNull(valid.play());
+		valid = new Sound("chicken-mix", 1, 1);
+		assertNotNull("this sound exists", valid);
+		new User();
+		assertNotNull(valid.play());
+		final Sound invalid = new Sound("bla", 1, 1);
+		assertNull(invalid.play());
 	}
 
 }
