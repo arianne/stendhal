@@ -47,16 +47,11 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
-import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
@@ -66,9 +61,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import marauroa.client.net.IPerceptionListener;
@@ -202,15 +195,9 @@ public class j2DClient {
 		
 		// Create the main window
 		mainFrame = new MainFrame();
-		final Container mainFrameContentPane = mainFrame.getMainFrame();
-		
-		/*
-		 * Add a panel for layout so that we can simply add the 
-		 * rest of the components
-		 */
-		final JPanel windowContent = new JPanel();
+		final Container windowContent = mainFrame.getMainFrame().getContentPane();
 		windowContent.setLayout(new BoxLayout(windowContent, BoxLayout.Y_AXIS));
-		mainFrameContentPane.add(windowContent);
+		windowContent.setBackground(Color.black);
 		
 		/*
 		 * Add a layered pane for the game area, so that we can have
@@ -218,6 +205,12 @@ public class j2DClient {
 		 */
 		pane = new JLayeredPane();
 		pane.setPreferredSize(stendhal.screenSize);
+		/*
+		 *  Set the sizes strictly so that the layout manager
+		 *  won't try to resize it
+		 */
+		pane.setMaximumSize(stendhal.screenSize);
+		pane.setMinimumSize(stendhal.screenSize);
 	
 		/*
 		 * Create the main game screen
@@ -226,8 +219,8 @@ public class j2DClient {
 		GameScreen.setDefaultScreen(screen);
 		
 		// ... and put it on the ground layer of the pane
-		pane.add(screen.getComponent(), JLayeredPane.DEFAULT_LAYER);
-		windowContent.add(pane);
+		pane.add(screen.getComponent(), Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
+		windowContent.add(pane, Component.LEFT_ALIGNMENT);
 
 		client.setScreen(screen);
 		positionChangeListener = new PositionChangeMulticaster();
@@ -236,9 +229,10 @@ public class j2DClient {
 				
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		
+		// Freeze the height so that the layout manager won't mess it
+		chatText.getPlayerChatText().setMaximumSize(new Dimension(100000, chatText.getPlayerChatText().getPreferredSize().height));
+		chatText.getPlayerChatText().setMinimumSize(new Dimension(0, chatText.getPlayerChatText().getPreferredSize().height));
 		windowContent.add(chatText.getPlayerChatText());
-		windowContent.validate();
 		
 		/*
 		 * Always redirect focus to chat field
@@ -288,49 +282,7 @@ public class j2DClient {
 		 */
 		gameLog = new KTextEdit();
 		gameLog.setPreferredSize(new Dimension(getWidth(), 171));
-
-	
-		/*
-		 * In own window
-		 */
-		final JDialog dialog = new JDialog(mainFrame.getMainFrame(),
-				"Game chat and events log");
-
-		final Container dialogContent = dialog.getContentPane();
-		dialogContent.setLayout(new BoxLayout(dialogContent, BoxLayout.Y_AXIS));
-		dialogContent.add(gameLog);
-
-		dialog.addFocusListener(new FocusListener() {
-			public void focusGained(final FocusEvent e) {
-				chatText.getPlayerChatText().requestFocus();
-			}
-
-			public void focusLost(final FocusEvent e) {
-			}
-		});
-
-		dialog.pack();
-
-		/*
-		 * Move tracker
-		 */
-		mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(final ComponentEvent e) {
-				final Rectangle bounds = mainFrame.getMainFrame().getBounds();
-
-				dialog.setLocation(bounds.x, bounds.y + bounds.height);
-
-				dialog.setVisible(true);
-			}
-
-			@Override
-			public void componentMoved(final ComponentEvent e) {
-				final Rectangle bounds = mainFrame.getMainFrame().getBounds();
-
-				dialog.setLocation(bounds.x, bounds.y + bounds.height);
-			}
-		});
+		windowContent.add(gameLog);
 
 		final KeyListener keyListener = new GameKeyHandler();
 
@@ -345,10 +297,7 @@ public class j2DClient {
 		// clients being distributed
 		if (!stendhal.screenSize.equals(new Dimension(640, 480))) {
 			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + getWidth() + "x" + getHeight()), NotificationType.NEGATIVE));
-		}
-
-		mainFrame.getMainFrame().setLocation(new Point(20, 20));
-	
+		}	
 
 		/*
 		 * In-screen dialogs
@@ -386,10 +335,25 @@ public class j2DClient {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				mainFrame.getMainFrame().pack();
+				/*
+				 * Limit the resizing to vertical direction.
+				 * According to specs setting maximum and minimum
+				 * size constraints should work, but that does not
+				 * seem to be the reality. 
+				 */
+				final int width = mainFrame.getMainFrame().getWidth();
+				final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
+				mainFrame.getMainFrame().setMaximumSize(new Dimension(width, Integer.MAX_VALUE));
+				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
+				/*
+				mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
+					@Override
+					public void componentResized(ComponentEvent e) {  
+						Component window = (Component) e.getSource();  
+						window.setSize(width, window.getHeight());
+					}  
+				});*/
 				mainFrame.getMainFrame().setVisible(true);
-				mainFrame.getMainFrame().setResizable(false);
-				mainFrame.getMainFrame().toFront();
-
 			}
 		});
 		directionRelease = null;

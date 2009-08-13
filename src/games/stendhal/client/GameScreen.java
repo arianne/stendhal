@@ -56,8 +56,7 @@ import org.apache.log4j.Logger;
  */
 /*
  * In principle swing has a nice builtin double buffering. In practice it 
- * can not be used for anything but trivial cases, so deriving this from
- * awt.Canvas instead
+ * can not be used for anything but trivial cases, so using Canvas instead
  */
 public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
@@ -182,8 +181,9 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	public GameScreen(final StendhalClient client) {
 		canvas = new Canvas();
 		canvas.setIgnoreRepaint(true);
-		//canvas.setPreferredSize(stendhal.screenSize);
+		
 		canvas.setSize(stendhal.screenSize);
+		
 		gameLayers = client.getStaticGameLayers();
 
 		sw = canvas.getWidth();
@@ -211,6 +211,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		canvas.addMouseMotionListener(ground);
 	}
 	
+	/**
+	 * Get the canvas component
+	 * 
+	 * @return the canvas
+	 */
 	public Component getComponent() {
 		return canvas;
 	}
