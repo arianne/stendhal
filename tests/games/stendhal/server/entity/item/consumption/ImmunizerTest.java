@@ -44,7 +44,7 @@ public class ImmunizerTest {
 		}
 	
 		TurnNotifier.get().logic(startTurn + 1);
-		assertEquals(startTurn + 1, TurnNotifier.get().getCurrentTurnForDebugging());
+		assertEquals(1, TurnNotifier.get().getCurrentTurnForDebugging());
 		
 		
 		Immunizer immu = new Immunizer();
@@ -58,21 +58,21 @@ public class ImmunizerTest {
 		ConsumableItem item2 = ConsumableTestHelper.createImmunizer("antidote");
 		item2.put("id", 2);
 
-		assertEquals(startTurn + 2, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
+		assertEquals(2, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
 		
-		assertEquals(startTurn + 1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
+		assertEquals(1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		assertThat(player.events().size(), is(0));
 		assertTrue(immu.feed(item2, player));
 		
 		assertThat(player.events().size(), is(0));
 		assertTrue(player.isImmune());
-		assertEquals(startTurn + 2, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
+		assertEquals(2, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
 		assertTrue(player.isImmune());
-		assertEquals(startTurn + 1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
+		assertEquals(1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
 		assertFalse(player.isImmune());
