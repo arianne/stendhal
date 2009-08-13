@@ -11,6 +11,7 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.quests.houses.HouseUtilities;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -127,14 +128,11 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		StoredChest chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
 		
-		for (String zone : CITY_ZONES) {
-			assertNotNull(zone);
-			HousePortal portal = new HousePortal("ados house 50");
-			assertNotNull(portal);
-			portal.setDestination(ZONE_NAME, "dest");
-			SingletonRepository.getRPWorld().getRPZone(zone).add(portal);
-		}
-		
+		HousePortal portal = new HousePortal("ados house 50");
+		portal.setDestination(ZONE_NAME, "dest");
+		SingletonRepository.getRPWorld().getRPZone("0_ados_city").add(portal);
+		HouseUtilities.clearCache();
+
 		assertTrue(en.step(player, "50"));
 		assertEquals("You do not have enough money to buy a house!", npc.getText());
 		

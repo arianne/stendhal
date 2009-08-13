@@ -106,7 +106,7 @@ public class AdosHouseSellerTest {
 	
 	@Test
 	public void testAdosHouseSellerNoZones() {
-		HouseUtilities.allHousePortals = null;
+		HouseUtilities.clearCache();
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
@@ -128,7 +128,7 @@ public class AdosHouseSellerTest {
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
 		ados.add(new StoredChest());
-		HouseUtilities.allHousePortals = null;
+		HouseUtilities.clearCache();
 		
 		
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);

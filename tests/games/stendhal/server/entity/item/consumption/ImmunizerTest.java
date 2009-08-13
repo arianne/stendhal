@@ -11,7 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -35,10 +34,6 @@ public class ImmunizerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test

@@ -53,7 +53,7 @@ public class BuyHouseChatActionTest {
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
 		ados.add(new StoredChest());
-		HouseUtilities.allHousePortals = null;
+		HouseUtilities.clearCache();
 		
 		SpeakerNPC engine = new SpeakerNPC("bob");
 		Player player = PlayerTestHelper.createPlayer("george");

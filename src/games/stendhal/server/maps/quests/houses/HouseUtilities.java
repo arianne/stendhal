@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-class HouseUtilities {
-	protected static List<HousePortal> allHousePortals = null;
+public class HouseUtilities {
+	private static List<HousePortal> allHousePortals = null;
 	private static final String HOUSE_QUEST_SLOT = "house";
 	private static final Logger logger = Logger.getLogger(HouseUtilities.class);
 	private static final String[] zoneNames = {
@@ -30,7 +30,13 @@ class HouseUtilities {
 	
 	private HouseUtilities() {
 	}
-	
+
+	/**
+	 * clears the house cache
+	 */
+	public static void clearCache() {
+		 allHousePortals = null;
+	}
 	
 	/**
 	 * Get the house owned by a player.
