@@ -1,13 +1,10 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.client.GameScreen;
 import marauroa.common.Log4J;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import utilities.MockScreen;
 
 public class EntityViewFactoryTest {
 

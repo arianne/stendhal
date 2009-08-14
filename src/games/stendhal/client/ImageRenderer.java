@@ -16,7 +16,6 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
