@@ -4,8 +4,11 @@ Changelog
 - buddy panel is no free floating window anymore
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - trade center in progress
-- corpses redrawn and new kinds added
 
+0.77
+- improvements to the test infrastructure, now including coverage reports and various statistics about code quality
+- corpses redrawn and new kinds added
+- now all you money is shown in the hall of fame (including money in bank chests)
 
 0.76
 - ported to the latest release of marauroa with supports multi threaded database access
