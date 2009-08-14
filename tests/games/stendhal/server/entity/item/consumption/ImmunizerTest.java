@@ -44,7 +44,7 @@ public class ImmunizerTest {
 		}
 	
 		TurnNotifier.get().logic(startTurn + 1);
-		assertEquals(1, TurnNotifier.get().getCurrentTurnForDebugging());
+		assertEquals(startTurn + 1, TurnNotifier.get().getCurrentTurnForDebugging());
 		
 		
 		Immunizer immu = new Immunizer();
