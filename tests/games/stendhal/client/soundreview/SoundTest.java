@@ -1,8 +1,8 @@
 package games.stendhal.client.soundreview;
 
-import static org.junit.Assume.assumeTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assume.assumeTrue;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sound.SoundSystem;
 import marauroa.common.Log4J;
@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SoundTest {
@@ -44,6 +45,7 @@ public class SoundTest {
 
 	}
 
+	@Ignore // needs a way to actually play sound, fails on hudson even with virtual X
 	@Test
 	public void testPlay() {
 		final SoundMaster sm = new SoundMaster();
