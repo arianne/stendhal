@@ -54,17 +54,17 @@ public class DropPlayerItems extends ScriptImpl {
 
 		if (!result && !itemName.equals(singularItemName)) {
 			result = player.drop(singularItemName, amount);
-
 		}
 
-		final String msg = "Admin " + admin.getTitle() + " removed " + amount
+		final String msg = "Admin " + admin.getName() + " removed " + amount
 				+ " " + Grammar.plnoun(amount, singularItemName)
-				+ " from player " + player.getTitle() + ": #" + result;
+				+ " from player " + player.getName() + ": #" + result;
 
 		admin.sendPrivateText(msg);
 
 		if (result) {
 			player.sendPrivateText(msg);
+			SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper", msg);
 			new GameEvent(admin.getName(), "admindrop", player.getName(),
 					Integer.toString(amount), itemName).raise();
 		}
