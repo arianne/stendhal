@@ -4,7 +4,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
@@ -110,7 +109,7 @@ public class ItemLogger {
 
 	
 
-	public void splitOff(final Player player, final Item item, final StackableItem newItem, final int quantity) {
+	public void splitOff(final RPEntity player, final Item item, final Item newItem, final int quantity) {
 		itemLogAssignIDIfNotPresent(item, newItem);
 		final String outlivingQuantity = getQuantity(item);
 		final String newQuantity = getQuantity(newItem);
