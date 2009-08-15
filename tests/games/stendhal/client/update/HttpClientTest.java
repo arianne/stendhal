@@ -1,0 +1,90 @@
+package games.stendhal.client.update;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.junit.Test;
+
+/**
+ * Tests for HttpClient
+ *
+ * @author hendrik
+ */
+public class HttpClientTest {
+
+	/**
+	 * Tests for fetchFirstLine
+	 */
+	@Test
+	public void testFetchFirstLine() {
+		HttpClient client = new HttpClient("http://arianne.sourceforge.net/");
+		assertThat(client.fetchFirstLine(), equalTo("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"> "));
+
+		client = new HttpClient("http://sf.net/projects/arianne/file-does-not-exist");
+		assertThat(client.fetchFirstLine(), nullValue());
+
+		client = new HttpClient("http://domain-does-not-exist");
+		assertThat(client.fetchFirstLine(), nullValue());
+
+		client = new HttpClient("http://sf.net:81/projects/arianne");
+		assertThat(client.fetchFirstLine(), nullValue());
+	}
+
+	/**
+	 * Tests for getInputStream
+	 */
+	@Test
+	public void testGetInputStream() {
+		HttpClient client = new HttpClient("http://sf.net/projects/arianne");
+		InputStream is = client.getInputStream();
+		assertThat(is, notNullValue());
+		client.close();
+
+		client = new HttpClient("http://sf.net/projects/arianne/file-does-not-exist");
+		assertThat(client.getInputStream(), nullValue());
+		client.close();
+
+		client = new HttpClient("http://domain-does-not-exist");
+		assertThat(client.getInputStream(), nullValue());
+
+		client = new HttpClient("http://sf.net:81/projects/arianne");
+		assertThat(client.getInputStream(), nullValue());
+	}
+
+	/**
+	 * Tests for fetchFile
+	 * @throws IOException 
+	 */
+	@Test
+	public void testFetchFile() throws IOException {
+		File file = File.createTempFile("test", ".txt");
+		file.deleteOnExit();
+
+		HttpClient client = new HttpClient("http://sf.net/projects/arianne");
+		client.fetchFile(file.getAbsolutePath());
+		assertTrue(file.length() > 100);
+		file.delete();
+
+		file = File.createTempFile("test", ".txt");
+		file.deleteOnExit();
+		client = new HttpClient("http://sf.net/projects/arianne/file-does-not-exist");
+		client.fetchFile(file.getAbsolutePath());
+		assertEquals(0, file.length());
+
+		client = new HttpClient("http://domain-does-not-exist");
+		client.fetchFile(file.getAbsolutePath());
+		assertEquals(0, file.length());
+
+		client = new HttpClient("http://sf.net:81/projects/arianne");
+		client.fetchFile(file.getAbsolutePath());
+		assertEquals(0, file.length());
+
+		file.delete();
+	}
+}
