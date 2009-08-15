@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -138,4 +139,10 @@ public class StoredChest extends Chest {
 			}
 		}
 	}
+
+	@Override
+    public String getDescriptionName(final boolean definite) {
+	    return Grammar.article_noun("chest in " + this.getZone().getName(), definite);
+    }
+
 }
