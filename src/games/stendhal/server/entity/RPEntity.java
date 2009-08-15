@@ -1448,14 +1448,18 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 						// This inefficient, but simple.
 						objectsIterator = slot.iterator();
 					} else {
-						((StackableItem) item).setQuantity(quantity - toDrop);
-						new ItemLogger().splitOff(this, item, toDrop);
+						// ((StackableItem) item).setQuantity(quantity - toDrop);
+						// new ItemLogger().splitOff(this, item, toDrop);
+						Item splittedOff = ((StackableItem) item).splitOff(toDrop);
+						new ItemLogger().splitOff(this, item, splittedOff, toDrop);
+						new ItemLogger().destroy(this, slot, splittedOff);
 						toDrop = 0;
 					}
 				} else {
 					// The item is not stackable, so we only remove a
 					// single one.
 					slot.remove(item.getID());
+					new ItemLogger().destroy(this, slot, item);
 					toDrop--;
 					// recreate the iterator to prevent
 					// ConcurrentModificationExceptions.
