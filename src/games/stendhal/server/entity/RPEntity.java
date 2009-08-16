@@ -253,7 +253,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * 
 	 * @return The current amount of karma.
 	 * 
-	 * @see #addKarma()
+	 * @see #addKarma(double)
 	 */
 	public double getKarma() {
 		// No karma (yet)
@@ -1007,8 +1007,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            The HP to take.
 	 * @param attackerName
 	 *            The name of the attacker.
-	 * 
-	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public void delayedDamage(final int amount, final String attackerName) {
 		final RPEntity me = this;
@@ -1313,9 +1311,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	
 	/**
 	 * gets the name of the slot in which the entity can equip the item.
-	 * @param entity 
+	 *
 	 * @param item 
-	 * 
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */
@@ -1323,16 +1320,16 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		// get all possible slots for this item
 		final List<String> slotNames = item.getPossibleSlots();
 
-		if (item instanceof Stackable) {
+		if (item instanceof Stackable<?>) {
 			// first try to put the item on an existing stack
-			final Stackable stackEntity = (Stackable) item;
+			final Stackable<?> stackEntity = (Stackable<?>) item;
 			for (final String slotName : slotNames) {
 				if (hasSlot(slotName)) {
 					final RPSlot rpslot = getSlot(slotName);
 					for (final RPObject object : rpslot) {
-						if (object instanceof Stackable) {
+						if (object instanceof Stackable<?>) {
 							// found another stackable
-							final Stackable other = (Stackable) object;
+							final Stackable other = (Stackable<?>) object;
 							if (other.isStackable(stackEntity)) {
 								return slotName;
 							}
@@ -1358,10 +1355,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	/**
 	 * Tries to equip an item in the appropriate slot.
 	 * 
-	 * @param item
-	 *            the item
-	 * @param putOnGroundIfItCannotEquiped
-	 *            put it on ground if it cannot equipped.
+	 * @param item the item
 	 * @return true if the item can be equipped, else false
 	 */
 	public final boolean equipOrPutOnGround(final Item item) {
@@ -1448,11 +1442,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 						// This inefficient, but simple.
 						objectsIterator = slot.iterator();
 					} else {
-						// ((StackableItem) item).setQuantity(quantity - toDrop);
-						// new ItemLogger().splitOff(this, item, toDrop);
-						Item splittedOff = ((StackableItem) item).splitOff(toDrop);
-						new ItemLogger().splitOff(this, item, splittedOff, toDrop);
-						new ItemLogger().destroy(this, slot, splittedOff);
+						((StackableItem) item).setQuantity(quantity - toDrop);
+						new ItemLogger().splitOff(this, item, toDrop);
 						toDrop = 0;
 					}
 				} else {
