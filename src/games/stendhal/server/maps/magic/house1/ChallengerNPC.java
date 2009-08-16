@@ -40,19 +40,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
  private static final int MIN_LEVEL = 50;
  /** Cost multiplier for getting to island. */
  private static final int COST_FACTOR = 300;
- /** island coordinates for placing monsters. */
- private static final int MIN_X = 10;
- /** island coordinates for placing monsters. */
- private static final int MIN_Y = 10;
- /** island coordinates for placing monsters. */
- private static final int MAX_X = 25;
- /** island coordinates for placing monsters. */
- private static final int MAX_Y = 25;
- /** max numbers of fails to place a creature before we just make the island as it is. */
- private static final int ALLOWED_FAILS = 5;
- /** The creatures spawned are between player level * ratio and player level. */
- private static final double LEVEL_RATIO = 0.75;
- /** How long to wait before visiting island again. */
+  /** How long to wait before visiting island again. */
  private static final int DAYS_BEFORE_REPEAT = 3;
  /** The name of the quest slot where we store the time last visited. */
  private static final String QUEST_SLOT = "adventure_island";
@@ -104,46 +92,21 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
-			final StendhalRPZone Challengezone = (StendhalRPZone) SingletonRepository
+			final StendhalRPZone challengezone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_adventure_island");
 			String zoneName = player.getName() + "_adventure_island";
 			
-			final StendhalRPZone zone = new StendhalRPZone(zoneName, Challengezone);
-			//final StendhalRPZone zone = StendhalRPZone.fillContent(zoneName, Challengezone);
-			zone.addMovementListener(new ChallengeMovementListener());
-			Portal portal = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
-			portal.setPosition(6, 3);
-			zone.add(portal);
-			int i = 0;
-			int count = 0;
-			// max ALLOWED_FAILS fails to place all creatures before we give up
-			while (i < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
-				int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel()); 
-				CreatureSpawner creatureSpawner = new CreatureSpawner();
-				Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
-				if (StendhalRPAction.placeat(zone, creature, Rand.randUniform(MIN_X, MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
-					i++;
-				} else {
-					logger.info(" could not add a creature to adventure island: " + creature);
-					count++;	
-				}
-			}
-			String message;
-			if (count >= ALLOWED_FAILS) {
-				// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
-				cost =  (int) (cost * ((float) i / (float) NUMBER_OF_CREATURES));
-				message = "Haastaja bellows from below: I could only fit " + i + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
-				logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
-			} else { 
-				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck and remember to be careful with your items, as if you place them on the ground and then leave, they are lost. Most of all, take care with your life.";
-			}
-			zone.disallowIn();
+			final StendhalRPZone zone = new AdventureIsland(zoneName, challengezone, player);
+
 			SingletonRepository.getRPWorld().addRPZone(zone);
+
 			player.drop("money", cost);
 			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 			player.teleport(zone, 4, 6, Direction.DOWN, player);
 			// send the text after we change zone so that the event is not lost on zone change
-			player.sendPrivateText(message);
+			// just remove this for now as the message is generated in AdventureIsland class and not here now - need to get it back. 
+			// or send the message there. 
+			//	player.sendPrivateText(message);
 			player.notifyWorldAboutChanges();
 		}
 	}
