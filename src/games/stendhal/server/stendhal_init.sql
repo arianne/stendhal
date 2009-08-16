@@ -31,7 +31,7 @@ create table if not exists character_stats
   timedate timestamp,
   primary key(name)
   )
-  TYPE=MYISAM;
+  TYPE=INNODB;
 /*CREATE INDEX i_character_stats_name ON character_stats(name);*/
 
 create table if not exists halloffame
@@ -43,14 +43,14 @@ create table if not exists halloffame
 
   primary key(id)
   ) 
-  TYPE=MYISAM;
+  TYPE=INNODB;
 
 /*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
 
   
 CREATE TABLE IF NOT EXISTS itemid (
   last_id INTEGER
-) TYPE=MYISAM;
+) TYPE=INNODB;
 
 CREATE TABLE IF NOT EXISTS itemlog (
   id         INTEGER AUTO_INCREMENT NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS itemlog (
   param3     VARCHAR(64),
   param4     VARCHAR(64),
   PRIMARY KEY (id)
-) TYPE=MYISAM;
+) TYPE=INNODB;
 
 /*CREATE INDEX i_itemlog_itemid ON itemlog(itemid);*/
 /*CREATE INDEX i_itemlog_source ON itemlog(source);*/
