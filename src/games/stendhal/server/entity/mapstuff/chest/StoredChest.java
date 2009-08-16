@@ -33,16 +33,16 @@ public class StoredChest extends Chest {
 	}
 
 	/**
-         * Creates a StoredChest based on an existing RPObject.
-		 *  This is just for loading 
-         * a chest from the database, use the other constructors.
-         * @param rpobject 
-         */
-        public StoredChest(final RPObject rpobject) {
-            super(rpobject);
-			loadSlotContent();
-				store();
-    }
+	 * Creates a StoredChest based on an existing RPObject. This is just for
+	 * loading a chest from the database, use the other constructors.
+	 * 
+	 * @param rpobject
+	 */
+	public StoredChest(final RPObject rpobject) {
+		super(rpobject);
+		loadSlotContent();
+		store();
+	}
 
 	private void loadSlotContent() {
 		if (hasSlot("content")) {
@@ -56,7 +56,8 @@ public class StoredChest extends Chest {
 
 			final RPSlot newSlot = new ChestSlot(this);
 			addSlot(newSlot);
-			// does this code look familiar to you? well it might, it's from PlayerRPClass. :*
+			// does this code look familiar to you? well it might, it's from
+			// PlayerRPClass. :*
 			for (final RPObject item : objects) {
 				try {
 					// We simply ignore corpses...
@@ -64,33 +65,35 @@ public class StoredChest extends Chest {
 						// TODO: what about items whose names have changed?
 						// the update converter is in player :(
 						final String name = item.get("name");
-						final Item entity = SingletonRepository.getEntityManager().getItem(name);
-						
+						final Item entity = SingletonRepository
+								.getEntityManager().getItem(name);
+
 						// log removed items
 						if (entity == null) {
 							int quantity = 1;
 							if (item.has("quantity")) {
 								quantity = item.getInt("quantity");
 							}
-							logger.warn("Cannot restore " + quantity + " " + name
-										+ " of stored chest "
-										+ " because this item"
-										+ " was removed from items.xml");
+							logger.warn("Cannot restore " + quantity + " "
+									+ name + " of stored chest "
+									+ " because this item"
+									+ " was removed from items.xml");
 							continue;
 						}
 
 						entity.setID(item.getID());
 
 						if (item.has("persistent")
-							&& (item.getInt("persistent") == 1)) {
+								&& (item.getInt("persistent") == 1)) {
 							/*
 							 * Keep [new] rpclass
 							 */
 							final RPClass rpclass = entity.getRPClass();
 							entity.fill(item);
 							entity.setRPClass(rpclass);
-						
-							// If we've updated the item name we don't want persistent reverting it
+
+							// If we've updated the item name we don't want
+							// persistent reverting it
 							entity.put("name", name);
 						}
 
@@ -99,26 +102,22 @@ public class StoredChest extends Chest {
 							if (item.has("quantity")) {
 								quantity = item.getInt("quantity");
 							} else {
-								logger.warn("Adding quantity=1 to "
-											+ item
-											+ ". Most likely cause is that this item was not stackable in the past");
+								logger.warn("Adding quantity=1 to " + item
+									+ ". Most likely cause is that this item was not stackable in the past");
 							}
 							((StackableItem) entity).setQuantity(quantity);
 
 							if (quantity <= 0) {
-								logger.warn("Ignoring item "
-											+ name
-											+ " on restore of stored chest"
-											+ " because this item has an invalid quantity: "
-											+ quantity);
+								logger.warn("Ignoring item " + name
+									+ " on restore of stored chest"
+									+ " because this item has an invalid quantity: "
+									+ quantity);
 								continue;
 							}
 						}
-						
-						// make sure saved individual information is
-						// restored
-						final String[] individualAttributes = { "infostring",
-																"description", "bound", "undroppableondeath" };
+
+						// make sure saved individual information is restored
+						final String[] individualAttributes = { "infostring", "description", "bound", "undroppableondeath" };
 						for (final String attribute : individualAttributes) {
 							if (item.has(attribute)) {
 								entity.put(attribute, item.get(attribute));
@@ -133,16 +132,15 @@ public class StoredChest extends Chest {
 						logger.warn("Non-item object found in stored chest: " + item);
 					}
 				} catch (final Exception e) {
-					logger.error("Error adding " + item + " to stored chest slot",
-								 e);
+					logger.error("Error adding " + item + " to stored chest slot", e);
 				}
 			}
 		}
 	}
 
 	@Override
-    public String getDescriptionName(final boolean definite) {
-	    return Grammar.article_noun("chest in " + this.getZone().getName(), definite);
-    }
+	public String getDescriptionName(final boolean definite) {
+		return Grammar.article_noun("chest in " + this.getZone().getName(), definite);
+	}
 
 }
