@@ -1199,7 +1199,6 @@ chocolate shake 110
  <portal x="10" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
   </portal>
-  <!-- remove till adventure island ready
   <entity x="14" y="4">
 			<implementation
 				class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC">
@@ -1212,7 +1211,7 @@ chocolate shake 110
 			<attribute name="level">600</attribute>
 			<attribute name="hp">75</attribute>
 	</entity>
-		-->
+		
 </zone>
 
 <zone name="int_magic_house2" file="interiors/magic/house2.tmx">
