@@ -7,13 +7,31 @@ Changelog
 
 0.77
 - improvements to the test infrastructure, now including coverage reports and various statistics about code quality
-- corpses redrawn and new kinds added
-- now all you money is shown in the hall of fame (including money in bank chests)
+- more corpses redrawn and new kinds added
+- now all a player's money is shown in the hall of fame (including money in bank chests)
+- Keep max 12 sheep in the semos pen simultaneously
+- tomatoes use a grower
+- don't let pets/sheep dying result in concurrent modification
+- Make it possible to name pets back to their original name
+- allow always using the animal type to rename a pet (even if it has a name
+already)
+- give 20 xp for the Cherub in the starting zone so players don't get to level
+4 instantly 
+- new items added to NPC buyers
+- moved the chatlog to the main client window
+- added a way to clean the house portal cache
+- tell support about /script DropPlayerItems
+- fixed item log on drop of stackable items
+- store content to database on closing a stored chest incase server does not
+shut gracefully
+- automatically close stored chest when the zone it is in becomes empty of players
+
 
 0.76
 - ported to the latest release of marauroa with supports multi threaded database access
 - support for OpenJDK IcedTea (thanks to omair)
 - corpse images used are now specified in xml
+- corpses redrawn and new kinds added
 
 0.75
 - the corpse of a raid creature can only be looted by player that the raid creature attacked
