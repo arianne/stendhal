@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS kills (
   killer_type CHAR(1),
   cnt         INTEGER,
   PRIMARY KEY (id)
-) TYPE=MYISAM;
+) TYPE=INNODB;
 
 /*CREATE INDEX i_kills_killed ON kills (killed_type, killed);*/
 /*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
@@ -99,7 +99,7 @@ create table if not exists words (
   value		INTEGER NULL,
   alias_id	INTEGER NULL,
   PRIMARY KEY (id)
-) TYPE=MYISAM;
+) TYPE=INNODB;
 
 /*CREATE INDEX i_word_normalized ON words(normalized);*/
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   description      VARCHAR(1000),
   job       VARCHAR(1000),
   PRIMARY KEY (id)
-) TYPE=MYISAM;
+) TYPE=INNODB;
 
 /*CREATE INDEX i_npcs_id ON npcs (id);*/
 /*CREATE INDEX i_npcs_name ON npcs (name);*/
