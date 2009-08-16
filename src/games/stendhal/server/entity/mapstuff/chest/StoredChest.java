@@ -2,6 +2,7 @@ package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.ChestSlot;
@@ -30,6 +31,15 @@ public class StoredChest extends Chest {
 	public StoredChest() {
 		super();
 		store();
+	}
+
+	@Override
+	public void close() {
+		super.close();
+		StendhalRPZone zone = this.getZone();
+		if (zone != null) {
+			zone.storeToDatabase();
+		}
 	}
 
 	/**
