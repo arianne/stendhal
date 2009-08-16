@@ -3,6 +3,7 @@ package games.stendhal.server.entity.mapstuff.chest;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.ChestSlot;
@@ -23,6 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class StoredChest extends Chest {
 	private static Logger logger = Logger.getLogger(StoredChest.class);
+	private ChestListener chestListener;
 
 	/**
 	 * Creates a new StoredChest.
@@ -31,6 +33,13 @@ public class StoredChest extends Chest {
 	public StoredChest() {
 		super();
 		store();
+	}
+
+	@Override
+	public void open() {
+		chestListener = new ChestListener();
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, chestListener);
+		super.open();
 	}
 
 	@Override
@@ -153,4 +162,48 @@ public class StoredChest extends Chest {
 		return Grammar.article_noun("chest in " + this.getZone().getName(), definite);
 	}
 
+	/**
+	 * Checks if it should close the chest
+	 * 
+	 * @return <code>true</code> if it should be called again.
+	 */
+	protected boolean chestCloser() {
+
+		if (getZone().getPlayers().size() > 0) {
+			// do nothing - people are still in the zone
+				return true;
+		} else {
+			// the zone is empty, close the chest
+				close();
+				notifyWorldAboutChanges();
+		}
+		return false;
+	}
+
+	/**
+	 * A listener for closing the chest
+	 */
+
+	protected class ChestListener implements TurnListener {
+		/**
+		 * This method is called when the turn number is reached.
+		 * 
+		 * @param currentTurn
+		 *            The current turn number.
+		 */
+		public void onTurnReached(final int currentTurn) {
+			if (chestCloser()) {
+				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
+			}
+		}
+		
+		
+	}
+
+	@Override
+	public void onRemoved(final StendhalRPZone zone) {
+		SingletonRepository.getTurnNotifier().dontNotify(chestListener);
+
+		super.onRemoved(zone);
+	}
 }
