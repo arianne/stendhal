@@ -48,43 +48,6 @@ public class ChallengerNPC extends SpeakerNPCFactory {
  private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 	private final class ChallengeChatAction implements ChatAction {
 
-		private final class ChallengeMovementListener implements
-				MovementListener {
-			public Rectangle2D getArea() {
-				return new Rectangle2D.Double(0, 0, 100, 100);
-			}
-
-			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
-					final int newY) {
-
-			}
-
-			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
-					final int oldY) {
-				if (!(entity instanceof Player)) {
-					return;
-				}
-			    if (zone.getPlayers().size() == 1) {
-			    	// since we are about to destroy the arena, change the player zoneid to semos bank so that 
-			    	// if they are relogging, 
-			    	// they can enter back to the bank (not the default zone of PlayerRPClass). 
-			    	// If they are scrolling out or walking out the portal it works as before.
-			    	entity.put("zoneid", "int_magic_house1");
-					entity.put("x", "12");
-					entity.put("y", "3");
-					// iterate through all items left in the zone and for the listeners, stop them listening before we remove the zone
-					
-					SingletonRepository.getRuleProcessor().removeZone(zone);
-
-			    }
-			}
-
-			public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
-					final int oldY, final int newX, final int newY) {
-
-			}
-		}
-
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			int cost = COST_FACTOR * player.getLevel();
 			if (!player.isEquipped("money", cost)) {
@@ -102,7 +65,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 
 			player.drop("money", cost);
 			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
-			player.teleport(zone, 4, 6, Direction.DOWN, player);
+			player.teleport(zone, 4, 4, Direction.DOWN, player);
 			// send the text after we change zone so that the event is not lost on zone change
 			// just remove this for now as the message is generated in AdventureIsland class and not here now - need to get it back. 
 			// or send the message there. 

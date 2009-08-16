@@ -78,46 +78,44 @@ public class AdventureIsland extends StendhalRPZone {
 		} else { 
 			message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck and remember to be careful with your items, as if you place them on the ground and then leave, they are lost. Most of all, take care with your life.";
 		}
-		
 		disallowIn();
 		this.addMovementListener(new ChallengeMovementListener());
 	}
 
-		private final class ChallengeMovementListener implements
-				MovementListener {
-			public Rectangle2D getArea() {
-				return new Rectangle2D.Double(0, 0, 100, 100);
-			}
-
+	private final class ChallengeMovementListener implements
+													  MovementListener {
+		public Rectangle2D getArea() {
+			return new Rectangle2D.Double(0, 0, 100, 100);
+		}
+		
 			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
-					final int newY) {
-
+								  final int newY) {
 			}
-
-			public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
-					final int oldY) {
-				if (!(entity instanceof Player)) {
-					return;
-				}
-			    if (zone.getPlayers().size() == 1) {
-			    	// since we are about to destroy the arena, change the player zoneid to house1 so that 
-			    	// if they are relogging, 
-			    	// they can enter back to the bank (not the default zone of PlayerRPClass). 
-			    	// If they are scrolling out or walking out the portal it works as before.
+		
+		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+							 final int oldY) {
+			if (!(entity instanceof Player)) {
+				return;
+			}
+			if (zone.getPlayers().size() == 1) {
+				// since we are about to destroy the arena, change the player zoneid to house1 so that 
+				// if they are relogging, 
+				// they can enter back to the bank (not the default zone of PlayerRPClass). 
+				// If they are scrolling out or walking out the portal it works as before.
 			    	entity.put("zoneid", "int_magic_house1");
 					entity.put("x", "12");
 					entity.put("y", "3");
-					// iterate through all items left in the zone and for the listeners, stop them listening before we remove the zone
-					
-					SingletonRepository.getRuleProcessor().removeZone(zone);
 
-			    }
-			}
-
-			public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
-					final int oldY, final int newX, final int newY) {
+					// start a turn notifier counting down to shut down the zone in 15 minutes
+					TurnNotifier.get().notifyInSeconds(15*60, new AdventureIslandRemover(zone));
 
 			}
 		}
-
+		
+		public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
+							final int oldY, final int newX, final int newY) {
+			
+		}
+		
+	}
 }
