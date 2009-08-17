@@ -6,6 +6,9 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.HouseKey;
 
@@ -33,6 +36,8 @@ public class HousePortal extends AccessCheckingPortal {
 	/** the attribute name for the map reference id of this portal. */
 	private static final String PORTAL_REFERENCE = "reference";
 	
+	private boolean needsSaving = false;
+	
 	public static void generateRPClass() {
 		if (!RPClass.hasRPClass(RPCLASS_NAME)) {
 			final RPClass entity = new RPClass(RPCLASS_NAME);
@@ -57,7 +62,7 @@ public class HousePortal extends AccessCheckingPortal {
 		setRPClass(RPCLASS_NAME);
 		put("type", "house_portal");
 		put(DOOR_ID, doorId);
-		setOwner("");
+		put(OWNER, "");
 		put(LOCK_NUMBER, 0);
 		store();
 	}
@@ -85,6 +90,7 @@ public class HousePortal extends AccessCheckingPortal {
 	 */
 	public void setOwner(final String owner) {
 		put(OWNER, owner);
+		requestSave();
 	}
 	
 	// treating the portal references the same way as PortalSetupXMLReader
@@ -210,6 +216,8 @@ public class HousePortal extends AccessCheckingPortal {
 	 */
 	public void changeLock() {
 		put(LOCK_NUMBER, getInt(LOCK_NUMBER) + 1);
+		
+		requestSave();
 	}
 	
 	/**
@@ -228,5 +236,36 @@ public class HousePortal extends AccessCheckingPortal {
 	 */
 	public void setExpireTime(final long time) {
 		put(EXPIRES, Long.toString(time));
+		
+		requestSave();
+	}
+	
+	/**
+	 * Request saving the zone where the portal is located.
+	 * Multiple requests within a turn get merged to one.
+	 */
+	private void requestSave() {
+		/*
+		 * Avoid saving the zone three times when a new house is bought 
+		 */
+		needsSaving = true;
+		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+			public void onTurnReached(int turn) {
+				if (needsSaving) {
+					needsSaving = false;
+					saveToDatabase();
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Save the zone (and the portal along it)
+	 */
+	private void saveToDatabase() {
+		StendhalRPZone zone = this.getZone();
+		if (zone != null) {
+			zone.storeToDatabase();
+		}
 	}
 }
