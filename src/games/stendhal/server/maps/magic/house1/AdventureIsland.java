@@ -1,12 +1,11 @@
 package games.stendhal.server.maps.magic.house1;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
-import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -15,7 +14,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.CreatureSpawner;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 

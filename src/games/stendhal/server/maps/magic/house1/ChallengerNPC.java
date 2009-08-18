@@ -1,16 +1,8 @@
 package games.stendhal.server.maps.magic.house1;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.MovementListener;
-import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -25,9 +17,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.deathmatch.CreatureSpawner;
 
-import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 
 import marauroa.common.game.IRPZone;
