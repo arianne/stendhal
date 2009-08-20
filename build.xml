@@ -515,6 +515,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
@@ -536,6 +537,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
