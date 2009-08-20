@@ -1,7 +1,6 @@
 Changelog
 ---------
 0.xx
-- buddy panel is no free floating window anymore
 - adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - trade center in progress
 
@@ -19,6 +18,7 @@ already)
 4 instantly 
 - new items added to NPC buyers
 - moved the chatlog to the main client window
+- minimap and buddies are now a side panel
 - added a way to clean the house portal cache
 - tell support about /script DropPlayerItems
 - fixed item log on drop of stackable items
