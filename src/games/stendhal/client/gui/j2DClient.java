@@ -36,7 +36,6 @@ import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.KeyRing;
-import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -60,14 +59,19 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
+
+import pagelayout.Column;
+import pagelayout.PageLayout;
+import pagelayout.Row;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient {
@@ -135,7 +139,7 @@ public class j2DClient {
 
 
 	/** the minimap panel. */
-	private Minimap minimap;
+	private MapPanel minimap;
 
 	/** the inventory.*/
 	private EntityContainer inventory;
@@ -143,7 +147,7 @@ public class j2DClient {
 	private User lastuser;
 
 
-	private PositionChangeMulticaster positionChangeListener;
+	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
 	/**
 	 * Delayed direction release holder.
 	 */
@@ -153,6 +157,7 @@ public class j2DClient {
 
 	private final IPerceptionListener perceptionListener = new PerceptionListenerImpl() {
 		int times;
+		@Override
 		public void onSynced() {
 			setOffline(false);
 			times = 0;
@@ -162,6 +167,7 @@ public class j2DClient {
 			
 		}
 		
+		@Override
 		public void onUnsynced() {
 			times++;
 
@@ -193,12 +199,11 @@ public class j2DClient {
 		this.userContext = userContext;
 		setDefault(this);
 		
-		// Create the main window
-		mainFrame = new MainFrame();
-		final Container windowContent = mainFrame.getMainFrame().getContentPane();
-		windowContent.setLayout(new BoxLayout(windowContent, BoxLayout.Y_AXIS));
-		windowContent.setBackground(Color.black);
-		
+		minimap = new MapPanel(client);
+		final BuddyPanelControler buddies = new BuddyPanelControler();
+		final JScrollPane buddyPane = new JScrollPane();
+		buddyPane.setViewportView(buddies.getComponent());
+				
 		/*
 		 * Add a layered pane for the game area, so that we can have
 		 * windows on top of it
@@ -220,19 +225,15 @@ public class j2DClient {
 		
 		// ... and put it on the ground layer of the pane
 		pane.add(screen.getComponent(), Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
-		windowContent.add(pane, Component.LEFT_ALIGNMENT);
 
 		client.setScreen(screen);
-		positionChangeListener = new PositionChangeMulticaster();
 		positionChangeListener.add(screen);
+
+		positionChangeListener.add(minimap);
 
 				
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		// Freeze the height so that the layout manager won't mess it
-		chatText.getPlayerChatText().setMaximumSize(new Dimension(100000, chatText.getPlayerChatText().getPreferredSize().height));
-		chatText.getPlayerChatText().setMinimumSize(new Dimension(0, chatText.getPlayerChatText().getPreferredSize().height));
-		windowContent.add(chatText.getPlayerChatText());
 		
 		/*
 		 * Always redirect focus to chat field
@@ -243,29 +244,6 @@ public class j2DClient {
 			}
 
 			public void focusLost(final FocusEvent e) {
-			}
-		});
-
-		/*
-		 * Handle focus assertion and window closing
-		 */
-		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
-			public void windowOpened(final WindowEvent ev) {
-				chatText.getPlayerChatText().requestFocus();
-			}
-
-			public void windowActivated(final WindowEvent ev) {
-				chatText.getPlayerChatText().requestFocus();
-			}
-
-			@Override
-			public void windowGainedFocus(final WindowEvent ev) {
-				chatText.getPlayerChatText().requestFocus();
-			}
-
-			@Override
-			public void windowClosing(final WindowEvent e) {
-				requestQuit();
 			}
 		});
 
@@ -282,7 +260,6 @@ public class j2DClient {
 		 */
 		gameLog = new KTextEdit();
 		gameLog.setPreferredSize(new Dimension(getWidth(), 171));
-		windowContent.add(gameLog);
 
 		final KeyListener keyListener = new GameKeyHandler();
 
@@ -305,12 +282,6 @@ public class j2DClient {
 		settings = new SettingsPanel(getWidth(), gameScreen);
 		screen.addDialog(settings);
 
-		minimap = new Minimap(client, gameScreen);
-		addWindow(minimap);
-		settings.add(minimap, "Enable Minimap", gameScreen);
-
-		positionChangeListener.add(minimap);
-
 		character = new Character(this, gameScreen);
 		addWindow(character);
 		settings.add(character, "Enable Character", gameScreen);
@@ -323,36 +294,83 @@ public class j2DClient {
 		addWindow(keyring);
 		settings.add(keyring, "Enable Key Ring", gameScreen);
 		
-		createAndAddOldBuddies(gameScreen);
-		//createAndAddNewBuddy(mainFrameContentPane);
-		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
+		
+		/*
+		 * Finally create the window, and place all the components in it
+		 */
+		// Create the main window
+		mainFrame = new MainFrame();
+		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
+		
+		// create the layout
+		final Column leftColumn = new Column();
+		leftColumn.add(minimap);
+		leftColumn.add(buddyPane);
+		// make the resizes affect the left panel rather than the game area
+		leftColumn.setFixedWidth(false, minimap);
+		minimap.setMinimumSize(new Dimension(0, 0));
+		buddyPane.setMinimumSize(new Dimension(0, 0));
+		// a workaround for PageLayout's inability to link cell heights
+		leftColumn.setComponentGaps(0, 0);
+		final JPanel leftPanel = new JPanel();
+		leftColumn.createLayout(leftPanel).setContainerGaps(0, 0);
+		
+		final Row topRow = new Row();
+		topRow.add(leftPanel);
+		topRow.add(pane);
+		topRow.linkHeight(pane, 1.0, leftPanel);
+		topRow.setComponentGaps(0, 0);
+		
+		final Column windowContent = new Column();
+		windowContent.add(topRow);
+		windowContent.add(chatText.getPlayerChatText());
+		windowContent.add(gameLog);
+		windowContent.setComponentGaps(0, 0);
+		windowContent.setFixedHeight(chatText.getPlayerChatText(), true);
+		final PageLayout layout = windowContent.createLayout(mainFrame.getMainFrame().getContentPane());
+		layout.setContainerGaps(0, 0);
+		
+		/*
+		 * Handle focus assertion and window closing
+		 */
+		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(final WindowEvent ev) {
+				chatText.getPlayerChatText().requestFocus();
+			}
 
+			@Override
+			public void windowActivated(final WindowEvent ev) {
+				chatText.getPlayerChatText().requestFocus();
+			}
+
+			@Override
+			public void windowGainedFocus(final WindowEvent ev) {
+				chatText.getPlayerChatText().requestFocus();
+			}
+
+			@Override
+			public void windowClosing(final WindowEvent e) {
+				requestQuit();
+			}
+		});
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				mainFrame.getMainFrame().pack();
 				/*
-				 * Limit the resizing to vertical direction.
-				 * According to specs setting maximum and minimum
-				 * size constraints should work, but that does not
-				 * seem to be the reality. 
+				 *  A bit roundabout way to calculate the desired minsize, but
+				 *  different java versions seem to take the window decorations
+				 *  in account in rather random ways.
 				 */
-				final int width = mainFrame.getMainFrame().getWidth();
+				final int width = mainFrame.getMainFrame().getWidth() - minimap.getWidth();
 				final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
-				mainFrame.getMainFrame().setMaximumSize(new Dimension(width, Integer.MAX_VALUE));
+				
 				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
-				/*
-				mainFrame.getMainFrame().addComponentListener(new ComponentAdapter() {
-					@Override
-					public void componentResized(ComponentEvent e) {  
-						Component window = (Component) e.getSource();  
-						window.setSize(width, window.getHeight());
-					}  
-				});*/
 				mainFrame.getMainFrame().setVisible(true);
 			}
 		});
@@ -365,9 +383,9 @@ public class j2DClient {
 	} // constructor
 
 	private void checkAndComplainAboutJavaImplementation() {
-		String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase();
+		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase();
 		if ((vmName.indexOf("hotspot") < 0) && (vmName.indexOf("openjdk") < 0)) {
-			String text = "Stendhal is developed and tested on Sun Java and OpenJDK. You are using " 
+			final String text = "Stendhal is developed and tested on Sun Java and OpenJDK. You are using " 
 				+ System.getProperty("java.vm.vendor", "unknown") + " " 
 				+ System.getProperty("java.vm.name", "unknown") 
 				+ " so there may be some problems like a black or grey screen.\n"
@@ -380,13 +398,6 @@ public class j2DClient {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
 		addWindow(inventory);
 		settings.add(inventory, "Enable Bag", gameScreen);
-	}
-
-	private void createAndAddNewBuddy(final Container content) {
-		final BuddyPanelControler buddy = new BuddyPanelControler();
-		buddy.getComponent().setPreferredSize(new Dimension(100, getHeight()));
-		content.add(buddy.getComponent(), BorderLayout.WEST);
-		
 	}
 	
 	private void createAndAddNewBag(final Container content) {
@@ -486,10 +497,10 @@ public class j2DClient {
 			}
 
 			if (!client.isInBatchUpdate()) {
-				minimap.update_pathfind();
 				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
+					minimap.refresh();
 				}
 			}
 
@@ -884,7 +895,7 @@ public class j2DClient {
 	 * @param y
 	 *            The user's Y coordinate.
 	 */
-	public void setPosition(final double x, final double y, final GameScreen gameSreen) {
+	public void setPosition(final double x, final double y) {
 		positionChangeListener.positionChanged(x, y);
 	}
 

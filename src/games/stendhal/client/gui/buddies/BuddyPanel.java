@@ -16,7 +16,6 @@ class BuddyPanel extends StyledJPanel {
 	protected BuddyPanel(final Style style) {
 		super(style);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setSize(new Dimension(168, 88));
 		setVisible(true);
 	}
 

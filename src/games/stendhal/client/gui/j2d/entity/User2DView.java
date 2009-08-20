@@ -6,7 +6,6 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
@@ -82,8 +81,7 @@ class User2DView extends Player2DView {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_POSITION) {
-			j2DClient.get().setPosition(entity.getX(), entity.getY(),
-					GameScreen.get());
+			j2DClient.get().setPosition(entity.getX(), entity.getY());
 		}
 	}
 
