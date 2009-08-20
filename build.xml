@@ -473,6 +473,7 @@
 			</fileset>
 			<fileset file="${log4j_jar}"/>
 			<fileset file="${marauroa_jar}"/>
+			<fileset file="${pagelayout_jar}"/>
 		</signjar>
 	</target>
 
