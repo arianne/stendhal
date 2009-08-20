@@ -170,21 +170,25 @@ public class Cache {
 	}
 
 	private InputStream getItemFromCache(final TransferContent item) {
+		try {
+			// check cache
+			if (cacheManager.has(item.name)
+					&& (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
+				logger.debug("Content " + item.name
+						+ " is on cache. We save transfer");
 
-		// check cache
-		if (cacheManager.has(item.name)
-				&& (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
-			logger.debug("Content " + item.name
-					+ " is on cache. We save transfer");
-
-			// get the stream
-			try {
-				return Persistence.get().getInputStream(true,
-						stendhal.STENDHAL_FOLDER + "cache/", item.name);
-			} catch (final IOException e) {
-				logger.error(e, e);
+				// get the stream
+				try {
+					return Persistence.get().getInputStream(true,
+							stendhal.STENDHAL_FOLDER + "cache/", item.name);
+				} catch (final IOException e) {
+					logger.error(e, e);
+				}
 			}
+		} catch (final NumberFormatException e) {
+			logger.error("Broken cache entry: " + item.name, e);
 		}
+		
 		return null;
 	}
 
