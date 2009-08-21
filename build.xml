@@ -492,6 +492,7 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${commons_lang_jar}"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
