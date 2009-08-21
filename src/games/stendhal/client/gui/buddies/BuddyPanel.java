@@ -4,7 +4,6 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
