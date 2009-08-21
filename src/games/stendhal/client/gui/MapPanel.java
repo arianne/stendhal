@@ -350,7 +350,7 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 * Redraw the map area. To be called from the game loop.
 	 */
 	public void refresh() {
-		repaint(0, 0, width, height);	
+		paintImmediately(0, 0, width, height);
 	}
 	
 	/**
