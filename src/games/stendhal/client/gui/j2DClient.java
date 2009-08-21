@@ -31,7 +31,6 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.wt.Buddies;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -134,9 +133,6 @@ public class j2DClient {
 
 	/** the Key ring panel. */
 	private KeyRing keyring;
-
-	private ManagedWindow buddies;
-
 
 	/** the minimap panel. */
 	private MapPanel minimap;
@@ -405,12 +401,6 @@ public class j2DClient {
 		bag.getComponent().setPreferredSize(new Dimension(200, getHeight()));
 		content.add(bag.getComponent(), BorderLayout.EAST);
 		
-	}
-
-	private void createAndAddOldBuddies(final GameScreen gameScreen) {
-		buddies = new Buddies(this, gameScreen);
-		addWindow(buddies);
-		settings.add(buddies, "Enable Buddies", gameScreen);
 	}
 
 	public void cleanup() {
