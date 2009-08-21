@@ -12,12 +12,12 @@ class BuddyLabel extends JLabel {
 	/**
 	 * The online icon image.
 	 */
-	private static ImageIcon onlineIcon = new ImageIcon("data/gui/buddy_online.png");
+	private static ImageIcon onlineIcon = new ImageIcon(BuddyLabel.class.getClass().getResource("/data/gui/buddy_online.png"));
 
 	/**
 	 * The offline icon image.
 	 */
-	private static ImageIcon offlineIcon = new ImageIcon("data/gui/buddy_offline.png");
+	private static ImageIcon offlineIcon = new ImageIcon(BuddyLabel.class.getClass().getResource("/data/gui/buddy_offline.png"));
 
 	void setOnline(final boolean online) {
 			this.setEnabled(online);
@@ -52,7 +52,4 @@ class BuddyLabel extends JLabel {
 		this.setSize(new Dimension(200, 30));
 		this.addMouseListener(new BuddyLabelMouseListener());
 	}
-	
-	
-	
 }
