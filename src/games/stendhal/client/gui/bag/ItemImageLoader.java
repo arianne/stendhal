@@ -2,6 +2,10 @@ package games.stendhal.client.gui.bag;
 
 import static javax.imageio.ImageIO.read;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +50,15 @@ public class ItemImageLoader {
 				Logger.getLogger(ItemImageLoader.class).error("io error while loading: " + path, e);
 			}
 		}
+		
+		// Drop translucency, if present
+		if (img.getTransparency() != Transparency.BITMASK) {
+			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration(); 
+			BufferedImage newImage = gc.createCompatibleImage(img.getWidth(), img.getHeight(), Transparency.BITMASK);
+			newImage.getGraphics().drawImage(img, 0, 0, null);
+			img = newImage;
+		}
+		
 		return img;
 	}
 
