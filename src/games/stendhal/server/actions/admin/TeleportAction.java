@@ -11,6 +11,8 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,19 +40,36 @@ public class TeleportAction extends AdministrationAction {
 				logger.debug(text);
 				return;
 			}
-
+			
 			// validate the zone-name.
 			final IRPZone.ID zoneid = new IRPZone.ID(action.get(ZONE));
 			if (!SingletonRepository.getRPWorld().hasRPZone(zoneid)) {
 				final String text = "Zone \"" + zoneid + "\" not found.";
 				logger.debug(text);
+				final String[] zoneparts = action.get(ZONE).split("_");
+			    List<String> zonematches = new ArrayList<String>();
+				for (String zonepart : zoneparts) {
+					if(zonepart.length()>2 && !zonepart.equals("int")) {
+						if(zonepart.endsWith("s")) {
+							zonematches.add(zonepart.substring(0,zonepart.length() -1));
+						} else {
+							zonematches.add(zonepart);
+						}
+					}
+				}
 
 				final Set<String> zoneNames = new TreeSet<String>();
 				for (final IRPZone irpZone : SingletonRepository.getRPWorld()) {
 					final StendhalRPZone zone = (StendhalRPZone) irpZone;
-					zoneNames.add(zone.getName());
+					for (String zonematch : zonematches) {
+						 if (zone.getName().indexOf(zonematch) != -1) { 
+							zoneNames.add(zone.getName());
+							// just one match is enough
+							break;
+						}
+					}
 				}
-				player.sendPrivateText(text + " Valid zones: " + zoneNames);
+				player.sendPrivateText(text + " Similar zone names: " + zoneNames);
 				return;
 			}
 
