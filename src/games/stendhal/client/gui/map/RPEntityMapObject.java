@@ -29,27 +29,4 @@ public class RPEntityMapObject extends MovingMapObject {
 	public void draw(final Graphics g, final int scale) {
 		draw(g, scale, drawColor);
 	}
-	
-	/**
-	 * Draws a cross at the given position.
-	 * 
-	 * @param g The graphics context
-	 * @param x x coordinate of the center
-	 * @param y y coordinate of the center
-	 * @param color the draw color
-	 */
-	protected void draw(final Graphics g, final int scale,  final Color color) {
-		int mapX = worldToCanvas(x, scale);
-		int mapY = worldToCanvas(y, scale);
-		final int scale_2 = scale / 2;
-
-		final int size = scale_2 + 2;
-
-		mapX += scale_2;
-		mapY += scale_2;
-
-		g.setColor(color);
-		g.drawLine(mapX - size, mapY, mapX + size, mapY);
-		g.drawLine(mapX, mapY + size, mapX, mapY - size);
-	}
 }
