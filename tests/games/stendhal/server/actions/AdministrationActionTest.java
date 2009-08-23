@@ -199,7 +199,7 @@ public class AdministrationActionTest {
 		assertTrue(pl
 				.events().get(0).get("text")
 				.startsWith(
-						"Zone \"IRPZone.ID [id=non-existing-zone]\" not found. Valid zones: ["));
+						"Zone \"IRPZone.ID [id=non-existing-zone]\" not found. Similar zone names: ["));
 	}
 
 	@Test
