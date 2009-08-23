@@ -24,9 +24,7 @@ public class AdventureIsland extends StendhalRPZone {
 
 
 /** how many creatures will be spawned.*/
- private static final int NUMBER_OF_CREATURES = 5;
- /** Cost multiplier for getting to island. */
- private static final int COST_FACTOR = 300;
+ protected static final int NUMBER_OF_CREATURES = 5;
 /** island coordinates for placing monsters. */
  private static final int MIN_X = 10;
  /** island coordinates for placing monsters. */
@@ -39,6 +37,8 @@ public class AdventureIsland extends StendhalRPZone {
  private static final int ALLOWED_FAILS = 5;
  /** The creatures spawned are between player level * ratio and player level. */
  private static final double LEVEL_RATIO = 0.75;
+ 
+ private int numCreatures;
 
 	public AdventureIsland(final String name, final StendhalRPZone zone,
 			final Player player) {
@@ -49,35 +49,33 @@ public class AdventureIsland extends StendhalRPZone {
 	}
 
 	private void init(final Player player) {
-		int cost = COST_FACTOR * player.getLevel();
 		Portal portal = new Teleporter(new Spot(player.getZone(), player.getX(), player.getY()));
 		portal.setPosition(6, 3);
 		add(portal);
-		int i = 0;
+		numCreatures = 0;
 		int count = 0;
 		// max ALLOWED_FAILS fails to place all creatures before we give up
-		while (i < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
+		while (numCreatures < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
 			int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel()); 
 			CreatureSpawner creatureSpawner = new CreatureSpawner();
 			Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
 				if (StendhalRPAction.placeat(this, creature, Rand.randUniform(MIN_X, MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
-					i++;
+					numCreatures++;
 				} else {
 					logger.info(" could not add a creature to adventure island: " + creature);
 					count++;	
 				}
 		}
-		String message;
-		if (count >= ALLOWED_FAILS) {
-			// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
-			cost =  (int) (cost * ((float) i / (float) NUMBER_OF_CREATURES));
-			message = "Haastaja bellows from below: I could only fit " + i + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
-			logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
-		} else { 
-			message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck and remember to be careful with your items, as if you place them on the ground and then leave, they are lost. Most of all, take care with your life.";
-		}
 		disallowIn();
 		this.addMovementListener(new ChallengeMovementListener());
+	}
+	
+	/**
+	 * Get the number of monsters originally created on the zone
+	 * @return number of creatures
+	 */
+	public int getCreatures() {
+		return numCreatures;
 	}
 
 	private final class ChallengeMovementListener implements

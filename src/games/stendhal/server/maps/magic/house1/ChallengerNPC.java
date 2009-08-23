@@ -51,7 +51,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 					.getRPWorld().getRPZone("int_adventure_island");
 			String zoneName = player.getName() + "_adventure_island";
 			
-			final StendhalRPZone zone = new AdventureIsland(zoneName, challengezone, player);
+			final AdventureIsland zone = new AdventureIsland(zoneName, challengezone, player);
 
 			SingletonRepository.getRPWorld().addRPZone(zone);
 
@@ -62,6 +62,18 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			// just remove this for now as the message is generated in AdventureIsland class and not here now - need to get it back. 
 			// or send the message there. 
 			//	player.sendPrivateText(message);
+			String message;
+			int numCreatures = zone.getCreatures(); 
+			if (zone.getCreatures() < AdventureIsland.NUMBER_OF_CREATURES) {
+				// if we didn't manage to spawn NUMBER_OF_CREATURES they get a reduction
+				cost =  (int) (cost * ((float) numCreatures / (float) NUMBER_OF_CREATURES));
+				message = "Haastaja bellows from below: I could only fit " + numCreatures + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
+				logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
+			} else { 
+				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck and remember to be careful with your items, as if you place them on the ground and then leave, they are lost. Most of all, take care with your life.";
+			}
+			player.sendPrivateText(message);
+			
 			player.notifyWorldAboutChanges();
 		}
 	}
