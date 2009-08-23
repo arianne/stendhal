@@ -10,7 +10,7 @@ import games.stendhal.client.entity.NPC;
 public class RPEntityMapObject extends MovingMapObject {
 	private static final Color COLOR_DOMESTIC_ANIMAL = Color.ORANGE;
 	private static final Color COLOR_CREATURE = Color.YELLOW;
-	private static final Color COLOR_NPC = Color.BLUE;
+	private static final Color COLOR_NPC = new Color(0, 150, 0);
 	
 	protected Color drawColor;
 	
