@@ -486,10 +486,16 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	
 
 	public void draw() {
-		final Graphics g = getGraphics();
-		draw((Graphics2D) g);
-		
-		buffer.show();
+		/*
+		 * Don't try drawing until we are ready. A workaround until
+		 * the canvas has been done properly in swing.
+		 */
+		if (canvas.isDisplayable()) {
+			final Graphics g = getGraphics();
+			draw((Graphics2D) g);
+
+			buffer.show();
+		}
 	}
 	
 	public Graphics getGraphics() {
