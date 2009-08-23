@@ -55,13 +55,8 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 
 			SingletonRepository.getRPWorld().addRPZone(zone);
 
-			player.drop("money", cost);
 			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 			player.teleport(zone, 4, 4, Direction.DOWN, player);
-			// send the text after we change zone so that the event is not lost on zone change
-			// just remove this for now as the message is generated in AdventureIsland class and not here now - need to get it back. 
-			// or send the message there. 
-			//	player.sendPrivateText(message);
 			String message;
 			int numCreatures = zone.getCreatures(); 
 			if (zone.getCreatures() < AdventureIsland.NUMBER_OF_CREATURES) {
@@ -70,8 +65,9 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				message = "Haastaja bellows from below: I could only fit " + numCreatures + " creatures on the island for you. You have therefore been charged less, a fee of only " + cost + " money. Good luck.";
 				logger.info("Tried too many times to place creatures in adventure island so less than the required number have been spawned");
 			} else { 
-				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck and remember to be careful with your items, as if you place them on the ground and then leave, they are lost. Most of all, take care with your life.";
+				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck up there.";
 			}
+			player.drop("money", cost);
 			player.sendPrivateText(message);
 			
 			player.notifyWorldAboutChanges();
