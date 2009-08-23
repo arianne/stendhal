@@ -17,6 +17,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.RPObjectChangeListener;
+import games.stendhal.client.gui.map.MapPanelController;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
@@ -198,6 +199,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 			if (entity != null) {
 				if (entity.isOnGround()) {
 					GameScreen.get().addEntity(entity);
+					MapPanelController.get().addEntity(entity);
 				}
 
 				logger.debug("added " + entity);
@@ -254,6 +256,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 		if (entity != null) {
 			GameScreen.get().removeEntity(entity);
+			MapPanelController.get().removeEntity(entity);
 			entity.release();
 		}
 	}

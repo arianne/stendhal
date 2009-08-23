@@ -1,11 +1,9 @@
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.map;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Creature;
-import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
@@ -24,6 +22,8 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JPanel;
 
@@ -45,19 +45,8 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	/**
 	 * The color of other players (white).
 	 */
-	private static final Color COLOR_PLAYER = Color.white;
-	/**
-	 * The color of ghostmode players, if visible (white).
-	 */
-	private static final Color COLOR_GHOST = Color.gray;
-	/**
-	 * The colour of walk blockers (dark pink) .
-	 */
-    private static final Color COLOR_WALKBLOCKER = new Color(209, 144, 224);
-    /**
-	 * The color of a general entity (pale green).
-	 */
-	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
+	
+	private final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
 	
 	
 	/** width of the minimap. */
@@ -87,10 +76,12 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	private int height;
 	private int scale;
 	
+	/** true iff the map should be repainted */ 
+	private boolean needsRefresh;
 	private Image mapImage; 
 	
 	/** Name of the map */
-	private String title = "map";
+	private String title = "";
 	
 	public MapPanel(final StendhalClient client) {
 		this.client = client;
@@ -110,8 +101,68 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 		});
 	}
 	
+	protected void addEntity(final IEntity entity) {
+		MapObject object = null;
+		
+		if (entity instanceof User) {
+			entity.addChangeListener(new EntityChangeListener() {
+				public void entityChanged(final IEntity entity, final Object property) {
+					if (property == IEntity.PROP_POSITION) {
+						positionChanged(entity.getX(), entity.getY());
+					}
+				}
+			});
+			
+			object = new PlayerMapObject(entity);
+		} else if (entity instanceof Player) {
+			object = new PlayerMapObject(entity);
+		} else if (entity instanceof Portal) {
+			final Portal portal = (Portal) entity;
+
+			if (!portal.isHidden()) {
+				mapObjects.put(entity, new PortalMapObject(entity));
+			}
+		} else if (entity instanceof HousePortal) {
+			object = new PortalMapObject(entity);
+		} else if (entity instanceof WalkBlocker) {
+			object = new WalkBlockerMapObject(entity);
+		} else if (supermanMode && User.isAdmin()) {
+			if (entity instanceof RPEntity) {
+				object = new RPEntityMapObject(entity);
+			} else {
+				object = new MovingMapObject(entity);
+			}
+		}
+		
+		if (object != null) {
+			mapObjects.put(entity, object);
+			needsRefresh = true;
+			
+			// changes to objects that should trigger a refresh
+			if (object instanceof MovingMapObject) {
+				entity.addChangeListener(new EntityChangeListener() {
+					public void entityChanged(final IEntity entity, final Object property) {
+						if ((property == IEntity.PROP_POSITION) 
+								|| (property == RPEntity.PROP_GHOSTMODE)) {
+							needsRefresh = true;
+						}
+					}
+				});
+			}
+		}
+	}
+	
+	protected void removeEntity(final IEntity entity) {
+		if (mapObjects.containsKey(entity)) {
+			mapObjects.remove(entity);
+			needsRefresh = true;
+		}
+	}
+	
 	@Override
 	public void paintComponent(final Graphics g) {
+		needsRefresh = false;
+		
 		super.paintComponent(g);
 		drawTitle(g);
 		// The rest of the things should be drawn inside the actual map area
@@ -121,11 +172,19 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 		g.translate(-xOffset, -yOffset);
 		
 		drawMap(g);
-		
 		drawEntities(g);
-		drawUser(g);
 		
 		g.dispose();
+	}
+	
+	/**
+	 * Draw the entities on the map 
+	 * @param g The graphics context
+	 */
+	private void drawEntities(final Graphics g) {
+		for (final MapObject object : mapObjects.values()) {
+			object.draw(g, scale);
+		}
 	}
 	
 	/**
@@ -156,157 +215,6 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 */
 	private void drawMap(final Graphics g) {
 		g.drawImage(mapImage, 0, 0, null);
-	}
-
-	/**
-	 * Draw the entities on the map 
-	 * @param g The graphics context
-	 */
-	private void drawEntities(final Graphics g) {
-		for (final IEntity entity : client.getGameObjects()) {
-			if (!entity.isOnGround()) {
-				continue;
-			}
-			if (entity instanceof Player) {
-				final Player player = (Player) entity;
-
-				if (!player.isGhostMode()) {
-					drawPlayer(g, player, COLOR_PLAYER);
-				} else if (User.isAdmin()) {
-					drawPlayer(g, player, COLOR_GHOST);
-				}
-			} else if (entity instanceof Portal) {
-				final Portal portal = (Portal) entity;
-
-				if (!portal.isHidden()) {
-					drawEntity(g, entity, Color.WHITE, Color.BLACK);
-				}
-			} else if (entity instanceof HousePortal) {
-				drawEntity(g, entity, Color.WHITE, Color.BLACK); 
-			} else if (entity instanceof WalkBlocker) {
-				drawEntity(g, entity, COLOR_WALKBLOCKER);
-			} else if (supermanMode && User.isAdmin()) {
-				if (entity instanceof RPEntity) {
-					drawRPEntity(g, (RPEntity) entity);
-				} else {
-				    drawEntity(g, entity, COLOR_ENTITY);
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Draw a player entity.
-	 * 
-	 * @param g
-	 *            The graphics context.
-	 * @param player
-	 *            The player to be drawn.
-	 * @param color
-	 *            The color to draw with.
-	 */
-	private void drawPlayer(final Graphics g, final Player player,
-			final Color color) {
-		drawCross(g, (int) ((player.getX() * scale) + 0.5), (int) ((player
-				.getY() * scale) + 0.5), color);
-	}
-	
-	/**
-	 * Draws the User.
-	 * 
-	 * @param g graphics context
-	 */
-	private void drawUser(final Graphics g) {
-		final User user = User.get();
-
-		if (user != null) {
-			drawPlayer(g, user, Color.BLUE);
-		}
-	}
-	
-	/**
-	 * Draw an entity on the map as a colored rectangle.
-	 * 
-	 * @param g
-	 *            graphics
-	 * @param entity
-	 *            the Entity to be drawn
-	 * @param color
-	 *            the Color to be used
-	 */
-	private void drawEntity(final Graphics g, final IEntity entity,
-			final Color color) {
-		drawEntity(g, entity, color, null);
-	}
-	
-	/**
-	 * Draw an entity on the map as a colored rectangle, with an optional border
-	 * (for non 1x1 entities).
-	 * 
-	 * @param g
-	 *            The graphics context.
-	 * @param entity
-	 *            The Entity to be drawn.
-	 * @param color
-	 *            The color to draw.
-	 * @param borderColor
-	 *            The (optional) border color.
-	 */
-	private void drawEntity(final Graphics g, final IEntity entity,
-			final Color color, final Color borderColor) {
-		final Rectangle2D area = entity.getArea();
-
-		final int x = (int) ((area.getX() * scale) + 0.5);
-		final int y = (int) ((area.getY() * scale) + 0.5);
-		final int widthTemp = ((int) area.getWidth()) * scale;
-		final int heightTemp = ((int) area.getHeight()) * scale;
-
-		g.setColor(color);
-		g.fillRect(x, y, widthTemp, heightTemp);
-
-		if (borderColor != null) {
-			g.setColor(borderColor);
-			g.drawRect(x, y, widthTemp - 1, heightTemp - 1);
-		}
-	}
-
-	/**
-	 * Draws an RPEntity on the map.
-	 * 
-	 * @param g
-	 *            Graphics
-	 * @param entity
-	 *            The entity to be drawn
-	 */
-	private void drawRPEntity(final Graphics g, final RPEntity entity) {
-		if (entity instanceof DomesticAnimal) {
-			drawEntity(g, entity, Color.ORANGE);
-		} else if (entity instanceof Creature) {
-			drawEntity(g, entity, Color.YELLOW);
-		} else if (entity instanceof NPC) {
-			drawEntity(g, entity, Color.BLUE);
-		}
-	}
-	
-	/**
-	 * Draws a cross at the given position.
-	 * 
-	 * @param g The graphics context
-	 * @param x x coordinate of the center
-	 * @param y y coordinate of the center
-	 * @param color the draw color
-	 */
-	private void drawCross(final Graphics g, int x, int y, final Color color) {
-		final int scale_2 = scale / 2;
-
-		final int size = scale_2 + 2;
-
-		x += scale_2;
-		y += scale_2;
-
-		g.setColor(color);
-		g.drawLine(x - size, y, x + size, y);
-		g.drawLine(x, y + size, x, y - size);
 	}
 	
 	/**
@@ -342,7 +250,6 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 			playerY = y;
 
 			updateView();
-	
 		}
 	}
 	
@@ -350,7 +257,9 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 * Redraw the map area. To be called from the game loop.
 	 */
 	public void refresh() {
-		paintImmediately(0, 0, width, height);
+		if (needsRefresh) {
+			repaint(0, 0, width, height);
+		}
 	}
 	
 	/**

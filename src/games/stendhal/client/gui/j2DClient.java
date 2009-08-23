@@ -31,6 +31,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -135,7 +136,7 @@ public class j2DClient {
 	private KeyRing keyring;
 
 	/** the minimap panel. */
-	private MapPanel minimap;
+	private MapPanelController minimap;
 
 	/** the inventory.*/
 	private EntityContainer inventory;
@@ -195,7 +196,7 @@ public class j2DClient {
 		this.userContext = userContext;
 		setDefault(this);
 		
-		minimap = new MapPanel(client);
+		minimap = new MapPanelController(client);
 		final BuddyPanelControler buddies = new BuddyPanelControler();
 		final JScrollPane buddyPane = new JScrollPane();
 		buddyPane.setViewportView(buddies.getComponent());
@@ -224,8 +225,6 @@ public class j2DClient {
 
 		client.setScreen(screen);
 		positionChangeListener.add(screen);
-
-		positionChangeListener.add(minimap);
 
 				
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
@@ -304,11 +303,11 @@ public class j2DClient {
 		
 		// create the layout
 		final Column leftColumn = new Column();
-		leftColumn.add(minimap);
+		leftColumn.add(minimap.getComponent());
 		leftColumn.add(buddyPane);
 		// make the resizes affect the left panel rather than the game area
-		leftColumn.setFixedWidth(false, minimap);
-		minimap.setMinimumSize(new Dimension(0, 0));
+		leftColumn.setFixedWidth(false, minimap.getComponent());
+		minimap.getComponent().setMinimumSize(new Dimension(0, 0));
 		buddyPane.setMinimumSize(new Dimension(0, 0));
 		// a workaround for PageLayout's inability to link cell heights
 		leftColumn.setComponentGaps(0, 0);
@@ -363,7 +362,7 @@ public class j2DClient {
 				 *  different java versions seem to take the window decorations
 				 *  in account in rather random ways.
 				 */
-				final int width = mainFrame.getMainFrame().getWidth() - minimap.getWidth();
+				final int width = mainFrame.getMainFrame().getWidth() - minimap.getComponent().getWidth();
 				final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
 				
 				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
