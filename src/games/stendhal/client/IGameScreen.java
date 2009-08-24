@@ -108,7 +108,7 @@ public interface IGameScreen {
 	
 	/**
 	 * Get the graphics buffer context for the sreen
-	 * @return
+	 * @return The graphics context
 	 */
 	Graphics getGraphics();
 

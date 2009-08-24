@@ -175,8 +175,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @param client
 	 *            The client.
-	 * @param canvas
-	 *            The canvas to render in.
 	 */
 	public GameScreen(final StendhalClient client) {
 		canvas = new Canvas();

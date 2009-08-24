@@ -103,9 +103,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Create a 2D view of an entity.
-	 * 
-	 * @param entity
-	 *            The entity to render.
 	 */
 	public Entity2DView() {
 		

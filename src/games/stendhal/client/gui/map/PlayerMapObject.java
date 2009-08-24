@@ -58,12 +58,11 @@ public class PlayerMapObject extends RPEntityMapObject {
 	}
 	
 	/**
-	 * Draws a player at the given position.
+	 * Draws a player using given color.
 	 * 
 	 * @param g The graphics context
-	 * @param x x coordinate of the center
-	 * @param y y coordinate of the center
-	 * @param color the draw color
+	 * @param scale Scaling factor
+	 * @param color The draw color
 	 */
 	protected void draw(final Graphics g, final int scale,  final Color color) {
 		int mapX = worldToCanvas(x, scale);
