@@ -25,6 +25,7 @@ already)
 - store content to database on closing a stored chest incase server does not
 shut gracefully
 - automatically close stored chest when the zone it is in becomes empty of players
+- wedding rings have a level ratio dependent cooling period
 
 
 0.76

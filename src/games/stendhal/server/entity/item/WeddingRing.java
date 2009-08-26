@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Map;
 
@@ -35,6 +36,10 @@ import org.apache.log4j.Logger;
  * @author daniel
  */
 public class WeddingRing extends Ring {
+	/** The cooling period of players of same level in seconds */ 
+	private static final long MIN_COOLING_PERIOD = 5 * 60;
+	
+	private static final String LAST_USE = "amount";
 
 	private static final Logger logger = Logger.getLogger(WeddingRing.class);
 
@@ -49,6 +54,7 @@ public class WeddingRing extends Ring {
 	public WeddingRing(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+		setPersistent(true);
 	}
 
 	/**
@@ -74,6 +80,39 @@ public class WeddingRing extends Ring {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Get the last use time in seconds
+	 * @return last use time
+	 */
+	private int getLastUsed() {
+		if (has(LAST_USE)) {
+			return getInt(LAST_USE);
+		} else {
+			return -1;
+		}
+	}
+	
+	/**
+	 * Store current system time as the last used
+	 */
+	private void storeLastUsed() {
+		put(LAST_USE, (int) (System.currentTimeMillis() / 1000));
+	}
+	
+	/**
+	 * Get the required cooling period for wedding ring use between players
+	 * @param player1 either player using the ring or the spouse 
+	 * @param player2 either player using the ring or the spouse
+	 * @return Required cooling time
+	 */
+	private int getCoolingPeriod(final Player player1, final Player player2) {
+		final int level1 = player1.getLevel();
+		final int level2 = player2.getLevel();
+		double levelRatio = (Math.max(level1, level2) + 1.0) / (Math.min(level1, level2) + 1.0);
+		
+		return (int) (MIN_COOLING_PERIOD * levelRatio * levelRatio);
 	}
 
 	/**
@@ -132,6 +171,14 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
+		final int secondsNeeded = getLastUsed() + getCoolingPeriod(player, spouse) - (int) (System.currentTimeMillis() / 1000);
+		if (secondsNeeded > 0) {
+			player.sendPrivateText("The ring has not yet regained its power. You think it might be ready in " 
+					+ TimeUtil.approxTimeUntil(secondsNeeded) + ".");
+			
+			return;
+		}
+
 		final StendhalRPZone sourceZone = player.getZone();
 		if (!sourceZone.isTeleportOutAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the wedding ring from working!");
@@ -156,7 +203,9 @@ public class WeddingRing extends Ring {
 		final int y = spouse.getY();
 		final Direction dir = spouse.getDirection();
 
-		player.teleport(destinationZone, x, y, dir, player);
+		if (player.teleport(destinationZone, x, y, dir, player)) {
+			storeLastUsed();
+		}
 	}
 
 	@Override
