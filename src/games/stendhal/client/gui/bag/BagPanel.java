@@ -22,9 +22,7 @@ public class BagPanel extends StyledJPanel {
 
 		public void actionPerformed(final ActionEvent e) {
 			BagPanel.this.repaint();
-			
 		}
-		
 	};
 	
 
@@ -40,10 +38,7 @@ public class BagPanel extends StyledJPanel {
 				panels[8], eol(), panels[9], panels[10], panels[11], eol());
 		baggrid.setFixedWidth(panels, true);
 		baggrid.setFixedHeight(panels, true);
-		baggrid.createLayout(this);
-
+		baggrid.setComponentGaps(1, 1);
+		baggrid.createLayout(this).setContainerGaps(0, 0);
 	}
-
-	
-
 }
