@@ -44,7 +44,7 @@ public enum TutorialEventType {
 	TIMED_RULES(
 				    "Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem"),
 	NEW_RELEASE(
-			"Some of the best equipment now needs you to have a minimum experience level to be used to its best. If you are less than the minimum level marked on your attacking weapon, it hits with a slower rate for you. If you are less than the minimum level for a defensive weapon, it has a less good defense for you. You can see the effective rate and your total defense in your Character Window.");
+			"Wedding rings have changed for this release. Marriage is a role playing feature so that you can marry a friend in the game. Unfortunately many people have married clones who are not real players - just a tool for free teleport and they remain low level. How to solve this unfair use of wedding rings? After careful consideration we have implemented a time delay between wedding ring use. The delay depends on the level ratio between you and your spouse; those with really low level clones will be able to get a free teleport much less often. For genuine couples who are close in level the delay can be as little as 5 minutes before you can use the ring again. Remember when we add new features: if you abuse it, you lose it.");
 	private String message;
 
 	/**
