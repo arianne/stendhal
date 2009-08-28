@@ -442,10 +442,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized boolean onInit(final RPObject object) {
 		try {
 			if (object == null) {
-				logger.error("onInit: object = null");
+				logger.error("onInit: object = null", new Throwable());
 				return false;
 			}
 
+			if (!(object instanceof Player)) {
+				logger.error("onInit: object is not an instance of Player: " + object, new Throwable());
+			}
 			Player player = (Player) object;
 			
 			playersRmText.add(player);
