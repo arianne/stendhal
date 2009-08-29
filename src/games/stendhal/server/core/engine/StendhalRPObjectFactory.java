@@ -49,7 +49,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		final RPClass clazz = object.getRPClass();
 		if ((clazz == null) || (clazz.getName() == null) || (clazz.getName().trim().equals(""))) {
 			if (object.has("type")) {
-				logger.warn("Fixing empty class setting it to type=" + object.get("type") + " on object: " + object);
+				logger.warn("Fixing empty class, setting it to type=" + object.get("type") + " on object: " + object);
 				object.setRPClass(object.get("type"));
 			}
 		}
