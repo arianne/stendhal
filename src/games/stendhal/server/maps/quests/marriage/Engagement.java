@@ -52,14 +52,25 @@ class Engagement {
 				"married",
 				null,
 				ConversationStates.ATTENDING,
-				"If you have a partner, you can marry them at a #wedding. Once you have a wedding ring, you can be together whenever you want.",
+				"If you have a partner, you can marry them at a #wedding. Once you are married "
+				+ "you can use wedding ring to be together instantly. The ring draws its power from "
+				+ "the bond between the couple, and works best between #equals.",
+				null);
+
+		nun.add(ConversationStates.ATTENDING,
+				"equals",
+				null,
+				ConversationStates.ATTENDING,
+				"The #wedding ring needs time to regain its power after each use, and it needs less power to bring equals together. "
+				+ "For couples of similar level the time to regain power is less than 10 minutes and can be as little as 5 minutes.",
 				null);
 
 		nun.add(ConversationStates.ATTENDING,
 				"wedding",
 				null,
 				ConversationStates.ATTENDING,
-				"You may marry here at this church. If you want to #engage someone, just tell me who.",
+				"You may marry here at this church. If you would like to get engaged, bring your partner "
+				+ "here, then tell me you would like to #engage #name.",
 				null);
 
 		nun.add(ConversationStates.ATTENDING, 
@@ -183,19 +194,23 @@ class Engagement {
 				giveInvite(bride);
 				additional = "And here are some invitations you can give to your guests.";
 			} else {
-				additional = "I have given invitations for your guests to " + groom.getName() + ". " + bride.getName() + ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
+				additional = "I have given invitations for your guests to " + groom.getName() + ". " + bride.getName() 
+					+ ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 				}
 		} else if (!marriage.isEngaged(bride)) {
 			giveInvite(bride);
-			additional = "I have given invitations for your guests to " + bride.getName() + ". " + groom.getName() + ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
+			additional = "I have given invitations for your guests to " + bride.getName() + ". " + groom.getName() 
+				+ ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 		} else {
-			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had them before. If you were having rings forged you will both need to make them again.";
+			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had "
+				+ "them before. If you were having rings forged you will both need to make them again.";
 		}		
 		nun.say("Congratulations, "
 				+ groom.getName()
 				+ " and "
 				+ bride.getName()
-				+ ", you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. " + additional);
+				+ ", you are now engaged! Please make sure you have been to Ognir to get wedding rings made before "
+				+ "you go to the church for the service. " + additional);
 		// Memorize that the two engaged so that the priest knows
 		groom.setQuest(marriage.getQuestSlot(), "engaged");
 		bride.setQuest(marriage.getQuestSlot(), "engaged");

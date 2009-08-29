@@ -90,7 +90,7 @@ public class MarriageTest {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("player2, do you want to get engaged to player?", npc.get("text"));
 		assertTrue(en.step(player2, "yes"));
-		assertEquals("Congratulations, player and player2, you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.", npc.get("text"));
+		assertEquals("Congratulations, player and player2, you are now engaged! Please make sure you have been to Ognir to get wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Goodbye, may peace be with you.", npc.get("text"));
 
