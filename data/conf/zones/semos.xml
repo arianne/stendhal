@@ -640,6 +640,24 @@ TO THE PLAINS
 Shepherds please note: keep watch for the wolves while searching for berries here.
    </attribute>
 		</entity>
+
+		<!--  table on the left -->
+		<entity x="44" y="39">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+			<attribute name="width">1</attribute>
+			<attribute name="height">2</attribute>
+		</entity>
+
+		<!--  table on the right -->
+		<entity x="47" y="39">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+			<attribute name="width">1</attribute>
+			<attribute name="height">2</attribute>
+		</entity>
 	</zone>
 
 
