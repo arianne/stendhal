@@ -59,7 +59,7 @@ public class CircledCollection<T> {
 
 	@SuppressWarnings("unchecked")
 	public CircledCollection<T>[] newArray(final int length) {
-		return (CircledCollection<T>[]) new CircledCollection[length];
+		return new CircledCollection[length];
 	}
 
 }
