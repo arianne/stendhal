@@ -4,7 +4,6 @@ import static javax.imageio.ImageIO.read;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -12,9 +11,9 @@ import java.net.URL;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 public class ItemImageLoader {
 
