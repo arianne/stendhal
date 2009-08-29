@@ -1,5 +1,7 @@
 package games.stendhal.tools.rpobjectdumper;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -17,8 +19,12 @@ public class RPObjectDumper {
 
 	public static void main(String[] args) throws SQLException, IOException {
 		new DatabaseFactory().initializeDatabase();
+
+		new RPClassGenerator().createRPClasses();
+
 		int objectid = Integer.parseInt(args[0]);
 		RPObject object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(objectid);
-		System.out.println(object);
+		RPObject object2 = new RPObject(object);
+		System.out.println(object2);
 	}
 }
