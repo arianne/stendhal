@@ -45,9 +45,21 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put("player", new PlayerTransformer());
 	}
 	
+	private void fixRPClass(final RPObject object) {
+		final RPClass clazz = object.getRPClass();
+		if ((clazz == null) || (clazz.getName() == null) || (clazz.getName().trim().equals(""))) {
+			if (object.has("type")) {
+				logger.warn("Fixing empty class setting it to type=" + object.get("type") + " on object: " + object);
+				object.setRPClass(object.get("type"));
+			}
+		}
+	}
 	
 	@Override
 	public RPObject transform(final RPObject object) {
+
+		fixRPClass(object);
+
 		final RPClass clazz = object.getRPClass();
 		if (clazz == null) {
 			logger.error("Cannot create concrete object for " + object
