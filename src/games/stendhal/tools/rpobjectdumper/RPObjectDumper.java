@@ -25,6 +25,12 @@ public class RPObjectDumper {
 		int objectid = Integer.parseInt(args[0]);
 		RPObject object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(objectid);
 		RPObject object2 = new RPObject(object);
-		System.out.println(object2);
+		System.out.println("transformed object: " + object);
+		System.out.println("untransformed object: " + object2);
+		
+		System.out.println("Class: !" + object.getRPClass() + "!");
+		System.out.println("Class-Name: !" + object.getRPClass().getName() + "!");
+		
+		System.exit(0);
 	}
 }
