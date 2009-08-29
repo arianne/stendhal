@@ -657,14 +657,14 @@ black halberd     12000
   <portal x="65" y="68" ref="palace_entrance_left">
    <destination zone="int_oni_palace_0" ref="entrance1_right"/>
    <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">67</parameter>
+	    <parameter name="minimum-level">60</parameter>
 		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
 	   </implementation>
   </portal>
   <portal x="75" y="68" ref="palace_entrance_right">
    <destination zone="int_oni_palace_0" ref="entrance2_right"/>
    <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">67</parameter>
+	    <parameter name="minimum-level">60</parameter>
 		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
 	   </implementation>
   </portal>
