@@ -82,7 +82,9 @@ public class Postman implements Runnable {
 			final int xdiff = object.getInt("x") - Integer.parseInt(X_COORD);
 			final int ydiff = object.getInt("y") - Integer.parseInt(Y_COORD);
 			if (xdiff * xdiff + ydiff * ydiff > 36) {
-				
+				logger.debug("***Postman*** object x: " + object.getInt("x") + ", object y: " + object.getInt("y")
+							 + ", postman x " + Integer.parseInt(X_COORD) + ", postman y: " + Integer.parseInt(Y_COORD) 
+							 + ", xdiff: " + xdiff + ", ydiff:  " + ydiff);
 				return;
 			}
 
