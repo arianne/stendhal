@@ -34,3 +34,4 @@ marauroa-strato.ini
 *.euml2
 *.umlproject
 cobertura.ser
+statserver_stats.xml
