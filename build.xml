@@ -76,8 +76,8 @@
 			replace="out.println(&quot;server_version=${version}&quot;);"
 			byline="true"/>
 		<replaceregexp file="runserver.bat"
-			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
-			replace="STENDHAL_VERSION = &quot;${version}&quot;"
+			match="STENDHAL_VERSION=.*"
+			replace="STENDHAL_VERSION=${version}"
 			byline="true"/>
 		<replaceregexp file="runserver.sh"
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
