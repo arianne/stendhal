@@ -49,9 +49,19 @@ public class HouseKey extends Item {
 			return "You see a key to " + info[0] + ".";
 		}
 	}
-	
+	/* useful so that the list of thems lost on death is more specific than just 'house key' */
+	@Override
+	public String getName() {
+		final String[] info = getInfoString().split(";", -1);
+		if (info[2].length() > 0) {
+			return Grammar.suffix_s(info[2]) + " house key";
+		} else {
+			return  info[0] + " key";
+		}
+	}
+
 	/**
-	 * Set the paramaters of the key.
+	 * Set the parameters of the key.
 	 * 
 	 * @param id the portal identifier
 	 * @param lockNumber the number of the lock
