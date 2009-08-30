@@ -1,7 +1,6 @@
 Changelog
 ---------
 0.xx
-- adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
 - trade center in progress
 
 0.77
@@ -12,8 +11,7 @@ Changelog
 - tomatoes use a grower
 - don't let pets/sheep dying result in concurrent modification
 - Make it possible to name pets back to their original name
-- allow always using the animal type to rename a pet (even if it has a name
-already)
+- allow always using the animal type to rename a pet (even if it has a name already)
 - give 20 xp for the Cherub in the starting zone so players don't get to level
 4 instantly 
 - new items added to NPC buyers
@@ -22,11 +20,14 @@ already)
 - added a way to clean the house portal cache
 - tell support about /script DropPlayerItems
 - fixed item log on drop of stackable items
-- store content to database on closing a stored chest incase server does not
-shut gracefully
+- store content to database on closing a stored chest incase server does not shut gracefully
 - automatically close stored chest when the zone it is in becomes empty of players
 - wedding rings have a level ratio dependent cooling period
-
+- you can divorce for a fee instead of xp loss, temporarily
+- adventure island which is a bit like DM - you get creatures but you get XP and items. It costs money and you must go alone
+- if you lose a house key on death you're told which house it was for (so the owner can change locks if the key wasn't retrieved)
+- buddy list is sorted alphabetically
+- outside semos tavern is a better seating area
 
 0.76
 - ported to the latest release of marauroa with supports multi threaded database access
