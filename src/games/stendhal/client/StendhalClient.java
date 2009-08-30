@@ -198,7 +198,11 @@ public class StendhalClient extends ClientFramework {
 	public void connect(final String host, final int port) throws IOException {
 		super.connect(host, port);
 		// if connect was successful try if server has http service, too
-		final String testServer = "http://" + host + "/";
+		String urlHost = host;
+		if (host.indexOf(":") > -1) {
+			urlHost = "[" + host + "]";
+		}
+		final String testServer = "http://" + urlHost + "/";
 		final HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
 		final String version = httpClient.fetchFirstLine();
 		if (version != null) {
