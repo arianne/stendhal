@@ -2,6 +2,8 @@ package games.stendhal.client.gui.bag;
 
 import static javax.imageio.ImageIO.read;
 
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
@@ -38,7 +40,7 @@ public class ItemImageLoader {
 			return img;
 		} else {
 			try {
-				final URL resource = getClass().getResource(path);
+				final URL resource = SpriteStore.get().getResourceURL(path);
 				if (resource != null) {
 					img = read(resource);
 					ImageMap.put(path, img);
