@@ -32,22 +32,34 @@ public class ItemDumper {
 	private void dump(DBTransaction transaction) throws Exception {
 		final String query = "insert into items(datewhen, charname, slotname, itemid, itemname, amount) values(?, ?, ?, ?, ?, ?)";
 		date = new java.sql.Date(new java.util.Date().getTime());
-		PreparedStatement ps = transaction.prepareStatement(query, null);
 
 		for (final RPObject object : new CharacterIterator(transaction, false)) {
-			final String name = object.get("name");
-			final int id = object.getInt("id");
-			System.out.println(id + " " + name);
-			for (final RPSlot slot : object.slots()) {
-				final String slotName = slot.getName();
-				for (final RPObject item : slot) {
-					if (item.has("type") && item.get("type").equals("item")) {
-						logItem(ps, name, slotName, item);
+			if (object == null) {
+				continue;
+			}
+
+			DBTransaction writeTransaction = TransactionPool.get().beginWork();
+			try {
+				PreparedStatement ps = writeTransaction.prepareStatement(query, null);
+				
+				final String name = object.get("name");
+				final int id = object.getInt("id");
+				System.out.println(id + " " + name);
+				for (final RPSlot slot : object.slots()) {
+					final String slotName = slot.getName();
+					for (final RPObject item : slot) {
+						if (item.has("type") && item.get("type").equals("item")) {
+							logItem(ps, name, slotName, item);
+						}
 					}
 				}
+				ps.close();
+				TransactionPool.get().commit(writeTransaction);
+			} catch (Exception e) {
+				logger.error(e, e);
+				TransactionPool.get().rollback(writeTransaction);
 			}
 		}
-		ps.close();
 	}
 
 	/**
@@ -70,8 +82,8 @@ public class ItemDumper {
 			quantity = item.getInt("quantity");
 		}
 		int itemid = -1;
-		if (item.has("itemid")) {
-			itemid = item.getInt("itemid");
+		if (item.has("logid")) {
+			itemid = item.getInt("logid");
 		}
 		ps.setDate(1, date);
 		ps.setString(2, name);
@@ -86,7 +98,7 @@ public class ItemDumper {
 	public void dump() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			dump(transaction);
+			dump();
 			TransactionPool.get().commit(transaction);
 		} catch (Exception e) {
 			logger.error(e, e);
