@@ -34,7 +34,7 @@ public final class AgeDumper {
 		date = new java.sql.Date(new java.util.Date().getTime());
 		PreparedStatement ps = transaction.prepareStatement(query, null);
 
-		for (final RPObject object : new CharacterIterator(transaction)) {
+		for (final RPObject object : new CharacterIterator(transaction, false)) {
 			final String name = object.get("name");
 			// System.out.println(id + " " + name);
 			logPlayer(ps, name, object);

@@ -6,14 +6,13 @@ import games.stendhal.server.core.engine.db.CharacterIterator;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
+
+import org.apache.log4j.Logger;
 
 /**
  * Dumps the items of all players into a table called items.
@@ -31,11 +30,11 @@ public class ItemDumper {
 	 *             in case of an unexpected Exception
 	 */
 	private void dump(DBTransaction transaction) throws Exception {
-		final String query = "insert into items(datewhen, charname, slotname, itemname, amount) values(?, ?, ?, ?, ?)";
+		final String query = "insert into items(datewhen, charname, slotname, itemid, itemname, amount) values(?, ?, ?, ?, ?, ?)";
 		date = new java.sql.Date(new java.util.Date().getTime());
 		PreparedStatement ps = transaction.prepareStatement(query, null);
 
-		for (final RPObject object : new CharacterIterator(transaction)) {
+		for (final RPObject object : new CharacterIterator(transaction, false)) {
 			final String name = object.get("name");
 			final int id = object.getInt("id");
 			System.out.println(id + " " + name);
@@ -70,11 +69,16 @@ public class ItemDumper {
 		if (item.has("quantity")) {
 			quantity = item.getInt("quantity");
 		}
+		int itemid = -1;
+		if (item.has("itemid")) {
+			itemid = item.getInt("itemid");
+		}
 		ps.setDate(1, date);
 		ps.setString(2, name);
 		ps.setString(3, slotName);
-		ps.setString(4, itemName);
-		ps.setInt(5, quantity);
+		ps.setInt(4, itemid);
+		ps.setString(5, itemName);
+		ps.setInt(6, quantity);
 		ps.executeUpdate();
 	}
 
@@ -101,7 +105,7 @@ public class ItemDumper {
 	public static void main(final String[] args) throws Exception {
 		new DatabaseFactory().initializeDatabase();	
 		SingletonRepository.getRPWorld();
-		Configuration.setConfigurationFile("marauroa-prod.ini");
+		//Configuration.setConfigurationFile("marauroa-prod.ini");
 		final ItemDumper itemDumper = new ItemDumper();
 		itemDumper.dump();
 	}

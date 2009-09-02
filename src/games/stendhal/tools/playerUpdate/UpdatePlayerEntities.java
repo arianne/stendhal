@@ -33,7 +33,7 @@ public class UpdatePlayerEntities {
 	}
     
 	private void loadAndUpdatePlayers(DBTransaction transaction) throws SQLException, IOException {
-    	final Iterator<RPObject> i = new CharacterIterator(transaction);
+    	final Iterator<RPObject> i = new CharacterIterator(transaction, true);
     	while (i.hasNext()) {
     		final RPObject next = i.next();
     		System.out.println(next);

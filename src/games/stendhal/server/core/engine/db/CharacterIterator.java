@@ -30,11 +30,12 @@ import org.apache.log4j.Logger;
 public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject> {
 	private static Logger logger = Logger.getLogger(CharacterIterator.class);
 	private final ResultSet result;
-
+	private boolean transform;
 	private final DBTransaction transaction;
 
-	public CharacterIterator(DBTransaction transaction) throws SQLException {
+	public CharacterIterator(DBTransaction transaction, boolean transform) throws SQLException {
 		this.transaction = transaction;
+		this.transform = transform;
 		final String query = "select object_id from characters";
 
 		logger.debug("iterator is executing query " + query);
@@ -53,7 +54,7 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 	public RPObject next() {
 		try {
 			final int objectid = result.getInt("object_id");
-			return DAORegister.get().get(RPObjectDAO.class).loadRPObject(transaction, objectid);
+			return DAORegister.get().get(RPObjectDAO.class).loadRPObject(transaction, objectid, transform);
 		} catch (final Exception e) {
 			logger.warn(e, e);
 			return null;
