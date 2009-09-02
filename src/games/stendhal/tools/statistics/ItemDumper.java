@@ -98,7 +98,7 @@ public class ItemDumper {
 	public void dump() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			dump();
+			dump(transaction);
 			TransactionPool.get().commit(transaction);
 		} catch (Exception e) {
 			logger.error(e, e);
