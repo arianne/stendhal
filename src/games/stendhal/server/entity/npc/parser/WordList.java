@@ -864,7 +864,7 @@ public final class WordList {
             }
 
             logger.debug("read " + count + " word entries from database");
-
+            res.close();
     		TransactionPool.get().commit(transaction);
             return count;
         } catch (final SQLException e) {

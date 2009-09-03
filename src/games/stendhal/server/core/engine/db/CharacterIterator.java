@@ -36,7 +36,7 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 	public CharacterIterator(DBTransaction transaction, boolean transform) throws SQLException {
 		this.transaction = transaction;
 		this.transform = transform;
-		final String query = "select object_id from characters";
+		final String query = "select object_id from characters order by object_id";
 
 		logger.debug("iterator is executing query " + query);
 		result = transaction.query(query, null);

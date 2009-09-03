@@ -54,6 +54,7 @@ public class StendhalHallOfFameDAO {
 			if (result.next()) {
 				res = result.getInt("points");
 			}
+			result.close();
 		} catch (final Exception sqle) {
 			logger.warn("Error reading hall of fame", sqle);
 		}

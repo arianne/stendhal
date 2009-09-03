@@ -33,6 +33,7 @@ public class ListUnknownWords extends ScriptImpl {
 	        	sb.append('\n');
 	        }
 
+	        res.close();
 			TransactionPool.get().commit(transaction);
         } catch (final SQLException e) {
         	sb.append("error while reading from DB table words: " + e.getMessage());
