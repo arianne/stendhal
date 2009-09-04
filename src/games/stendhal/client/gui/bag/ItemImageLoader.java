@@ -29,7 +29,7 @@ public class ItemImageLoader {
 	private String extractPathFromObject(final RPObject object) {
 		final String clazz = object.get("class");
 		final String subClass = object.get("subclass");
-		final String path = "/data/sprites/items/" + clazz + "/" + subClass
+		final String path = "data/sprites/items/" + clazz + "/" + subClass
 				+ ".png";
 		return path;
 	}
