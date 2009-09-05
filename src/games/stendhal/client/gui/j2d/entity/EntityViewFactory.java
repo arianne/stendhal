@@ -248,6 +248,4 @@ public class EntityViewFactory {
 	public static EntityViewFactory get() {
 		return sharedInstance;
 	}
-
-	
 }

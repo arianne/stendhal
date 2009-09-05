@@ -18,13 +18,13 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -163,7 +163,7 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 
 		if (entity != null) {
-			view = GameScreen.get().createView(entity);
+			view = EntityViewFactory.create(entity);
 
 			if (view != null) {
 				view.setContained(true);

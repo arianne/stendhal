@@ -276,7 +276,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void addEntity(final IEntity entity) {
-		final EntityView view = createView(entity);
+		final EntityView view = EntityViewFactory.create(entity);
 
 		if (view != null) {
 			entities.put(entity, view);
@@ -468,20 +468,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		dvy = 0;
 
 		speed = 0;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#createView(games.stendhal.client.entity.Entity)
-	 */
-	public EntityView createView(final IEntity entity) {
-		final Entity2DView view = (Entity2DView) EntityViewFactory.create(entity);
-		view.initialize(entity);
-		
-		return  view;
-	}
-	
+	}	
 
 	public void draw() {
 		/*

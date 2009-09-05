@@ -16,6 +16,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 
@@ -104,8 +105,7 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @return true
 	 */
 	public boolean dragStarted(final IGameScreen gameScreen) {
-
-		view = gameScreen.createView(entity);
+		view = EntityViewFactory.create(entity);
 
 		if (view != null) {
 			view.setContained(true);

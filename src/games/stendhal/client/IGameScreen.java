@@ -51,9 +51,7 @@ public interface IGameScreen {
 	 */
 	 void center();
 
-	EntityView createView(final IEntity entity);
-
-	/*
+	/**
 	 * Draw the screen.
 	 */
 	void draw();
