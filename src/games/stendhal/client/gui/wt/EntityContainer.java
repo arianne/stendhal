@@ -149,7 +149,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 					entity = EntityFactory.createEntity(object);
 				}
 
-				iter.next().setEntity(entity, gameScreen);
+				iter.next().setEntity(entity/*, gameScreen*/);
 			}
 		} else {
 			shownSlot = null;
@@ -160,7 +160,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		 * Clear remaining holders
 		 */
 		while (iter.hasNext()) {
-			iter.next().setEntity(null, gameScreen);
+			iter.next().setEntity(null/*, gameScreen*/);
 		}
 	}
 
@@ -194,7 +194,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 */
 	private void clear(final IGameScreen gameScreen) {
 		for (final EntitySlot entitySlot : slotPanels) {
-			entitySlot.setEntity(null, gameScreen);
+			entitySlot.setEntity(null);
 		}
 
 		shownSlot = null;

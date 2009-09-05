@@ -150,7 +150,7 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param gameScreen 
 	 * 			 The gameScreen to paint on.
 	 */
-	protected void setEntity(final IEntity entity, final IGameScreen gameScreen) {
+	protected void setEntity(final IEntity entity) {
 		if (view != null) {
 			/*
 			 * Don't replace the same object

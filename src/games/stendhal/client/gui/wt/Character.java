@@ -214,9 +214,9 @@ public class Character extends WtPanel {
 						entity = EntityFactory.createEntity(object);
 					}
 
-					entitySlot.setEntity(entity, gameScreen);
+					entitySlot.setEntity(entity);
 				} else {
-					entitySlot.setEntity(null, gameScreen);
+					entitySlot.setEntity(null);
 				}
 			}
 
