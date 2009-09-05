@@ -152,7 +152,7 @@ public class AdosHouseSellerTest {
 		en.step(george, "51");
 		assertThat(seller.getText(), containsString("Congratulations"));
 		assertFalse(george.isEquipped("money", 120000));
-		assertTrue(george.isEquipped("house key"));
+		assertTrue(george.isEquipped("george's house key"));
 	
 	}
 	
