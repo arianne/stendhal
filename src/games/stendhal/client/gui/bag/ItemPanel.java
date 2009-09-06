@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 public class ItemPanel extends JPanel {
 
 	static BufferedImage background = new ItemImageLoader()
-			.loadFromPath("/data/gui/slot.png");
+			.loadFromPath("data/gui/slot.png");
 	private ItemImage itemImage;
 	private final JTextField field = new JTextField();
 	private CircledCollection<BufferedImage> circledColl;
