@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  * /teleportsend [Player] [Player|NPC_Destination] which will teleport the first
  * player to the second player/npc This command is an admin command of the same
  * access level as /teleport To enable this extension, add it to the
- * marauroa.int file: # load StendhalServerExtension(s)
+ * server.ini file: # load StendhalServerExtension(s)
  * teleportsend=games.stendhal.server.extension.TeleportSendExtension
  * server_extension=...,teleportsend
  * 
