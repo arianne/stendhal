@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -23,6 +24,7 @@ import games.stendhal.server.util.TimeUtil;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -217,6 +219,64 @@ public class WeddingRing extends Ring {
 					+ spouseName + "\".";
 		} else {
 			return "You see a wedding ring.";
+		}
+	}
+	
+	// Check if there are more rings in the slot where this ring was added
+	@Override
+	public void setContainer(RPObject container, RPSlot slot) {
+		WeddingRing oldRing = null; 
+		if (slot != null) {
+			for (RPObject object : slot) {
+				if ((object instanceof WeddingRing) && (!getID().equals(object.getID()))) {
+					oldRing = (WeddingRing) object;
+					break;
+				}
+			}
+		}
+	
+		if (oldRing != null) {
+			// The player is cheating with multiple rings. Explode the 
+			// old ring, and use up the energy of this one
+			destroyRing(oldRing);
+			storeLastUsed();
+		}
+		
+		super.setContainer(container, slot);
+	}
+	
+	/**
+	 * Destroy a wedding ring.
+	 * To be used when a ring is put in a same slot with another.
+	 * 
+	 * @param rings the ring to be destroyed
+	 */
+	private void destroyRing(WeddingRing ring) {
+		// The players need to be told first, while the ring still
+		// exist in the world
+		informNearbyPlayers(ring);
+		ring.removeFromWorld();
+		logger.info("Destroyed a wedding ring: " + ring);
+	}
+	
+	/**
+	 * Give a nice message to nearby players when rings get destroyed.
+	 */
+	private void informNearbyPlayers(WeddingRing ring) {
+		try {
+			Entity container = (Entity) ring.getBaseContainer();
+			StendhalRPZone zone = getZone();
+			
+			if (zone != null) {
+				for (Player player : zone.getPlayers()) {
+					if (player.nextTo(container)) {
+						player.sendPrivateText(NotificationType.SCENE_SETTING, 
+						"There's a flash of light when a wedding ring disintegrates in a magical conflict.");
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.error(e);
 		}
 	}
 }
