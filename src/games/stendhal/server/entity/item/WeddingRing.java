@@ -197,7 +197,7 @@ public class WeddingRing extends Ring {
 		// check if player has visited zone before
 		if (player.getKeyedSlot("!visited", zoneName) == null) {
 			player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
-								+ "you cannot join  " + spouseName + " there because it is still an unknown place for you.");
+								+ "you cannot join " + spouseName + " there because it is still an unknown place for you.");
 			return;
 		}
 
