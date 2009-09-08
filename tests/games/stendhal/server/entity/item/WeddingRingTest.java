@@ -20,7 +20,6 @@ public class WeddingRingTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
-		
 	}
 	
 	@Test
@@ -38,5 +37,63 @@ public class WeddingRingTest {
 		
 		ring.onUsed(romeo);
 		assertEquals("This wedding ring hasn't been engraved yet.", romeo.events().get(0).get("text"));
+	}
+	
+	@Test
+	public void testOnUsedNotOnline() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		ring.setInfoString("juliet");
+		ring.onUsed(romeo);
+		assertEquals("juliet is not online.", romeo.events().get(0).get("text"));
+	}
+	
+	@Test
+	public void testOnUsedOnlineButNotWearingTheRing() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		PlayerTestHelper.registerPlayer(juliet);
+		
+		ring.setInfoString("juliet");
+		ring.onUsed(romeo);
+		assertEquals("juliet is not wearing the wedding ring.", romeo.events().get(0).get("text"));
+	}
+	
+	@Test
+	public void testOnUsedOnlineButEngaged() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(juliet);
+		
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		
+		assertEquals("Sorry, juliet has divorced you and is now engaged to someone else.", romeo.events().get(0).get("text"));
+	}
+	
+	@Test
+	public void testOnUsedOnlineButRemarried() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(juliet);
+		
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("paris");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		
+		assertEquals("Sorry, juliet has divorced you and is now remarried.", romeo.events().get(0).get("text"));
 	}
 }
