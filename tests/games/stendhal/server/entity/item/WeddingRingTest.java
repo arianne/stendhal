@@ -157,6 +157,25 @@ public class WeddingRingTest {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
 	}
 	
+	@Test
+	public void testNotVisited() {
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("moon", 10, 10));
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "moon");
+						
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		assertEquals(romeo.events().get(0).get("text"), "Although you have heard a lot of rumors about the destination, you cannot join juliet there because it is still an unknown place for you.");
+	}
+	
 	@Ignore
 	@Test
 	public void testOnUsedSuccesfull() {
@@ -199,5 +218,28 @@ public class WeddingRingTest {
 		ring.onUsed(romeo);
 		ring.onUsed(romeo);
 		assertTrue(romeo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
+	}
+	
+	@Test
+	public void testCoolingTimePassed() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
+				
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		// a time well in the past
+		ring.put("amount", 0);
+		ring.onUsed(romeo);
+		// should get no messages
+		// FIXME: test for actually succesfull teleport
+		assertTrue(romeo.events().size() == 0);
 	}
 }
