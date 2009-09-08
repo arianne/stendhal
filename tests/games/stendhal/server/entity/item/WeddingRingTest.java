@@ -2,12 +2,17 @@ package games.stendhal.server.entity.item;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import org.junit.Ignore;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,6 +25,13 @@ public class WeddingRingTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
+		
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		PlayerTestHelper.removeAllPlayers();
 	}
 	
 	@Test
@@ -95,5 +107,97 @@ public class WeddingRingTest {
 		ring.onUsed(romeo);
 		
 		assertEquals("Sorry, juliet has divorced you and is now remarried.", romeo.events().get(0).get("text"));
+	}
+	
+	@Test
+	public void testNoTeleportOut() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
+		
+		StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
+		zone.disallowOut();
+				
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		assertEquals(romeo.events().get(0).get("text"), "The strong anti magic aura in this area prevents the wedding ring from working!");
+		// no such thing as removing teleport restrictions
+		MockStendlRPWorld.get().removeZone(zone);
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
+	}
+	
+	@Test
+	public void testNoTeleportIn() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
+		
+		StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
+		zone.disallowIn();
+				
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		assertEquals(romeo.events().get(0).get("text"), "The strong anti magic aura in the destination area prevents the wedding ring from working!");
+		// no such thing as removing teleport restrictions
+		MockStendlRPWorld.get().removeZone(zone);
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
+	}
+	
+	@Ignore
+	@Test
+	public void testOnUsedSuccesfull() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
+		
+		romeo.setPosition(5, 5);
+		juliet.setPosition(10, 10);
+		
+		assertFalse("Should not be next to each other yet", romeo.nextTo(juliet));
+		
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		// FIXME: teleporting requires rpmanager
+		assertTrue("Should end up next to each other", romeo.nextTo(juliet));
+	}
+	
+	@Test
+	public void testCoolingTime() {
+		final Player romeo = PlayerTestHelper.createPlayer("romeo");
+		final Player juliet = PlayerTestHelper.createPlayer("juliet");
+		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
+				
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring.setInfoString("juliet");
+		
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		ring2.setInfoString("romeo");
+		juliet.equipToInventoryOnly(ring2);
+		
+		ring.onUsed(romeo);
+		ring.onUsed(romeo);
+		assertTrue(romeo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
 	}
 }
