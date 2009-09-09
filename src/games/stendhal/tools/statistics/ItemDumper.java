@@ -43,7 +43,7 @@ public class ItemDumper {
 				PreparedStatement ps = writeTransaction.prepareStatement(query, null);
 				
 				final String name = object.get("name");
-				final int id = object.getInt("id");
+				final int id = object.getInt("#db_id");
 				System.out.println(id + " " + name);
 				for (final RPSlot slot : object.slots()) {
 					final String slotName = slot.getName();
