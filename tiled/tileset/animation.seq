@@ -568,3 +568,8 @@ tileset/item/statue/fairypool.png *@800 2:6:10:14
 tileset/item/statue/fairypool.png *@800	3:7:11:15
 
 tileset/ground/water/pool_small.png *@800 0:1:2:3:4:5
+
+tileset/item/huge_orb.png	0	0:4:12:8:0:12
+tileset/item/huge_orb.png	1	1:5:13:9:1:13
+tileset/item/huge_orb.png	2	2:6:14:10:2:14
+tileset/item/huge_orb.png	3	3:7:15:11:3:15
