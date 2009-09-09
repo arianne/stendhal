@@ -3,6 +3,7 @@ package games.stendhal.server.entity.item;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
@@ -116,7 +117,7 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
 		
-		StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
+		final StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
 		zone.disallowOut();
 				
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
@@ -140,7 +141,7 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
 		
-		StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
+		final StendhalRPZone zone = (StendhalRPZone) MockStendlRPWorld.get().getRPZone("int_semos_guard_house"); 
 		zone.disallowIn();
 				
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
@@ -241,5 +242,74 @@ public class WeddingRingTest {
 		// should get no messages
 		// FIXME: test for actually succesfull teleport
 		assertTrue(romeo.events().size() == 0);
+	}
+	
+	@Test
+	public void testAddToSlotUnmarked() {
+		final Player frodo = PlayerTestHelper.createPlayer("frodo");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		frodo.equip("bag", ring);
+		frodo.equip("bag", ring2);
+		
+		assertNotNull(frodo.getAllEquipped("wedding ring"));
+		assertEquals(frodo.getAllEquipped("wedding ring").size(), 2);
+	}
+	
+	@Test
+	public void testAddToSlotOneMarked() {
+		final Player frodo = PlayerTestHelper.createPlayer("frodo");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		ring.setBoundTo("frodo");
+		frodo.equip("bag", ring);
+		frodo.equip("bag", ring2);
+		
+		assertNotNull(frodo.getAllEquipped("wedding ring"));
+		assertEquals(frodo.getAllEquipped("wedding ring").size(), 2);
+	}
+	
+	@Test
+	public void testAddToSlotTwoMarkedSame() {
+		final Player frodo = PlayerTestHelper.createPlayer("frodo");
+		final Player galadriel = PlayerTestHelper.createPlayer("galadriel");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		final WeddingRing ring3 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		PlayerTestHelper.registerPlayer(frodo, "int_semos_guard_house");
+		PlayerTestHelper.registerPlayer(galadriel, "int_semos_guard_house");
+		
+		ring.setBoundTo("frodo");
+		ring2.setBoundTo("frodo");
+		ring2.setInfoString("galadriel");
+		frodo.equip("bag", ring);
+		frodo.equip("bag", ring2);
+		
+		assertNotNull(frodo.getAllEquipped("wedding ring"));
+		assertEquals("one should be destroyed", frodo.getAllEquipped("wedding ring").size(), 1);
+		
+		ring3.setInfoString("frodo");
+		galadriel.equipToInventoryOnly(ring3);
+		
+		((WeddingRing) frodo.getFirstEquipped("wedding ring")).onUsed(frodo);
+		assertTrue("Should use up the energy at destruction", frodo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
+	}
+	
+	@Test
+	public void testAddToSlotTwoMarkedDifferent() {
+		final Player frodo = PlayerTestHelper.createPlayer("frodo");
+		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
+		
+		ring.setBoundTo("frodo");
+		ring2.setBoundTo("gollum");
+		frodo.equip("bag", ring);
+		frodo.equip("bag", ring2);
+		
+		assertNotNull(frodo.getAllEquipped("wedding ring"));
+		assertEquals(frodo.getAllEquipped("wedding ring").size(), 2);
 	}
 }
