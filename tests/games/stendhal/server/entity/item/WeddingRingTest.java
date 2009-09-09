@@ -48,7 +48,7 @@ public class WeddingRingTest {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals("This wedding ring hasn't been engraved yet.", romeo.events().get(0).get("text"));
 	}
 	
@@ -58,7 +58,7 @@ public class WeddingRingTest {
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 		
 		ring.setInfoString("juliet");
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals("juliet is not online.", romeo.events().get(0).get("text"));
 	}
 	
@@ -71,7 +71,7 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet);
 		
 		ring.setInfoString("juliet");
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals("juliet is not wearing the wedding ring.", romeo.events().get(0).get("text"));
 	}
 	
@@ -87,7 +87,7 @@ public class WeddingRingTest {
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		
 		assertEquals("Sorry, juliet has divorced you and is now engaged to someone else.", romeo.events().get(0).get("text"));
 	}
@@ -105,7 +105,7 @@ public class WeddingRingTest {
 		ring2.setInfoString("paris");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		
 		assertEquals("Sorry, juliet has divorced you and is now remarried.", romeo.events().get(0).get("text"));
 	}
@@ -127,7 +127,7 @@ public class WeddingRingTest {
 		ring2.setInfoString("romeo");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals(romeo.events().get(0).get("text"), "The strong anti magic aura in this area prevents the wedding ring from working!");
 		// no such thing as removing teleport restrictions
 		MockStendlRPWorld.get().removeZone(zone);
@@ -151,7 +151,7 @@ public class WeddingRingTest {
 		ring2.setInfoString("romeo");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals(romeo.events().get(0).get("text"), "The strong anti magic aura in the destination area prevents the wedding ring from working!");
 		// no such thing as removing teleport restrictions
 		MockStendlRPWorld.get().removeZone(zone);
@@ -173,22 +173,16 @@ public class WeddingRingTest {
 		ring2.setInfoString("romeo");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
+		assertFalse(ring.onUsed(romeo));
 		assertEquals(romeo.events().get(0).get("text"), "Although you have heard a lot of rumors about the destination, you cannot join juliet there because it is still an unknown place for you.");
 	}
 	
-	@Ignore
 	@Test
 	public void testOnUsedSuccesfull() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
 		final Player juliet = PlayerTestHelper.createPlayer("juliet");
 		PlayerTestHelper.registerPlayer(romeo, "int_semos_guard_house");
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
-		
-		romeo.setPosition(5, 5);
-		juliet.setPosition(10, 10);
-		
-		assertFalse("Should not be next to each other yet", romeo.nextTo(juliet));
 		
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 		ring.setInfoString("juliet");
@@ -197,9 +191,7 @@ public class WeddingRingTest {
 		ring2.setInfoString("romeo");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
-		// FIXME: teleporting requires rpmanager
-		assertTrue("Should end up next to each other", romeo.nextTo(juliet));
+		assertTrue(ring.onUsed(romeo));
 	}
 	
 	@Test
@@ -216,8 +208,8 @@ public class WeddingRingTest {
 		ring2.setInfoString("romeo");
 		juliet.equipToInventoryOnly(ring2);
 		
-		ring.onUsed(romeo);
-		ring.onUsed(romeo);
+		assertTrue(ring.onUsed(romeo));
+		assertFalse(ring.onUsed(romeo));
 		assertTrue(romeo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
 	}
 	
@@ -238,10 +230,7 @@ public class WeddingRingTest {
 		ring.onUsed(romeo);
 		// a time well in the past
 		ring.put("amount", 0);
-		ring.onUsed(romeo);
-		// should get no messages
-		// FIXME: test for actually succesfull teleport
-		assertTrue(romeo.events().size() == 0);
+		assertTrue(ring.onUsed(romeo));
 	}
 	
 	@Test
@@ -294,7 +283,7 @@ public class WeddingRingTest {
 		ring3.setInfoString("frodo");
 		galadriel.equipToInventoryOnly(ring3);
 		
-		((WeddingRing) frodo.getFirstEquipped("wedding ring")).onUsed(frodo);
+		assertFalse(((WeddingRing) frodo.getFirstEquipped("wedding ring")).onUsed(frodo));
 		assertTrue("Should use up the energy at destruction", frodo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
 	}
 	
