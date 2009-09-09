@@ -264,7 +264,7 @@ public class WeddingRing extends Ring {
 		// The players need to be told first, while the ring still
 		// exist in the world
 		informNearbyPlayers(ring);
-		new ItemLogger().addItemLogEntry(new ItemLogEntry(ring, null, "destroy", ring.get("name"), get("logid"), "another ring", slot.getName()));
+		new ItemLogger().addItemLogEntry(new ItemLogEntry(ring, null, "destroy", ring.get("name"), "1", "another ring", slot.getName()));
 		ring.removeFromWorld();
 		logger.info("Destroyed a wedding ring: " + ring);
 	}

@@ -57,7 +57,11 @@ class DestroyAction extends AdministrationAction {
 				if (inspected.getContainerSlot() != null) {
 					slotName = inspected.getContainerSlot().getName(); 
 				}
-				new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), inspected.get("quantity"), "admin", slotName));
+				String quantity = inspected.get("quantity");
+				if (quantity == null) {
+					quantity = "1";
+				}
+				new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), quantity, "by admin", slotName));
 			}
 
 			String slotname = inspected.getContainerSlot().getName();
@@ -95,9 +99,13 @@ class DestroyAction extends AdministrationAction {
 				} 
 				((RPEntity) inspected).onDead(player);
 			} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood) || (inspected instanceof Corpse)) {
-//				// items should be added to itemlog as well, to help tracing problems
+				// items should be added to itemlog as well, to help tracing problems
 				if (inspected instanceof Item) {
-					new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), inspected.get("quantity"), "admin", null));
+					String quantity = inspected.get("quantity");
+					if (quantity == null) {
+						quantity = "1";
+					}
+					new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), quantity, "admin", null));
 				}
 				zone.remove(inspected);
 			} else {
