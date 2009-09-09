@@ -78,8 +78,7 @@ public class WeddingRing extends Ring {
 		}
 
 		if ((user instanceof Player) && user.nextTo((Entity) base)) {
-			teleportToSpouse((Player) user);
-			return true;
+			return teleportToSpouse((Player) user);
 		}
 		return false;
 	}
@@ -124,11 +123,11 @@ public class WeddingRing extends Ring {
 	 * @param player
 	 *            The ring's owner.
 	 */
-	private void teleportToSpouse(final Player player) {
+	private boolean teleportToSpouse(final Player player) {
 		// check if pets and sheep are near
 		if (!player.isZoneChangeAllowed()) {
 			player.sendPrivateText("You were told to watch your pet, weren't you?");
-			return;
+			return false;
 		}
 
 		final String spouseName = getInfoString();
@@ -137,13 +136,13 @@ public class WeddingRing extends Ring {
 			player.sendPrivateText("This wedding ring hasn't been engraved yet.");
 			logger.debug(player.getName()
 					+ "tried to use a wedding ring without a spouse name engraving.");
-			return;
+			return false;
 		}
 
 		final Player spouse = SingletonRepository.getRuleProcessor().getPlayer(spouseName);
 		if (spouse == null) {
 			player.sendPrivateText(spouseName + " is not online.");
-			return;
+			return false;
 		}
 
 		if (spouse.isEquipped("wedding ring")) { 
@@ -157,20 +156,20 @@ public class WeddingRing extends Ring {
 				player.sendPrivateText("Sorry, "
 						+ spouseName
 						+ " has divorced you and is now engaged to someone else.");
-				return;
+				return false;
 			} else if (!(weddingRing.getInfoString().equals(player.getName()))) { 
 				// divorced and remarried
 				player.sendPrivateText("Sorry, " + spouseName
 						+ " has divorced you and is now remarried.");
 
-				return;
+				return false;
 			}
 
 		} else {
 			// This means trouble ;)
 			player.sendPrivateText(spouseName
 					+ " is not wearing the wedding ring.");
-			return;
+			return false;
 		}
 
 		final int secondsNeeded = getLastUsed() + getCoolingPeriod(player, spouse) - (int) (System.currentTimeMillis() / 1000);
@@ -178,19 +177,19 @@ public class WeddingRing extends Ring {
 			player.sendPrivateText("The ring has not yet regained its power. You think it might be ready in " 
 					+ TimeUtil.approxTimeUntil(secondsNeeded) + ".");
 			
-			return;
+			return false;
 		}
 
 		final StendhalRPZone sourceZone = player.getZone();
 		if (!sourceZone.isTeleportOutAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the wedding ring from working!");
-			return;
+			return false;
 		}
 
 		final StendhalRPZone destinationZone = spouse.getZone();
 		if (!destinationZone.isTeleportInAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in the destination area prevents the wedding ring from working!");
-			return;
+			return false;
 		}
 
 		final String zoneName =  destinationZone.getName();
@@ -198,7 +197,7 @@ public class WeddingRing extends Ring {
 		if (player.getKeyedSlot("!visited", zoneName) == null) {
 			player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
 								+ "you cannot join " + spouseName + " there because it is still an unknown place for you.");
-			return;
+			return false;
 		}
 
 		final int x = spouse.getX();
@@ -207,7 +206,10 @@ public class WeddingRing extends Ring {
 
 		if (player.teleport(destinationZone, x, y, dir, player)) {
 			storeLastUsed();
+			return true;
 		}
+		
+		return false;
 	}
 
 	@Override
