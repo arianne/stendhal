@@ -4,6 +4,8 @@ import static games.stendhal.common.constants.Actions.NAME;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.ItemLogEntry;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -21,10 +23,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 class DestroyAction extends AdministrationAction {
-
-
-	
-
 	public static void register() {
 		CommandCenter.register("destroy", new DestroyAction(), 700);
 
@@ -41,72 +39,80 @@ class DestroyAction extends AdministrationAction {
 			player.sendPrivateText(text);
 			return;
 		}
-		
+
 		String clazz = inspected.getRPClass().getName();
 		String name = "";
-		 
+
 		if (inspected.has(NAME)) {
-                      name = inspected.get(NAME);
+			name = inspected.get(NAME);
 		} 
-		
-if (inspected.isContained()) {
-	RPObject slot = inspected.getContainer();
-	
-	new GameEvent(player.getName(), "removed", name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
 
-	String slotname = inspected.getContainerSlot().getName();
-	int objectID = inspected.getID().getObjectID();
-	if (null != inspected.getContainerSlot().remove(inspected.getID())) {
-		player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + objectID + " from " + slotname);
-	} else {
-		player.sendPrivateText("could not remove contained " + inspected + " " + clazz + " with ID " + objectID + " from " + slotname);
+		if (inspected.isContained()) {
+			RPObject slot = inspected.getContainer();
 
-	}
-	
+			new GameEvent(player.getName(), "removed", name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
+			// items should be added to itemlog as well, to help tracing problems
+			if (inspected instanceof Item) {
+				String slotName = null;
+				if (inspected.getContainerSlot() != null) {
+					slotName = inspected.getContainerSlot().getName(); 
+				}
+				new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), inspected.get("quantity"), "admin", slotName));
+			}
 
-} else {
-		if (inspected instanceof Player) {
-			final String text = "You can't remove players";
-			player.sendPrivateText(text);
-			return;
-		}
-
-		if (inspected instanceof SpeakerNPC) {
-			final String text = "You can't remove SpeakerNPCs";
-			player.sendPrivateText(text);
-			return;
-		}
-
-        if (inspected instanceof Portal) {
-            final String text = "You can't remove portals. Try blocking it with a few of /script AdminSign.class.";
-            player.sendPrivateText(text);
-            return;
-		}
-
-		final StendhalRPZone zone = inspected.getZone();
-
-		if (inspected instanceof RPEntity) {
-			if (inspected instanceof Creature) {
-				// *destroyed creatures should not drop items
-				((Creature) inspected).clearDropItemList();
-			} 
-			((RPEntity) inspected).onDead(player);
-		} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood) || (inspected instanceof Corpse)) {
-			zone.remove(inspected);
+			String slotname = inspected.getContainerSlot().getName();
+			int objectID = inspected.getID().getObjectID();
+			if (null != inspected.getContainerSlot().remove(inspected.getID())) {
+				player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + objectID + " from " + slotname);
+			} else {
+				player.sendPrivateText("could not remove contained " + inspected + " " + clazz + " with ID " + objectID + " from " + slotname);
+			}
 		} else {
-			player.sendPrivateText("You can't remove this type of entity");
-			return;
-		}
-	
-		if (inspected instanceof TurnListener) {
-			TurnListener listener = (TurnListener) inspected;
-			TurnNotifier.get().dontNotify(listener);
-		}
+			if (inspected instanceof Player) {
+				final String text = "You can't remove players";
+				player.sendPrivateText(text);
+				return;
+			}
 
-		new GameEvent(player.getName(), "removed",  name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
+			if (inspected instanceof SpeakerNPC) {
+				final String text = "You can't remove SpeakerNPCs";
+				player.sendPrivateText(text);
+				return;
+			}
 
-		player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(TARGET));
+			if (inspected instanceof Portal) {
+				final String text = "You can't remove portals. Try blocking it with a few of /script AdminSign.class.";
+				player.sendPrivateText(text);
+				return;
+			}
+
+			final StendhalRPZone zone = inspected.getZone();
+
+			if (inspected instanceof RPEntity) {
+				if (inspected instanceof Creature) {
+					// *destroyed creatures should not drop items
+					((Creature) inspected).clearDropItemList();
+				} 
+				((RPEntity) inspected).onDead(player);
+			} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood) || (inspected instanceof Corpse)) {
+//				// items should be added to itemlog as well, to help tracing problems
+				if (inspected instanceof Item) {
+					new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), inspected.get("quantity"), "admin", null));
+				}
+				zone.remove(inspected);
+			} else {
+				player.sendPrivateText("You can't remove this type of entity");
+				return;
+			}
+
+			if (inspected instanceof TurnListener) {
+				TurnListener listener = (TurnListener) inspected;
+				TurnNotifier.get().dontNotify(listener);
+			}
+
+			new GameEvent(player.getName(), "removed",  name + " " + clazz, zone.getName(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
+
+			player.sendPrivateText("Removed " + name + " " + clazz + " with ID " + action.get(TARGET));
+		}
 	}
-}
-
 }
