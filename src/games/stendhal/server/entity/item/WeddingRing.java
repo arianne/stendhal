@@ -112,7 +112,7 @@ public class WeddingRing extends Ring {
 	private int getCoolingPeriod(final Player player1, final Player player2) {
 		final int level1 = player1.getLevel();
 		final int level2 = player2.getLevel();
-		double levelRatio = (Math.max(level1, level2) + 1.0) / (Math.min(level1, level2) + 1.0);
+		final double levelRatio = (Math.max(level1, level2) + 1.0) / (Math.min(level1, level2) + 1.0);
 		
 		return (int) (MIN_COOLING_PERIOD * levelRatio * levelRatio);
 	}
@@ -224,13 +224,18 @@ public class WeddingRing extends Ring {
 	
 	// Check if there are more rings in the slot where this ring was added
 	@Override
-	public void setContainer(RPObject container, RPSlot slot) {
-		WeddingRing oldRing = null; 
-		if (slot != null) {
-			for (RPObject object : slot) {
-				if ((object instanceof WeddingRing) && (!getID().equals(object.getID()))) {
-					oldRing = (WeddingRing) object;
-					break;
+	public void setContainer(final RPObject container, final RPSlot slot) {
+		WeddingRing oldRing = null;
+		// only bound rings destroy others
+		if ((slot != null) && (getBoundTo() != null)) {
+			for (final RPObject object : slot) {
+				if ((object instanceof WeddingRing) 
+						&& (!getID().equals(object.getID()))) {
+					final WeddingRing ring = (WeddingRing) object;
+					if (getBoundTo().equals(ring.getBoundTo())) {
+						oldRing = (WeddingRing) object;
+						break;
+					}
 				}
 			}
 		}
@@ -251,7 +256,7 @@ public class WeddingRing extends Ring {
 	 * 
 	 * @param rings the ring to be destroyed
 	 */
-	private void destroyRing(WeddingRing ring) {
+	private void destroyRing(final WeddingRing ring) {
 		// The players need to be told first, while the ring still
 		// exist in the world
 		informNearbyPlayers(ring);
@@ -262,20 +267,20 @@ public class WeddingRing extends Ring {
 	/**
 	 * Give a nice message to nearby players when rings get destroyed.
 	 */
-	private void informNearbyPlayers(WeddingRing ring) {
+	private void informNearbyPlayers(final WeddingRing ring) {
 		try {
-			Entity container = (Entity) ring.getBaseContainer();
-			StendhalRPZone zone = getZone();
+			final Entity container = (Entity) ring.getBaseContainer();
+			final StendhalRPZone zone = getZone();
 			
 			if (zone != null) {
-				for (Player player : zone.getPlayers()) {
+				for (final Player player : zone.getPlayers()) {
 					if (player.nextTo(container)) {
 						player.sendPrivateText(NotificationType.SCENE_SETTING, 
 						"There's a flash of light when a wedding ring disintegrates in a magical conflict.");
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e);
 		}
 	}
