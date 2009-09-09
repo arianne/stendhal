@@ -140,9 +140,9 @@ public class stendhal {
 		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 		new StendhalFirstScreen(client);
-
 		
 		waitForLogin();
+		IDSend.send();
 		startSoundMaster();
 		GameScreen gameScreen = GameScreen.get();
 		
