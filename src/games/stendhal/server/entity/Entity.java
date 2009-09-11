@@ -469,7 +469,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public void onAdded(final StendhalRPZone zone) {
 		if (this.zone != null) {
-			logger.error("Entity added while in another zone " + zone + ": " + this);
+			logger.error("Entity added while in another zone " + zone + ": " + this, new Throwable());
 		}
 
 		this.zone = zone;

@@ -664,14 +664,14 @@ public class Player extends RPEntity {
 	 */
 	static RPObject getKeyedSlotObject(final RPObject object, final String name) {
 		if (!object.hasSlot(name)) {
-			logger.error("Expected to find " + name + " slot in " + object);
+			logger.error("Expected to find " + name + " slot in " + object, new Throwable());
 			return null;
 		}
 
 		final RPSlot slot = object.getSlot(name);
 
 		if (slot.size() == 0) {
-			logger.error("Found empty " + name + " slot" + object);
+			logger.error("Found empty " + name + " slot" + object, new Throwable());
 			return null;
 		}
 
