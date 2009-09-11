@@ -160,6 +160,10 @@ public class StendhalWebsiteDAO {
 	}
 
 	private String extractSpouseOrNull(final Player instance) {
+		if (!instance.hasSlot("!quests")) {
+			// first login, Player object has not been fully constructed (fixes https://sourceforge.net/tracker/index.php?func=detail&aid=2854092&group_id=1111&atid=101111 )
+			return null;
+		}
 		if (instance.hasQuest("spouse")) {
 			return instance.getQuest("spouse");
 		} else {
