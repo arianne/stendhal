@@ -32,6 +32,10 @@ public class IDSend {
 			saveID();
 		}
 		
+		if(!haveID()) {
+			return;
+		}
+		
 		final RPAction action = new RPAction();
 
 		action.put("type", "cid");

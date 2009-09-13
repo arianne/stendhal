@@ -43,6 +43,7 @@ public abstract class AdministrationAction implements ActionListener {
 		AlterAction.register();
 		AlterCreatureAction.register();
 		AlterQuestAction.register();
+		CIDListAction.register();
 		DestroyAction.register();
 		GagAction.register();
 		GhostModeAction.register();

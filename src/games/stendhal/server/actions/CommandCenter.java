@@ -70,6 +70,7 @@ public class CommandCenter {
 		BanAction.register();
 		BuddyAction.register();
 		ChatAction.register();
+		CIDSubmitAction.register();
 		CreateGuildAction.register();
 		DisplaceAction.register();
 		DropAction.register();
