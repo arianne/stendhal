@@ -4,10 +4,11 @@
  * Created on Oct 21, 2007, 2:08:15 PM
  */
 
-package games.stendhal.client.gui;
+package games.stendhal.client.gui.login;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.client.gui.login.CreateAccountDialog;
 
 
 import marauroa.common.Log4J;
