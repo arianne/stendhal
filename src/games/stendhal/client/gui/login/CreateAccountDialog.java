@@ -111,11 +111,9 @@ public class CreateAccountDialog extends JDialog {
 		emailLabel = new JLabel("E-mail address");
 		emailField = new JTextField();
 
-		createAccountButton = new JButton();
-		contentPane = (JPanel) this.getContentPane();
-
 		// createAccountButton
 		//
+		createAccountButton = new JButton();
 		createAccountButton.setText("Create Account");
 		createAccountButton.setMnemonic(KeyEvent.VK_C);
 		this.rootPane.setDefaultButton(createAccountButton);
@@ -125,9 +123,11 @@ public class CreateAccountDialog extends JDialog {
 				createAccountButton_actionPerformed(e, false);
 			}
 		});
+
 		//
 		// contentPane
 		//
+		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
 		contentPane.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createEtchedBorder(),
@@ -207,10 +207,19 @@ public class CreateAccountDialog extends JDialog {
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(createAccountButton, c);
 
+		// row 7
+		JLabel logLabel = new JLabel("<html><body><p><font size=\"-2\">On login information which identifies your computer on <br>the internet will be logged to prevent abuse (like many <br>attempts to guess a password in order to hack an <br>account or creation of many accounts to cause trouble). <br>Furthermore all events and actions that happen within <br>the game-world (like solving quests, attacking monsters) <br>are logged. This information is used to analyse bugs and <br>in rare cases for abuse handling.</font></p></body></html>");
+		c.gridx = 0;
+		c.gridy = 7;
+		c.fill = GridBagConstraints.VERTICAL;
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		contentPane.add(logLabel, c);
+		
 		// CreateAccountDialog
 		this.setTitle("Create New Account");
 		this.setResizable(false);
-		this.setSize(new Dimension(350, 275));
+		this.setSize(new Dimension(350, 350));
 		// required on Compiz
 		this.pack(); 
 		this.setLocationRelativeTo(owner);
@@ -401,7 +410,7 @@ public class CreateAccountDialog extends JDialog {
 		final String email = emailField.getText();
 		if (isInvalid(email)) {
 			final String text = "The email you entered appears to be invalid.\n"
-					+ "You must provide a valid email address recover a lost password. Are you sure this email is correct? ";
+					+ "You must provide a valid email address to recover a lost password. Are you sure this email is correct? ";
 			final int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
 					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, null, 1);
