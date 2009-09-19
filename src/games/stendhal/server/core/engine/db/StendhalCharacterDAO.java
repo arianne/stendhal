@@ -38,8 +38,10 @@ public class StendhalCharacterDAO extends CharacterDAO {
 
 		// Here goes the stendhal specific code.
 		try {
-			final Player instance = (Player) player;
-			DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
+			if (player instanceof Player) {
+				final Player instance = (Player) player;
+				DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
+			}
 		} catch (final SQLException sqle) {
 			logger.warn("error storing character", sqle);
 			throw sqle;
