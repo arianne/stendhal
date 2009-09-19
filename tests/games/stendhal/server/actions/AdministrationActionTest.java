@@ -20,9 +20,15 @@ import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.server.game.db.CharacterDAO;
+import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
@@ -498,52 +504,73 @@ public class AdministrationActionTest {
 	}
 
 	@Test
-	public final void testJail() {
+	public final void testJail() throws SQLException, IOException {
 		
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail", 100, 100));
 
-		final Player pl = PlayerTestHelper.createPlayer("hugo");
-		PlayerTestHelper.registerPlayer(pl, "-1_semos_jail");
-		pl.setAdminLevel(5000);
+		final Player player = PlayerTestHelper.createPlayer("hugo");
+		PlayerTestHelper.registerPlayer(player, "-1_semos_jail");
+		player.setAdminLevel(5000);
+
 		RPAction action = new RPAction();
 		action.put("type", "jail");
 
-		CommandCenter.execute(pl, action);
+		CommandCenter.execute(player, action);
+		assertEquals("Usage: /jail <name> <minutes> <reason>", player.events().get(0).get("text"));
 
-		assertEquals("Usage: /jail name minutes reason", pl.events().get(0).get("text"));
-		pl.clearEvents();
+		if (!DAORegister.get().get(CharacterDAO.class).hasCharacter("offlineplayer", "offlineplayer")) {
+			RPObject rpobject = new RPObject();
+			rpobject.setRPClass("player");
+			rpobject.put("name", "offlineplayer");
+			DAORegister.get().get(CharacterDAO.class).addCharacter("offlineplayer", "offlineplayer", rpobject);
+		}
+
+		player.clearEvents();
 		action = new RPAction();
 		action.put("type", "jail");
-		action.put("target", "player");
+		action.put("target", "offlineplayer");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
 
-		CommandCenter.execute(pl, action);
-		assertEquals("You have jailed player for 1 minutes. Reason: whynot.", pl.events().get(0).get("text"));
-		 
-		assertEquals("JailKeeper asks for support to ADMIN: hugo jailed player for 1 minutes. Reason: whynot.", pl.events().get(1).get("text"));
-		assertEquals("Player player is not online, but the arrest warrant has been recorded anyway.", pl.events().get(2).get("text"));
-		pl.clearEvents();
+		CommandCenter.execute(player, action);
+		assertEquals("You have jailed offlineplayer for 1 minutes. Reason: whynot.", player.events().get(0).get("text"));
+		assertEquals("JailKeeper asks for support to ADMIN: hugo jailed offlineplayer for 1 minutes. Reason: whynot.", player.events().get(1).get("text"));
+		assertEquals("Player offlineplayer is not online, but the arrest warrant has been recorded anyway.", player.events().get(2).get("text"));
+		player.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+
+		player.clearEvents();
+		action = new RPAction();
+		action.put("type", "jail");
+		action.put("target", "notexistingplayerxckjvhyxkjcvhyxkjvchk");
+		action.put("reason", "whynot");
+		action.put("minutes", 1);
+
+		CommandCenter.execute(player, action);
+		assertEquals("No character with that name: notexistingplayerxckjvhyxkjcvhyxkjvchk", player.events().get(0).get("text"));
+		player.clearEvents();
+
+
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", "noNumber");
 
-		CommandCenter.execute(pl, action);
-		assertEquals("Usage: /jail name minutes reason", pl.events().get(0).get("text"));
-		pl.clearEvents();
+		CommandCenter.execute(player, action);
+		assertEquals("Usage: /jail <name> <minutes> <reason>", player.events().get(0).get("text"));
+		player.clearEvents();
 
+		
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
 
-		assertTrue(CommandCenter.execute(pl, action));
-		assertThat(pl.events().get(0).get("text"), startsWith("You have been jailed by hugo for 1 minutes. Reason: whynot."));
+		assertTrue(CommandCenter.execute(player, action));
+		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed by hugo for 1 minutes. Reason: whynot."));
 	}
 
 	@Test
@@ -708,13 +735,13 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnSummonAt() {
-		final Player pl = PlayerTestHelper.createPlayer("hugo");
-		pl.setAdminLevel(5000);
-		pl.clearEvents();
+		final Player player = PlayerTestHelper.createPlayer("hugo");
+		player.setAdminLevel(5000);
+		player.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		final StendhalRPZone testzone = new StendhalRPZone("Testzone");
-		testzone.add(pl);
+		testzone.add(player);
 
 		RPAction action = new RPAction();
 		action.put("type", "summonat");
@@ -722,10 +749,10 @@ public class AdministrationActionTest {
 		action.put("slot", "hugo");
 		action.put("item", "hugo");
 
-		CommandCenter.execute(pl, action);
+		CommandCenter.execute(player, action);
 		assertEquals("Player \"hugo\" does not have an RPSlot named \"hugo\".",
-				pl.events().get(0).get("text"));
-		pl.clearEvents();
+				player.events().get(0).get("text"));
+		player.clearEvents();
 
 		action = new RPAction();
 		action.put("type", "summonat");
@@ -733,21 +760,21 @@ public class AdministrationActionTest {
 		action.put("slot", "bag");
 		action.put("item", "hugo");
 
-		CommandCenter.execute(pl, action);
-		assertEquals("hugo is not an item.", pl.events().get(0).get("text"));
-		pl.clearEvents();
+		CommandCenter.execute(player, action);
+		assertEquals("hugo is not an item.", player.events().get(0).get("text"));
+		player.clearEvents();
 
 		action = new RPAction();
 		action.put("type", "summonat");
 		action.put("target", "hugo");
 		action.put("slot", "bag");
 		action.put("item", "dagger");
-		assertFalse(pl.isEquipped("dagger"));
-		CommandCenter.execute(pl, action);
+		assertFalse(player.isEquipped("dagger"));
+		CommandCenter.execute(player, action);
 		// If the following fails, chances are quite good, the "items.xml" configuration file could not be loaded.
-		assertTrue(pl.events().isEmpty());
-		assertTrue(pl.isEquipped("dagger"));
-		pl.clearEvents();
+		assertTrue(player.events().isEmpty());
+		assertTrue(player.isEquipped("dagger"));
+		player.clearEvents();
 
 		action = new RPAction();
 		action.put("type", "summonat");
@@ -755,8 +782,8 @@ public class AdministrationActionTest {
 		action.put("slot", "bag");
 		action.put("item", "dagger");
 
-		CommandCenter.execute(pl, action);
-		assertEquals("Player \"noone\" not found.", pl.events().get(0).get("text"));
-		pl.clearEvents();
+		CommandCenter.execute(player, action);
+		assertEquals("Player \"noone\" not found.", player.events().get(0).get("text"));
+		player.clearEvents();
 	}
 }
