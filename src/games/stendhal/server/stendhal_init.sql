@@ -91,6 +91,21 @@ CREATE TABLE IF NOT EXISTS kills (
 /*CREATE INDEX i_kills_killed ON kills (killed_type, killed);*/
 /*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
 
+
+CREATE TABLE IF NOT EXISTS cid
+  (
+  id INTEGER auto_increment NOT NULL,
+  charname VARCHAR(64) NOT NULL,
+  address VARCHAR(64) NOT NULL,
+  cid VARCHAR(64) NOT NULL,
+  timedate TIMESTAMP,
+  PRIMARY KEY(id)
+  ) 
+  TYPE=INNODB;
+
+/*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
+
+
 create table if not exists words (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   normalized VARCHAR(64) NOT NULL,
@@ -123,4 +138,5 @@ CREATE TABLE IF NOT EXISTS npcs (
 
 /*CREATE INDEX i_npcs_id ON npcs (id);*/
 /*CREATE INDEX i_npcs_name ON npcs (name);*/
+
 
