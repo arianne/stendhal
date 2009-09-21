@@ -4,8 +4,10 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.Arrays;
 import java.util.Map;
 /**
  * <p>Creates a normal version of mr ross in the ross house.
@@ -41,8 +43,16 @@ public class FatherNPC implements ZoneConfigurator {
 			    addJob("I'm looking after my daughter Susi.");
 			    addHelp("If you need help finding any buildings in Ados, the guard Julius will give you a map. He is by the city entrance.");
 			    addOffer("Sorry I do not have anything to offer you, but there are two places to eat in Ados - the tavern and a bar.");
-			    addQuest("My daughter Susi would love to make friends with you.");
+			    addQuest("At the end of October we will be visiting the #Semos #Mine #Town #Revival #Weeks");
 			    addGoodbye("Bye, nice to meet you.");
+
+				// Revival Weeks
+				add(
+					ConversationStates.ATTENDING,
+					Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
+					ConversationStates.ATTENDING,
+					"During the Revival Weeks at the end of October we celebrate the old and now mostly dead Semos Mine Town.",
+					null);
 			}
 		};
 
