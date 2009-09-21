@@ -24,6 +24,10 @@ public class FatherNPC implements ZoneConfigurator {
 
 	private void createDadNPC(final StendhalRPZone zone) {
 
+		if (System.getProperty("stendhal.minetown") != null) {
+			return;
+		}
+
 		final SpeakerNPC npc = new SpeakerNPC("Mr Ross") {
 			@Override
 			protected void createPath() {

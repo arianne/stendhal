@@ -34,6 +34,10 @@ public class LittleGirlNPC implements ZoneConfigurator {
 	}
 
 	private void createGirlNPC(final StendhalRPZone zone) {
+		
+		if (System.getProperty("stendhal.minetown") != null) {
+			return;
+		}
 
 		final SpeakerNPC npc = new SpeakerNPC("Susi") {
 			@Override

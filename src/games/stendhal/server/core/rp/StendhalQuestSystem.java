@@ -61,6 +61,7 @@ import games.stendhal.server.maps.quests.QuestInfo;
 import games.stendhal.server.maps.quests.RainbowBeans;
 import games.stendhal.server.maps.quests.ReverseArrow;
 import games.stendhal.server.maps.quests.RingMaker;
+import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.quests.Snowballs;
 import games.stendhal.server.maps.quests.SolveRiddles;
@@ -117,8 +118,7 @@ public class StendhalQuestSystem {
 		try {
 			questInfos.load();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e, e);
 		}
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
@@ -137,7 +137,7 @@ public class StendhalQuestSystem {
 		loadQuest(new DailyItemQuest());
 		loadQuest(new DailyMonsterQuest());
 		loadQuest(new DiceGambling());
-		// loadQuet("DiogenesCataclysm());
+		// loadQuet(new DiogenesCataclysm());
 		loadQuest(new DragonLair());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
@@ -145,7 +145,7 @@ public class StendhalQuestSystem {
 		loadQuest(new FishermansLicenseQuiz());
 		loadQuest(new FishermansLicenseCollector());
 		loadQuest(new HatForMonogenes());
-		// loadQuest("HayunnCataclysm());
+		// loadQuest(new HayunnCataclysm());
 		loadQuest(new HelpTomi());
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
@@ -163,8 +163,8 @@ public class StendhalQuestSystem {
 		loadQuest(new KillDhohrNuggetcutter());
 		loadQuest(new KillSpiders());
 		loadQuest(new Marriage());
-		// loadQuet("MonogenesCataclysm());
-		// loadQuest("MeetBunny());
+		// loadQuet(new MonogenesCataclysm());
+		// loadQuest(new MeetBunny());
 		loadQuest(new MeetHackim());
 		loadQuest(new McPeglegIOU());
 		loadQuest(new MeetHayunn());
@@ -175,15 +175,17 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
 		loadQuest(new NewsFromHackim());
-		// loadQuset("NomyrCataclysm());
+		// loadQuset(new NomyrCataclysm());
 		loadQuest(new ObsidianKnife());
 		loadQuest(new PizzaDelivery());
 		loadQuest(new PlinksToy());
 		loadQuest(new RainbowBeans());
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
-		// loadQuet("SatoCataclysm());
-		// loadQuest("SemosMineTownRevivalWeeks());
+		// loadQuet(new SatoCataclysm());
+		if (System.getProperty("stendhal.minetown") != null) {
+			loadQuest(new SemosMineTownRevivalWeeks());
+		}
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
 		loadQuest(new Snowballs());
