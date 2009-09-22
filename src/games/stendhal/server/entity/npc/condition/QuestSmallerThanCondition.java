@@ -47,13 +47,8 @@ public class QuestSmallerThanCondition implements ChatCondition {
 		if (!player.hasQuest(questname)) {
 			return false;
 		}
-		String questState;
-		if (index > -1) {
-			questState = player.getQuest(questname, index);
-		} else {
-			questState = player.getQuest(questname);
-		}
 
+		String questState = getQuestState(player);
 		int questStateInt;
 		try {
 			questStateInt = Integer.parseInt(questState);
@@ -62,6 +57,22 @@ public class QuestSmallerThanCondition implements ChatCondition {
 		}
 
 		return questStateInt < state;
+	}
+
+	/**
+	 * gets the state of the quest
+	 *
+	 * @param player Player
+	 * @return state of quest
+	 */
+	private String getQuestState(final Player player) {
+		String questState;
+		if (index > -1) {
+			questState = player.getQuest(questname, index);
+		} else {
+			questState = player.getQuest(questname);
+		}
+		return questState;
 	}
 
 	@Override
