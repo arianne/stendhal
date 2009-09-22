@@ -7,7 +7,6 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -34,11 +33,6 @@ public class LevelLessThanConditionTest {
 	public void setUp() throws Exception {
 		level100Player = PlayerTestHelper.createPlayer("player");
 		level100Player.setLevel(100);
-	}
-
-	@After
-	public void tearDown() throws Exception {
-
 	}
 
 	@Test

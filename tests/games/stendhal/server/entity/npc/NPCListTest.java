@@ -1,23 +1,16 @@
 package games.stendhal.server.entity.npc;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import games.stendhal.server.core.engine.SingletonRepository;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class NPCListTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testGet() {

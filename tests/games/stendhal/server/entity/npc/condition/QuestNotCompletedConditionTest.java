@@ -8,9 +8,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -26,16 +24,9 @@ public class QuestNotCompletedConditionTest {
 
 	@AfterClass
 	public static void teardownAfterClass() throws Exception {
-		
 		MockStendlRPWorld.reset();
 	}
-	@Before
-	public void setUp() throws Exception {
-	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testFire() {
@@ -93,6 +84,7 @@ public class QuestNotCompletedConditionTest {
 
 		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
 				"questname") {
+			// this is an anonymous sub class
 		}));
 	}
 

@@ -6,22 +6,12 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 public class QuestNotStartedConditionTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testFire() {
@@ -80,6 +70,7 @@ public class QuestNotStartedConditionTest {
 
 		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname") {
+			// this is an anonymous sub class
 		}));
 		
 	}

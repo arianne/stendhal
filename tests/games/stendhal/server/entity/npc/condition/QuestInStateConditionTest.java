@@ -9,8 +9,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -25,14 +23,6 @@ public class QuestInStateConditionTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -105,6 +95,7 @@ public class QuestInStateConditionTest {
 
 		assertTrue(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state) {
+			// this is an anonymous sub class
 		}));
 	}
 

@@ -10,9 +10,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -25,19 +22,6 @@ public class SellerBehaviourTest {
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.generateNPCRPClasses();
 	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	
 	@Test
 	public void testSellerBehaviour() {
@@ -47,7 +31,6 @@ public class SellerBehaviourTest {
 		assertNull(sb.chosenItemName);
 		assertTrue(sb.itemNames.isEmpty());
 		assertTrue(sb.priceList.isEmpty());
-
 	}
 
 	@Test
@@ -70,7 +53,6 @@ public class SellerBehaviourTest {
 		assertTrue(sb.dealtItems().contains("item2"));
 		assertEquals(sb.amount, 0);
 		assertNull(sb.chosenItemName);
-
 	}
 	
 	@Test
@@ -95,7 +77,6 @@ public class SellerBehaviourTest {
 
 	    npc.getEngine().step(player, "buy 1 bottle of wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
-		
 	}
 
 }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,10 +23,6 @@ public class OrConditionTest {
 		trueCondition = new AlwaysTrueCondition();
 		falsecondition = new NotCondition(new AlwaysTrueCondition());
 
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -52,6 +47,7 @@ public class OrConditionTest {
 				falsecondition)));
 		assertFalse(new OrCondition().equals(Integer.valueOf(100)));
 		assertTrue(new OrCondition().equals(new OrCondition() {
+			// this is an anonymous sub class
 		}));
 	}
 

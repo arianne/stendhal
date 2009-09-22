@@ -8,8 +8,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,20 +24,12 @@ public class LevelGreaterThanConditionTest {
 		
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		level100Player = PlayerTestHelper.createPlayer("player");
 		level100Player.setLevel(100);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-
-	}
 
 	@Test
 	public final void testHashCode() {
@@ -77,7 +67,6 @@ public class LevelGreaterThanConditionTest {
 				102)));
 		assertFalse((new LevelGreaterThanCondition(102)).equals(new LevelGreaterThanCondition(
 				101)));
-
 	}
 
 }

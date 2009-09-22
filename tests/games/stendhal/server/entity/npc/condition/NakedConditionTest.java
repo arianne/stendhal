@@ -7,9 +7,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -25,15 +23,6 @@ public class NakedConditionTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		MockStendlRPWorld.reset();
-	}
-
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test

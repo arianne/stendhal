@@ -43,6 +43,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 		assertFalse(new AdminCondition(100).equals(null));
 		assertTrue("subclass is equal",
 				new AdminCondition(100).equals(new AdminCondition(100) {
+					// this is an anonymous sub class
 				}));
 	}
 

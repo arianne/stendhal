@@ -14,7 +14,6 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -31,9 +30,6 @@ public class TransitionTest {
 		MockStendlRPWorld.get();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testTransition() {

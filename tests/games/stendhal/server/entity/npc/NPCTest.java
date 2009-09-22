@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.felinashouse.CatSellerNPC;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -30,10 +29,6 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
 	}
 
 	public NPCTest() throws Exception {

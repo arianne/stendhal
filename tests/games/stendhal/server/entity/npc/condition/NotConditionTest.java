@@ -10,7 +10,6 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -50,10 +49,6 @@ public class NotConditionTest {
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();
 		falsecondition = new AlwaysFalseCondition();
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -118,6 +113,7 @@ public class NotConditionTest {
 		assertFalse(new NotCondition(trueCondition).equals(Integer.valueOf(100)));
 		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(
 				trueCondition) {
+			// this is an anonymous sub class
 		}));
 	}
 

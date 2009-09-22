@@ -19,9 +19,7 @@ public class QuestStartedConditionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
 		MockStendlRPWorld.get();
-		
 	}
 	
 	@Test
@@ -87,11 +85,9 @@ public class QuestStartedConditionTest {
 	public void testHashcode() throws Throwable {
 		final QuestStartedCondition obj = new QuestStartedCondition("questname");
 		assertTrue(obj.equals(obj));
-assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
 
-
-		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
-				"questname")));
+		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition("questname")));
 		assertEquals(new QuestStartedCondition("questname").hashCode(), new QuestStartedCondition("questname").hashCode());
 		assertEquals(new QuestStartedCondition(null).hashCode(), new QuestStartedCondition(null).hashCode());
 	}

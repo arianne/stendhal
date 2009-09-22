@@ -10,7 +10,6 @@ import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,14 +22,11 @@ public class PlayerInAreaConditionTest {
 		MockStendlRPWorld.get();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@SuppressWarnings("serial")
 	@Test
 	public final void testHashCode() {
 		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+			// this is an anonymous sub class
 		});
 
 		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
@@ -47,6 +43,7 @@ public class PlayerInAreaConditionTest {
 	public final void testFire() {
 		final StendhalRPZone zone = new StendhalRPZone("test");
 		final Area ar = new Area(zone, new Rectangle(-2, -2, 4, 4) {
+			// this is an anonymous sub class
 		});
 		final PlayerInAreaCondition cond = new PlayerInAreaCondition(ar);
 		final Player player = PlayerTestHelper.createPlayer("player");
@@ -70,13 +67,15 @@ public class PlayerInAreaConditionTest {
 		new PlayerInAreaCondition(null);
 		new PlayerInAreaCondition(new Area(new StendhalRPZone("test"),
 				new Rectangle() {
-				}));
+					// this is an anonymous sub class
+			}));
 	}
 
 	@SuppressWarnings("serial")
 	@Test
 	public final void testToString() {
 		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+			// this is an anonymous sub class
 		});
 		assertEquals("player in <null>",
 				new PlayerInAreaCondition(null).toString());
@@ -88,8 +87,10 @@ public class PlayerInAreaConditionTest {
 	@Test
 	public final void testEqualsObject() {
 		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+			// this is an anonymous sub class
 		});
 		final Area ar2 = new Area(new StendhalRPZone("test2"), new Rectangle() {
+			// this is an anonymous sub class
 		});
 		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
 
@@ -109,6 +110,7 @@ public class PlayerInAreaConditionTest {
 				null)));
 
 		assertTrue(new PlayerInAreaCondition(ar).equals(new PlayerInAreaCondition(ar) {
+			// this is an anonymous sub class
 		}));
 	}
 

@@ -7,8 +7,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,14 +18,6 @@ public class PlayerHasItemWithHimConditionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-	}
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -106,6 +96,7 @@ public class PlayerHasItemWithHimConditionTest {
 				100)));
 		assertTrue(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(
 				itemName) {
+			// this is an anonymous sub class
 		}));
 	}
 

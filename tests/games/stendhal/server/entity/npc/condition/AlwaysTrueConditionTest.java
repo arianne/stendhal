@@ -48,8 +48,10 @@ public class AlwaysTrueConditionTest {
 
 		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition()));
 		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition() {
+			// this is an anonymous sub class
 		}));
 	}
+
 	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AlwaysTrueCondition().fire(
@@ -57,10 +59,12 @@ public class AlwaysTrueConditionTest {
 				ConversationParser.parse("testAllwaysTrueConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
+
 	@Test
 	public void testHashCode() throws Throwable {
 		assertEquals(17, new AlwaysTrueCondition().hashCode());
 	}
+
 	@Test
 	public void testToString() throws Throwable {
 		assertEquals("true", new AlwaysTrueCondition().toString());

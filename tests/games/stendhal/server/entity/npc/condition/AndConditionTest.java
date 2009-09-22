@@ -8,7 +8,6 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,10 +23,7 @@ public class AndConditionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		//MockStendhalRPRuleProcessor.get();
-
 		MockStendlRPWorld.get();
-		
 	}
 	
 	
@@ -36,10 +32,6 @@ public class AndConditionTest {
 		trueCondition = new AlwaysTrueCondition();
 		falsecondition = new NotCondition(new AlwaysTrueCondition());
 
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -76,6 +68,7 @@ public class AndConditionTest {
 				falsecondition)));
 		assertFalse(new AndCondition().equals(Integer.valueOf(100)));
 		assertTrue(new AndCondition().equals(new AndCondition() {
+			// this is an anonymous sub class
 		}));
 	}
 

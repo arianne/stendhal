@@ -8,8 +8,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,14 +21,6 @@ public class QuestNotInStateConditionTest {
 	public static void setUpClass() throws Exception {
 		MockStendlRPWorld.get();
 		Log4J.init();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -113,6 +103,7 @@ public class QuestNotInStateConditionTest {
 
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, state) {
+			// this is an anonymous sub class
 		}));
 	}
 
