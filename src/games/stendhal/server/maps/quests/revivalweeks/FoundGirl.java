@@ -108,6 +108,16 @@ public class FoundGirl {
 					"Yay! We are friends now.",
 					new SetQuestAction("susi", "friends"));
 
+
+				/*
+				Make new friends,
+				but keep the old.
+				One is silver,
+				And the other gold.
+				*/
+
+
+				
 				// help
 				add(
 					ConversationStates.ATTENDING,
