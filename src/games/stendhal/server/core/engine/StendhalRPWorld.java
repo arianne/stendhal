@@ -73,8 +73,7 @@ public class StendhalRPWorld extends RPWorld {
 		try {
 			removeRPZone(toBeRemoved.getID());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e, e);
 		}
 	}
 	
