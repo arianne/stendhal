@@ -810,7 +810,8 @@
 			author="true"
 	        version="true"
 	        use="true"
-	        windowtitle="Stendhal API">
+	        windowtitle="Stendhal API"
+	        encoding="UTF-8">
 
 		</javadoc>
 	</target>
