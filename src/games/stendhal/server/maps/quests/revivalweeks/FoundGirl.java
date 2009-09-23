@@ -6,23 +6,45 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
 public class FoundGirl {
+	private SpeakerNPC npc;
+	private ChatCondition noFriends;
+	private ChatCondition anyFriends;
+	private ChatCondition oldFriends;
+	private ChatCondition currentFriends;
+
+	private void buildConditions() {
+		noFriends = new QuestNotStartedCondition("susi");
+		anyFriends = new QuestStartedCondition("susi");
+		oldFriends = new OrCondition(new QuestInStateCondition("susi", "friends"), new QuestSmallerThanCondition("susi", Calendar.getInstance().get(Calendar.YEAR)));
+		currentFriends = new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
+	}
+
+	private StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 
 	private void createGirlNPC() {
-		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
-				"0_semos_mountain_n2");
+
 		final SpeakerNPC npc = new SpeakerNPC("Susi") {
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -48,88 +70,7 @@ public class FoundGirl {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Guess what, we are having another #Semos #Mine #Town #Revival #Weeks in my honour!");
-				addJob("I am just a litte girl having lots of fun here during the #Semos #Mine #Town #Revival #Weeks-");
-				addGoodbye("Have fun!");
-				addReply("debuggera", "She is my crazy twin sister.");
-				addQuest("Just have fun.");
-				addOffer("I can offer you my #friendship.");
-
-				// Revival Weeks
-				add(
-					ConversationStates.ATTENDING,
-					Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
-					ConversationStates.ATTENDING,
-					"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. "
-					+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
-					+ "Now that I am found we can party again!",
-					null);
-				add(
-					ConversationStates.ATTENDING,
-					Arrays.asList("celebrate", "celebration", "party"),
-					null,
-					ConversationStates.ATTENDING,
-					"You can get a costume from Liliana over there or you can try to solve a difficult #puzzle in one of the houses.",
-					null);
-				
-				addReply("puzzle", "Gamblos has nine tokens on the floor arranged into a triangle with the point downwards."
-						 + " The puzzle is to try to make it into a triangle pointing upwards by moving only three tokens!"
-						 + " Just remember, you must stand next to the token to move it.");
-				
-				// friends
-				add(ConversationStates.ATTENDING, Arrays.asList("friend",
-																"friends"),
-					new QuestInStateCondition("susi", "friends"), 
-					ConversationStates.ATTENDING,
-					"We are friends.", null);
-
-				add(ConversationStates.ATTENDING,
-					Arrays.asList("friend", "friends"),
-					new QuestNotInStateCondition("susi", "friends"),
-					ConversationStates.INFORMATION_1,
-					"Please repeat:\r\n                        \"A circle is round,\"",
-					null);
-				add(ConversationStates.INFORMATION_1, Arrays.asList(
-					"A circle is round,", "A circle is round"), null,
-					ConversationStates.INFORMATION_2, "\"it has no end.\"",
-					null);
-				add(ConversationStates.INFORMATION_2, Arrays.asList(
-					"it has no end.", "it has no end"), null,
-					ConversationStates.INFORMATION_3,
-					"\"That's how long,\"", null);
-				add(ConversationStates.INFORMATION_3, Arrays.asList(
-					"That's how long,", "That's how long",
-					"Thats how long,", "Thats how long"), null,
-					ConversationStates.INFORMATION_4,
-					"\"I will be your friend.\"", null);
-				add(ConversationStates.INFORMATION_4, Arrays.asList(
-					"I will be your friend.", "I will be your friend"),
-					null, ConversationStates.ATTENDING,
-					"Yay! We are friends now.",
-					new SetQuestAction("susi", "friends"));
-
-
-				/*
-				Make new friends,
-				but keep the old.
-				One is silver,
-				And the other gold.
-				*/
-
-
-				
-				// help
-				add(
-					ConversationStates.ATTENDING,
-					ConversationPhrases.HELP_MESSAGES,
-					new QuestInStateCondition("susi", "friends"),
-					ConversationStates.ATTENDING,
-					"I have made a lot of friends during the #Semos #Mine #Town #Revival #Weeks.",
-					null);
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.HELP_MESSAGES,
-					new QuestNotInStateCondition("susi", "friends"),
-					ConversationStates.ATTENDING, "I need a #friend.", null);
+				// done outside
 			}
 		};
 
@@ -141,8 +82,146 @@ public class FoundGirl {
 		// npc.setSpeed(1.0);
 		zone.add(npc);
 	}
+	
+	private void addDialog() {
+		
+		// greeting
+		addGreetingDependingOnQuestState();
+
+		npc.addJob("I am just a litte girl waiting for my father to take me out. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks-");
+		npc.addGoodbye("Have fun!");
+		npc.addReply("debuggera", "Debuggera is my crazy twin sister.");
+		npc.addHelp("Just have fun.");
+		npc.addOffer("I can offer you my #friendship.");
+
+		// Revival Weeks
+		npc.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
+			ConversationStates.ATTENDING,
+			"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. "
+			+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
+			+ "Now that I am found we can party again!",
+			null);
+		npc.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("celebrate", "celebration", "party"),
+			ConversationStates.ATTENDING,
+			// TODO: add Liliana or adjust this sentence
+			"You can get a costume from Liliana over there or you can try to solve a difficult puzzle in one of the houses.",
+			null);
+
+
+		// friends
+		npc.add(
+			ConversationStates.ATTENDING, Arrays.asList("friend", "friends", "friendship"),
+			new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR))), 
+			ConversationStates.ATTENDING,
+			"Thanks for being a friend.", null);
+
+		addFirstQuest();
+		addSecondQuest();
+		
+		// quest
+		addQuest();
+	}
+
+
+	private void addGreetingDependingOnQuestState() {
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+				noFriends, ConversationStates.ATTENDING,
+				"Guess what, we are having another #Semos #Mine #Town #Revival #Weeks.", null);
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+				anyFriends, ConversationStates.ATTENDING,
+				null, new ChatAction(){
+
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						npc.say("Hello " + player.getName() + ", nice to meet you again. "
+						+ "Guess what, we are having another #Semos #Mine #Town #Revival #Weeks.");
+					}
+		});
+		// TODO: Tell old friends about renewal
+	}
+
+
+	private void addQuest() {
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				noFriends,
+				ConversationStates.ATTENDING, "I need a #friend.", null);
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				oldFriends,
+				ConversationStates.ATTENDING, "We should renew our #friendship.", null);
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				currentFriends,
+				ConversationStates.ATTENDING,
+				"I have made a lot of friends during the #Semos #Mine #Town #Revival #Weeks.",
+				null);
+	}
+
+	private void addFirstQuest() {
+		// initial friends quest
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("friend", "friends"),
+			noFriends,
+			ConversationStates.INFORMATION_1,
+			"Please repeat:\r\n                        \"A circle is round,\"",
+			null);
+		npc.add(ConversationStates.INFORMATION_1, Arrays.asList(
+			"A circle is round,", "A circle is round"), null,
+			ConversationStates.INFORMATION_2, "\"it has no end.\"",
+			null);
+		npc.add(ConversationStates.INFORMATION_2, Arrays.asList(
+			"it has no end.", "it has no end"), null,
+			ConversationStates.INFORMATION_3,
+			"\"That's how long,\"", null);
+		npc.add(ConversationStates.INFORMATION_3, Arrays.asList(
+			"That's how long,", "That's how long",
+			"Thats how long,", "Thats how long"), null,
+			ConversationStates.INFORMATION_4,
+			"\"I will be your friend.\"", null);
+		npc.add(ConversationStates.INFORMATION_4, Arrays.asList(
+			"I will be your friend.", "I will be your friend"),
+			null, ConversationStates.ATTENDING,
+			"Yay! We are friends now.",
+			new SetQuestToYearAction("susi"));
+		// TODO: add karma
+	}
+
+	private void addSecondQuest() {
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("friend", "friends"),
+				oldFriends,
+				ConversationStates.INFORMATION_5,
+				"Please repeat:\r\n                        \"Make new friends,\"",
+				null);
+		npc.add(ConversationStates.INFORMATION_5, Arrays.asList(
+				"Make new friends,", "Make new friends"), null,
+				ConversationStates.INFORMATION_6, "\"but keep the old.\"",
+				null);
+		npc.add(ConversationStates.INFORMATION_6, Arrays.asList(
+				"but keep the old.", "but keep the old"), null,
+				ConversationStates.INFORMATION_7, "\"One is silver,.\"",
+				null);
+		npc.add(ConversationStates.INFORMATION_7, Arrays.asList(
+				"One is silver,", "One is silver"), null,
+				ConversationStates.INFORMATION_8, "\"And the other gold.\"",
+				null);
+		npc.add(ConversationStates.INFORMATION_8, Arrays.asList(
+				"And the other gold.", "And the other gold"),
+				null, ConversationStates.ATTENDING,
+				"Yay! We are even better friends now.",
+				new SetQuestToYearAction("susi"));
+			// TODO: add karma
+	}
 
 	public void addToWorld() {
+		buildConditions();
 		createGirlNPC();
+		addDialog();
 	}
 }
