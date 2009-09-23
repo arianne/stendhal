@@ -43,7 +43,7 @@ public class FoundGirl {
 
 	private void createGirlNPC() {
 
-		final SpeakerNPC npc = new SpeakerNPC("Susi") {
+		npc = new SpeakerNPC("Susi") {
 
 			@Override
 			protected void createPath() {
@@ -166,7 +166,7 @@ public class FoundGirl {
 	private void addFirstQuest() {
 		// initial friends quest
 		npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("friend", "friends"),
+			Arrays.asList("friend", "friends", "friendship"),
 			noFriends,
 			ConversationStates.INFORMATION_1,
 			"Please repeat:\r\n                        \"A circle is round,\"",
@@ -194,7 +194,7 @@ public class FoundGirl {
 
 	private void addSecondQuest() {
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("friend", "friends"),
+				Arrays.asList("friend", "friends", "friendship"),
 				oldFriends,
 				ConversationStates.INFORMATION_5,
 				"Please repeat:\r\n                        \"Make new friends,\"",
@@ -203,14 +203,16 @@ public class FoundGirl {
 				"Make new friends,", "Make new friends"), null,
 				ConversationStates.INFORMATION_6, "\"but keep the old.\"",
 				null);
+		// TODO: this does not work, only "but" is accepted
 		npc.add(ConversationStates.INFORMATION_6, Arrays.asList(
 				"but keep the old.", "but keep the old"), null,
-				ConversationStates.INFORMATION_7, "\"One is silver,.\"",
+				ConversationStates.INFORMATION_7, "\"One is silver,\"",
 				null);
 		npc.add(ConversationStates.INFORMATION_7, Arrays.asList(
 				"One is silver,", "One is silver"), null,
 				ConversationStates.INFORMATION_8, "\"And the other gold.\"",
 				null);
+		// TODO: lower case "and" is not accepted
 		npc.add(ConversationStates.INFORMATION_8, Arrays.asList(
 				"And the other gold.", "And the other gold"),
 				null, ConversationStates.ATTENDING,
