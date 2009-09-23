@@ -6,10 +6,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -58,6 +56,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				// TODO: Add different greetings depending on whether Susi's is a friend of the player or not
 				addGreeting("Hello. Daddy must have left the house door open again. He's always doing that.");
 				addJob("I am just a little girl.");
 				addGoodbye("Have fun!");
@@ -66,7 +65,6 @@ public class LittleGirlNPC implements ZoneConfigurator {
 				addReply("debuggera", "She is my crazy twin sister.");
 
 				addQuest("I might see you some time at the #Semos #Mine #Town #Revival #Weeks.");
-				addOffer("I can offer you my #friendship.");
 
 				// Revival Weeks
 				add(
@@ -77,13 +75,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 					null);
 				
 				// help
-				add(
-					ConversationStates.ATTENDING,
-					ConversationPhrases.HELP_MESSAGES,
-					new QuestInStateCondition("susi", "friends"),
-					ConversationStates.ATTENDING,
-					"Have fun.",
-					null);
+				addHelp("Have fun.");
 			}
 		};
 
