@@ -5,6 +5,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
+import games.stendhal.common.Constants;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -144,7 +145,7 @@ public class HousePortal extends AccessCheckingPortal {
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
 		// check if the player is carrying a matching HouseKey
-		for (final String slotName : RPEntity.CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = user.getSlot(slotName);
 
 			for (final RPObject object : slot) {
@@ -196,7 +197,7 @@ public class HousePortal extends AccessCheckingPortal {
 	/**
 	 * Get the name of the owner.
 	 * 
-	 * @return
+	 * @return owner
 	 */
 	public String getOwner() {
 		return get(OWNER);

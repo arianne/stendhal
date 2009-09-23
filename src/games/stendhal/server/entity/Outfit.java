@@ -211,18 +211,14 @@ public class Outfit {
 	/**
 	 * Create a random unisex outfit, with a 'normal' face and unisex base
 	 * 
-	 * hair number (1 to 26) selection of hairs
-	 * which look ok with both goblin face and cute face (later hairs only look right with cute face) <p>
-	 * 
-	 * head numbers (1 to 15) to avoid the cut eye, pink eyes, weird green eyeshadow etc
-	 *<p>
-	 * dress numbers (1 to 16) from the early outfits before lady player base got introduced i.e. they are all unisex
-	 *<p>
-	 *  base numbers ( 1 to 15), these are the early bodies which were unisex
-	 *
+	 * <ul>
+	 * <li>hair number (1 to 26) selection of hairs which look ok with both goblin 
+	 *     face and cute face (later hairs only look right with cute face)</li>
+	 * <li>head numbers (1 to 15) to avoid the cut eye, pink eyes, weird green eyeshadow etc</li>
+	 * <li>dress numbers (1 to 16) from the early outfits before lady player base got introduced i.e. they are all unisex</li>
+	 * <li>base numbers ( 1 to 15), these are the early bodies which were unisex</li>
+	 * </ul>
 	 * @return the new random outfit
-	 *
- 	 * @author kymara
 	 */
 
 	public static Outfit getRandomOutfit() {

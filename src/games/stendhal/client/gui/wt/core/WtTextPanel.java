@@ -129,7 +129,7 @@ public class WtTextPanel extends WtPanel {
 	 * 
 	 * @param param
 	 * @param value
-	 * @Deprecated use set(String param, String value)
+	 * @deprecated use set(String param, String value)
 	 */
 	@Deprecated
 	public void setValue(final String param, final String value) {

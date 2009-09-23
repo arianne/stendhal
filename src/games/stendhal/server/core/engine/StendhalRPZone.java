@@ -1153,9 +1153,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Sets the flag whether magic scrolls for teleportation may be uses in this
 	 * zone.
-	 * 
-	 * @param teleportAllowed
-	 *            true, if teleportion is possible, false otherwise
 	 */
 	public void disAllowTeleport() {
 		teleRules.disAllowIn();

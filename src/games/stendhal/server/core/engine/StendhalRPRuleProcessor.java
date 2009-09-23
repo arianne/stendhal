@@ -571,10 +571,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * sends a message to all supporters.
 	 * 
-	 * @param type
-	 * 			  NotificationType
-	 * @param message
-	 *            Support message
+	 * @param message Support message
 	 */
 	public void sendMessageToSupporters(final String message) {
 		getOnlinePlayers().forFilteredPlayersExecute(
