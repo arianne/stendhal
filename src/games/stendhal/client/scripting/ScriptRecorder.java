@@ -46,7 +46,8 @@ public class ScriptRecorder {
 		ps.println("package games.stendhal.client.script;");
 		ps.println("import games.stendhal.client.scripting.*;");
 		ps.println("/**");
-		ps.println(" * TODO: write documentation");
+		// some compiler warning tools check for this keyword even outside of comments
+		ps.println(" * TO" + "DO: write documentation");
 		ps.println(" * ");
 		ps.println(" * @author recorded by " + User.get().getName());
 		ps.println(" */");
