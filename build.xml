@@ -11,7 +11,6 @@
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
 	<property name="build_tools" value="${buildroot}/build_tools"/>
-	<property name="build_tiled" value="${buildroot}/build_tiled"/>
 
 	<property name="build_client" value="${buildroot}/build_client"/>
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
@@ -119,7 +118,6 @@
 		<delete dir="${buildroot}/build_server_xmlconf" />
 		<delete dir="${build_tests}" />
 		<delete dir="${build_tools}" />
-		<delete dir="${build_tiled}" />
 		<delete dir="${buildroot}/build_stendhaltools" />
 		<delete dir="${buildroot}/buildbot" />
 		<delete dir="${build_tests_report}" />
@@ -199,7 +197,7 @@
 			<include name="games/stendhal/tools/test/LineAnalyser.java"/>
 
 			<compilerarg value="-encoding"/>
-			<compilerarg value="utf8"/>
+			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
@@ -617,7 +615,7 @@
 		<delete dir="${buildroot}/stendhal-${version}-src"/>
 	</target>
 
-	<target name="compile_stendhaltools" depends="compile_tiled" description="compiles the Stendhal build tools">
+	<target name="compile_stendhaltools" description="compiles the Stendhal build tools">
 		<mkdir dir="${build_stendhaltools}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
@@ -629,11 +627,10 @@
 
 			<classpath>
 				<pathelement path="${commons_lang_jar}"/>
-				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_tiled}"/>
+				<pathelement path="${groovy_jar}"/>
+				<pathelement path="${tiled_jar}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -642,7 +639,7 @@
 		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
 			<classpath>
 				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_tiled}"/>
+				<pathelement path="${tiled_jar}"/>
 			</classpath>
 		</taskdef>
 
@@ -658,7 +655,7 @@
 		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
 			<classpath>
 				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_tiled}"/>
+				<pathelement path="${tiled_jar}"/>
 			</classpath>
 		</taskdef>
 
@@ -679,7 +676,7 @@
 			<include name="**/*.java"/>
 
 			<compilerarg value="-encoding"/>
-			<compilerarg value="utf8"/>
+			<compilerarg value="utf-8"/>
 
 			<compilerarg value="-Xlint:unchecked"/>
 
@@ -699,7 +696,7 @@
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_script}"/>
-				<pathelement path="${build_tiled}"/>
+				<pathelement path="${tiled_jar}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -710,7 +707,7 @@
 		<javac srcdir="tools" destdir="${build_tools}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
 			<compilerarg value="-encoding"/>
-			<compilerarg value="utf8"/>
+			<compilerarg value="utf-8"/>
 
 			<compilerarg value="-Xlint:unchecked"/>
 
@@ -721,7 +718,6 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${swinglayout_jar}"/>
 			</classpath>
@@ -781,27 +777,6 @@
 		</delete>
 	</target>
 
-	<target name="compile_tiled" description="Compile tiled">
-		<mkdir dir="${build_tiled}"/>
-
-		<javac srcdir="${tiled}/src" destdir="${build_tiled}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
-			<include name="**/*.java"/>
-		</javac>
-
-		<copy todir="${build_tiled}">
-			<fileset dir="${tiled}/src">
-				<include name="**/*.png"/>
-			</fileset>
-		</copy>
-		<jar jarfile="${buildroot}/tiled.jar" basedir="${build_tiled}">
-			<manifest>
-				<attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
-				<attribute name="Class-path" value="${build_tiled}"/>
-			</manifest>
-		</jar>
-
-	</target>
-
 	<target name="java_doc" description="Build javadoc">
 		<javadoc packagenames="games.*"
 			sourcepath="src"
@@ -814,11 +789,6 @@
 	        encoding="UTF-8">
 
 		</javadoc>
-	</target>
-
-	<!-- Runs the Tiled editor -->
-	<target name="tiled_run" depends="compile_tiled" description="Runs Tiled">
-		<java classname="tiled.mapeditor.MapEditor" classpath="${build_tiled}" fork="true"/>
 	</target>
 
 	<target name="checkxml" description="Verify XML files are well-formed">
