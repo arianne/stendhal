@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
  <tileset name="drink" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
@@ -48,10 +49,7 @@
  <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
- <tileset name="grey corners" firstgid="144" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/grey_corners.png"/>
- </tileset>
- <tileset name="grey door" firstgid="148" tilewidth="32" tileheight="32">
+ <tileset name="grey door" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_centred.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
@@ -61,12 +59,12 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3Ouw6CMBSA4a4aAs/g5Rk0ccEd73hD0MHNXQed1ckX8G39B0wa0tbWBMJJvqXtn9OpEGKGo4M5FoixxMnBCmuccRG/J8QQHq64Sa1n0X+n2LqMqe2hLxlUtFc3Y0xK2NtE44/WpjHtrWPbQlvTRhgZ2g66JfzZt+x8RRtYtoHUbrDFQ+GtOU+wQ4oMr4J7/u6puNvjgA/0Mr6CsAQAAA==
+   H4sIAAAAAAAAAM3OuwrCMBSA4axKaZ/ByzMouNS93uuttjq4ueugszq5+r7+Q4VQkpgILT3wLUl+TqZCiBmODuZYIMYSJwcrrHHGRfyeEEN4uOImtZ5F/51i6zKmtoe+ZFDRXt2MMSlhbxONP1qbxrS3jm0LbU0bYWRoO+iW8GffsvMVbWDZBlK7wRYPhbfmPMEOKTK8Cu75u6fibo8DPrinB0KwBAAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCGVB6Fhl65wPxAiBeiEcNAIRL9QWwBAAA
+   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCKVB6Ghl6ZwPxHCCei0cNAEvG7H2wBAAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">

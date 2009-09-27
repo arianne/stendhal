@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="grey green wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
@@ -21,7 +22,7 @@
  <tileset name="necro" firstgid="80" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="94" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -31,7 +32,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UyQ0AIAwDQTqjEo7+q6AEcthBSPY3SLMvWtN+2HC8nQ9tdEPERjVk7GwDwo42IG1vA8O2NjBtS0Mv8CsMTdP+2+v/ZxX4+3JnNtxsZoPVZjR4bWRD1EY0ZO1MA8qONKBtjbcDDlAb3QAQAAA=
+   H4sIAAAAAAAAAO3UyQ0AIAwDQTqjE47+m6AEcthBSPY3SLMvWtN+2HC8nQ9tdEPERjVk7GwDwo42IG1vA8O2NjBtS0Mv8CsMTdP+2+v/ZxX4+3JnNtxsZoPVZjR4bWRD1EY0ZO1MA8qONKBtjbcDTRzIFwAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">

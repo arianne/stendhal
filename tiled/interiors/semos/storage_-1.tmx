@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="50" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="50" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/ground_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png" trans="ffffff"/>
  </tileset>
@@ -33,10 +34,10 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="108" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="50" height="32">
@@ -66,12 +67,12 @@
  </layer>
  <layer name="collision" width="50" height="32" opacity="0.45">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SQQqAMBAD+9/+/+5VQ7sb9ZAUsjCg0MIM2znGmCGEEEKguA/+M6P237VgU3dW7Y5eX3bh2PG2Z7cvl47Oc3XOAfRmBu850Ll2rWr/6p2wo3bHDrVDOtLhSjq8YIa9o27pGquGE/a6crv775rcqDpWo/b923Hqu6p6HGFmwvcpdE3hyQUBgyu/ABkAAA==
+   H4sIAAAAAAAAAO2SQQqAMBAD++D+/+xVQ7sb9ZAUsjCg0MIM2znGmCGEEEKguA/+M6P237VgU3dW7Y5eX3bh2PG2Z7cvl47Oc3XOAfRmBu850Ll2rWr/6p2wo3bHDrVDOtLhSjq8YIa9o27pGquGE/a6crv775rcqDpWo/b923Hqu6p6HGFmwvcpdE3hyQXmtKmsABkAAA==
   </data>
  </layer>
  <layer name="protection" width="50" height="32" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DwQkAAAwDoRs4+7+7R1Fw1VRVVVVVVR89CKYHGgAZAAA=
+   H4sIAAAAAAAAAO3DwQkAAAwDoVs4+3+7R1Fw1VRVVVVVVR89vT/JeAAZAAA=
   </data>
  </layer>
 </map>

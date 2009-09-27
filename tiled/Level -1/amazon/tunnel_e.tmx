@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen.png"/>
  </tileset>
@@ -51,7 +52,7 @@
  <tileset name="animals" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="undead" firstgid="215" tilewidth="32" tileheight="32">
+ <tileset name="undead" firstgid="216" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -81,7 +82,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dMQ6CMBiGYc5uYhw9jxuzg7MYNfEmTk4OgJF+tDzPBf53IbRpoF0HAAAAAAAAANtxTwcAADCJdRtjhnQAAFC1VzoA+NkjHQAAQHNu6QAAAIBCDumAP3HWB/Btlw4AAFZlnw4AYFXsGYHW9OkAgMbNXT9ab5bVyrk/UIdjOgAAAAAARlzSAQAAAAAAAADM4vsoaJNnGwCAj63/D3XsHo3a7tk4pwMAWEQfmuu9Qi2uheYMheYAAMt6pgNgBvsyAACmOqUDAAAAAAAAAAAAAACowhslxmBEAAABAA==
+   H4sIAAAAAAAAAO3dMQ6CMBiGYc5uYhw9jxuzg7sYNfEkTk4OgJF+tDzPBf53IbRpoF0HAAAAAAAAANtxTwcAADCJdRtjhnQAAFC1VzoA+NkjHQAAQHNu6QAAAIBCDumAP3HWB/Btlw4AAFZlnw4AYFXsGYHW9OkAgMbNXT9ab5bVyrk/UIdjOgAAAAAARlzSAQAAAAAAAADM4vsoaJNnGwCAj63/D3XsHo3a7tk4pwMAWEQfmuu9Qi2uheYMheYAAMt6pgNgBvsyAACmOqUDAAAAAAAAAAAAAACowhv/KEiJAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.47">

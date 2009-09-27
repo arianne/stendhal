@@ -31,22 +31,19 @@
  <tileset name="Sin nombre" firstgid="392" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="406" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/madaram.png"/>
- </tileset>
- <tileset name="stairs" firstgid="419" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="406" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="portal" firstgid="431" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="418" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="detail" firstgid="438" tilewidth="32" tileheight="32">
+ <tileset name="detail" firstgid="425" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
- <tileset name="corners" firstgid="446" tilewidth="32" tileheight="32">
+ <tileset name="corners" firstgid="433" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="450" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="437" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -56,17 +53,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USQqAMAxFm+M67BwPot5BRY/gtbo1QrtQQVNJLUo+fEQreU1IopToC1pAKY3P7OKf7Ux7vAMltvD/w4+w52J0DWH4CXJTcIvNyS9h/+57/jK4PtcH331/wqCqQbfGHU9IsnI483OmvKgKmT+Vv/WvnWFOudTfznDFfAdq/QtPffHH/nfZDU/zl/3Doy/sH1+S+kv9e+QNxuPLbMufjOcAfC6tjS4mCwAQAAA=
+   H4sIAAAAAAAAAO2USQqAMAxFm+M67BwPoq5U9AierlsjtAsVNJXUouTDR7SS14QkSom+oAWU0vjMLv7ZzrTHO1BiC/8//Ah7LkbXEIafIDcFt9ic/BL2777nL4Prc33w3fcnDKoadGvc8YQkK4czP2fKi6qQ+VP5W//aGeaUS/3tDFfMd6DWv/DUF3/sf5fd8DR/2T88+sL+8SWpv9S/R95gPL7MtvzJeA7A59IKeRSdjwAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UsRGAMAwDw9qwG5DNaOkiyxIFp699+q88Rvgb16bdO4k9VQPjVjV03N0GhZttULqrDQ432uB0d9nBNvSuygHuonchhPDm/uB3zIXD2bByOxtQt6Oh6lY2sG5FQ9fdaVC5mQa1O/h4AAZ/stIAEAAA
+   H4sIAAAAAAAAAO2UsRGAMAwDw9owFZABaekiyxIFp699+q88Rvgb16bdO4k9VQPjVjV03N0GhZttULqrDQ432uB0d9nBNvSuygHuonchhPDm/uB3zIXD2bByOxtQt6Oh6lY2sG5FQ9fdaVC5mQa1O/h4AMdeodIAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglGQz4hbrhIo145Hnlh1hUSYMdhBHhY/YBMbBbQBo+E/sIBW4Y+v/KEWoIcdtAaj6X9gwWj4DywYDf+BB7sZUfFQBQAD+ZOMABAAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglGQz4hbrhIo145Hnlh1hUSYMdhBHhY/YBMbBbQBo+E/sIBW4Y+v/KEWoIcdtAaj6X9gwWj4DywYDf+BB+sYUfFQBQA2sogsABAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -76,7 +73,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDwwlXGgXTAK6A2OY4lzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYK2MgIwUMZAAC9RXV4ABAAAA==
+   H4sIAAAAAAAAAGNgGAWjgDwwlXGgXTAK6A12YYlzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYKWMIIwUMZAAAdDXSpABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

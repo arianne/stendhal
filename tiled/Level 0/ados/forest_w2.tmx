@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="ground" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
@@ -126,10 +127,10 @@
  <tileset name="animal" firstgid="866" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="rats" firstgid="892" tilewidth="32" tileheight="32">
+ <tileset name="rats" firstgid="893" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset name="farm animal" firstgid="897" tilewidth="32" tileheight="32">
+ <tileset name="farm animal" firstgid="898" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/farm_animal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -159,7 +160,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cWQrCMBAAUNFbK/644Ho6D+BZFETc0Bq3mpn3oBDafqRkkkzS0k4HAAAAAMoNe23XAGJY6EsAAHDXYJ8vj+XM6Whzrs3EBEnYcwX4jHnheFp6P0AGWXPTddLnro25G+Bg2227BtRCrJxkziOmgZ79UTvK6WnTSvwBAABfYn8HeIWxA4hs0rAf23Q9kkjvgADg10bmUSpinX8rU94PQBlzBAAAQEzWewAAAADQjr69OZ6Q9V/WAAD8F3kp/2wpPtMTAwBQL2sNAAAAAAAAAABqtekejmP5/DxwaRHsW7Hr/v9MOapobQtN3un/kccCyMD8DwAAAAAAAADl/GsOAADgfTsl2bpUAAABAA==
+   H4sIAAAAAAAAAO3cWQrCMBAAUNFbK/jjguvlPIBnURBxQ2vcambeg0Jo+5GSSTJJSzsdAAAAACg37LVdA4hhoS8BAMBdg32+PJYzp6PNuTYTEyRhzxXgM+aF42np/QAZZM1N10mfuzbmboCDbbftGlALsXKSOY+YBnr2R+0op6dNK/EHAAB8if0d4BXGDiCyScN+bNP1SCK9AwKAXxuZR6mIdf6tTHk/AGXMEQAAADFZ7wEAAABAO/r25nhC1n9ZAwDwX+Sl/LOl+ExPDABAvaw1AAAAAAAAAACo1aZ7OI7l8/PApUWwb8Wu+/8z5aiitS00eaf/Rx4LIAPzPwAAAAAAAACU8685AACA9+0A9YbtZQAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.31">

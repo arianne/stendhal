@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/ground.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
@@ -27,16 +28,16 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/resources.png" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/resources.png" firstgid="185" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/mushroom.png" firstgid="190" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/mushroom.png" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="196" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="197" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="herb" firstgid="197" tilewidth="32" tileheight="32">
+ <tileset name="herb" firstgid="198" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/herb.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="64">
@@ -61,12 +62,12 @@
  </layer>
  <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cMQqAMAwFUO8/Orp4BycncfJcHkCtCtZY+94JPpSQNNA2DQDAdV10AOAVar0ezhr+ZYgOQBbOFQCAEphbAaBsejnk1UcHAHa10QF43BQdIJB5DoDSHPXt1P1pzpADqNsYHQCAjZr3O5DL13eH6h4AAAAAAAAAACBtiQ4AAACcuvuXkTeuAABlWQEW1tZlAIAAAA==
+   H4sIAAAAAAAAAO3cMQqAMAwFUO8/Orp4BzcncfJaHkCtCtZY+94JPpSQNNA2DQDAdV10AOAVar0ezhr+ZYgOQBbOFQCAEphbAaBsejnk1UcHAHa10QF43BQdIJB5DoDSHPXt1P1pzhEEqNoYHQCAjZr3O5DL13eH6h4AAAAAAAAAACBtiQ4AAACcuvuXkTeuAABlWQE+CLBmAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XQW4DMQzE9v/vysOK3JI2RbC7tji2SGCOjaWhmqLHsRePkxn1lmSg/97ovzf635OzXlMj16C96Z+F9qb/OmhHibnLKrdH95yaLtA9p6YLdM/Jqeb13eoZ6K4TQ0C9T3ednEoS3jWchwN68zd050npCN15WjpCd56UrtC963ssZ3ejPaS73/lWntAu0v13QB+90X1vUv0n3Qc9S8X7/o7/JWWPihn0/07aHvr/f+6Rn5V4y/T7XUi4528zyXxS3c+eJfVvzKi37s5dTdL30AhW9U+zww5P9L8/M/6HGJ1PM8sYaLezvk9WpXpv2q3+36nam3bq/Xzm6uxn96Sd6P87M2ennei/Drr/hHSG7l7vLLQD/Y+D7nP1rA7d3+q5C31LdH+r5w6jb+nO26b+FvS/V85y5WdH3Qnd1Y5Jhu6mQ5Khu+mQZOhuOoSE3t2w0LsbFnp3Mx96P6N/o39T45/ex+jfMP7pXQznn97DcP7pHYz+zXj/9GyG80/PZYyZnx91arlCAIAAAA==
+   H4sIAAAAAAAAAO2XQW4DMQzE9v//yr+K3JI2RbC7tji2SGCOjaWhmqLHsRePkxn1lmSg/97ovzf635OzXlMj16C96Z+F9qb/OmhHibnLKrdH95yaLtA9p6YLdM/Jqeb13eoZ6K4TQ0C9T3ednEoS3jWchwN68zd050npCN15WjpCd56UrtC963ssZ3ejPaS73/lWntAu0v13QB+90X1vUv0n3Qc9S8X7/o7/JWWPihn0/07aHvr/f+6Rn5V4y/T7XUi4528zyXxS3c+eJfVvzKi37s5dTdL30AhW9U+zww5P9L8/M/6HGJ1PM8sYaLezvk9WpXpv2q3+36nam3bq/Xzm6uxn96Sd6P87M2ennei/Drr/hHSG7l7vLLQD/Y+D7nP1rA7d3+q5C31LdH+r5w6jb+nO26b+FvS/V85y5WdH3Qnd1Y5Jhu6mQ5Khu+mQZOhuOoSE3t2w0LsbFnp3Mx96P6N/o39T45/ex+jfMP7pXQznn97DcP7pHYz+zXj/9GyG80/PZYyZnx/mFQt0AIAAAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="64">
