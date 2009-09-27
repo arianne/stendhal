@@ -35,8 +35,7 @@ import org.apache.tools.ant.types.FileSet;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.plugins.tiled.XMLMapTransformer;
-import tiled.view.MapView;
+import tiled.io.xml.XMLMapTransformer;
 import tiled.view.OrthoMapView;
 
 /**
@@ -65,7 +64,7 @@ public class MapRenderer extends Task {
 	private void saveImageMap(final Map map, final String tmxFile) {
 		final File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
-		for (final MapLayer layer : map.getLayerList()) {
+		for (final MapLayer layer : map) {
 			if (layer.getName().equals("navigation")
 					|| layer.getName().equals("collision")
 					|| layer.getName().equals("objects")
@@ -76,14 +75,13 @@ public class MapRenderer extends Task {
 			}
 		}
 
-		final MapView myView = new OrthoMapView();
-		myView.setMap(map);
-		myView.setScale(0.0625);
+		final OrthoMapView myView = new OrthoMapView(map);
+		myView.setZoom(0.0625);
 		final Dimension d = myView.getSize();
 		final BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
-		myView.draw(g);
+		myView.paint(g);
 		g.dispose();
 
 		final String area = file.getParentFile().getName();

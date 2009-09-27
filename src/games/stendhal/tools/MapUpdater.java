@@ -34,8 +34,8 @@ import tiled.core.MapLayer;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
-import tiled.plugins.tiled.XMLMapTransformer;
-import tiled.plugins.tiled.XMLMapWriter;
+import tiled.io.xml.XMLMapTransformer;
+import tiled.io.xml.XMLMapWriter;
 
 /**
  * Fix maps by loading and saving thems.
@@ -53,7 +53,7 @@ public class MapUpdater extends Task {
 		for (final Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
 			final Tile tile = (Tile) tiles.next();
 
-			for (final MapLayer layer : map.getLayerList()) {
+			for (final MapLayer layer : map) {
 				if ((layer instanceof TileLayer) && (((TileLayer) layer).isUsed(tile))) {
 					return true;
 				}
