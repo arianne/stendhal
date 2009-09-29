@@ -12,10 +12,7 @@ public class MasterKey extends HouseKey {
 		super(key);
 	}
 
-
-
-	public MasterKey(final String name, final String clazz, final String subclass,
-			final Map<String, String> attributes) {
+	public MasterKey(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
 		setInfoString("any player's house;0;");
@@ -28,8 +25,8 @@ public class MasterKey extends HouseKey {
 		return true;
 	}
 
-	// Ignore any setup requests
 	@Override
 	public void setup(final String id, final int lockNumber, String owner) {
+		// Ignore any setup requests, do not delegate to super class
 	}
 }

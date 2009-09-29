@@ -70,8 +70,7 @@ public class BalloonScroll extends TimedTeleportScroll {
 			// so this use of balloon is going to be shortened 
 			// (the clouds can't take so much weight on them)
 			// delay message for 1 turn for technical reasons
-			final DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, 
-										  "The clouds are weakened from your recent time on them, and will not hold you for long.", 1);
+			new DelayedPlayerTextSender(player, "The clouds are weakened from your recent time on them, and will not hold you for long.", 1);
 			
 			return super.useTeleportScroll(player, "7_kikareukin_clouds", 31, 21, NEWTIME);
 		}
