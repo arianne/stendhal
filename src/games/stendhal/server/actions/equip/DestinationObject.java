@@ -97,6 +97,7 @@ class DestinationObject extends MoveableObject {
 	 * @param player 
 	 * @return true if can be added to the world 
 	 * */
+	@SuppressWarnings("unchecked")
 	public boolean preCheck(final Entity entity, final Player player) {
 		final StendhalRPZone zone = player.getZone();
 
@@ -111,16 +112,16 @@ class DestinationObject extends MoveableObject {
 			if (rpslot.isFull()) {
 				boolean isStackable = false;
 				// is the entity stackable
-				if (entity instanceof Stackable) {
-					final Stackable stackEntity = (Stackable) entity;
+				if (entity instanceof Stackable<?>) {
+					final Stackable<?> stackEntity = (Stackable<?>) entity;
 					// now check if it can be stacked on top of another item
 					final Iterator<RPObject> it = rpslot.iterator();
 					while (it.hasNext()) {
 						final RPObject object = it.next();
 						
-						if (object instanceof Stackable) {
+						if (object instanceof Stackable<?>) {
 							// found another stackable
-							final Stackable other = (Stackable) object;
+							final Stackable other = (Stackable<?>) object;
 							if (other.isStackable(stackEntity)) {
 								// other is the same type...merge them
 								isStackable = true;
