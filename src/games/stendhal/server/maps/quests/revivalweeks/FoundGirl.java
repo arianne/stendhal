@@ -11,6 +11,9 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -184,12 +187,13 @@ public class FoundGirl {
 			"Thats how long,", "Thats how long"), null,
 			ConversationStates.INFORMATION_4,
 			"\"I will be your friend.\"", null);
+
+		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(10), new IncreaseXPAction(25), new SetQuestToYearAction("susi"));
 		npc.add(ConversationStates.INFORMATION_4, Arrays.asList(
 			"I will be your friend.", "I will be your friend"),
 			null, ConversationStates.ATTENDING,
 			"Yay! We are friends now.",
-			new SetQuestToYearAction("susi"));
-		// TODO: add karma
+			reward);
 	}
 
 	private void addSecondQuest() {
@@ -212,13 +216,14 @@ public class FoundGirl {
 				"One is silver,", "One is silver"), null,
 				ConversationStates.INFORMATION_8, "\"And the other gold.\"",
 				null);
+
 		// TODO: lower case "and" is not accepted
+		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(15), new IncreaseXPAction(50), new SetQuestToYearAction("susi"));
 		npc.add(ConversationStates.INFORMATION_8, Arrays.asList(
 				"And the other gold.", "And the other gold"),
 				null, ConversationStates.ATTENDING,
 				"Yay! We are even better friends now.",
-				new SetQuestToYearAction("susi"));
-			// TODO: add karma
+				reward);
 	}
 
 	public void addToWorld() {
