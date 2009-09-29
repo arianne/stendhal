@@ -51,6 +51,7 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	}
 	
 	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX, final int oldY, final int newX, final int newY) {
+		// required by interface
 	}
 	
 	/**
