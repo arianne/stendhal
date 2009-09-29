@@ -2,7 +2,6 @@ package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.ArenaCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -24,7 +23,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class CreatureSpawner implements TurnListener {
+public class CreatureSpawner  {
 
 	static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 
@@ -164,7 +163,4 @@ public class CreatureSpawner implements TurnListener {
 		return spawnNewCreature(calculateNextCreature(questLevel), player,  deathmatchInfo);
 	}
 
-	public void onTurnReached(final int currentTurn) {
-
-	}
 }
