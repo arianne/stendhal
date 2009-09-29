@@ -72,7 +72,7 @@ public final class SentenceBuilder {
     /**
      * Check for empty buffer content.
      *
-     * @return
+     * @return true, if the builder is empty
      */
     public boolean isEmpty() {
         return builder.toString().length() == 0;

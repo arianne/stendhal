@@ -400,7 +400,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Check if the given Expression should be ignored.
      *
      * @param expr
-     * @return
+     * @return true, if the expression should be ignored
      */
     protected boolean isIgnorable(final Expression expr) {
         return context.getIgnoreIgnorable() && expr.isIgnore();
@@ -563,7 +563,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
      * @param text
-     * @return
+     * @return true, if the text matches
      */
     public boolean matchesNormalizedStart(final String text) {
         return matchesStart(ConversationParser.parseForMatching(text));
@@ -574,7 +574,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
      * @param other
-     * @return
+     * @return true, if the complete sentence matches
      */
     public boolean matchesFull(final Sentence other) {
         return matches(other, false);
@@ -585,7 +585,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
      * @param other
-     * @return
+     * @return true, if the start stentence start matches
      */
     public boolean matchesStart(final Sentence other) {
         return matches(other, true);
@@ -597,7 +597,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      *
      * @param other
      * @param matchStart
-     * @return
+     * @return if the specified sentence matches
      */
     private boolean matches(final Sentence other, final boolean matchStart) {
         if (other == null) {
