@@ -15,8 +15,6 @@ import marauroa.server.db.TransactionPool;
  */
 public class DumpOpenDBTransactions extends ScriptImpl {
 
-	private StringBuilder dumpedTable;
-
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		if (args.size() > 0) {
