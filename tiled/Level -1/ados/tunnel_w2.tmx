@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen.png"/>
  </tileset>
@@ -81,7 +80,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SS47iQBAEUI7r+59gtggxjV2/qLRfSE/dCzCZGT5er9cBAAAAAAAAAAAAAAAAAAAAALDA2aTnJNf9t6RnJ9v/a4P5mdf/mc+l52dO92eT3gH9s77/4+N/ahmZ9C7onzn9n/l8ehfauz/b7a+kd6Kt/1FJ74T+0T/6Z/07kN6HXP/pXVjf//HxP/V867Il6T3o67836T3IvQPp+Vn7fqTnQf/on0z/rw1mGrFD1V12uF16plHd/y/pmXdT8T49Sc++m4o36kl69t1UvNHZeSvulr7l7jeqNm8FlW5aadYqKt200qxVVLlplTmrqXLXKnNW81dGPlv/+/qVkc8a+dz03e7iV2b1f+V3emair7cV3V9N+l531nrrVUnf5+5abz7iO2eSvs/dtdy85Tut70P6Pk9w9eZXP986T/ouT9Eb/dfXE/3X15qZs6Rv8mSfSfx2+gZP9pnEbyZmYG3/V5O+y1OsuPvVHG9/eV7/M2fh715m/U7r+5C+UdrMe6y4dW/S99+h81m3Gf08/efudcf+012k+2+93y79r9rjTkYl3f2IXdJdVOm+pc+rn1/df7qLSv1/y9Xn77ZPuovq/V/JTjsdb3+f5n3/VdnxnU73kOx/dXbZK337HazMDjum772b2UnvR/YdSO/GuP57v8OeZia9G7l3IL0Tbf2Peh/SO9HW/4ik92H9O5Cen/XvQnpO1r8L6XkAAAAAAAAAAAAAAM76B7RAw+AAAAEA
+   H4sIAAAAAAAAAO3SQY7jMAwEwDzX/3/BXoMgO7FkSS3a1UBh5pA4JNvH6/U6AAAAAAAAAAAAAAAAAAAAAAAWOJv0nOS6/5b07GT7f20wP/P6P/O59PzM6f5s0jugf9b3f3z8Ty0jk94F/TOn/zOfT+9Cf/dnu/2V9E709T8q6Z3QP/pH/6x/B9L7kOs/vQvr+z8+/qeeb132JL0H1/q/mvQe5N6B9PysfT/S86B/9E+m/9cGM43YoeouO9wuPdOo7v+X9My7qXifK0nPvpuKN7qS9Oy7qXijlnmr7Za+5e43qjZvBZVuWmnWKirdtNKsVVS5aZU5q6ly1ypzVvNXRj5b//v6lZHPGvnc9N3u4ldm9d/yO1dm4lpvK7pvTfped9Z761VJ3+fuem8+4jtnkr7P3fXcvOc7ve9D+j5P0Hrz1s/3zpO+y1Ncjf7ruxL919ebmbOkb/Jkn0n8dvoGT/aZxG8mZmBt/61J3+UpVty9NcfbX57X/8xZ+LuXWb/T+z6kb5Q28x4rbn016fvv0Pms24x+nv5z97pj/+ku0v333m+X/lftcSejku5+xC7pLqp039Nn6+dX95/uolL/39L6/N32SXdRvf+W7LTT8fb3ad73X5Ud3+l0D8n+V2eXvdK338HK7LBj+t67mZ30fmTfgfRujOv/6nfY08ykdyP3DqR3oq//Ue9Deif6+h+R9D6sfwfS87P+XUjPyfp3IT0PAAAAAAAAAAAAAMBZ/wD8y8t5AAABAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
