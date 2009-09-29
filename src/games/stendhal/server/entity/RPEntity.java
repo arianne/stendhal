@@ -1316,6 +1316,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */
+	@SuppressWarnings("unchecked")
 	protected final String getSlotNameToEquip(final Item item) {
 		// get all possible slots for this item
 		final List<String> slotNames = item.getPossibleSlots();

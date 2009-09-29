@@ -402,7 +402,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @return The current amount of karma.
 	 * 
-	 * @see #addKarma()
+	 * @see #addKarma(double)
 	 */
 	@Override
 	public double getKarma() {
@@ -1886,8 +1886,8 @@ public class Player extends RPEntity {
 
 
 	public void equip(final Item item, final int amount) {
-		if (item instanceof Stackable) {
-			((Stackable) item).setQuantity(amount);
+		if (item instanceof Stackable<?>) {
+			((Stackable<?>) item).setQuantity(amount);
 			super.equipToInventoryOnly(item);
 		} else {
 			for (int i = 1; i <= amount; i++) {

@@ -17,22 +17,10 @@ import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
-import org.apache.log4j.Logger;
-
 /**
- * Handles the RPClass registration and updating old Player objects created by
- * an older version of Stendhal.
+ * Handles the RPClass registration.
  */
 public class PlayerRPClass {
-
-
-	
-	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
-
-
-
-
-
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -130,14 +118,5 @@ public class PlayerRPClass {
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
 	}
-
-
-
-
-
-
-
-
-
 
 }
