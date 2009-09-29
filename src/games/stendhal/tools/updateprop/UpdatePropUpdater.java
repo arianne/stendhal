@@ -81,7 +81,7 @@ public class UpdatePropUpdater {
 	}
 
 	private void updateFileSize() {
-		
+		// TODO: implement me
 	}
 
 	private void writeNewUpdateProperties() throws IOException {

@@ -14,6 +14,7 @@ import java.util.zip.GZIPInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -32,6 +33,7 @@ import org.xml.sax.SAXException;
  * 
  */
 public class ServerTMXLoader {
+	private static Logger logger = Logger.getLogger(ServerTMXLoader.class);
 
 	private StendhalMapStructure stendhalMap;
 
@@ -213,6 +215,7 @@ public class ServerTMXLoader {
 			try {
 				factory.setAttribute("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			} catch (final IllegalArgumentException e) {
+				logger.warn(e, e);
 			}
 			
 			final DocumentBuilder builder = factory.newDocumentBuilder();
