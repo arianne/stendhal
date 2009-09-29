@@ -21,8 +21,8 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 	/**
 	 * Creates a new BuyHouseChatAction.
 	 * 
-	 * @param location
-	 *            where are the houses?
+	 * @param cost how much does the house cost
+	 * @param questSlot name of quest slot
 	 */
 	BuyHouseChatAction(final int cost, final String questSlot) {
 		super(questSlot);

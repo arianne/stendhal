@@ -29,6 +29,7 @@ public class HouseUtilities {
 	};
 	
 	private HouseUtilities() {
+		// hide constructor, this is a static class
 	}
 
 	/**

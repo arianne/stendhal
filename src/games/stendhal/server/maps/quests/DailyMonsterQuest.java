@@ -21,8 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-
 /**
  * QUEST: Daily Monster Kill Quest.
  * <p>
@@ -45,8 +43,6 @@ import org.apache.log4j.Logger;
 public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";
-
-	private static final Logger logger = Logger.getLogger(DailyMonsterQuest.class);
 
 	class DailyQuestAction implements ChatAction {
 
@@ -71,15 +67,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 		
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-
-			// Debug Only, to debug mode just toggle the true/false for the IF
-			// statement
-			// unrelated note: /script AlterQuest.class User daily
-			if (false) {
-				testAllLevels();
-				logger.error(debugString);
-				return;
-			}
 
 			final String questInfo = player.getQuest("daily");
 			String questKill = null;
