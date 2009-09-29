@@ -144,6 +144,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 																LOCATION_UNKNOWN_TEXTS);
 
 	@Override
+	@SuppressWarnings("all") // "dead"
 	public void createDialog(final SpeakerNPC npc) {
 		class StateInfo {
 			private String creatureName;

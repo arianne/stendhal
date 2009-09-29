@@ -31,7 +31,6 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
-		private static long lastShoutTime;
 
 		private String cryForHelp;
 
@@ -47,6 +46,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		/*
 		 disabled, see https://sourceforge.net/tracker/?func=detail&aid=2806268&group_id=1111&atid=101111
+
+		private static long lastShoutTime;
 		@Override
 		public void onDead(final Entity killer, final boolean remove) {
 			super.onDead(killer, remove);

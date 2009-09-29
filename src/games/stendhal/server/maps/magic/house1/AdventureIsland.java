@@ -86,6 +86,7 @@ public class AdventureIsland extends StendhalRPZone {
 		
 			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 								  final int newY) {
+				// ignore
 			}
 		
 		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
@@ -98,12 +99,12 @@ public class AdventureIsland extends StendhalRPZone {
 				// if they are relogging, 
 				// they can enter back to the bank (not the default zone of PlayerRPClass). 
 				// If they are scrolling out or walking out the portal it works as before.
-			    	entity.put("zoneid", "int_magic_house1");
-					entity.put("x", "12");
-					entity.put("y", "3");
+			    entity.put("zoneid", "int_magic_house1");
+				entity.put("x", "12");
+				entity.put("y", "3");
 
-					// start a turn notifier counting down to shut down the zone in 15 minutes
-					TurnNotifier.get().notifyInSeconds(15*60, new AdventureIslandRemover(zone));
+				// start a turn notifier counting down to shut down the zone in 15 minutes
+				TurnNotifier.get().notifyInSeconds(15*60, new AdventureIslandRemover(zone));
 
 			}
 		}
@@ -111,6 +112,7 @@ public class AdventureIsland extends StendhalRPZone {
 		public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							final int oldY, final int newX, final int newY) {
 			
+			// ignore
 		}
 		
 	}
