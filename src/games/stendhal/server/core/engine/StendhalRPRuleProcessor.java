@@ -268,8 +268,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized void beginTurn() {
 		final long start = System.nanoTime();
 
-		debugOutput();
-
 		try {
 			
 			destroyObsoleteZones();
@@ -355,27 +353,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		entityToKill.clear();
 	}
 
-	private void debugOutput() {
-		/*
-		 * Debug statement for inspecting list of things. Most of our memories
-		 * leaks came from list keep adding and adding elements.
-		 */
-		if (Debug.SHOW_LIST_SIZES && (rpman.getTurn() % 1000 == 0)) {
-			int objects = 0;
-
-			for (final IRPZone zone : SingletonRepository.getRPWorld()) {
-				objects += zone.size();
-			}
-
-			final StringBuilder os = new StringBuilder();
-			os.append("entityToKill: " + entityToKill.size() + "\n");
-			os.append("players: " + getOnlinePlayers().size() + "\n");
-			os.append("playersRmText: " + playersRmText.size() + "\n");
-
-			os.append("objects: " + objects + "\n");
-			logger.info(os);
-		}
-	}
 
 	public synchronized void endTurn() {
 		final int currentTurn = getTurn();

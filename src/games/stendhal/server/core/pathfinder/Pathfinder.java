@@ -493,10 +493,6 @@ class Pathfinder {
 			return heuristic + tieBreaking;
 		}
 
-		public double getWeight() {
-			return weight;
-		}
-
 		/**
 		 * Checks if the entity could stand on the position of this node.
 		 * 

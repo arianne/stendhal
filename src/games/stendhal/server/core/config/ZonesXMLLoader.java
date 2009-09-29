@@ -225,11 +225,12 @@ public class ZonesXMLLoader {
 		return zone;
 	}
 
+	@SuppressWarnings("unchecked")
 	private StendhalRPZone createZone(final ZoneDesc desc, final String name)  {
 		try {
 			Class<StendhalRPZone> zoneclass = (Class<StendhalRPZone>) Class.forName(desc.getImplementation());
 			Constructor<StendhalRPZone> constr = zoneclass.getConstructor(String.class);
-			return  (StendhalRPZone) constr.newInstance(name);
+			return constr.newInstance(name);
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();
