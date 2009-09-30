@@ -52,6 +52,9 @@ public class TriggerExactlyInListCondition implements ChatCondition {
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+
+		// TODO: lowercase "and" at the beginning of a sentence is ignored, even in full match mode: "and the other gold"
+
 		final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), CONVERSION_CONTEXT);
 		for (Sentence trigger : triggers) {
 			if (answer.matchesFull(trigger)) {
