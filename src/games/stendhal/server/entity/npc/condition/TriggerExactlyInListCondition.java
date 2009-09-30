@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -21,7 +22,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class TriggerExactlyInListCondition implements ChatCondition {
 	private static final ConversationContext CONVERSION_CONTEXT = new ConvCtxForMatchingSource();
 
-	private List<Sentence> triggers;
+	private List<Sentence> triggers = new LinkedList<Sentence>();
 
 
 	/**
