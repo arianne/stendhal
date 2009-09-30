@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.TriggerExactlyInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -114,7 +115,6 @@ public class FoundGirl {
 			"You can get a costume from Liliana over there or you can try to solve a difficult puzzle in one of the houses.",
 			null);
 
-
 		// friends
 		npc.add(
 			ConversationStates.ATTENDING, Arrays.asList("friend", "friends", "friendship"),
@@ -174,24 +174,29 @@ public class FoundGirl {
 			ConversationStates.INFORMATION_1,
 			"Please repeat:\r\n                        \"A circle is round,\"",
 			null);
-		npc.add(ConversationStates.INFORMATION_1, Arrays.asList(
-			"A circle is round,", "A circle is round"), null,
+		npc.add(ConversationStates.INFORMATION_1,
+			"",
+			new TriggerExactlyInListCondition("A circle is round,", "A circle is round"),
 			ConversationStates.INFORMATION_2, "\"it has no end.\"",
 			null);
-		npc.add(ConversationStates.INFORMATION_2, Arrays.asList(
-			"it has no end.", "it has no end"), null,
+		npc.add(ConversationStates.INFORMATION_2, 
+			"",
+			new TriggerExactlyInListCondition("it has no end.", "it has no end"),
 			ConversationStates.INFORMATION_3,
 			"\"That's how long,\"", null);
-		npc.add(ConversationStates.INFORMATION_3, Arrays.asList(
-			"That's how long,", "That's how long",
-			"Thats how long,", "Thats how long"), null,
+		npc.add(ConversationStates.INFORMATION_3, 
+			"",
+			new TriggerExactlyInListCondition(
+				"That's how long,", "That's how long",
+				"Thats how long,", "Thats how long"),
 			ConversationStates.INFORMATION_4,
 			"\"I will be your friend.\"", null);
 
 		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(10), new IncreaseXPAction(25), new SetQuestToYearAction("susi"));
-		npc.add(ConversationStates.INFORMATION_4, Arrays.asList(
-			"I will be your friend.", "I will be your friend"),
-			null, ConversationStates.ATTENDING,
+		npc.add(ConversationStates.INFORMATION_4, 
+			"",
+			new TriggerExactlyInListCondition("I will be your friend.", "I will be your friend"),
+			ConversationStates.ATTENDING,
 			"Yay! We are friends now.",
 			reward);
 	}
@@ -203,25 +208,25 @@ public class FoundGirl {
 				ConversationStates.INFORMATION_5,
 				"Please repeat:\r\n                        \"Make new friends,\"",
 				null);
-		npc.add(ConversationStates.INFORMATION_5, Arrays.asList(
-				"Make new friends,", "Make new friends"), null,
+		npc.add(ConversationStates.INFORMATION_5, 
+				"",
+				new TriggerExactlyInListCondition("Make new friends,", "Make new friends"),
 				ConversationStates.INFORMATION_6, "\"but keep the old.\"",
 				null);
-		// TODO: this does not work, only "but" is accepted
-		npc.add(ConversationStates.INFORMATION_6, Arrays.asList(
-				"but keep the old.", "but keep the old"), null,
+		npc.add(ConversationStates.INFORMATION_6, "",
+				new TriggerExactlyInListCondition("but keep the old.", "but keep the old"),
 				ConversationStates.INFORMATION_7, "\"One is silver,\"",
 				null);
-		npc.add(ConversationStates.INFORMATION_7, Arrays.asList(
-				"One is silver,", "One is silver"), null,
+		npc.add(ConversationStates.INFORMATION_7, "",
+				new TriggerExactlyInListCondition("One is silver,", "One is silver"),
 				ConversationStates.INFORMATION_8, "\"And the other gold.\"",
 				null);
 
-		// TODO: lower case "and" is not accepted
+		// lowercase "and" is ignored, even in full match mode
 		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(15), new IncreaseXPAction(50), new SetQuestToYearAction("susi"));
-		npc.add(ConversationStates.INFORMATION_8, Arrays.asList(
-				"And the other gold.", "And the other gold"),
-				null, ConversationStates.ATTENDING,
+		npc.add(ConversationStates.INFORMATION_8, "",
+				new TriggerExactlyInListCondition("And the other gold.", "And the other gold", "the other gold.", "the other gold"),
+				ConversationStates.ATTENDING,
 				"Yay! We are even better friends now.",
 				reward);
 	}
