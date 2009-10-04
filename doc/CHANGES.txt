@@ -3,6 +3,11 @@ Changelog
 0.xx
 - trade center in progress
 
+0.78
+- various map fixes
+- added a note about logging on account creation
+- replaced old forked map editor with the official one from http://mapeditor.org/ 
+
 0.77
 - improvements to the test infrastructure, now including coverage reports and various statistics about code quality
 - more corpses redrawn and new kinds added
