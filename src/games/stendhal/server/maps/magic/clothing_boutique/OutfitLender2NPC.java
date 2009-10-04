@@ -37,6 +37,10 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
+		if (System.getProperty("stendhal.minetown") != null) {
+			return;
+		}
+		
 		initOutfits();
 		buildBoutiqueArea(zone);
 	}
