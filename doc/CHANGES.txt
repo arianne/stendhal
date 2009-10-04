@@ -1,12 +1,16 @@
 Changelog
 ---------
-0.xx
-- trade center in progress
 
 0.78
+* changes for players
 - various map fixes
 - added a note about logging on account creation
+- destroy the old wedding ring, if another is added to the same slot with it and use up the energy of the new one
+
+* changes for developer / hosters / admins
 - replaced old forked map editor with the official one from http://mapeditor.org/ 
+- fixed error message: object does not have slot !quests
+- check existence of character to be jailed
 
 0.77
 - improvements to the test infrastructure, now including coverage reports and various statistics about code quality
