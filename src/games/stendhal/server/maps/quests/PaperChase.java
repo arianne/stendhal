@@ -6,6 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -16,11 +20,12 @@ import java.util.StringTokenizer;
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private final String[] points = new String[] { "Carmen", "Monogenes",
-			"Hayunn Naratha",
-			"Margaret", "Balduin",
-			"Katinka", "Haizen", "Bario", "Ceryl", "Nishiya", "Marcus",
-			"Jynath", "Loretta", "Fidorea" };
+	private List<String> points = Arrays.asList("Hayunn Naratha",
+			"Sister Benedicta", "Thanatos", "Margaret", "Vonda", "Zara", "Phalk", 
+			"Jef", "Orc Saman", "Blacksheep Harry", "Covester", "Femme Fatale", 
+			"PDiddi", "Vulcanus", "Haizen", "Monogenes");
+
+	private Map<String, String> texts = new HashMap<String, String>();
 
 	/**
 	 * Handles all normal points in this paper chase (without the first and last.
@@ -34,8 +39,8 @@ public class PaperChase extends AbstractQuest {
 		}
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String state = points[idx];
-			final String next = points[idx + 1];
+			final String state = points.get(idx);
+			final String next = points.get(idx + 1);
 			final String questState = player.getQuest(QUEST_SLOT);
 
 			// player does not have this quest or finished it
@@ -51,12 +56,12 @@ public class PaperChase extends AbstractQuest {
 
 			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
-				engine.say("Sorry, you are suposed to talk to " + nextNPC + ".");
+				engine.say("What do you say? " + texts.get(nextNPC) + ". That's obviously not me.");
 				return;
 			}
 
 			// send player to the next NPC and record it in quest state
-			engine.say("OK, please talk to " + next + " now.");
+			engine.say("OK, please talk to " + texts.get(next) + " now.");
 			final String newState = next + ";" + startTime;
 			player.setQuest(QUEST_SLOT, newState);
 		}
@@ -78,7 +83,7 @@ public class PaperChase extends AbstractQuest {
 	 *            index of way point
 	 */
 	private void addTaskToNPC(final int idx) {
-		final String state = points[idx];
+		final String state = points.get(idx);
 		final SpeakerNPC npc = npcs.get(state);
 		npc.add(ConversationStates.ATTENDING, "paper", null,
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
@@ -89,17 +94,14 @@ public class PaperChase extends AbstractQuest {
 		super.addToWorld();
 
 		// TODO: add Fidorea to world introducing the quest
-		// - detect using of scrolls
 
 		// add normal way points (without first and last)
-		for (int i = 0; i < points.length - 1; i++) {
+		for (int i = 0; i < points.size() - 1; i++) {
 			addTaskToNPC(i);
 		}
 
 		// TODO: Fidorea doing the post processing of this quest (calc points
 		// based on time and level)
-		// - store and read result (with server restart in mind)
-		// - create sign as Hall of Fame
 	}
 
 	@Override
