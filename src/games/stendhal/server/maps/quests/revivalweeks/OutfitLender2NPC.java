@@ -27,7 +27,7 @@ public class OutfitLender2NPC {
 	public static final int endurance = 48 * 60 * 20 * 10;
 
 	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions 
-	private static final double N = 1;
+	private static final double N = 0.05;
 
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
 
@@ -148,9 +148,9 @@ public class OutfitLender2NPC {
 					null,
 					ConversationStates.ATTENDING,
 					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #slime outfit, or #hire a #gingerbread #man outfit.",
-					new ExamineChatAction("outfits2.png", "Outfits", "Price varies"));
+					new ExamineChatAction("outfits2.png", "Outfits", "Special offer."));
 				addJob("I work with magic in a fun way! Ask about the #offer.");
-				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana also rents out from a different range.");
+				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana in the Magic City also rents out from a different range.");
 				addGoodbye("Bye!");
 				final OutfitChangerBehaviour behaviour = new SpecialOutfitChangerBehaviour(priceList, endurance, "Your magical outfit has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "hire", false, false);
