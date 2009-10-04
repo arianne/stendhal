@@ -27,6 +27,27 @@ public class PaperChase extends AbstractQuest {
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
+
+
+	private void setupTexts() {
+		texts.put("Hayunn Naratha", "Please ask Hayunn Naratha about the #paper #chase.");
+		texts.put("Sister Benedicta", "Please talk to Sister Benedicta about the #paper #chase");
+		texts.put("Thanatos", "Please talk to Thanatos about the #paper #chase");
+		texts.put("Margaret", "Please talk to Margaret about the #paper #chase");
+		texts.put("Vonda", "Please talk to Vonda about the #paper #chase");
+		texts.put("Zara", "Please talk to Zara about the #paper #chase");
+		texts.put("Phalk", "Please talk to Phalk about the #paper #chase");
+		texts.put("Jef", "Please talk to Jef about the #paper #chase");
+		texts.put("Orc Saman", "Please talk to Orc Saman about the #paper #chase");
+		texts.put("Blacksheep Harry", "Please talk to Blacksheep Harry about the #paper #chase"); 
+		texts.put("Covester", "Please talk to Covester about the #paper #chase");
+		texts.put("Femme Fatale", "Please talk to Femme Fatale about the #paper #chase");
+		texts.put("PDiddi", "Please talk to PDiddi about the #paper #chase");
+		texts.put("Vulcanus", "Please talk to Vulcanus about the #paper #chase");
+		texts.put("Haizen", "Please talk to Haizen about the #paper #chase");
+		texts.put("Monogenes", "Please talk to Monogenes about the #paper #chase");
+	}
+	
 	/**
 	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)
@@ -92,6 +113,8 @@ public class PaperChase extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		
+		setupTexts();
 
 		// TODO: add Fidorea to world introducing the quest
 
@@ -103,6 +126,7 @@ public class PaperChase extends AbstractQuest {
 		// TODO: Fidorea doing the post processing of this quest (calc points
 		// based on time and level)
 	}
+
 
 	@Override
 	public String getName() {
