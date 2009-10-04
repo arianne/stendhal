@@ -158,7 +158,7 @@ public class OutfitLender2NPC {
 		};
 
 		npc.setEntityClass("wizardwomannpc");
-		npc.setPosition(5, 7);
+		npc.setPosition(89, 106);
 		npc.initHP(100);
 		zone.add(npc);
 	}
