@@ -54,14 +54,20 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		  final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(87), null, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
-		  final Pair<Outfit, Boolean> SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(93)), false);
+		  final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(93)), false);
+		  final Pair<Outfit, Boolean> GREEN_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(89)), false);
+		  final Pair<Outfit, Boolean> RED_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(88)), false);
+		  final Pair<Outfit, Boolean> BLUE_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(91)), false);
 		  final Pair<Outfit, Boolean> GINGERBREAD_MAN = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(92)), false);
 		 
 		
 			outfitTypes.put("glasses", GLASSES);
 			outfitTypes.put("goblin face", GOBLIN_FACE);
 			outfitTypes.put("thing face", THING_FACE);
-			outfitTypes.put("slime", SLIME);
+			outfitTypes.put("purple slime", PURPLE_SLIME);
+			outfitTypes.put("green slime", GREEN_SLIME);
+			outfitTypes.put("red slime", RED_SLIME);
+			outfitTypes.put("blue slime", BLUE_SLIME);
 			outfitTypes.put("gingerbread man", GINGERBREAD_MAN);
 	}
 		
@@ -147,7 +153,10 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("glasses", (int) (N * 400));
 				priceList.put("goblin face", (int) (N * 500));
 				priceList.put("thing face", (int) (N * 500));
-				priceList.put("slime", (int) (N * 3000));
+				priceList.put("purple slime", (int) (N * 3000));
+				priceList.put("red slime", (int) (N * 3000));
+				priceList.put("blue slime", (int) (N * 3000));
+				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
 			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
@@ -156,7 +165,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #slime outfit, or #hire a #gingerbread #man outfit.",
+					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #purple #slime outfit, #hire a #green #slime, #hire a #red #slime, #hire a #blue #slime, or #hire a #gingerbread #man outfit.",
 					new ExamineChatAction("outfits2.png", "Outfits", "Price varies"));
 				addJob("I work with magic in a fun way! Ask about the #offer.");
 				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana also rents out from a different range.");
