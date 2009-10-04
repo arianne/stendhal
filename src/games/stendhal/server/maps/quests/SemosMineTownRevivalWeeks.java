@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
+import games.stendhal.server.maps.quests.revivalweeks.OutfitLender2NPC;
 
 /**
  * <p>Creates a special version of Susi by the semos mine town.
@@ -36,6 +37,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		super.addToWorld();
 		new FoundGirl().addToWorld();
 		new DadNPC().addToWorld();
+		new OutfitLender2NPC().addToWorld();
 		createSignToCloseTower();
 	}
 
