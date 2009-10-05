@@ -10774,8 +10774,8 @@
       <atk value="2557"/>
       <def value="154"/>
       <hp value="10000"/>
-      <speed value="0.6"/>
-      <size value="11,12"/>
+      <speed value="1.0"/>
+      <size value="6,6"/>
     </attributes>
     <level value="350"/>
     <experience value="430000"/>
