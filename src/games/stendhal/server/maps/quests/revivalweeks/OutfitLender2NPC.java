@@ -144,7 +144,10 @@ public class OutfitLender2NPC {
 				priceList.put("glasses", (int) (N * 400));
 				priceList.put("goblin face", (int) (N * 500));
 				priceList.put("thing face", (int) (N * 500));
-				priceList.put("slime", (int) (N * 3000));
+				priceList.put("purple slime", (int) (N * 3000));
+				priceList.put("red slime", (int) (N * 3000));
+				priceList.put("blue slime", (int) (N * 3000));
+				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
 			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
@@ -153,7 +156,7 @@ public class OutfitLender2NPC {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #slime outfit, or #hire a #gingerbread #man outfit.",
+					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #purple #slime outfit, #hire a #green #slime, #hire a #red #slime, #hire a #blue #slime, or #hire a #gingerbread #man outfit.",
 					new ExamineChatAction("outfits2.png", "Outfits", "Special offer."));
 				addJob("I work with magic in a fun way! Ask about the #offer.");
 				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana in the Magic City also rents out from a different range.");
