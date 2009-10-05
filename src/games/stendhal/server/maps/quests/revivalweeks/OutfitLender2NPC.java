@@ -45,14 +45,20 @@ public class OutfitLender2NPC {
 		  final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(87), null, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
-		  final Pair<Outfit, Boolean> SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(93)), false);
+		  final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(93)), false);
+		  final Pair<Outfit, Boolean> GREEN_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(89)), false);
+		  final Pair<Outfit, Boolean> RED_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(88)), false);
+		  final Pair<Outfit, Boolean> BLUE_SLIME = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(91)), false);
 		  final Pair<Outfit, Boolean> GINGERBREAD_MAN = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(92)), false);
 		 
 		
 			outfitTypes.put("glasses", GLASSES);
 			outfitTypes.put("goblin face", GOBLIN_FACE);
 			outfitTypes.put("thing face", THING_FACE);
-			outfitTypes.put("slime", SLIME);
+			outfitTypes.put("purple slime", PURPLE_SLIME);
+			outfitTypes.put("green slime", GREEN_SLIME);
+			outfitTypes.put("red slime", RED_SLIME);
+			outfitTypes.put("blue slime", BLUE_SLIME);
 			outfitTypes.put("gingerbread man", GINGERBREAD_MAN);
 	}
 		
