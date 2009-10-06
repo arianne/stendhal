@@ -32,6 +32,7 @@ public class Shop extends RPEntity {
 	}
 	
 	public Shop(final RPObject object) {
+		super(object);
 		this.setRPClass(SHOP_RPCLASS_NAME);
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 			this.offers.add((Offer) rpo);
@@ -51,6 +52,7 @@ public class Shop extends RPEntity {
 	}
 
 	private Shop() {
+		super();
 		setRPClass(SHOP_RPCLASS_NAME);
 		store();
 	}
