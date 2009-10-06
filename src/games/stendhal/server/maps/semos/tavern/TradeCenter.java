@@ -83,6 +83,7 @@ class AddOfferChatAction implements ChatAction {
 				createOffer(player, itemName, price);
 				npc.say("I added your offer to the trading center.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
+				return;
 			}
 			npc.say("You may not place more than "+Integer.valueOf(MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
 		} catch (NumberFormatException e) {

@@ -57,19 +57,24 @@ public class Shop extends RPEntity {
 	private Shop() {
 		super();
 		setRPClass(SHOP_RPCLASS_NAME);
+		addSlot(new RPSlot(OFFERS_SLOT_NAME));
+		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
 		store();
 	}
 	
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
-		offerer.drop(item);
 		final Offer offer = new Offer(item, money, offerer.getName());
-		getOffers().add(offer);
-		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
-		slot.add(offer);
-		offer.store();
-		this.store();
-		return offer;
+		if(offerer.drop(item.getItemSubclass())) {
+			getOffers().add(offer);
+			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+			slot.add(offer);
+			offerer.store();
+			offer.store();
+			this.store();
+			return offer;
+		}
+		return null;
 	}
 
 	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
