@@ -12,11 +12,8 @@ package games.stendhal.client;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.admin.TransitionDiagram;
 import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
-import games.stendhal.client.gui.tradingcenter.TradingCenterWindow;
-import games.stendhal.common.constants.Events;
 
 import java.util.HashMap;
 
@@ -525,13 +522,7 @@ public class UserContext implements RPObjectChangeListener {
 			} else if (rpevent.getName().equals("examine")) {
 				RPEventImageViewer.viewImage(rpevent);
 			}
-			if (rpevent.getName().equals(Events.OPEN_OFFER_PANEL)) {
-				//TODO madmetzger: fetch offers from server and add to window
-				TradingCenterWindow tradingWindow = new TradingCenterWindow("trading center", "trading center");
-				j2DClient.get().addWindow(tradingWindow);
-			}
 		}
-
 	}
 
 	/**
