@@ -27,13 +27,15 @@ public class Shop extends RPEntity {
 	public static void generateRPClass() {
 		final RPClass shop = new RPClass(SHOP_RPCLASS_NAME);
 		shop.isA("entity");
-		shop.addRPSlot(OFFERS_SLOT_NAME,0);
-		shop.addRPSlot(EARNINGS_SLOT_NAME, 0);
+		shop.addRPSlot(OFFERS_SLOT_NAME,-1);
+		shop.addRPSlot(EARNINGS_SLOT_NAME, -1);
 	}
 	
 	public Shop(final RPObject object) {
 		super(object);
 		this.setRPClass(SHOP_RPCLASS_NAME);
+		addSlot(new RPSlot(OFFERS_SLOT_NAME));
+		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 			this.offers.add((Offer) rpo);
 			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
@@ -43,6 +45,7 @@ public class Shop extends RPEntity {
 			this.earnings.add(earning);
 			this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
 		}
+		store();
 	}
 	
 	public static Shop createShop() {
