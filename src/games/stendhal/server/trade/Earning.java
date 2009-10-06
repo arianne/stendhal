@@ -58,8 +58,7 @@ public class Earning extends RPObject {
 	}
 
 	public String getSeller() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sellerName;
 	}
 
 }

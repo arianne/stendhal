@@ -1,97 +1,137 @@
 package games.stendhal.server.trade;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
-public class Shop {
+public class Shop extends RPEntity {
 	
-	public static Shop createShop(StendhalRPZone zone) {
-		return new Shop(zone);
+	private static final String SHOP_RPCLASS_NAME = "shop";
+	private static final String EARNINGS_SLOT_NAME = "earnings";
+	private static final String OFFERS_SLOT_NAME = "offers";
+	private final Set<Earning> earnings = new HashSet<Earning>();
+	private final List<Offer> offers = new LinkedList<Offer>();
+	
+	public static void generateRPClass() {
+		final RPClass shop = new RPClass(SHOP_RPCLASS_NAME);
+		shop.isA("entity");
+		shop.addRPSlot(OFFERS_SLOT_NAME,0);
+		shop.addRPSlot(EARNINGS_SLOT_NAME, 0);
+	}
+	
+	public Shop(final RPObject object) {
+		this.setRPClass(SHOP_RPCLASS_NAME);
+		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
+			this.offers.add((Offer) rpo);
+			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
+		}
+		for(final RPObject rpo : object.getSlot(EARNINGS_SLOT_NAME)) {
+			final Earning earning = (Earning) rpo;
+			this.earnings.add(earning);
+			this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
+		}
+	}
+	
+	public static Shop createShop() {
+		Shop shop = new Shop();
+		shop.store();
+		return shop;
 	}
 
-	private final Map<String, Set<Earning>> earnings = new HashMap<String, Set<Earning>>();
-	private final List<Offer> offers = new LinkedList<Offer>();
-	private StendhalRPZone zone;
-	
-	private Shop(final StendhalRPZone zone) {
-		this.zone = zone;
-		for (final RPObject item : this.zone) {
-			if (item.getRPClass().getName().equals("offer")) {
-				final Offer offer = (Offer) item;
-				this.offers.add(offer);
-			}
-			if(item.getRPClass().getName().equals("earning")) {
-				Earning earning = (Earning) item;
-				if(this.earnings.containsKey(earning.getSeller())) {
-					this.earnings.put(earning.getSeller(),new HashSet<Earning>());
-				}
-				Set<Earning> sellersEarnings = this.earnings.get(earning.getSeller());
-				sellersEarnings.add(earning);
-			}
-		}
-
+	private Shop() {
+		setRPClass(SHOP_RPCLASS_NAME);
+		store();
 	}
 	
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
 		offerer.drop(item);
 		final Offer offer = new Offer(item, money, offerer.getName());
-		offers.add(offer);
-		this.zone.add(offer,false);
+		getOffers().add(offer);
+		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+		slot.add(offer);
+		offer.store();
+		this.store();
 		return offer;
 	}
 
 	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
-		if (offers.contains(offer)) {
+		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				acceptingPlayer.equipOrPutOnGround(offer.getItem());
-				if (!earnings.containsKey(offer.getOffererName())) {
-					earnings.put(offer.getOffererName(), new HashSet<Earning>());
-				}
-				Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOffererName());
-				earnings.get(offer.getOffererName()).add(earning);
-				this.zone.add(earning, false);
-				this.zone.remove(offer);
+				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOffererName());
+				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
+				offers.remove(offer);
+				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
+				this.store();
 			}
 		}
 	}
 
 	public void fetchEarnings(final Player earner) {
-		if (earnings.containsKey(earner.getName())) {
-			final StackableItem item = (StackableItem) SingletonRepository
-					.getEntityManager().getItem("money");
-			item.setQuantity(this.sumUpEarningsForPlayer(earner));
-			earner.equipToInventoryOnly(item);
-			this.removeAllEarningsFromZone(earnings.get(earner.getName()));
-			earnings.remove(earner.getName());
+		Set<Earning> earningsToRemove = new HashSet<Earning>();
+		for (RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
+			Earning earning = (Earning) earningRPObject;
+			if(earning.getSeller().equals(earner.getName())) {
+				final StackableItem item = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+				item.setQuantity(this.sumUpEarningsForPlayer(earner));
+				earner.equipToInventoryOnly(item);
+				earnings.remove(earning);
+				earningsToRemove.add(earning);
+			}
+		}
+		for(Earning earning : earningsToRemove) {
+			this.getSlot(EARNINGS_SLOT_NAME).remove(earning.getID());
 		}
 	}
-
-	private void removeAllEarningsFromZone(Set<Earning> set) {
-		for(Earning earning:set) {
-			this.zone.remove(earning);
+	
+	public int countOffersOfPlayer(Player offerer) {
+		int count = 0;
+		for (Offer offer : this.offers) {
+			if(offer.getOffererName().equals(offerer.getName())) {
+				count = count + 1;
+			}
 		}
+		return count;
 	}
 
 	private int sumUpEarningsForPlayer(final Player earner) {
-		Set<Earning> earningsForPlayer = earnings.get(earner.getName());
 		int sum = 0;
-		for (Earning earning : earningsForPlayer) {
-			sum += earning.getValue().intValue();
+		for (final RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
+			Earning earning = (Earning) earningRPObject;
+			if(earning.getSeller().equals(earner.getName())) {
+				sum += earning .getValue().intValue();
+			}
 		}
 		return sum;
+	}
+
+	public List<Offer> getOffers() {
+		return offers;
+	}
+
+	@Override
+	protected void dropItemsOn(Corpse corpse) {
+		// 
+		
+	}
+
+	@Override
+	public void logic() {
+		//
 	}
 
 }

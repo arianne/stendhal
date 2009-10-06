@@ -30,8 +30,7 @@ public class TradeTest {
 	@Test
 	public void testSuccessfullTrade() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
-		Shop edeka = Shop.createShop(shopZone);
+		Shop edeka = Shop.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -57,8 +56,7 @@ public class TradeTest {
 
 	@Test
 	public void testNonExistingOffer() {
-		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
-		Shop edeka = Shop.createShop(shopZone);
+		Shop edeka = Shop.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -78,8 +76,7 @@ public class TradeTest {
 	@Test
 	public void testPoorBuyer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		StendhalRPZone shopZone = new StendhalRPZone("trade_center");
-		Shop edeka = Shop.createShop(shopZone);
+		Shop edeka = Shop.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
