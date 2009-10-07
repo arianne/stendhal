@@ -7,7 +7,7 @@ import games.stendhal.server.core.engine.transformer.HousePortalTransformer;
 import games.stendhal.server.core.engine.transformer.OfferTransformer;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
-import games.stendhal.server.core.engine.transformer.ShopTransformer;
+import games.stendhal.server.core.engine.transformer.MarketTransformer;
 import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
@@ -43,7 +43,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put("house_portal", new HousePortalTransformer());
 		transformerMap.put("offer", new OfferTransformer());
 		transformerMap.put("earning", new EarningTransformer());
-		transformerMap.put("shop", new ShopTransformer());
+		transformerMap.put("market", new MarketTransformer());
 		transformerMap.put("player", new PlayerTransformer());
 	}
 	

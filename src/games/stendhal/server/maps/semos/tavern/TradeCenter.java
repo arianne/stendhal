@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.trade.Shop;
+import games.stendhal.server.trade.Market;
 
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class TradeCenter implements ZoneConfigurator {
 	}
 
 	private void addShopToZone(StendhalRPZone zone) {
-		Shop shop = Shop.createShop();
+		Market shop = Market.createShop();
 		zone.add(shop);
 	}
 
@@ -93,7 +93,7 @@ class AddOfferChatAction implements ChatAction {
 	}
 
 	private int countOffers(Player player) {
-		Shop shopFromZone = getShopFromZone(player.getZone());
+		Market shopFromZone = getShopFromZone(player.getZone());
 		if(shopFromZone != null) {
 			int numberOfOffers = shopFromZone.countOffersOfPlayer(player);
 			return numberOfOffers;
@@ -102,7 +102,7 @@ class AddOfferChatAction implements ChatAction {
 	}
 
 	private void createOffer(Player player, String itemName, int price) {
-		Shop shop = getShopFromZone(player.getZone());
+		Market shop = getShopFromZone(player.getZone());
 		if(shop != null) {
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			shop.createOffer(player,item,Integer.valueOf(price));
@@ -118,10 +118,10 @@ class AddOfferChatAction implements ChatAction {
 		}
 	}
 
-	private Shop getShopFromZone(StendhalRPZone zone) {
+	private Market getShopFromZone(StendhalRPZone zone) {
 		for (RPObject rpObject : zone) {
 			if(rpObject.getRPClass().getName().equals("shop")) {
-				return (Shop) rpObject;
+				return (Market) rpObject;
 			}
 		}
 		return null;

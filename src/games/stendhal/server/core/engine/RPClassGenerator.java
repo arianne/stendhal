@@ -43,7 +43,7 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.trade.Earning;
 import games.stendhal.server.trade.Offer;
-import games.stendhal.server.trade.Shop;
+import games.stendhal.server.trade.Market;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
@@ -165,7 +165,7 @@ public class RPClassGenerator {
 			RentedSign.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("shop")) {
-			Shop.generateRPClass();
+			Market.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("offer")) {
 			Offer.generateRPClass();
