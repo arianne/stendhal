@@ -10,6 +10,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Offer extends RPObject {
+	
+	public static final String OFFER_RPCLASS_NAME = "offer";
 
 	private final Item item;
 	
@@ -18,7 +20,7 @@ public class Offer extends RPObject {
 	private final String offererName;
 	
 	public static void generateRPClass() {
-		final RPClass offerRPClass = new RPClass("offer");
+		final RPClass offerRPClass = new RPClass(OFFER_RPCLASS_NAME);
 		offerRPClass.isA("entity");
 		offerRPClass.addAttribute("price", Type.INT);
 		offerRPClass.addAttribute("offererName", Type.STRING);

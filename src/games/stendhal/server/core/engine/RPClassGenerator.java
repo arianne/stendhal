@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+
 import games.stendhal.server.core.rp.guilds.Guild;
 import games.stendhal.server.core.rp.guilds.GuildMember;
 import games.stendhal.server.core.rp.guilds.GuildPermission;
@@ -42,8 +43,8 @@ import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.trade.Earning;
-import games.stendhal.server.trade.Offer;
 import games.stendhal.server.trade.Market;
+import games.stendhal.server.trade.Offer;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
@@ -164,13 +165,13 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("rented_sign")) {
 			RentedSign.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("shop")) {
+		if (!RPClass.hasRPClass(Market.MARKET_RPCLASS_NAME)) {
 			Market.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("offer")) {
+		if (!RPClass.hasRPClass(Offer.OFFER_RPCLASS_NAME)) {
 			Offer.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("earning")) {
+		if (!RPClass.hasRPClass(Earning.EARNING_RPCLASS_NAME)) {
 			Earning.generateRPClass();
 		}
 

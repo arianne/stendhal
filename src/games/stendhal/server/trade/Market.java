@@ -18,14 +18,15 @@ import marauroa.common.game.RPSlot;
 
 public class Market extends RPEntity {
 	
-	private static final String SHOP_RPCLASS_NAME = "market";
-	private static final String EARNINGS_SLOT_NAME = "earnings";
-	private static final String OFFERS_SLOT_NAME = "offers";
+	public static final String MARKET_RPCLASS_NAME = "market";
+	public static final String EARNINGS_SLOT_NAME = "earnings";
+	public static final String OFFERS_SLOT_NAME = "offers";
+	
 	private final Set<Earning> earnings = new HashSet<Earning>();
 	private final List<Offer> offers = new LinkedList<Offer>();
 	
 	public static void generateRPClass() {
-		final RPClass shop = new RPClass(SHOP_RPCLASS_NAME);
+		final RPClass shop = new RPClass(MARKET_RPCLASS_NAME);
 		shop.isA("entity");
 		shop.addRPSlot(OFFERS_SLOT_NAME,-1);
 		shop.addRPSlot(EARNINGS_SLOT_NAME, -1);
@@ -33,7 +34,7 @@ public class Market extends RPEntity {
 	
 	public Market(final RPObject object) {
 		super(object);
-		this.setRPClass(SHOP_RPCLASS_NAME);
+		this.setRPClass(MARKET_RPCLASS_NAME);
 		addSlot(new RPSlot(OFFERS_SLOT_NAME));
 		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
@@ -56,7 +57,7 @@ public class Market extends RPEntity {
 
 	private Market() {
 		super();
-		setRPClass(SHOP_RPCLASS_NAME);
+		setRPClass(MARKET_RPCLASS_NAME);
 		addSlot(new RPSlot(OFFERS_SLOT_NAME));
 		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
 		store();

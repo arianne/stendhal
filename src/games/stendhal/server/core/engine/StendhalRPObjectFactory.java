@@ -4,14 +4,17 @@ import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.EarningTransformer;
 import games.stendhal.server.core.engine.transformer.FlowerGrowerTransFormer;
 import games.stendhal.server.core.engine.transformer.HousePortalTransformer;
+import games.stendhal.server.core.engine.transformer.MarketTransformer;
 import games.stendhal.server.core.engine.transformer.OfferTransformer;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
-import games.stendhal.server.core.engine.transformer.MarketTransformer;
 import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
+import games.stendhal.server.trade.Earning;
+import games.stendhal.server.trade.Market;
+import games.stendhal.server.trade.Offer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,9 +44,9 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(RentedSign.RPCLASS_NAME, new RentedSignTransformer());
 		transformerMap.put("chest", new StoredChestTransformer());
 		transformerMap.put("house_portal", new HousePortalTransformer());
-		transformerMap.put("offer", new OfferTransformer());
-		transformerMap.put("earning", new EarningTransformer());
-		transformerMap.put("market", new MarketTransformer());
+		transformerMap.put(Offer.OFFER_RPCLASS_NAME, new OfferTransformer());
+		transformerMap.put(Earning.EARNING_RPCLASS_NAME, new EarningTransformer());
+		transformerMap.put(Market.MARKET_RPCLASS_NAME, new MarketTransformer());
 		transformerMap.put("player", new PlayerTransformer());
 	}
 	
