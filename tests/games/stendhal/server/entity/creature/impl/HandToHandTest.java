@@ -94,8 +94,8 @@ public class HandToHandTest {
 		final HandToHand hth = new HandToHand();
 		final Creature creature = SingletonRepository.getEntityManager().getCreature("balrog");
 		assertNotNull(creature);
-		assertThat(creature.getWidth(), is(11.0));
-		assertThat(creature.getHeight(), is(12.0));
+		assertThat(creature.getWidth(), is(6.0));
+		assertThat(creature.getHeight(), is(6.0));
 		creature.setPosition(10, 10);
 		assertFalse("no target yet", hth.canAttackNow(creature));
 		final RPEntity victim = PlayerTestHelper.createPlayer("bob");
