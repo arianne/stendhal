@@ -28,13 +28,8 @@ public final class MarketManagerNPC extends SpeakerNPC {
 		addGreeting("Welcome to Semos trading center. How can I help you?");
 		addJob("I am here to assist you in selling items.");
 		addHelp("Add a nice help text here.");
-		ChatAction action = new AddOfferChatAction();
-		add(ConversationStates.ATTENDING,
-			"sell",null,null,
-			ConversationStates.ATTENDING,
-			null,action);
-		ChatAction showAction = new ShowOffersChatAction();
-		add(ConversationStates.ATTENDING,"show",null,ConversationStates.ATTENDING,null,showAction);
+		add(ConversationStates.ATTENDING, "sell", null, null, ConversationStates.ATTENDING,	null, new AddOfferChatAction());
+		add(ConversationStates.ATTENDING, "show", null, ConversationStates.BUY_PRICE_OFFERED, null, new ShowOffersChatAction());
 		addGoodbye("Visit me again to see players offers or put a new offer!");
 	}
 	public Map<String, Map<String, Offer>> getOfferMap() {
