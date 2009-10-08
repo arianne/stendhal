@@ -11,6 +11,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Offer extends RPObject {
 	
+	public static final String OFFER_ITEM_SLOT_NAME = "item";
+
 	public static final String OFFER_RPCLASS_NAME = "offer";
 
 	private final Item item;
@@ -25,7 +27,7 @@ public class Offer extends RPObject {
 		offerRPClass.addAttribute("price", Type.INT);
 		offerRPClass.addAttribute("offererName", Type.STRING);
 		offerRPClass.addAttribute("class", Type.STRING);
-		offerRPClass.addRPSlot("item", 1);
+		offerRPClass.addRPSlot(OFFER_ITEM_SLOT_NAME, 1);
 	}
 	
 	/**
@@ -34,8 +36,8 @@ public class Offer extends RPObject {
 	public Offer(final Item item, final Integer price, final String offererName) {
 		super();
 		setRPClass("offer");
-		this.addSlot("item");
-		this.getSlot("item").add(item);
+		this.addSlot(OFFER_ITEM_SLOT_NAME);
+		this.getSlot(OFFER_ITEM_SLOT_NAME).add(item);
 		this.item = item;
 		this.put("price", price.intValue());
 		this.price = price;
@@ -45,7 +47,7 @@ public class Offer extends RPObject {
 	}
 	
 	public Offer(final RPObject object) {
-		this((Item) object.getSlot("item").getFirst(), Integer.valueOf(object.getInt("price")), object.get("offererName"));
+		this((Item) object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(), Integer.valueOf(object.getInt("price")), object.get("offererName"));
 	}
 
 

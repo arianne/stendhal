@@ -66,7 +66,7 @@ public class Market extends RPEntity {
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
 		final Offer offer = new Offer(item, money, offerer.getName());
-		if(offerer.drop(item.getItemSubclass())) {
+		if(offerer.drop(item.getName())) {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);

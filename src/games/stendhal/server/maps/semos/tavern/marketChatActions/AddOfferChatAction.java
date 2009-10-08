@@ -1,9 +1,6 @@
-package games.stendhal.server.maps.semos.tavern;
+package games.stendhal.server.maps.semos.tavern.marketChatActions;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -11,59 +8,17 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Market;
 
-import java.util.Map;
-
-import marauroa.common.game.RPObject;
-
-public class TradeCenter implements ZoneConfigurator {
-
-	private static final String TRADE_ADVISOR_NAME = "clerk";
-	private static final int COORDINATE_Y = 13;
-	private static final int COORDINATE_X = 10;
-
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		addShopToZone(zone);
-		buildTradeCenterAdvisor(zone);
-	}
-
-	private void addShopToZone(StendhalRPZone zone) {
-		Market shop = Market.createShop();
-		zone.add(shop);
-	}
-
-	private void buildTradeCenterAdvisor(StendhalRPZone zone) {
-		SpeakerNPC speaker = new SpeakerNPC(TRADE_ADVISOR_NAME) {
-			@Override
-			protected void createPath() {
-				
-			}
-			@Override
-			protected void createDialog() {
-				addGreeting("Welcome to Semos trading center. How can I help you?");
-				addJob("I am here to assist you in selling items.");
-				addHelp("Add a nice help text here.");
-				ChatAction action = new AddOfferChatAction();
-				add(ConversationStates.ATTENDING,
-					"sell",null,null,
-					ConversationStates.SELL_PRICE_OFFERED,
-					null,action);
-				addGoodbye();
-			}
-		};
-		speaker.setPosition(COORDINATE_X,COORDINATE_Y);
-		speaker.setEntityClass("tradecenteradvisornpc");
-		speaker.setOutfit(new Outfit(10,10,10,10));
-		speaker.initHP(100);
-		zone.add(speaker);
-	}
-
-}
-class AddOfferChatAction implements ChatAction {
+/**
+ * puts a new offer to the market
+ * @author madmetzger
+ *
+ */
+public class AddOfferChatAction implements ChatAction {
 	
-	private static final int MAX_NUMBER_OFF_OFFERS = 5;
+	private static final int MAX_NUMBER_OFF_OFFERS = 3;
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -93,7 +48,7 @@ class AddOfferChatAction implements ChatAction {
 	}
 
 	private int countOffers(Player player) {
-		Market shopFromZone = getShopFromZone(player.getZone());
+		Market shopFromZone = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shopFromZone != null) {
 			int numberOfOffers = shopFromZone.countOffersOfPlayer(player);
 			return numberOfOffers;
@@ -102,7 +57,7 @@ class AddOfferChatAction implements ChatAction {
 	}
 
 	private void createOffer(Player player, String itemName, int price) {
-		Market shop = getShopFromZone(player.getZone());
+		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			shop.createOffer(player,item,Integer.valueOf(price));
@@ -116,15 +71,6 @@ class AddOfferChatAction implements ChatAction {
 			player.sendPrivateText(messageNumberOfOffers);
 			return;
 		}
-	}
-
-	private Market getShopFromZone(StendhalRPZone zone) {
-		for (RPObject rpObject : zone) {
-			if(rpObject.getRPClass().getName().equals("shop")) {
-				return (Market) rpObject;
-			}
-		}
-		return null;
 	}
 
 	private String determineItemName(Sentence sentence) {

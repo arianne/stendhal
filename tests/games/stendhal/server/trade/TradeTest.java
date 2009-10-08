@@ -29,7 +29,7 @@ public class TradeTest {
 	@Test
 	public void testSuccessfullTrade() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		Shop edeka = Shop.createShop();
+		Market edeka = Market.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -55,7 +55,7 @@ public class TradeTest {
 
 	@Test
 	public void testNonExistingOffer() {
-		Shop edeka = Shop.createShop();
+		Market edeka = Market.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
@@ -75,7 +75,7 @@ public class TradeTest {
 	@Test
 	public void testPoorBuyer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		Shop edeka = Shop.createShop();
+		Market edeka = Market.createShop();
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		StackableItem erniesMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
