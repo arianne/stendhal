@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.marketChatActions;
 
+import java.math.BigDecimal;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -18,6 +20,8 @@ import games.stendhal.server.trade.Market;
  */
 public class AddOfferChatAction implements ChatAction {
 	
+	private static final double TRADING_FEE_PERCENTAGE = 0.01;
+	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	private static final int MAX_NUMBER_OFF_OFFERS = 3;
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -35,9 +39,13 @@ public class AddOfferChatAction implements ChatAction {
 			if(countOffers(player)<=MAX_NUMBER_OFF_OFFERS) {
 				String itemName = determineItemName(sentence);
 				int price = determinePrice(sentence);
-				createOffer(player, itemName, price);
-				npc.say("I added your offer to the trading center.");
-				npc.setCurrentState(ConversationStates.ATTENDING);
+				if(substractTradingFee(player, price)) {
+					createOffer(player, itemName, price);
+					npc.say("I added your offer to the trading center and took the fee.");
+					npc.setCurrentState(ConversationStates.ATTENDING);
+					return;
+				}
+				npc.say("You cannot afford the trading fee of "+Integer.valueOf(calculateFee(player, price).intValue()).toString());
 				return;
 			}
 			npc.say("You may not place more than "+Integer.valueOf(MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
@@ -45,6 +53,20 @@ public class AddOfferChatAction implements ChatAction {
 			npc.say("I did not understand you. Please say \"sell item price\".");
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		}
+	}
+	
+	private boolean substractTradingFee(Player player, int price) {
+		BigDecimal fee = calculateFee(player, price);
+		return player.drop("money", fee.intValue());
+	}
+
+	private BigDecimal calculateFee(Player p, int price) {
+		BigDecimal fee  = BigDecimal.valueOf(price);
+		fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PERCENTAGE));
+		if(p.isBadBoy()) {
+			fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PLAYER_KILLER_PENALTY));
+		}
+		return fee;
 	}
 
 	private int countOffers(Player player) {
