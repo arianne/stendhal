@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-<item name="seed">
+  <item name="seed">
     <type class="misc" subclass="seed" tileid="-1"/>
     <description>You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.</description>
     <implementation class-name="games.stendhal.server.entity.item.Seed"/> 
@@ -29,17 +29,6 @@
       <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="token">
-    <type class="misc" subclass="token" tileid="-1"/>
-    <description>You see a token, that when placed in the right spot could point you in the right direction.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Token"/>    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
     </equipable>
   </item>
 

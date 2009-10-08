@@ -29,6 +29,7 @@
 	<group uri="items/special.xml"/>
 	<group uri="items/shields.xml"/>
 	<group uri="items/swords.xml"/>
+	<group uri="items/tokens.xml"/>
 	<group uri="items/tools.xml"/>
 	
 	
