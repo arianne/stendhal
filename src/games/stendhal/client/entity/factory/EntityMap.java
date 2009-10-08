@@ -133,6 +133,8 @@ public final class EntityMap {
 		register("item", "scroll", null, UseableItem.class);
 		register("item", "jewellery", null, StackableItem.class);
 
+		register("item", "token", null, Item.class);
+		
 		register("portal", null, null, Portal.class);
 		register("house_portal", null, null, HousePortal.class);
 		register("door", null, null, Door.class);
