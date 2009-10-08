@@ -86,6 +86,7 @@ public class Market extends RPEntity {
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
+				earning.store();
 				this.store();
 			}
 		}
