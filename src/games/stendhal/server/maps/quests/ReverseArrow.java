@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.item.token.Token;
 import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -15,7 +16,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.token.Token;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -262,7 +262,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 *            y-position
 	 */
 	private void addTokenToWorld(final int x, final int y) {
-		final Token token = (Token) SingletonRepository.getEntityManager().getItem("token");
+		final Token token = (Token) SingletonRepository.getEntityManager().getItem("arrow_game_token");
 		token.setPosition(x, y);
 		token.setTokenMoveListener(this);
 		zone.add(token, false);
