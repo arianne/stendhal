@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.token;
+package games.stendhal.server.entity.item.token;
 
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
