@@ -2,7 +2,10 @@ package games.stendhal.server.maps.semos.tavern.marketChatActions;
 
 import java.math.BigDecimal;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -12,6 +15,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Market;
+import games.stendhal.server.trade.Offer;
 
 /**
  * puts a new offer to the market
@@ -23,6 +27,7 @@ public class AddOfferChatAction implements ChatAction {
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	private static final int MAX_NUMBER_OFF_OFFERS = 3;
+	private static final int DAYS_TO_OFFER_EXPIRING = 3;
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -82,7 +87,9 @@ public class AddOfferChatAction implements ChatAction {
 		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
-			shop.createOffer(player,item,Integer.valueOf(price));
+			Offer o = shop.createOffer(player,item,Integer.valueOf(price));
+			TurnListener offerExpirer = new OfferExpirerer(o);
+			TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
 			message.append(" at ");
