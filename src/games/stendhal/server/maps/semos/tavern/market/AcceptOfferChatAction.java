@@ -33,12 +33,11 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
 				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 				m.acceptOffer(o,player);
-				StringBuilder earningToFetchMessage = new StringBuilder("tell ");
-				earningToFetchMessage.append(o.getOffererName());
-				earningToFetchMessage.append(" Your");
+				StringBuilder earningToFetchMessage = new StringBuilder();
+				earningToFetchMessage.append("Your ");
 				earningToFetchMessage.append(o.getItem().getName());
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
-				SingletonRepository.getRuleProcessor().getPlayer("postman").sendPrivateText(earningToFetchMessage .toString());
+				SingletonRepository.getRuleProcessor().getPlayer(o.getOffererName()).sendPrivateText(earningToFetchMessage .toString());
 				player.getZone().add(o, true);
 				npc.say("The offer has been accepted.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
