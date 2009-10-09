@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.tavern.marketChatActions;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -29,7 +30,15 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
 				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 				m.acceptOffer(o,player);
+				StringBuilder earningToFetchMessage = new StringBuilder("tell ");
+				earningToFetchMessage.append(o.getOffererName());
+				earningToFetchMessage.append(" Your");
+				earningToFetchMessage.append(o.getItem().getName());
+				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
+				SingletonRepository.getRuleProcessor().getPlayer("postman").sendPrivateText(earningToFetchMessage .toString());
 				player.getZone().add(o, true);
+				npc.say("The offer has been accepted.");
+				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
 			npc.say("Sorry, please choose a number from those I told you to accept an offer.");
