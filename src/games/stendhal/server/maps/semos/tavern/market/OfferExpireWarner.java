@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.trade.Offer;
 /**
@@ -17,7 +18,13 @@ public class OfferExpireWarner implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn) {
-		//TODO
+		StringBuilder builder = new StringBuilder();
+		builder.append("Your offer of an ");
+		builder.append(offerToExpire.getItem().getName());
+		builder.append(" will expire in ");
+		builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
+		builder.append(" days.");
+		SingletonRepository.getRuleProcessor().getPlayer(offerToExpire.getOffererName()).sendPrivateText(builder.toString());
 	}
 
 	@Override
