@@ -9,7 +9,12 @@ import games.stendhal.server.maps.semos.tavern.MarketManagerNPC;
 import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Market;
 import games.stendhal.server.trade.Offer;
-
+/**
+ * chat action to accept an offer on the market
+ * 
+ * @author madmetzger
+ *
+ */
 public class AcceptOfferChatAction extends KnownOffersChatAction {
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
