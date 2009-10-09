@@ -71,7 +71,7 @@ public class AddOfferChatAction implements ChatAction {
 		if(p.isBadBoy()) {
 			fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PLAYER_KILLER_PENALTY));
 		}
-		return fee;
+		return fee.max(BigDecimal.ONE);
 	}
 
 	private int countOffers(Player player) {
