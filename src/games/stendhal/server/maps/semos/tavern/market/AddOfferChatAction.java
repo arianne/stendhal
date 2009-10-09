@@ -94,6 +94,8 @@ public class AddOfferChatAction implements ChatAction {
 			Offer o = shop.createOffer(player,item,Integer.valueOf(price));
 			TurnListener offerExpirer = new OfferExpirerer(o);
 			TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
+			TurnListener offerExpirerWarner = new OfferExpireWarner(o);
+			TurnNotifier.get().notifyInTurns((DAYS_TO_OFFER_EXPIRING-1) * MathHelper.SECONDS_IN_ONE_DAY, offerExpirerWarner);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
 			message.append(" at ");
