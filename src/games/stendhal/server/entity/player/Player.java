@@ -70,6 +70,10 @@ public class Player extends RPEntity {
 	 * Karma (luck).
 	 */
 	protected double karma;
+	/**
+	 * number of successful trades
+	 */
+	protected int tradescore;
 
 	/**
 	 * A list of enabled client features.
@@ -210,6 +214,7 @@ public class Player extends RPEntity {
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
+		tradescore = 0;
 		baseSpeed = 1.0;
 		update();
 	}
@@ -396,7 +401,7 @@ public class Player extends RPEntity {
 
 		put("karma", this.karma);
 	}
-
+	
 	/**
 	 * Get the current amount of karma.
 	 * 
@@ -516,6 +521,17 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * increments the number of successful trades by 1
+	 */
+	public void incrementTradescore() {
+		this.tradescore += 1;
+		put("tradescore", this.tradescore);
+	}
+	
+	public int getTradescore() {
+		return this.tradescore;
+	}
+	/**
 	 * Process changes that to the object attributes. This may be called several
 	 * times (unfortunately) due to the requirements of the class's constructor,
 	 * sometimes before prereqs are initialised.
@@ -535,6 +551,9 @@ public class Player extends RPEntity {
 
 		if (has("karma")) {
 			karma = getDouble("karma");
+		}
+		if (has("tradescore")) {
+			tradescore = getInt("tradescore");
 		}
 	}
 
