@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.tavern;
+package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
