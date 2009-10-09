@@ -63,6 +63,14 @@ public class Market extends RPEntity {
 		store();
 	}
 	
+	/**
+	 * creates a new offer at the market
+	 * 
+	 * @param offerer offering player
+	 * @param item item to sell
+	 * @param money price for the item
+	 * @return the new created offer
+	 */
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
 		final Offer offer = new Offer(item, money, offerer.getName());
@@ -78,6 +86,11 @@ public class Market extends RPEntity {
 		return null;
 	}
 
+	/**
+	 * Completes a trade of an offer by transfering item to accepting player and taking the money from him
+	 * @param offer
+	 * @param acceptingPlayer
+	 */
 	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
@@ -93,6 +106,12 @@ public class Market extends RPEntity {
 		}
 	}
 
+	/**
+	 * The earnings for complete trades are paid to the player
+	 * 
+	 * @param earner the player fetching his earnings
+	 * @return the fetched earnings
+	 */
 	public Set<Earning> fetchEarnings(final Player earner) {
 		Set<Earning> earningsToRemove = new HashSet<Earning>();
 		for (RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
@@ -112,6 +131,12 @@ public class Market extends RPEntity {
 		return earningsToRemove;
 	}
 	
+	/**
+	 * counts the number of offers, a player has placed
+	 * 
+	 * @param offerer
+	 * @return the number of offers
+	 */
 	public int countOffersOfPlayer(Player offerer) {
 		int count = 0;
 		for (Offer offer : this.offers) {
@@ -120,6 +145,18 @@ public class Market extends RPEntity {
 			}
 		}
 		return count;
+	}
+
+	/**
+	 * removes an offer from the market and returns the item to the user
+	 * @param o the offer to remove
+	 * @param p the removing player
+	 */
+	public void removeOffer(Offer o, Player p) {
+		p.equipOrPutOnGround(o.getItem());
+		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(o.getItem().getID());
+		this.getOffers().remove(o);
+		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 	}
 
 	private int sumUpEarningsForPlayer(final Player earner) {
