@@ -19,11 +19,18 @@ public class TickTackToeBoard extends AreaEntity implements TokenMoveListener<Bo
 	private List<BoardToken> tokens = new LinkedList<BoardToken>();
 	private BoardToken[][] board = new BoardToken[2][2];
 	private StendhalRPZone zone = null; // TODO define zone
-	
+
+	/**
+	 * creates a new tick tack toe board
+	 */
+	public TickTackToeBoard() {
+		super(3, 3);
+	}
+
 	public void addToWorld() {
 		for (int i = 0; i < 5; i++) {
 			addTokenToWorld("x_board_token", getX() - 2, getY() + 1);
-			addTokenToWorld("o_board_token", getX() + 2, getY() + 1);
+			addTokenToWorld("o_board_token", getX() + (int) getWidth() + 1, getY() + 1);
 		}
 	}
 
