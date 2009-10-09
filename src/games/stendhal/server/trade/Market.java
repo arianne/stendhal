@@ -1,6 +1,7 @@
 package games.stendhal.server.trade;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -102,8 +103,14 @@ public class Market extends RPEntity {
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
 				this.store();
+				Player sellingPlayer = null;
+				applyTradingBonus(acceptingPlayer, sellingPlayer);
 			}
 		}
+	}
+
+	private void applyTradingBonus(Player acceptingPlayer, Player sellingPlayer) {
+		// TODO Auto-generated method stub
 	}
 
 	/**
