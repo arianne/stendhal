@@ -3,8 +3,6 @@ package games.stendhal.server.entity.mapstuff.game;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.item.token.Token.TokenMoveListener;
-import games.stendhal.server.entity.mapstuff.area.AreaEntity;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,15 +12,15 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class TickTackToeBoard extends AreaEntity implements TokenMoveListener<BoardToken> {
+public class TickTackToeBoard extends GameBoard implements TokenMoveListener<BoardToken> {
 	private List<BoardToken> tokens = new LinkedList<BoardToken>();
-	private BoardToken[][] board = new BoardToken[2][2];
 
 	/**
 	 * creates a new tick tack toe board
 	 */
 	public TickTackToeBoard() {
 		super(3, 3);
+		board = new BoardToken[2][2];
 	}
 
 	public void addToWorld() {
@@ -49,90 +47,4 @@ public class TickTackToeBoard extends AreaEntity implements TokenMoveListener<Bo
 		tokens.add(token);
 	}
 
-	public void onTokenMoved(Player player, BoardToken token) {
-		int xIndex = getXIndex(token.getX());
-		int yIndex = getYIndex(token.getY());
-		if (!validiateGameActive(player)
-			|| !validatePlayerIsParticipating(player)
-			|| !validateItsPlayersTurn(player)
-			|| !validateSourceIsStock(player)
-			|| !validateMoveTargetOnBoard(player, xIndex, yIndex)
-			|| !validateMoveTargetEmpty(player, xIndex, yIndex)) {
-			token.resetToHomePosition();
-			return;
-		}
-
-		completeMove(xIndex, yIndex, token);
-	}
-
-
-	private boolean validiateGameActive(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private boolean validatePlayerIsParticipating(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private boolean validateItsPlayersTurn(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private boolean validateSourceIsStock(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private boolean validateMoveTargetOnBoard(Player player, int xIndex, int yIndex) {
-		if ((xIndex < 0) || (yIndex < 0)) {
-			player.sendPrivateText("Please drop the token onto the game board.");
-			return false;
-		}
-		return true;
-	}
-
-	private boolean validateMoveTargetEmpty(Player player, int xIndex,	int yIndex) {
-		if (board[xIndex][yIndex] != null) {
-			player.sendPrivateText("Please drop the token onto an empty spot.");
-			return false;
-		}
-		return true;
-	}
-
-	private void completeMove(int xIndex, int yIndex, BoardToken token) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * gets the x-index of the specified x-coordinate
-	 *
-	 * @param x x
-	 * @return x-index, or <code>-1</code> on error.
-	 */
-	private int getXIndex(int x) {
-		int idx = x - getX();
-		if (idx > 2) {
-			idx = -1;
-		}
-		return idx;
-	}
-
-
-	/**
-	 * gets the y-index of the specified y-coordinate
-	 *
-	 * @param y y
-	 * @return y-index, or <code>-1</code> on error.
-	 */
-	private int getYIndex(int y) {
-		int idx = y - getY();
-		if (idx > 2) {
-			idx = -1;
-		}
-		return idx;
-	}
 }
