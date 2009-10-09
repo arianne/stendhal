@@ -29,36 +29,40 @@ public class ShowOffersChatAction implements ChatAction {
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		} else if (sentence.getExpressions().iterator().next().toString().equals("show")){
-			boolean onlyMyOffers = checkForMineFilter(sentence);
-			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-			StringBuilder offersMessage = new StringBuilder();
-			int counter = 0;
-			RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);
-			MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
-			marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
-			for (RPObject rpObject : offersSlot) {
-				if (rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
-					Offer o = (Offer) rpObject;
-					if (onlyMyOffers && !o.getOffererName().equals(player.getName())) {
-						continue;
-					}
-					counter += 1;
-					offersMessage.append(counter);
-					offersMessage.append(" ");
-					offersMessage.append(o.getItem().getName());
-					offersMessage.append(" for ");
-					offersMessage.append(o.getPrice());
-					offersMessage.append(" money");
-					offersMessage.append("\n");
-					marketNPC.getOfferMap().get(player.getName()).put(Integer.valueOf(counter).toString(), o);
+			handleSentence(player, sentence, npc);
+		}
+	}
+
+	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+		boolean onlyMyOffers = checkForMineFilter(sentence);
+		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+		StringBuilder offersMessage = new StringBuilder();
+		int counter = 0;
+		RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);
+		MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
+		marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
+		for (RPObject rpObject : offersSlot) {
+			if (rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
+				Offer o = (Offer) rpObject;
+				if (onlyMyOffers && !o.getOffererName().equals(player.getName())) {
+					continue;
 				}
+				counter += 1;
+				offersMessage.append(counter);
+				offersMessage.append(" ");
+				offersMessage.append(o.getItem().getName());
+				offersMessage.append(" for ");
+				offersMessage.append(o.getPrice());
+				offersMessage.append(" money");
+				offersMessage.append("\n");
+				marketNPC.getOfferMap().get(player.getName()).put(Integer.valueOf(counter).toString(), o);
 			}
-			if (counter > 0) {
-				player.sendPrivateText(offersMessage.toString());
-			}
-			if (counter == 0) {
-				player.sendPrivateText("There are currently no offers in the market.");
-			}
+		}
+		if (counter > 0) {
+			player.sendPrivateText(offersMessage.toString());
+		}
+		if (counter == 0) {
+			player.sendPrivateText("There are currently no offers in the market.");
 		}
 	}
 
