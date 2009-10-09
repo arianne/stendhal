@@ -1,8 +1,7 @@
 package games.stendhal.server.trade;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -17,7 +16,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class Market extends RPEntity {
+public class Market extends PassiveEntity {
 	
 	public static final String MARKET_RPCLASS_NAME = "market";
 	public static final String EARNINGS_SLOT_NAME = "earnings";
@@ -180,17 +179,6 @@ public class Market extends RPEntity {
 
 	public List<Offer> getOffers() {
 		return offers;
-	}
-
-	@Override
-	protected void dropItemsOn(Corpse corpse) {
-		// 
-		
-	}
-
-	@Override
-	public void logic() {
-		//
 	}
 
 }

@@ -1,11 +1,12 @@
 package games.stendhal.server.trade;
 
+import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
-public class Earning extends RPObject {
+public class Earning extends PassiveEntity {
 	
 	public static final String EARNING_RPCLASS_NAME = "earning";
 

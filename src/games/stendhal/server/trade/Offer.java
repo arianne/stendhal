@@ -1,6 +1,8 @@
 package games.stendhal.server.trade;
 
 
+import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -9,7 +11,7 @@ import marauroa.common.game.Definition.Type;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class Offer extends RPObject {
+public class Offer extends PassiveEntity {
 	
 	public static final String OFFER_ITEM_SLOT_NAME = "item";
 
