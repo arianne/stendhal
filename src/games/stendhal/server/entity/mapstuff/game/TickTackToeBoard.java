@@ -52,17 +52,59 @@ public class TickTackToeBoard extends AreaEntity implements TokenMoveListener<Bo
 	public void onTokenMoved(Player player, BoardToken token) {
 		int xIndex = getXIndex(token.getX());
 		int yIndex = getYIndex(token.getY());
-		if (!validateMoveTarget(player, xIndex, yIndex)) {
+		if (!validiateGameActive(player)
+			|| !validatePlayerIsParticipating(player)
+			|| !validateItsPlayersTurn(player)
+			|| !validateSourceIsStock(player)
+			|| !validateMoveTargetOnBoard(player, xIndex, yIndex)
+			|| !validateMoveTargetEmpty(player, xIndex, yIndex)) {
 			token.resetToHomePosition();
+			return;
 		}
+
+		completeMove(xIndex, yIndex, token);
 	}
 
-	private boolean validateMoveTarget(Player player, int xIndex, int yIndex) {
+
+	private boolean validiateGameActive(Player player) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private boolean validatePlayerIsParticipating(Player player) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private boolean validateItsPlayersTurn(Player player) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private boolean validateSourceIsStock(Player player) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private boolean validateMoveTargetOnBoard(Player player, int xIndex, int yIndex) {
 		if ((xIndex < 0) || (yIndex < 0)) {
 			player.sendPrivateText("Please drop the token onto the game board.");
 			return false;
 		}
 		return true;
+	}
+
+	private boolean validateMoveTargetEmpty(Player player, int xIndex,	int yIndex) {
+		if (board[xIndex][yIndex] != null) {
+			player.sendPrivateText("Please drop the token onto an empty spot.");
+			return false;
+		}
+		return true;
+	}
+
+	private void completeMove(int xIndex, int yIndex, BoardToken token) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
