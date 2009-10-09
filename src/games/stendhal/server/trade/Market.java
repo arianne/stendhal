@@ -103,14 +103,15 @@ public class Market extends RPEntity {
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
 				this.store();
-				Player sellingPlayer = null;
+				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOffererName());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
 			}
 		}
 	}
 
 	private void applyTradingBonus(Player acceptingPlayer, Player sellingPlayer) {
-		// TODO Auto-generated method stub
+		acceptingPlayer.incrementTradescore();
+		sellingPlayer.incrementTradescore();
 	}
 
 	/**
