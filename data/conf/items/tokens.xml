@@ -14,8 +14,8 @@
     </equipable>
   </item>
 
-  <item name="x_board_token">
-    <type class="token" subclass="red_x_token" tileid="-1"/>
+  <item name="o_board_token">
+    <type class="token" subclass="red_o_token" tileid="-1"/>
     <description>You see an X token.</description>
     <implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
     <attributes>
@@ -26,8 +26,8 @@
     </equipable>
   </item>
 
-  <item name="o_board_token">
-    <type class="token" subclass="blue_o_token" tileid="-1"/>
+  <item name="x_board_token">
+    <type class="token" subclass="blue_x_token" tileid="-1"/>
     <description>You see an O token.</description>
     <implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
     <attributes>
