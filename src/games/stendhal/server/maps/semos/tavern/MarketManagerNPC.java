@@ -2,11 +2,11 @@ package games.stendhal.server.maps.semos.tavern;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.maps.semos.tavern.marketChatActions.AcceptOfferChatAction;
-import games.stendhal.server.maps.semos.tavern.marketChatActions.AddOfferChatAction;
-import games.stendhal.server.maps.semos.tavern.marketChatActions.FetchEarningsChatAction;
-import games.stendhal.server.maps.semos.tavern.marketChatActions.RemoveOfferChatAction;
-import games.stendhal.server.maps.semos.tavern.marketChatActions.ShowOffersChatAction;
+import games.stendhal.server.maps.semos.tavern.market.AcceptOfferChatAction;
+import games.stendhal.server.maps.semos.tavern.market.AddOfferChatAction;
+import games.stendhal.server.maps.semos.tavern.market.FetchEarningsChatAction;
+import games.stendhal.server.maps.semos.tavern.market.RemoveOfferChatAction;
+import games.stendhal.server.maps.semos.tavern.market.ShowOffersChatAction;
 import games.stendhal.server.trade.Offer;
 
 import java.util.HashMap;

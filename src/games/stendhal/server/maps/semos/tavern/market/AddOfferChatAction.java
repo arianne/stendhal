@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.tavern.marketChatActions;
+package games.stendhal.server.maps.semos.tavern.market;
 
 import java.math.BigDecimal;
 

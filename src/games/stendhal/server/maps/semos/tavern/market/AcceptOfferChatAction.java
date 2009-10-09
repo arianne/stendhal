@@ -1,5 +1,6 @@
-package games.stendhal.server.maps.semos.tavern.marketChatActions;
+package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -9,19 +10,19 @@ import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Market;
 import games.stendhal.server.trade.Offer;
 /**
- * removes a certain offer from the market
+ * chat action to accept an offer on the market
  * 
  * @author madmetzger
  *
  */
-public class RemoveOfferChatAction extends KnownOffersChatAction {
+public class AcceptOfferChatAction extends KnownOffersChatAction {
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
-		} else if (sentence.getExpressions().iterator().next().toString().equals("remove")){
+		} else if (sentence.getExpressions().iterator().next().toString().equals("accept")){
 			handleSentence(player,sentence,npc);
 		}
 	}
@@ -32,21 +33,25 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
 			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
-				if(o.getOffererName().equals(player.getName())) {
-					Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-					m.removeOffer(o,player);
-					player.getZone().add(o, true);
-					return;
-				}
-				npc.say("You can only remove your own offers. Please say #show #mine to see only your offers.");
+				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+				m.acceptOffer(o,player);
+				StringBuilder earningToFetchMessage = new StringBuilder("tell ");
+				earningToFetchMessage.append(o.getOffererName());
+				earningToFetchMessage.append(" Your");
+				earningToFetchMessage.append(o.getItem().getName());
+				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
+				SingletonRepository.getRuleProcessor().getPlayer("postman").sendPrivateText(earningToFetchMessage .toString());
+				player.getZone().add(o, true);
+				npc.say("The offer has been accepted.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
-			npc.say("Sorry, please choose a number from those I told you to remove your offer.");
+			npc.say("Sorry, please choose a number from those I told you to accept an offer.");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		} catch (NumberFormatException e) {
-			npc.say("Sorry, please say #remove #number");
+			npc.say("Sorry, please say #accept #number");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
-		}	
+		}
 	}
+
 }

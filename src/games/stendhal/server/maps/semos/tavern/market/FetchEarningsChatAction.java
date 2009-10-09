@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.tavern.marketChatActions;
+package games.stendhal.server.maps.semos.tavern.market;
 
 import java.util.Set;
 
@@ -10,7 +10,12 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Earning;
 import games.stendhal.server.trade.Market;
-
+/**
+ * chat action to let a player fetch his earnings from the market
+ * 
+ * @author madmetzger
+ *
+ */
 public class FetchEarningsChatAction implements ChatAction {
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
