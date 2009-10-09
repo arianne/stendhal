@@ -24,6 +24,7 @@ import games.stendhal.server.trade.Offer;
  */
 public class AddOfferChatAction implements ChatAction {
 	
+	private static final int FEE_BONUS_CONSTANT = 10;
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	private static final int MAX_NUMBER_OFF_OFFERS = 3;
@@ -71,6 +72,10 @@ public class AddOfferChatAction implements ChatAction {
 		if(p.isBadBoy()) {
 			fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PLAYER_KILLER_PENALTY));
 		}
+		BigDecimal feeBonus = BigDecimal.ONE;
+		
+		feeBonus = BigDecimal.valueOf(Math.exp(p.getTradescore()/FEE_BONUS_CONSTANT));
+		fee = fee.multiply(feeBonus);
 		return fee.max(BigDecimal.ONE);
 	}
 
