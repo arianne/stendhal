@@ -93,9 +93,9 @@ public class AddOfferChatAction implements ChatAction {
 		if(shop != null) {
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			Offer o = shop.createOffer(player,item,Integer.valueOf(price));
-			TurnListener offerExpirerWarner = new OfferExpireWarner(o);
-			TurnNotifier.get().notifyInTurns((OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpirerWarner);
-			TurnListener offerExpirer = new OfferExpirerer(o);
+			TurnListener offerExpireWarner = new OfferExpireWarner(o);
+			TurnNotifier.get().notifyInTurns((OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpireWarner);
+			TurnListener offerExpirer = new OfferExpirerer(o,player.getZone());
 			TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
