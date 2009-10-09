@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.tavern.marketChatActions;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.tavern.MarketManagerNPC;
@@ -28,6 +29,7 @@ public class ShowOffersChatAction implements ChatAction {
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		} else if (sentence.getExpressions().iterator().next().toString().equals("show")){
+			boolean onlyMyOffers = checkForMineFilter(sentence);
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			StringBuilder offersMessage = new StringBuilder();
 			int counter = 0;
@@ -35,8 +37,11 @@ public class ShowOffersChatAction implements ChatAction {
 			MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
 			marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
 			for (RPObject rpObject : offersSlot) {
-				if(rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
+				if (rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
 					Offer o = (Offer) rpObject;
+					if (onlyMyOffers && !o.getOffererName().equals(player.getName())) {
+						continue;
+					}
 					counter += 1;
 					offersMessage.append(counter);
 					offersMessage.append(" ");
@@ -55,6 +60,15 @@ public class ShowOffersChatAction implements ChatAction {
 				player.sendPrivateText("There are currently no offers in the market.");
 			}
 		}
+	}
+
+	private boolean checkForMineFilter(Sentence sentence) {
+		for (Expression expression : sentence) {
+			if(expression.toString().equals("mine")) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
