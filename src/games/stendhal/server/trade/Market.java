@@ -84,6 +84,7 @@ public class Market extends RPEntity {
 				acceptingPlayer.equipOrPutOnGround(offer.getItem());
 				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOffererName());
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
+				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(offer.getItem().getID());
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
