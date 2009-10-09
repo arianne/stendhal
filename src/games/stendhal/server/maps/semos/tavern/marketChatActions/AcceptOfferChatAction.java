@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.semos.tavern.marketChatActions;
 
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -10,7 +9,7 @@ import games.stendhal.server.maps.semos.tavern.TradeCenterZoneConfigurator;
 import games.stendhal.server.trade.Market;
 import games.stendhal.server.trade.Offer;
 
-public class AcceptOfferChatAction implements ChatAction {
+public class AcceptOfferChatAction extends KnownOffersChatAction {
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -36,14 +35,9 @@ public class AcceptOfferChatAction implements ChatAction {
 			npc.say("Sorry, please choose a number from those I told you to accept an offer.");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		} catch (NumberFormatException e) {
-			npc.say("Sorry, please say \"accept number\"");
+			npc.say("Sorry, please say #accept #number");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		}
-	}
-
-	private Integer getOfferNumberFromSentence(Sentence sentence) {
-		String offerNumber = sentence.getExpression(1,"").toString();
-		return Integer.parseInt(offerNumber);
 	}
 
 }
