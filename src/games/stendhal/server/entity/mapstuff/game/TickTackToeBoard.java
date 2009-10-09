@@ -40,7 +40,7 @@ public class TickTackToeBoard extends AreaEntity implements TokenMoveListener<Bo
 		token.setPosition(x, y);
 		token.setHomePosition(x, y);
 		token.setTokenMoveListener(this);
-		zone.add(token, false);
+		getZone().add(token, false);
 		tokens.add(token);
 	}
 
