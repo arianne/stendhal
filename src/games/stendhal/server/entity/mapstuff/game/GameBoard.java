@@ -2,6 +2,7 @@ package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
 import games.stendhal.server.entity.player.Player;
 
 public abstract class GameBoard extends AreaEntity {
@@ -18,12 +19,8 @@ public abstract class GameBoard extends AreaEntity {
 	public void onTokenMoved(Player player, BoardToken token) {
 		int xIndex = getXIndex(token.getX());
 		int yIndex = getYIndex(token.getY());
-		if (!validiateGameActive(player)
-			|| !validatePlayerIsParticipating(player)
-			|| !validateItsPlayersTurn(player)
-			|| !validateSourceIsStock(player)
-			|| !validateMoveTargetOnBoard(player, xIndex, yIndex)
-			|| !validateMoveTargetEmpty(player, xIndex, yIndex)) {
+		MoveValidator validator = new TickTackToeMovementValidatorChain();
+		if (!validator.validate(this, player, token, xIndex, yIndex)) {
 			token.resetToHomePosition();
 			return;
 		}
@@ -31,42 +28,6 @@ public abstract class GameBoard extends AreaEntity {
 		completeMove(xIndex, yIndex, token);
 	}
 
-
-	boolean validiateGameActive(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	boolean validatePlayerIsParticipating(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	boolean validateItsPlayersTurn(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	boolean validateSourceIsStock(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	boolean validateMoveTargetOnBoard(Player player, int xIndex, int yIndex) {
-		if ((xIndex < 0) || (yIndex < 0)) {
-			player.sendPrivateText("Please drop the token onto the game board.");
-			return false;
-		}
-		return true;
-	}
-
-	boolean validateMoveTargetEmpty(Player player, int xIndex,	int yIndex) {
-		if (board[xIndex][yIndex] != null) {
-			player.sendPrivateText("Please drop the token onto an empty spot.");
-			return false;
-		}
-		return true;
-	}
 
 	void completeMove(int xIndex, int yIndex, BoardToken token) {
 		// TODO Auto-generated method stub
@@ -99,6 +60,17 @@ public abstract class GameBoard extends AreaEntity {
 			idx = -1;
 		}
 		return idx;
+	}
+
+	/**
+	 * returns the token at the specified index
+	 *
+	 * @param xIndex target x-index
+	 * @param yIndex target y-index
+	 * @return token or <code>null</code>
+	 */
+	public BoardToken getTokenAt(int xIndex, int yIndex) {
+		return board[xIndex][yIndex];
 	}
 
 }
