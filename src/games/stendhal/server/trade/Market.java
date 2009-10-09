@@ -21,15 +21,18 @@ public class Market extends PassiveEntity {
 	public static final String MARKET_RPCLASS_NAME = "market";
 	public static final String EARNINGS_SLOT_NAME = "earnings";
 	public static final String OFFERS_SLOT_NAME = "offers";
+	public static final String EXPIRED_OFFERS_SLOT_NAME = "expired_offers";
 	
 	private final Set<Earning> earnings = new HashSet<Earning>();
 	private final List<Offer> offers = new LinkedList<Offer>();
+	private final List<Offer> expiredOffers = new LinkedList<Offer>();
 	
 	public static void generateRPClass() {
 		final RPClass shop = new RPClass(MARKET_RPCLASS_NAME);
 		shop.isA("entity");
 		shop.addRPSlot(OFFERS_SLOT_NAME,-1);
 		shop.addRPSlot(EARNINGS_SLOT_NAME, -1);
+		shop.addRPSlot(EXPIRED_OFFERS_SLOT_NAME, -1);
 	}
 	
 	public Market(final RPObject object) {
@@ -37,6 +40,7 @@ public class Market extends PassiveEntity {
 		this.setRPClass(MARKET_RPCLASS_NAME);
 		addSlot(new RPSlot(OFFERS_SLOT_NAME));
 		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
+		addSlot(new RPSlot(EXPIRED_OFFERS_SLOT_NAME));
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 			this.offers.add((Offer) rpo);
 			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
@@ -45,6 +49,10 @@ public class Market extends PassiveEntity {
 			final Earning earning = (Earning) rpo;
 			this.earnings.add(earning);
 			this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
+		}
+		for(final RPObject rpo : object.getSlot(EXPIRED_OFFERS_SLOT_NAME)) {
+			this.expiredOffers.add((Offer) rpo);
+			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(rpo);
 		}
 		store();
 	}
@@ -164,6 +172,11 @@ public class Market extends PassiveEntity {
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(o.getItem().getID());
 		this.getOffers().remove(o);
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
+	}
+	
+	public void expireOffer(Offer o) {
+		this.getOffers().remove(o);
+		this.expiredOffers.add(o);
 	}
 
 	private int sumUpEarningsForPlayer(final Player earner) {
