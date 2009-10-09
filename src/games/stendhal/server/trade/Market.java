@@ -93,7 +93,7 @@ public class Market extends RPEntity {
 		}
 	}
 
-	public void fetchEarnings(final Player earner) {
+	public Set<Earning> fetchEarnings(final Player earner) {
 		Set<Earning> earningsToRemove = new HashSet<Earning>();
 		for (RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
 			Earning earning = (Earning) earningRPObject;
@@ -109,6 +109,7 @@ public class Market extends RPEntity {
 		for(Earning earning : earningsToRemove) {
 			this.getSlot(EARNINGS_SLOT_NAME).remove(earning.getID());
 		}
+		return earningsToRemove;
 	}
 	
 	public int countOffersOfPlayer(Player offerer) {
