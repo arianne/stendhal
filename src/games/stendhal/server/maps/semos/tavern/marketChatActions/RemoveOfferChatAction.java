@@ -21,7 +21,7 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
-		} else if (sentence.getExpressions().iterator().next().toString().equals("sell")){
+		} else if (sentence.getExpressions().iterator().next().toString().equals("remove")){
 			handleSentence(player,sentence,npc);
 		}
 	}
