@@ -23,6 +23,7 @@ import games.stendhal.server.trade.Offer;
  */
 public class AddOfferChatAction implements ChatAction {
 	
+	private static final int EXPIRE_WARNING_DELAY = 1;
 	private static final int FEE_BONUS_CONSTANT = 10;
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
@@ -95,7 +96,7 @@ public class AddOfferChatAction implements ChatAction {
 			TurnListener offerExpirer = new OfferExpirerer(o);
 			TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 			TurnListener offerExpirerWarner = new OfferExpireWarner(o);
-			TurnNotifier.get().notifyInTurns((DAYS_TO_OFFER_EXPIRING-1) * MathHelper.SECONDS_IN_ONE_DAY, offerExpirerWarner);
+			TurnNotifier.get().notifyInTurns((DAYS_TO_OFFER_EXPIRING - EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpirerWarner);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
 			message.append(" at ");
