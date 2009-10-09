@@ -32,7 +32,7 @@ import marauroa.common.game.IRPZone;
  */
 
 public class ReverseArrow extends AbstractQuest implements
-		Token.TokenMoveListener, LoginListener {
+		Token.TokenMoveListener<Token>, LoginListener {
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
@@ -374,10 +374,10 @@ public class ReverseArrow extends AbstractQuest implements
 	/**
 	 * The player moved a token.
 	 *
-	 * @param player
-	 *            Player
+	 * @param player Player
+	 * @param token Token
 	 */
-	public void onTokenMoved(final Player player) {
+	public void onTokenMoved(final Player player, Token token) {
 		//TODO only count if the token really changed its position
 		moveCount++;
 

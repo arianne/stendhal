@@ -25,20 +25,21 @@ import java.util.Map;
  */
 public class Token extends Item {
 
+	@SuppressWarnings("unchecked")
 	private TokenMoveListener tokenMoveListener;
 
 	/**
 	 * A listener that will be notified on token move.
 	 */
-	public interface TokenMoveListener {
+	public interface TokenMoveListener<T extends Token> {
 
 		/**
 		 * a token was moved.
 		 * 
-		 * @param player
-		 *            the player moving it
+		 * @param player the player moving it
+		 * @param token the token moved
 		 */
-		void onTokenMoved(Player player);
+		void onTokenMoved(Player player, T token);
 	}
 
 	/**
@@ -68,12 +69,13 @@ public class Token extends Item {
 		super(item);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
 
 		if ((player != null) && (tokenMoveListener != null)) {
-			tokenMoveListener.onTokenMoved(player);
+			tokenMoveListener.onTokenMoved(player, this);
 		}
 	}
 
@@ -83,7 +85,7 @@ public class Token extends Item {
 	 * @param tokenMoveListener
 	 *            TokenMoveListener
 	 */
-	public void setTokenMoveListener(final TokenMoveListener tokenMoveListener) {
+	public <T extends Token> void setTokenMoveListener(final TokenMoveListener<T> tokenMoveListener) {
 		this.tokenMoveListener = tokenMoveListener;
 	}
 }
