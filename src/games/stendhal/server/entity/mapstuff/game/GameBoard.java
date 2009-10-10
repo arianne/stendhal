@@ -57,6 +57,17 @@ public abstract class GameBoard extends AreaEntity {
 		return players.get(currentPlayerIndex);
 	}
 
+	
+	/**
+	 * moves to the next turn (next player)
+	 */
+	protected void nextTurn() {
+		currentPlayerIndex++;
+		if (currentPlayerIndex >= players.size()) {
+			currentPlayerIndex = 0;
+		}
+	}
+
 	/**
 	 * handling of moved token
 	 *
