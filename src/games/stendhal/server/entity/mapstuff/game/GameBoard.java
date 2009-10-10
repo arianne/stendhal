@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
-
+	protected boolean active;
 
 	/**
 	 * creates a new GameBoard
@@ -26,6 +26,15 @@ public abstract class GameBoard extends AreaEntity {
 		super(width, height);
 	}
 
+	/**
+	 * is the game active?
+	 *
+	 * @return active
+	 */
+	public boolean isGameActive() {
+		return active;
+	}
+	
 	/**
 	 * handling of moved token
 	 *
