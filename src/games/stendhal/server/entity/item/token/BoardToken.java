@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.item.token;
 
+import games.stendhal.server.entity.player.Player;
+
 import java.util.Map;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Map;
 public class BoardToken extends Token {
 	private int homeX = 1;
 	private int homeY = 1;
+	private int moveCountSinceHome = 0;
 
 	/**
 	 * @param name
@@ -29,6 +32,21 @@ public class BoardToken extends Token {
 	}
 
 	/**
+	 * was this token on its home spot before the last move?
+	 *
+	 * @return <code>true</code> iff the token was on the home spot before this move
+	 */
+	public boolean wasMovedFromHomeInLastMove() {
+		return moveCountSinceHome <= 1;
+	}
+
+	@Override
+	public void onPutOnGround(final Player player) {
+		moveCountSinceHome++;
+		super.onPutOnGround(player);
+	}
+
+	/**
 	 * sets the home position for this token.
 	 *
 	 * @param x x
@@ -44,5 +62,6 @@ public class BoardToken extends Token {
 	 */
 	public void resetToHomePosition() {
 		this.setPosition(homeX, homeY);
+		moveCountSinceHome = 0;
 	}
 }
