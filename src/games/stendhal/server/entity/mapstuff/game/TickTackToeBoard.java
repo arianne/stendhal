@@ -47,4 +47,10 @@ public class TickTackToeBoard extends GameBoard implements TokenMoveListener<Boa
 		tokens.add(token);
 	}
 
+	@Override
+	void completeMove(int xIndex, int yIndex, BoardToken token) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

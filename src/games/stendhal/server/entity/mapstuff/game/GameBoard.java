@@ -8,14 +8,30 @@ import games.stendhal.server.entity.player.Player;
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
 
+
+	/**
+	 * creates a new GameBoard
+	 */
 	public GameBoard() {
 		super();
 	}
 
+	/**
+	 * creates a new GameBoard
+	 *
+	 * @param width  width of the board
+	 * @param height height of the board
+	 */
 	public GameBoard(int width, int height) {
 		super(width, height);
 	}
 
+	/**
+	 * handling of moved token
+	 *
+	 * @param player player moving the toke
+	 * @param token  moved token
+	 */
 	public void onTokenMoved(Player player, BoardToken token) {
 		int xIndex = getXIndex(token.getX());
 		int yIndex = getYIndex(token.getY());
@@ -29,10 +45,7 @@ public abstract class GameBoard extends AreaEntity {
 	}
 
 
-	void completeMove(int xIndex, int yIndex, BoardToken token) {
-		// TODO Auto-generated method stub
-		
-	}
+	abstract void completeMove(int xIndex, int yIndex, BoardToken token);
 	
 	/**
 	 * gets the x-index of the specified x-coordinate
