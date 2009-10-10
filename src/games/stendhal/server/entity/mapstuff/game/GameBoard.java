@@ -5,9 +5,13 @@ import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.List;
+
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
 	protected boolean active;
+	protected List<String> players;
+	protected int currentPlayerIndex;
 
 	/**
 	 * creates a new GameBoard
@@ -34,7 +38,25 @@ public abstract class GameBoard extends AreaEntity {
 	public boolean isGameActive() {
 		return active;
 	}
-	
+
+	/**
+	 * gets a list of player names participating in this game
+	 *
+	 * @return list of player names
+	 */
+	public List<String> getPlayers() {
+		return players;
+	}
+
+	/**
+	 * gets the name of the player who is doing the current turn.
+	 *
+	 * @return name of player
+	 */
+	public String getCurrentPlayer() {
+		return players.get(currentPlayerIndex);
+	}
+
 	/**
 	 * handling of moved token
 	 *

@@ -12,8 +12,7 @@ import games.stendhal.server.entity.player.Player;
 public class PlayersTurnValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
-		// TODO Auto-generated method stub
-		return true;
+		return player.getName().equals(board.getCurrentPlayer());
 	}
 
 }
