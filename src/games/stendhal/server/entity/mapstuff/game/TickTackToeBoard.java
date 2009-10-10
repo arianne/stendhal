@@ -49,8 +49,32 @@ public class TickTackToeBoard extends GameBoard implements TokenMoveListener<Boa
 
 	@Override
 	void completeMove(int xIndex, int yIndex, BoardToken token) {
-		// TODO Auto-generated method stub
-		
+		board[xIndex][yIndex] = token;
+		checkBoardStatus();
 	}
 
+	private void checkBoardStatus() {
+		// TODO: check for win
+		// TODO: check for no empty squares
+		nextTurn();
+	}
+
+
+	/**
+	 * prepares a new game
+	 */
+	public void startNewGame() {
+
+		// clear board state
+		for (int xIndex = 0; xIndex < board.length; xIndex++) {
+			for (int yIndex = 0; yIndex < board[xIndex].length; yIndex++) {
+				board[xIndex][yIndex] = null;
+			}
+		}
+
+		// reset tokens to home
+		for (BoardToken token : tokens) {
+			token.resetToHomePosition();
+		}
+	}
 }
