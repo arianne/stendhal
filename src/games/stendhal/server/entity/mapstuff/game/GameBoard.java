@@ -57,6 +57,21 @@ public abstract class GameBoard extends AreaEntity {
 		return players.get(currentPlayerIndex);
 	}
 
+	/**
+	 * checks whether there are empty spots left
+	 *
+	 * @return <code>true</code> iff there are empty spots.
+	 */
+	public boolean areEmptyFieldsLeft() {
+		for (int xIndex = 0; xIndex < board.length; xIndex++) {
+			for (int yIndex = 0; yIndex < board[xIndex].length; yIndex++) {
+				if (board[xIndex][yIndex] == null) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	/**
 	 * moves to the next turn (next player)
