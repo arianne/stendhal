@@ -12,7 +12,11 @@ import games.stendhal.server.entity.player.Player;
 public class PlayerIsParticipatingValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
-		return board.getPlayers().contains(player.getName());
+		if (!board.getPlayers().contains(player.getName())) {
+			player.sendPrivateText("Your are not participating in this game.");
+			return false;
+		}
+		return true;
 	}
 
 }

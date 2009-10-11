@@ -12,7 +12,11 @@ import games.stendhal.server.entity.player.Player;
 public class PlayersTurnValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
-		return player.getName().equals(board.getCurrentPlayer());
+		if (!player.getName().equals(board.getCurrentPlayer())) {
+			player.sendPrivateText("It is not your turn. Please wait for your opponent to complete his or her move.");
+			return false;
+		}
+		return true;
 	}
 
 }

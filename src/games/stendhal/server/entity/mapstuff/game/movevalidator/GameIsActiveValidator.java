@@ -12,7 +12,11 @@ import games.stendhal.server.entity.player.Player;
 public class GameIsActiveValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
-		return board.isGameActive();
+		if (!board.isGameActive()) {
+			player.sendPrivateText("Please start the game first.");
+			return false;
+		}
+		return true;
 	}
 
 }

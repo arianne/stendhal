@@ -12,7 +12,11 @@ import games.stendhal.server.entity.player.Player;
 public class MovementSourceIsHomeValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
-		return token.wasMovedFromHomeInLastMove();
+		if (!token.wasMovedFromHomeInLastMove()) {
+			player.sendPrivateText("You can only move tokens that are on the pile outside the game board.");
+			return false;
+		}
+		return true;
 	}
 
 }
