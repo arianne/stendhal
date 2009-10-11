@@ -26,7 +26,7 @@ public class TicTacToeGame {
 
 	private void addNPC() {
 		// TODO: add name
-		SpeakerNPC npc = new SpeakerNPC("AddNameHere") {
+		SpeakerNPC npc = new SpeakerNPC("Paul Sheriff") {
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
