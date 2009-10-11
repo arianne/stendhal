@@ -13,7 +13,7 @@ public class GameIsActiveValidator implements MoveValidator {
 
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
 		if (!board.isGameActive()) {
-			player.sendPrivateText("Please start the game first.");
+			player.sendPrivateText("Please start the game first by talking to " + board.getNPCName() + ".");
 			return false;
 		}
 		return true;

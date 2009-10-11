@@ -91,6 +91,15 @@ public abstract class GameBoard extends AreaEntity {
 	}
 
 	/**
+	 * gets the name of the NPC
+	 *
+	 * @return name of NPC
+	 */
+	public String getNPCName() {
+		return npc.getName();
+	}
+
+	/**
 	 * checks whether there are empty spots left
 	 *
 	 * @return <code>true</code> iff there are empty spots.
