@@ -7,6 +7,9 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
+import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
+
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
 	protected boolean active;
@@ -19,6 +22,8 @@ public abstract class GameBoard extends AreaEntity {
 	 */
 	public GameBoard() {
 		super();
+		setRPClass("game_board");
+		put("type", "game_board");
 	}
 
 	/**
@@ -29,6 +34,8 @@ public abstract class GameBoard extends AreaEntity {
 	 */
 	public GameBoard(int width, int height) {
 		super(width, height);
+		setRPClass("game_board");
+		put("type", "game_board");
 	}
 
 	/**
@@ -153,4 +160,9 @@ public abstract class GameBoard extends AreaEntity {
 		return board[xIndex][yIndex];
 	}
 
+	public static void generateRPClass() {
+		final RPClass entity = new RPClass("game_board");
+		entity.isA("entity");
+		entity.addAttribute("class", Type.STRING);
+	}
 }

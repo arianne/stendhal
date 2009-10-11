@@ -23,6 +23,7 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
+import games.stendhal.client.entity.GameBoard;
 import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
@@ -85,6 +86,7 @@ public final class EntityMap {
 
 		register("plant_grower", null, null, PlantGrower.class);
 		register("walkblocker", null, null, WalkBlocker.class);
+
 		register("growing_entity_spawner", "items/grower/carrot_grower", null,
 				CarrotGrower.class);
 		register("growing_entity_spawner", "items/grower/wood_grower", null,
@@ -141,6 +143,7 @@ public final class EntityMap {
 		register("fire", null, null, Fire.class);
 
 		register("gate", null, null, Gate.class);
+		register("game_board", null, null, GameBoard.class);
 	}
 
 	/**

@@ -98,6 +98,7 @@ public class EntityViewFactory {
 
 			
 			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
+			System.out.println(type + " " + entityClass);
 			if (entityClass == null) {
 					return null;
 			}
@@ -162,6 +163,7 @@ public class EntityViewFactory {
 		register("fish_source", null, null, FishSource2DView.class);
 
 		
+		register("game_board", null, null, GameBoard2DView.class);
 		register("gate", null, null, Gate2DView.class);
 		
 		register("gold_source", null, null, GoldSource2DView.class);

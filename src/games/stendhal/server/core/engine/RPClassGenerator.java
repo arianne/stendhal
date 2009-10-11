@@ -19,6 +19,7 @@ import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
+import games.stendhal.server.entity.mapstuff.game.GameBoard;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.portal.Door;
@@ -86,6 +87,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("fish_source")) {
 			FishSource.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("game_board")) {
+			GameBoard.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("gate")) {
 			Gate.generateGateRPClass();
