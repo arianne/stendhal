@@ -1,24 +1,14 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 /**
  * adds a market to a zone
  * 

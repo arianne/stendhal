@@ -2,7 +2,6 @@ package games.stendhal.server.trade;
 
 
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
