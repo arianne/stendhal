@@ -109,14 +109,11 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 		return true;
 	}
 
-	private void endGame() {
-		active = false;
-	}
-
 	/**
 	 * prepares a new game
 	 */
-	public void startNewGame() {
+	public void startGame() {
+		super.startGame();
 
 		// clear board state
 		for (int xIndex = 0; xIndex < board.length; xIndex++) {

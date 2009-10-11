@@ -16,14 +16,14 @@ public abstract class GameBoard extends AreaEntity {
 	protected List<String> players;
 	protected List<String> tokenTypes;
 	protected int currentPlayerIndex;
+	private GameBoardTimer timer;
 
 	/**
 	 * creates a new GameBoard
 	 */
 	public GameBoard() {
 		super();
-		setRPClass("game_board");
-		put("type", "game_board");
+		init();
 	}
 
 	/**
@@ -34,9 +34,15 @@ public abstract class GameBoard extends AreaEntity {
 	 */
 	public GameBoard(int width, int height) {
 		super(width, height);
+		init();
+	}
+
+	private void init() {
 		setRPClass("game_board");
 		put("type", "game_board");
+		timer = new GameBoardTimer(this, 5 * 60);
 	}
+
 
 	/**
 	 * is the game active?
@@ -120,7 +126,21 @@ public abstract class GameBoard extends AreaEntity {
 
 
 	abstract void completeMove(int xIndex, int yIndex, BoardToken token);
+
+	protected void startGame() {
+		timer.start();
+	}
 	
+	protected void endGame() {
+		timer.stop();
+		active = false;
+	}
+
+	public void timeOut() {
+		// TODO: NPC say timeout
+		endGame();
+	}
+
 	/**
 	 * gets the x-index of the specified x-coordinate
 	 *
@@ -160,9 +180,13 @@ public abstract class GameBoard extends AreaEntity {
 		return board[xIndex][yIndex];
 	}
 
+	/**
+	 * generates the RP class
+	 */
 	public static void generateRPClass() {
 		final RPClass entity = new RPClass("game_board");
 		entity.isA("entity");
 		entity.addAttribute("class", Type.STRING);
 	}
+
 }
