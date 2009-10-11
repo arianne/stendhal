@@ -54,11 +54,60 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 	}
 
 	private void checkBoardStatus() {
-		// TODO: check for win
-		// TODO: check for no empty squares
+		if (checkForWin()) {
+			endGame();
+			return;
+		}
+
+		if (checkForTie()) {
+			endGame();
+			return;
+		}
+
 		nextTurn();
 	}
 
+
+	private boolean checkForWin() {
+		for (int i = 0; i < 3; i++) {
+			if ((board[i][0] != null) && (board[i][1] != null) && (board[i][2] != null)) {
+				if (board[i][0].getItemSubclass().equals(board[i][1].getItemSubclass()) && board[i][0].getItemSubclass().equals(board[i][2].getItemSubclass())) {
+					return true;
+				}
+			}
+			if ((board[0][i] != null) && (board[1][i] != null) && (board[2][i] != null)) {
+				if (board[0][i].getItemSubclass().equals(board[1][i].getItemSubclass()) && board[0][i].getItemSubclass().equals(board[2][i].getItemSubclass())) {
+					return true;
+				}
+			}
+		}
+		if ((board[0][0] != null) && (board[1][1] != null) && (board[2][2] != null)) {
+			if (board[0][0].getItemSubclass().equals(board[1][1].getItemSubclass()) && board[0][0].getItemSubclass().equals(board[2][2].getItemSubclass())) {
+				return true;
+			}
+		}
+		if ((board[0][2] != null) && (board[1][1] != null) && (board[2][0] != null)) {
+			if (board[0][2].getItemSubclass().equals(board[1][1].getItemSubclass()) && board[0][2].getItemSubclass().equals(board[2][0].getItemSubclass())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean checkForTie() {
+		for (int xIndex = 0; xIndex < board.length; xIndex++) {
+			for (int yIndex = 0; yIndex < board[xIndex].length; yIndex++) {
+				if (board[xIndex][yIndex] != null) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private void endGame() {
+		active = false;
+	}
 
 	/**
 	 * prepares a new game
