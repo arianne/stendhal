@@ -11,6 +11,7 @@ public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
 	protected boolean active;
 	protected List<String> players;
+	protected List<String> tokenTypes;
 	protected int currentPlayerIndex;
 
 	/**
@@ -55,6 +56,15 @@ public abstract class GameBoard extends AreaEntity {
 	 */
 	public String getCurrentPlayer() {
 		return players.get(currentPlayerIndex);
+	}
+
+	/**
+	 * gets the name of the token type for the current turn
+	 *
+	 * @return name of token type
+	 */
+	public Object getCurrentTokenType() {
+		return tokenTypes.get(currentPlayerIndex);
 	}
 
 	/**

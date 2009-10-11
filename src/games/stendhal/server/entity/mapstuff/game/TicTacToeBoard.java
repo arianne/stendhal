@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.item.token.Token.TokenMoveListener;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 	public TicTacToeBoard() {
 		super(3, 3);
 		board = new BoardToken[2][2];
+		tokenTypes = Arrays.asList("x_board_token", "o_board_token");
 	}
 
 	public void addToWorld() {

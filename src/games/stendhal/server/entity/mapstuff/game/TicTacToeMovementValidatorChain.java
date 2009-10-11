@@ -7,6 +7,7 @@ import games.stendhal.server.entity.mapstuff.game.movevalidator.MovementSourceIs
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MovementTargetEmptyValidator;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MovementTargetIsOnBoardValidator;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayerIsParticipatingValidator;
+import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayerIsPlayingRightTokenTypeValidator;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayersTurnValidator;
 import games.stendhal.server.entity.player.Player;
 
@@ -28,6 +29,7 @@ public class TicTacToeMovementValidatorChain implements MoveValidator {
 		validators.add(new GameIsActiveValidator());
 		validators.add(new PlayerIsParticipatingValidator());
 		validators.add(new PlayersTurnValidator());
+		validators.add(new PlayerIsPlayingRightTokenTypeValidator());
 		validators.add(new MovementSourceIsHomeValidator());
 		validators.add(new MovementTargetIsOnBoardValidator());
 		validators.add(new MovementTargetEmptyValidator());
