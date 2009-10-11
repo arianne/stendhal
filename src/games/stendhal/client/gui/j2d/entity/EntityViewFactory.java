@@ -98,7 +98,6 @@ public class EntityViewFactory {
 
 			
 			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
-			System.out.println(type + " " + entityClass);
 			if (entityClass == null) {
 					return null;
 			}
