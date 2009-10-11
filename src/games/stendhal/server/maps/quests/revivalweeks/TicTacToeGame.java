@@ -16,17 +16,17 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 public class TicTacToeGame {
 	private StendhalRPZone zone;
 	private TicTacToeBoard board;
+	private SpeakerNPC npc;
 
 	private void addBoard() {
 		board = new TicTacToeBoard();
-		board.setPosition(105, 120);
+		board.setPosition(105, 119);
 		zone.add(board);
 		board.addToWorld();
 	}
 
 	private void addNPC() {
-		// TODO: add name
-		SpeakerNPC npc = new SpeakerNPC("Paul Sheriff") {
+		npc = new SpeakerNPC("Paul Sheriff") {
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
@@ -62,7 +62,7 @@ public class TicTacToeGame {
 		};
 		// TODO change outfit
 		npc.setEntityClass("oldwizardnpc"); 
-		npc.setPosition(106, 118);
+		npc.setPosition(106, 117);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
@@ -72,6 +72,7 @@ public class TicTacToeGame {
 
 		addBoard();
 		addNPC();
+		board.setNPC(npc);
 	}
 
 }

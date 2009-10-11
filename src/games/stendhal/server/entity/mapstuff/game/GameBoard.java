@@ -3,6 +3,7 @@ package games.stendhal.server.entity.mapstuff.game;
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public abstract class GameBoard extends AreaEntity {
 	protected List<String> tokenTypes;
 	protected int currentPlayerIndex;
 	private GameBoardTimer timer;
+	private SpeakerNPC npc;
 
 	/**
 	 * creates a new GameBoard
@@ -43,6 +45,14 @@ public abstract class GameBoard extends AreaEntity {
 		timer = new GameBoardTimer(this, 5 * 60);
 	}
 
+	/**
+	 * sets the NPC who manages this game
+	 *
+	 * @param npc SpeakerNPC
+	 */
+	public void setNPC(SpeakerNPC npc) {
+		this.npc = npc;
+	}
 
 	/**
 	 * is the game active?
@@ -134,10 +144,12 @@ public abstract class GameBoard extends AreaEntity {
 	protected void endGame() {
 		timer.stop();
 		active = false;
+		players.clear();
+		currentPlayerIndex = 0;
 	}
 
 	public void timeOut() {
-		// TODO: NPC say timeout
+		npc.say("Sorry, you have been too slow. This game ends now.");
 		endGame();
 	}
 
