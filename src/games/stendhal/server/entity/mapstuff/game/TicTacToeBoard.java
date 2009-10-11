@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class TickTackToeBoard extends GameBoard implements TokenMoveListener<BoardToken> {
+public class TicTacToeBoard extends GameBoard implements TokenMoveListener<BoardToken> {
 	private List<BoardToken> tokens = new LinkedList<BoardToken>();
 
 	/**
 	 * creates a new tick tack toe board
 	 */
-	public TickTackToeBoard() {
+	public TicTacToeBoard() {
 		super(3, 3);
 		board = new BoardToken[2][2];
 	}

@@ -92,7 +92,7 @@ public abstract class GameBoard extends AreaEntity {
 	public void onTokenMoved(Player player, BoardToken token) {
 		int xIndex = getXIndex(token.getX());
 		int yIndex = getYIndex(token.getY());
-		MoveValidator validator = new TickTackToeMovementValidatorChain();
+		MoveValidator validator = new TicTacToeMovementValidatorChain();
 		if (!validator.validate(this, player, token, xIndex, yIndex)) {
 			token.resetToHomePosition();
 			return;

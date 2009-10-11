@@ -18,13 +18,13 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class TickTackToeMovementValidatorChain implements MoveValidator {
+public class TicTacToeMovementValidatorChain implements MoveValidator {
 	private List<MoveValidator> validators = new LinkedList<MoveValidator>();
 
 	/**
 	 * creates a new TickTackToeMovementValidatorChain.
 	 */
-	public TickTackToeMovementValidatorChain() {
+	public TicTacToeMovementValidatorChain() {
 		validators.add(new GameIsActiveValidator());
 		validators.add(new PlayerIsParticipatingValidator());
 		validators.add(new PlayersTurnValidator());
