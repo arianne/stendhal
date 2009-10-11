@@ -60,8 +60,7 @@ public class TicTacToeGame {
 						null);
 			}
 		};
-		// TODO change outfit
-		npc.setEntityClass("oldwizardnpc"); 
+		npc.setEntityClass("paulnpc"); 
 		npc.setPosition(106, 117);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
