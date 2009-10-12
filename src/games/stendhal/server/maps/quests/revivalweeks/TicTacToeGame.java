@@ -64,7 +64,7 @@ public class TicTacToeGame {
 						"It was nice to meet you.",
 						null);
 				add(ConversationStates.IDLE,
-						Arrays.asList("play", "game"),
+						Arrays.asList("play", "game", "yes"),
 						ConversationStates.IDLE,
 						"",
 						new PlayAction(board));
@@ -94,6 +94,20 @@ public class TicTacToeGame {
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			if (board.isGameActive()) {
 				npc.say("Sorry, " + player.getName() + " there is already a game in progress. Please wait a little.");
+				return;
+			}
+
+			board.getPlayers().add(player.getName());
+			if (board.getPlayers().isEmpty()) {
+				// TODO implement timeout for waiting for second player
+				npc.say("Okay, " + player.getName() + " you are registered for the next game. Does anyone want to #play against " + player.getName() + "?"); 
+			} else {
+				if (board.getPlayers().get(0).equals(player.getName())) {
+					npc.say("Okay " + player.getName() + ", you are registered for the next game. Does anyone want to #play against " + player.getName() + "?"); 
+				}
+
+				npc.say(board.getPlayers().get(0) + ", you are playing the blue X. " + player.getName() + ", you are playing the red O. May the best man win");
+				board.startGame();
 			}
 		}
 		
