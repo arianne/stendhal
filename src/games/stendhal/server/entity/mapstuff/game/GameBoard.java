@@ -6,6 +6,7 @@ import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.RPClass;
@@ -14,7 +15,7 @@ import marauroa.common.game.Definition.Type;
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
 	protected boolean active;
-	protected List<String> players;
+	protected List<String> players = new LinkedList<String>();
 	protected List<String> tokenTypes;
 	protected int currentPlayerIndex;
 	private GameBoardTimer timer;
@@ -148,6 +149,7 @@ public abstract class GameBoard extends AreaEntity {
 
 	protected void startGame() {
 		timer.start();
+		active = true;
 	}
 	
 	protected void endGame() {
