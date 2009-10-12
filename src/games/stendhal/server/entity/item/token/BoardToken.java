@@ -63,5 +63,6 @@ public class BoardToken extends Token {
 	public void resetToHomePosition() {
 		this.setPosition(homeX, homeY);
 		moveCountSinceHome = 0;
+		notifyWorldAboutChanges();
 	}
 }
