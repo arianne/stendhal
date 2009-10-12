@@ -59,11 +59,13 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 
 	private void checkBoardStatus() {
 		if (checkForWin()) {
+			npc.say("Congratulations! " + players.get(currentPlayerIndex) + " won his game.");
 			endGame();
 			return;
 		}
 
 		if (checkForTie()) {
+			npc.say("I am sorry, it looks nobody won this round.");
 			endGame();
 			return;
 		}

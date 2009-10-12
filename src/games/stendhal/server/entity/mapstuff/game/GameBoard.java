@@ -18,8 +18,8 @@ public abstract class GameBoard extends AreaEntity {
 	protected List<String> players = new LinkedList<String>();
 	protected List<String> tokenTypes;
 	protected int currentPlayerIndex;
+	protected SpeakerNPC npc;
 	private GameBoardTimer timer;
-	private SpeakerNPC npc;
 
 	/**
 	 * creates a new GameBoard
