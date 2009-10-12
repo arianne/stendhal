@@ -97,20 +97,21 @@ public class TicTacToeGame {
 				return;
 			}
 
-			board.getPlayers().add(player.getName());
 			if (board.getPlayers().isEmpty()) {
 				// TODO implement timeout for waiting for second player
 				npc.say("Okay, " + player.getName() + " you are registered for the next game. Does anyone want to #play against " + player.getName() + "?"); 
+				board.getPlayers().add(player.getName());
 			} else {
 				if (board.getPlayers().get(0).equals(player.getName())) {
-					npc.say("Okay " + player.getName() + ", you are registered for the next game. Does anyone want to #play against " + player.getName() + "?"); 
+					npc.say("Okay " + player.getName() + ", you are registered for the next game. Does anyone want to #play against " + player.getName() + "?");
+					return;
 				}
 
 				npc.say(board.getPlayers().get(0) + ", you are playing the blue X. " + player.getName() + ", you are playing the red O. May the best man win");
 				board.startGame();
+				board.getPlayers().add(player.getName());
 			}
 		}
-		
 	}
 
 	public void addToWorld() {
