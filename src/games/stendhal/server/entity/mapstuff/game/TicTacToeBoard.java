@@ -103,7 +103,7 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 	private boolean checkForTie() {
 		for (int xIndex = 0; xIndex < board.length; xIndex++) {
 			for (int yIndex = 0; yIndex < board[xIndex].length; yIndex++) {
-				if (board[xIndex][yIndex] != null) {
+				if (board[xIndex][yIndex] == null) {
 					return false;
 				}
 			}
