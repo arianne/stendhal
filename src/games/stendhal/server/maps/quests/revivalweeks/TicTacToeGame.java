@@ -4,9 +4,14 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.game.TicTacToeBoard;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
 
 /**
  * Add a sign saying the tower is closed
@@ -58,12 +63,40 @@ public class TicTacToeGame {
 						ConversationStates.IDLE,
 						"It was nice to meet you.",
 						null);
+				add(ConversationStates.IDLE,
+						Arrays.asList("play", "game"),
+						ConversationStates.IDLE,
+						"",
+						new PlayAction(board));
 			}
 		};
 		npc.setEntityClass("paulnpc"); 
 		npc.setPosition(106, 117);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
+	}
+
+	/**
+	 * handles a play chat action
+	 */
+	private static class PlayAction implements ChatAction {
+		private TicTacToeBoard board;
+
+		/**
+		 * creates a new PlayAction.
+		 *
+		 * @param board
+		 */
+		public PlayAction(TicTacToeBoard board) {
+			this.board = board;
+		}
+
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			if (board.isGameActive()) {
+				npc.say("Sorry, " + player.getName() + " there is already a game in progress. Please wait a little.");
+			}
+		}
+		
 	}
 
 	public void addToWorld() {
