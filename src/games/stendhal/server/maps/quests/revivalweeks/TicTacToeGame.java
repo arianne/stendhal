@@ -25,7 +25,7 @@ public class TicTacToeGame {
 
 	private void addBoard() {
 		board = new TicTacToeBoard();
-		board.setPosition(105, 119);
+		board.setPosition(87, 111);
 		zone.add(board);
 		board.addToWorld();
 	}
@@ -71,7 +71,7 @@ public class TicTacToeGame {
 			}
 		};
 		npc.setEntityClass("paulnpc"); 
-		npc.setPosition(106, 117);
+		npc.setPosition(88, 109);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
