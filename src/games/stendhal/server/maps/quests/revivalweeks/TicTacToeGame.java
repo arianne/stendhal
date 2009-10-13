@@ -81,6 +81,7 @@ public class TicTacToeGame {
 	 */
 	private static class PlayAction implements ChatAction {
 		private TicTacToeBoard board;
+		private long lastPlayerAdded;
 
 		/**
 		 * creates a new PlayAction.
@@ -97,8 +98,12 @@ public class TicTacToeGame {
 				return;
 			}
 
+			if (lastPlayerAdded + 60 < System.currentTimeMillis()) {
+				board.getPlayers().clear();
+			}
+
 			if (board.getPlayers().isEmpty()) {
-				// TODO implement timeout for waiting for second player
+				lastPlayerAdded = System.currentTimeMillis();
 				npc.say("Okay, " + player.getName() + " you are registered for the next game. Does anyone want to #play against " + player.getName() + "?"); 
 				board.getPlayers().add(player.getName());
 			} else {
