@@ -137,7 +137,7 @@ public abstract class GameBoard extends AreaEntity {
 		int yIndex = getYIndex(token.getY());
 		MoveValidator validator = new TicTacToeMovementValidatorChain();
 		if (!validator.validate(this, player, token, xIndex, yIndex)) {
-			token.resetToHomePosition();
+			token.undoMove();
 			return;
 		}
 	

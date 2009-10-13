@@ -12,6 +12,8 @@ import java.util.Map;
 public class BoardToken extends Token {
 	private int homeX = 1;
 	private int homeY = 1;
+	private int lastX = 1;
+	private int lastY = 1;
 	private int moveCountSinceHome = 0;
 
 	/**
@@ -44,6 +46,8 @@ public class BoardToken extends Token {
 	public void onPutOnGround(final Player player) {
 		moveCountSinceHome++;
 		super.onPutOnGround(player);
+		lastX = getX();
+		lastY = getY();
 	}
 
 	/**
@@ -62,7 +66,14 @@ public class BoardToken extends Token {
 	 */
 	public void resetToHomePosition() {
 		this.setPosition(homeX, homeY);
+		lastX = homeX;
+		lastY = homeY;
 		moveCountSinceHome = 0;
 		notifyWorldAboutChanges();
+	}
+
+	public void undoMove() {
+		this.setPosition(lastX, lastY);
+		moveCountSinceHome--;
 	}
 }
