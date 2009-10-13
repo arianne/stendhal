@@ -192,5 +192,13 @@ public class Market extends PassiveEntity {
 	public List<Offer> getOffers() {
 		return offers;
 	}
+	
+	public List<Offer> getExpiredOffers() {
+		return expiredOffers;
+	}
+
+	public void removeExpiredOffer(Offer offerToRemove) {
+		this.expiredOffers.remove(offerToRemove);
+	}
 
 }
