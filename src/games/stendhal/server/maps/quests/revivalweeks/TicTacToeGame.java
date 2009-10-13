@@ -98,7 +98,7 @@ public class TicTacToeGame {
 				return;
 			}
 
-			if (lastPlayerAdded + 60 < System.currentTimeMillis()) {
+			if (lastPlayerAdded + 60000 < System.currentTimeMillis()) {
 				board.getPlayers().clear();
 			}
 
