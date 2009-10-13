@@ -122,7 +122,7 @@ public class AddOfferChatAction implements ChatAction {
 		TurnListener offerExpirer = new OfferExpirerer(o,player.getZone());
 		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 		TurnListener offerRemover = new OfferRemover(o,player.getZone());
-		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY + DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
+		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY + DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY * MathHelper.SECONDS_IN_ONE_DAY, offerRemover);
 	}
 
 	private String determineItemName(Sentence sentence) {
