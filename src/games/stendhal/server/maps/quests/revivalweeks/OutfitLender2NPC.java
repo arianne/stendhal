@@ -69,10 +69,10 @@ public class OutfitLender2NPC {
 			@Override
 			protected void createPath() {
 			    final List<Node> nodes = new LinkedList<Node>();
-			    nodes.add(new Node(89, 106));
+			    nodes.add(new Node(92, 106));
 			    nodes.add(new Node(97, 106));
 			    nodes.add(new Node(97, 113));
-			    nodes.add(new Node(89, 113));
+			    nodes.add(new Node(92, 113));
 			    setPath(new FixedPath(nodes, true));
 			}
 
