@@ -42,7 +42,7 @@ public class ShowOffersChatAction implements ChatAction {
 		for (RPObject rpObject : offersSlot) {
 			if (rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
 				Offer o = (Offer) rpObject;
-				if (onlyMyOffers && !o.getOffererName().equals(player.getName())) {
+				if (onlyMyOffers && !o.equals(player)) {
 					continue;
 				}
 				counter += 1;

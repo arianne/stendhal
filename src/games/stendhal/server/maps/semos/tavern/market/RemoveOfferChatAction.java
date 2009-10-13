@@ -30,7 +30,7 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
 			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
-				if(o.getOffererName().equals(player.getName())) {
+				if(o.equals(player)) {
 					Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 					m.removeOffer(o,player);
 					player.getZone().add(o, true);

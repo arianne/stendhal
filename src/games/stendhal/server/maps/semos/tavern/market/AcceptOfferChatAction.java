@@ -37,7 +37,7 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 				earningToFetchMessage.append("Your ");
 				earningToFetchMessage.append(o.getItem().getName());
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
-				SingletonRepository.getRuleProcessor().getPlayer(o.getOffererName()).sendPrivateText(earningToFetchMessage .toString());
+				o.getOfferer().sendPrivateText(earningToFetchMessage.toString());
 				player.getZone().add(o, true);
 				npc.say("The offer has been accepted.");
 				npc.setCurrentState(ConversationStates.ATTENDING);

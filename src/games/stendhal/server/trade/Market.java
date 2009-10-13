@@ -80,7 +80,7 @@ public class Market extends PassiveEntity {
 	 */
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
-		final Offer offer = new Offer(item, money, offerer.getName());
+		final Offer offer = new Offer(item, money, offerer);
 		if(offerer.drop(item.getName())) {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
@@ -102,14 +102,14 @@ public class Market extends PassiveEntity {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				acceptingPlayer.equipOrPutOnGround(offer.getItem());
-				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOffererName());
+				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOfferer().getName());
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(offer.getItem().getID());
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
 				this.store();
-				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOffererName());
+				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer().getName());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
 			}
 		}
@@ -154,7 +154,7 @@ public class Market extends PassiveEntity {
 	public int countOffersOfPlayer(Player offerer) {
 		int count = 0;
 		for (Offer offer : this.offers) {
-			if(offer.getOffererName().equals(offerer.getName())) {
+			if(offer.getOfferer().equals(offerer)) {
 				count = count + 1;
 			}
 		}

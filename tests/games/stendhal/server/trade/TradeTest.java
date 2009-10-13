@@ -61,7 +61,8 @@ public class TradeTest {
 				.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
-		Offer offer = new Offer(item, price, "george");
+		Player george = PlayerTestHelper.createPlayer("george");
+		Offer offer = new Offer(item, price, george );
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);

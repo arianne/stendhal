@@ -31,7 +31,7 @@ public class OfferExpirerer implements TurnListener {
 		builder.append("has expired. You have ");
 		builder.append(DAYS_TO_COMPLETE_EXPIRING);
 		builder.append( "days left to get the item back or prolongue the offer.");
-		SingletonRepository.getRuleProcessor().getPlayer(offerToExpire.getOffererName()).sendPrivateText(builder.toString());
+		offerToExpire.getOfferer().sendPrivateText(builder.toString());
 		//TODO: add next turn notifier to remove offer completely after x days.
 		// turn notifier tries to put the item in one of the players slots, if that is not successfull, the item is lost
 	}
