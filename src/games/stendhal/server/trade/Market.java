@@ -37,9 +37,9 @@ public class Market extends PassiveEntity {
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
-		addSlot(new RPSlot(OFFERS_SLOT_NAME));
-		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
-		addSlot(new RPSlot(EXPIRED_OFFERS_SLOT_NAME));
+		addSlot(OFFERS_SLOT_NAME);
+		addSlot(EARNINGS_SLOT_NAME);
+		addSlot(EXPIRED_OFFERS_SLOT_NAME);
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 			this.offers.add((Offer) rpo);
 			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
