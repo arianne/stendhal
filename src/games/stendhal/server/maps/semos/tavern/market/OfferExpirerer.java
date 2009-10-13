@@ -12,7 +12,6 @@ import games.stendhal.server.trade.Offer;
  */
 public class OfferExpirerer implements TurnListener {
 	
-	private static final int DAYS_TO_COMPLETE_EXPIRING = 3;
 	private final Offer offerToExpire;
 	private final StendhalRPZone zone;
 
@@ -29,7 +28,7 @@ public class OfferExpirerer implements TurnListener {
 			builder.append("Your offer of ");
 			builder.append(offerToExpire.getItem().getName());
 			builder.append("has expired. You have ");
-			builder.append(DAYS_TO_COMPLETE_EXPIRING);
+			builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
 			builder.append( "days left to get the item back or prolongue the offer.");
 			offerToExpire.getOfferer().sendPrivateText(builder.toString());
 		}
