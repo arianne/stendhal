@@ -32,13 +32,40 @@ public class ShowOffersChatAction implements ChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+		
 		boolean onlyMyOffers = checkForMineFilter(sentence);
+		boolean onlyMyExpiredOffers = checkForMyExpiredFilter(sentence);
+		boolean filterForMine = false;
+		
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-		StringBuilder offersMessage = new StringBuilder();
-		int counter = 0;
 		RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);
+		if (onlyMyExpiredOffers) {
+			offersSlot = market.getSlot(Market.EXPIRED_OFFERS_SLOT_NAME);
+			filterForMine = true;
+		}
+		if (onlyMyOffers) {
+			filterForMine = true;
+		}
+		
+		StringBuilder offersMessage = new StringBuilder();
 		MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
 		marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
+		
+		int counter = 0;
+		counter = filterSlotContent(player, filterForMine, offersMessage,
+				counter, offersSlot, marketNPC);
+		if (counter > 0) {
+			player.sendPrivateText(offersMessage.toString());
+		}
+		if (counter == 0) {
+			String expiredAddition = onlyMyExpiredOffers ? "expired " : "";
+			player.sendPrivateText("There are currently no "+expiredAddition+"offers in the market.");
+		}
+	}
+
+	private int filterSlotContent(Player player, boolean onlyMyOffers,
+			StringBuilder offersMessage, int counter, RPSlot offersSlot,
+			MarketManagerNPC marketNPC) {
 		for (RPObject rpObject : offersSlot) {
 			if (rpObject.getRPClass().getName().equals(Offer.OFFER_RPCLASS_NAME)) {
 				Offer o = (Offer) rpObject;
@@ -56,17 +83,21 @@ public class ShowOffersChatAction implements ChatAction {
 				marketNPC.getOfferMap().get(player.getName()).put(Integer.valueOf(counter).toString(), o);
 			}
 		}
-		if (counter > 0) {
-			player.sendPrivateText(offersMessage.toString());
-		}
-		if (counter == 0) {
-			player.sendPrivateText("There are currently no offers in the market.");
-		}
+		return counter;
 	}
 
 	private boolean checkForMineFilter(Sentence sentence) {
 		for (Expression expression : sentence) {
 			if(expression.toString().equals("mine")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkForMyExpiredFilter(Sentence sentence) {
+		for (Expression expression : sentence) {
+			if(expression.toString().equals("expired")) {
 				return true;
 			}
 		}
