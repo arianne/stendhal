@@ -27,8 +27,17 @@ public class AddOfferChatAction implements ChatAction {
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	private static final int MAX_NUMBER_OFF_OFFERS = 3;
+	/**
+	 * number of days after which an offer will expire after warning
+	 */
 	protected static final int DAYS_TO_OFFER_EXPIRING_AFTER_WARNING = 3;
+	/**
+	 * number of days after which an offerer gets the expire warning
+	 */
 	private static final int DAYS_TO_OFFER_EXPIRE_WARNING_DELAY = 4;
+	/**
+	 * number of days after which an expired offer will be removed completely
+	 */
 	protected static final int DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY = 7;
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
