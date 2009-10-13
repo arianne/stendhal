@@ -43,7 +43,7 @@ public class FoundGirl {
 		currentFriends = new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
 	}
 
-	private StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
+	final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_semos_frank_house");
 
 	private void createGirlNPC() {
 
@@ -52,22 +52,10 @@ public class FoundGirl {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(95, 120));
-				nodes.add(new Node(95, 113));
-				nodes.add(new Node(101, 113));
-				nodes.add(new Node(101, 108));
-				nodes.add(new Node(95, 108));
-				nodes.add(new Node(95, 104));
-				nodes.add(new Node(90, 104));
-				nodes.add(new Node(90, 107));
-				nodes.add(new Node(89, 107));
-				nodes.add(new Node(89, 113));
-				nodes.add(new Node(77, 113));
-				nodes.add(new Node(77, 110));
-				nodes.add(new Node(87, 110));
-				nodes.add(new Node(87, 113));
-				nodes.add(new Node(92, 113));
-				nodes.add(new Node(92, 120));
+				nodes.add(new Node(4, 17));
+				nodes.add(new Node(4, 27));
+				nodes.add(new Node(7, 27));
+				nodes.add(new Node(7, 17));
 				setPath(new FixedPath(nodes, true));
 
 			}
@@ -80,10 +68,10 @@ public class FoundGirl {
 
 		//	npcs.add(npc);
 		npc.setOutfit(new Outfit(04, 07, 32, 13));
-		npc.setPosition(95, 120);
+		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		// npc.setSpeed(1.0);
+		npc.setSpeed(1.0);
 		zone.add(npc);
 	}
 	
@@ -92,7 +80,7 @@ public class FoundGirl {
 		// greeting
 		addGreetingDependingOnQuestState();
 
-		npc.addJob("I am just a litte girl waiting for my father to take me out. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks-");
+		npc.addJob("I am just a litte girl waiting for my father to take me out to of the house. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks-");
 		npc.addGoodbye("Have fun!");
 		npc.addReply("debuggera", "Debuggera is my crazy twin sister.");
 		npc.addHelp("Just have fun.");
@@ -111,8 +99,7 @@ public class FoundGirl {
 			ConversationStates.ATTENDING,
 			Arrays.asList("celebrate", "celebration", "party"),
 			ConversationStates.ATTENDING,
-			// TODO: add Liliana or adjust this sentence
-			"You can get a costume from Liliana over there or you can try to solve a difficult puzzle in one of the houses.",
+			"You can get a costume from Saskia just outside this house or you can try to solve a difficult puzzle in the other house. Or just play a game of Tic Tac Toe against you #friends.",
 			null);
 
 		// friends
