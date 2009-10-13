@@ -23,12 +23,13 @@ import games.stendhal.server.trade.Offer;
  */
 public class AddOfferChatAction implements ChatAction {
 	
-	private static final int OFFER_EXPIRE_WARNING_DELAY = 1;
 	private static final int FEE_BONUS_CONSTANT = 10;
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	private static final int MAX_NUMBER_OFF_OFFERS = 3;
 	public static final int DAYS_TO_OFFER_EXPIRING_AFTER_WARNING = 3;
+	private static final int DAYS_TO_OFFER_EXPIRE_WARNING_DELAY = 3;
+	private static final int DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY = 3;
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -93,10 +94,7 @@ public class AddOfferChatAction implements ChatAction {
 		if(shop != null) {
 			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			Offer o = shop.createOffer(player,item,Integer.valueOf(price));
-			TurnListener offerExpireWarner = new OfferExpireWarner(o);
-			TurnNotifier.get().notifyInTurns((OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpireWarner);
-			TurnListener offerExpirer = new OfferExpirerer(o,player.getZone());
-			TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
+			addTurnNotifiers(player, o);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
 			message.append(" at ");
@@ -107,6 +105,15 @@ public class AddOfferChatAction implements ChatAction {
 			player.sendPrivateText(messageNumberOfOffers);
 			return;
 		}
+	}
+
+	private void addTurnNotifiers(Player player, Offer o) {
+		TurnListener offerExpireWarner = new OfferExpireWarner(o, player.getZone());
+		TurnNotifier.get().notifyInTurns((DAYS_TO_OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpireWarner);
+		TurnListener offerExpirer = new OfferExpirerer(o,player.getZone());
+		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
+		TurnListener offerRemover = new OfferRemover(o,player.getZone());
+		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY + DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 	}
 
 	private String determineItemName(Sentence sentence) {
