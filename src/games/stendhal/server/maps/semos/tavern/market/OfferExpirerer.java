@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.trade.Market;
@@ -24,16 +23,16 @@ public class OfferExpirerer implements TurnListener {
 
 	public void onTurnReached(final int currentTurn) {
 		Market m = TradeCenterZoneConfigurator.getShopFromZone(zone);
-		m.expireOffer(offerToExpire);
-		StringBuilder builder = new StringBuilder();
-		builder.append("Your offer of ");
-		builder.append(offerToExpire.getItem().getName());
-		builder.append("has expired. You have ");
-		builder.append(DAYS_TO_COMPLETE_EXPIRING);
-		builder.append( "days left to get the item back or prolongue the offer.");
-		offerToExpire.getOfferer().sendPrivateText(builder.toString());
-		//TODO: add next turn notifier to remove offer completely after x days.
-		// turn notifier tries to put the item in one of the players slots, if that is not successfull, the item is lost
+		if(m.getOffers().contains(offerToExpire)) {
+			m.expireOffer(offerToExpire);
+			StringBuilder builder = new StringBuilder();
+			builder.append("Your offer of ");
+			builder.append(offerToExpire.getItem().getName());
+			builder.append("has expired. You have ");
+			builder.append(DAYS_TO_COMPLETE_EXPIRING);
+			builder.append( "days left to get the item back or prolongue the offer.");
+			offerToExpire.getOfferer().sendPrivateText(builder.toString());
+		}
 	}
 
 	@Override

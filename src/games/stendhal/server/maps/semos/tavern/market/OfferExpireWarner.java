@@ -1,7 +1,8 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.trade.Market;
 import games.stendhal.server.trade.Offer;
 /**
  * handles the warnig before the expiring time of an offer
@@ -12,19 +13,24 @@ import games.stendhal.server.trade.Offer;
 public class OfferExpireWarner implements TurnListener {
 	
 	private final Offer offerToExpire;
+	private final StendhalRPZone zone;
 
-	public OfferExpireWarner(Offer o) {
+	public OfferExpireWarner(Offer o, StendhalRPZone z) {
+		this.zone = z;
 		this.offerToExpire = o;
 	}
 
 	public void onTurnReached(int currentTurn) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Your offer of an ");
-		builder.append(offerToExpire.getItem().getName());
-		builder.append(" will expire in ");
-		builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
-		builder.append(" days.");
-		offerToExpire.getOfferer().sendPrivateText(builder.toString());
+		Market m = TradeCenterZoneConfigurator.getShopFromZone(zone);
+		if(m.getOffers().contains(offerToExpire)) {
+			StringBuilder builder = new StringBuilder();
+			builder.append("Your offer of an ");
+			builder.append(offerToExpire.getItem().getName());
+			builder.append(" will expire in ");
+			builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
+			builder.append(" days.");
+			offerToExpire.getOfferer().sendPrivateText(builder.toString());
+		}
 	}
 
 	@Override
