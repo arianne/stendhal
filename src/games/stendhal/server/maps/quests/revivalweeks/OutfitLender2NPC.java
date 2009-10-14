@@ -149,7 +149,8 @@ public class OutfitLender2NPC {
 				priceList.put("blue slime", (int) (N * 3000));
 				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
-			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
+
+			    addGreeting("Hello, I hope you are enjoying the Semos Mine Town Revival Weeks.");
 				addQuest("Just look fabulous!");
 				add(
 					ConversationStates.ATTENDING,
