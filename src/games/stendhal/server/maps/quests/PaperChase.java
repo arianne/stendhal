@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -84,7 +85,7 @@ public class PaperChase extends AbstractQuest {
 
 			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
-				engine.say("What do you say? " + texts.get(nextNPC) + ". That's obviously not me.");
+				engine.say("What do you say? \"" + texts.get(nextNPC) + "\" That's obviously not me.");
 				return;
 			}
 
@@ -127,7 +128,7 @@ public class PaperChase extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestStartedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED,
+			ConversationStates.ATTENDING,
 			"I have nothing to do for you. But thanks for asking",
 			null);
 		npc.add(
@@ -142,7 +143,7 @@ public class PaperChase extends AbstractQuest {
 			Arrays.asList("paper", "chase"),
 			null,
 			ConversationStates.ATTENDING,
-			"Good luck. Please ask this person about the #paper chase#: " +  texts.get(points.get(0)),
+			"Good luck. Please ask this person about the #paper #chase: " +  texts.get(points.get(0)),
 			new SetQuestAction(QUEST_SLOT, points.get(0) + ";" + System.currentTimeMillis()));
 
 
@@ -153,18 +154,21 @@ public class PaperChase extends AbstractQuest {
 
 		// Saskia does the post processing of this quest
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
-			new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia"),
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, "Oh, that is a nice #quest.", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia")),
 			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
 
 		ChatAction reward = new MultipleActions(
 			new IncreaseKarmaAction(15), 
 			new IncreaseXPAction(400), 
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
-			new EquipItemAction("empty_scroll", 10));
+			new EquipItemAction("empty scroll", 10));
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
 			ConversationStates.ATTENDING, 
-			"Very good. You did the complete quest, talking to all those people around the world.",
+			"Very good. You did the complete quest, talking to all those people around the world. Here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
 	}
 
