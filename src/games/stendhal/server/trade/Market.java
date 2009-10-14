@@ -171,7 +171,7 @@ public class Market extends PassiveEntity {
 	public int countOffersOfPlayer(Player offerer) {
 		int count = 0;
 		for (Offer offer : this.offers) {
-			if(offer.getOfferer().equals(offerer)) {
+			if(offer.getOfferer().equals(offerer.getName())) {
 				count = count + 1;
 			}
 		}
