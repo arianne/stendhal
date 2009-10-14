@@ -4,7 +4,13 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -14,7 +20,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 /**
  * A kind of paper chase.
@@ -25,9 +30,9 @@ public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
 	private List<String> points = Arrays.asList("Hayunn Naratha",
-			"Sister Benedicta", "Thanatos", "Margaret", "Vonda", "Zara", "Phalk", 
+			"Sister Benedicta", /*"Thanatos", "Margaret", "Vonda", "Zara", "Phalk", 
 			"Jef", "Orc Saman", "Blacksheep Harry", "Covester", "Femme Fatale", 
-			"PDiddi", "Vulcanus", "Haizen", "Monogenes", "Saskia");
+			"PDiddi", "Vulcanus", "Haizen", "Monogenes",*/ "Saskia");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -67,18 +72,15 @@ public class PaperChase extends AbstractQuest {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String state = points.get(idx);
 			final String next = points.get(idx + 1);
-			final String questState = player.getQuest(QUEST_SLOT);
+			final String questState = player.getQuest(QUEST_SLOT, 0);
 
 			// player does not have this quest or finished it
-			if ((questState == null) || (questState.indexOf(";") < 0)) {
+			if (questState == null) {
 				engine.say("Please talk to Saskia in the Semos Mine Town to start the paper chase.");
 				return;
 			}
 
-			// analyze quest state
-			final StringTokenizer st = new StringTokenizer(questState, ";");
-			final String nextNPC = st.nextToken();
-			final String startTime = st.nextToken();
+			final String nextNPC = questState;
 
 			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
@@ -88,14 +90,11 @@ public class PaperChase extends AbstractQuest {
 
 			// send player to the next NPC and record it in quest state
 			engine.say("Good, you found me. The next hint is: " + texts.get(next) + " Good luck.");
-			final String newState = next + ";" + startTime;
-			player.setQuest(QUEST_SLOT, newState);
+			player.setQuest(QUEST_SLOT, 0, next);
 		}
 
 	}
 
-
-	
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -153,7 +152,20 @@ public class PaperChase extends AbstractQuest {
 		}
 
 		// Saskia does the post processing of this quest
-		
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+			new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia"),
+			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
+
+		ChatAction reward = new MultipleActions(
+			new IncreaseKarmaAction(15), 
+			new IncreaseXPAction(400), 
+			new SetQuestAction(QUEST_SLOT, 0, "done"),
+			new EquipItemAction("empty_scroll", 10));
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
+			ConversationStates.ATTENDING, 
+			"Very good. You did the complete quest, talking to all those people around the world.",
+			reward);
 	}
 
 
