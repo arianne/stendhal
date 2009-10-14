@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 /**
  * abstract class for handling offer numbers in sentences
@@ -10,7 +11,11 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 public abstract class KnownOffersChatAction implements ChatAction {
 
 	protected Integer getOfferNumberFromSentence(Sentence sentence) {
-		String offerNumber = sentence.getExpression(1,"").toString();
+		Expression expression = sentence.getExpression(1,"");
+		if (expression == null) {
+			throw new NumberFormatException("no number provided");
+		}
+		String offerNumber = expression.toString();
 		return Integer.parseInt(offerNumber);
 	}
 
