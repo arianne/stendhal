@@ -1,8 +1,12 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -30,23 +34,23 @@ public class PaperChase extends AbstractQuest {
 
 
 	private void setupTexts() {
-		texts.put("Hayunn Naratha", "Please ask Hayunn Naratha about the #paper #chase.");
-		texts.put("Sister Benedicta", "Please talk to Sister Benedicta about the #paper #chase");
-		texts.put("Thanatos", "Please talk to Thanatos about the #paper #chase");
-		texts.put("Margaret", "Please talk to Margaret about the #paper #chase");
-		texts.put("Vonda", "Please talk to Vonda about the #paper #chase");
-		texts.put("Zara", "Please talk to Zara about the #paper #chase");
-		texts.put("Phalk", "Please talk to Phalk about the #paper #chase");
-		texts.put("Jef", "Please talk to Jef about the #paper #chase");
-		texts.put("Orc Saman", "Please talk to Orc Saman about the #paper #chase");
-		texts.put("Blacksheep Harry", "Please talk to Blacksheep Harry about the #paper #chase"); 
-		texts.put("Covester", "Please talk to Covester about the #paper #chase");
-		texts.put("Femme Fatale", "Please talk to Femme Fatale about the #paper #chase");
-		texts.put("PDiddi", "Please talk to PDiddi about the #paper #chase");
-		texts.put("Vulcanus", "Please talk to Vulcanus about the #paper #chase");
-		texts.put("Haizen", "Please talk to Haizen about the #paper #chase");
-		texts.put("Monogenes", "Please talk to Monogenes about the #paper #chase");
-		texts.put("Saskia", "Good, you are almost done. Now go back to the person who started this all and you will be rewarted.");
+		texts.put("Hayunn Naratha", "Please ask Hayunn Naratha.");
+		texts.put("Sister Benedicta", "Please talk to Sister Benedicta.");
+		texts.put("Thanatos", "Please talk to Thanatos.");
+		texts.put("Margaret", "Please talk to Margaret.");
+		texts.put("Vonda", "Please talk to Vonda.");
+		texts.put("Zara", "Please talk to Zara.");
+		texts.put("Phalk", "Please talk to Phalk.");
+		texts.put("Jef", "Please talk to Jef.");
+		texts.put("Orc Saman", "Please talk to Orc Saman.");
+		texts.put("Blacksheep Harry", "Please talk to Blacksheep Harry."); 
+		texts.put("Covester", "Please talk to Covester.");
+		texts.put("Femme Fatale", "Please talk to Femme Fatale.");
+		texts.put("PDiddi", "Please talk to PDiddi.");
+		texts.put("Vulcanus", "Please talk to Vulcanus.");
+		texts.put("Haizen", "Please talk to Haizen.");
+		texts.put("Monogenes", "Please talk to Monogenes.");
+		texts.put("Saskia", "The final person to talk to, is the one, who started all this.");
 	}
 	
 	/**
@@ -83,7 +87,7 @@ public class PaperChase extends AbstractQuest {
 			}
 
 			// send player to the next NPC and record it in quest state
-			engine.say("OK, please talk to " + texts.get(next) + " now.");
+			engine.say("Good, you found me. The next hint is: " + texts.get(next) + " Good luck.");
 			final String newState = next + ";" + startTime;
 			player.setQuest(QUEST_SLOT, newState);
 		}
@@ -107,7 +111,7 @@ public class PaperChase extends AbstractQuest {
 	private void addTaskToNPC(final int idx) {
 		final String state = points.get(idx);
 		final SpeakerNPC npc = npcs.get(state);
-		npc.add(ConversationStates.ATTENDING, "paper", null,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), null,
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 	}
 
@@ -120,14 +124,36 @@ public class PaperChase extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Saskia");
 
 		// Saskia introduces the quests
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED,
+			"I have nothing to do for you. But thanks for asking",
+			null);
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED,
+			"Those, who had to stay at home because of their duties, have prepared a #paper #chase.",
+			null);
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			Arrays.asList("paper", "chase"),
+			null,
+			ConversationStates.ATTENDING,
+			"Good luck. Please ask this person about the #paper chase#: " +  texts.get(points.get(0)),
+			new SetQuestAction(QUEST_SLOT, points.get(0) + ";" + System.currentTimeMillis()));
+
 
 		// add normal way points (without first and last)
 		for (int i = 0; i < points.size() - 1; i++) {
 			addTaskToNPC(i);
 		}
 
-		// Saskia does the post processing of this quest (calc points
-		// based on time and level)
+		// Saskia does the post processing of this quest
+		
 	}
 
 
