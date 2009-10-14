@@ -38,7 +38,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 		add(ConversationStates.BUY_PRICE_OFFERED, "accept", null, ConversationStates.ATTENDING, null, new AcceptOfferChatAction());
 		add(ConversationStates.BUY_PRICE_OFFERED, "remove", null, ConversationStates.ATTENDING, null, new RemoveOfferChatAction());
 		add(ConversationStates.BUY_PRICE_OFFERED, "prolong", null, ConversationStates.ATTENDING, null, new ProlongOfferChatAction());
-		addGoodbye("Visit me again to see players offers or put a new offer!");
+		addGoodbye("Visit me again to see players offers, put a new offer or fetch your earnings!");
 	}
 	public Map<String, Map<String, Offer>> getOfferMap() {
 		return offerMap;
