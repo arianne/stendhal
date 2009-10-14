@@ -23,7 +23,7 @@ public class PaperChase extends AbstractQuest {
 	private List<String> points = Arrays.asList("Hayunn Naratha",
 			"Sister Benedicta", "Thanatos", "Margaret", "Vonda", "Zara", "Phalk", 
 			"Jef", "Orc Saman", "Blacksheep Harry", "Covester", "Femme Fatale", 
-			"PDiddi", "Vulcanus", "Haizen", "Monogenes");
+			"PDiddi", "Vulcanus", "Haizen", "Monogenes", "Saskia");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -46,6 +46,7 @@ public class PaperChase extends AbstractQuest {
 		texts.put("Vulcanus", "Please talk to Vulcanus about the #paper #chase");
 		texts.put("Haizen", "Please talk to Haizen about the #paper #chase");
 		texts.put("Monogenes", "Please talk to Monogenes about the #paper #chase");
+		texts.put("Saskia", "Good, you are almost done. Now go back to the person who started this all and you will be rewarted.");
 	}
 	
 	/**
@@ -66,7 +67,7 @@ public class PaperChase extends AbstractQuest {
 
 			// player does not have this quest or finished it
 			if ((questState == null) || (questState.indexOf(";") < 0)) {
-				engine.say("Talk to Fidorea to start the paper chase.");
+				engine.say("Please talk to Saskia in the Semos Mine Town to start the paper chase.");
 				return;
 			}
 
@@ -115,15 +116,17 @@ public class PaperChase extends AbstractQuest {
 		super.addToWorld();
 		
 		setupTexts();
+		
+		SpeakerNPC npc = npcs.get("Saskia");
 
-		// TODO: add Fidorea to world introducing the quest
+		// Saskia introduces the quests
 
 		// add normal way points (without first and last)
 		for (int i = 0; i < points.size() - 1; i++) {
 			addTaskToNPC(i);
 		}
 
-		// TODO: Fidorea doing the post processing of this quest (calc points
+		// Saskia does the post processing of this quest (calc points
 		// based on time and level)
 	}
 
