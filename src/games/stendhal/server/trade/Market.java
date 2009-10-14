@@ -37,9 +37,15 @@ public class Market extends PassiveEntity {
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
-		addSlot(OFFERS_SLOT_NAME);
-		addSlot(EARNINGS_SLOT_NAME);
-		addSlot(EXPIRED_OFFERS_SLOT_NAME);
+		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
+			addSlot(OFFERS_SLOT_NAME);
+		}
+		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+			addSlot(EARNINGS_SLOT_NAME);
+		}
+		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+			addSlot(EXPIRED_OFFERS_SLOT_NAME);
+		}
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 			this.offers.add((Offer) rpo);
 			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
@@ -65,8 +71,15 @@ public class Market extends PassiveEntity {
 	private Market() {
 		super();
 		setRPClass(MARKET_RPCLASS_NAME);
-		addSlot(new RPSlot(OFFERS_SLOT_NAME));
-		addSlot(new RPSlot(EARNINGS_SLOT_NAME));
+		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
+			addSlot(OFFERS_SLOT_NAME);
+		}
+		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+			addSlot(EARNINGS_SLOT_NAME);
+		}
+		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+			addSlot(EXPIRED_OFFERS_SLOT_NAME);
+		}
 		store();
 	}
 	
@@ -80,7 +93,7 @@ public class Market extends PassiveEntity {
 	 */
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
-		final Offer offer = new Offer(item, money, offerer);
+		final Offer offer = new Offer(item, money, offerer.getName());
 		if(offerer.drop(item.getName())) {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
@@ -90,7 +103,8 @@ public class Market extends PassiveEntity {
 			this.store();
 			return offer;
 		}
-		return null;
+		this.getZone().storeToDatabase();
+		return offer;
 	}
 
 	/**
@@ -102,17 +116,18 @@ public class Market extends PassiveEntity {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				acceptingPlayer.equipOrPutOnGround(offer.getItem());
-				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOfferer().getName());
+				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOfferer());
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(offer.getItem().getID());
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
 				this.store();
-				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer().getName());
+				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
 			}
 		}
+		this.getZone().storeToDatabase();
 	}
 
 	private void applyTradingBonus(Player acceptingPlayer, Player sellingPlayer) {
@@ -142,6 +157,7 @@ public class Market extends PassiveEntity {
 		for(Earning earning : earningsToRemove) {
 			this.getSlot(EARNINGS_SLOT_NAME).remove(earning.getID());
 		}
+		this.getZone().storeToDatabase();
 		return earningsToRemove;
 	}
 	
@@ -171,11 +187,15 @@ public class Market extends PassiveEntity {
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(o.getItem().getID());
 		this.getOffers().remove(o);
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
+		this.getZone().storeToDatabase();
 	}
 	
 	public void expireOffer(Offer o) {
 		this.getOffers().remove(o);
+		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		this.expiredOffers.add(o);
+		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(o);
+		this.getZone().storeToDatabase();
 	}
 
 	private int sumUpEarningsForPlayer(final Player earner) {
@@ -199,6 +219,8 @@ public class Market extends PassiveEntity {
 
 	public void removeExpiredOffer(Offer offerToRemove) {
 		this.expiredOffers.remove(offerToRemove);
+		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
+		this.getZone().storeToDatabase();
 	}
 
 }

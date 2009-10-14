@@ -25,15 +25,15 @@ public class OfferTest {
 	public void testOffer() throws Exception {
 		Item item = SingletonRepository.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(1);
-		String offererName = "trader";
+		String offererName = "george";
 		Player george = PlayerTestHelper.createPlayer(offererName);
-		Offer o = new Offer(item, price, george );
-		assertThat(o.getOfferer().getName(), is(offererName));
+		Offer o = new Offer(item, price, george.getName() );
+		assertThat(o.getOfferer(), is(offererName));
 		assertThat(o.getInt("price"), is(price.intValue()));
 		assertThat((Item) o.getSlot("item").getFirst(), is(item));
 		Offer offerFromRPObject = new Offer(o);
 		assertThat(offerFromRPObject.getPrice(), is(price));
-		assertThat(offerFromRPObject.getOfferer().getName(), is(offererName));
+		assertThat(offerFromRPObject.getOfferer(), is(offererName));
 		assertThat(offerFromRPObject.getItem(), is(item));
 	}
 }

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.trade.Market;
@@ -23,7 +24,7 @@ public class OfferRemover implements TurnListener {
 			builder.append("Your offer of ");
 			builder.append(offerToRemove.getItem().getName());
 			builder.append(" has been removed permanently from the market.");
-			offerToRemove.getOfferer().sendPrivateText(builder.toString());
+			SingletonRepository.getRuleProcessor().getPlayer(offerToRemove.getOfferer()).sendPrivateText(builder.toString());
 			zone.add(offerToRemove, true);
 		}
 	}

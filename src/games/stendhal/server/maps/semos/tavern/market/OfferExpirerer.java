@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.trade.Market;
@@ -30,7 +31,7 @@ public class OfferExpirerer implements TurnListener {
 			builder.append("has expired. You have ");
 			builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
 			builder.append( "days left to get the item back or prolongue the offer.");
-			offerToExpire.getOfferer().sendPrivateText(builder.toString());
+			SingletonRepository.getRuleProcessor().getPlayer(offerToExpire.getOfferer()).sendPrivateText(builder.toString());
 		}
 	}
 

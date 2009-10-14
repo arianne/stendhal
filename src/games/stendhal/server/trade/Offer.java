@@ -14,7 +14,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Offer extends PassiveEntity {
 	
-	private static final String OFFERER_SLOT_NAME = "offerer";
+	private static final String OFFERER_ATTRIBUTE_NAME = "offerer";
 
 	public static final String OFFER_ITEM_SLOT_NAME = "item";
 
@@ -24,36 +24,37 @@ public class Offer extends PassiveEntity {
 	
 	private final Integer price;
 
-	private final Player offerer;
+	private final String offerer;
 	
 	public static void generateRPClass() {
 		final RPClass offerRPClass = new RPClass(OFFER_RPCLASS_NAME);
 		offerRPClass.isA("entity");
 		offerRPClass.addAttribute("price", Type.INT);
 		offerRPClass.addAttribute("class", Type.STRING);
-		offerRPClass.addRPSlot(OFFERER_SLOT_NAME, 1);
+		offerRPClass.addAttribute(OFFERER_ATTRIBUTE_NAME, Type.STRING);
 		offerRPClass.addRPSlot(OFFER_ITEM_SLOT_NAME, 1);
 	}
 	
 	/**
 	 * @param item
 	 */
-	public Offer(final Item item, final Integer price, final Player offerer) {
+	public Offer(final Item item, final Integer price, final String offerer) {
 		super();
 		setRPClass("offer");
-		this.addSlot(OFFER_ITEM_SLOT_NAME);
+		if (!this.hasSlot(OFFER_ITEM_SLOT_NAME)) {
+			this.addSlot(OFFER_ITEM_SLOT_NAME);
+		}
 		this.getSlot(OFFER_ITEM_SLOT_NAME).add(item);
 		this.item = item;
 		this.put("price", price.intValue());
 		this.price = price;
-		this.addSlot(OFFERER_SLOT_NAME);
-		this.getSlot(OFFERER_SLOT_NAME).add(offerer);
+		this.put(OFFERER_ATTRIBUTE_NAME, offerer);
 		this.offerer = offerer;
 		store();
 	}
 	
 	public Offer(final RPObject object) {
-		this((Item) object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(), Integer.valueOf(object.getInt("price")), (Player) object.getSlot(OFFERER_SLOT_NAME).getFirst());
+		this((Item) object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(), Integer.valueOf(object.getInt("price")), object.get(OFFERER_ATTRIBUTE_NAME));
 	}
 
 
@@ -69,7 +70,7 @@ public class Offer extends PassiveEntity {
 
 
 
-	public final Player getOfferer() {
+	public final String getOfferer() {
 		return offerer;
 	}
 
