@@ -26,8 +26,8 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+		MarketManagerNPC manager = (MarketManagerNPC) npc;
 		try {
-			MarketManagerNPC manager = (MarketManagerNPC) npc;
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
 			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
@@ -49,6 +49,7 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 			npc.say("Sorry, please say #accept #number");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		}
+		manager.getOfferMap().clear();
 	}
 
 }

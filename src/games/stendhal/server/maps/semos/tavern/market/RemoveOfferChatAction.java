@@ -25,8 +25,8 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+		MarketManagerNPC manager = (MarketManagerNPC) npc;
 		try {
-			MarketManagerNPC manager = (MarketManagerNPC) npc;
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
 			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
@@ -45,6 +45,7 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #remove #number");
 			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
-		}	
+		}
+		manager.getOfferMap().clear();
 	}
 }
