@@ -43,7 +43,7 @@ public class Market extends PassiveEntity {
 		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
 			addSlot(EARNINGS_SLOT_NAME);
 		}
-		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+		if(!this.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			addSlot(EXPIRED_OFFERS_SLOT_NAME);
 		}
 		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
