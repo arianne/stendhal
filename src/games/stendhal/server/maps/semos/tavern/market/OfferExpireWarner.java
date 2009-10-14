@@ -28,7 +28,7 @@ public class OfferExpireWarner implements TurnListener {
 			builder.append("Your offer of an ");
 			builder.append(offerToExpire.getItem().getName());
 			builder.append(" will expire in ");
-			builder.append(AddOfferChatAction.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
+			builder.append(TradingUtility.DAYS_TO_OFFER_EXPIRING_AFTER_WARNING);
 			builder.append(" days.");
 			SingletonRepository.getRuleProcessor().getPlayer(offerToExpire.getOfferer()).sendPrivateText(builder.toString());
 		}

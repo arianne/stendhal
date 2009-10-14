@@ -93,7 +93,8 @@ public class Market extends PassiveEntity {
 	 */
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
-		final Offer offer = new Offer(item, money, offerer.getName());
+		String name = offerer.getName();
+		final Offer offer = new Offer(item, money, name);
 		if(offerer.drop(item.getName())) {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
@@ -221,6 +222,23 @@ public class Market extends PassiveEntity {
 		this.expiredOffers.remove(offerToRemove);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
 		this.getZone().storeToDatabase();
+	}
+
+	public Offer prolongOffer(Offer o) {
+		if (this.expiredOffers.remove(o)) {
+			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(o.getID());
+		}
+		if (this.offers.remove(o)) {
+			this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
+		}
+		final Offer offer = new Offer(o.getItem(), o.getPrice(), o.getOfferer());
+		getOffers().add(offer);
+		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+		slot.add(offer);
+		offer.store();
+		this.store();
+		this.getZone().storeToDatabase();
+		return offer;
 	}
 
 }

@@ -1,12 +1,13 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.trade.Market;
+import games.stendhal.server.trade.Offer;
 
-public class ProlongOfferChatAction implements ChatAction {
+public class ProlongOfferChatAction extends KnownOffersChatAction {
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -19,8 +20,42 @@ public class ProlongOfferChatAction implements ChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
-		// TODO Auto-generated method stub
-		
+		try {
+			MarketManagerNPC manager = (MarketManagerNPC) npc;
+			String offerNumber = getOfferNumberFromSentence(sentence).toString();
+			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
+				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
+				if(o.getOfferer().equals(player.getName())) {
+					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
+					if(TradingUtility.substractTradingFee(player, o.getPrice())) {
+						prolongOffer(player, o);
+						npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
+						npc.setCurrentState(ConversationStates.ATTENDING);
+						return;
+					}
+					npc.say("You cannot afford the trading fee of "+fee.toString());
+					return;
+				}
+				npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");
+				npc.setCurrentState(ConversationStates.ATTENDING);
+				return;
+			}
+			npc.say("Sorry, please choose a number from those I told you to prolong your offer.");
+			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
+		} catch (NumberFormatException e) {
+			npc.say("Sorry, please say #remove #number");
+			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
+		}
+	}
+
+	private void prolongOffer(Player player, Offer o) {
+		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+		if (market != null) {
+			Offer newOffer = market.prolongOffer(o);
+			TradingUtility.addTurnNotifiers(player, newOffer);
+			String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
+			player.sendPrivateText(messageNumberOfOffers);
+		}
 	}
 
 }
