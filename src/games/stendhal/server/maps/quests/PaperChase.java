@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToPlayerAgeAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
@@ -144,7 +145,7 @@ public class PaperChase extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Good luck. Please ask this person about the #paper #chase: " +  texts.get(points.get(0)),
-			new SetQuestAction(QUEST_SLOT, points.get(0) + ";" + System.currentTimeMillis()));
+			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, points.get(0)), new SetQuestToPlayerAgeAction(QUEST_SLOT, 1)));
 
 
 		// add normal way points (without first and last)
