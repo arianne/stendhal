@@ -55,6 +55,7 @@ import games.stendhal.server.maps.quests.MeetZynn;
 import games.stendhal.server.maps.quests.MithrilCloak;
 import games.stendhal.server.maps.quests.NewsFromHackim;
 import games.stendhal.server.maps.quests.ObsidianKnife;
+import games.stendhal.server.maps.quests.PaperChase;
 import games.stendhal.server.maps.quests.PizzaDelivery;
 import games.stendhal.server.maps.quests.PlinksToy;
 import games.stendhal.server.maps.quests.QuestInfo;
@@ -185,6 +186,7 @@ public class StendhalQuestSystem {
 		// loadQuet(new SatoCataclysm());
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
+			loadQuest(new PaperChase());
 		}
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
