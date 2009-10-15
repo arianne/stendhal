@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetHallOfFameToAgeDiffAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToPlayerAgeAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -165,7 +166,8 @@ public class PaperChase extends AbstractQuest {
 			new IncreaseKarmaAction(15), 
 			new IncreaseXPAction(400), 
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
-			new EquipItemAction("empty scroll", 10));
+			new EquipItemAction("empty scroll", 10),
+			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"));
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
 			ConversationStates.ATTENDING, 
