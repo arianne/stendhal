@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetHallOfFameToAgeDiffAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToPlayerAgeAction;
+import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
@@ -125,6 +126,11 @@ public class PaperChase extends AbstractQuest {
 		
 		SpeakerNPC npc = npcs.get("Saskia");
 
+		ChatAction startAction = new MultipleActions(
+			new SetQuestAction(QUEST_SLOT, 0, points.get(0)), 
+			new SetQuestToPlayerAgeAction(QUEST_SLOT, 1),
+			new SetQuestToYearAction(QUEST_SLOT, 2));
+
 		// Saskia introduces the quests
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -146,7 +152,7 @@ public class PaperChase extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Good luck. Please ask this person about the #paper #chase: " +  texts.get(points.get(0)),
-			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, points.get(0)), new SetQuestToPlayerAgeAction(QUEST_SLOT, 1)));
+			startAction);
 
 
 		// add normal way points (without first and last)
