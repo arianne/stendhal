@@ -46,18 +46,24 @@ public class Market extends PassiveEntity {
 		if(!this.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			addSlot(EXPIRED_OFFERS_SLOT_NAME);
 		}
-		for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
-			this.offers.add((Offer) rpo);
-			this.getSlot(OFFERS_SLOT_NAME).add(rpo);
+		if (object.hasSlot(OFFERS_SLOT_NAME)) {
+			for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
+				this.offers.add((Offer) rpo);
+				this.getSlot(OFFERS_SLOT_NAME).add(rpo);
+			}
 		}
-		for(final RPObject rpo : object.getSlot(EARNINGS_SLOT_NAME)) {
-			final Earning earning = (Earning) rpo;
-			this.earnings.add(earning);
-			this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
+		if (object.hasSlot(EARNINGS_SLOT_NAME)) {
+			for(final RPObject rpo : object.getSlot(EARNINGS_SLOT_NAME)) {
+				final Earning earning = (Earning) rpo;
+				this.earnings.add(earning);
+				this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
+			}
 		}
-		for(final RPObject rpo : object.getSlot(EXPIRED_OFFERS_SLOT_NAME)) {
-			this.expiredOffers.add((Offer) rpo);
-			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(rpo);
+		if (object.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
+			for(final RPObject rpo : object.getSlot(EXPIRED_OFFERS_SLOT_NAME)) {
+				this.expiredOffers.add((Offer) rpo);
+				this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(rpo);
+			}
 		}
 		store();
 	}
