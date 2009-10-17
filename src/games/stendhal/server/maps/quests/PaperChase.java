@@ -33,33 +33,49 @@ import java.util.Map;
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private List<String> points = Arrays.asList("Hayunn Naratha",
-			"Sister Benedicta", /*"Thanatos", "Margaret", "Vonda", "Zara", "Phalk", 
-			"Jef", "Orc Saman", "Blacksheep Harry", "Covester", "Femme Fatale", 
-			"PDiddi", "Vulcanus", "Haizen", "Monogenes",*/ "Saskia");
+	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos",  "Haizen", "Zara", "Leander", "Sally", 
+												"Plink", "Jef", "Blacksheep Harry", 
+												"Pdiddi", "Monogenes", "Vulcanus", "Saskia");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
+	private Map<String, String> greetings = new HashMap<String, String>();
 
+
+	private void setupGreetings() {
+		// Each greeting is said by the previous NPC to point to the NPC in the key.
+		greetings.put("Thanatos", "Well done for finding me! I knew you'd remember my book! ");
+		greetings.put("Haizen", "Well, I guess that was an easy clue Hayunn gave you? ");
+		greetings.put("Zara", "I hope Thanatos didn't tell you I'd actually summon that dragon. I'm much too afraid. ");
+		greetings.put("Leander", "You found me! Cyk's told me about a pizza chef who delivers all the way to Athor. ");
+		greetings.put("Sally", "I'm glad that my business is so well known, that you could find me! My daughter is the next person for you to visit. ");
+		greetings.put("Plink", "*smiles* There's another who smiles too. ");
+		greetings.put("Jef", "Yay! You're here! This is so exciting! ");
+		greetings.put("Blacksheep Harry", "Nice to see you! ");
+		greetings.put("Pdiddi", "You got me. ");
+		greetings.put("Monogenes", "Good work on finding me. Now, I may look bald but I'm not really, it's just a short hair cut. ");
+		greetings.put("Vulcanus", "Did you know my name is derived from Greek? ");
+		greetings.put("Saskia", "Well done for finding me. ");
+	}
+	
 
 	private void setupTexts() {
-		texts.put("Hayunn Naratha", "Please ask Hayunn Naratha.");
-		texts.put("Sister Benedicta", "Please talk to Sister Benedicta.");
-		texts.put("Thanatos", "Please talk to Thanatos.");
-		texts.put("Margaret", "Please talk to Margaret.");
-		texts.put("Vonda", "Please talk to Vonda.");
-		texts.put("Zara", "Please talk to Zara.");
-		texts.put("Phalk", "Please talk to Phalk.");
-		texts.put("Jef", "Please talk to Jef.");
-		texts.put("Orc Saman", "Please talk to Orc Saman.");
-		texts.put("Blacksheep Harry", "Please talk to Blacksheep Harry."); 
-		texts.put("Covester", "Please talk to Covester.");
-		texts.put("Femme Fatale", "Please talk to Femme Fatale.");
-		texts.put("PDiddi", "Please talk to PDiddi.");
-		texts.put("Vulcanus", "Please talk to Vulcanus.");
-		texts.put("Haizen", "Please talk to Haizen.");
-		texts.put("Monogenes", "Please talk to Monogenes.");
-		texts.put("Saskia", "The final person to talk to, is the one, who started all this.");
+		texts.put("Thanatos", "The next person you must find, "
+				  + "I'd think he 'knows how to kill creatures', because he would see so many getting killed. Many players "
+				  + "meet their 'match' when they battle to the 'death' under his watch.");
+		texts.put("Haizen", "The next person you should find has magic "
+				  + "which can summon something that even I cannot: a giant red dragon.");
+		texts.put("Zara", "The next person on your trail also has some kind of magical power, they are slowly turning *themselves* red!");
+		texts.put("Leander", "I have no idea where the pizza chef is, but he's the next on your trail!");
+		texts.put("Sally", "She's a girl who loves playing with fire.");
+		texts.put("Plink", "He's a boy who lives on a farm, he smiles if you can help him with his wolf problem. You should go see him next!");
+		texts.put("Jef", "The next person for you to find needs some excitement too! He's been waiting for his"
+				  + " mother to return from market for so long now.");
+		texts.put("Blacksheep Harry", "Next, visit the sheepish man who makes canned tuna for the whole world!"); 
+		texts.put("Pdiddi", "Next you need to see the dodgy geezer who pretends to be running a tavern east of Semos.");
+		texts.put("Monogenes", "Your next clue is to find a human who really is bald. He's pretty old, too.");
+		texts.put("Vulcanus", "Next you must find the son of a god, who greets you in Greek.");
+		texts.put("Saskia", "The final person to talk to, is the one who started all this.");
 	}
 	
 	/**
@@ -93,7 +109,7 @@ public class PaperChase extends AbstractQuest {
 			}
 
 			// send player to the next NPC and record it in quest state
-			engine.say("Good, you found me. The next hint is: " + texts.get(next) + " Good luck.");
+			engine.say(greetings.get(next) + texts.get(next) + " Good luck!");
 			player.setQuest(QUEST_SLOT, 0, next);
 		}
 
@@ -122,8 +138,9 @@ public class PaperChase extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		
+		setupGreetings();
 		setupTexts();
-		
+	
 		SpeakerNPC npc = npcs.get("Saskia");
 
 		ChatAction startAction = new MultipleActions(
@@ -144,14 +161,14 @@ public class PaperChase extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Those, who had to stay at home because of their duties, have prepared a #paper #chase.",
+			"Those who had to stay at home because of their duties, have prepared a #paper #chase.",
 			null);
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			Arrays.asList("paper", "chase"),
 			null,
 			ConversationStates.ATTENDING,
-			"Good luck. Please ask this person about the #paper #chase: " +  texts.get(points.get(0)),
+			"You must ask every person on the trail about the #paper #chase. First you must find the beer-loving author of KNOW HOW TO KILL CREATURES.",
 			startAction);
 
 
@@ -174,6 +191,7 @@ public class PaperChase extends AbstractQuest {
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new EquipItemAction("empty scroll", 10),
 			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"));
+	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
 			ConversationStates.ATTENDING, 
