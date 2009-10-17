@@ -82,7 +82,7 @@ public class AudioClip {
 
 		if (!mixer.isLineSupported(new DataLine.Info(Clip.class,
 				audioInputStream.getFormat()))) {
-			logger.error("format is not supported("
+			logger.warn("format is not supported ("
 					+ audioInputStream.getFormat() + ")");
 			supported = false;
 			return;
