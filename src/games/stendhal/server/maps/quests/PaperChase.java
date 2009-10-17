@@ -113,6 +113,7 @@ public class PaperChase extends AbstractQuest {
 			// send player to the next NPC and record it in quest state
 			engine.say(greetings.get(next) + texts.get(next) + " Good luck!");
 			player.setQuest(QUEST_SLOT, 0, next);
+			player.addXP((idx + 1) * 10);
 		}
 
 	}
