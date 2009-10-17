@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A Tick Tack Toe board.
+ * A Tic Tac Toe board.
  *
  * @author hendrik
  */
@@ -17,7 +17,7 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 	private List<BoardToken> tokens = new LinkedList<BoardToken>();
 
 	/**
-	 * creates a new tick tack toe board
+	 * creates a new tic tac toe board
 	 */
 	public TicTacToeBoard() {
 		super(3, 3);
@@ -59,13 +59,13 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 
 	private void checkBoardStatus() {
 		if (checkForWin()) {
-			npc.say("Congratulations! " + players.get(currentPlayerIndex) + " won his game.");
+			npc.say("Congratulations! " + players.get(currentPlayerIndex) + " won this game.");
 			endGame();
 			return;
 		}
 
 		if (checkForTie()) {
-			npc.say("I am sorry, it looks nobody won this round.");
+			npc.say("I am sorry, it looks like nobody won this round.");
 			endGame();
 			return;
 		}
