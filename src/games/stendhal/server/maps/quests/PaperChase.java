@@ -33,7 +33,9 @@ import java.util.Map;
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos",  "Haizen", "Zara", "Leander", "Sally", 
+	private static final List<String> NPC_IDLE = Arrays.asList("Thanatos");
+
+	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos", "Haizen", "Zara", "Leander", "Sally", 
 												"Plink", "Jef", "Blacksheep Harry", 
 												"Pdiddi", "Monogenes", "Vulcanus", "Saskia");
 
@@ -132,6 +134,10 @@ public class PaperChase extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get(state);
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), null,
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
+		if (NPC_IDLE.contains(state)) {
+			npc.add(ConversationStates.ANY, Arrays.asList("paper", "chase"), null,
+					ConversationStates.ANY, null, new PaperChasePoint(idx));
+		}
 	}
 
 	@Override
