@@ -23,13 +23,9 @@ import java.awt.geom.Rectangle2D;
 public class CollisionDetection {
 	CollisionMap map;
 
-
 	private int width;
 
 	private int height;
-
-	public CollisionDetection() {
-	}
 
 	public void clear() {
 		if (map == null) {

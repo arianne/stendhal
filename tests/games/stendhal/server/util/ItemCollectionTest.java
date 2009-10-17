@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
+
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -19,7 +21,7 @@ public class ItemCollectionTest {
 	public void testCreateArea() {
 	    final ItemCollection coll = new ItemCollection();
 	    assertEquals("", coll.toStringForQuestState());
-        assertEquals(Arrays.asList(), coll.toStringList());
+        assertEquals(ConversationPhrases.EMPTY, coll.toStringList());
 
 	    coll.addItem("cheese", 5);
 	    assertEquals("cheese=5", coll.toStringForQuestState());
