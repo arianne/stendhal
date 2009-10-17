@@ -14,7 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 
 /**
- * Add a sign saying the tower is closed
+ * A Tic Tac Toe game for two players
  *
  * @author hendrik
  */
@@ -112,7 +112,7 @@ public class TicTacToeGame {
 					return;
 				}
 
-				npc.say(board.getPlayers().get(0) + ", you are playing the blue X. " + player.getName() + ", you are playing the red O. May the best man win");
+				npc.say(board.getPlayers().get(0) + ", you are playing the blue X. " + player.getName() + ", you are playing the red O. May the best man win!");
 				board.startGame();
 				board.getPlayers().add(player.getName());
 			}
