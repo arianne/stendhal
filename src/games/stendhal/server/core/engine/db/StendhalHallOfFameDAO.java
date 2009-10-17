@@ -14,6 +14,8 @@ package games.stendhal.server.core.engine.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.server.db.DBTransaction;
@@ -104,6 +106,40 @@ public class StendhalHallOfFameDAO {
 	}
 
 	/**
+	 * gets the characters who have taken part in the specified fametype
+	 *
+	 * @param transaction a DBTransaction
+	 * @param fametype type of fame
+	 * @param max maximum number of returned characters
+	 * @param ascending sort ascending or descending
+	 * @throws SQLException in case of an database error
+	 */
+	public List<String> getCharactersByFametype(DBTransaction transaction, String fametype, int max, boolean ascending) throws SQLException {
+		List<String> res = new LinkedList<String>();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("fametype", fametype);
+
+		// generate SQL statement
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT charname FROM halloffame");
+		sql.append(" WHERE fametype = '[fametype]'");
+		sql.append(" ORDER BY points");
+		if (!ascending) {
+			sql.append(" DESC");
+		}
+		if (max > 0) {
+			sql.append(" LIMIT " + max);
+		}
+
+		// read result
+		ResultSet resultSet = transaction.query(sql.toString(), params);
+		while (resultSet.next()) {
+			res.add(resultSet.getString(1));
+		}
+		return res;
+	}
+
+	/**
 	 * Returns the points in the specified hall of fame.
 	 * 
 	 * @param charname name of the player
@@ -136,4 +172,23 @@ public class StendhalHallOfFameDAO {
 		TransactionPool.get().commit(transaction);
 	}
 
+	/**
+	 * gets the characters who have taken part in the specified fametype
+	 *
+	 * @param fametype type of fame
+	 * @param max maximum number of returned characters
+	 * @param ascending sort ascending or descending
+	 */
+	public List<String> getCharactersByFametype(String fametype, int max, boolean ascending) {
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		try {
+			List<String> res = getCharactersByFametype(transaction, fametype, max, ascending);
+			TransactionPool.get().commit(transaction);
+			return res;
+		} catch (SQLException e) {
+			logger.error(e, e);
+			TransactionPool.get().rollback(transaction);
+			return new LinkedList<String>();
+		}
+	}
 }
