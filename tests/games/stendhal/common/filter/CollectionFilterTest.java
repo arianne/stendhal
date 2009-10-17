@@ -6,18 +6,12 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class CollectionFilterTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 	@Test
 	public final void testFilter() {
@@ -37,7 +31,7 @@ public class CollectionFilterTest {
 		final CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
 
 		cf1.addFilterCriteria(new Adminfilter());
-		List< ? extends Player> result = (List< ? extends Player>) cf1.filterCopy(list);
+		Collection<? extends Player> result = cf1.filterCopy(list);
 		assertThat(result.size(), is(3));
 		result.remove(1);
 		assertThat(result.size(), is(2));
@@ -46,7 +40,7 @@ public class CollectionFilterTest {
 		final CollectionFilter<Player> cf2 = new CollectionFilter<Player>();
 
 		cf2.addFilterCriteria(new NoAdminfilter());
-		result = (List< ? extends Player>) cf2.filterCopy(list);
+		result = cf2.filterCopy(list);
 		assertThat(result.size(), is(2));
 		result.remove(1);
 		assertThat(result.size(), is(1));
