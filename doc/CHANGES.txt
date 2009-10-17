@@ -1,16 +1,29 @@
 Changelog
 ---------
 
+
+0.78
+- world
+
+- admin
+- code
+  - code cleanup in the client
+  - code cleanup in automated tests
+  - deleted our forked version of the map editor since it is getting outdated and is not used anymore
+
 0.78
 * changes for players
 - various map fixes
 - added a note about logging on account creation
 - destroy the old wedding ring, if another is added to the same slot with it and use up the energy of the new one
+- renamed Stichard Rallman
 
 * changes for developer / hosters / admins
 - replaced old forked map editor with the official one from http://mapeditor.org/ 
 - fixed error message: object does not have slot !quests
 - check existence of character to be jailed
+- check that the player in /jail-command exists
+
 
 0.77
 - improvements to the test infrastructure, now including coverage reports and various statistics about code quality
@@ -21,8 +34,7 @@ Changelog
 - don't let pets/sheep dying result in concurrent modification
 - Make it possible to name pets back to their original name
 - allow always using the animal type to rename a pet (even if it has a name already)
-- give 20 xp for the Cherub in the starting zone so players don't get to level
-4 instantly 
+- give 20 xp for the Cherub in the starting zone so players don't get to level 4 instantly 
 - new items added to NPC buyers
 - moved the chatlog to the main client window
 - minimap and buddies are now a side panel
