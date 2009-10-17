@@ -76,33 +76,31 @@ public class ScriptRunner extends StendhalServerExtension implements
 	}
 	
 	// need that function to filter scripts names 
-	public String argToRegex(String arg)
-    {
-	final String metaSymbols = new String("*?()[]{}+-.^$|\\");
-    StringBuilder stringBuilder = new StringBuilder();
-    for (int i = 0; i < arg.length(); i++)
-        {
-        final char c = arg.charAt(i);
-        final int n = metaSymbols.indexOf(c);
-        if (n == -1) {
-        	stringBuilder.append(c);
-        } else {
-            switch (c) {
-            case '*':
-               stringBuilder.append(".*?");
-               break;
-            case '?':
-               stringBuilder.append(".");
-               break;
-            default:
-                stringBuilder.append('\\');
-                stringBuilder.append(c);
-                break;
-            }
-          }
-        }
-    return stringBuilder.toString();
-    }
+	public String searchTermToRegex(String searchTerm) {
+		final String metaSymbols = new String("*?()[]{}+-.^$|\\");
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < searchTerm.length(); i++) {
+			final char c = searchTerm.charAt(i);
+			final int n = metaSymbols.indexOf(c);
+			if (n == -1) {
+				stringBuilder.append(c);
+			} else {
+				switch (c) {
+					case '*':
+						stringBuilder.append(".*?");
+						break;
+					case '?':
+						stringBuilder.append(".");
+						break;
+					default:
+						stringBuilder.append('\\');
+						stringBuilder.append(c);
+						break;
+				}
+			}
+		}
+		return stringBuilder.toString();
+	}
 	
 	private synchronized boolean perform(final String name, final String mode,
 			final Player player, final List<String> args) {
@@ -115,58 +113,13 @@ public class ScriptRunner extends StendhalServerExtension implements
 		
 		// list mode
 		if ("list".equals(mode)) {
-		    // *.groovy scripts is in data/script/
-			final File dir1 = new File(scriptDir);
-			// *.class scripts is in data/script/games/stendhal/server/script/
-			final File dir2 = new File(scriptDir+"games/stendhal/server/script/");
-			final String[] strs1 = dir1.list(new FilenameFilter() {
-					public boolean accept(final File dir, final String name) {
-						return (name.endsWith(".groovy"));
-					}
-				});
-			final String[] strs2 = dir2.list(new FilenameFilter(){
-					public boolean accept(final File dir, final String name) {
-						return (name.endsWith(".class"));
-					}
-				});
-				
-			// concatenating String arrays strs1 and strs2 to strs
-			final String[] strs= new String[strs1.length+strs2.length];
-			System.arraycopy(strs1, 0, strs, 0, strs1.length);
-			System.arraycopy(strs2, 0, strs, strs1.length, strs2.length);
-
-			StringBuilder stringBuilder = new StringBuilder();
-			
-			if (args.size()>0) {
-				// FIXME: currently only one argument can be parsed becouse 
-				// mother function (public void onAction()) hides arguments in case 
-				// if several arguments given.
-				stringBuilder.append("results for /script -list "+args.get(0)+" command:\n");
-			} else {
-				stringBuilder.append("results for /script -list command:\n");				
-			}
-			
-			for (int i = 0; i < strs.length; i++) {
-				// if arguments given, will look for matches.
-				if (args.size()>0) {
-					int j = 0;					
-					//for (j = 0; j < args.size(); j++) {
-						if (strs[i].matches(argToRegex(args.get(j)))) {
-							stringBuilder.append(strs[i]+"\n");						
-						}
-					//}
-				} else {
-					stringBuilder.append(strs[i]+"\n");
-				}
-			}	
-			player.sendPrivateText(stringBuilder.toString());
-			ret = true;
+			return listScripts(player, args);
 		}
 
 		final String trimmedName = name.trim();
 		// if the script is already running get it, else null it
 		ScriptingSandbox script = scripts.get(trimmedName);
-		
+
 		// unloading
 		if ("load".equals(mode) || "remove".equals(mode)
 				|| "unload".equals(mode)) {
@@ -204,6 +157,62 @@ public class ScriptRunner extends StendhalServerExtension implements
 		}
 
 		return (ret);
+	}
+
+	/**
+	 * Lists the available scripts
+	 *
+	 * @param player player requesting the list
+	 * @param filterTerm filter
+	 * @return true
+	 */
+	private boolean listScripts(final Player player, final List<String> filterTerm) {
+		// *.groovy scripts is in data/script/
+		final File dir1 = new File(scriptDir);
+		// *.class scripts is in data/script/games/stendhal/server/script/
+		final File dir2 = new File(scriptDir+"games/stendhal/server/script/");
+		final String[] strs1 = dir1.list(new FilenameFilter() {
+				public boolean accept(final File dir, final String name) {
+					return (name.endsWith(".groovy"));
+				}
+			});
+		final String[] strs2 = dir2.list(new FilenameFilter(){
+				public boolean accept(final File dir, final String name) {
+					return (name.endsWith(".class"));
+				}
+			});
+
+		// concatenating String arrays strs1 and strs2 to strs
+		final String[] strs= new String[strs1.length + strs2.length];
+		System.arraycopy(strs1, 0, strs, 0, strs1.length);
+		System.arraycopy(strs2, 0, strs, strs1.length, strs2.length);
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		if (filterTerm.size()>0) {
+			// FIXME: currently only one argument can be parsed becouse 
+			// mother function (public void onAction()) hides arguments in case 
+			// if several arguments given.
+			stringBuilder.append("results for /script -list " + filterTerm.get(0) + " command:\n");
+		} else {
+			stringBuilder.append("results for /script -list command:\n");
+		}
+
+		for (int i = 0; i < strs.length; i++) {
+			// if arguments given, will look for matches.
+			if (filterTerm.size()>0) {
+				int j = 0;					
+				//for (j = 0; j < args.size(); j++) {
+					if (strs[i].matches(searchTermToRegex(filterTerm.get(j)))) {
+						stringBuilder.append(strs[i]+"\n");
+					}
+				//}
+			} else {
+				stringBuilder.append(strs[i]+"\n");
+			}
+		}	
+		player.sendPrivateText(stringBuilder.toString());
+		return true;
 	}
 
 	@Override
