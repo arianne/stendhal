@@ -3,9 +3,7 @@ package games.stendhal.server.trade;
 
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
-import marauroa.common.game.RPLink;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
