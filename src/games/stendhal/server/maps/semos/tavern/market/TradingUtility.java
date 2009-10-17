@@ -6,8 +6,8 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.entity.trade.Offer;
 /**
  * helper class for handling adding and prolonging offers
  * @author madmetzger

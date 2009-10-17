@@ -1,6 +1,6 @@
 package games.stendhal.server.core.engine.transformer;
 
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Offer;
 import marauroa.common.game.RPObject;
 
 public class OfferTransformer implements Transformer {

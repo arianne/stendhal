@@ -3,6 +3,7 @@ package games.stendhal.server.trade;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;

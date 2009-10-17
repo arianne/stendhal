@@ -5,8 +5,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.entity.trade.Offer;
 /**
  * chat action to accept an offer on the market
  * 

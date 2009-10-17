@@ -3,8 +3,8 @@ package games.stendhal.server.maps.semos.tavern.market;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.entity.trade.Offer;
 
 public class OfferRemover implements TurnListener {
 

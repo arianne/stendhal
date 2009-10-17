@@ -1,4 +1,4 @@
-package games.stendhal.server.trade;
+package games.stendhal.server.entity.trade;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.PassiveEntity;

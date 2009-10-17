@@ -1,6 +1,6 @@
 package utilities.RPClass;
 
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Offer;
 import marauroa.common.game.RPClass;
 
 public class OfferTestHelper {

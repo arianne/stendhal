@@ -4,7 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.trade.Market;
+import games.stendhal.server.entity.trade.Market;
 
 import java.util.Map;
 

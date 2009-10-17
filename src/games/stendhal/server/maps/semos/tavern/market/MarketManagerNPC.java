@@ -2,7 +2,7 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Offer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,8 @@ import java.util.Map;
 public final class MarketManagerNPC extends SpeakerNPC {
 	
 	private Map<String,Map<String,Offer>> offerMap = new HashMap<String, Map<String, Offer>>();
+	
+	private Offer chosenOffer;
 	
 	MarketManagerNPC(String name) {
 		super(name);
@@ -32,7 +34,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 				"certain offer. If you have expired offers, you can ask for them by saying #show #expired." +
 				" You can prolong an expired offer by saying #prolong #number. If you already sold some items" +
 				"you can say fetch to me and I will pay out your earnings.");
-		add(ConversationStates.ATTENDING, "sell", null, null, ConversationStates.ATTENDING,	null, new AddOfferChatAction());
+		add(ConversationStates.ATTENDING, "sell", null, null, ConversationStates.SELL_PRICE_OFFERED,	null, new PrepareOfferChatAction());
 		add(ConversationStates.ATTENDING, "show", null, ConversationStates.BUY_PRICE_OFFERED, null, new ShowOffersChatAction());
 		add(ConversationStates.ATTENDING, "fetch", null, ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		add(ConversationStates.BUY_PRICE_OFFERED, "accept", null, ConversationStates.ATTENDING, null, new AcceptOfferChatAction());
@@ -42,5 +44,13 @@ public final class MarketManagerNPC extends SpeakerNPC {
 	}
 	public Map<String, Map<String, Offer>> getOfferMap() {
 		return offerMap;
+	}
+
+	public void setChosenOffer(Offer chosenOffer) {
+		this.chosenOffer = chosenOffer;
+	}
+
+	public Offer getChosenOffer() {
+		return chosenOffer;
 	}
 }

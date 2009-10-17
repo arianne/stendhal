@@ -7,8 +7,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.trade.Earning;
-import games.stendhal.server.trade.Market;
+import games.stendhal.server.entity.trade.Earning;
+import games.stendhal.server.entity.trade.Market;
 /**
  * chat action to let a player fetch his earnings from the market
  * 

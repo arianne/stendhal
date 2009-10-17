@@ -8,15 +8,15 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.entity.trade.Offer;
 
 /**
  * puts a new offer to the market
  * @author madmetzger
  *
  */
-public class AddOfferChatAction implements ChatAction {
+public class PrepareOfferChatAction implements ChatAction {
 	
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {

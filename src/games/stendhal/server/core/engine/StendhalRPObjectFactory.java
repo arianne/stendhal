@@ -12,9 +12,9 @@ import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
-import games.stendhal.server.trade.Earning;
-import games.stendhal.server.trade.Market;
-import games.stendhal.server.trade.Offer;
+import games.stendhal.server.entity.trade.Earning;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.entity.trade.Offer;
 
 import java.util.HashMap;
 import java.util.Map;
