@@ -2,7 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.gui.j2DClient;
 
-public class CLearChatLogAction implements SlashAction {
+public class ClearChatLogAction implements SlashAction {
 
 	public boolean execute(final String[] params, final String remainder) {
 		((j2DClient) j2DClient.get()).clearGameLog();

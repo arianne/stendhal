@@ -29,7 +29,7 @@ public class SlashActionRepository {
 		
 		actions.put("ban", new BanAction());
 		
-		actions.put("clear", new CLearChatLogAction());
+		actions.put("clear", new ClearChatLogAction());
 		
 		actions.put("drop", new DropAction());
 		actions.put("gag", new GagAction());
