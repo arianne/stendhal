@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -7,6 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.LoadSignFromHallOfFame;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetHallOfFameToAgeDiffAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -42,6 +46,8 @@ public class PaperChase extends AbstractQuest {
 	private Map<String, String> texts = new HashMap<String, String>();
 
 	private Map<String, String> greetings = new HashMap<String, String>();
+
+	private ChatAction loadSignFromHallOfFame;
 
 
 	private void setupGreetings() {
@@ -141,13 +147,18 @@ public class PaperChase extends AbstractQuest {
 		}
 	}
 
-	@Override
-	public void addToWorld() {
-		super.addToWorld();
-		
-		setupGreetings();
-		setupTexts();
-	
+
+	private void createHallOfFameSign() {
+		Sign sign = new Sign();
+		sign.setPosition(94, 110);
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
+		zone.add(sign);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFame(sign, "Those who travelled the world:\n", "P", 100, true);
+		loadSignFromHallOfFame.fire(null, null, null);
+	}
+
+
+	private void addToNPCs() {
 		SpeakerNPC npc = npcs.get("Saskia");
 
 		ChatAction startAction = new MultipleActions(
@@ -189,7 +200,10 @@ public class PaperChase extends AbstractQuest {
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, "Oh, that is a nice #quest.", null);
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia")),
+			new AndCondition(
+					new QuestStartedCondition(QUEST_SLOT), 
+					new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia"),
+					new QuestNotInStateCondition(QUEST_SLOT, 0, "done")),
 			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
 
 		ChatAction reward = new MultipleActions(
@@ -197,13 +211,26 @@ public class PaperChase extends AbstractQuest {
 			new IncreaseXPAction(400), 
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new EquipItemAction("empty scroll", 10),
-			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"));
+			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"),
+			loadSignFromHallOfFame);
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
 			ConversationStates.ATTENDING, 
 			"Very good. You did the complete quest, talking to all those people around the world. Here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
+	}
+
+
+	@Override
+	public void addToWorld() {
+		super.addToWorld();
+		
+		setupGreetings();
+		setupTexts();
+	
+		createHallOfFameSign();
+		addToNPCs();
 	}
 
 
