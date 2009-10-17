@@ -23,9 +23,9 @@ public class DadNPC {
 			protected void createDialog() {
 				addGreeting("Hi there.");
 				addJob("I'm on vacation now for the Semos Mine Town Revival Weeks. But I still need to finish some work before my daughter #Susi and I can enjoy the party.");
-				addHelp("My daughter Susi is all excited about the Semos Mine Town Revival Weeks. But I am really concerned that something bad may happen to her again. So she will have to wait until I finished my work.");
-				addReply("susi", "My daughter Susi is all excited about the Semos Mine Town Revival Weeks. But I am really concerned that something bad may happen to her again. So she will have to wait until I finished my work.");
-				addOffer("Sorry I do not have anything to offer you. I have to walk her home to Ados once the party is over.");
+				addHelp("My daughter Susi is all excited about the Semos Mine Town Revival Weeks. But I am really concerned that something bad may happen to her again. So she will have to wait until I finish my work.");
+				addReply("susi", "My daughter Susi is all excited about the Semos Mine Town Revival Weeks. But I am really concerned that something bad may happen to her again. So she will have to wait until I finish my work.");
+				addOffer("Sorry I do not have anything to offer you. I have to walk #Susi home to Ados once the party is over.");
 				addQuest("Go meet my daughter #Susi, she'd love to make friends.");
 				addGoodbye("Bye, nice to meet you.");
 			}

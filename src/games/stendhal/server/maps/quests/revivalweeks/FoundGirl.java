@@ -80,7 +80,7 @@ public class FoundGirl {
 		// greeting
 		addGreetingDependingOnQuestState();
 
-		npc.addJob("I am just a litte girl waiting for my father to take me out to of the house. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks-");
+		npc.addJob("I am just a litte girl waiting for my father to take me out of the house. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks!");
 		npc.addGoodbye("Have fun!");
 		npc.addReply("debuggera", "Debuggera is my crazy twin sister.");
 		npc.addHelp("Just have fun.");
@@ -99,7 +99,7 @@ public class FoundGirl {
 			ConversationStates.ATTENDING,
 			Arrays.asList("celebrate", "celebration", "party"),
 			ConversationStates.ATTENDING,
-			"You can get a costume from Saskia just outside this house or you can try to solve a difficult puzzle in the other house. Or just play a game of Tic Tac Toe against you #friends.",
+			"You can get a costume from Saskia just outside this house or you can try to solve a difficult puzzle in the other house. Or just play a game of Tic Tac Toe against your #friends.",
 			null);
 
 		// friends
