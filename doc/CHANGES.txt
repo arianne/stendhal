@@ -1,16 +1,6 @@
 Changelog
 ---------
 
-
-0.78
-- world
-
-- admin
-- code
-  - code cleanup in the client
-  - code cleanup in automated tests
-  - deleted our forked version of the map editor since it is getting outdated and is not used anymore
-
 0.78
 * changes for players
 - various map fixes
