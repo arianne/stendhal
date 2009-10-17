@@ -125,9 +125,9 @@
 		<delete dir="${build_cobertura_report}"/>
 		<delete file="cobertura.ser" />
 		<delete>
-					<fileset dir=".">
-						<include name="TEST-*.xml"/>
-					</fileset>
+			<fileset dir=".">
+				<include name="TEST-*.xml"/>
+			</fileset>
 		</delete>
 	</target>
 
@@ -472,7 +472,7 @@
 	</target>
 
 	<target name="dist" depends="clean, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_no_sound_binary, dist_client_starter"/>
+	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -513,27 +513,6 @@
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
-		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
-		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
-			basedir="${buildroot}/stendhal-${version}"/>
-		<delete dir="${buildroot}/stendhal-${version}"/>
-	</target>
-
-	<target name="dist_client_no_sound_binary">
-		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
-
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
