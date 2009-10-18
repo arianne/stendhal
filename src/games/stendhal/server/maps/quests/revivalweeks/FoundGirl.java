@@ -89,7 +89,8 @@ public class FoundGirl {
 		// Revival Weeks
 		npc.add(
 			ConversationStates.ATTENDING,
-			Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
+			Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks", "Semos Mine", "Semos Mine Town", 
+					"Semos Mine Town Revival", "Semos Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
 			ConversationStates.ATTENDING,
 			"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. "
 			+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
