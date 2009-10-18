@@ -114,6 +114,7 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 	/**
 	 * prepares a new game
 	 */
+	@Override
 	public void startGame() {
 		super.startGame();
 
