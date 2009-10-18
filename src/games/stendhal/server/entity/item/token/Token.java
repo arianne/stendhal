@@ -72,7 +72,7 @@ public class Token extends Item {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onPutOnGround(final Player player) {
-		super.onPutOnGround(player);
+		super.onPutOnGround(false);
 
 		if ((player != null) && (tokenMoveListener != null)) {
 			tokenMoveListener.onTokenMoved(player, this);
