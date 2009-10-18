@@ -153,7 +153,7 @@ public class PaperChase extends AbstractQuest {
 		sign.setPosition(94, 110);
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		zone.add(sign);
-		loadSignFromHallOfFame = new LoadSignFromHallOfFame(sign, "Those who travelled the world:\n", "P", 100, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFame(sign, "Those who travelled the world:\n", "P", 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
@@ -210,14 +210,14 @@ public class PaperChase extends AbstractQuest {
 			new IncreaseKarmaAction(15), 
 			new IncreaseXPAction(400), 
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
-			new EquipItemAction("empty scroll", 10),
+			new EquipItemAction("empty scroll", 5),
 			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"),
 			loadSignFromHallOfFame);
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
 			ConversationStates.ATTENDING, 
-			"Very good. You did the complete quest, talking to all those people around the world. Here are some magic scrolls as reward. They will help you on further travels.",
+			"Very good. You did the complete quest, talking to all those people around the world. I will add you name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
 	}
 
