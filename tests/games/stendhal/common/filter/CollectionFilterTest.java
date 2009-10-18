@@ -33,7 +33,7 @@ public class CollectionFilterTest {
 		cf1.addFilterCriteria(new Adminfilter());
 		Collection<? extends Player> result = cf1.filterCopy(list);
 		assertThat(result.size(), is(3));
-		result.remove(1);
+		result.remove(result.iterator().next());
 		assertThat(result.size(), is(2));
 		assertThat(list.size(), is(5));
 
@@ -42,7 +42,7 @@ public class CollectionFilterTest {
 		cf2.addFilterCriteria(new NoAdminfilter());
 		result = cf2.filterCopy(list);
 		assertThat(result.size(), is(2));
-		result.remove(1);
+		result.remove(result.iterator().next());
 		assertThat(result.size(), is(1));
 		assertThat(list.size(), is(5));
 	}
