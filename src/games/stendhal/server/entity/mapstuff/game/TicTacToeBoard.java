@@ -23,14 +23,14 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 		super(3, 3);
 		put("class", "tictactoe");
 		board = new BoardToken[3][3];
-		tokenTypes = Arrays.asList("x_board_token", "o_board_token");
+		tokenTypes = Arrays.asList("x board token", "o board token");
 		setDescription("You see a game board for Tic Tac Toe.");
 	}
 
 	public void addToWorld() {
 		for (int i = 0; i < 5; i++) {
-			addTokenToWorld("x_board_token", getX() - 2, getY() + 1);
-			addTokenToWorld("o_board_token", getX() + (int) getWidth() + 1, getY() + 1);
+			addTokenToWorld("x board token", getX() - 2, getY() + 1);
+			addTokenToWorld("o board token", getX() + (int) getWidth() + 1, getY() + 1);
 		}
 	}
 
