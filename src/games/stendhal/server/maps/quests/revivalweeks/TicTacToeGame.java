@@ -112,7 +112,7 @@ public class TicTacToeGame {
 					return;
 				}
 
-				npc.say(board.getPlayers().get(0) + ", you are playing the blue X. " + player.getName() + ", you are playing the red O. May the best man win!");
+				npc.say(board.getPlayers().get(0) + ", you are playing the blue X and you will go first. " + player.getName() + ", you are playing the red O. May the best man win!");
 				board.startGame();
 				board.getPlayers().add(player.getName());
 			}
