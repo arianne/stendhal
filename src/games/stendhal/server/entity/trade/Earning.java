@@ -10,7 +10,7 @@ public class Earning extends PassiveEntity {
 	
 	public static final String EARNING_RPCLASS_NAME = "earning";
 
-	private final Item item;
+	private final String item;
 	
 	private final Integer value;
 	
@@ -20,7 +20,7 @@ public class Earning extends PassiveEntity {
 		final RPClass earningClass = new RPClass(EARNING_RPCLASS_NAME);
 		earningClass.isA("entity");
 		earningClass.addAttribute("value", Type.INT);
-		earningClass.addRPSlot("item", 1);
+		earningClass.addAttribute("item", Type.STRING);
 		earningClass.addAttribute("sellerName",Type.STRING);
 	}
 
@@ -29,11 +29,10 @@ public class Earning extends PassiveEntity {
 	 * @param item the sold item
 	 * @param value the earned money
 	 */
-	public Earning(final Item item, final Integer value, final String sellerName) {
+	public Earning(final String item, final Integer value, final String sellerName) {
 		super();
 		setRPClass(EARNING_RPCLASS_NAME);
-		addSlot("item");
-		getSlot("item").add(item);
+		put("item", item);
 		this.item = item;
 		put("value", value);
 		this.value = value;
@@ -43,7 +42,7 @@ public class Earning extends PassiveEntity {
 	}
 	
 	public Earning(final RPObject object) {
-		this((Item) object.getSlot("item").getFirst(), Integer.valueOf(object.getInt("value")),object.get("sellerName"));
+		this(object.get("item"), Integer.valueOf(object.getInt("value")),object.get("sellerName"));
 	}
 
 	/**
@@ -56,7 +55,7 @@ public class Earning extends PassiveEntity {
 	/**
 	 * @return the item
 	 */
-	public Item getItem() {
+	public String getItem() {
 		return item;
 	}
 

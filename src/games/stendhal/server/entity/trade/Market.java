@@ -122,13 +122,15 @@ public class Market extends PassiveEntity {
 	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
-				acceptingPlayer.equipOrPutOnGround(offer.getItem());
-				final Earning earning = new Earning(offer.getItem(), offer.getPrice(), offer.getOfferer());
+				Item item = offer.getItem();
+				acceptingPlayer.equipOrPutOnGround(item);
+				final Earning earning = new Earning(item.getName(), offer.getPrice(), offer.getOfferer());
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
-				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(offer.getItem().getID());
+				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
+				acceptingPlayer.store();
 				this.store();
 				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
