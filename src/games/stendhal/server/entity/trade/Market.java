@@ -130,10 +130,11 @@ public class Market extends PassiveEntity {
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
-				acceptingPlayer.store();
 				this.store();
 				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
+				acceptingPlayer.store();
+				sellingPlayer.store();
 			}
 		}
 		this.getZone().storeToDatabase();
