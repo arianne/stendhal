@@ -37,7 +37,7 @@ import java.util.Map;
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private static final List<String> NPC_IDLE = Arrays.asList("Thanatos", "Pdiddi", "Monogenes");
+	private static final List<String> NPC_IDLE = Arrays.asList("Hayunn Naratha", "Thanatos", "Pdiddi", "Monogenes");
 
 	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos", "Haizen", "Zara", "Leander", "Sally", 
 												"Plink", "Jef", "Blacksheep Harry", 
