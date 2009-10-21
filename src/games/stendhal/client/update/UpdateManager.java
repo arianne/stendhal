@@ -106,7 +106,7 @@ public class UpdateManager {
 			List<String> filesToAddToClasspath = new ArrayList<String>(files);
 			removeAlreadyExistingFiles(files);
 			int updateSize = getSizeOfFilesToUpdate(files);
-			if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
+			if ((updateSize == 0) || (UpdateGUIDialogs.askForDownload(updateSize, false))) {
 				if (downloadFiles(files, updateSize)) {
 					updateClasspathConfig(filesToAddToClasspath);
 				}
@@ -121,7 +121,7 @@ public class UpdateManager {
 			filesToAddToClasspath = new ArrayList<String>(files);
 			removeAlreadyExistingFiles(files);
 			updateSize = getSizeOfFilesToUpdate(files);
-			if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
+			if ((updateSize == 0) || (UpdateGUIDialogs.askForDownload(updateSize, true))) {
 				if (downloadFiles(files, updateSize)) {
 					updateClasspathConfig(filesToAddToClasspath);
 				}
