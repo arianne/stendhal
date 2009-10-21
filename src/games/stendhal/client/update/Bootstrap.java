@@ -212,10 +212,10 @@ public class Bootstrap {
 					if (classLoader.getResource("data/gui/offline.png") == null) {
 						throw new ClassNotFoundException(ClientGameConfiguration.get("data/gui/offline.png"));
 					}
-					
 				} catch (final ClassNotFoundException e) {
 					initialDownload = true;
-					System.out.println("Initial Download");
+					System.out.println("Initial Download triggered by the following missing classes: ");
+					e.printStackTrace();
 				}
 
 				// start update handling
