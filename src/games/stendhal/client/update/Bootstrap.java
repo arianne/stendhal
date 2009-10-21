@@ -203,12 +203,16 @@ public class Bootstrap {
 				boolean initialDownload = false;
 				try {
 					classLoader.loadClass(className);
+					classLoader.loadClass("org.apache.Logger");
 					classLoader.loadClass("marauroa.common.Logger");
 					classLoader.loadClass("marauroa.client.ClientFramework");
 					if (classLoader.getResource(ClientGameConfiguration.get("GAME_ICON")) == null) {
-						throw new ClassNotFoundException(
-								ClientGameConfiguration.get("GAME_ICON"));
+						throw new ClassNotFoundException(ClientGameConfiguration.get("GAME_ICON"));
 					}
+					if (classLoader.getResource("data/gui/offline.png") == null) {
+						throw new ClassNotFoundException(ClientGameConfiguration.get("data/gui/offline.png"));
+					}
+					
 				} catch (final ClassNotFoundException e) {
 					initialDownload = true;
 					System.out.println("Initial Download");
@@ -216,18 +220,12 @@ public class Bootstrap {
 
 				// start update handling
 				final Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-				final Method method = clazz.getMethod("process", String.class,
-						Properties.class, Boolean.class);
-				method.invoke(clazz.newInstance(), jarFolder, bootProp,
-						initialDownload);
+				final Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
+				method.invoke(clazz.newInstance(), jarFolder, bootProp,	initialDownload);
 			} catch (final SecurityException e) {
 				throw e;
 			} catch (final Exception e) {
-				e.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(
-						null,
-						"Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-								+ e);
+				unexpectedErrorHandling("State: UpdateManager\r\n", e);
 			}
 		}
 
@@ -239,8 +237,8 @@ public class Bootstrap {
 				saveBootProp();
 			} catch (final IOException e) {
 				JOptionPane.showMessageDialog(
-						null,
-						"Sorry, an error occurred while downloading the update. Could not write bootProperties");
+					null,
+					"Sorry, an error occurred while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -257,7 +255,7 @@ public class Bootstrap {
 				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (final Throwable e) {
-				unexpectedErrorHandling(e);
+				unexpectedErrorHandling("State: in game\r\n", e);
 			}
 
 		}
@@ -338,7 +336,7 @@ public class Bootstrap {
 	 * @param t
 	 *            exception
 	 */
-	void unexpectedErrorHandling(final Throwable t) {
+	void unexpectedErrorHandling(String message, final Throwable t) {
 		// unwrap chained exceptions
 		Throwable e = t;
 		while (e.getCause() != null) {
@@ -353,7 +351,7 @@ public class Bootstrap {
 		} else if (e instanceof LinkageError) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
-					"Sorry an error occurred because of an inconsistent update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
+					message + " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
@@ -362,16 +360,31 @@ public class Bootstrap {
 				try {
 					saveBootProp();
 				} catch (final IOException e1) {
-					JOptionPane.showMessageDialog(null,
-							"Could not write jar.properties");
+					JOptionPane.showMessageDialog(null,	"Could not write jar.properties");
 				}
 			}
 		} else {
+			String errorMessage = stacktraceToString(e);
 			JOptionPane.showMessageDialog(
 					null,
-					"An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-							+ e);
+					message + " An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+							+ errorMessage);
 		}
 		System.exit(1);
+	}
+
+	/**
+	 * converts a Throwable into a string representation 
+	 * @param e throwable
+	 * @return string
+	 */
+	String stacktraceToString(Throwable e) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(e.getMessage());
+		for (StackTraceElement frame : e.getStackTrace()) {
+			sb.append("\r\n");
+			sb.append(frame.toString());
+		}
+		return sb.toString();
 	}
 }
