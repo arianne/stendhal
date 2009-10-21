@@ -203,7 +203,7 @@ public class Bootstrap {
 				boolean initialDownload = false;
 				try {
 					classLoader.loadClass(className);
-					classLoader.loadClass("org.apache.Logger");
+					classLoader.loadClass("org.apache.log4j.Logger");
 					classLoader.loadClass("marauroa.common.Logger");
 					classLoader.loadClass("marauroa.client.ClientFramework");
 					if (classLoader.getResource(ClientGameConfiguration.get("GAME_ICON")) == null) {
