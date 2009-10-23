@@ -168,26 +168,25 @@ public class ScriptRunner extends StendhalServerExtension implements
 	 */
 	private boolean listScripts(final Player player, final List<String> filterTerm) {
 		// *.groovy scripts is in data/script/
-		final File dir1 = new File(scriptDir);
+		final File dirGroovy = new File(scriptDir);
 		// *.class scripts is in data/script/games/stendhal/server/script/
-		final File dir2 = new File(scriptDir+"games/stendhal/server/script/");
-		final String[] strs1 = dir1.list(new FilenameFilter() {
+		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
+		final String[] scriptsGroovy = dirGroovy.list(new FilenameFilter() {
 				public boolean accept(final File dir, final String name) {
-					// HACK : removing filenames with '$' inside
 					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
 				}
 			});
-		final String[] strs2 = dir2.list(new FilenameFilter(){
+		final String[] scriptsJava = dirClasses.list(new FilenameFilter(){
 				public boolean accept(final File dir, final String name) {
-					// HACK : removing filenames with '$' inside
+					// remove filenames with '$' inside because they are inner classes
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
 
 		// concatenating String arrays strs1 and strs2 to strs
-		final String[] strs= new String[strs1.length + strs2.length];
-		System.arraycopy(strs1, 0, strs, 0, strs1.length);
-		System.arraycopy(strs2, 0, strs, strs1.length, strs2.length);
+		final String[] scripts= new String[scriptsGroovy.length + scriptsJava.length];
+		System.arraycopy(scriptsGroovy, 0, scripts, 0, scriptsGroovy.length);
+		System.arraycopy(scriptsJava, 0, scripts, scriptsGroovy.length, scriptsJava.length);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -200,17 +199,17 @@ public class ScriptRunner extends StendhalServerExtension implements
 			stringBuilder.append("results for /script -list command:\n");
 		}
 
-		for (int i = 0; i < strs.length; i++) {
+		for (int i = 0; i < scripts.length; i++) {
 			// if arguments given, will look for matches.
 			if (filterTerm.size()>0) {
 				int j = 0;					
 				//for (j = 0; j < args.size(); j++) {
-					if (strs[i].matches(searchTermToRegex(filterTerm.get(j)))) {
-						stringBuilder.append(strs[i]+"\n");
+					if (scripts[i].matches(searchTermToRegex(filterTerm.get(j)))) {
+						stringBuilder.append(scripts[i]+"\n");
 					}
 				//}
 			} else {
-				stringBuilder.append(strs[i]+"\n");
+				stringBuilder.append(scripts[i]+"\n");
 			}
 		}	
 		player.sendPrivateText(stringBuilder.toString());
