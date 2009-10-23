@@ -1,14 +1,14 @@
 package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.CIDLIST;
-
-import java.util.Map;
-
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Map;
+
 import marauroa.common.game.RPAction;
 
 class CIDListAction extends AdministrationAction {
@@ -20,29 +20,33 @@ class CIDListAction extends AdministrationAction {
 	@Override
 	public void perform(final Player player, final RPAction action) {
 		
-		final Map<String, String> nameList = CIDSubmitAction.nameList;
-		final Map<String, String> idList = CIDSubmitAction.idList;
-		
-		player.sendPrivateText("One line per Online Player");
-		
-		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
-				
-			new Task<Player>() {
+		if (action.has(TARGET)) {
 
-			public void execute(final Player iPlayer) {
-				
-				String iName = iPlayer.getName();
-				if (nameList.containsKey(iName)) {
-					String tid = nameList.get(iName);
-					if (idList.containsKey(tid)) {
-						String group = idList.get(tid);
-						player.sendPrivateText("One Computer(" + iName + "): " + group);
-						//player.sendPrivateText(tid);
-					}
+			final String inputName = action.get(TARGET);
+			final Player target = SingletonRepository.getRuleProcessor().getPlayer(inputName);
+
+			if (target == null) {
+				player.sendPrivateText("Player \"" + inputName + "\" not found");
+				return;
+			}
+			
+			final Map<String, String> nameList = CIDSubmitAction.nameList;
+			final Map<String, String> idList = CIDSubmitAction.idList;
+			
+			//Lets use a clean name instead of what ever the admin inputed
+			String playerName = target.getName();
+			
+			if (nameList.containsKey(playerName)) {
+				String tid = nameList.get(playerName);
+				if (idList.containsKey(tid)) {
+					String group = idList.get(tid);
+					player.sendPrivateText("These players are on the same computer: " + group);
 				}
 			}
 			
-		});
+		} else {
+			player.sendPrivateText("Player name required");
+		}
 		
 	}
 
