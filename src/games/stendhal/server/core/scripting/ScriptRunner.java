@@ -173,12 +173,14 @@ public class ScriptRunner extends StendhalServerExtension implements
 		final File dir2 = new File(scriptDir+"games/stendhal/server/script/");
 		final String[] strs1 = dir1.list(new FilenameFilter() {
 				public boolean accept(final File dir, final String name) {
-					return (name.endsWith(".groovy"));
+					// HACK : removing filenames with '$' inside
+					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
 				}
 			});
 		final String[] strs2 = dir2.list(new FilenameFilter(){
 				public boolean accept(final File dir, final String name) {
-					return (name.endsWith(".class"));
+					// HACK : removing filenames with '$' inside
+					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
 
