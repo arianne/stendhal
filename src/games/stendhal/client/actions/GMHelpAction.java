@@ -60,7 +60,13 @@ class GMHelpAction implements SlashAction {
 					"This will make <testplayer> look like danter" );
 			} else if ("script".equals(params[0])) {
 				lines = Arrays.asList(
-					"All scripts are ran using: /script scriptname [params]. After running a script you can remove any traces of it with /script -unload scriptname, this would remove any summoned creatures, for example. It's good practise to do this every time you are finished using a script.",
+					"usage: /script [-list|-load|-unload|-execute] [params]",
+					"-list : shows available scripts. In this mode can be given one optional parameter for filenames filtering, with using well-known wildcards for filenames ('*' and '?', for example \"*.class\" for java-only scripts).",
+					"-load : load script with first parameter's filename.",
+					"-unload : unload script with first parameter's filename from server",
+					"-execute : run choosed script.",
+					"",	
+					"All scripts are ran using: /script scriptname [params]. After running a script you can remove any traces of it with /script -unload scriptname, this would remove any summoned creatures, for example. It's good practise to do this after summoning creatures for a raid using scripts.",
 					"#/script #AdminMaker.class : For test servers only, summons an adminmaker to aid testing.",
 					"#/script #AdminSign.class #zone #x #y #text : Makes an AdminSign in zone at (x,y) with text. To put it next to you do /script AdminSign.class - - - text.",
 					"#/script #AlterQuest.class #player #questname #state : Update the quest for a player to be in a certain state. Omit #state to remove the quest.",
