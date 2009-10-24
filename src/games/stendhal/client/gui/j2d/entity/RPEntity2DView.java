@@ -472,7 +472,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (((RPEntity) entity).isDefending()) {
 			// Draw bottom right combat icon
-			final int sx = x + width - 2 * ICON_OFFSET;
+			final int sx = srect.x + srect.width - ICON_OFFSET;
 			final int sy = y + height - 2 * ICON_OFFSET;
 
 			switch (((RPEntity) entity).getResolution()) {
