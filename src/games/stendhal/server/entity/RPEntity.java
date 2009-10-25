@@ -1135,7 +1135,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		final String killerName = killLog.getEntityName(killer);
 
 		if (killer instanceof RPEntity) {
-			new GameEvent(killerName, "killed", getName()).raise();
+			new GameEvent(killerName, "killed", killLog.getEntityName(this), killLog.entityToType(killer), killLog.entityToType(this)).raise();
 		}
 		killLog.logKill(this, killer);
 

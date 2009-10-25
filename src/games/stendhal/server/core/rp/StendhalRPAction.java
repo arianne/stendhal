@@ -16,6 +16,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.events.ZoneNotifier;
 import games.stendhal.server.core.pathfinder.Node;
@@ -35,6 +36,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
+import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
@@ -117,7 +119,8 @@ public class StendhalRPAction {
 			logger.info(player.getName() + " is attacking " + victim.getName());
 		}
 
-		new GameEvent(player.getName(), "attack", victim.getName()).raise();
+		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
+		new GameEvent(player.getName(), "attack", victim.getName(), killLog.entityToType(player), killLog.entityToType(victim)).raise();
 
 		player.setTarget(victim);
 		player.faceToward(victim);

@@ -105,10 +105,13 @@ public class StendhalKillLogDAO {
 	 * @return name of entity
 	 */
 	public String getEntityName(final RPObject entity) {
+		String res = null;
 		if (entity instanceof RPEntity) {
-			return ((RPEntity) entity).getName();
-		} else {
-			return entity.getClass().getName();
+			res = ((RPEntity) entity).getName();
 		}
+		if ((res == null) || res.trim().equals("")) {
+			res = entity.getRPClass().getName();
+		}
+		return res;
 	}
 }
