@@ -88,7 +88,7 @@ public class StendhalKillLogDAO {
 	 * @param entity Entity
 	 * @return P for players, C for creatures, E for other entities
 	 */
-	private String entityToType(final Entity entity) {
+	public String entityToType(final Entity entity) {
 		if (entity instanceof Player) {
 			return "P";
 		} else if (entity instanceof Creature) {
@@ -104,7 +104,7 @@ public class StendhalKillLogDAO {
 	 * @param entity Entity
 	 * @return name of entity
 	 */
-	private String getEntityName(final RPObject entity) {
+	public String getEntityName(final RPObject entity) {
 		if (entity instanceof RPEntity) {
 			return ((RPEntity) entity).getName();
 		} else {

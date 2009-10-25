@@ -1131,13 +1131,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *            are instead moved to afterlife ("reborn").
 	 */
 	public void onDead(final Entity killer, final boolean remove) {
-		final String killerName = killer.getTitle();
+		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
+		final String killerName = killLog.getEntityName(killer);
 
 		if (killer instanceof RPEntity) {
 			new GameEvent(killerName, "killed", getName()).raise();
 		}
-		DAORegister.get().get(StendhalKillLogDAO.class).logKill(this, killer);
+		killLog.logKill(this, killer);
 
+		onDead(killer.getTitle(), remove);
 		onDead(killerName, remove);
 	}
 
