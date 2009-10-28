@@ -30,21 +30,30 @@ public class SlashActionRepository {
 		actions.put("ban", new BanAction());
 		
 		actions.put("clear", new ClearChatLogAction());
+		actions.put("crash", new CrashClientAction());
 		
 		actions.put("drop", new DropAction());
+
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("grumpy", new GrumpyAction());
+
 		actions.put("help", new HelpAction());
+
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
 		actions.put("invisible", new InvisibleAction());
+
 		actions.put("jail", new JailAction());
 		actions.put("joinguild", new CreateGuildAction());
+
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
+
 		actions.put("quit", new QuitAction());
+
 		actions.put("remove", new RemoveBuddyAction());
+
 		actions.put("sentence", new SentenceAction());
 		actions.put("sound", new SoundAction());
 		actions.put("summonat", new SummonAtAction());
@@ -52,10 +61,12 @@ public class SlashActionRepository {
 		actions.put("supportanswer", supporta);
 		actions.put("supporta", supporta);
 		actions.put("support", new SupportAction());
+
 		actions.put("teleport", new TeleportAction());
 		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
+
 		actions.put("where", new WhereAction());
 		actions.put("who", new WhoAction());
 //		actions.put("wrap", new WrapAction());
