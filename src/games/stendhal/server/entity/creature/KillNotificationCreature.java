@@ -1,0 +1,63 @@
+package games.stendhal.server.entity.creature;
+
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+
+import java.util.List;
+import java.util.Observer;
+
+/**
+ * This class have ability to notify registered observers
+ * about creature's death. 
+ */
+public class KillNotificationCreature extends Creature {
+	 
+   private CircumstancesOfDeath circumstances = new CircumstancesOfDeath();
+   private Registrator registrator = new Registrator();
+   
+   /**
+    * sets new observer 
+    * @param observer
+    * 				- observer, which will give info about creature death.
+    */
+   public void registerObjectsForNotification(final Observer observer) {
+      registrator.setObserver(observer);    	   
+   }
+   
+   /**
+    * Will notify observers when event will occured (death). 
+    */
+   public void notifyRegisteredObjects() {
+      registrator.setChanges();
+      registrator.notifyObservers(circumstances);
+   }
+
+   @Override
+   public void onDead(final Entity killer, final boolean remove) {
+      circumstances.killer=(RPEntity)killer;
+      circumstances.victim=this;
+      circumstances.zone=this.getZone();
+      //circumstances.killers=Array.asList();
+      notifyRegisteredObjects();
+      super.onDead(killer, remove);  
+
+   }
+   
+   /**
+    * override noises for changes.
+    * 
+    */
+   public void setNoises(final List<String> creatureNoises){
+   	noises.clear();
+   	noises.addAll(creatureNoises);
+   }
+   
+   /**
+    * wrapper for constructor 
+    * @param copy
+    * 			- creature to create :-)
+    */
+   public KillNotificationCreature(final Creature copy) {
+		super(copy);
+	}
+}
