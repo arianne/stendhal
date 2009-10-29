@@ -361,7 +361,7 @@ public class ShopList {
 		shops.add("buykirdneharmor", "stone armor", 18000);
 		shops.add("buykirdneharmor", "ice armor", 19000);
 		shops.add("buykirdneharmor", "xeno armor", 21000);
-		shops.add("buykirdneharmor", "barbarian armor", 15000);
+		shops.add("buykirdneharmor", "barbarian armor", 5000);
 		shops.add("buykirdneharmor", "green dragon shield", 13000);
 		shops.add("buykirdneharmor", "xeno shield", 20000);
 		
