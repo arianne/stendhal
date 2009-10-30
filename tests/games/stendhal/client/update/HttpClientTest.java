@@ -85,6 +85,10 @@ public class HttpClientTest {
 		client.fetchFile(file.getAbsolutePath());
 		assertEquals(0, file.length());
 
+		client = new HttpClient("http://sourceforge.net/projects/arianne/files/z_old/stendhal-updates/stendhal-diff-0.75-0.75.1.jar/download");
+		client.fetchFile(file.getAbsolutePath());
+		assertTrue(file.length() > 10000);
+
 		file.delete();
 	}
 }
