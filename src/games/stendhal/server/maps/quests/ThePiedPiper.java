@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -62,31 +63,33 @@ import org.apache.log4j.Logger;
 	private static Logger logger = Logger.getLogger(ThePiedPiper.class);
 	private LinkedList<KillNotificationCreature> rats = 
 		new LinkedList<KillNotificationCreature>();
-	/*
-	 * HACK: MAX_ and MIN_ repeat time for quest will determine time period 
-	 *       when quest will (re)start or stop. For testing purposes it is now
-	 *       set between 5 and 6 minutes. Little hint: better use marked scrolls or /teleport 
-	 *       to access zones - 5 min is not so long time for this quest.  
-	 *       For real game uncomment 2 strings of code below and delete other 2.  
-	 */	 
-//	private static final int MAX_QUEST_REPEAT_TIME = 60 * 60 * 24 * 14;
-//	private static final int MIN_QUEST_REPEAT_TIME = 60 * 60 * 24 * 7;	
-	private static final int MAX_QUEST_REPEAT_TIME = 60 * 6;
-	private static final int MIN_QUEST_REPEAT_TIME = 60 * 5;
+ 
+	private static final int MAX_QUEST_REPEAT_TIME = 60 * 60 * 24 * 14;
+	private static final int MIN_QUEST_REPEAT_TIME = 60 * 60 * 24 * 7;	
+//	private static final int MAX_QUEST_REPEAT_TIME = 60 * 6;
+//	private static final int MIN_QUEST_REPEAT_TIME = 60 * 5;
 
 	/**
 	 * related to quest part.
 	 * <ul>
-	 * <li> 0 - quest isn't active
-	 * <li> 1 - part I (rats invasion)
-	 * <li> 2 - part II (pied piper called)
-	 * <li> 3 - part III (pied piper killing rats)
-	 * <li> 4 - part IV (pied piper takes childrens away)
-	 * <li> 5 - part V (return childrens back to Ados)
+	 * <li> INACTIVE - quest isn't active
+	 * <li> INVASION - part I (rats invasion)
+	 * <li> AWAITING - part II (pied piper called)
+	 * <li> OUTGOING - part III (pied piper killing rats)
+	 * <li> CHILDRENS - part IV (pied piper takes childrens away)
+	 * <li> FINAL - part V (return childrens back to Ados)
 	 * </ul>
 	 */
-	private int phase;
-
+	
+	private enum TPP_Phase {
+		TPP_INACTIVE, 
+		TPP_INVASION, 
+		TPP_AWAITING , 
+		TPP_OUTGOING, 
+		TPP_CHILDRENS,
+		TPP_FINAL
+	}
+    private TPP_Phase phase;
 	/**
 	 * List of game zones, where rats will appears.
 	 * 
@@ -144,18 +147,18 @@ import org.apache.log4j.Logger;
 	class QuestTimer implements TurnListener {
 		public void onTurnReached(final int currentTurn) {
 			switch(phase){
-			case 0: // summon rats, make phase 1 and
+			case TPP_INACTIVE: // summon rats, make phase 1 and
 				    // start timer to phase 2.
 					logger.info("ThePiedPiper quest started.");
-					phase++;
+					phase=TPP_Phase.TPP_INVASION;
 					summonRats();
 					tellAllAboutRatsProblem();
 					step_0();
 				    break;
-			case 1: // remove rats, make phase 2 and 
+			case TPP_INVASION: // remove rats, make phase 2 and 
 				    // start timer to phase 0.
 					logger.info("ThePiedPiper quest timeout occured.");
-					phase++;
+					phase=TPP_Phase.TPP_AWAITING;
 					removeAllRats();
 					tellAllAboutRatsIsWinners();
 					step_2();
@@ -164,7 +167,7 @@ import org.apache.log4j.Logger;
 					logger.info("ThePiedPiper quest going inactive.");
 					tellAllAboutRatsIsGone();
 					step_2();
-					phase=0;
+					phase=TPP_Phase.TPP_INACTIVE;
 					break;
 			}
 		}
@@ -175,15 +178,15 @@ import org.apache.log4j.Logger;
 	 * 
 	 * NPC's actions when player asks for rats problem.
 	 */
-	class AnswerOrOfferReward implements ChatAction {
+	class AnswerOrOfferRewardAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {
 			switch (phase) {
-			case 0: // quest is not active
+			case TPP_INACTIVE: // quest is not active
 					mayor.say("Ados isn't now under rats invasion. You still can "+
 							  "get #reward for last time you helped. You can ask #details "+
 							  "if you want");
 					break;
-			case 1: // rats invasion
+			case TPP_INVASION: // rats invasion
 					if(rats.size()!=0) {
 						mayor.say("There is still about "+Integer.toString(rats.size())+" rats alive.");
 					} else {
@@ -203,10 +206,10 @@ import org.apache.log4j.Logger;
 	/**
 	 *  NPC's actions when player asks for his reward.
 	 */
-	class RewardPlayer implements ChatAction {
+	class RewardPlayerAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {
 			switch (phase) {
-			case 1: // invasion time
+			case TPP_INVASION: // invasion time
 					mayor.say("Ados is under rats invasion. "+
 							  "I dont want reward you now, "+
 			  				  " until all rats will die.");
@@ -233,33 +236,36 @@ import org.apache.log4j.Logger;
 	/**
 	 * NPC's answers when player ask for details.
 	 */
-	class DetailsKillings implements ChatAction {
+	class DetailsKillingsAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {			
-			final StringBuilder sb = new StringBuilder("Well, from last reward, you killed ");
-			long moneys = 0;
-			long kills = 0;
 			if (calculateReward(player)==0) {
-				mayor.say("You killed no rats during rats invasion. "+
-						  "For get reward you have to kill at least "+
+				mayor.say("You killed no rats during #rats invasion. "+
+						  "For get #reward you have to kill at least "+
 						  "one rat at that time.");
 				return;
 			};
+			final StringBuilder sb = new StringBuilder("Well, from last reward, you killed ");
+			long moneys = 0;
+			int kills = 0;
 			for(int i=0; i<RAT_TYPES.size(); i++) {
 				try {
-					kills=Long.parseLong(player.getQuest(QUEST_SLOT,i+1));
+					kills=Integer.parseInt(player.getQuest(QUEST_SLOT,i+1));
 				} catch (NumberFormatException nfe) {
 					// Have no records about this creature in player's slot.
 					// Treat it as he never killed this creature.
 					kills=0;
 				};
-				if(i==RAT_TYPES.size()) {
+				// must add 'and' word before last creature in list
+				if(i==(RAT_TYPES.size()-1)) {
 					sb.append(" and ");
 				}; 				
 				sb.append(kills);
 				sb.append(" "+RAT_TYPES.get(i));
+				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i)));
 				if(kills!=1){
 					sb.append("s");
 				};
+				
 				sb.append(", ");
 				moneys = moneys + kills*RAT_REWARDS.get(i);
 			}
@@ -280,6 +286,7 @@ import org.apache.log4j.Logger;
 	 *  			- rat object
 	 */
 	private void killsRecorder(Player player, final RPEntity victim) {
+
 		final String str = victim.getName();
 		final int i = RAT_TYPES.indexOf(str);
 		if(i==-1) {
@@ -289,9 +296,9 @@ import org.apache.log4j.Logger;
 			return;
 		};
 		
-		if((player.getQuest(QUEST_SLOT)=="done")||
-		   (player.getQuest(QUEST_SLOT)==null)||
-		   (player.getQuest(QUEST_SLOT)=="")){
+		if((player.getQuest(QUEST_SLOT)==null)||
+		   (player.getQuest(QUEST_SLOT).equals("done")||
+		   (player.getQuest(QUEST_SLOT).equals("")))){
 			// player just killed his first creature.
 		    player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
 		};
@@ -350,16 +357,15 @@ import org.apache.log4j.Logger;
 		public void update (Observable obj, Object arg) {
 	        if (arg instanceof CircumstancesOfDeath) {
 	    		final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;
-	        	if(RAT_ZONES.contains(circs.zone.getName())) {
-	        	if(circs.killer instanceof Player) {
-	        		final Player player = (Player) circs.killer;
-	        		killsRecorder(player, circs.victim);
+	        	if(RAT_ZONES.contains(circs.getZone().getName())) {
+	        	if(circs.getKiller() instanceof Player) {
+	        		final Player player = (Player) circs.getKiller();
+	        		killsRecorder(player, circs.getVictim());
 	        	}
-	        	notifyDead((RPEntity)circs.victim);
+	        	notifyDead((RPEntity)circs.getVictim());
 	        	};
 	        };
 	    }
-
 	}
 	
 	/**
@@ -395,7 +401,7 @@ import org.apache.log4j.Logger;
 	}
 	
 	/**
-	 *  Pied Piper sended rats away:-)
+	 *  Pied Piper sent rats away:-)
 	 */
 	private void tellAllAboutRatsIsGone() {
 		final String text = new String("Mayor Chalmers shouts: Thanx gods, #rats is gone now, Pied Piper " +
@@ -462,7 +468,7 @@ import org.apache.log4j.Logger;
 		if (rats.size()==0) {
 			// killed last rat
 			tellAllAboutNoRatsInCity();	
-			phase=0;
+			phase=TPP_Phase.TPP_INACTIVE;
 			step_0();
 		};
     }
@@ -483,9 +489,9 @@ import org.apache.log4j.Logger;
 			i++;
 			} catch (IndexOutOfBoundsException ioobe) {
 				// index is greater then size???
-				logger.warn("removeAllRats IndexOutOfBoundException at "+
+				logger.error("removeAllRats IndexOutOfBoundException at "+
 						Integer.toString(i)+" position. Totally "+
-						Integer.toString(sz)+" elements.");
+						Integer.toString(sz)+" elements.", ioobe);
 			};
 		}
 	}
@@ -504,14 +510,16 @@ import org.apache.log4j.Logger;
 		return Math.min(time, MAX_QUEST_REPEAT_TIME);
 	}
 	
-	/**
-	 *  Register TurnListener to have automatical quest start.
-	 *  WARNING: Dont use in game! For testing only
-	 */
+
+	/*
 	private void step_test() {
+		//
+		// WARNING: Dont use in game! For testing only
+		// Register TurnListener to have automatical quest start.
 		TurnNotifier.get().dontNotify(questTimer);
 		TurnNotifier.get().notifyInSeconds(60, questTimer);
 	}
+	*/
 	
 	/**
 	 *  Register TurnListener to have automatical quest start/stop.
@@ -529,11 +537,11 @@ import org.apache.log4j.Logger;
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("rats"), null, 
-				ConversationStates.ATTENDING, null, new AnswerOrOfferReward());
+				ConversationStates.ATTENDING, null, new AnswerOrOfferRewardAction());
 		npc.add(ConversationStates.ATTENDING, "reward", null,
-				ConversationStates.ATTENDING, null, new RewardPlayer());
+				ConversationStates.ATTENDING, null, new RewardPlayerAction());
 		npc.add(ConversationStates.ATTENDING, "details", null,
-				ConversationStates.ATTENDING, null, new DetailsKillings());
+				ConversationStates.ATTENDING, null, new DetailsKillingsAction());
 	}
 	 
 	/**
@@ -541,7 +549,7 @@ import org.apache.log4j.Logger;
 	 *  currently makes quest inactive.
 	 */
 	private void step_2() {
-		if (phase==2){
+		if (phase==TPP_Phase.TPP_AWAITING){
 			step_0();
 		};
 	}
@@ -561,8 +569,8 @@ import org.apache.log4j.Logger;
 		step_0();
 	    step_1();
 	    step_2();
-	    // for testing only
-	    step_test();
+	    // function step_test() is for testing only
+	    //step_test();
 		super.addToWorld();
 	}	
 }

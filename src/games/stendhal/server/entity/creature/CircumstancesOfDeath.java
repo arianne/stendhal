@@ -7,8 +7,26 @@ import games.stendhal.server.entity.RPEntity;
  * Contains statistics for notifications
  */
 public class CircumstancesOfDeath {
-	public RPEntity killer;
+	private RPEntity killer;
 // 	public List<RPEntity> killers;
-	public RPEntity victim;
-	public StendhalRPZone zone;
+	private RPEntity victim;
+	private StendhalRPZone zone;
+	
+	public RPEntity getKiller(){
+		return(killer);
+	}
+	
+	public RPEntity getVictim(){
+		return(victim);
+	}
+
+	public StendhalRPZone getZone(){
+		return(zone);
+	}
+	
+	public CircumstancesOfDeath(RPEntity killer, RPEntity victim, StendhalRPZone zone){
+		this.zone=zone;
+		this.killer=killer;
+		this.victim=victim;
+	}
 }

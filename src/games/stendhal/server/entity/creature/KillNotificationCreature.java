@@ -12,7 +12,7 @@ import java.util.Observer;
  */
 public class KillNotificationCreature extends Creature {
 	 
-   private CircumstancesOfDeath circumstances = new CircumstancesOfDeath();
+   private CircumstancesOfDeath circumstances;
    private Registrator registrator = new Registrator();
    
    /**
@@ -34,10 +34,7 @@ public class KillNotificationCreature extends Creature {
 
    @Override
    public void onDead(final Entity killer, final boolean remove) {
-      circumstances.killer=(RPEntity)killer;
-      circumstances.victim=this;
-      circumstances.zone=this.getZone();
-      //circumstances.killers=Array.asList();
+	  circumstances=new CircumstancesOfDeath((RPEntity)killer, this, this.getZone());
       notifyRegisteredObjects();
       super.onDead(killer, remove);  
 

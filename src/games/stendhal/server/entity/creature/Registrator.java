@@ -30,7 +30,7 @@ class Registrator extends Observable {
 		} else {
 			// log it.
 			final Logger logger = Logger.getLogger(Registrator.class);
-			logger.error("null observer was not added.");
+			logger.error("null observer was not added.", new Throwable());
 		};
 	}
 
