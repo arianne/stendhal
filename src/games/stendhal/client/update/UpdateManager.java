@@ -260,6 +260,10 @@ public class UpdateManager {
 	 * @return true, if the download was succesful, false otherwise
 	 */
 	private boolean downloadFile(final String file) {
+		boolean res = tryDownloadFromPreferedLocation(file);
+		if (res) {
+			return true;
+		}
 		System.out.println("Downloading " + file + " ...");
 		final HttpClient httpClient = new HttpClient(serverFolder + file, true);
 		httpClient.setProgressListener(updateProgressBar);
@@ -287,6 +291,50 @@ public class UpdateManager {
 			updateProgressBar.dispose();
 			return false;
 		}
+		return true;
+	}
+
+	/**
+	 * tries to download the file from a prefered, but less stable location.
+	 * errors are only logged to stdout and not displayed to the user because
+	 * if this download fails, the one from the normal location is tried.
+	 *
+	 * @param file name of file to download
+	 * @return true, if the download was successful; false otherwise
+	 */
+	private boolean tryDownloadFromPreferedLocation(String file) {
+
+		// is a prefered download location specified?
+		String preferedLocationFolder = updateProp.getProperty("location.prefered.folder");
+		String preferedLocationSuffix = updateProp.getProperty("location.prefered.suffix", "");
+		if (preferedLocationFolder == null) {
+			// no prefered location specified
+			return false;
+		}
+
+		// try to download
+		System.out.println("Downloading " + file + " from prefered location...");
+		final HttpClient httpClient = new HttpClient(preferedLocationFolder + file + preferedLocationSuffix, false);
+		httpClient.setProgressListener(updateProgressBar);
+		if (!httpClient.fetchFile(jarFolder + file)) {
+			System.out.println("fetch file failed, will retry from normal location");
+			return false;
+		}
+
+		// check file size
+		try {
+			final File fileObj = new File(jarFolder + file);
+			final int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+			if (fileObj.length() != shouldSize) {
+				System.out.println("wrong file size, will retry from normal location");
+				return false;
+			}
+		} catch (final NumberFormatException e) {
+			e.printStackTrace(System.err);
+			return false;
+		}
+
+		// all okay
 		return true;
 	}
 
