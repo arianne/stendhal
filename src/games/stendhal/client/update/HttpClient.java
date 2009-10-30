@@ -269,6 +269,8 @@ public class HttpClient {
 		}
 		inputStream.close();
 		outputStream.close();
-		progressListener.onDownloadCompleted(byteCounter);
+		if (progressListener != null) {
+			progressListener.onDownloadCompleted(byteCounter);
+		}
 	}
 }
