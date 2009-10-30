@@ -224,9 +224,11 @@ public class DisplaceAction implements ActionListener {
 		entity.notifyWorldAboutChanges();
 		if (entity instanceof Item) {
 			final Item item = (Item) entity;
+			int oldX = item.getX();
+			int oldY = item.getY();
 			item.onRemoveFromGround();
 			item.onPutOnGround(player);
-			new ItemLogger().displace(player, entity, zone, x, y);
+			new ItemLogger().displace(player, entity, zone, oldX, oldY, x, y);
 		}
 	}
 }

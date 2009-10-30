@@ -75,8 +75,8 @@ public class ItemLogger {
 		addItemLogEntry(new ItemLogEntry(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY()));
     }
 
-	public void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int x, final int y) {
-		addItemLogEntry(new ItemLogEntry(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(),
+	public void displace(final Player player, final PassiveEntity item, final StendhalRPZone zone, final int oldX, final int oldY, final int x, final int y) {
+		addItemLogEntry(new ItemLogEntry(item, player, "ground-to-ground", zone.getID().getID(), oldX + " " + oldY,
 				zone.getID().getID(), x + " " + y));
     }
 
