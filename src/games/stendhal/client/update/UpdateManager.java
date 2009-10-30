@@ -244,35 +244,49 @@ public class UpdateManager {
 		updateProgressBar = new UpdateProgressBar(size);
 		updateProgressBar.setVisible(true);
 		for (final String file : files) {
-			System.out.println("Downloading " + file + " ...");
-			final HttpClient httpClient = new HttpClient(serverFolder + file, true);
-			httpClient.setProgressListener(updateProgressBar);
-			if (!httpClient.fetchFile(jarFolder + file)) {
-				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file "
-						+ file);
-				return false;
-			}
-			try {
-				final File fileObj = new File(jarFolder + file);
-				final int shouldSize = Integer.parseInt(updateProp.getProperty(
-						"file-size." + file, ""));
-				if (fileObj.length() != shouldSize) {
-					UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
-							+ file
-							+ " does not match. We got "
-							+ fileObj.length()
-							+ " but it should be "
-							+ shouldSize);
-					updateProgressBar.dispose();
-					return false;
-				}
-			} catch (final NumberFormatException e) {
-				e.printStackTrace(System.err);
-				updateProgressBar.dispose();
+			boolean res = downloadFile(file);
+			if (!res) {
 				return false;
 			}
 		}
 		updateProgressBar.dispose();
+		return true;
+	}
+
+	/**
+	 * Downloads the specified file
+	 *
+	 * @param file name of file
+	 * @return true, if the download was succesful, false otherwise
+	 */
+	private boolean downloadFile(final String file) {
+		System.out.println("Downloading " + file + " ...");
+		final HttpClient httpClient = new HttpClient(serverFolder + file, true);
+		httpClient.setProgressListener(updateProgressBar);
+		if (!httpClient.fetchFile(jarFolder + file)) {
+			UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file "
+					+ file);
+			return false;
+		}
+		try {
+			final File fileObj = new File(jarFolder + file);
+			final int shouldSize = Integer.parseInt(updateProp.getProperty(
+					"file-size." + file, ""));
+			if (fileObj.length() != shouldSize) {
+				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
+						+ file
+						+ " does not match. We got "
+						+ fileObj.length()
+						+ " but it should be "
+						+ shouldSize);
+				updateProgressBar.dispose();
+				return false;
+			}
+		} catch (final NumberFormatException e) {
+			e.printStackTrace(System.err);
+			updateProgressBar.dispose();
+			return false;
+		}
 		return true;
 	}
 
