@@ -307,6 +307,7 @@ public class UpdateManager {
 		// is a prefered download location specified?
 		String preferedLocationFolder = updateProp.getProperty("location.prefered.folder");
 		String preferedLocationSuffix = updateProp.getProperty("location.prefered.suffix", "");
+		System.out.println("checking for prefered location: preferedLocationFolder=" + preferedLocationFolder + " preferedLocationSuffix=" + preferedLocationSuffix);
 		if (preferedLocationFolder == null) {
 			// no prefered location specified
 			return false;
