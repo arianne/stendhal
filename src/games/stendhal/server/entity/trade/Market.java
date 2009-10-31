@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.trade;
 
+import games.stendhal.server.actions.equip.SourceObjectTest;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
@@ -93,20 +94,23 @@ public class Market extends PassiveEntity {
 	 * creates a new offer at the market
 	 * 
 	 * @param offerer offering player
-	 * @param item item to sell
+	 * @param itemName item to sell
 	 * @param money price for the item
 	 * @return the new created offer
 	 */
-	public Offer createOffer(final Player offerer, final Item item,
+	public Offer createOffer(final Player offerer, final String itemName,
 			final Integer money) {
 		String name = offerer.getName();
-		final Offer offer = new Offer(item, money, name);
-		if(offerer.drop(item.getName())) {
+		Item item = offerer.getFirstEquipped(itemName);
+		Offer offer = null;
+		if(offerer.drop(item)) {
+			offer = new Offer(item, money, name);
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
 			offerer.store();
 			offer.store();
+			item.store();
 			this.store();
 			return offer;
 		}
@@ -123,16 +127,17 @@ public class Market extends PassiveEntity {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				Item item = offer.getItem();
+				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 				acceptingPlayer.equipOrPutOnGround(item);
 				final Earning earning = new Earning(item.getName(), offer.getPrice(), offer.getOfferer());
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
-				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				earning.store();
 				this.store();
 				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
+				item.store();
 				acceptingPlayer.store();
 				sellingPlayer.store();
 			}

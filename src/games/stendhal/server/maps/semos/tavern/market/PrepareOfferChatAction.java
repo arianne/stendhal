@@ -53,8 +53,7 @@ public class PrepareOfferChatAction implements ChatAction {
 	private void createOffer(Player player, String itemName, int price) {
 		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
-			Item item = SingletonRepository.getEntityManager().getItem(itemName);
-			Offer o = shop.createOffer(player,item,Integer.valueOf(price));
+			Offer o = shop.createOffer(player,itemName,Integer.valueOf(price));
 			TradingUtility.addTurnNotifiers(player, o);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);

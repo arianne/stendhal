@@ -42,7 +42,7 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
 		george.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(george, item, price);
+		Offer offer = edeka.createOffer(george, item.getName(), price);
 		assertThat(offer.getItem(), is(item));
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(george.isEquipped(item.getName())),
@@ -94,7 +94,7 @@ public class TradeTest {
 		Integer tooFewMoney = price - 1;
 		erniesMoney.setQuantity(tooFewMoney);
 		bob.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(bob, item, price);
+		Offer offer = edeka.createOffer(bob, item.getName(), price);
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
