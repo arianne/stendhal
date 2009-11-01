@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.trade;
 
-import games.stendhal.server.actions.equip.SourceObjectTest;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
