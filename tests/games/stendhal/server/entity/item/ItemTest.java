@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.item;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
@@ -19,9 +20,6 @@ import java.util.Map;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -38,18 +36,6 @@ public class ItemTest {
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
 		
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -92,11 +78,32 @@ public class ItemTest {
 	}
 	
 	@Test
-	public void testDescribe() {
+	public void testGetDescription() {
 		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		assertEquals("", mo.getDescription());
 	}
+
+	
+	@Test
+	public void testDescribe() {
+		final Item item = new Item("name1", "class", "subclass",
+				new HashMap<String, String>());
+		assertThat(item.describe(), equalTo("You see a name1."));
+
+		item.setDescription("Description.");
+		item.setBoundTo("hero");
+		item.put("min_level", 1);
+		item.put("atk", 2);
+		item.put("def", 3);
+		item.put("rate", 4);
+		item.put("amount", 5);
+		item.put("range", 6);
+		item.put("lifesteal", 7);
+
+		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
+	}
+	
 
 	@Test
 	public void testItemStringStringStringMapOfStringString() {
@@ -328,7 +335,4 @@ public class ItemTest {
 		assertFalse(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));
 		assertThat(mo.getBoundTo(), not(is("bob")));
 	}
-
-	
-
 }
