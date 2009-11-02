@@ -13,7 +13,35 @@ public class IntRingBuffer {
 	private int head = 0; 
 	private int tail = 0; 
 
-	private int[] ringBuffer = new int[10];
+	private int[] ringBuffer;
+
+	/**
+	 * creates a new IntRingBuffer
+	 *
+	 * @param size size of the buffer.
+	 */
+	public IntRingBuffer(int size) {
+		ringBuffer = new int[size];
+	}
+
+	/**
+	 * Is the buffer empty?
+	 *
+	 * @return true, if the buffer is empty, false otherwise
+	 */
+	public boolean isEmpty() {
+		return (head == tail);
+	}
+
+	/**
+	 * Is the buffer full?
+	 *
+	 * @return true, if the buffer cannot accept more items, false otherwise
+	 */
+	public boolean isFull() {
+		int next = (head + 1) % ringBuffer.length;
+		return (next == tail);
+	}
 
 	/**
 	 * adds an item to the buffer
@@ -22,12 +50,11 @@ public class IntRingBuffer {
 	 * @return true, if the item was added succesfully; false, if the buffer is full 
 	 */
 	public boolean add(int item) {
-		int next = (head + 1) % ringBuffer.length;
-		if (next == tail) {
+		if (isFull()) {
 			return false;
 		}
-		ringBuffer[next] = item;
-		head = next;
+		head = (head + 1) % ringBuffer.length;
+		ringBuffer[head] = item;
 		return true;
 	}
 
@@ -37,7 +64,7 @@ public class IntRingBuffer {
 	 * @return true, if the item was removed succesfully; false, if the buffer was empty 
 	 */
 	public boolean removeOldest() {
-		if (head == tail) {
+		if (isEmpty()) {
 			return false;
 		}
 		tail = (tail + 1) % ringBuffer.length;
