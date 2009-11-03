@@ -10,8 +10,9 @@ package games.stendhal.server.util;
  * @author hendrik
  */
 public class IntRingBuffer {
-	private int head = 0; 
-	private int tail = 0; 
+	private int head = 0;
+	private int tail = 0;
+	private int counter = 0;
 
 	private int[] ringBuffer;
 
@@ -30,7 +31,7 @@ public class IntRingBuffer {
 	 * @return true, if the buffer is empty, false otherwise
 	 */
 	public boolean isEmpty() {
-		return (head == tail);
+		return counter == 0;
 	}
 
 	/**
@@ -39,8 +40,7 @@ public class IntRingBuffer {
 	 * @return true, if the buffer cannot accept more items, false otherwise
 	 */
 	public boolean isFull() {
-		int next = (head + 1) % ringBuffer.length;
-		return (next == tail);
+		return (head == tail) && counter > 0;
 	}
 
 	/**
@@ -55,6 +55,7 @@ public class IntRingBuffer {
 		}
 		head = (head + 1) % ringBuffer.length;
 		ringBuffer[head] = item;
+		counter++;
 		return true;
 	}
 
@@ -68,6 +69,7 @@ public class IntRingBuffer {
 			return false;
 		}
 		tail = (tail + 1) % ringBuffer.length;
+		counter--;
 		return true;
 	}
 }

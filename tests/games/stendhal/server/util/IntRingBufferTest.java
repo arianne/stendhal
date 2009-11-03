@@ -1,0 +1,84 @@
+package games.stendhal.server.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+/**
+ * tests for IntRingBuffer
+ *
+ * @author hendrik
+ */
+public class IntRingBufferTest {
+
+	/**
+	 * tests for isEmpty()
+	 */
+	@Test
+	public void testIsEmpty() {
+		IntRingBuffer buffer = new IntRingBuffer(2);
+		assertTrue(buffer.isEmpty());
+		buffer.add(1);
+		assertFalse(buffer.isEmpty());
+		buffer.add(2);
+		buffer.removeOldest();
+		assertFalse(buffer.isEmpty());
+		buffer.add(3);
+		assertFalse(buffer.isEmpty());
+		buffer.removeOldest();
+		assertFalse(buffer.isEmpty());
+		buffer.removeOldest();
+		assertTrue(buffer.isEmpty());
+	}
+
+	/**
+	 * tests for isFull()
+	 */
+	@Test
+	public void testIsFull() {
+		IntRingBuffer buffer = new IntRingBuffer(2);
+		assertFalse(buffer.isFull());
+		buffer.add(1);
+		assertFalse(buffer.isFull());
+		buffer.add(2);
+		buffer.removeOldest();
+		assertFalse(buffer.isFull());
+		buffer.add(3);
+		assertTrue(buffer.isFull());
+		buffer.removeOldest();
+		assertFalse(buffer.isFull());
+		buffer.removeOldest();
+		assertFalse(buffer.isFull());
+	}
+
+	/**
+	 * tests for add()
+	 */
+	@Test
+	public void testAdd() {
+		IntRingBuffer buffer = new IntRingBuffer(2);
+		assertTrue(buffer.add(1));
+		assertTrue(buffer.add(2));
+		assertFalse(buffer.add(3));
+		buffer.removeOldest();
+		assertTrue(buffer.add(4));
+	}
+
+	/**
+	 * Tests for removeOldest()
+	 */
+	@Test
+	public void testRemoveOldest() {
+		IntRingBuffer buffer = new IntRingBuffer(2);
+		assertFalse(buffer.removeOldest());
+		buffer.add(1);
+		assertTrue(buffer.removeOldest());
+		assertFalse(buffer.removeOldest());
+		buffer.add(2);
+		buffer.add(3);
+		assertTrue(buffer.removeOldest());
+		assertTrue(buffer.removeOldest());
+		assertFalse(buffer.removeOldest());
+	}
+
+}
