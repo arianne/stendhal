@@ -13,15 +13,16 @@ import marauroa.common.game.RPAction;
 
 public class SupportAnswerAction extends AdministrationAction {
 
-
-
 	public static void register() {
 		CommandCenter.register(SUPPORTANSWER, new SupportAnswerAction(), 50);
-
 	}
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
 		if (action.has(TARGET) && action.has(TEXT)) {
 			String reply = action.get(TEXT);
 			
