@@ -72,4 +72,19 @@ public class IntRingBuffer {
 		counter--;
 		return true;
 	}
+
+	/**
+	 * removes all values smaller than the specified one from the trail.
+	 *
+	 * @param value value
+	 */
+	public void removeSmaller(int value) {
+		while (!isEmpty()) {
+			if (ringBuffer[(tail + 1) % ringBuffer.length] < value) {
+				removeOldest();
+			} else {
+				break;
+			}
+		}
+	}
 }

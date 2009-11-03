@@ -81,4 +81,29 @@ public class IntRingBufferTest {
 		assertFalse(buffer.removeOldest());
 	}
 
+	/**
+	 * tests for removeSmaller
+	 */
+	@Test
+	public void testRemoveSmaller() {
+		IntRingBuffer buffer = new IntRingBuffer(2);
+		buffer.removeSmaller(100);
+		assertTrue(buffer.isEmpty());
+
+		buffer.add(5);
+		buffer.removeSmaller(1);
+		assertFalse(buffer.isEmpty());
+
+		buffer.removeSmaller(100);
+		assertTrue(buffer.isEmpty());
+
+		buffer.add(5);
+		buffer.add(10);
+		buffer.removeSmaller(6);
+		assertFalse(buffer.isEmpty());
+
+		buffer.add(20);
+		buffer.removeSmaller(100);
+		assertTrue(buffer.isEmpty());
+	}
 }
