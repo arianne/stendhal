@@ -13,6 +13,10 @@ import marauroa.common.game.RPAction;
 class AnswerAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
 		if (action.has(TEXT)) {
 			if (player.getLastPrivateChatter() != null) {
 				// convert the action to a /tell action

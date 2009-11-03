@@ -14,6 +14,10 @@ import marauroa.common.game.RPAction;
 public class PublicChatAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
 		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
 			return;
 		}

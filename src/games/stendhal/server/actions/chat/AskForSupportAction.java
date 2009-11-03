@@ -17,10 +17,13 @@ import marauroa.common.game.RPAction;
  * handles asking for /support.
  */
 public class AskForSupportAction  implements ActionListener {
-	// HashMap <players_name, last_message_time>
 	private final Map<String, Long> lastMsg = new HashMap<String, Long>();
 
 	public void onAction(final Player player, final RPAction action) {
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
 		if (action.has(TEXT)) {
 
 			if ("".equals(action.get(TEXT).trim())) {

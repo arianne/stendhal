@@ -101,6 +101,10 @@ public class TellAction implements ActionListener {
 	}
 
 	public void onAction(final Player player, final RPAction action) {
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
 		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
 			return;
 		}
