@@ -122,7 +122,7 @@ public class Player extends RPEntity {
 	 */
 	private String lastPrivateChatterName;
 
-	
+	private final PlayerChatBucket chatBucket;
 
 	public static void generateRPClass() {
 		try {
@@ -131,9 +131,6 @@ public class Player extends RPEntity {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
-	
-
-
 
 	public static Player createEmptyZeroLevelPlayer(final String characterName) {
 		/*
@@ -203,6 +200,12 @@ public class Player extends RPEntity {
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {
 			put("title_type", "npc");
+		}
+
+		if (getAdminLevel() > 1000) {
+			chatBucket = new AdminChatBucket();
+		} else {
+			chatBucket = new PlayerChatBucket();
 		}
 
 		setSize(1, 1);
@@ -1914,9 +1917,7 @@ public class Player extends RPEntity {
 			}
 		}
 		super.equipToInventoryOnly(item); 
-		
 	}
-
 
 	public PetOwner getPetOwner() {
 		return petOwner;
@@ -1924,5 +1925,14 @@ public class Player extends RPEntity {
 
 	public boolean isBoundTo(final Item item) {
 		return getName().equals(item.getBoundTo());
+	}
+
+	/**
+	 * gets the PlayerChatBucket
+	 * 
+	 * @return PlayerChatBucket
+	 */
+	public PlayerChatBucket getChatBucket() {
+		return chatBucket;
 	}
 }
