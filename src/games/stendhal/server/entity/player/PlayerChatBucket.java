@@ -9,7 +9,9 @@ import games.stendhal.server.util.IntRingBuffer;
  * @author hendrik
  */
 public class PlayerChatBucket {
-	private IntRingBuffer lastChatTurns = new IntRingBuffer(10);
+	private static final int TIMEFRAME_IN_TURNS = 10000 / 300;
+
+	private IntRingBuffer lastChatTurns = new IntRingBuffer(5);
 
 	public boolean checkAndAdd() {
 		int turn = SingletonRepository.getRuleProcessor().getTurn();
@@ -27,8 +29,8 @@ public class PlayerChatBucket {
 	 * @return true, if the player is allowed to chat, false otherwise.
 	 */
 	private boolean check(int turn) {
-		// TODO Auto-generated method stub
-		return true;
+		lastChatTurns.removeSmaller(turn - TIMEFRAME_IN_TURNS);
+		return !lastChatTurns.isFull();
 	}
 
 	/**
