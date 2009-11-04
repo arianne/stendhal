@@ -34,7 +34,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 				"certain offer. If you have expired offers, you can ask for them by saying #show #expired." +
 				" You can prolong an expired offer by saying #prolong #number. If you already sold some items" +
 				"you can say fetch to me and I will pay out your earnings.");
-		add(ConversationStates.ATTENDING, "sell", null, null, ConversationStates.SELL_PRICE_OFFERED,	null, new PrepareOfferChatAction());
+		add(ConversationStates.ATTENDING, "sell", null, null, ConversationStates.ATTENDING,	null, new PrepareOfferChatAction());
 		add(ConversationStates.ATTENDING, "show", null, ConversationStates.BUY_PRICE_OFFERED, null, new ShowOffersChatAction());
 		add(ConversationStates.ATTENDING, "fetch", null, ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		add(ConversationStates.BUY_PRICE_OFFERED, "accept", null, ConversationStates.ATTENDING, null, new AcceptOfferChatAction());
