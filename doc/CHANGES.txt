@@ -1,6 +1,18 @@
 Changelog
 ---------
 
+0.79
+* changes for players
+- a trading center in Semos Inn
+- characters with the same name as creatures no longer get people killing those creatures listed on their web page
+- change price of barbarian armor from
+- fixed graphics for balrog and killer bat corpse
+
+* changes for admins
+- new command /script -list
+- fixed broken logging of source position for items moved around on the ground
+
+
 0.78
 * changes for players
 - various map fixes
