@@ -15,7 +15,7 @@ public class ConversationPhrases {
 	public static final String NO_EXPRESSION = "|EXACT|ICASE|no";
 
 	// do not use a mutable list here
-	public static final List<String> EMPTY = Arrays.asList();
+	public static final List<String> EMPTY = Arrays.asList(new String[0]);
 
 	public static final List<String> GREETING_MESSAGES = Arrays.asList("hi",
 			"hello", "hallo", "greetings", "hola");
