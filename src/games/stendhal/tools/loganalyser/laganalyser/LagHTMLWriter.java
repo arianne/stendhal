@@ -19,18 +19,24 @@ public class LagHTMLWriter {
 	}
 
 	public void writeHeader() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void writeFooter() {
-		// TODO Auto-generated method stub
-		
+		ps.println("<html>");
+		ps.println("<head><title>Lag</title></head>");
+		ps.println("<body>");
+		ps.println("<table border=\"1\"");
 	}
 
 	public void writeTurnOverflows(int[] times) {
-		// TODO Auto-generated method stub
-		
+		ps.print("<tr>");
+		for (int i = 0; i < times.length; i++) {
+			ps.print("<td>" + times[i] + "</td>");
+		}
+		ps.println("</tr>");
+	}
+
+	public void writeFooter() {
+		ps.println("</table>");
+		ps.println("</body>");
+		ps.println("</html>");
 	}
 
 	public void close() {
