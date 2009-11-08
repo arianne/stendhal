@@ -29,8 +29,9 @@ public class LagReader {
 	 * returns the relative times uesed in each step
 	 *
 	 * @return relative times
+	 * @throws IOException in case of an input / output error
 	 */
-	public int[] readTurnOverflowRelative() {
+	public int[] readTurnOverflowRelative() throws IOException {
 		int[] absolute = readTurnOverflowAbsolute();
 		if (absolute != null) {
 			return calculateRelative(absolute);
@@ -42,10 +43,33 @@ public class LagReader {
 	 * reads the absolute times from the file.
 	 *
 	 * @return array of ints
+	 * @throws IOException in case of an input / output error
 	 */
-	public int[] readTurnOverflowAbsolute() {
-		// TODO Auto-generated method stub
+	public int[] readTurnOverflowAbsolute() throws IOException {
+		String line = br.readLine();
+		while (line != null) {
+			if (line.matches("Turn duration overflow by")) {
+				return splitLine(line);
+			}
+			line = br.readLine();
+		}
 		return null;
+	}
+
+	/**
+	 * splits a Turn overflow line into the individual overflows
+	 *
+	 * @param line original line
+	 * @return int array
+	 */
+	int[] splitLine(String line) {
+		line = line.substring(line.indexOf(":")).trim();
+		String[] tokens = line.split(" ");
+		int[] res = new int[tokens.length];
+		for (int i = 0; i < tokens.length; i++) {
+			res[i] = Integer.parseInt(tokens[i]);
+		}
+		return res;
 	}
 
 	/**
