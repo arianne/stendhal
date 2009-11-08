@@ -48,7 +48,7 @@ public class LagReader {
 	public int[] readTurnOverflowAbsolute() throws IOException {
 		String line = br.readLine();
 		while (line != null) {
-			if (line.matches("Turn duration overflow by")) {
+			if (line.matches(".*Turn duration overflow by.*")) {
 				return splitLine(line);
 			}
 			line = br.readLine();
@@ -63,7 +63,8 @@ public class LagReader {
 	 * @return int array
 	 */
 	int[] splitLine(String line) {
-		line = line.substring(line.indexOf(":")).trim();
+		line = line.substring(line.indexOf("Turn duration overflow by"));
+		line = line.substring(line.indexOf(":") + 1).trim();
 		String[] tokens = line.split(" ");
 		int[] res = new int[tokens.length];
 		for (int i = 0; i < tokens.length; i++) {
