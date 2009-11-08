@@ -33,6 +33,9 @@ public class SupportAnswerAction extends AdministrationAction {
 					reply = "Hi, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ. Thanks for playing Stendhal!";
 				} else if ("$faqsocial".equals(reply)) {
 					reply = "Hi, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.";
+				} else if ("$ignore".equals(reply)) {
+					reply = "Sorry to hear that you have had some problems with another player. Please try to ignore them. You can use "
+						+ "#/ignore #playername to prevent private messages and there is a feature request to extend /ignore to public chat.";
 				} else if ("$faqpvp".equals(reply)) {
 					reply = "Hi, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player - good luck for the future.";
 				} else if ("$wiki".equals(reply)) {
@@ -43,10 +46,12 @@ public class SupportAnswerAction extends AdministrationAction {
 					reply = "Hi, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you very much.";
 				} else if ("$rules".equals(reply)) {
 					reply = "Please read the Stendhal Rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem - thank you.";
-				} else if ("$abuse".equals(reply)) {
-					reply = "Sorry, but support is not here for that issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources. Repeated abuse of the support channel will be punished.";
+				} else if ("$notsupport".equals(reply)) {
+					reply = "Sorry, but support cannot help with this issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources.";
+				} else if ("$spam".equals(reply)) {
+					reply = "Repeatedly saying the same thing over and over again is considered spamming, and this is against the rules of the game. Please do not spam, and please read #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem, thank you.";
 				} else {
-					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $faqpvp, $wiki, $knownbug, $bugstracker, $rules or $abuse?");
+					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam?");
 					// send no support answer message if the shortcut wasn't understood
 					return;
 				}				

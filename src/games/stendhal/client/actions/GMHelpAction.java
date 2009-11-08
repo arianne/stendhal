@@ -89,12 +89,15 @@ class GMHelpAction implements SlashAction {
 				lines = Arrays.asList(
 									  "$faq - Hi, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ. Thanks for playing Stendhal!",
 									  "$faqsocial - Hi, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.",
+									  "$ignore - Sorry to hear that you have had some problems with another player. Please try to ignore them. You can use "
+									  + "#/ignore #playername to prevent private messages and there is a feature request to extend /ignore to public chat.",
 									  "$faqpvp - Hi, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player - good luck for the future.",
 									  "$wiki - Hi, this is a question which is answered on the Stendhal wiki, please look on #http://stendhal.game-host.org/wiki/index.php/Stendhal as this is full of useful information. Thanks for playing Stendhal.",
 									  "$knownbug - Hi, thank you for telling us about this bug, we have found it ourselves too and it's already reported. Thank you though and please do keep reporting bugs if you see them, or you can also report them directly by following the instructions at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you!",
 									  "$bugstracker - Hi, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you very much.",
 									  "$rules - Please read the Stendhal Rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem - thank you.",
-									  "$abuse - Sorry, but support is not here for that issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources. Repeated abuse of the support channel will be punished.");
+									  "$notsupport - Sorry, but support cannot help with this issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources.",
+									  "$spam - Repeatedly saying the same thing over and over again is considered spamming, and this is against the rules of the game. Please do not spam, and please read #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem, thank you.");
 			} else {
 				return false;
 			}
