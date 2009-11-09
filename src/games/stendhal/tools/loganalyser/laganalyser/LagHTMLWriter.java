@@ -1,6 +1,3 @@
-/**
- * 
- */
 package games.stendhal.tools.loganalyser.laganalyser;
 
 import java.io.FileNotFoundException;
@@ -29,7 +26,10 @@ public class LagHTMLWriter {
 	 */
 	public void writeHeader() {
 		ps.println("<html>");
-		ps.println("<head><title>Lag</title></head>");
+		ps.println("<head>");
+		ps.println("\t<title>Lag</title>");
+		ps.println("\t<style>.first {background-color: #F00} .second {background-color: #FF0}</style>");
+		ps.println("</head>");
 		ps.println("<body>");
 		ps.println("<table border=\"1\">");
 	}
@@ -40,11 +40,40 @@ public class LagHTMLWriter {
 	 * @param times times
 	 */
 	public void writeTurnOverflows(int[] times) {
+		String[] cssClasses = calculateCssClasses(times);
 		ps.print("<tr>");
 		for (int i = 0; i < times.length; i++) {
-			ps.print("<td>" + times[i] + "</td>");
+			ps.print("<td class=" + cssClasses[i] + ">" + times[i] + "</td>");
 		}
 		ps.println("</tr>");
+	}
+
+	/**
+	 * calculates the highest two numbers
+	 *
+	 * @param times numbers
+	 * @return css styles
+	 */
+	String[] calculateCssClasses(int[] times) {
+		String[] cssClasses = new String[times.length];
+		int firstIdx = 0;
+		int secondIdx = 0;
+		int highest = 0;
+		int secondHighest = 0;
+		for (int i = 0; i < times.length; i++) {
+			if (times[i] > highest) {
+				secondIdx = firstIdx;
+				firstIdx = i;
+				secondHighest = highest;
+				highest = times[i];
+			} else if (times[i] > secondHighest) {
+				secondIdx = i;
+				secondHighest = times[i];
+			}
+		}
+		cssClasses[secondIdx] = "second";
+		cssClasses[firstIdx] = "first";
+		return cssClasses;
 	}
 
 	/**
