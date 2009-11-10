@@ -542,13 +542,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			g2d.fillRect(0, py, sw, sh - py);
 		}
 
-		/*
-		 * Layers
-		 */
 		gameLayers.draw(this, set, "0_floor", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "1_terrain", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "2_object", xTemp, yTemp, w, h);
 		drawEntities(g2d);
+
 		gameLayers.draw(this, set, "3_roof", xTemp, yTemp, w, h);
 		gameLayers.draw(this, set, "4_roof_add", xTemp, yTemp, w, h);
 		drawTopEntities(g2d);
@@ -571,6 +569,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		} else {
 			blinkOffline--;
 		}
+
+		// On Ubuntu 9.10 with Sub Java 1.6.0_15 the client does not react to typed letters
+		// in the chat line without the Thread.yield. The problem does neither occure on OpenJDK
+		// nor on Ubuntu 9.04
+		Thread.yield();
 	}
 
 	/**
