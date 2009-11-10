@@ -525,7 +525,7 @@
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
-	<target name="dist_client_no_sound_binary">
+	<target name="dist_client_no_sound_binary" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
