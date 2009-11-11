@@ -64,7 +64,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 	/** list of super admins read from admins.list. */
 	private static List<String> adminNames;
-	
+	/** welcome message unless overwriten by an url */
+	private static String welcomeMessage = "This release is EXPERIMENTAL. Need help? #http://stendhal.game-host.org/wiki/index.php/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
+
 	/** The Singleton instance. */
 	protected static StendhalRPRuleProcessor instance;
 
@@ -464,7 +466,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            Player
 	 */
 	static void welcome(final Player player) {
-		String msg = "This release is EXPERIMENTAL. Need help? #http://stendhal.game-host.org/wiki/index.php/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
+		String msg = welcomeMessage;
 		try {
 			final Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome")) {
@@ -617,4 +619,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		zonesToRemove.add(zone);
 	}
 
+	/**
+	 * sets the welcome message
+	 *
+	 * @param msg welcome message
+	 */
+	public void setWelcomeMessage(String msg) {
+		StendhalRPRuleProcessor.welcomeMessage = msg;
+	}
 }
