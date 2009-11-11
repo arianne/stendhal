@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -18,8 +19,7 @@ public class PrepareOfferChatAction implements ChatAction {
 	
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
-			npc.say("Sorry, I did not understand you. "
-					+ sentence.getErrorString());
+			npc.say("Sorry, I did not understand that strange offer.");
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		} else if (sentence.getExpressions().iterator().next().toString().equals("sell")){
 			handleSentence(player,sentence,npc);
@@ -57,10 +57,10 @@ public class PrepareOfferChatAction implements ChatAction {
 			message.append(itemName);
 			message.append(" at ");
 			message.append(price);
-			message.append(" created.");
-			player.sendPrivateText(message.toString());
-			String messageNumberOfOffers = "You now have put "+Integer.valueOf(shop.countOffersOfPlayer(player)).toString()+" offers.";
-			player.sendPrivateText(messageNumberOfOffers);
+			message.append(" created. ");
+			String messageNumberOfOffers = "You have now made "
+				+ Grammar.quantityplnoun(Integer.valueOf(shop.countOffersOfPlayer(player)),"offer") + ".";
+			player.sendPrivateText(message.toString() + messageNumberOfOffers);
 			return;
 		}
 	}
