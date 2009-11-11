@@ -37,6 +37,7 @@ public class Market extends PassiveEntity {
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
+		put("server-only", 1);
 		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
 			addSlot(OFFERS_SLOT_NAME);
 		}
@@ -77,6 +78,7 @@ public class Market extends PassiveEntity {
 	private Market() {
 		super();
 		setRPClass(MARKET_RPCLASS_NAME);
+		put("server-only", 1);
 		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
 			addSlot(OFFERS_SLOT_NAME);
 		}

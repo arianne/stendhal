@@ -32,6 +32,7 @@ public class Earning extends PassiveEntity {
 	public Earning(final String item, final Integer value, final String sellerName) {
 		super();
 		setRPClass(EARNING_RPCLASS_NAME);
+		put("server-only", 1);
 		put("item", item);
 		this.item = item;
 		put("value", value);
