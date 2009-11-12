@@ -71,7 +71,6 @@ public class Market extends PassiveEntity {
 	
 	public static Market createShop() {
 		Market shop = new Market();
-		shop.store();
 		return shop;
 	}
 
@@ -109,10 +108,6 @@ public class Market extends PassiveEntity {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
-			offerer.store();
-			offer.store();
-			item.store();
-			this.store();
 			return offer;
 		}
 		this.getZone().storeToDatabase();
@@ -134,13 +129,8 @@ public class Market extends PassiveEntity {
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
-				earning.store();
-				this.store();
 				Player sellingPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
 				applyTradingBonus(acceptingPlayer, sellingPlayer);
-				item.store();
-				acceptingPlayer.store();
-				sellingPlayer.store();
 			}
 		}
 		this.getZone().storeToDatabase();
@@ -250,8 +240,6 @@ public class Market extends PassiveEntity {
 		getOffers().add(offer);
 		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 		slot.add(offer);
-		offer.store();
-		this.store();
 		this.getZone().storeToDatabase();
 		return offer;
 	}
