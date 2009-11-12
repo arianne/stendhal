@@ -1,0 +1,22 @@
+<?xml version='1.0'?>
+
+<project name="stendhal" default="findbugs" basedir=".">
+	<property name="base" value="../.." />
+	<property name="findbugs.outdir" value="${base}/build/findbugs" />
+	
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+
+	<target name="findbugs">
+		<mkdir dir="${findbugs.outdir}" />
+		
+	    <findbugs home="."
+	              output="xml"
+	              outputFile="${findbugs.outdir}/stendhal-fb.xml" >
+	      <auxClasspath path="${base}/libs/marauroa.jar:${base}/libs/commons-lang.jar:${base}/libs/hamcrest-all-1.1.jar:${base}/libs/junit-4.4.jar:${base}/libs/log4j.jar:${base}/libs/pagelayout1.16.jar:${base}/libs/pircbot.jar" />
+	      <sourcePath path="${base}/src/**" />
+	      <class location="${base}/classes/" />
+	    </findbugs>
+	  </target>
+
+
+</project>
