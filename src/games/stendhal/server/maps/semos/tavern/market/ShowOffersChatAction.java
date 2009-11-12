@@ -74,7 +74,7 @@ public class ShowOffersChatAction implements ChatAction {
 				}
 				counter += 1;
 				offersMessage.append(counter);
-				offersMessage.append(" ");
+				offersMessage.append(": ");
 				offersMessage.append(o.getItem().getName());
 				offersMessage.append(" for ");
 				offersMessage.append(o.getPrice());
