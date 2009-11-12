@@ -4,7 +4,7 @@ Changelog
 0.79
 * changes for players
 - fixed an issue which made Stendhal unplayable on Ubuntu 9.10 with nvidia drivers on Sun JDK.
-- a trading center in Semos Inn
+- chat bar responds faster to typed letters on some systems
 - fixed website: characters with the same name as creatures no longer get people killing those creatures listed
 - change price of barbarian armor
 - fixed graphics for balrog and killer bat corpse
