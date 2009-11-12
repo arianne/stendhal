@@ -3,6 +3,7 @@ Changelog
 
 0.79
 * changes for players
+- fixed an issue which made Stendhal unplayable on Ubuntu 9.10 with nvidia drivers on Sun JDK.
 - a trading center in Semos Inn
 - fixed website: characters with the same name as creatures no longer get people killing those creatures listed
 - change price of barbarian armor
