@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.CIDLIST;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
@@ -14,7 +15,7 @@ import marauroa.common.game.RPAction;
 class CIDListAction extends AdministrationAction {
 
 	public static void register() {
-		CommandCenter.register(CIDLIST, new CIDListAction(), 50);
+		CommandCenter.register(CIDLIST, new CIDListAction(), 5000);
 	}
 
 	@Override
@@ -29,7 +30,7 @@ class CIDListAction extends AdministrationAction {
 				player.sendPrivateText("Player \"" + inputName + "\" not found");
 				return;
 			}
-			
+
 			final Map<String, String> nameList = CIDSubmitAction.nameList;
 			final Map<String, String> idList = CIDSubmitAction.idList;
 			
@@ -41,6 +42,7 @@ class CIDListAction extends AdministrationAction {
 				if (idList.containsKey(tid)) {
 					String group = idList.get(tid);
 					player.sendPrivateText("These players are on the same computer: " + group);
+					new GameEvent(player.getName(), "cidlist", playerName, group).raise();
 				}
 			}
 			
