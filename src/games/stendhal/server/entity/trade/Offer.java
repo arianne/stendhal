@@ -3,6 +3,7 @@ package games.stendhal.server.entity.trade;
 
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -18,7 +19,7 @@ public class Offer extends PassiveEntity {
 
 	public static final String OFFER_RPCLASS_NAME = "offer";
 
-	private final Item item;
+	private Item item;
 	
 	private final Integer price;
 
@@ -43,17 +44,26 @@ public class Offer extends PassiveEntity {
 		if (!this.hasSlot(OFFER_ITEM_SLOT_NAME)) {
 			this.addSlot(OFFER_ITEM_SLOT_NAME);
 		}
-		this.getSlot(OFFER_ITEM_SLOT_NAME).add(item);
-		this.item = item;
+		if (item != null) {
+			this.getSlot(OFFER_ITEM_SLOT_NAME).add(item);
+			this.item = item;
+		}
 		this.put("price", price.intValue());
 		this.price = price;
 		this.put(OFFERER_ATTRIBUTE_NAME, offerer);
 		this.offerer = offerer;
-		store();
 	}
 	
 	public Offer(final RPObject object) {
-		this((Item) object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(), Integer.valueOf(object.getInt("price")), object.get(OFFERER_ATTRIBUTE_NAME));
+		// an ad hoc item loader that needs to be changed
+		this(null, Integer.valueOf(object.getInt("price")), object.get(OFFERER_ATTRIBUTE_NAME));
+		final RPObject itemObject = object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(); 
+		final String name = itemObject.get("name");
+		final Item entity = UpdateConverter.updateItem(name);
+		entity.fill(itemObject);
+		
+		item = entity;
+		getSlot(OFFER_ITEM_SLOT_NAME).add(item);
 	}
 
 

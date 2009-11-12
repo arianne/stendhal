@@ -39,7 +39,6 @@ public class Earning extends PassiveEntity {
 		this.value = value;
 		this.sellerName = sellerName;
 		put("sellerName",sellerName);
-		store();
 	}
 	
 	public Earning(final RPObject object) {

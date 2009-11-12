@@ -38,32 +38,44 @@ public class Market extends PassiveEntity {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
 		put("server-only", 1);
-		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
-			addSlot(OFFERS_SLOT_NAME);
+		
+		// delete the slots whose contents get wrong types
+		// when loaded from the db
+		if(hasSlot(OFFERS_SLOT_NAME)) {
+			removeSlot(OFFERS_SLOT_NAME);
+		} 
+		addSlot(OFFERS_SLOT_NAME);
+		
+		if(hasSlot(EARNINGS_SLOT_NAME)) {
+			removeSlot(EARNINGS_SLOT_NAME);
 		}
-		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
-			addSlot(EARNINGS_SLOT_NAME);
+		addSlot(EARNINGS_SLOT_NAME);
+		
+		if(hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
+			removeSlot(EXPIRED_OFFERS_SLOT_NAME);
 		}
-		if(!this.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
-			addSlot(EXPIRED_OFFERS_SLOT_NAME);
-		}
+		addSlot(EXPIRED_OFFERS_SLOT_NAME);
+		
+		// copy the contents from the old slots
 		if (object.hasSlot(OFFERS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
-				this.offers.add((Offer) rpo);
-				this.getSlot(OFFERS_SLOT_NAME).add(rpo);
+				Offer offer = new Offer(rpo);
+				this.offers.add(offer);
+				this.getSlot(OFFERS_SLOT_NAME).add(offer);
 			}
 		}
 		if (object.hasSlot(EARNINGS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(EARNINGS_SLOT_NAME)) {
-				final Earning earning = (Earning) rpo;
+				final Earning earning = new Earning(rpo);
 				this.earnings.add(earning);
-				this.getSlot(EARNINGS_SLOT_NAME).add(rpo);
+				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 			}
 		}
 		if (object.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(EXPIRED_OFFERS_SLOT_NAME)) {
-				this.expiredOffers.add((Offer) rpo);
-				this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(rpo);
+			 	Offer offer = new Offer(rpo);
+				this.expiredOffers.add(offer);
+				this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(offer);
 			}
 		}
 		store();
