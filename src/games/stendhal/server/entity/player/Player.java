@@ -132,7 +132,7 @@ public class Player extends RPEntity {
 		}
 	}
 
-	public static Player createEmptyZeroLevelPlayer(final String characterName) {
+	public static Player createZeroLevelPlayer(final String characterName) {
 		/*
 		 * TODO: Update to use Player and RPEntity methods.
 		 */

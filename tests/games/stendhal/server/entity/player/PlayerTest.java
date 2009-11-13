@@ -236,7 +236,7 @@ public class PlayerTest {
 		assertThat(bob.getHeight(), is(1.0));
 		assertThat(bob.get("height"), is("1"));
 		
-		Player george = Player.createEmptyZeroLevelPlayer("george");
+		Player george = Player.createZeroLevelPlayer("george");
 		assertThat(george.getWidth(), is(1.0));
 		assertThat(george.get("width"), is("1"));
 		

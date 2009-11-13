@@ -117,7 +117,7 @@ public class BalanceRPGame {
 
 		final Item boots = em.getItem("leather boots");
 
-		player = Player.createEmptyZeroLevelPlayer("Tester");
+		player = Player.createZeroLevelPlayer("Tester");
 
 		player.equipToInventoryOnly(shield);
 		player.equipToInventoryOnly(armor);
