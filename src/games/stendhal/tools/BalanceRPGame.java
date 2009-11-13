@@ -106,7 +106,6 @@ public class BalanceRPGame {
 		}
 
 		final EntityManager em = SingletonRepository.getEntityManager();
-		final Item weapon = em.getItem("club");
 
 		final Item shield = em.getItem("wooden shield");
 
@@ -120,7 +119,6 @@ public class BalanceRPGame {
 
 		player = Player.createEmptyZeroLevelPlayer("Tester");
 
-		//player.equip(weapon);
 		player.equipToInventoryOnly(shield);
 		player.equipToInventoryOnly(armor);
 		player.equipToInventoryOnly(helmet);
