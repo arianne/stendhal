@@ -1139,7 +1139,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 		killLog.logKill(this, killer);
 
-		onDead(killer.getTitle(), remove);
 		onDead(killerName, remove);
 	}
 
