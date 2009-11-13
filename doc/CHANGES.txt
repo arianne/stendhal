@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+0.79.1: server only release
+- fixed a duplicated corpse bug
+
 0.79
 * changes for players
 - fixed an issue which made Stendhal unplayable on Ubuntu 9.10 with nvidia drivers on Sun JDK.
