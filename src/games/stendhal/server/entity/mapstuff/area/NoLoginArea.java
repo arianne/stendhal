@@ -74,7 +74,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 		this.newY = newY;
 		this.message = message;
 
-		super.put("server-only", 1);
+		hide();
 
 		SingletonRepository.getLoginNotifier().addListener(this);
 	}

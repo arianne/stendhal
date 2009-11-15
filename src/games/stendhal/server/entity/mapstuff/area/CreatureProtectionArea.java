@@ -24,7 +24,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	protected boolean defaultBlocked;
 
 	/**
-	 * The list (if any specific) of blocked creatues.
+	 * The list (if any specific) of blocked creatures.
 	 */
 	protected List<Entry> entries;
 
@@ -60,7 +60,7 @@ public class CreatureProtectionArea extends AreaEntity {
 	public CreatureProtectionArea(final int width, final int height, final boolean defaultBlocked) {
 		super(width, height);
 
-		put("server-only", "");
+		hide();
 		setResistance(0);
 
 		this.defaultBlocked = defaultBlocked;

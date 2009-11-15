@@ -42,7 +42,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	public OnePlayerArea(final int width, final int height) {
 		super(width, height);
 
-		put("server-only", "");
+		hide();
 		occupantRef = null;
 	}
 
