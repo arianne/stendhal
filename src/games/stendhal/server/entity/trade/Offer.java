@@ -40,7 +40,7 @@ public class Offer extends PassiveEntity {
 	public Offer(final Item item, final Integer price, final String offerer) {
 		super();
 		setRPClass("offer");
-		put("server-only", 1);
+		hide();
 		if (!this.hasSlot(OFFER_ITEM_SLOT_NAME)) {
 			this.addSlot(OFFER_ITEM_SLOT_NAME);
 		}

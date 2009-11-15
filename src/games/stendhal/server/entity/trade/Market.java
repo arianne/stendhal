@@ -37,7 +37,7 @@ public class Market extends PassiveEntity {
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
-		put("server-only", 1);
+		hide();
 		
 		// delete the slots whose contents get wrong types
 		// when loaded from the db
@@ -89,7 +89,7 @@ public class Market extends PassiveEntity {
 	private Market() {
 		super();
 		setRPClass(MARKET_RPCLASS_NAME);
-		put("server-only", 1);
+		hide();
 		if(!this.hasSlot(OFFERS_SLOT_NAME)) {
 			addSlot(OFFERS_SLOT_NAME);
 		}
