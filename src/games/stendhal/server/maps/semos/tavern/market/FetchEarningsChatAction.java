@@ -34,6 +34,7 @@ public class FetchEarningsChatAction implements ChatAction {
 		for (Earning earning : earnings) {
 			collectedSum += earning.getValue().intValue();
 			player.getZone().add(earning, true);
+			player.incrementTradescore();
 		}
 		player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
 		npc.say("Your earnings have been paid to you");
