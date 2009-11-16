@@ -180,7 +180,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new NotCondition(new PlayerHasItemWithHimCondition("black book"))),
 			ConversationStates.ATTENDING, 
 			"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
-			new SetQuestAction(QUEST_SLOT, null));
+			new SetQuestAction(QUEST_SLOT, "start"));
 	}
 
 	
