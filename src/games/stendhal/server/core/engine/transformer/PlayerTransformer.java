@@ -4,7 +4,6 @@ import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import games.stendhal.common.Debug;
 import games.stendhal.common.FeatureList;
-import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -14,7 +13,6 @@ import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.BankSlot;
@@ -25,7 +23,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -287,98 +284,41 @@ public class PlayerTransformer implements Transformer {
 		player.removeSlot(slot.getName());
 		player.addSlot(newSlot);
 
-		for (final RPObject item : objects) {
+		ItemTransformer transformer = new ItemTransformer();
+		for (final RPObject rpobject : objects) {
 			try {
-				// We simply ignore corpses...
-				if (item.get("type").equals("item")) {
+				// remove admin items the player does not deserve
+				if (ITEMS_FOR_ADMINS.contains(rpobject.get("name")) 
+						&& (!player.has("adminlevel") || player.getInt("adminlevel") < 1000)) {
+					logger.warn("removed admin item " + rpobject.get("name") + " from player " + player.getName());
+					new ItemLogger().destroyOnLogin(player, slot, rpobject);
 					
-					if (ITEMS_FOR_ADMINS.contains(item.get("name")) && (!player.has("adminlevel") || player.getInt("adminlevel") < 1000)) {
-						logger.warn("removed admin item " + item.get("name") + " from player " + player.getName());
-						String quantity = "1";
-						if (item.has("quantity")) {
-							quantity = item.get("quantity");
-						}
-						new ItemLogger().addItemLogEntry(new ItemLogEntry(item, player, "destroy", item.get("name"), quantity, "playertransformer", slot.getName()));
-						continue;
-					}
-
-					final String name = UpdateConverter.updateItemName(item.get("name"));
-					final Item entity = UpdateConverter.updateItem(name);
-
-					// log removed items
-					if (entity == null) {
-						int quantity = 1;
-						if (item.has("quantity")) {
-							quantity = item.getInt("quantity");
-						}
-						logger.warn("Cannot restore " + quantity + " " + name
-								+ " on login of " + player.getName()
-								+ " because this item"
-								+ " was removed from items.xml");
-						new ItemLogger().destroyOnLogin(player, newSlot, item);
-						continue;
-					}
-
-					entity.setID(item.getID());
-
-					if (item.has("persistent")
-							&& (item.getInt("persistent") == 1)) {
-						/*
-						 * Keep [new] rpclass
-						 */
-						final RPClass rpclass = entity.getRPClass();
-						entity.fill(item);
-						entity.setRPClass(rpclass);
-						
-						// If we've updated the item name we don't want persistent reverting it
-						entity.put("name", name);
-					}
-
-					if (entity instanceof StackableItem) {
-						int quantity = 1;
-						if (item.has("quantity")) {
-							quantity = item.getInt("quantity");
-						} else {
-							logger.warn("Adding quantity=1 to "
-									+ item
-									+ ". Most likely cause is that this item was not stackable in the past");
-						}
-						((StackableItem) entity).setQuantity(quantity);
-
-						if (quantity <= 0) {
-							logger.warn("Ignoring item "
-									+ name
-									+ " on login of player "
-									+ player.getName()
-									+ " because this item has an invalid quantity: "
-									+ quantity);
-							continue;
-						}
-					}
-
-					// make sure saved individual information is
-					// restored
-					final String[] individualAttributes = { "infostring",
-							"description", "bound", "undroppableondeath" };
-					for (final String attribute : individualAttributes) {
-						if (item.has(attribute)) {
-							entity.put(attribute, item.get(attribute));
-						}
-					}
-
-					boundOldItemsToPlayer(player, entity);
-
-					if (item.has("logid")) {
-						entity.put("logid", item.get("logid"));
-					}
-					new ItemLogger().loadOnLogin(player, newSlot, entity);
-					newSlot.add(entity);
-				} else {
-					logger.warn("Non-item object found in " + player.getName()
-							+ "[" + slot.getName() + "]: " + item);
+					continue;
 				}
+				
+				Item item = transformer.transform(rpobject);
+				
+				// log removed items
+				if (item == null) {
+					int quantity = 1;
+					if (rpobject.has("quantity")) {
+						quantity = rpobject.getInt("quantity");
+					}
+					
+					logger.warn("Cannot restore " + quantity + " " + rpobject.get("name")
+							+ " on login of " + player.getName()
+							+ " because this item"
+							+ " was removed from items.xml");
+					new ItemLogger().destroyOnLogin(player, slot, rpobject);
+					
+					continue;
+				}
+				
+				boundOldItemsToPlayer(player, item);
+				
+				newSlot.add(item);
 			} catch (final Exception e) {
-				logger.error("Error adding " + item + " to player slot" + slot,
+				logger.error("Error adding " + rpobject + " to player slot" + slot,
 						e);
 			}
 		}
