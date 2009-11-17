@@ -95,7 +95,7 @@ public class LookBookforCerylTest {
 				"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
 				ceryl.get("text"));
 
-		assertFalse(pl.hasQuest(CERYL_BOOK));
+		assertEquals("start", pl.getQuest(LookBookforCerylTest.CERYL_BOOK));
 	}
 
 	@Test
