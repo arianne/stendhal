@@ -1,4 +1,4 @@
-package games.stendhal.server.trade;
+package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
