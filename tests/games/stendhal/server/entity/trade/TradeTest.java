@@ -64,13 +64,23 @@ public class TradeTest {
 		Market edeka = Market.createShop();
 		zone.add(edeka);
 		Player george = PlayerTestHelper.createPlayer("george");
-		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
-		money.setQuantity(100);
-		george.equipToInventoryOnly(money);
 		Offer offer = edeka.createOffer(george, "light saber", 42);
 		assertNull("Creating offers for non existing items should fail", offer);
+	}
+	
+	@Test
+	public void testCreateOfferForBoundItem() {
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Player george = PlayerTestHelper.createPlayer("george");
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		item.setBoundTo("george");
+		george.equipToInventoryOnly(item);
 		
-		assertThat(george.isEquipped("money", 100), is(Boolean.TRUE));
+		Offer offer = edeka.createOffer(george, "axe", 42);
+		assertNull("Creating offers for non bound items should fail", offer);
+		assertThat(george.isEquipped("axe"), is(Boolean.TRUE));
 	}
 
 	@Test
