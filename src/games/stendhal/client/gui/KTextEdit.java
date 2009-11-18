@@ -33,14 +33,13 @@ import javax.swing.text.StyleContext;
 import org.apache.log4j.Logger;
 
 
-
 public class KTextEdit extends JPanel {
 	protected static final int TEXT_SIZE = 11;
 
 	protected static final Color HEADER_COLOR = Color.gray;
 
-	private static final String GAME_LOG_FILE = System.getProperty("user.home")
-	+ "/" + stendhal.STENDHAL_FOLDER + "gamechat.log";
+	private static final String GAME_LOG_FILE = System.getProperty("user.home") 
+	+ stendhal.STENDHAL_FOLDER + "gamechat.log";
 	
 	
 	private final class TextPaneMouseListener extends MouseAdapter {
@@ -331,9 +330,9 @@ public class KTextEdit extends JPanel {
 		try {
 			fo = new FileWriter(GAME_LOG_FILE);
 			textPane.write(fo);
-	
-			
 			fo.close();
+			
+			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
 		} catch (final Exception ex) {
 			logger.error(ex, ex);
 		}
