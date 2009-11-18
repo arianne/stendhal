@@ -1,17 +1,19 @@
 package games.stendhal.server.entity.trade;
 
 
+import games.stendhal.server.core.engine.transformer.ItemTransformer;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.log4j.Logger;
 
 public class Offer extends PassiveEntity {
+	private static final Logger logger = Logger.getLogger(Offer.class);
 	
 	private static final String OFFERER_ATTRIBUTE_NAME = "offerer";
 
@@ -55,12 +57,23 @@ public class Offer extends PassiveEntity {
 	}
 	
 	public Offer(final RPObject object) {
-		// an ad hoc item loader that needs to be changed
 		this(null, Integer.valueOf(object.getInt("price")), object.get(OFFERER_ATTRIBUTE_NAME));
 		final RPObject itemObject = object.getSlot(OFFER_ITEM_SLOT_NAME).getFirst(); 
-		final String name = itemObject.get("name");
-		final Item entity = UpdateConverter.updateItem(name);
-		entity.fill(itemObject);
+		
+		final Item entity = new ItemTransformer().transform(itemObject);
+		
+		// log removed items
+		if (entity == null) {
+			int quantity = 1;
+			if (itemObject.has("quantity")) {
+				quantity = itemObject.getInt("quantity");
+			}
+			logger.warn("Cannot restore " + quantity + " "
+					+ itemObject.get("name") + " to offer "
+					+ " because this item"
+					+ " was removed from items.xml");
+			return;
+		}
 		
 		item = entity;
 		getSlot(OFFER_ITEM_SLOT_NAME).add(item);
