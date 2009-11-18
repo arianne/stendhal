@@ -25,6 +25,8 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+import static java.io.File.separator;
+
 public class stendhal {
 
 	private static final Logger logger = Logger.getLogger(stendhal.class);
@@ -48,7 +50,7 @@ public class stendhal {
 
 		/** We set the main game folder to the game name */
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
-		STENDHAL_FOLDER = "/" + GAME_NAME.toLowerCase() + "/";
+		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase() + separator;
 	}
 
 	public static final String VERSION = Version.VERSION;
