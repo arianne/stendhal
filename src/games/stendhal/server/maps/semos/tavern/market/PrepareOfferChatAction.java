@@ -27,29 +27,29 @@ public class PrepareOfferChatAction implements ChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
-		try {
-			if(TradingUtility.isPlayerWithinOfferLimit(player)) {
-				String itemName = determineItemName(sentence);
-				int price = determinePrice(sentence);
-				Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, price).intValue());
-				if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
-					if (createOffer(player, itemName, price)) {
-						TradingUtility.substractTradingFee(player, price);
-						npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-						return;
-					}
-					// Needs some feedback for the player
-					return;
-				}
-				npc.say("You cannot afford the trading fee of "+fee.toString());
+		if(TradingUtility.isPlayerWithinOfferLimit(player)) {
+			if (sentence.getExpressions().size() < 3 || sentence.getNumeralCount() != 1) {
+				npc.say("I did not understand you. Please say \"sell item price\".");
+				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
-			npc.say("You may not place more than "+Integer.valueOf(TradingUtility.MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
-		} catch (NumberFormatException e) {
-			npc.say("I did not understand you. Please say \"sell item price\".");
-			npc.setCurrentState(ConversationStates.ATTENDING);
+			String itemName = determineItemName(sentence);
+			int price = determinePrice(sentence);
+			Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, price).intValue());
+			if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
+				if (createOffer(player, itemName, price)) {
+					TradingUtility.substractTradingFee(player, price);
+					npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
+					npc.setCurrentState(ConversationStates.ATTENDING);
+					return;
+				}
+				// Needs some feedback for the player
+				return;
+			}
+			npc.say("You cannot afford the trading fee of "+fee.toString());
+			return;
 		}
+		npc.say("You may not place more than "+Integer.valueOf(TradingUtility.MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
 	}
 	
 	/**
@@ -87,9 +87,6 @@ public class PrepareOfferChatAction implements ChatAction {
 	}
 
 	private int determinePrice(Sentence sentence) {
-		Expression expression = sentence.getExpression(2,"");
-		String number = expression.getNormalized();
-		return Integer.parseInt(number);
+		return sentence.getNumeral().getAmount();
 	}
-	
 }
