@@ -11,11 +11,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class Market extends PassiveEntity {
+	private static Logger logger = Logger.getLogger(Market.class);
 	
 	public static final String MARKET_RPCLASS_NAME = "market";
 	public static final String EARNINGS_SLOT_NAME = "earnings";
@@ -60,6 +63,15 @@ public class Market extends PassiveEntity {
 		if (object.hasSlot(OFFERS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(OFFERS_SLOT_NAME)) {
 				Offer offer = new Offer(rpo);
+				
+				// an offer might have become obsolete, when items are removed
+				if (offer.getItem() == null) {
+					logger.warn("Cannot restore an offer by " + offer.getOfferer()
+							+ " because this item"
+							+ " was removed from items.xml");
+					continue;
+				}
+				
 				this.offers.add(offer);
 				this.getSlot(OFFERS_SLOT_NAME).add(offer);
 			}
@@ -74,6 +86,15 @@ public class Market extends PassiveEntity {
 		if (object.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			 	Offer offer = new Offer(rpo);
+			 	
+			 	// an offer might have become obsolete, when items are removed
+				if (offer.getItem() == null) {
+					logger.warn("Cannot restore an offer by " + offer.getOfferer()
+							+ " because this item"
+							+ " was removed from items.xml");
+					continue;
+				}
+				
 				this.expiredOffers.add(offer);
 				this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(offer);
 			}
