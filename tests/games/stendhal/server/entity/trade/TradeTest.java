@@ -2,13 +2,12 @@ package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNull;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.trade.Market;
-import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.AfterClass;
@@ -57,6 +56,21 @@ public class TradeTest {
 		edeka.fetchEarnings(george);
 		assertThat(Boolean.valueOf(george.isEquipped("money", price.intValue())),
 				is(Boolean.TRUE));
+	}
+	
+	@Test
+	public void testCreateNonExistingOffer() {
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Player george = PlayerTestHelper.createPlayer("george");
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(100);
+		george.equipToInventoryOnly(money);
+		Offer offer = edeka.createOffer(george, "light saber", 42);
+		assertNull("Creating offers for non existing items should fail", offer);
+		
+		assertThat(george.isEquipped("money", 100), is(Boolean.TRUE));
 	}
 
 	@Test
