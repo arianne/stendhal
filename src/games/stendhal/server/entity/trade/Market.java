@@ -136,7 +136,7 @@ public class Market extends PassiveEntity {
 		String name = offerer.getName();
 		Item item = offerer.getFirstEquipped(itemName);
 		
-		if (item == null) {
+		if (item == null || item.isBound()) {
 			return null;
 		}
 	
