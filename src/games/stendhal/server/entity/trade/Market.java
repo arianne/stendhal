@@ -135,6 +135,11 @@ public class Market extends PassiveEntity {
 			final Integer money) {
 		String name = offerer.getName();
 		Item item = offerer.getFirstEquipped(itemName);
+		
+		if (item == null) {
+			return null;
+		}
+	
 		Offer offer = null;
 		if(offerer.drop(item)) {
 			offer = new Offer(item, money, name);

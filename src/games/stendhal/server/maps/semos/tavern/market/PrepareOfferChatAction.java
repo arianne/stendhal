@@ -32,10 +32,14 @@ public class PrepareOfferChatAction implements ChatAction {
 				String itemName = determineItemName(sentence);
 				int price = determinePrice(sentence);
 				Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, price).intValue());
-				if(TradingUtility.substractTradingFee(player, price)) {
-					createOffer(player, itemName, price);
-					npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
-					npc.setCurrentState(ConversationStates.ATTENDING);
+				if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
+					if (createOffer(player, itemName, price)) {
+						TradingUtility.substractTradingFee(player, price);
+						npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
+						npc.setCurrentState(ConversationStates.ATTENDING);
+						return;
+					}
+					// Needs some feedback for the player
 					return;
 				}
 				npc.say("You cannot afford the trading fee of "+fee.toString());
@@ -48,10 +52,21 @@ public class PrepareOfferChatAction implements ChatAction {
 		}
 	}
 	
-	private void createOffer(Player player, String itemName, int price) {
+	/**
+	 * Try creating an offer.
+	 * 
+	 * @param player the player who makes the offer
+	 * @param itemName name of the item for sale
+	 * @param price price for the item
+	 * @return true if making the offer was successful, false otherwise
+	 */
+	private boolean createOffer(Player player, String itemName, int price) {
 		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
 			Offer o = shop.createOffer(player,itemName,Integer.valueOf(price));
+			if (o == null) {
+				return false;
+			}
 			TradingUtility.addTurnNotifiers(player, o);
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(itemName);
@@ -61,8 +76,9 @@ public class PrepareOfferChatAction implements ChatAction {
 			String messageNumberOfOffers = "You have now made "
 				+ Grammar.quantityplnoun(Integer.valueOf(shop.countOffersOfPlayer(player)),"offer") + ".";
 			player.sendPrivateText(message.toString() + messageNumberOfOffers);
-			return;
+			return true;
 		}
+		return false;
 	}
 
 	private String determineItemName(Sentence sentence) {
