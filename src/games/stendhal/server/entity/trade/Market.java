@@ -141,9 +141,9 @@ public class Market extends PassiveEntity {
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
-			return offer;
+			getZone().storeToDatabase();
 		}
-		this.getZone().storeToDatabase();
+		
 		return offer;
 	}
 
