@@ -20,7 +20,6 @@ final class ChangeLockAction extends HouseChatAction implements ChatAction {
 	
 	protected ChangeLockAction(final String questslot) {
 		super(questslot);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
