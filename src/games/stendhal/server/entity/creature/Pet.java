@@ -255,13 +255,8 @@ public abstract class Pet extends DomesticAnimal {
 				if (weight > 0) {
 					setWeight(weight - 1);
 				} else {
+					// apply starvation damage at a safe moment 
 					delayedDamage(2, "starvation");
-					// TODO: URGENT! Cat can die here! and the removePet() call
-					// isn't working!
-					notifyWorldAboutChanges();
-					if (getHP() <= 0) {
-						return;
-					}
 				}
 			} else {
 				// here, (hunger_hungry < hunger < starvation) && not near food
