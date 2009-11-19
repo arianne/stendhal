@@ -41,7 +41,7 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
 		george.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(george, item.getName(), price);
+		Offer offer = edeka.createOffer(george, item, price);
 		assertThat(offer.getItem(), is(item));
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(george.isEquipped(item.getName())),
@@ -64,7 +64,7 @@ public class TradeTest {
 		Market edeka = Market.createShop();
 		zone.add(edeka);
 		Player george = PlayerTestHelper.createPlayer("george");
-		Offer offer = edeka.createOffer(george, "light saber", 42);
+		Offer offer = edeka.createOffer(george, null, 42);
 		assertNull("Creating offers for non existing items should fail", offer);
 	}
 	
@@ -78,7 +78,7 @@ public class TradeTest {
 		item.setBoundTo("george");
 		george.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(george, "axe", 42);
+		Offer offer = edeka.createOffer(george, item, 42);
 		assertNull("Creating offers for non bound items should fail", offer);
 		assertThat(george.isEquipped("axe"), is(Boolean.TRUE));
 	}
@@ -118,7 +118,7 @@ public class TradeTest {
 		Integer tooFewMoney = price - 1;
 		erniesMoney.setQuantity(tooFewMoney);
 		bob.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(bob, item.getName(), price);
+		Offer offer = edeka.createOffer(bob, item, price);
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);

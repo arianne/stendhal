@@ -131,11 +131,10 @@ public class Market extends PassiveEntity {
 	 * @param money price for the item
 	 * @return the new created offer
 	 */
-	public Offer createOffer(final Player offerer, final String itemName,
+	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
 		String name = offerer.getName();
-		Item item = offerer.getFirstEquipped(itemName);
-		
+
 		if (item == null || item.isBound()) {
 			return null;
 		}

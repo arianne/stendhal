@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -37,7 +38,16 @@ public class PrepareOfferChatAction implements ChatAction {
 			int price = determinePrice(sentence);
 			Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, price).intValue());
 			if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
-				if (createOffer(player, itemName, price)) {
+				Item item = player.getFirstEquipped(itemName);
+				if (item == null) {
+					npc.say("Sorry, but I don't think you have any " 
+							+ Grammar.plural(itemName)+ ".");
+					return;
+				} else if (item.isBound()) {
+					npc.say("That " + itemName + " can be used only by you. I can not sell it.");
+					return;
+				}
+				if (createOffer(player, item, price)) {
 					TradingUtility.substractTradingFee(player, price);
 					npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
@@ -60,16 +70,16 @@ public class PrepareOfferChatAction implements ChatAction {
 	 * @param price price for the item
 	 * @return true if making the offer was successful, false otherwise
 	 */
-	private boolean createOffer(Player player, String itemName, int price) {
+	private boolean createOffer(Player player, Item item, int price) {
 		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
-			Offer o = shop.createOffer(player,itemName,Integer.valueOf(price));
+			Offer o = shop.createOffer(player, item, Integer.valueOf(price));
 			if (o == null) {
 				return false;
 			}
 			TradingUtility.addTurnNotifiers(player, o);
 			StringBuilder message = new StringBuilder("Offer for ");
-			message.append(itemName);
+			message.append(item.getName());
 			message.append(" at ");
 			message.append(price);
 			message.append(" created. ");
