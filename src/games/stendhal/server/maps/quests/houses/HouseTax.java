@@ -179,17 +179,13 @@ class HouseTax implements TurnListener {
 	 * @param message the delivered message
 	 */
 	private void notifyIfNeeded(final String owner, final String message) {
-		// TODO: remove the support for "an unknown owner", once all the old
-		// houses have been updated or confiscated
-		if (!owner.equals("an unknown owner")) {
-			logger.info("sending a notice to '" + owner + "': " + message);
-			final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+		logger.info("sending a notice to '" + owner + "': " + message);
+		final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 
-			if (postman != null) {
-				postman.sendPrivateText("MrTaxman tells you: tell " + owner + " " + message);
-			} else {
-				logger.warn("could not use postman to deliver the message");
-			}
+		if (postman != null) {
+			postman.sendPrivateText("MrTaxman tells you: tell " + owner + " " + message);
+		} else {
+			logger.warn("could not use postman to deliver the message");
 		}
 	}
 	
