@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -13,7 +12,6 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
-			npc.setCurrentState(ConversationStates.ATTENDING);
 		} else if (sentence.getExpressions().iterator().next().toString().equals("prolong")){
 			handleSentence(player, sentence, npc);
 		}
@@ -30,21 +28,17 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 					if(TradingUtility.substractTradingFee(player, o.getPrice())) {
 						prolongOffer(player, o);
 						npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
 						return;
 					}
 					npc.say("You cannot afford the trading fee of "+fee.toString());
 					return;
 				}
 				npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");
-				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
 			npc.say("Sorry, please choose a number from those I told you to prolong your offer.");
-			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #remove #number");
-			npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 		}
 		manager.getOfferMap().clear();
 	}
