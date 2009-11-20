@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Map;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -21,7 +23,13 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 		MarketManagerNPC manager = (MarketManagerNPC) npc;
 		try {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
-			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
+			
+			Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+			if (offerMap == null) {
+				npc.say("Please check your offers first.");
+				return;
+			}
+			if(offerMap.containsKey(offerNumber)) {
 				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
 				if(o.getOfferer().equals(player.getName())) {
 					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
