@@ -30,7 +30,7 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 				return;
 			}
 			if(offerMap.containsKey(offerNumber)) {
-				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
+				Offer o = offerMap.get(offerNumber);
 				if(o.getOfferer().equals(player.getName())) {
 					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
 					if(TradingUtility.substractTradingFee(player, o.getPrice())) {
