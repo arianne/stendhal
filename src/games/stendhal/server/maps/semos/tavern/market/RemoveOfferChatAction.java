@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Map;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -26,12 +28,19 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 		MarketManagerNPC manager = (MarketManagerNPC) npc;
 		try {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
-			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
-				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
+			Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+			if (offerMap == null) {
+				npc.say("Please check your offers first.");
+				return;
+			}
+			if(offerMap.containsKey(offerNumber)) {
+				Offer o = offerMap.get(offerNumber);
 				if(o.getOfferer().equals(player.getName())) {
 					Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 					m.removeOffer(o,player);
 					player.getZone().add(o, true);
+					// Obsolete the offers, since the list has changed
+					manager.getOfferMap().put(player.getName(), null);
 					return;
 				}
 				npc.say("You can only remove your own offers. Please say #show #mine to see only your offers.");
@@ -41,6 +50,5 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #remove #number");
 		}
-		manager.getOfferMap().clear();
 	}
 }
