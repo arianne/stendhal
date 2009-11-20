@@ -110,11 +110,11 @@ public class TradingUtility {
 	 */
 	public static void addTurnNotifiers(Player player, Offer offer) {
 		TurnListener offerExpireWarner = new OfferExpireWarner(offer, player.getZone());
-		TurnNotifier.get().notifyInTurns((DAYS_TO_OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpireWarner);
+		TurnNotifier.get().notifyInSeconds(DAYS_TO_OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpireWarner);
 		TurnListener offerExpirer = new OfferExpirerer(offer,player.getZone());
-		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
+		TurnNotifier.get().notifyInSeconds((DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY) * MathHelper.SECONDS_IN_ONE_DAY, offerExpirer);
 		TurnListener offerRemover = new OfferRemover(offer,player.getZone());
-		TurnNotifier.get().notifyInTurns(DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY + DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY * MathHelper.SECONDS_IN_ONE_DAY, offerRemover);
+		TurnNotifier.get().notifyInSeconds((DAYS_TO_OFFER_EXPIRING_AFTER_WARNING + DAYS_TO_OFFER_EXPIRE_WARNING_DELAY + DAYS_TO_OFFER_GETTING_REMOVED_COMPLETELY) * MathHelper.SECONDS_IN_ONE_DAY, offerRemover);
 	}
 
 }
