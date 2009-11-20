@@ -127,7 +127,7 @@ public class Market extends PassiveEntity {
 	 * creates a new offer at the market
 	 * 
 	 * @param offerer offering player
-	 * @param itemName item to sell
+	 * @param item item to sell
 	 * @param money price for the item
 	 * @return the new created offer
 	 */
