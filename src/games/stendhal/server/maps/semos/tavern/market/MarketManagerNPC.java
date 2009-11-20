@@ -8,10 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MarketManagerNPC extends SpeakerNPC {
-	
 	private Map<String,Map<String,Offer>> offerMap = new HashMap<String, Map<String, Offer>>();
-	
-	private Offer chosenOffer;
 	
 	MarketManagerNPC(String name) {
 		super(name);
@@ -47,13 +44,5 @@ public final class MarketManagerNPC extends SpeakerNPC {
 	}
 	public Map<String, Map<String, Offer>> getOfferMap() {
 		return offerMap;
-	}
-
-	public void setChosenOffer(Offer chosenOffer) {
-		this.chosenOffer = chosenOffer;
-	}
-
-	public Offer getChosenOffer() {
-		return chosenOffer;
 	}
 }
