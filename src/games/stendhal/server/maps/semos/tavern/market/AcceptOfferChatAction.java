@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -27,8 +29,13 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 		MarketManagerNPC manager = (MarketManagerNPC) npc;
 		try {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
-			if(manager.getOfferMap().get(player.getName()).containsKey(offerNumber)) {
-				Offer o = manager.getOfferMap().get(player.getName()).get(offerNumber);
+			Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+			if (offerMap == null) {
+				npc.say("Please take a look at the list of offers first.");
+				return;
+			}
+			if(offerMap.containsKey(offerNumber)) {
+				Offer o = offerMap.get(offerNumber);
 				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 				m.acceptOffer(o,player);
 				StringBuilder earningToFetchMessage = new StringBuilder();
@@ -38,13 +45,13 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 				SingletonRepository.getRuleProcessor().getPlayer(o.getOfferer()).sendPrivateText(earningToFetchMessage.toString());
 				player.getZone().add(o, true);
 				npc.say("The offer has been accepted.");
+				// Obsolete the offers, since the list has changed
+				manager.getOfferMap().put(player.getName(), null);
 				return;
 			}
 			npc.say("Sorry, please choose a number from those I told you to accept an offer.");
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #accept #number");
 		}
-		manager.getOfferMap().clear();
 	}
-
 }
