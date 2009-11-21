@@ -248,22 +248,28 @@ public class StendhalQuestSystem {
 		final StringBuilder sb = new StringBuilder();
 
 		// Open quests
-		sb.append("\r\n\r\n");
-		sb.append("Open Quests\r\n");
-		sb.append("========\r\n");
+		sb.append("\r\nOpen Quests: ");
+		boolean first = true;
 		for (final IQuest quest : quests) {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
-				dumpQuest(sb, quest, player);
+				if (!first) {
+					sb.append(", ");
+					first = false;
+				}
+				sb.append(quest.getName());
 			}
 		}
 
 		// Completed Quests
-		sb.append("\r\n\r\n");
-		sb.append("Completed Quests\r\n");
-		sb.append("============\r\n");
+		sb.append("\r\nCompleted Quests: ");
+		first = true;
 		for (final IQuest quest : quests) {
 			if (quest.isCompleted(player)) {
-				dumpQuest(sb, quest, player);
+				if (!first) {
+					sb.append(", ");
+					first = false;
+				}
+				sb.append(quest.getName());
 			}
 		}
 
