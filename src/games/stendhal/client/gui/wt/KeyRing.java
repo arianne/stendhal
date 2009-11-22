@@ -40,10 +40,12 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 * Disable the keyring.
 	 */
 	private void disable() {
-		if (isMinimizeable()) {
-			setMinimizeable(false);
-			setMinimized(true);
-		}
+		/*
+		 * You can not really lose a keyring for now, but
+		 * a disable message is received at every map change.
+		 * Just ignore it. (And after keyrings are made to
+		 * real items, this whole file will be obsolete anyway).
+		 */
 	}
 
 	//
