@@ -40,3 +40,6 @@ Authors of Stendhal are:
 - Martin Fuchs
   . SpeakerNPC speech parsing
   . JUnit tests
+- Yuriy Krawtsow aka yoriy
+  . /script -list command :-)
+  
