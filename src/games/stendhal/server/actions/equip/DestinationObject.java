@@ -209,8 +209,8 @@ class DestinationObject extends MoveableObject {
 			return (other.nextTo(parent, distance));
 		}
 
-		// should be dropped to the ground
-		return (other.nextTo(x, y, distance));
+		// Should be dropped to the ground. Do a proper distance calculation
+		return (other.squaredDistance(x, y) < distance * distance);
 	}
 
 	/**
