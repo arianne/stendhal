@@ -8,9 +8,6 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class DropAction extends EquipmentAction {
-
-	
-	
 	public static void register() {
 		CommandCenter.register("drop", new DropAction());
 	}
@@ -20,7 +17,7 @@ public class DropAction extends EquipmentAction {
 	
 		// get destination and check it
 		final DestinationObject dest = new DestinationObject(action, player);
-		if (!dest.checkDistance(player, 5.0)) {
+		if (!dest.checkDistance(player, EquipUtil.MAX_THROWING_DISTANCE)) {
 		    player.sendPrivateText("You cannot throw that far.");
 		    return;
 		}

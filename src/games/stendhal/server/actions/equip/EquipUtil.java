@@ -15,6 +15,11 @@ import org.apache.log4j.Logger;
  */
 public class EquipUtil {
 	private static Logger logger = Logger.getLogger(EquipUtil.class);
+	
+	/**
+	 * The maximum distance a player can throw an item away from himself.
+	 */
+	protected static final int MAX_THROWING_DISTANCE = 8;
 
 	/**
 	 * Gets the object for the given id. Returns null when the item is not

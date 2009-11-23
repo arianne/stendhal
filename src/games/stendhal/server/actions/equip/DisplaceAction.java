@@ -39,11 +39,6 @@ import org.apache.log4j.Logger;
  * Moving of items around on the ground.
  */
 public class DisplaceAction implements ActionListener {
-	/**
-	 * The maximum distance a player can throw an item away from himself.
-	 */
-	private static final int MAX_THROWING_DISTANCE = 8;
-	
 	private static Logger logger = Logger.getLogger(DisplaceAction.class);
 
 	/**
@@ -157,7 +152,7 @@ public class DisplaceAction implements ActionListener {
     	int centerX = (int) (x + entity.getArea().getWidth() / 2);
     	int centerY = (int) (y + entity.getArea().getHeight() / 2);
     	
-    	if (!(player.squaredDistance(centerX, centerY) < MAX_THROWING_DISTANCE * MAX_THROWING_DISTANCE)) {
+    	if (!(player.squaredDistance(centerX, centerY) < EquipUtil.MAX_THROWING_DISTANCE * EquipUtil.MAX_THROWING_DISTANCE)) {
     		player.sendPrivateText("You cannot throw that far.");
     		return false;
     	} else {
