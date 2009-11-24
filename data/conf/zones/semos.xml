@@ -382,26 +382,8 @@ Talk to Sato about selling your sheep. His prices aren't very good, but unfortun
    </attribute>
 		</entity>
 
-		<entity x="23" y="61">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-TO THE PLAINS
-
-Shepherds please note: keep watch for the wolves while searching for berries here.
-   </attribute>
-		</entity>
-
-		<entity x="23" y="48">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-West: Jail
-East: Semos city
-South: Or'ril castle
-   </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-
-		<entity x="24" y="49">
+		<!-- writing on the wooden arch -->
+		<entity x="57" y="42">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Welcome to Semos</attribute>
 			<attribute name="class">transparent</attribute>
@@ -409,35 +391,22 @@ South: Or'ril castle
 		</entity>
 
 		<!-- writing on the wooden arch -->
-		<entity x="24" y="49">
+		<entity x="57" y="43">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Welcome to Semos</attribute>
 			<attribute name="class">transparent</attribute>
 			<attribute name="resistance">0</attribute>
 		</entity>
 
-		<entity x="25" y="49">
+		<!-- writing on the wooden arch -->
+		<entity x="57" y="44">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Welcome to Semos</attribute>
 			<attribute name="class">transparent</attribute>
 			<attribute name="resistance">0</attribute>
 		</entity>
 
-		<entity x="26" y="49">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<entity x="27" y="49">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<entity x="60" y="47">
+		<entity x="60" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
 TO SEMOS
@@ -506,6 +475,15 @@ Mature sheep wanted: please speak to Sato.
 		<portal x="44" y="19" ref="bakery_entrance">
 			<destination zone="int_semos_bakery" ref="entrance" />
 		</portal>
+		<entity x="6" y="49">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+West: Semos Village
+East: Ados Rock
+South: Nalwor forest and Or'ril castle
+            </attribute>
+			<attribute name="class">signpost</attribute>
+		</entity> 
 
 		<entity x="46" y="20">
 			<implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
