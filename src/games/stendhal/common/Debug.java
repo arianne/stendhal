@@ -39,5 +39,8 @@ public interface Debug {
 	 */
 	boolean SHOW_LIST_SIZES = false;
 	
-	
+	/**
+	 * it shows entity's view area
+	 */
+	boolean SHOW_ENTITY_VIEW_AREA = false;
 }

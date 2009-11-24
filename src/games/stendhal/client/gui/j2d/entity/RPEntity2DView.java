@@ -19,6 +19,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -602,8 +603,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			drawIdeas(g2d, x, y, height);
 		}
 
-		// Enable this to debug entity view area
-		if (false) {
+		if (Debug.SHOW_ENTITY_VIEW_AREA) {
 			g2d.setColor(Color.cyan);
 			g2d.drawRect(x, y, width, height);
 		}
