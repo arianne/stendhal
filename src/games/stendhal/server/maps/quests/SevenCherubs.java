@@ -184,7 +184,7 @@ public class SevenCherubs extends AbstractQuest {
 		SpeakerNPC npc;
 
 		zone = world.getZone("0_semos_village_w");
-		npc = new CherubNPC("Cherubiel", 48, 60);
+		npc = new CherubNPC("Cherubiel", 32, 60);
 		zone.add(npc);
 
 		zone = world.getZone("0_nalwor_city");
