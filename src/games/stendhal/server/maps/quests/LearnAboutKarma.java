@@ -115,22 +115,22 @@ public class LearnAboutKarma extends AbstractQuest {
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final long roundedkarma = Math.round(player.getKarma());
-					final String Yki = "Your karma is ";
+					final String Yk = "Your karma ";
 					final String rk = Long.toString(roundedkarma);
                     if (roundedkarma > 4999 ) {
-                        npc.say(Yki+"unbelievably high, "+rk+"! You are very, very lucky!" );
+                        npc.say(Yk+"is unbelievably high, "+rk+"! You are very, very lucky!" );
                     } else if (roundedkarma > 999) {
-                        npc.say(Yki+"great, "+rk+".");
+                        npc.say(Yk+"is great, "+rk+".");
                     } else if (roundedkarma > 99) {
-                        npc.say(Yki+"good as "+rk+".");
+                        npc.say(Yk+"of "+rk+" is good.");
                     } else if (roundedkarma > -100) {
-                        npc.say(Yki+"roughly "+rk+".");
+                        npc.say(Yk+"is roughly "+rk+".");
                     } else if (roundedkarma > -1000) {
-                        npc.say(Yki+"bad, "+rk+".");
+                        npc.say(Yk+"of "+rk+" is bad.");
                     } else if (roundedkarma > -5000) {
-                        npc.say(Yki+"terrible, "+rk+"!");
+                        npc.say(Yk+"is terrible, "+rk+"!");
                     } else {
-                        npc.say(Yki+"disastrous, "+rk+"!!! You are so unlucky...");
+                        npc.say(Yk+"is disastrous, "+rk+"!!! You are so unlucky...");
                     }
 				}
 			});
