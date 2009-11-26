@@ -145,7 +145,10 @@ public class PlayerDieer {
 	}
 
 	private void handlePlayerKiller(final Player playerKiller) {
-				playerKiller.setLastPlayerKill(System.currentTimeMillis());
+		// Do not punish on suicide. (That happen at least with club of thorns).
+		if (playerKiller != player) {
+			playerKiller.setLastPlayerKill(System.currentTimeMillis());
+		}
 	}
 
 	private void respawnInAfterLife() {
