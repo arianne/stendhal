@@ -307,7 +307,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		int loudness;
 
 		if (!initJavaSound()) {
-			logger.error("*** SOUNDSYSTEM JAVA INIT ERROR");
+			logger.warn("Soundsystem Java Init Error");
 			return;
 		}
 
@@ -874,11 +874,5 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	}
 
-	// static DataLine playMapSound(double x, double y, Rectangle2D audibleArea,
-	// String token, int volBot, int volTop, int chance) {
-	// return playMapSound(new Point2D.Double(x,y),audibleArea, token, volBot,
-	// volTop, chance);
-	//
-	// }
 
 }
