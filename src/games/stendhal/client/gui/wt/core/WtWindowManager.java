@@ -151,17 +151,13 @@ public class WtWindowManager {
 	}
 
 	/**
-	 * Returns a property.
+	 * Sets a property.
 	 * 
-	 * @param key
-	 *            Key to look up
-	 * @param defaultValue
-	 *            default value which is returned if the key is not in the
-	 *            configuration file
-	 * @return value
+	 * @param key key
+	 * @param value value
 	 */
-	public String setProperty(final String key, final String defaultValue) {
-		return properties.getProperty("config." + key, defaultValue);
+	public void setProperty(final String key, final String value) {
+		properties.setProperty("config." + key, value);
 	}
 
 	/**
