@@ -28,6 +28,7 @@ package games.stendhal.client.sound;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.MathHelper;
@@ -294,6 +295,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	}
 
 	private void init() {
+
+		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+		setMute(!play);
 
 		String hstr;
 		int loaded;

@@ -2,6 +2,7 @@ package games.stendhal.client.soundreview;
 
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.WorldObjects.WorldListener;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -29,6 +30,8 @@ public class SoundMaster implements Runnable, WorldListener {
 
 	public void init() {
 		sfm = new SoundFileMap();
+		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+		setMute(!play);
 
 		cliplisten = new Cliplistener();
 		WorldObjects.addWorldListener(this);
