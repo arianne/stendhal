@@ -37,7 +37,7 @@ class SoundAction implements SlashAction {
 	/**
 	 * toggles the mute state of sounds.
 	 */
-	private void toggleMute() {
+	void toggleMute() {
 		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
 		play = !play;
 		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
