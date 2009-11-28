@@ -21,7 +21,7 @@ package games.stendhal.client.sound;
  * @author astridemma 19.02.2007
  * 
  */
-public class DBValues {
+class DBValues {
 	
 	/**
 	 * Utility Class does not need to be instantiated.

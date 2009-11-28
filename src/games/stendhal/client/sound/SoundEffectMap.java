@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SoundEffectMap {
+class SoundEffectMap {
 
 	/**
 	 * the singleton instance initiated by default.
