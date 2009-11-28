@@ -49,6 +49,7 @@ public class SlashActionRepository {
 
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
+		actions.put("mute", new MuteAction());
 
 		actions.put("quit", new QuitAction());
 
