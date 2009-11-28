@@ -25,12 +25,16 @@ class SoundAction implements SlashAction {
 		final String command = params[0];
 
 		if (command.equals("mute")) {
-			final String param = params[1];
-
-			WtWindowManager.getInstance().setProperty("sound.mute", param);
-			SoundMaster.setMute(param.equals("on"));
-			SoundSystem.get().setMute(param.equals("on"));
+			boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+			play = !play;
+			WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
+			SoundMaster.setMute(!play);
+			SoundSystem.get().setMute(!play);
 		} else if (command.equals("volume")) {
+			if (params.length < 2) {
+				j2DClient.get().addEventLine(new StandardEventLine(
+				"/sound volume <vol>, with <vol> between 0 and 100."));
+			}
 			int vol;
 
 			try {
@@ -67,6 +71,6 @@ class SoundAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 2;
+		return 1;
 	}
 }

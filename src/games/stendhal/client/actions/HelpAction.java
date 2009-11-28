@@ -45,7 +45,7 @@ class HelpAction implements SlashAction {
 				"- /me <action> \t\tShow a message about what you are doing",
 				"- /name <pet> <name> \t\tGive a name to your pet",
 				"- /quit \t\t\tLeave the game. You will continue where you left off upon your return",
-				"- /sound mute <on|off> \tMute or unmute the sounds",
+				"- /sound mute\t\t\tMute or unmute the sounds",
 				"- /info \t\tFind out what the current server time is"
 		};
 
