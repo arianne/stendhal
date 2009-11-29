@@ -87,7 +87,7 @@ public class TradingUtility {
 	 * checks if a player has not already placed the max number of offers
 	 * 
 	 * @param player
-	 * @return
+	 * @return true if the player is within the limit, false otherwise
 	 */
 	public static boolean isPlayerWithinOfferLimit(Player player) {
 		return countOffers(player)< MAX_NUMBER_OFF_OFFERS;
