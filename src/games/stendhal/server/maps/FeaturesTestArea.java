@@ -5,10 +5,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
@@ -19,30 +18,6 @@ import java.util.Map;
 public class FeaturesTestArea implements ZoneConfigurator {
 
 	private final EntityManager manager;
-
-	static class QuestRat extends Creature {
-
-		public QuestRat(final Creature copy) {
-			super(copy);
-		}
-
-		@Override
-		public void onDead(final Entity killer, final boolean remove) {
-			if (killer instanceof RPEntity) {
-				final RPEntity killerRPEntity = (RPEntity) killer;
-				if (!killerRPEntity.isEquipped("golden key")) {
-					final Item item = SingletonRepository.getEntityManager().getItem("golden key");
-					killerRPEntity.equipOrPutOnGround(item);
-				}
-			}
-		}
-
-		@Override
-		public void update() {
-			noises = new LinkedList<String>(noises);
-			noises.add("Thou shall not obtain the key!");
-		}
-	}
 
 	public FeaturesTestArea() {
 		manager = SingletonRepository.getEntityManager();
@@ -67,15 +42,9 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
-		manager.addItem(item);
-
-		item = new DefaultItem("key", "golden", "silver key", -1);
-		item.setImplementation(Item.class);
-		item.setWeight(1);
-		item.setEquipableSlots(slots);
-		manager.addItem(item);
-
-		final Creature creature = new QuestRat(manager.getCreature("rat"));
+		manager.addItem(item);		
+		
+		final Creature creature = new ItemGuardCreature(manager.getCreature("rat"), "golden key");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
 		zone.add(point);
 	}
