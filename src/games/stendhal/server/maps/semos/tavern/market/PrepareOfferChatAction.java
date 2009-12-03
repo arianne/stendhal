@@ -35,6 +35,7 @@ public class PrepareOfferChatAction implements ChatAction {
 				return;
 			}
 			String itemName = determineItemName(sentence);
+			int number = determineNumber(sentence);
 			int price = determinePrice(sentence);
 			Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, price).intValue());
 			if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
@@ -62,6 +63,10 @@ public class PrepareOfferChatAction implements ChatAction {
 		npc.say("You may not place more than "+Integer.valueOf(TradingUtility.MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
 	}
 	
+	private int determineNumber(Sentence sentence) {
+		return 1;
+	}
+
 	/**
 	 * Try creating an offer.
 	 * 
