@@ -23,25 +23,35 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
-		addShopToZone(zone);
+		Market market = addShopToZone(zone);
+		// start checking for expired offers
+		new OfferExpirer(market);
+		
 		buildTradeCenterAdvisor(zone);
 	}
 
-	private void addShopToZone(StendhalRPZone zone) {
-		if (!zoneContainsAShop(zone)) {
-			Market shop = Market.createShop();
-			shop.setVisibility(0);
-			zone.add(shop, false);
+	private Market addShopToZone(StendhalRPZone zone) {
+		Market market = getMarketFromZone(zone);
+		if (market == null) {
+			market = Market.createShop();
+			market.setVisibility(0);
+			zone.add(market, false);
 		}
+		
+		return market;
 	}
 
-	private boolean zoneContainsAShop(StendhalRPZone zone) {
+	private Market getMarketFromZone(StendhalRPZone zone) {
 		for (RPObject rpObject : zone) {
-			if (rpObject.getRPClass().getName().equals(Market.MARKET_RPCLASS_NAME)) {
-				return true;
+			/*if (rpObject.getRPClass().getName().equals(Market.MARKET_RPCLASS_NAME)) {
+				return (Market) rpObject;
+			}
+			*/
+			if (rpObject instanceof Market) {
+				return (Market) rpObject;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	private void buildTradeCenterAdvisor(StendhalRPZone zone) {

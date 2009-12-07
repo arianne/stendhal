@@ -54,8 +54,7 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 	private void prolongOffer(Player player, Offer o) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if (market != null) {
-			Offer newOffer = market.prolongOffer(o);
-			TradingUtility.addTurnNotifiers(player, newOffer);
+			market.prolongOffer(o);
 			String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
 			player.sendPrivateText(messageNumberOfOffers);
 		}

@@ -279,4 +279,20 @@ public class Market extends PassiveEntity {
 		return offer;
 	}
 
+	/**
+	 * Get a list of offers whose timestamp is older than specified.
+	 * 
+	 * @param seconds age of offers in seconds
+	 * @return list of offers that are older than the specified time
+	 */
+	public List<Offer> getOffersOlderThan(int seconds) {
+		List<Offer> old = new LinkedList<Offer>();
+		for (Offer offer : offers) {
+			if (System.currentTimeMillis() > offer.getTimestamp() + 1000 * seconds) {
+				old.add(offer);
+			}
+		}
+		
+		return old;
+	}
 }

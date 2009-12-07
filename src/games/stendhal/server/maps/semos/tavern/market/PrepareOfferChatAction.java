@@ -82,7 +82,7 @@ public class PrepareOfferChatAction implements ChatAction {
 			if (o == null) {
 				return false;
 			}
-			TradingUtility.addTurnNotifiers(player, o);
+
 			StringBuilder message = new StringBuilder("Offer for ");
 			message.append(item.getName());
 			message.append(" at ");
