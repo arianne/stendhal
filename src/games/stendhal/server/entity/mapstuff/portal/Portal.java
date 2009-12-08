@@ -150,7 +150,7 @@ public class Portal extends Entity implements UseListener {
 		sbuf.append('[');
 		sbuf.append(getX());
 		sbuf.append(',');
-		sbuf.append(getX());
+		sbuf.append(getY());
 		sbuf.append(']');
 
 		if (isHidden()) {
