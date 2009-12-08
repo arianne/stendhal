@@ -87,8 +87,8 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.add(
 			ConversationStates.ATTENDING,
 			"map", null, ConversationStates.ATTENDING, "Caption\n"
-			+ "1 Townhall, Tad lives here,   2 Library,   3 Bank,   4 Storage,\n"
-			+ "5 Bakery,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
+			+ "1 Townhall, Tad lives here,   2 Library,   3 Bank,   4 Bakery,\n"
+			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
         	+ "8 Temple, ilisa,   9 Dangerous Dungeon \n"
         	+ "A Semos Village,   B Northern Plains and Mine, \n"
         	+ "C Very long path to Ados, \n"
