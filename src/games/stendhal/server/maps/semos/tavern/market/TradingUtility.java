@@ -60,10 +60,11 @@ public class TradingUtility {
 		if(player.isBadBoy()) {
 			fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PLAYER_KILLER_PENALTY));
 		}
-		BigDecimal feeBonus = BigDecimal.ONE;
 		
-		feeBonus = BigDecimal.valueOf(Math.exp(player.getTradescore()/FEE_BONUS_CONSTANT));
+		BigDecimal feeBonus = BigDecimal.ONE;
+		feeBonus = BigDecimal.valueOf(Math.exp(-player.getTradescore()/FEE_BONUS_CONSTANT));
 		fee = fee.multiply(feeBonus);
+		
 		return fee.max(BigDecimal.ONE);
 	}
 
