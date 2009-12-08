@@ -38,7 +38,6 @@ public class RemoveOfferChatAction extends KnownOffersChatAction {
 				if(o.getOfferer().equals(player.getName())) {
 					Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 					m.removeOffer(o,player);
-					player.getZone().add(o, true);
 					// Obsolete the offers, since the list has changed
 					manager.getOfferMap().put(player.getName(), null);
 					return;
