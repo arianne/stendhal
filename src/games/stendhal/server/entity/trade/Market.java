@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.trade;
 
+import games.stendhal.server.core.engine.ItemLogEntry;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
@@ -263,6 +265,15 @@ public class Market extends PassiveEntity {
 	public void removeExpiredOffer(Offer offerToRemove) {
 		this.expiredOffers.remove(offerToRemove);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
+		
+		Item item = offerToRemove.getItem();
+		int quantity = 1;
+		if (item instanceof StackableItem) {
+			quantity = ((StackableItem) item).getQuantity();
+		}
+		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, 
+				null, "destroy", item.get("name"), Integer.toString(quantity), "timeout", "market"));
+		
 		this.getZone().storeToDatabase();
 	}
 
