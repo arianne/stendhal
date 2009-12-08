@@ -15,6 +15,7 @@ public class TradingUtility {
 	
 	private static final int FEE_BONUS_CONSTANT = 10;
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
+	/** Ratio by which player killers should pay more */
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
 	static final int MAX_NUMBER_OFF_OFFERS = 3;
 
@@ -58,7 +59,7 @@ public class TradingUtility {
 		BigDecimal fee  = BigDecimal.valueOf(price);
 		fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PERCENTAGE));
 		if(player.isBadBoy()) {
-			fee = fee.multiply(BigDecimal.valueOf(TRADING_FEE_PLAYER_KILLER_PENALTY));
+			fee = fee.multiply(BigDecimal.valueOf(1 + TRADING_FEE_PLAYER_KILLER_PENALTY));
 		}
 		
 		BigDecimal feeBonus = BigDecimal.ONE;
