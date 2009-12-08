@@ -115,7 +115,7 @@ public class OfferExpirer implements TurnListener{
 	 * Check for offers that should be permanently removed
 	 */
 	private void checkRemoved() {
-		List<Offer> list = market.getOffersOlderThan(TIME_TO_REMOVING);
+		List<Offer> list = market.getExpiredOffersOlderThan(TIME_TO_REMOVING);
 		
 		for (Offer offer : list) {
 			market.removeExpiredOffer(offer);
